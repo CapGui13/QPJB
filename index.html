@@ -20,8 +20,12 @@
   --cream:   #faf6ef;
   --card-bg: #fffdf8;
   --card-bd: #e8dfc8;
-  --red:     #b91c1c;
-  --blue:    #1d4ed8;
+  --red:     #c0392b;
+  --blue:    #1a56c4;
+  --suit-s:  #1a56c4;
+  --suit-h:  #c0392b;
+  --suit-d:  #e07b00;
+  --suit-c:  #1a7a3c;
   --txt:     #1a1410;
   --txt2:    #6b5d4e;
   --txt3:    #b0a090;
@@ -59,7 +63,7 @@ header{
 .logo-text p{font-size:10px;color:rgba(255,255,255,.33);margin-top:1px;letter-spacing:.5px}
 .hd-suits{display:flex;gap:4px}
 .hd-suits span{font-size:16px}
-.hs{color:#bbb}.hh{color:#f87171}.hd{color:#f87171}.hc{color:#bbb}
+.hs{color:var(--suit-s)}.hh{color:var(--suit-h)}.hd{color:var(--suit-d)}.hc{color:var(--suit-c)}
 
 /* ── CONFIG ── */
 .config{
@@ -219,9 +223,9 @@ header{
 .cds{font-size:13px;font-weight:700;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0px;letter-spacing:0}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
 
-/* suit colours */
-.cs{color:var(--txt)}.ch{color:var(--red)}.cd{color:var(--red)}.cc{color:var(--txt)}
-@media(prefers-color-scheme:dark){.cs,.cc{color:#d4cfc4}}
+/* suit colours — 4 distinct colors */
+.cs{color:var(--suit-s)}.ch{color:var(--suit-h)}.cd{color:var(--suit-d)}.cc{color:var(--suit-c)}
+.hs{color:var(--suit-s)}.hh{color:var(--suit-h)}.hd{color:var(--suit-d)}.hc{color:var(--suit-c)}
 
 /* COMPASS */
 .compass-cell{grid-column:2;grid-row:2;display:flex;align-items:center;justify-content:center}
@@ -252,8 +256,10 @@ header{
 .bp{font-size:10px;color:var(--txt3);font-weight:600}
 .bx{color:var(--red);font-weight:800;font-size:14px}
 .bxx{color:var(--blue);font-weight:800;font-size:14px}
-.c-h,.c-d{color:var(--red);font-weight:800}
-.c-s,.c-c{color:var(--txt);font-weight:800}
+.c-h{color:var(--suit-h);font-weight:800}
+.c-d{color:var(--suit-d);font-weight:800}
+.c-s{color:var(--suit-s);font-weight:800}
+.c-c{color:var(--suit-c);font-weight:800}
 .b-sa{color:var(--txt);font-size:11px;font-weight:700}
 
 /* ── COMMENT ── */
@@ -396,8 +402,11 @@ async function loadRepo() {
 async function openFile(url, name) {
   showDeal(name);
   try {
-    // GitHub serves files as UTF-8 — use text() directly
-    const text = await (await fetch(url)).text();
+    const buf = await (await fetch(url)).arrayBuffer();
+    const bytes = new Uint8Array(buf);
+    // Try UTF-8 first, fall back to ISO-8859-1 if invalid chars detected
+    let text = new TextDecoder('utf-8').decode(bytes);
+    if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
     doLoad(text, name);
   } catch(e) { showErr(e.message); }
 }
@@ -425,6 +434,9 @@ function decodeISO(buf) {
 function doLoad(text, name) {
   deals = parsePBN(text);
   if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
+  // Strip extension for display
+  const displayName = name.replace(/\.pbn$/i, '');
+  deals.forEach(d => d._filename = displayName);
   idx = 0;
   document.getElementById('deal-fname').textContent = name;
   render(0);
@@ -583,7 +595,7 @@ function render(i) {
 
   let html = `
     <div class="board-hdr">
-      <div class="board-num">Donne n°${esc(String(d.Board||i+1))}</div>
+      <div class="board-num">${esc(d._filename || String(d.Board||i+1))}</div>
       <div class="board-badges">
         <span class="badge">Donneur : ${esc(DIR_FR[dealer]||dealer)}</span>
         <span class="badge ${vul==='None'?'badge-nov':'badge-vul'}">${esc(VUL_FR[vul]||vul)}</span>
@@ -724,7 +736,7 @@ function fmtBid(bid) {
   if (b==='PASS'||b==='P')          return '<span class="bp">Passe</span>';
   if (b==='X'||b==='DBL'||b==='D') return '<span class="bx">X</span>';
   if (b==='XX'||b==='RDBL'||b==='R')return '<span class="bxx">XX</span>';
-  if (b==='AP')                     return '<span class="bp">AP</span>';
+  if (b==='AP')                     return '';
   const m = b.match(/^([1-7])(S|H|D|C|NT|N)$/);
   if (m) {
     const sym = {S:'♠',H:'♥',D:'♦',C:'♣',NT:'SA',N:'SA'}[m[2]];
