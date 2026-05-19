@@ -181,21 +181,16 @@ header{
   border:1px solid rgba(200,151,58,.1);
   padding:10px;
 }
-.diag-grid{
-  display:grid;
-  grid-template-columns:1fr 62px 1fr;
-  grid-template-rows:auto auto auto;
-  gap:5px;
-  align-items:center;
-  justify-items:stretch;
-}
-
-/* HAND card */
+/* ── DIAGRAM ── */
+.diag-grid{display:flex;flex-direction:column;gap:5px}
+.diag-row{display:flex;flex-direction:row;gap:5px;align-items:stretch;justify-content:center}
+/* Mains latérales (Ouest/Est) : moitié de la largeur moins boussole et gaps */
 .hand{
+  flex:1 1 0;
   background:var(--card-bg);
   border:1px solid var(--card-bd);
   border-radius:9px;
-  padding:10px 12px;
+  padding:9px 11px;
   box-shadow:var(--sh-sm);
   position:relative;
   min-width:0;
@@ -205,45 +200,52 @@ header{
   background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,transparent 55%);
   pointer-events:none;
 }
-
-/* N & S : span 3 cols, card centred */
-.hand-n{grid-column:1/-1;grid-row:1;justify-self:center;width:auto}
-.hand-s{grid-column:1/-1;grid-row:3;justify-self:center;width:auto}
-.hand-w{grid-column:1;   grid-row:2}
-.hand-e{grid-column:3;   grid-row:2}
+/* Nord/Sud : même largeur exacte qu'une main latérale, pas de flex */
+.hand-ns{
+  flex:none;
+  width:calc((100% - 54px) / 2);
+  margin:0 auto;
+}
 
 /* direction label */
 .hand-lbl{
   font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
-  color:var(--txt3);margin-bottom:6px;
+  color:var(--txt3);margin-bottom:5px;
+}
+
+/* HCP badge */
+.hcp{
+  margin-top:6px;
+  font-size:10px;font-weight:700;color:var(--gold);
+  letter-spacing:0.3px;
 }
 
 /* SUIT ROWS */
 .sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap}
-.sym{font-size:15px;width:17px;text-align:center;flex-shrink:0;line-height:1}
+.sym{font-size:14px;width:16px;text-align:center;flex-shrink:0;line-height:1}
 .cds{font-size:12px;font-weight:600;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
 
-/* suit colours — 4 distinct colors */
+/* suit colours */
 .cs{color:var(--suit-s)}.ch{color:var(--suit-h)}.cd{color:var(--suit-d)}.cc{color:var(--suit-c)}
 .hs{color:var(--suit-s)}.hh{color:var(--suit-h)}.hd{color:var(--suit-d)}.hc{color:var(--suit-c)}
 
 /* COMPASS */
-.compass-cell{grid-column:2;grid-row:2;display:flex;align-items:center;justify-content:center}
+.compass-cell{flex:0 0 44px;display:flex;align-items:center;justify-content:center}
 .compass{
-  width:62px;height:62px;position:relative;
+  width:38px;height:38px;position:relative;
   background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.07),rgba(0,0,0,.4));
   border-radius:50%;
   border:1px solid rgba(200,151,58,.33);
   box-shadow:inset 0 2px 6px rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.25);
 }
-.compass::before{content:'';position:absolute;top:50%;left:10px;right:10px;height:1px;background:rgba(200,151,58,.28);transform:translateY(-50%)}
-.compass::after {content:'';position:absolute;left:50%;top:10px;bottom:10px;width:1px;background:rgba(200,151,58,.28);transform:translateX(-50%)}
-.cpt{position:absolute;color:rgba(255,255,255,.9);font-size:11px;font-weight:800;font-family:'Playfair Display',serif}
-.cpt-n{top:5px;left:50%;transform:translateX(-50%)}
-.cpt-s{bottom:5px;left:50%;transform:translateX(-50%)}
-.cpt-o{left:6px;top:50%;transform:translateY(-50%)}
-.cpt-e{right:6px;top:50%;transform:translateY(-50%)}
+.compass::before{content:'';position:absolute;top:50%;left:6px;right:6px;height:1px;background:rgba(200,151,58,.28);transform:translateY(-50%)}
+.compass::after {content:'';position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:rgba(200,151,58,.28);transform:translateX(-50%)}
+.cpt{position:absolute;color:rgba(255,255,255,.85);font-size:8px;font-weight:800}
+.cpt-n{top:2px;left:50%;transform:translateX(-50%)}
+.cpt-s{bottom:2px;left:50%;transform:translateX(-50%)}
+.cpt-o{left:3px;top:50%;transform:translateY(-50%)}
+.cpt-e{right:3px;top:50%;transform:translateY(-50%)}
 
 /* ── SECTION CARD ── */
 .sc{background:var(--card-bg);border:1px solid var(--card-bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
@@ -677,10 +679,27 @@ function fmtLead(lead) {
   return `${sym} ${tokens.join(' ')}`;
 }
 
+// ── HCP calculator ─────────────────────────────────────────────────────
+function calcHCP(hand) {
+  if (!hand) return 0;
+  let pts = 0;
+  for (const suit of SUITS) {
+    const s = (hand[suit] || '').toUpperCase();
+    for (let i = 0; i < s.length; i++) {
+      if (s[i]==='A') pts += 4;
+      else if (s[i]==='K') pts += 3;
+      else if (s[i]==='Q') pts += 2;
+      else if (s[i]==='J') pts += 1;
+    }
+  }
+  return pts;
+}
+
 // ── render hand (vertical suits) ──────────────────────────────────────
 function renderHand(hand) {
   if (!hand) return '<div class="vd">—</div>';
-  return SUITS.map(s => {
+  const hcp = calcHCP(hand);
+  const suits = SUITS.map(s => {
     const c = frCards(hand[s]);
     const k = SCLS[s];
     return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span>${
@@ -688,30 +707,27 @@ function renderHand(hand) {
         : `<span class="vd">—</span>`
     }</div>`;
   }).join('');
+  return suits + `<div class="hcp">${hcp} H</div>`;
 }
 
 // ── render diagram ─────────────────────────────────────────────────────
 function renderDiag(hands) {
   const h = hands || {};
   return `<div class="diag-grid">
-
-    <div class="hand hand-n">
-      <div class="hand-lbl">Nord</div>${renderHand(h.N)}
+    <div class="diag-row">
+      <div class="hand hand-ns"><div class="hand-lbl">Nord</div>${renderHand(h.N)}</div>
     </div>
-
-    <div class="hand hand-w"><div class="hand-lbl">Ouest</div>${renderHand(h.W)}</div>
-    <div class="compass-cell">
-      <div class="compass">
+    <div class="diag-row">
+      <div class="hand"><div class="hand-lbl">Ouest</div>${renderHand(h.W)}</div>
+      <div class="compass-cell"><div class="compass">
         <span class="cpt cpt-n">N</span><span class="cpt cpt-s">S</span>
         <span class="cpt cpt-o">O</span><span class="cpt cpt-e">E</span>
-      </div>
+      </div></div>
+      <div class="hand"><div class="hand-lbl">Est</div>${renderHand(h.E)}</div>
     </div>
-    <div class="hand hand-e"><div class="hand-lbl">Est</div>${renderHand(h.E)}</div>
-
-    <div class="hand hand-s">
-      <div class="hand-lbl">Sud</div>${renderHand(h.S)}
+    <div class="diag-row">
+      <div class="hand hand-ns"><div class="hand-lbl">Sud</div>${renderHand(h.S)}</div>
     </div>
-
   </div>`;
 }
 
