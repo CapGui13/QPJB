@@ -225,22 +225,21 @@ header{
 .sym{font-size:14px;width:18px;text-align:center;flex-shrink:0;line-height:1;display:inline-block}
 .cds{font-size:13px;font-weight:700;font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;word-spacing:2px;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
-/* Lead card — white circle, black number */
+/* Lead card — circular white outline around the card value */
 .lead-card{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  display:inline-block;
   background:#ffffff;
   color:#111111;
   border-radius:50%;
-  width:18px;
-  height:18px;
-  font-size:10px;
+  width:1.15em;
+  height:1.15em;
+  line-height:1.15em;
+  text-align:center;
   font-weight:900;
-  line-height:1;
-  vertical-align:middle;
-  margin:0 1px;
-  flex-shrink:0;
+  font-family:inherit;
+  font-size:0.95em;
+  vertical-align:baseline;
+  margin:0;
 }
 
 /* suit colours */
@@ -811,24 +810,6 @@ function fmtBid(bid) {
   }
   return esc(bid);
 }
-
-// ── swipe navigation ───────────────────────────────────────────────────
-(function(){
-  let tx = 0, ty = 0;
-  const el = document.getElementById('vdeal');
-  el.addEventListener('touchstart', e => {
-    tx = e.touches[0].clientX;
-    ty = e.touches[0].clientY;
-  }, {passive:true});
-  el.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    const dy = e.changedTouches[0].clientY - ty;
-    if (Math.abs(dx) > 50 && Math.abs(dy) < 40) {
-      if (dx < 0) nav(1);  // swipe left = next
-      else         nav(-1); // swipe right = prev
-    }
-  }, {passive:true});
-})();
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
