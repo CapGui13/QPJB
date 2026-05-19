@@ -223,17 +223,24 @@ header{
 /* SUIT ROWS */
 .sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap}
 .sym{font-size:14px;width:18px;text-align:center;flex-shrink:0;line-height:1;display:inline-block}
-.cds{font-size:12px;font-weight:600;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:2px;letter-spacing:0;white-space:nowrap;color:var(--txt)}
+.cds{font-size:13px;font-weight:700;font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;word-spacing:2px;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
-/* Lead card highlight */
+/* Lead card — white circle, black number */
 .lead-card{
-  display:inline-block;
-  background:var(--gold);
-  color:var(--felt-dk);
-  border-radius:3px;
-  padding:0 2px;
-  font-weight:800;
-  line-height:1.3;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffffff;
+  color:#111111;
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  font-size:10px;
+  font-weight:900;
+  line-height:1;
+  vertical-align:middle;
+  margin:0 1px;
+  flex-shrink:0;
 }
 
 /* suit colours */
