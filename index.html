@@ -222,9 +222,19 @@ header{
 
 /* SUIT ROWS */
 .sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap}
-.sym{font-size:14px;width:16px;text-align:center;flex-shrink:0;line-height:1}
-.cds{font-size:12px;font-weight:600;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0;letter-spacing:0;white-space:nowrap;color:var(--txt)}
+.sym{font-size:14px;width:18px;text-align:center;flex-shrink:0;line-height:1;display:inline-block}
+.cds{font-size:12px;font-weight:600;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:2px;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
+/* Lead card highlight */
+.lead-card{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--felt-dk);
+  border-radius:3px;
+  padding:0 2px;
+  font-weight:800;
+  line-height:1.3;
+}
 
 /* suit colours */
 .cs{color:var(--suit-s)}.ch{color:var(--suit-h)}.cd{color:var(--suit-d)}.cc{color:var(--suit-c)}
@@ -606,7 +616,7 @@ function render(i) {
         ${lead ? `<span class="badge badge-lead">Entame : ${fmtLeadBadge(lead)}</span>` : ''}
       </div>
     </div>
-    <div class="diag-card">${renderDiag(hands)}</div>`;
+    <div class="diag-card">${renderDiag(hands, lead, d.PlayFirst)}</div>`;
 
   if (auction && auction !== '?')
     html += `<div class="sc"><div class="sc-head">Séquence d'enchères</div>
@@ -695,38 +705,70 @@ function calcHCP(hand) {
   return pts;
 }
 
-// ── render hand (vertical suits) ──────────────────────────────────────
-function renderHand(hand) {
+// ── render hand ────────────────────────────────────────────────────────
+// leadInfo = { suit: 'H', card: '2' } or null
+function renderHand(hand, leadInfo) {
   if (!hand) return '<div class="vd">—</div>';
   const hcp = calcHCP(hand);
   const suits = SUITS.map(s => {
-    const c = frCards(hand[s]);
+    const raw = hand[s] || '';
     const k = SCLS[s];
-    return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span>${
-      c ? `<span class="cds">${esc(c)}</span>`
-        : `<span class="vd">—</span>`
-    }</div>`;
+    if (!raw || raw === '-') {
+      return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span><span class="vd">—</span></div>`;
+    }
+    // Build tokens with lead highlighting
+    const tokens = [];
+    for (let i = 0; i < raw.length; i++) {
+      const c = raw[i];
+      let fr;
+      if      (c==='A') fr='A';
+      else if (c==='K') fr='R';
+      else if (c==='Q') fr='D';
+      else if (c==='J') fr='V';
+      else if (c==='T') fr='10';
+      else if (c==='1'&&raw[i+1]==='0') { fr='10'; i++; }
+      else fr=c;
+
+      // Is this the lead card?
+      const isLead = leadInfo && s === leadInfo.suit && c === leadInfo.card;
+      if (isLead) {
+        tokens.push(`<span class="lead-card">${fr}</span>`);
+      } else {
+        tokens.push(fr);
+      }
+    }
+    return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span><span class="cds">${tokens.join(' ')}</span></div>`;
   }).join('');
   return suits + `<div class="hcp">${hcp} H</div>`;
 }
 
 // ── render diagram ─────────────────────────────────────────────────────
-function renderDiag(hands) {
+function renderDiag(hands, lead, playFirst) {
   const h = hands || {};
+  // Parse lead into { suit, card } for highlighting
+  let leadInfo = null;
+  if (lead && lead.length >= 2 && playFirst) {
+    const suitChar = lead[0].toUpperCase();
+    const cardChar = lead[1].toUpperCase();
+    leadInfo = { dir: playFirst.toUpperCase(), suit: suitChar, card: cardChar };
+  }
+  const renderWithLead = (dir, hand) =>
+    renderHand(hand, leadInfo && leadInfo.dir === dir ? leadInfo : null);
+
   return `<div class="diag-grid">
     <div class="diag-row">
-      <div class="hand hand-ns"><div class="hand-lbl">Nord</div>${renderHand(h.N)}</div>
+      <div class="hand hand-ns"><div class="hand-lbl">Nord</div>${renderWithLead('N', h.N)}</div>
     </div>
     <div class="diag-row">
-      <div class="hand"><div class="hand-lbl">Ouest</div>${renderHand(h.W)}</div>
+      <div class="hand"><div class="hand-lbl">Ouest</div>${renderWithLead('W', h.W)}</div>
       <div class="compass-cell"><div class="compass">
         <span class="cpt cpt-n">N</span><span class="cpt cpt-s">S</span>
         <span class="cpt cpt-o">O</span><span class="cpt cpt-e">E</span>
       </div></div>
-      <div class="hand"><div class="hand-lbl">Est</div>${renderHand(h.E)}</div>
+      <div class="hand"><div class="hand-lbl">Est</div>${renderWithLead('E', h.E)}</div>
     </div>
     <div class="diag-row">
-      <div class="hand hand-ns"><div class="hand-lbl">Sud</div>${renderHand(h.S)}</div>
+      <div class="hand hand-ns"><div class="hand-lbl">Sud</div>${renderWithLead('S', h.S)}</div>
     </div>
   </div>`;
 }
@@ -762,6 +804,24 @@ function fmtBid(bid) {
   }
   return esc(bid);
 }
+
+// ── swipe navigation ───────────────────────────────────────────────────
+(function(){
+  let tx = 0, ty = 0;
+  const el = document.getElementById('vdeal');
+  el.addEventListener('touchstart', e => {
+    tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
+  }, {passive:true});
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 50 && Math.abs(dy) < 40) {
+      if (dx < 0) nav(1);  // swipe left = next
+      else         nav(-1); // swipe right = prev
+    }
+  }, {passive:true});
+})();
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
