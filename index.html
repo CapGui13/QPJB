@@ -183,9 +183,9 @@ header{
 }
 .diag-grid{
   display:grid;
-  grid-template-columns:1fr 68px 1fr;
+  grid-template-columns:1fr 62px 1fr;
   grid-template-rows:auto auto auto;
-  gap:6px;
+  gap:5px;
   align-items:center;
   justify-items:stretch;
 }
@@ -198,6 +198,7 @@ header{
   padding:10px 12px;
   box-shadow:var(--sh-sm);
   position:relative;
+  min-width:0;
 }
 .hand::after{
   content:'';position:absolute;inset:0;border-radius:9px;
@@ -218,9 +219,9 @@ header{
 }
 
 /* SUIT ROWS */
-.sr{display:flex;align-items:baseline;gap:4px;line-height:1.72}
-.sym{font-size:14px;width:16px;text-align:center;flex-shrink:0;line-height:1}
-.cds{font-size:13px;font-weight:700;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0px;letter-spacing:0}
+.sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap}
+.sym{font-size:15px;width:17px;text-align:center;flex-shrink:0;line-height:1}
+.cds{font-size:12px;font-weight:600;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
 
 /* suit colours — 4 distinct colors */
