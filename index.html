@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bridge PBN">
+<title>Bridge PBN Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --felt:    #1a4d2e;
+  --felt-dk: #0f2d1a;
+  --felt-md: #206038;
+  --felt-lt: #2e7d4f;
+  --gold:    #c8973a;
+  --gold-lt: #e8bb6a;
+  --cream:   #faf6ef;
+  --card-bg: #fffdf8;
+  --card-bd: #e8dfc8;
+  --red:     #b91c1c;
+  --blue:    #1d4ed8;
+  --txt:     #1a1410;
+  --txt2:    #6b5d4e;
+  --txt3:    #b0a090;
+  --sh-sm:   0 2px 8px rgba(0,0,0,.13), 0 1px 2px rgba(0,0,0,.07);
+  --sh-lg:   0 6px 24px rgba(0,0,0,.22), 0 2px 6px rgba(0,0,0,.09);
+  --r:       11px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --cream:#0d1a10; --card-bg:#14200f; --card-bd:#253820;
+    --txt:#f0ebe0; --txt2:#8aaa88; --txt3:#4a6048;
+    --sh-sm:0 2px 10px rgba(0,0,0,.5); --sh-lg:0 8px 28px rgba(0,0,0,.6);
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto}
+
+/* ── HEADER ── */
+header{
+  background:var(--felt-dk);
+  padding:max(env(safe-area-inset-top,0px),12px) 18px 12px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;
+  border-bottom:1px solid rgba(200,151,58,.28);
+}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;color:var(--felt-dk);
+  box-shadow:0 2px 8px rgba(200,151,58,.38);
+}
+.logo-text h1{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff}
+.logo-text p{font-size:10px;color:rgba(255,255,255,.33);margin-top:1px;letter-spacing:.5px}
+.hd-suits{display:flex;gap:4px}
+.hd-suits span{font-size:16px}
+.hs{color:#bbb}.hh{color:#f87171}.hd{color:#f87171}.hc{color:#bbb}
+
+/* ── CONFIG ── */
+.config{
+  background:linear-gradient(175deg,var(--felt-md) 0%,var(--felt) 100%);
+  padding:16px 18px 20px;
+  border-bottom:1px solid rgba(200,151,58,.15);
+}
+.cfg-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:9px}
+.input-row{display:flex;gap:7px}
+.repo-in{
+  flex:1;padding:10px 13px;border-radius:9px;
+  border:1.5px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,.3);color:#fff;font-size:14px;
+  font-family:'Source Serif 4',serif;outline:none;transition:border-color .15s;
+}
+.repo-in::placeholder{color:rgba(255,255,255,.17)}
+.repo-in:focus{border-color:var(--gold)}
+.btn-go{
+  padding:10px 16px;border-radius:9px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--felt-dk);font-size:13px;font-weight:700;
+  font-family:'Source Serif 4',serif;white-space:nowrap;
+  transition:filter .15s,transform .1s;
+}
+.btn-go:active{filter:brightness(.88);transform:scale(.97)}
+.cfg-hint{font-size:11px;color:rgba(255,255,255,.26);margin-top:8px;min-height:15px}
+.divider{display:flex;align-items:center;gap:9px;margin:14px 0}
+.div-line{flex:1;height:1px;background:rgba(255,255,255,.1)}
+.div-txt{font-size:11px;color:rgba(255,255,255,.19)}
+.btn-file{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  width:100%;padding:11px;border-radius:9px;
+  border:1.5px dashed rgba(255,255,255,.17);
+  background:rgba(255,255,255,.04);color:rgba(255,255,255,.53);
+  font-size:13px;font-weight:600;font-family:'Source Serif 4',serif;cursor:pointer;
+  transition:all .15s;
+}
+.btn-file:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
+
+/* ── FILE LIST ── */
+.file-list{padding:16px 18px;display:flex;flex-direction:column;gap:9px}
+.file-item{
+  background:var(--card-bg);border:1px solid var(--card-bd);
+  border-radius:var(--r);padding:13px 15px;
+  display:flex;align-items:center;gap:13px;
+  cursor:pointer;box-shadow:var(--sh-sm);transition:transform .12s;
+}
+.file-item:active{transform:scale(.97)}
+.file-icon{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--felt),var(--felt-lt));
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.file-name{font-weight:600;font-size:15px;font-family:'Playfair Display',serif}
+.file-meta{font-size:12px;color:var(--txt2);margin-top:2px}
+.file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
+
+/* ── DEAL VIEW ── */
+.deal-view{display:none}
+.deal-nav{
+  background:var(--card-bg);border-bottom:1px solid var(--card-bd);
+  padding:9px 15px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:60px;z-index:100;box-shadow:var(--sh-sm);
+}
+.btn-back{
+  display:flex;align-items:center;gap:5px;padding:7px 11px;border-radius:8px;
+  border:1.5px solid var(--card-bd);background:transparent;color:var(--txt);
+  font-size:13px;font-weight:600;font-family:'Source Serif 4',serif;cursor:pointer;
+}
+.nav-ctr{font-size:12px;color:var(--txt2);font-weight:500}
+.nav-arr{display:flex;gap:5px}
+.btn-arr{
+  width:33px;height:33px;border-radius:8px;border:none;
+  background:var(--felt);color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:filter .12s,transform .1s;
+}
+.btn-arr:active{filter:brightness(.8);transform:scale(.93)}
+.btn-arr:disabled{background:var(--card-bd);color:var(--txt3);cursor:not-allowed}
+
+/* ── DEAL CONTENT ── */
+.deal-wrap{padding:14px 12px;display:flex;flex-direction:column;gap:12px;padding-bottom:48px}
+
+/* ── BOARD HEADER ── */
+.board-hdr{
+  background:linear-gradient(135deg,var(--felt-dk) 0%,var(--felt-md) 100%);
+  border-radius:var(--r);padding:13px 17px;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:var(--sh-lg);border:1px solid rgba(200,151,58,.2);
+}
+.board-num{font-family:'Playfair Display',serif;color:#fff;font-size:19px;font-weight:900}
+.board-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{padding:4px 9px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.badge-vul{background:rgba(185,28,28,.33);color:#fca5a5}
+.badge-nov{background:rgba(34,197,94,.18);color:#86efac}
+.badge-lead{background:rgba(200,151,58,.25);color:var(--gold-lt)}
+
+/* ── DIAGRAM ── */
+/*
+  STRUCTURE :
+  ┌─────────────────────────────────────┐
+  │              NORD                   │  ← 3-col span, centré
+  ├─────────────┬────────────┬──────────┤
+  │   OUEST     │  Boussole  │   EST    │
+  ├─────────────┴────────────┴──────────┤
+  │              SUD                    │  ← 3-col span, centré
+  └─────────────────────────────────────┘
+
+  3 colonnes : [Ouest flex] [boussole 56px] [Est flex]
+  Nord & Sud : span 3 cols, la main elle-même est centrée via justify-self:center
+*/
+.diag-card{
+  background:linear-gradient(155deg,var(--felt-md) 0%,var(--felt) 50%,var(--felt-dk) 100%);
+  border-radius:var(--r);box-shadow:var(--sh-lg);
+  border:1px solid rgba(200,151,58,.1);
+  padding:10px;
+}
+.diag-grid{
+  display:grid;
+  grid-template-columns:1fr 68px 1fr;
+  grid-template-rows:auto auto auto;
+  gap:6px;
+  align-items:center;
+  justify-items:stretch;
+}
+
+/* HAND card */
+.hand{
+  background:var(--card-bg);
+  border:1px solid var(--card-bd);
+  border-radius:9px;
+  padding:10px 12px;
+  box-shadow:var(--sh-sm);
+  position:relative;
+}
+.hand::after{
+  content:'';position:absolute;inset:0;border-radius:9px;
+  background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,transparent 55%);
+  pointer-events:none;
+}
+
+/* N & S : span 3 cols, card centred */
+.hand-n{grid-column:1/-1;grid-row:1;justify-self:center;width:auto}
+.hand-s{grid-column:1/-1;grid-row:3;justify-self:center;width:auto}
+.hand-w{grid-column:1;   grid-row:2}
+.hand-e{grid-column:3;   grid-row:2}
+
+/* direction label */
+.hand-lbl{
+  font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--txt3);margin-bottom:6px;
+}
+
+/* SUIT ROWS */
+.sr{display:flex;align-items:baseline;gap:4px;line-height:1.72}
+.sym{font-size:14px;width:16px;text-align:center;flex-shrink:0;line-height:1}
+.cds{font-size:13px;font-weight:700;font-family:'SF Mono',SFMono-Regular,ui-monospace,Menlo,monospace;word-spacing:0px;letter-spacing:0}
+.vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
+
+/* suit colours */
+.cs{color:var(--txt)}.ch{color:var(--red)}.cd{color:var(--red)}.cc{color:var(--txt)}
+@media(prefers-color-scheme:dark){.cs,.cc{color:#d4cfc4}}
+
+/* COMPASS */
+.compass-cell{grid-column:2;grid-row:2;display:flex;align-items:center;justify-content:center}
+.compass{
+  width:62px;height:62px;position:relative;
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.07),rgba(0,0,0,.4));
+  border-radius:50%;
+  border:1px solid rgba(200,151,58,.33);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.25);
+}
+.compass::before{content:'';position:absolute;top:50%;left:10px;right:10px;height:1px;background:rgba(200,151,58,.28);transform:translateY(-50%)}
+.compass::after {content:'';position:absolute;left:50%;top:10px;bottom:10px;width:1px;background:rgba(200,151,58,.28);transform:translateX(-50%)}
+.cpt{position:absolute;color:rgba(255,255,255,.9);font-size:11px;font-weight:800;font-family:'Playfair Display',serif}
+.cpt-n{top:5px;left:50%;transform:translateX(-50%)}
+.cpt-s{bottom:5px;left:50%;transform:translateX(-50%)}
+.cpt-o{left:6px;top:50%;transform:translateY(-50%)}
+.cpt-e{right:6px;top:50%;transform:translateY(-50%)}
+
+/* ── SECTION CARD ── */
+.sc{background:var(--card-bg);border:1px solid var(--card-bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
+.sc-head{padding:9px 15px;border-bottom:1px solid var(--card-bd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);background:var(--cream)}
+.sc-body{padding:13px 11px}
+
+/* ── AUCTION ── */
+.auc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.auc-th{text-align:center;padding:7px 2px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.5px;background:var(--felt-dk);color:rgba(255,255,255,.52)}
+.auc-td{text-align:center;padding:6px 2px;border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;background:var(--cream);border:1px solid var(--card-bd);font-size:14px}
+.bp{font-size:10px;color:var(--txt3);font-weight:600}
+.bx{color:var(--red);font-weight:800;font-size:14px}
+.bxx{color:var(--blue);font-weight:800;font-size:14px}
+.c-h,.c-d{color:var(--red);font-weight:800}
+.c-s,.c-c{color:var(--txt);font-weight:800}
+.b-sa{color:var(--txt);font-size:11px;font-weight:700}
+
+/* ── COMMENT ── */
+.cmt{border-left:3px solid var(--gold);padding:9px 13px;border-radius:0 8px 8px 0;background:var(--cream);font-size:14px;line-height:1.75;white-space:pre-wrap}
+
+/* ── MISC ── */
+.empty{padding:56px 22px;text-align:center}
+.empty .ei{font-size:48px;margin-bottom:13px}
+.empty h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:7px}
+.empty p{font-size:14px;color:var(--txt2);line-height:1.6}
+.loading{padding:44px;text-align:center;color:var(--txt2);font-size:14px}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="vhome">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">♣</div>
+      <div class="logo-text"><h1>Bridge PBN</h1><p>Visualiseur de donnes</p></div>
+    </div>
+    <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
+  </header>
+
+  <div class="config">
+    <div class="cfg-label">Repo GitHub</div>
+    <div class="input-row">
+      <input class="repo-in" id="repo-input" type="text" placeholder="utilisateur/mon-repo" autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="btn-go" onclick="loadRepo()">Charger</button>
+    </div>
+    <div class="cfg-hint" id="cfg-hint">Ex : alice/bridge-donnes</div>
+    <div class="divider"><div class="div-line"></div><span class="div-txt">ou</span><div class="div-line"></div></div>
+    <label class="btn-file">
+      📂 Ouvrir un fichier PBN local
+      <input type="file" accept=".pbn,.txt" style="display:none" onchange="loadLocalFile(this)">
+    </label>
+  </div>
+  <div id="file-list"></div>
+</div>
+
+<!-- DEAL VIEW -->
+<div class="deal-view" id="vdeal">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">♣</div>
+      <div class="logo-text">
+        <h1>Bridge PBN</h1>
+        <p id="deal-fname" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></p>
+      </div>
+    </div>
+    <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
+  </header>
+  <div class="deal-nav">
+    <button class="btn-back" onclick="showHome()">← Retour</button>
+    <span class="nav-ctr" id="nav-ctr"></span>
+    <div class="nav-arr">
+      <button class="btn-arr" id="btn-prev" onclick="nav(-1)">‹</button>
+      <button class="btn-arr" id="btn-next" onclick="nav(1)">›</button>
+    </div>
+  </div>
+  <div class="deal-wrap" id="deal-content"></div>
+</div>
+
+<script>
+// ── constants ──────────────────────────────────────────────────────────
+const SUITS  = ['S','H','D','C'];
+const SYM    = {S:'♠',H:'♥',D:'♦',C:'♣'};
+const SCLS   = {S:'cs',H:'ch',D:'cd',C:'cc'};
+const DIR_FR = {N:'Nord',S:'Sud',E:'Est',W:'Ouest'};
+const VUL_FR = {None:'Non vul.',NS:'Vul. N-S',EW:'Vul. E-O',All:'Tous vul.'};
+// PBN clockwise: N→E→S→W
+const CW = ['N','E','S','W'];
+
+// ── card translation EN→FR ─────────────────────────────────────────────
+// Returns compact string "ARD107" or null for void
+function frCards(raw) {
+  if (!raw) return null;
+  const s = raw.trim();
+  if (!s || s === '-') return null;
+  const tokens = [];
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if      (c === 'A')                     tokens.push('A');
+    else if (c === 'K')                     tokens.push('R');
+    else if (c === 'Q')                     tokens.push('D');
+    else if (c === 'J')                     tokens.push('V');
+    else if (c === 'T')                     tokens.push('10');
+    else if (c === '1' && s[i+1] === '0')   { tokens.push('10'); i++; }
+    else if (c >= '2' && c <= '9')          tokens.push(c);
+  }
+  return tokens.length ? tokens.join(' ') : null;
+}
+
+// ── state ──────────────────────────────────────────────────────────────
+let deals = [], idx = 0;
+
+// ── helpers ────────────────────────────────────────────────────────────
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function setHint(msg, err) {
+  const h = document.getElementById('cfg-hint');
+  h.textContent = msg;
+  h.style.color = err ? '#f87171' : 'rgba(255,255,255,.26)';
+}
+
+// ── GitHub loader ──────────────────────────────────────────────────────
+async function loadRepo() {
+  const repo = document.getElementById('repo-input').value.trim();
+  if (!repo.includes('/')) { setHint('Format : utilisateur/mon-repo', true); return; }
+  localStorage.setItem('pbn-repo', repo);
+  setHint('Chargement…');
+  document.getElementById('file-list').innerHTML = '<div class="loading">Recherche des fichiers PBN…</div>';
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/`,
+      {headers:{Accept:'application/vnd.github.v3+json'}});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const files = (await res.json()).filter(f => /\.pbn$/i.test(f.name));
+    if (!files.length) {
+      document.getElementById('file-list').innerHTML =
+        `<div class="empty"><div class="ei">📭</div><h3>Aucun fichier PBN</h3>
+         <p>Ajoutez des fichiers .pbn à la racine de votre repo.</p></div>`;
+      setHint('0 fichier PBN trouvé'); return;
+    }
+    document.getElementById('file-list').innerHTML =
+      '<div class="file-list">' + files.map(f =>
+        `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
+           <div class="file-icon">🃏</div>
+           <div><div class="file-name">${esc(f.name)}</div>
+                <div class="file-meta">${(f.size/1024).toFixed(1)} Ko</div></div>
+           <div class="file-chev">›</div>
+         </div>`).join('') + '</div>';
+    setHint(`${files.length} fichier${files.length>1?'s':''} PBN trouvé${files.length>1?'s':''}`);
+  } catch(e) {
+    document.getElementById('file-list').innerHTML = '';
+    setHint('Erreur : ' + e.message, true);
+  }
+}
+
+// ── file openers ───────────────────────────────────────────────────────
+async function openFile(url, name) {
+  showDeal(name);
+  try {
+    const resp = await fetch(url);
+    const buf = await resp.arrayBuffer();
+    doLoad(decodeISO(buf), name);
+  } catch(e) { showErr(e.message); }
+}
+function loadLocalFile(input) {
+  const f = input.files[0]; if (!f) return;
+  showDeal(f.name);
+  const r = new FileReader();
+  r.onload = e => doLoad(decodeISO(e.target.result), f.name);
+  r.readAsArrayBuffer(f);
+}
+// Decode ArrayBuffer as ISO-8859-1 (Latin-1)
+function decodeISO(buf) {
+  const bytes = new Uint8Array(buf);
+  // Check for UTF-8 BOM or valid UTF-8 — if so, use TextDecoder utf-8
+  // Otherwise decode as ISO-8859-1
+  try {
+    const td = new TextDecoder('iso-8859-1');
+    return td.decode(bytes);
+  } catch(e) {
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+}
+function doLoad(text, name) {
+  deals = parsePBN(text);
+  if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
+  idx = 0;
+  document.getElementById('deal-fname').textContent = name;
+  render(0);
+}
+function showDeal(name) {
+  document.getElementById('vhome').style.display = 'none';
+  document.getElementById('vdeal').style.display = 'block';
+  document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
+}
+function showHome() {
+  document.getElementById('vdeal').style.display = 'none';
+  document.getElementById('vhome').style.display = 'block';
+}
+function showErr(msg) {
+  document.getElementById('deal-content').innerHTML =
+    `<div class="empty"><div class="ei">⚠️</div><h3>Erreur</h3><p>${esc(msg)}</p></div>`;
+}
+function nav(dir) {
+  const n = idx + dir;
+  if (n >= 0 && n < deals.length) { idx = n; render(n); window.scrollTo(0,0); }
+}
+
+// ── PBN parser ─────────────────────────────────────────────────────────
+function parsePBN(text) {
+  const out = [];
+  const normalized = text
+    .replace(/^\uFEFF/, '')
+    .replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+    .replace(/\\n/g, '\n'); // literal \n sequences in PBN comments
+
+  // Strategy: first extract all { } comment blocks (can span multiple lines),
+  // then process the remaining text line by line.
+  let cleanText = '', commentList = [];
+  let ci = 0;
+  while (ci < normalized.length) {
+    const ob = normalized.indexOf('{', ci);
+    if (ob < 0) { cleanText += normalized.slice(ci); break; }
+    cleanText += normalized.slice(ci, ob);
+    const cb = normalized.indexOf('}', ob);
+    if (cb < 0) { break; } // unclosed comment — stop
+    commentList.push(normalized.slice(ob+1, cb).trim());
+    cleanText += '\uFFFD'; // placeholder so line structure is preserved
+    ci = cb + 1;
+  }
+
+  let comIdx = 0;
+  const lines = cleanText.split('\n');
+  let cur = null, coms = [], mode = null;
+
+  const flush = () => {
+    if (cur && cur.Deal) {
+      if (coms.length) cur.Comment = coms.join('\n').trim();
+      out.push({...cur});
+    }
+    cur = null; coms = []; mode = null;
+  };
+
+  for (let raw of lines) {
+    // Replace comment placeholders
+    const hadPlaceholder = raw.includes('\uFFFD');
+    let line = raw.replace(/\uFFFD/g, () => {
+      const c = commentList[comIdx++] || '';
+      if (c) coms.push(c);
+      return '';
+    }).trim();
+
+    // Skip % directives
+    if (line.startsWith('%')) continue;
+
+    // Blank line = end of deal — but NOT if it was just a comment placeholder
+    if (!line) {
+      if (!hadPlaceholder) flush();
+      continue;
+    }
+
+    // Tag line: [Key "Value"]
+    const tm = line.match(/^\[(\w+)\s+"(.*)"\]$/);
+    if (tm) {
+      const [, k, v] = tm;
+      if (!cur) cur = {};
+      if (k === 'Auction') {
+        cur.AuctionFirst = v;
+        cur.Auction = '';
+        mode = 'auction';
+      } else if (k === 'Play') {
+        cur.PlayFirst = v; // direction of lead
+        mode = 'play';
+        cur.Lead = null; // will be set from first play line
+      } else if (k === 'Note') {
+        mode = null;
+        cur.Note = cur.Note ? cur.Note + '\n' + v : v;
+      } else {
+        mode = null;
+        cur[k] = v;
+      }
+      continue;
+    }
+
+    // Data lines after Auction
+    if (mode === 'auction' && cur) {
+      const bids = line.split(/\s+/).filter(Boolean);
+      cur.Auction = (cur.Auction ? cur.Auction + ' ' : '') + bids.join(' ');
+    }
+    // First play line = lead card
+    if (mode === 'play' && cur && !cur.Lead) {
+      const first = line.trim().split(/\s+/)[0];
+      if (first && /^[SHDC][A-Z0-9T]+$/i.test(first)) cur.Lead = first.toUpperCase();
+    }
+  }
+  flush();
+  return out;
+}
+
+// ── deal string parser ─────────────────────────────────────────────────
+// PBN spec: "first:h0 h1 h2 h3" clockwise N→E→S→W
+// Each hand: "S.H.D.C", void suit = '-' or ''
+function parseDeal(str) {
+  if (!str) return null;
+  const m = str.match(/^([NSEWnsew]):(.+)$/);
+  if (!m) return null;
+  const first = m[1].toUpperCase();
+  const si = CW.indexOf(first);
+  if (si < 0) return null;
+  const dirs = [0,1,2,3].map(i => CW[(si+i)%4]);
+  const res = {};
+  m[2].trim().split(/\s+/).forEach((h, i) => {
+    if (i > 3) return;
+    const p = h.split('.');
+    while (p.length < 4) p.push('');
+    res[dirs[i]] = {
+      S: p[0]==='-' ? '' : p[0],
+      H: p[1]==='-' ? '' : p[1],
+      D: p[2]==='-' ? '' : p[2],
+      C: p[3]==='-' ? '' : p[3],
+    };
+  });
+  return res;
+}
+
+// ── render deal ────────────────────────────────────────────────────────
+function render(i) {
+  const d = deals[i], total = deals.length;
+  document.getElementById('nav-ctr').textContent = `Donne ${i+1} / ${total}`;
+  document.getElementById('btn-prev').disabled = (i===0);
+  document.getElementById('btn-next').disabled = (i===total-1);
+
+  const dealer  = d.Dealer || '?';
+  const vul     = d.Vulnerable || 'None';
+  const hands   = parseDeal(d.Deal || '');
+  const auction = (d.Auction || '').trim();
+  const auctionFirst = d.AuctionFirst || dealer;
+  const comment = (d.Comment || d.Note || '').trim();
+  const contract = d.Contract || '';
+  const declarer = d.Declarer || '';
+  const lead = d.Lead || '';
+
+  let html = `
+    <div class="board-hdr">
+      <div class="board-num">Donne n°${esc(String(d.Board||i+1))}</div>
+      <div class="board-badges">
+        <span class="badge">Donneur : ${esc(DIR_FR[dealer]||dealer)}</span>
+        <span class="badge ${vul==='None'?'badge-nov':'badge-vul'}">${esc(VUL_FR[vul]||vul)}</span>
+        ${contract ? `<span class="badge">${fmtContract(contract, declarer)}</span>` : ''}
+        ${lead ? `<span class="badge badge-lead">Entame : ${fmtLeadBadge(lead)}</span>` : ''}
+      </div>
+    </div>
+    <div class="diag-card">${renderDiag(hands)}</div>`;
+
+  if (auction && auction !== '?')
+    html += `<div class="sc"><div class="sc-head">Séquence d'enchères</div>
+      <div class="sc-body">${renderAuction(auctionFirst, auction)}</div></div>`;
+
+  if (comment) {
+    // Split on blank lines to get paragraphs, join wrapped lines within each para
+    const paras = comment.split(/\n\s*\n/).map(p =>
+      p.split('\n').map(l => l.trim()).filter(Boolean).join(' ')
+    ).filter(Boolean);
+    const cmtHtml = paras.map(p => `<p style="margin:0 0 10px">${esc(p)}</p>`).join('');
+    html += `<div class="sc"><div class="sc-head">Commentaires</div>
+      <div class="sc-body"><div class="cmt" style="white-space:normal;line-height:1.7">${cmtHtml}</div></div></div>`;
+  }
+
+  document.getElementById('deal-content').innerHTML = html;
+}
+
+// ── format contract (e.g. "4S" → "4♠ par Sud") ────────────────────────
+function fmtContract(contract, declarer) {
+  if (!contract || contract === '?' || contract === 'Pass') return esc(contract);
+  const m = contract.match(/^([1-7])(S|H|D|C|NT|N)(X{0,2})$/i);
+  if (!m) return esc(contract);
+  const sym = {S:'♠',H:'♥',D:'♦',C:'♣',NT:'SA',N:'SA'}[m[2].toUpperCase()];
+  const cls = ['H','D'].includes(m[2].toUpperCase()) ? 'color:var(--red)' : '';
+  const dbl = m[3] ? ` ${m[3]}` : '';
+  const decl = declarer ? ` par ${DIR_FR[declarer.toUpperCase()]||declarer}` : '';
+  return `${m[1]}<span style="${cls}">${sym}</span>${dbl}${decl}`;
+}
+
+// ── format lead for badge (suit in correct color) ─────────────────────
+function fmtLeadBadge(lead) {
+  if (!lead || lead.length < 2) return esc(lead);
+  const suitChar = lead[0].toUpperCase();
+  const cardStr = lead.slice(1).toUpperCase();
+  const sym = {S:'♠',H:'♥',D:'♦',C:'♣'}[suitChar] || suitChar;
+  const isRed = suitChar === 'H' || suitChar === 'D';
+  const tokens = [];
+  for (let i = 0; i < cardStr.length; i++) {
+    const c = cardStr[i];
+    if (c==='K') tokens.push('R');
+    else if (c==='Q') tokens.push('D');
+    else if (c==='J') tokens.push('V');
+    else if (c==='T') tokens.push('10');
+    else if (c==='1' && cardStr[i+1]==='0') { tokens.push('10'); i++; }
+    else tokens.push(c);
+  }
+  const suitHtml = isRed
+    ? `<span style="color:#f87171;font-weight:800">${sym}</span>`
+    : `<span style="font-weight:800">${sym}</span>`;
+  return `${suitHtml} ${tokens.join(' ')}`;
+}
+
+// ── format lead card plain text ────────────────────────────────────────
+function fmtLead(lead) {
+  if (!lead || lead.length < 2) return esc(lead);
+  const suitChar = lead[0].toUpperCase();
+  const cardStr = lead.slice(1).toUpperCase();
+  const sym = {S:'♠',H:'♥',D:'♦',C:'♣'}[suitChar] || suitChar;
+  const tokens = [];
+  for (let i = 0; i < cardStr.length; i++) {
+    const c = cardStr[i];
+    if (c==='K') tokens.push('R');
+    else if (c==='Q') tokens.push('D');
+    else if (c==='J') tokens.push('V');
+    else if (c==='T') tokens.push('10');
+    else if (c==='1' && cardStr[i+1]==='0') { tokens.push('10'); i++; }
+    else tokens.push(c);
+  }
+  return `${sym} ${tokens.join(' ')}`;
+}
+
+// ── render hand (vertical suits) ──────────────────────────────────────
+function renderHand(hand) {
+  if (!hand) return '<div class="vd">—</div>';
+  return SUITS.map(s => {
+    const c = frCards(hand[s]);
+    const k = SCLS[s];
+    return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span>${
+      c ? `<span class="cds ${k}">${esc(c)}</span>`
+        : `<span class="vd">—</span>`
+    }</div>`;
+  }).join('');
+}
+
+// ── render diagram ─────────────────────────────────────────────────────
+function renderDiag(hands) {
+  const h = hands || {};
+  return `<div class="diag-grid">
+
+    <div class="hand hand-n">
+      <div class="hand-lbl">Nord</div>${renderHand(h.N)}
+    </div>
+
+    <div class="hand hand-w"><div class="hand-lbl">Ouest</div>${renderHand(h.W)}</div>
+    <div class="compass-cell">
+      <div class="compass">
+        <span class="cpt cpt-n">N</span><span class="cpt cpt-s">S</span>
+        <span class="cpt cpt-o">O</span><span class="cpt cpt-e">E</span>
+      </div>
+    </div>
+    <div class="hand hand-e"><div class="hand-lbl">Est</div>${renderHand(h.E)}</div>
+
+    <div class="hand hand-s">
+      <div class="hand-lbl">Sud</div>${renderHand(h.S)}
+    </div>
+
+  </div>`;
+}
+
+// ── render auction ─────────────────────────────────────────────────────
+function renderAuction(firstBidder, str) {
+  const ORDER  = ['W','N','E','S'];
+  const LABELS = {W:'Ouest',N:'Nord',E:'Est',S:'Sud'};
+  const start  = ORDER.indexOf((firstBidder||'').toUpperCase());
+  const bids   = str.split(/\s+/).filter(Boolean);
+  let html = ORDER.map(d => `<div class="auc-th">${LABELS[d]}</div>`).join('');
+  const off = start < 0 ? 0 : start;
+  for (let i=0;i<off;i++) html += '<div class="auc-td"></div>';
+  bids.forEach(b => { html += `<div class="auc-td">${fmtBid(b)}</div>`; });
+  const rem = (4 - ((off+bids.length)%4)) % 4;
+  for (let i=0;i<rem;i++) html += '<div class="auc-td"></div>';
+  return `<div class="auc-grid">${html}</div>`;
+}
+
+// ── format one bid ─────────────────────────────────────────────────────
+function fmtBid(bid) {
+  if (!bid) return '';
+  const b = bid.toUpperCase();
+  if (b==='PASS'||b==='P')          return '<span class="bp">Passe</span>';
+  if (b==='X'||b==='DBL'||b==='D') return '<span class="bx">X</span>';
+  if (b==='XX'||b==='RDBL'||b==='R')return '<span class="bxx">XX</span>';
+  if (b==='AP')                     return '<span class="bp">AP</span>';
+  const m = b.match(/^([1-7])(S|H|D|C|NT|N)$/);
+  if (m) {
+    const sym = {S:'♠',H:'♥',D:'♦',C:'♣',NT:'SA',N:'SA'}[m[2]];
+    const cls = {S:'c-s',H:'c-h',D:'c-d',C:'c-c'}[m[2]] || 'b-sa';
+    return `<strong>${m[1]}</strong><span class="${cls}">${sym}</span>`;
+  }
+  return esc(bid);
+}
+
+// ── boot ───────────────────────────────────────────────────────────────
+(function(){
+  const saved = localStorage.getItem('pbn-repo');
+  if (saved) { document.getElementById('repo-input').value = saved; loadRepo(); }
+  document.getElementById('repo-input').addEventListener('keydown', e => {
+    if (e.key==='Enter') loadRepo();
+  });
+})();
+</script>
+</body>
+</html>
