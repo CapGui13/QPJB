@@ -211,6 +211,19 @@ header{
 .hand-lbl{
   font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
   color:var(--txt3);margin-bottom:5px;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+/* Vulnerability colors on direction label */
+.lbl-vul{color:#e05555}
+.lbl-nov{color:#5aaa6a}
+/* Dealer badge — circled D */
+.dealer-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:13px;height:13px;border-radius:50%;
+  border:1.5px solid #ffffff;
+  color:#ffffff;
+  font-size:7px;font-weight:900;letter-spacing:0;
+  flex-shrink:0;
 }
 
 /* HCP badge */
@@ -375,6 +388,7 @@ function frCards(raw) {
 
 // ── state ──────────────────────────────────────────────────────────────
 let deals = [], idx = 0;
+let pbnFiles = [], pbnIdx = 0; // list of all PBN files for inter-file navigation
 
 // ── helpers ────────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -402,6 +416,7 @@ async function loadRepo() {
          <p>Ajoutez des fichiers .pbn à la racine de votre repo.</p></div>`;
       setHint('0 fichier PBN trouvé'); return;
     }
+    pbnFiles = files; // store for inter-file navigation
     document.getElementById('file-list').innerHTML =
       '<div class="file-list">' + files.map(f =>
         `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
@@ -419,11 +434,12 @@ async function loadRepo() {
 
 // ── file openers ───────────────────────────────────────────────────────
 async function openFile(url, name) {
+  // Find index in pbnFiles list
+  pbnIdx = pbnFiles.findIndex(f => f.download_url === url);
   showDeal(name);
   try {
     const buf = await (await fetch(url)).arrayBuffer();
     const bytes = new Uint8Array(buf);
-    // Try UTF-8 first, fall back to ISO-8859-1 if invalid chars detected
     let text = new TextDecoder('utf-8').decode(bytes);
     if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
     doLoad(text, name);
@@ -474,8 +490,33 @@ function showErr(msg) {
     `<div class="empty"><div class="ei">⚠️</div><h3>Erreur</h3><p>${esc(msg)}</p></div>`;
 }
 function nav(dir) {
-  const n = idx + dir;
-  if (n >= 0 && n < deals.length) { idx = n; render(n); window.scrollTo(0,0); }
+  // If multiple deals in current file, navigate within
+  if (deals.length > 1) {
+    const n = idx + dir;
+    if (n >= 0 && n < deals.length) { idx = n; render(n); window.scrollTo(0,0); }
+    return;
+  }
+  // Otherwise navigate between PBN files
+  if (pbnFiles.length > 1) {
+    const n = pbnIdx + dir;
+    if (n >= 0 && n < pbnFiles.length) {
+      openFile(pbnFiles[n].download_url, pbnFiles[n].name);
+    }
+  }
+}
+
+function updateNavCounter() {
+  if (pbnFiles.length > 1) {
+    document.getElementById('nav-ctr').textContent =
+      `Donne ${pbnIdx+1} / ${pbnFiles.length}`;
+    document.getElementById('btn-prev').disabled = pbnIdx === 0;
+    document.getElementById('btn-next').disabled = pbnIdx === pbnFiles.length-1;
+  } else {
+    document.getElementById('nav-ctr').textContent =
+      deals.length > 1 ? `Donne ${idx+1} / ${deals.length}` : '';
+    document.getElementById('btn-prev').disabled = idx === 0;
+    document.getElementById('btn-next').disabled = idx === deals.length-1;
+  }
 }
 
 // ── PBN parser ─────────────────────────────────────────────────────────
@@ -598,9 +639,8 @@ function parseDeal(str) {
 // ── render deal ────────────────────────────────────────────────────────
 function render(i) {
   const d = deals[i], total = deals.length;
-  document.getElementById('nav-ctr').textContent = `Donne ${i+1} / ${total}`;
-  document.getElementById('btn-prev').disabled = (i===0);
-  document.getElementById('btn-next').disabled = (i===total-1);
+  idx = i;
+  updateNavCounter();
 
   const dealer  = d.Dealer || '?';
   const vul     = d.Vulnerable || 'None';
@@ -622,7 +662,7 @@ function render(i) {
         ${lead ? `<span class="badge badge-lead">Entame : ${fmtLeadBadge(lead)}</span>` : ''}
       </div>
     </div>
-    <div class="diag-card">${renderDiag(hands, lead, d.PlayFirst)}</div>`;
+    <div class="diag-card">${renderDiag(hands, lead, d.PlayFirst, dealer, vul)}</div>`;
 
   if (auction && auction !== '?')
     html += `<div class="sc"><div class="sc-head">Séquence d'enchères</div>
@@ -749,32 +789,50 @@ function renderHand(hand, leadInfo) {
 }
 
 // ── render diagram ─────────────────────────────────────────────────────
-function renderDiag(hands, lead, playFirst) {
+function renderDiag(hands, lead, playFirst, dealer, vul) {
   const h = hands || {};
-  // Parse lead into { suit, card } for highlighting
+
+  // Vulnerability: which dirs are vul?
+  const vulDirs = {
+    'None': [],
+    'NS':   ['N','S'],
+    'EW':   ['E','W'],
+    'All':  ['N','S','E','W'],
+  }[vul] || [];
+
+  const lblClass = dir => vulDirs.includes(dir) ? 'lbl-vul' : 'lbl-nov';
+  const lblName  = {N:'Nord', S:'Sud', E:'Est', W:'Ouest'};
+
+  const handLbl = dir => {
+    const isDealer = dealer && dir === dealer.toUpperCase();
+    const cls = lblClass(dir);
+    return `<div class="hand-lbl ${cls}">
+      ${lblName[dir]}
+      ${isDealer ? '<span class="dealer-badge">D</span>' : ''}
+    </div>`;
+  };
+
+  // Parse lead
   let leadInfo = null;
   if (lead && lead.length >= 2 && playFirst) {
-    const suitChar = lead[0].toUpperCase();
-    const cardChar = lead[1].toUpperCase();
-    leadInfo = { dir: playFirst.toUpperCase(), suit: suitChar, card: cardChar };
+    leadInfo = { dir: playFirst.toUpperCase(), suit: lead[0].toUpperCase(), card: lead[1].toUpperCase() };
   }
-  const renderWithLead = (dir, hand) =>
-    renderHand(hand, leadInfo && leadInfo.dir === dir ? leadInfo : null);
+  const rh = (dir, hand) => renderHand(hand, leadInfo && leadInfo.dir === dir ? leadInfo : null);
 
   return `<div class="diag-grid">
     <div class="diag-row">
-      <div class="hand hand-ns"><div class="hand-lbl">Nord</div>${renderWithLead('N', h.N)}</div>
+      <div class="hand hand-ns">${handLbl('N')}${rh('N', h.N)}</div>
     </div>
     <div class="diag-row">
-      <div class="hand"><div class="hand-lbl">Ouest</div>${renderWithLead('W', h.W)}</div>
+      <div class="hand">${handLbl('W')}${rh('W', h.W)}</div>
       <div class="compass-cell"><div class="compass">
         <span class="cpt cpt-n">N</span><span class="cpt cpt-s">S</span>
         <span class="cpt cpt-o">O</span><span class="cpt cpt-e">E</span>
       </div></div>
-      <div class="hand"><div class="hand-lbl">Est</div>${renderWithLead('E', h.E)}</div>
+      <div class="hand">${handLbl('E')}${rh('E', h.E)}</div>
     </div>
     <div class="diag-row">
-      <div class="hand hand-ns"><div class="hand-lbl">Sud</div>${renderWithLead('S', h.S)}</div>
+      <div class="hand hand-ns">${handLbl('S')}${rh('S', h.S)}</div>
     </div>
   </div>`;
 }
