@@ -396,29 +396,31 @@ async function loadRepo() {
 async function openFile(url, name) {
   showDeal(name);
   try {
-    const resp = await fetch(url);
-    const buf = await resp.arrayBuffer();
-    doLoad(decodeISO(buf), name);
+    // GitHub serves files as UTF-8 — use text() directly
+    const text = await (await fetch(url)).text();
+    doLoad(text, name);
   } catch(e) { showErr(e.message); }
 }
 function loadLocalFile(input) {
   const f = input.files[0]; if (!f) return;
   showDeal(f.name);
   const r = new FileReader();
-  r.onload = e => doLoad(decodeISO(e.target.result), f.name);
-  r.readAsArrayBuffer(f);
+  // Try UTF-8 first; if it contains replacement chars, retry as ISO-8859-1
+  r.onload = e => {
+    const text = e.target.result;
+    if (text.includes('\uFFFD')) {
+      // Has invalid UTF-8 sequences — re-read as ISO-8859-1
+      const r2 = new FileReader();
+      r2.onload = e2 => doLoad(decodeISO(e2.target.result), f.name);
+      r2.readAsArrayBuffer(f);
+    } else {
+      doLoad(text, f.name);
+    }
+  };
+  r.readAsText(f, 'utf-8');
 }
-// Decode ArrayBuffer as ISO-8859-1 (Latin-1)
 function decodeISO(buf) {
-  const bytes = new Uint8Array(buf);
-  // Check for UTF-8 BOM or valid UTF-8 — if so, use TextDecoder utf-8
-  // Otherwise decode as ISO-8859-1
-  try {
-    const td = new TextDecoder('iso-8859-1');
-    return td.decode(bytes);
-  } catch(e) {
-    return new TextDecoder('utf-8').decode(bytes);
-  }
+  return new TextDecoder('iso-8859-1').decode(new Uint8Array(buf));
 }
 function doLoad(text, name) {
   deals = parsePBN(text);
@@ -734,8 +736,17 @@ function fmtBid(bid) {
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
-  const saved = localStorage.getItem('pbn-repo');
-  if (saved) { document.getElementById('repo-input').value = saved; loadRepo(); }
+  // Auto-detect repo from GitHub Pages URL (username.github.io/reponame)
+  const ghMatch = location.hostname.match(/^([^.]+)\.github\.io$/);
+  const pathParts = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').filter(Boolean);
+  if (ghMatch && pathParts.length >= 1) {
+    const autoRepo = ghMatch[1] + '/' + pathParts[0];
+    document.getElementById('repo-input').value = autoRepo;
+    loadRepo();
+  } else {
+    const saved = localStorage.getItem('pbn-repo');
+    if (saved) { document.getElementById('repo-input').value = saved; loadRepo(); }
+  }
   document.getElementById('repo-input').addEventListener('keydown', e => {
     if (e.key==='Enter') loadRepo();
   });
