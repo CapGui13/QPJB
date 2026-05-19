@@ -22,10 +22,10 @@
   --card-bd: #e8dfc8;
   --red:     #c0392b;
   --blue:    #1a56c4;
-  --suit-s:  #1a56c4;
-  --suit-h:  #c0392b;
-  --suit-d:  #e07b00;
-  --suit-c:  #1a7a3c;
+  --suit-s:  #6b9fd4;
+  --suit-h:  #d4706a;
+  --suit-d:  #c8924a;
+  --suit-c:  #6aaa78;
   --txt:     #1a1410;
   --txt2:    #6b5d4e;
   --txt3:    #b0a090;
@@ -683,7 +683,7 @@ function renderHand(hand) {
     const c = frCards(hand[s]);
     const k = SCLS[s];
     return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span>${
-      c ? `<span class="cds ${k}">${esc(c)}</span>`
+      c ? `<span class="cds">${esc(c)}</span>`
         : `<span class="vd">—</span>`
     }</div>`;
   }).join('');
