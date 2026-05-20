@@ -154,12 +154,19 @@ header{
   display:flex;justify-content:space-between;align-items:center;
   box-shadow:var(--sh-lg);border:1px solid rgba(200,151,58,.2);
 }
-.board-num{font-family:'Playfair Display',serif;color:#fff;font-size:19px;font-weight:900}
-.board-badges{display:flex;gap:6px;flex-wrap:wrap}
-.badge{padding:4px 9px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.board-num{font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;color:#fff;font-size:18px;font-weight:600;line-height:1;display:flex;align-items:center;letter-spacing:0}
+.board-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.badge{
+  padding:4px 0;border-radius:6px;font-size:11px;font-weight:600;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
+  text-align:center;white-space:nowrap;
+}
+/* Fixed widths per badge family */
+.badge-dealer  {width:100px} /* "Donneur : Ouest" */
+.badge-vul-box {width:72px}  /* "Vul. Tous" */
+.badge-contract{width:96px}  /* "3SA par Ouest" */
 .badge-vul{background:rgba(185,28,28,.33);color:#fca5a5}
 .badge-nov{background:rgba(34,197,94,.18);color:#86efac}
-.badge-lead{background:rgba(200,151,58,.25);color:var(--gold-lt)}
 
 /* ── DIAGRAM ── */
 /*
@@ -211,7 +218,7 @@ header{
 .hand-lbl{
   font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
   color:var(--txt3);margin-bottom:5px;
-  display:flex;align-items:center;justify-content:center;gap:5px;
+  display:flex;align-items:center;justify-content:center;gap:4px;
 }
 /* Vulnerability colors on direction label */
 .lbl-vul{color:#e05555}
@@ -225,16 +232,19 @@ header{
   font-size:7px;font-weight:900;letter-spacing:0;
   flex-shrink:0;
 }
+/* Invisible spacer to keep name centered when dealer badge present */
+.dealer-spacer{width:13px;flex-shrink:0}
 
-/* HCP badge */
-.hcp{
-  margin-top:6px;
+/* HCP outside hand boxes */
+.hcp-ext{
   font-size:10px;font-weight:700;color:var(--gold);
-  letter-spacing:0.3px;
+  text-align:center;margin-top:3px;letter-spacing:0.3px;
 }
+.diag-col{display:flex;flex-direction:column;flex:1 1 0;min-width:0}
+.diag-row-ns{display:flex;flex-direction:column;align-items:center}
 
 /* SUIT ROWS */
-.sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap}
+.sr{display:flex;align-items:baseline;gap:5px;line-height:1.72;flex-wrap:nowrap;min-height:22px}
 .sym{font-size:14px;width:18px;text-align:center;flex-shrink:0;line-height:1;display:inline-block}
 .cds{font-size:13px;font-weight:700;font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;word-spacing:2px;letter-spacing:0;white-space:nowrap;color:var(--txt)}
 .vd{font-size:11px;color:var(--txt3);font-weight:400;line-height:1.72}
@@ -388,7 +398,28 @@ function frCards(raw) {
 
 // ── state ──────────────────────────────────────────────────────────────
 let deals = [], idx = 0;
-let pbnFiles = [], pbnIdx = 0; // list of all PBN files for inter-file navigation
+let pbnFiles = [], pbnIdx = 0;
+const pbnCache = {}; // url → decoded text
+
+async function fetchPBN(url) {
+  if (pbnCache[url]) return pbnCache[url];
+  const buf = await (await fetch(url)).arrayBuffer();
+  const bytes = new Uint8Array(buf);
+  let text = new TextDecoder('utf-8').decode(bytes);
+  if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
+  pbnCache[url] = text;
+  return text;
+}
+
+function preloadAdjacent(idx) {
+  // Silently preload prev and next files in background
+  [idx-1, idx+1].forEach(i => {
+    if (i >= 0 && i < pbnFiles.length) {
+      const url = pbnFiles[i].download_url;
+      if (!pbnCache[url]) fetchPBN(url).catch(()=>{});
+    }
+  });
+}
 
 // ── helpers ────────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -416,7 +447,9 @@ async function loadRepo() {
          <p>Ajoutez des fichiers .pbn à la racine de votre repo.</p></div>`;
       setHint('0 fichier PBN trouvé'); return;
     }
-    pbnFiles = files; // store for inter-file navigation
+    pbnFiles = files;
+    // Preload all files in background for instant navigation
+    files.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
     document.getElementById('file-list').innerHTML =
       '<div class="file-list">' + files.map(f =>
         `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
@@ -434,15 +467,12 @@ async function loadRepo() {
 
 // ── file openers ───────────────────────────────────────────────────────
 async function openFile(url, name) {
-  // Find index in pbnFiles list
   pbnIdx = pbnFiles.findIndex(f => f.download_url === url);
   showDeal(name);
   try {
-    const buf = await (await fetch(url)).arrayBuffer();
-    const bytes = new Uint8Array(buf);
-    let text = new TextDecoder('utf-8').decode(bytes);
-    if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
+    const text = await fetchPBN(url);
     doLoad(text, name);
+    preloadAdjacent(pbnIdx);
   } catch(e) { showErr(e.message); }
 }
 function loadLocalFile(input) {
@@ -652,45 +682,76 @@ function render(i) {
   const declarer = d.Declarer || '';
   const lead = d.Lead || '';
 
+  const vulLabel = {None:'Vul. Pers.', NS:'Vul. N-S', EW:'Vul. E-O', All:'Vul. Tous'}[vul] || vul;
+  const vulCls   = vul === 'None' ? 'badge-nov' : 'badge-vul';
+
   let html = `
     <div class="board-hdr">
       <div class="board-num">${esc(d._filename || String(d.Board||i+1))}</div>
       <div class="board-badges">
-        <span class="badge">Donneur : ${esc(DIR_FR[dealer]||dealer)}</span>
-        <span class="badge ${vul==='None'?'badge-nov':'badge-vul'}">${esc(VUL_FR[vul]||vul)}</span>
-        ${contract ? `<span class="badge">${fmtContract(contract, declarer)}</span>` : ''}
-        ${lead ? `<span class="badge badge-lead">Entame : ${fmtLeadBadge(lead)}</span>` : ''}
+        <span class="badge badge-dealer">Donneur : ${esc(DIR_FR[dealer]||dealer)}</span>
+        <span class="badge badge-vul-box ${vulCls}">${esc(vulLabel)}</span>
+        ${contract ? `<span class="badge badge-contract">${fmtContract(contract, declarer)}</span>` : ''}
       </div>
     </div>
     <div class="diag-card">${renderDiag(hands, lead, d.PlayFirst, dealer, vul)}</div>`;
 
   if (auction && auction !== '?')
-    html += `<div class="sc"><div class="sc-head">Séquence d'enchères</div>
-      <div class="sc-body">${renderAuction(auctionFirst, auction)}</div></div>`;
+    html += `<div class="sc"><div class="sc-body">${renderAuction(auctionFirst, auction)}</div></div>`;
 
   if (comment) {
-    // Split on blank lines to get paragraphs, join wrapped lines within each para
     const paras = comment.split(/\n\s*\n/).map(p =>
       p.split('\n').map(l => l.trim()).filter(Boolean).join(' ')
     ).filter(Boolean);
-    const cmtHtml = paras.map(p => `<p style="margin:0 0 10px">${esc(p)}</p>`).join('');
-    html += `<div class="sc"><div class="sc-head">Commentaires</div>
-      <div class="sc-body"><div class="cmt" style="white-space:normal;line-height:1.7">${cmtHtml}</div></div></div>`;
+    const cmtHtml = paras.map(p => `<p style="margin:0 0 10px">${fmtComment(p)}</p>`).join('');
+    html += `<div class="sc"><div class="sc-body"><div class="cmt" style="white-space:normal;line-height:1.7">${cmtHtml}</div></div></div>`;
   }
 
   document.getElementById('deal-content').innerHTML = html;
 }
 
-// ── format contract (e.g. "4S" → "4♠ par Sud") ────────────────────────
+// ── format comment — replace suit codes with symbols ───────────────────
+function fmtComment(text) {
+  // French bridge: P=♠ C=♥ K=♦ T=♣
+  const MAP = {'P':['♠','cs'], 'C':['♥','ch'], 'K':['♦','cd'], 'T':['♣','cc']};
+  const isLetter = c => c && /\p{L}/u.test(c);
+
+  const re = /((?:10|[ARDVXardvx2-9])?)([PCKTpckt])/g;
+
+  const converted = text.replace(re, (match, prefix, suit, offset, src) => {
+    const s = suit.toUpperCase();
+    if (!MAP[s]) return match;
+    // Character immediately before the whole match
+    const before = src[offset - 1];
+    // Character immediately after the whole match
+    const after  = src[offset + match.length];
+    // Skip if the letter after the suit is a letter (part of a word like "repart")
+    if (isLetter(after)) return match;
+    // Skip if no prefix and preceded by a letter (part of a word like "placé")
+    if (!prefix && isLetter(before)) return match;
+    // Skip if there's a prefix but the char before the prefix is a letter
+    if (prefix && isLetter(src[offset - 1])) return match;
+    const [sym, cls] = MAP[s];
+    return (prefix || '') + `\x00${cls}\x01${sym}\x02`;
+  });
+
+  return esc(converted)
+    .replace(/\x00([a-z-]+)\x01([^\x02]*)\x02/g,
+      (_, cls, sym) => `<span class="${cls}">${sym}</span>`);
+}
 function fmtContract(contract, declarer) {
   if (!contract || contract === '?' || contract === 'Pass') return esc(contract);
   const m = contract.match(/^([1-7])(S|H|D|C|NT|N)(X{0,2})$/i);
   if (!m) return esc(contract);
-  const sym = {S:'♠',H:'♥',D:'♦',C:'♣',NT:'SA',N:'SA'}[m[2].toUpperCase()];
-  const cls = ['H','D'].includes(m[2].toUpperCase()) ? 'color:var(--red)' : '';
-  const dbl = m[3] ? ` ${m[3]}` : '';
+  const suitUp = m[2].toUpperCase();
+  const symMap = {S:'♠', H:'♥', D:'♦', C:'♣', NT:'SA', N:'SA'};
+  const clsMap = {S:'cs', H:'ch', D:'cd', C:'cc'};
+  const sym = symMap[suitUp] || suitUp;
+  const cls = clsMap[suitUp] || '';
+  const dbl  = m[3] ? ` ${m[3]}` : '';
   const decl = declarer ? ` par ${DIR_FR[declarer.toUpperCase()]||declarer}` : '';
-  return `${m[1]}<span style="${cls}">${sym}</span>${dbl}${decl}`;
+  const suitSpan = cls ? `<span class="${cls}">${sym}</span>` : sym;
+  return `${m[1]}${suitSpan}${dbl}${decl}`;
 }
 
 // ── format lead for badge (suit in correct color) ─────────────────────
@@ -751,10 +812,9 @@ function calcHCP(hand) {
   return pts;
 }
 
-// ── render hand ────────────────────────────────────────────────────────
-// leadInfo = { suit: 'H', card: '2' } or null
+// ── render hand — returns {suits, hcp} ────────────────────────────────
 function renderHand(hand, leadInfo) {
-  if (!hand) return '<div class="vd">—</div>';
+  if (!hand) return { suits: '<div class="vd">—</div>', hcp: 0 };
   const hcp = calcHCP(hand);
   const suits = SUITS.map(s => {
     const raw = hand[s] || '';
@@ -762,7 +822,6 @@ function renderHand(hand, leadInfo) {
     if (!raw || raw === '-') {
       return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span><span class="vd">—</span></div>`;
     }
-    // Build tokens with lead highlighting
     const tokens = [];
     for (let i = 0; i < raw.length; i++) {
       const c = raw[i];
@@ -774,32 +833,19 @@ function renderHand(hand, leadInfo) {
       else if (c==='T') fr='10';
       else if (c==='1'&&raw[i+1]==='0') { fr='10'; i++; }
       else fr=c;
-
-      // Is this the lead card?
       const isLead = leadInfo && s === leadInfo.suit && c === leadInfo.card;
-      if (isLead) {
-        tokens.push(`<span class="lead-card">${fr}</span>`);
-      } else {
-        tokens.push(fr);
-      }
+      tokens.push(isLead ? `<span class="lead-card">${fr}</span>` : fr);
     }
     return `<div class="sr"><span class="sym ${k}">${SYM[s]}</span><span class="cds">${tokens.join(' ')}</span></div>`;
   }).join('');
-  return suits + `<div class="hcp">${hcp} H</div>`;
+  return { suits, hcp };
 }
 
 // ── render diagram ─────────────────────────────────────────────────────
 function renderDiag(hands, lead, playFirst, dealer, vul) {
   const h = hands || {};
 
-  // Vulnerability: which dirs are vul?
-  const vulDirs = {
-    'None': [],
-    'NS':   ['N','S'],
-    'EW':   ['E','W'],
-    'All':  ['N','S','E','W'],
-  }[vul] || [];
-
+  const vulDirs = {'None':[],'NS':['N','S'],'EW':['E','W'],'All':['N','S','E','W']}[vul]||[];
   const lblClass = dir => vulDirs.includes(dir) ? 'lbl-vul' : 'lbl-nov';
   const lblName  = {N:'Nord', S:'Sud', E:'Est', W:'Ouest'};
 
@@ -807,48 +853,54 @@ function renderDiag(hands, lead, playFirst, dealer, vul) {
     const isDealer = dealer && dir === dealer.toUpperCase();
     const cls = lblClass(dir);
     return `<div class="hand-lbl ${cls}">
+      ${isDealer ? '<span class="dealer-spacer"></span>' : ''}
       ${lblName[dir]}
       ${isDealer ? '<span class="dealer-badge">D</span>' : ''}
     </div>`;
   };
 
-  // Parse lead
   let leadInfo = null;
   if (lead && lead.length >= 2 && playFirst) {
     leadInfo = { dir: playFirst.toUpperCase(), suit: lead[0].toUpperCase(), card: lead[1].toUpperCase() };
   }
   const rh = (dir, hand) => renderHand(hand, leadInfo && leadInfo.dir === dir ? leadInfo : null);
 
+  const handBox = (dir, hand, ns) => {
+    const {suits, hcp} = rh(dir, hand);
+    const cls = ns ? 'hand hand-ns' : 'hand';
+    return `<div class="${cls}">${handLbl(dir)}${suits}</div>
+            <div class="hcp-ext">${hcp} H</div>`;
+  };
+
   return `<div class="diag-grid">
+    <div class="diag-row diag-row-ns">${handBox('N', h.N, true)}</div>
     <div class="diag-row">
-      <div class="hand hand-ns">${handLbl('N')}${rh('N', h.N)}</div>
-    </div>
-    <div class="diag-row">
-      <div class="hand">${handLbl('W')}${rh('W', h.W)}</div>
+      <div class="diag-col">${handBox('W', h.W, false)}</div>
       <div class="compass-cell"><div class="compass">
         <span class="cpt cpt-n">N</span><span class="cpt cpt-s">S</span>
         <span class="cpt cpt-o">O</span><span class="cpt cpt-e">E</span>
       </div></div>
-      <div class="hand">${handLbl('E')}${rh('E', h.E)}</div>
+      <div class="diag-col">${handBox('E', h.E, false)}</div>
     </div>
-    <div class="diag-row">
-      <div class="hand hand-ns">${handLbl('S')}${rh('S', h.S)}</div>
-    </div>
+    <div class="diag-row diag-row-ns">${handBox('S', h.S, true)}</div>
   </div>`;
 }
 
 // ── render auction ─────────────────────────────────────────────────────
 function renderAuction(firstBidder, str) {
-  const ORDER  = ['W','N','E','S'];
+  const BASE   = ['W','N','E','S'];
   const LABELS = {W:'Ouest',N:'Nord',E:'Est',S:'Sud'};
-  const start  = ORDER.indexOf((firstBidder||'').toUpperCase());
-  const bids   = str.split(/\s+/).filter(Boolean);
+  const bids   = str.split(/\s+/).filter(b => b && b.toUpperCase() !== 'AP');
+
+  // Rotate columns so first bidder is always the leftmost column
+  const startIdx = BASE.indexOf((firstBidder||'').toUpperCase());
+  const ORDER = [0,1,2,3].map(i => BASE[(startIdx + i) % 4]);
+
   let html = ORDER.map(d => `<div class="auc-th">${LABELS[d]}</div>`).join('');
-  const off = start < 0 ? 0 : start;
-  for (let i=0;i<off;i++) html += '<div class="auc-td"></div>';
+  // First bidder is now column 0, so no offset needed
   bids.forEach(b => { html += `<div class="auc-td">${fmtBid(b)}</div>`; });
-  const rem = (4 - ((off+bids.length)%4)) % 4;
-  for (let i=0;i<rem;i++) html += '<div class="auc-td"></div>';
+  const rem = (4 - (bids.length % 4)) % 4;
+  for (let i=0; i<rem; i++) html += '<div class="auc-td"></div>';
   return `<div class="auc-grid">${html}</div>`;
 }
 
