@@ -11,27 +11,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --felt:    #0e0e12;
-  --felt-dk: #07070a;
-  --felt-md: #131318;
-  --felt-lt: #1c1c24;
-  --gold:    #f0c040;
-  --gold-lt: #ffe06a;
-  --cream:   #0a0a0d;
-  --card-bg: #111116;
-  --card-bd: #2a2a35;
-  --red:     #ff4444;
-  --blue:    #4488ff;
-  --suit-s:  #60b4ff;
-  --suit-h:  #ff5f6e;
-  --suit-d:  #ffaa33;
-  --suit-c:  #3ddd7a;
-  --txt:     #eeeef5;
-  --txt2:    #8888aa;
-  --txt3:    #44445a;
-  --sh-sm:   0 2px 10px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
-  --sh-lg:   0 6px 28px rgba(0,0,0,.7), 0 2px 8px rgba(0,0,0,.5);
+  --felt:    #1a4d2e;
+  --felt-dk: #0f2d1a;
+  --felt-md: #206038;
+  --felt-lt: #2e7d4f;
+  --gold:    #c8973a;
+  --gold-lt: #e8bb6a;
+  --cream:   #faf6ef;
+  --card-bg: #fffdf8;
+  --card-bd: #e8dfc8;
+  --red:     #c0392b;
+  --blue:    #1a56c4;
+  --suit-s:  #6b9fd4;
+  --suit-h:  #d4706a;
+  --suit-d:  #c8924a;
+  --suit-c:  #6aaa78;
+  --txt:     #1a1410;
+  --txt2:    #6b5d4e;
+  --txt3:    #b0a090;
+  --sh-sm:   0 2px 8px rgba(0,0,0,.13), 0 1px 2px rgba(0,0,0,.07);
+  --sh-lg:   0 6px 24px rgba(0,0,0,.22), 0 2px 6px rgba(0,0,0,.09);
   --r:       11px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --cream:#0d1a10; --card-bg:#14200f; --card-bd:#253820;
+    --txt:#f0ebe0; --txt2:#8aaa88; --txt3:#4a6048;
+    --sh-sm:0 2px 10px rgba(0,0,0,.5); --sh-lg:0 8px 28px rgba(0,0,0,.6);
+  }
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto}
@@ -62,7 +69,7 @@ header{
 .config{
   background:linear-gradient(175deg,var(--felt-md) 0%,var(--felt) 100%);
   padding:16px 18px 20px;
-  border-bottom:1px solid rgba(240,192,64,.12);
+  border-bottom:1px solid rgba(200,151,58,.15);
 }
 .cfg-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:9px}
 .input-row{display:flex;gap:7px}
@@ -110,35 +117,9 @@ header{
   background:linear-gradient(135deg,var(--felt),var(--felt-lt));
   display:flex;align-items:center;justify-content:center;font-size:20px;
 }
-.folder-icon{
-  width:42px;height:42px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
-  display:flex;align-items:center;justify-content:center;font-size:20px;
-}
 .file-name{font-weight:600;font-size:15px;font-family:'Playfair Display',serif}
 .file-meta{font-size:12px;color:var(--txt2);margin-top:2px}
 .file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
-
-/* ── BREADCRUMB ── */
-.breadcrumb-bar{
-  background:linear-gradient(175deg,var(--felt-md) 0%,var(--felt) 100%);
-  padding:0 18px 10px;
-  border-bottom:1px solid rgba(200,151,58,.15);
-}
-.breadcrumb{
-  display:flex;align-items:center;flex-wrap:wrap;gap:2px;
-  font-size:12px;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding-top:9px;
-}
-.bc-part{
-  background:none;border:none;color:rgba(255,255,255,.55);
-  font-size:12px;font-family:'Source Serif 4',serif;
-  cursor:pointer;padding:3px 7px;border-radius:5px;
-  transition:background .12s,color .12s;
-}
-.bc-part:hover{background:rgba(255,255,255,.1);color:#fff}
-.bc-sep{color:rgba(255,255,255,.2);font-size:11px;padding:0 1px}
 
 /* ── DEAL VIEW ── */
 .deal-view{display:none}
@@ -171,7 +152,7 @@ header{
   background:linear-gradient(135deg,var(--felt-dk) 0%,var(--felt-md) 100%);
   border-radius:var(--r);padding:13px 17px;
   display:flex;justify-content:space-between;align-items:center;
-  box-shadow:var(--sh-lg);border:1px solid rgba(240,192,64,.15);
+  box-shadow:var(--sh-lg);border:1px solid rgba(200,151,58,.2);
 }
 .board-num{font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;color:#fff;font-size:18px;font-weight:600;line-height:1;display:flex;align-items:center;letter-spacing:0}
 .board-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -204,7 +185,7 @@ header{
 .diag-card{
   background:linear-gradient(155deg,var(--felt-md) 0%,var(--felt) 50%,var(--felt-dk) 100%);
   border-radius:var(--r);box-shadow:var(--sh-lg);
-  border:1px solid rgba(240,192,64,.08);
+  border:1px solid rgba(200,151,58,.1);
   padding:10px;
 }
 /* ── DIAGRAM ── */
@@ -298,13 +279,13 @@ header{
 .compass-cell{flex:0 0 44px;display:flex;align-items:center;justify-content:center}
 .compass{
   width:38px;height:38px;position:relative;
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.05),rgba(0,0,0,.6));
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.07),rgba(0,0,0,.4));
   border-radius:50%;
-  border:1px solid rgba(240,192,64,.4);
-  box-shadow:inset 0 2px 6px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.4),0 0 8px rgba(240,192,64,.1);
+  border:1px solid rgba(200,151,58,.33);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.25);
 }
-.compass::before{content:'';position:absolute;top:50%;left:6px;right:6px;height:1px;background:rgba(240,192,64,.2);transform:translateY(-50%)}
-.compass::after {content:'';position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:rgba(240,192,64,.2);transform:translateX(-50%)}
+.compass::before{content:'';position:absolute;top:50%;left:6px;right:6px;height:1px;background:rgba(200,151,58,.28);transform:translateY(-50%)}
+.compass::after {content:'';position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:rgba(200,151,58,.28);transform:translateX(-50%)}
 .cpt{position:absolute;color:rgba(255,255,255,.85);font-size:8px;font-weight:800}
 .cpt-n{top:2px;left:50%;transform:translateX(-50%)}
 .cpt-s{bottom:2px;left:50%;transform:translateX(-50%)}
@@ -313,13 +294,13 @@ header{
 
 /* ── SECTION CARD ── */
 .sc{background:var(--card-bg);border:1px solid var(--card-bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
-.sc-head{padding:9px 15px;border-bottom:1px solid var(--card-bd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);background:var(--felt-md)}
+.sc-head{padding:9px 15px;border-bottom:1px solid var(--card-bd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);background:var(--cream)}
 .sc-body{padding:13px 11px}
 
 /* ── AUCTION ── */
 .auc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .auc-th{text-align:center;padding:7px 2px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.5px;background:var(--felt-dk);color:rgba(255,255,255,.52)}
-.auc-td{text-align:center;padding:6px 2px;border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;background:var(--felt-lt);border:1px solid var(--card-bd);font-size:14px}
+.auc-td{text-align:center;padding:6px 2px;border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;background:var(--cream);border:1px solid var(--card-bd);font-size:14px}
 .bp{font-size:10px;color:var(--txt3);font-weight:600}
 .bx{color:var(--red);font-weight:800;font-size:14px}
 .bxx{color:var(--blue);font-weight:800;font-size:14px}
@@ -330,22 +311,7 @@ header{
 .b-sa{color:var(--txt);font-size:11px;font-weight:700}
 
 /* ── COMMENT ── */
-.cmt{border-left:3px solid var(--gold);padding:9px 13px;border-radius:0 8px 8px 0;background:var(--felt-lt);font-size:14px;line-height:1.75;white-space:pre-wrap}
-
-/* ── SÉANCE GRID ── */
-.seance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
-.seance-card{
-  background:var(--felt-lt);border:1.5px solid rgba(240,192,64,.18);
-  border-radius:10px;padding:13px 8px 11px;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  cursor:pointer;transition:background .15s,border-color .15s,transform .1s;
-  text-align:center;
-}
-.seance-card:active{transform:scale(.95)}
-.seance-card:hover{background:rgba(255,255,255,.05);border-color:var(--gold);box-shadow:0 0 12px rgba(240,192,64,.15)}
-.seance-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold-lt);line-height:1}
-.seance-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,.38);letter-spacing:.6px;text-transform:uppercase}
-.seance-count{font-size:11px;color:rgba(255,255,255,.5);margin-top:1px}
+.cmt{border-left:3px solid var(--gold);padding:9px 13px;border-radius:0 8px 8px 0;background:var(--cream);font-size:14px;line-height:1.75;white-space:pre-wrap}
 
 /* ── MISC ── */
 .empty{padding:56px 22px;text-align:center}
@@ -361,26 +327,24 @@ header{
 <div id="vhome">
   <header>
     <div class="logo">
-      <div class="logo-icon" style="width:56px;height:36px;border-radius:8px;background:var(--felt-dk);border:1px solid rgba(200,151,58,.3);font-size:14px;font-weight:900;font-family:'Playfair Display',serif;letter-spacing:.5px;padding:0 7px;box-shadow:none">
-        <span style="color:var(--suit-s)">Q</span><span style="color:var(--suit-h)">P</span><span style="color:var(--suit-d)">J</span><span style="color:var(--suit-c)">B</span>
-      </div>
-      <div class="logo-text"><h1>Visualiseur de donnes</h1></div>
+      <div class="logo-icon">♣</div>
+      <div class="logo-text"><h1>Bridge PBN</h1><p>Visualiseur de donnes</p></div>
     </div>
     <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
   </header>
 
   <div class="config">
-    <div class="cfg-label" id="cfg-label-seances">Séances disponibles</div>
-    <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:18px 0 8px">Recherche des séances…</div></div>
-    <div class="cfg-hint" id="cfg-hint"></div>
+    <div class="cfg-label">Repo GitHub</div>
+    <div class="input-row">
+      <input class="repo-in" id="repo-input" type="text" placeholder="utilisateur/mon-repo" autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="btn-go" onclick="loadRepo()">Charger</button>
+    </div>
+    <div class="cfg-hint" id="cfg-hint">Ex : alice/bridge-donnes</div>
     <div class="divider"><div class="div-line"></div><span class="div-txt">ou</span><div class="div-line"></div></div>
     <label class="btn-file">
       📂 Ouvrir un fichier PBN local
       <input type="file" accept=".pbn,.txt" style="display:none" onchange="loadLocalFile(this)">
     </label>
-  </div>
-  <div id="breadcrumb-bar" class="breadcrumb-bar" style="display:none">
-    <div class="breadcrumb" id="breadcrumb"></div>
   </div>
   <div id="file-list"></div>
 </div>
@@ -389,9 +353,7 @@ header{
 <div class="deal-view" id="vdeal">
   <header>
     <div class="logo">
-      <div class="logo-icon" style="width:56px;height:36px;border-radius:8px;background:var(--felt-dk);border:1px solid rgba(200,151,58,.3);font-size:14px;font-weight:900;font-family:'Playfair Display',serif;letter-spacing:.5px;padding:0 7px;box-shadow:none">
-        <span style="color:var(--suit-s)">Q</span><span style="color:var(--suit-h)">P</span><span style="color:var(--suit-d)">J</span><span style="color:var(--suit-c)">B</span>
-      </div>
+      <div class="logo-icon">♣</div>
       <div class="logo-text">
         <h1>Bridge PBN</h1>
         <p id="deal-fname" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></p>
@@ -443,7 +405,7 @@ function frCards(raw) {
 // ── state ──────────────────────────────────────────────────────────────
 let deals = [], idx = 0;
 let pbnFiles = [], pbnIdx = 0;
-const pbnCache = {};
+const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
   if (pbnCache[url]) return pbnCache[url];
@@ -473,118 +435,40 @@ function setHint(msg, err) {
   h.style.color = err ? '#f87171' : 'rgba(255,255,255,.26)';
 }
 
-// ── Token GitHub ───────────────────────────────────────────────────────
-function ghHeaders() {
-  const token = localStorage.getItem('gh-token');
-  const h = {Accept:'application/vnd.github.v3+json'};
-  if (token) h['Authorization'] = `token ${token}`;
-  return h;
-}
-function saveToken() {
-  const val = document.getElementById('token-input').value.trim();
-  if (!val) return;
-  localStorage.setItem('gh-token', val);
-  document.getElementById('token-input').value = '';
-  updateTokenUI();
-  discoverSeances();
-}
-function clearToken() {
-  localStorage.removeItem('gh-token');
-  updateTokenUI();
-  discoverSeances();
-}
-function updateTokenUI() {
-  const token = localStorage.getItem('gh-token');
-  const status = document.getElementById('token-status');
-  const clearBtn = document.getElementById('btn-clear-token');
-  if (token) {
-    status.innerHTML = `<span style="color:var(--suit-c)">✓ Token configuré</span> <span style="color:rgba(255,255,255,.25)">(${token.slice(0,8)}…)</span>`;
-    clearBtn.style.display = 'inline-flex';
-  } else {
-    status.textContent = 'Sans token : limite 60 req/heure';
-    clearBtn.style.display = 'none';
-  }
-}
-
 // ── GitHub loader ──────────────────────────────────────────────────────
-const GH_USER = 'capgui13';
-
-let currentRepo = '';
-let folderStack = [];
-
-// seances.json cache
-let seancesData = null;
-
-async function discoverSeances() {
-  const grid = document.getElementById('seance-grid');
-  grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:18px 0 8px">Chargement des séances…</div>';
-  setHint('');
+async function loadRepo() {
+  const repo = document.getElementById('repo-input').value.trim();
+  if (!repo.includes('/')) { setHint('Format : utilisateur/mon-repo', true); return; }
+  localStorage.setItem('pbn-repo', repo);
+  setHint('Chargement…');
+  document.getElementById('file-list').innerHTML = '<div class="loading">Recherche des fichiers PBN…</div>';
   try {
-    const url = `https://raw.githubusercontent.com/${GH_USER}/QPJB/main/seances.json`;
-    const res = await fetch(url + '?_=' + Date.now()); // cache-bust
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/`,
+      {headers:{Accept:'application/vnd.github.v3+json'}});
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    seancesData = await res.json();
-    const seances = seancesData.seances || [];
-    if (!seances.length) {
-      grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucune séance dans seances.json.</div>';
-      return;
+    const files = (await res.json()).filter(f => /\.pbn$/i.test(f.name));
+    if (!files.length) {
+      document.getElementById('file-list').innerHTML =
+        `<div class="empty"><div class="ei">📭</div><h3>Aucun fichier PBN</h3>
+         <p>Ajoutez des fichiers .pbn à la racine de votre repo.</p></div>`;
+      setHint('0 fichier PBN trouvé'); return;
     }
-    grid.innerHTML = seances.map(s => `
-      <div class="seance-card" onclick="loadSeance('${esc(s.repo)}')">
-        <div class="seance-num" style="font-size:16px;letter-spacing:.5px">${esc(s.repo)}</div>
-        <div class="seance-count" style="margin-top:3px">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
-      </div>`).join('');
-    setHint(`${seances.length} séance${seances.length>1?'s':''} trouvée${seances.length>1?'s':''}`);
+    pbnFiles = files;
+    // Preload all files in background for instant navigation
+    files.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
+    document.getElementById('file-list').innerHTML =
+      '<div class="file-list">' + files.map(f =>
+        `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
+           <div class="file-icon">🃏</div>
+           <div><div class="file-name">${esc(f.name)}</div>
+                <div class="file-meta">${(f.size/1024).toFixed(1)} Ko</div></div>
+           <div class="file-chev">›</div>
+         </div>`).join('') + '</div>';
+    setHint(`${files.length} fichier${files.length>1?'s':''} PBN trouvé${files.length>1?'s':''}`);
   } catch(e) {
-    grid.innerHTML = '<div style="color:#ff5f6e;font-size:13px;padding:8px 0">Impossible de lire seances.json</div>';
+    document.getElementById('file-list').innerHTML = '';
     setHint('Erreur : ' + e.message, true);
   }
-}
-
-async function loadSeance(repoName) {
-  const seance = (seancesData?.seances || []).find(s => s.repo === repoName);
-  if (!seance) return;
-  currentRepo = `${GH_USER}/${repoName}`;
-  folderStack = [];
-  renderBreadcrumb();
-
-  const fichiers = seance.fichiers;
-  // Build file objects from the JSON list (no API call needed)
-  pbnFiles = fichiers.map(name => ({
-    name,
-    download_url: `https://raw.githubusercontent.com/${GH_USER}/${repoName}/main/${name}`
-  }));
-
-  // Preload all in background
-  pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
-
-  const rows = pbnFiles.map(f =>
-    `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
-      <div class="file-icon">🃏</div>
-      <div><div class="file-name">${esc(f.name)}</div><div class="file-meta">PBN</div></div>
-      <div class="file-chev">›</div>
-    </div>`);
-
-  document.getElementById('file-list').innerHTML = '<div class="file-list">' + rows.join('') + '</div>';
-  setHint(`${fichiers.length} fichier${fichiers.length>1?'s':''} PBN`);
-}
-
-function goToHome() {
-  currentRepo = ''; folderStack = [];
-  document.getElementById('breadcrumb-bar').style.display = 'none';
-  document.getElementById('file-list').innerHTML = '';
-  discoverSeances();
-}
-
-function renderBreadcrumb() {
-  const bar = document.getElementById('breadcrumb-bar');
-  const bc  = document.getElementById('breadcrumb');
-  if (!currentRepo) { bar.style.display = 'none'; return; }
-  bar.style.display = 'block';
-  const repoLabel = currentRepo.split('/')[1] || currentRepo;
-  bc.innerHTML = `<button class="bc-part" onclick="goToHome()">⬅ Séances</button>
-                  <span class="bc-sep">›</span>
-                  <span class="bc-part" style="color:#fff;font-weight:600;cursor:default">${esc(repoLabel)}</span>`;
 }
 
 // ── file openers ───────────────────────────────────────────────────────
@@ -1044,7 +928,20 @@ function fmtBid(bid) {
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
-  discoverSeances();
+  // Auto-detect repo from GitHub Pages URL (username.github.io/reponame)
+  const ghMatch = location.hostname.match(/^([^.]+)\.github\.io$/);
+  const pathParts = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').filter(Boolean);
+  if (ghMatch && pathParts.length >= 1) {
+    const autoRepo = ghMatch[1] + '/' + pathParts[0];
+    document.getElementById('repo-input').value = autoRepo;
+    loadRepo();
+  } else {
+    const saved = localStorage.getItem('pbn-repo');
+    if (saved) { document.getElementById('repo-input').value = saved; loadRepo(); }
+  }
+  document.getElementById('repo-input').addEventListener('keydown', e => {
+    if (e.key==='Enter') loadRepo();
+  });
 })();
 </script>
 </body>
