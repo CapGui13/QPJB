@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Bridge PBN">
 <title>Bridge PBN Viewer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --felt:    #1a4d2e;
@@ -41,11 +41,11 @@
   }
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;overflow-y:scroll}
 
 /* ── HEADER ── */
 header{
-  background:var(--felt-dk);
+  background:#141414;
   padding:max(env(safe-area-inset-top,0px),12px) 18px 12px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:200;
@@ -53,11 +53,11 @@ header{
 }
 .logo{display:flex;align-items:center;gap:11px}
 .logo-icon{
-  width:36px;height:36px;border-radius:8px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  width:56px;height:36px;border-radius:8px;flex-shrink:0;
+  background:#1c1c24;border:1px solid rgba(200,151,58,.25);
   display:flex;align-items:center;justify-content:center;
-  font-size:19px;color:var(--felt-dk);
-  box-shadow:0 2px 8px rgba(200,151,58,.38);
+  font-size:13px;font-weight:800;font-family:Syne,sans-serif;letter-spacing:1px;
+  padding:0 7px;
 }
 .logo-text h1{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff}
 .logo-text p{font-size:10px;color:rgba(255,255,255,.33);margin-top:1px;letter-spacing:.5px}
@@ -67,7 +67,7 @@ header{
 
 /* ── CONFIG ── */
 .config{
-  background:linear-gradient(175deg,var(--felt-md) 0%,var(--felt) 100%);
+  background:#282828;
   padding:16px 18px 20px;
   border-bottom:1px solid rgba(200,151,58,.15);
 }
@@ -150,21 +150,36 @@ header{
 /* ── BOARD HEADER ── */
 .board-hdr{
   background:linear-gradient(135deg,var(--felt-dk) 0%,var(--felt-md) 100%);
-  border-radius:var(--r);padding:13px 17px;
-  display:flex;justify-content:space-between;align-items:center;
+  border-radius:var(--r);padding:11px 14px;
+  display:flex;flex-direction:row;justify-content:space-between;align-items:center;
   box-shadow:var(--sh-lg);border:1px solid rgba(200,151,58,.2);
+  gap:10px;min-height:calc(1.45em * 2 + 22px);
 }
-.board-num{font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;color:#fff;font-size:18px;font-weight:600;line-height:1;display:flex;align-items:center;letter-spacing:0}
-.board-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.board-num{
+  font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;
+  color:#fff;font-size:12px;font-weight:600;
+  line-height:1.45;
+  flex:1;min-width:0;
+  max-height:calc(1.45em * 2);
+  overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  align-self:center;
+}
+.board-badges{
+  display:flex;gap:5px;flex-direction:row;align-items:center;
+  flex-shrink:0;
+}
 .badge{
-  padding:4px 0;border-radius:6px;font-size:11px;font-weight:600;
+  padding:4px 7px;border-radius:6px;font-size:10px;font-weight:600;
   background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
   text-align:center;white-space:nowrap;
 }
-/* Fixed widths per badge family */
-.badge-dealer  {width:100px} /* "Donneur : Ouest" */
-.badge-vul-box {width:72px}  /* "Vul. Tous" */
-.badge-contract{width:96px}  /* "3SA par Ouest" */
+.badge-dealer  {width:90px}
+.badge-vul-box {width:68px}
+.badge-contract{width:82px}
+
+
+
 .badge-vul{background:rgba(185,28,28,.33);color:#fca5a5}
 .badge-nov{background:rgba(34,197,94,.18);color:#86efac}
 
@@ -197,7 +212,7 @@ header{
   background:var(--card-bg);
   border:1px solid var(--card-bd);
   border-radius:9px;
-  padding:9px 11px 24px;
+  padding:22px 11px 24px;
   box-shadow:var(--sh-sm);
   position:relative;
   min-width:0;
@@ -214,16 +229,17 @@ header{
   margin:0 auto;
 }
 
-/* direction label */
+/* direction label — position absolute so it never affects card width */
 .hand-lbl{
+  position:absolute;top:6px;left:0;right:0;
   font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
-  color:var(--txt3);margin-bottom:5px;
+  color:var(--txt3);
   display:flex;align-items:center;justify-content:center;gap:4px;
 }
 /* Vulnerability colors on direction label */
 .lbl-vul{color:#e05555}
 .lbl-nov{color:#5aaa6a}
-/* Dealer badge — circled D */
+/* Dealer badge — circled D inline next to direction */
 .dealer-badge{
   display:inline-flex;align-items:center;justify-content:center;
   width:13px;height:13px;border-radius:50%;
@@ -232,8 +248,7 @@ header{
   font-size:7px;font-weight:900;letter-spacing:0;
   flex-shrink:0;
 }
-/* Invisible spacer to keep name centered when dealer badge present */
-.dealer-spacer{width:13px;flex-shrink:0}
+.dealer-spacer{width:13px;flex-shrink:0;visibility:hidden}
 
 /* HCP badge — inside hand, bottom right */
 .hcp-badge{
@@ -319,6 +334,13 @@ header{
 .empty h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:7px}
 .empty p{font-size:14px;color:var(--txt2);line-height:1.6}
 .loading{padding:44px;text-align:center;color:var(--txt2);font-size:14px}
+
+/* ── SÉANCE GRID ── */
+.seance-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:4px}
+.seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:border-color .15s,transform .1s;min-width:120px}
+.seance-card:active{transform:scale(.95)}
+.seance-num{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:.5px}
+.seance-count{font-size:11px;color:rgba(255,255,255,.4)}
 </style>
 </head>
 <body>
@@ -327,24 +349,35 @@ header{
 <div id="vhome">
   <header>
     <div class="logo">
-      <div class="logo-icon">♣</div>
-      <div class="logo-text"><h1>Bridge PBN</h1><p>Visualiseur de donnes</p></div>
+      <div class="logo-icon"><span style="color:#6b9fd4">Q</span><span style="color:#d4706a">P</span><span style="color:#c8924a">J</span><span style="color:#6aaa78">B</span></div>
+      <div class="logo-text"><h1 style="font-family:'Exo 2',sans-serif">Visualiseur de donnes</h1></div>
     </div>
     <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
   </header>
 
   <div class="config">
-    <div class="cfg-label">Repo GitHub</div>
-    <div class="input-row">
-      <input class="repo-in" id="repo-input" type="text" placeholder="utilisateur/mon-repo" autocomplete="off" autocorrect="off" spellcheck="false">
-      <button class="btn-go" onclick="loadRepo()">Charger</button>
+    <div style="margin-bottom:16px">
+      <div class="cfg-label" style="margin-bottom:6px">Repo GitHub</div>
+      <div style="display:flex;gap:7px">
+        <input class="repo-in" id="repo-input" type="text" placeholder="utilisateur/mon-repo" value="capgui13/QPJB" autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="btn-go" onclick="loadRepoManual()">Charger</button>
+      </div>
+      <div id="repo-hint" style="font-size:11px;margin-top:6px;min-height:15px"></div>
     </div>
-    <div class="cfg-hint" id="cfg-hint">Ex : alice/bridge-donnes</div>
-    <div class="divider"><div class="div-line"></div><span class="div-txt">ou</span><div class="div-line"></div></div>
-    <label class="btn-file">
-      📂 Ouvrir un fichier PBN local
-      <input type="file" accept=".pbn,.txt" style="display:none" onchange="loadLocalFile(this)">
-    </label>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span id="last-refresh" style="font-size:10px;color:rgba(255,255,255,.35)"></span>
+        <button onclick="discoverSeances(true)" style="background:linear-gradient(135deg,#4caf50,#2e7d32);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(76,175,80,.4);transition:filter .15s,transform .1s" title="Rafraîchir" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(.93)'" onmouseup="this.style.transform='scale(1)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche des séances…</div></div>
+    <div class="cfg-hint" id="cfg-hint"></div>
   </div>
   <div id="file-list"></div>
 </div>
@@ -353,10 +386,9 @@ header{
 <div class="deal-view" id="vdeal">
   <header>
     <div class="logo">
-      <div class="logo-icon">♣</div>
+      <div class="logo-icon"><span style="color:#6b9fd4">Q</span><span style="color:#d4706a">P</span><span style="color:#c8924a">J</span><span style="color:#6aaa78">B</span></div>
       <div class="logo-text">
-        <h1>Bridge PBN</h1>
-        <p id="deal-fname" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></p>
+        <h1 style="font-family:'Exo 2',sans-serif">Visualiseur de donnes</h1>
       </div>
     </div>
     <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
@@ -436,44 +468,145 @@ function setHint(msg, err) {
 }
 
 // ── GitHub loader ──────────────────────────────────────────────────────
-async function loadRepo() {
-  const repo = document.getElementById('repo-input').value.trim();
-  if (!repo.includes('/')) { setHint('Format : utilisateur/mon-repo', true); return; }
-  localStorage.setItem('pbn-repo', repo);
-  setHint('Chargement…');
-  document.getElementById('file-list').innerHTML = '<div class="loading">Recherche des fichiers PBN…</div>';
+// ── séances discovery ──────────────────────────────────────────────────
+const GH_USER = 'capgui13';
+const CACHE_KEY = 'qpjb-seances-cache';
+const CACHE_TTL = 60 * 60 * 1000;
+let seancesData = null;
+
+function updateRefreshLabel(ts) {
+  const el = document.getElementById('last-refresh');
+  if (!el || !ts) return;
+  const d = new Date(ts);
+  const pad = n => String(n).padStart(2,'0');
+  el.textContent = `maj ${pad(d.getDate())}/${pad(d.getMonth()+1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function renderSeanceGrid(seances) {
+  document.getElementById('seance-grid').innerHTML = seances.map(s => `
+    <div class="seance-card" data-repo="${esc(s.repo)}" onclick="loadSeance('${esc(s.repo)}')">
+      <div class="seance-num">${esc(s.repo)}</div>
+      <div class="seance-count">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
+    </div>`).join('');
+}
+
+function setRepoHint(msg, err) {
+  const el = document.getElementById('repo-hint');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.color = err ? '#f87171' : '#6aaa78';
+}
+
+async function loadRepoManual() {
+  const val = document.getElementById('repo-input').value.trim();
+  if (!val.includes('/')) { setRepoHint('Format : utilisateur/mon-repo', true); return; }
+  setRepoHint('Chargement…');
   try {
-    const res = await fetch(`https://api.github.com/repos/${repo}/contents/`,
+    const res = await fetch(`https://api.github.com/repos/${val}/contents/`,
       {headers:{Accept:'application/vnd.github.v3+json'}});
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const files = (await res.json()).filter(f => /\.pbn$/i.test(f.name));
-    if (!files.length) {
-      document.getElementById('file-list').innerHTML =
-        `<div class="empty"><div class="ei">📭</div><h3>Aucun fichier PBN</h3>
-         <p>Ajoutez des fichiers .pbn à la racine de votre repo.</p></div>`;
-      setHint('0 fichier PBN trouvé'); return;
-    }
-    pbnFiles = files;
-    // Preload all files in background for instant navigation
-    files.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
+    if (!res.ok) throw new Error(`Repo introuvable (${res.status})`);
+    const items = await res.json();
+    const fichiers = items.filter(f => f.type==='file' && /\.pbn$/i.test(f.name))
+                          .map(f => ({name: f.name, download_url: f.download_url}));
+    if (!fichiers.length) { setRepoHint('Aucun fichier PBN trouvé', true); return; }
+    pbnFiles = fichiers;
+    pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
     document.getElementById('file-list').innerHTML =
-      '<div class="file-list">' + files.map(f =>
-        `<div class="file-item" onclick="openFile('${f.download_url}','${esc(f.name)}')">
+      '<div class="file-list">' + pbnFiles.map((f, i) =>
+        `<div class="file-item" onclick="openFileByIndex(${i})">
            <div class="file-icon">🃏</div>
-           <div><div class="file-name">${esc(f.name)}</div>
-                <div class="file-meta">${(f.size/1024).toFixed(1)} Ko</div></div>
+           <div style="min-width:0;flex:1"><div class="file-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</div></div>
            <div class="file-chev">›</div>
          </div>`).join('') + '</div>';
-    setHint(`${files.length} fichier${files.length>1?'s':''} PBN trouvé${files.length>1?'s':''}`);
+    setRepoHint(`${fichiers.length} fichier${fichiers.length>1?'s':''} PBN trouvé${fichiers.length>1?'s':''}`);
   } catch(e) {
-    document.getElementById('file-list').innerHTML = '';
-    setHint('Erreur : ' + e.message, true);
+    setRepoHint('Erreur : ' + e.message, true);
   }
 }
 
+async function discoverSeances(forceRefresh = false) {
+  const grid = document.getElementById('seance-grid');
+  if (!forceRefresh) {
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (cached && (Date.now() - cached.ts) < CACHE_TTL && cached.seances?.length) {
+        setHint('');
+  seancesData = { seances: cached.seances };
+        renderSeanceGrid(cached.seances);
+        updateRefreshLabel(cached.ts);
+        return;
+      }
+    } catch {}
+  }
+  grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
+  const repos = Array.from({length:9}, (_,i) => `QPJB${i+1}`);
+  const results = await Promise.all(repos.map(async repo => {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GH_USER}/${repo}/contents/`,
+        {headers:{Accept:'application/vnd.github.v3+json'}});
+      if (!res.ok) return null;
+      const items = await res.json();
+      const fichiers = items.filter(f => f.type==='file' && /\.pbn$/i.test(f.name))
+                            .map(f => ({name: f.name, download_url: f.download_url}));
+      return { repo, fichiers };
+    } catch { return null; }
+  }));
+  const found = results.filter(r => r !== null);
+  if (!found.length) {
+    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucune séance trouvée.</div>';
+    return;
+  }
+  localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), seances: found }));
+  seancesData = { seances: found };
+  renderSeanceGrid(found);
+  updateRefreshLabel(Date.now());
+  setHint('');
+}
+
+async function loadSeance(repoName) {
+  setRepoHint('');
+  const seance = (seancesData?.seances || []).find(s => s.repo === repoName);
+  if (!seance) return;
+  pbnFiles = seance.fichiers;
+  // Highlight selected card
+  document.querySelectorAll('.seance-card').forEach(el => {
+    el.style.borderColor = '';
+    el.style.background = '';
+  });
+  const selectedCard = document.querySelector(`.seance-card[data-repo="${repoName}"]`);
+  if (selectedCard) {
+    selectedCard.style.borderColor = 'rgba(255,255,255,.7)';
+    selectedCard.style.background = '';
+  }
+
+  pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
+
+  document.getElementById('file-list').innerHTML =
+    '<div class="file-list">' + pbnFiles.map((f, i) =>
+      `<div class="file-item" onclick="openFileByIndex(${i})">
+         <div class="file-icon">🃏</div>
+         <div style="min-width:0;flex:1"><div class="file-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</div></div>
+         <div class="file-chev">›</div>
+       </div>`).join('') + '</div>';
+  setHint('');
+}
+
+function goToHome() {
+  document.getElementById('file-list').innerHTML = '';
+  discoverSeances();
+}
+
+
 // ── file openers ───────────────────────────────────────────────────────
+function openFileByIndex(i) {
+  const f = pbnFiles[i];
+  if (!f) return;
+  openFile(f.download_url, f.name);
+}
+
 async function openFile(url, name) {
   pbnIdx = pbnFiles.findIndex(f => f.download_url === url);
+  if (pbnIdx < 0) pbnIdx = 0;
   showDeal(name);
   try {
     const text = await fetchPBN(url);
@@ -509,7 +642,6 @@ function doLoad(text, name) {
   const displayName = name.replace(/\.pbn$/i, '');
   deals.forEach(d => d._filename = displayName);
   idx = 0;
-  document.getElementById('deal-fname').textContent = name;
   render(0);
 }
 function showDeal(name) {
@@ -859,9 +991,9 @@ function renderDiag(hands, lead, playFirst, dealer, vul) {
     const isDealer = dealer && dir === dealer.toUpperCase();
     const cls = lblClass(dir);
     return `<div class="hand-lbl ${cls}">
-      ${isDealer ? '<span class="dealer-spacer"></span>' : ''}
+      <span class="dealer-spacer"></span>
       ${lblName[dir]}
-      ${isDealer ? '<span class="dealer-badge">D</span>' : ''}
+      ${isDealer ? '<span class="dealer-badge">D</span>' : '<span class="dealer-spacer"></span>'}
     </div>`;
   };
 
@@ -928,20 +1060,10 @@ function fmtBid(bid) {
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
-  // Auto-detect repo from GitHub Pages URL (username.github.io/reponame)
-  const ghMatch = location.hostname.match(/^([^.]+)\.github\.io$/);
-  const pathParts = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').filter(Boolean);
-  if (ghMatch && pathParts.length >= 1) {
-    const autoRepo = ghMatch[1] + '/' + pathParts[0];
-    document.getElementById('repo-input').value = autoRepo;
-    loadRepo();
-  } else {
-    const saved = localStorage.getItem('pbn-repo');
-    if (saved) { document.getElementById('repo-input').value = saved; loadRepo(); }
-  }
   document.getElementById('repo-input').addEventListener('keydown', e => {
-    if (e.key==='Enter') loadRepo();
+    if (e.key==='Enter') loadRepoManual();
   });
+  discoverSeances();
 })();
 </script>
 </body>
