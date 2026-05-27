@@ -356,14 +356,6 @@ header{
   </header>
 
   <div class="config">
-    <div style="margin-bottom:16px">
-      <div class="cfg-label" style="margin-bottom:6px">Repo GitHub</div>
-      <div style="display:flex;gap:7px">
-        <input class="repo-in" id="repo-input" type="text" placeholder="utilisateur/mon-repo" value="capgui13/QPJB" autocomplete="off" autocorrect="off" spellcheck="false">
-        <button class="btn-go" onclick="loadRepoManual()">Charger</button>
-      </div>
-      <div id="repo-hint" style="font-size:11px;margin-top:6px;min-height:15px"></div>
-    </div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
       <div style="display:flex;align-items:center;gap:8px">
@@ -467,13 +459,13 @@ function setHint(msg, err) {
   h.style.color = err ? '#f87171' : 'rgba(255,255,255,.26)';
 }
 
-// ── GitHub loader ──────────────────────────────────────────────────────
-// ── séances discovery ──────────────────────────────────────────────────
-const GH_USER = 'capgui13';
-const CACHE_KEY = 'qpjb-seances-cache';
-const CACHE_TTL = 60 * 60 * 1000;
-let seancesData = null;
+// ── config ─────────────────────────────────────────────────────────────
+const GH_REPO    = 'capgui13/QPJB';   // ← seul endroit à changer si le repo change
+const CACHE_KEY  = 'qpjb-seances-v9';
+const CACHE_TTL  = 60 * 60 * 1000;    // 1 h
+let seancesData  = null;
 
+// ── helpers UI ─────────────────────────────────────────────────────────
 function updateRefreshLabel(ts) {
   const el = document.getElementById('last-refresh');
   if (!el || !ts) return;
@@ -484,78 +476,73 @@ function updateRefreshLabel(ts) {
 
 function renderSeanceGrid(seances) {
   document.getElementById('seance-grid').innerHTML = seances.map(s => `
-    <div class="seance-card" data-repo="${esc(s.repo)}" onclick="loadSeance('${esc(s.repo)}')">
-      <div class="seance-num">${esc(s.repo)}</div>
+    <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
+      <div class="seance-num">${esc(s.folder)}</div>
       <div class="seance-count">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
     </div>`).join('');
 }
 
-function setRepoHint(msg, err) {
-  const el = document.getElementById('repo-hint');
-  if (!el) return;
-  el.textContent = msg;
-  el.style.color = err ? '#f87171' : '#6aaa78';
-}
-
-async function loadRepoManual() {
-  const val = document.getElementById('repo-input').value.trim();
-  if (!val.includes('/')) { setRepoHint('Format : utilisateur/mon-repo', true); return; }
-  setRepoHint('Chargement…');
-  try {
-    const res = await fetch(`https://api.github.com/repos/${val}/contents/`,
-      {headers:{Accept:'application/vnd.github.v3+json'}});
-    if (!res.ok) throw new Error(`Repo introuvable (${res.status})`);
-    const items = await res.json();
-    const fichiers = items.filter(f => f.type==='file' && /\.pbn$/i.test(f.name))
-                          .map(f => ({name: f.name, download_url: f.download_url}));
-    if (!fichiers.length) { setRepoHint('Aucun fichier PBN trouvé', true); return; }
-    pbnFiles = fichiers;
-    pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
-    document.getElementById('file-list').innerHTML =
-      '<div class="file-list">' + pbnFiles.map((f, i) =>
-        `<div class="file-item" onclick="openFileByIndex(${i})">
-           <div class="file-icon">🃏</div>
-           <div style="min-width:0;flex:1"><div class="file-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</div></div>
-           <div class="file-chev">›</div>
-         </div>`).join('') + '</div>';
-    setRepoHint(`${fichiers.length} fichier${fichiers.length>1?'s':''} PBN trouvé${fichiers.length>1?'s':''}`);
-  } catch(e) {
-    setRepoHint('Erreur : ' + e.message, true);
-  }
-}
-
+// ── découverte auto des dossiers du repo ───────────────────────────────
 async function discoverSeances(forceRefresh = false) {
   const grid = document.getElementById('seance-grid');
+
+  // Cache
   if (!forceRefresh) {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
       if (cached && (Date.now() - cached.ts) < CACHE_TTL && cached.seances?.length) {
-        setHint('');
-  seancesData = { seances: cached.seances };
+        seancesData = { seances: cached.seances };
         renderSeanceGrid(cached.seances);
         updateRefreshLabel(cached.ts);
+        setHint('');
         return;
       }
     } catch {}
   }
+
   grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
-  const repos = Array.from({length:9}, (_,i) => `QPJB${i+1}`);
-  const results = await Promise.all(repos.map(async repo => {
+
+  // 1. Lister la racine du repo → garder uniquement les dossiers
+  let folders = [];
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/contents/`,
+      {headers:{Accept:'application/vnd.github.v3+json'}});
+    if (!res.ok) throw new Error(`Repo introuvable (${res.status})`);
+    const items = await res.json();
+    folders = items.filter(f => f.type === 'dir');
+  } catch(e) {
+    grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">${esc(e.message)}</div>`;
+    setHint(e.message, true);
+    return;
+  }
+
+  if (!folders.length) {
+    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
+    return;
+  }
+
+  // 2. Scanner chaque dossier en parallèle → garder ceux qui ont des .pbn
+  const results = await Promise.all(folders.map(async folder => {
     try {
-      const res = await fetch(`https://api.github.com/repos/${GH_USER}/${repo}/contents/`,
+      const res = await fetch(
+        `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
         {headers:{Accept:'application/vnd.github.v3+json'}});
       if (!res.ok) return null;
       const items = await res.json();
-      const fichiers = items.filter(f => f.type==='file' && /\.pbn$/i.test(f.name))
-                            .map(f => ({name: f.name, download_url: f.download_url}));
-      return { repo, fichiers };
+      const fichiers = items
+        .filter(f => f.type === 'file' && /\.pbn$/i.test(f.name))
+        .map(f => ({name: f.name, download_url: f.download_url}));
+      return fichiers.length ? { folder: folder.name, fichiers } : null;
     } catch { return null; }
   }));
-  const found = results.filter(r => r !== null);
+
+  const found = results.filter(Boolean);
   if (!found.length) {
-    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucune séance trouvée.</div>';
+    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun fichier PBN trouvé.</div>';
     return;
   }
+
   localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), seances: found }));
   seancesData = { seances: found };
   renderSeanceGrid(found);
@@ -563,21 +550,17 @@ async function discoverSeances(forceRefresh = false) {
   setHint('');
 }
 
-async function loadSeance(repoName) {
-  setRepoHint('');
-  const seance = (seancesData?.seances || []).find(s => s.repo === repoName);
+// ── ouverture d'un dossier ─────────────────────────────────────────────
+async function loadSeance(folderName) {
+  const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
   if (!seance) return;
   pbnFiles = seance.fichiers;
-  // Highlight selected card
+
   document.querySelectorAll('.seance-card').forEach(el => {
     el.style.borderColor = '';
-    el.style.background = '';
   });
-  const selectedCard = document.querySelector(`.seance-card[data-repo="${repoName}"]`);
-  if (selectedCard) {
-    selectedCard.style.borderColor = 'rgba(255,255,255,.7)';
-    selectedCard.style.background = '';
-  }
+  const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
+  if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
   pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
 
@@ -1060,9 +1043,6 @@ function fmtBid(bid) {
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
-  document.getElementById('repo-input').addEventListener('keydown', e => {
-    if (e.key==='Enter') loadRepoManual();
-  });
   discoverSeances();
 })();
 </script>
