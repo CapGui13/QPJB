@@ -336,8 +336,8 @@ header{
 .loading{padding:44px;text-align:center;color:var(--txt2);font-size:14px}
 
 /* ── SÉANCE GRID ── */
-.seance-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:4px}
-.seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:border-color .15s,transform .1s;min-width:120px}
+.seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s}
 .seance-card:active{transform:scale(.95)}
 .seance-num{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:.5px}
 .seance-count{font-size:11px;color:rgba(255,255,255,.4)}
@@ -474,10 +474,11 @@ function updateRefreshLabel(ts) {
 }
 
 function renderSeanceGrid(seances) {
-  document.getElementById('seance-grid').innerHTML = seances.map(s => `
+  const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+  document.getElementById('seance-grid').innerHTML = sorted.map(s => `
     <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
       <div class="seance-num">${esc(s.folder)}</div>
-      <div class="seance-count">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
+      <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
     </div>`).join('');
 }
 
