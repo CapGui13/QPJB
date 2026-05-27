@@ -460,10 +460,9 @@ function setHint(msg, err) {
 }
 
 // ── config ─────────────────────────────────────────────────────────────
-const GH_REPO    = 'capgui13/QPJB';   // ← seul endroit à changer si le repo change
-const CACHE_KEY  = 'qpjb-seances-v9';
-const CACHE_TTL  = 60 * 60 * 1000;    // 1 h
-let seancesData  = null;
+const GH_REPO   = 'capgui13/QPJB';   // ← seul endroit à changer si le repo change
+const CACHE_KEY = 'qpjb-seances-v10';
+let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
 function updateRefreshLabel(ts) {
@@ -482,74 +481,94 @@ function renderSeanceGrid(seances) {
     </div>`).join('');
 }
 
-// ── découverte auto des dossiers du repo ───────────────────────────────
+// ── découverte auto des dossiers — cache invalidé par SHA de commit ────
 async function discoverSeances(forceRefresh = false) {
   const grid = document.getElementById('seance-grid');
+  grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
 
-  // Cache
-  if (!forceRefresh) {
+  try {
+    // 1. SHA du dernier commit du repo (1 seule requête légère)
+    const commitRes = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/commits?per_page=1`,
+      {headers:{Accept:'application/vnd.github.v3+json'}});
+    if (!commitRes.ok) {
+      if (commitRes.status === 403) throw new Error('Limite API GitHub atteinte — réessaie dans une heure');
+      throw new Error(`Repo introuvable (${commitRes.status})`);
+    }
+    const commitData = await commitRes.json();
+    const currentSha = commitData[0]?.sha || null;
+
+    // 2. Cache valide si même SHA → affichage immédiat, 0 requête de plus
+    if (!forceRefresh) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (cached && cached.sha && cached.sha === currentSha && cached.seances?.length) {
+          seancesData = { seances: cached.seances };
+          renderSeanceGrid(cached.seances);
+          updateRefreshLabel(cached.ts);
+          setHint('');
+          return;
+        }
+      } catch {}
+    }
+
+    // 3. Cache absent ou SHA différent → scanner le repo
+    const contentsRes = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/contents/`,
+      {headers:{Accept:'application/vnd.github.v3+json'}});
+    if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
+    const items = await contentsRes.json();
+    const folders = items.filter(f => f.type === 'dir');
+
+    if (!folders.length) {
+      grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
+      return;
+    }
+
+    // 4. Scanner chaque dossier en parallèle → garder ceux qui ont des .pbn
+    const results = await Promise.all(folders.map(async folder => {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
+          {headers:{Accept:'application/vnd.github.v3+json'}});
+        if (!res.ok) return null;
+        const files = await res.json();
+        const fichiers = files
+          .filter(f => f.type === 'file' && /\.pbn$/i.test(f.name))
+          .map(f => ({name: f.name, download_url: f.download_url}));
+        return fichiers.length ? { folder: folder.name, fichiers } : null;
+      } catch { return null; }
+    }));
+
+    const found = results.filter(Boolean);
+    if (!found.length) {
+      grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun fichier PBN trouvé.</div>';
+      return;
+    }
+
+    // 5. Mettre en cache avec le SHA courant
+    const ts = Date.now();
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts, seances: found })); } catch {}
+    seancesData = { seances: found };
+    renderSeanceGrid(found);
+    updateRefreshLabel(ts);
+    setHint('');
+
+  } catch(e) {
+    // Erreur réseau → afficher le cache périmé s'il existe
     try {
-      const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-      if (cached && (Date.now() - cached.ts) < CACHE_TTL && cached.seances?.length) {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
         renderSeanceGrid(cached.seances);
         updateRefreshLabel(cached.ts);
-        setHint('');
+        setHint('(hors ligne)');
         return;
       }
     } catch {}
-  }
-
-  grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
-
-  // 1. Lister la racine du repo → garder uniquement les dossiers
-  let folders = [];
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/${GH_REPO}/contents/`,
-      {headers:{Accept:'application/vnd.github.v3+json'}});
-    if (!res.ok) throw new Error(`Repo introuvable (${res.status})`);
-    const items = await res.json();
-    folders = items.filter(f => f.type === 'dir');
-  } catch(e) {
     grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">${esc(e.message)}</div>`;
-    setHint(e.message, true);
-    return;
   }
-
-  if (!folders.length) {
-    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
-    return;
-  }
-
-  // 2. Scanner chaque dossier en parallèle → garder ceux qui ont des .pbn
-  const results = await Promise.all(folders.map(async folder => {
-    try {
-      const res = await fetch(
-        `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
-        {headers:{Accept:'application/vnd.github.v3+json'}});
-      if (!res.ok) return null;
-      const items = await res.json();
-      const fichiers = items
-        .filter(f => f.type === 'file' && /\.pbn$/i.test(f.name))
-        .map(f => ({name: f.name, download_url: f.download_url}));
-      return fichiers.length ? { folder: folder.name, fichiers } : null;
-    } catch { return null; }
-  }));
-
-  const found = results.filter(Boolean);
-  if (!found.length) {
-    grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun fichier PBN trouvé.</div>';
-    return;
-  }
-
-  localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), seances: found }));
-  seancesData = { seances: found };
-  renderSeanceGrid(found);
-  updateRefreshLabel(Date.now());
-  setHint('');
 }
-
 // ── ouverture d'un dossier ─────────────────────────────────────────────
 async function loadSeance(folderName) {
   const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
