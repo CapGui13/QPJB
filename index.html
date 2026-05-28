@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Bridge PBN">
-<title>Bridge PBN Viewer</title>
+<meta name="apple-mobile-web-app-title" content="QPJB - Visualiseur de donnes">
+<title>QPJB - Visualiseur de donnes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,6 @@
   --felt-md: #206038;
   --felt-lt: #2e7d4f;
   --gold:    #c8973a;
-  --gold-lt: #e8bb6a;
   --cream:   #faf6ef;
   --card-bg: #fffdf8;
   --card-bd: #e8dfc8;
@@ -59,7 +58,7 @@ header{
   font-size:13px;font-weight:800;font-family:Syne,sans-serif;letter-spacing:1px;
   padding:0 7px;
 }
-.logo-text h1{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff}
+.logo-text h1{font-family:'Exo 2',sans-serif;font-size:15px;font-weight:700;color:#fff}
 .logo-text p{font-size:10px;color:rgba(255,255,255,.33);margin-top:1px;letter-spacing:.5px}
 .hd-suits{display:flex;gap:4px}
 .hd-suits span{font-size:16px}
@@ -72,36 +71,7 @@ header{
   border-bottom:1px solid rgba(200,151,58,.15);
 }
 .cfg-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:9px}
-.input-row{display:flex;gap:7px}
-.repo-in{
-  flex:1;padding:10px 13px;border-radius:9px;
-  border:1.5px solid rgba(255,255,255,.1);
-  background:rgba(0,0,0,.3);color:#fff;font-size:14px;
-  font-family:'Source Serif 4',serif;outline:none;transition:border-color .15s;
-}
-.repo-in::placeholder{color:rgba(255,255,255,.17)}
-.repo-in:focus{border-color:var(--gold)}
-.btn-go{
-  padding:10px 16px;border-radius:9px;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
-  color:var(--felt-dk);font-size:13px;font-weight:700;
-  font-family:'Source Serif 4',serif;white-space:nowrap;
-  transition:filter .15s,transform .1s;
-}
-.btn-go:active{filter:brightness(.88);transform:scale(.97)}
 .cfg-hint{font-size:11px;color:rgba(255,255,255,.26);margin-top:8px;min-height:15px}
-.divider{display:flex;align-items:center;gap:9px;margin:14px 0}
-.div-line{flex:1;height:1px;background:rgba(255,255,255,.1)}
-.div-txt{font-size:11px;color:rgba(255,255,255,.19)}
-.btn-file{
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  width:100%;padding:11px;border-radius:9px;
-  border:1.5px dashed rgba(255,255,255,.17);
-  background:rgba(255,255,255,.04);color:rgba(255,255,255,.53);
-  font-size:13px;font-weight:600;font-family:'Source Serif 4',serif;cursor:pointer;
-  transition:all .15s;
-}
-.btn-file:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
 
 /* ── FILE LIST ── */
 .file-list{padding:16px 18px;display:flex;flex-direction:column;gap:9px}
@@ -117,8 +87,7 @@ header{
   background:linear-gradient(135deg,var(--felt),var(--felt-lt));
   display:flex;align-items:center;justify-content:center;font-size:20px;
 }
-.file-name{font-weight:600;font-size:15px;font-family:'Playfair Display',serif}
-.file-meta{font-size:12px;color:var(--txt2);margin-top:2px}
+.file-name{font-weight:600;font-size:15px;font-family:'Exo 2',sans-serif}
 .file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
 
 /* ── DEAL VIEW ── */
@@ -309,7 +278,6 @@ header{
 
 /* ── SECTION CARD ── */
 .sc{background:var(--card-bg);border:1px solid var(--card-bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
-.sc-head{padding:9px 15px;border-bottom:1px solid var(--card-bd);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);background:var(--cream)}
 .sc-body{padding:13px 11px}
 
 /* ── AUCTION ── */
@@ -331,7 +299,7 @@ header{
 /* ── MISC ── */
 .empty{padding:56px 22px;text-align:center}
 .empty .ei{font-size:48px;margin-bottom:13px}
-.empty h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:7px}
+.empty h3{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:700;margin-bottom:7px}
 .empty p{font-size:14px;color:var(--txt2);line-height:1.6}
 .loading{padding:44px;text-align:center;color:var(--txt2);font-size:14px}
 
@@ -358,15 +326,7 @@ header{
   <div class="config">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <span id="last-refresh" style="font-size:10px;color:rgba(255,255,255,.35)"></span>
-        <button onclick="discoverSeances(true)" style="background:linear-gradient(135deg,#4caf50,#2e7d32);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(76,175,80,.4);transition:filter .15s,transform .1s" title="Rafraîchir" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(.93)'" onmouseup="this.style.transform='scale(1)'">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/>
-            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-          </svg>
-        </button>
-      </div>
+
     </div>
     <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche des séances…</div></div>
     <div class="cfg-hint" id="cfg-hint"></div>
@@ -402,33 +362,13 @@ const SUITS  = ['S','H','D','C'];
 const SYM    = {S:'♠',H:'♥',D:'♦',C:'♣'};
 const SCLS   = {S:'cs',H:'ch',D:'cd',C:'cc'};
 const DIR_FR = {N:'Nord',S:'Sud',E:'Est',W:'Ouest'};
-const VUL_FR = {None:'Non vul.',NS:'Vul. N-S',EW:'Vul. E-O',All:'Tous vul.'};
 // PBN clockwise: N→E→S→W
 const CW = ['N','E','S','W'];
 
-// ── card translation EN→FR ─────────────────────────────────────────────
-// Returns compact string "ARD107" or null for void
-function frCards(raw) {
-  if (!raw) return null;
-  const s = raw.trim();
-  if (!s || s === '-') return null;
-  const tokens = [];
-  for (let i = 0; i < s.length; i++) {
-    const c = s[i];
-    if      (c === 'A')                     tokens.push('A');
-    else if (c === 'K')                     tokens.push('R');
-    else if (c === 'Q')                     tokens.push('D');
-    else if (c === 'J')                     tokens.push('V');
-    else if (c === 'T')                     tokens.push('10');
-    else if (c === '1' && s[i+1] === '0')   { tokens.push('10'); i++; }
-    else if (c >= '2' && c <= '9')          tokens.push(c);
-  }
-  return tokens.length ? tokens.join(' ') : null;
-}
 
 // ── state ──────────────────────────────────────────────────────────────
 let deals = [], idx = 0;
-let pbnFiles = [], pbnIdx = 0;
+let pbnFiles = [];
 const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
@@ -441,15 +381,6 @@ async function fetchPBN(url) {
   return text;
 }
 
-function preloadAdjacent(idx) {
-  // Silently preload prev and next files in background
-  [idx-1, idx+1].forEach(i => {
-    if (i >= 0 && i < pbnFiles.length) {
-      const url = pbnFiles[i].download_url;
-      if (!pbnCache[url]) fetchPBN(url).catch(()=>{});
-    }
-  });
-}
 
 // ── helpers ────────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -460,19 +391,11 @@ function setHint(msg, err) {
 }
 
 // ── config ─────────────────────────────────────────────────────────────
-const GH_REPO   = 'capgui13/QPJB';   // ← seul endroit à changer si le repo change
+const GH_REPO   = 'capgui13/QPJB';
 const CACHE_KEY = 'qpjb-seances-v10';
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
-function updateRefreshLabel(ts) {
-  const el = document.getElementById('last-refresh');
-  if (!el || !ts) return;
-  const d = new Date(ts);
-  const pad = n => String(n).padStart(2,'0');
-  el.textContent = `maj ${pad(d.getDate())}/${pad(d.getMonth()+1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
   document.getElementById('seance-grid').innerHTML = sorted.map(s => `
@@ -482,13 +405,11 @@ function renderSeanceGrid(seances) {
     </div>`).join('');
 }
 
-// ── découverte auto des dossiers — cache invalidé par SHA de commit ────
+// ── découverte auto — cache invalidé par SHA de commit ─────────────────
 async function discoverSeances(forceRefresh = false) {
   const grid = document.getElementById('seance-grid');
   grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
-
   try {
-    // 1. SHA du dernier commit du repo (1 seule requête légère)
     const commitRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/commits?per_page=1`,
       {headers:{Accept:'application/vnd.github.v3+json'}});
@@ -499,34 +420,29 @@ async function discoverSeances(forceRefresh = false) {
     const commitData = await commitRes.json();
     const currentSha = commitData[0]?.sha || null;
 
-    // 2. Cache valide si même SHA → affichage immédiat, 0 requête de plus
     if (!forceRefresh) {
       try {
         const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-        if (cached && cached.sha && cached.sha === currentSha && cached.seances?.length) {
+        if (cached && cached.sha === currentSha && cached.seances?.length) {
           seancesData = { seances: cached.seances };
           renderSeanceGrid(cached.seances);
-          updateRefreshLabel(cached.ts);
           setHint('');
           return;
         }
       } catch {}
     }
 
-    // 3. Cache absent ou SHA différent → scanner le repo
     const contentsRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/contents/`,
       {headers:{Accept:'application/vnd.github.v3+json'}});
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
     const folders = items.filter(f => f.type === 'dir');
-
     if (!folders.length) {
       grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
       return;
     }
 
-    // 4. Scanner chaque dossier en parallèle → garder ceux qui ont des .pbn
     const results = await Promise.all(folders.map(async folder => {
       try {
         const res = await fetch(
@@ -547,27 +463,25 @@ async function discoverSeances(forceRefresh = false) {
       return;
     }
 
-    // 5. Mettre en cache avec le SHA courant
-    const ts = Date.now();
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts, seances: found })); } catch {}
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found })); } catch {}
     seancesData = { seances: found };
     renderSeanceGrid(found);
-    updateRefreshLabel(ts);
     setHint('');
 
   } catch(e) {
-    // Erreur réseau → afficher le cache périmé s'il existe
+    // Essayer le cache périmé en fallback
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
       if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
         renderSeanceGrid(cached.seances);
-        updateRefreshLabel(cached.ts);
         setHint('(hors ligne)');
         return;
       }
     } catch {}
-    grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">${esc(e.message)}</div>`;
+    // Aucun cache — afficher l'erreur
+    const msg = e?.message || String(e) || 'Erreur inconnue';
+    grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ${esc(msg)}</div>`;
   }
 }
 // ── ouverture d'un dossier ─────────────────────────────────────────────
@@ -576,17 +490,13 @@ async function loadSeance(folderName) {
   if (!seance) return;
   pbnFiles = seance.fichiers;
 
-  document.querySelectorAll('.seance-card').forEach(el => {
-    el.style.borderColor = '';
-  });
+  document.querySelectorAll('.seance-card').forEach(el => { el.style.borderColor = ''; });
   const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
   if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
-  pbnFiles.forEach(f => fetchPBN(f.download_url).catch(()=>{}));
-
   document.getElementById('file-list').innerHTML =
     '<div class="file-list">' + pbnFiles.map((f, i) =>
-      `<div class="file-item" onclick="openFileByIndex(${i})">
+      `<div class="file-item" onclick="openSeanceAt(${i})">
          <div class="file-icon">🃏</div>
          <div style="min-width:0;flex:1"><div class="file-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</div></div>
          <div class="file-chev">›</div>
@@ -594,102 +504,93 @@ async function loadSeance(folderName) {
   setHint('');
 }
 
+// Ouvre la séance en commençant à la première donne du fichier fileIdx
+// Charge tous les PBN en parallèle et aplatit toutes les donnes en une seule liste
+async function openSeanceAt(fileIdx) {
+  showDeal();
+  try {
+    const texts = await Promise.all(pbnFiles.map(f => fetchPBN(f.download_url)));
+    deals = [];
+    let startIdx = 0;
+    texts.forEach((text, fi) => {
+      const displayName = pbnFiles[fi].name.replace(/\.pbn$/i, '');
+      const parsed = parsePBN(text);
+      parsed.forEach(d => { d._filename = displayName; });
+      if (fi === fileIdx) startIdx = deals.length;
+      deals = deals.concat(parsed);
+    });
+    if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
+    idx = startIdx;
+    render(idx);
+  } catch(e) { showErr(e.message); }
+}
+
 function goToHome() {
   document.getElementById('file-list').innerHTML = '';
   discoverSeances();
 }
 
-
-// ── file openers ───────────────────────────────────────────────────────
-function openFileByIndex(i) {
-  const f = pbnFiles[i];
-  if (!f) return;
-  openFile(f.download_url, f.name);
-}
-
-async function openFile(url, name) {
-  pbnIdx = pbnFiles.findIndex(f => f.download_url === url);
-  if (pbnIdx < 0) pbnIdx = 0;
-  showDeal(name);
-  try {
-    const text = await fetchPBN(url);
-    doLoad(text, name);
-    preloadAdjacent(pbnIdx);
-  } catch(e) { showErr(e.message); }
-}
 function loadLocalFile(input) {
   const f = input.files[0]; if (!f) return;
-  showDeal(f.name);
+  showDeal();
   const r = new FileReader();
-  // Try UTF-8 first; if it contains replacement chars, retry as ISO-8859-1
   r.onload = e => {
     const text = e.target.result;
     if (text.includes('\uFFFD')) {
-      // Has invalid UTF-8 sequences — re-read as ISO-8859-1
       const r2 = new FileReader();
-      r2.onload = e2 => doLoad(decodeISO(e2.target.result), f.name);
+      r2.onload = e2 => {
+        deals = parsePBN(decodeISO(e2.target.result));
+        deals.forEach(d => { d._filename = f.name.replace(/\.pbn$/i,''); });
+        if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
+        idx = 0; render(0);
+      };
       r2.readAsArrayBuffer(f);
     } else {
-      doLoad(text, f.name);
+      deals = parsePBN(text);
+      deals.forEach(d => { d._filename = f.name.replace(/\.pbn$/i,''); });
+      if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
+      idx = 0; render(0);
     }
   };
   r.readAsText(f, 'utf-8');
 }
+
 function decodeISO(buf) {
   return new TextDecoder('iso-8859-1').decode(new Uint8Array(buf));
 }
-function doLoad(text, name) {
-  deals = parsePBN(text);
-  if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
-  // Strip extension for display
-  const displayName = name.replace(/\.pbn$/i, '');
-  deals.forEach(d => d._filename = displayName);
-  idx = 0;
-  render(0);
-}
-function showDeal(name) {
+
+function showDeal() {
   document.getElementById('vhome').style.display = 'none';
   document.getElementById('vdeal').style.display = 'block';
   document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
 }
+
 function showHome() {
   document.getElementById('vdeal').style.display = 'none';
   document.getElementById('vhome').style.display = 'block';
 }
+
 function showErr(msg) {
   document.getElementById('deal-content').innerHTML =
     `<div class="empty"><div class="ei">⚠️</div><h3>Erreur</h3><p>${esc(msg)}</p></div>`;
 }
+
 function nav(dir) {
-  // If multiple deals in current file, navigate within
-  if (deals.length > 1) {
-    const n = idx + dir;
-    if (n >= 0 && n < deals.length) { idx = n; render(n); window.scrollTo(0,0); }
-    return;
-  }
-  // Otherwise navigate between PBN files
-  if (pbnFiles.length > 1) {
-    const n = pbnIdx + dir;
-    if (n >= 0 && n < pbnFiles.length) {
-      openFile(pbnFiles[n].download_url, pbnFiles[n].name);
-    }
-  }
+  const n = idx + dir;
+  if (n >= 0 && n < deals.length) { idx = n; render(n); window.scrollTo(0,0); }
 }
 
 function updateNavCounter() {
-  if (pbnFiles.length > 1) {
-    document.getElementById('nav-ctr').textContent =
-      `Donne ${pbnIdx+1} / ${pbnFiles.length}`;
-    document.getElementById('btn-prev').disabled = pbnIdx === 0;
-    document.getElementById('btn-next').disabled = pbnIdx === pbnFiles.length-1;
-  } else {
-    document.getElementById('nav-ctr').textContent =
-      deals.length > 1 ? `Donne ${idx+1} / ${deals.length}` : '';
+  if (deals.length > 0) {
+    document.getElementById('nav-ctr').textContent = `Donne ${idx+1} / ${deals.length}`;
     document.getElementById('btn-prev').disabled = idx === 0;
-    document.getElementById('btn-next').disabled = idx === deals.length-1;
+    document.getElementById('btn-next').disabled = idx === deals.length - 1;
+  } else {
+    document.getElementById('nav-ctr').textContent = '';
+    document.getElementById('btn-prev').disabled = true;
+    document.getElementById('btn-next').disabled = true;
   }
 }
-
 // ── PBN parser ─────────────────────────────────────────────────────────
 function parsePBN(text) {
   const out = [];
@@ -918,24 +819,6 @@ function fmtLeadBadge(lead) {
   return `${suitHtml} ${tokens.join(' ')}`;
 }
 
-// ── format lead card plain text ────────────────────────────────────────
-function fmtLead(lead) {
-  if (!lead || lead.length < 2) return esc(lead);
-  const suitChar = lead[0].toUpperCase();
-  const cardStr = lead.slice(1).toUpperCase();
-  const sym = {S:'♠',H:'♥',D:'♦',C:'♣'}[suitChar] || suitChar;
-  const tokens = [];
-  for (let i = 0; i < cardStr.length; i++) {
-    const c = cardStr[i];
-    if (c==='K') tokens.push('R');
-    else if (c==='Q') tokens.push('D');
-    else if (c==='J') tokens.push('V');
-    else if (c==='T') tokens.push('10');
-    else if (c==='1' && cardStr[i+1]==='0') { tokens.push('10'); i++; }
-    else tokens.push(c);
-  }
-  return `${sym} ${tokens.join(' ')}`;
-}
 
 // ── HCP calculator ─────────────────────────────────────────────────────
 function calcHCP(hand) {
