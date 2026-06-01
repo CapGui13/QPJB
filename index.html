@@ -89,14 +89,14 @@ header{
 }
 .file-name{font-weight:600;font-size:15px;font-family:'Exo 2',sans-serif}
 .file-name-blur{
-  filter:blur(4px);
-  user-select:none;
-  transition:filter .25s;
-  cursor:pointer;
-  -webkit-mask-image:linear-gradient(to right, transparent 0px, black 18px);
-  mask-image:linear-gradient(to right, transparent 0px, black 18px);
+  filter: blur(4px);
+  user-select: none;
+  transition: filter .25s, color .25s;
+  cursor: pointer;
 }
-.file-name-blur.revealed{filter:none;-webkit-mask-image:none;mask-image:none}
+.file-name-blur.revealed{
+  filter: none;
+}
 .file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
 
 /* ── DEAL VIEW ── */
@@ -636,14 +636,14 @@ async function loadSeance(folderName) {
       let visiblePart, blurredPart;
       if (sepIdx >= 0) {
         visiblePart = esc(baseName.slice(0, sepIdx));
-        blurredPart = esc(baseName.slice(sepIdx)); // includes " - "
+        blurredPart = esc(baseName.slice(sepIdx + 3)); // after " - "
       } else {
         visiblePart = esc(baseName);
         blurredPart = '';
       }
       const nameHtml = blurredPart
-        ? `<div style="display:flex;align-items:baseline;min-width:0;overflow:hidden;white-space:nowrap"><span class="file-name">${visiblePart}</span><span class="file-name file-name-blur" style="overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0" onclick="event.stopPropagation();this.classList.toggle('revealed')">${blurredPart}</span></div>`
-        : `<span class="file-name">${visiblePart}</span>`;
+        ? `<div class="file-name" style="display:flex;align-items:baseline;min-width:0"><span style="white-space:nowrap">${visiblePart} - </span><span class="file-name-blur" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;padding-left:3px" onclick="event.stopPropagation();this.classList.toggle('revealed')">${blurredPart}</span></div>`
+        : `<div class="file-name">${visiblePart}</div>`;
 
       return `<div class="file-item" onclick="openSeanceAt(${i})">
          <div class="file-icon">🃏</div>
