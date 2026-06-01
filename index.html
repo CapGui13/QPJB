@@ -358,6 +358,17 @@ header{
   background:rgba(255,255,255,.12);border:none;color:#fff;
   font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:none;color:#fff;
+  font-size:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+  z-index:2;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.28)}
+.lightbox-prev{left:16px}
+.lightbox-next{right:16px}
 .lightbox-name{
   position:absolute;bottom:max(env(safe-area-inset-bottom,0px),14px);left:0;right:0;
   text-align:center;font-size:12px;color:rgba(255,255,255,.45);padding:0 24px;
@@ -391,7 +402,7 @@ header{
   </header>
 
   <div id="images-section" class="images-section" style="display:none">
-    <div class="images-label">Documents &amp; images</div>
+    <div class="images-label">Documents</div>
     <div class="images-scroll" id="images-scroll"></div>
   </div>
   <div class="config">
@@ -408,7 +419,9 @@ header{
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
   <div class="lightbox-name" id="lightbox-name"></div>
 </div>
 
@@ -588,22 +601,34 @@ async function discoverSeances(forceRefresh = false) {
   }
 }
 // ── affichage des images de la racine ──────────────────────────────────
+let lightboxImages = [];
+let lightboxIdx = 0;
+
 function renderImages(images) {
+  lightboxImages = images;
   const section = document.getElementById('images-section');
   const scroll  = document.getElementById('images-scroll');
-  scroll.innerHTML = images.map(img =>
+  scroll.innerHTML = images.map((img, i) =>
     `<img class="img-thumb" src="${esc(img.url)}" alt="${esc(img.name)}"
-          loading="lazy" onclick="openLightbox('${esc(img.url)}','${esc(img.name)}')">`
+          loading="lazy" onclick="openLightbox(${i})">`
   ).join('');
   section.style.display = 'block';
 }
 
 // ── lightbox ───────────────────────────────────────────────────────────
-function openLightbox(url, name) {
-  document.getElementById('lightbox-img').src  = url;
-  document.getElementById('lightbox-name').textContent = name;
+function openLightbox(i) {
+  lightboxIdx = i;
+  const img = lightboxImages[i];
+  document.getElementById('lightbox-img').src = img.url;
+  document.getElementById('lightbox-name').textContent = img.name;
+  document.getElementById('lightbox-prev').style.visibility = i > 0 ? 'visible' : 'hidden';
+  document.getElementById('lightbox-next').style.visibility = i < lightboxImages.length - 1 ? 'visible' : 'hidden';
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+function navLightbox(dir) {
+  const next = lightboxIdx + dir;
+  if (next >= 0 && next < lightboxImages.length) openLightbox(next);
 }
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
@@ -653,6 +678,7 @@ async function loadSeance(folderName) {
        </div>`;
     }).join('') + '</div>';
   setHint('');
+  document.getElementById('file-list').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // Ouvre la séance en commençant à la première donne du fichier fileIdx
