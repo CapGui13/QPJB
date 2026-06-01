@@ -940,25 +940,42 @@ function render(i) {
 function fmtComment(text) {
   // French bridge: P=♠ C=♥ K=♦ T=♣
   const MAP = {'P':['♠','cs'], 'C':['♥','ch'], 'K':['♦','cd'], 'T':['♣','cc']};
-  const isLetter = c => c && /\p{L}/u.test(c);
 
-  const re = /((?:10|[ARDVXardvx2-9])?)([PCKTpckt])/g;
+  // Is character a unicode letter?
+  const isLetter = c => c && /\p{L}/u.test(c);
+  // Is character a "word boundary" that should block suit detection:
+  // letters AND apostrophes (', ') which attach to words like "c'est", "d'un"
+  const isWordChar = c => c && (/\p{L}/u.test(c) || c === "'" || c === '\u2019');
+
+  // Prefix = one or more card tokens: A R D V 10 X 2-9 (French notation)
+  // We capture the full sequence greedily (e.g. "ARD" in "ARDC")
+  const re = /((?:10|[ARDVXardvx2-9])*)([PCKTpckt])/g;
 
   const converted = text.replace(re, (match, prefix, suit, offset, src) => {
     const s = suit.toUpperCase();
     if (!MAP[s]) return match;
-    // Character immediately before the whole match
-    const before = src[offset - 1];
-    // Character immediately after the whole match
-    const after  = src[offset + match.length];
-    // Skip if the letter after the suit is a letter (part of a word like "repart")
-    if (isLetter(after)) return match;
-    // Skip if no prefix and preceded by a letter (part of a word like "placé")
-    if (!prefix && isLetter(before)) return match;
-    // Skip if there's a prefix but the char before the prefix is a letter
-    if (prefix && isLetter(src[offset - 1])) return match;
+
+    const charBefore = src[offset - 1];           // char just before the whole match
+    const charAfter  = src[offset + match.length]; // char just after the whole match
+
+    // Skip if suit letter is followed by a letter → part of a word ("course", "technique")
+    if (isLetter(charAfter)) return match;
+
+    if (!prefix) {
+      // Bare suit letter: skip if preceded by a word character (letter or apostrophe)
+      // catches "c'est" (apostrophe before c), "puisqu'on" etc.
+      if (isWordChar(charBefore)) return match;
+    } else {
+      // Has a card prefix (e.g. "ARD" in "ARDC"): skip if char before prefix is a letter
+      if (isLetter(src[offset - 1])) return match;
+    }
+
     const [sym, cls] = MAP[s];
-    return (prefix || '') + `\x00${cls}\x01${sym}\x02`;
+    // Render each card token individually, then the suit symbol
+    const cardTokens = prefix
+      ? prefix.replace(/10|[ARDVXardvx2-9]/g, tok => esc(tok))
+      : '';
+    return cardTokens + `\x00${cls}\x01${sym}\x02`;
   });
 
   return esc(converted)
