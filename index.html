@@ -93,8 +93,10 @@ header{
   user-select:none;
   transition:filter .25s;
   cursor:pointer;
+  -webkit-mask-image:linear-gradient(to right, transparent 0px, black 18px);
+  mask-image:linear-gradient(to right, transparent 0px, black 18px);
 }
-.file-name-blur.revealed{filter:none}
+.file-name-blur.revealed{filter:none;-webkit-mask-image:none;mask-image:none}
 .file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
 
 /* ── DEAL VIEW ── */
@@ -640,7 +642,7 @@ async function loadSeance(folderName) {
         blurredPart = '';
       }
       const nameHtml = blurredPart
-        ? `<span class="file-name">${visiblePart}</span><span class="file-name file-name-blur" onclick="event.stopPropagation();this.classList.toggle('revealed')">${blurredPart}</span>`
+        ? `<div style="display:flex;align-items:baseline;min-width:0;overflow:hidden;white-space:nowrap"><span class="file-name">${visiblePart}</span><span class="file-name file-name-blur" style="overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0" onclick="event.stopPropagation();this.classList.toggle('revealed')">${blurredPart}</span></div>`
         : `<span class="file-name">${visiblePart}</span>`;
 
       return `<div class="file-item" onclick="openSeanceAt(${i})">
