@@ -638,6 +638,31 @@ function closeLightbox(e) {
   document.body.style.overflow = '';
 }
 
+// ── swipe sur la lightbox ──────────────────────────────────────────────
+(function() {
+  let tx = 0, ty = 0;
+  const lb = () => document.getElementById('lightbox');
+
+  document.addEventListener('touchstart', e => {
+    if (!lb().classList.contains('open')) return;
+    tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
+  }, {passive:true});
+
+  document.addEventListener('touchend', e => {
+    if (!lb().classList.contains('open')) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    const adx = Math.abs(dx), ady = Math.abs(dy);
+    if (Math.max(adx, ady) < 40) return; // trop court
+    if (ady > adx && dy > 0) { // swipe bas → fermer
+      closeLightbox();
+    } else if (adx > ady) { // swipe horizontal → nav
+      navLightbox(dx < 0 ? 1 : -1);
+    }
+  }, {passive:true});
+})();
+
 // ── ouverture d'un dossier ─────────────────────────────────────────────
 async function loadSeance(folderName) {
   const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
