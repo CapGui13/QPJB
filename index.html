@@ -962,9 +962,9 @@ function fmtComment(text) {
     if (isLetter(charAfter)) return match;
 
     if (!prefix) {
-      // Bare suit letter: skip if preceded by a word character (letter or apostrophe)
-      // catches "c'est" (apostrophe before c), "puisqu'on" etc.
-      if (isWordChar(charBefore)) return match;
+      // Bare suit letter: skip if preceded OR followed by a word character (letter or apostrophe)
+      // "c'est" → c is followed by ', "l'As" → s preceded by '
+      if (isWordChar(charBefore) || isWordChar(charAfter)) return match;
     } else {
       // Has a card prefix (e.g. "ARD" in "ARDC"): skip if char before prefix is a letter
       if (isLetter(src[offset - 1])) return match;
