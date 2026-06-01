@@ -1,8 +1,8 @@
 % PBN 2.1
 % EXPORT
-%Content-type: text/x-pbn; charset=ISO-8859-1
+%Content-type: text/x-pbn; charset=UTF-8
 %Creator: BridgeComposer Version 5.105
-%Created: Sun May 31 11:42:09 2026 +0200
+%Created: Mon Jun  1 09:13:50 2026 +0200
 %BCOptions Center STBorder STShade ShowHCP
 %BidAndCardSpacing Asis
 %BoardsPerPage 1
@@ -46,7 +46,7 @@
 %Translate "East-West" "Est-Ouest"
 %Translate "Lead" "Entame"
 %Translate "% Deals" "% Donneur"
-%Translate "% Vul" "% Vuln�rable"
+%Translate "% Vul" "% Vulnérable"
 %Translate "North" "Nord"
 %Translate "East" "Est"
 %Translate "South" "Sud"
@@ -64,7 +64,7 @@
 %Translate "Dbl" "X"
 %Translate "Rdbl" "XX"
 %Translate "by" "par"
-%Translate "Trick" "Lev�e"
+%Translate "Trick" "Levée"
 %Translate "2nd" "2e"
 %Translate "3rd" "3e"
 %Translate "4th" "4e"
@@ -83,25 +83,35 @@
 [Declarer "S"]
 [Contract "7NT"]
 [Result ""]
-{Avec 37H au moins connus dans la ligne, Nord a la force pour imposer le grand
-chelem.
+{Nord ouvre de 1SA et Sud additionne ses points à ceux de la zone de son
+partenaire.\n
+La force cumulée de son camp va de 22+15 à 22+17, donc de 37 à 39H.\n
+La table de décision indique que 37 points sont suffisants pour jouer au niveau
+de 7, soit pour 13 levées. Le contrat est donc 7SA.
 
-Entame XP (le plus neutre est le mieux contre un chelem).
+Ouest entame du XP (le plus neutre est le mieux contre un chelem).
 
-Avec ses 13 lev�es de t�te (1P+4C+4K+4T), Sud ne doit �videmment pas s'amuser �
-faire l'impasse (passer la DP, en esp�rant que le Roi est chez l'entameur).\n
-La difficult� est d'effectuer le bon minutage pour ne pas se bloquer avec les
-couleurs asym�triques.\n
-- � K, il faut tirer les 3 honneurs de Nord, puis rejoindre Sud pour tirer
-l'As. Si la r�partition �tait 3/3 en flanc, on pourrait sans dommage surprendre
-au 3e tour (�craser un honneur de Nord avec l'As), mais ce n'est pas le cas.\n
-- � T, il faut d'abord encaisser les 2 honneurs en Sud, puis aller en Nord pour
-r�cup�rer les 2 autres (impossible de surprendre ici puisque l'As et le Roi
-sont les deux plus grosses cartes).
 
-Un minutage possible : AP, T pour l'As et le Roi, K pour RDV, les 2 T restants
-(en jetant les P de Sud), puis les C, en commen�ant par les honneurs du c�t�
-court, � savoir AR, afin de ne pas se retrouver bloqu�.}
+Sud a 13 levées de tête : 1P+4C+4K+4T.\n
+Il faut évidemment prendre tout de suite de l’As pour ne pas laisser le RP
+adverse se faire, ce qui serait synonyme de chute.
+
+La difficulté réside dans le fait d’effectuer le bon minutage pour ne pas se
+bloquer avec les couleurs asymétriques :\n
+   - à K, il faut tirer les 3 honneurs de Nord, puis rejoindre Sud pour
+encaisser l’As. Si la répartition de la couleur était 3/3 en Est/Ouest, on
+pourrait sans dommage surprendre au 3e tour (écraser un honneur de Nord avec
+l’As) mais ce n’est pas le cas ici.\n
+   - à T, il faut d’abord encaisser les 2 honneurs en Sud, puis aller en Nord
+via une autre couleur afin de récupérer les deux autres (impossible de
+surprendre ici, puisque l’As et le Roi sont les deux plus grosses cartes et
+qu’elles sont du côté court).
+
+Une manière de jouer possible : AP, T pour l’As et le Roi, K pour RDV. On
+profite d’être en Nord pour encaisser DVT, puis on passe aux C en commençant
+par les honneurs du côté court (à savoir AR qui sont du côté 3e alors que
+l’autre côté est 4e) afin de ne pas se bloquer.
+}
 [BCFlags "20000ff"]
 [Auction "S"]
 1NT Pass 7NT AP

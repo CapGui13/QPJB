@@ -1,8 +1,8 @@
 % PBN 2.1
 % EXPORT
-%Content-type: text/x-pbn; charset=ISO-8859-1
+%Content-type: text/x-pbn; charset=UTF-8
 %Creator: BridgeComposer Version 5.105
-%Created: Sun May 31 11:34:01 2026 +0200
+%Created: Mon Jun  1 09:16:04 2026 +0200
 %BCOptions Center STBorder STShade ShowHCP
 %BidAndCardSpacing Asis
 %BoardsPerPage 1
@@ -46,7 +46,7 @@
 %Translate "East-West" "Est-Ouest"
 %Translate "Lead" "Entame"
 %Translate "% Deals" "% Donneur"
-%Translate "% Vul" "% Vulnérable"
+%Translate "% Vul" "% VulnÃ©rable"
 %Translate "North" "Nord"
 %Translate "East" "Est"
 %Translate "South" "Sud"
@@ -64,7 +64,7 @@
 %Translate "Dbl" "X"
 %Translate "Rdbl" "XX"
 %Translate "by" "par"
-%Translate "Trick" "Levée"
+%Translate "Trick" "LevÃ©e"
 %Translate "2nd" "2e"
 %Translate "3rd" "3e"
 %Translate "4th" "4e"
@@ -83,30 +83,40 @@
 [Declarer "S"]
 [Contract "1NT"]
 [Result ""]
-{1SA = 15-17H dans une main régulière (au moins 2 cartes dans chaque couleur).
+{Sud est le donneur. Il est donc le premier Ã  dÃ©cider sâ€™il ouvre ou non.
 
-Le répondant a 7H, même si son partenaire est maximal, son camp ne peut
+On ouvre Ã  partir de 12 points.\n
+Sud en possÃ¨de 15 (As = 4 ; Roi = 3 ; Dame = 2 ; Valet = 1)  et ouvre donc de
+1SA, qui promet 15-17H dans une main rÃ©guliÃ¨re (au moins 2 cartes dans chaque
+couleur).\n
+Le rÃ©pondant a 7H, mÃªme si son partenaire est maximal, son camp ne peut
 atteindre les 25H pour jouer au palier de 3SA (3SA = prime de manche). Il passe
-donc.
+donc.\n
+Le dÃ©clarant (Sud) doit maintenant rÃ©aliser 7 levÃ©es (6 + le palier du contrat
+[1 ici]), et le but de la dÃ©fense (Est/Ouest) est de lâ€™en empÃªcher, en
+rÃ©alisant elle-mÃªme 7 plis.
 
 
-Entame DP, en tête de séquence dans 3 honneurs successifs (DVX).\n
-C'est l'entame la plus solide : on commence à affranchir et on ne risque rien
-de donner.
+Ouest doit entamer (jouer la premiÃ¨re carte de la donne). Ses deux couleurs les
+plus longues sont les P et les C.\n
+Les P Ã©tant plus solides (Dame-Valet-Dix), il attaque de cette couleur, de
+prÃ©fÃ©rence de la Dame, la tÃªte de sÃ©quence (3 cartes qui se suivent constituent
+une sÃ©quence ; attaquer dans une couleur liÃ©e est souvent la meilleure option
+puisquâ€™on initie son affranchissement sans risque de rien donner.
 
 
-Le déclarant a 4 levées immédiates grâce à ses cartes maîtresses : AP + ARDC.
-Il lui en faut 3 de plus.\n
-Ils les trouvera facilement à K, en délogeant l'As puisqu'il possède RDVX (tous
-les honneurs équivalents) dans la couleur et un côté 4e en longueur, permettant
-donc de faire 3 levées (4-l'As)
+Le mort (Nord) sâ€™Ã©tale : il met ses cartes face visible sur la table.\n
+Le dÃ©clarant (Sud) fait son plan de jeu : il a 4 levÃ©es immÃ©diates grÃ¢ce Ã  ses
+cartes maÃ®tresses AP + ARDC\n
+Il lui en faut 3 de plus, quâ€™il pourra facilement trouver Ã  K, en dÃ©logeant
+lâ€™As puisquâ€™il possÃ¨de toutes les cartes immÃ©diatement infÃ©rieures RDVXK, et un
+cÃ´tÃ© 4e en longueur (4 cartes Ã  K en Nord).
 
-Si Sud commence par tirer ses cartes maîtresses à C, il va affranchir un pli à
-la défense, qui pourrait alors encaisser 3P+1C+1K+2T, soit 7 levées (le
-déclarant serait alors limité à 6 plis alors qu'il doit en faire 7 pour
-réaliser son contrat).\n
-Moralité : quand il manque des levées pour réaliser le contrat, il faut
-prioritairement s'en affranchir, plutôt que de tirer ses cartes maîtresses.}
+Si plutÃ´t que dâ€™affranchir (libÃ©rer) ses K, Sud prÃ©fÃ¨re commencer par tirer ses
+cartes maÃ®tresses Ã  C, il va affranchir un pli Ã  la dÃ©fense qui pourra alors
+encaisser 3P+1C+1K+2T soit 7 levÃ©es.\n
+Le dÃ©clarant sera alors limitÃ© Ã  6 plis alors quâ€™il devait en rÃ©aliser 7 pour
+gagner.}
 [BCFlags "20000ff"]
 [Auction "S"]
 1NT AP
