@@ -625,13 +625,13 @@ async function loadSeance(folderName) {
   document.getElementById('file-list').innerHTML =
     '<div class="file-list">' + pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
-      const link = playLinks[key] || playLinks[f.name] || '';
+      // Lookup: exact key first, then short key (folder/B1 matches B1 - ....pbn), then filename alone
+      const baseName = f.name.replace(/\.pbn$/i, '');
+      const shortKey = `${folderName}/${baseName.split(' - ')[0].trim()}`;
+      const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const playBtn = link
         ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ Jouer</a>`
         : '';
-
-      // Split name: "B1 - texte descriptif" → "B1" visible, " - texte descriptif" blurred
-      const baseName = f.name.replace(/\.pbn$/i, '');
       const sepIdx = baseName.indexOf(' - ');
       let visiblePart, blurredPart;
       if (sepIdx >= 0) {
