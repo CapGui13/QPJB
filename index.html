@@ -648,6 +648,7 @@ async function openSeanceAt(fileIdx) {
     if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
     idx = startIdx;
     render(idx);
+    window.scrollTo(0, 0);
   } catch(e) { showErr(e.message); }
 }
 
