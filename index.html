@@ -76,6 +76,7 @@ header{
 /* ── FILE LIST ── */
 .file-list{padding:16px 18px;display:flex;flex-direction:column;gap:9px}
 .file-item{
+  user-select:none;
   background:var(--card-bg);border:1px solid var(--card-bd);
   border-radius:var(--r);padding:13px 15px;
   display:flex;align-items:center;gap:13px;
@@ -667,11 +668,15 @@ async function loadSeance(folderName) {
         blurredPart = '';
       }
       const nameHtml = blurredPart
-        ? `<div class="file-name" style="display:flex;align-items:baseline;min-width:0"><span style="white-space:nowrap">${visiblePart} - </span><span class="file-name-blur" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;padding-left:3px" onclick="event.stopPropagation();this.classList.toggle('revealed')">${blurredPart}</span></div>`
+        ? `<div class="file-name" style="display:flex;align-items:baseline;min-width:0"><span style="white-space:nowrap">${visiblePart} - </span><span class="file-name-blur" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;padding-left:3px">${blurredPart}</span></div>`
         : `<div class="file-name">${visiblePart}</div>`;
 
-      return `<div class="file-item" onclick="openSeanceAt(${i})">
-         <div class="file-icon">🃏</div>
+      const onclick = blurredPart
+        ? `onclick="revealOrOpen(event, this, ${i})"`
+        : `onclick="openSeanceAt(${i})"`;
+
+      return `<div class="file-item" ${onclick}>
+         <div class="file-icon" onclick="event.stopPropagation()">🃏</div>
          <div style="min-width:0;flex:1;overflow:hidden">${nameHtml}</div>
          ${playBtn}
          <div class="file-chev">›</div>
@@ -679,6 +684,16 @@ async function loadSeance(folderName) {
     }).join('') + '</div>';
   setHint('');
   document.getElementById('file-list').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── reveal blur ou ouvre le visualiseur ───────────────────────────────
+function revealOrOpen(e, el, idx) {
+  const blur = el.querySelector('.file-name-blur');
+  if (blur && !blur.classList.contains('revealed')) {
+    blur.classList.add('revealed');
+  } else {
+    openSeanceAt(idx);
+  }
 }
 
 // Ouvre la séance en commençant à la première donne du fichier fileIdx
@@ -737,15 +752,20 @@ function decodeISO(buf) {
   return new TextDecoder('iso-8859-1').decode(new Uint8Array(buf));
 }
 
+let savedScrollY = 0;
+
 function showDeal() {
+  savedScrollY = window.scrollY;
   document.getElementById('vhome').style.display = 'none';
   document.getElementById('vdeal').style.display = 'block';
   document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
+  window.scrollTo(0, 0);
 }
 
 function showHome() {
   document.getElementById('vdeal').style.display = 'none';
   document.getElementById('vhome').style.display = 'block';
+  window.scrollTo(0, savedScrollY);
 }
 
 function showErr(msg) {
