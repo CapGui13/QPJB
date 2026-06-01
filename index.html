@@ -309,6 +309,64 @@ header{
 .seance-card:active{transform:scale(.95)}
 .seance-num{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:.5px}
 .seance-count{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* ── IMAGES SECTION ── */
+.images-section{padding:14px 18px 16px;background:#282828;border-bottom:1px solid rgba(200,151,58,.15)}
+.images-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
+.images-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.images-scroll::-webkit-scrollbar{display:none}
+.img-thumb{
+  flex:0 0 auto;
+  width:90px;height:90px;
+  border-radius:10px;
+  object-fit:cover;
+  border:2px solid rgba(200,151,58,.3);
+  cursor:pointer;
+  transition:transform .12s,border-color .12s;
+  box-shadow:var(--sh-sm);
+}
+.img-thumb:active{transform:scale(.93);border-color:rgba(200,151,58,.8)}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  display:none;
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.95);
+  flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex}
+.lightbox-img{
+  max-width:100%;
+  max-height:calc(100vh - 80px);
+  object-fit:contain;
+  border-radius:6px;
+  box-shadow:0 8px 40px rgba(0,0,0,.7);
+}
+.lightbox-close{
+  position:absolute;top:max(env(safe-area-inset-top,0px),14px);right:18px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:none;color:#fff;
+  font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.lightbox-name{
+  position:absolute;bottom:max(env(safe-area-inset-bottom,0px),14px);left:0;right:0;
+  text-align:center;font-size:12px;color:rgba(255,255,255,.45);padding:0 24px;
+}
+
+/* ── BOUTON JOUER ── */
+.btn-play{
+  display:flex;align-items:center;gap:5px;
+  padding:7px 11px;border-radius:8px;
+  background:var(--felt);border:1.5px solid var(--felt-lt);
+  color:#fff;font-size:12px;font-weight:700;
+  font-family:'Exo 2',sans-serif;
+  cursor:pointer;text-decoration:none;
+  white-space:nowrap;flex-shrink:0;
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
+  transition:filter .12s,transform .1s;
+}
+.btn-play:active{filter:brightness(.8);transform:scale(.94)}
 </style>
 </head>
 <body>
@@ -323,6 +381,10 @@ header{
     <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
   </header>
 
+  <div id="images-section" class="images-section" style="display:none">
+    <div class="images-label">Documents &amp; images</div>
+    <div class="images-scroll" id="images-scroll"></div>
+  </div>
   <div class="config">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
@@ -332,6 +394,13 @@ header{
     <div class="cfg-hint" id="cfg-hint"></div>
   </div>
   <div id="file-list"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <div class="lightbox-name" id="lightbox-name"></div>
 </div>
 
 <!-- DEAL VIEW -->
@@ -369,6 +438,7 @@ const CW = ['N','E','S','W'];
 // ── state ──────────────────────────────────────────────────────────────
 let deals = [], idx = 0;
 let pbnFiles = [];
+let playLinks = {}; // { "folder/file.pbn": "https://..." }
 const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
@@ -392,7 +462,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v10';
+const CACHE_KEY = 'qpjb-seances-v11';
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
@@ -426,6 +496,8 @@ async function discoverSeances(forceRefresh = false) {
         if (cached && cached.sha === currentSha && cached.seances?.length) {
           seancesData = { seances: cached.seances };
           renderSeanceGrid(cached.seances);
+          if (cached.images?.length) renderImages(cached.images);
+          if (cached.playLinks) playLinks = cached.playLinks;
           setHint('');
           return;
         }
@@ -437,6 +509,26 @@ async function discoverSeances(forceRefresh = false) {
       {headers:{Accept:'application/vnd.github.v3+json'}});
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
+
+    // ── images à la racine ──────────────────────────────────────────────
+    const IMAGE_EXT = /\.(jpe?g|png|gif|webp|svg)$/i;
+    const rootImages = items
+      .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
+      .map(f => ({ name: f.name, url: f.download_url }));
+    if (rootImages.length) renderImages(rootImages);
+
+    // ── config.json : liens "jouer" ─────────────────────────────────────
+    const configItem = items.find(f => f.type === 'file' && f.name === 'config.json');
+    if (configItem) {
+      try {
+        const cfgRes = await fetch(configItem.download_url);
+        if (cfgRes.ok) {
+          const cfg = await cfgRes.json();
+          playLinks = cfg.links || {};
+        }
+      } catch {}
+    }
+
     const folders = items.filter(f => f.type === 'dir');
     if (!folders.length) {
       grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
@@ -463,7 +555,7 @@ async function discoverSeances(forceRefresh = false) {
       return;
     }
 
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found })); } catch {}
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found, images: rootImages, playLinks })); } catch {}
     seancesData = { seances: found };
     renderSeanceGrid(found);
     setHint('');
@@ -475,6 +567,8 @@ async function discoverSeances(forceRefresh = false) {
       if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
         renderSeanceGrid(cached.seances);
+        if (cached.images?.length) renderImages(cached.images);
+        if (cached.playLinks) playLinks = cached.playLinks;
         setHint('(hors ligne)');
         return;
       }
@@ -484,6 +578,31 @@ async function discoverSeances(forceRefresh = false) {
     grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ${esc(msg)}</div>`;
   }
 }
+// ── affichage des images de la racine ──────────────────────────────────
+function renderImages(images) {
+  const section = document.getElementById('images-section');
+  const scroll  = document.getElementById('images-scroll');
+  scroll.innerHTML = images.map(img =>
+    `<img class="img-thumb" src="${esc(img.url)}" alt="${esc(img.name)}"
+          loading="lazy" onclick="openLightbox('${esc(img.url)}','${esc(img.name)}')">`
+  ).join('');
+  section.style.display = 'block';
+}
+
+// ── lightbox ───────────────────────────────────────────────────────────
+function openLightbox(url, name) {
+  document.getElementById('lightbox-img').src  = url;
+  document.getElementById('lightbox-name').textContent = name;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = '';
+}
+
 // ── ouverture d'un dossier ─────────────────────────────────────────────
 async function loadSeance(folderName) {
   const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
@@ -495,12 +614,19 @@ async function loadSeance(folderName) {
   if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
   document.getElementById('file-list').innerHTML =
-    '<div class="file-list">' + pbnFiles.map((f, i) =>
-      `<div class="file-item" onclick="openSeanceAt(${i})">
+    '<div class="file-list">' + pbnFiles.map((f, i) => {
+      const key = `${folderName}/${f.name}`;
+      const link = playLinks[key] || playLinks[f.name] || '';
+      const playBtn = link
+        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ Jouer</a>`
+        : '';
+      return `<div class="file-item" onclick="openSeanceAt(${i})">
          <div class="file-icon">🃏</div>
          <div style="min-width:0;flex:1"><div class="file-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</div></div>
+         ${playBtn}
          <div class="file-chev">›</div>
-       </div>`).join('') + '</div>';
+       </div>`;
+    }).join('') + '</div>';
   setHint('');
 }
 
@@ -708,6 +834,55 @@ function parseDeal(str) {
   return res;
 }
 
+// ── déduire contrat et déclarant depuis la séquence d'enchères ─────────
+function inferContractFromAuction(auctionStr, auctionFirst) {
+  if (!auctionStr || !auctionFirst) return null;
+
+  const BASE = ['W','N','E','S'];
+  const startIdx = BASE.indexOf(auctionFirst.toUpperCase());
+  if (startIdx < 0) return null;
+
+  const bids = auctionStr.trim().split(/\s+/).filter(b => b && b.toUpperCase() !== 'AP');
+
+  // Associer chaque enchère à son joueur
+  const bidsByPlayer = bids.map((bid, i) => ({
+    bid: bid.toUpperCase(),
+    dir: BASE[(startIdx + i) % 4]
+  }));
+
+  // Trouver la dernière enchère de couleur/SA (hors P/X/XX)
+  const CONTRACT_RE = /^([1-7])(S|H|D|C|NT|N)(X{0,2})$/i;
+  let lastContract = null;
+  for (const b of bidsByPlayer) {
+    if (CONTRACT_RE.test(b.bid)) lastContract = b;
+  }
+  if (!lastContract) return null; // séquence passée ou invalide
+
+  const m = lastContract.bid.match(CONTRACT_RE);
+  const level = m[1];
+  const suit  = m[2].toUpperCase() === 'N' ? 'NT' : m[2].toUpperCase();
+  const dbl   = m[3] || '';
+  const contract = `${level}${suit}${dbl}`;
+
+  // Camp du joueur qui a dit le contrat final
+  const declDir = lastContract.dir;
+  const NS = ['N','S'], EW = ['E','W'];
+  const partnerDirs = NS.includes(declDir) ? NS : EW;
+
+  // Premier joueur du camp à avoir annoncé cette couleur/SA
+  const suitKey = suit === 'NT' ? 'NT' : suit; // N et NT normalisés
+  let declarer = declDir; // par défaut
+  for (const b of bidsByPlayer) {
+    if (!partnerDirs.includes(b.dir)) continue;
+    const bm = b.bid.match(CONTRACT_RE);
+    if (!bm) continue;
+    const bs = bm[2].toUpperCase() === 'N' ? 'NT' : bm[2].toUpperCase();
+    if (bs === suitKey) { declarer = b.dir; break; }
+  }
+
+  return { contract, declarer };
+}
+
 // ── render deal ────────────────────────────────────────────────────────
 function render(i) {
   const d = deals[i], total = deals.length;
@@ -720,9 +895,18 @@ function render(i) {
   const auction = (d.Auction || '').trim();
   const auctionFirst = d.AuctionFirst || dealer;
   const comment = (d.Comment || d.Note || '').trim();
-  const contract = d.Contract || '';
-  const declarer = d.Declarer || '';
   const lead = d.Lead || '';
+
+  // Contrat et déclarant : depuis le PBN, ou déduits des enchères
+  let contract = d.Contract || '';
+  let declarer = d.Declarer || '';
+  if ((!contract || !declarer) && auction && auction !== '?') {
+    const inferred = inferContractFromAuction(auction, auctionFirst);
+    if (inferred) {
+      if (!contract) contract = inferred.contract;
+      if (!declarer) declarer = inferred.declarer;
+    }
+  }
 
   const vulLabel = {None:'Vul. Pers.', NS:'Vul. N-S', EW:'Vul. E-O', All:'Vul. Tous'}[vul] || vul;
   const vulCls   = vul === 'None' ? 'badge-nov' : 'badge-vul';
