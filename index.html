@@ -562,18 +562,20 @@ function initTokenUI() {
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
-function smoothScrollTo(el) {
-  const target = el.getBoundingClientRect().top + window.scrollY;
+function smoothScrollTo(el, cb) {
+  const target = el.getBoundingClientRect().top + window.scrollY - 8;
   const dist = Math.abs(target - window.scrollY);
-  const speed = 0.8; // px par ms
+  if (dist < 2) { if (cb) cb(); return; }
+  const speed = 0.8;
   const duration = Math.min(Math.max(dist / speed, 200), 800);
   const start = window.scrollY;
   const startTime = performance.now();
   function step(now) {
     const t = Math.min((now - startTime) / duration, 1);
-    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // easeInOutQuad
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
     window.scrollTo(0, start + (target - start) * ease);
     if (t < 1) requestAnimationFrame(step);
+    else if (cb) cb();
   }
   requestAnimationFrame(step);
 }
@@ -886,32 +888,11 @@ function closeLightbox(e) {
   }, {passive:true});
 })();
 
-// ── ouverture d'un dossier ─────────────────────────────────────────────
-async function loadSeance(folderName) {
-  const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
-  if (!seance) return;
-  pbnFiles = seance.fichiers;
-
-  document.querySelectorAll('.seance-card').forEach(el => { el.style.borderColor = ''; });
-  const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
-  if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
-
-  const fileList = document.getElementById('file-list');
-
-  // Si une liste est déjà ouverte, la replier d'abord
-  const existing = fileList.querySelector('.file-list');
-  if (existing) {
-    // Fixer la hauteur du conteneur pour éviter que la page remonte
-    fileList.style.minHeight = fileList.offsetHeight + 'px';
-    existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
-    existing.classList.add('file-list-out');
-    await new Promise(r => setTimeout(r, 300));
-  }
-
-  const newClass = existing ? 'file-list file-list-in' : 'file-list';
-  const newHtml = '<div class="' + newClass + '">' + pbnFiles.map((f, i) => {
+// ── construction HTML de la liste ─────────────────────────────────────
+function buildFileListHtml(folderName, withAnim) {
+  return '<div class="' + (withAnim ? 'file-list file-list-in' : 'file-list') + '">' +
+    pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
-      // Lookup: exact key first, then short key (folder/B1 matches B1 - ....pbn), then filename alone
       const baseName = f.name.replace(/\.pbn$/i, '');
       const shortKey = `${folderName}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
@@ -922,7 +903,7 @@ async function loadSeance(folderName) {
       let visiblePart, blurredPart;
       if (sepIdx >= 0) {
         visiblePart = esc(baseName.slice(0, sepIdx));
-        blurredPart = esc(baseName.slice(sepIdx + 3)); // after " - "
+        blurredPart = esc(baseName.slice(sepIdx + 3));
       } else {
         visiblePart = esc(baseName);
         blurredPart = '';
@@ -930,11 +911,9 @@ async function loadSeance(folderName) {
       const nameHtml = blurredPart
         ? `<div class="file-name" style="display:flex;align-items:baseline;min-width:0"><span style="white-space:nowrap">${visiblePart} - </span><span class="file-name-blur" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;padding-left:3px">${blurredPart}</span></div>`
         : `<div class="file-name">${visiblePart}</div>`;
-
       const onclick = blurredPart
         ? `onclick="revealOrOpen(event, this, ${i})"`
         : `onclick="openSeanceAt(${i})"`;
-
       return `<div class="file-item" ${onclick}>
          <div class="file-icon" onclick="event.stopPropagation()">🃏</div>
          <div style="min-width:0;flex:1;overflow:hidden">${nameHtml}</div>
@@ -942,32 +921,61 @@ async function loadSeance(folderName) {
          <div class="file-chev">›</div>
        </div>`;
     }).join('') + '</div>';
-  fileList.innerHTML = newHtml;
-  setHint('');
-  const newList = fileList.querySelector('.file-list');
-  if (newList) {
-    const newH = newList.scrollHeight;
-    newList.style.setProperty('--list-h', newH + 'px');
+}
 
+function unfoldNewList(fileList) {
+  const newList = fileList.querySelector('.file-list');
+  if (!newList) return;
+  newList.style.setProperty('--list-h', newList.scrollHeight + 'px');
+  setTimeout(() => newList.classList.remove('file-list-in'), 370);
+}
+
+// ── ouverture d'un dossier ─────────────────────────────────────────────
+function loadSeance(folderName) {
+  const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
+  if (!seance) return;
+  pbnFiles = seance.fichiers;
+
+  document.querySelectorAll('.seance-card').forEach(el => { el.style.borderColor = ''; });
+  const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
+  if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
+
+  const fileList = document.getElementById('file-list');
+  const existing = fileList.querySelector('.file-list');
+  const listInView = fileList.getBoundingClientRect().top < window.innerHeight * 0.85
+                     && fileList.getBoundingClientRect().bottom > 0;
+
+  function foldThenUnfold() {
+    // Fixer la hauteur pour éviter le saut
+    fileList.style.minHeight = fileList.offsetHeight + 'px';
     if (existing) {
-      // Switch de séance : transition douce du minHeight
-      fileList.style.transition = 'min-height .3s ease';
-      fileList.style.minHeight = newH + 'px';
-      const listOffScreen = fileList.getBoundingClientRect().top > window.innerHeight * 0.7;
-      setTimeout(() => {
-        newList.classList.remove('file-list-in');
-        fileList.style.transition = '';
-        fileList.style.minHeight = '';
-        if (listOffScreen) {
-          const first = document.querySelector('#file-list .file-item');
-          if (first) smoothScrollTo(first);
-        }
-      }, 400);
-    } else {
-      // Premier clic : scroller vers le premier PBN
-      const first = document.querySelector('#file-list .file-item');
-      if (first) smoothScrollTo(first);
+      existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
+      existing.classList.add('file-list-out');
     }
+    setTimeout(() => {
+      fileList.style.minHeight = '';
+      fileList.innerHTML = buildFileListHtml(folderName, true);
+      setHint('');
+      unfoldNewList(fileList);
+    }, existing ? 320 : 0);
+  }
+
+  if (!existing) {
+    // Première ouverture : rendre sans animation, puis scroller
+    fileList.innerHTML = buildFileListHtml(folderName, false);
+    setHint('');
+    const first = document.querySelector('#file-list .file-item');
+    if (first) smoothScrollTo(first);
+  } else if (listInView) {
+    // Liste déjà visible : fold puis unfold sur place
+    foldThenUnfold();
+  } else {
+    // Liste hors écran : scroller d'abord, puis fold+unfold
+    fileList.innerHTML = buildFileListHtml(folderName, false);
+    setHint('');
+    const first = document.querySelector('#file-list .file-item');
+    if (first) smoothScrollTo(first, () => setTimeout(foldThenUnfold, 100));
+    else foldThenUnfold();
   }
 }
 
