@@ -892,7 +892,8 @@ async function loadSeance(folderName) {
     await new Promise(r => setTimeout(r, 300));
   }
 
-  const newHtml = '<div class="file-list file-list-in">' + pbnFiles.map((f, i) => {
+  const newClass = existing ? 'file-list file-list-in' : 'file-list';
+  const newHtml = '<div class="' + newClass + '">' + pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
       // Lookup: exact key first, then short key (folder/B1 matches B1 - ....pbn), then filename alone
       const baseName = f.name.replace(/\.pbn$/i, '');
@@ -932,19 +933,24 @@ async function loadSeance(folderName) {
     const newH = newList.scrollHeight;
     newList.style.setProperty('--list-h', newH + 'px');
 
-    if (!existing) {
-      // Premier clic : scroller tout de suite, sans attendre l'animation
-      fileList.scrollIntoView({behavior:'smooth', block:'start'});
-      setTimeout(() => newList.classList.remove('file-list-in'), 360);
-    } else {
-      // Switch de séance : transition douce du minHeight vers la nouvelle hauteur
+    if (existing) {
+      // Switch de séance : transition douce du minHeight
       fileList.style.transition = 'min-height .3s ease';
       fileList.style.minHeight = newH + 'px';
+      const listOffScreen = fileList.getBoundingClientRect().top > window.innerHeight * 0.7;
       setTimeout(() => {
         newList.classList.remove('file-list-in');
         fileList.style.transition = '';
         fileList.style.minHeight = '';
+        if (listOffScreen) {
+          const first = document.querySelector('#file-list .file-item');
+          if (first) first.scrollIntoView({behavior:'smooth', block:'start'});
+        }
       }, 400);
+    } else {
+      // Premier clic : scroller vers le premier PBN
+      const first = document.querySelector('#file-list .file-item');
+      if (first) first.scrollIntoView({behavior:'smooth', block:'start'});
     }
   }
 }
