@@ -456,7 +456,7 @@ header{
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <button class="lightbox-nav lightbox-prev" id="lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
-  <div class="lightbox-track" id="lightbox-track">
+  <div class="lightbox-track" id="lightbox-track" onclick="if(event.target===this)closeLightbox()">
     <img class="lightbox-img" id="lightbox-img-a" src="" alt="">
     <img class="lightbox-img" id="lightbox-img-b" src="" alt="" style="opacity:0;pointer-events:none">
   </div>
@@ -711,16 +711,16 @@ function navLightbox(dir) {
   b.style.transition = 'none'; b.style.opacity = '1';
   b.style.transform = `translateX(${dir > 0 ? W : -W}px)`;
   requestAnimationFrame(() => {
-    a.style.transition = 'transform .28s ease';
+    a.style.transition = 'transform .45s ease';
     a.style.transform  = `translateX(${dir > 0 ? -W : W}px)`;
-    b.style.transition = 'transform .28s ease';
+    b.style.transition = 'transform .45s ease';
     b.style.transform  = 'translateX(0)';
     setTimeout(() => {
       lightboxIdx = next;
       a.src = lightboxImages[next].url;
       lbUpdate(next);
       resetSlots();
-    }, 290);
+    }, 460);
   });
 }
 
