@@ -868,17 +868,7 @@ async function loadSeance(folderName) {
   const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
   if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
-  // Scroller vers la séance cliquée, puis rerendre
   const fileList = document.getElementById('file-list');
-  const alreadyOpen = fileList.innerHTML !== '';
-
-  if (alreadyOpen) {
-    const sel2 = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
-    if (sel2) sel2.scrollIntoView({behavior:'smooth', block:'nearest'});
-    await new Promise(r => setTimeout(r, 350));
-    fileList.innerHTML = '';
-    await new Promise(r => setTimeout(r, 50));
-  }
 
   fileList.innerHTML = '<div class="file-list">' + pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
