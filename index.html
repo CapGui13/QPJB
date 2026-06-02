@@ -931,7 +931,11 @@ function unfoldNewList(fileList) {
 }
 
 // ── ouverture d'un dossier ─────────────────────────────────────────────
+let currentFolder = null;
+
 function loadSeance(folderName) {
+  if (folderName === currentFolder) return;
+  currentFolder = folderName;
   const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
   if (!seance) return;
   pbnFiles = seance.fichiers;
@@ -942,8 +946,6 @@ function loadSeance(folderName) {
 
   const fileList = document.getElementById('file-list');
   const existing = fileList.querySelector('.file-list');
-  const listInView = fileList.getBoundingClientRect().top < window.innerHeight * 0.85
-                     && fileList.getBoundingClientRect().bottom > 0;
 
   function foldThenUnfold() {
     fileList.style.minHeight = fileList.offsetHeight + 'px';
@@ -974,34 +976,10 @@ function loadSeance(folderName) {
     setHint('');
     const first = document.querySelector('#file-list .file-item');
     if (first) smoothScrollTo(first);
-  } else if (listInView) {
-    // Liste déjà visible : fold puis unfold sur place
-    foldThenUnfold();
   } else {
-    // Liste hors écran : fold et scroll démarrent simultanément
-    fileList.style.minHeight = fileList.offsetHeight + 'px';
-    existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
-    existing.classList.add('file-list-out');
-    const foldStart = Date.now();
-    const FOLD_DURATION = 320;
-
-    smoothScrollTo(fileList, () => {
-      const remaining = Math.max(0, FOLD_DURATION - (Date.now() - foldStart));
-      setTimeout(() => {
-        fileList.innerHTML = buildFileListHtml(folderName, true);
-        setHint('');
-        const newList = fileList.querySelector('.file-list');
-        if (newList) {
-          const newH = newList.scrollHeight;
-          newList.style.setProperty('--list-h', newH + 'px');
-          fileList.style.minHeight = newH + 'px';
-          setTimeout(() => {
-            newList.classList.remove('file-list-in');
-            fileList.style.minHeight = '';
-          }, 380);
-        }
-      }, remaining);
-    });
+    // Toujours : scroll + fold/unfold indépendants simultanément
+    smoothScrollTo(fileList);
+    foldThenUnfold();
   }
 }
 
@@ -1039,6 +1017,7 @@ async function openSeanceAt(fileIdx) {
 
 function goToHome() {
   document.getElementById('file-list').innerHTML = '';
+  currentFolder = null;
   discoverSeances();
 }
 
