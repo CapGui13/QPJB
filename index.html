@@ -946,17 +946,25 @@ function loadSeance(folderName) {
                      && fileList.getBoundingClientRect().bottom > 0;
 
   function foldThenUnfold() {
-    // Fixer la hauteur pour éviter le saut
     fileList.style.minHeight = fileList.offsetHeight + 'px';
     if (existing) {
       existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
       existing.classList.add('file-list-out');
     }
     setTimeout(() => {
-      fileList.style.minHeight = '';
       fileList.innerHTML = buildFileListHtml(folderName, true);
       setHint('');
-      unfoldNewList(fileList);
+      const newList = fileList.querySelector('.file-list');
+      if (newList) {
+        const newH = newList.scrollHeight;
+        newList.style.setProperty('--list-h', newH + 'px');
+        // Garder minHeight pendant l'unfold, puis relâcher
+        fileList.style.minHeight = newH + 'px';
+        setTimeout(() => {
+          newList.classList.remove('file-list-in');
+          fileList.style.minHeight = '';
+        }, 380);
+      }
     }, existing ? 320 : 0);
   }
 
@@ -970,12 +978,30 @@ function loadSeance(folderName) {
     // Liste déjà visible : fold puis unfold sur place
     foldThenUnfold();
   } else {
-    // Liste hors écran : scroller d'abord, puis fold+unfold
-    fileList.innerHTML = buildFileListHtml(folderName, false);
-    setHint('');
-    const first = document.querySelector('#file-list .file-item');
-    if (first) smoothScrollTo(first, () => setTimeout(foldThenUnfold, 100));
-    else foldThenUnfold();
+    // Liste hors écran : fold et scroll démarrent simultanément
+    fileList.style.minHeight = fileList.offsetHeight + 'px';
+    existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
+    existing.classList.add('file-list-out');
+    const foldStart = Date.now();
+    const FOLD_DURATION = 320;
+
+    smoothScrollTo(fileList, () => {
+      const remaining = Math.max(0, FOLD_DURATION - (Date.now() - foldStart));
+      setTimeout(() => {
+        fileList.innerHTML = buildFileListHtml(folderName, true);
+        setHint('');
+        const newList = fileList.querySelector('.file-list');
+        if (newList) {
+          const newH = newList.scrollHeight;
+          newList.style.setProperty('--list-h', newH + 'px');
+          fileList.style.minHeight = newH + 'px';
+          setTimeout(() => {
+            newList.classList.remove('file-list-in');
+            fileList.style.minHeight = '';
+          }, 380);
+        }
+      }, remaining);
+    });
   }
 }
 
