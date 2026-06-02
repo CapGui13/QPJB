@@ -868,14 +868,17 @@ async function loadSeance(folderName) {
   const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
   if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
-  // Scroller d'abord vers file-list, puis rerendre après le scroll
+  // Vider la liste et scroller en haut, puis rerendre
   const fileList = document.getElementById('file-list');
-  const alreadyAtBottom = fileList.innerHTML !== '';
+  const alreadyOpen = fileList.innerHTML !== '';
 
-  if (alreadyAtBottom) {
-    // On est déjà sur une liste — scroller vers le haut de file-list d'abord
-    fileList.scrollIntoView({behavior:'smooth', block:'start'});
-    await new Promise(r => setTimeout(r, 350));
+  if (alreadyOpen) {
+    // Vider d'abord pour éviter le glitch de hauteur
+    fileList.innerHTML = '';
+    // Scroller vers la carte de séance sélectionnée
+    const sel2 = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
+    if (sel2) sel2.scrollIntoView({behavior:'smooth', block:'nearest'});
+    await new Promise(r => setTimeout(r, 300));
   }
 
   fileList.innerHTML = '<div class="file-list">' + pbnFiles.map((f, i) => {
