@@ -754,18 +754,24 @@ function closeLightbox(e) {
     const dt = Date.now() - tt;
 
     if (swipeDir === 'v') {
-      const vy = dy / dt; // vélocité verticale px/ms
+      const vy = dy / dt;
       if (dy > 80 || vy > 0.4) {
-        // Fermeture : l'image sort vers le bas, le fond disparaît
-        imgA().style.transition = 'transform .3s ease, opacity .3s ease';
-        imgA().style.transform  = `translateY(${window.innerHeight}px) scale(0.7)`;
+        // Fermeture : l'image glisse vers le bas, le fond disparaît
+        imgA().style.transition = 'transform .35s ease, opacity .35s ease';
+        imgA().style.transform  = `translateY(${window.innerHeight}px) scale(0.8)`;
         imgA().style.opacity    = '0';
-        lb().style.transition   = 'background .3s ease';
+        lb().style.transition   = 'background .35s ease';
         lb().style.background   = 'rgba(0,0,0,0)';
         setTimeout(() => {
-          closeLightbox();
           lb().style.transition = '';
-        }, 300);
+          lb().classList.remove('open');
+          imgA().src = ''; imgB().src = '';
+          resetSlots();
+          imgA().style.opacity = '';
+          lb().style.background = '';
+          document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
+          document.body.style.overflow = '';
+        }, 350);
       } else {
         // Annulation : retour en place
         imgA().style.transition = 'transform .3s ease';
@@ -777,8 +783,6 @@ function closeLightbox(e) {
       return;
     }
 
-    showNavs(true);
-
     if (swipeDir === 'h') {
       const nextIdx = lightboxIdx + (dx < 0 ? 1 : -1);
       const velocity = Math.abs(dx) / dt;
@@ -789,18 +793,23 @@ function closeLightbox(e) {
         imgA().style.transform  = `translateX(${dx < 0 ? -W() : W()}px)`;
         imgB().style.transition = 'transform .25s ease';
         imgB().style.transform  = 'translateX(0)';
+        showNavs(false);
         setTimeout(() => {
           lightboxIdx = nextIdx;
           imgA().src = lightboxImages[nextIdx].url;
           lbUpdate(nextIdx);
           resetSlots();
+          showNavs(true);
         }, 260);
       } else {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
         imgB().style.transition = 'transform .3s ease';
         imgB().style.transform  = `translateX(${dx < 0 ? W() : -W()}px)`;
-        setTimeout(() => { imgB().style.transition='none'; imgB().style.opacity='0'; imgB().src=''; }, 300);
+        setTimeout(() => {
+          imgB().style.transition='none'; imgB().style.opacity='0'; imgB().src='';
+          showNavs(true);
+        }, 300);
       }
     }
   }, {passive:true});
