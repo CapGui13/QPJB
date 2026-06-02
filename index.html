@@ -390,7 +390,22 @@ header{
   text-align:center;font-size:12px;color:rgba(255,255,255,.45);padding:0 24px;
 }
 
-/* ── BOUTON JOUER ── */
+/* ── TOKEN ── */
+.token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
+.token-input{
+  flex:1;min-width:0;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:8px 12px;color:#fff;font-size:12px;
+  font-family:'Exo 2',sans-serif;outline:none;
+}
+.token-input::placeholder{color:rgba(255,255,255,.3)}
+.token-input:focus{border-color:rgba(200,151,58,.5)}
+.token-btn{
+  padding:8px 12px;border-radius:8px;border:none;cursor:pointer;
+  background:var(--felt);color:#fff;font-size:12px;font-weight:700;
+  font-family:'Exo 2',sans-serif;white-space:nowrap;flex-shrink:0;
+}
+.token-ok{color:#6aaa78;font-size:16px;flex-shrink:0}
 .btn-play{
   display:flex;align-items:center;gap:5px;
   padding:7px 11px;border-radius:8px;
@@ -417,6 +432,11 @@ header{
     <div class="hd-suits"><span class="hs">♠</span><span class="hh">♥</span><span class="hd">♦</span><span class="hc">♣</span></div>
   </header>
 
+  <div id="token-section" class="token-section">
+    <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
+    <button class="token-btn" onclick="saveToken()">OK</button>
+    <span class="token-ok" id="token-ok" style="display:none">✓</span>
+  </div>
   <div id="images-section" class="images-section" style="display:none">
     <div class="images-label">Documents</div>
     <div class="images-scroll" id="images-scroll"></div>
@@ -503,9 +523,30 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const GH_TOKEN  = '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';
-const GH_HEADS  = {Accept:'application/vnd.github.v3+json', Authorization:`token ${GH_TOKEN}`};
 const CACHE_KEY = 'qpjb-seances-v11';
+
+function ghHeaders() {
+  const token = localStorage.getItem('gh-token');
+  const h = {Accept:'application/vnd.github.v3+json'};
+  if (token) h.Authorization = `token ${token}`;
+  return h;
+}
+
+function saveToken() {
+  const val = document.getElementById('token-input').value.trim();
+  if (val) {
+    localStorage.setItem('gh-token', val);
+    document.getElementById('token-input').value = '';
+    document.getElementById('token-ok').style.display = 'inline';
+    setTimeout(() => document.getElementById('token-ok').style.display = 'none', 2000);
+    discoverSeances(true);
+  }
+}
+
+function initTokenUI() {
+  const hasToken = !!localStorage.getItem('gh-token');
+  document.getElementById('token-ok').style.display = hasToken ? 'inline' : 'none';
+}
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
@@ -525,7 +566,7 @@ async function discoverSeances(forceRefresh = false) {
   try {
     const commitRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/commits?per_page=1`,
-      {headers:GH_HEADS});
+      {headers:ghHeaders()});
     if (!commitRes.ok) {
       if (commitRes.status === 403) throw new Error('Limite API GitHub atteinte — réessaie dans une heure');
       throw new Error(`Repo introuvable (${commitRes.status})`);
@@ -549,7 +590,7 @@ async function discoverSeances(forceRefresh = false) {
 
     const contentsRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/contents/`,
-      {headers:GH_HEADS});
+      {headers:ghHeaders()});
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
 
@@ -582,7 +623,7 @@ async function discoverSeances(forceRefresh = false) {
       try {
         const res = await fetch(
           `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
-          {headers:GH_HEADS});
+          {headers:ghHeaders()});
         if (!res.ok) return null;
         const files = await res.json();
         const fichiers = files
@@ -1408,6 +1449,7 @@ function fmtBid(bid) {
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
+  initTokenUI();
   discoverSeances();
 })();
 </script>
