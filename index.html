@@ -960,10 +960,11 @@ function loadSeance(folderName) {
       if (newList) {
         const newH = newList.scrollHeight;
         newList.style.setProperty('--list-h', newH + 'px');
-        // Garder minHeight pendant l'unfold, puis relâcher
+        fileList.style.transition = 'min-height .35s ease';
         fileList.style.minHeight = newH + 'px';
         setTimeout(() => {
           newList.classList.remove('file-list-in');
+          fileList.style.transition = '';
           fileList.style.minHeight = '';
         }, 380);
       }
