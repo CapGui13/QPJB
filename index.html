@@ -562,6 +562,22 @@ function initTokenUI() {
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
+function smoothScrollTo(el) {
+  const target = el.getBoundingClientRect().top + window.scrollY;
+  const dist = Math.abs(target - window.scrollY);
+  const speed = 0.8; // px par ms
+  const duration = Math.min(Math.max(dist / speed, 200), 800);
+  const start = window.scrollY;
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // easeInOutQuad
+    window.scrollTo(0, start + (target - start) * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
   document.getElementById('seance-grid').innerHTML = sorted.map(s => `
@@ -944,13 +960,13 @@ async function loadSeance(folderName) {
         fileList.style.minHeight = '';
         if (listOffScreen) {
           const first = document.querySelector('#file-list .file-item');
-          if (first) first.scrollIntoView({behavior:'smooth', block:'start'});
+          if (first) smoothScrollTo(first);
         }
       }, 400);
     } else {
       // Premier clic : scroller vers le premier PBN
       const first = document.querySelector('#file-list .file-item');
-      if (first) first.scrollIntoView({behavior:'smooth', block:'start'});
+      if (first) smoothScrollTo(first);
     }
   }
 }
