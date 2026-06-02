@@ -930,15 +930,12 @@ async function loadSeance(folderName) {
   const newList = fileList.querySelector('.file-list');
   if (newList) {
     newList.style.setProperty('--list-h', newList.scrollHeight + 'px');
+    const needsScroll = fileList.getBoundingClientRect().top > window.innerHeight * 0.7;
     setTimeout(() => {
       newList.classList.remove('file-list-in');
       fileList.style.minHeight = '';
-      const first = document.querySelector('#file-list .file-item');
-      if (first) {
-        const rect = first.getBoundingClientRect();
-        if (rect.top < 0 || rect.top > window.innerHeight) {
-          first.scrollIntoView({behavior:'smooth', block:'start'});
-        }
+      if (needsScroll) {
+        fileList.scrollIntoView({behavior:'smooth', block:'start'});
       }
     }, 360);
   }
