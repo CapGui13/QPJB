@@ -825,7 +825,8 @@ async function loadSeance(folderName) {
        </div>`;
     }).join('') + '</div>';
   setHint('');
-  document.getElementById('file-list').scrollIntoView({behavior:'smooth', block:'start'});
+  const first = document.querySelector('#file-list .file-item');
+  if (first) first.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // ── reveal blur ou ouvre le visualiseur ───────────────────────────────
