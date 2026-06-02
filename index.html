@@ -693,15 +693,15 @@ function closeLightbox(e) {
 
   document.addEventListener('touchmove', e => {
     if (!dragging || !lb().classList.contains('open')) return;
+    e.preventDefault();
     const dx = e.touches[0].clientX - tx;
     const dy = e.touches[0].clientY - ty;
-    // Suit le doigt : horizontal prioritaire
     if (Math.abs(dx) > Math.abs(dy)) {
       img().style.transform = `translateX(${dx}px)`;
     } else {
       img().style.transform = `translateY(${Math.max(0,dy)}px) scale(${1 - Math.min(dy,200)/800})`;
     }
-  }, {passive:true});
+  }, {passive:false});
 
   document.addEventListener('touchend', e => {
     if (!dragging || !lb().classList.contains('open')) return;
