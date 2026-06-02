@@ -929,15 +929,23 @@ async function loadSeance(folderName) {
   setHint('');
   const newList = fileList.querySelector('.file-list');
   if (newList) {
-    newList.style.setProperty('--list-h', newList.scrollHeight + 'px');
-    const needsScroll = fileList.getBoundingClientRect().top > window.innerHeight * 0.7;
-    setTimeout(() => {
-      newList.classList.remove('file-list-in');
-      fileList.style.minHeight = '';
-      if (needsScroll) {
-        fileList.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }, 360);
+    const newH = newList.scrollHeight;
+    newList.style.setProperty('--list-h', newH + 'px');
+
+    if (!existing) {
+      // Premier clic : scroller tout de suite, sans attendre l'animation
+      fileList.scrollIntoView({behavior:'smooth', block:'start'});
+      setTimeout(() => newList.classList.remove('file-list-in'), 360);
+    } else {
+      // Switch de séance : transition douce du minHeight vers la nouvelle hauteur
+      fileList.style.transition = 'min-height .3s ease';
+      fileList.style.minHeight = newH + 'px';
+      setTimeout(() => {
+        newList.classList.remove('file-list-in');
+        fileList.style.transition = '';
+        fileList.style.minHeight = '';
+      }, 400);
+    }
   }
 }
 
