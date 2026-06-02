@@ -503,6 +503,8 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
+const GH_TOKEN  = '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';
+const GH_HEADS  = {Accept:'application/vnd.github.v3+json', Authorization:`token ${GH_TOKEN}`};
 const CACHE_KEY = 'qpjb-seances-v11';
 let seancesData = null;
 
@@ -523,7 +525,7 @@ async function discoverSeances(forceRefresh = false) {
   try {
     const commitRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/commits?per_page=1`,
-      {headers:{Accept:'application/vnd.github.v3+json'}});
+      {headers:GH_HEADS});
     if (!commitRes.ok) {
       if (commitRes.status === 403) throw new Error('Limite API GitHub atteinte — réessaie dans une heure');
       throw new Error(`Repo introuvable (${commitRes.status})`);
@@ -547,7 +549,7 @@ async function discoverSeances(forceRefresh = false) {
 
     const contentsRes = await fetch(
       `https://api.github.com/repos/${GH_REPO}/contents/`,
-      {headers:{Accept:'application/vnd.github.v3+json'}});
+      {headers:GH_HEADS});
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
 
@@ -580,7 +582,7 @@ async function discoverSeances(forceRefresh = false) {
       try {
         const res = await fetch(
           `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
-          {headers:{Accept:'application/vnd.github.v3+json'}});
+          {headers:GH_HEADS});
         if (!res.ok) return null;
         const files = await res.json();
         const fichiers = files
