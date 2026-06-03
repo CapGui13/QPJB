@@ -1042,7 +1042,7 @@ function calcScrollTarget() {
   const isMobile = window.innerWidth <= 520;
   if (isMobile) {
     const config = document.getElementById('seance-config');
-    if (config) return config.getBoundingClientRect().bottom + window.scrollY;
+    if (config) { const headerH = document.querySelector('header') ? document.querySelector('header').offsetHeight : 0; return config.getBoundingClientRect().bottom + window.scrollY - headerH - 16; }
     return null;
   } else {
     return document.documentElement.scrollHeight - window.innerHeight;
