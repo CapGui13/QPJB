@@ -42,7 +42,8 @@
   }
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;overflow-y:scroll}
+html,body{height:100%;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100dvh;max-width:520px;margin:0 auto;overflow-y:scroll;position:relative}
 #vhome{padding-top:60px}
 #vdeal{padding-top:60px}
 
@@ -53,7 +54,7 @@ header{
   background:#141414;
   padding:max(env(safe-area-inset-top,0px),12px) 18px 12px;
   display:flex;align-items:center;justify-content:space-between;
-  position:fixed;top:0;left:0;right:0;max-width:520px;margin:0 auto;z-index:200;
+  position:fixed;top:0;left:0;right:0;max-width:520px;margin:0 auto;z-index:200;transform:translateZ(0);-webkit-transform:translateZ(0);
   border-bottom:1px solid rgba(200,151,58,.28);
 }
 .logo{display:flex;align-items:center;gap:11px}
