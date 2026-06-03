@@ -43,6 +43,8 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;overflow-y:scroll}
+#vhome{padding-top:60px}
+#vdeal{padding-top:60px}
 
 /* ── HEADER ── */
 header{
@@ -51,7 +53,7 @@ header{
   background:#141414;
   padding:max(env(safe-area-inset-top,0px),12px) 18px 12px;
   display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:200;
+  position:fixed;top:0;left:0;right:0;max-width:520px;margin:0 auto;z-index:200;
   border-bottom:1px solid rgba(200,151,58,.28);
 }
 .logo{display:flex;align-items:center;gap:11px}
@@ -109,7 +111,7 @@ header{
 .deal-nav{
   background:var(--card-bg);border-bottom:1px solid var(--card-bd);
   padding:9px 15px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:60px;z-index:100;box-shadow:var(--sh-sm);
+  position:fixed;top:60px;left:0;right:0;max-width:520px;margin:0 auto;z-index:100;box-shadow:var(--sh-sm);
 }
 .btn-back{
   display:flex;align-items:center;gap:5px;padding:7px 11px;border-radius:8px;
@@ -128,7 +130,7 @@ header{
 .btn-arr:disabled{background:var(--card-bd);color:var(--txt3);cursor:not-allowed}
 
 /* ── DEAL CONTENT ── */
-.deal-wrap{padding:14px 12px;display:flex;flex-direction:column;gap:12px;padding-bottom:48px}
+.deal-wrap{padding-top:66px;padding-left:12px;padding-right:12px;padding-bottom:48px;display:flex;flex-direction:column;gap:12px}
 
 /* ── BOARD HEADER ── */
 .board-hdr{
@@ -997,33 +999,39 @@ function loadSeance(folderName) {
   }
 
   function injectAndUnfold() {
-    const maxBefore = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxBefore > 0 ? window.scrollY / maxBefore : 0;
+    // Hauteur de page et scroll actuels
+    const pageH    = document.documentElement.scrollHeight;
+    const viewH    = window.innerHeight;
+    const maxBefore = pageH - viewH;
 
-    // 1. Gèle la hauteur actuelle
-    const heightBefore = document.documentElement.scrollHeight;
-    document.body.style.minHeight = heightBefore + 'px';
-
-    // 2. Injecte le nouveau contenu
+    // 1. Injecte le nouveau contenu
     fileList.innerHTML = buildFileListHtml(folderName, true);
     setHint('');
     const newList = fileList.querySelector('.file-list');
 
-    // 3. Mesure la nouvelle hauteur cible
-    const heightAfter = document.documentElement.scrollHeight;
+    // 2. Calcule le shrink : combien la page a rétréci
+    const newPageH  = document.documentElement.scrollHeight;
+    const shrink    = pageH - newPageH;
 
-    // 4. Transition CSS sur minHeight : la page se redimensionne doucement
-    document.body.style.transition = 'min-height .25s ease';
-    document.body.style.minHeight = heightAfter + 'px';
+    // 3. Si la page a rétréci, on ajoute un spacer qui compense exactement,
+    //    puis on le réduit à 0 via transition CSS → la page rétrécit doucement,
+    //    le navigateur n'a jamais besoin de corriger le scroll
+    if (shrink > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.cssText = `height:${shrink}px; transition:height .28s ease; flex-shrink:0;`;
+      fileList.appendChild(spacer);
+      // Force un reflow avant de démarrer la transition
+      spacer.getBoundingClientRect();
+      spacer.style.height = '0px';
+      setTimeout(() => spacer.remove(), 300);
+    }
 
-    // 5. Une fois la transition terminée, scroll fluide vers la cible
+    // 4. Scroll vers la cible (après la transition)
     setTimeout(() => {
       if (token !== _seanceAnimToken) return;
-      document.body.style.transition = '';
-      document.body.style.minHeight = '';
       if (newList) newList.classList.remove('file-list-in');
       scrollToList();
-    }, 260);
+    }, 300);
   }
 
   if (!existing) {
@@ -1035,15 +1043,19 @@ function loadSeance(folderName) {
   }
 }
 
-function scrollToList() {
+function calcScrollTarget() {
   const isMobile = window.innerWidth <= 520;
-  let targetY;
   if (isMobile) {
     const config = document.getElementById('seance-config');
-    if (config) targetY = config.getBoundingClientRect().bottom + window.scrollY;
+    if (config) return config.getBoundingClientRect().bottom + window.scrollY;
+    return null;
   } else {
-    targetY = document.documentElement.scrollHeight - window.innerHeight;
+    return document.documentElement.scrollHeight - window.innerHeight;
   }
+}
+
+function scrollToList() {
+  const targetY = calcScrollTarget();
   if (targetY != null && Math.abs(targetY - window.scrollY) > 2) {
     smoothScrollTo2(targetY, 350);
   }
