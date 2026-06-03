@@ -406,16 +406,16 @@ header{
 }
 
 /* ── FILE LIST ANIMATIONS ── */
-@keyframes foldUp {
-  from { opacity:1; max-height:var(--list-h, 2000px); }
-  to   { opacity:0; max-height:0; }
+@keyframes fadeOut {
+  from { opacity:1; }
+  to   { opacity:0; }
 }
-@keyframes unfold {
-  from { opacity:0; max-height:0; }
-  to   { opacity:1; max-height:var(--list-h, 2000px); }
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
 }
-.file-list-out { animation: foldUp .3s ease forwards; overflow:hidden; }
-.file-list-in  { animation: unfold .35s ease forwards; overflow:hidden; }
+.file-list-out { animation: fadeOut .2s ease forwards; pointer-events:none; }
+.file-list-in  { animation: fadeIn .25s ease forwards; }
 
 /* ── TOKEN ── */
 .token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
@@ -468,7 +468,7 @@ header{
     <div class="images-label">Documents</div>
     <div class="images-scroll" id="images-scroll"></div>
   </div>
-  <div class="config">
+  <div class="config" id="seance-config">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
 
@@ -591,6 +591,20 @@ function smoothScrollTo(el, cb) {
     window.scrollTo(0, start + (target - start) * ease);
     if (t < 1) requestAnimationFrame(step);
     else if (cb) cb();
+  }
+  requestAnimationFrame(step);
+}
+
+function smoothScrollTo2(targetY, duration) {
+  const start = window.scrollY;
+  const dist = targetY - start;
+  if (Math.abs(dist) < 2) return;
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+    window.scrollTo(0, start + dist * ease);
+    if (t < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
@@ -947,6 +961,7 @@ function unfoldNewList(fileList) {
 
 // ── ouverture d'un dossier ─────────────────────────────────────────────
 let currentFolder = null;
+let _seanceAnimToken = 0; // annule toute animation en cours si on change de séance
 
 function loadSeance(folderName) {
   if (folderName === currentFolder) return;
@@ -955,55 +970,82 @@ function loadSeance(folderName) {
   if (!seance) return;
   pbnFiles = seance.fichiers;
 
+  // Marque visuelle de la séance active
   document.querySelectorAll('.seance-card').forEach(el => { el.style.borderColor = ''; });
   const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
   if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
 
+  // Jeton d'annulation : toute animation précédente qui vérifiait son jeton s'arrête
+  const token = ++_seanceAnimToken;
+
   const fileList = document.getElementById('file-list');
   const existing = fileList.querySelector('.file-list');
 
-  function foldThenUnfold() {
-    document.documentElement.style.overflowAnchor = 'none';
-    fileList.style.overflowAnchor = 'none';
-    const oldH = fileList.offsetHeight;
-    fileList.style.minHeight = oldH + 'px';
+  // Inject + anime le nouveau contenu
+  function doSwap() {
+    if (token !== _seanceAnimToken) return;
+
     if (existing) {
-      existing.style.setProperty('--list-h', existing.scrollHeight + 'px');
       existing.classList.add('file-list-out');
+      setTimeout(() => {
+        if (token !== _seanceAnimToken) return;
+        injectAndUnfold();
+      }, 250);
+    } else {
+      injectAndUnfold();
     }
+  }
+
+  function injectAndUnfold() {
+    const maxBefore = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = maxBefore > 0 ? window.scrollY / maxBefore : 0;
+
+    // 1. Gèle la hauteur actuelle
+    const heightBefore = document.documentElement.scrollHeight;
+    document.body.style.minHeight = heightBefore + 'px';
+
+    // 2. Injecte le nouveau contenu
+    fileList.innerHTML = buildFileListHtml(folderName, true);
+    setHint('');
+    const newList = fileList.querySelector('.file-list');
+
+    // 3. Mesure la nouvelle hauteur cible
+    const heightAfter = document.documentElement.scrollHeight;
+
+    // 4. Transition CSS sur minHeight : la page se redimensionne doucement
+    document.body.style.transition = 'min-height .25s ease';
+    document.body.style.minHeight = heightAfter + 'px';
+
+    // 5. Une fois la transition terminée, scroll fluide vers la cible
     setTimeout(() => {
-      fileList.innerHTML = buildFileListHtml(folderName, true);
-      setHint('');
-      const newList = fileList.querySelector('.file-list');
-      if (newList) {
-        const newH = newList.scrollHeight;
-        newList.style.setProperty('--list-h', newH + 'px');
-        fileList.style.minHeight = Math.max(oldH, newH) + 'px';
-        setTimeout(() => {
-          newList.classList.remove('file-list-in');
-          fileList.style.transition = 'min-height .3s ease';
-          fileList.style.minHeight = newH + 'px';
-          setTimeout(() => {
-            fileList.style.transition = '';
-            fileList.style.minHeight = '';
-            fileList.style.overflowAnchor = '';
-            document.documentElement.style.overflowAnchor = '';
-          }, 300);
-        }, 380);
-      }
-    }, existing ? 320 : 0);
+      if (token !== _seanceAnimToken) return;
+      document.body.style.transition = '';
+      document.body.style.minHeight = '';
+      if (newList) newList.classList.remove('file-list-in');
+      scrollToList();
+    }, 260);
   }
 
   if (!existing) {
-    // Première ouverture : rendre sans animation, puis scroller
     fileList.innerHTML = buildFileListHtml(folderName, false);
     setHint('');
-    const first = document.querySelector('#file-list .file-item');
-    if (first) smoothScrollTo(first);
+    scrollToList();
   } else {
-    // Toujours : scroll + fold/unfold indépendants simultanément
-    smoothScrollTo(fileList);
-    foldThenUnfold();
+    doSwap();
+  }
+}
+
+function scrollToList() {
+  const isMobile = window.innerWidth <= 520;
+  let targetY;
+  if (isMobile) {
+    const config = document.getElementById('seance-config');
+    if (config) targetY = config.getBoundingClientRect().bottom + window.scrollY;
+  } else {
+    targetY = document.documentElement.scrollHeight - window.innerHeight;
+  }
+  if (targetY != null && Math.abs(targetY - window.scrollY) > 2) {
+    smoothScrollTo2(targetY, 350);
   }
 }
 
