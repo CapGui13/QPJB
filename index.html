@@ -57,7 +57,7 @@ header{
   z-index:200;
   border-bottom:1px solid rgba(200,151,58,.28);
 }
-#vhome,#vdeal{padding-top:60px}
+#vhome,#vdeal,#vseance{padding-top:60px}
 .logo{display:flex;align-items:center;gap:11px}
 .logo-icon{
   width:56px;height:36px;border-radius:8px;flex-shrink:0;
@@ -132,7 +132,7 @@ header{
 .btn-arr:disabled{background:var(--card-bd);color:var(--txt3);cursor:not-allowed}
 
 /* ── DEAL CONTENT ── */
-.deal-wrap{padding:14px 12px;display:flex;flex-direction:column;gap:12px;padding-bottom:48px}
+.deal-wrap{padding:14px 12px;padding-top:58px;display:flex;flex-direction:column;gap:12px;padding-bottom:48px}
 
 /* ── BOARD HEADER ── */
 .board-hdr{
@@ -360,14 +360,17 @@ header{
 
 /* ── LIGHTBOX ── */
 .lightbox{
-  display:none;
+  display:flex;
   position:fixed;inset:0;z-index:999;
   background:rgba(0,0,0,.95);
   flex-direction:column;
   align-items:center;justify-content:center;
   overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .22s ease;
 }
-.lightbox.open{display:flex}
+.lightbox.open{opacity:1;pointer-events:all}
 .lightbox-track{
   display:flex;
   align-items:center;
@@ -421,6 +424,16 @@ header{
 .file-list-out { animation: fadeOut .15s ease forwards; pointer-events:none; }
 .file-list-in  { animation: fadeIn .25s ease forwards; }
 
+/* ── FADE OVERLAY ── */
+#fade-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:#0d1a10;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .18s ease;
+}
+#fade-overlay.fade-in {opacity:1;pointer-events:all}
+
 /* ── TOKEN ── */
 .token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
 .token-input{
@@ -453,6 +466,8 @@ header{
 </head>
 <body>
 
+<div id="fade-overlay"></div>
+
 <!-- HEADER FIXE PARTAGÉ -->
 <header id="main-header">
   <div class="logo">
@@ -482,7 +497,17 @@ header{
     <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche des séances…</div></div>
     <div class="cfg-hint" id="cfg-hint"></div>
   </div>
-  <div id="file-list"></div>
+
+</div>
+
+<!-- SÉANCE VIEW -->
+<div id="vseance" style="display:none">
+  <div class="deal-nav" id="seance-nav">
+    <button class="btn-back" onclick="showHomeFromSeance()">← Retour</button>
+    <span class="nav-ctr" id="seance-nav-title"></span>
+    <div style="width:74px"></div>
+  </div>
+  <div id="seance-file-list" style="padding-top:112px;padding-bottom:24px"></div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -574,38 +599,16 @@ function initTokenUI() {
 let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
-function smoothScrollTo(el, cb) {
-  const target = el.getBoundingClientRect().top + window.scrollY - 8;
-  const dist = Math.abs(target - window.scrollY);
-  if (dist < 2) { if (cb) cb(); return; }
-  const speed = 0.8;
-  const duration = Math.min(Math.max(dist / speed, 200), 800);
-  const start = window.scrollY;
-  const startTime = performance.now();
-  function step(now) {
-    const t = Math.min((now - startTime) / duration, 1);
-    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-    window.scrollTo(0, start + (target - start) * ease);
-    if (t < 1) requestAnimationFrame(step);
-    else if (cb) cb();
-  }
-  requestAnimationFrame(step);
-}
-
-function smoothScrollTo2(targetY) {
-  const start = window.scrollY;
-  const dist = targetY - start;
-  if (Math.abs(dist) < 2) return;
-  // Vitesse constante : 1px par ms, min 200ms, max 600ms
-  const duration = Math.min(Math.max(Math.abs(dist), 200), 600);
-  const startTime = performance.now();
-  function step(now) {
-    const t = Math.min((now - startTime) / duration, 1);
-    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-    window.scrollTo(0, start + dist * ease);
-    if (t < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+// ── fondue rapide ─────────────────────────────────────────────────────
+function fadeSwap(doSwap) {
+  const ov = document.getElementById('fade-overlay');
+  ov.classList.add('fade-in');
+  setTimeout(() => {
+    doSwap();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      ov.classList.remove('fade-in');
+    }));
+  }, 190);
 }
 
 function renderSeanceGrid(seances) {
@@ -755,9 +758,15 @@ function openLightbox(i) {
   lightboxIdx = i;
   resetSlots();
   imgA().src = lightboxImages[i].url;
+  imgA().style.transform = 'scale(.92)';
   lbUpdate(i);
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    imgA().style.transition = 'transform .25s cubic-bezier(.4,0,.2,1)';
+    imgA().style.transform = 'scale(1)';
+    setTimeout(() => { imgA().style.transition = ''; }, 260);
+  }));
 }
 
 function navLightbox(dir) {
@@ -784,14 +793,21 @@ function navLightbox(dir) {
 
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
-  document.getElementById('lightbox').classList.remove('open');
-  imgA().src = ''; imgB().src = '';
-  resetSlots();
-  imgA().style.opacity = '';
-  document.getElementById('lightbox').style.background = '';
-  document.getElementById('lightbox').style.transition = '';
-  document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
-  document.body.style.overflow = '';
+  const lb = document.getElementById('lightbox');
+  imgA().style.transition = 'transform .22s cubic-bezier(.4,0,.2,1)';
+  imgA().style.transform = 'scale(.92)';
+  lb.classList.remove('open');
+  setTimeout(() => {
+    imgA().src = ''; imgB().src = '';
+    resetSlots();
+    imgA().style.opacity = '';
+    imgA().style.transform = '';
+    imgA().style.transition = '';
+    lb.style.background = '';
+    lb.style.transition = '';
+    document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
+    document.body.style.overflow = '';
+  }, 230);
 }
 
 // ── swipe sur la lightbox ──────────────────────────────────────────────
@@ -916,9 +932,40 @@ function closeLightbox(e) {
   }, {passive:true});
 })();
 
-// ── construction HTML de la liste ─────────────────────────────────────
-function buildFileListHtml(folderName, withAnim) {
-  return '<div class="' + (withAnim ? 'file-list file-list-in' : 'file-list') + '">' +
+// ── ouverture d'un dossier → vue séance ───────────────────────────────
+let currentFolder = null;
+
+function loadSeance(folderName) {
+  const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
+  if (!seance) return;
+
+  fadeSwap(() => {
+    currentFolder = folderName;
+    pbnFiles = seance.fichiers;
+
+    // Titre dans la barre de nav
+    document.getElementById('seance-nav-title').textContent = folderName;
+
+    // Injecter la liste des PBNs
+    document.getElementById('seance-file-list').innerHTML = buildFileListHtml(folderName);
+
+    // Basculer les vues
+    document.getElementById('vhome').style.display = 'none';
+    document.getElementById('vseance').style.display = 'block';
+    window.scrollTo(0, 0);
+  });
+}
+
+function showHomeFromSeance() {
+  fadeSwap(() => {
+    currentFolder = null;
+    document.getElementById('vseance').style.display = 'none';
+    document.getElementById('vhome').style.display = 'block';
+    window.scrollTo(0, 0);
+  });
+}
+function buildFileListHtml(folderName) {
+  return '<div class="file-list">' +
     pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
       const baseName = f.name.replace(/\.pbn$/i, '');
@@ -949,113 +996,6 @@ function buildFileListHtml(folderName, withAnim) {
          <div class="file-chev">›</div>
        </div>`;
     }).join('') + '</div>';
-}
-
-function unfoldNewList(fileList) {
-  const newList = fileList.querySelector('.file-list');
-  if (!newList) return;
-  newList.style.setProperty('--list-h', newList.scrollHeight + 'px');
-  setTimeout(() => newList.classList.remove('file-list-in'), 370);
-}
-
-// ── ouverture d'un dossier ─────────────────────────────────────────────
-let currentFolder = null;
-let _seanceAnimToken = 0; // annule toute animation en cours si on change de séance
-
-function loadSeance(folderName) {
-  if (folderName === currentFolder) return;
-  currentFolder = folderName;
-  const seance = (seancesData?.seances || []).find(s => s.folder === folderName);
-  if (!seance) return;
-  pbnFiles = seance.fichiers;
-
-  // Marque visuelle de la séance active
-  document.querySelectorAll('.seance-card').forEach(el => { el.style.borderColor = ''; });
-  const sel = document.querySelector(`.seance-card[data-folder="${folderName}"]`);
-  if (sel) sel.style.borderColor = 'rgba(255,255,255,.7)';
-
-  // Jeton d'annulation : toute animation précédente qui vérifiait son jeton s'arrête
-  const token = ++_seanceAnimToken;
-
-  const fileList = document.getElementById('file-list');
-  const existing = fileList.querySelector('.file-list');
-
-  // Inject + anime le nouveau contenu
-  function doSwap() {
-    if (token !== _seanceAnimToken) return;
-
-    if (existing) {
-      existing.classList.add('file-list-out');
-      setTimeout(() => {
-        if (token !== _seanceAnimToken) return;
-        injectAndUnfold();
-      }, 150);
-    } else {
-      injectAndUnfold();
-    }
-  }
-
-  function injectAndUnfold() {
-    // Hauteur de page et scroll actuels
-    const pageH    = document.documentElement.scrollHeight;
-    const viewH    = window.innerHeight;
-    const maxBefore = pageH - viewH;
-
-    // 1. Injecte le nouveau contenu
-    fileList.innerHTML = buildFileListHtml(folderName, true);
-    setHint('');
-    const newList = fileList.querySelector('.file-list');
-
-    // 2. Calcule le shrink : combien la page a rétréci
-    const newPageH  = document.documentElement.scrollHeight;
-    const shrink    = pageH - newPageH;
-
-    // 3. Si la page a rétréci, on ajoute un spacer qui compense exactement,
-    //    puis on le réduit à 0 via transition CSS → la page rétrécit doucement,
-    //    le navigateur n'a jamais besoin de corriger le scroll
-    if (shrink > 0) {
-      const spacer = document.createElement('div');
-      spacer.style.cssText = `height:${shrink}px; transition:height .28s ease; flex-shrink:0;`;
-      fileList.appendChild(spacer);
-      // Force un reflow avant de démarrer la transition
-      spacer.getBoundingClientRect();
-      spacer.style.height = '0px';
-      setTimeout(() => spacer.remove(), 300);
-    }
-
-    // 4. Scroll vers la cible (après la transition)
-    setTimeout(() => {
-      if (token !== _seanceAnimToken) return;
-      if (newList) newList.classList.remove('file-list-in');
-      scrollToList();
-    }, 300);
-  }
-
-  if (!existing) {
-    fileList.innerHTML = buildFileListHtml(folderName, false);
-    setHint('');
-    scrollToList();
-  } else {
-    doSwap();
-  }
-}
-
-function calcScrollTarget() {
-  const isMobile = window.innerWidth <= 520;
-  if (isMobile) {
-    const config = document.getElementById('seance-config');
-    if (config) { const headerH = document.querySelector('header') ? document.querySelector('header').offsetHeight : 0; return config.getBoundingClientRect().bottom + window.scrollY - headerH - 16; }
-    return null;
-  } else {
-    return document.documentElement.scrollHeight - window.innerHeight;
-  }
-}
-
-function scrollToList() {
-  const targetY = calcScrollTarget();
-  if (targetY != null && Math.abs(targetY - window.scrollY) > 2) {
-    smoothScrollTo2(targetY);
-  }
 }
 
 // ── reveal blur ou ouvre le visualiseur ───────────────────────────────
@@ -1096,7 +1036,6 @@ async function openSeanceAt(fileIdx) {
 }
 
 function goToHome() {
-  document.getElementById('file-list').innerHTML = '';
   currentFolder = null;
   discoverSeances();
 }
@@ -1131,10 +1070,13 @@ function decodeISO(buf) {
 }
 
 let savedScrollY = 0;
+let _dealSource = 'vhome'; // 'vhome' ou 'vseance'
 
 function showDeal() {
   savedScrollY = window.scrollY;
+  _dealSource = document.getElementById('vseance').style.display !== 'none' ? 'vseance' : 'vhome';
   document.getElementById('vhome').style.display = 'none';
+  document.getElementById('vseance').style.display = 'none';
   document.getElementById('vdeal').style.display = 'block';
   document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
   window.scrollTo(0, 0);
@@ -1142,7 +1084,7 @@ function showDeal() {
 
 function showHome() {
   document.getElementById('vdeal').style.display = 'none';
-  document.getElementById('vhome').style.display = 'block';
+  document.getElementById(_dealSource).style.display = 'block';
   window.scrollTo(0, savedScrollY);
 }
 
@@ -1617,7 +1559,9 @@ function fmtBid(bid) {
 })();
 </script>
 <script>
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/QPJB/service-worker.js');
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    navigator.serviceWorker.register('/QPJB/service-worker.js');
+  }
 </script>
 </body>
 </html>
