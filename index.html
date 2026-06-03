@@ -418,7 +418,7 @@ header{
   from { opacity:0; }
   to   { opacity:1; }
 }
-.file-list-out { animation: fadeOut .2s ease forwards; pointer-events:none; }
+.file-list-out { animation: fadeOut .15s ease forwards; pointer-events:none; }
 .file-list-in  { animation: fadeIn .25s ease forwards; }
 
 /* ── TOKEN ── */
@@ -592,10 +592,12 @@ function smoothScrollTo(el, cb) {
   requestAnimationFrame(step);
 }
 
-function smoothScrollTo2(targetY, duration) {
+function smoothScrollTo2(targetY) {
   const start = window.scrollY;
   const dist = targetY - start;
   if (Math.abs(dist) < 2) return;
+  // Vitesse constante : 1px par ms, min 200ms, max 600ms
+  const duration = Math.min(Math.max(Math.abs(dist), 200), 600);
   const startTime = performance.now();
   function step(now) {
     const t = Math.min((now - startTime) / duration, 1);
@@ -987,7 +989,7 @@ function loadSeance(folderName) {
       setTimeout(() => {
         if (token !== _seanceAnimToken) return;
         injectAndUnfold();
-      }, 250);
+      }, 150);
     } else {
       injectAndUnfold();
     }
@@ -1052,7 +1054,7 @@ function calcScrollTarget() {
 function scrollToList() {
   const targetY = calcScrollTarget();
   if (targetY != null && Math.abs(targetY - window.scrollY) > 2) {
-    smoothScrollTo2(targetY, 350);
+    smoothScrollTo2(targetY);
   }
 }
 
