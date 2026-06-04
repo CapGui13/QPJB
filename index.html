@@ -57,7 +57,9 @@ header{
   z-index:200;
   border-bottom:1px solid rgba(200,151,58,.28);
 }
-#vhome,#vdeal,#vseance{padding-top:60px}
+#vhome{padding-top:60px}
+#vdeal{padding-top:60px}
+#vseance{padding-top:110px}
 .logo{display:flex;align-items:center;gap:11px}
 .logo-icon{
   width:56px;height:36px;border-radius:8px;flex-shrink:0;
@@ -508,7 +510,7 @@ header{
 </div>
 
 <!-- SÉANCE VIEW -->
-<div id="vseance" style="display:none;padding-top:110px">
+<div id="vseance" style="display:none">
   <div class="deal-nav" id="seance-nav">
     <button class="btn-back" onclick="showHomeFromSeance()">← Retour</button>
     <span class="nav-ctr" id="seance-nav-title"></span>
