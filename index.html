@@ -516,7 +516,10 @@ header{
   <div class="deal-nav" id="seance-nav">
     <button class="btn-back" onclick="showHomeFromSeance()">← Retour</button>
     <span class="nav-ctr" id="seance-nav-title"></span>
-    <div style="width:74px"></div>
+    <div class="nav-arr">
+      <button class="btn-arr" id="btn-seance-prev" onclick="navSeance(-1)">‹</button>
+      <button class="btn-arr" id="btn-seance-next" onclick="navSeance(1)">›</button>
+    </div>
   </div>
   <div id="seance-file-list" style="padding-top:12px;padding-bottom:24px"></div>
 </div>
@@ -1022,6 +1025,7 @@ function loadSeance(folderName) {
     // Basculer les vues
     document.getElementById('vhome').style.display = 'none';
     document.getElementById('vseance').style.display = 'block';
+    updateSeanceArrows();
     window.scrollTo(0, 0);
   });
 }
@@ -1034,6 +1038,25 @@ function toggleBlur(enabled) {
   } else {
     list.classList.add('blur-disabled');
   }
+}
+
+function sortedSeances() {
+  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+}
+
+function updateSeanceArrows() {
+  const list = sortedSeances();
+  const ci = list.findIndex(s => s.folder === currentFolder);
+  document.getElementById('btn-seance-prev').disabled = ci <= 0;
+  document.getElementById('btn-seance-next').disabled = ci < 0 || ci >= list.length - 1;
+}
+
+function navSeance(dir) {
+  const list = sortedSeances();
+  const ci = list.findIndex(s => s.folder === currentFolder);
+  const next = ci + dir;
+  if (next < 0 || next >= list.length) return;
+  loadSeance(list[next].folder);
 }
 
 function showHomeFromSeance() {
