@@ -8,8 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="QPJB">
 <meta name="theme-color" content="#1a1a1a">
 <link rel="manifest" href="/QPJB/manifest.json">
-<link rel="icon" type="image/svg+xml" href="/QPJB/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/QPJB/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxYzFjMjQiLz4KICA8cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjYxIiBoZWlnaHQ9IjYxIiByeD0iMTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMDAsMTUxLDU4LDAuNSkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjE4LjUiIHg9IjQiIHk9IjQyIiBsZXR0ZXItc3BhY2luZz0iMC44Ij4KICAgIDx0c3BhbiBmaWxsPSIjNmI5ZmQ0Ij5RPC90c3Bhbj48dHNwYW4gZmlsbD0iI2Q0NzA2YSI+UDwvdHNwYW4+PHRzcGFuIGZpbGw9IiNjODkyNGEiPko8L3RzcGFuPjx0c3BhbiBmaWxsPSIjNmFhYTc4Ij5CPC90c3Bhbj4KICA8L3RleHQ+Cjwvc3ZnPg==">
 <link rel="apple-touch-icon" sizes="180x180" href="/QPJB/apple-touch-icon.png">
 <title>QPJB - Visualiseur de donnes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -632,7 +631,7 @@ function renderSeanceGrid(seances) {
       return `
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
         <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(s.folder)}${desc}</div>
-        <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
+        <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} donne${s.fichiers.length!==1?'s':''}</div>
       </div>`;
     }).join('');
   };
