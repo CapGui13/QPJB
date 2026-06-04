@@ -336,11 +336,11 @@ header{
 
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
-.seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s}
+.seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
 .seance-card:active{transform:scale(.95)}
-.seance-desc{font-size:11.5px;color:rgba(200,151,58,.75);font-style:italic;margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.seance-num{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:.5px}
-.seance-count{font-size:11px;color:rgba(255,255,255,.4)}
+.seance-desc{font-size:11px;color:rgba(200,151,58,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
+.seance-num{font-family:'Exo 2',sans-serif;font-size:15px;font-weight:800;color:#ffffff;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+.seance-count{font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0}
 
 /* ── IMAGES SECTION ── */
 .images-section{padding:14px 18px 16px;background:#282828;border-bottom:1px solid rgba(200,151,58,.15)}
@@ -615,14 +615,35 @@ function fadeSwap(doSwap) {
 
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
-  document.getElementById('seance-grid').innerHTML = sorted.map(s => {
-    const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
-    return `
-    <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
-      <div class="seance-num" style="display:flex;align-items:baseline;gap:0;min-width:0;overflow:hidden">${esc(s.folder)}${desc}</div>
-      <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
-    </div>`;
-  }).join('');
+  const doRender = () => {
+    document.getElementById('seance-grid').innerHTML = sorted.map(s => {
+      const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
+      return `
+      <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
+        <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(s.folder)}${desc}</div>
+        <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
+      </div>`;
+    }).join('');
+  };
+
+  if (Object.keys(descMap).length === 0) {
+    // descMap vide : tenter de charger config.json (local ou GitHub raw)
+    const urls = [
+      './config.json',
+      `https://raw.githubusercontent.com/${GH_REPO}/main/config.json`
+    ];
+    (async () => {
+      for (const url of urls) {
+        try {
+          const r = await fetch(url);
+          if (r.ok) { const cfg = await r.json(); descMap = cfg.descriptions || {}; playLinks = cfg.links || playLinks; break; }
+        } catch {}
+      }
+      doRender();
+    })();
+  } else {
+    doRender();
+  }
 }
 
 // ── découverte auto — cache invalidé par SHA de commit ─────────────────
@@ -669,6 +690,16 @@ async function discoverSeances(forceRefresh = false) {
     if (rootImages.length) renderImages(rootImages);
 
     // ── config.json : liens "jouer" ─────────────────────────────────────
+    // Fallback local (pour tests en file://)
+    try {
+      const localCfg = await fetch('./config.json');
+      if (localCfg.ok) {
+        const cfg = await localCfg.json();
+        playLinks = cfg.links || {};
+        descMap   = cfg.descriptions || {};
+      }
+    } catch {}
+
     const configItem = items.find(f => f.type === 'file' && f.name === 'config.json');
     if (configItem) {
       try {
@@ -722,6 +753,12 @@ async function discoverSeances(forceRefresh = false) {
         if (cached.images?.length) renderImages(cached.images);
         if (cached.playLinks) playLinks = cached.playLinks;
         if (cached.descMap)   descMap   = cached.descMap;
+        // Tenter de rafraîchir le config local (descriptions, liens)
+        try {
+          const localCfg = await fetch('./config.json');
+          if (localCfg.ok) { const cfg = await localCfg.json(); playLinks = cfg.links || playLinks; descMap = cfg.descriptions || descMap; }
+        } catch {}
+        renderSeanceGrid(cached.seances); // re-render avec descMap à jour
         return;
       }
     } catch {}
@@ -999,7 +1036,7 @@ function buildFileListHtml(folderName) {
         ? `onclick="revealOrOpen(event, this, ${i})"`
         : `onclick="openSeanceAt(${i})"`;
       return `<div class="file-item" ${onclick}>
-         <div class="file-icon" onclick="event.stopPropagation()">🃏</div>
+         <div class="file-icon" onclick="event.stopPropagation();openSeanceAt(${i})">🔍</div>
          <div style="min-width:0;flex:1;overflow:hidden">${nameHtml}</div>
          ${playBtn}
          <div class="file-chev">›</div>
@@ -1020,7 +1057,7 @@ function revealOrOpen(e, el, idx) {
 // Ouvre la séance en commençant à la première donne du fichier fileIdx
 // Charge tous les PBN en parallèle et aplatit toutes les donnes en une seule liste
 async function openSeanceAt(fileIdx) {
-  showDeal();
+  await showDeal();
   try {
     const texts = await Promise.all(pbnFiles.map(f => fetchPBN(f.download_url)));
     deals = [];
@@ -1084,17 +1121,24 @@ let _dealSource = 'vhome'; // 'vhome' ou 'vseance'
 function showDeal() {
   savedScrollY = window.scrollY;
   _dealSource = document.getElementById('vseance').style.display !== 'none' ? 'vseance' : 'vhome';
-  document.getElementById('vhome').style.display = 'none';
-  document.getElementById('vseance').style.display = 'none';
-  document.getElementById('vdeal').style.display = 'block';
-  document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
-  window.scrollTo(0, 0);
+  return new Promise(resolve => {
+    fadeSwap(() => {
+      document.getElementById('vhome').style.display = 'none';
+      document.getElementById('vseance').style.display = 'none';
+      document.getElementById('vdeal').style.display = 'block';
+      document.getElementById('deal-content').innerHTML = '<div class="loading">Chargement…</div>';
+      window.scrollTo(0, 0);
+      resolve();
+    });
+  });
 }
 
 function showHome() {
-  document.getElementById('vdeal').style.display = 'none';
-  document.getElementById(_dealSource).style.display = 'block';
-  window.scrollTo(0, savedScrollY);
+  fadeSwap(() => {
+    document.getElementById('vdeal').style.display = 'none';
+    document.getElementById(_dealSource).style.display = 'block';
+    window.scrollTo(0, savedScrollY);
+  });
 }
 
 function showErr(msg) {
