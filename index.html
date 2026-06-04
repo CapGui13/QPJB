@@ -827,30 +827,28 @@ function navLightbox(dir) {
   if (_lbBusy) return;
   const next = lightboxIdx + dir;
   if (next < 0 || next >= lightboxImages.length) return;
-  // Annuler le timer d'ouverture si encore en cours
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; imgA().style.transition = ''; }
   _lbBusy = true;
-  const W = window.innerWidth;
   const a = imgA(), b = imgB();
   b.src = lightboxImages[next].url;
   b.style.transition = 'none';
-  b.style.transform = `translateX(${dir > 0 ? W : -W}px)`;
-  b.style.opacity = '1';
-  // Forcer un reflow avant de lancer la transition
+  b.style.transform = 'translateX(0)';
+  b.style.opacity = '0';
   void b.offsetWidth;
-  requestAnimationFrame(() => {
-    a.style.transition = 'transform .35s ease';
-    a.style.transform  = `translateX(${dir > 0 ? -W : W}px)`;
-    b.style.transition = 'transform .35s ease';
-    b.style.transform  = 'translateX(0)';
-    setTimeout(() => {
-      lightboxIdx = next;
-      a.src = lightboxImages[next].url;
-      lbUpdate(next);
-      resetSlots();
-      _lbBusy = false;
-    }, 360);
-  });
+  a.style.transition = 'opacity .2s ease';
+  a.style.opacity = '0';
+  setTimeout(() => {
+    lightboxIdx = next;
+    lbUpdate(next);
+    resetSlots();
+    imgA().src = lightboxImages[next].url;
+    imgA().style.transition = 'none';
+    imgA().style.opacity = '0';
+    void imgA().offsetWidth;
+    imgA().style.transition = 'opacity .2s ease';
+    imgA().style.opacity = '1';
+    _lbBusy = false;
+  }, 210);
 }
 
 function closeLightbox(e) {
