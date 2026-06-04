@@ -338,6 +338,7 @@ header{
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s}
 .seance-card:active{transform:scale(.95)}
+.seance-desc{font-size:11.5px;color:rgba(200,151,58,.75);font-style:italic;margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .seance-num{font-family:'Exo 2',sans-serif;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:.5px}
 .seance-count{font-size:11px;color:rgba(255,255,255,.4)}
 
@@ -549,6 +550,7 @@ const CW = ['N','E','S','W'];
 let deals = [], idx = 0;
 let pbnFiles = [];
 let playLinks = {}; // { "folder/file.pbn": "https://..." }
+let descMap   = {}; // { "Séance X ...": "sous-titre" }
 const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
@@ -613,11 +615,14 @@ function fadeSwap(doSwap) {
 
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
-  document.getElementById('seance-grid').innerHTML = sorted.map(s => `
+  document.getElementById('seance-grid').innerHTML = sorted.map(s => {
+    const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
+    return `
     <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
-      <div class="seance-num">${esc(s.folder)}</div>
+      <div class="seance-num" style="display:flex;align-items:baseline;gap:0;min-width:0;overflow:hidden">${esc(s.folder)}${desc}</div>
       <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 // ── découverte auto — cache invalidé par SHA de commit ─────────────────
@@ -643,6 +648,7 @@ async function discoverSeances(forceRefresh = false) {
           renderSeanceGrid(cached.seances);
           if (cached.images?.length) renderImages(cached.images);
           if (cached.playLinks) playLinks = cached.playLinks;
+          if (cached.descMap)   descMap   = cached.descMap;
           setHint('');
           return;
         }
@@ -670,6 +676,7 @@ async function discoverSeances(forceRefresh = false) {
         if (cfgRes.ok) {
           const cfg = await cfgRes.json();
           playLinks = cfg.links || {};
+          descMap   = cfg.descriptions || {};
         }
       } catch {}
     }
@@ -700,7 +707,7 @@ async function discoverSeances(forceRefresh = false) {
       return;
     }
 
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found, images: rootImages, playLinks })); } catch {}
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found, images: rootImages, playLinks, descMap })); } catch {}
     seancesData = { seances: found };
     renderSeanceGrid(found);
     setHint('');
@@ -714,7 +721,7 @@ async function discoverSeances(forceRefresh = false) {
         renderSeanceGrid(cached.seances);
         if (cached.images?.length) renderImages(cached.images);
         if (cached.playLinks) playLinks = cached.playLinks;
-        setHint('(hors ligne)');
+        if (cached.descMap)   descMap   = cached.descMap;
         return;
       }
     } catch {}
