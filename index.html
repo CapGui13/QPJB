@@ -1026,8 +1026,12 @@ function loadSeance(folderName) {
 
 function toggleBlur(enabled) {
   const list = document.getElementById('seance-file-list');
-  if (enabled) list.classList.remove('blur-disabled');
-  else list.classList.add('blur-disabled');
+  if (enabled) {
+    list.classList.remove('blur-disabled');
+    list.querySelectorAll('.file-name-blur.revealed').forEach(el => el.classList.remove('revealed'));
+  } else {
+    list.classList.add('blur-disabled');
+  }
 }
 
 function showHomeFromSeance() {
