@@ -587,7 +587,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v11';
+const CACHE_KEY = 'qpjb-seances-v12';
 
 function ghHeaders() {
   const token = localStorage.getItem('gh-token');
@@ -679,10 +679,18 @@ async function discoverSeances(forceRefresh = false) {
         const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
         if (cached && cached.sha === currentSha && cached.seances?.length) {
           seancesData = { seances: cached.seances };
-          renderSeanceGrid(cached.seances);
-          if (cached.images?.length) renderImages(cached.images);
           if (cached.playLinks) playLinks = cached.playLinks;
           if (cached.descMap)   descMap   = cached.descMap;
+          // Si descMap absent du cache (ancien format), le recharger avant de rendre
+          if (!Object.keys(descMap).length) {
+            const cfgUrls = ['./config.json', `https://raw.githubusercontent.com/${GH_REPO}/main/config.json`];
+            for (const u of cfgUrls) {
+              try { const r = await fetch(u); if (r.ok) { const c = await r.json(); descMap = c.descriptions || {}; playLinks = c.links || playLinks; break; } } catch {}
+            }
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({...cached, descMap, playLinks})); } catch {}
+          }
+          renderSeanceGrid(cached.seances);
+          if (cached.images?.length) renderImages(cached.images);
           setHint('');
           return;
         }
@@ -762,10 +770,10 @@ async function discoverSeances(forceRefresh = false) {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
       if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
-        renderSeanceGrid(cached.seances);
-        if (cached.images?.length) renderImages(cached.images);
         if (cached.playLinks) playLinks = cached.playLinks;
         if (cached.descMap)   descMap   = cached.descMap;
+        renderSeanceGrid(cached.seances);
+        if (cached.images?.length) renderImages(cached.images);
         // Tenter de rafraîchir le config local (descriptions, liens)
         try {
           const localCfg = await fetch('./config.json');
