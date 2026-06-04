@@ -103,9 +103,17 @@ header{
   transition: filter .25s, color .25s;
   cursor: pointer;
 }
-.file-name-blur.revealed{
-  filter: none;
-}
+.file-name-blur.revealed{ filter: none; }
+.blur-disabled .file-name-blur{ filter: none; cursor: default; }
+
+/* ── BLUR TOGGLE ── */
+.blur-toggle-wrap{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 0 4px;font-size:12px;color:rgba(255,255,255,.5)}
+.blur-toggle{position:relative;width:40px;height:22px;cursor:pointer}
+.blur-toggle input{opacity:0;width:0;height:0;position:absolute}
+.blur-track{position:absolute;inset:0;border-radius:11px;background:rgba(255,255,255,.15);transition:background .2s}
+.blur-toggle input:checked + .blur-track{background:var(--gold)}
+.blur-thumb{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.blur-toggle input:checked + .blur-track + .blur-thumb{transform:translateX(18px)}
 .file-chev{margin-left:auto;color:var(--gold);font-size:20px;flex-shrink:0}
 
 /* ── DEAL VIEW ── */
@@ -422,8 +430,6 @@ header{
   from { opacity:0; }
   to   { opacity:1; }
 }
-.file-list-out { animation: fadeOut .15s ease forwards; pointer-events:none; }
-.file-list-in  { animation: fadeIn .25s ease forwards; }
 
 /* ── FADE OVERLAY ── */
 #fade-overlay{
@@ -502,13 +508,13 @@ header{
 </div>
 
 <!-- SÉANCE VIEW -->
-<div id="vseance" style="display:none">
+<div id="vseance" style="display:none;padding-top:110px">
   <div class="deal-nav" id="seance-nav">
     <button class="btn-back" onclick="showHomeFromSeance()">← Retour</button>
     <span class="nav-ctr" id="seance-nav-title"></span>
     <div style="width:74px"></div>
   </div>
-  <div id="seance-file-list" style="padding-top:112px;padding-bottom:24px"></div>
+  <div id="seance-file-list" style="padding-top:12px;padding-bottom:24px"></div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -798,6 +804,7 @@ function resetSlots() {
   b.style.transition = 'none'; b.style.transform = ''; b.style.opacity = '0'; b.src = '';
 }
 
+let _openTimer = null;
 function openLightbox(i) {
   lightboxIdx = i;
   resetSlots();
@@ -809,29 +816,38 @@ function openLightbox(i) {
   requestAnimationFrame(() => requestAnimationFrame(() => {
     imgA().style.transition = 'transform .25s cubic-bezier(.4,0,.2,1)';
     imgA().style.transform = 'scale(1)';
-    setTimeout(() => { imgA().style.transition = ''; }, 260);
+    _openTimer = setTimeout(() => { imgA().style.transition = ''; _openTimer = null; }, 260);
   }));
 }
 
+let _lbBusy = false;
 function navLightbox(dir) {
+  if (_lbBusy) return;
   const next = lightboxIdx + dir;
   if (next < 0 || next >= lightboxImages.length) return;
+  // Annuler le timer d'ouverture si encore en cours
+  if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; imgA().style.transition = ''; }
+  _lbBusy = true;
   const W = window.innerWidth;
   const a = imgA(), b = imgB();
   b.src = lightboxImages[next].url;
-  b.style.transition = 'none'; b.style.opacity = '1';
+  b.style.transition = 'none';
   b.style.transform = `translateX(${dir > 0 ? W : -W}px)`;
+  b.style.opacity = '1';
+  // Forcer un reflow avant de lancer la transition
+  void b.offsetWidth;
   requestAnimationFrame(() => {
-    a.style.transition = 'transform .45s ease';
+    a.style.transition = 'transform .35s ease';
     a.style.transform  = `translateX(${dir > 0 ? -W : W}px)`;
-    b.style.transition = 'transform .45s ease';
+    b.style.transition = 'transform .35s ease';
     b.style.transform  = 'translateX(0)';
     setTimeout(() => {
       lightboxIdx = next;
       a.src = lightboxImages[next].url;
       lbUpdate(next);
       resetSlots();
-    }, 460);
+      _lbBusy = false;
+    }, 360);
   });
 }
 
@@ -990,16 +1006,28 @@ function loadSeance(folderName) {
     // Titre dans la barre de nav
     const desc = descMap[folderName];
     const titleEl = document.getElementById('seance-nav-title');
-    titleEl.innerHTML = esc(folderName) + (desc ? ` <span style="font-style:italic;opacity:.65;font-size:10.5px">— ${esc(desc)}</span>` : '');
+    titleEl.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:1px">
+      <span>${esc(folderName)}</span>
+      ${desc ? `<span style="font-style:italic;opacity:.85;font-size:12px;font-weight:400;color:rgba(200,151,58,1)">${esc(desc)}</span>` : ''}
+    </div>`;
 
     // Injecter la liste des PBNs
     document.getElementById('seance-file-list').innerHTML = buildFileListHtml(folderName);
+    document.getElementById('seance-file-list').classList.remove('blur-disabled');
+    const toggleInput = document.getElementById('blur-toggle-input');
+    if (toggleInput) toggleInput.checked = true;
 
     // Basculer les vues
     document.getElementById('vhome').style.display = 'none';
     document.getElementById('vseance').style.display = 'block';
     window.scrollTo(0, 0);
   });
+}
+
+function toggleBlur(enabled) {
+  const list = document.getElementById('seance-file-list');
+  if (enabled) list.classList.remove('blur-disabled');
+  else list.classList.add('blur-disabled');
 }
 
 function showHomeFromSeance() {
@@ -1011,7 +1039,15 @@ function showHomeFromSeance() {
   });
 }
 function buildFileListHtml(folderName) {
-  return '<div class="file-list">' +
+  const toggleHtml = `<div class="blur-toggle-wrap" style="justify-content:flex-start;padding:0 4px 10px">
+    <label class="blur-toggle">
+      <input type="checkbox" id="blur-toggle-input" checked onchange="toggleBlur(this.checked)">
+      <div class="blur-track"></div>
+      <div class="blur-thumb"></div>
+    </label>
+    <span>Flou actif</span>
+  </div>`;
+  return '<div class="file-list">' + toggleHtml +
     pbnFiles.map((f, i) => {
       const key = `${folderName}/${f.name}`;
       const baseName = f.name.replace(/\.pbn$/i, '');
@@ -1046,6 +1082,8 @@ function buildFileListHtml(folderName) {
 
 // ── reveal blur ou ouvre le visualiseur ───────────────────────────────
 function revealOrOpen(e, el, idx) {
+  const blurDisabled = document.getElementById('seance-file-list').classList.contains('blur-disabled');
+  if (blurDisabled) { openSeanceAt(idx); return; }
   const blur = el.querySelector('.file-name-blur');
   if (blur && !blur.classList.contains('revealed')) {
     blur.classList.add('revealed');
@@ -1081,39 +1119,6 @@ async function openSeanceAt(fileIdx) {
   } catch(e) { showErr(e.message); }
 }
 
-function goToHome() {
-  currentFolder = null;
-  discoverSeances();
-}
-
-function loadLocalFile(input) {
-  const f = input.files[0]; if (!f) return;
-  showDeal();
-  const r = new FileReader();
-  r.onload = e => {
-    const text = e.target.result;
-    if (text.includes('\uFFFD')) {
-      const r2 = new FileReader();
-      r2.onload = e2 => {
-        deals = parsePBN(decodeISO(e2.target.result));
-        deals.forEach(d => { d._filename = f.name.replace(/\.pbn$/i,''); });
-        if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
-        idx = 0; render(0);
-      };
-      r2.readAsArrayBuffer(f);
-    } else {
-      deals = parsePBN(text);
-      deals.forEach(d => { d._filename = f.name.replace(/\.pbn$/i,''); });
-      if (!deals.length) { showErr('Aucune donne trouvée.'); return; }
-      idx = 0; render(0);
-    }
-  };
-  r.readAsText(f, 'utf-8');
-}
-
-function decodeISO(buf) {
-  return new TextDecoder('iso-8859-1').decode(new Uint8Array(buf));
-}
 
 let savedScrollY = 0;
 let _dealSource = 'vhome'; // 'vhome' ou 'vseance'
@@ -1458,28 +1463,6 @@ function fmtContract(contract, declarer) {
 }
 
 // ── format lead for badge (suit in correct color) ─────────────────────
-function fmtLeadBadge(lead) {
-  if (!lead || lead.length < 2) return esc(lead);
-  const suitChar = lead[0].toUpperCase();
-  const cardStr = lead.slice(1).toUpperCase();
-  const sym = {S:'♠',H:'♥',D:'♦',C:'♣'}[suitChar] || suitChar;
-  const isRed = suitChar === 'H' || suitChar === 'D';
-  const tokens = [];
-  for (let i = 0; i < cardStr.length; i++) {
-    const c = cardStr[i];
-    if (c==='K') tokens.push('R');
-    else if (c==='Q') tokens.push('D');
-    else if (c==='J') tokens.push('V');
-    else if (c==='T') tokens.push('10');
-    else if (c==='1' && cardStr[i+1]==='0') { tokens.push('10'); i++; }
-    else tokens.push(c);
-  }
-  const suitHtml = isRed
-    ? `<span style="color:#f87171;font-weight:800">${sym}</span>`
-    : `<span style="font-weight:800">${sym}</span>`;
-  return `${suitHtml} ${tokens.join(' ')}`;
-}
-
 
 // ── HCP calculator ─────────────────────────────────────────────────────
 function calcHCP(hand) {
@@ -1604,6 +1587,22 @@ function fmtBid(bid) {
   }
   return esc(bid);
 }
+
+// ── navigation clavier ────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  const lightboxOpen = document.getElementById('lightbox').classList.contains('open');
+  if (lightboxOpen) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); navLightbox(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); navLightbox(-1); }
+    else if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); }
+    return;
+  }
+  const dealVisible = document.getElementById('vdeal').style.display !== 'none';
+  if (!dealVisible) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nav(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); nav(-1); }
+  else if (e.key === 'Escape') { e.preventDefault(); showHome(); }
+});
 
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
