@@ -587,7 +587,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v12';
+const CACHE_KEY = 'qpjb-seances-v11';
 
 function ghHeaders() {
   const token = localStorage.getItem('gh-token');
@@ -679,10 +679,10 @@ async function discoverSeances(forceRefresh = false) {
         const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
         if (cached && cached.sha === currentSha && cached.seances?.length) {
           seancesData = { seances: cached.seances };
-          if (cached.playLinks) playLinks = cached.playLinks;
-          if (cached.descMap)   descMap   = cached.descMap;
           renderSeanceGrid(cached.seances);
           if (cached.images?.length) renderImages(cached.images);
+          if (cached.playLinks) playLinks = cached.playLinks;
+          if (cached.descMap)   descMap   = cached.descMap;
           setHint('');
           return;
         }
@@ -762,10 +762,10 @@ async function discoverSeances(forceRefresh = false) {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
       if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
-        if (cached.playLinks) playLinks = cached.playLinks;
-        if (cached.descMap)   descMap   = cached.descMap;
         renderSeanceGrid(cached.seances);
         if (cached.images?.length) renderImages(cached.images);
+        if (cached.playLinks) playLinks = cached.playLinks;
+        if (cached.descMap)   descMap   = cached.descMap;
         // Tenter de rafraîchir le config local (descriptions, liens)
         try {
           const localCfg = await fetch('./config.json');
