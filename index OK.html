@@ -154,7 +154,9 @@ header{
   display:flex;align-items:center;gap:5px;padding:7px 11px;border-radius:8px;
   border:1.5px solid var(--card-bd);background:transparent;color:var(--txt);
   font-size:13px;font-weight:600;font-family:'Source Serif 4',serif;cursor:pointer;
+  transition:transform .1s,filter .1s;
 }
+.btn-back.is-pressing{transform:scale(.93);filter:brightness(.8)}
 .nav-ctr{font-size:12px;color:var(--txt2);font-weight:500}
 .nav-arr{display:flex;gap:5px}
 .btn-arr{
@@ -1733,7 +1735,7 @@ document.addEventListener('keydown', e => {
 
   document.addEventListener('touchstart', e => {
     cancel();
-    const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play');
+    const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play, .btn-back');
     if (!el) return;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
@@ -1770,7 +1772,7 @@ document.addEventListener('keydown', e => {
   document.addEventListener('touchcancel', e => { cancel(); }, {passive: true});
 
   // ── Desktop : mousedown / mouseup ───────────────────────────────────
-  const SELECTOR = '.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play';
+  const SELECTOR = '.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play, .btn-back';
   document.addEventListener('mousedown', e => {
     const el = e.target.closest(SELECTOR);
     if (!el) return;
