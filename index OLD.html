@@ -45,7 +45,26 @@
 html{overflow-y:scroll;background:var(--cream)}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
-/* ── HEADER ── */
+/* ── SPLASH ── */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity .4s ease, visibility .4s;
+}
+#splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
+#splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+.splash-logo{font-family:'Exo 2',sans-serif;font-size:52px;font-weight:800;letter-spacing:2px;transform:translateZ(0);opacity:0;transition:opacity .2s}
+.splash-logo span:nth-child(1){color:#6b9fd4}
+.splash-logo span:nth-child(2){color:#d4706a}
+.splash-logo span:nth-child(3){color:#c8924a}
+.splash-logo span:nth-child(4){color:#6aaa78}
+.splash-title{color:rgba(255,255,255,.5);font-size:13px;font-family:'Exo 2',sans-serif;letter-spacing:1px}
+.splash-dots{display:flex;gap:8px;height:8px}
+.splash-dots span{width:8px;height:8px;border-radius:50%;background:rgba(200,151,58,.5);animation:splashPulse 1.2s infinite ease-in-out;will-change:opacity;transform:translateZ(0)}
+.splash-dots span:nth-child(2){animation-delay:.2s}
+.splash-dots span:nth-child(3){animation-delay:.4s}
+@keyframes splashPulse{0%,80%,100%{opacity:.3}40%{opacity:1}}
 header{
   pointer-events:none;
   user-select:none;
@@ -93,11 +112,15 @@ header{
   cursor:pointer;box-shadow:var(--sh-sm);transition:transform .12s;
 }
 .file-item:active{transform:scale(.97)}
+.file-item:has(.file-icon:active){transform:none}
+.file-item:has(.btn-play:active){transform:none}
 .file-icon{
   width:42px;height:42px;border-radius:10px;flex-shrink:0;
   background:linear-gradient(135deg,var(--felt),var(--felt-lt));
   display:flex;align-items:center;justify-content:center;font-size:20px;
+  transition:transform .1s,filter .12s;
 }
+.file-icon:active{transform:scale(.9);filter:brightness(.8)}
 .file-name{font-weight:600;font-size:15px;font-family:'Exo 2',sans-serif}
 .file-name-blur{
   filter: blur(4px);
@@ -204,9 +227,9 @@ header{
 .btn-play-diag{
   position:absolute;top:10px;right:10px;
   display:flex;align-items:center;gap:5px;
-  padding:6px 10px;border-radius:8px;
+  padding:7px 13px;border-radius:8px;
   background:rgba(0,0,0,.35);border:1.5px solid rgba(200,151,58,.4);
-  color:#fff;font-size:12px;font-weight:700;
+  color:#fff;font-size:14px;font-weight:700;
   font-family:'Exo 2',sans-serif;
   cursor:pointer;text-decoration:none;
   white-space:nowrap;z-index:1;
@@ -444,15 +467,23 @@ header{
 #fade-overlay.fade-in {opacity:1;pointer-events:all}
 
 /* ── TOKEN ── */
-.token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
+.token-section{padding:10px 18px;background:#1a1a1a;border-top:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
+.token-wrap{flex:1;min-width:0;position:relative;display:flex;align-items:center}
 .token-input{
-  flex:1;min-width:0;
+  flex:1;min-width:0;width:100%;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;padding:8px 12px;color:#fff;font-size:12px;
+  border-radius:8px;padding:8px 36px 8px 12px;color:#fff;font-size:12px;
   font-family:'Exo 2',sans-serif;outline:none;
 }
 .token-input::placeholder{color:rgba(255,255,255,.3)}
 .token-input:focus{border-color:rgba(200,151,58,.5)}
+.token-eye{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;padding:2px;
+  color:rgba(255,255,255,.4);font-size:15px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.token-eye:hover{color:rgba(255,255,255,.8)}
 .token-btn{
   padding:8px 12px;border-radius:8px;border:none;cursor:pointer;
   background:var(--felt);color:#fff;font-size:12px;font-weight:700;
@@ -475,6 +506,12 @@ header{
 </head>
 <body>
 
+<div id="splash">
+  <div class="splash-logo"><span>Q</span><span>P</span><span>J</span><span>B</span></div>
+  <div class="splash-title">Visualiseur de donnes</div>
+  <div class="splash-dots"><span></span><span></span><span></span></div>
+</div>
+
 <div id="fade-overlay"></div>
 
 <!-- HEADER FIXE PARTAGÉ -->
@@ -489,11 +526,6 @@ header{
 <!-- HOME -->
 <div id="vhome">
 
-  <div id="token-section" class="token-section">
-    <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
-    <button class="token-btn" onclick="saveToken()">OK</button>
-    <span class="token-ok" id="token-ok" style="display:none">✓</span>
-  </div>
   <div id="images-section" class="images-section" style="display:none">
     <div class="images-label">Documents</div>
     <div class="images-scroll" id="images-scroll"></div>
@@ -507,6 +539,15 @@ header{
     <div class="cfg-hint" id="cfg-hint"></div>
   </div>
 
+  <div id="token-section" class="token-section">
+    <div class="token-wrap">
+      <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
+      <button class="token-eye" id="token-eye" type="button" onclick="toggleTokenEye()" title="Afficher/masquer">👁</button>
+    </div>
+    <button class="token-btn" onclick="saveToken()">OK</button>
+    <span class="token-ok" id="token-ok" style="display:none">✓</span>
+  </div>
+
 </div>
 
 <!-- SÉANCE VIEW -->
@@ -514,7 +555,10 @@ header{
   <div class="deal-nav" id="seance-nav">
     <button class="btn-back" onclick="showHomeFromSeance()">← Retour</button>
     <span class="nav-ctr" id="seance-nav-title"></span>
-    <div style="width:74px"></div>
+    <div class="nav-arr">
+      <button class="btn-arr" id="btn-seance-prev" onclick="navSeance(-1)">‹</button>
+      <button class="btn-arr" id="btn-seance-next" onclick="navSeance(1)">›</button>
+    </div>
   </div>
   <div id="seance-file-list" style="padding-top:12px;padding-bottom:24px"></div>
 </div>
@@ -574,6 +618,21 @@ async function fetchPBN(url) {
 
 // ── helpers ────────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const _splashShown = Date.now();
+const _SPLASH_MIN = 1500;
+// Afficher le logo splash seulement quand Exo 2 est chargée
+document.fonts.load('800 52px "Exo 2"').then(() => {
+  const logo = document.querySelector('.splash-logo');
+  if (logo) logo.style.opacity = '1';
+});
+function hideSplash() {
+  const s = document.getElementById('splash');
+  if (!s) return;
+  const elapsed = Date.now() - _splashShown;
+  const delay = Math.max(0, _SPLASH_MIN - elapsed);
+  setTimeout(() => s.classList.add('fade-out'), delay);
+}
+
 function setHint(msg, err) {
   const h = document.getElementById('cfg-hint');
   h.textContent = msg;
@@ -591,11 +650,15 @@ function ghHeaders() {
   return h;
 }
 
+function toggleTokenEye() {
+  const input = document.getElementById('token-input');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
 function saveToken() {
   const val = document.getElementById('token-input').value.trim();
   if (val) {
     localStorage.setItem('gh-token', val);
-    document.getElementById('token-input').value = '';
     document.getElementById('token-ok').style.display = 'inline';
     setTimeout(() => document.getElementById('token-ok').style.display = 'none', 2000);
     discoverSeances(true);
@@ -603,8 +666,13 @@ function saveToken() {
 }
 
 function initTokenUI() {
-  const hasToken = !!localStorage.getItem('gh-token');
-  document.getElementById('token-ok').style.display = hasToken ? 'inline' : 'none';
+  const token = localStorage.getItem('gh-token');
+  if (token) {
+    const input = document.getElementById('token-input');
+    input.value = token;
+    input.type = 'password';
+    document.getElementById('token-ok').style.display = 'inline';
+  }
 }
 let seancesData = null;
 
@@ -629,7 +697,7 @@ function renderSeanceGrid(seances) {
       return `
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
         <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(s.folder)}${desc}</div>
-        <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} fichier${s.fichiers.length!==1?'s':''}</div>
+        <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} donne${s.fichiers.length!==1?'s':''}</div>
       </div>`;
     }).join('');
   };
@@ -679,6 +747,7 @@ async function discoverSeances(forceRefresh = false) {
           if (cached.playLinks) playLinks = cached.playLinks;
           if (cached.descMap)   descMap   = cached.descMap;
           setHint('');
+          hideSplash();
           return;
         }
       } catch {}
@@ -750,6 +819,7 @@ async function discoverSeances(forceRefresh = false) {
     seancesData = { seances: found };
     renderSeanceGrid(found);
     setHint('');
+    hideSplash();
 
   } catch(e) {
     // Essayer le cache périmé en fallback
@@ -767,12 +837,14 @@ async function discoverSeances(forceRefresh = false) {
           if (localCfg.ok) { const cfg = await localCfg.json(); playLinks = cfg.links || playLinks; descMap = cfg.descriptions || descMap; }
         } catch {}
         renderSeanceGrid(cached.seances); // re-render avec descMap à jour
+        hideSplash();
         return;
       }
     } catch {}
     // Aucun cache — afficher l'erreur
     const msg = e?.message || String(e) || 'Erreur inconnue';
     grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ${esc(msg)}</div>`;
+    hideSplash();
   }
 }
 // ── affichage des images de la racine ──────────────────────────────────
@@ -1020,6 +1092,7 @@ function loadSeance(folderName) {
     // Basculer les vues
     document.getElementById('vhome').style.display = 'none';
     document.getElementById('vseance').style.display = 'block';
+    updateSeanceArrows();
     window.scrollTo(0, 0);
   });
 }
@@ -1032,6 +1105,25 @@ function toggleBlur(enabled) {
   } else {
     list.classList.add('blur-disabled');
   }
+}
+
+function sortedSeances() {
+  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+}
+
+function updateSeanceArrows() {
+  const list = sortedSeances();
+  const ci = list.findIndex(s => s.folder === currentFolder);
+  document.getElementById('btn-seance-prev').disabled = ci <= 0;
+  document.getElementById('btn-seance-next').disabled = ci < 0 || ci >= list.length - 1;
+}
+
+function navSeance(dir) {
+  const list = sortedSeances();
+  const ci = list.findIndex(s => s.folder === currentFolder);
+  const next = ci + dir;
+  if (next < 0 || next >= list.length) return;
+  loadSeance(list[next].folder);
 }
 
 function showHomeFromSeance() {
@@ -1058,7 +1150,7 @@ function buildFileListHtml(folderName) {
       const shortKey = `${folderName}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const playBtn = link
-        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ Jouer</a>`
+        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:10px">▶ Jouer</a>`
         : '';
       const sepIdx = baseName.indexOf(' - ');
       let visiblePart, blurredPart;
@@ -1079,7 +1171,6 @@ function buildFileListHtml(folderName) {
          <div class="file-icon" onclick="event.stopPropagation();openSeanceAt(${i})">🔍</div>
          <div style="min-width:0;flex:1;overflow:hidden">${nameHtml}</div>
          ${playBtn}
-         <div class="file-chev">›</div>
        </div>`;
     }).join('') + '</div>';
 }

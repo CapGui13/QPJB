@@ -8,6 +8,8 @@
 <meta name="apple-mobile-web-app-title" content="QPJB">
 <meta name="theme-color" content="#1a1a1a">
 <link rel="manifest" href="/QPJB/manifest.json">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxYzFjMjQiLz4KICA8cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjYxIiBoZWlnaHQ9IjYxIiByeD0iMTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMDAsMTUxLDU4LDAuNSkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjE4IiB4PSIzIiB5PSIzNiIgbGV0dGVyLXNwYWNpbmc9IjEiPgogICAgPHRzcGFuIGZpbGw9IiM2YjlmZDQiPlE8L3RzcGFuPjx0c3BhbiBmaWxsPSIjZDQ3MDZhIj5QPC90c3Bhbj48dHNwYW4gZmlsbD0iI2M4OTI0YSI+SjwvdHNwYW4+PHRzcGFuIGZpbGw9IiM2YWFhNzgiPkI8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+">
+<link rel="apple-touch-icon" sizes="180x180" href="/QPJB/apple-touch-icon.png">
 <title>QPJB - Visualiseur de donnes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
@@ -402,7 +404,7 @@ header{
   overflow:hidden;
   opacity:0;
   pointer-events:none;
-  transition:opacity .22s ease;
+  transition:opacity .5s ease;
 }
 .lightbox.open{opacity:1;pointer-events:all}
 .lightbox-track{
@@ -883,15 +885,9 @@ function openLightbox(i) {
   lightboxIdx = i;
   resetSlots();
   imgA().src = lightboxImages[i].url;
-  imgA().style.transform = 'scale(.92)';
   lbUpdate(i);
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    imgA().style.transition = 'transform .25s cubic-bezier(.4,0,.2,1)';
-    imgA().style.transform = 'scale(1)';
-    _openTimer = setTimeout(() => { imgA().style.transition = ''; _openTimer = null; }, 260);
-  }));
 }
 
 let _lbBusy = false;
@@ -907,7 +903,7 @@ function navLightbox(dir) {
   b.style.transform = 'translateX(0)';
   b.style.opacity = '0';
   void b.offsetWidth;
-  a.style.transition = 'opacity .2s ease';
+  a.style.transition = 'opacity .5s ease';
   a.style.opacity = '0';
   setTimeout(() => {
     lightboxIdx = next;
@@ -917,17 +913,15 @@ function navLightbox(dir) {
     imgA().style.transition = 'none';
     imgA().style.opacity = '0';
     void imgA().offsetWidth;
-    imgA().style.transition = 'opacity .2s ease';
+    imgA().style.transition = 'opacity .5s ease';
     imgA().style.opacity = '1';
     _lbBusy = false;
-  }, 210);
+  }, 520);
 }
 
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
   const lb = document.getElementById('lightbox');
-  imgA().style.transition = 'transform .22s cubic-bezier(.4,0,.2,1)';
-  imgA().style.transform = 'scale(.92)';
   lb.classList.remove('open');
   setTimeout(() => {
     imgA().src = ''; imgB().src = '';
