@@ -45,7 +45,26 @@
 html{overflow-y:scroll;background:var(--cream)}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
-/* ── HEADER ── */
+/* ── SPLASH ── */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity .4s ease, visibility .4s;
+}
+#splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
+#splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+.splash-logo{font-family:'Exo 2',sans-serif;font-size:52px;font-weight:800;letter-spacing:2px;transform:translateZ(0);opacity:0;transition:opacity .2s}
+.splash-logo span:nth-child(1){color:#6b9fd4}
+.splash-logo span:nth-child(2){color:#d4706a}
+.splash-logo span:nth-child(3){color:#c8924a}
+.splash-logo span:nth-child(4){color:#6aaa78}
+.splash-title{color:rgba(255,255,255,.5);font-size:13px;font-family:'Exo 2',sans-serif;letter-spacing:1px}
+.splash-dots{display:flex;gap:8px;height:8px}
+.splash-dots span{width:8px;height:8px;border-radius:50%;background:rgba(200,151,58,.5);animation:splashPulse 1.2s infinite ease-in-out;will-change:opacity;transform:translateZ(0)}
+.splash-dots span:nth-child(2){animation-delay:.2s}
+.splash-dots span:nth-child(3){animation-delay:.4s}
+@keyframes splashPulse{0%,80%,100%{opacity:.3}40%{opacity:1}}
 header{
   pointer-events:none;
   user-select:none;
@@ -448,7 +467,7 @@ header{
 #fade-overlay.fade-in {opacity:1;pointer-events:all}
 
 /* ── TOKEN ── */
-.token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
+.token-section{padding:10px 18px;background:#1a1a1a;border-top:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
 .token-wrap{flex:1;min-width:0;position:relative;display:flex;align-items:center}
 .token-input{
   flex:1;min-width:0;width:100%;
@@ -487,6 +506,12 @@ header{
 </head>
 <body>
 
+<div id="splash">
+  <div class="splash-logo"><span>Q</span><span>P</span><span>J</span><span>B</span></div>
+  <div class="splash-title">Visualiseur de donnes</div>
+  <div class="splash-dots"><span></span><span></span><span></span></div>
+</div>
+
 <div id="fade-overlay"></div>
 
 <!-- HEADER FIXE PARTAGÉ -->
@@ -501,14 +526,6 @@ header{
 <!-- HOME -->
 <div id="vhome">
 
-  <div id="token-section" class="token-section">
-    <div class="token-wrap">
-      <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
-      <button class="token-eye" id="token-eye" type="button" onclick="toggleTokenEye()" title="Afficher/masquer">👁</button>
-    </div>
-    <button class="token-btn" onclick="saveToken()">OK</button>
-    <span class="token-ok" id="token-ok" style="display:none">✓</span>
-  </div>
   <div id="images-section" class="images-section" style="display:none">
     <div class="images-label">Documents</div>
     <div class="images-scroll" id="images-scroll"></div>
@@ -520,6 +537,15 @@ header{
     </div>
     <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche des séances…</div></div>
     <div class="cfg-hint" id="cfg-hint"></div>
+  </div>
+
+  <div id="token-section" class="token-section">
+    <div class="token-wrap">
+      <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
+      <button class="token-eye" id="token-eye" type="button" onclick="toggleTokenEye()" title="Afficher/masquer">👁</button>
+    </div>
+    <button class="token-btn" onclick="saveToken()">OK</button>
+    <span class="token-ok" id="token-ok" style="display:none">✓</span>
   </div>
 
 </div>
@@ -592,6 +618,21 @@ async function fetchPBN(url) {
 
 // ── helpers ────────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const _splashShown = Date.now();
+const _SPLASH_MIN = 1500;
+// Afficher le logo splash seulement quand Exo 2 est chargée
+document.fonts.load('800 52px "Exo 2"').then(() => {
+  const logo = document.querySelector('.splash-logo');
+  if (logo) logo.style.opacity = '1';
+});
+function hideSplash() {
+  const s = document.getElementById('splash');
+  if (!s) return;
+  const elapsed = Date.now() - _splashShown;
+  const delay = Math.max(0, _SPLASH_MIN - elapsed);
+  setTimeout(() => s.classList.add('fade-out'), delay);
+}
+
 function setHint(msg, err) {
   const h = document.getElementById('cfg-hint');
   h.textContent = msg;
@@ -706,6 +747,7 @@ async function discoverSeances(forceRefresh = false) {
           if (cached.playLinks) playLinks = cached.playLinks;
           if (cached.descMap)   descMap   = cached.descMap;
           setHint('');
+          hideSplash();
           return;
         }
       } catch {}
@@ -777,6 +819,7 @@ async function discoverSeances(forceRefresh = false) {
     seancesData = { seances: found };
     renderSeanceGrid(found);
     setHint('');
+    hideSplash();
 
   } catch(e) {
     // Essayer le cache périmé en fallback
@@ -794,12 +837,14 @@ async function discoverSeances(forceRefresh = false) {
           if (localCfg.ok) { const cfg = await localCfg.json(); playLinks = cfg.links || playLinks; descMap = cfg.descriptions || descMap; }
         } catch {}
         renderSeanceGrid(cached.seances); // re-render avec descMap à jour
+        hideSplash();
         return;
       }
     } catch {}
     // Aucun cache — afficher l'erreur
     const msg = e?.message || String(e) || 'Erreur inconnue';
     grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ${esc(msg)}</div>`;
+    hideSplash();
   }
 }
 // ── affichage des images de la racine ──────────────────────────────────
