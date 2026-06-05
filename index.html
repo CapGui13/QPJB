@@ -1706,41 +1706,44 @@ document.addEventListener('keydown', e => {
 </script>
 
 <script>
-// Gestion du tap : is-pressing immédiat, annulé si le doigt glisse (scroll)
+// Gestion du tap : is-pressing après un délai, annulé si scroll détecté avant
 (function() {
-  let pressing = null, startX = 0, startY = 0;
+  let pressing = null, timer = null, startX = 0, startY = 0, scrolled = false;
+  const DELAY = 100;   // ms avant d'activer l'effet
+  const THRESHOLD = 8; // px de mouvement = scroll détecté
+
+  function cancel() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    if (pressing) { pressing.classList.remove('is-pressing'); pressing = null; }
+    scrolled = false;
+  }
 
   document.addEventListener('touchstart', e => {
+    cancel();
     const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play');
     if (!el) return;
-    pressing = el;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
-    el.classList.add('is-pressing');
+    scrolled = false;
+    pressing = el;
+    timer = setTimeout(() => {
+      timer = null;
+      if (!scrolled) el.classList.add('is-pressing');
+    }, DELAY);
   }, {passive: true});
 
   document.addEventListener('touchmove', e => {
     if (!pressing) return;
     const dx = Math.abs(e.touches[0].clientX - startX);
     const dy = Math.abs(e.touches[0].clientY - startY);
-    // Seuil généreux : dès qu'on glisse on retire l'effet
-    if (dx > 10 || dy > 10) {
-      pressing.classList.remove('is-pressing');
-      pressing = null;
+    if (dx > THRESHOLD || dy > THRESHOLD) {
+      scrolled = true;
+      cancel();
     }
   }, {passive: true});
 
-  document.addEventListener('touchend', e => {
-    if (!pressing) return;
-    pressing.classList.remove('is-pressing');
-    pressing = null;
-  }, {passive: true});
-
-  document.addEventListener('touchcancel', e => {
-    if (!pressing) return;
-    pressing.classList.remove('is-pressing');
-    pressing = null;
-  }, {passive: true});
+  document.addEventListener('touchend', e => { cancel(); }, {passive: true});
+  document.addEventListener('touchcancel', e => { cancel(); }, {passive: true});
 })();
 </script>
 </body>
