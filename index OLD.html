@@ -113,7 +113,7 @@ header{
   display:flex;align-items:center;gap:13px;
   cursor:pointer;box-shadow:var(--sh-sm);transition:transform .12s;
 }
-.file-item.is-pressing{transform:scale(.97)}
+.file-item:active{transform:scale(.97)}
 .file-item:has(.file-icon:active){transform:none}
 .file-item:has(.btn-play:active){transform:none}
 .file-icon{
@@ -122,7 +122,7 @@ header{
   display:flex;align-items:center;justify-content:center;font-size:20px;
   transition:transform .1s,filter .12s;
 }
-.file-icon.is-pressing{transform:scale(.9);filter:brightness(.8)}
+.file-icon:active{transform:scale(.9);filter:brightness(.8)}
 .file-name{font-weight:600;font-size:15px;font-family:'Exo 2',sans-serif}
 .file-name-blur{
   filter: blur(4px);
@@ -163,7 +163,7 @@ header{
   display:flex;align-items:center;justify-content:center;
   transition:filter .12s,transform .1s;
 }
-.btn-arr.is-pressing{filter:brightness(.8);transform:scale(.93)}
+.btn-arr:active{filter:brightness(.8);transform:scale(.93)}
 .btn-arr:disabled{background:var(--card-bd);color:var(--txt3);cursor:not-allowed}
 
 /* ── DEAL CONTENT ── */
@@ -372,7 +372,7 @@ header{
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(200,151,58,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
-.seance-card.is-pressing{transform:scale(.95)}
+.seance-card:active{transform:scale(.95)}
 .seance-desc{font-size:11px;color:rgba(200,151,58,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
 .seance-num{font-family:'Exo 2',sans-serif;font-size:15px;font-weight:800;color:#ffffff;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
 .seance-count{font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0}
@@ -392,7 +392,7 @@ header{
   transition:transform .12s,border-color .12s;
   box-shadow:var(--sh-sm);
 }
-.img-thumb.is-pressing{transform:scale(.93);border-color:rgba(200,151,58,.8)}
+.img-thumb:active{transform:scale(.93);border-color:rgba(200,151,58,.8)}
 
 /* ── LIGHTBOX ── */
 .lightbox{
@@ -503,7 +503,7 @@ header{
   box-shadow:0 2px 6px rgba(0,0,0,.18);
   transition:filter .12s,transform .1s;
 }
-.btn-play.is-pressing{filter:brightness(.8);transform:scale(.94)}
+.btn-play:active{filter:brightness(.8);transform:scale(.94)}
 </style>
 </head>
 <body>
@@ -761,12 +761,24 @@ async function discoverSeances(forceRefresh = false) {
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
 
-    // ── images à la racine ──────────────────────────────────────────────
+    // ── images dans le dossier Docs ─────────────────────────────────────
     const IMAGE_EXT = /\.(jpe?g|png|gif|webp|svg)$/i;
-    const rootImages = items
-      .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
-      .map(f => ({ name: f.name, url: f.download_url }));
-    if (rootImages.length) renderImages(rootImages);
+    const docsFolder = items.find(f => f.type === 'dir' && f.name === 'Docs');
+    let rootImages = [];
+    if (docsFolder) {
+      try {
+        const docsRes = await fetch(
+          `https://api.github.com/repos/${GH_REPO}/contents/Docs`,
+          {headers:ghHeaders()});
+        if (docsRes.ok) {
+          const docsItems = await docsRes.json();
+          rootImages = docsItems
+            .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
+            .map(f => ({ name: f.name, url: f.download_url }));
+          if (rootImages.length) renderImages(rootImages);
+        }
+      } catch {}
+    }
 
     // ── config.json : liens "jouer" ─────────────────────────────────────
     // Fallback local (pour tests en file://)
@@ -1703,51 +1715,6 @@ document.addEventListener('keydown', e => {
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('/QPJB/service-worker.js');
   }
-</script>
-
-<script>
-// Gestion du tap sans déclencher l'animation pendant le scroll
-(function() {
-  let pressing = null, startX = 0, startY = 0, moved = false;
-
-  document.addEventListener('touchstart', e => {
-    const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play');
-    if (!el) return;
-    pressing = el;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    moved = false;
-    // On ajoute la classe après un très court délai pour laisser le scroll démarrer
-    pressing._pressTimer = setTimeout(() => {
-      if (!moved) el.classList.add('is-pressing');
-    }, 80);
-  }, {passive: true});
-
-  document.addEventListener('touchmove', e => {
-    if (!pressing) return;
-    const dx = Math.abs(e.touches[0].clientX - startX);
-    const dy = Math.abs(e.touches[0].clientY - startY);
-    if (dx > 8 || dy > 8) {
-      moved = true;
-      clearTimeout(pressing._pressTimer);
-      pressing.classList.remove('is-pressing');
-    }
-  }, {passive: true});
-
-  document.addEventListener('touchend', e => {
-    if (!pressing) return;
-    clearTimeout(pressing._pressTimer);
-    pressing.classList.remove('is-pressing');
-    pressing = null;
-  }, {passive: true});
-
-  document.addEventListener('touchcancel', e => {
-    if (!pressing) return;
-    clearTimeout(pressing._pressTimer);
-    pressing.classList.remove('is-pressing');
-    pressing = null;
-  }, {passive: true});
-})();
 </script>
 </body>
 </html>
