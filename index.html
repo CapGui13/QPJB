@@ -1706,9 +1706,9 @@ document.addEventListener('keydown', e => {
 </script>
 
 <script>
-// Gestion du tap sans déclencher l'animation pendant le scroll
+// Gestion du tap : is-pressing immédiat, annulé si le doigt glisse (scroll)
 (function() {
-  let pressing = null, startX = 0, startY = 0, moved = false;
+  let pressing = null, startX = 0, startY = 0;
 
   document.addEventListener('touchstart', e => {
     const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play');
@@ -1716,34 +1716,28 @@ document.addEventListener('keydown', e => {
     pressing = el;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
-    moved = false;
-    // On ajoute la classe après un très court délai pour laisser le scroll démarrer
-    pressing._pressTimer = setTimeout(() => {
-      if (!moved) el.classList.add('is-pressing');
-    }, 80);
+    el.classList.add('is-pressing');
   }, {passive: true});
 
   document.addEventListener('touchmove', e => {
     if (!pressing) return;
     const dx = Math.abs(e.touches[0].clientX - startX);
     const dy = Math.abs(e.touches[0].clientY - startY);
-    if (dx > 8 || dy > 8) {
-      moved = true;
-      clearTimeout(pressing._pressTimer);
+    // Seuil généreux : dès qu'on glisse on retire l'effet
+    if (dx > 10 || dy > 10) {
       pressing.classList.remove('is-pressing');
+      pressing = null;
     }
   }, {passive: true});
 
   document.addEventListener('touchend', e => {
     if (!pressing) return;
-    clearTimeout(pressing._pressTimer);
     pressing.classList.remove('is-pressing');
     pressing = null;
   }, {passive: true});
 
   document.addEventListener('touchcancel', e => {
     if (!pressing) return;
-    clearTimeout(pressing._pressTimer);
     pressing.classList.remove('is-pressing');
     pressing = null;
   }, {passive: true});
