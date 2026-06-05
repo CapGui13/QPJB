@@ -761,12 +761,25 @@ async function discoverSeances(forceRefresh = false) {
     if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
     const items = await contentsRes.json();
 
-    // ── images à la racine ──────────────────────────────────────────────
+    // ── images dans le dossier Docs ────────────────────────────────────
     const IMAGE_EXT = /\.(jpe?g|png|gif|webp|svg)$/i;
-    const rootImages = items
-      .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
-      .map(f => ({ name: f.name, url: f.download_url }));
-    if (rootImages.length) renderImages(rootImages);
+    const docsFolder = items.find(f => f.type === 'dir' && f.name === 'Docs');
+    let rootImages = [];
+    if (docsFolder) {
+      try {
+        const docsRes = await fetch(
+          `https://api.github.com/repos/${GH_REPO}/contents/Docs`,
+          { headers: GH_HEADERS }
+        );
+        if (docsRes.ok) {
+          const docsItems = await docsRes.json();
+          rootImages = docsItems
+            .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
+            .map(f => ({ name: f.name, url: f.download_url }));
+          if (rootImages.length) renderImages(rootImages);
+        }
+      } catch {}
+    }
 
     // ── config.json : liens "jouer" ─────────────────────────────────────
     // Fallback local (pour tests en file://)
