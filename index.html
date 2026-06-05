@@ -7,9 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="QPJB">
 <meta name="theme-color" content="#1a1a1a">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxYzFjMjQiLz4KICA8cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjYxIiBoZWlnaHQ9IjYxIiByeD0iMTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMDAsMTUxLDU4LDAuNSkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjE4LjUiIHg9IjQiIHk9IjQyIiBsZXR0ZXItc3BhY2luZz0iMC44Ij4KICAgIDx0c3BhbiBmaWxsPSIjNmI5ZmQ0Ij5RPC90c3Bhbj48dHNwYW4gZmlsbD0iI2Q0NzA2YSI+UDwvdHNwYW4+PHRzcGFuIGZpbGw9IiNjODkyNGEiPko8L3RzcGFuPjx0c3BhbiBmaWxsPSIjNmFhYTc4Ij5CPC90c3Bhbj4KICA8L3RleHQ+Cjwvc3ZnPg==">
-<link rel="apple-touch-icon" sizes="180x180" href="/QPJB/apple-touch-icon.png">
+<link rel="manifest" href="/QPJB/manifest.json">
 <title>QPJB - Visualiseur de donnes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
@@ -587,8 +585,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v14';
-['qpjb-seances-v11','qpjb-seances-v12','qpjb-seances-v13'].forEach(k => localStorage.removeItem(k));
+const CACHE_KEY = 'qpjb-seances-v11';
 
 function ghHeaders() {
   const token = localStorage.getItem('gh-token');
@@ -680,14 +677,10 @@ async function discoverSeances(forceRefresh = false) {
         const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
         if (cached && cached.sha === currentSha && cached.seances?.length) {
           seancesData = { seances: cached.seances };
-          if (cached.playLinks) playLinks = cached.playLinks;
-          if (cached.descMap)   descMap   = cached.descMap;
-          // Si descMap absent du cache, forcer un refresh complet
-          if (!Object.keys(descMap).length) {
-            return discoverSeances(true);
-          }
           renderSeanceGrid(cached.seances);
           if (cached.images?.length) renderImages(cached.images);
+          if (cached.playLinks) playLinks = cached.playLinks;
+          if (cached.descMap)   descMap   = cached.descMap;
           setHint('');
           return;
         }
@@ -767,10 +760,10 @@ async function discoverSeances(forceRefresh = false) {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
       if (cached?.seances?.length) {
         seancesData = { seances: cached.seances };
-        if (cached.playLinks) playLinks = cached.playLinks;
-        if (cached.descMap)   descMap   = cached.descMap;
         renderSeanceGrid(cached.seances);
         if (cached.images?.length) renderImages(cached.images);
+        if (cached.playLinks) playLinks = cached.playLinks;
+        if (cached.descMap)   descMap   = cached.descMap;
         // Tenter de rafraîchir le config local (descriptions, liens)
         try {
           const localCfg = await fetch('./config.json');
@@ -1088,7 +1081,7 @@ function buildFileListHtml(folderName) {
       const shortKey = `${folderName}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const playBtn = link
-        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">▶ Jouer</a>`
+        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:10px">▶ Jouer</a>`
         : '';
       const sepIdx = baseName.indexOf(' - ');
       let visiblePart, blurredPart;
@@ -1109,7 +1102,6 @@ function buildFileListHtml(folderName) {
          <div class="file-icon" onclick="event.stopPropagation();openSeanceAt(${i})">🔍</div>
          <div style="min-width:0;flex:1;overflow:hidden">${nameHtml}</div>
          ${playBtn}
-         <div class="file-chev">›</div>
        </div>`;
     }).join('') + '</div>';
 }
