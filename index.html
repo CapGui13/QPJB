@@ -93,11 +93,15 @@ header{
   cursor:pointer;box-shadow:var(--sh-sm);transition:transform .12s;
 }
 .file-item:active{transform:scale(.97)}
+.file-item:has(.file-icon:active){transform:none}
+.file-item:has(.btn-play:active){transform:none}
 .file-icon{
   width:42px;height:42px;border-radius:10px;flex-shrink:0;
   background:linear-gradient(135deg,var(--felt),var(--felt-lt));
   display:flex;align-items:center;justify-content:center;font-size:20px;
+  transition:transform .1s,filter .12s;
 }
+.file-icon:active{transform:scale(.9);filter:brightness(.8)}
 .file-name{font-weight:600;font-size:15px;font-family:'Exo 2',sans-serif}
 .file-name-blur{
   filter: blur(4px);
@@ -204,9 +208,9 @@ header{
 .btn-play-diag{
   position:absolute;top:10px;right:10px;
   display:flex;align-items:center;gap:5px;
-  padding:6px 10px;border-radius:8px;
+  padding:7px 13px;border-radius:8px;
   background:rgba(0,0,0,.35);border:1.5px solid rgba(200,151,58,.4);
-  color:#fff;font-size:12px;font-weight:700;
+  color:#fff;font-size:14px;font-weight:700;
   font-family:'Exo 2',sans-serif;
   cursor:pointer;text-decoration:none;
   white-space:nowrap;z-index:1;
@@ -445,14 +449,22 @@ header{
 
 /* ── TOKEN ── */
 .token-section{padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(200,151,58,.15);display:flex;align-items:center;gap:8px}
+.token-wrap{flex:1;min-width:0;position:relative;display:flex;align-items:center}
 .token-input{
-  flex:1;min-width:0;
+  flex:1;min-width:0;width:100%;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;padding:8px 12px;color:#fff;font-size:12px;
+  border-radius:8px;padding:8px 36px 8px 12px;color:#fff;font-size:12px;
   font-family:'Exo 2',sans-serif;outline:none;
 }
 .token-input::placeholder{color:rgba(255,255,255,.3)}
 .token-input:focus{border-color:rgba(200,151,58,.5)}
+.token-eye{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;padding:2px;
+  color:rgba(255,255,255,.4);font-size:15px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.token-eye:hover{color:rgba(255,255,255,.8)}
 .token-btn{
   padding:8px 12px;border-radius:8px;border:none;cursor:pointer;
   background:var(--felt);color:#fff;font-size:12px;font-weight:700;
@@ -490,7 +502,10 @@ header{
 <div id="vhome">
 
   <div id="token-section" class="token-section">
-    <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
+    <div class="token-wrap">
+      <input class="token-input" id="token-input" type="password" placeholder="Token GitHub (optionnel, augmente la limite API)" autocomplete="off">
+      <button class="token-eye" id="token-eye" type="button" onclick="toggleTokenEye()" title="Afficher/masquer">👁</button>
+    </div>
     <button class="token-btn" onclick="saveToken()">OK</button>
     <span class="token-ok" id="token-ok" style="display:none">✓</span>
   </div>
@@ -594,11 +609,15 @@ function ghHeaders() {
   return h;
 }
 
+function toggleTokenEye() {
+  const input = document.getElementById('token-input');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
 function saveToken() {
   const val = document.getElementById('token-input').value.trim();
   if (val) {
     localStorage.setItem('gh-token', val);
-    document.getElementById('token-input').value = '';
     document.getElementById('token-ok').style.display = 'inline';
     setTimeout(() => document.getElementById('token-ok').style.display = 'none', 2000);
     discoverSeances(true);
@@ -606,8 +625,13 @@ function saveToken() {
 }
 
 function initTokenUI() {
-  const hasToken = !!localStorage.getItem('gh-token');
-  document.getElementById('token-ok').style.display = hasToken ? 'inline' : 'none';
+  const token = localStorage.getItem('gh-token');
+  if (token) {
+    const input = document.getElementById('token-input');
+    input.value = token;
+    input.type = 'password';
+    document.getElementById('token-ok').style.display = 'inline';
+  }
 }
 let seancesData = null;
 
