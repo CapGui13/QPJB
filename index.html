@@ -769,7 +769,7 @@ async function discoverSeances(forceRefresh = false) {
       try {
         const docsRes = await fetch(
           `https://api.github.com/repos/${GH_REPO}/contents/Docs`,
-          { headers: GH_HEADERS }
+          { headers: ghHeaders() }
         );
         if (docsRes.ok) {
           const docsItems = await docsRes.json();
