@@ -1742,7 +1742,18 @@ document.addEventListener('keydown', e => {
     }
   }, {passive: true});
 
-  document.addEventListener('touchend', e => { cancel(); }, {passive: true});
+  document.addEventListener('touchend', e => {
+    if (timer) { clearTimeout(timer); timer = null; }
+    if (pressing && !scrolled) {
+      // Tap confirmé : forcer l'effet visible puis le retirer
+      pressing.classList.add('is-pressing');
+      const el = pressing;
+      pressing = null;
+      setTimeout(() => el.classList.remove('is-pressing'), 150);
+    } else {
+      cancel();
+    }
+  }, {passive: true});
   document.addEventListener('touchcancel', e => { cancel(); }, {passive: true});
 })();
 </script>
