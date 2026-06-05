@@ -1768,6 +1768,23 @@ document.addEventListener('keydown', e => {
     }
   }, {passive: true});
   document.addEventListener('touchcancel', e => { cancel(); }, {passive: true});
+
+  // ── Desktop : mousedown / mouseup ───────────────────────────────────
+  const SELECTOR = '.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play';
+  document.addEventListener('mousedown', e => {
+    const el = e.target.closest(SELECTOR);
+    if (!el) return;
+    el.classList.add('is-pressing');
+  });
+  document.addEventListener('mouseup', e => {
+    document.querySelectorAll('.is-pressing').forEach(el => {
+      setTimeout(() => el.classList.remove('is-pressing'), 150);
+    });
+  });
+  document.addEventListener('mouseleave', e => {
+    const el = e.target.closest(SELECTOR);
+    if (el) el.classList.remove('is-pressing');
+  }, true);
 })();
 </script>
 </body>
