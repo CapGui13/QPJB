@@ -1473,15 +1473,13 @@ function render(i) {
   let lead = d.Lead || '';
   // Inférer l'entame depuis le commentaire si absente du PBN
   if (!lead && comment) {
-    const SUIT_MAP = {'♠':'S','♥':'H','♦':'D','♣':'C'};
-    const CARD_PAT = /([ARDVX2-9]{1,2})([♠♥♦♣])|([♠♥♦♣])([ARDVX2-9]{1,2})/;
+    const SUIT_MAP = {'P':'S','C':'H','K':'D','T':'C'};
+    const PAT_LET  = /([ARDVX2-9]{1,2})([PCKT])/;
     for (const line of comment.split('\n')) {
       if (/entame/i.test(line)) {
-        const m = line.match(CARD_PAT);
+        const m = line.match(PAT_LET);
         if (m) {
-          const suit = m[2] ? SUIT_MAP[m[2]] : SUIT_MAP[m[3]];
-          const val  = (m[1] || m[4]).toUpperCase().replace('X','T');
-          lead = suit + val;
+          lead = SUIT_MAP[m[2]] + m[1].toUpperCase().replace('X','T');
           break;
         }
       }
@@ -1513,7 +1511,7 @@ function render(i) {
     </div>
     <div class="diag-card">
       ${d._playLink ? `<a class="btn-play-diag" href="${esc(d._playLink)}" target="_blank" rel="noopener">▶ Jouer</a>` : ''}
-      ${renderDiag(hands, lead, d.PlayFirst, dealer, vul)}
+      ${renderDiag(hands, lead, d.PlayFirst || (declarer ? (['N','E','S','W'][(['N','E','S','W'].indexOf(declarer.toUpperCase())+1)%4]) : null), dealer, vul)}
     </div>`;
 
   if (auction && auction !== '?')
@@ -1670,7 +1668,9 @@ function renderDiag(hands, lead, playFirst, dealer, vul) {
 
   let leadInfo = null;
   if (lead && lead.length >= 2 && playFirst) {
-    leadInfo = { dir: playFirst.toUpperCase(), suit: lead[0].toUpperCase(), card: lead[1].toUpperCase() };
+    const FR_TO_PBN = {'V':'J','D':'Q','R':'K','X':'T'};
+    const rawCard = lead[1].toUpperCase();
+    leadInfo = { dir: playFirst.toUpperCase(), suit: lead[0].toUpperCase(), card: FR_TO_PBN[rawCard] || rawCard };
   }
   const rh = (dir, hand) => renderHand(hand, leadInfo && leadInfo.dir === dir ? leadInfo : null);
 
