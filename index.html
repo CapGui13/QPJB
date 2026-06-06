@@ -171,6 +171,10 @@ header{
 }
 .btn-arr.is-pressing{filter:brightness(.8);transform:scale(.93)}
 .btn-arr:disabled{background:var(--card-bd);color:var(--txt3);cursor:not-allowed;box-shadow:none;opacity:.5}
+@media(hover:hover){
+  .btn-arr{width:33px;height:33px;border-radius:8px;font-size:18px;box-shadow:none}
+  .btn-arr:disabled{opacity:1}
+}
 
 /* ── DEAL CONTENT ── */
 .deal-wrap{padding:14px 12px;padding-top:58px;display:flex;flex-direction:column;gap:12px;padding-bottom:48px}
