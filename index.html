@@ -80,6 +80,7 @@ header{
   z-index:200;
   border-bottom:1px solid rgba(200,151,58,.28);
 }
+.logo-text{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none}
 #vhome{padding-top:60px}
 #vdeal{padding-top:60px}
 #vseance{padding-top:110px}
@@ -414,6 +415,9 @@ header{
   opacity:0;
   pointer-events:none;
   transition:opacity .5s ease;
+  will-change:opacity;
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
 }
 .lightbox.open{opacity:1;pointer-events:all}
 .lightbox-track{
@@ -908,7 +912,9 @@ function openLightbox(i) {
   resetSlots();
   imgA().src = lightboxImages[i].url;
   lbUpdate(i);
-  document.getElementById('lightbox').classList.add('open');
+  const _lb = document.getElementById('lightbox');
+  void _lb.offsetWidth;
+  _lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
