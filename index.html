@@ -1470,7 +1470,23 @@ function render(i) {
   const auction = (d.Auction || '').trim();
   const auctionFirst = d.AuctionFirst || dealer;
   const comment = (d.Comment || d.Note || '').trim();
-  const lead = d.Lead || '';
+  let lead = d.Lead || '';
+  // Inférer l'entame depuis le commentaire si absente du PBN
+  if (!lead && comment) {
+    const SUIT_MAP = {'♠':'S','♥':'H','♦':'D','♣':'C'};
+    const CARD_PAT = /([ARDVX2-9]{1,2})([♠♥♦♣])|([♠♥♦♣])([ARDVX2-9]{1,2})/;
+    for (const line of comment.split('\n')) {
+      if (/entame/i.test(line)) {
+        const m = line.match(CARD_PAT);
+        if (m) {
+          const suit = m[2] ? SUIT_MAP[m[2]] : SUIT_MAP[m[3]];
+          const val  = (m[1] || m[4]).toUpperCase().replace('X','T');
+          lead = suit + val;
+          break;
+        }
+      }
+    }
+  }
 
   // Contrat et déclarant : depuis le PBN, ou déduits des enchères
   let contract = d.Contract || '';
