@@ -547,12 +547,12 @@ header{
 <div id="vhome">
 
   <div id="images-section" class="images-section" style="display:none">
-    <div class="images-label">Documents</div>
+    <div class="images-label">Documents <span id="docs-count"></span></div>
     <div class="images-scroll" id="images-scroll"></div>
   </div>
   <div class="config" id="seance-config">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-      <div class="cfg-label" style="margin-bottom:0">Séances disponibles</div>
+      <div class="cfg-label" style="margin-bottom:0">Séances disponibles <span id="seances-count"></span></div>
 
     </div>
     <div id="seance-grid" class="seance-grid"><div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche des séances…</div></div>
@@ -711,6 +711,8 @@ function fadeSwap(doSwap) {
 
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+  const sc = document.getElementById('seances-count');
+  if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
     document.getElementById('seance-grid').innerHTML = sorted.map(s => {
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
@@ -893,6 +895,8 @@ function renderImages(images) {
           loading="lazy" onclick="openLightbox(${i})">`
   ).join('');
   section.style.display = 'block';
+  const dc = document.getElementById('docs-count');
+  if (dc) dc.textContent = '(' + images.length + ')';
 }
 
 // ── lightbox ───────────────────────────────────────────────────────────
