@@ -179,16 +179,16 @@ header{
   border-radius:var(--r);padding:11px 14px;
   display:flex;flex-direction:row;justify-content:space-between;align-items:center;
   box-shadow:var(--sh-lg);border:1px solid rgba(200,151,58,.2);
-  gap:10px;min-height:calc(1.45em * 2 + 22px);
+  gap:10px;
 }
 .board-num{
   font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;
   color:#fff;font-size:12px;font-weight:600;
   line-height:1.45;
   flex:1;min-width:0;
-  max-height:calc(1.45em * 2);
+  max-height:calc(1.45em * 3);
   overflow:hidden;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
   align-self:center;
 }
 .board-badges{
@@ -1740,7 +1740,7 @@ document.addEventListener('keydown', e => {
 
   document.addEventListener('touchstart', e => {
     cancel();
-    const el = e.target.closest('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play, .btn-back');
+    const el = e.target?.closest?.('.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play, .btn-back');
     if (!el) return;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
@@ -1779,7 +1779,7 @@ document.addEventListener('keydown', e => {
   // ── Desktop : mousedown / mouseup ───────────────────────────────────
   const SELECTOR = '.seance-card, .file-item, .file-icon, .img-thumb, .btn-arr, .btn-play, .btn-back';
   document.addEventListener('mousedown', e => {
-    const el = e.target.closest(SELECTOR);
+    const el = e.target?.closest?.(SELECTOR);
     if (!el) return;
     el.classList.add('is-pressing');
   });
@@ -1789,7 +1789,7 @@ document.addEventListener('keydown', e => {
     });
   });
   document.addEventListener('mouseleave', e => {
-    const el = e.target.closest(SELECTOR);
+    const el = e.target?.closest?.(SELECTOR);
     if (el) el.classList.remove('is-pressing');
   }, true);
 })();
