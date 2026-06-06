@@ -1032,17 +1032,22 @@ function closeLightbox(e) {
         lb().style.transition   = 'background .35s ease';
         lb().style.background   = 'rgba(0,0,0,0)';
         setTimeout(() => {
+          // Retirer .open sans flash : on garde opacity:0 inline le temps du nettoyage
           lb().style.transition = 'none';
           lb().style.opacity = '0';
+          lb().style.background = 'rgba(0,0,0,0)';
           lb().classList.remove('open');
           imgA().src = ''; imgB().src = '';
           resetSlots();
           imgA().style.opacity = '';
           imgA().style.transform = '';
           imgA().style.transition = '';
-          lb().style.background = '';
-          lb().style.opacity = '';
-          lb().style.transition = '';
+          // Nettoyer les styles inline au prochain frame, une fois .open retiré
+          requestAnimationFrame(() => {
+            lb().style.transition = '';
+            lb().style.opacity = '';
+            lb().style.background = '';
+          });
           document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
           document.body.style.overflow = '';
         }, 350);
