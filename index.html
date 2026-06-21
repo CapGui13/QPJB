@@ -710,7 +710,7 @@ function fadeSwap(doSwap) {
 }
 
 function renderSeanceGrid(seances) {
-  const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+  const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
   const sc = document.getElementById('seances-count');
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
@@ -1147,7 +1147,7 @@ function toggleBlur(enabled) {
 }
 
 function sortedSeances() {
-  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr'));
+  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
 }
 
 function updateSeanceArrows() {
