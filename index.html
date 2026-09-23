@@ -1769,23 +1769,32 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Escape') { e.preventDefault(); showHome(); }
 });
 
-// ── mise à jour automatique du site ─────────────────────────────────────
-// Compare le HTML et la configuration réellement publiés sur GitHub Pages.
-// Vérification au retour sur l'onglet et toutes les 2 minutes s'il est visible.
+// ── mise à jour automatique, y compris à la réouverture ────────────────
+// Comparer dès le premier chargement le code réellement exécuté avec celui
+// publié : une ancienne page en cache ne doit pas servir de référence.
 (function initAutoRefresh() {
-  const paths = ['./index.html', './config.json'];
-  let publishedVersion = null;
+  const currentCode = [...document.querySelectorAll('style, script:not([src])')]
+    .map(el => el.textContent).join('\n');
+  let publishedCode = null;
+  let publishedConfig = null;
   let checking = false;
   let reloading = false;
 
   async function getPublishedVersion() {
-    const contents = await Promise.all(paths.map(async path => {
-      const response = await fetch(path, { cache: 'no-store' });
-      if (!response.ok) throw new Error('Version inaccessible');
-      return response.text();
-    }));
-    // Deux contenus comparés directement : aucune dépendance ni collision de hash.
-    return contents;
+    // Le paramètre empêche aussi un ancien service worker cache-first de
+    // renvoyer une copie de index.html mémorisée sous son URL normale.
+    const indexUrl = './index.html?qpjb-check=' + Date.now();
+    const [htmlResponse, configResponse] = await Promise.all([
+      fetch(indexUrl, { cache: 'no-store' }),
+      fetch('./config.json?qpjb-check=' + Date.now(), { cache: 'no-store' })
+    ]);
+    if (!htmlResponse.ok || !configResponse.ok) throw new Error('Version inaccessible');
+    const html = await htmlResponse.text();
+    const config = await configResponse.text();
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const code = [...parsed.querySelectorAll('style, script:not([src])')]
+      .map(el => el.textContent).join('\n');
+    return { code, config };
   }
 
   async function checkForUpdates() {
@@ -1793,15 +1802,19 @@ document.addEventListener('keydown', e => {
     checking = true;
     try {
       const latest = await getPublishedVersion();
-      if (!publishedVersion) {
-        publishedVersion = latest;
-      } else if (latest.some((content, i) => content !== publishedVersion[i])) {
+      // Même à la première ouverture, détecter la vieille version chargée
+      // depuis le cache navigateur (au lieu d'utiliser le serveur comme base).
+      if (latest.code !== currentCode ||
+          (publishedConfig !== null && latest.config !== publishedConfig)) {
         reloading = true;
-        // Le service worker network-first récupère obligatoirement le HTML publié.
-        location.reload();
+        // Le paramètre versionné évite de reprendre l'ancienne URL en cache.
+        location.replace('./?qpjb-v=' + Date.now());
+        return;
       }
+      publishedCode = latest.code;
+      publishedConfig = latest.config;
     } catch (e) {
-      // En cas de coupure réseau, conserver la page actuelle et réessayer.
+      // Hors ligne : ne pas forcer de rechargement.
     } finally {
       checking = false;
     }
@@ -1823,7 +1836,9 @@ document.addEventListener('keydown', e => {
 </script>
 <script>
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('/QPJB/service-worker.js');
+    navigator.serviceWorker.register('/QPJB/service-worker.js', { updateViaCache: 'none' })
+      .then(registration => registration.update())
+      .catch(() => {});
   }
 </script>
 
