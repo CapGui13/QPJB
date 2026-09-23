@@ -627,10 +627,13 @@ const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
   if (pbnCache[url]) return pbnCache[url];
-  const buf = await (await fetch(url)).arrayBuffer();
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Fichier PBN indisponible (' + response.status + ')');
+  const buf = await response.arrayBuffer();
   const bytes = new Uint8Array(buf);
   let text = new TextDecoder('utf-8').decode(bytes);
   if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
+  if (!text.trim()) throw new Error('Fichier PBN vide');
   pbnCache[url] = text;
   return text;
 }
@@ -661,7 +664,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v11';
+const CACHE_KEY = 'qpjb-seances-v12';
 
 function ghHeaders() {
   const token = localStorage.getItem('gh-token');
@@ -759,141 +762,99 @@ function renderSeanceGrid(seances) {
   }
 }
 
-// ── découverte auto — cache invalidé par SHA de commit ─────────────────
+// ── index léger : un seul appel GitHub au lieu d'un par dossier ────────
+// Les nouvelles séances et les nouveaux PBN apparaissent automatiquement :
+// l'arbre GitHub sert d'index, sans fichier à maintenir manuellement.
+function indexedFileUrl(path) {
+  return 'https://raw.githubusercontent.com/' + GH_REPO + '/main/' +
+    path.split('/').map(encodeURIComponent).join('/');
+}
+
+function buildSeanceIndex(tree) {
+  const folders = new Map();
+  const images = [];
+  const imageExt = /\\.(jpe?g|png|gif|webp|svg)$/i;
+  for (const entry of tree) {
+    if (entry.type !== 'blob') continue;
+    const path = entry.path;
+    if (path.startsWith('Docs/') && imageExt.test(path)) {
+      images.push({ name: path.slice(5), url: indexedFileUrl(path) });
+      continue;
+    }
+    if (!/\\.pbn$/i.test(path)) continue;
+    const slash = path.lastIndexOf('/');
+    if (slash <= 0) continue;
+    const folder = path.slice(0, slash);
+    const name = path.slice(slash + 1);
+    if (!folders.has(folder)) folders.set(folder, []);
+    folders.get(folder).push({ name, download_url: indexedFileUrl(path) });
+  }
+  const seances = [...folders].map(([folder, fichiers]) => ({
+    folder,
+    fichiers: fichiers.sort((a, b) => a.name.localeCompare(b.name, 'fr', { numeric: true }))
+  }));
+  images.sort((a, b) => a.name.localeCompare(b.name, 'fr', { numeric: true }));
+  return { seances, images };
+}
+
 async function discoverSeances(forceRefresh = false) {
   const grid = document.getElementById('seance-grid');
   grid.innerHTML = '<div class="loading" style="color:rgba(255,255,255,.4);padding:8px 0">Recherche…</div>';
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch {}
   try {
-    const commitRes = await fetch(
-      `https://api.github.com/repos/${GH_REPO}/commits?per_page=1`,
-      {headers:ghHeaders()});
-    if (!commitRes.ok) {
-      if (commitRes.status === 403) throw new Error('Limite API GitHub atteinte — réessaie dans une heure');
-      throw new Error(`Repo introuvable (${commitRes.status})`);
+    // Les données publiques sont lues sur GitHub Pages : aucun token requis.
+    // Si l'index ne peut être obtenu, on conserve le dernier index fonctionnel.
+    const [treeRes, configRes] = await Promise.all([
+      fetch('https://api.github.com/repos/' + GH_REPO + '/git/trees/main?recursive=1',
+        { headers: ghHeaders(), cache: 'no-store' }),
+      fetch('./config.json', { cache: 'no-store' })
+    ]);
+    if (!treeRes.ok) throw new Error(treeRes.status === 403
+      ? 'Limite API GitHub atteinte — réessaie plus tard'
+      : 'Impossible de récupérer les séances (' + treeRes.status + ')');
+    const treeData = await treeRes.json();
+    if (!Array.isArray(treeData.tree) || treeData.truncated) {
+      throw new Error('Index GitHub incomplet');
     }
-    const commitData = await commitRes.json();
-    const currentSha = commitData[0]?.sha || null;
-
-    if (!forceRefresh) {
+    // Config locale : si elle échoue, le cache permet de garder les sous-titres.
+    if (configRes.ok) {
       try {
-        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-        if (cached && cached.sha === currentSha && cached.seances?.length) {
-          seancesData = { seances: cached.seances };
-          renderSeanceGrid(cached.seances);
-          if (cached.images?.length) renderImages(cached.images);
-          if (cached.playLinks) playLinks = cached.playLinks;
-          if (cached.descMap)   descMap   = cached.descMap;
-          setHint('');
-          hideSplash();
-          return;
-        }
-      } catch {}
-    }
-
-    const contentsRes = await fetch(
-      `https://api.github.com/repos/${GH_REPO}/contents/`,
-      {headers:ghHeaders()});
-    if (!contentsRes.ok) throw new Error(`Erreur chargement (${contentsRes.status})`);
-    const items = await contentsRes.json();
-
-    // ── images dans le dossier Docs ────────────────────────────────────
-    const IMAGE_EXT = /\.(jpe?g|png|gif|webp|svg)$/i;
-    const docsFolder = items.find(f => f.type === 'dir' && f.name === 'Docs');
-    let rootImages = [];
-    if (docsFolder) {
-      try {
-        const docsRes = await fetch(
-          `https://api.github.com/repos/${GH_REPO}/contents/Docs`,
-          { headers: ghHeaders() }
-        );
-        if (docsRes.ok) {
-          const docsItems = await docsRes.json();
-          rootImages = docsItems
-            .filter(f => f.type === 'file' && IMAGE_EXT.test(f.name))
-            .map(f => ({ name: f.name, url: f.download_url }));
-          if (rootImages.length) renderImages(rootImages);
-        }
-      } catch {}
-    }
-
-    // ── config.json : liens "jouer" ─────────────────────────────────────
-    // Fallback local (pour tests en file://)
-    try {
-      const localCfg = await fetch('./config.json');
-      if (localCfg.ok) {
-        const cfg = await localCfg.json();
-        playLinks = cfg.links || {};
-        descMap   = cfg.descriptions || {};
+        const config = await configRes.json();
+        descMap = config.descriptions || {};
+        playLinks = config.links || {};
+      } catch {
+        descMap = cached?.descMap || descMap;
+        playLinks = cached?.playLinks || playLinks;
       }
-    } catch {}
-
-    const configItem = items.find(f => f.type === 'file' && f.name === 'config.json');
-    if (configItem) {
-      try {
-        const cfgRes = await fetch(configItem.download_url);
-        if (cfgRes.ok) {
-          const cfg = await cfgRes.json();
-          playLinks = cfg.links || {};
-          descMap   = cfg.descriptions || {};
-        }
-      } catch {}
+    } else {
+      descMap = cached?.descMap || descMap;
+      playLinks = cached?.playLinks || playLinks;
     }
-
-    const folders = items.filter(f => f.type === 'dir');
-    if (!folders.length) {
-      grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun dossier trouvé.</div>';
-      return;
-    }
-
-    const results = await Promise.all(folders.map(async folder => {
-      try {
-        const res = await fetch(
-          `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(folder.name)}`,
-          {headers:ghHeaders()});
-        if (!res.ok) return null;
-        const files = await res.json();
-        const fichiers = files
-          .filter(f => f.type === 'file' && /\.pbn$/i.test(f.name))
-          .map(f => ({name: f.name, download_url: f.download_url}));
-        return fichiers.length ? { folder: folder.name, fichiers } : null;
-      } catch { return null; }
-    }));
-
-    const found = results.filter(Boolean);
-    if (!found.length) {
-      grid.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:13px;padding:8px 0">Aucun fichier PBN trouvé.</div>';
-      return;
-    }
-
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: currentSha, ts: Date.now(), seances: found, images: rootImages, playLinks, descMap })); } catch {}
-    seancesData = { seances: found };
-    renderSeanceGrid(found);
+    const indexed = (!forceRefresh && cached?.sha === treeData.sha && cached.seances?.length)
+      ? { seances: cached.seances, images: cached.images || [] }
+      : buildSeanceIndex(treeData.tree);
+    if (!indexed.seances.length) throw new Error('Aucune séance PBN trouvée');
+    seancesData = { seances: indexed.seances };
+    renderSeanceGrid(indexed.seances);
+    renderImages(indexed.images);
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({
+      sha: treeData.sha, seances: indexed.seances, images: indexed.images, descMap, playLinks
+    })); } catch {}
     setHint('');
     hideSplash();
-
-  } catch(e) {
-    // Essayer le cache périmé en fallback
-    try {
-      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-      if (cached?.seances?.length) {
-        seancesData = { seances: cached.seances };
-        renderSeanceGrid(cached.seances);
-        if (cached.images?.length) renderImages(cached.images);
-        if (cached.playLinks) playLinks = cached.playLinks;
-        if (cached.descMap)   descMap   = cached.descMap;
-        // Tenter de rafraîchir le config local (descriptions, liens)
-        try {
-          const localCfg = await fetch('./config.json');
-          if (localCfg.ok) { const cfg = await localCfg.json(); playLinks = cfg.links || playLinks; descMap = cfg.descriptions || descMap; }
-        } catch {}
-        renderSeanceGrid(cached.seances); // re-render avec descMap à jour
-        hideSplash();
-        return;
-      }
-    } catch {}
-    // Aucun cache — afficher l'erreur
-    const msg = e?.message || String(e) || 'Erreur inconnue';
-    grid.innerHTML = `<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ${esc(msg)}</div>`;
+  } catch (error) {
+    if (cached?.seances?.length) {
+      seancesData = { seances: cached.seances };
+      descMap = cached.descMap || descMap;
+      playLinks = cached.playLinks || playLinks;
+      renderSeanceGrid(cached.seances);
+      renderImages(cached.images || []);
+      hideSplash();
+      return;
+    }
+    grid.innerHTML = '<div style="color:#f87171;font-size:13px;padding:8px 0">⚠️ ' +
+      esc(error?.message || 'Erreur de chargement') + '</div>';
     hideSplash();
   }
 }
@@ -1246,7 +1207,10 @@ function revealOrOpen(e, el, idx) {
 async function openSeanceAt(fileIdx) {
   await showDeal();
   try {
-    const texts = await Promise.all(pbnFiles.map(f => fetchPBN(f.download_url)));
+    const texts = await Promise.all(pbnFiles.map(async f => {
+      try { return await fetchPBN(f.download_url); }
+      catch (error) { throw new Error('Impossible de charger ' + f.name + ' : ' + error.message); }
+    }));
     deals = [];
     let startIdx = 0;
     texts.forEach((text, fi) => {
@@ -1257,6 +1221,7 @@ async function openSeanceAt(fileIdx) {
       const shortKey = `${currentFolder}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const parsed = parsePBN(text);
+      if (!parsed.length) throw new Error('Aucune donne valide dans ' + f.name);
       parsed.forEach(d => { d._filename = displayName; d._playLink = link; });
       if (fi === fileIdx) startIdx = deals.length;
       deals = deals.concat(parsed);
@@ -1769,63 +1734,50 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Escape') { e.preventDefault(); showHome(); }
 });
 
-// ── mise à jour automatique, y compris à la réouverture ────────────────
-// Comparer dès le premier chargement le code réellement exécuté avec celui
-// publié : une ancienne page en cache ne doit pas servir de référence.
+// ── mise à jour sans perturber la lecture ───────────────────────────────
+// Le service worker est network-first. Cet ultime contrôle corrige même un
+// premier chargement depuis un ancien cache, sans recharger une donne ouverte.
 (function initAutoRefresh() {
   const currentCode = [...document.querySelectorAll('style, script:not([src])')]
-    .map(el => el.textContent).join('\n');
-  let publishedCode = null;
-  let publishedConfig = null;
+    .map(el => el.textContent).join('\\n');
   let checking = false;
-  let reloading = false;
+  let lastChecked = 0;
+  let pending = false;
 
-  async function getPublishedVersion() {
-    // Le paramètre empêche aussi un ancien service worker cache-first de
-    // renvoyer une copie de index.html mémorisée sous son URL normale.
-    const indexUrl = './index.html?qpjb-check=' + Date.now();
-    const [htmlResponse, configResponse] = await Promise.all([
-      fetch(indexUrl, { cache: 'no-store' }),
-      fetch('./config.json?qpjb-check=' + Date.now(), { cache: 'no-store' })
-    ]);
-    if (!htmlResponse.ok || !configResponse.ok) throw new Error('Version inaccessible');
-    const html = await htmlResponse.text();
-    const config = await configResponse.text();
-    const parsed = new DOMParser().parseFromString(html, 'text/html');
-    const code = [...parsed.querySelectorAll('style, script:not([src])')]
-      .map(el => el.textContent).join('\n');
-    return { code, config };
-  }
-
-  async function checkForUpdates() {
-    if (checking || reloading || document.hidden || !navigator.onLine) return;
-    checking = true;
-    try {
-      const latest = await getPublishedVersion();
-      // Même à la première ouverture, détecter la vieille version chargée
-      // depuis le cache navigateur (au lieu d'utiliser le serveur comme base).
-      if (latest.code !== currentCode ||
-          (publishedConfig !== null && latest.config !== publishedConfig)) {
-        reloading = true;
-        // Le paramètre versionné évite de reprendre l'ancienne URL en cache.
-        location.replace('./?qpjb-v=' + Date.now());
-        return;
-      }
-      publishedCode = latest.code;
-      publishedConfig = latest.config;
-    } catch (e) {
-      // Hors ligne : ne pas forcer de rechargement.
-    } finally {
-      checking = false;
+  const onHome = () => document.getElementById('vhome').style.display !== 'none';
+  function safeRefresh() {
+    if (pending && onHome() && !document.hidden) {
+      location.replace('./?qpjb-v=' + Date.now());
     }
   }
-
-  checkForUpdates();
-  setInterval(checkForUpdates, 2 * 60 * 1000);
+  async function checkPublishedVersion() {
+    if (checking || pending || document.hidden || !navigator.onLine ||
+        Date.now() - lastChecked < 60000) return;
+    checking = true;
+    lastChecked = Date.now();
+    try {
+      const response = await fetch('./index.html?qpjb-check=' + Date.now(),
+        { cache: 'no-store' });
+      if (!response.ok) return;
+      const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
+      const liveCode = [...parsed.querySelectorAll('style, script:not([src])')]
+        .map(el => el.textContent).join('\\n');
+      if (liveCode !== currentCode) {
+        pending = true;
+        safeRefresh();
+      }
+    } catch { /* Pas de rechargement en cas de coupure réseau. */ }
+    finally { checking = false; }
+  }
+  checkPublishedVersion();
+  window.addEventListener('focus', checkPublishedVersion);
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) checkForUpdates();
+    if (!document.hidden) { safeRefresh(); checkPublishedVersion(); }
   });
-  window.addEventListener('focus', checkForUpdates);
+  // Navigation vers l'accueil : installer les mises à jour différées.
+  document.addEventListener('click', () => {
+    if (pending) setTimeout(safeRefresh, 300);
+  });
 })();
 
 // ── boot ───────────────────────────────────────────────────────────────
