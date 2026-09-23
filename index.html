@@ -1734,52 +1734,6 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Escape') { e.preventDefault(); showHome(); }
 });
 
-// ── mise à jour sans perturber la lecture ───────────────────────────────
-// Le service worker est network-first. Cet ultime contrôle corrige même un
-// premier chargement depuis un ancien cache, sans recharger une donne ouverte.
-(function initAutoRefresh() {
-  const currentCode = [...document.querySelectorAll('style, script:not([src])')]
-    .map(el => el.textContent).join('\\n');
-  let checking = false;
-  let lastChecked = 0;
-  let pending = false;
-
-  const onHome = () => document.getElementById('vhome').style.display !== 'none';
-  function safeRefresh() {
-    if (pending && onHome() && !document.hidden) {
-      location.replace('./?qpjb-v=' + Date.now());
-    }
-  }
-  async function checkPublishedVersion() {
-    if (checking || pending || document.hidden || !navigator.onLine ||
-        Date.now() - lastChecked < 60000) return;
-    checking = true;
-    lastChecked = Date.now();
-    try {
-      const response = await fetch('./index.html?qpjb-check=' + Date.now(),
-        { cache: 'no-store' });
-      if (!response.ok) return;
-      const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
-      const liveCode = [...parsed.querySelectorAll('style, script:not([src])')]
-        .map(el => el.textContent).join('\\n');
-      if (liveCode !== currentCode) {
-        pending = true;
-        safeRefresh();
-      }
-    } catch { /* Pas de rechargement en cas de coupure réseau. */ }
-    finally { checking = false; }
-  }
-  checkPublishedVersion();
-  window.addEventListener('focus', checkPublishedVersion);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) { safeRefresh(); checkPublishedVersion(); }
-  });
-  // Navigation vers l'accueil : installer les mises à jour différées.
-  document.addEventListener('click', () => {
-    if (pending) setTimeout(safeRefresh, 300);
-  });
-})();
-
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
   initTokenUI();
