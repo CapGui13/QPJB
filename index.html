@@ -1769,6 +1769,52 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Escape') { e.preventDefault(); showHome(); }
 });
 
+// ── mise à jour automatique du site ─────────────────────────────────────
+// Compare le HTML et la configuration réellement publiés sur GitHub Pages.
+// Vérification au retour sur l'onglet et toutes les 2 minutes s'il est visible.
+(function initAutoRefresh() {
+  const paths = ['./index.html', './config.json'];
+  let publishedVersion = null;
+  let checking = false;
+  let reloading = false;
+
+  async function getPublishedVersion() {
+    const contents = await Promise.all(paths.map(async path => {
+      const response = await fetch(path, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Version inaccessible');
+      return response.text();
+    }));
+    // Deux contenus comparés directement : aucune dépendance ni collision de hash.
+    return contents;
+  }
+
+  async function checkForUpdates() {
+    if (checking || reloading || document.hidden || !navigator.onLine) return;
+    checking = true;
+    try {
+      const latest = await getPublishedVersion();
+      if (!publishedVersion) {
+        publishedVersion = latest;
+      } else if (latest.some((content, i) => content !== publishedVersion[i])) {
+        reloading = true;
+        // Le service worker network-first récupère obligatoirement le HTML publié.
+        location.reload();
+      }
+    } catch (e) {
+      // En cas de coupure réseau, conserver la page actuelle et réessayer.
+    } finally {
+      checking = false;
+    }
+  }
+
+  checkForUpdates();
+  setInterval(checkForUpdates, 2 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) checkForUpdates();
+  });
+  window.addEventListener('focus', checkForUpdates);
+})();
+
 // ── boot ───────────────────────────────────────────────────────────────
 (function(){
   initTokenUI();
