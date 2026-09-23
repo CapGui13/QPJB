@@ -709,6 +709,13 @@ function fadeSwap(doSwap) {
   }, 190);
 }
 
+// Numérotation affichée : conserver les noms réels des dossiers pour les liens et les PBN.
+function seanceDisplayName(folder) {
+  if (folder === 'Séance 2-01 Aix') return folder;
+  const m = folder.match(/^Séance (\d+) Aix$/i);
+  return m ? `Séance 1-${m[1].padStart(2, '0')} Aix` : folder;
+}
+
 function renderSeanceGrid(seances) {
   const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
   const sc = document.getElementById('seances-count');
@@ -718,7 +725,7 @@ function renderSeanceGrid(seances) {
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
-        <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(s.folder)}${desc}</div>
+        <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(seanceDisplayName(s.folder))}${desc}</div>
         <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} donne${s.fichiers.length!==1?'s':''}</div>
       </div>`;
     }).join('');
@@ -1118,7 +1125,7 @@ function loadSeance(folderName) {
     const desc = descMap[folderName];
     const titleEl = document.getElementById('seance-nav-title');
     titleEl.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:1px">
-      <span>${esc(folderName)}</span>
+      <span>${esc(seanceDisplayName(folderName))}</span>
       ${desc ? `<span style="font-style:italic;opacity:.85;font-size:12px;font-weight:400;color:rgba(200,151,58,1)">${esc(desc)}</span>` : ''}
     </div>`;
 
