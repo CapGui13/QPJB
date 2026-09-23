@@ -716,8 +716,16 @@ function seanceDisplayName(folder) {
   return m ? `Séance 1-${m[1].padStart(2, '0')} Aix` : folder;
 }
 
+// Ordre commun à la grille et à la navigation : 2-01 après toutes les 1-xx.
+function compareSeances(a, b) {
+  const special = 'Séance 2-01 Aix';
+  if (a.folder === special && b.folder !== special) return 1;
+  if (b.folder === special && a.folder !== special) return -1;
+  return seanceDisplayName(a.folder).localeCompare(seanceDisplayName(b.folder), 'fr', { numeric: true });
+}
+
 function renderSeanceGrid(seances) {
-  const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
+  const sorted = [...seances].sort(compareSeances);
   const sc = document.getElementById('seances-count');
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
@@ -1154,7 +1162,7 @@ function toggleBlur(enabled) {
 }
 
 function sortedSeances() {
-  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
+  return [...(seancesData?.seances || [])].sort(compareSeances);
 }
 
 function updateSeanceArrows() {
