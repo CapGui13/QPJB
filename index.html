@@ -627,10 +627,13 @@ const pbnCache = {}; // url → decoded text
 
 async function fetchPBN(url) {
   if (pbnCache[url]) return pbnCache[url];
-  const buf = await (await fetch(url)).arrayBuffer();
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Fichier PBN indisponible (' + response.status + ')');
+  const buf = await response.arrayBuffer();
   const bytes = new Uint8Array(buf);
   let text = new TextDecoder('utf-8').decode(bytes);
   if (text.includes('\uFFFD')) text = new TextDecoder('iso-8859-1').decode(bytes);
+  if (!text.trim()) throw new Error('Fichier PBN vide');
   pbnCache[url] = text;
   return text;
 }
@@ -661,7 +664,7 @@ function setHint(msg, err) {
 
 // ── config ─────────────────────────────────────────────────────────────
 const GH_REPO   = 'capgui13/QPJB';
-const CACHE_KEY = 'qpjb-seances-v11';
+const CACHE_KEY = 'qpjb-seances-v13';
 
 function ghHeaders() {
   const token = localStorage.getItem('gh-token');
@@ -709,8 +712,23 @@ function fadeSwap(doSwap) {
   }, 190);
 }
 
+// Numérotation affichée : conserver les noms réels des dossiers pour les liens et les PBN.
+function seanceDisplayName(folder) {
+  if (folder === 'Séance 2-01 Aix') return folder;
+  const m = folder.match(/^Séance (\d+) Aix$/i);
+  return m ? `Séance 1-${m[1].padStart(2, '0')} Aix` : folder;
+}
+
+// Ordre commun à la grille et à la navigation : 2-01 après toutes les 1-xx.
+function compareSeances(a, b) {
+  const special = 'Séance 2-01 Aix';
+  if (a.folder === special && b.folder !== special) return 1;
+  if (b.folder === special && a.folder !== special) return -1;
+  return seanceDisplayName(a.folder).localeCompare(seanceDisplayName(b.folder), 'fr', { numeric: true });
+}
+
 function renderSeanceGrid(seances) {
-  const sorted = [...seances].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
+  const sorted = [...seances].sort(compareSeances);
   const sc = document.getElementById('seances-count');
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
@@ -718,7 +736,7 @@ function renderSeanceGrid(seances) {
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
-        <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(s.folder)}${desc}</div>
+        <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(seanceDisplayName(s.folder))}${desc}</div>
         <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} donne${s.fichiers.length!==1?'s':''}</div>
       </div>`;
     }).join('');
@@ -1118,7 +1136,7 @@ function loadSeance(folderName) {
     const desc = descMap[folderName];
     const titleEl = document.getElementById('seance-nav-title');
     titleEl.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:1px">
-      <span>${esc(folderName)}</span>
+      <span>${esc(seanceDisplayName(folderName))}</span>
       ${desc ? `<span style="font-style:italic;opacity:.85;font-size:12px;font-weight:400;color:rgba(200,151,58,1)">${esc(desc)}</span>` : ''}
     </div>`;
 
@@ -1147,7 +1165,7 @@ function toggleBlur(enabled) {
 }
 
 function sortedSeances() {
-  return [...(seancesData?.seances || [])].sort((a,b) => a.folder.localeCompare(b.folder, 'fr', {numeric:true}));
+  return [...(seancesData?.seances || [])].sort(compareSeances);
 }
 
 function updateSeanceArrows() {
@@ -1231,7 +1249,10 @@ function revealOrOpen(e, el, idx) {
 async function openSeanceAt(fileIdx) {
   await showDeal();
   try {
-    const texts = await Promise.all(pbnFiles.map(f => fetchPBN(f.download_url)));
+    const texts = await Promise.all(pbnFiles.map(async f => {
+      try { return await fetchPBN(f.download_url); }
+      catch (error) { throw new Error('Impossible de charger ' + f.name + ' : ' + error.message); }
+    }));
     deals = [];
     let startIdx = 0;
     texts.forEach((text, fi) => {
@@ -1242,6 +1263,7 @@ async function openSeanceAt(fileIdx) {
       const shortKey = `${currentFolder}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const parsed = parsePBN(text);
+      if (!parsed.length) throw new Error('Aucune donne valide dans ' + f.name);
       parsed.forEach(d => { d._filename = displayName; d._playLink = link; });
       if (fi === fileIdx) startIdx = deals.length;
       deals = deals.concat(parsed);
@@ -1762,7 +1784,9 @@ document.addEventListener('keydown', e => {
 </script>
 <script>
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('/QPJB/service-worker.js');
+    navigator.serviceWorker.register('/QPJB/service-worker.js', { updateViaCache: 'none' })
+      .then(registration => registration.update())
+      .catch(() => {});
   }
 </script>
 
