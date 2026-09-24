@@ -622,6 +622,19 @@ const CW = ['N','E','S','W'];
 let deals = [], idx = 0;
 let pbnFiles = [];
 let playLinks = {}; // { "folder/file.pbn": "https://..." }
+// Force l'affichage en français pour les donnes Bridge Training (mobile inclus).
+function bridgeTrainingFr(link) {
+  if (!link) return link;
+  try {
+    const url = new URL(link);
+    if (url.hostname === 'bridge-training.com' || url.hostname === 'www.bridge-training.com') {
+      url.searchParams.set('lang', 'fr');
+      return url.toString();
+    }
+  } catch (_) {}
+  return link;
+}
+
 let descMap   = {}; // { "Séance X ...": "sous-titre" }
 const pbnCache = {}; // url → decoded text
 
@@ -1207,7 +1220,7 @@ function buildFileListHtml(folderName) {
       const shortKey = `${folderName}/${baseName.split(' - ')[0].trim()}`;
       const link = playLinks[key] || playLinks[shortKey] || playLinks[f.name] || '';
       const playBtn = link
-        ? `<a class="btn-play" href="${esc(link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:10px">▶ Jouer</a>`
+        ? `<a class="btn-play" href="${esc(bridgeTrainingFr(link))}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:10px">▶ Jouer</a>`
         : '';
       const sepIdx = baseName.indexOf(' - ');
       let visiblePart, blurredPart;
@@ -1541,7 +1554,7 @@ function render(i) {
       </div>
     </div>
     <div class="diag-card">
-      ${d._playLink ? `<a class="btn-play-diag" href="${esc(d._playLink)}" target="_blank" rel="noopener">▶ Jouer</a>` : ''}
+      ${d._playLink ? `<a class="btn-play-diag" href="${esc(bridgeTrainingFr(d._playLink))}" target="_blank" rel="noopener">▶ Jouer</a>` : ''}
       ${renderDiag(hands, lead, d.PlayFirst || (declarer ? (['N','E','S','W'][(['N','E','S','W'].indexOf(declarer.toUpperCase())+1)%4]) : null), dealer, vul)}
     </div>`;
 
