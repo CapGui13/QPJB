@@ -725,19 +725,22 @@ function fadeSwap(doSwap) {
   }, 190);
 }
 
-// Numérotation affichée : conserver les noms réels des dossiers pour les liens et les PBN.
+// Les dossiers portent directement la numérotation affichée (1-01, 1-02, …, 2-01, 2-02, …).
 function seanceDisplayName(folder) {
-  if (folder === 'Séance 2-01 Aix') return folder;
-  const m = folder.match(/^Séance (\d+) Aix$/i);
-  return m ? `Séance 1-${m[1].padStart(2, '0')} Aix` : folder;
+  return folder;
 }
 
-// Ordre commun à la grille et à la navigation : 2-01 après toutes les 1-xx.
+// Tri par série puis par numéro de séance.
 function compareSeances(a, b) {
-  const special = 'Séance 2-01 Aix';
-  if (a.folder === special && b.folder !== special) return 1;
-  if (b.folder === special && a.folder !== special) return -1;
-  return seanceDisplayName(a.folder).localeCompare(seanceDisplayName(b.folder), 'fr', { numeric: true });
+  const parse = folder => {
+    const m = folder.match(/^Séance (\d+)-(\d+) Aix$/i);
+    return m ? [Number(m[1]), Number(m[2])] : [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
+  };
+  const [serieA, numA] = parse(a.folder);
+  const [serieB, numB] = parse(b.folder);
+  if (serieA !== serieB) return serieA - serieB;
+  if (numA !== numB) return numA - numB;
+  return a.folder.localeCompare(b.folder, 'fr', { numeric: true });
 }
 
 function renderSeanceGrid(seances) {
