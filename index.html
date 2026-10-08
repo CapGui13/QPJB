@@ -1023,7 +1023,7 @@ function closeLightbox(e) {
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
 
   document.addEventListener('touchstart', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (e.touches.length >= 2) {
       pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
       pinchDistance = distance(e.touches[0], e.touches[1]);
@@ -1047,7 +1047,7 @@ function closeLightbox(e) {
   }, {passive:true});
 
   document.addEventListener('touchmove', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (e.touches.length >= 2) {
       if (!pinch) {
         pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
@@ -1102,7 +1102,7 @@ function closeLightbox(e) {
   }, {passive:false});
 
   document.addEventListener('touchend', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (pinch) {
       if (e.touches.length < 2) pinch = false;
       dragging = false; suppressSwipe = true;
@@ -1165,17 +1165,27 @@ function closeLightbox(e) {
       const committed = nextIdx >= 0 && nextIdx < lightboxImages.length &&
         (Math.abs(dx) > W() / 3 || velocity > 0.3);
       if (committed) {
-        imgA().style.transition = 'transform .25s ease';
-        imgA().style.transform  = `translateX(${dx < 0 ? -W() : W()}px)`;
-        imgB().style.transition = 'transform .25s ease';
-        imgB().style.transform  = 'translateX(0)';
+        _lbBusy = true;
+        const front = imgA(), incoming = imgB();
+        front.style.transition = 'transform .25s ease';
+        front.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
+        incoming.style.transition = 'transform .25s ease';
+        incoming.style.transform = 'translateX(0)';
         showNavs(false);
-        setTimeout(() => {
+        setTimeout(async () => {
+          // Garder la nouvelle image visible jusqu'à ce que le calque
+          // principal soit décodé : évite le flash au changement de document.
           lightboxIdx = nextIdx;
-          imgA().src = lightboxImages[nextIdx].url;
           lbUpdate(nextIdx);
+          front.style.transition = 'none';
+          front.style.opacity = '0';
+          front.style.transform = '';
+          front.src = lightboxImages[nextIdx].url;
+          try { await front.decode(); } catch (_) { /* laisser le navigateur afficher */ }
+          if (!lb().classList.contains('open')) { _lbBusy = false; return; }
           resetSlots();
           showNavs(true);
+          _lbBusy = false;
         }, 260);
       } else {
         imgA().style.transition = 'transform .3s ease';
