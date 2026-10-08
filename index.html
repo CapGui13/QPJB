@@ -1033,8 +1033,10 @@ async function navLightbox(dir) {
   // Ne pas lancer le fondu avant que l'image suivante soit décodée.
   try { await incoming.decode(); } catch (_) {}
   const lb = document.getElementById('lightbox');
-  if (generation !== _navGeneration || session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
+  if (generation !== _navGeneration) return;
+  if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
     _lbBusy = false;
+    _pendingDocIndex = null;
     return;
   }
   // Fondu doux : calques superposés, sans recharger le document après coup.
@@ -1044,8 +1046,10 @@ async function navLightbox(dir) {
   incoming.style.opacity = '1';
   outgoing.style.opacity = '0';
   setTimeout(() => {
-    if (generation !== _navGeneration || session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
+    if (generation !== _navGeneration) return;
+    if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
       _lbBusy = false;
+      _pendingDocIndex = null;
       return;
     }
     // Inverser les rôles sans remplacer les sources : aucun retour à l'ancienne image.
