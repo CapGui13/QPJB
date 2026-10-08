@@ -524,6 +524,15 @@ header{
 
 <div id="fade-overlay"></div>
 <script>
+// Etat du splash initialisé AVANT le chargement asynchrone de l'image.
+var _splashReadyAt = null;
+var _splashHideRequested = false;
+var _splashHideTimer = null;
+function markSplashReady() {
+  if (_splashReadyAt !== null) return;
+  _splashReadyAt = Date.now();
+  if (_splashHideRequested) hideSplash();
+}
 // Transforme uniquement le fond uni en transparence, sans redessiner les lettres.
 // Le fichier original reste la source : chaque pixel conserve sa finesse.
 (function(){
@@ -694,13 +703,6 @@ async function fetchPBN(url) {
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const _splashShown = Date.now();
 const _SPLASH_MIN = 3000;
-let _splashReadyAt = null;
-let _splashHideRequested = false;
-let _splashHideTimer = null;
-function markSplashReady(){
-  _splashReadyAt = Date.now();
-  if (_splashHideRequested) hideSplash();
-}
 function hideSplash() {
   const s = document.getElementById('splash');
   if (!s || s.classList.contains('fade-out')) return;
@@ -1909,6 +1911,19 @@ document.addEventListener('keydown', e => {
 (function(){
   initTokenUI();
   discoverSeances();
+  // Eviter qu'une requête bloquée laisse le splash à l'écran indéfiniment.
+  setTimeout(() => {
+    const splash = document.getElementById('splash');
+    if (!splash || splash.classList.contains('fade-out')) return;
+    if (_splashReadyAt === null) markSplashReady();
+    const grid = document.getElementById('seance-grid');
+    if (grid && !grid.querySelector('.seance-card') && !grid.querySelector('.empty')) {
+      grid.insertAdjacentHTML('beforeend', '<p style="padding:12px;color:#c8924a">Le chargement prend plus de temps que prévu. Réessayez en actualisant la page.</p>');
+    }
+    _splashHideRequested = true;
+    _splashReadyAt = Math.min(_splashReadyAt, Date.now() - _SPLASH_MIN);
+    hideSplash();
+  }, 12000);
 })();
 </script>
 <script>
