@@ -960,6 +960,8 @@ let _lightboxSession = 0;
 function openLightbox(i) {
   if (document.getElementById('lightbox').classList.contains('open')) return;
   const session = ++_lightboxSession;
+  ++_navGeneration;
+  _pendingDocIndex = null;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   _lbBusy = false;
   if (_lightboxCloseTimer) { clearTimeout(_lightboxCloseTimer); _lightboxCloseTimer = null; }
@@ -999,22 +1001,29 @@ function openLightbox(i) {
 }
 
 let _lbBusy = false;
-let _queuedArrowClicks = [];
-function playNextArrowClick() {
-  if (_lbBusy || !_queuedArrowClicks.length) return;
-  const dir = _queuedArrowClicks.shift();
-  if (document.getElementById('lightbox').classList.contains('open')) navLightbox(dir);
+let _pendingDocIndex = null;
+let _navGeneration = 0;
+function jumpToDocument(dir) {
+  const next = (_pendingDocIndex ?? lightboxIdx) + dir;
+  if (next < 0 || next >= lightboxImages.length) return;
+  ++_navGeneration;
+  _pendingDocIndex = null;
+  _lbBusy = false;
+  resetSlots();
+  imgA().src = lightboxImages[next].url;
+  imgA().style.pointerEvents = '';
+  imgB().style.pointerEvents = 'none';
+  lightboxIdx = next;
+  lbUpdate(next);
 }
 async function navLightbox(dir) {
-  if (_lbBusy) {
-    // Conserver les clics effectués pendant un fondu, dans leur ordre.
-    if (_queuedArrowClicks.length < 12) _queuedArrowClicks.push(dir);
-    return;
-  }
+  if (_lbBusy) { jumpToDocument(dir); return; }
   const next = lightboxIdx + dir;
   if (next < 0 || next >= lightboxImages.length) return;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   _lbBusy = true;
+  const generation = ++_navGeneration;
+  _pendingDocIndex = next;
   const session = _lightboxSession;
   const outgoing = imgA(), incoming = imgB();
   incoming.style.transition = 'none';
@@ -1024,7 +1033,7 @@ async function navLightbox(dir) {
   // Ne pas lancer le fondu avant que l'image suivante soit décodée.
   try { await incoming.decode(); } catch (_) {}
   const lb = document.getElementById('lightbox');
-  if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
+  if (generation !== _navGeneration || session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
     _lbBusy = false;
     return;
   }
@@ -1035,7 +1044,7 @@ async function navLightbox(dir) {
   incoming.style.opacity = '1';
   outgoing.style.opacity = '0';
   setTimeout(() => {
-    if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
+    if (generation !== _navGeneration || session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
       _lbBusy = false;
       return;
     }
@@ -1054,7 +1063,7 @@ async function navLightbox(dir) {
     lightboxIdx = next;
     lbUpdate(next);
     _lbBusy = false;
-    playNextArrowClick();
+    _pendingDocIndex = null;
   }, 560);
 }
 
@@ -1063,7 +1072,8 @@ function closeLightbox(e) {
   const lb = document.getElementById('lightbox');
   if (!lb.classList.contains('open')) return;
   ++_lightboxSession;
-  _queuedArrowClicks.length = 0;
+  ++_navGeneration;
+  _pendingDocIndex = null;
   _lbBusy = false;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   if (_lightboxCloseTimer) clearTimeout(_lightboxCloseTimer);
@@ -1094,28 +1104,13 @@ function closeLightbox(e) {
   const W    = () => window.innerWidth;
 
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
-  let queuedSwipe = 0;
   let queuedStartX = null;
-  function startQueuedSwipe() {
-    const dir = queuedSwipe;
-    queuedSwipe = 0;
-    if (!dir || _lbBusy || !lb().classList.contains('open')) return;
-    const target = lightboxIdx + dir;
-    if (target < 0 || target >= lightboxImages.length) return;
-    const incoming = imgB(), outgoing = imgA();
-    incoming.src = lightboxImages[target].url;
-    incoming.style.transition = 'none';
-    incoming.style.opacity = '1';
-    incoming.style.transform = `translateX(${dir > 0 ? W() : -W()}px)`;
-    outgoing.style.transition = 'none';
-    outgoing.style.transform = '';
-    void incoming.offsetWidth;
-    settleSwipe(dir, 0);
-  }
   function settleSwipe(dir, dx) {
     const nextIdx = lightboxIdx + dir;
     if (nextIdx < 0 || nextIdx >= lightboxImages.length) return;
     _lbBusy = true;
+    const generation = ++_navGeneration;
+    _pendingDocIndex = nextIdx;
     const outgoing = imgA(), incoming = imgB(), session = _lightboxSession;
     const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
     const settleMs = Math.round(480 + remaining * 300);
@@ -1126,11 +1121,7 @@ function closeLightbox(e) {
     incoming.style.transform = 'translateX(0)';
     showNavs(false);
     setTimeout(() => {
-      if (session !== _lightboxSession || !lb().classList.contains('open')) {
-        _lbBusy = false;
-        queuedSwipe = 0;
-        return;
-      }
+      if (generation !== _navGeneration || session !== _lightboxSession || !lb().classList.contains('open')) return;
       outgoing.id = 'lightbox-img-b';
       incoming.id = 'lightbox-img-a';
       incoming.style.transition = 'none';
@@ -1146,8 +1137,8 @@ function closeLightbox(e) {
       lightboxIdx = nextIdx;
       lbUpdate(nextIdx);
       _lbBusy = false;
-      if (queuedSwipe) startQueuedSwipe();
-      else showNavs(true);
+      _pendingDocIndex = null;
+      showNavs(true);
     }, settleMs + 20);
   }
 
@@ -1239,7 +1230,7 @@ function closeLightbox(e) {
     if (_lbBusy) {
       if (queuedStartX !== null && e.changedTouches.length) {
         const delta = e.changedTouches[0].clientX - queuedStartX;
-        if (Math.abs(delta) > 35) queuedSwipe = delta < 0 ? 1 : -1;
+        if (Math.abs(delta) > 35) jumpToDocument(delta < 0 ? 1 : -1);
       }
       queuedStartX = null;
       return;
