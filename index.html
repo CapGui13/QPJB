@@ -53,7 +53,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:va
 /* ── Splash : deux calques issus du même fichier, transition sans filtre de teinte ── */
 html:has(#splash:not(.fade-out):not(.hidden)){overflow-y:hidden;background:#c0a8dc}
 html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
-#splash{position:fixed;inset:0;z-index:9999;background:#c0a8dc;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s}
+#splash{position:fixed;inset:0;z-index:9999;background:#c0a8dc;display:flex;align-items:center;justify-content:center;transition:opacity .85s cubic-bezier(.4,0,.2,1),visibility 0s linear .85s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
 #splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
 .splash-stack{position:relative;width:min(82vw,350px,calc(79dvh * 1052 / 1272));aspect-ratio:1052/1272;transform:translate(var(--logo-offset-x,0%),var(--logo-offset-y,0%))}
