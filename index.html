@@ -450,7 +450,7 @@ header{
   overflow:hidden;
   opacity:0;
   pointer-events:none;
-  transition:opacity .5s ease;
+  transition:opacity .56s cubic-bezier(.22,1,.36,1);
   will-change:opacity;
   -webkit-transform:translateZ(0);
   transform:translateZ(0);
@@ -514,9 +514,9 @@ header{
   background:#211b29;
   pointer-events:none;
   opacity:0;
-  transition:opacity .32s cubic-bezier(.4,0,.2,1);
+  transition:opacity .45s cubic-bezier(.22,1,.36,1);
 }
-#fade-overlay.fade-in {opacity:1;pointer-events:all}
+#fade-overlay.fade-in {opacity:1;pointer-events:all;transition-duration:.25s;transition-timing-function:ease-in}
 
 /* ── TOKEN ── */
 .token-section{padding:10px 18px;background:#382d44;border-top:1px solid rgba(171,130,214,.15);display:flex;align-items:center;gap:8px}
@@ -841,7 +841,7 @@ function fadeSwap(doSwap) {
     requestAnimationFrame(() => requestAnimationFrame(() => {
       ov.classList.remove('fade-in');
     }));
-  }, 325);
+  }, 255);
 }
 
 // Les dossiers portent directement la numérotation affichée (1-01, 1-02, …, 2-01, 2-02, …).
@@ -1001,28 +1001,33 @@ function resetSlots() {
 }
 
 let _openTimer = null;
+let _lightboxCloseTimer = null;
 function openLightbox(i) {
+  if (_lightboxCloseTimer) { clearTimeout(_lightboxCloseTimer); _lightboxCloseTimer = null; }
   lightboxIdx = i;
   resetSlots();
   const image = imgA();
-  // Le fond de la visionneuse apparaît d'abord ; le document se révèle
-  // doucement une fois chargé, plutôt que de surgir au milieu du fondu.
   image.style.transition = 'none';
   image.style.opacity = '0';
   image.src = lightboxImages[i].url;
   lbUpdate(i);
-  const _lb = document.getElementById('lightbox');
-  void _lb.offsetWidth;
-  _lb.classList.add('open');
+  const lb = document.getElementById('lightbox');
+  void lb.offsetWidth;
+  lb.classList.add('open');
   document.body.style.overflow = 'hidden';
   const expectedUrl = image.src;
   const reveal = () => {
-    if (!_lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (!_lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
-      image.style.transition = 'opacity .55s cubic-bezier(.4,0,.2,1)';
-      image.style.opacity = '1';
-    }));
+    if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+    if (_openTimer) clearTimeout(_openTimer);
+    _openTimer = setTimeout(() => {
+      _openTimer = null;
+      if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+        image.style.transition = 'opacity .62s cubic-bezier(.22,1,.36,1)';
+        image.style.opacity = '1';
+      }));
+    }, 135);
   };
   if (image.complete && image.naturalWidth) reveal();
   else {
@@ -1063,8 +1068,13 @@ function navLightbox(dir) {
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
   const lb = document.getElementById('lightbox');
+  if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
+  if (_lightboxCloseTimer) clearTimeout(_lightboxCloseTimer);
   lb.classList.remove('open');
-  setTimeout(() => {
+  // Attendre la fin du fondu CSS avant d'effacer les images et rétablir le scroll.
+  _lightboxCloseTimer = setTimeout(() => {
+    _lightboxCloseTimer = null;
+    if (lb.classList.contains('open')) return;
     imgA().src = ''; imgB().src = '';
     resetSlots();
     imgA().style.opacity = '';
@@ -1072,7 +1082,7 @@ function closeLightbox(e) {
     imgA().style.transition = '';
     document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
     document.body.style.overflow = '';
-  }, 230);
+  }, 580);
 }
 
 // ── swipe sur la lightbox ──────────────────────────────────────────────
