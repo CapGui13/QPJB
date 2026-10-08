@@ -1158,9 +1158,10 @@ function loadSeance(folderName) {
 
     // Injecter la liste des PBNs
     document.getElementById('seance-file-list').innerHTML = buildFileListHtml(folderName);
-    document.getElementById('seance-file-list').classList.remove('blur-disabled');
+    const blurEnabled = localStorage.getItem('qpjb-blur-enabled') !== 'false';
     const toggleInput = document.getElementById('blur-toggle-input');
-    if (toggleInput) toggleInput.checked = true;
+    if (toggleInput) toggleInput.checked = blurEnabled;
+    document.getElementById('seance-file-list').classList.toggle('blur-disabled', !blurEnabled);
 
     // Basculer les vues
     document.getElementById('vhome').style.display = 'none';
@@ -1171,6 +1172,7 @@ function loadSeance(folderName) {
 }
 
 function toggleBlur(enabled) {
+  localStorage.setItem('qpjb-blur-enabled', String(enabled));
   const list = document.getElementById('seance-file-list');
   if (enabled) {
     list.classList.remove('blur-disabled');
