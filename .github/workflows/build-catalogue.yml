@@ -33,4 +33,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Actualiser automatiquement le catalogue QPJB"
-          git push
+          # Un autre commit peut arriver pendant la génération.
+          # Rejouer le catalogue sur le dernier main avant de pousser.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          echo "Impossible de publier le catalogue après 3 tentatives" >&2
+          exit 1
