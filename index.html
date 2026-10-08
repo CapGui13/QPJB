@@ -1005,8 +1005,8 @@ async function navLightbox(dir) {
     return;
   }
   // Fondu doux : calques superposés, sans recharger le document après coup.
-  outgoing.style.transition = 'opacity .28s ease-in';
-  incoming.style.transition = 'opacity .45s cubic-bezier(.22,1,.36,1)';
+  outgoing.style.transition = 'opacity .34s ease-in';
+  incoming.style.transition = 'opacity .54s cubic-bezier(.22,1,.36,1)';
   void incoming.offsetWidth;
   incoming.style.opacity = '1';
   outgoing.style.opacity = '0';
@@ -1030,7 +1030,7 @@ async function navLightbox(dir) {
     lightboxIdx = next;
     lbUpdate(next);
     _lbBusy = false;
-  }, 470);
+  }, 560);
 }
 
 function closeLightbox(e) {
