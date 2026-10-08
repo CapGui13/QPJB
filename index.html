@@ -46,11 +46,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 *{-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text;user-select:text}
-html{overflow-y:scroll;background:#c0a8dc}
+html{overflow-y:scroll;background:var(--cream)}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
 /* ── Splash : deux calques issus du même fichier, transition sans filtre de teinte ── */
-html:has(#splash:not(.fade-out):not(.hidden)){overflow-y:hidden}
+html:has(#splash:not(.fade-out):not(.hidden)){overflow-y:hidden;background:#c0a8dc}
 html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 #splash{position:fixed;inset:0;z-index:9999;background:#c0a8dc;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
