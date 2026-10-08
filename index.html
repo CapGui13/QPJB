@@ -55,7 +55,7 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 #splash{position:fixed;inset:0;z-index:9999;background:#c0a8dc;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
 #splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
-.splash-stack{position:relative;width:min(82vw,350px);max-height:79dvh;aspect-ratio:1052/1272}
+.splash-stack{position:relative;width:min(82vw,350px,calc(79dvh * 1052 / 1272));aspect-ratio:1052/1272;transform:translate(var(--logo-offset-x,0%),var(--logo-offset-y,0%))}
 .splash-original,.splash-blue{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
 .splash-blue{opacity:0;pointer-events:none}
 .splash-blue.ready{animation:qpjbPurpleBlue 2.8s ease-in-out infinite}
@@ -557,6 +557,23 @@ function markSplashReady() {
         const alpha=Math.max(0,Math.min(1,(dr/(bg[0]-fg[0])+dg/(bg[1]-fg[1])+db/(bg[2]-fg[2]))/3));
         if(alpha < .015){p[i+3]=0;continue;}
         p[i]=fg[0];p[i+1]=fg[1];p[i+2]=fg[2];p[i+3]=Math.round(alpha*255);
+      }
+      // Centrer le dessin utile (QPJB + sous-titre), pas les marges du PNG.
+      // On ignore les pixels très pâles du fond pour éviter les artéfacts.
+      let minX=w, minY=h, maxX=-1, maxY=-1;
+      for(let y=0;y<h;y++){
+        for(let x=0;x<w;x++){
+          if(p[(y*w+x)*4+3] < 105) continue;
+          if(x<minX) minX=x;
+          if(x>maxX) maxX=x;
+          if(y<minY) minY=y;
+          if(y>maxY) maxY=y;
+        }
+      }
+      if(maxX>=minX && maxY>=minY){
+        const stack=document.querySelector('.splash-stack');
+        stack.style.setProperty('--logo-offset-x', ((w-minX-maxX)/(2*w)*100).toFixed(2)+'%');
+        stack.style.setProperty('--logo-offset-y', ((h-minY-maxY)/(2*h)*100).toFixed(2)+'%');
       }
       ctx.putImageData(pixels,0,0);
       document.getElementById('splash').style.background='rgb('+bg.join(',')+')';
