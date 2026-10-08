@@ -1,10 +1,7 @@
-// Ressources locales : réseau d'abord, cache uniquement en secours hors ligne.
-// L'ancienne stratégie cache-first empêchait de voir les nouvelles versions.
-const CACHE = 'qpjb-v2';
+// Réseau d'abord, cache en secours ; les requêtes no-store ne sont pas interceptées.
+const CACHE = 'qpjb-v3';
 
-self.addEventListener('install', event => {
-  event.waitUntil(self.skipWaiting());
-});
+self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
 
 self.addEventListener('activate', event => {
   event.waitUntil(Promise.all([
@@ -18,16 +15,15 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
-  if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  if (request.method !== 'GET' || url.origin !== self.location.origin ||
+      request.cache === 'no-store') return;
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     try {
-      const response = await fetch(request);
-      if (response.ok) {
-        // Les requêtes no-store servant au contrôle de version ne sont pas mises en cache.
-        if (request.cache !== 'no-store') await cache.put(request, response.clone());
-      }
+      // Hors ligne ou réseau instable : éviter une attente illimitée.
+      const response = await fetch(request, {signal: AbortSignal.timeout(6500)});
+      if (response.ok) await cache.put(request, response.clone());
       return response;
     } catch (error) {
       const cached = await cache.match(request);
