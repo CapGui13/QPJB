@@ -378,7 +378,7 @@ header{
 
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
-.seance-separator{width:33.333%;height:2px;align-self:center;margin:9px 0 10px;border-radius:999px;background:rgba(171,130,214,.42)}
+.seance-separator{display:block;flex:none;width:33.333%;height:3px;align-self:center;margin:12px 0 13px;border-radius:999px;background:#9871bd;opacity:.85}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(171,130,214,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
 .seance-card.is-pressing{transform:scale(.95)}
 .seance-desc{font-size:11px;color:rgba(171,130,214,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
@@ -823,9 +823,10 @@ function renderSeanceGrid(seances) {
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
     document.getElementById('seance-grid').innerHTML = sorted.map((s, index) => {
-      const isFirstTwo = /^\s*(?:Séance\s*)?2-01(?:\D|$)/i.test(seanceDisplayName(s.folder));
-      const previousIsOneTen = index > 0 && /^\s*(?:Séance\s*)?1-10(?:\D|$)/i.test(seanceDisplayName(sorted[index-1].folder));
-      const separator = isFirstTwo && previousIsOneTen ? '<div class="seance-separator" aria-hidden="true"></div>' : '';
+      // Séparation unique entre les deux séries, sans dépendre du nom précédent.
+      const separator = /^Séance 2-01 Aix$/i.test(s.folder)
+        ? '<div class="seance-separator" role="separator" aria-label="Série 2"></div>'
+        : '';
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `${separator}
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
