@@ -659,7 +659,7 @@ function markSplashReady() {
     <img class="lightbox-img" id="lightbox-img-b" src="" alt="" style="opacity:0;pointer-events:none">
   </div>
   <button class="lightbox-nav lightbox-next" id="lightbox-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
-  <div class="lightbox-name" id="lightbox-name"></div>
+  
 </div>
 
 <!-- DEAL VIEW -->
@@ -925,7 +925,6 @@ function imgA() { return document.getElementById('lightbox-img-a'); }
 function imgB() { return document.getElementById('lightbox-img-b'); }
 
 function lbUpdate(idx) {
-  document.getElementById('lightbox-name').textContent = lightboxImages[idx].name;
   document.getElementById('lightbox-prev').style.visibility = idx > 0 ? 'visible' : 'hidden';
   document.getElementById('lightbox-next').style.visibility = idx < lightboxImages.length-1 ? 'visible' : 'hidden';
 }
