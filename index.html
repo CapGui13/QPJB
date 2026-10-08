@@ -1109,6 +1109,31 @@ function closeLightbox(e) {
 
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
   let queuedStartX = null;
+  let pendingSwipeDirection = 0;
+  let activeSwipe = null;
+
+  // Si un deuxième geste arrive pendant le glissement, terminer le premier
+  // depuis sa position VISUELLE actuelle, puis enchaîner le suivant.
+  // Aucun remplacement direct de src ni saut d'image.
+  function hurryActiveSwipe() {
+    const active = activeSwipe;
+    if (!active || active.hurrying) return;
+    active.hurrying = true;
+    const outgoing = active.outgoing, incoming = active.incoming;
+    const fromOutgoing = getComputedStyle(outgoing).transform;
+    const fromIncoming = getComputedStyle(incoming).transform;
+    outgoing.style.transition = 'none';
+    incoming.style.transition = 'none';
+    outgoing.style.transform = fromOutgoing === 'none' ? '' : fromOutgoing;
+    incoming.style.transform = fromIncoming === 'none' ? '' : fromIncoming;
+    void incoming.offsetWidth;
+    outgoing.style.transition = 'transform .16s ease-out';
+    incoming.style.transition = 'transform .16s ease-out';
+    outgoing.style.transform = `translateX(${active.dir > 0 ? -W() : W()}px)`;
+    incoming.style.transform = 'translateX(0)';
+    clearTimeout(active.timer);
+    active.timer = setTimeout(active.finish, 175);
+  }
   function settleSwipe(dir, dx) {
     const nextIdx = lightboxIdx + dir;
     if (nextIdx < 0 || nextIdx >= lightboxImages.length) return;
@@ -1124,8 +1149,13 @@ function closeLightbox(e) {
     incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
     incoming.style.transform = 'translateX(0)';
     showNavs(false);
-    setTimeout(() => {
-      if (generation !== _navGeneration || session !== _lightboxSession || !lb().classList.contains('open')) return;
+    const active = {outgoing, incoming, dir, hurrying:false, timer:null, finish:null};
+    activeSwipe = active;
+    active.finish = () => {
+      if (generation !== _navGeneration || session !== _lightboxSession || !lb().classList.contains('open')) {
+        if (activeSwipe === active) activeSwipe = null;
+        return;
+      }
       outgoing.id = 'lightbox-img-b';
       incoming.id = 'lightbox-img-a';
       incoming.style.transition = 'none';
@@ -1142,8 +1172,20 @@ function closeLightbox(e) {
       lbUpdate(nextIdx);
       _lbBusy = false;
       _pendingDocIndex = null;
-      showNavs(true);
-    }, settleMs + 20);
+      if (activeSwipe === active) activeSwipe = null;
+      const pending = pendingSwipeDirection;
+      pendingSwipeDirection = 0;
+      if (pending && lightboxIdx + pending >= 0 && lightboxIdx + pending < lightboxImages.length) {
+        const nextImage = imgB();
+        nextImage.src = lightboxImages[lightboxIdx + pending].url;
+        nextImage.style.transition = 'none';
+        nextImage.style.transform = `translateX(${pending > 0 ? W() : -W()}px)`;
+        nextImage.style.opacity = '1';
+        void nextImage.offsetWidth;
+        settleSwipe(pending, 0);
+      } else showNavs(true);
+    };
+    active.timer = setTimeout(active.finish, settleMs + 20);
   }
 
   document.addEventListener('touchstart', e => {
@@ -1234,7 +1276,14 @@ function closeLightbox(e) {
     if (_lbBusy) {
       if (queuedStartX !== null && e.changedTouches.length) {
         const delta = e.changedTouches[0].clientX - queuedStartX;
-        if (Math.abs(delta) > 35) jumpToDocument(delta < 0 ? 1 : -1);
+        if (Math.abs(delta) > 35) {
+          const direction = delta < 0 ? 1 : -1;
+          const target = (_pendingDocIndex ?? lightboxIdx) + direction;
+          if (target >= 0 && target < lightboxImages.length) {
+            pendingSwipeDirection = direction;
+            hurryActiveSwipe();
+          }
+        }
       }
       queuedStartX = null;
       return;
