@@ -1004,12 +1004,31 @@ let _openTimer = null;
 function openLightbox(i) {
   lightboxIdx = i;
   resetSlots();
-  imgA().src = lightboxImages[i].url;
+  const image = imgA();
+  // Le fond de la visionneuse apparaît d'abord ; le document se révèle
+  // doucement une fois chargé, plutôt que de surgir au milieu du fondu.
+  image.style.transition = 'none';
+  image.style.opacity = '0';
+  image.src = lightboxImages[i].url;
   lbUpdate(i);
   const _lb = document.getElementById('lightbox');
   void _lb.offsetWidth;
   _lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  const expectedUrl = image.src;
+  const reveal = () => {
+    if (!_lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (!_lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+      image.style.transition = 'opacity .55s cubic-bezier(.4,0,.2,1)';
+      image.style.opacity = '1';
+    }));
+  };
+  if (image.complete && image.naturalWidth) reveal();
+  else {
+    image.addEventListener('load', reveal, {once:true});
+    image.addEventListener('error', reveal, {once:true});
+  }
 }
 
 let _lbBusy = false;
