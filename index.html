@@ -38,7 +38,7 @@
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --cream:#181123; --card-bg:#281d36; --card-bd:#4b365e;
+    --cream:#211d27; --card-bg:#2e2637; --card-bd:#4b4058;
     --txt:#f6f0fc; --txt2:#c0abda; --txt3:#9580ae;
     --sh-sm:0 2px 10px rgba(0,0,0,.5); --sh-lg:0 8px 28px rgba(0,0,0,.6);
   }
@@ -65,7 +65,7 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 header{
   pointer-events:none;
   user-select:none;
-  background:#2c1942;
+  background:#30263c;
   padding:max(env(safe-area-inset-top,0px),12px) 18px 12px;
   display:flex;align-items:center;justify-content:space-between;
   position:fixed;top:0;left:0;right:0;
@@ -80,7 +80,7 @@ header{
 .logo{display:flex;align-items:center;gap:11px}
 .logo-icon{
   width:56px;height:36px;border-radius:8px;flex-shrink:0;
-  background:#40245b;border:1px solid rgba(171,130,214,.25);
+  background:#40304e;border:1px solid rgba(171,130,214,.25);
   display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:800;font-family:Syne,sans-serif;letter-spacing:1px;
   padding:0 7px;
@@ -93,7 +93,7 @@ header{
 
 /* ── CONFIG ── */
 .config{
-  background:#39234f;
+  background:#382d44;
   padding:16px 18px 20px;
   border-bottom:1px solid rgba(171,130,214,.15);
 }
@@ -386,7 +386,7 @@ header{
 .seance-count{font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0}
 
 /* ── IMAGES SECTION ── */
-.images-section{padding:14px 18px 16px;background:#282828;border-bottom:1px solid rgba(171,130,214,.15)}
+.images-section{padding:14px 18px 16px;background:#332c3b;border-bottom:1px solid rgba(171,130,214,.15)}
 .images-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.36);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
 .images-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .images-scroll::-webkit-scrollbar{display:none}
@@ -473,7 +473,7 @@ header{
 /* ── FADE OVERLAY ── */
 #fade-overlay{
   position:fixed;inset:0;z-index:500;
-  background:#20152d;
+  background:#211b29;
   pointer-events:none;
   opacity:0;
   transition:opacity .18s ease;
@@ -481,7 +481,7 @@ header{
 #fade-overlay.fade-in {opacity:1;pointer-events:all}
 
 /* ── TOKEN ── */
-.token-section{padding:10px 18px;background:#39234f;border-top:1px solid rgba(171,130,214,.15);display:flex;align-items:center;gap:8px}
+.token-section{padding:10px 18px;background:#382d44;border-top:1px solid rgba(171,130,214,.15);display:flex;align-items:center;gap:8px}
 .token-wrap{flex:1;min-width:0;position:relative;display:flex;align-items:center}
 .token-input{
   flex:1;min-width:0;width:100%;
