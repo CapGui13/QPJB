@@ -823,8 +823,8 @@ function renderSeanceGrid(seances) {
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
     document.getElementById('seance-grid').innerHTML = sorted.map((s, index) => {
-      const isFirstTwo = /^\\s*(?:Séance\\s*)?2-01(?:\\D|$)/i.test(seanceDisplayName(s.folder));
-      const previousIsOneTen = index > 0 && /^\\s*(?:Séance\\s*)?1-10(?:\\D|$)/i.test(seanceDisplayName(sorted[index-1].folder));
+      const isFirstTwo = /^\s*(?:Séance\s*)?2-01(?:\D|$)/i.test(seanceDisplayName(s.folder));
+      const previousIsOneTen = index > 0 && /^\s*(?:Séance\s*)?1-10(?:\D|$)/i.test(seanceDisplayName(sorted[index-1].folder));
       const separator = isFirstTwo && previousIsOneTen ? '<div class="seance-separator" aria-hidden="true"></div>' : '';
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `${separator}
