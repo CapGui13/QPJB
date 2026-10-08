@@ -1279,6 +1279,7 @@ function closeLightbox(e) {
       return;
     }
     if (lightboxZoom.scale > 1 || suppressSwipe) {
+      dragOriginX = 0;
       dragging = false;
       suppressSwipe = false;
       return;
@@ -1290,6 +1291,7 @@ function closeLightbox(e) {
     const dt = Date.now() - tt;
 
     if (swipeDir === 'v') {
+      dragOriginX = 0;
       const vy = dy / dt;
       if (dy > 80 || vy > 0.4) {
         // Fermeture : l'image glisse vers le bas, le fond disparaît
