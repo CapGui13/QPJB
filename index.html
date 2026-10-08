@@ -378,6 +378,7 @@ header{
 
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.seance-separator{width:33.333%;height:2px;align-self:center;margin:9px 0 10px;border-radius:999px;background:rgba(171,130,214,.42)}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(171,130,214,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
 .seance-card.is-pressing{transform:scale(.95)}
 .seance-desc{font-size:11px;color:rgba(171,130,214,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
@@ -821,9 +822,12 @@ function renderSeanceGrid(seances) {
   const sc = document.getElementById('seances-count');
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
-    document.getElementById('seance-grid').innerHTML = sorted.map(s => {
+    document.getElementById('seance-grid').innerHTML = sorted.map((s, index) => {
+      const isFirstTwo = /^\\s*(?:Séance\\s*)?2-01(?:\\D|$)/i.test(seanceDisplayName(s.folder));
+      const previousIsOneTen = index > 0 && /^\\s*(?:Séance\\s*)?1-10(?:\\D|$)/i.test(seanceDisplayName(sorted[index-1].folder));
+      const separator = isFirstTwo && previousIsOneTen ? '<div class="seance-separator" aria-hidden="true"></div>' : '';
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
-      return `
+      return `${separator}
       <div class="seance-card" data-folder="${esc(s.folder)}" onclick="loadSeance('${esc(s.folder)}')">
         <div class="seance-num" style="display:flex;align-items:baseline;min-width:0;overflow:hidden;flex:1">${esc(seanceDisplayName(s.folder))}${desc}</div>
         <div class="seance-count" style="flex-shrink:0">${s.fichiers.length} donne${s.fichiers.length!==1?'s':''}</div>
