@@ -1134,24 +1134,13 @@ function closeLightbox(e) {
     const dy = e.touches[0].clientY - ty;
     if (!swipeDir && Math.max(Math.abs(dx), Math.abs(dy)) > 10) {
       swipeDir = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
-      showNavs(false);
-      if (swipeDir === 'h') {
-        const ni = lightboxIdx + (dx < 0 ? 1 : -1);
-        if (ni >= 0 && ni < lightboxImages.length) {
-          imgB().src = lightboxImages[ni].url;
-          imgB().style.opacity = '1';
-          imgB().style.transform = `translateX(${dx < 0 ? W() : -W()}px)`;
-        }
-      }
+      if (swipeDir === 'v') showNavs(false);
     }
     if (!swipeDir) return;
     e.preventDefault();
     if (swipeDir === 'h') {
-      imgA().style.transform = `translateX(${dx}px)`;
-      const ni = lightboxIdx + (dx < 0 ? 1 : -1);
-      if (ni >= 0 && ni < lightboxImages.length) {
-        imgB().style.transform = `translateX(${dx + (dx < 0 ? W() : -W())}px)`;
-      }
+      // Le geste choisit le document, sans déplacer brutalement les deux calques.
+      // Le fondu final est strictement celui de la navigation par flèches.
     } else {
       // iOS style : l'image suit le doigt, rétrécit, le fond se transparentise
       const clampedDy = Math.max(0, dy);
@@ -1226,47 +1215,9 @@ function closeLightbox(e) {
       const committed = nextIdx >= 0 && nextIdx < lightboxImages.length &&
         (Math.abs(dx) > W() / 3 || velocity > 0.3);
       if (committed) {
-        _lbBusy = true;
-        const outgoing = imgA(), incoming = imgB();
-        // La durée dépend de la distance restant à parcourir, pas d'un temps fixe.
-        const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
-        const settleMs = Math.round(220 + remaining * 260);
-        const settleEase = 'cubic-bezier(.22,.68,0,1)';
-        outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
-        outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
-        incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
-        incoming.style.transform = 'translateX(0)';
-        showNavs(false);
-        setTimeout(() => {
-          // L'image entrante est déjà affichée au centre. Échanger les
-          // identifiants des calques, sans changer leur src : aucune image
-          // précédente ne peut réapparaître lors de la transmission.
-          outgoing.id = 'lightbox-img-b';
-          incoming.id = 'lightbox-img-a';
-          incoming.style.transition = 'none';
-          incoming.style.transform = '';
-          incoming.style.opacity = '1';
-          incoming.style.pointerEvents = '';
-          outgoing.style.transition = 'none';
-          outgoing.style.opacity = '0';
-          outgoing.style.transform = '';
-          outgoing.style.pointerEvents = 'none';
-          outgoing.src = '';
-          resetLightboxZoom();
-          lightboxIdx = nextIdx;
-          lbUpdate(nextIdx);
-          showNavs(true);
-          _lbBusy = false;
-        }, settleMs + 20);
+        navLightbox(dx < 0 ? 1 : -1);
       } else {
-        imgA().style.transition = 'transform .3s ease';
-        imgA().style.transform  = '';
-        imgB().style.transition = 'transform .3s ease';
-        imgB().style.transform  = `translateX(${dx < 0 ? W() : -W()}px)`;
-        setTimeout(() => {
-          imgB().style.transition='none'; imgB().style.opacity='0'; imgB().src='';
-          showNavs(true);
-        }, 300);
+        showNavs(true);
       }
     }
   }, {passive:true});
