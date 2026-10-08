@@ -1147,8 +1147,8 @@ function closeLightbox(e) {
     if (!swipeDir) return;
     e.preventDefault();
     if (swipeDir === 'h') {
-      // Amortir légèrement le déplacement latéral, sans désynchroniser le geste.
-      const draggedX = dx * 0.72;
+      // Le document suit exactement le doigt ; seule sa course après relâchement est ralentie.
+      const draggedX = dx;
       imgA().style.transform = `translateX(${draggedX}px)`;
       const ni = lightboxIdx + (dx < 0 ? 1 : -1);
       if (ni >= 0 && ni < lightboxImages.length) {
@@ -1232,8 +1232,8 @@ function closeLightbox(e) {
         const outgoing = imgA(), incoming = imgB();
         // La durée dépend de la distance restant à parcourir, pas d'un temps fixe.
         const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
-        const settleMs = Math.round(220 + remaining * 260);
-        const settleEase = 'cubic-bezier(.22,.68,0,1)';
+        const settleMs = Math.round(480 + remaining * 300);
+        const settleEase = 'cubic-bezier(.25,.7,.25,1)';
         outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
         outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
         incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
