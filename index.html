@@ -49,26 +49,18 @@ input,textarea{-webkit-user-select:text;user-select:text}
 html{overflow-y:scroll;background:var(--cream)}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
-/* ── SPLASH ── */
-#splash{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--cream);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
-  transition:opacity .4s ease, visibility .4s;
-}
+/* ── SPLASH QPJB ── */
+#splash{position:fixed;inset:0;z-index:9999;background:#c1a9dc;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
 #splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
-.splash-logo{font-family:'Exo 2',sans-serif;font-size:52px;font-weight:800;letter-spacing:2px;transform:translateZ(0);opacity:0;transition:opacity .2s}
-.splash-logo span:nth-child(1){color:#6b9fd4}
-.splash-logo span:nth-child(2){color:#d4706a}
-.splash-logo span:nth-child(3){color:#c8924a}
-.splash-logo span:nth-child(4){color:#6aaa78}
-.splash-title{color:rgba(255,255,255,.5);font-size:13px;font-family:'Exo 2',sans-serif;letter-spacing:1px}
-.splash-dots{display:flex;gap:8px;height:8px}
-.splash-dots span{width:8px;height:8px;border-radius:50%;background:rgba(200,151,58,.5);animation:splashPulse 1.2s infinite ease-in-out;will-change:opacity;transform:translateZ(0)}
-.splash-dots span:nth-child(2){animation-delay:.2s}
-.splash-dots span:nth-child(3){animation-delay:.4s}
-@keyframes splashPulse{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.splash-art{position:relative;width:min(82vw,350px);max-height:79dvh;aspect-ratio:1052/1272;overflow:hidden;isolation:isolate}
+.splash-art img{display:block;width:100%;height:100%;object-fit:contain}
+.splash-art::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 34%,rgba(255,255,255,.08) 43%,rgba(255,255,255,.30) 50%,rgba(255,255,255,.08) 57%,transparent 66%);mix-blend-mode:screen;transform:translateX(-150%);animation:qpjbShine 2.25s ease-in-out infinite;pointer-events:none}
+.splash-art img{animation:qpjbBreathe 2.25s ease-in-out infinite}
+@keyframes qpjbShine{0%{transform:translateX(-150%)}100%{transform:translateX(150%)}}
+@keyframes qpjbBreathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15) saturate(1.08)}}
+@media(prefers-reduced-motion:reduce){.splash-art::after,.splash-art img{animation:none}}
+
 header{
   pointer-events:none;
   user-select:none;
@@ -527,11 +519,7 @@ header{
 </head>
 <body>
 
-<div id="splash">
-  <div class="splash-logo"><span>Q</span><span>P</span><span>J</span><span>B</span></div>
-  <div class="splash-title">L’app du Quai</div>
-  <div class="splash-dots"><span></span><span></span><span></span></div>
-</div>
+<div id="splash"><div class="splash-art"><img src="data:image/webp;base64,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" alt="QPJB — Quai Provençal des Jeunes Bridgeurs"></div></div>
 
 <div id="fade-overlay"></div>
 
@@ -657,11 +645,6 @@ async function fetchPBN(url) {
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const _splashShown = Date.now();
 const _SPLASH_MIN = 1500;
-// Afficher le logo splash seulement quand Exo 2 est chargée
-document.fonts.load('800 52px "Exo 2"').then(() => {
-  const logo = document.querySelector('.splash-logo');
-  if (logo) logo.style.opacity = '1';
-});
 function hideSplash() {
   const s = document.getElementById('splash');
   if (!s) return;
