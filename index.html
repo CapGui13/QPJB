@@ -833,20 +833,14 @@ let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
 // ── fondu doux entre les vues (séances, donnes, retour) ──────────────
-let _fadeSwapBusy = false;
 function fadeSwap(doSwap) {
-  if (_fadeSwapBusy) return;
-  _fadeSwapBusy = true;
   const ov = document.getElementById('fade-overlay');
   ov.classList.add('fade-in');
   setTimeout(() => {
-    try { doSwap(); }
-    finally {
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        ov.classList.remove('fade-in');
-        setTimeout(() => { _fadeSwapBusy = false; }, 340);
-      }));
-    }
+    doSwap();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      ov.classList.remove('fade-in');
+    }));
   }, 325);
 }
 
