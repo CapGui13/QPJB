@@ -1037,32 +1037,51 @@ function openLightbox(i) {
 }
 
 let _lbBusy = false;
-function navLightbox(dir) {
+async function navLightbox(dir) {
   if (_lbBusy) return;
   const next = lightboxIdx + dir;
   if (next < 0 || next >= lightboxImages.length) return;
-  if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; imgA().style.transition = ''; }
+  if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   _lbBusy = true;
-  const a = imgA(), b = imgB();
-  b.src = lightboxImages[next].url;
-  b.style.transition = 'none';
-  b.style.transform = 'translateX(0)';
-  b.style.opacity = '0';
-  void b.offsetWidth;
-  a.style.transition = 'opacity .5s ease';
-  a.style.opacity = '0';
+  const outgoing = imgA(), incoming = imgB();
+  incoming.style.transition = 'none';
+  incoming.style.transform = '';
+  incoming.style.opacity = '0';
+  incoming.src = lightboxImages[next].url;
+  // Ne pas lancer le fondu avant que l'image suivante soit décodée.
+  try { await incoming.decode(); } catch (_) {}
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open') || imgB() !== incoming) {
+    _lbBusy = false;
+    return;
+  }
+  // Fondu doux : calques superposés, sans recharger le document après coup.
+  outgoing.style.transition = 'opacity .28s ease-in';
+  incoming.style.transition = 'opacity .45s cubic-bezier(.22,1,.36,1)';
+  void incoming.offsetWidth;
+  incoming.style.opacity = '1';
+  outgoing.style.opacity = '0';
   setTimeout(() => {
+    if (!lb.classList.contains('open') || imgB() !== incoming) {
+      _lbBusy = false;
+      return;
+    }
+    // Inverser les rôles sans remplacer les sources : aucun retour à l'ancienne image.
+    outgoing.id = 'lightbox-img-b';
+    incoming.id = 'lightbox-img-a';
+    incoming.style.transition = 'none';
+    incoming.style.opacity = '1';
+    incoming.style.pointerEvents = '';
+    outgoing.style.transition = 'none';
+    outgoing.style.opacity = '0';
+    outgoing.style.transform = '';
+    outgoing.style.pointerEvents = 'none';
+    outgoing.src = '';
+    resetLightboxZoom();
     lightboxIdx = next;
     lbUpdate(next);
-    resetSlots();
-    imgA().src = lightboxImages[next].url;
-    imgA().style.transition = 'none';
-    imgA().style.opacity = '0';
-    void imgA().offsetWidth;
-    imgA().style.transition = 'opacity .5s ease';
-    imgA().style.opacity = '1';
     _lbBusy = false;
-  }, 520);
+  }, 470);
 }
 
 function closeLightbox(e) {
