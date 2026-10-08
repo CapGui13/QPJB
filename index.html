@@ -999,8 +999,18 @@ function openLightbox(i) {
 }
 
 let _lbBusy = false;
+let _queuedArrowClicks = [];
+function playNextArrowClick() {
+  if (_lbBusy || !_queuedArrowClicks.length) return;
+  const dir = _queuedArrowClicks.shift();
+  if (document.getElementById('lightbox').classList.contains('open')) navLightbox(dir);
+}
 async function navLightbox(dir) {
-  if (_lbBusy) return;
+  if (_lbBusy) {
+    // Conserver les clics effectués pendant un fondu, dans leur ordre.
+    if (_queuedArrowClicks.length < 12) _queuedArrowClicks.push(dir);
+    return;
+  }
   const next = lightboxIdx + dir;
   if (next < 0 || next >= lightboxImages.length) return;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
@@ -1044,6 +1054,7 @@ async function navLightbox(dir) {
     lightboxIdx = next;
     lbUpdate(next);
     _lbBusy = false;
+    playNextArrowClick();
   }, 560);
 }
 
@@ -1052,6 +1063,7 @@ function closeLightbox(e) {
   const lb = document.getElementById('lightbox');
   if (!lb.classList.contains('open')) return;
   ++_lightboxSession;
+  _queuedArrowClicks.length = 0;
   _lbBusy = false;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   if (_lightboxCloseTimer) clearTimeout(_lightboxCloseTimer);
