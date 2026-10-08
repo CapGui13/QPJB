@@ -1228,9 +1228,9 @@ function closeLightbox(e) {
       if (committed) {
         _lbBusy = true;
         const outgoing = imgA(), incoming = imgB();
-        outgoing.style.transition = 'transform .25s ease';
+        outgoing.style.transition = 'transform .52s cubic-bezier(.22,1,.36,1)';
         outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
-        incoming.style.transition = 'transform .25s ease';
+        incoming.style.transition = 'transform .52s cubic-bezier(.22,1,.36,1)';
         incoming.style.transform = 'translateX(0)';
         showNavs(false);
         setTimeout(() => {
@@ -1253,7 +1253,7 @@ function closeLightbox(e) {
           lbUpdate(nextIdx);
           showNavs(true);
           _lbBusy = false;
-        }, 260);
+        }, 540);
       } else {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
