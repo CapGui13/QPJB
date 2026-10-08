@@ -1106,6 +1106,8 @@ function closeLightbox(e) {
   const lb   = () => document.getElementById('lightbox');
   const navs = () => document.querySelectorAll('.lightbox-nav, .lightbox-close');
   const W    = () => window.innerWidth;
+  // Espacement noir constant entre deux documents, même en mode PWA iOS.
+  const STEP = () => W() + 32;
 
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
   let activeSwipe = null;
@@ -1153,7 +1155,7 @@ function closeLightbox(e) {
     const settleMs = Math.round(480 + remaining * 300);
     const settleEase = 'cubic-bezier(.25,.7,.25,1)';
     outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
-    outgoing.style.transform = `translateX(${dir > 0 ? -W() : W()}px)`;
+    outgoing.style.transform = `translateX(${dir > 0 ? -STEP() : STEP()}px)`;
     incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
     incoming.style.transform = 'translateX(0)';
     showNavs(false);
@@ -1246,7 +1248,7 @@ function closeLightbox(e) {
         if (ni >= 0 && ni < lightboxImages.length) {
           imgB().src = lightboxImages[ni].url;
           imgB().style.opacity = '1';
-          imgB().style.transform = `translateX(${dx < 0 ? W() : -W()}px)`;
+          imgB().style.transform = `translateX(${dx < 0 ? STEP() : -STEP()}px)`;
         }
       }
     }
@@ -1258,7 +1260,7 @@ function closeLightbox(e) {
       imgA().style.transform = `translateX(${dragOriginX + draggedX}px)`;
       const ni = lightboxIdx + (dx < 0 ? 1 : -1);
       if (ni >= 0 && ni < lightboxImages.length) {
-        imgB().style.transform = `translateX(${dragOriginX + draggedX + (dx < 0 ? W() : -W())}px)`;
+        imgB().style.transform = `translateX(${dragOriginX + draggedX + (dx < 0 ? STEP() : -STEP())}px)`;
       }
     } else {
       // iOS style : l'image suit le doigt, rétrécit, le fond se transparentise
@@ -1344,7 +1346,7 @@ function closeLightbox(e) {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
         imgB().style.transition = 'transform .3s ease';
-        imgB().style.transform  = `translateX(${dx < 0 ? W() : -W()}px)`;
+        imgB().style.transform  = `translateX(${dx < 0 ? STEP() : -STEP()}px)`;
         setTimeout(() => {
           imgB().style.transition='none'; imgB().style.opacity='0'; imgB().src='';
           showNavs(true);
