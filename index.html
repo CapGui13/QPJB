@@ -1108,31 +1108,39 @@ function closeLightbox(e) {
   const W    = () => window.innerWidth;
 
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
-  let queuedStartX = null;
-  let pendingSwipeDirection = 0;
   let activeSwipe = null;
-
-  // Si un deuxième geste arrive pendant le glissement, terminer le premier
-  // depuis sa position VISUELLE actuelle, puis enchaîner le suivant.
-  // Aucun remplacement direct de src ni saut d'image.
-  function hurryActiveSwipe() {
+  let dragOriginX = 0;
+  const translateX = element => {
+    const t = getComputedStyle(element).transform;
+    if (!t || t === 'none') return 0;
+    const m = new DOMMatrix(t);
+    return m.m41;
+  };
+  function interruptSwipe() {
     const active = activeSwipe;
-    if (!active || active.hurrying) return;
-    active.hurrying = true;
-    const outgoing = active.outgoing, incoming = active.incoming;
-    const fromOutgoing = getComputedStyle(outgoing).transform;
-    const fromIncoming = getComputedStyle(incoming).transform;
-    outgoing.style.transition = 'none';
-    incoming.style.transition = 'none';
-    outgoing.style.transform = fromOutgoing === 'none' ? '' : fromOutgoing;
-    incoming.style.transform = fromIncoming === 'none' ? '' : fromIncoming;
-    void incoming.offsetWidth;
-    outgoing.style.transition = 'transform .16s ease-out';
-    incoming.style.transition = 'transform .16s ease-out';
-    outgoing.style.transform = `translateX(${active.dir > 0 ? -W() : W()}px)`;
-    incoming.style.transform = 'translateX(0)';
+    if (!active) return;
     clearTimeout(active.timer);
-    active.timer = setTimeout(active.finish, 175);
+    // Faire de l'image entrante le calque actif, à sa position exacte à l'écran.
+    // Le nouveau geste repart de cette position, sans attendre le délai précédent.
+    const visualX = translateX(active.incoming);
+    ++_navGeneration;
+    active.outgoing.id = 'lightbox-img-b';
+    active.incoming.id = 'lightbox-img-a';
+    active.incoming.style.transition = 'none';
+    active.incoming.style.transform = `translateX(${visualX}px)`;
+    active.incoming.style.opacity = '1';
+    active.incoming.style.pointerEvents = '';
+    active.outgoing.style.transition = 'none';
+    active.outgoing.style.opacity = '0';
+    active.outgoing.style.pointerEvents = 'none';
+    active.outgoing.style.transform = '';
+    active.outgoing.src = '';
+    lightboxIdx = active.nextIdx;
+    lbUpdate(lightboxIdx);
+    dragOriginX = visualX;
+    activeSwipe = null;
+    _pendingDocIndex = null;
+    _lbBusy = false;
   }
   function settleSwipe(dir, dx) {
     const nextIdx = lightboxIdx + dir;
@@ -1149,7 +1157,7 @@ function closeLightbox(e) {
     incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
     incoming.style.transform = 'translateX(0)';
     showNavs(false);
-    const active = {outgoing, incoming, dir, hurrying:false, timer:null, finish:null};
+    const active = {outgoing, incoming, dir, nextIdx, timer:null, finish:null};
     activeSwipe = active;
     active.finish = () => {
       if (generation !== _navGeneration || session !== _lightboxSession || !lb().classList.contains('open')) {
@@ -1173,25 +1181,16 @@ function closeLightbox(e) {
       _lbBusy = false;
       _pendingDocIndex = null;
       if (activeSwipe === active) activeSwipe = null;
-      const pending = pendingSwipeDirection;
-      pendingSwipeDirection = 0;
-      if (pending && lightboxIdx + pending >= 0 && lightboxIdx + pending < lightboxImages.length) {
-        const nextImage = imgB();
-        nextImage.src = lightboxImages[lightboxIdx + pending].url;
-        nextImage.style.transition = 'none';
-        nextImage.style.transform = `translateX(${pending > 0 ? W() : -W()}px)`;
-        nextImage.style.opacity = '1';
-        void nextImage.offsetWidth;
-        settleSwipe(pending, 0);
-      } else showNavs(true);
+      showNavs(true);
     };
     active.timer = setTimeout(active.finish, settleMs + 20);
   }
 
   document.addEventListener('touchstart', e => {
     if (!lb().classList.contains('open')) return;
-    if (_lbBusy) { queuedStartX = e.touches.length === 1 ? e.touches[0].clientX : null; return; }
-    queuedStartX = null;
+    if (_lbBusy && e.touches.length === 1 && activeSwipe) interruptSwipe();
+    if (_lbBusy) return;
+    if (!dragOriginX) dragOriginX = 0;
     if (e.touches.length >= 2) {
       pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
       pinchDistance = distance(e.touches[0], e.touches[1]);
@@ -1256,10 +1255,10 @@ function closeLightbox(e) {
     if (swipeDir === 'h') {
       // Le document suit exactement le doigt ; seule sa course après relâchement est ralentie.
       const draggedX = dx;
-      imgA().style.transform = `translateX(${draggedX}px)`;
+      imgA().style.transform = `translateX(${dragOriginX + draggedX}px)`;
       const ni = lightboxIdx + (dx < 0 ? 1 : -1);
       if (ni >= 0 && ni < lightboxImages.length) {
-        imgB().style.transform = `translateX(${draggedX + (dx < 0 ? W() : -W())}px)`;
+        imgB().style.transform = `translateX(${dragOriginX + draggedX + (dx < 0 ? W() : -W())}px)`;
       }
     } else {
       // iOS style : l'image suit le doigt, rétrécit, le fond se transparentise
@@ -1273,21 +1272,7 @@ function closeLightbox(e) {
 
   document.addEventListener('touchend', e => {
     if (!lb().classList.contains('open')) return;
-    if (_lbBusy) {
-      if (queuedStartX !== null && e.changedTouches.length) {
-        const delta = e.changedTouches[0].clientX - queuedStartX;
-        if (Math.abs(delta) > 35) {
-          const direction = delta < 0 ? 1 : -1;
-          const target = (_pendingDocIndex ?? lightboxIdx) + direction;
-          if (target >= 0 && target < lightboxImages.length) {
-            pendingSwipeDirection = direction;
-            hurryActiveSwipe();
-          }
-        }
-      }
-      queuedStartX = null;
-      return;
-    }
+    if (_lbBusy) return;
     if (pinch) {
       if (e.touches.length < 2) pinch = false;
       dragging = false; suppressSwipe = true;
@@ -1350,8 +1335,10 @@ function closeLightbox(e) {
       const committed = nextIdx >= 0 && nextIdx < lightboxImages.length &&
         (Math.abs(dx) > W() / 3 || velocity > 0.3);
       if (committed) {
-        settleSwipe(dx < 0 ? 1 : -1, dx);
+        settleSwipe(dx < 0 ? 1 : -1, dragOriginX + dx);
+        dragOriginX = 0;
       } else {
+        dragOriginX = 0;
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
         imgB().style.transition = 'transform .3s ease';
