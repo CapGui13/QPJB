@@ -49,17 +49,17 @@ input,textarea{-webkit-user-select:text;user-select:text}
 html{overflow-y:scroll;background:var(--cream)}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
-/* ── SPLASH QPJB : visuel original haute définition ── */
+/* ── Splash : deux calques issus du même fichier, transition sans filtre de teinte ── */
+html:has(#splash:not(.fade-out):not(.hidden)){overflow-y:hidden}
 #splash{position:fixed;inset:0;z-index:9999;background:#c0a8dc;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:none}
 #splash.fade-out{opacity:0;visibility:hidden;pointer-events:none}
-.splash-original{display:block;width:min(82vw,350px);max-height:79dvh;aspect-ratio:1052/1272;object-fit:contain}
-.splash-original.ready{animation:qpjbLogoPulse 1.15s ease-in-out infinite}
-@keyframes qpjbLogoPulse{
-  0%,100%{filter:brightness(1) saturate(1)}
-  50%{filter:hue-rotate(78deg) saturate(1.15) brightness(1.05)}
-}
-@media(prefers-reduced-motion:reduce){.splash-original.ready{animation:none}}
+.splash-stack{position:relative;width:min(82vw,350px);max-height:79dvh;aspect-ratio:1052/1272}
+.splash-original,.splash-blue{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.splash-blue{opacity:0;pointer-events:none}
+.splash-blue.ready{animation:qpjbPurpleBlue 1.8s ease-in-out infinite}
+@keyframes qpjbPurpleBlue{0%,100%{opacity:0}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.splash-blue.ready{animation:none}}
 
 header{
   pointer-events:none;
@@ -519,7 +519,7 @@ header{
 </head>
 <body>
 
-<div id="splash"><img class="splash-original" id="splash-original" src="./QPJB%20App.png" alt="QPJB — Quai Provençal des Jeunes Bridgeurs"></div>
+<div id="splash"><div class="splash-stack"><img class="splash-original" id="splash-original" src="./QPJB%20App.png" alt="QPJB — L’app du Quai"><img class="splash-blue" id="splash-blue" alt="" aria-hidden="true"></div></div>
 
 <div id="fade-overlay"></div>
 <script>
@@ -552,7 +552,14 @@ header{
       document.getElementById('splash').style.background='rgb('+bg.join(',')+')';
       logo.onload=null;
       logo.src=canvas.toDataURL('image/png');
-      logo.classList.add('ready');
+      // Créer un deuxième calque bleu avec exactement le même détourage.
+      for(let i=0;i<p.length;i+=4){
+        p[i]=91; p[i+1]=147; p[i+2]=210;
+      }
+      ctx.putImageData(pixels,0,0);
+      const blue = document.getElementById('splash-blue');
+      blue.src=canvas.toDataURL('image/png');
+      blue.classList.add('ready');
     } catch(e) { /* En cas d'erreur, conserver l'original. */ }
   }
   if (logo.complete && logo.naturalWidth) prepare();
