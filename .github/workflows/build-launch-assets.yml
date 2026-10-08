@@ -1,0 +1,44 @@
+name: Générer les écrans de lancement QPJB
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_launch_assets.py
+      - apple-touch-icon-qpjb.png
+      - .github/workflows/build-launch-assets.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qpjb-launch-assets
+  cancel-in-progress: false
+
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'Pillow>=10,<13'
+      - run: python scripts/build_launch_assets.py
+      - name: Publier les images
+        run: |
+          git add launch/
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Générer images de lancement iOS et icônes Android"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
