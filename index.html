@@ -880,7 +880,10 @@ async function discoverSeances(forceRefresh = false) {
   }
   try {
     // no-store évite de garder un catalogue périmé après une mise à jour.
-    const response = await fetch('./catalogue.json', {cache:'no-store'});
+    const response = await fetch('./catalogue.json', {
+      cache:'no-store',
+      signal:AbortSignal.timeout(6500)
+    });
     if (!response.ok) throw new Error('Catalogue indisponible (' + response.status + ')');
     const catalogue = await response.json();
     showCatalogue(catalogue);
