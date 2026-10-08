@@ -526,6 +526,8 @@ header{
 var _splashReadyAt = null;
 var _splashHideRequested = false;
 var _splashHideTimer = null;
+var _splashCompleted = false;
+var _splashHardLimit = setTimeout(() => { _splashReadyAt ??= Date.now() - 3000; finishSplash(); }, 8500);
 function markSplashReady() {
   if (_splashReadyAt !== null) return;
   _splashReadyAt = Date.now();
@@ -539,8 +541,10 @@ function markSplashReady() {
   function prepare() {
     try {
       const canvas = document.createElement('canvas');
-      canvas.width = logo.naturalWidth;
-      canvas.height = logo.naturalHeight;
+      // Le logo affiché fait au maximum 350 px : limiter le traitement pixel.
+      const ratio = Math.min(1, 700 / Math.max(logo.naturalWidth, logo.naturalHeight));
+      canvas.width = Math.max(1, Math.round(logo.naturalWidth * ratio));
+      canvas.height = Math.max(1, Math.round(logo.naturalHeight * ratio));
       const ctx = canvas.getContext('2d', {willReadFrequently:true});
       if (!ctx) return;
       ctx.drawImage(logo,0,0);
@@ -718,20 +722,23 @@ async function fetchPBN(url) {
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const _splashShown = Date.now();
 const _SPLASH_MIN = 3000;
+function finishSplash() {
+  if (_splashCompleted) return;
+  _splashCompleted = true;
+  clearTimeout(_splashHardLimit);
+  clearTimeout(_splashHideTimer);
+  const splash = document.getElementById('splash');
+  if (splash) splash.classList.add('fade-out');
+  const theme = document.querySelector('meta[name="theme-color"]');
+  if (theme) theme.setAttribute('content', '#2c1942');
+}
 function hideSplash() {
-  const s = document.getElementById('splash');
-  if (!s || s.classList.contains('fade-out')) return;
+  if (_splashCompleted) return;
   _splashHideRequested = true;
   if (_splashReadyAt === null) return;
-  clearTimeout(_splashHideTimer);
-  const elapsed = Date.now() - _splashReadyAt;
-  const delay = Math.max(0, _SPLASH_MIN - elapsed);
-  _splashHideTimer = setTimeout(() => {
-    s.classList.add('fade-out');
-    const theme = document.querySelector('meta[name="theme-color"]');
-    if (theme) theme.setAttribute('content', '#2c1942');
-    document.documentElement.style.background = '';
-  }, delay);
+  if (_splashHideTimer !== null) return;
+  const remaining = Math.max(0, _SPLASH_MIN - (Date.now() - _splashReadyAt));
+  _splashHideTimer = setTimeout(finishSplash, remaining);
 }
 
 function setHint(msg, err) {
@@ -1837,19 +1844,7 @@ document.addEventListener('keydown', e => {
 (function(){
   initTokenUI();
   discoverSeances();
-  // Eviter qu'une requête bloquée laisse le splash à l'écran indéfiniment.
-  setTimeout(() => {
-    const splash = document.getElementById('splash');
-    if (!splash || splash.classList.contains('fade-out')) return;
-    if (_splashReadyAt === null) markSplashReady();
-    const grid = document.getElementById('seance-grid');
-    if (grid && !grid.querySelector('.seance-card') && !grid.querySelector('.empty')) {
-      grid.insertAdjacentHTML('beforeend', '<p style="padding:12px;color:#c8924a">Le chargement prend plus de temps que prévu. Réessayez en actualisant la page.</p>');
-    }
-    _splashHideRequested = true;
-    _splashReadyAt = Math.min(_splashReadyAt, Date.now() - _SPLASH_MIN);
-    hideSplash();
-  }, 12000);
+  // Le splash possède déjà une limite absolue indépendante des requêtes.
 })();
 </script>
 <script>
