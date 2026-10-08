@@ -772,14 +772,21 @@ let seancesData = null;
 
 // ── helpers UI ─────────────────────────────────────────────────────────
 // ── fondu doux entre les vues (séances, donnes, retour) ──────────────
+let _viewFadeBusy = false;
 function fadeSwap(doSwap) {
+  if (_viewFadeBusy) return;
+  _viewFadeBusy = true;
   const ov = document.getElementById('fade-overlay');
   ov.classList.add('fade-in');
   setTimeout(() => {
-    doSwap();
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      ov.classList.remove('fade-in');
-    }));
+    try { doSwap(); }
+    finally {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        ov.classList.remove('fade-in');
+        // Garder exactement le fondu actuel, sans accepter de double navigation.
+        setTimeout(() => { _viewFadeBusy = false; }, 460);
+      }));
+    }
   }, 255);
 }
 
@@ -949,7 +956,12 @@ function resetSlots() {
 
 let _openTimer = null;
 let _lightboxCloseTimer = null;
+let _lightboxSession = 0;
 function openLightbox(i) {
+  if (document.getElementById('lightbox').classList.contains('open')) return;
+  const session = ++_lightboxSession;
+  if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
+  _lbBusy = false;
   if (_lightboxCloseTimer) { clearTimeout(_lightboxCloseTimer); _lightboxCloseTimer = null; }
   const lightbox = document.getElementById('lightbox');
   lightbox.classList.remove('closing');
@@ -966,13 +978,14 @@ function openLightbox(i) {
   document.body.style.overflow = 'hidden';
   const expectedUrl = image.src;
   const reveal = () => {
+    if (session !== _lightboxSession) return;
     if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
     if (_openTimer) clearTimeout(_openTimer);
     _openTimer = setTimeout(() => {
       _openTimer = null;
-      if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+      if (session !== _lightboxSession || !lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
+        if (session !== _lightboxSession || !lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
         image.style.transition = 'opacity .85s cubic-bezier(.4,0,.2,1)';
         image.style.opacity = '1';
       }));
@@ -992,6 +1005,7 @@ async function navLightbox(dir) {
   if (next < 0 || next >= lightboxImages.length) return;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   _lbBusy = true;
+  const session = _lightboxSession;
   const outgoing = imgA(), incoming = imgB();
   incoming.style.transition = 'none';
   incoming.style.transform = '';
@@ -1000,7 +1014,7 @@ async function navLightbox(dir) {
   // Ne pas lancer le fondu avant que l'image suivante soit décodée.
   try { await incoming.decode(); } catch (_) {}
   const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open') || imgB() !== incoming) {
+  if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
     _lbBusy = false;
     return;
   }
@@ -1011,7 +1025,7 @@ async function navLightbox(dir) {
   incoming.style.opacity = '1';
   outgoing.style.opacity = '0';
   setTimeout(() => {
-    if (!lb.classList.contains('open') || imgB() !== incoming) {
+    if (session !== _lightboxSession || !lb.classList.contains('open') || imgB() !== incoming) {
       _lbBusy = false;
       return;
     }
@@ -1037,6 +1051,8 @@ function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
   const lb = document.getElementById('lightbox');
   if (!lb.classList.contains('open')) return;
+  ++_lightboxSession;
+  _lbBusy = false;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   if (_lightboxCloseTimer) clearTimeout(_lightboxCloseTimer);
   // Le document et le fond disparaissent ensemble, puis seulement on nettoie.
