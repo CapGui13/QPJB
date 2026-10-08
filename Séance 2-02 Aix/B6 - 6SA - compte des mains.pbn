@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.105
-%Created: Fri Sep 25 19:33:30 2026 +0200
+%Created: Fri Sep 25 17:33:12 2026 +0200
 %BCOptions Center STBorder STShade ShowHCP
 %BCOptions2 KREval
 %BidAndCardSpacing Asis
@@ -47,7 +47,7 @@
 %Translate "East-West" "Est-Ouest"
 %Translate "Lead" "Entame"
 %Translate "% Deals" "% Donneur"
-%Translate "% Vul" "% VulnÈrable"
+%Translate "% Vul" "% Vuln√©rable"
 %Translate "North" "Nord"
 %Translate "East" "Est"
 %Translate "South" "Sud"
@@ -65,44 +65,53 @@
 %Translate "Dbl" "X"
 %Translate "Rdbl" "XX"
 %Translate "by" "par"
-%Translate "Trick" "LevÈe"
+%Translate "Trick" "Lev√©e"
 %Translate "2nd" "2e"
 %Translate "3rd" "3e"
 %Translate "4th" "4e"
 [Event ""]
-[Site "Aix-en-Provence"]
+[Site ""]
 [Date ""]
-[Board ""]
+[Board "6"]
 [West ""]
 [North ""]
 [East ""]
 [South ""]
 [Dealer "S"]
 [Vulnerable "None"]
-[Deal "S:A654.A932.A6.KQ7 QJT3.J76.52.T642 K8.Q84.KJT74.J95 972.KT5.Q983.A83"]
+[Deal "S:AQ3.AJ7.AT8.KQ54 KT.6.76542.T9873 654.KT8.KQJ9.AJ6 J9872.Q95432.3.2"]
 [Scoring ""]
 [Declarer "S"]
-[Contract "3NT"]
+[Contract "6NT"]
 [Result ""]
-{2P+1C+2K = 5 levÈes.
+{En face d'une main de 20-21H, Nord sait √™tre en zone de petit chelem et
+annonce donc 6SA sans tergiverser.
 
-Le mieux est d'essayer d'exploiter les K, qui pourraient rapporter jusqu'‡ 3
-plis de plus - sans avoir ‡ rendre la main - si la Dame Ètait placÈe et la
-couleur rÈpartie 3/3.\n
-La levÈe manquante pourrait ensuite se trouver ‡ T.
+1P+2C+4K+4T = 11 lev√©es.\n
+On a d√©j√† 4 plis dans chaque couleur mineure et on ne pourra jamais en faire
+plus √† T ni √† K.
 
-Mais si tout ne roule pas et que la DK est en Est, il faudra pouvoir rejoindre
-le mort.\n
-Le RP est donc une carte prÈcieuse et il importe de prendre de l'As au tour
-d'entame, afin de conserver sa reprise au mort.
+Deux solutions pour trouver un pli :\n
+- l'impasse √† P en jouant vers la Dame et en esp√©rant le Roi plac√©\n
+- l'impasse √† C, √† la Dame, qu'on peut faire dans les deux sens
 
-Ainsi le dÈclarant devrait rÈussir ‡ encaisser 2P+1C+4K+2T.}
+Sachant qu'on ne peut manoeuvrer les P que dans un seul sens, le mieux est de
+commencer par cette couleur.\n
+C'est un √©chec.\n
+Pour choisir comment faire √† C, il convient de proc√©der √† un compte des mains
+afin d'optimiser ses chances.
+
+Tirer toutes les lev√©es mineures devrait permettre de se rendre compte de la
+r√©partition tr√®s particuli√®re de ces couleurs : Ouest a 5 cartes dans chacune
+d'elle.\n
+Tirer l'As de P permet ensuite de visualiser que Ouest a une forme de main 2155
+ou 3055.
+
+La DC est donc tr√®s certainement en Est, et si elle ne l'est pas, c'est qu'elle
+est s√®che en Ouest.\n
+D√®s lors le maniement s'impose : RC puis petit vers le Valet.}
 [BCFlags "20000ff"]
-[Lead "HK"]
 [Auction "S"]
-1NT Pass 3NT AP
+2NT Pass 6NT AP
 [Play "W"]
-SQ S8 S2 SA
-D2 D7 D3 DA
-D5 DT DQ D6
-S3 SK S7 S4
+CT

@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.105
-%Created: Mon Sep  7 15:31:40 2026 +0200
+%Created: Fri Sep 25 00:41:23 2026 +0200
 %BCOptions Center STBorder STShade ShowHCP
 %BCOptions2 KREval
 %BidAndCardSpacing Asis
@@ -47,7 +47,7 @@
 %Translate "East-West" "Est-Ouest"
 %Translate "Lead" "Entame"
 %Translate "% Deals" "% Donneur"
-%Translate "% Vul" "% Vulnérable"
+%Translate "% Vul" "% VulnÃ©rable"
 %Translate "North" "Nord"
 %Translate "East" "Est"
 %Translate "South" "Sud"
@@ -65,42 +65,42 @@
 %Translate "Dbl" "X"
 %Translate "Rdbl" "XX"
 %Translate "by" "par"
-%Translate "Trick" "Levée"
+%Translate "Trick" "LevÃ©e"
 %Translate "2nd" "2e"
 %Translate "3rd" "3e"
 %Translate "4th" "4e"
 [Event ""]
-[Site ""]
+[Site "Aix-en-Provence"]
 [Date ""]
-[Board ""]
+[Board "4"]
 [West ""]
 [North ""]
 [East ""]
 [South ""]
-[Dealer "N"]
-[Vulnerable "None"]
-[Deal "N:AKQ6.A74.8762.75 982.T9865.KQ4.Q3 JT753.J.AJ.KT642 4.KQ32.T953.AJ98"]
+[Dealer "E"]
+[Vulnerable "NS"]
+[Deal "E:973.JT3.QT2.K642 AK65.AK65.964.AQ QT42.Q42.K5.JT95 J8.987.AJ873.873"]
 [Scoring ""]
 [Declarer "S"]
-[Contract "4S"]
+[Contract "3NT"]
 [Result ""]
-{5P+2 As rouges = 7
+{L'entame T permet d'Ãªtre assurÃ© qu'on va faire 2 plis dans la couleur.\n
+Le dÃ©clarant a donc 2P+2C+1K+2T = 7 levÃ©es de tÃªte.
 
-(On pourrait envisager d'inverser la main de base, en prenant Nord, et en
-coupant 2x à C et à K, mais on manque de remontées pour cela)\n
-Il va falloir jouer sur les T, sachant que dès qu'ils ne sont pas répartis 5/2,
-un pli de longueur peut être affranchi.\n
-Dit autrement, si on coupe 2T, on devrait pouvoir réaliser 3 levées dans la
-couleur en n'en concédant que 2 (voire en réaliser 4 et ne concéder qu'un seul
-pli si l'Ast est placé, en Est)
+Les K reprÃ©sentent sa meilleure chance de rÃ©cupÃ©rer les plis manquants, mais
+attention : on ne dispose d'aucune grosse carte extÃ©rieure pour rentrer au
+mort.
 
-Après avoir pris l'entame de l'As, le déclarant joue donc immédiatement T vers
-son Roi}
-[BCFlags "200001f"]
-[Auction "N"]
-1D Pass 1S Pass
-2S Pass 4S AP
+Le mieux Ã  faire est donc d'espÃ©rer une rÃ©partition statistiquement normale de
+la couleur (3/2) et de procÃ©der Ã  un double coup Ã  blanc, en jouant deux fois
+petit des deux mains.
+
+Si le dÃ©clarant cÃ¨de Ã  un mauvais rÃ©flexe au 2e tour en couvrant le Roi de
+l'As, il ne pourra que chuter.}
+[BCFlags "20000ff"]
+[Lead "SJ"]
+[Auction "E"]
+Pass 2NT Pass 3NT
+AP
 [Play "W"]
-HK HA H5 HJ
-D3 D2 DQ DA
-D5 D6 DK DJ
+CJ

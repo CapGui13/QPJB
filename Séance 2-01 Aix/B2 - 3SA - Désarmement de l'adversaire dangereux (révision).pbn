@@ -2,9 +2,8 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.105
-%Created: Mon Sep  7 15:46:06 2026 +0200
+%Created: Mon Jun  1 19:10:51 2026 +0200
 %BCOptions Center STBorder STShade ShowHCP
-%BCOptions2 KREval
 %BidAndCardSpacing Asis
 %BoardsPerPage 1
 %CardTableColors #008000,#ffffff,#aaaaaa
@@ -47,7 +46,7 @@
 %Translate "East-West" "Est-Ouest"
 %Translate "Lead" "Entame"
 %Translate "% Deals" "% Donneur"
-%Translate "% Vul" "% Vulnérable"
+%Translate "% Vul" "% VulnÃ©rable"
 %Translate "North" "Nord"
 %Translate "East" "Est"
 %Translate "South" "Sud"
@@ -65,47 +64,49 @@
 %Translate "Dbl" "X"
 %Translate "Rdbl" "XX"
 %Translate "by" "par"
-%Translate "Trick" "Levée"
+%Translate "Trick" "LevÃ©e"
 %Translate "2nd" "2e"
 %Translate "3rd" "3e"
 %Translate "4th" "4e"
 [Event ""]
 [Site ""]
 [Date ""]
-[Board ""]
+[Board "2"]
 [West ""]
 [North ""]
 [East ""]
 [South ""]
-[Dealer "E"]
-[Vulnerable "EW"]
-[Deal "E:AT63.J9.AKJ72.93 K9.AKQ752.Q64.KJ J2.T8.T985.AT762 Q8754.643.3.Q854"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "S:A92.KQ8.K832.Q92 T74.AJT964.95.74 K65.52.AT6.AJT85 QJ83.73.QJ74.K63"]
 [Scoring ""]
 [Declarer "S"]
-[Contract "4H"]
+[Contract "3NT"]
 [Result ""]
-{
+{2C : barrage\n
+3T : naturel, au moins 5 cartes, et du jeu. Sud conclut ensuite Ã  3SA au nom de
+son opposition Ã  C.
 
-Est prend l'entame et devrait rejouer atout (la courte visible au mort indique
-que le déclarant a probablement des perdantes à couper)
+Entame du VC, en tÃªte de sÃ©quence brisÃ©e. Dans le cas oÃ¹ le dÃ©clarant a double
+arrÃªt en main, comme ici, cela va permettre de lui en Ã´ter un, et dÃ¨s lors il
+sera exposÃ© si Est prend la main puisque ce dernier pourra le traverser Ã  C.
 
-6 levées à C (s'ils ne sont pas 4/0) et c'est tout\n
-Mais on va faiclement libérer des plis dans les noires en concédant les As et
-il est également possible de couper un K\n
-Comme on ne fera a priori qu'une levée à P et une seule coupe (impossible de
-rentrer en main après la coupe sans que la défense puisse prendre d'un As et
-rejouer atout) il faut trouver 2 plis à T\n
-Ce qui implique de débloquer la couleur au préalable, afin de pouvoir en jouer
-un 3e tour quand on sera au mort
+Le dÃ©clarant a 5 levÃ©es de tÃªte et il fera toujours au moins un pli Ã  C.\n
+Il lui suffit d'exploiter les T pour gagner son contrat.
 
-Le bon minutage est donc : après avoir pris le retour atout, on joue T, la
-défense prend et rejoue atout. On rejoue T pour débloquer, rentre au mort en
-coupant un K, défausse le dernier K perdant sur la Dame de T du mort et il ne
-reste plus qu'à donner l'AP pour faire =}
-[BCFlags "200001f"]
-[Auction "E"]
-1D X 2D 2S
-Pass 3H Pass 4H
-AP
+Si le RT est placÃ© (en Ouest), aucun souci.\n
+Mais si ce n'est pas le cas, on s'expose Ã  une contre-attaque C du mauvais cÃ´tÃ©
+et Ã  se faire dÃ©filer 5 levÃ©es dans cette seule couleur.
+
+La solution : laisser passer l'entame, en acceptant l'idÃ©e de ne jamais faire
+plus d'une seule levÃ©e Ã  C.\n
+Ainsi si la dÃ©fense continue la couleur, Est n'en aura plus (Ouest en a 6, donc
+Est en a 2). MÃªme si le RT est en Est, ce dernier ne pourra pas continuer dans
+la longue de son partenaire, ni lui rendre la main via une autre couleur
+puisqu'on les contrÃ´le toutes.}
+[BCFlags "20000ff"]
+[Auction "S"]
+1D 2H 3C Pass
+3NT AP
 [Play "W"]
-DT
+HJ
