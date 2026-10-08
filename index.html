@@ -450,12 +450,14 @@ header{
   overflow:hidden;
   opacity:0;
   pointer-events:none;
-  transition:opacity .56s cubic-bezier(.22,1,.36,1);
+  transition:opacity .7s cubic-bezier(.4,0,.2,1);
   will-change:opacity;
   -webkit-transform:translateZ(0);
   transform:translateZ(0);
 }
 .lightbox.open{opacity:1;pointer-events:all}
+.lightbox.closing{opacity:0;pointer-events:none;transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.lightbox.closing .lightbox-img{opacity:0!important;transition:opacity .5s ease-in-out!important}
 .lightbox-track{
   display:flex;
   align-items:center;
@@ -1004,6 +1006,8 @@ let _openTimer = null;
 let _lightboxCloseTimer = null;
 function openLightbox(i) {
   if (_lightboxCloseTimer) { clearTimeout(_lightboxCloseTimer); _lightboxCloseTimer = null; }
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('closing');
   lightboxIdx = i;
   resetSlots();
   const image = imgA();
@@ -1024,10 +1028,10 @@ function openLightbox(i) {
       if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         if (!lb.classList.contains('open') || imgA() !== image || image.src !== expectedUrl) return;
-        image.style.transition = 'opacity .62s cubic-bezier(.22,1,.36,1)';
+        image.style.transition = 'opacity .85s cubic-bezier(.4,0,.2,1)';
         image.style.opacity = '1';
       }));
-    }, 135);
+    }, 220);
   };
   if (image.complete && image.naturalWidth) reveal();
   else {
@@ -1087,10 +1091,12 @@ async function navLightbox(dir) {
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
   const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
   if (_openTimer) { clearTimeout(_openTimer); _openTimer = null; }
   if (_lightboxCloseTimer) clearTimeout(_lightboxCloseTimer);
+  // Le document et le fond disparaissent ensemble, puis seulement on nettoie.
+  lb.classList.add('closing');
   lb.classList.remove('open');
-  // Attendre la fin du fondu CSS avant d'effacer les images et rétablir le scroll.
   _lightboxCloseTimer = setTimeout(() => {
     _lightboxCloseTimer = null;
     if (lb.classList.contains('open')) return;
@@ -1099,9 +1105,10 @@ function closeLightbox(e) {
     imgA().style.opacity = '';
     imgA().style.transform = '';
     imgA().style.transition = '';
+    lb.classList.remove('closing');
     document.querySelectorAll('.lightbox-nav, .lightbox-close').forEach(n => n.style.opacity = '');
     document.body.style.overflow = '';
-  }, 580);
+  }, 730);
 }
 
 // ── swipe sur la lightbox ──────────────────────────────────────────────
