@@ -74,19 +74,12 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 .splash-stack{position:relative;width:min(82vw,350px,calc(79dvh * 1052 / 1272));aspect-ratio:1052/1272;transform:translate(var(--logo-offset-x,0%),var(--logo-offset-y,0%))}
 .splash-original,.splash-blue{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
 .splash-original{opacity:0}
-.splash-stack.intro-ready .splash-original{animation:qpjbReveal 1.55s ease-in-out both}
-@keyframes qpjbReveal{
-  0%{opacity:0} 23%{opacity:.36} 37%{opacity:.16}
-  62%{opacity:.72} 76%{opacity:.53} 100%{opacity:1}
-}
+.splash-stack.intro-ready .splash-original{animation:qpjbSoftEntry .65s ease-out both}
+@keyframes qpjbSoftEntry{from{opacity:0}to{opacity:1}}
 .splash-blue{opacity:0;pointer-events:none}
-.splash-blue.ready{animation:qpjbPurpleBlue 2.8s ease-in-out 1.55s infinite}
+.splash-blue.ready{animation:qpjbPurpleBlue 2.8s ease-in-out infinite}
 @keyframes qpjbPurpleBlue{0%,100%{opacity:0}50%{opacity:.28}}
-@media(prefers-reduced-motion:reduce){
-  .splash-stack.intro-ready .splash-original{animation:qpjbRevealReduced .65s ease-out both}
-  @keyframes qpjbRevealReduced{from{opacity:0}to{opacity:1}}
-  .splash-blue.ready{animation:none}
-}
+@media(prefers-reduced-motion:reduce){.splash-blue.ready{animation:none}}
 
 header{
   pointer-events:auto;
@@ -615,10 +608,10 @@ function markSplashReady() {
       ctx.putImageData(pixels,0,0);
       const blue = document.getElementById('splash-blue');
       blue.src=canvas.toDataURL('image/png');
-      // Partir du fond lavande vierge, puis faire apparaître le logo
-      // par pulsations avant de reprendre le clignotement violet/bleu.
-      blue.classList.add('ready');
+      // Adoucir uniquement l'apparition initiale du logo.
+      // Le clignotement violet/bleu garde exactement son animation d'origine.
       document.querySelector('.splash-stack').classList.add('intro-ready');
+      blue.classList.add('ready');
       markSplashReady();
     } catch(e) {
       // Sur un navigateur ne pouvant pas préparer le logo, montrer l'original.
