@@ -1147,10 +1147,12 @@ function closeLightbox(e) {
     if (!swipeDir) return;
     e.preventDefault();
     if (swipeDir === 'h') {
-      imgA().style.transform = `translateX(${dx}px)`;
+      // Amortir légèrement le déplacement latéral, sans désynchroniser le geste.
+      const draggedX = dx * 0.72;
+      imgA().style.transform = `translateX(${draggedX}px)`;
       const ni = lightboxIdx + (dx < 0 ? 1 : -1);
       if (ni >= 0 && ni < lightboxImages.length) {
-        imgB().style.transform = `translateX(${dx + (dx < 0 ? W() : -W())}px)`;
+        imgB().style.transform = `translateX(${draggedX + (dx < 0 ? W() : -W())}px)`;
       }
     } else {
       // iOS style : l'image suit le doigt, rétrécit, le fond se transparentise
