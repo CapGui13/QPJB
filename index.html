@@ -1167,26 +1167,38 @@ function closeLightbox(e) {
       if (committed) {
         _lbBusy = true;
         const front = imgA(), incoming = imgB();
-        front.style.transition = 'transform .25s ease';
+        const slideDuration = 380;
+        front.style.transition = 'transform .38s cubic-bezier(.22,1,.36,1)';
         front.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
-        incoming.style.transition = 'transform .25s ease';
+        incoming.style.transition = 'transform .38s cubic-bezier(.22,1,.36,1)';
         incoming.style.transform = 'translateX(0)';
         showNavs(false);
         setTimeout(async () => {
-          // Garder la nouvelle image visible jusqu'à ce que le calque
-          // principal soit décodé : évite le flash au changement de document.
+          // L'image B demeure visible pendant le chargement du calque A.
+          // Le fondu final évite le retour fugitif à l'ancienne image.
           lightboxIdx = nextIdx;
           lbUpdate(nextIdx);
           front.style.transition = 'none';
           front.style.opacity = '0';
           front.style.transform = '';
           front.src = lightboxImages[nextIdx].url;
-          try { await front.decode(); } catch (_) { /* laisser le navigateur afficher */ }
+          try { await front.decode(); } catch (_) {}
           if (!lb().classList.contains('open')) { _lbBusy = false; return; }
-          resetSlots();
-          showNavs(true);
-          _lbBusy = false;
-        }, 260);
+          resetLightboxZoom();
+          requestAnimationFrame(() => {
+            front.style.transition = 'opacity .22s ease-out';
+            front.style.opacity = '1';
+            setTimeout(() => {
+              incoming.style.transition = 'none';
+              incoming.style.opacity = '0';
+              incoming.style.transform = '';
+              incoming.src = '';
+              front.style.transition = '';
+              showNavs(true);
+              _lbBusy = false;
+            }, 230);
+          });
+        }, slideDuration);
       } else {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
