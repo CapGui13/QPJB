@@ -1082,9 +1082,67 @@ function closeLightbox(e) {
   const W    = () => window.innerWidth;
 
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
+  let queuedSwipe = 0;
+  let queuedStartX = null;
+  function startQueuedSwipe() {
+    const dir = queuedSwipe;
+    queuedSwipe = 0;
+    if (!dir || _lbBusy || !lb().classList.contains('open')) return;
+    const target = lightboxIdx + dir;
+    if (target < 0 || target >= lightboxImages.length) return;
+    const incoming = imgB(), outgoing = imgA();
+    incoming.src = lightboxImages[target].url;
+    incoming.style.transition = 'none';
+    incoming.style.opacity = '1';
+    incoming.style.transform = `translateX(${dir > 0 ? W() : -W()}px)`;
+    outgoing.style.transition = 'none';
+    outgoing.style.transform = '';
+    void incoming.offsetWidth;
+    settleSwipe(dir, 0);
+  }
+  function settleSwipe(dir, dx) {
+    const nextIdx = lightboxIdx + dir;
+    if (nextIdx < 0 || nextIdx >= lightboxImages.length) return;
+    _lbBusy = true;
+    const outgoing = imgA(), incoming = imgB(), session = _lightboxSession;
+    const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
+    const settleMs = Math.round(480 + remaining * 300);
+    const settleEase = 'cubic-bezier(.25,.7,.25,1)';
+    outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
+    outgoing.style.transform = `translateX(${dir > 0 ? -W() : W()}px)`;
+    incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
+    incoming.style.transform = 'translateX(0)';
+    showNavs(false);
+    setTimeout(() => {
+      if (session !== _lightboxSession || !lb().classList.contains('open')) {
+        _lbBusy = false;
+        queuedSwipe = 0;
+        return;
+      }
+      outgoing.id = 'lightbox-img-b';
+      incoming.id = 'lightbox-img-a';
+      incoming.style.transition = 'none';
+      incoming.style.transform = '';
+      incoming.style.opacity = '1';
+      incoming.style.pointerEvents = '';
+      outgoing.style.transition = 'none';
+      outgoing.style.opacity = '0';
+      outgoing.style.transform = '';
+      outgoing.style.pointerEvents = 'none';
+      outgoing.src = '';
+      resetLightboxZoom();
+      lightboxIdx = nextIdx;
+      lbUpdate(nextIdx);
+      _lbBusy = false;
+      if (queuedSwipe) startQueuedSwipe();
+      else showNavs(true);
+    }, settleMs + 20);
+  }
 
   document.addEventListener('touchstart', e => {
-    if (!lb().classList.contains('open') || _lbBusy) return;
+    if (!lb().classList.contains('open')) return;
+    if (_lbBusy) { queuedStartX = e.touches.length === 1 ? e.touches[0].clientX : null; return; }
+    queuedStartX = null;
     if (e.touches.length >= 2) {
       pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
       pinchDistance = distance(e.touches[0], e.touches[1]);
@@ -1165,7 +1223,15 @@ function closeLightbox(e) {
   }, {passive:false});
 
   document.addEventListener('touchend', e => {
-    if (!lb().classList.contains('open') || _lbBusy) return;
+    if (!lb().classList.contains('open')) return;
+    if (_lbBusy) {
+      if (queuedStartX !== null && e.changedTouches.length) {
+        const delta = e.changedTouches[0].clientX - queuedStartX;
+        if (Math.abs(delta) > 35) queuedSwipe = delta < 0 ? 1 : -1;
+      }
+      queuedStartX = null;
+      return;
+    }
     if (pinch) {
       if (e.touches.length < 2) pinch = false;
       dragging = false; suppressSwipe = true;
@@ -1228,38 +1294,7 @@ function closeLightbox(e) {
       const committed = nextIdx >= 0 && nextIdx < lightboxImages.length &&
         (Math.abs(dx) > W() / 3 || velocity > 0.3);
       if (committed) {
-        _lbBusy = true;
-        const outgoing = imgA(), incoming = imgB();
-        // La durée dépend de la distance restant à parcourir, pas d'un temps fixe.
-        const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
-        const settleMs = Math.round(480 + remaining * 300);
-        const settleEase = 'cubic-bezier(.25,.7,.25,1)';
-        outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
-        outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
-        incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
-        incoming.style.transform = 'translateX(0)';
-        showNavs(false);
-        setTimeout(() => {
-          // L'image entrante est déjà affichée au centre. Échanger les
-          // identifiants des calques, sans changer leur src : aucune image
-          // précédente ne peut réapparaître lors de la transmission.
-          outgoing.id = 'lightbox-img-b';
-          incoming.id = 'lightbox-img-a';
-          incoming.style.transition = 'none';
-          incoming.style.transform = '';
-          incoming.style.opacity = '1';
-          incoming.style.pointerEvents = '';
-          outgoing.style.transition = 'none';
-          outgoing.style.opacity = '0';
-          outgoing.style.transform = '';
-          outgoing.style.pointerEvents = 'none';
-          outgoing.src = '';
-          resetLightboxZoom();
-          lightboxIdx = nextIdx;
-          lbUpdate(nextIdx);
-          showNavs(true);
-          _lbBusy = false;
-        }, settleMs + 20);
+        settleSwipe(dx < 0 ? 1 : -1, dx);
       } else {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
