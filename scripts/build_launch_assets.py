@@ -1,4 +1,4 @@
-"""Génère les visuels de lancement iOS et les icônes Android depuis l'icône QPJB vérifiée."""
+"""Génère des écrans de lancement iOS lavande unis et les icônes Android QPJB."""
 from pathlib import Path
 from PIL import Image
 
@@ -11,8 +11,6 @@ source = Image.open(ROOT / "apple-touch-icon-qpjb.png").convert("RGB")
 def save_screen(width, height):
     screen = Image.new("RGB", (width, height), BG)
     size = round(min(width * .54, height * .36, 380))
-    icon = source.resize((size, size), Image.Resampling.LANCZOS)
-    screen.paste(icon, ((width - size) // 2, (height - size) // 2))
     screen.save(OUT / f"ios-{width}x{height}.png", optimize=True)
 
 # Résolutions portrait physiques : iPhone 6/7/8, SE, Plus, X/XS/11,
