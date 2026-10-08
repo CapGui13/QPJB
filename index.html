@@ -1049,7 +1049,7 @@ function closeLightbox(e) {
   function showNavs(v) { navs().forEach(n => n.style.opacity = v ? '1' : '0'); }
 
   document.addEventListener('touchstart', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (e.touches.length >= 2) {
       pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
       pinchDistance = distance(e.touches[0], e.touches[1]);
@@ -1073,7 +1073,7 @@ function closeLightbox(e) {
   }, {passive:true});
 
   document.addEventListener('touchmove', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (e.touches.length >= 2) {
       if (!pinch) {
         pinch = true; suppressSwipe = true; dragging = false; swipeDir = null;
@@ -1128,7 +1128,7 @@ function closeLightbox(e) {
   }, {passive:false});
 
   document.addEventListener('touchend', e => {
-    if (!lb().classList.contains('open')) return;
+    if (!lb().classList.contains('open') || _lbBusy) return;
     if (pinch) {
       if (e.touches.length < 2) pinch = false;
       dragging = false; suppressSwipe = true;
@@ -1191,17 +1191,33 @@ function closeLightbox(e) {
       const committed = nextIdx >= 0 && nextIdx < lightboxImages.length &&
         (Math.abs(dx) > W() / 3 || velocity > 0.3);
       if (committed) {
-        imgA().style.transition = 'transform .25s ease';
-        imgA().style.transform  = `translateX(${dx < 0 ? -W() : W()}px)`;
-        imgB().style.transition = 'transform .25s ease';
-        imgB().style.transform  = 'translateX(0)';
+        _lbBusy = true;
+        const outgoing = imgA(), incoming = imgB();
+        outgoing.style.transition = 'transform .25s ease';
+        outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
+        incoming.style.transition = 'transform .25s ease';
+        incoming.style.transform = 'translateX(0)';
         showNavs(false);
         setTimeout(() => {
+          // L'image entrante est déjà affichée au centre. Échanger les
+          // identifiants des calques, sans changer leur src : aucune image
+          // précédente ne peut réapparaître lors de la transmission.
+          outgoing.id = 'lightbox-img-b';
+          incoming.id = 'lightbox-img-a';
+          incoming.style.transition = 'none';
+          incoming.style.transform = '';
+          incoming.style.opacity = '1';
+          incoming.style.pointerEvents = '';
+          outgoing.style.transition = 'none';
+          outgoing.style.opacity = '0';
+          outgoing.style.transform = '';
+          outgoing.style.pointerEvents = 'none';
+          outgoing.src = '';
+          resetLightboxZoom();
           lightboxIdx = nextIdx;
-          imgA().src = lightboxImages[nextIdx].url;
           lbUpdate(nextIdx);
-          resetSlots();
           showNavs(true);
+          _lbBusy = false;
         }, 260);
       } else {
         imgA().style.transition = 'transform .3s ease';
