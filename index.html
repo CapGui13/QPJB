@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<script>
+// Empêcher le navigateur (y compris iOS/PWA et le cache arrière-avant)
+// de rouvrir QPJB à l'ancienne position de défilement.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+function qpjbStartAtTop() {
+  window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+  document.documentElement.scrollTop = 0;
+  if (document.body) document.body.scrollTop = 0;
+}
+// Premier rendu, retour depuis l'historique et réouverture depuis l'écran d'accueil.
+qpjbStartAtTop();
+window.addEventListener('pageshow', () => {
+  qpjbStartAtTop();
+  requestAnimationFrame(qpjbStartAtTop);
+});
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) requestAnimationFrame(qpjbStartAtTop);
+});
+</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="QPJB">
