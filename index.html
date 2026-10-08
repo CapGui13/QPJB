@@ -1228,9 +1228,13 @@ function closeLightbox(e) {
       if (committed) {
         _lbBusy = true;
         const outgoing = imgA(), incoming = imgB();
-        outgoing.style.transition = 'transform .52s cubic-bezier(.22,1,.36,1)';
+        // La durée dépend de la distance restant à parcourir, pas d'un temps fixe.
+        const remaining = Math.max(0, Math.min(1, 1 - Math.abs(dx) / W()));
+        const settleMs = Math.round(220 + remaining * 260);
+        const settleEase = 'cubic-bezier(.22,.68,0,1)';
+        outgoing.style.transition = `transform ${settleMs}ms ${settleEase}`;
         outgoing.style.transform = `translateX(${dx < 0 ? -W() : W()}px)`;
-        incoming.style.transition = 'transform .52s cubic-bezier(.22,1,.36,1)';
+        incoming.style.transition = `transform ${settleMs}ms ${settleEase}`;
         incoming.style.transform = 'translateX(0)';
         showNavs(false);
         setTimeout(() => {
@@ -1253,7 +1257,7 @@ function closeLightbox(e) {
           lbUpdate(nextIdx);
           showNavs(true);
           _lbBusy = false;
-        }, 540);
+        }, settleMs + 20);
       } else {
         imgA().style.transition = 'transform .3s ease';
         imgA().style.transform  = '';
