@@ -22,6 +22,15 @@ document.addEventListener('visibilitychange', () => {
   if (!document.hidden) requestAnimationFrame(qpjbStartAtTop);
 });
 </script>
+<script>
+// Android PWA: éviter un deuxième fondu de logo après l'écran natif.
+// La version iOS conserve strictement son comportement existant.
+if (/Android/i.test(navigator.userAgent) &&
+    (window.matchMedia('(display-mode: standalone)').matches ||
+     window.matchMedia('(display-mode: fullscreen)').matches)) {
+  document.documentElement.classList.add('qpjb-android-pwa');
+}
+</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="QPJB">
@@ -96,6 +105,8 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 .splash-stack{opacity:0}
 .splash-stack.intro-ready{animation:qpjbSoftEntry .65s ease-out both}
 @keyframes qpjbSoftEntry{from{opacity:0}to{opacity:1}}
+.qpjb-android-pwa .splash-stack{opacity:1}
+.qpjb-android-pwa .splash-stack.intro-ready{animation:none}
 .splash-blue{opacity:0;pointer-events:none}
 .splash-blue.ready{animation:qpjbPurpleBlue 3.2s ease-in-out infinite}
 @keyframes qpjbPurpleBlue{0%,100%{opacity:0}50%{opacity:.28}}
