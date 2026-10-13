@@ -105,18 +105,10 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 .splash-stack{opacity:0}
 .splash-stack.intro-ready{animation:qpjbSoftEntry .65s ease-out both}
 @keyframes qpjbSoftEntry{from{opacity:0}to{opacity:1}}
-/* Android : premier rendu identique à l'icône déclarée dans le manifeste.
-   Lorsque le logo haute définition est prêt, passage progressif à l'animation. */
-.android-launch-icon{display:none}
-.qpjb-android-pwa .android-launch-icon{
-  display:block;position:absolute;left:50%;top:50%;width:96px;height:96px;
-  transform:translate(-50%,-50%);object-fit:contain;opacity:1;
-  transition:opacity .5s ease;pointer-events:none;
-}
-.qpjb-android-pwa .splash-stack{opacity:0}
-.qpjb-android-pwa #splash:has(.splash-stack.intro-ready) .android-launch-icon{opacity:0}
-.qpjb-android-pwa .splash-stack.intro-ready{animation:qpjbAndroidReveal .65s ease-out both}
-@keyframes qpjbAndroidReveal{from{opacity:0;transform:translate(var(--logo-offset-x,0%),var(--logo-offset-y,0%)) scale(.88)}to{opacity:1;transform:translate(var(--logo-offset-x,0%),var(--logo-offset-y,0%)) scale(1)}}
+/* Android : le premier rendu HTML emploie directement le logo complet.
+   Pas d'icône de remplacement, pas de fondu/zoom supplémentaire. */
+.qpjb-android-pwa .splash-stack,
+.qpjb-android-pwa .splash-stack.intro-ready{opacity:1;animation:none;transform:none}
 .splash-blue{opacity:0;pointer-events:none}
 .splash-blue.ready{animation:qpjbPurpleBlue 3.2s ease-in-out infinite}
 @keyframes qpjbPurpleBlue{0%,100%{opacity:0}50%{opacity:.28}}
@@ -557,7 +549,7 @@ header{
 </head>
 <body>
 
-<div id="splash"><img class="android-launch-icon" src="/QPJB/qpjb-logo-fixed.svg?v=2" alt=""><div class="splash-stack"><img class="splash-original" id="splash-original" src="./QPJB%20App.png" alt="QPJB — L’app du Quai"><img class="splash-blue" id="splash-blue" alt="" aria-hidden="true"></div></div>
+<div id="splash"><div class="splash-stack"><img class="splash-original" id="splash-original" src="./QPJB%20App.png" alt="QPJB — L’app du Quai"><img class="splash-blue" id="splash-blue" alt="" aria-hidden="true"></div></div>
 
 <div id="fade-overlay"></div>
 <script>
@@ -613,8 +605,10 @@ function markSplashReady() {
       }
       if(maxX>=minX && maxY>=minY){
         const stack=document.querySelector('.splash-stack');
+        if (!document.documentElement.classList.contains('qpjb-android-pwa')) {
         stack.style.setProperty('--logo-offset-x', ((w-minX-maxX)/(2*w)*100).toFixed(2)+'%');
         stack.style.setProperty('--logo-offset-y', ((h-minY-maxY)/(2*h)*100).toFixed(2)+'%');
+        }
       }
       ctx.putImageData(pixels,0,0);
       document.getElementById('splash').style.background='rgb('+bg.join(',')+')';
