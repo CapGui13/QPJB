@@ -105,9 +105,9 @@ html:has(#splash:not(.fade-out):not(.hidden)) body{overflow:hidden}
 .splash-stack{opacity:0}
 .splash-stack.intro-ready{animation:qpjbSoftEntry .65s ease-out both}
 @keyframes qpjbSoftEntry{from{opacity:0}to{opacity:1}}
-/* Android : le premier rendu HTML emploie directement le logo complet.
-   Pas d'icône de remplacement, pas de fondu/zoom supplémentaire. */
-.qpjb-android-pwa .splash-stack,
+/* Android : fond lavande seul tant que le vrai logo n'est pas prêt.
+   Aucun logo intermédiaire, aucune translation ni animation d'entrée. */
+.qpjb-android-pwa .splash-stack{opacity:0;animation:none;transform:none}
 .qpjb-android-pwa .splash-stack.intro-ready{opacity:1;animation:none;transform:none}
 .splash-blue{opacity:0;pointer-events:none}
 .splash-blue.ready{animation:qpjbPurpleBlue 3.2s ease-in-out infinite}
