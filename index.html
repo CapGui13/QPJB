@@ -39,7 +39,7 @@ if (/Android/i.test(navigator.userAgent) &&
 /* En exercice QCM, seule la barre de retour interne reste visible. */
 body.qpjb-training-in-quiz #vtraining .training-toolbar{display:none!important}
 body.qpjb-training-in-quiz #vtraining{background:#211d27!important}
-body.qpjb-training-in-quiz #vtraining #training-workspace{height:calc(100dvh - env(safe-area-inset-top, 0px) - 18px)!important}
+/* Hauteur du workspace d'entraînement : gérée uniquement par qpjbTrainingResize(). */
 body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important;flex:1;min-height:0}
 </style>
 <link rel="manifest" href="/QPJB/manifest.json?v=8">
@@ -2218,8 +2218,6 @@ function qpjbTrainingSelect(mode){
 }
 function qpjbTrainingShow(mode,navigate=true){
  if(mode!=='bidding'&&mode!=='play')return;
- const wasVisible=document.getElementById('vtraining').style.display!=='none';
- const changed=!wasVisible||qpjbTrainingMode!==mode;
  const apply=()=>{
    qpjbTrainingMode=mode;
    document.getElementById('vhome').style.display='none';
@@ -2240,7 +2238,7 @@ function qpjbTrainingShow(mode,navigate=true){
      else history.pushState({qpjbTraining:mode,trainingDepth:0},'', '#entrainement-'+mode);
    }
  };
- if(changed&&navigate)fadeSwap(apply);
+ if(navigate)fadeSwap(apply);
  else apply();
 }
 function qpjbTrainingHide(focus=false){
