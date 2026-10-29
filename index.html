@@ -848,20 +848,21 @@ let seancesData = null;
 // ── fondu doux entre les vues (séances, donnes, retour) ──────────────
 let _viewFadeBusy = false;
 function fadeSwap(doSwap) {
-  if (_viewFadeBusy) return;
+  if (_viewFadeBusy) return false;
   _viewFadeBusy = true;
   const ov = document.getElementById('fade-overlay');
   ov.classList.add('fade-in');
-  setTimeout(() => {
-    try { doSwap(); }
+  setTimeout(async () => {
+    try { await doSwap(); }
+    catch (error) { console.error('QPJB : transition interrompue', error); }
     finally {
       requestAnimationFrame(() => requestAnimationFrame(() => {
         ov.classList.remove('fade-in');
-        // Garder exactement le fondu actuel, sans accepter de double navigation.
         setTimeout(() => { _viewFadeBusy = false; }, 460);
       }));
     }
   }, 255);
+  return true;
 }
 
 // Les dossiers portent directement la numérotation affichée (1-01, 1-02, …, 2-01, 2-02, …).
@@ -2173,6 +2174,24 @@ document.addEventListener('keydown', e => {
 <script>
 /* Navigateur interne : un seul document QPJB est conservé. */
 let qpjbTrainingReady=false,qpjbTrainingMode='bidding';
+let qpjbTrainingNavAck=null;
+function qpjbTrainingFadeNavigate(seq){
+ // Les transitions de l'iframe réutilisent exactement le fondu QPJB.
+ const start=()=>{
+   if(!fadeSwap(()=>new Promise(resolve=>{
+     const frame=document.getElementById('training-frame');
+     const complete=()=>{
+       if(qpjbTrainingNavAck?.seq!==seq)return;
+       clearTimeout(qpjbTrainingNavAck.watchdog);
+       qpjbTrainingNavAck=null;resolve();
+     };
+     qpjbTrainingNavAck={seq,complete,watchdog:null};
+     qpjbTrainingNavAck.watchdog=setTimeout(complete,1500);
+     frame.contentWindow.postMessage({type:'qpjb-training-nav-apply',seq},location.origin);
+   })))setTimeout(start,75);
+ };
+ start();
+}
 function qpjbTrainingResize(){
  const view=document.getElementById('vtraining'),workspace=document.getElementById('training-workspace');
  if(view.style.display==='none')return;
@@ -2188,23 +2207,30 @@ function qpjbTrainingSelect(mode){
 }
 function qpjbTrainingShow(mode,navigate=true){
  if(mode!=='bidding'&&mode!=='play')return;
- qpjbTrainingMode=mode;
- document.getElementById('vhome').style.display='none';
- document.getElementById('vtraining').style.display='block';
- document.querySelectorAll('.training-tab').forEach(btn=>{
-  const on=btn.dataset.mode===mode;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on));
- });
- qpjbTrainingResize();window.scrollTo(0,0);
- const frame=document.getElementById('training-frame');
- // À chaque entrée, masquer l'ancien écran jusqu'à la confirmation du module.
- // Sinon un ancien QCM peut apparaître brièvement avant la rubrique demandée.
- document.getElementById('training-loading').hidden=false;
- if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&rev=20261029d&mode='+encodeURIComponent(mode)}
- else qpjbTrainingSelect(mode);
- if(navigate){
-  if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode},'', '#entrainement-'+mode);
-  else history.pushState({qpjbTraining:mode},'', '#entrainement-'+mode);
- }
+ const wasVisible=document.getElementById('vtraining').style.display!=='none';
+ const changed=!wasVisible||qpjbTrainingMode!==mode;
+ const apply=()=>{
+   qpjbTrainingMode=mode;
+   document.getElementById('vhome').style.display='none';
+   document.getElementById('vtraining').style.display='block';
+   document.querySelectorAll('.training-tab').forEach(btn=>{
+     const on=btn.dataset.mode===mode;
+     btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on));
+   });
+   qpjbTrainingResize();window.scrollTo(0,0);
+   const frame=document.getElementById('training-frame');
+   document.getElementById('training-loading').hidden=false;
+   if(!frame.dataset.started){
+     frame.dataset.started='true';
+     frame.src='./entrainement/?embedded=1&rev=20261029d&mode='+encodeURIComponent(mode);
+   }else qpjbTrainingSelect(mode);
+   if(navigate){
+     if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode},'', '#entrainement-'+mode);
+     else history.pushState({qpjbTraining:mode},'', '#entrainement-'+mode);
+   }
+ };
+ if(changed&&navigate)fadeSwap(apply);
+ else apply();
 }
 function qpjbTrainingHide(focus=false){
  document.body.classList.remove('qpjb-training-in-quiz');document.getElementById('main-header').style.display='';qpjbTrainingResize();
@@ -2213,14 +2239,20 @@ function qpjbTrainingHide(focus=false){
  if(focus)document.querySelector('.training-button[data-training-mode="'+qpjbTrainingMode+'"]')?.focus({preventScroll:true});
 }
 function qpjbTrainingExit(){
- qpjbTrainingHide(true);
- if(history.state?.qpjbTraining)history.back();
- else history.replaceState(null,'',location.pathname+location.search);
+ fadeSwap(()=>{
+   qpjbTrainingHide(true);
+   if(history.state?.qpjbTraining)history.back();
+   else history.replaceState(null,'',location.pathname+location.search);
+ });
 }
 window.addEventListener('message',e=>{
  const frame=document.getElementById('training-frame');
  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
- if(e.data?.type==='qpjb-training-ready'){
+ if(e.data?.type==='qpjb-training-nav-request'){
+   if(document.getElementById('vtraining').style.display!=='none')qpjbTrainingFadeNavigate(e.data.seq);
+ }else if(e.data?.type==='qpjb-training-nav-done'){
+   if(qpjbTrainingNavAck?.seq===e.data.seq)qpjbTrainingNavAck.complete();
+ }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
   // Le volet reste masqué jusqu'au rendu confirmé du bon parcours.
   qpjbTrainingSelect(qpjbTrainingMode);
@@ -2242,7 +2274,9 @@ window.addEventListener('message',e=>{
 });
 window.addEventListener('popstate',e=>{
  if(e.state?.qpjbTraining)qpjbTrainingShow(e.state.qpjbTraining,false);
- else qpjbTrainingHide();
+ else if(document.getElementById('vtraining').style.display!=='none'){
+   if(!fadeSwap(()=>qpjbTrainingHide()))qpjbTrainingHide();
+ }
 });
 window.addEventListener('resize',qpjbTrainingResize);
 if(history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);

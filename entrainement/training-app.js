@@ -65,12 +65,50 @@ function restoreChoiceFocus(kind,choiceIndex,ok){
 }
 
 function quitTraining(){if(embeddedMode){window.parent.postMessage({type:'qpjb-training-exit'},location.origin);return}location.assign('../')}
-function go(v){if(v==='home'&&integratedMode){quitTraining();return}view=v;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;render();scrollTo(0,0)}
-function typ(v){cat=v;status='all';ptopic='all';sessionIds=[];go(v==='play'?'playtopics':'topics')}
-function topic(v){cat=v;status='all';sessionIds=[];go('list')}
-function playTopic(v){cat='play';ptopic=v;status='all';sessionIds=[];go('list')}
+let trainingNavSeq=0,trainingPendingNav=null;
+let trainingListScroll=0,trainingListScope='';
+function trainingScope(){return cat+'|'+ptopic+'|'+status}
+function trainingNavigate(action){
+ if(!embeddedMode){action();return}
+ if(trainingPendingNav)return;
+ const seq=++trainingNavSeq;
+ trainingPendingNav={seq,action};
+ window.parent.postMessage({type:'qpjb-training-nav-request',seq},location.origin);
+}
+function trainingApplyPage(next,restoreList=false){
+ view=next;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ render();
+ if(restoreList&&trainingListScope===trainingScope()){
+   requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
+ }else window.scrollTo(0,0);
+}
+function go(v){
+ if(v==='home'&&integratedMode){quitTraining();return}
+ const restore=v==='list'&&view==='quiz';
+ trainingNavigate(()=>trainingApplyPage(v,restore));
+}
+function typ(v,immediate=false){
+ const apply=()=>{
+   cat=v;status='all';ptopic='all';sessionIds=[];
+   trainingApplyPage(v==='play'?'playtopics':'topics');
+ };
+ if(immediate)apply();else trainingNavigate(apply);
+}
+function topic(v){
+ trainingNavigate(()=>{cat=v;status='all';sessionIds=[];trainingApplyPage('list')});
+}
+function playTopic(v){
+ trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];trainingApplyPage('list')});
+}
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
-function item(v){if(view==='list'||view==='plays')sessionIds=filtered().map(x=>x.id);id=v;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;view='quiz';render();scrollTo(0,0)}
+function item(v){
+ const fromList=view==='list'||view==='plays';
+ if(fromList){trainingListScroll=window.scrollY;trainingListScope=trainingScope()}
+ trainingNavigate(()=>{
+   if(fromList)sessionIds=filtered().map(x=>x.id);
+   id=v;trainingApplyPage('quiz');
+ });
+}
 function current(){return D.bidding.find(x=>x.id===id)||D.play.find(x=>x.id===id)}
 function byDifficulty(arr){return arr.slice().sort((a,b)=>(Number(a.level)||1)-(Number(b.level)||1))}
 function rel(){if(cat==='play')return byDifficulty(D.play.filter(x=>x.reviewStatus!=='a_verifier'&&(ptopic==='all'||playTopicId(x)===ptopic)));if(cat==='all')return D.categories.flatMap(c=>counted(c.id));return counted(cat)}
@@ -336,13 +374,21 @@ window.addEventListener('keydown',e=>{
 });
 if(embeddedMode){
  window.addEventListener('message',event=>{
-  if(event.origin!==location.origin||event.source!==window.parent||event.data?.type!=='qpjb-training-select')return;
+  if(event.origin!==location.origin||event.source!==window.parent)return;
+  if(event.data?.type==='qpjb-training-nav-apply'){
+   const pending=trainingPendingNav;
+   if(!pending||pending.seq!==event.data.seq)return;
+   trainingPendingNav=null;
+   try{pending.action()}
+   finally{window.parent.postMessage({type:'qpjb-training-nav-done',seq:event.data.seq},location.origin)}
+   return;
+  }
+  if(event.data?.type!=='qpjb-training-select')return;
   if(event.data.mode==='bidding'||event.data.mode==='play'){
    const target=event.data.mode==='bidding'?'topics':'playtopics';
    if(view===target&&(event.data.mode==='play'?cat==='play':cat!=='play')){
-    // Déjà dans la bonne vue : ne pas reconstruire l'écran après son chargement.
     window.parent.postMessage({type:'qpjb-training-view',quiz:false},location.origin);
-   }else typ(event.data.mode);
+   }else typ(event.data.mode,true);
   }
  });
 }
