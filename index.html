@@ -555,6 +555,20 @@ header{
   transition:filter .12s,transform .1s;
 }
 .btn-play.is-pressing{filter:brightness(.8);transform:scale(.94)}
+
+/* Navigation du module d'entraînement, sans modifier documents ni séances. */
+#vtraining{display:none;padding-top:60px;background:var(--cream);min-height:100dvh}
+#training-workspace{height:calc(100dvh - 60px);min-height:320px;display:flex;flex-direction:column}
+.training-toolbar{flex:none;background:#30263c;padding:12px;border-bottom:1px solid rgba(171,130,214,.28)}
+.training-toolbar-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.training-toolbar-label{color:#eee3fa;font:700 14px 'Exo 2',system-ui,sans-serif}
+.training-return{cursor:pointer;border:1px solid #806797;border-radius:10px;padding:8px 10px;background:transparent;color:white;font:650 13px 'Exo 2',system-ui,sans-serif}
+.training-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.training-tab{cursor:pointer;border:1px solid #806797;border-radius:10px;min-height:42px;background:#3d3454;color:white;font:700 14px 'Exo 2',system-ui,sans-serif}
+.training-tab.active{background:#e8d9f8;color:#382650;border-color:#e8d9f8}
+.training-return:focus-visible,.training-tab:focus-visible{outline:3px solid #c8a6ff;outline-offset:2px}
+#training-frame{display:block;flex:1;min-height:0;width:100%;border:0;background:#f8f6fd}
+@media(max-width:350px){.training-toolbar{padding:9px}.training-return{font-size:12px}.training-tab{font-size:12px}}
 </style>
 </head>
 <body>
@@ -669,8 +683,8 @@ function markSplashReady() {
   <section class="training-section" aria-labelledby="training-heading">
     <div class="training-label" id="training-heading">Entraînement</div>
     <div class="training-grid">
-      <a class="training-button" href="./entrainement/?mode=bidding">Enchères</a>
-      <a class="training-button" href="./entrainement/?mode=play">Jeu de la carte</a>
+      <a class="training-button" data-training-mode="bidding" href="#entrainement-bidding" onclick="event.preventDefault();qpjbTrainingShow('bidding')">Enchères</a>
+      <a class="training-button" data-training-mode="play" href="#entrainement-play" onclick="event.preventDefault();qpjbTrainingShow('play')">Jeu de la carte</a>
     </div>
   </section>
   <div class="config" id="seance-config">
@@ -685,6 +699,19 @@ function markSplashReady() {
 
 </div>
 
+<!-- ENTRAÎNEMENT : vue interne gardée en mémoire -->
+<div id="vtraining" style="display:none">
+  <div id="training-workspace">
+    <nav class="training-toolbar" aria-label="Navigation de l'entraînement">
+      <div class="training-toolbar-top"><span class="training-toolbar-label">Entraînement</span><button type="button" class="training-return" onclick="qpjbTrainingExit()">← Accueil QPJB</button></div>
+      <div class="training-switch" aria-label="Type d'entraînement">
+        <button type="button" class="training-tab" data-mode="bidding" aria-pressed="false" onclick="qpjbTrainingShow('bidding')">Enchères</button>
+        <button type="button" class="training-tab" data-mode="play" aria-pressed="false" onclick="qpjbTrainingShow('play')">Jeu de la carte</button>
+      </div>
+    </nav>
+    <iframe id="training-frame" src="about:blank" title="QPJB · Entraînement"></iframe>
+  </div>
+</div>
 <!-- SÉANCE VIEW -->
 <div id="vseance" style="display:none">
   <div class="deal-nav" id="seance-nav">
@@ -2127,6 +2154,61 @@ document.addEventListener('keydown', e => {
     if (el) el.classList.remove('is-pressing');
   }, true);
 })();
+</script>
+<script>
+/* Navigateur interne : un seul document QPJB est conservé. */
+let qpjbTrainingReady=false,qpjbTrainingMode='bidding';
+function qpjbTrainingResize(){
+ const view=document.getElementById('vtraining'),workspace=document.getElementById('training-workspace');
+ if(view.style.display==='none')return;
+ const height=Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60;
+ view.style.paddingTop=height+'px';workspace.style.height='calc(100dvh - '+height+'px)';
+}
+function qpjbTrainingSelect(mode){
+ const frame=document.getElementById('training-frame');
+ if(qpjbTrainingReady&&frame.contentWindow)frame.contentWindow.postMessage({type:'qpjb-training-select',mode},location.origin);
+}
+function qpjbTrainingShow(mode,navigate=true){
+ if(mode!=='bidding'&&mode!=='play')return;
+ qpjbTrainingMode=mode;
+ document.getElementById('vhome').style.display='none';
+ document.getElementById('vtraining').style.display='block';
+ document.querySelectorAll('.training-tab').forEach(btn=>{
+  const on=btn.dataset.mode===mode;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on));
+ });
+ qpjbTrainingResize();window.scrollTo(0,0);
+ const frame=document.getElementById('training-frame');
+ if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&mode='+encodeURIComponent(mode)}
+ else qpjbTrainingSelect(mode);
+ if(navigate){
+  if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode},'', '#entrainement-'+mode);
+  else history.pushState({qpjbTraining:mode},'', '#entrainement-'+mode);
+ }
+}
+function qpjbTrainingHide(focus=false){
+ document.getElementById('vtraining').style.display='none';
+ document.getElementById('vhome').style.display='block';window.scrollTo(0,0);
+ if(focus)document.querySelector('.training-button[data-training-mode="'+qpjbTrainingMode+'"]')?.focus({preventScroll:true});
+}
+function qpjbTrainingExit(){
+ qpjbTrainingHide(true);
+ if(history.state?.qpjbTraining)history.back();
+ else history.replaceState(null,'',location.pathname+location.search);
+}
+window.addEventListener('message',e=>{
+ const frame=document.getElementById('training-frame');
+ if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
+ if(e.data?.type==='qpjb-training-ready'){qpjbTrainingReady=true;qpjbTrainingSelect(qpjbTrainingMode)}
+ else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
+});
+window.addEventListener('popstate',e=>{
+ if(e.state?.qpjbTraining)qpjbTrainingShow(e.state.qpjbTraining,false);
+ else qpjbTrainingHide();
+});
+window.addEventListener('resize',qpjbTrainingResize);
+if(history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
+else if(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play')
+ qpjbTrainingShow(location.hash.endsWith('play')?'play':'bidding',false);
 </script>
 </body>
 </html>
