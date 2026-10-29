@@ -88,6 +88,60 @@ const server=http.createServer((req,res)=>{
   await page.goBack({waitUntil:'domcontentloaded'});
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
 
+  // Défense : mort Nord, défenseur Ouest ou Est ; les mains restent voisines.
+  const childFrame=page.frame({url:/\/entrainement\//});
+  assert.ok(childFrame,'Training iframe must exist');
+  await childFrame.evaluate(()=>playTopic('defense'));
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
+  const westTable=frame.locator('.deal-viewer.defense-adjacent.defense-west');
+  await westTable.waitFor({state:'visible',timeout:15000});
+  const westPositions=await westTable.evaluate(el=>{
+    const n=el.querySelector('.deal-seat.north').getBoundingClientRect();
+    const w=el.querySelector('.deal-seat.west').getBoundingClientRect();
+    const center=el.querySelector('.deal-center').getBoundingClientRect();
+    const shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
+    return {northBottom:n.bottom,westTop:w.top,westLeft:w.left,westRight:w.right,westWidth:w.width,
+      centerLeft:center.left,shellLeft:shell.left,shellRight:shell.right,
+      sideMoved:!!el.querySelector('.deal-lateral-hand')};
+  });
+  assert.ok(!westPositions.sideMoved,'West hand must not be moved under the table');
+  assert.ok(westPositions.westLeft<westPositions.centerLeft,'West hand stays left of the table');
+  assert.ok(westPositions.northBottom<=westPositions.westTop+10,'Dummy remains north of defender');
+  assert.ok(westPositions.westWidth>=140,'West hand must remain readable on iPhone');
+  assert.ok(westPositions.westRight<=westPositions.shellRight+2,'West hand fits inside table');
+
+  await childFrame.evaluate(()=>item('JC-BH-006-Q01'));
+  const eastTable=frame.locator('.deal-viewer.defense-adjacent.defense-east');
+  await eastTable.waitFor({state:'visible',timeout:15000});
+  const eastPositions=await eastTable.evaluate(el=>{
+    const n=el.querySelector('.deal-seat.north').getBoundingClientRect();
+    const e=el.querySelector('.deal-seat.east').getBoundingClientRect();
+    const center=el.querySelector('.deal-center').getBoundingClientRect();
+    const shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
+    return {northBottom:n.bottom,eastTop:e.top,eastLeft:e.left,eastRight:e.right,eastWidth:e.width,
+      centerRight:center.right,shellRight:shell.right,sideMoved:!!el.querySelector('.deal-lateral-hand')};
+  });
+  assert.ok(!eastPositions.sideMoved,'East hand must not be moved under the table');
+  assert.ok(eastPositions.eastLeft>=eastPositions.centerRight-2,'East hand stays right of the table');
+  assert.ok(eastPositions.northBottom<=eastPositions.eastTop+10,'Dummy remains north of East');
+  assert.ok(eastPositions.eastWidth>=140,'East hand must be readable on iPhone');
+  assert.ok(eastPositions.eastRight<=eastPositions.shellRight+2,'East hand fits inside table');
+
+  // Anciennes captures incertaines : ne jamais inventer la place du joueur.
+  await childFrame.evaluate(()=>item('JC-010'));
+  await frame.locator('.legacy-defense-source .game-img').waitFor({state:'visible',timeout:15000});
+  assert.equal(await frame.locator('.deal-viewer.compact').count(),0,
+    'Uncertain defense source must not invent an opposite N/S pair');
+
+  // Un déclarant garde au contraire les deux mains en vis-à-vis.
+  await childFrame.evaluate(()=>playTopic('plan-libre'));
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await childFrame.evaluate(()=>item('JC-001'));
+  await frame.locator('.deal-viewer.compact .deal-seat.north').waitFor({state:'visible',timeout:15000});
+  assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.south').count(),1,
+    'Declarer and dummy should remain opposite');
+
   // Petit téléphone : les quatre choix du QCM à trois rangées doivent tenir.
   const smallContext=await browser.newContext({
     viewport:{width:375,height:667},deviceScaleFactor:2,isMobile:true,
