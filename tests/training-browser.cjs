@@ -34,9 +34,16 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  const accessibilityFrame=page.frames().find(f=>f.url().includes('/entrainement/'));
+  await accessibilityFrame.waitForFunction(()=>document.activeElement?.id==='root',{timeout:10000});
+  assert.ok((await frame.locator('#root').getAttribute('aria-label')).includes('Liste des exercices'),
+    'The exercise list has an accessible screen name');
   await frame.locator('.item').first().click();
   const quiz=frame.locator('.qpjb-bid-quiz');
   await quiz.waitFor({state:'visible',timeout:15000});
+  await accessibilityFrame.waitForFunction(()=>document.activeElement?.id==='root',{timeout:10000});
+  assert.ok((await frame.locator('#root').getAttribute('aria-label')).startsWith('Exercice '),
+    'Opening a quiz announces its exercise number');
   const auctionRows=await quiz.locator('.auc tbody tr').count();
   const choices=quiz.locator('.choices>.choice');
   assert.equal(auctionRows,3,'Test QCM must include three auction rows');
@@ -309,6 +316,9 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.deal-viewer.compact .deal-seat.north').waitFor({state:'visible',timeout:15000});
   assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.south').count(),1,
     'Declarer and dummy should remain opposite');
+  await frame.locator('button[onclick="revealPlay()"]').click();
+  assert.equal(await childFrame.evaluate(()=>document.activeElement?.getAttribute('onclick')==='revealPlay()'),true,
+    'Revealing a free-form analysis preserves keyboard focus');
   await frame.locator('.play-source summary').click();
   await childFrame.waitForFunction(()=>document.querySelector('.play-source .game-img')?.naturalWidth>0,null,{timeout:15000});
   assert.ok((await frame.locator('.play-source .game-img').getAttribute('src')).endsWith('/JC-001.webp'),
