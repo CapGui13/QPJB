@@ -277,9 +277,10 @@ function chooseSource(i){
  const x=current(),a=Array.isArray(x?.choices)?x.choices:x?.options;
  if(!sourceGuided(x)||!a||!Number.isInteger(i)||i<0||i>=a.length)return;
  const pick=Array.isArray(x.choices)?a[i]:i;
- if(cat!=='play'&&playSeen&&chosen===pick){uncheckBiddingAnswer(x,true);return}
+ if(playSeen&&chosen===pick){if(cat==='play'&&x.exerciseFormat==='carte_qcm'){uncheckCardAnswer(x,true);return}if(cat!=='play'){uncheckBiddingAnswer(x,true);return}}
  chosen=pick;playSeen=true;
- if(cat==='play'||!updateBiddingAnswer(x,true))render();
+ if(cat==='play'){if(!updateCardAnswer(x,true))render();}
+  else if(!updateBiddingAnswer(x,true))render();
  const elem=document.querySelector(`[data-answer-index="${i}"]`);
  if(elem)elem.focus({preventScroll:true});
  const msg=document.getElementById('source-answer-status');
@@ -287,7 +288,7 @@ function chooseSource(i){
 }
 function sourceCorrection(x){const p=visibleAnswer(id),revealed=playSeen||p?.done;if(!revealed)return '';const ans=Array.isArray(x.choices)?x.correct:x.options[x.answerIndex];const explanation=sourceExplanation(x);return `<section class="feedback source-correction"><h3>Réponse du corrigé d’origine</h3><p><strong>${esc(ans)}</strong>${explanation?' — '+esc(explanation):''}</p><p class="muted">Comparez avec votre raisonnement. Il n’y a pas de notation automatique sur cet exercice.</p>${x.exerciseFormat==='carte_qcm'?postPlayAlternatives(x):((x.pretryHints && Object.keys(x.pretryHints).length)?postSolutionAlternatives(x):'')}${p?.done?`<p class="completion-notice">${p.ok?'✓ Exercice terminé — conforme à mon raisonnement':'✓ Exercice terminé — à revoir'}</p>`:`<div class="gamecheck"><button class="btn" onclick="assess(true)">✓ Mon raisonnement correspond</button><button class="btn" onclick="assess(false)">↻ À revoir</button></div>`}</section>`}
 function quizBSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;const special=x.exerciseFormat==='qcm_main'||x.exerciseFormat==='qcm_fit';return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${special?'Analyser la séquence':'Vous êtes en Sud'}</h2>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}${x.sourceContext?`<p class="source-context">${esc(x.sourceContext)}</p>`:''}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Choisissez votre réponse, puis comparez-la au corrigé du document.</p><div class="choices">${x.choices.map((b,i)=>`<button data-answer-index="${i}" class="choice ${sel===b?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===b}">${esc(b)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${sourceCorrection(x)}${restartControl()}</section></div>${nav()}`}
-function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Sélectionnez une proposition pour découvrir le corrigé d’origine.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${sel===i?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===i}">${esc(o)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${sourceCorrection(x)}${restartControl()}</div>${nav()}`}
+function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Sélectionnez une proposition pour découvrir le corrigé d’origine.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${sel===i?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===i}">${esc(o)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${cardAnswerArea(x,true)}</div>${nav()}`}
 
 function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':'Vous êtes en Sud'}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${x.choices.map((b,ix)=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}${restartControl()}</section></div>${nav()}`}
 function revealPlay(){playSeen=true;render()}
@@ -295,7 +296,8 @@ function assess(ok){
  if(redoAttempt?.done)return;
  redoAttempt={done:true,ok,pick:chosen};redoAnswered=true;
  persistResult(id,chosen,ok,true);
- if(cat==='play'||!updateBiddingAnswer(current(),true))render();
+ if(cat==='play'){if(current()?.exerciseFormat!=='carte_qcm'||!updateCardAnswer(current(),true))render();}
+  else if(!updateBiddingAnswer(current(),true))render();
 }
 function quizAtelier(x){const p=visibleAnswer(id);return `<button class="back" onclick="go('list')">← Ateliers d’enchères</button><div class="quizhead"><span class="badge">Enchères · Atelier ${seqNum(x)}</span></div><section class="panel" style="margin-top:14px"><h2>${esc(x.lessonTitle)}</h2><p>Réfléchissez aux questions. Ce format est en auto-évaluation, et non en QCM.</p><div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Exercice d’enchères : ${esc(x.lessonTitle)}" /></div>${x.importMethod==='facsimile_exercice_anonyme'?`<button type="button" class="btn document-zoom-button" onclick="toggleDocumentZoom(this)">Agrandir l’énoncé</button>`:''}<div style="margin-top:14px"><button class="btn primary" onclick="revealPlay()">${playSeen||p?.done?'Revoir le corrigé':'Découvrir le corrigé'} →</button></div>${playSeen||p?.done?`<div class="feedback"><h3>Explications</h3><div class="game-solution">${esc(x.answerText)}</div>${p?.done?`<p class="completion-notice">${p.ok?'✓ Atelier terminé — réussi':'✓ Atelier terminé — à revoir'}</p>`:`<p class="muted">Votre raisonnement allait-il dans le bon sens ?</p><div class="gamecheck"><button class="btn" onclick="assess(true)">✓ J’avais bon</button><button class="btn" onclick="assess(false)">↻ À revoir</button></div>`}</div>`:''}</section>${nav()}`}
 function seatFromLabel(label,fallback='south'){const v=(label||'').toLowerCase();if(v.includes('nord')||v.includes('mort'))return 'north';if(v.includes('sud'))return 'south';if(v.includes('ouest'))return 'west';if(v.includes('est'))return 'east';if(v.includes('déclarant'))return fallback;if(v.includes('votre main'))return fallback;return fallback}
@@ -391,7 +393,66 @@ function cardAuction(x){
 const SOURCE_PLAY_ORIGINAL={"JC-001":{"post":["Bien que le contrat de 6 Carreaux eût été sur table en coupant un Cœur en Sud, vos chances de gagner le petit chelem à Sans-Atout sont bien réelles. Comment devez-vous manœuvrer pour vous donner les meilleures chances ?"]},"JC-002":{"post":["Il vous manque une levée, quelle couleur attaquez-vous ?"]},"JC-003":{"post":["Après avoir réalisé la première levée de l’As de Pique, comment poursuivez-vous ?"]},"JC-004":{"post":["Les adversaires encaissent trois levées de Cœur puis rejouent Trèfle.","Quelle hypothèse devez-vous formuler pour espérer gagner ce contrat ?"]},"JC-005":{"post":["Vous coupez le deuxième tour de Pique et jouez l’As de Cœur, Ouest fournissant le 10 et Est le 5. Comment essayez-vous de gagner ?"]},"JC-006":{"pre":["Vous êtes assis en Sud, en tant que déclarant. Sur l’entame du Roi de Cœur, quel est votre plan de jeu pour réaliser votre contrat ?"]},"JC-007":{"pre":["Comment envisagez-vous de gagner votre contrat ?"]},"JC-008":{"post":["Vous avez huit levées de tête et miserez probablement sur les Carreaux pour la neuvième. Demandez-vous quand même quel est le partage le plus probable du résidu de cette couleur. Ça pourrait vous aider."]},"JC-009":{"post":["Les adversaires vous laissent réaliser la première levée du Roi de Cœur. Comment envisagez-vous la suite ?"]},"JC-010":{"post":["Ouest entame de l’As de Trèfle. Quelle carte fournissez-vous et pourquoi ?","Rappel : sur l’entame de l’As, à Sans-Atout, le partenaire réagit en fonction de son intérêt pour la continuation de la couleur, une grosse carte (inutile) est donc un appel."]},"JC-011":{"post":["Est s’empare de l’entame avec son As de Carreau et rejoue Trèfle, que vous prenez. Quelle carte jouez-vous à la troisième levée ?"]},"JC-012":{"post":["Rappel : Le barrage de Sud montre sept beaux Carreaux dans une main inférieure à 10H, les limites pouvant descendre très bas non vulnérable contre vulnérable.","Vous prenez le Valet du mort de la Dame, Sud fournissant le 6. Quelle carte rejouez-vous ?"]},"JC-013":{"post":["À la suite d’une séquence d’enchères peu orthodoxe, vous avez quand même atteint le bon contrat de 5 Trèfles. Quelle carte du mort jouez-vous à la première levée ?","Indice : comptez vos levées puis essayez de dédoubler vos atouts…"]},"JC-014":{"post":["Vous jouez le contrat de 3 Sans-Atout en Sud sur l’entame de la Dame de Cœur. Quelle couleur jouez-vous à la 2e levée ?"]},"JC-015":{"post":["Vous prenez l’entame de l’As et devez maintenant tenter une impasse. Laquelle choisissez-vous ?"]},"JC-016":{"post":["Vous jouez le contrat de 4 Cœurs en Sud sur l’entame du Roi de Carreau. Quelle carte le déclarant doit-il jouer après l’As de Carreau ?"]},"JC-017":{"post":["Après une séquence d’enchères pour érudits, vous atteignez le contrat de 3 Sans-Atout. Quel est votre plan de jeu sur l’entame de la quatrième meilleure d’Ouest à Pique ?"]},"JC-018":{"post":["Ouest entame du 4 de Trèfle contre votre manche à Sans-Atout. Essayez de mettre le plus de chances de votre côté pour tenter de gagner ce contrat. Une remarque quand même : vous ne pourrez pas rendre deux fois la main à la défense sous peine de concéder au moins trois levées de Trèfle dans la foulée…"]},"JC-019":{"post":["Ouest entame de la Dame de Cœur pour le 10 d’Est et votre Roi. Quelle couleur offre les meilleures chances de procurer le pli manquant ?"]},"JC-020":{"post":["L’entame Carreau vous permet de prendre la main. Mais dès que vous la rendrez, vous serez sous la menace de concéder trois Trèfles. Alors que faire ?"]},"JC-021":{"pre":["Vous êtes assis en Sud, en tant que déclarant. Sur l’entame de la Dame de Pique, quel est votre plan de jeu pour maximiser vos chances de réussir votre contrat ?"]},"JC-022":{"post":["Quel est votre plan de jeu ?"]},"JC-023":{"post":["Quel est votre plan de jeu pour réaliser neuf levées ?"]}};
 function sourcePlayParagraphs(x,pos){const p=SOURCE_PLAY_ORIGINAL[x.id];if(!p||!p[pos])return '';return `<div class="play-original-statement">${p[pos].map(t=>`<p>${esc(t)}</p>`).join('')}</div>`}
 function quizP(x){const p=visibleAnswer(id);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel" style="margin-top:13px"><h2>${x.type==='defense'?'À vous de défendre':'À vous de jouer'}</h2>${SOURCE_PLAY_ORIGINAL[x.id]?sourcePlayParagraphs(x,'pre'):`<p>${esc(x.prompt)}</p>`}${cardAuction(x)}${renderLegacyDiagram(x)}${sourcePlayParagraphs(x,'post')}<div style="margin-top:14px"><button class="btn primary" onclick="revealPlay()">${playSeen||p?.done?'Revoir l’analyse':'Découvrir l’analyse'} →</button></div>${playSeen||p?.done?`<div class="feedback"><h3>${x.type==='defense'?'Analyse de la défense':'Analyse du plan de jeu'}</h3><div class="game-solution analysis-body">${formatPlayAnalysis(x.answerText)}</div>${x.keyPoint?`<div class="learning-point"><strong>À retenir</strong><p>${esc(x.keyPoint)}</p></div>`:``}<p class="muted" style="margin-top:15px">Est-ce que votre raisonnement allait dans le bon sens ?</p>${p?.done?`<p class="completion-notice" role="status">${p.ok?"✓ Exercice terminé — réussi":"✓ Exercice terminé — à revoir"}</p>`:`<div class="gamecheck"><button class="btn" onclick="assess(true)">✓ J’avais bon</button><button class="btn" onclick="assess(false)">↻ À revoir</button></div>`}</div>`:''}${restartControl()}</div>${nav()}`}
-function pickCard(index){const x=current();if(!x||!Number.isInteger(index)||index<0||index>=x.options.length)return;chosen=index;const ok=index===x.answerIndex;recordAnswer(id,index,ok);render();restoreChoiceFocus('play',index,ok)}
+function cardAnswerMarkup(x,guided=false){
+ if(guided)return sourceCorrection(x)+restartControl();
+ const p=visibleAnswer(id);
+ if(!p?.done)return '';
+ return `<div class="feedback qcm-feedback" id="feedback" role="status" aria-live="polite"><h3 class="${p.ok?'feedok':'feedno'}">${p.ok?'✓ Bonne réponse !':'✕ Mauvaise réponse !'}</h3><p>${p.ok?esc(x.explanation):(playHint(x,p.pick)?esc(playHint(x,p.pick)):'Réessayez une autre proposition.')}</p>${p.ok?postPlayAlternatives(x):''}</div>${restartControl()}`;
+}
+function cardAnswerArea(x,guided=false){
+ const p=visibleAnswer(id),show=guided?(playSeen||!!p?.done):!!p?.done;
+ return `<div class="qpjb-answer-area qpjb-card-answer-area${show?' is-open':''}"${show?'':' aria-hidden="true" inert'}><div class="qpjb-answer-content">${show?cardAnswerMarkup(x,guided):''}</div></div>`;
+}
+function updateCardAnswer(x,guided=false){
+ const quiz=document.querySelector('.cq-stage');
+ const group=quiz?.querySelector('.cq-options');
+ const area=quiz?.querySelector('.qpjb-card-answer-area');
+ if(!group||!area||!Array.isArray(x?.options))return false;
+ const p=visibleAnswer(id),selected=guided?chosen:(p?.done?p.pick:chosen);
+ for(const button of group.querySelectorAll('.cq-option[data-answer-index]')){
+  const active=Number(button.dataset.answerIndex)===selected;
+  button.classList.toggle('selected',active);
+  button.classList.toggle('correct',!guided&&!!p?.done&&active&&!!p.ok);
+  button.classList.toggle('wrong',!guided&&!!p?.done&&active&&!p.ok);
+  button.setAttribute('aria-pressed',String(active));
+ }
+ const open=guided?(playSeen||!!p?.done):!!p?.done;
+ if(!open){
+  area.dataset.openRequested='no';
+  area.classList.remove('is-open');
+  area.setAttribute('aria-hidden','true');
+  area.inert=true;
+  return true;
+ }
+ area.dataset.openRequested='yes';
+ const content=area.querySelector('.qpjb-answer-content');
+ content.innerHTML=cardAnswerMarkup(x,guided);
+ colorAllSuits(content);
+ area.removeAttribute('aria-hidden');
+ area.inert=false;
+ if(!area.classList.contains('is-open')){
+  requestAnimationFrame(()=>{
+   if(area.isConnected&&area.dataset.openRequested==='yes')area.classList.add('is-open');
+  });
+ }
+ return true;
+}
+function uncheckCardAnswer(x,guided=false){
+ redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ if(!updateCardAnswer(x,guided))render();
+ const status=document.getElementById('source-answer-status');
+ if(status)status.textContent='';
+ const live=document.getElementById('qpjb-answer-announcement');
+ if(live)live.textContent='';
+}
+function pickCard(index){
+ const x=current();if(!x||!Number.isInteger(index)||index<0||index>=x.options.length)return;
+ if(visibleAnswer(id)?.done&&visibleAnswer(id).pick===index){uncheckCardAnswer(x);return}
+ chosen=index;const ok=index===x.answerIndex;
+ recordAnswer(id,index,ok);
+ if(!updateCardAnswer(x))render();
+ restoreChoiceFocus('play',index,ok);
+}
 function playHint(x,index){
  const m=x?.playPretryHints||{};
  const note=m[String(index)];
@@ -403,7 +464,7 @@ function postPlayAlternatives(x){
  if(!entries.length)return '';
  return `<div class="postsolution-notes"><button type="button" class="postsolution-trigger" aria-expanded="false" onclick="togglePostsolution(this)">Pourquoi les autres propositions ne conviennent pas</button><div class="postsolution-body"><div class="postsolution-body-inner"><div class="postsolution-grid">${entries.map(e=>`<div class="postsolution-item"><strong>${esc(e.opt)}</strong><p>${esc(e.note)}</p></div>`).join('')}</div></div></div></div>`;
 }
-function quizCard(x){if(sourceGuided(x))return quizCardSource(x);const p=visibleAnswer(id),picked=p?.done?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead&&x.lead!=='À vous de choisir'?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${picked===i?'selected':''} ${p?.done&&i===p.pick?(p.ok?'correct':'wrong'):''}" onclick="pickCard(${i})" aria-pressed="${picked===i}">${esc(o)}</button>`).join('')}</div>${p?.done?`<div class="feedback qcm-feedback" id="feedback" role="status" aria-live="polite"><h3 class="${p.ok?'feedok':'feedno'}">${p.ok?'✓ Bonne réponse !':'✕ Mauvaise réponse !'}</h3><p>${p.ok?esc(x.explanation):(playHint(x,p.pick)?esc(playHint(x,p.pick)):'Réessayez une autre proposition.')}</p>${p.ok?postPlayAlternatives(x):''}</div>`:''}${restartControl()}</div>${nav()}`}
+function quizCard(x){if(sourceGuided(x))return quizCardSource(x);const p=visibleAnswer(id),picked=p?.done?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead&&x.lead!=='À vous de choisir'?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${picked===i?'selected':''} ${p?.done&&i===p.pick?(p.ok?'correct':'wrong'):''}" onclick="pickCard(${i})" aria-pressed="${picked===i}">${esc(o)}</button>`).join('')}</div>${cardAnswerArea(x)}</div>${nav()}`}
 function nav(){
  const scope=rel(),deck=sessionIds.length?sessionIds.map(k=>scope.find(x=>x.id===k)).filter(Boolean):scope,pos=deck.findIndex(x=>x.id===id);
  return `<div class="footnav"><button class="btn" onclick="${pos>0?`item('${deck[pos-1].id}')`:`go('list')`}">← ${pos>0?'Précédent':'Liste'}</button><button class="btn primary" onclick="${pos+1<deck.length?`item('${deck[pos+1].id}')`:`go('list')`}">${pos+1<deck.length?'Suivant →':'Retour à la liste'}</button></div>`;
