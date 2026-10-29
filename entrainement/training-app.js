@@ -159,7 +159,15 @@ function neutralPlayListTitle(x){
   return m?'Contrat : '+m[1]+' '+m[2]:'Situation à analyser';
 }
 function rows(arr){return arr.map(x=>`<button class="item" onclick="item('${x.id}')"><span class="num">Ex. ${seqNum(x)}</span><span class="desc"><span class="exercise-title">${cat==='play'?esc(neutralPlayListTitle(x)):esc(x.question||miniAuction(x))}</span></span><span class="state ${validatedState(saved[x.id])===true?'ok':validatedState(saved[x.id])===false?'no':''}" title="${validatedState(saved[x.id])===null?'Pas encore fait':validatedState(saved[x.id])?'Validé':'Non validé'}">${stat(x)}</span></button>`).join('')||'<div class="panel" style="padding:18px">Aucun exercice ne correspond à ces filtres.</div>'}
-function redrawList(){render()}
+function redrawList(){
+ // Le filtre ne change que la liste : conserver le select, le focus et le défilement.
+ const entries=document.getElementById('entries'),count=document.getElementById('count');
+ if(!entries||!count){render();return}
+ const arr=filtered();
+ entries.innerHTML=rows(arr);
+ count.textContent=arr.length+' exercice(s)';
+ colorAllSuits(entries);
+}
 function auction(x){let a=x.auction||[];return a.length?`<table class="auc"><thead><tr><th>Sud</th><th>Ouest</th><th>Nord</th><th>Est</th></tr></thead><tbody>${a.map(r=>'<tr>'+r.map(t=>`<td class="${t.includes('?')?'ask':''}">${esc(t||'—')}</td>`).join('')+'</tr>').join('')}</tbody></table>`:''}
 function hand(x){return `<div class="suits">${x.hand.map((s,i)=>`<div class="suit"><span class="sym ${i===1||i===2?'red':'black'}">${'♠♥♦♣'[i]}</span><span>${esc(s)}</span></div>`).join('')}</div>`}
 /* Actualiser uniquement les réponses : préserver la main, les enchères et le défilement. */
