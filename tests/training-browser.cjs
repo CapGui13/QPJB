@@ -109,6 +109,15 @@ const server=http.createServer((req,res)=>{
     'Filter does not rebuild the whole page');
   assert.equal(await frame.locator('#entries .item').count(),Number((await frame.locator('#count').innerText()).match(/\d+/)[0]),
     'Filter count matches rendered exercises');
+  // Les numéros doivent conserver leur position initiale après filtrage.
+  const numbersMatch=await listFilter.evaluate(()=>{
+    const expected=new Map(rel().map((x,i)=>[x.id,String(i+1).padStart(2,'0')]));
+    return [...document.querySelectorAll('#entries .item')].every(button=>{
+      const exerciseId=button.getAttribute('onclick')?.split("'")[1];
+      return button.querySelector('.num')?.textContent?.trim()==='Ex. '+expected.get(exerciseId);
+    });
+  });
+  assert.ok(numbersMatch,'All exercise numbers match the original order');
   await listFilter.selectOption('all');
   assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Focus remains after reset filter');
 
