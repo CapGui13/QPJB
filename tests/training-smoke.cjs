@@ -70,7 +70,7 @@ const harness=[
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
- "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const availableExercise=v=>['EX1','EX2'].includes(v)?{id:v}:null;",
+ "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
  nav,
  "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action()}",
  "topic('2sa');const queued=view==='topics'&&sent.at(-1).type==='qpjb-training-nav-request';complete();",
