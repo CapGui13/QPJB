@@ -352,8 +352,10 @@ const server=http.createServer((req,res)=>{
   // Lorsqu'une seule main est visible, elle doit aussi être en bas (Est et Ouest).
   for(const [exercise,seat,badge] of [['JC-BH-023-Q01','east','E'],['JC-BH-021-Q01','west','O']]){
     await childFrame.evaluate(ex=>item(ex),exercise);
+    await childFrame.waitForFunction(({exercise,seat})=>id===exercise&&
+      document.querySelector('.deal-viewer.player-oriented')?.dataset.perspective===seat,
+      {exercise,seat},{timeout:15000});
     const table=frame.locator('.deal-viewer.player-oriented');
-    await table.waitFor({state:'visible',timeout:15000});
     assert.equal(await table.getAttribute('data-perspective'),seat,
       'Explicit player seat determines the whole table orientation');
     assert.equal(await table.locator('.deal-seat.south').getAttribute('data-seat'),seat,
