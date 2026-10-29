@@ -126,27 +126,22 @@ function updateBiddingAnswer(x,guided=false){
  }
  const selectedNow=selected!==null&&selected!==undefined;
  if(!selectedNow){
-  // Refermer en douceur en laissant intact le contenu pendant l'animation.
+  // Conserver le contenu masqué pendant l'animation inverse : pas de saut brutal.
+  area.dataset.openRequested='no';
   area.classList.remove('is-open');
   area.setAttribute('aria-hidden','true');
   area.inert=true;
-  if(!area.dataset.clearing){
-   area.dataset.clearing='1';
-   area.addEventListener('transitionend',event=>{
-    if(event.target===area&&event.propertyName==='grid-template-rows'){
-     delete area.dataset.clearing;
-     if(!area.classList.contains('is-open'))area.querySelector('.qpjb-answer-content').replaceChildren();
-    }
-   });
-  }
   return true;
  }
+ area.dataset.openRequested='yes';
  area.querySelector('.qpjb-answer-content').innerHTML=(guided?sourceCorrection(x):correctDisplay(x))+restartControl();
  area.removeAttribute('aria-hidden');
  area.inert=false;
  if(!area.classList.contains('is-open')){
-  // Dessiner l'état replié puis dérouler uniquement le corrigé sous les boutons.
-  requestAnimationFrame(()=>{if(area.isConnected)area.classList.add('is-open')});
+  // Vérifier l'état au prochain frame : un second clic rapide peut avoir décoché.
+  requestAnimationFrame(()=>{
+   if(area.isConnected&&area.dataset.openRequested==='yes')area.classList.add('is-open');
+  });
  }
  return true;
 }
