@@ -8,12 +8,19 @@ if(embeddedMode)document.documentElement.classList.add('qpjb-embedded');
 let view=initialMode==='bidding'?'topics':initialMode==='play'?'playtopics':'home',cat=initialMode==='play'?'play':'',id='',status='all',ptopic='all',sessionIds=[],chosen=null,revealed=false,playSeen=false,redoAttempt=null,redoAnswered=false;
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function update(){
- try{const raw=JSON.stringify(saved);localStorage.setItem(KEY,raw);if(localStorage.getItem(KEY)!==raw)throw Error('storage readback mismatch');storageWarning=false;return true}
- catch(e){storageWarning=true;return false}
+ try{const raw=JSON.stringify(saved);localStorage.setItem(KEY,raw);if(localStorage.getItem(KEY)!==raw)throw Error('storage readback mismatch');storageWarning=false;syncStorageNotice();return true}
+ catch(e){storageWarning=true;syncStorageNotice();return false}
 }
 
 // La progression est sauvegardée automatiquement dans ce navigateur.
 function storageNotice(){return storageWarning?`<div class="storage-warning" role="alert"><strong>Enregistrement automatique indisponible dans ce navigateur.</strong> Vos résultats pourraient être perdus à la fermeture.</div>`:''}
+// Les QCM ne sont plus reconstruits après chaque choix : synchroniser le bandeau localement.
+function syncStorageNotice(){
+ const root=document.getElementById('root');if(!root)return;
+ const notice=root.querySelector('.storage-warning');
+ if(storageWarning){if(!notice)root.insertAdjacentHTML('afterbegin',storageNotice())}
+ else if(notice)notice.remove();
+}
 
 // V7.16: preserve legacy V1 progress. Only attempts observed from now are counted
 // on a legacy record; historic first-try status is unknowable, not inferred.
@@ -34,7 +41,9 @@ function persistResult(exId,choice,correct,first){
  const at=new Date().toISOString();
  const history=Array.isArray(prev.history)?prev.history.slice(-29):[];
  history.push({pick:choice===undefined?null:choice,ok:correct,at});
- const result={...prev,done:true,ok:correct,attempts:(Number.isInteger(prev.attempts)?prev.attempts:0)+1,history};
+ // Une visite = une tentative ; l'historique garde tous les choix de cette visite.
+ // Ne pas recalculer les anciens compteurs, dont le sens historique était différent.
+ const result={...prev,done:true,ok:correct,attempts:(Number.isInteger(prev.attempts)?prev.attempts:0)+(first?1:0),history};
  if(choice!==null&&choice!==undefined)result.pick=choice;
  if(first){result.validated=correct;result.lastAttemptAt=at;}
  saved[exId]=result;update();return result;
@@ -202,7 +211,8 @@ function updateBiddingAnswer(x,guided=false){
 }
 /* Recliquer sur le choix actif revient à l'écran vierge, sans recharger l'exercice. */
 function uncheckBiddingAnswer(x,guided=false){
- redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ // Décocher masque la réponse, sans créer une nouvelle visite ni un nouveau premier essai.
+ redoAttempt=null;chosen=null;revealed=false;playSeen=false;
  if(!updateBiddingAnswer(x,guided))render();
  const status=document.getElementById('source-answer-status');
  if(status)status.textContent='';
@@ -446,7 +456,8 @@ function updateCardAnswer(x,guided=false){
  return true;
 }
 function uncheckCardAnswer(x,guided=false){
- redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ // Le premier choix de la visite reste enregistré après désélection.
+ redoAttempt=null;chosen=null;revealed=false;playSeen=false;
  if(!updateCardAnswer(x,guided))render();
  const status=document.getElementById('source-answer-status');
  if(status)status.textContent='';
