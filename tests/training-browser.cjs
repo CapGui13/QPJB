@@ -50,9 +50,20 @@ const server=http.createServer((req,res)=>{
   await choices.nth(2).click();
   await frame.locator('.qpjb-answer-area.is-open').waitFor({state:'visible',timeout:5000});
   assert.equal(await quiz.locator('.choice.selected').count(),1,'Answer selected');
+  const firstAnswer=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
   await choices.nth(2).click();
   assert.equal(await quiz.locator('.choice.selected').count(),0,'Second tap unselects answer');
   assert.equal(await frame.locator('.qpjb-answer-area[aria-hidden="true"]').count(),1,'Explanation closes');
+  await choices.nth(2).click();
+  const afterRecheck=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
+  assert.equal(afterRecheck.attempts,firstAnswer.attempts,'Unselect and reselect do not count as another visit');
+  assert.equal(afterRecheck.history,firstAnswer.history+1,'Each selection remains in history');
+  assert.equal(afterRecheck.validated,firstAnswer.validated,'First selection determines visit validation');
+  await choices.nth(0).click();
+  const changedChoice=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
+  assert.equal(changedChoice.attempts,firstAnswer.attempts,'Changing to another choice does not increase visit count');
+  assert.equal(changedChoice.history,afterRecheck.history+1,'Changed choice is recorded');
+  assert.equal(changedChoice.validated,firstAnswer.validated,'Changed choice cannot rewrite first try');
   await choices.nth(2).click();
   const extra=frame.locator('.postsolution-trigger');
   await extra.waitFor({state:'attached',timeout:5000});
@@ -60,6 +71,30 @@ const server=http.createServer((req,res)=>{
   assert.equal(await extra.getAttribute('aria-expanded'),'true','Alternative explanations expand');
   const blackSuits=frame.locator('.postsolution-item .symbol-suit.suit-black');
   assert.ok(await blackSuits.count()>0,'Black suits in dynamically inserted explanations must be colorized');
+
+  // Simuler une écriture refusée : avertir immédiatement sans reconstruire le QCM.
+  await quiz.evaluate(()=>{
+    window.__qpjbOriginalSetItem=Storage.prototype.setItem;
+    Storage.prototype.setItem=function(key,val){
+      if(key===KEY)throw new Error('simulated storage failure');
+      return window.__qpjbOriginalSetItem.call(this,key,val);
+    };
+  });
+  await choices.nth(0).click();
+  await frame.locator('#root .storage-warning[role="alert"]').waitFor({state:'visible',timeout:5000});
+  assert.equal(await quiz.count(),1,'Storage warning does not recreate the exercise');
+  await quiz.evaluate(()=>{
+    Storage.prototype.setItem=window.__qpjbOriginalSetItem;
+    delete window.__qpjbOriginalSetItem;
+  });
+  await choices.nth(2).click();
+  await frame.locator('#root .storage-warning').waitFor({state:'detached',timeout:5000});
+  const recordBeforeRestart=await quiz.evaluate(()=>saved[id].attempts);
+  await frame.locator('.restart-exercise button').click();
+  await quiz.locator('.choices>.choice').nth(2).click();
+  const recordAfterRestart=await quiz.evaluate(()=>saved[id].attempts);
+  assert.equal(recordAfterRestart,recordBeforeRestart+1,'Explicit restart starts a new visit');
+
   await page.goBack({waitUntil:'domcontentloaded'});
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   assert.equal(await quiz.count(),0,'Browser back returns to the list');
