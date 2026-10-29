@@ -393,6 +393,7 @@ if(embeddedMode){
    const valid=['topics','playtopics','list','plays','quiz','home'];
    if(!r||!valid.includes(r.view))return;
    try{
+     trainingPendingNav=null;
      cat=String(r.cat||'');id=String(r.id||'');
      status=String(r.status||'all');ptopic=String(r.ptopic||'all');
      sessionIds=Array.isArray(r.sessionIds)?r.sessionIds.filter(v=>typeof v==='string'):[];
