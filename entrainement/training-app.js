@@ -76,6 +76,8 @@ function trainingNavigate(action){
  window.parent.postMessage({type:'qpjb-training-nav-request',seq},location.origin);
 }
 function trainingApplyPage(next,restoreList=false,recordRoute=true){
+ // An old browser route must never reopen a quarantined or unknown exercise.
+ if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
  view=next;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
  render();
  if(restoreList&&trainingListScope===trainingScope()){
@@ -107,6 +109,8 @@ function playTopic(v){
 }
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
 function item(v){
+ // Lists are filtered, but old routes and direct navigation can still carry an ID.
+ if(!availableExercise(v))return;
  const fromList=view==='list'||view==='plays';
  if(fromList){trainingListScroll=window.scrollY;trainingListScope=trainingScope()}
  trainingNavigate(()=>{
@@ -114,7 +118,11 @@ function item(v){
    id=v;trainingApplyPage('quiz');
  });
 }
-function current(){return D.bidding.find(x=>x.id===id)||D.play.find(x=>x.id===id)}
+function availableExercise(v){
+ const x=(cat==='play'?D.play:D.bidding).find(x=>x.id===v);
+ return x&&x.reviewStatus!=='a_verifier'?x:null;
+}
+function current(){return availableExercise(id)}
 function byDifficulty(arr){return arr.slice().sort((a,b)=>(Number(a.level)||1)-(Number(b.level)||1))}
 function rel(){if(cat==='play')return byDifficulty(D.play.filter(x=>x.reviewStatus!=='a_verifier'&&(ptopic==='all'||playTopicId(x)===ptopic)));if(cat==='all')return D.categories.flatMap(c=>counted(c.id));return counted(cat)}
 function seqNum(x){return String(rel().findIndex(a=>a.id===x.id)+1).padStart(2,'0')}
@@ -293,7 +301,7 @@ function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undef
 function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':'Vous êtes en Sud'}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${x.choices.map((b,ix)=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}${restartControl()}</section></div>${nav()}`}
 function revealPlay(){playSeen=true;render()}
 function assess(ok){
- if(redoAttempt?.done)return;
+ if(!current()||redoAttempt?.done)return;
  redoAttempt={done:true,ok,pick:chosen};redoAnswered=true;
  persistResult(id,chosen,ok,true);
  if(cat==='play'){if(current()?.exerciseFormat!=='carte_qcm'||!updateCardAnswer(current(),true))render();}
