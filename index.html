@@ -2221,11 +2221,15 @@ window.addEventListener('message',e=>{
  if(e.data?.type==='qpjb-training-ready'){qpjbTrainingReady=true;document.getElementById('training-loading').hidden=true;qpjbTrainingSelect(qpjbTrainingMode)}
  else if(e.data?.type==='qpjb-training-view'){
   const quiz=!!e.data.quiz;
-  document.body.classList.toggle('qpjb-training-in-quiz',quiz);
-  document.getElementById('main-header').style.display=quiz?'none':'';
-  qpjbTrainingResize();
-  // Recaler la page mère après le changement de hauteur de l'en-tête.
-  window.scrollTo(0,0);
+  // Le module renvoie aussi ce message après chaque réponse au QCM.
+  // Ne pas redimensionner l'iframe ni recaler la page si la vue n'a pas changé.
+  if(quiz!==document.body.classList.contains('qpjb-training-in-quiz')){
+   document.body.classList.toggle('qpjb-training-in-quiz',quiz);
+   document.getElementById('main-header').style.display=quiz?'none':'';
+   qpjbTrainingResize();
+   // Recaler la page mère uniquement lors du passage liste ↔ exercice.
+   window.scrollTo(0,0);
+  }
  }
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
