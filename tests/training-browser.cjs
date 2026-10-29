@@ -79,8 +79,19 @@ const server=http.createServer((req,res)=>{
   const blackSuits=frame.locator('.postsolution-item .symbol-suit.suit-black');
   assert.ok(await blackSuits.count()>0,'Black suits in dynamically inserted explanations must be colorized');
 
-  // Audit des 4 enseignes sur les glyphes, propositions, tables et commentaires.
-  // Le thème sombre avait des règles plus spécifiques qui blanchissaient ♠ et ♣.
+  // Reproduire la phrase de la capture réelle : le ♣ de « 1♣ »
+  // devenait creux à cause du contour blanc sur le fond du corrigé.
+  await frame.locator('.feedback').first().evaluate(el=>{
+    const p=document.createElement('p');
+    p.className='qpjb-suit-probe';
+    p.textContent='on ouvre de 1♣, par souci d’économie. Pourquoi pas 1♣ ?';
+    el.appendChild(p);
+    colorAllSuits(p);
+  });
+  assert.equal(await frame.locator('.qpjb-suit-probe .symbol-suit.suit-black').count(),2,
+    'Two clubs from the screenshot are wrapped as suit glyphs');
+
+  // Contrôler la couleur ET l'absence de contour dans les vrais éléments.
   for(const scheme of ['light','dark']){
     await page.emulateMedia({colorScheme:scheme});
     assert.equal(await accessibilityFrame.evaluate(()=>matchMedia('(prefers-color-scheme:dark)').matches),
@@ -93,16 +104,23 @@ const server=http.createServer((req,res)=>{
       const errors=[];
       for(const el of elements){
         const isRed=el.classList.contains('red')||el.classList.contains('suit-red');
+        const darkText=!!el.closest('.feedback,.postsolution-item,.distractor-why') &&
+          (document.documentElement.classList.contains('qpjb-embedded') ||
+           matchMedia('(prefers-color-scheme:dark)').matches);
         const style=getComputedStyle(el);
         const fill=style.getPropertyValue('-webkit-text-fill-color')||style.color;
         const values=(fill.match(/\d+/g)||[]).slice(0,3).map(Number);
         const good=values.length===3&&(isRed
           ?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
-          :values.every(n=>n<=80));
+          :darkText&&el.classList.contains('symbol-suit')
+            ?values[0]>=150&&values[0]<=210&&values[1]>=150&&values[1]<=215&&values[2]>=160&&values[2]<=220
+            :values.every(n=>n<=80));
         if(!good)errors.push({where:el.parentElement?.className,cls:el.className,
           text:el.textContent?.slice(0,12),fill});
         if(el.classList.contains('symbol-suit')&&el.textContent?.includes('\uFE0F'))
           errors.push({cls:el.className,reason:'emoji variation selector'});
+        if(el.classList.contains('symbol-suit')&&parseFloat(style.webkitTextStrokeWidth||'0')>0)
+          errors.push({cls:el.className,reason:'outlined suit instead of solid glyph'});
       }
       return {count:elements.length,errors:errors.slice(0,12)};
     });
