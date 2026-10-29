@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs');
 const path=require('node:path');
+const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
@@ -46,6 +47,17 @@ const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
 const data=JSON.parse(raw.slice(8,-1));
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
+const facsimiles=JSON.parse(read('tests/training-image-checksums.json'));
+check(facsimiles.files.length===23,'23 original image facsimiles externalized');
+for(const {id,sha} of facsimiles.files){
+ const exercise=data.play.find(x=>x.id===id);
+ check(exercise?.image==='./assets/'+id+'.webp',id+' links its original image');
+ const bytes=fs.readFileSync(path.join(root,'entrainement/assets',id+'.webp'));
+ const actual=crypto.createHash('sha1').update('blob '+bytes.length).update(Buffer.from([0])).update(bytes).digest('hex');
+ check(actual===sha,id+' image bytes preserved');
+}
+check(data.play.filter(x=>x.image?.startsWith('data:image/svg+xml;base64,')).length===7,
+ 'seven structural SVG diagrams remain inline');
 const bh17=['JC-BH-017-Q01','JC-BH-017-Q02','JC-BH-017-Q03','JC-BH-017-Q04'].map(id=>data.play.find(x=>x.id===id));
 check(bh17.length===4&&bh17.every(x=>x&&x.type==='declarant'&&x.topic==='Plan de jeu'),'BH-017 is a declarer plan-of-play series');
 check(bh17.every(x=>x.holdings?.[0]?.label==='Mort · Nord'&&x.holdings?.[1]?.label==='Vous · Sud'),'BH-017 has North dummy and South declarer');

@@ -287,6 +287,9 @@ const server=http.createServer((req,res)=>{
   // Anciennes captures incertaines : ne jamais inventer la place du joueur.
   await childFrame.evaluate(()=>item('JC-010'));
   await frame.locator('.legacy-defense-source .game-img').waitFor({state:'visible',timeout:15000});
+  await childFrame.waitForFunction(()=>document.querySelector('.legacy-defense-source .game-img')?.naturalWidth>0,null,{timeout:15000});
+  assert.ok((await frame.locator('.legacy-defense-source .game-img').getAttribute('src')).endsWith('/JC-010.webp'),
+    'Original defense facsimile loads correctly from its WebP file');
   assert.equal(await frame.locator('.deal-viewer.compact').count(),0,
     'Uncertain defense source must not invent an opposite N/S pair');
 
@@ -297,6 +300,10 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.deal-viewer.compact .deal-seat.north').waitFor({state:'visible',timeout:15000});
   assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.south').count(),1,
     'Declarer and dummy should remain opposite');
+  await frame.locator('.play-source summary').click();
+  await childFrame.waitForFunction(()=>document.querySelector('.play-source .game-img')?.naturalWidth>0,null,{timeout:15000});
+  assert.ok((await frame.locator('.play-source .game-img').getAttribute('src')).endsWith('/JC-001.webp'),
+    'Original declarer facsimile loads correctly from its WebP file');
 
   // Les sauvegardes doivent survivre à un rechargement complet de QPJB.
   const savedBeforeReload=await childFrame.evaluate(()=>localStorage.getItem(KEY));
