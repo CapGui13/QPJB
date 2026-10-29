@@ -3,6 +3,7 @@
 > **Lire ce fichier, pas les anciennes conversations.** Historique détaillé conservé dans [QPJB_TRAINING_REPRISE.md](./QPJB_TRAINING_REPRISE.md). Utiliser des lectures GitHub ciblées et ne jamais renvoyer des fichiers/logs complets dans la conversation.
 
 ## Où en est-on ?
+- **État courant validé (29/10, après audit pédagogique) : 114 exercices conservés, 111 disponibles (81 QCM + 30 libres), 3 QCM mis en quarantaine.** Dernier rapport : [QPJB_TRAINING_AUDIT_PEDAGOGIQUE_2026-10-29.md](./QPJB_TRAINING_AUDIT_PEDAGOGIQUE_2026-10-29.md).
 - Dépôt : `CapGui13/QPJB`, branche `main`. Site : https://capgui13.github.io/QPJB/
 - Dernière correction fonctionnelle au 29/10/2026 : `a023dec3aa43b717fcaa35dddecf0f8561926212` (accès aux QCM en quarantaine bloqué même via anciens parcours). Tests : `0cfc2ca`, `8a8fc6f`, `c2f85d0`. Audit pédagogique indépendant : `QPJB_QCM_AMBIGUS_AUDIT_2026-10-29.md`.
 - Dernier chantier livré : reclassement des **quatre** exercices `JC-BH-017-Q01` à `Q04` depuis « Défense et signalisation » vers « Décisions de plan de jeu · QCM » ; mains mort Nord / déclarant Sud. Commit données : `741238308366f865fa8ead20d877a435ae2c9c58`. Énoncés, options, réponses, explications, identifiants, 326 PDF, progression inchangés.
@@ -28,8 +29,16 @@
 - Le premier échec du nouveau test venait d'une hypothèse de scénario : après rechargement, QPJB peut restaurer automatiquement l'écran Entraînement et masquer son bouton d'accueil. La vérification a été remplacée par la lecture du `localStorage` de la même origine ; le workflow final est vert.
 - Moteur WebKit ajouté à `tests/training-browser.cjs` (commit `b63f561d`) et à la matrice `.github/workflows/training-smoke.yml` (commit `fe75aed4`). Aucun énoncé, corrigé, identifiant ou PDF n'a été retouché durant cette passe.
 
+## Audit pédagogique, tests et sécurité — 29/10/2026
+- **BH-014 Q01** : correction d'origine problématique pour encaisser toutes les cartes maîtresses sans rentrée extérieure. `JC-BH-014-Q01` mis en quarantaine **sans réécriture** de ses mains, choix ou corrigé (commit `8c070fc7`).
+- **BH-042 Q01** : séquence `1♠` d'Est, `1SA` de Sud, puis `3SA` par Nord rétablie dans la question à partir du PDF source ; réponse inchangée (commit `e4ae9f08`). Anti-cache actualisé (`20261029m`).
+- **Preuves** : solutions PDF originales BH-007, 014, 017, 020, 021, 022, 023, 024, 028, 031, 034, 036, 040, 041 confrontées ; 60 QCM actifs rattachés à ces dossiers. Contrôle structurel initial sur 112 disponibles. Relecture de fond encore nécessaire, particulièrement des 30 exercices libres.
+- **GitHub Actions entièrement vert** : [exécution 40948941842](https://github.com/CapGui13/QPJB/actions/runs/40948941842) ; **46 contrôles statiques réussis sur chaque moteur**, puis parcours navigateur iPhone 12 simulé **Chromium + WebKit**, zéro erreur JS non interceptée. iPhone physique non testé. Les données ne sont pas des résultats garantis de Safari réel.
+- Les trois dossiers bloqués sont : `JC-BH-014-Q01`, `JC-BH-028-Q04`, `JC-BH-036-Q02`. 326 PDF originaux, autres contenus et historique de progression préservés.
+- Rapport complet : `QPJB_TRAINING_AUDIT_PEDAGOGIQUE_2026-10-29.md`. Ne pas réintégrer ces exercices sans plan de jeu/justification solide.
+
 ## Prochaine action
-Base technique vérifiée sur deux moteurs ; prochaine étape recommandée : vérifier quelques parcours réels sur iPhone/Safari/PWA, puis reprendre l'audit pédagogique du contenu (sans réintégrer les deux QCM en quarantaine avant validation). Se baser sur le problème concret du nouveau chat, inspecter des fichiers ciblés et continuer par petites étapes. Toujours noter SHA, tests et limites, sans recopier l'historique.
+Base technique vérifiée sur Chromium et WebKit ; prochaine étape recommandée : poursuivre la relecture des 30 exercices libres à partir des documents d'origine, puis revérifier quelques parcours sur iPhone Safari/PWA réel. Ne pas réintégrer les trois QCM en quarantaine sans validation pédagogique. Se baser sur le problème concret du nouveau chat, inspecter des fichiers ciblés et continuer par petites étapes. Toujours noter SHA, tests et limites, sans recopier l'historique.
 
 ## Éviter la saturation de ChatGPT
 L'erreur « longueur maximale de la conversation » / `conversation_too_large` vient de la limite de la conversation ChatGPT, **pas de QPJB Training**. La scission du module en fichiers réduit les sorties, sans supprimer cette limite. Dans une exécution GitHub, traiter les grosses données en interne et n'afficher au chat que les extraits utiles (< 2 000 caractères par retour en général). Utiliser un nouveau chat après un chantier achevé, sans copier d'anciens échanges.
