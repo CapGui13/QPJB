@@ -210,12 +210,16 @@ const server=http.createServer((req,res)=>{
   await cardPanel.evaluate(el=>{el.dataset.stableCard='yes'});
   await cardOptions.nth(0).click();
   await frame.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
+  const cardFirst=await cardPanel.evaluate(()=>({attempts:saved[id].attempts,validated:saved[id].validated}));
   assert.equal(await cardPanel.getAttribute('data-stable-card'),'yes','Card exercise is not recreated on answer');
   assert.equal(await cardPanel.locator('.cq-option.wrong').count(),1,'Wrong answer marked without render');
   await cardOptions.nth(0).click();
   assert.equal(await cardPanel.locator('.cq-option.selected').count(),0,'Second click unselects a card answer');
   assert.equal(await cardPanel.locator('.qpjb-card-answer-area[aria-hidden="true"]').count(),1,'Card explanation closes in place');
   await cardOptions.nth(1).click();
+  const cardSecond=await cardPanel.evaluate(()=>({attempts:saved[id].attempts,validated:saved[id].validated}));
+  assert.equal(cardSecond.attempts,cardFirst.attempts,'Card reselect counts as the same visit');
+  assert.equal(cardSecond.validated,cardFirst.validated,'Card first selection keeps the validation status');
   assert.equal(await cardPanel.getAttribute('data-stable-card'),'yes','Correct answer also preserves the card viewer');
   assert.equal(await cardPanel.locator('.cq-option.correct').count(),1,'Correct card answer marked');
   await cardPanel.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
