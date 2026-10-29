@@ -21,3 +21,9 @@ jobs:
           node-version: '22'
       - name: Check navigation, layout and data integrity
         run: node tests/training-smoke.cjs
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test the QCM flow on a simulated iPhone
+        run: node tests/training-browser.cjs
