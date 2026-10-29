@@ -62,6 +62,35 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   assert.equal(await quiz.count(),0,'Browser back returns to the list');
 
+  // Navigation réelle précédent/suivant, sans rechargement de l'iframe ni perte de progression.
+  const trainingFrameForNav=page.frames().find(f=>f.url().includes('/entrainement/'));
+  assert.ok(trainingFrameForNav,'Training iframe is available for internal navigation');
+  const bidRecord=await trainingFrameForNav.evaluate(()=>{
+    const exId=D.bidding.find(x=>saved[x.id]?.done)?.id;
+    const record=exId?saved[exId]:null;
+    return {exId,persisted:!!record?.done,attempts:record?.attempts,history:record?.history?.length};
+  });
+  assert.ok(bidRecord.exId&&bidRecord.persisted,'Answered bidding exercise is saved');
+  assert.ok(bidRecord.attempts>=1&&bidRecord.history>=1,'Bidding answer history is stored');
+  let iframeNavigations=0;
+  page.on('framenavigated',f=>{if(f===trainingFrameForNav)iframeNavigations++});
+  await frame.locator('.item').first().click();
+  await quiz.waitFor({state:'visible',timeout:15000});
+  const firstBidId=await trainingFrameForNav.evaluate(()=>id);
+  await frame.locator('.footnav button.primary').click();
+  await trainingFrameForNav.waitForFunction(previous=>view==='quiz'&&id!==previous,firstBidId);
+  assert.equal(await quiz.locator('.choices>.choice').count(),4,'Next exercise has four choices');
+  await frame.locator('.footnav button').first().click();
+  await trainingFrameForNav.waitForFunction(first=>view==='quiz'&&id===first,firstBidId);
+  assert.equal(iframeNavigations,0,'Internal previous/next navigation does not reload the training iframe');
+  assert.equal(await quiz.locator('.choice.selected').count(),0,'Returning to a saved exercise starts without stale selection');
+  await frame.locator('.qpjb-quiz-nav button.back').click();
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  const recordAfterNavigation=await trainingFrameForNav.evaluate(exId=>saved[exId],firstBidId);
+  assert.ok(recordAfterNavigation?.done&&recordAfterNavigation.attempts>=bidRecord.attempts,
+    'Internal navigation preserves the saved answer');
+
+
   // Exercice 12 de la rubrique 2SA : les commentaires comportent des Cœurs et Carreaux.
   await frame.locator('.item').nth(11).click();
   await quiz.waitFor({state:'visible',timeout:15000});
@@ -203,6 +232,16 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.deal-viewer.compact .deal-seat.north').waitFor({state:'visible',timeout:15000});
   assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.south').count(),1,
     'Declarer and dummy should remain opposite');
+
+  // Les sauvegardes doivent survivre à un rechargement complet de QPJB.
+  const savedBeforeReload=await childFrame.evaluate(()=>localStorage.getItem(KEY));
+  assert.ok(savedBeforeReload?.includes(firstBidId),'Saved progress includes the first bidding exercise');
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+  await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
+  const reloadedFrame=page.frames().find(f=>f.url().includes('/entrainement/'));
+  assert.equal(await reloadedFrame.evaluate(()=>localStorage.getItem(KEY)),savedBeforeReload,
+    'Progress in localStorage is identical after a full application reload');
 
   // Petit téléphone : les quatre choix du QCM à trois rangées doivent tenir.
   const smallContext=await browser.newContext({
