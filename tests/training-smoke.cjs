@@ -19,6 +19,8 @@ for(const [name,css] of Object.entries({core,integrated,tokens})){
  check(level===0&&min===0,name+' CSS blocks are balanced');
 }
 new Function(app);checks++;
+check(app.includes('deal-player-group')&&core.includes('.deal-player-group>.deal-marker.south'),
+ 'The real player seat circle is placed just above the bottom hand');
 check(app.includes('function screenSeat(')&&app.includes('data-perspective=')&&app.includes('function playerSeatFromExercise('),
  'Card viewers distinguish physical table seats from screen positions');
 check(app.includes('perspective:playerSeatFromExercise(x,seats)')&&
@@ -37,7 +39,7 @@ check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'
  'Clubs are pure black without the former slate override or white outline');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v10'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes("CACHE = 'qpjb-v11'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
