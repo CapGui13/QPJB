@@ -2175,8 +2175,8 @@ document.addEventListener('keydown', e => {
 <script>
 /* Navigateur interne : un seul document QPJB est conservé. */
 let qpjbTrainingReady=false,qpjbTrainingMode='bidding';
-let qpjbTrainingNavAck=null;
-function qpjbTrainingFadeNavigate(seq){
+let qpjbTrainingNavAck=null,qpjbTrainingRestoreSeq=0;
+function qpjbTrainingFadeNavigate(seq,route=null,mode=null){
  // Les transitions de l'iframe réutilisent exactement le fondu QPJB.
  const start=()=>{
    if(!fadeSwap(()=>new Promise(resolve=>{
@@ -2188,7 +2188,16 @@ function qpjbTrainingFadeNavigate(seq){
      };
      qpjbTrainingNavAck={seq,complete,watchdog:null};
      qpjbTrainingNavAck.watchdog=setTimeout(complete,1500);
-     frame.contentWindow.postMessage({type:'qpjb-training-nav-apply',seq},location.origin);
+     if(route){
+       qpjbTrainingMode=mode||qpjbTrainingMode;
+       document.getElementById('vhome').style.display='none';
+       document.getElementById('vtraining').style.display='block';
+       document.querySelectorAll('.training-tab').forEach(btn=>{
+         const on=btn.dataset.mode===qpjbTrainingMode;
+         btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on));
+       });
+       frame.contentWindow.postMessage({type:'qpjb-training-route-restore',seq,route},location.origin);
+     }else frame.contentWindow.postMessage({type:'qpjb-training-nav-apply',seq},location.origin);
    })))setTimeout(start,75);
  };
  start();
@@ -2226,8 +2235,8 @@ function qpjbTrainingShow(mode,navigate=true){
      frame.src='./entrainement/?embedded=1&rev=20261029e&mode='+encodeURIComponent(mode);
    }else qpjbTrainingSelect(mode);
    if(navigate){
-     if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode},'', '#entrainement-'+mode);
-     else history.pushState({qpjbTraining:mode},'', '#entrainement-'+mode);
+     if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', '#entrainement-'+mode);
+     else history.pushState({qpjbTraining:mode,trainingDepth:0},'', '#entrainement-'+mode);
    }
  };
  if(changed&&navigate)fadeSwap(apply);
@@ -2242,8 +2251,9 @@ function qpjbTrainingHide(focus=false){
 function qpjbTrainingExit(){
  fadeSwap(()=>{
    qpjbTrainingHide(true);
-   if(history.state?.qpjbTraining)history.back();
-   else history.replaceState(null,'',location.pathname+location.search);
+   if(history.state?.qpjbTraining){
+     history.go(-(Math.max(0,history.state.trainingDepth||0)+1));
+   }else history.replaceState(null,'',location.pathname+location.search);
  });
 }
 window.addEventListener('message',e=>{
@@ -2253,6 +2263,11 @@ window.addEventListener('message',e=>{
    if(document.getElementById('vtraining').style.display!=='none')qpjbTrainingFadeNavigate(e.data.seq);
  }else if(e.data?.type==='qpjb-training-nav-done'){
    if(qpjbTrainingNavAck?.seq===e.data.seq)qpjbTrainingNavAck.complete();
+ }else if(e.data?.type==='qpjb-training-route'){
+   if(history.state?.qpjbTraining){
+     const depth=Math.max(0,history.state.trainingDepth||0)+1;
+     history.pushState({qpjbTraining:qpjbTrainingMode,trainingDepth:depth,trainingRoute:e.data.route},'', '#entrainement-'+qpjbTrainingMode);
+   }
  }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
   // Le volet reste masqué jusqu'au rendu confirmé du bon parcours.
@@ -2274,7 +2289,12 @@ window.addEventListener('message',e=>{
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
 window.addEventListener('popstate',e=>{
- if(e.state?.qpjbTraining)qpjbTrainingShow(e.state.qpjbTraining,false);
+ if(e.state?.qpjbTraining){
+   const mode=e.state.qpjbTraining;
+   const fallback={view:mode==='play'?'playtopics':'topics',cat:mode==='play'?'play':'',id:'',status:'all',ptopic:'all',sessionIds:[]};
+   if(qpjbTrainingReady)qpjbTrainingFadeNavigate('restore-'+(++qpjbTrainingRestoreSeq),e.state.trainingRoute||fallback,mode);
+   else qpjbTrainingShow(mode,false);
+ }
  else if(document.getElementById('vtraining').style.display!=='none'){
    if(!fadeSwap(()=>qpjbTrainingHide()))qpjbTrainingHide();
  }

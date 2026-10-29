@@ -75,12 +75,17 @@ function trainingNavigate(action){
  trainingPendingNav={seq,action};
  window.parent.postMessage({type:'qpjb-training-nav-request',seq},location.origin);
 }
-function trainingApplyPage(next,restoreList=false){
+function trainingApplyPage(next,restoreList=false,recordRoute=true){
  view=next;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
  render();
  if(restoreList&&trainingListScope===trainingScope()){
    requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
  }else window.scrollTo(0,0);
+ if(recordRoute&&embeddedMode){
+   window.parent.postMessage({type:'qpjb-training-route',route:{
+     view,cat,id,status,ptopic,sessionIds:sessionIds.slice()
+   }},location.origin);
+ }
 }
 function go(v){
  if(v==='home'&&integratedMode){quitTraining();return}
@@ -90,7 +95,7 @@ function go(v){
 function typ(v,immediate=false){
  const apply=()=>{
    cat=v;status='all';ptopic='all';sessionIds=[];
-   trainingApplyPage(v==='play'?'playtopics':'topics');
+   trainingApplyPage(v==='play'?'playtopics':'topics',false,!immediate);
  };
  if(immediate)apply();else trainingNavigate(apply);
 }
@@ -381,6 +386,20 @@ if(embeddedMode){
    trainingPendingNav=null;
    try{pending.action()}
    finally{window.parent.postMessage({type:'qpjb-training-nav-done',seq:event.data.seq},location.origin)}
+   return;
+  }
+  if(event.data?.type==='qpjb-training-route-restore'){
+   const r=event.data.route;
+   const valid=['topics','playtopics','list','plays','quiz','home'];
+   if(!r||!valid.includes(r.view))return;
+   try{
+     cat=String(r.cat||'');id=String(r.id||'');
+     status=String(r.status||'all');ptopic=String(r.ptopic||'all');
+     sessionIds=Array.isArray(r.sessionIds)?r.sessionIds.filter(v=>typeof v==='string'):[];
+     trainingApplyPage(r.view,r.view==='list'||r.view==='plays',false);
+   }finally{
+     window.parent.postMessage({type:'qpjb-training-nav-done',seq:event.data.seq},location.origin);
+   }
    return;
   }
   if(event.data?.type!=='qpjb-training-select')return;
