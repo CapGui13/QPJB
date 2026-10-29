@@ -269,54 +269,98 @@ const server=http.createServer((req,res)=>{
   await page.goBack({waitUntil:'domcontentloaded'});
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
 
-  // Défense : mort Nord, défenseur Ouest ou Est ; les mains restent voisines.
+  // La table est orientée depuis le JOUEUR (en bas), pas figée sur Nord en haut.
   const childFrame=page.frame({url:/\/entrainement\//});
   assert.ok(childFrame,'Training iframe must exist');
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
+
+  // Tester l'orientation pure pour les quatre joueurs, sans toucher aux exercices.
+  const perspectives=await childFrame.evaluate(()=>{
+    const physical=['north','east','south','west'];
+    const sample=Object.fromEntries(physical.map(pos=>[pos,{title:'Vous · '+prettySeat(pos),
+      rows:[{suit:'♠',ranks:'ARV'}]}]));
+    return physical.map(perspective=>{
+      const container=document.createElement('div');
+      container.innerHTML=dealViewer(sample,{perspective});
+      const table=container.querySelector('.deal-viewer');
+      const bottom=table.querySelector('.deal-seat.south');
+      const top=table.querySelector('.deal-seat.north');
+      const right=table.querySelector('.deal-seat.east');
+      const left=table.querySelector('.deal-seat.west');
+      return {perspective,at:table.dataset.perspective,
+        bottom:bottom?.dataset.seat,top:top?.dataset.seat,
+        right:right?.dataset.seat,left:left?.dataset.seat,
+        badge:bottom?.querySelector('.deal-seat-pos')?.textContent};
+    });
+  });
+  assert.deepEqual(perspectives,[
+    {perspective:'north',at:'north',bottom:'north',top:'south',right:'west',left:'east',badge:'N'},
+    {perspective:'east',at:'east',bottom:'east',top:'west',right:'north',left:'south',badge:'E'},
+    {perspective:'south',at:'south',bottom:'south',top:'north',right:'east',left:'west',badge:'S'},
+    {perspective:'west',at:'west',bottom:'west',top:'east',right:'south',left:'north',badge:'O'}
+  ],'Four rotations keep the physical seat labels consistent with the screen');
+
+  // Ouest joue : Ouest en bas, Est en haut, Nord à gauche, Sud à droite.
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
-  await frame.locator('.qpjb-quiz-nav').waitFor({state:'visible',timeout:15000});
-  const defenseDiagnostics=await childFrame.evaluate(()=>({
-    view,cat,ptopic,id,recordType:current()?.type,format:current()?.exerciseFormat,
-    pending:!!trainingPendingNav,
-    seats:Object.keys(buildCardSeats(current())),
-    viewer:document.querySelector('.deal-viewer')?.className||'none'
-  }));
-  console.log('DEFENSE_DIAGNOSTICS '+JSON.stringify(defenseDiagnostics));
-  const westTable=frame.locator('.deal-viewer.defense-adjacent.defense-west');
+  const westTable=frame.locator('.deal-viewer.player-oriented[data-perspective="west"]');
   await westTable.waitFor({state:'visible',timeout:15000});
-  const westPositions=await westTable.evaluate(el=>{
-    const n=el.querySelector('.deal-seat.north').getBoundingClientRect();
-    const w=el.querySelector('.deal-seat.west').getBoundingClientRect();
-    const center=el.querySelector('.deal-center').getBoundingClientRect();
-    const shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
-    return {northBottom:n.bottom,westTop:w.top,westLeft:w.left,westRight:w.right,westWidth:w.width,
-      centerLeft:center.left,shellLeft:shell.left,shellRight:shell.right,
+  assert.equal(await westTable.locator('.deal-seat.south[data-seat="west"] .deal-seat-pos').innerText(),'O',
+    'West player hand sits at bottom with an O badge');
+  assert.equal(await westTable.locator('.deal-seat.west[data-seat="north"]').count(),1,
+    'North dummy rotates to the left when West plays');
+  assert.equal(await westTable.locator('.deal-marker.north[data-seat="east"] span').innerText(),'E',
+    'Top marker becomes East when West plays');
+  assert.equal(await westTable.locator('.deal-marker.east[data-seat="south"] span').innerText(),'S',
+    'Right marker becomes South when West plays');
+  const westPos=await westTable.evaluate(el=>{
+    const hand=el.querySelector('.deal-seat.south').getBoundingClientRect(),
+      dummy=el.querySelector('.deal-seat.west').getBoundingClientRect(),
+      center=el.querySelector('.deal-center').getBoundingClientRect(),
+      shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
+    return {below:hand.top>=center.bottom-2,left:dummy.right<=center.left+3,
+      wide:dummy.width>=135,inShell:dummy.left>=shell.left-3&&dummy.right<=shell.right+3,
       sideMoved:!!el.querySelector('.deal-lateral-hand')};
   });
-  assert.ok(!westPositions.sideMoved,'West hand must not be moved under the table');
-  assert.ok(westPositions.westLeft<westPositions.centerLeft,'West hand stays left of the table');
-  assert.ok(westPositions.northBottom<=westPositions.westTop+10,'Dummy remains north of defender');
-  assert.ok(westPositions.westWidth>=140,'West hand must remain readable on iPhone');
-  assert.ok(westPositions.westRight<=westPositions.shellRight+2,'West hand fits inside table');
+  assert.ok(westPos.below&&westPos.left&&westPos.wide&&westPos.inShell&&!westPos.sideMoved,
+    'West-oriented hand, dummy and table stay usable on iPhone: '+JSON.stringify(westPos));
 
+  // Est joue : Est en bas, Ouest en haut, Nord à droite, Sud à gauche.
   await childFrame.evaluate(()=>item('JC-BH-006-Q01'));
-  const eastTable=frame.locator('.deal-viewer.defense-adjacent.defense-east');
+  const eastTable=frame.locator('.deal-viewer.player-oriented[data-perspective="east"]');
   await eastTable.waitFor({state:'visible',timeout:15000});
-  const eastPositions=await eastTable.evaluate(el=>{
-    const n=el.querySelector('.deal-seat.north').getBoundingClientRect();
-    const e=el.querySelector('.deal-seat.east').getBoundingClientRect();
-    const center=el.querySelector('.deal-center').getBoundingClientRect();
-    const shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
-    return {northBottom:n.bottom,eastTop:e.top,eastLeft:e.left,eastRight:e.right,eastWidth:e.width,
-      centerRight:center.right,shellRight:shell.right,sideMoved:!!el.querySelector('.deal-lateral-hand')};
+  assert.equal(await eastTable.locator('.deal-seat.south[data-seat="east"] .deal-seat-pos').innerText(),'E',
+    'East hand sits at bottom with an E badge');
+  assert.equal(await eastTable.locator('.deal-seat.east[data-seat="north"]').count(),1,
+    'North dummy rotates to the right when East plays');
+  assert.equal(await eastTable.locator('.deal-marker.north[data-seat="west"] span').innerText(),'O',
+    'Top marker becomes West when East plays');
+  assert.equal(await eastTable.locator('.deal-marker.west[data-seat="south"] span').innerText(),'S',
+    'Left marker becomes South when East plays');
+  const eastPos=await eastTable.evaluate(el=>{
+    const hand=el.querySelector('.deal-seat.south').getBoundingClientRect(),
+      dummy=el.querySelector('.deal-seat.east').getBoundingClientRect(),
+      center=el.querySelector('.deal-center').getBoundingClientRect(),
+      shell=el.closest('.deal-viewer-shell').getBoundingClientRect();
+    return {below:hand.top>=center.bottom-2,right:dummy.left>=center.right-3,
+      wide:dummy.width>=135,inShell:dummy.left>=shell.left-3&&dummy.right<=shell.right+3,
+      sideMoved:!!el.querySelector('.deal-lateral-hand')};
   });
-  assert.ok(!eastPositions.sideMoved,'East hand must not be moved under the table');
-  assert.ok(eastPositions.eastLeft>=eastPositions.centerRight-2,'East hand stays right of the table');
-  assert.ok(eastPositions.northBottom<=eastPositions.eastTop+10,'Dummy remains north of East');
-  assert.ok(eastPositions.eastWidth>=140,'East hand must be readable on iPhone');
-  assert.ok(eastPositions.eastRight<=eastPositions.shellRight+2,'East hand fits inside table');
+  assert.ok(eastPos.below&&eastPos.right&&eastPos.wide&&eastPos.inShell&&!eastPos.sideMoved,
+    'East-oriented hand, dummy and table stay usable on iPhone: '+JSON.stringify(eastPos));
 
+  // Lorsqu'une seule main est visible, elle doit aussi être en bas (Est et Ouest).
+  for(const [exercise,seat,badge] of [['JC-BH-023-Q01','east','E'],['JC-BH-021-Q01','west','O']]){
+    await childFrame.evaluate(ex=>item(ex),exercise);
+    const table=frame.locator('.deal-viewer.player-oriented');
+    await table.waitFor({state:'visible',timeout:15000});
+    assert.equal(await table.getAttribute('data-perspective'),seat,
+      'Explicit player seat determines the whole table orientation');
+    assert.equal(await table.locator('.deal-seat.south').getAttribute('data-seat'),seat,
+      'Only visible hand stays at bottom');
+    assert.equal(await table.locator('.deal-seat.south .deal-seat-pos').innerText(),badge,
+      'Bottom badge matches the player in the exercise text');
+  }
 
   // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
