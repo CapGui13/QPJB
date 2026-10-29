@@ -74,12 +74,12 @@ function restoreChoiceFocus(kind,choiceIndex,ok){
 }
 
 function quitTraining(){if(embeddedMode){window.parent.postMessage({type:'qpjb-training-exit'},location.origin);return}location.assign('../')}
-let trainingNavSeq=0,trainingPendingNav=null;
+let trainingNavSeq=0,trainingPendingNav=null,trainingQueuedNav=null;
 let trainingListScroll=0,trainingListScope='';
 function trainingScope(){return cat+'|'+ptopic+'|'+status}
 function trainingNavigate(action){
  if(!embeddedMode){action();return}
- if(trainingPendingNav)return;
+ if(trainingPendingNav){trainingQueuedNav=action;return}
  const seq=++trainingNavSeq;
  trainingPendingNav={seq,action};
  window.parent.postMessage({type:'qpjb-training-nav-request',seq},location.origin);
@@ -511,6 +511,9 @@ if(embeddedMode){
    trainingPendingNav=null;
    try{pending.action()}
    finally{window.parent.postMessage({type:'qpjb-training-nav-done',seq:event.data.seq},location.origin)}
+   // Conserver le dernier clic exprimé pendant la transition.
+   const queued=trainingQueuedNav;trainingQueuedNav=null;
+   if(queued)trainingNavigate(queued);
    return;
   }
   if(event.data?.type==='qpjb-training-route-restore'){
@@ -518,7 +521,7 @@ if(embeddedMode){
    const valid=['topics','playtopics','list','plays','quiz','home'];
    if(!r||!valid.includes(r.view))return;
    try{
-     trainingPendingNav=null;
+     trainingPendingNav=null;trainingQueuedNav=null;
      cat=String(r.cat||'');id=String(r.id||'');
      status=String(r.status||'all');ptopic=String(r.ptopic||'all');
      sessionIds=Array.isArray(r.sessionIds)?r.sessionIds.filter(v=>typeof v==='string'):[];
