@@ -2196,7 +2196,9 @@ function qpjbTrainingShow(mode,navigate=true){
  });
  qpjbTrainingResize();window.scrollTo(0,0);
  const frame=document.getElementById('training-frame');
- document.getElementById('training-loading').hidden=qpjbTrainingReady;
+ // À chaque entrée, masquer l'ancien écran jusqu'à la confirmation du module.
+ // Sinon un ancien QCM peut apparaître brièvement avant la rubrique demandée.
+ document.getElementById('training-loading').hidden=false;
  if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&mode='+encodeURIComponent(mode)}
  else qpjbTrainingSelect(mode);
  if(navigate){
@@ -2218,7 +2220,11 @@ function qpjbTrainingExit(){
 window.addEventListener('message',e=>{
  const frame=document.getElementById('training-frame');
  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
- if(e.data?.type==='qpjb-training-ready'){qpjbTrainingReady=true;document.getElementById('training-loading').hidden=true;qpjbTrainingSelect(qpjbTrainingMode)}
+ if(e.data?.type==='qpjb-training-ready'){
+  qpjbTrainingReady=true;
+  // Le volet reste masqué jusqu'au rendu confirmé du bon parcours.
+  qpjbTrainingSelect(qpjbTrainingMode);
+ }
  else if(e.data?.type==='qpjb-training-view'){
   const quiz=!!e.data.quiz;
   // Le module renvoie aussi ce message après chaque réponse au QCM.
@@ -2230,6 +2236,7 @@ window.addEventListener('message',e=>{
    // Recaler la page mère uniquement lors du passage liste ↔ exercice.
    window.scrollTo(0,0);
   }
+  if(qpjbTrainingReady)document.getElementById('training-loading').hidden=true;
  }
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
