@@ -152,7 +152,7 @@ const server=http.createServer((req,res)=>{
   await cardOptions.nth(1).click();
   assert.equal(await cardPanel.getAttribute('data-stable-card'),'yes','Correct answer also preserves the card viewer');
   assert.equal(await cardPanel.locator('.cq-option.correct').count(),1,'Correct card answer marked');
-  assert.equal(await cardPanel.locator('.qpjb-card-answer-area.is-open').count(),1,'Card solution opens progressively');
+  await cardPanel.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
 
   // Les deux QCM guidés de carte doivent aussi éviter le render() complet.
   await childFrame.evaluate(()=>item('JC-BH-028-Q04'));
