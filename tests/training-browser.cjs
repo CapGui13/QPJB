@@ -94,6 +94,14 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
+  await frame.locator('.qpjb-quiz-nav').waitFor({state:'visible',timeout:15000});
+  const defenseDiagnostics=await childFrame.evaluate(()=>({
+    view,cat,ptopic,id,recordType:current()?.type,format:current()?.exerciseFormat,
+    pending:!!trainingPendingNav,
+    seats:Object.keys(buildCardSeats(current())),
+    viewer:document.querySelector('.deal-viewer')?.className||'none'
+  }));
+  console.log('DEFENSE_DIAGNOSTICS '+JSON.stringify(defenseDiagnostics));
   const westTable=frame.locator('.deal-viewer.defense-adjacent.defense-west');
   await westTable.waitFor({state:'visible',timeout:15000});
   const westPositions=await westTable.evaluate(el=>{
