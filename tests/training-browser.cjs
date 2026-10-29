@@ -169,6 +169,21 @@ const server=http.createServer((req,res)=>{
   assert.equal(await guidedPanel.locator('.cq-option.selected').count(),0,'Guided card answer can be deselected');
   assert.equal(await guidedPanel.locator('.qpjb-card-answer-area[aria-hidden="true"]').count(),1,'Guided explanation closes');
 
+  // BH-017 : le déclarant cherche à éviter l'adversaire dangereux, pas une défense.
+  await childFrame.evaluate(()=>playTopic('plan-qcm'));
+  await frame.locator('.hero h1').filter({hasText:'Décisions de plan de jeu'}).waitFor({state:'visible',timeout:15000});
+  const bh17Ids=await childFrame.evaluate(()=>rel().filter(x=>x.id.startsWith('JC-BH-017-')).map(x=>x.id));
+  assert.equal(bh17Ids.length,4,'BH-017 is present in plan QCM');
+  await childFrame.evaluate(()=>item('JC-BH-017-Q01'));
+  const bh17Viewer=frame.locator('.deal-viewer.compact');
+  await bh17Viewer.waitFor({state:'visible',timeout:15000});
+  assert.equal(await bh17Viewer.locator('.deal-seat.north').count(),1,'BH-017 dummy is North');
+  assert.equal(await bh17Viewer.locator('.deal-seat.south').count(),1,'BH-017 declarer is South');
+  assert.equal(await bh17Viewer.locator('.deal-seat.west,.deal-seat.east').count(),0,'BH-017 does not show a defender hand');
+  await childFrame.evaluate(()=>playTopic('defense'));
+  await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
+  assert.equal(await childFrame.evaluate(()=>rel().filter(x=>x.id.startsWith('JC-BH-017-')).length),0,'BH-017 no longer appears in Defense');
+
   // Anciennes captures incertaines : ne jamais inventer la place du joueur.
   await childFrame.evaluate(()=>item('JC-010'));
   await frame.locator('.legacy-defense-source .game-img').waitFor({state:'visible',timeout:15000});
