@@ -564,6 +564,34 @@ function nav(){
 }
 function colorAllSuits(root){if(!root)return;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const list=[];let node;while((node=walker.nextNode())){if(!/[♠♥♦♣]/.test(node.nodeValue||''))continue;const el=node.parentElement;if(!el||el.closest('script,style,select,option,textarea,.sym,.symbol-suit,.deal-suit,.deal-playing-card'))continue;list.push(node)}for(const n of list){const frag=document.createDocumentFragment();const parts=n.nodeValue.split(/([♠♥♦♣])/g);for(const piece of parts){if(/^[♠♥♦♣]$/.test(piece)){const span=document.createElement('span');span.className='symbol-suit '+(/[♥♦]/.test(piece)?'suit-red':'suit-black');span.textContent=piece+'\uFE0E';frag.appendChild(span)}else if(piece){frag.appendChild(document.createTextNode(piece))}}n.parentNode.replaceChild(frag,n)}}
 function render(){document.documentElement.classList.toggle('qpjb-quiz-active',view==='quiz');const root=document.getElementById('root');root.innerHTML=view==='home'?pageHome():view==='topics'?pageTopics():view==='playtopics'?pagePlayTopics():view==='list'||view==='plays'?pageList():view==='quiz'?(cat==='play'?(current().exerciseFormat==='carte_qcm'?quizCard(current()):quizP(current())):quizB(current())):pageHome();if(storageWarning)root.insertAdjacentHTML('afterbegin',storageNotice());colorAllSuits(root);if(embeddedMode)window.parent.postMessage({type:'qpjb-training-view',quiz:view==='quiz'},location.origin)}
+// Un autre onglet du même navigateur vient de sauver des réponses.
+// L'événement contient aussi les changements perdus lors d'une écriture
+// concurrente : les fusionner et réécrire uniquement si nécessaire.
+function refreshSharedProgress(){
+ if(view==='list'||view==='plays'){
+   redrawList();
+   const progressLabel=document.querySelector('.list-progress');
+   if(progressLabel){const all=rel();progressLabel.textContent=validatedCount(all)+'/'+all.length+' validés'}
+ }else if(view==='topics'||view==='playtopics'||view==='home'){
+   const activeTiles=[...document.querySelectorAll('.topic-group .tile,.home-tile')];
+   const focusIndex=activeTiles.indexOf(document.activeElement),scroll=window.scrollY;
+   render();
+   if(focusIndex>=0)document.querySelectorAll('.topic-group .tile,.home-tile')[focusIndex]?.focus({preventScroll:true});
+   window.scrollTo(0,scroll);
+ }
+ // Ne pas détruire un QCM pendant la réponse : la progression est déjà à jour.
+}
+window.addEventListener('storage',event=>{
+ if(event.key!==KEY||event.newValue===null)return;
+ try{
+   const remote=cleanProgress(JSON.parse(event.newValue));
+   const merged=mergeProgress(saved,remote);
+   const changed=JSON.stringify(merged)!==JSON.stringify(saved);
+   saved=merged;
+   if(JSON.stringify(merged)!==JSON.stringify(remote))update();
+   if(changed)refreshSharedProgress();
+ }catch(e){/* Conserver la copie en mémoire si un autre onglet écrit un JSON invalide. */}
+});
 window.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&view==='quiz')go('list');
  else if(e.key==='Escape'&&integratedMode&&(view==='topics'||view==='playtopics'))quitTraining();
