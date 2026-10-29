@@ -112,6 +112,17 @@ const server=http.createServer((req,res)=>{
   await listFilter.selectOption('all');
   assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Focus remains after reset filter');
 
+  // Deux actions internes successives : la dernière ne doit pas disparaître pendant le fondu.
+  const previousTopic=await listFilter.evaluate(()=>cat);
+  await listFilter.evaluate(()=>{
+    topic('ouverture');
+    topic(cat);
+  });
+  const frameAfterQueue=page.frames().find(f=>f.url().includes('/entrainement/'));
+  await frameAfterQueue.waitForFunction(previous=>view==='list'&&cat===previous&&!trainingPendingNav&&!trainingQueuedNav,
+    previousTopic,{timeout:15000});
+  assert.equal(await listFilter.evaluate(()=>cat),previousTopic,'Last requested topic wins during a transition');
+
   // Navigation réelle précédent/suivant, sans rechargement de l'iframe ni perte de progression.
   const trainingFrameForNav=page.frames().find(f=>f.url().includes('/entrainement/'));
   assert.ok(trainingFrameForNav,'Training iframe is available for internal navigation');
