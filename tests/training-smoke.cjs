@@ -31,6 +31,13 @@ check(app.includes('trainingListScroll')&&app.includes('trainingListScope'),'lis
 check(integrated.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'QCM answers remain in two columns');
 check(integrated.includes('font-size:clamp(18px,5.45vw,21px)'),'single-line hand remains readable');
 check(app.includes('function updateBiddingAnswer('),'answer feedback is updated in place');
+const seatFunction=app.match(/function seatFromLabel\(label,fallback='south'\)\{[^}]+\}/)?.[0];
+check(!!seatFunction,'seat parser must be present');
+const seatFromLabel=new Function(seatFunction+'; return seatFromLabel;')();
+check(seatFromLabel('Vous · Ouest')==='west','Ouest must not be mistaken for Est');
+check(seatFromLabel('Vous · Est')==='east','Est seat recognized correctly');
+check(seatFromLabel('Mort · Nord')==='north','dummy remains North');
+check(app.includes('defense-adjacent')&&app.includes('const defenseSide='),'adjacent defense layout implemented');
 check(integrated.includes('prefers-reduced-motion'),'reduced motion is supported');
 const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
