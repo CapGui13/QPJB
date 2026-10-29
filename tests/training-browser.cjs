@@ -128,18 +128,10 @@ const server=http.createServer((req,res)=>{
   });
   await choices.nth(2).click();
   await frame.locator('#root .storage-warning').waitFor({state:'detached',timeout:5000});
-  const recordBeforeRestart=await quiz.evaluate(()=>saved[id].attempts);
-  await frame.locator('.restart-exercise button').click();
-  await quiz.locator('.choices>.choice').nth(2).click();
-  const recordAfterRestart=await quiz.evaluate(()=>saved[id].attempts);
-  assert.equal(recordAfterRestart,recordBeforeRestart+1,'Explicit restart starts a new visit');
-
-  // Le bouton Refaire est détruit par render() : le clavier doit retrouver
-  // un choix sans sélectionner automatiquement une réponse.
-  await frame.locator('.restart-exercise button').click();
-  assert.equal(await quiz.evaluate(()=>document.activeElement?.matches('.choice')===true),true,
-    'Redo returns keyboard focus to the first answer');
-  assert.equal(await quiz.locator('.choice.selected').count(),0,'Redo does not choose an answer');
+  assert.equal(await frame.locator('.restart-exercise').count(),0,
+    'No redo control is offered after the answer');
+  assert.equal(await quiz.locator('.choice.selected').count(),1,
+    'Changing the selected answer remains possible without an explicit restart');
 
   // Deux onglets de la même origine : chaque exercice doit rester disponible
   // même si les deux sauvegardes partent sans attendre les événements storage.

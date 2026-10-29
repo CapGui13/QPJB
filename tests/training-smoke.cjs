@@ -19,12 +19,16 @@ for(const [name,css] of Object.entries({core,integrated,tokens})){
  check(level===0&&min===0,name+' CSS blocks are balanced');
 }
 new Function(app);checks++;
+check(!/restartExercise|restartControl|Refaire cet exercice|restart-exercise/.test(app),
+ 'The redo-exercise control and callback are absent from all training screens');
+check(!/restart-exercise/.test(core+integrated),
+ 'No obsolete redo-exercise styles remain');
 new Function(worker);checks++;
 check(core.includes('#root .symbol-suit.suit-black')&&core.includes('#root .symbol-suit.suit-red'),
  'Suit color rules are explicit and scoped to Training');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v6'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes("CACHE = 'qpjb-v7'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
