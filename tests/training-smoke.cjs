@@ -50,6 +50,11 @@ const bh17=['JC-BH-017-Q01','JC-BH-017-Q02','JC-BH-017-Q03','JC-BH-017-Q04'].map
 check(bh17.length===4&&bh17.every(x=>x&&x.type==='declarant'&&x.topic==='Plan de jeu'),'BH-017 is a declarer plan-of-play series');
 check(bh17.every(x=>x.holdings?.[0]?.label==='Mort · Nord'&&x.holdings?.[1]?.label==='Vous · Sud'),'BH-017 has North dummy and South declarer');
 check(bh17.every(x=>x.options.length===2&&Number.isInteger(x.answerIndex)),'BH-017 answer options preserved');
+const quarantined=['JC-BH-028-Q04','JC-BH-036-Q02'].map(id=>data.play.find(x=>x.id===id));
+check(quarantined.every(x=>x&&x.reviewStatus==='a_verifier'&&x.quarantineReason),'ambiguous card QCMs are kept in quarantine');
+check(quarantined.every(x=>Array.isArray(x.options)&&Number.isInteger(x.answerIndex)&&x.explanation),'quarantined QCMs retain their source answers and explanations');
+check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
+
 const start=app.indexOf('let trainingNavSeq=0');
 const end=app.indexOf('function playTopicId(',start);
 const i=app.indexOf('function item('),j=app.indexOf('function current(',i);
