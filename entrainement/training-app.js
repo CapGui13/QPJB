@@ -158,7 +158,7 @@ function neutralPlayListTitle(x){
   const m=String(x.questionText||'').match(/Contrat\s*:\s*([1-7])\s*(Sans[- ]?Atout|SA|Piques?|Cœurs?|Coeurs?|Carreaux?|Trèfles?)/i);
   return m?'Contrat : '+m[1]+' '+m[2]:'Situation à analyser';
 }
-function rows(arr){return arr.map(x=>`<button class="item" onclick="item('${x.id}')"><span class="num">Ex. ${seqNum(x)}</span><span class="desc"><span class="exercise-title">${cat==='play'?esc(neutralPlayListTitle(x)):esc(x.question||miniAuction(x))}</span></span><span class="state ${validatedState(saved[x.id])===true?'ok':validatedState(saved[x.id])===false?'no':''}" title="${validatedState(saved[x.id])===null?'Pas encore fait':validatedState(saved[x.id])?'Validé':'Non validé'}">${stat(x)}</span></button>`).join('')||'<div class="panel" style="padding:18px">Aucun exercice ne correspond à ces filtres.</div>'}
+function rows(arr){const numbers=new Map(rel().map((x,i)=>[x.id,String(i+1).padStart(2,'0')]));return arr.map(x=>`<button class="item" onclick="item('${x.id}')"><span class="num">Ex. ${numbers.get(x.id)||seqNum(x)}</span><span class="desc"><span class="exercise-title">${cat==='play'?esc(neutralPlayListTitle(x)):esc(x.question||miniAuction(x))}</span></span><span class="state ${validatedState(saved[x.id])===true?'ok':validatedState(saved[x.id])===false?'no':''}" title="${validatedState(saved[x.id])===null?'Pas encore fait':validatedState(saved[x.id])?'Validé':'Non validé'}">${stat(x)}</span></button>`).join('')||'<div class="panel" style="padding:18px">Aucun exercice ne correspond à ces filtres.</div>'}
 function redrawList(){
  // Le filtre ne change que la liste : conserver le select, le focus et le défilement.
  const entries=document.getElementById('entries'),count=document.getElementById('count');
