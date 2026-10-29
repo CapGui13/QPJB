@@ -12,7 +12,7 @@ const TRAINING_SHELL = [
   BASE + 'entrainement/training-core.css?v=20261029h',
   BASE + 'entrainement/training-integrated.css?v=20261029q',
   BASE + 'entrainement/training-data.js?v=20261029p',
-  BASE + 'entrainement/training-app.js?v=20261029q'
+  BASE + 'entrainement/training-app.js?v=20261029r'
 ];
 // Ces fac-similés sont petits mais indispensables quand un exercice est ouvert
 // hors ligne pour la première fois. Conserver les 23 fichiers, sans retoucher
