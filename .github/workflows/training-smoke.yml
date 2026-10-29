@@ -31,3 +31,5 @@ jobs:
           npx playwright install --with-deps ${{ matrix.browser }}
       - name: Test the QCM flow on a simulated iPhone (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-browser.cjs
+      - name: Test previously unopened training resources in offline mode (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/training-offline.cjs
