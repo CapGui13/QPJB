@@ -99,6 +99,19 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   assert.equal(await quiz.count(),0,'Browser back returns to the list');
 
+  // Changer de filtre doit garder la navigation et le select en place.
+  const listFilter=frame.locator('.tools select.field');
+  await frame.locator('section.hero').evaluate(el=>{el.dataset.stableListHeader='yes'});
+  await listFilter.focus();
+  await listFilter.selectOption('todo');
+  assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Filter keeps keyboard focus');
+  assert.equal(await frame.locator('section.hero').getAttribute('data-stable-list-header'),'yes',
+    'Filter does not rebuild the whole page');
+  assert.equal(await frame.locator('#entries .item').count(),Number((await frame.locator('#count').innerText()).match(/\d+/)[0]),
+    'Filter count matches rendered exercises');
+  await listFilter.selectOption('all');
+  assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Focus remains after reset filter');
+
   // Navigation réelle précédent/suivant, sans rechargement de l'iframe ni perte de progression.
   const trainingFrameForNav=page.frames().find(f=>f.url().includes('/entrainement/'));
   assert.ok(trainingFrameForNav,'Training iframe is available for internal navigation');
