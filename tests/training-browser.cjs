@@ -154,20 +154,26 @@ const server=http.createServer((req,res)=>{
   assert.equal(await cardPanel.locator('.cq-option.correct').count(),1,'Correct card answer marked');
   await cardPanel.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
 
-  // Les deux QCM guidés de carte doivent aussi éviter le render() complet.
-  await childFrame.evaluate(()=>item('JC-BH-028-Q04'));
-  await childFrame.waitForFunction(()=>id==='JC-BH-028-Q04'&&document.querySelector('.cq-stage .cq-option'));
-  const guidedPanel=frame.locator('.cq-stage'),guidedOptions=guidedPanel.locator('.cq-option');
-  await guidedPanel.evaluate(el=>{el.dataset.stableGuided='yes'});
-  await guidedOptions.nth(0).click();
-  await guidedPanel.locator('.source-correction').waitFor({state:'visible',timeout:5000});
-  assert.equal(await guidedPanel.getAttribute('data-stable-guided'),'yes','Guided card does not reconstruct the screen');
-  await guidedPanel.locator('.gamecheck .btn').first().click();
-  assert.equal(await guidedPanel.getAttribute('data-stable-guided'),'yes','Self-evaluation keeps the card viewer');
-  assert.equal(await guidedPanel.locator('.completion-notice').count(),1,'Assessment notice appears in place');
-  await guidedOptions.nth(0).click();
-  assert.equal(await guidedPanel.locator('.cq-option.selected').count(),0,'Guided card answer can be deselected');
-  assert.equal(await guidedPanel.locator('.qpjb-card-answer-area[aria-hidden="true"]').count(),1,'Guided explanation closes');
+  // Quarantaine : une ancienne route ou un appel direct ne doit pas présenter/noter un QCM ambigu.
+  await childFrame.evaluate(()=>playTopic('defense'));
+  await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
+  const quarantineBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),112,
+    'Only 112 of 114 card exercises are available');
+  for(const blockedId of ['JC-BH-028-Q04','JC-BH-036-Q02']){
+    const direct=await childFrame.evaluate(bid=>{item(bid);return {view,id}},blockedId);
+    assert.equal(direct.view,'list','Direct navigation to '+blockedId+' is ignored');
+    assert.notEqual(direct.id,blockedId,'Quarantined ID is not selected');
+    const restored=await childFrame.evaluate(bid=>{
+      id=bid;trainingApplyPage('quiz',false,false);
+      return {view,id,answers:document.querySelectorAll('.cq-option').length};
+    },blockedId);
+    assert.equal(restored.view,'list','Restored route to '+blockedId+' falls back to list');
+    assert.equal(restored.id,'','Invalid restored route is cleared');
+    assert.equal(restored.answers,0,'Invalid restored route shows no answer buttons');
+  }
+  assert.equal(await childFrame.evaluate(()=>localStorage.getItem(KEY)),quarantineBefore,
+    'Blocking quarantined questions does not modify saved learner progress');
 
   // BH-017 : le déclarant cherche à éviter l'adversaire dangereux, pas une défense.
   await childFrame.evaluate(()=>playTopic('plan-qcm'));
