@@ -2175,6 +2175,15 @@ document.addEventListener('keydown', e => {
 <script>
 /* Navigateur interne : un seul document QPJB est conservé. */
 let qpjbTrainingReady=false,qpjbTrainingMode='bidding';
+let qpjbTrainingActionToken=0;
+function qpjbTrainingWithFade(action){
+ const token=++qpjbTrainingActionToken;
+ const attempt=()=>{
+   if(token!==qpjbTrainingActionToken)return;
+   if(!fadeSwap(action))setTimeout(attempt,75);
+ };
+ attempt();
+}
 let qpjbTrainingNavAck=null,qpjbTrainingRestoreSeq=0;
 function qpjbTrainingFadeNavigate(seq,route=null,mode=null){
  // Les transitions de l'iframe réutilisent exactement le fondu QPJB.
@@ -2238,7 +2247,7 @@ function qpjbTrainingShow(mode,navigate=true){
      else history.pushState({qpjbTraining:mode,trainingDepth:0},'', '#entrainement-'+mode);
    }
  };
- if(navigate)fadeSwap(apply);
+ if(navigate)qpjbTrainingWithFade(apply);
  else apply();
 }
 function qpjbTrainingHide(focus=false){
@@ -2248,7 +2257,7 @@ function qpjbTrainingHide(focus=false){
  if(focus)document.querySelector('.training-button[data-training-mode="'+qpjbTrainingMode+'"]')?.focus({preventScroll:true});
 }
 function qpjbTrainingExit(){
- fadeSwap(()=>{
+ qpjbTrainingWithFade(()=>{
    qpjbTrainingHide(true);
    if(history.state?.qpjbTraining){
      history.go(-(Math.max(0,history.state.trainingDepth||0)+1));
@@ -2297,7 +2306,7 @@ window.addEventListener('popstate',e=>{
    else qpjbTrainingShow(mode,false);
  }
  else if(document.getElementById('vtraining').style.display!=='none'){
-   if(!fadeSwap(()=>qpjbTrainingHide()))qpjbTrainingHide();
+   qpjbTrainingWithFade(()=>qpjbTrainingHide());
  }
 });
 window.addEventListener('resize',qpjbTrainingResize);
