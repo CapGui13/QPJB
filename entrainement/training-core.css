@@ -988,3 +988,86 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
   color:#16191d!important;
   -webkit-text-fill-color:#16191d!important;
 }
+
+/* Table orientée depuis le joueur : Sud à l'écran est toujours « Vous ».
+   Les classes north/east/south/west désignent des positions VISUELLES ;
+   data-seat et les pastilles indiquent les points cardinaux réels.
+   La main latérale du mort reste lisible sur les écrans étroits. */
+.deal-viewer.player-oriented.player-side-east{
+  grid-template-columns:26px minmax(72px,100px) minmax(0,1fr)!important;
+}
+.deal-viewer.player-oriented.player-side-west{
+  grid-template-columns:minmax(0,1fr) minmax(72px,100px) 26px!important;
+}
+.deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east){
+  width:100%;
+  min-width:0;
+  max-width:none;
+  justify-self:stretch;
+  padding:10px 7px;
+}
+.deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east) .deal-cards{
+  width:100%;
+  max-width:100%;
+}
+.deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east) .deal-cards li{
+  grid-template-columns:17px minmax(0,1fr);
+  column-gap:5px;
+  line-height:1.3;
+}
+.deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east) .deal-ranks{
+  min-width:0;
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+}
+.deal-viewer.player-oriented .deal-center{
+  min-width:0;
+  width:100%;
+  padding:8px 3px;
+}
+.deal-viewer.player-oriented .deal-contract{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  font-size:11px;
+}
+.deal-viewer.player-oriented.has-lead{
+  grid-template-areas:'north north north' 'west center east' 'south south south' 'lead lead lead'!important;
+}
+.deal-viewer.player-oriented .deal-played{
+  position:relative;
+  grid-area:lead;
+  top:auto;left:auto;right:auto;bottom:auto;
+  justify-self:center;
+  transform:none;
+  flex-direction:row;
+  gap:10px;
+}
+.deal-viewer.player-oriented .deal-playing-card{width:48px;height:70px}
+.deal-viewer.player-oriented .deal-card-big{font-size:28px}
+.deal-viewer.player-oriented .deal-card-corner{font-size:11px}
+.deal-viewer.player-oriented .deal-card-corner small{font-size:11px}
+@media(max-width:740px){
+  .deal-viewer.player-oriented.player-side-east{
+    grid-template-columns:22px minmax(70px,86px) minmax(0,1fr)!important;
+  }
+  .deal-viewer.player-oriented.player-side-west{
+    grid-template-columns:minmax(0,1fr) minmax(70px,86px) 22px!important;
+  }
+  .deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east){
+    padding:8px 5px;
+  }
+  .deal-viewer.player-oriented :is(.deal-seat.west,.deal-seat.east) .deal-cards li{
+    font-size:clamp(13px,3.5vw,17px);
+  }
+  .deal-viewer.player-oriented .deal-marker :is(span){
+    min-width:26px;height:26px;font-size:11px;
+  }
+}
+@media(max-width:360px){
+  .deal-viewer.player-oriented.player-side-east{
+    grid-template-columns:19px 69px minmax(0,1fr)!important;
+  }
+  .deal-viewer.player-oriented.player-side-west{
+    grid-template-columns:minmax(0,1fr) 69px 19px!important;
+  }
+}
