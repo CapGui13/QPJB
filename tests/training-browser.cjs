@@ -56,9 +56,25 @@ const server=http.createServer((req,res)=>{
   await extra.waitFor({state:'attached',timeout:5000});
   await extra.click();
   assert.equal(await extra.getAttribute('aria-expanded'),'true','Alternative explanations expand');
+  const blackSuits=frame.locator('.postsolution-item .symbol-suit.suit-black');
+  assert.ok(await blackSuits.count()>0,'Black suits in dynamically inserted explanations must be colorized');
   await page.goBack({waitUntil:'domcontentloaded'});
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   assert.equal(await quiz.count(),0,'Browser back returns to the list');
+
+  // Exercice 12 de la rubrique 2SA : les commentaires comportent des Cœurs et Carreaux.
+  await frame.locator('.item').nth(11).click();
+  await quiz.waitFor({state:'visible',timeout:15000});
+  await quiz.locator('.choices>.choice').nth(2).click();
+  const redExtra=frame.locator('.postsolution-trigger');
+  await redExtra.waitFor({state:'visible',timeout:5000});
+  await redExtra.click();
+  const redSymbols=frame.locator('.postsolution-item .symbol-suit.suit-red');
+  assert.ok(await redSymbols.count()>0,'Red suits in dynamically inserted explanations must be colorized');
+  const suitColors=await redSymbols.first().evaluate(el=>({
+    symbol:getComputedStyle(el).color,parent:getComputedStyle(el.parentElement).color
+  }));
+  assert.notEqual(suitColors.symbol,suitColors.parent,'Heart/Diamond must have a distinct red color');
 
   // Le second espace pédagogique doit utiliser la même navigation et le même fondu.
   await page.locator('.training-tab[data-mode="play"]').click();
