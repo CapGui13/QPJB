@@ -66,21 +66,21 @@ body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important
 <link rel="stylesheet" href="./qpjb-design-tokens.css?v=20261029e">
 <style>
 :root {
-  --felt:    var(--qpjb-violet);
-  --felt-dk: var(--qpjb-violet-dark);
-  --felt-md: var(--qpjb-violet-medium);
-  --felt-lt: var(--qpjb-violet-light);
+  --felt:    var(--qpjb-violet,#5e259d);
+  --felt-dk: var(--qpjb-violet-dark,#40166d);
+  --felt-md: var(--qpjb-violet-medium,#7139aa);
+  --felt-lt: var(--qpjb-violet-light,#9470c1);
   --gold:    #9470c1;
-  --cream:   var(--qpjb-page-light);
-  --card-bg: var(--qpjb-card-light);
-  --card-bd: var(--qpjb-border-light);
+  --cream:   var(--qpjb-page-light,#f4effa);
+  --card-bg: var(--qpjb-card-light,#ffffff);
+  --card-bd: var(--qpjb-border-light,#dcd0ec);
   --red:     #c0392b;
   --blue:    #1a56c4;
   --suit-s:  #6b9fd4;
   --suit-h:  #d4706a;
   --suit-d:  #c8924a;
   --suit-c:  #6aaa78;
-  --txt:     var(--qpjb-text-light);
+  --txt:     var(--qpjb-text-light,#261b33);
   --txt2:    #6e607d;
   --txt3:    #9d8eae;
   --sh-sm:   0 2px 10px rgba(67,35,100,.10), 0 1px 2px rgba(67,35,100,.06);
@@ -89,8 +89,8 @@ body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --cream:var(--qpjb-page-dark); --card-bg:var(--qpjb-card-dark); --card-bd:var(--qpjb-border-dark);
-    --txt:var(--qpjb-text-dark); --txt2:#c0abda; --txt3:#9580ae;
+    --cream:var(--qpjb-page-dark,#211d27); --card-bg:var(--qpjb-card-dark,#2e2637); --card-bd:var(--qpjb-border-dark,#4b4058);
+    --txt:var(--qpjb-text-dark,#f6f0fc); --txt2:#c0abda; --txt3:#9580ae;
     --sh-sm:0 2px 10px rgba(0,0,0,.5); --sh-lg:0 8px 28px rgba(0,0,0,.6);
   }
 }
@@ -98,7 +98,7 @@ body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important
 *{-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text;user-select:text}
 html{overflow-y:scroll;scrollbar-gutter:stable;background:var(--cream)}
-body{font-family:var(--qpjb-font-text);background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
+body{font-family:var(--qpjb-font-text,'Source Serif 4',Georgia,serif);background:var(--cream);color:var(--txt);min-height:100vh;max-width:520px;margin:0 auto;}
 
 /* ── Splash : deux calques issus du même fichier, transition sans filtre de teinte ── */
 html:has(#splash:not(.fade-out):not(.hidden)){overflow-y:hidden;background:#c0a8dc}
@@ -2196,6 +2196,7 @@ function qpjbTrainingFadeNavigate(seq,route=null,mode=null){
          const on=btn.dataset.mode===qpjbTrainingMode;
          btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on));
        });
+       qpjbTrainingResize();
        frame.contentWindow.postMessage({type:'qpjb-training-route-restore',seq,route},location.origin);
      }else frame.contentWindow.postMessage({type:'qpjb-training-nav-apply',seq},location.origin);
    })))setTimeout(start,75);
@@ -2271,7 +2272,9 @@ window.addEventListener('message',e=>{
  }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
   // Le volet reste masqué jusqu'au rendu confirmé du bon parcours.
-  qpjbTrainingSelect(qpjbTrainingMode);
+  if(history.state?.trainingRoute){
+    frame.contentWindow.postMessage({type:'qpjb-training-route-restore',seq:'startup',route:history.state.trainingRoute},location.origin);
+  }else qpjbTrainingSelect(qpjbTrainingMode);
  }
  else if(e.data?.type==='qpjb-training-view'){
   const quiz=!!e.data.quiz;
