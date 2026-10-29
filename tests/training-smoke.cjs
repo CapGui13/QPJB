@@ -54,6 +54,8 @@ const quarantined=['JC-BH-014-Q01','JC-BH-028-Q04','JC-BH-036-Q02'].map(id=>data
 check(quarantined.every(x=>x&&x.reviewStatus==='a_verifier'&&x.quarantineReason),'ambiguous card QCMs are kept in quarantine');
 check(quarantined.every(x=>Array.isArray(x.options)&&Number.isInteger(x.answerIndex)&&x.explanation),'quarantined QCMs retain their source answers and explanations');
 check(data.play.length===114&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===111,'114 card exercises preserved and 111 available');
+const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
+check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
 check(app.includes("if(!availableExercise(v))return;"),'direct navigation rejects quarantined exercise IDs');
 check(app.includes("if(next==='quiz'&&!availableExercise(id))"),'old routes to quarantined exercises return to the list');
