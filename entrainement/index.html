@@ -873,6 +873,24 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 .qpjb-quiz-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
 .qpjb-quiz-nav .back{margin:0;min-width:0}
 .qpjb-quiz-nav .badge{white-space:nowrap;flex:none}
+/* QCM iPhone : démarrer en haut et supprimer les hauteurs perdues. */
+@media(max-width:600px){
+ .qpjb-embedded.qpjb-quiz-active main{padding:4px 10px 22px!important}
+ .qpjb-embedded.qpjb-quiz-active .qpjb-quiz-nav{margin:0 0 7px!important;align-items:center}
+ .qpjb-embedded.qpjb-quiz-active .qpjb-quiz-nav .back{min-height:38px;padding:7px 9px!important}
+ .qpjb-embedded.qpjb-quiz-active .qpjb-quiz-nav .badge{padding:5px 9px}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid{gap:7px!important;margin-top:0!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid>.panel{padding:12px 12px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .panel h2{font-size:17px;margin:2px 0 5px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .panel h3{margin:8px 0 4px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .panel p.muted{font-size:12px;line-height:1.3;margin:3px 0 6px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .suits{padding:8px 9px!important;margin:6px 0 5px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .auc{margin:5px 0 1px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .auc td{padding:6px 2px!important}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .choices{gap:7px}
+ .qpjb-embedded.qpjb-quiz-active .quizgrid .choice{min-height:48px!important;padding:7px 5px!important}
+ .qpjb-embedded.qpjb-quiz-active .footnav{margin-top:9px}
+}
 /* QPJB — Entraînement intégré. Les règles suivantes ne concernent pas les séances ou documents. */
 html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
 .qpjb-embedded body{background:#211d27!important;color:#f6f0fc!important;box-shadow:none;max-width:520px;font:15px/1.5 'Source Serif 4',Georgia,serif}
