@@ -951,3 +951,44 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
  text-align:center;color:var(--txt2,#c0abda);
  padding:8px 5px 2px;
 }
+
+/* Harmonisation finale des enseignes ♠ ♥ ♦ ♣ (y compris WebKit/iOS).
+   Toutes les surfaces de Training sont dans #root : une règle unique et
+   prioritaire évite les anciennes dérogations qui blanchissaient ♠/♣.
+   Pas de pastille ni de changement de fond des cartes ou des réponses. */
+#root .symbol-suit.suit-red,
+#root .suit .sym.red,
+#root .candidate-suits b.red,
+#root .deal-suit.red,
+#root .deal-playing-card.red{
+  color:#c32637!important;
+  -webkit-text-fill-color:#c32637!important;
+}
+#root .symbol-suit.suit-black,
+#root .suit .sym.black,
+#root .candidate-suits b.black,
+#root .deal-suit.black,
+#root .deal-playing-card.black{
+  color:#16191d!important;
+  -webkit-text-fill-color:#16191d!important;
+}
+#root .symbol-suit{
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  padding:0!important;
+  -webkit-font-variant-emoji:text;
+  font-variant-emoji:text;
+}
+/* Noir lisible sur une surface sombre sans modifier le fond ni créer
+   de pastille ; aucun contour sur les supports clairs. */
+@media(prefers-color-scheme:dark){
+  #root .symbol-suit.suit-black{
+    -webkit-text-stroke:.65px #e7dfee;
+  }
+  #root :is(.choice,.cq-option,.suits,.candidate-hand,.deal-seat,.deal-playing-card,
+             .game-img-wrap) .symbol-suit.suit-black{
+    -webkit-text-stroke:0;
+  }
+}
