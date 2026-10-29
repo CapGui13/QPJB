@@ -1134,6 +1134,16 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
     margin:0!important;padding:0!important;
     border:0!important;background:transparent!important;box-shadow:none!important;
   }
+  /* La zone des cartes conserve la même hauteur lorsque le corrigé s'ouvre :
+     l'énoncé ne remonte plus et la question reste près du séparateur. */
+  .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz>.panel:first-child{
+    flex:0 0 auto!important;min-height:clamp(188px,29dvh,238px)!important;
+    justify-content:space-evenly!important;
+  }
+  .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz>.panel:nth-child(2){
+    flex:1 0 auto!important;justify-content:flex-start!important;
+    min-height:0!important;
+  }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz>.panel+.panel{
     margin-top:clamp(7px,1.3dvh,11px)!important;
     padding-top:clamp(7px,1.3dvh,11px)!important;
@@ -1157,7 +1167,7 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
     min-height:clamp(44px,6.2dvh,52px)!important;
     width:100%!important;margin:5px 0 7px!important;padding:8px 7px!important;
     gap:3px!important;
-    font-size:clamp(13px,3.9vw,16px)!important;
+    font-size:clamp(16px,4.65vw,19px)!important;
     font-weight:800!important;line-height:1.22!important;letter-spacing:-.035em!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits .suit{
@@ -1231,7 +1241,7 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
     justify-content:space-around!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits{
-    font-size:13px!important;padding:5px!important;
+    font-size:15px!important;padding:5px!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .auc th{
     font-size:11px!important;
@@ -1239,4 +1249,17 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice{
     min-height:50px!important;padding:6px!important;
   }
+}
+
+/* Révéler progressivement le corrigé sans reconstruire le QCM.
+   Seul le bloc situé sous les réponses s'agrandit. */
+.qpjb-answer-area{
+ display:grid;
+ grid-template-rows:0fr;
+ transition:grid-template-rows 280ms ease;
+}
+.qpjb-answer-area.is-open{grid-template-rows:1fr}
+.qpjb-answer-area .qpjb-answer-content{min-height:0;overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+ .qpjb-answer-area{transition:none}
 }
