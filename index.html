@@ -35,7 +35,12 @@ if (/Android/i.test(navigator.userAgent) &&
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="QPJB">
 <meta name="theme-color" content="#c0a8dc">
-<style>html{background:#c0a8dc}body{background:#c0a8dc}</style>
+<style>html{background:#c0a8dc}body{background:#c0a8dc}
+/* En exercice QCM, seule la barre de retour interne reste visible. */
+body.qpjb-training-in-quiz #vtraining .training-toolbar{display:none!important}
+body.qpjb-training-in-quiz #vtraining #training-workspace{height:100dvh!important}
+body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important;flex:1;min-height:0}
+</style>
 <link rel="manifest" href="/QPJB/manifest.json?v=8">
 <link rel="icon" type="image/svg+xml" href="/QPJB/qpjb-logo-fixed.svg?v=1">
 <link rel="apple-touch-icon" sizes="180x180" href="/QPJB/apple-touch-icon-qpjb.png?v=6">
