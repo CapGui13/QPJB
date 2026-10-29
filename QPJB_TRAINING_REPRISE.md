@@ -8,7 +8,7 @@ Dernière vérification : 29 octobre 2026. Ce fichier sert de mémoire de travai
 - Application QPJB intégratrice : `index.html`.
 - Module d'entraînement : `entrainement/index.html` (HTML/CSS/JavaScript et exercices intégrés, fichier volumineux).
 - Le module Entraînement fonctionne à l'intérieur de l'application QPJB ; on ne réintroduit pas Vercel.
-- Dernier commit de **code** vérifié : `69579462bc656cbba8116d8b824c9d6cecd16829` (29/10/2026, densité des QCM d'enchères selon la hauteur de l'écran iPhone). Le commit précédent `ad551eed` avait uniquement ajouté ce suivi.
+- Dernier commit de **code** vérifié : `20f62e6022553c7852f3382651d495a9b38cbb86` (29/10/2026, éviter les repositionnements inutiles après réponse QCM). Précédent correctif CSS : `69579462bc656cbba8116d8b824c9d6cecd16829` (densité iPhone).
 - Commits récents pertinents à consulter au besoin : `fa5c64a`, `1006bc3`, `474fdc9`, `23c467f`, `302b7dc`.
 
 ## Priorité actuelle : ergonomie des QCM sur iPhone
@@ -37,6 +37,14 @@ Règles UX décidées :
 - Conservé : quatre choix en deux colonnes de largeur égale, main sur une seule ligne, retour + numéro sur la même rangée, navigation interne et données/corrigés intacts.
 - Contrôles effectués : diff GitHub (une seule insertion CSS ciblée ; aucun changement d'exercice, de JavaScript ou de PDF). **Pas de validation visuelle sur iPhone physique** ; ne pas affirmer que le défilement a totalement disparu pour chaque donne.
 - À vérifier sur l'iPhone : QCM d'enchères avant et après réponse, écrans courts et longs (particulièrement séquences d'enchères nombreuses), bouton Retour non tronqué, pas de largeur divisée ni de défilement horizontal, quatre propositions visibles. Si besoin, fournir une capture après actualisation du site/PWA.
+
+## Intervention du 29 octobre 2026 — stabilité du défilement
+
+- Commit : `20f62e6022553c7852f3382651d495a9b38cbb86`.
+- Dans `index.html` (code de navigation Entraînement seulement) : le message `qpjb-training-view` est envoyé par le module à chaque rendu, y compris après chaque réponse. Il ne provoque désormais redimensionnement, masquage de l'en-tête et `scrollTo(0,0)` **que si l'état liste/exercice change**.
+- Diff limité au gestionnaire des messages du module. Aucun changement aux exercices, corrigés, PDF ou affichages hors entraînement.
+- Audit CSS : plusieurs règles iPhone de dimensions successives sont présentes dans `entrainement/index.html` ; le dernier bloc CSS prévaut, sans suppression non testée pour l'instant.
+- **À vérifier sur iPhone** : après sélection d'une réponse, absence de saut intempestif de la page mère, quatre réponses visibles, disposition en deux colonnes, main en une ligne et bonne hauteur d'affichage. Pas de test sur iPhone physique effectué.
 
 ## Prochaine intervention
 
