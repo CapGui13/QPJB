@@ -2240,7 +2240,7 @@ function qpjbTrainingShow(mode,navigate=true){
    document.getElementById('training-loading').hidden=false;
    if(!frame.dataset.started){
      frame.dataset.started='true';
-     frame.src='./entrainement/?embedded=1&rev=20261029h&mode='+encodeURIComponent(mode);
+     frame.src='./entrainement/?embedded=1&rev=20261029i&mode='+encodeURIComponent(mode);
    }else qpjbTrainingSelect(mode);
    if(navigate){
      if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', '#entrainement-'+mode);
