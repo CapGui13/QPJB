@@ -20,7 +20,11 @@ for(const [name,css] of Object.entries({core,integrated,tokens})){
 }
 new Function(app);checks++;
 new Function(worker);checks++;
-check(worker.includes("CACHE = 'qpjb-v5'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(core.includes('#root .symbol-suit.suit-black')&&core.includes('#root .symbol-suit.suit-red'),
+ 'Suit color rules are explicit and scoped to Training');
+check(app.includes('FE0E')&&app.includes('FE0F'),
+ 'Suit normalization handles the iPhone emoji variation selectors');
+check(worker.includes("CACHE = 'qpjb-v6'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');

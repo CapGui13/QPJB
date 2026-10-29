@@ -79,6 +79,38 @@ const server=http.createServer((req,res)=>{
   const blackSuits=frame.locator('.postsolution-item .symbol-suit.suit-black');
   assert.ok(await blackSuits.count()>0,'Black suits in dynamically inserted explanations must be colorized');
 
+  // Audit des 4 enseignes sur les glyphes, propositions, tables et commentaires.
+  // Le thème sombre avait des règles plus spécifiques qui blanchissaient ♠ et ♣.
+  for(const scheme of ['light','dark']){
+    await page.emulateMedia({colorScheme:scheme});
+    assert.equal(await accessibilityFrame.evaluate(()=>matchMedia('(prefers-color-scheme:dark)').matches),
+      scheme==='dark','The training iframe follows the chosen color scheme');
+    const scan=await frame.locator('#root').evaluate(root=>{
+      const elements=[...root.querySelectorAll(
+        '.symbol-suit.suit-red,.symbol-suit.suit-black,.sym.red,.sym.black,'+
+        '.candidate-suits b.red,.candidate-suits b.black,.deal-suit.red,.deal-suit.black,'+
+        '.deal-playing-card.red,.deal-playing-card.black')];
+      const errors=[];
+      for(const el of elements){
+        const isRed=el.classList.contains('red')||el.classList.contains('suit-red');
+        const style=getComputedStyle(el);
+        const fill=style.getPropertyValue('-webkit-text-fill-color')||style.color;
+        const values=(fill.match(/[\\d.]+/g)||[]).slice(0,3).map(Number);
+        const good=values.length===3&&(isRed
+          ?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
+          :values.every(n=>n<=80));
+        if(!good)errors.push({where:el.parentElement?.className,cls:el.className,
+          text:el.textContent?.slice(0,12),fill});
+        if(el.classList.contains('symbol-suit')&&el.textContent?.includes('\uFE0F'))
+          errors.push({cls:el.className,reason:'emoji variation selector'});
+      }
+      return {count:elements.length,errors:errors.slice(0,12)};
+    });
+    assert.ok(scan.count>5,'Suit audit must cover actual rendered symbols');
+    assert.deepEqual(scan.errors,[],scheme+' bridge suit colors in the rendered QCM: '+JSON.stringify(scan.errors));
+  }
+  await page.emulateMedia({colorScheme:'light'});
+
   // Simuler une écriture refusée : avertir immédiatement sans reconstruire le QCM.
   await quiz.evaluate(()=>{
     window.__qpjbOriginalSetItem=Storage.prototype.setItem;
