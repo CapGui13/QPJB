@@ -95,7 +95,7 @@ const server=http.createServer((req,res)=>{
         const isRed=el.classList.contains('red')||el.classList.contains('suit-red');
         const style=getComputedStyle(el);
         const fill=style.getPropertyValue('-webkit-text-fill-color')||style.color;
-        const values=(fill.match(/[\\d.]+/g)||[]).slice(0,3).map(Number);
+        const values=(fill.match(/\d+/g)||[]).slice(0,3).map(Number);
         const good=values.length===3&&(isRed
           ?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
           :values.every(n=>n<=80));
