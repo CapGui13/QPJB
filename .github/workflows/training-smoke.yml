@@ -1,0 +1,23 @@
+name: QPJB Training smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - qpjb-design-tokens.css
+      - entrainement/**
+      - tests/training-smoke.cjs
+      - .github/workflows/training-smoke.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check navigation, layout and data integrity
+        run: node tests/training-smoke.cjs
