@@ -1071,3 +1071,36 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
     grid-template-columns:minmax(0,1fr) 69px 19px!important;
   }
 }
+
+/* Cercle du joueur juste au-dessus de sa main, étiqueté avec sa vraie place. */
+.deal-player-group{
+  grid-area:south;
+  justify-self:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  width:min(100%,320px);
+  min-width:0;
+}
+.deal-player-group>.deal-marker.south{
+  grid-area:auto;
+  width:auto;
+  min-height:28px;
+}
+.deal-player-group>.deal-marker.south span{
+  min-width:30px;
+  width:30px;
+  height:30px;
+}
+.deal-player-group>.deal-seat.south{
+  grid-area:auto;
+  justify-self:center;
+  width:min(100%,252px);
+}
+@media(max-width:740px){
+  .deal-player-group>.deal-seat.south{width:min(100%,246px)}
+}
+@media(max-width:360px){
+  .deal-player-group>.deal-seat.south{width:min(100%,232px)}
+}
