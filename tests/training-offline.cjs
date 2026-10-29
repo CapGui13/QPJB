@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{
    await page.goto('http://127.0.0.1:8766/QPJB/',{waitUntil:'domcontentloaded'});
    await page.waitForFunction(()=>!!navigator.serviceWorker?.controller,null,{timeout:35000});
    const before=await page.evaluate(async()=>{
-     const cache=await caches.open('qpjb-v8');
+     const cache=await caches.open('qpjb-v9');
      const assets=await Promise.all(Array.from({length:23},(_,i)=>
         cache.match('/QPJB/entrainement/assets/JC-'+String(i+1).padStart(3,'0')+'.webp')));
      return {
@@ -47,7 +47,7 @@ const server=http.createServer((req,res)=>{
      'Full training shell and all 23 original WebP images must already be cached');
    await context.setOffline(true);
    // The mode/rev URL has never been opened online; fallback to the precached index.
-   await page.goto('http://127.0.0.1:8766/QPJB/entrainement/?embedded=1&rev=20261030c&mode=play',
+   await page.goto('http://127.0.0.1:8766/QPJB/entrainement/?embedded=1&rev=20261030d&mode=play',
      {waitUntil:'domcontentloaded',timeout:20000});
    await page.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:12000});
    await page.evaluate(()=>{playTopic('plan-libre');item('JC-001')});

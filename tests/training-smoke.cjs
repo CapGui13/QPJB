@@ -28,11 +28,11 @@ check(core.includes('#root .symbol-suit.suit-black')&&core.includes('#root .symb
  'Suit color rules are explicit and scoped to Training');
 check(core.includes('-webkit-text-stroke:0!important')&&!core.includes('-webkit-text-stroke:.65px'),
  'Black suits are solid glyphs without a pale outline on dark feedback');
-check(core.includes('#b8becb')&&core.includes('.postsolution-item,.distractor-why'),
- 'Dark explanation cards use a readable slate-colored club without a badge');
+check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'),
+ 'Clubs are pure black without the former slate override or white outline');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v8'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes("CACHE = 'qpjb-v9'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');

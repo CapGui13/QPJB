@@ -91,7 +91,7 @@ const server=http.createServer((req,res)=>{
   assert.equal(await frame.locator('.qpjb-suit-probe .symbol-suit.suit-black').count(),2,
     'Two clubs from the screenshot are wrapped as suit glyphs');
 
-  // Contrôler la couleur ET l'absence de contour dans les vrais éléments.
+  // Contrôler le trèfle noir (même dans les corrigés sombres) et l'absence de contour.
   for(const scheme of ['light','dark']){
     await page.emulateMedia({colorScheme:scheme});
     assert.equal(await accessibilityFrame.evaluate(()=>matchMedia('(prefers-color-scheme:dark)').matches),
@@ -104,17 +104,12 @@ const server=http.createServer((req,res)=>{
       const errors=[];
       for(const el of elements){
         const isRed=el.classList.contains('red')||el.classList.contains('suit-red');
-        const darkText=!!el.closest('.feedback,.postsolution-item,.distractor-why') &&
-          (document.documentElement.classList.contains('qpjb-embedded') ||
-           matchMedia('(prefers-color-scheme:dark)').matches);
         const style=getComputedStyle(el);
         const fill=style.getPropertyValue('-webkit-text-fill-color')||style.color;
         const values=(fill.match(/\d+/g)||[]).slice(0,3).map(Number);
         const good=values.length===3&&(isRed
           ?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
-          :darkText&&el.classList.contains('symbol-suit')
-            ?values[0]>=150&&values[0]<=210&&values[1]>=150&&values[1]<=215&&values[2]>=160&&values[2]<=220
-            :values.every(n=>n<=80));
+          :values.every(n=>n<=80));
         if(!good)errors.push({where:el.parentElement?.className,cls:el.className,
           text:el.textContent?.slice(0,12),fill});
         if(el.classList.contains('symbol-suit')&&el.textContent?.includes('\uFE0F'))
