@@ -235,12 +235,12 @@ const server=http.createServer((req,res)=>{
 
   // Les sauvegardes doivent survivre à un rechargement complet de QPJB.
   const savedBeforeReload=await childFrame.evaluate(()=>localStorage.getItem(KEY));
+  const storageKey=await childFrame.evaluate(()=>KEY);
   assert.ok(savedBeforeReload?.includes(firstBidId),'Saved progress includes the first bidding exercise');
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
-  await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
-  const reloadedFrame=page.frames().find(f=>f.url().includes('/entrainement/'));
-  assert.equal(await reloadedFrame.evaluate(()=>localStorage.getItem(KEY)),savedBeforeReload,
+  // QPJB peut restaurer la route Entraînement au chargement : le bouton d'accueil
+  // devient alors invisible. Lire la même origine directement est plus fiable.
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),storageKey),savedBeforeReload,
     'Progress in localStorage is identical after a full application reload');
 
   // Petit téléphone : les quatre choix du QCM à trois rangées doivent tenir.
