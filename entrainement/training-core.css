@@ -979,14 +979,19 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
   -webkit-font-variant-emoji:text;
   font-variant-emoji:text;
 }
-/* Noir lisible sur une surface sombre sans modifier le fond ni créer
-   de pastille ; aucun contour sur les supports clairs. */
+/* Sur le fond sombre des explications, un contour clair transforme ♣ en
+   trèfle creux (iPhone/WebKit). Utiliser un glyphe PLEIN gris ardoise,
+   sans contour ni pastille. Sur les boutons/fonds clairs, ♠ et ♣ restent noirs. */
+#root .symbol-suit{
+  -webkit-text-stroke:0!important;
+}
+.qpjb-embedded #root :is(.feedback,.postsolution-item,.distractor-why) .symbol-suit.suit-black{
+  color:#b8becb!important;
+  -webkit-text-fill-color:#b8becb!important;
+}
 @media(prefers-color-scheme:dark){
-  #root .symbol-suit.suit-black{
-    -webkit-text-stroke:.65px #e7dfee;
-  }
-  #root :is(.choice,.cq-option,.suits,.candidate-hand,.deal-seat,.deal-playing-card,
-             .game-img-wrap) .symbol-suit.suit-black{
-    -webkit-text-stroke:0;
+  #root :is(.feedback,.postsolution-item,.distractor-why) .symbol-suit.suit-black{
+    color:#b8becb!important;
+    -webkit-text-fill-color:#b8becb!important;
   }
 }
