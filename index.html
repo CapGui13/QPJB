@@ -2199,7 +2199,7 @@ function qpjbTrainingShow(mode,navigate=true){
  // À chaque entrée, masquer l'ancien écran jusqu'à la confirmation du module.
  // Sinon un ancien QCM peut apparaître brièvement avant la rubrique demandée.
  document.getElementById('training-loading').hidden=false;
- if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&mode='+encodeURIComponent(mode)}
+ if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&rev=20261029c&mode='+encodeURIComponent(mode)}
  else qpjbTrainingSelect(mode);
  if(navigate){
   if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode},'', '#entrainement-'+mode);
