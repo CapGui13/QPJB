@@ -177,7 +177,11 @@ function updateBiddingAnswer(x,guided=false){
   return true;
  }
  area.dataset.openRequested='yes';
- area.querySelector('.qpjb-answer-content').innerHTML=(guided?sourceCorrection(x):correctDisplay(x))+restartControl();
+ const answerContent=area.querySelector('.qpjb-answer-content');
+ answerContent.innerHTML=(guided?sourceCorrection(x):correctDisplay(x))+restartControl();
+ // Le corrigé est injecté après render() : coloriser aussi ce nouveau DOM.
+ // Ne traiter que le fragment ajouté, sans reconstruire la page ni l'animation.
+ colorAllSuits(answerContent);
  area.removeAttribute('aria-hidden');
  area.inert=false;
  if(!area.classList.contains('is-open')){
