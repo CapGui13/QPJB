@@ -7,6 +7,7 @@ const root=path.resolve(__dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const parent=read('index.html'),html=read('entrainement/index.html');
 const app=read('entrainement/training-app.js');
+const worker=read('service-worker.js');
 const core=read('entrainement/training-core.css');
 const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
@@ -18,6 +19,12 @@ for(const [name,css] of Object.entries({core,integrated,tokens})){
  check(level===0&&min===0,name+' CSS blocks are balanced');
 }
 new Function(app);checks++;
+new Function(worker);checks++;
+check(worker.includes("CACHE = 'qpjb-v4'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
+check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
+check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
+check(html.includes('<main id="root" tabindex="-1">'),'training main is programmatically focusable');
 for(const script of parent.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){
  if(script[1].trim()){new Function(script[1]);checks++}
 }
