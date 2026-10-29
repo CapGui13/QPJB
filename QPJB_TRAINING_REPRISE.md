@@ -8,7 +8,7 @@ Dernière vérification : 29 octobre 2026. Ce fichier sert de mémoire de travai
 - Application QPJB intégratrice : `index.html`.
 - Module d'entraînement : `entrainement/index.html` (HTML/CSS/JavaScript et exercices intégrés, fichier volumineux).
 - Le module Entraînement fonctionne à l'intérieur de l'application QPJB ; on ne réintroduit pas Vercel.
-- Commit le plus récent lors de cette vérification : `f9b13632b360ffaa52f29cfdf02909d419aceb53` (ajustement de la navigation QCM sur iPhone).
+- Dernier commit de **code** vérifié : `69579462bc656cbba8116d8b824c9d6cecd16829` (29/10/2026, densité des QCM d'enchères selon la hauteur de l'écran iPhone). Le commit précédent `ad551eed` avait uniquement ajouté ce suivi.
 - Commits récents pertinents à consulter au besoin : `fa5c64a`, `1006bc3`, `474fdc9`, `23c467f`, `302b7dc`.
 
 ## Priorité actuelle : ergonomie des QCM sur iPhone
@@ -30,11 +30,19 @@ Règles UX décidées :
 - Ne pas casser les affichages desktop, le reste du site QPJB, ni les données et sauvegardes des utilisateurs.
 - Ne pas prétendre qu'un correctif iPhone est visuellement validé à partir d'un simple commit ou de tests JavaScript.
 
+## Intervention du 29 octobre 2026 — correctif QCM sur iPhone
+
+- Commit de code : `69579462bc656cbba8116d8b824c9d6cecd16829` (branche `main`).
+- Modification **uniquement** dans le CSS de `entrainement/index.html` : hauteur des quatre boutons d'enchères ajustée à la hauteur disponible (`clamp(48px,7.2dvh,62px)`), police restant entre 18 et 22 px ; pour les écrans de hauteur ≤ 760 px, marges, en-tête, séquence et espacements moins volumineux.
+- Conservé : quatre choix en deux colonnes de largeur égale, main sur une seule ligne, retour + numéro sur la même rangée, navigation interne et données/corrigés intacts.
+- Contrôles effectués : diff GitHub (une seule insertion CSS ciblée ; aucun changement d'exercice, de JavaScript ou de PDF). **Pas de validation visuelle sur iPhone physique** ; ne pas affirmer que le défilement a totalement disparu pour chaque donne.
+- À vérifier sur l'iPhone : QCM d'enchères avant et après réponse, écrans courts et longs (particulièrement séquences d'enchères nombreuses), bouton Retour non tronqué, pas de largeur divisée ni de défilement horizontal, quatre propositions visibles. Si besoin, fournir une capture après actualisation du site/PWA.
+
 ## Prochaine intervention
 
 1. Lire ce fichier et le **dernier commit** de la branche `main`, sans recoller les longues conversations précédentes.
 2. Examiner uniquement le CSS et la structure de l'écran QCM mobile (`index.html` intégrateur + `entrainement/index.html`).
-3. Corriger de façon ciblée les problèmes encore visibles sur la prochaine capture iPhone ; faire des vérifications de non-régression.
+3. Tester les QCM sur l'iPhone (portrait, réponses avant/après validation, exercices courts/longs), puis corriger exclusivement les problèmes encore visibles sur une capture ; ne pas modifier les données.
 4. Committer les changements avec un message explicite, puis consigner ici uniquement le nouveau SHA, ce qui a été fait et ce qui reste à vérifier.
 
 ## Règles de travail pour limiter les plantages ChatGPT
