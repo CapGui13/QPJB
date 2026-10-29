@@ -291,14 +291,15 @@ const server=http.createServer((req,res)=>{
       return {perspective,at:table.dataset.perspective,
         bottom:bottom?.dataset.seat,top:top?.dataset.seat,
         right:right?.dataset.seat,left:left?.dataset.seat,
-        badge:bottom?.querySelector('.deal-seat-pos')?.textContent};
+        badge:bottom?.querySelector('.deal-seat-pos')?.textContent,
+        marker:table.querySelector('.deal-player-group>.deal-marker.south span')?.textContent||null};
     });
   });
   assert.deepEqual(perspectives,[
-    {perspective:'north',at:'north',bottom:'north',top:'south',right:'west',left:'east',badge:'N'},
-    {perspective:'east',at:'east',bottom:'east',top:'west',right:'north',left:'south',badge:'E'},
-    {perspective:'south',at:'south',bottom:'south',top:'north',right:'east',left:'west',badge:'S'},
-    {perspective:'west',at:'west',bottom:'west',top:'east',right:'south',left:'north',badge:'O'}
+    {perspective:'north',at:'north',bottom:'north',top:'south',right:'west',left:'east',badge:'N',marker:'N'},
+    {perspective:'east',at:'east',bottom:'east',top:'west',right:'north',left:'south',badge:'E',marker:'E'},
+    {perspective:'south',at:'south',bottom:'south',top:'north',right:'east',left:'west',badge:'S',marker:null},
+    {perspective:'west',at:'west',bottom:'west',top:'east',right:'south',left:'north',badge:'O',marker:'O'}
   ],'Four rotations keep the physical seat labels consistent with the screen');
 
   // Ouest joue : Ouest en bas, Est en haut, Nord à gauche, Sud à droite.
@@ -307,6 +308,8 @@ const server=http.createServer((req,res)=>{
   await westTable.waitFor({state:'visible',timeout:15000});
   assert.equal(await westTable.locator('.deal-seat.south[data-seat="west"] .deal-seat-pos').innerText(),'O',
     'West player hand sits at bottom with an O badge');
+  assert.equal(await westTable.locator('.deal-player-group>.deal-marker.south[data-seat="west"] span').innerText(),'O',
+    'The separate O circle sits immediately above the West hand');
   assert.equal(await westTable.locator('.deal-seat.west[data-seat="north"]').count(),1,
     'North dummy rotates to the left when West plays');
   assert.equal(await westTable.locator('.deal-marker.north[data-seat="east"] span').innerText(),'E',
@@ -331,6 +334,14 @@ const server=http.createServer((req,res)=>{
   await eastTable.waitFor({state:'visible',timeout:15000});
   assert.equal(await eastTable.locator('.deal-seat.south[data-seat="east"] .deal-seat-pos').innerText(),'E',
     'East hand sits at bottom with an E badge');
+  assert.equal(await eastTable.locator('.deal-player-group>.deal-marker.south[data-seat="east"] span').innerText(),'E',
+    'The separate E circle sits immediately above the East hand');
+  const circleAbove=await eastTable.evaluate(el=>{
+    const c=el.querySelector('.deal-player-group>.deal-marker.south').getBoundingClientRect();
+    const hand=el.querySelector('.deal-player-group>.deal-seat.south').getBoundingClientRect();
+    return c.bottom<=hand.top+1&&c.top<hand.top;
+  });
+  assert.ok(circleAbove,'The E direction circle is visually above the player hand');
   assert.equal(await eastTable.locator('.deal-seat.east[data-seat="north"]').count(),1,
     'North dummy rotates to the right when East plays');
   assert.equal(await eastTable.locator('.deal-marker.north[data-seat="west"] span').innerText(),'O',
@@ -362,6 +373,8 @@ const server=http.createServer((req,res)=>{
       'Only visible hand stays at bottom');
     assert.equal(await table.locator('.deal-seat.south .deal-seat-pos').innerText(),badge,
       'Bottom badge matches the player in the exercise text');
+    assert.equal(await table.locator('.deal-player-group>.deal-marker.south span').innerText(),badge,
+      'Circle above the only visible hand matches the player');
   }
 
   // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
