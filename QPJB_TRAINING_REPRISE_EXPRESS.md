@@ -3,6 +3,7 @@
 > **Lire ce fichier, pas les anciennes conversations.** Historique détaillé conservé dans [QPJB_TRAINING_REPRISE.md](./QPJB_TRAINING_REPRISE.md). Utiliser des lectures GitHub ciblées et ne jamais renvoyer des fichiers/logs complets dans la conversation.
 
 ## Où en est-on ?
+- **Audit des exercices libres, lot 1 terminé (29/10)** : relecture source de `JC-001`, `JC-002` et `JC-003` (PDF exercices et solutions, plans de jeu) ; aucune erreur de fond démontrée. Réserve sur la formulation « 100% » de `JC-002`. Rapport : [`QPJB_TRAINING_AUDIT_LIBRES_LOT01_2026-10-29.md`](./QPJB_TRAINING_AUDIT_LIBRES_LOT01_2026-10-29.md), commit `3172847e`. **Aucune donnée pédagogique modifiée.** Prochain petit lot : `JC-004` à `JC-006`.
 - **État courant validé (29/10, après audit pédagogique) : 114 exercices conservés, 111 disponibles (81 QCM + 30 libres), 3 QCM mis en quarantaine.** Dernier rapport : [QPJB_TRAINING_AUDIT_PEDAGOGIQUE_2026-10-29.md](./QPJB_TRAINING_AUDIT_PEDAGOGIQUE_2026-10-29.md).
 - Dépôt : `CapGui13/QPJB`, branche `main`. Site : https://capgui13.github.io/QPJB/
 - Dernière correction fonctionnelle au 29/10/2026 : `a023dec3aa43b717fcaa35dddecf0f8561926212` (accès aux QCM en quarantaine bloqué même via anciens parcours). Tests : `0cfc2ca`, `8a8fc6f`, `c2f85d0`. Audit pédagogique indépendant : `QPJB_QCM_AMBIGUS_AUDIT_2026-10-29.md`.
