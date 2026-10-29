@@ -54,6 +54,9 @@ const quarantined=['JC-BH-028-Q04','JC-BH-036-Q02'].map(id=>data.play.find(x=>x.
 check(quarantined.every(x=>x&&x.reviewStatus==='a_verifier'&&x.quarantineReason),'ambiguous card QCMs are kept in quarantine');
 check(quarantined.every(x=>Array.isArray(x.options)&&Number.isInteger(x.answerIndex)&&x.explanation),'quarantined QCMs retain their source answers and explanations');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
+check(app.includes("if(!availableExercise(v))return;"),'direct navigation rejects quarantined exercise IDs');
+check(app.includes("if(next==='quiz'&&!availableExercise(id))"),'old routes to quarantined exercises return to the list');
+check(app.includes("x&&x.reviewStatus!=='a_verifier'?x:null"),'all exercise access checks review status');
 
 const start=app.indexOf('let trainingNavSeq=0');
 const end=app.indexOf('function playTopicId(',start);
@@ -67,7 +70,7 @@ const harness=[
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
- "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};",
+ "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const availableExercise=v=>['EX1','EX2'].includes(v)?{id:v}:null;",
  nav,
  "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action()}",
  "topic('2sa');const queued=view==='topics'&&sent.at(-1).type==='qpjb-training-nav-request';complete();",
