@@ -75,6 +75,8 @@ const server=http.createServer((req,res)=>{
     symbol:getComputedStyle(el).color,parent:getComputedStyle(el.parentElement).color
   }));
   assert.notEqual(suitColors.symbol,suitColors.parent,'Heart/Diamond must have a distinct red color');
+  await page.goBack({waitUntil:'domcontentloaded'});
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
 
   // Le second espace pédagogique doit utiliser la même navigation et le même fondu.
   await page.locator('.training-tab[data-mode="play"]').click();
