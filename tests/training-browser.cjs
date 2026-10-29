@@ -59,7 +59,44 @@ const server=http.createServer((req,res)=>{
   await page.goBack({waitUntil:'domcontentloaded'});
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   assert.equal(await quiz.count(),0,'Browser back returns to the list');
+
+  // Le second espace pédagogique doit utiliser la même navigation et le même fondu.
+  await page.locator('.training-tab[data-mode="play"]').click();
+  await frame.locator('.training-overview').filter({hasText:'Jeu de la carte'}).waitFor({state:'visible',timeout:15000});
+  await frame.locator('.topic-group .tile').first().click();
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await frame.locator('.item').first().click();
+  await frame.locator('main .panel').first().waitFor({state:'visible',timeout:15000});
+  await page.goBack({waitUntil:'domcontentloaded'});
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+
+  // Petit téléphone : les quatre choix du QCM à trois rangées doivent tenir.
+  const smallContext=await browser.newContext({
+    viewport:{width:375,height:667},deviceScaleFactor:2,isMobile:true,
+    hasTouch:true,locale:'fr-FR'
+  });
+  const smallPage=await smallContext.newPage();
+  smallPage.on('pageerror',e=>errors.push(e.message));
+  await smallPage.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+  await smallPage.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+  const smallFrame=smallPage.frameLocator('#training-frame');
+  await smallFrame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
+  await smallFrame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
+  await smallFrame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await smallFrame.locator('.item').first().click();
+  const smallQuiz=smallFrame.locator('.qpjb-bid-quiz');
+  await smallQuiz.waitFor({state:'visible',timeout:15000});
+  assert.equal(await smallQuiz.locator('.auc tbody tr').count(),3);
+  assert.equal(await smallQuiz.locator('.choices>.choice').count(),4);
+  const smallMetrics=await smallQuiz.evaluate(el=>{
+    const rect=el.querySelector('.choices').getBoundingClientRect();
+    return {buttonsBottom:rect.bottom,viewport:el.ownerDocument.documentElement.clientHeight};
+  });
+  assert.ok(smallMetrics.buttonsBottom<=smallMetrics.viewport+5,
+    'All four answers should be visible on a short mobile screen: '+JSON.stringify(smallMetrics));
+  await smallContext.close();
+
   assert.equal(errors.length,0,'No uncaught JavaScript errors: '+errors.join('; '));
-  console.log(JSON.stringify({result:'PASS',device:'iPhone 12 / Chromium',auctionRows,choices:4,metrics,browserBack:'list',errors:0}));
+  console.log(JSON.stringify({result:'PASS',device:'iPhone 12 / Chromium',auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1;server.close()});
