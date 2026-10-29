@@ -20,8 +20,16 @@
 - `tests/training-smoke.cjs`, `tests/training-browser.cjs` : tests de non-régression.
 - Ne pas changer le contenu pédagogique pendant une passe UI/UX, sauf demande explicite. Préserver les sauvegardes et le site hors Entraînement. Ne pas confondre test Chromium simulé et validation iPhone réelle.
 
+## Validation technique complémentaire — 29/10/2026
+
+- **Workflow GitHub Actions réussi :** [40945050902](https://github.com/CapGui13/QPJB/actions/runs/40945050902), commit CI `fe75aed46ac791b5858db7fd6e2c0bb1b97e08e8`.
+- **Deux moteurs indépendants : Chromium et WebKit**, émulation iPhone 12 avec Playwright ; **44 contrôles statiques par moteur**, parcours navigateur réussis, aucune erreur JavaScript non interceptée. Le WebKit Linux simulé n'est PAS une validation physique Safari/iPhone/PWA.
+- Tests renforcés par `545891eb` puis corrigés dans `9b3923a` : Précédent/Suivant sans rechargement d'iframe, sauvegarde des réponses pendant la navigation, persistance après rechargement complet de QPJB, QCM à trois rangées, petits écrans, réponses/corrigés, défense, navigation retour et accès refusé aux deux exercices en quarantaine.
+- Le premier échec du nouveau test venait d'une hypothèse de scénario : après rechargement, QPJB peut restaurer automatiquement l'écran Entraînement et masquer son bouton d'accueil. La vérification a été remplacée par la lecture du `localStorage` de la même origine ; le workflow final est vert.
+- Moteur WebKit ajouté à `tests/training-browser.cjs` (commit `b63f561d`) et à la matrice `.github/workflows/training-smoke.yml` (commit `fe75aed4`). Aucun énoncé, corrigé, identifiant ou PDF n'a été retouché durant cette passe.
+
 ## Prochaine action
-Se baser sur le **problème concret donné dans le nouveau chat**, inspecter seulement les fichiers concernés et le dernier commit, corriger et tester par petites étapes. À chaque étape : réponse courte (résultat, SHA, test et limite), puis actualiser ce résumé en remplaçant les informations obsolètes. Conserver l'historique détaillé sans le recopier.
+Base technique vérifiée sur deux moteurs ; prochaine étape recommandée : vérifier quelques parcours réels sur iPhone/Safari/PWA, puis reprendre l'audit pédagogique du contenu (sans réintégrer les deux QCM en quarantaine avant validation). Se baser sur le problème concret du nouveau chat, inspecter des fichiers ciblés et continuer par petites étapes. Toujours noter SHA, tests et limites, sans recopier l'historique.
 
 ## Éviter la saturation de ChatGPT
 L'erreur « longueur maximale de la conversation » / `conversation_too_large` vient de la limite de la conversation ChatGPT, **pas de QPJB Training**. La scission du module en fichiers réduit les sorties, sans supprimer cette limite. Dans une exécution GitHub, traiter les grosses données en interne et n'afficher au chat que les extraits utiles (< 2 000 caractères par retour en général). Utiliser un nouveau chat après un chantier achevé, sans copier d'anciens échanges.
