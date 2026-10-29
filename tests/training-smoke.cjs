@@ -45,6 +45,7 @@ check(app.includes('defense-adjacent')&&app.includes('const defenseSide='),'adja
 check(integrated.includes('prefers-reduced-motion'),'reduced motion is supported');
 const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
+check(raw.length<1200000,'initial exercise data stays compact (no embedded WebP facsimiles)');
 const data=JSON.parse(raw.slice(8,-1));
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
 const facsimiles=JSON.parse(read('tests/training-image-checksums.json'));
