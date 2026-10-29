@@ -38,7 +38,8 @@ if (/Android/i.test(navigator.userAgent) &&
 <style>html{background:#c0a8dc}body{background:#c0a8dc}
 /* En exercice QCM, seule la barre de retour interne reste visible. */
 body.qpjb-training-in-quiz #vtraining .training-toolbar{display:none!important}
-body.qpjb-training-in-quiz #vtraining #training-workspace{height:100dvh!important}
+body.qpjb-training-in-quiz #vtraining{background:#211d27!important}
+body.qpjb-training-in-quiz #vtraining #training-workspace{height:calc(100dvh - env(safe-area-inset-top, 0px))!important}
 body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important;flex:1;min-height:0}
 </style>
 <link rel="manifest" href="/QPJB/manifest.json?v=8">
@@ -2175,8 +2176,11 @@ let qpjbTrainingReady=false,qpjbTrainingMode='bidding';
 function qpjbTrainingResize(){
  const view=document.getElementById('vtraining'),workspace=document.getElementById('training-workspace');
  if(view.style.display==='none')return;
- const height=document.body.classList.contains('qpjb-training-in-quiz')?0:(Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60);
- view.style.paddingTop=height+'px';workspace.style.height='calc(100dvh - '+height+'px)';
+ const quiz=document.body.classList.contains('qpjb-training-in-quiz');
+ const height=quiz?0:(Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60);
+ // En QCM, ne pas placer la navigation sous la barre d'état de l'iPhone.
+ view.style.paddingTop=quiz?'env(safe-area-inset-top, 0px)':height+'px';
+ workspace.style.height=quiz?'calc(100dvh - env(safe-area-inset-top, 0px))':'calc(100dvh - '+height+'px)';
 }
 function qpjbTrainingSelect(mode){
  const frame=document.getElementById('training-frame');
@@ -2220,6 +2224,8 @@ window.addEventListener('message',e=>{
   document.body.classList.toggle('qpjb-training-in-quiz',quiz);
   document.getElementById('main-header').style.display=quiz?'none':'';
   qpjbTrainingResize();
+  // Recaler la page mère après le changement de hauteur de l'en-tête.
+  window.scrollTo(0,0);
  }
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
