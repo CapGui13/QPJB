@@ -84,6 +84,18 @@ function trainingNavigate(action){
  trainingPendingNav={seq,action};
  window.parent.postMessage({type:'qpjb-training-nav-request',seq},location.origin);
 }
+// Annoncer les changements d'écran aux lecteurs d'écran sans décaler la page.
+// Le <main> a tabindex=-1, et Tab retourne dans l'ordre normal des contrôles.
+function focusTrainingPage(){
+ const root=document.getElementById('root');if(!root)return;
+ const label=view==='quiz'&&current()
+   ?'Exercice '+seqNum(current())+' — '+title()
+   :view==='list'||view==='plays'?'Liste des exercices — '+title()
+   :view==='topics'?'Thèmes des enchères'
+   :view==='playtopics'?'Thèmes du jeu de la carte':'Accueil de l’entraînement';
+ root.setAttribute('aria-label',label);
+ root.focus({preventScroll:true});
+}
 function trainingApplyPage(next,restoreList=false,recordRoute=true){
  // An old browser route must never reopen a quarantined or unknown exercise.
  if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
@@ -92,6 +104,7 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
  if(restoreList&&trainingListScope===trainingScope()){
    requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
  }else window.scrollTo(0,0);
+ requestAnimationFrame(focusTrainingPage);
  if(recordRoute&&embeddedMode){
    window.parent.postMessage({type:'qpjb-training-route',route:{
      view,cat,id,status,ptopic,sessionIds:sessionIds.slice()
@@ -317,7 +330,12 @@ function quizBSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefine
 function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Sélectionnez une proposition pour découvrir le corrigé d’origine.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${sel===i?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===i}">${esc(o)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${cardAnswerArea(x,true)}</div>${nav()}`}
 
 function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':'Vous êtes en Sud'}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${x.choices.map((b,ix)=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}${restartControl()}</section></div>${nav()}`}
-function revealPlay(){playSeen=true;render()}
+function revealPlay(){
+ playSeen=true;render();
+ // La création du corrigé remplace le bouton : conserver le focus clavier.
+ const button=document.querySelector('button[onclick="revealPlay()"]');
+ if(button)button.focus({preventScroll:true});
+}
 function assess(ok){
  if(!current()||redoAttempt?.done)return;
  redoAttempt={done:true,ok,pick:chosen};redoAnswered=true;
