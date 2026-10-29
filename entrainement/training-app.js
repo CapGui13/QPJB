@@ -1,15 +1,54 @@
 
 const PLAY_TOPICS=[{"id":"plan-libre","name":"Construire son plan de jeu","description":"Situations ouvertes : réfléchir au plan complet, puis comparer son analyse au corrigé.","group":"Jeu du déclarant"},{"id":"plan-qcm","name":"Décisions de plan de jeu · QCM","description":"Choisir le meilleur plan parmi plusieurs propositions.","group":"Jeu du déclarant"},{"id":"impasses","name":"Impasses","description":"Placement des honneurs, impasses directes et indirectes.","group":"Jeu du déclarant"},{"id":"maniements","name":"Maniements de couleur","description":"Organiser les honneurs, préserver les fourchettes et jouer les couleurs.","group":"Jeu du déclarant"},{"id":"communications","name":"Communications et blocages","description":"Conserver les reprises et éviter de bloquer une couleur.","group":"Jeu du déclarant"},{"id":"entames","name":"Choisir l’entame","description":"Décider quelle carte entamer selon le contrat et la séquence.","group":"Jeu de la défense"},{"id":"defense","name":"Défense et signalisation","description":"Choisir la bonne carte en défense et coopérer avec son partenaire.","group":"Jeu de la défense"}];
 const KEY='QPJB_TRAINING_QCM_V1';let saved={},storageWarning=false;
-try{const raw=localStorage.getItem(KEY);saved=raw?JSON.parse(raw):{};if(!saved||typeof saved!=='object'||Array.isArray(saved))saved={}}catch(e){saved={};storageWarning=true}const initialMode=new URLSearchParams(location.search).get('mode');
+const SYNC_TAB=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+let syncSeq=0,activeVisitId=null;
+function syncId(){return SYNC_TAB+'-'+(++syncSeq)}
+function cleanProgress(v){return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}
+try{const raw=localStorage.getItem(KEY);saved=raw?cleanProgress(JSON.parse(raw)):{}}
+catch(e){saved={};storageWarning=true}
+const initialMode=new URLSearchParams(location.search).get('mode');
 const integratedMode=initialMode==='bidding'||initialMode==='play';
 const embeddedMode=window.parent!==window&&new URLSearchParams(location.search).get('embedded')==='1';
 if(embeddedMode)document.documentElement.classList.add('qpjb-embedded');
 let view=initialMode==='bidding'?'topics':initialMode==='play'?'playtopics':'home',cat=initialMode==='play'?'play':'',id='',status='all',ptopic='all',sessionIds=[],chosen=null,revealed=false,playSeen=false,redoAttempt=null,redoAnswered=false;
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+// Idempotente et indépendante de l'ordre de réception des événements storage.
+function mergeExercise(a,b){
+ if(!a||typeof a!=='object'||Array.isArray(a))return b;
+ if(!b||typeof b!=='object'||Array.isArray(b))return a;
+ if(JSON.stringify(a)===JSON.stringify(b))return a;
+ const rev=r=>String(r._syncAt||r.history?.at(-1)?.at||r.lastAttemptAt||'')+'|'+String(r._syncId||'');
+ const ra=rev(a),rb=rev(b);
+ const preferred=ra===rb?(JSON.stringify(a)>=JSON.stringify(b)?a:b):(ra>rb?a:b);
+ const history=new Map();
+ for(const h of [...(Array.isArray(a.history)?a.history:[]),...(Array.isArray(b.history)?b.history:[])]){
+   if(!h||typeof h!=='object')continue;
+   const k=h.syncId?'id:'+h.syncId:'old:'+JSON.stringify([h.at,h.pick,h.ok]);
+   if(!history.has(k))history.set(k,h);
+ }
+ const result={...(preferred===a?b:a),...preferred,history:[...history.values()].sort((x,y)=>
+   String(x.at||'').localeCompare(String(y.at||''))||String(x.syncId||'').localeCompare(String(y.syncId||''))).slice(-30)};
+ if(a._syncVisits||b._syncVisits){
+   const visits=[...new Set([...(Array.isArray(a._syncVisits)?a._syncVisits:[]),...(Array.isArray(b._syncVisits)?b._syncVisits:[])])].sort();
+   const base=Math.max(...[a,b].map(r=>Number.isInteger(r._syncBaseAttempts)?r._syncBaseAttempts:(Number.isInteger(r.attempts)?r.attempts:0)));
+   result._syncBaseAttempts=base;result._syncVisits=visits;result.attempts=base+visits.length;
+ }
+ return result;
+}
+function mergeProgress(a,b){
+ a=cleanProgress(a);b=cleanProgress(b);const out={};
+ for(const id of [...new Set([...Object.keys(a),...Object.keys(b)])].sort())out[id]=mergeExercise(a[id],b[id]);
+ return out;
+}
 function update(){
- try{const raw=JSON.stringify(saved);localStorage.setItem(KEY,raw);if(localStorage.getItem(KEY)!==raw)throw Error('storage readback mismatch');storageWarning=false;syncStorageNotice();return true}
- catch(e){storageWarning=true;syncStorageNotice();return false}
+ try{
+   saved=mergeProgress(saved,cleanProgress(JSON.parse(localStorage.getItem(KEY)||'{}')));
+   const raw=JSON.stringify(saved);
+   if(localStorage.getItem(KEY)!==raw)localStorage.setItem(KEY,raw);
+   if(localStorage.getItem(KEY)!==raw)throw Error('storage readback mismatch');
+   storageWarning=false;syncStorageNotice();return true;
+ }catch(e){storageWarning=true;syncStorageNotice();return false}
 }
 
 // La progression est sauvegardée automatiquement dans ce navigateur.
@@ -39,14 +78,18 @@ function validatedState(r){
 function persistResult(exId,choice,correct,first){
  const prev=(saved[exId]&&typeof saved[exId]==='object')?saved[exId]:{};
  const at=new Date().toISOString();
- const history=Array.isArray(prev.history)?prev.history.slice(-29):[];
- history.push({pick:choice===undefined?null:choice,ok:correct,at});
- // Une visite = une tentative ; l'historique garde tous les choix de cette visite.
- // Ne pas recalculer les anciens compteurs, dont le sens historique était différent.
- const result={...prev,done:true,ok:correct,attempts:(Number.isInteger(prev.attempts)?prev.attempts:0)+(first?1:0),history};
+ if(first||!activeVisitId)activeVisitId=syncId();
+ const changeId=syncId(),history=Array.isArray(prev.history)?prev.history.slice(-29):[];
+ history.push({pick:choice===undefined?null:choice,ok:correct,at,syncId:changeId});
+ // La base historique est inchangée ; les nouvelles visites ont des identifiants stables.
+ const base=Number.isInteger(prev._syncBaseAttempts)?prev._syncBaseAttempts:(Number.isInteger(prev.attempts)?prev.attempts:0);
+ const visits=Array.isArray(prev._syncVisits)?prev._syncVisits.slice():[];
+ if(first&&!visits.includes(activeVisitId))visits.push(activeVisitId);
+ const result={...prev,done:true,ok:correct,attempts:base+visits.length,history,
+   _syncBaseAttempts:base,_syncVisits:visits,_syncAt:at,_syncId:changeId};
  if(choice!==null&&choice!==undefined)result.pick=choice;
  if(first){result.validated=correct;result.lastAttemptAt=at;}
- saved[exId]=result;update();return result;
+ saved[exId]=result;update();return saved[exId];
 }
 function recordAnswer(exId,choice,correct){
  const first=!redoAnswered;
@@ -59,8 +102,12 @@ function recordAnswer(exId,choice,correct){
 function visibleAnswer(exId){return redoAttempt}
 function restartExercise(){
  if(view!=='quiz')return;
- redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;
  render();scrollTo(0,0);
+ // Refaire disparaît du DOM : replacer le focus au premier choix sans l'activer.
+ const first=document.querySelector('.choice,.cq-option,button[onclick="revealPlay()"]');
+ if(first)first.focus({preventScroll:true});
+ else focusTrainingPage();
 }
 function restartControl(){
  return redoAttempt?.done?`<div class="restart-exercise"><button type="button" class="btn" onclick="restartExercise()">↻ Refaire cet exercice</button></div>`:'';
@@ -100,7 +147,7 @@ function focusTrainingPage(){
 function trainingApplyPage(next,restoreList=false,recordRoute=true){
  // An old browser route must never reopen a quarantined or unknown exercise.
  if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
- view=next;redoAttempt=null;redoAnswered=false;chosen=null;revealed=false;playSeen=false;
+ view=next;redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;
  render();
  if(restoreList&&trainingListScope===trainingScope()){
    requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
