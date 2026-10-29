@@ -1167,7 +1167,7 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
     min-height:clamp(44px,6.2dvh,52px)!important;
     width:100%!important;margin:5px 0 7px!important;padding:8px 7px!important;
     gap:3px!important;
-    font-size:clamp(16px,4.65vw,19px)!important;
+    font-size:clamp(18px,5.45vw,21px)!important;
     font-weight:800!important;line-height:1.22!important;letter-spacing:-.035em!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits .suit{
@@ -1199,7 +1199,7 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice{
     width:100%!important;min-width:0!important;
     min-height:clamp(58px,8.3dvh,73px)!important;
-    padding:9px 7px!important;font-size:clamp(19px,5.1vw,23px)!important;
+    padding:9px 7px!important;font-size:clamp(20px,5.5vw,22px)!important;
     line-height:1.18!important;overflow-wrap:anywhere!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .feedback{
@@ -1241,7 +1241,7 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
     justify-content:space-around!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits{
-    font-size:15px!important;padding:5px!important;
+    font-size:17px!important;padding:5px!important;
   }
   .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .auc th{
     font-size:11px!important;
@@ -1262,4 +1262,49 @@ html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
 .qpjb-answer-area .qpjb-answer-content{min-height:0;overflow:hidden}
 @media (prefers-reduced-motion:reduce){
  .qpjb-answer-area{transition:none}
+}
+
+/* QCM iPhone : toutes les propositions conservent le même corps,
+   y compris les signes ♠ ♥ ♦ ♣ colorisés après l'affichage. */
+@media(max-width:600px){
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice,
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice.selected,
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice.correct,
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice.wrong{
+   font-size:clamp(20px,5.5vw,22px)!important;
+   font-weight:760!important;
+   line-height:1.2!important;
+ }
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .choices>.choice .symbol-suit{
+   font-size:1em!important;
+   line-height:inherit!important;
+ }
+}
+/* Le bouton « Pourquoi les autres... » ouvre un panneau comme la correction.
+   Pas de <details> natif, qui apparaît immédiatement et décale la page. */
+.postsolution-notes>.postsolution-trigger{
+ appearance:none;display:flex;align-items:center;gap:8px;
+ width:100%;border:0;background:transparent;color:inherit;
+ font:inherit;font-weight:800;line-height:1.4;
+ text-align:left;padding:11px 13px;cursor:pointer;
+ border-radius:12px;
+}
+.postsolution-notes>.postsolution-trigger::before{
+ content:'▸';font-size:1.15em;line-height:1;flex:none;
+ transition:transform 280ms ease;
+}
+.postsolution-notes.is-open>.postsolution-trigger::before{transform:rotate(90deg)}
+.postsolution-notes>.postsolution-trigger:hover{background:rgba(122,75,179,.08)}
+.postsolution-notes>.postsolution-trigger:focus-visible{
+ outline:3px solid #9b79d9;outline-offset:3px;
+}
+.postsolution-notes>.postsolution-body{
+ display:grid;grid-template-rows:0fr;
+ transition:grid-template-rows 280ms ease;
+}
+.postsolution-notes.is-open>.postsolution-body{grid-template-rows:1fr}
+.postsolution-notes .postsolution-body-inner{min-height:0;overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+ .postsolution-notes>.postsolution-body,
+ .postsolution-notes>.postsolution-trigger::before{transition:none}
 }
