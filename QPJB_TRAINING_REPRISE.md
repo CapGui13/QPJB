@@ -6,7 +6,7 @@ Dernière vérification : 29 octobre 2026. Ce fichier sert de mémoire de travai
 
 - Dépôt : `CapGui13/QPJB`, branche `main` ; site : https://capgui13.github.io/QPJB/
 - Application QPJB intégratrice : `index.html`.
-- Module d'entraînement : `entrainement/index.html` (HTML/CSS/JavaScript et exercices intégrés, fichier volumineux).
+- Module d'entraînement : `entrainement/index.html` (page HTML légère) ; `entrainement/training-style.css` (styles) ; `entrainement/training-app.js` (logique) ; `entrainement/training-data.js` (données des exercices, très volumineux, à préserver).
 - Le module Entraînement fonctionne à l'intérieur de l'application QPJB ; on ne réintroduit pas Vercel.
 - Derniers commits de **code** vérifiés : `0de7fca8a6d810c5d9365c1c78c61e3ea74d08c5` (masquage de l'ancien affichage durant l'ouverture Enchères), `c9b34d8ec6362e623bc30d2bc4565d9733447a1f` (QCM iPhone sur toute la hauteur, main agrandie, chargement stable des polices), après `20f62e6022553c7852f3382651d495a9b38cbb86` (éviter les resets après réponse).
 - Commits récents pertinents à consulter au besoin : `fa5c64a`, `1006bc3`, `474fdc9`, `23c467f`, `302b7dc`.
@@ -58,12 +58,25 @@ Règles UX décidées :
 ## Prochaine intervention
 
 1. Lire ce fichier et le **dernier commit** de la branche `main`, sans recoller les longues conversations précédentes.
-2. Examiner uniquement le CSS et la structure de l'écran QCM mobile (`index.html` intégrateur + `entrainement/index.html`).
+2. Examiner uniquement `entrainement/training-style.css`, `entrainement/training-app.js` et, si nécessaire, `index.html` intégrateur. Ne pas recharger les données des exercices pour des changements d'ergonomie.
 3. Tester les QCM sur l'iPhone (portrait, réponses avant/après validation, exercices courts/longs), puis corriger exclusivement les problèmes encore visibles sur une capture ; ne pas modifier les données.
 4. Committer les changements avec un message explicite, puis consigner ici uniquement le nouveau SHA, ce qui a été fait et ce qui reste à vérifier.
 
 ## Règles de travail pour limiter les plantages ChatGPT
 
-- Privilégier des consultations par lignes, recherches ciblées et diffs courts ; éviter de renvoyer dans le chat les 2 Mo du fichier d'entraînement ou tout l'historique.
+- Privilégier des consultations ciblées et des retours d'outil < 2 000 caractères ; éviter absolument de renvoyer dans le chat les ~1,9 Mo du fichier de données, les logs complets ou tout l'historique.
 - Pour une nouvelle conversation, donner seulement le lien vers ce fichier et le problème concret/capture.
 - Dès que la discussion devient longue, repartir sur un nouveau chat avec ce fichier de reprise. Ne pas supprimer les anciens chats.
+
+## Intervention du 29 octobre 2026 — réduction structurelle du risque HTTP 413
+
+- **Erreur diagnostiquée dans les conversations ChatGPT** : `HTTP 413`, code `conversation_too_large`, parfois affiché `Unknown error`. Les requêtes `rgstr` bloquées défilant en rouge sont un symptôme distinct et ne suffisent pas à expliquer le refus `conversation`. Ce n'est pas un plantage de QPJB.
+- **Cause aggravante du flux GitHub** : l'ancien `entrainement/index.html` pesait **2 052 228 octets** (Git SHA `83a7fb861ddf0a58f6a98297acb1dd9b45d00f50`). `fetch_file` retournait un contenu vide, même avec des plages de lignes ; `fetch_blob` permet de récupérer son contenu **à l'intérieur d'une exécution isolée** sans le déverser dans le chat.
+- **Refactorisation atomique appliquée** sur `main` : commit `afeb2678d53516272783cdf570a4d84375664dd8`. Les blocs existants ont été déplacés sans réécriture :
+  - `entrainement/index.html` : page HTML (3 643 caractères), liens vers les trois ressources séparées ;
+  - `entrainement/training-style.css` : CSS inchangé (86 015 caractères) ;
+  - `entrainement/training-data.js` : `const D` et données intégralement conservés (1 859 045 caractères) ;
+  - `entrainement/training-app.js` : logique JavaScript inchangée (67 213 caractères).
+- **Contrôles réalisés** : séparation/reconcaténation exacte des blocs HTML, données JSON `D` parsées et préservées, création des blobs GitHub, vérification du commit et des fichiers dans la branche `main`. **Le rendu réel et le chargement sur iPhone n'ont PAS encore été testés** : toute régression doit être traitée en priorité.
+- **Règles impératives pour les prochaines corrections** : pour l'ergonomie, ne lire et modifier que `training-style.css` ou `training-app.js` ainsi que l'intégrateur `index.html` si strictement nécessaire. **Ne pas modifier `training-data.js`** sauf correction pédagogique explicitement demandée. Utiliser GitHub via exécution isolée avec une sortie très courte (SHA, résultat des tests, diff ciblé), jamais un dump du contenu, des historiques ou des logs. Vérifier un seul problème à la fois, puis consigner le SHA et le point restant.
+- **Limite honnête** : cette organisation évite de recharger inutilement les données et réduit la taille des sorties ; elle ne permet pas de corriger elle-même une limite de taille du service ChatGPT ni les requêtes `rgstr` bloquées. Si `conversation_too_large` réapparaît dans un chat, continuer depuis ce fichier dans un nouveau chat court, sans recopier les anciennes conversations.
