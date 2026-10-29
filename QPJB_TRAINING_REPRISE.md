@@ -149,3 +149,14 @@ Objectif explicite : intégrer Entraînement dans les comportements préexistant
 - **Données inchangées :** `entrainement/training-data.js`, SHA `e68972068d699898c05ec1a9bb6dba37f9881d17` ; PDF, exercices, corrigés, identifiants et format `localStorage` non modifiés.
 - **À valider sur iPhone réel** : les animations après choix de réponse, le défilement et les longues explications. Les tests Chromium simulés ne certifient pas Safari iOS.
 - **Suite** : conserver deux chantiers séparés, UX/technique d'une part et audit pédagogique des exercices d'autre part. Ne pas modifier de corrigé pendant un ajustement UI/UX.
+
+
+## Intervention du 29 octobre 2026 — correction de classement JC-BH-017
+
+- Audit : la série **JC-BH-017-Q01 à Q04** (« Adversaire dangereux ») était incorrectement rangée dans la Défense alors que « Mort · Nord / Vous · Sud » et les questions sur l'adversaire dangereux concernent le **déclarant**. Ce problème concerne les **quatre** QCM, pas seulement Q01.
+- **Commit données `741238308366f865fa8ead20d877a435ae2c9c58`** : dans `entrainement/training-data.js`, pour ces quatre identifiants uniquement, changer `topic: Défense → Plan de jeu` et `type: defense → declarant`. Le routeur existant `playTopicId` les présente dans « Décisions de plan de jeu · QCM » ; le visualiseur présente la situation comme un jeu du déclarant, mains Nord/Sud opposées.
+- **Aucune autre donnée éditoriale modifiée :** identifiants, mains, options, réponses, explications, progression `localStorage` et 326 PDF conservés. Les exercices restent marqués « relecture_pedagogique_necessaire » ; ce reclassement ne vaut pas validation de leur corrigé.
+- Tests statiques étendus `d54ba5357630df8e8540a2c7c50d9a767fb207c7`, navigateur `b0c9ee0e99373d24040318374fe9b9354ec98370` : les quatre cas doivent apparaître dans Plan de jeu, disparaître de Défense et afficher mort Nord / déclarant Sud. Une synchronisation de test d'animation de QCM de carte préexistante a été corrigée dans `72e23068f6124b6a7c8bd88f32db331f63758d3b`.
+- **GitHub Actions réussi** au commit `72e23068` : 38 contrôles statiques et parcours Playwright iPhone 12 / Chromium simulé (avec tests BH-017), sans erreur JS non interceptée. Exécution `40938710649` : https://github.com/CapGui13/QPJB/actions/runs/40938710649.
+- Cache : `entrainement/index.html` charge `training-data.js?v=20261029j` (commit `d74c60703010aab3c2412b4dbfce5dced94e5a6c`), `index.html` utilise `rev=20261029j` (commit `0dfff8321d3cdbfe8908eff311124d78374c4717`).
+- À contrôler sur Safari/PWA iPhone physique : les quatre exercices visibles dans la nouvelle rubrique et le visuel des mains Nord/Sud. Conserver les chantiers UX et pédagogiques séparés.
