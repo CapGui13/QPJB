@@ -387,34 +387,71 @@ function cleanRanks(t){return (t||'').replace(/\s+/g,' ').trim()}
 function normRows(arr){return '♠♥♦♣'.split('').map((s,i)=>({suit:s,ranks:cleanRanks((arr||[])[i]||'')})).filter(r=>r.ranks)}
 
 function seatLabel(pos){return {north:'N',south:'S',east:'E',west:'O'}[pos]||''}
-function seatBox(pos,data){if(!data||!data.rows||!data.rows.length)return '';return `<section class="deal-seat ${pos}"><div class="deal-seat-head"><span class="deal-seat-name">${esc(data.title||prettySeat(pos))}</span><span class="deal-seat-pos">${seatLabel(pos)}</span></div><ul class="deal-cards">${data.rows.map(r=>`<li><span class="deal-suit ${suitClass(r.suit)}">${esc(r.suit)}</span><span class="deal-ranks">${esc(cleanRanks(r.ranks)||'—')}</span></li>`).join('')}</ul></section>`}
+// pos = emplacement à l'écran ; physical = vraie place à la table.
+function seatBox(pos,data,physical=pos){if(!data||!data.rows||!data.rows.length)return '';return `<section class="deal-seat ${pos}" data-seat="${physical}"><div class="deal-seat-head"><span class="deal-seat-name">${esc(data.title||prettySeat(physical))}</span><span class="deal-seat-pos">${seatLabel(physical)}</span></div><ul class="deal-cards">${data.rows.map(r=>`<li><span class="deal-suit ${suitClass(r.suit)}">${esc(r.suit)}</span><span class="deal-ranks">${esc(cleanRanks(r.ranks)||'—')}</span></li>`).join('')}</ul></section>`}
 function parsePlayedCard(value){const raw=cleanRanks(value);if(!raw||raw==='—'||/à vous de choisir/i.test(raw)||/(?:,|;|\bpuis\b)/i.test(raw))return null;const suitmap={pique:'♠',piques:'♠',coeur:'♥',coeurs:'♥',cœur:'♥',cœurs:'♥',carreau:'♦',carreaux:'♦',trèfle:'♣',trèfles:'♣'};let m=raw.match(/(10|[ARDV23456789])\s*([♠♥♦♣])/i);if(m)return {rank:m[1].toUpperCase(),suit:m[2]};m=raw.match(/([♠♥♦♣])\s*(10|[ARDV23456789])/i);if(m)return {rank:m[2].toUpperCase(),suit:m[1]};m=raw.toLowerCase().match(/\b(as|roi|dame|valet|dix|10|[23456789])\s+(?:de\s+|d[’']\s*)?(pique?s?|c[œo]urs?|carreaux?|tr[eè]fles?)\b/i);if(!m)return null;const ranks={as:'A',roi:'R',dame:'D',valet:'V',dix:'10'},rank=ranks[m[1]]||m[1];let suit=(m[2].toLowerCase().replace(/œ/g,'oe').replace(/è/g,'e'));suit=suit.startsWith('piqu')?'♠':suit.startsWith('coeur')?'♥':suit.startsWith('carreau')?'♦':suit.startsWith('trefle')?'♣':null;return suit?{rank,suit}:null}
 function resolveLeadSeat(x,context=''){const t=((x?.prompt||'')+' '+(x?.questionText||'')).toLowerCase();if(/\best\s+entame\b|\bentame\s+d[’']?est\b/.test(t))return 'east';if(/\bouest\s+entame\b|\bentame\s+d[’']?ouest\b/.test(t))return 'west';// In these lessons the declarer is South, so the opening leader is West.
 if(x?.type==='declarant')return 'west';// The defender in East sees partner's opening lead from West.
 if(/vous\s*[·-]\s*est/i.test(x?.southLabel||'')||/\bvous êtes en est\b/i.test(t))return 'west';if(/vous\s*[·-]\s*ouest/i.test(x?.southLabel||''))return 'west';return 'west'}
-function playedCard(card,seat,caption='Entame'){const side=seat==='east'?'east':'west';return `<div class="deal-played ${side}" role="img" aria-label="Entame jouée par ${side==='west'?'Ouest':'Est'} : ${esc(card.rank)} de ${esc({'♠':'Pique','♥':'Cœur','♦':'Carreau','♣':'Trèfle'}[card.suit])}"><div class="deal-played-label">${esc(caption)} · ${side==='west'?'Ouest':'Est'}</div><div class="deal-playing-card ${suitClass(card.suit)}"><span class="deal-card-corner">${esc(card.rank)}<small>${esc(card.suit)}</small></span><span class="deal-card-big">${esc(card.suit)}</span><span class="deal-card-corner bottom">${esc(card.rank)}<small>${esc(card.suit)}</small></span></div></div>`}
-function seatMarker(pos,data){if(data&&data.rows&&data.rows.length)return seatBox(pos,data);return `<div class="deal-marker ${pos}" aria-hidden="true"><span>${seatLabel(pos)}</span></div>`}
+function playedCard(card,position,caption='Entame',physical=position){const name=prettySeat(physical);return `<div class="deal-played ${position}" data-seat="${physical}" role="img" aria-label="Entame jouée par ${name} : ${esc(card.rank)} de ${esc({'♠':'Pique','♥':'Cœur','♦':'Carreau','♣':'Trèfle'}[card.suit])}"><div class="deal-played-label">${esc(caption)} · ${name}</div><div class="deal-playing-card ${suitClass(card.suit)}"><span class="deal-card-corner">${esc(card.rank)}<small>${esc(card.suit)}</small></span><span class="deal-card-big">${esc(card.suit)}</span><span class="deal-card-corner bottom">${esc(card.rank)}<small>${esc(card.suit)}</small></span></div></div>`}
+// Orientation de la table depuis la place du joueur : la main du joueur est
+// toujours en bas, ses adversaires et partenaire tournent dans le même repère.
+// Sur l'écran : haut, droite, bas, gauche = ordre horaire.
+const TABLE_ORDER=['north','east','south','west'];
+function screenSeat(physical,perspective='south'){
+ const from=TABLE_ORDER.indexOf(physical),at=TABLE_ORDER.indexOf(perspective);
+ if(from<0||at<0)return physical;
+ return TABLE_ORDER[(from-at+2+4)%4];
+}
+function playerSeatFromExercise(x,seats={}){
+ // Ne déduire le joueur que d'une indication explicite ou d'une main nommée.
+ for(const [pos,hand] of Object.entries(seats)){
+   if(/^\s*(?:vous|votre main)\s*[·–—-]\s*(?:nord|sud|est|ouest)\b/i.test(hand?.title||''))return pos;
+ }
+ const label=String(x?.southLabel||'');
+ if(/^\s*(?:vous|votre main)\s*[·–—-]\s*(?:nord|sud|est|ouest)\b/i.test(label))
+   return seatFromLabel(label,'south');
+ const words=String(x?.prompt||'');
+ const explicit=words.match(/\bvous\s+[êe]tes\s+en\s+(nord|sud|est|ouest)\b/i)
+   ||(x?.type==='defense'?words.match(/^\s*(nord|sud|est|ouest)\s*[:,]/i):null);
+ if(explicit)return {nord:'north',sud:'south',est:'east',ouest:'west'}[explicit[1].toLowerCase()];
+ return 'south';
+}
+function seatMarker(pos,physical,data){
+ if(data?.rows?.length)return seatBox(pos,data,physical);
+ return `<div class="deal-marker ${pos}" data-seat="${physical}" aria-label="${prettySeat(physical)}"><span>${seatLabel(physical)}</span></div>`;
+}
 function dealCenter(meta){return `<div class="deal-center">${meta.contract?`<span class="deal-contract">Contrat : ${esc(meta.contract)}</span>`:`<span class="deal-contract empty">Donne</span>`}</div>`}
 function dealViewer(seats,meta={}){
- const visible=['north','west','east','south'].filter(p=>seats[p]?.rows?.length);
- const onlyNS=visible.length>0&&visible.every(p=>['north','south'].includes(p));
- // En défense, le mort (Nord) et notre main (Est/Ouest) sont voisins.
- // Ne jamais déplacer une main latérale complète au-dessous de la table.
- const defenseSide=meta.defense===true&&visible.length===2&&visible.includes('north')
+ const perspective=TABLE_ORDER.includes(meta.perspective)?meta.perspective:'south';
+ const rotated=perspective!=='south';
+ const projected={};
+ for(const physical of TABLE_ORDER)projected[screenSeat(physical,perspective)]={physical,data:seats[physical]};
+ const visible=TABLE_ORDER.filter(pos=>projected[pos]?.data?.rows?.length);
+ const onlyNS=visible.length>0&&visible.every(pos=>pos==='north'||pos==='south');
+ // L'ancienne disposition « défense adjacente » est conservée pour les
+ // tables sans rotation. Une table orientée doit avoir le joueur en bas.
+ const defenseSide=!rotated&&meta.defense===true&&visible.length===2&&visible.includes('north')
    ?(['west','east'].find(pos=>visible.includes(pos))||null):null;
- const longSide=defenseSide?null:['west','east'].find(pos=>seats[pos]?.rows?.reduce(
+ const longSide=rotated||defenseSide?null:['west','east'].find(pos=>projected[pos]?.data?.rows?.reduce(
    (n,row)=>n+cleanRanks(row.ranks).replace(/10/g,'T').replace(/[^ARDVT98765432]/gi,'').length,0)>=10);
+ const orientedSide=rotated&&visible.includes('south')&&visible.length===2
+   ?(['west','east'].find(pos=>visible.includes(pos))||null):null;
  const leadCard=meta.lead?parsePlayedCard(meta.lead):null;
  const cls=['deal-viewer',visible.length<=1?'single':'',onlyNS?'compact':'',
    defenseSide?'defense-adjacent defense-'+defenseSide:'',
-   defenseSide&&leadCard?'has-lead':'',
+   rotated?'player-oriented':'',
+   orientedSide?'player-side-'+orientedSide:'',
+   (defenseSide||rotated)&&leadCard?'has-lead':'',
    longSide?'has-lateral-hand':''].filter(Boolean).join(' ');
- const seat=meta.leadSeat==='east'?'east':'west';
- const shown=leadCard?playedCard(leadCard,seat,meta.cardCaption||'Entame'):'';
- return `<div class="deal-viewer-wrap"><div class="deal-viewer-shell"><div class="${cls}">${seatMarker('north',seats.north)}${seatMarker('west',longSide==='west'?null:seats.west)}${dealCenter({...meta,card:leadCard})}${seatMarker('east',longSide==='east'?null:seats.east)}${seatMarker('south',seats.south)}${shown}${longSide?`<div class="deal-lateral-hand">${seatBox(longSide,seats[longSide])}</div>`:''}</div></div></div>`;
+ const actualLead=TABLE_ORDER.includes(meta.leadSeat)?meta.leadSeat:'west';
+ const shown=leadCard?playedCard(leadCard,screenSeat(actualLead,perspective),meta.cardCaption||'Entame',actualLead):'';
+ const slot=pos=>seatMarker(pos,projected[pos].physical,
+   longSide===pos?null:projected[pos].data);
+ return `<div class="deal-viewer-wrap"><div class="deal-viewer-shell"><div class="${cls}" data-perspective="${perspective}">${slot('north')}${slot('west')}${dealCenter(meta)}${slot('east')}${slot('south')}${shown}${longSide?`<div class="deal-lateral-hand">${seatBox(longSide,projected[longSide].data,projected[longSide].physical)}</div>`:''}</div></div></div>`;
 }
-function buildCardSeats(x){const seats={};if(x.holdings){x.holdings.forEach((h,i)=>{const pos=seatFromLabel(h.label,i===0?'north':'south');seats[pos]={title:h.label,rows:(h.rows||[]).map(r=>({suit:r.suit,ranks:cleanRanks(r.ranks||'')})).filter(r=>r.ranks)}})}else{if(x.north)seats.north={title:x.northLabel||'Mort · Nord',rows:normRows(x.north)};if(x.south){const prompt=(x.prompt||'').toLowerCase();const playerPos=/vous êtes en est/.test(prompt)?'east':/vous êtes en ouest/.test(prompt)?'west':'south';const pos=seatFromLabel(x.southLabel,playerPos);seats[pos]={title:x.southLabel==='Votre main'?`Votre main · ${prettySeat(pos)}`:(x.southLabel||'Votre main'),rows:normRows(x.south)}}}return seats}
-function renderCardDiagram(x){const choisir=x.topic==='Entame';const after=choisir&&visibleAnswer(x.id)?.done&&visibleAnswer(x.id)?.ok;const wanted=after?x.options[x.answerIndex]:(x.lead&&x.lead!=='À vous de choisir'&&x.lead!=='—'?x.lead:'');const seat=after?(/vous êtes en est/i.test(x.prompt||'')?'east':'west'):resolveLeadSeat(x);return dealViewer(buildCardSeats(x),{defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Situation de jeu',contract:x.contract||'',lead:wanted,leadSeat:seat,cardCaption:after?'Entame attendue':'Entame'})}
+function buildCardSeats(x){const seats={};if(x.holdings){x.holdings.forEach((h,i)=>{const pos=seatFromLabel(h.label,i===0?'north':'south');seats[pos]={title:h.label,rows:(h.rows||[]).map(r=>({suit:r.suit,ranks:cleanRanks(r.ranks||'')})).filter(r=>r.ranks)}})}else{if(x.north)seats.north={title:x.northLabel||'Mort · Nord',rows:normRows(x.north)};if(x.south){const prompt=(x.prompt||'').toLowerCase();const playerPos=/vous êtes en est/.test(prompt)?'east':/vous êtes en ouest/.test(prompt)?'west':/vous êtes en nord/.test(prompt)?'north':'south';const pos=seatFromLabel(x.southLabel,playerPos);seats[pos]={title:x.southLabel==='Votre main'?`Votre main · ${prettySeat(pos)}`:(x.southLabel||'Votre main'),rows:normRows(x.south)}}}return seats}
+function renderCardDiagram(x){const choisir=x.topic==='Entame';const after=choisir&&visibleAnswer(x.id)?.done&&visibleAnswer(x.id)?.ok;const wanted=after?x.options[x.answerIndex]:(x.lead&&x.lead!=='À vous de choisir'&&x.lead!=='—'?x.lead:'');const seat=after?(/vous êtes en est/i.test(x.prompt||'')?'east':'west'):resolveLeadSeat(x);const seats=buildCardSeats(x);return dealViewer(seats,{perspective:playerSeatFromExercise(x,seats),defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Situation de jeu',contract:x.contract||'',lead:wanted,leadSeat:seat,cardCaption:after?'Entame attendue':'Entame'})}
 function stripMeta(line,key){return (line||'').replace(new RegExp('\\s+'+key+'\\s*:\\s*.*$','i'),'').trim()}
 function looksLikeHolding(txt){const t=cleanRanks(txt);if(!t)return false;if(/[♠♥♦♣]/.test(t))return false;if(/\b[NOES]\b/.test(t))return false;return /[ARDVX1098765432]/i.test(t)}
 function parseLegacyDeal(x){const raw=(x.questionText||'').replace(/\r/g,'');const contract=((raw.match(/Contrat\s*:\s*([^\n]+)/i)||[])[1]||'').trim();const lead=((raw.match(/Entame\s*:\s*([^\n]+)/i)||[])[1]||'').trim();const lines=raw.split('\n');const blocks=[];for(let i=0;i<=lines.length-4;i++){const a=lines[i].match(/^\s*♠\s*(.*)$/),b=lines[i+1].match(/^\s*♥\s*(.*)$/),c=lines[i+2].match(/^\s*♦\s*(.*)$/),d=lines[i+3].match(/^\s*♣\s*(.*)$/);if(!(a&&b&&c&&d))continue;const rows=[a[1].trim(),stripMeta(b[1],'Contrat'),stripMeta(c[1],'Entame'),d[1].trim()];const score=rows.filter(looksLikeHolding).length;if(score>=2){blocks.push(rows.map((r,idx)=>({suit:'♠♥♦♣'[idx],ranks:cleanRanks(r)})))}}const unique=[];for(const rows of blocks){const sig=rows.map(r=>r.ranks).join('|');if(!unique.some(u=>u.sig===sig))unique.push({sig,rows})}const seats={};if(unique[0])seats.north={title:'Mort · Nord',rows:unique[0].rows.filter(r=>r.ranks)};if(unique.length>1)seats.south={title:'Vous · Sud',rows:unique[unique.length-1].rows.filter(r=>r.ranks)};return {seats,contract,lead}}
@@ -435,7 +472,7 @@ function renderLegacyDiagram(x){
    return `<figure class="game-img-wrap legacy-defense-source"><img class="game-img" src="${x.image}" alt="Diagramme original de défense : ${esc(x.prompt)}"><figcaption>Diagramme d’origine — positions des joueurs conservées</figcaption></figure>`;
  }
  if(!ok)return `<div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Diagramme de cartes : ${esc(x.prompt)}"></div>`;
- return `${dealViewer(d.seats,{defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',contract:d.contract||'',lead:d.lead||'',leadSeat:resolveLeadSeat(x)})}<details class="play-source"><summary><span class="source-control-icon" aria-hidden="true">▣</span><span class="source-control-text"><span class="source-control-closed">Afficher le visuel source</span><span class="source-control-open">Masquer le visuel source</span></span><span class="source-control-chevron" aria-hidden="true">⌄</span></summary><div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Diagramme source : ${esc(x.prompt)}"></div></details>`;
+ return `${dealViewer(d.seats,{perspective:playerSeatFromExercise(x,d.seats),defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',contract:d.contract||'',lead:d.lead||'',leadSeat:resolveLeadSeat(x)})}<details class="play-source"><summary><span class="source-control-icon" aria-hidden="true">▣</span><span class="source-control-text"><span class="source-control-closed">Afficher le visuel source</span><span class="source-control-open">Masquer le visuel source</span></span><span class="source-control-chevron" aria-hidden="true">⌄</span></summary><div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Diagramme source : ${esc(x.prompt)}"></div></details>`;
 }
 // Present the unmodified source wording in readable paragraphs.
 // Only whitespace between sentences is normalized; no sentence is rephrased.
