@@ -92,7 +92,7 @@ const server=http.createServer((req,res)=>{
   const childFrame=page.frame({url:/\/entrainement\//});
   assert.ok(childFrame,'Training iframe must exist');
   await childFrame.evaluate(()=>playTopic('defense'));
-  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
   const westTable=frame.locator('.deal-viewer.defense-adjacent.defense-west');
   await westTable.waitFor({state:'visible',timeout:15000});
@@ -136,7 +136,7 @@ const server=http.createServer((req,res)=>{
 
   // Un déclarant garde au contraire les deux mains en vis-à-vis.
   await childFrame.evaluate(()=>playTopic('plan-libre'));
-  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  await frame.locator('.hero h1').filter({hasText:'Construire son plan de jeu'}).waitFor({state:'visible',timeout:15000});
   await childFrame.evaluate(()=>item('JC-001'));
   await frame.locator('.deal-viewer.compact .deal-seat.north').waitFor({state:'visible',timeout:15000});
   assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.south').count(),1,
