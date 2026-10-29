@@ -14,6 +14,10 @@ permissions:
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,6 +28,6 @@ jobs:
       - name: Install browser test dependencies
         run: |
           npm install --no-save playwright
-          npx playwright install --with-deps chromium
-      - name: Test the QCM flow on a simulated iPhone
-        run: node tests/training-browser.cjs
+          npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Test the QCM flow on a simulated iPhone (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/training-browser.cjs
