@@ -189,9 +189,9 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   const quarantineBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),112,
-    'Only 112 of 114 card exercises are available');
-  for(const blockedId of ['JC-BH-028-Q04','JC-BH-036-Q02']){
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),111,
+    'Only 111 of 114 card exercises are available');
+  for(const blockedId of ['JC-BH-014-Q01','JC-BH-028-Q04','JC-BH-036-Q02']){
     const direct=await childFrame.evaluate(bid=>{item(bid);return {view,id}},blockedId);
     assert.equal(direct.view,'list','Direct navigation to '+blockedId+' is ignored');
     assert.notEqual(direct.id,blockedId,'Quarantined ID is not selected');
