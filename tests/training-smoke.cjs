@@ -31,6 +31,9 @@ check(app.includes('trainingListScroll')&&app.includes('trainingListScope'),'lis
 check(integrated.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'QCM answers remain in two columns');
 check(integrated.includes('font-size:clamp(18px,5.45vw,21px)'),'single-line hand remains readable');
 check(app.includes('function updateBiddingAnswer('),'answer feedback is updated in place');
+check(app.includes('function updateCardAnswer(')&&app.includes('function uncheckCardAnswer('),'card QCM updates and unchecks without rerender');
+check(app.includes('cardAnswerArea(x,true)')&&app.includes('cardAnswerArea(x)'),'regular and guided card corrections use in-place containers');
+check(!app.includes('recordAnswer(id,index,ok);render()'),'answer handler must not force a full page render');
 const seatFunction=app.match(/function seatFromLabel\(label,fallback='south'\)\{[^}]+\}/)?.[0];
 check(!!seatFunction,'seat parser must be present');
 const seatFromLabel=new Function(seatFunction+'; return seatFromLabel;')();
