@@ -567,7 +567,13 @@ header{
 .training-tab{cursor:pointer;border:1px solid #806797;border-radius:10px;min-height:42px;background:#3d3454;color:white;font:700 14px 'Exo 2',system-ui,sans-serif}
 .training-tab.active{background:#e8d9f8;color:#382650;border-color:#e8d9f8}
 .training-return:focus-visible,.training-tab:focus-visible{outline:3px solid #c8a6ff;outline-offset:2px}
-#training-frame{display:block;flex:1;min-height:0;width:100%;border:0;background:#f8f6fd}
+#training-frame-wrap{position:relative;flex:1;min-height:0;background:#211d27}
+#training-frame{display:block;height:100%;width:100%;border:0;background:#211d27}
+#training-loading{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:22px;background:#211d27;color:#eee3fa;text-align:center;font:600 14px/1.5 'Exo 2',system-ui,sans-serif}
+#training-loading[hidden]{display:none}
+#training-loading-spinner{width:29px;height:29px;border:3px solid #665475;border-top-color:#d4b5ef;border-radius:50%;animation:qpjbTrainingSpin .85s linear infinite}
+@keyframes qpjbTrainingSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#training-loading-spinner{animation:none}}
 @media(max-width:350px){.training-toolbar{padding:9px}.training-return{font-size:12px}.training-tab{font-size:12px}}
 </style>
 </head>
@@ -709,7 +715,10 @@ function markSplashReady() {
         <button type="button" class="training-tab" data-mode="play" aria-pressed="false" onclick="qpjbTrainingShow('play')">Jeu de la carte</button>
       </div>
     </nav>
-    <iframe id="training-frame" src="about:blank" title="QPJB · Entraînement"></iframe>
+    <div id="training-frame-wrap">
+      <iframe id="training-frame" src="about:blank" title="QPJB · Entraînement"></iframe>
+      <div id="training-loading" role="status" aria-live="polite"><span id="training-loading-spinner" aria-hidden="true"></span><span>Chargement de l'entraînement…</span></div>
+    </div>
   </div>
 </div>
 <!-- SÉANCE VIEW -->
@@ -2178,6 +2187,7 @@ function qpjbTrainingShow(mode,navigate=true){
  });
  qpjbTrainingResize();window.scrollTo(0,0);
  const frame=document.getElementById('training-frame');
+ document.getElementById('training-loading').hidden=qpjbTrainingReady;
  if(!frame.dataset.started){frame.dataset.started='true';frame.src='./entrainement/?embedded=1&mode='+encodeURIComponent(mode)}
  else qpjbTrainingSelect(mode);
  if(navigate){
@@ -2198,7 +2208,7 @@ function qpjbTrainingExit(){
 window.addEventListener('message',e=>{
  const frame=document.getElementById('training-frame');
  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
- if(e.data?.type==='qpjb-training-ready'){qpjbTrainingReady=true;qpjbTrainingSelect(qpjbTrainingMode)}
+ if(e.data?.type==='qpjb-training-ready'){qpjbTrainingReady=true;document.getElementById('training-loading').hidden=true;qpjbTrainingSelect(qpjbTrainingMode)}
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
 window.addEventListener('popstate',e=>{
