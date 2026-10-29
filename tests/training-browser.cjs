@@ -136,6 +136,39 @@ const server=http.createServer((req,res)=>{
   assert.ok(eastPositions.eastWidth>=140,'East hand must be readable on iPhone');
   assert.ok(eastPositions.eastRight<=eastPositions.shellRight+2,'East hand fits inside table');
 
+
+  // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
+  await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
+  await childFrame.waitForFunction(()=>id==='JC-BH-041-Q02'&&document.querySelector('.cq-stage .cq-option'));
+  const cardPanel=frame.locator('.cq-stage'),cardOptions=cardPanel.locator('.cq-option');
+  await cardPanel.evaluate(el=>{el.dataset.stableCard='yes'});
+  await cardOptions.nth(0).click();
+  await frame.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
+  assert.equal(await cardPanel.getAttribute('data-stable-card'),'yes','Card exercise is not recreated on answer');
+  assert.equal(await cardPanel.locator('.cq-option.wrong').count(),1,'Wrong answer marked without render');
+  await cardOptions.nth(0).click();
+  assert.equal(await cardPanel.locator('.cq-option.selected').count(),0,'Second click unselects a card answer');
+  assert.equal(await cardPanel.locator('.qpjb-card-answer-area[aria-hidden="true"]').count(),1,'Card explanation closes in place');
+  await cardOptions.nth(1).click();
+  assert.equal(await cardPanel.getAttribute('data-stable-card'),'yes','Correct answer also preserves the card viewer');
+  assert.equal(await cardPanel.locator('.cq-option.correct').count(),1,'Correct card answer marked');
+  assert.equal(await cardPanel.locator('.qpjb-card-answer-area.is-open').count(),1,'Card solution opens progressively');
+
+  // Les deux QCM guidés de carte doivent aussi éviter le render() complet.
+  await childFrame.evaluate(()=>item('JC-BH-028-Q04'));
+  await childFrame.waitForFunction(()=>id==='JC-BH-028-Q04'&&document.querySelector('.cq-stage .cq-option'));
+  const guidedPanel=frame.locator('.cq-stage'),guidedOptions=guidedPanel.locator('.cq-option');
+  await guidedPanel.evaluate(el=>{el.dataset.stableGuided='yes'});
+  await guidedOptions.nth(0).click();
+  await guidedPanel.locator('.source-correction').waitFor({state:'visible',timeout:5000});
+  assert.equal(await guidedPanel.getAttribute('data-stable-guided'),'yes','Guided card does not reconstruct the screen');
+  await guidedPanel.locator('.gamecheck .btn').first().click();
+  assert.equal(await guidedPanel.getAttribute('data-stable-guided'),'yes','Self-evaluation keeps the card viewer');
+  assert.equal(await guidedPanel.locator('.completion-notice').count(),1,'Assessment notice appears in place');
+  await guidedOptions.nth(0).click();
+  assert.equal(await guidedPanel.locator('.cq-option.selected').count(),0,'Guided card answer can be deselected');
+  assert.equal(await guidedPanel.locator('.qpjb-card-answer-area[aria-hidden="true"]').count(),1,'Guided explanation closes');
+
   // Anciennes captures incertaines : ne jamais inventer la place du joueur.
   await childFrame.evaluate(()=>item('JC-010'));
   await frame.locator('.legacy-defense-source .game-img').waitFor({state:'visible',timeout:15000});
