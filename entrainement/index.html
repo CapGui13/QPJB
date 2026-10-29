@@ -844,6 +844,29 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 .qpjb-embedded main{width:100%;max-width:none;padding:15px 12px 42px}
 .qpjb-embedded body{min-height:100dvh}
 
+/* QPJB : main de QCM d'enchères en une ligne sur iPhone.
+   Limité au parcours intégré, sans toucher aux diagrammes de jeu de la carte. */
+@media(max-width:600px){
+ .qpjb-embedded .quizgrid .suits{
+  display:flex!important;flex-wrap:nowrap!important;align-items:baseline;
+  justify-content:space-between;gap:3px!important;
+  width:100%;min-width:0;margin:9px 0 6px!important;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:clamp(10px,2.95vw,13px)!important;
+  font-weight:750;line-height:1.45;letter-spacing:-.035em;
+ }
+ .qpjb-embedded .quizgrid .suits .suit{
+  display:flex!important;align-items:baseline;flex:0 1 auto;
+  min-width:0;gap:2px!important;white-space:nowrap;
+ }
+ .qpjb-embedded .quizgrid .suits .suit .sym{
+  min-width:0!important;width:auto!important;flex:none;
+  font-size:1.15em!important;line-height:1;
+ }
+ .qpjb-embedded .quizgrid .suits .suit > span:last-child{
+  white-space:nowrap;letter-spacing:-.055em;
+ }
+}
 /* QPJB — Entraînement intégré. Les règles suivantes ne concernent pas les séances ou documents. */
 html.qpjb-embedded{background:#211d27!important;scroll-behavior:auto}
 .qpjb-embedded body{background:#211d27!important;color:#f6f0fc!important;box-shadow:none;max-width:520px;font:15px/1.5 'Source Serif 4',Georgia,serif}
