@@ -839,3 +839,107 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 /* Intégration à l'application QPJB : retour lisible sur mobile. */
 .head .header-home{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
 @media(max-width:380px){.head .header-home{font-size:11px;padding:9px 8px}}
+
+/* Défense : le mort en Nord et le défenseur Est/Ouest restent voisins.
+   Cette mise en page est réservée aux donnes montrant exactement ces deux mains.
+   Contrairement à has-lateral-hand, aucune main ne migre sous la table. */
+.deal-viewer.defense-adjacent{
+ grid-template-areas:'north north north' 'west center east' 'south south south'!important;
+ gap:9px!important;
+ max-width:650px;
+}
+.deal-viewer.defense-adjacent.defense-west{
+ grid-template-columns:minmax(0,1fr) minmax(92px,126px) 32px!important;
+}
+.deal-viewer.defense-adjacent.defense-east{
+ grid-template-columns:32px minmax(92px,126px) minmax(0,1fr)!important;
+}
+.deal-viewer.defense-adjacent .deal-seat.west,
+.deal-viewer.defense-adjacent .deal-seat.east{
+ width:100%;max-width:none;min-width:0;
+ padding:10px 7px;justify-self:stretch;
+}
+.deal-viewer.defense-adjacent .deal-seat.north{
+ width:min(100%,246px);
+}
+.deal-viewer.defense-adjacent .deal-seat-head{
+ gap:4px;
+}
+.deal-viewer.defense-adjacent .deal-seat-name{
+ font-size:12px;line-height:1.2;
+}
+.deal-viewer.defense-adjacent .deal-cards{
+ max-width:100%;width:100%;
+}
+.deal-viewer.defense-adjacent .deal-cards li{
+ grid-template-columns:17px minmax(0,1fr);
+ column-gap:5px;
+ font-size:clamp(14px,3.8vw,17px);
+ line-height:1.28;
+}
+.deal-viewer.defense-adjacent .deal-suit{width:17px;font-size:19px}
+.deal-viewer.defense-adjacent .deal-ranks{
+ min-width:0;letter-spacing:0;word-break:normal;overflow-wrap:anywhere;
+}
+.deal-viewer.defense-adjacent .deal-center{
+ width:100%;min-width:0;padding:8px 3px;
+}
+.deal-viewer.defense-adjacent .deal-contract{
+ max-width:100%;min-height:28px;
+ padding:5px 3px;font-size:11px;
+ white-space:normal;overflow-wrap:anywhere;
+}
+.deal-viewer.defense-adjacent .deal-marker:is(.east,.west){
+ width:auto;min-height:30px;
+}
+.deal-viewer.defense-adjacent .deal-marker span{
+ min-width:26px;width:26px;height:26px;font-size:11px;
+}
+.deal-viewer.defense-adjacent .deal-marker.south{
+ width:100%;min-height:26px;
+}
+/* L'entame conserve son propre visuel, sans recouvrir la main du défenseur. */
+.deal-viewer.defense-adjacent.has-lead{
+ grid-template-areas:'north north north' 'west center east' 'south south south' 'lead lead lead'!important;
+}
+.deal-viewer.defense-adjacent .deal-played{
+ position:relative;grid-area:lead;
+ top:auto;bottom:auto;left:auto;right:auto;
+ justify-self:center;transform:none;
+ flex-direction:row;gap:12px;
+}
+.deal-viewer.defense-adjacent .deal-playing-card{
+ width:48px;height:70px;
+}
+.deal-viewer.defense-adjacent .deal-card-big{font-size:28px}
+.deal-viewer.defense-adjacent .deal-card-corner{font-size:11px}
+.deal-viewer.defense-adjacent .deal-card-corner small{font-size:11px}
+@media(max-width:740px){
+ .deal-viewer.defense-adjacent{gap:6px!important}
+ .deal-viewer.defense-adjacent.defense-west{
+  grid-template-columns:minmax(0,1fr) minmax(72px,88px) 26px!important;
+ }
+ .deal-viewer.defense-adjacent.defense-east{
+  grid-template-columns:26px minmax(72px,88px) minmax(0,1fr)!important;
+ }
+ .deal-viewer.defense-adjacent .deal-seat.west,
+ .deal-viewer.defense-adjacent .deal-seat.east{padding:8px 6px}
+ .deal-viewer.defense-adjacent .deal-seat-pos{
+  min-width:20px;padding:0 4px;
+ }
+ .deal-viewer.defense-adjacent .deal-center{padding:7px 2px}
+ .deal-viewer.defense-adjacent .deal-contract{font-size:10px;padding:4px 2px}
+}
+@media(max-width:360px){
+ .deal-viewer.defense-adjacent.defense-west{
+  grid-template-columns:minmax(0,1fr) 70px 22px!important;
+ }
+ .deal-viewer.defense-adjacent.defense-east{
+  grid-template-columns:22px 70px minmax(0,1fr)!important;
+ }
+ .deal-viewer.defense-adjacent .deal-cards li{
+  font-size:14px;grid-template-columns:15px minmax(0,1fr);column-gap:4px;
+ }
+ .deal-viewer.defense-adjacent .deal-seat.west,
+ .deal-viewer.defense-adjacent .deal-seat.east{padding:7px 4px}
+}
