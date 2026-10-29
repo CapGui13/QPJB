@@ -87,6 +87,7 @@ function trainingNavigate(action){
 // Annoncer les changements d'écran aux lecteurs d'écran sans décaler la page.
 // Le <main> a tabindex=-1, et Tab retourne dans l'ordre normal des contrôles.
 function focusTrainingPage(){
+ if(typeof document==='undefined')return;
  const root=document.getElementById('root');if(!root)return;
  const label=view==='quiz'&&current()
    ?'Exercice '+seqNum(current())+' — '+title()
