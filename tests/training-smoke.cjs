@@ -75,11 +75,14 @@ const harness=[
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
  "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
  nav,
- "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action()}",
+ "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action();const q=trainingQueuedNav;trainingQueuedNav=null;if(q)trainingNavigate(q)}",
  "topic('2sa');const queued=view==='topics'&&sent.at(-1).type==='qpjb-training-nav-request';complete();",
  "const list=view==='list'&&cat==='2sa';window.scrollY=418;item('EX2');complete();",
  "const quiz=view==='quiz'&&id==='EX2'&&sessionIds.length===2;go('list');complete();",
- "return queued&&list&&quiz&&view==='list'&&scrolls.at(-1)===418&&sent.filter(x=>x.type==='qpjb-training-route').length===3;"
+ "const priorOk=view==='list'&&scrolls.at(-1)===418&&sent.filter(x=>x.type==='qpjb-training-route').length===3;",
+ "topic('ouverture');topic('2sa');const secondClickQueued=!!trainingQueuedNav;complete();",
+ "const secondClickInFlight=!!trainingPendingNav;complete();",
+ "return queued&&list&&quiz&&priorOk&&secondClickQueued&&secondClickInFlight&&cat==='2sa'&&view==='list';"
 ].join('\n');
 check(new Function(harness)(),'navigation and scroll preservation scenario');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
