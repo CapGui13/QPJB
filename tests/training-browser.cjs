@@ -1,5 +1,5 @@
 'use strict';
-const {chromium,devices}=require('playwright');
+const {chromium,webkit,devices}=require('playwright');
 const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
@@ -20,7 +20,9 @@ const server=http.createServer((req,res)=>{
 });
 (async()=>{
  await new Promise(resolve=>server.listen(8765,'127.0.0.1',resolve));
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const browserType=process.env.PW_BROWSER||'chromium';
+ assert.ok(['chromium','webkit'].includes(browserType),'Supported browser under test');
+ const browser=await ({chromium,webkit})[browserType].launch({headless:true,args:browserType==='chromium'?['--no-sandbox']:[]});
  let errors=[];
  try{
   const context=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
@@ -270,6 +272,6 @@ const server=http.createServer((req,res)=>{
   await smallContext.close();
 
   assert.equal(errors.length,0,'No uncaught JavaScript errors: '+errors.join('; '));
-  console.log(JSON.stringify({result:'PASS',device:'iPhone 12 / Chromium',auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
+  console.log(JSON.stringify({result:'PASS',device:'iPhone 12',browser:browserType,auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1;server.close()});
