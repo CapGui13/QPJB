@@ -1,0 +1,91 @@
+name: QPJB Pages — publication après validation
+on:
+  workflow_run:
+    workflows: ["QPJB Training smoke"]
+    types: [completed]
+permissions:
+  contents: read
+concurrency:
+  group: qpjb-verified-pages
+  cancel-in-progress: false
+
+jobs:
+  pages-source:
+    name: Vérifier la source de publication
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_branch == 'main' &&
+          github.event.workflow_run.event != 'pull_request' }}
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.source.outputs.enabled }}
+    steps:
+      - name: Lire le mode de publication de GitHub Pages
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_TYPE=$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '.build_type' 2>/dev/null || echo unknown)
+          if [[ "$BUILD_TYPE" == "workflow" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "Source GitHub Pages : GitHub Actions (validation requise)."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Source Pages actuelle : $BUILD_TYPE."
+            echo "Pour activer le verrou : Settings > Pages > Source > GitHub Actions." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  publish:
+    name: Publier uniquement la version validée
+    needs: pages-source
+    if: ${{ needs.pages-source.outputs.enabled == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Télécharger EXACTEMENT le commit testé
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Refuser le déploiement si une modification ultérieure n'est pas validée
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERIFIED="${{ github.event.workflow_run.head_sha }}"
+          git fetch origin main
+          git merge-base --is-ancestor "$VERIFIED" origin/main || {
+            echo "::error::Le commit testé n'est plus dans l'historique de main."
+            exit 1
+          }
+          # Le bot catalogue peut ajouter ces deux JSON après le commit testé.
+          # Toute autre modification nécessite une nouvelle suite de tests.
+          while IFS= read -r file; do
+            [[ -z "$file" ]] && continue
+            case "$file" in
+              catalogue.json|site-version.json) ;;
+              *)
+                echo "::error::Modification non validée après $VERIFIED : $file"
+                exit 1 ;;
+            esac
+          done < <(git diff --name-only "$VERIFIED" origin/main)
+          echo "Commit validé : $VERIFIED"
+      - name: Générer le catalogue et la version à partir du commit testé
+        run: |
+          python3 scripts/build_catalogue.py
+          touch .nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Déployer QPJB
+        id: deployment
+        uses: actions/deploy-pages@v4
