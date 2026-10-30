@@ -38,8 +38,15 @@ function checkNoHorizontalOverflow(measure,where){
  assert.ok(measure.options.every(o=>o.width>=44&&o.left>=-3&&o.right<=measure.viewportWidth+3),
   where+' controls clipped: '+JSON.stringify(measure));
 }
-async function capture(frame,selector,file){
- await frame.locator(selector).screenshot({path:path.join(out,file),animations:'disabled',timeout:15000});
+async function capture(frame,selector,file,page,outerScroll){
+ const output=path.join(out,file);
+ if(outerScroll){
+  // Sur PC l'iframe est haute de tout le document et seule la page mère défile.
+  // Capturer la page entière évite un scrollIntoView impossible sur l'iframe.
+  await page.screenshot({path:output,fullPage:true,animations:'disabled',timeout:30000});
+ }else{
+  await frame.locator(selector).screenshot({path:output,animations:'disabled',timeout:15000});
+ }
 }
 async function geometry(frame,kind){
  return frame.locator('#root').evaluate((root,selector)=>{
@@ -96,7 +103,7 @@ async function run(browser,spec){
   assert.equal(handGeometry.length,4,'All four suits remain visible as independent groups');
   assert.ok(handGeometry.slice(0,-1).every((item,i)=>item.textRight<=handGeometry[i+1].left+2),
     'Hand ranks and suit signs must not overlap at '+spec.name+': '+JSON.stringify(handGeometry));
-  await capture(locator,'.qpjb-bid-quiz',spec.name+'-bidding.png');
+  await capture(locator,'.qpjb-bid-quiz',spec.name+'-bidding.png',page,spec.name==='desktop');
   // Strongest screen constraint: on a short portrait phone, the choices must fit.
   if(spec.name==='short'){
    const box=await locator.locator('.qpjb-bid-quiz .choices').boundingBox();
@@ -131,14 +138,14 @@ async function run(browser,spec){
    spec.name+' auction context needs WCAG AA text contrast: '+contextContrast);
   if(spec.size.width<=600)assert.equal(card.grid.trim().split(/\s+/).length,2,
    'Short entame options must use the compact two-column layout');
-  await capture(locator,'.cq-stage',spec.name+'-entame.png');
+  await capture(locator,'.cq-stage',spec.name+'-entame.png',page,spec.name==='desktop');
   if(spec.name==='iphone12'){
    // Pixel regression without a fragile cross-platform golden image:
    // a checked then unchecked answer MUST return the same table screenshot.
    const before=await table.screenshot({animations:'disabled'});
    await stage.locator('.cq-option').nth(0).click();
    await stage.locator('.deal-played').waitFor({state:'attached'});
-   await capture(locator,'.cq-stage','iphone12-entame-answered.png');
+   await capture(locator,'.cq-stage','iphone12-entame-answered.png',page,spec.name==='desktop');
    await stage.locator('.cq-option').nth(0).click();
    await frame.waitForFunction(()=>!document.querySelector('.cq-stage .deal-played'));
    const after=await table.screenshot({animations:'disabled'});
@@ -154,7 +161,7 @@ async function run(browser,spec){
    checkNoHorizontalOverflow(long,spec.name+' long options');
    if(spec.size.width<=600)assert.equal(long.grid.trim().split(/\s+/).length,1,
      'Long QCM answers must have one full-width column');
-   await capture(locator,'.cq-stage',spec.name+'-long-card.png');
+   await capture(locator,'.cq-stage',spec.name+'-long-card.png',page,spec.name==='desktop');
   }
   if(spec.name==='iphone12'||spec.name==='desktop'){
    await frame.evaluate(()=>playTopic('defense'));
@@ -162,7 +169,7 @@ async function run(browser,spec){
    await frame.evaluate(()=>item('JC-010'));
    await frame.waitForFunction(()=>id==='JC-010'&&view==='quiz',{timeout:15000});
    await locator.locator('.legacy-defense-source').waitFor({state:'visible'});
-   await capture(locator,'.legacy-defense-source',spec.name+'-historical-defense.png');
+   await capture(locator,'.legacy-defense-source',spec.name+'-historical-defense.png',page,spec.name==='desktop');
   }
   const timing=await frame.evaluate(()=>{
    const nav=performance.getEntriesByType('navigation')[0];
