@@ -550,3 +550,11 @@ html.qpjb-embedded{background:var(--qpjb-page-dark,#211d27)!important;scroll-beh
    min-width:max-content!important;
  }
 }
+
+/* WCAG AA : la note contextuelle se trouve sur la carte d'enchères blanche.
+   Ne pas hériter du violet pâle prévu pour le fond sombre de l'application. */
+.qpjb-embedded .auction-box .auction-context{
+ color:#584366!important;
+ -webkit-text-fill-color:#584366!important;
+ font-size:12px;
+}

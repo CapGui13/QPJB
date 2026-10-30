@@ -116,6 +116,19 @@ async function run(browser,spec){
   await table.waitFor({state:'visible'});
   const card=await geometry(locator,'card');
   checkNoHorizontalOverflow(card,spec.name+' cards');
+  const contextContrast=await stage.locator('.auction-context').evaluate(el=>{
+   const context=getComputedStyle(el);
+   const box=getComputedStyle(el.closest('.auction-box'));
+   const components=value=>(value.match(/[\\d.]+/g)||[]).slice(0,3).map(Number);
+   const luminance=value=>{
+    const channels=components(value).map(n=>{const c=n/255;return c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4});
+    return channels[0]*0.2126+channels[1]*0.7152+channels[2]*0.0722;
+   };
+   const a=luminance(context.color),b=luminance(box.backgroundColor);
+   return (Math.max(a,b)+0.05)/(Math.min(a,b)+0.05);
+  });
+  assert.ok(contextContrast>=4.5,
+   spec.name+' auction context needs WCAG AA text contrast: '+contextContrast);
   if(spec.size.width<=600)assert.equal(card.grid.trim().split(/\s+/).length,2,
    'Short entame options must use the compact two-column layout');
   await capture(locator,'.cq-stage',spec.name+'-entame.png');
