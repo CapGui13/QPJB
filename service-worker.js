@@ -1,10 +1,11 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v33';
+const CACHE = 'qpjb-v34';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
+  BASE + 'site-update.js?v=1',
   BASE + 'manifest.json?v=8',
   BASE + 'qpjb-logo-fixed.svg?v=1',
   BASE + 'qpjb-design-tokens.css?v=20261029e',
@@ -54,8 +55,11 @@ self.addEventListener('fetch', event => {
       // Ne jamais réutiliser une ancienne réponse HTTP pour l'interface ou les exercices.
       const freshTraining = url.pathname === BASE || url.pathname === BASE + 'index.html' ||
         url.pathname.startsWith(BASE + 'entrainement/');
+      // Un reload automatique doit récupérer des fichiers nouveaux, même quand
+      // leurs URL ne contiennent pas de nouveau numéro de version.
+      const freshCode = /\.(?:html?|css|js|json|webmanifest)$/i.test(url.pathname);
       const response = await fetch(request, {
-        cache: freshTraining ? 'no-store' : 'default',
+        cache: freshTraining || freshCode ? 'no-store' : 'default',
         signal: AbortSignal.timeout(6500)
       });
       if (response.ok) await cache.put(request, response.clone());

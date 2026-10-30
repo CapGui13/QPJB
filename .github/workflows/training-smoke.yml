@@ -28,7 +28,9 @@ jobs:
         with:
           node-version: '22'
       - name: Check navigation, layout and data integrity
-        run: node tests/training-smoke.cjs
+        run: |
+          node tests/training-smoke.cjs
+          node tests/site-update.cjs
       - name: Install browser test dependencies
         run: |
           npm install --no-save playwright
