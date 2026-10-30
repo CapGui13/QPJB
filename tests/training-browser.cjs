@@ -377,7 +377,43 @@ const server=http.createServer((req,res)=>{
       'Circle above the only visible hand matches the player');
   }
 
-  // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
+  // Entames : la bonne carte apparaît au bon siège sans recréer les mains.
+  await childFrame.evaluate(()=>item('JC-BH-020-Q01'));
+  await childFrame.waitForFunction(()=>id==='JC-BH-020-Q01'&&document.querySelector('.cq-stage .cq-option'));
+  const leadStage=frame.locator('.cq-stage'),leadTable=leadStage.locator('.deal-viewer');
+  assert.equal(await leadTable.getAttribute('data-perspective'),'east',
+    'East leads from the bottom of their own oriented table');
+  await leadTable.evaluate(el=>{el.dataset.stableLeadTable='yes'});
+  assert.equal(await leadStage.locator('.deal-played').count(),0,'No lead is shown before choosing');
+  const leadOptions=leadStage.locator('.cq-option');
+  await leadOptions.nth(0).click();
+  await leadStage.locator('.deal-played').waitFor({state:'attached',timeout:5000});
+  assert.equal(await leadStage.locator('.deal-played').getAttribute('data-seat'),'east',
+    'Played lead belongs to East, not West');
+  assert.equal(await leadTable.getAttribute('data-stable-lead-table'),'yes',
+    'Displaying the lead preserves the original table DOM');
+  const leadGrid=await leadStage.locator('.cq-options').evaluate(el=>
+    getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length);
+  assert.equal(leadGrid,2,'Short card options appear in two columns on iPhone');
+  await leadOptions.nth(0).click();
+  assert.equal(await leadStage.locator('.deal-played').count(),0,
+    'Unselecting removes the lead without recreating the table');
+  assert.equal(await leadTable.getAttribute('data-stable-lead-table'),'yes',
+    'Unselection keeps the same cards and table');
+  await leadOptions.nth(1).click();
+  assert.equal(await leadStage.locator('.deal-played').count(),0,
+    'A wrong lead does not reveal the expected card');
+
+  // Une longue proposition garde la pleine largeur (pas de colonne illisible).
+  await childFrame.evaluate(()=>playTopic('plan-qcm'));
+  await childFrame.waitForFunction(()=>view==='list'&&ptopic==='plan-qcm',{timeout:15000});
+  await childFrame.evaluate(()=>item('JC-BH-004-1-Q01'));
+  await childFrame.waitForFunction(()=>id==='JC-BH-004-1-Q01'&&document.querySelector('.cq-stage'),{timeout:15000});
+  const longGrid=await frame.locator('.cq-options').evaluate(el=>
+    getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length);
+  assert.equal(longGrid,1,'Long card options remain in one readable column');
+
+  // // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
   await childFrame.waitForFunction(()=>id==='JC-BH-041-Q02'&&document.querySelector('.cq-stage .cq-option'));
   const cardPanel=frame.locator('.cq-stage'),cardOptions=cardPanel.locator('.cq-option');
