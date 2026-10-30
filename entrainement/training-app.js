@@ -132,6 +132,7 @@ function focusTrainingPage(){
  root.setAttribute('aria-label',label);
  root.focus({preventScroll:true});
 }
+let trainingTopicsScroll={topics:0,playtopics:0};
 function trainingApplyPage(next,restoreList=false,recordRoute=true){
  // An old browser route must never reopen a quarantined or unknown exercise.
  if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
@@ -139,6 +140,8 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
  render();
  if(restoreList&&trainingListScope===trainingScope()){
    requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
+ }else if(next==='topics'||next==='playtopics'){
+   requestAnimationFrame(()=>window.scrollTo(0,trainingTopicsScroll[next]||0));
  }else window.scrollTo(0,0);
  requestAnimationFrame(focusTrainingPage);
  if(recordRoute&&embeddedMode){
@@ -150,19 +153,23 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
 function go(v){
  if(v==='home'&&integratedMode){quitTraining();return}
  const restore=v==='list'&&view==='quiz';
+ if((v==='topics'||v==='playtopics')&&view==='list')trainingTopicsScroll[v]=trainingTopicsScroll[v]||0;
  trainingNavigate(()=>trainingApplyPage(v,restore));
 }
 function typ(v,immediate=false){
  const apply=()=>{
    cat=v;status='all';ptopic='all';sessionIds=[];
+   trainingTopicsScroll[v==='play'?'playtopics':'topics']=0;
    trainingApplyPage(v==='play'?'playtopics':'topics',false,!immediate);
  };
  if(immediate)apply();else trainingNavigate(apply);
 }
 function topic(v){
+ trainingTopicsScroll.topics=window.scrollY;
  trainingNavigate(()=>{cat=v;status='all';sessionIds=[];trainingApplyPage('list')});
 }
 function playTopic(v){
+ trainingTopicsScroll.playtopics=window.scrollY;
  trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];trainingApplyPage('list')});
 }
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
@@ -186,12 +193,29 @@ function rel(){if(cat==='play')return byDifficulty(D.play.filter(x=>x.reviewStat
 function seqNum(x){return String(rel().findIndex(a=>a.id===x.id)+1).padStart(2,'0')}
 function progress(arr){return arr.filter(x=>x.reviewStatus!=='a_verifier'&&saved[x.id]?.done).length}
 function validatedCount(arr){return arr.filter(x=>validatedState(saved[x.id])===true).length}
-function counted(k){return byDifficulty(D.bidding.filter(x=>x.reviewStatus!=='a_verifier'&&x.theme===k))}
+function trainingBiddingTheme(x){
+ if(x.theme!=='bicolore')return x.theme;
+ const n=Number(x.id.match(/-(\d+)$/)?.[1]);
+ return n<=2?'1m':n<=5?'redemande':'suite-repondant';
+}
+function counted(k){return byDifficulty(D.bidding.filter(x=>x.reviewStatus!=='a_verifier'&&trainingBiddingTheme(x)===k))}
 function title(){return cat==='all'?'Toutes les enchères':cat==='play'?(PLAY_TOPICS.find(x=>x.id===ptopic)?.name||'Tout le jeu de la carte'):(D.categories.find(x=>x.id===cat)?.name||'Enchères')}
 function stat(x){const s=validatedState(saved[x.id]);return s===null?'→':s?'✓':'✕'}
 function resultLabel(x){const s=validatedState(saved[x.id]);return s===null?'Pas encore commencé':s?'Validé au premier choix':'À revoir : premier choix non validé'}
 function filtered(){return rel().filter(x=>{const s=validatedState(saved[x.id]);return status==='all'||(status==='todo'&&s===null)||(status==='ok'&&s===true)||(status==='failed'&&s===false)})}
 function pageHome(){const nb=D.bidding.filter(x=>x.reviewStatus!=='a_verifier').length;return `<section class="hero"><span class="badge">QPJB · Entraînement · Bêta V7.43</span><h1>À vous de jouer !</h1><p>Choisissez l'un des <strong>deux espaces d'entraînement indépendants</strong> ci-dessous : les <strong>enchères</strong> ou le <strong>jeu de la carte</strong>.</p><p class="muted" style="font-size:12px;margin-bottom:0">Les exercices sont transposés à partir de leurs documents d’origine.</p></section><div class="home-intro"><strong>Choisissez votre entraînement</strong><span>Deux parcours distincts, dans l’esprit du QPJB.</span></div><div class="grid2 home-choices"><button type="button" class="tile home-tile home-bidding" aria-label="Enchères : choisir un thème parmi les ${D.categories.length} thématiques" onclick="typ('bidding')"><span class="home-kicker">ESPACE 1 · ENCHÈRES</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Enchères</span><span class="home-description">Entraînez-vous aux enchères avec <strong>${nb} QCM</strong> classés par thème : réponses à l'ouverture, interventions, redemandes, etc.</span><span class="home-action">Choisir un thème d’enchères <span aria-hidden="true">→</span></span></button><button type="button" class="tile home-tile home-play" aria-label="Jeu de la carte : accéder aux ${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} exercices" onclick="typ('play')"><span class="home-kicker">ESPACE 2 · JEU DE LA CARTE</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Jeu de la carte</span><span class="home-description">Travaillez <strong>${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} situations</strong> de jeu du déclarant et de défense : étudiez les mains, réfléchissez, puis découvrez l’analyse.</span><span class="home-action">Choisir un thème de carte <span aria-hidden="true">→</span></span></button></div>`}
+// Les reclassements portent uniquement sur l'index : les exercices et leurs
+// identifiants/progressions restent inchangés dans les données source.
+for(const c of D.categories){
+ if(c.id==='ouverture')c.description='Décider de l’enchère d’ouverture.';
+ if(c.id==='suite-1sa')c.group='2 · Séquences approfondies';
+ if(c.group==='2 · Construction des séquences')c.group='2 · Séquences approfondies';
+ if(c.id==='suite-repondant')c.description='Décision du répondant après la redemande de l’ouvreur.';
+ if(c.id==='intervention')c.name='Intervenir sur une ouverture adverse';
+ if(c.id==='1m')c.name='Répondre à 1♣ / 1♦';
+ if(c.id==='rep1M')c.name='Répondre à 1♥ / 1♠';
+}
+D.categories=D.categories.filter(c=>c.id!=='bicolore');
 const TRAINING_SOURCE_DESCRIPTION='Ces exercices sont issus de l’ensemble des numéros de Bridge Hebdo et de Bridge & Mois destinés aux débutants.';
 function trainingOverview(kind){
  const isPlay=kind==='play',arr=(isPlay?D.play:D.bidding).filter(x=>x.reviewStatus!=='a_verifier'),ok=validatedCount(arr);
