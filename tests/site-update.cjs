@@ -7,7 +7,7 @@ const code = fs.readFileSync(path.join(__dirname,'..','site-update.js'),'utf8');
 
 const storage=new Map(),events={};
 let clock=100000,sha='a'.repeat(40),reloads=0,swUpdates=0;
-let checks=0,online=true,hidden=false,inQuiz=false,interval=null,apiUnavailable=false;
+let checks=0,online=true,hidden=false,inQuiz=false,interval=null,manifestUnavailable=false;
 const tick=()=>new Promise(resolve=>setImmediate(()=>setImmediate(resolve)));
 const context={
   location:{protocol:'https:',reload(){reloads++}},
@@ -33,14 +33,10 @@ const context={
   AbortController,setTimeout,clearTimeout,
   setInterval(fn,ms){assert.equal(ms,180000);interval=fn;return 1},
   async fetch(url,opts){
-    assert.equal(url,'https://api.github.com/repos/CapGui13/QPJB/actions/runs?per_page=8');
+    assert.equal(url,'/QPJB/site-version.json');
     assert.equal(opts.cache,'no-store');
-    assert.equal(opts.headers.Accept,'application/vnd.github+json');
     checks++;
-    return {ok:!apiUnavailable,async json(){return {workflow_runs:[
-      {name:'QPJB Training smoke',conclusion:'failure',head_sha:'f'.repeat(40)},
-      {name:'pages build and deployment',conclusion:'success',head_sha:sha}
-    ]}}};
+    return {ok:!manifestUnavailable,async json(){return {revision:sha}}};
   }
 };
 (async()=>{
@@ -49,7 +45,7 @@ const context={
   assert.equal(reloads,0,'Initial page records a baseline');
   assert.equal(checks,1,'Only one request per check');
   sha='b'.repeat(40); clock+=180000;interval();await tick();
-  assert.equal(reloads,1,'A successful Pages deployment triggers a reload');
+  assert.equal(reloads,1,'A newly published version triggers a reload');
   assert.equal(swUpdates,1,'The service worker is updated before reload');
   assert.equal(storage.get('qpjb-auto-refresh'),'1','Reload restores the current route');
   clock+=180000;interval();await tick();
@@ -64,7 +60,7 @@ const context={
   assert.equal(reloads,2,'Hidden tabs do not reload');
   hidden=false;events.visibilitychange();await tick();
   assert.equal(reloads,3,'Returning to the tab detects a new deployment');
-  apiUnavailable=true;sha='e'.repeat(40);clock+=180000;interval();await tick();
-  assert.equal(reloads,3,'Unavailable API does not interrupt the session');
+  manifestUnavailable=true;sha='e'.repeat(40);clock+=180000;interval();await tick();
+  assert.equal(reloads,3,'Unavailable version file does not interrupt the session');
   console.log(JSON.stringify({result:'PASS',checks,reloads,swUpdates}));
 })().catch(err=>{console.error(err);process.exitCode=1});

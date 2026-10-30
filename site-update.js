@@ -1,15 +1,14 @@
-/* QPJB — contrôle léger des publications réellement réussies sur GitHub Pages.
-   Une seule requête périodique au lieu de sonder 11 ressources. */
+/* QPJB — contrôle léger des versions publiées par GitHub Pages.
+   Une requête vers un fichier statique local au lieu de l'API GitHub. */
 (function () {
   'use strict';
   if (location.protocol === 'file:') return;
 
-  // Pages build and deployment : identifiant du workflow natif de ce dépôt.
-  // En consultant les exécutions du dépôt on évite de confondre un commit non
-  // déployé (notamment celui d'un bot) avec une nouvelle version publique.
-  const URL = 'https://api.github.com/repos/CapGui13/QPJB/actions/runs?per_page=8';
-  const VERSION_KEY = 'qpjb-pages-release-v1';
-  const RELOAD_KEY = 'qpjb-pages-reloaded-v1';
+  // Ce fichier est régénéré après chaque mise à jour du dépôt,
+  // puis publié sur le même domaine que l'application (sans quota API).
+  const URL = '/QPJB/site-version.json';
+  const VERSION_KEY = 'qpjb-pages-release-v2';
+  const RELOAD_KEY = 'qpjb-pages-reloaded-v2';
   const AUTO_RELOAD_KEY = 'qpjb-auto-refresh';
   const CHECK_MS = 180000;
   const MIN_GAP_MS = 60000;
@@ -32,17 +31,12 @@
     const abort = new AbortController();
     const watchdog = setTimeout(() => abort.abort(), 8000);
     try {
-      const response = await fetch(URL, {
-        cache: 'no-store',
-        headers: {'Accept': 'application/vnd.github+json'},
-        signal: abort.signal
-      });
-      if (!response.ok) return null; // y compris limitation de débit de l'API
+      const response = await fetch(URL, {cache: 'no-store', signal: abort.signal});
+      if (!response.ok) return null;
       const payload = await response.json();
-      const pages = Array.isArray(payload.workflow_runs) ?
-        payload.workflow_runs.find(run => run.name === 'pages build and deployment' &&
-          run.conclusion === 'success' && /^[a-f0-9]{40}$/i.test(run.head_sha || '')) : null;
-      return pages ? pages.head_sha.toLowerCase() : null;
+      const revision = payload && payload.revision;
+      return typeof revision === 'string' && /^[a-f0-9]{40}$/i.test(revision)
+        ? revision.toLowerCase() : null;
     } catch (_) {
       return null; // hors ligne : conserver le contenu et la progression
     } finally {
