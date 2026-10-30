@@ -1,129 +1,103 @@
-/* QPJB — mise à jour automatique depuis GitHub Pages.
-   Aucune version à incrémenter lors des publications : les validations HTTP
-   (ETag/Last-Modified) des ressources de production servent de référence. */
+/* QPJB — contrôle léger des publications réellement réussies sur GitHub Pages.
+   Une seule requête périodique au lieu de sonder 11 ressources. */
 (function () {
   'use strict';
-
   if (location.protocol === 'file:') return;
 
-  const BASE = '/QPJB/';
-  const WATCH = [
-    'index.html',
-    'service-worker.js',
-    'catalogue.json',
-    'config.json',
-    'entrainement/qp-training-corrige.html',
-    'entrainement/index.html',
-    'entrainement/training-app.js',
-    'entrainement/training-core.css',
-    'entrainement/training-integrated.css',
-    'entrainement/training-data.js',
-    'entrainement/training-data-v743-corrige.js'
-  ];
-  const BASELINE_KEY = 'qpjb-site-signatures-v1';
-  const RELOAD_KEY = 'qpjb-site-reloaded-signatures-v1';
-  const CHECK_EVERY_MS = 60000;
-  const REQUEST_TIMEOUT_MS = 8000;
+  // Pages build and deployment : identifiant du workflow natif de ce dépôt.
+  // En consultant les exécutions du dépôt on évite de confondre un commit non
+  // déployé (notamment celui d'un bot) avec une nouvelle version publique.
+  const URL = 'https://api.github.com/repos/CapGui13/QPJB/actions/runs?per_page=8';
+  const VERSION_KEY = 'qpjb-pages-release-v1';
+  const RELOAD_KEY = 'qpjb-pages-reloaded-v1';
+  const AUTO_RELOAD_KEY = 'qpjb-auto-refresh';
+  const CHECK_MS = 180000;
+  const MIN_GAP_MS = 60000;
   let checking = false;
-  let previous = null;
+  let activating = false;
+  let lastCheck = -MIN_GAP_MS;
+  let pending = null;
 
-  function storageGet(key) {
+  function get(key) {
     try { return sessionStorage.getItem(key); } catch (_) { return null; }
   }
-  function storageSet(key, value) {
+  function set(key, value) {
     try { sessionStorage.setItem(key, value); } catch (_) {}
   }
-  function savedBaseline() {
-    try {
-      const parsed = JSON.parse(storageGet(BASELINE_KEY) || 'null');
-      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
-    } catch (_) { return null; }
+  function inExercise() {
+    return !!document.body?.classList.contains('qpjb-training-in-quiz');
   }
 
-  async function versionOf(path) {
-    const controller = new AbortController();
-    const timer = setTimeout(function () { controller.abort(); }, REQUEST_TIMEOUT_MS);
+  async function publishedRevision() {
+    const abort = new AbortController();
+    const watchdog = setTimeout(() => abort.abort(), 8000);
     try {
-      // HEAD évite de télécharger à chaque contrôle les 2 Mo de données de jeu.
-      // La requête n'est pas interceptée par notre service worker (GET seulement).
-      const response = await fetch(BASE + path, {
-        method: 'HEAD',
+      const response = await fetch(URL, {
         cache: 'no-store',
-        signal: controller.signal
+        headers: {'Accept': 'application/vnd.github+json'},
+        signal: abort.signal
       });
-      if (!response.ok) return null;
-      const etag = response.headers.get('etag');
-      const modified = response.headers.get('last-modified');
-      const length = response.headers.get('content-length') || '';
-      const fingerprint = etag ? 'etag:' + etag :
-        modified ? 'modified:' + modified + '|length:' + length : '';
-      return fingerprint ? [path, fingerprint, modified] : null;
+      if (!response.ok) return null; // y compris limitation de débit de l'API
+      const payload = await response.json();
+      const pages = Array.isArray(payload.workflow_runs) ?
+        payload.workflow_runs.find(run => run.name === 'pages build and deployment' &&
+          run.conclusion === 'success' && /^[a-f0-9]{40}$/i.test(run.head_sha || '')) : null;
+      return pages ? pages.head_sha.toLowerCase() : null;
     } catch (_) {
-      return null; // Réseau indisponible : pas de rechargement intempestif.
+      return null; // hors ligne : conserver le contenu et la progression
     } finally {
-      clearTimeout(timer);
+      clearTimeout(watchdog);
     }
   }
 
-  async function checkForUpdate() {
-    if (checking || document.hidden || navigator.onLine === false) return;
-    checking = true;
+  async function activate(revision) {
+    if (activating || !revision || inExercise()) {
+      if (revision) pending = revision;
+      return;
+    }
+    if (get(RELOAD_KEY) === revision) { pending = null; return; }
+    activating = true;
+    pending = null;
+    set(RELOAD_KEY, revision);
+    set(VERSION_KEY, revision);
+    set(AUTO_RELOAD_KEY, '1'); // permet de restaurer l'écran en cours
     try {
-      const responses = await Promise.all(WATCH.map(versionOf));
-      const available = responses.filter(Boolean);
-      // Évite toute décision sur la base d'une réponse partielle du CDN.
-      if (available.length < 5) return;
-      const current = Object.fromEntries(available.map(function (item) {
-        return [item[0], item[1]];
-      }));
-      const baseline = previous || savedBaseline();
-      let changed = Boolean(baseline && Object.keys(current).some(function (path) {
-        return baseline[path] && baseline[path] !== current[path];
-      }));
-
-      if (!baseline) {
-        // Si le HTML chargé est déjà périmé au premier contrôle,
-        // comparer sa date réelle à celle du fichier publié.
-        const indexInfo = available.find(function (item) { return item[0] === 'index.html'; });
-        const loadedAt = Date.parse(document.lastModified || '');
-        const serverAt = Date.parse(indexInfo && indexInfo[2] || '');
-        if (Number.isFinite(loadedAt) && loadedAt > 1577836800000 &&
-            Number.isFinite(serverAt) && serverAt - loadedAt > 2000) changed = true;
+      if ('serviceWorker' in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration('/QPJB/');
+        if (registration) await registration.update();
       }
+    } catch (_) {}
+    // Le service worker charge HTML/CSS/JS/JSON en réseau d'abord (no-store).
+    location.reload();
+  }
 
-      previous = Object.assign({}, baseline || {}, current);
-      storageSet(BASELINE_KEY, JSON.stringify(previous));
-
-      if (!changed) return;
-      const revision = JSON.stringify(current);
-      if (storageGet(RELOAD_KEY) === revision) return;
-      // Ne jamais interrompre une donne : le contrôle reprend à la sortie du QCM.
-      if (document.body?.classList.contains('qpjb-training-in-quiz')) return;
-      storageSet(RELOAD_KEY, revision);
-      storageSet('qpjb-auto-refresh', '1');
-
-      // Actualise le SW si sa publication a changé, puis recharge. Le SW
-      // force une récupération réseau des HTML/CSS/JS/JSON QPJB.
-      try {
-        if (navigator.serviceWorker) {
-          const registration = await navigator.serviceWorker.getRegistration(BASE);
-          if (registration) await registration.update();
-        }
-      } catch (_) {}
-      location.reload();
+  async function check() {
+    if (activating || document.hidden || navigator.onLine === false) return;
+    if (pending && !inExercise()) { await activate(pending); return; }
+    const now = Date.now();
+    if (checking || now - lastCheck < MIN_GAP_MS) return;
+    checking = true;
+    lastCheck = now;
+    try {
+      const revision = await publishedRevision();
+      if (!revision) return;
+      const previous = get(VERSION_KEY);
+      if (!previous) { set(VERSION_KEY, revision); return; }
+      if (previous !== revision) {
+        pending = revision;
+        if (!inExercise()) await activate(revision);
+      }
     } finally {
       checking = false;
     }
   }
 
-  // Contrôle à l'ouverture, toutes les 60 s tant que l'onglet est visible,
-  // au retour sur l'onglet et au rétablissement du réseau.
-  checkForUpdate();
-  setInterval(checkForUpdate, CHECK_EVERY_MS);
+  check();
+  setInterval(check, CHECK_MS);
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) checkForUpdate();
+    if (!document.hidden) check();
   });
-  window.addEventListener('focus', checkForUpdate);
-  window.addEventListener('online', checkForUpdate);
-  window.addEventListener('qpjb-training-safe-update', checkForUpdate);
+  window.addEventListener('focus', check);
+  window.addEventListener('online', check);
+  window.addEventListener('qpjb-training-safe-update', check);
 })();
