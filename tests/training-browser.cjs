@@ -256,13 +256,50 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.item').first().click();
   await quiz.waitFor({state:'visible',timeout:15000});
   const firstBidId=await trainingFrameForNav.evaluate(()=>id);
+  const firstIndex=await trainingFrameForNav.evaluate(()=>current().choices.indexOf(current().correct));
+  await quiz.locator('.choice[data-answer-index="'+firstIndex+'"]').click();
+  const firstChoice=await trainingFrameForNav.evaluate(()=>({
+    selected:chosen,attempts:saved[id]?.attempts??0,history:saved[id]?.history?.length??0,
+    redoAnswered,corrected:!!document.querySelector('.feedback,.source-correction')
+  }));
+  assert.ok(firstChoice.corrected,'First exercise reveals its explanation');
+  const firstAlternatives=quiz.locator('.postsolution-trigger').first();
+  const hasAlternatives=await firstAlternatives.count()>0;
+  if(hasAlternatives)await firstAlternatives.click();
   await frame.locator('.footnav button.primary').click();
   await trainingFrameForNav.waitForFunction(previous=>view==='quiz'&&id!==previous,firstBidId);
   assert.equal(await quiz.locator('.choices>.choice').count(),4,'Next exercise has four choices');
+  const secondBidId=await trainingFrameForNav.evaluate(()=>id);
+  const secondIndex=await trainingFrameForNav.evaluate(()=>current().choices.indexOf(current().correct));
+  await quiz.locator('.choice[data-answer-index="'+secondIndex+'"]').click();
+  const secondChoice=await trainingFrameForNav.evaluate(()=>({
+    selected:chosen,attempts:saved[id]?.attempts??0,history:saved[id]?.history?.length??0
+  }));
   await frame.locator('.footnav button').first().click();
   await trainingFrameForNav.waitForFunction(first=>view==='quiz'&&id===first,firstBidId);
   assert.equal(iframeNavigations,0,'Internal previous/next navigation does not reload the training iframe');
-  assert.equal(await quiz.locator('.choice.selected').count(),0,'Returning to an unanswered exercise leaves it blank');
+  assert.equal(await quiz.locator('.choice.selected').count(),1,'Returning to an answered exercise keeps its selected answer');
+  assert.equal(await quiz.locator('.choice.selected').getAttribute('data-answer-index'),String(firstIndex),
+    'The previous answer remains checked');
+  const restored=await trainingFrameForNav.evaluate(()=>({
+    selected:chosen,attempts:saved[id]?.attempts??0,history:saved[id]?.history?.length??0,
+    redoAnswered,corrected:!!document.querySelector('.feedback,.source-correction')
+  }));
+  assert.deepEqual(restored,firstChoice,'Previous preserves the exact answer state without recording a new attempt');
+  if(hasAlternatives){
+    assert.equal(await quiz.locator('.postsolution-trigger').first().getAttribute('aria-expanded'),'true',
+      'Opened alternative explanations stay open when going back');
+  }
+  await frame.locator('.footnav button.primary').click();
+  await trainingFrameForNav.waitForFunction(second=>view==='quiz'&&id===second,secondBidId);
+  assert.equal(await quiz.locator('.choice.selected').getAttribute('data-answer-index'),String(secondIndex),
+    'Next also returns to the previous selection in the second exercise');
+  const secondRestored=await trainingFrameForNav.evaluate(()=>({
+    selected:chosen,attempts:saved[id]?.attempts??0,history:saved[id]?.history?.length??0
+  }));
+  assert.deepEqual(secondRestored,secondChoice,'Neither direction increments visits during navigation');
+  await frame.locator('.footnav button').first().click();
+  await trainingFrameForNav.waitForFunction(first=>view==='quiz'&&id===first,firstBidId);
   await frame.locator('.qpjb-quiz-nav button.back').click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   const recordAfterNavigation=await trainingFrameForNav.evaluate(exId=>saved[exId],firstBidId);
