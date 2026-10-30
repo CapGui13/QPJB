@@ -161,7 +161,7 @@ const harness=[
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
- "const document={querySelector:()=>null};const sessionQuizStates=new Map();const restoreQuizDetails=()=>{};const rememberCurrentQuiz=()=>{};const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
+ "const document={querySelector:()=>null,getElementById:()=>null};const sessionQuizStates=new Map();const restoreQuizDetails=()=>{};const rememberCurrentQuiz=()=>{};const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
  nav,
  "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action();const q=trainingQueuedNav;trainingQueuedNav=null;if(q)trainingNavigate(q)}",
  "topic('2sa');const queued=view==='topics'&&sent.at(-1).type==='qpjb-training-nav-request';complete();",
