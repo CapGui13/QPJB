@@ -55,9 +55,12 @@ for(const script of parent.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)
 check(!html.includes('training-style.css'),'obsolete stylesheet is not loaded');
 check(html.indexOf('qpjb-design-tokens.css')<html.indexOf('training-core.css'),'shared tokens load before base');
 check(html.indexOf('training-core.css')<html.indexOf('training-integrated.css'),'integrated CSS loads last');
-check(html.indexOf('training-data.js')<html.indexOf('training-app.js'),'training data loads before logic');
-check(/<script defer src="\.\/training-data\.js/.test(html)&&/<script defer src="\.\/training-app\.js/.test(html),
- 'Training scripts download in parallel but execute in source order');
+check(html.indexOf('training-data-bootstrap.js')<html.indexOf('training-app.js'),'lazy data bootstrap loads before the application');
+check(/<script defer src="\.\/training-data-bootstrap\.js/.test(html)&&/<script defer src="\.\/training-app\.js/.test(html),
+ 'Training bootstrap and app execute in source order; exercises load on demand');
+check(app.includes("ensureTrainingData(initialMode==='play'?'play':'bidding')")&&
+ app.includes("if(!trainingDataReady('play'))"),
+ 'The correct exercise module loads first and switching modes loads the other');
 check(parent.includes('qpjbTrainingFadeNavigate')&&parent.includes('fadeSwap(()=>new Promise'),'QPJB owns page fades');
 check(app.includes('qpjb-training-nav-request')&&app.includes('qpjb-training-nav-apply'),'iframe uses coordinated transitions');
 check(parent.includes('trainingDepth')&&app.includes('qpjb-training-route-restore'),'browser history can restore pages');

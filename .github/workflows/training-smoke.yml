@@ -27,13 +27,18 @@ jobs:
         run: |
           node tests/training-smoke.cjs
           node tests/training-card-integrity.cjs
+          node tests/training-ambiguity.cjs
+          node scripts/split_training_data.cjs --check
           node tests/site-update.cjs
-      - name: Rapport des 677 exercices
+      - name: Rapports d'intégrité et d'ambiguïté
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: training-integrity
-          path: artifacts/training-integrity/report.json
+          path: |
+            artifacts/training-integrity/report.json
+            artifacts/training-ambiguity/report.json
+            artifacts/training-ambiguity/report.csv
           retention-days: 14
           if-no-files-found: warn
   smoke:

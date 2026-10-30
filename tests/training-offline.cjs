@@ -41,11 +41,13 @@ const server=http.createServer((req,res)=>{
      return {
        images:assets.filter(Boolean).length,
        training:!!(await cache.match('/QPJB/entrainement/')),
-       data:stored.some(url=>url.includes('/QPJB/entrainement/training-data.js?v=')),
+       data:stored.some(url=>url.includes('/QPJB/entrainement/training-data-bootstrap.js?v=')),
+       bidding:stored.some(url=>url.includes('/QPJB/entrainement/training-data-bidding.js?v=')),
+       play:stored.some(url=>url.includes('/QPJB/entrainement/training-data-play.js?v=')),
        app:stored.some(url=>url.includes('/QPJB/entrainement/training-app.js?v='))
      };
    });
-   assert.deepEqual(before,{images:23,training:true,data:true,app:true},
+   assert.deepEqual(before,{images:23,training:true,data:true,bidding:true,play:true,app:true},
      'Full training shell and all 23 original WebP images must already be cached');
    await context.setOffline(true);
    // Repartir de l'accueil hors ligne, puis charger la vraie iframe d'entraînement.
