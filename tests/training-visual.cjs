@@ -90,6 +90,10 @@ async function run(browser,spec){
    const box=await locator.locator('.qpjb-bid-quiz .choices').boundingBox();
    assert.ok(box&&box.y+box.height<=spec.size.height+6,'Short iPhone shows four bidding answers');
   }
+  // La barre de changement de mode est masquée dans un QCM : sortir
+  // du QCM avant de demander le jeu de la carte.
+  await frame.evaluate(()=>go('list'));
+  await waitView(frame,'list','2sa');
   await page.locator('.training-tab[data-mode="play"]').click({timeout:15000});
   await waitView(frame,'playtopics');
   await frame.evaluate(()=>playTopic('entames'));
