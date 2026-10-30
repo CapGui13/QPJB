@@ -541,3 +541,12 @@ html.qpjb-embedded{background:var(--qpjb-page-dark,#211d27)!important;scroll-beh
    overscroll-behavior-x:contain;
  }
 }
+
+/* Ne jamais tasser les valeurs et symboles des quatre couleurs quand
+   l'agrandissement du texte iOS exige une barre de cartes plus large. */
+@media(max-width:600px){
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits .suit{
+   flex:0 0 auto!important;
+   min-width:max-content!important;
+ }
+}

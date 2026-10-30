@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{
    await page.goto('http://127.0.0.1:8766/QPJB/',{waitUntil:'domcontentloaded'});
    await page.waitForFunction(()=>!!navigator.serviceWorker?.controller,null,{timeout:35000});
    const before=await page.evaluate(async()=>{
-     const cache=await caches.open('qpjb-v16');
+     const cache=await caches.open('qpjb-v17');
      const assets=await Promise.all(Array.from({length:23},(_,i)=>
         cache.match('/QPJB/entrainement/assets/JC-'+String(i+1).padStart(3,'0')+'.webp')));
      return {

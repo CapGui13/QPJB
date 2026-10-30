@@ -85,6 +85,17 @@ async function run(browser,spec){
   await locator.locator('.qpjb-bid-quiz').waitFor({state:'visible'});
   const bid=await geometry(locator,'bid');
   checkNoHorizontalOverflow(bid,spec.name+' bidding');
+  const handGeometry=await locator.locator('.qpjb-bid-quiz .suits').evaluate(el=>{
+   const suits=[...el.querySelectorAll('.suit')];
+   return suits.map(item=>({
+     boxRight:item.getBoundingClientRect().right,
+     textRight:item.lastElementChild?.getBoundingClientRect().right||0,
+     left:item.getBoundingClientRect().left
+   }));
+  });
+  assert.equal(handGeometry.length,4,'All four suits remain visible as independent groups');
+  assert.ok(handGeometry.slice(0,-1).every((item,i)=>item.textRight<=handGeometry[i+1].left+2),
+    'Hand ranks and suit signs must not overlap at '+spec.name+': '+JSON.stringify(handGeometry));
   await capture(locator,'.qpjb-bid-quiz',spec.name+'-bidding.png');
   // Strongest screen constraint: on a short portrait phone, the choices must fit.
   if(spec.name==='short'){
