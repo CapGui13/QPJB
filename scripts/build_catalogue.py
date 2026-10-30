@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Reconstruit le catalogue public de QPJB sans appel à l'API GitHub côté visiteurs."""
 import json
+import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
@@ -38,4 +39,13 @@ if not seances:
 (root / "catalogue.json").write_text(
     json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
 )
-print(f"Catalogue QPJB : {len(seances)} séances, {len(images)} documents")
+# Fichier de version léger, publié avec les autres ressources GitHub Pages.
+# Une modification de code/données déclenche ce workflow et une nouvelle révision.
+revision = subprocess.check_output(
+    ["git", "rev-parse", "HEAD"], cwd=root, text=True
+).strip()
+(root / "site-version.json").write_text(
+    json.dumps({"revision": revision}, separators=(",", ":")) + "\n",
+    encoding="utf-8",
+)
+print(f"Catalogue QPJB : {len(seances)} séances, {len(images)} documents ; version {revision[:12]}")

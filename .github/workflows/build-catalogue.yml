@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths-ignore:
       - catalogue.json
+      - site-version.json
   workflow_dispatch:
 
 permissions:
@@ -28,7 +29,7 @@ jobs:
         run: python scripts/build_catalogue.py
       - name: Publier uniquement si nécessaire
         run: |
-          git add catalogue.json
+          git add catalogue.json site-version.json
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
