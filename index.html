@@ -696,8 +696,8 @@ function markSplashReady() {
   <section class="training-section" aria-labelledby="training-heading">
     <div class="training-label" id="training-heading">Entraînement [Bêta]</div>
     <div class="training-grid">
-      <a class="training-button" data-training-mode="bidding" href="#entrainement-bidding" onclick="event.preventDefault();qpjbTrainingShow('bidding')">Enchères</a>
-      <a class="training-button" data-training-mode="play" href="#entrainement-play" onclick="event.preventDefault();qpjbTrainingShow('play')">Jeu de la carte</a>
+      <a class="training-button" data-training-mode="bidding" href="./" onclick="event.preventDefault();qpjbTrainingShow('bidding')">Enchères</a>
+      <a class="training-button" data-training-mode="play" href="./" onclick="event.preventDefault();qpjbTrainingShow('play')">Jeu de la carte</a>
     </div>
   </section>
   <div class="config" id="seance-config">
@@ -2243,8 +2243,8 @@ function qpjbTrainingShow(mode,navigate=true){
      frame.src='./entrainement/?embedded=1&rev=20261030o&mode='+encodeURIComponent(mode);
    }else qpjbTrainingSelect(mode);
    if(navigate){
-     if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', '#entrainement-'+mode);
-     else history.pushState({qpjbTraining:mode,trainingDepth:0},'', '#entrainement-'+mode);
+     if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', location.pathname+location.search);
+     else history.pushState({qpjbTraining:mode,trainingDepth:0},'', location.pathname+location.search);
    }
  };
  if(navigate)qpjbTrainingWithFade(apply);
@@ -2274,7 +2274,7 @@ window.addEventListener('message',e=>{
  }else if(e.data?.type==='qpjb-training-route'){
    if(history.state?.qpjbTraining){
      const depth=Math.max(0,history.state.trainingDepth||0)+1;
-     history.pushState({qpjbTraining:qpjbTrainingMode,trainingDepth:depth,trainingRoute:e.data.route},'', '#entrainement-'+qpjbTrainingMode);
+     history.pushState({qpjbTraining:qpjbTrainingMode,trainingDepth:depth,trainingRoute:e.data.route},'', location.pathname+location.search);
    }
  }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
