@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v29';
+const CACHE = 'qpjb-v31';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -9,9 +9,11 @@ const TRAINING_SHELL = [
   BASE + 'qpjb-logo-fixed.svg?v=1',
   BASE + 'qpjb-design-tokens.css?v=20261029e',
   BASE + 'entrainement/',
+  BASE + 'entrainement/qp-training-corrige.html',
   BASE + 'entrainement/training-core.css?v=20261030g',
   BASE + 'entrainement/training-integrated.css?v=20261030w',
   BASE + 'entrainement/training-data.js?v=20261030-fix10',
+  BASE + 'entrainement/training-data-v743-corrige.js?v=20261030-correctif',
   BASE + 'entrainement/training-app.js?v=20261030x'
 ];
 // Ces fac-similés sont petits mais indispensables quand un exercice est ouvert
