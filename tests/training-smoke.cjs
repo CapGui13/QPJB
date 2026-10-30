@@ -152,7 +152,8 @@ check(start>=0&&end>start&&i>=0&&j>i,'navigation handlers are present');
 const nav=app.slice(start,end)+'\n'+app.slice(i,j);
 const harness=[
  "const sent=[],scrolls=[];let renders=0;",
- "const window={scrollY:0,scrollTo:(x,y)=>scrolls.push(y),parent:{postMessage:msg=>sent.push(msg)}};",
+ "const window={scrollY:0,scrollTo:(x,y)=>scrolls.push(y),parent:{postMessage:msg=>sent.push(msg)}};", 
+  "const trainingScrollY=()=>window.scrollY,trainingScrollTo=y=>window.scrollTo(0,y);let randomMode=false;",
  "const location={origin:'https://test.invalid'},embeddedMode=true,integratedMode=true;",
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
