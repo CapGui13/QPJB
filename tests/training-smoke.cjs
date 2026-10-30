@@ -57,6 +57,21 @@ check(parent.includes('trainingDepth')&&app.includes('qpjb-training-route-restor
 check(app.includes('trainingListScroll')&&app.includes('trainingListScope'),'list scroll is retained');
 check(integrated.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'QCM answers remain in two columns');
 check(integrated.includes('font-size:clamp(18px,5.45vw,21px)'),'single-line hand remains readable');
+check(app.includes('function syncCardLead(')&&app.includes('if(!guided)syncCardLead(x)'),
+ 'Card answer changes update played lead without recreating the card viewer');
+check(app.includes("const seat=after?playerSeatFromExercise(x,seats):resolveLeadSeat(x)"),
+ 'A revealed opening lead uses the actual player, including East');
+check(app.includes('function cardChoicesCompact(')&&integrated.includes('.cq-stage.cq-compact .cq-options'),
+ 'Short card choices are responsive, while long choices retain the one-column layout');
+check(core.includes('.legacy-defense-source .legacy-defense-heading')&&
+      app.includes('aucune orientation supposée'),
+ 'Ambiguous historical diagrams remain unrotated and are visually identified');
+check(app.includes('function resultLabel(')&&app.includes('Validé au premier choix')&&
+      app.includes('À revoir : premier choix non validé'),
+ 'Progress statuses distinguish first-choice validity and revision');
+check(app.includes('class="muted training-count"')&&core.includes('.training-count')&&
+      core.includes('.play-free-panel'),
+ 'Reused training list and exercise styles do not rely on inline declarations');
 check(app.includes('function updateBiddingAnswer('),'answer feedback is updated in place');
 check(app.includes('function updateCardAnswer(')&&app.includes('function uncheckCardAnswer('),'card QCM updates and unchecks without rerender');
 check(app.includes('cardAnswerArea(x,true)')&&app.includes('cardAnswerArea(x)'),'regular and guided card corrections use in-place containers');
@@ -73,6 +88,8 @@ const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
 check(raw.length<1200000,'initial exercise data stays compact (no embedded WebP facsimiles)');
 const data=JSON.parse(raw.slice(8,-1));
+check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===24,
+ 'All 24 source opening-lead problems remain available and unmodified');
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
 const facsimiles=JSON.parse(read('tests/training-image-checksums.json'));
 check(facsimiles.files.length===23,'23 original image facsimiles externalized');
