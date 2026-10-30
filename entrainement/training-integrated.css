@@ -570,3 +570,10 @@ html.qpjb-embedded:not(.qpjb-parent-scroll){overflow-y:scroll;scrollbar-gutter:s
 .qpjb-embedded .postsolution-body-inner,.qpjb-embedded .postsolution-item{min-width:0;max-width:100%}
 .qpjb-embedded .postsolution-grid{grid-template-columns:minmax(0,1fr)}
 .qpjb-embedded .postsolution-item{overflow-wrap:anywhere}
+
+/* Desktop : le scroll des QCM appartient à QPJB (fenêtre principale).
+   L'iframe devient haute comme son contenu, mais 100dvh dans son CSS ne doit
+   PAS suivre cette hauteur : c'était la cause de l'étirement en boucle. */
+html.qpjb-embedded.qpjb-parent-scroll.qpjb-quiz-active main:has(>.qpjb-bid-quiz){
+ min-height:var(--qpjb-training-viewport-height,800px)!important;
+}

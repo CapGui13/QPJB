@@ -2213,17 +2213,19 @@ function qpjbTrainingFadeNavigate(seq,route=null,mode=null){
  };
  start();
 }
-let qpjbTrainingContentHeight=840,qpjbTrainingIsOuterScroll=null;
+let qpjbTrainingContentHeight=840,qpjbTrainingIsOuterScroll=null,qpjbTrainingLastViewportHeight=0;
 function qpjbTrainingResize(){
  const view=document.getElementById('vtraining'),workspace=document.getElementById('training-workspace');
  if(view.style.display==='none')return;
  const quiz=document.body.classList.contains('qpjb-training-in-quiz');
  const height=quiz?0:(Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60);
- const outer=!quiz&&window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+ const outer=window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
  document.body.classList.toggle('qpjb-training-outer-scroll',outer);
- if(qpjbTrainingIsOuterScroll!==outer){
+ const viewportHeight=window.innerHeight;
+ if(qpjbTrainingIsOuterScroll!==outer||qpjbTrainingLastViewportHeight!==viewportHeight){
    qpjbTrainingIsOuterScroll=outer;
-   if(qpjbTrainingReady)document.getElementById('training-frame').contentWindow?.postMessage({type:'qpjb-training-scroll-mode',outer},location.origin);
+   qpjbTrainingLastViewportHeight=viewportHeight;
+   if(qpjbTrainingReady)document.getElementById('training-frame').contentWindow?.postMessage({type:'qpjb-training-scroll-mode',outer,viewportHeight},location.origin);
  }
  const frame=document.getElementById('training-frame'),wrap=document.getElementById('training-frame-wrap');
  if(outer){
@@ -2257,7 +2259,7 @@ function qpjbTrainingShow(mode,navigate=true){
    document.getElementById('training-loading').hidden=false;
    if(!frame.dataset.started){
      frame.dataset.started='true';
-     frame.src='./entrainement/?embedded=1&rev=20261030t&mode='+encodeURIComponent(mode);
+     frame.src='./entrainement/?embedded=1&rev=20261030u&mode='+encodeURIComponent(mode);
    }else qpjbTrainingSelect(mode);
    if(navigate){
      if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', location.pathname+location.search);

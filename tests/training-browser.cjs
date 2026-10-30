@@ -568,17 +568,44 @@ const server=http.createServer((req,res)=>{
         mainX:main.x,mainWidth:main.width,quizX:quiz.x,quizWidth:quiz.width,
         overflow:document.documentElement.scrollWidth>window.innerWidth+1};
     });
+    await deskChild.waitForFunction(()=>document.documentElement.classList.contains('qpjb-parent-scroll'));
+    await desktopPage.waitForTimeout(400);
+    const layout=()=>desktopPage.evaluate(()=>{
+      const frame=document.getElementById('training-frame');
+      return {outer:document.body.classList.contains('qpjb-training-outer-scroll'),
+        frameHeight:frame.getBoundingClientRect().height,
+        viewport:window.innerHeight,documentHeight:document.documentElement.scrollHeight};
+    });
+    const initialLayout=await layout();
+    assert.ok(initialLayout.outer,'Desktop exercise must use the main page scrollbar');
+    assert.ok(initialLayout.frameHeight<initialLayout.viewport*1.7,
+      'No runaway iframe height in a quiz: '+JSON.stringify(initialLayout));
     const before=await measure();
     await deskAccordion.click();
     await deskChild.waitForFunction(()=>document.querySelector('.postsolution-notes')?.classList.contains('is-open'));
     await desktopPage.waitForTimeout(350);
     const after=await measure();
-    assert.equal(before.gutter,'stable','Reserve scrollbar width inside desktop QCM');
+    assert.equal(before.gutter,'auto','The embedded desktop quiz does not reserve an internal scrollbar');
+    const expandedLayout=await layout();
+    assert.ok(expandedLayout.frameHeight<expandedLayout.viewport*2.7,
+      'Opening detailed explanations must not stretch the iframe by multiple screens: '+JSON.stringify(expandedLayout));
+    assert.ok(expandedLayout.documentHeight>=expandedLayout.frameHeight,
+      'The parent document must contain the complete expanded exercise');
+    const childScroll=await deskChild.evaluate(()=>({
+      scrollHeight:document.documentElement.scrollHeight,
+      clientHeight:document.documentElement.clientHeight,
+      scrollY:window.scrollY
+    }));
+    assert.ok(childScroll.scrollHeight<=childScroll.clientHeight+8,
+      'The inner iframe must not require independent scrolling: '+JSON.stringify(childScroll));
     assert.equal(after.width,before.width,'Expanding alternatives must not resize the document');
     assert.ok(Math.abs(after.mainX-before.mainX)<1&&Math.abs(after.mainWidth-before.mainWidth)<1
       &&Math.abs(after.quizX-before.quizX)<1&&Math.abs(after.quizWidth-before.quizWidth)<1,
       'Expanding alternatives must not horizontally shift the QCM: '+JSON.stringify({before,after}));
     assert.equal(after.overflow,false,'Expanded alternatives must not overflow horizontally');
+    await desktopPage.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
+    assert.ok(await desktopPage.evaluate(()=>window.scrollY)>20,'The outer browser window scrolls on desktop');
+    assert.equal(await deskChild.evaluate(()=>window.scrollY),0,'The inner document stays unscrolled');
     await deskAccordion.click();
     await desktopPage.waitForTimeout(350);
     const closed=await measure();
