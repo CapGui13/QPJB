@@ -1123,3 +1123,66 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 @media(max-width:600px){
  .play-free-panel{margin-top:7px}
 }
+
+
+/* 30/10 — le mort et le joueur ont exactement le même gabarit lorsqu'ils
+   sont les deux seules mains visibles sur une table orientée. */
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west){
+  --deal-equal-hand-width:clamp(150px,calc(100vw - 162px),246px);
+}
+.deal-viewer.player-oriented.player-side-east>.deal-seat.east,
+.deal-viewer.player-oriented.player-side-west>.deal-seat.west,
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west) .deal-player-group,
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west) .deal-player-group>.deal-seat.south{
+  box-sizing:border-box;
+  width:var(--deal-equal-hand-width);
+  max-width:100%;
+}
+.deal-viewer.player-oriented.player-side-east>.deal-seat.east,
+.deal-viewer.player-oriented.player-side-west>.deal-seat.west{
+  justify-self:center;
+}
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west) .deal-player-group{
+  justify-self:center;
+}
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west)>.deal-seat,
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west) .deal-player-group>.deal-seat.south{
+  min-height:166px;
+  padding:10px 9px;
+}
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west)>.deal-seat .deal-cards li,
+.deal-viewer.player-oriented:is(.player-side-east,.player-side-west) .deal-player-group>.deal-seat.south .deal-cards li{
+  font-size:clamp(14px,4vw,17px);
+  line-height:1.3;
+}
+/* L'entame d'Ouest (ou d'Est) reste juste sous sa pastille en haut. */
+.deal-viewer.player-oriented.has-lead.lead-at-top{
+  grid-template-areas:'north north north' 'west center east' 'south south south'!important;
+}
+.deal-viewer.player-oriented .deal-leader-group{
+  grid-area:north;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-self:center;
+  gap:4px;
+  min-width:0;
+}
+.deal-viewer.player-oriented .deal-leader-group>.deal-marker.north{
+  grid-area:auto;
+  min-height:30px;
+  width:auto;
+}
+.deal-viewer.player-oriented .deal-leader-group>.deal-played{
+  grid-area:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  position:static;
+  transform:none;
+  margin:0 0 3px;
+}
+.deal-viewer.player-oriented .deal-leader-group .deal-playing-card{
+  transform:rotate(-6deg);
+}
