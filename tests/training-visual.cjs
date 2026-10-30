@@ -56,7 +56,7 @@ async function geometry(frame,kind){
 }
 async function waitView(frame,name,extra){
  await frame.waitForFunction(({name,extra})=>
-  view===name && (!extra || (extra==='entames'?ptopic==='entames':extra==='plan-qcm'?ptopic==='plan-qcm':cat===extra)),
+  view===name && (!extra || (cat==='play'?ptopic===extra:cat===extra)),
   {name,extra},{timeout:20000});
 }
 async function run(browser,spec){
