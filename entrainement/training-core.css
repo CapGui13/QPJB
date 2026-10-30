@@ -995,11 +995,6 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 #root .symbol-suit{
   -webkit-text-stroke:0!important;
 }
-#root .symbol-suit.suit-black{
-  color:#16191d!important;
-  -webkit-text-fill-color:#16191d!important;
-}
-
 /* Table orientée depuis le joueur : Sud à l'écran est toujours « Vous ».
    Les classes north/east/south/west désignent des positions VISUELLES ;
    data-seat et les pastilles indiquent les points cardinaux réels.
@@ -1116,16 +1111,7 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
   .deal-player-group>.deal-seat.south{width:min(100%,232px)}
 }
 
-/* Styles factorisés : éviter les styles inline dans les listes et les exercices libres. */
-.training-count{font-size:13px;margin-bottom:7px}
-.training-legend{font-size:13px;margin:0 0 9px;line-height:1.45}
-.play-free-panel{margin-top:13px}
-@media(max-width:600px){
- .play-free-panel{margin-top:7px}
-}
-
-
-/* 30/10 — le mort et le joueur ont exactement le même gabarit lorsqu'ils
+/* Table orientée — le mort et le joueur ont exactement le même gabarit lorsqu'ils
    sont les deux seules mains visibles sur une table orientée. */
 .deal-viewer.player-oriented:is(.player-side-east,.player-side-west){
   --deal-equal-hand-width:clamp(145px,calc(100vw - 186px),210px);
@@ -1185,4 +1171,12 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
 }
 .deal-viewer.player-oriented .deal-leader-group .deal-playing-card{
   transform:rotate(-6deg);
+}
+
+/* Styles factorisés : éviter les styles inline dans les listes et les exercices libres. */
+.training-count{font-size:13px;margin-bottom:7px}
+.training-legend{font-size:13px;margin:0 0 9px;line-height:1.45}
+.play-free-panel{margin-top:13px}
+@media(max-width:600px){
+ .play-free-panel{margin-top:7px}
 }

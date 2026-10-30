@@ -26,6 +26,7 @@ const server=http.createServer((req,res)=>{
 const specs=[
  {name:'iphone12',size:{width:390,height:844},mobile:true},
  {name:'short',size:{width:375,height:667},mobile:true},
+ {name:'compact-phone',size:{width:360,height:640},mobile:true},
  {name:'landscape',size:{width:844,height:390},mobile:true},
  {name:'desktop',size:{width:1365,height:768},mobile:false},
  {name:'large-text',size:{width:390,height:844},mobile:true,largerText:true}

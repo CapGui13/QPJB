@@ -64,6 +64,10 @@ check(parent.includes('trainingDepth')&&app.includes('qpjb-training-route-restor
 check(app.includes('trainingListScroll')&&app.includes('trainingListScope'),'list scroll is retained');
 check(integrated.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'QCM answers remain in two columns');
 check(integrated.includes('font-size:clamp(18px,5.45vw,21px)'),'single-line hand remains readable');
+check(integrated.includes('overscroll-behavior-x:contain') && integrated.includes('min-width:max-content!important'),
+ 'Large iOS text can scroll the four suits without shrinking card ranks');
+check(!integrated.includes('/* QPJB QCM mobile : une carte compacte'),
+ 'Superseded mobile bidding preset is removed, not overlaid');
 check(app.includes('function syncCardLead(')&&app.includes('if(!guided)syncCardLead(x)'),
  'Card answer changes update played lead without recreating the card viewer');
 check(app.includes("const seat=after?playerSeatFromExercise(x,seats):resolveLeadSeat(x)"),
