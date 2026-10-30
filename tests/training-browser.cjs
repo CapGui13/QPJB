@@ -74,8 +74,14 @@ const server=http.createServer((req,res)=>{
   await choices.nth(2).click();
   const extra=frame.locator('.postsolution-trigger');
   await extra.waitFor({state:'attached',timeout:5000});
+  const explanationId=await extra.getAttribute('aria-controls');
+  assert.ok(explanationId,'Expandable explanations identify their controlled content');
   await extra.click();
   assert.equal(await extra.getAttribute('aria-expanded'),'true','Alternative explanations expand');
+  assert.equal(await frame.locator('#'+explanationId).getAttribute('aria-hidden'),'false',
+    'Explanations become visible to assistive technologies');
+  assert.equal(await frame.locator('#'+explanationId).getAttribute('inert'),null,
+    'Expanded explanations are interactive');
   const blackSuits=frame.locator('.postsolution-item .symbol-suit.suit-black');
   assert.ok(await blackSuits.count()>0,'Black suits in dynamically inserted explanations must be colorized');
 
@@ -187,6 +193,8 @@ const server=http.createServer((req,res)=>{
   await listFilter.focus();
   await listFilter.selectOption('todo');
   assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Filter keeps keyboard focus');
+  assert.equal(await frame.locator('#count').getAttribute('role'),'status',
+    'Screen readers receive the updated number of filtered exercises');
   assert.equal(await frame.locator('section.hero').getAttribute('data-stable-list-header'),'yes',
     'Filter does not rebuild the whole page');
   assert.equal(await frame.locator('#entries .item').count(),Number((await frame.locator('#count').innerText()).match(/\d+/)[0]),
