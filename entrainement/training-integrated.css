@@ -600,3 +600,29 @@ html.qpjb-embedded.qpjb-parent-scroll.qpjb-quiz-active main:has(>.qpjb-bid-quiz)
 .qpjb-embedded #root :is(.choice,.cq-option,.deal-seat,.candidate-hand) :is(.symbol-suit.suit-diamond,.sym.suit-diamond,b.suit-diamond,.deal-suit.suit-diamond){
  color:#B35B08!important;-webkit-text-fill-color:#B35B08!important;
 }
+
+/* V7.45 — Dans la main blanche, mêmes teintes que les choix de réponse.
+   Ne pas assombrir les glyphes sur les panneaux violets. */
+.qpjb-embedded #root .qpjb-bid-quiz .suits .suit .sym.suit-club{
+ color:#1765B6!important;-webkit-text-fill-color:#1765B6!important;
+}
+.qpjb-embedded #root .qpjb-bid-quiz .suits .suit .sym.suit-diamond{
+ color:#B35B08!important;-webkit-text-fill-color:#B35B08!important;
+}
+/* Une seule ligne de base visuelle pour les quatre signes et leurs valeurs.
+   Un alignement par le centre des boîtes de texte corrige le décalage de
+   métriques des fontes sans déplacer ou redimensionner la carte elle-même. */
+.qpjb-embedded #root .qpjb-bid-quiz .suits .suit{
+ align-items:center!important;
+}
+.qpjb-embedded #root .qpjb-bid-quiz .suits .suit .sym{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ font-size:1.05em!important;
+ line-height:1!important;
+ vertical-align:middle!important;
+}
+.qpjb-embedded #root .qpjb-bid-quiz .suits .suit>span:last-child{
+ line-height:1!important;
+}

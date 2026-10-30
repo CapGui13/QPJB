@@ -44,6 +44,23 @@ const server=http.createServer((req,res)=>{
   await accessibilityFrame.waitForFunction(()=>document.activeElement?.id==='root',{timeout:10000});
   assert.ok((await frame.locator('#root').getAttribute('aria-label')).startsWith('Exercice '),
     'Opening a quiz announces its exercise number');
+  // Alignement des symboles de la main et reprise des couleurs des propositions.
+  const handSuitAudit=await quiz.locator('.suits').evaluate(root=>{
+    const items=[...root.querySelectorAll('.suit')].map(el=>{
+      const symbol=el.querySelector('.sym'),cards=el.querySelector('span:last-child');
+      const a=symbol.getBoundingClientRect(),b=cards.getBoundingClientRect();
+      return {glyph:symbol.textContent,color:getComputedStyle(symbol).color,
+        align:getComputedStyle(el).alignItems,delta:Math.abs((a.top+a.bottom)/2-(b.top+b.bottom)/2)};
+    });
+    return items;
+  });
+  assert.equal(handSuitAudit.length,4,'The bidding hand retains all four suit groups');
+  assert.ok(handSuitAudit.every(x=>x.align==='center'&&x.delta<=1.5),
+    'Suit symbols share the same vertical center as the card ranks: '+JSON.stringify(handSuitAudit));
+  assert.equal(handSuitAudit.find(x=>x.glyph==='♣')?.color,'rgb(23, 101, 182)',
+    'Clubs in hand match the darker blue used in answer buttons');
+  assert.equal(handSuitAudit.find(x=>x.glyph==='♦')?.color,'rgb(179, 91, 8)',
+    'Diamonds in hand match the darker orange used in answer buttons');
   const auctionRows=await quiz.locator('.auc tbody tr').count();
   const choices=quiz.locator('.choices>.choice');
   assert.equal(auctionRows,3,'Test QCM must include three auction rows');
