@@ -193,19 +193,33 @@ function go(v){
  if((v==='topics'||v==='playtopics')&&view==='list')trainingTopicsScroll[v]=trainingTopicsScroll[v]||0;
  trainingNavigate(()=>{if(v==='topics'||v==='playtopics')randomMode=false;trainingApplyPage(v,restore)});
 }
+function trainingDataFailure(error){
+ const root=document.getElementById('root');
+ if(root)root.innerHTML='<section class="panel" role="alert"><h2>Chargement impossible</h2><p>Les exercices ne sont pas disponibles pour le moment. Vérifiez votre connexion, puis réessayez.</p><button class="btn" onclick="location.reload()">Réessayer</button></section>';
+ console.error('QPJB data loading',error);
+ trainingReportHeight();
+}
 function typ(v,immediate=false){
  const apply=()=>{
    cat=v;status='all';ptopic='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();
    trainingTopicsScroll[v==='play'?'playtopics':'topics']=0;
    trainingApplyPage(v==='play'?'playtopics':'topics',false,!immediate);
  };
- if(immediate)apply();else trainingNavigate(apply);
+ const next=()=>{if(immediate)apply();else trainingNavigate(apply)};
+ if(trainingDataReady(v))next();
+ else ensureTrainingData(v).then(next).catch(trainingDataFailure);
 }
 function topic(v){
+ if(!trainingDataReady('bidding')){
+  ensureTrainingData('bidding').then(()=>topic(v)).catch(trainingDataFailure);return;
+ }
  trainingTopicsScroll.topics=trainingScrollY();
  trainingNavigate(()=>{cat=v;status='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();trainingApplyPage('list')});
 }
 function playTopic(v){
+ if(!trainingDataReady('play')){
+  ensureTrainingData('play').then(()=>playTopic(v)).catch(trainingDataFailure);return;
+ }
  trainingTopicsScroll.playtopics=trainingScrollY();
  trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();trainingApplyPage('list')});
 }
@@ -292,7 +306,7 @@ function filtered(){
  return all.filter(x=>{const s=validatedState(saved[x.id]);return status==='all'||
    (status==='todo'&&s===null)||(status==='ok'&&s===true)});
 }
-function pageHome(){const nb=D.bidding.filter(x=>x.reviewStatus!=='a_verifier').length;return `<section class="hero"><span class="badge">QPJB · Entraînement · Bêta V7.43</span><h1>À vous de jouer !</h1><p>Choisissez l'un des <strong>deux espaces d'entraînement indépendants</strong> ci-dessous : les <strong>enchères</strong> ou le <strong>jeu de la carte</strong>.</p><p class="muted" style="font-size:12px;margin-bottom:0">Les exercices sont transposés à partir de leurs documents d’origine.</p></section><div class="home-intro"><strong>Choisissez votre entraînement</strong><span>Deux parcours distincts, dans l’esprit du QPJB.</span></div><div class="grid2 home-choices"><button type="button" class="tile home-tile home-bidding" aria-label="Enchères : choisir un thème parmi les ${D.categories.length} thématiques" onclick="typ('bidding')"><span class="home-kicker">ESPACE 1 · ENCHÈRES</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Enchères</span><span class="home-description">Entraînez-vous aux enchères avec <strong>${nb} QCM</strong> classés par thème : réponses à l'ouverture, interventions, redemandes, etc.</span><span class="home-action">Choisir un thème d’enchères <span aria-hidden="true">→</span></span></button><button type="button" class="tile home-tile home-play" aria-label="Jeu de la carte : accéder aux ${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} exercices" onclick="typ('play')"><span class="home-kicker">ESPACE 2 · JEU DE LA CARTE</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Jeu de la carte</span><span class="home-description">Travaillez <strong>${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} situations</strong> de jeu du déclarant et de défense : étudiez les mains, réfléchissez, puis découvrez l’analyse.</span><span class="home-action">Choisir un thème de carte <span aria-hidden="true">→</span></span></button></div>`}
+function pageHome(){const nb=D.counts?.bidding??D.bidding.filter(x=>x.reviewStatus!=='a_verifier').length;return `<section class="hero"><span class="badge">QPJB · Entraînement · Bêta V7.43</span><h1>À vous de jouer !</h1><p>Choisissez l'un des <strong>deux espaces d'entraînement indépendants</strong> ci-dessous : les <strong>enchères</strong> ou le <strong>jeu de la carte</strong>.</p><p class="muted" style="font-size:12px;margin-bottom:0">Les exercices sont transposés à partir de leurs documents d’origine.</p></section><div class="home-intro"><strong>Choisissez votre entraînement</strong><span>Deux parcours distincts, dans l’esprit du QPJB.</span></div><div class="grid2 home-choices"><button type="button" class="tile home-tile home-bidding" aria-label="Enchères : choisir un thème parmi les ${D.categories.length} thématiques" onclick="typ('bidding')"><span class="home-kicker">ESPACE 1 · ENCHÈRES</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Enchères</span><span class="home-description">Entraînez-vous aux enchères avec <strong>${nb} QCM</strong> classés par thème : réponses à l'ouverture, interventions, redemandes, etc.</span><span class="home-action">Choisir un thème d’enchères <span aria-hidden="true">→</span></span></button><button type="button" class="tile home-tile home-play" aria-label="Jeu de la carte : accéder aux ${D.counts?.play??D.play.filter(x=>x.reviewStatus!=='a_verifier').length} exercices" onclick="typ('play')"><span class="home-kicker">ESPACE 2 · JEU DE LA CARTE</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Jeu de la carte</span><span class="home-description">Travaillez <strong>${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} situations</strong> de jeu du déclarant et de défense : étudiez les mains, réfléchissez, puis découvrez l’analyse.</span><span class="home-action">Choisir un thème de carte <span aria-hidden="true">→</span></span></button></div>`}
 // Les reclassements portent uniquement sur l'index : les exercices et leurs
 // identifiants/progressions restent inchangés dans les données source.
 for(const c of D.categories){
@@ -805,6 +819,13 @@ if(embeddedMode){
    const r=event.data.route;
    const valid=['topics','playtopics','list','plays','quiz','home'];
    if(!r||!valid.includes(r.view))return;
+   const required=r.cat==='play'||r.view==='playtopics'?'play':'bidding';
+   if(!trainingDataReady(required)){
+    ensureTrainingData(required).then(()=>window.dispatchEvent(
+     new MessageEvent('message',{data:event.data,origin:event.origin,source:event.source})
+    )).catch(trainingDataFailure);
+    return;
+   }
    try{
      trainingPendingNav=null;trainingQueuedNav=null;
      cat=String(r.cat||'');id=String(r.id||'');
@@ -826,16 +847,21 @@ if(embeddedMode){
   }
  });
 }
-render();
-if(embeddedMode&&typeof ResizeObserver!=='undefined'){
- const resizeObserver=new ResizeObserver(trainingReportHeight);
- resizeObserver.observe(document.getElementById('root'));
-}
-if(embeddedMode)window.addEventListener('resize',trainingReportHeight);
-if(typeof performance!=='undefined')performance.mark('qpjb-training-first-render');
-// Ne révéler l'iframe qu'une fois les polices prêtes : pas de saut de typographie après 600 ms.
-if(embeddedMode)document.fonts.ready.then(()=>{
- performance.mark('qpjb-training-fonts-ready');
- trainingReportHeight();
- window.parent.postMessage({type:'qpjb-training-ready'},location.origin);
-});
+// Charger seulement les données utiles à l'espace ouvert. Les autres
+// données sont récupérées au premier changement de mode, depuis le cache
+// hors ligne lorsque le réseau est absent.
+ensureTrainingData(initialMode==='play'?'play':'bidding').then(()=>{
+ render();
+ if(embeddedMode&&typeof ResizeObserver!=='undefined'){
+  const resizeObserver=new ResizeObserver(trainingReportHeight);
+  resizeObserver.observe(document.getElementById('root'));
+ }
+ if(embeddedMode)window.addEventListener('resize',trainingReportHeight);
+ if(typeof performance!=='undefined')performance.mark('qpjb-training-first-render');
+ // Ne rendre l'iframe visible qu'une fois les données et polices prêtes.
+ if(embeddedMode)document.fonts.ready.then(()=>{
+  performance.mark('qpjb-training-fonts-ready');
+  trainingReportHeight();
+  window.parent.postMessage({type:'qpjb-training-ready'},location.origin);
+ });
+}).catch(trainingDataFailure);
