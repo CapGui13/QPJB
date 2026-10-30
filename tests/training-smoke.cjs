@@ -81,8 +81,9 @@ check(core.includes('.legacy-defense-source .legacy-defense-heading')&&
       app.includes('aucune orientation supposée'),
  'Ambiguous historical diagrams remain unrotated and are visually identified');
 check(app.includes('function resultLabel(')&&app.includes('Validé au premier choix')&&
-      app.includes('À revoir : premier choix non validé'),
- 'Progress statuses distinguish first-choice validity and revision');
+      app.includes('À retravailler : premier choix non validé')&&
+      app.includes('REVIEW_AFTER_DAYS=30'),
+ 'Progress statuses distinguish first-choice validity, failed answers and 30-day revisions');
 check(app.includes('class="muted training-count"')&&core.includes('.training-count')&&
       core.includes('.play-free-panel'),
  'Reused training list and exercise styles do not rely on inline declarations');
