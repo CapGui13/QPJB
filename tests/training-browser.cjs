@@ -595,10 +595,10 @@ const server=http.createServer((req,res)=>{
   await frame.locator('button[onclick="revealPlay()"]').click();
   assert.equal(await childFrame.evaluate(()=>document.activeElement?.getAttribute('onclick')==='revealPlay()'),true,
     'Revealing a free-form analysis preserves keyboard focus');
-  await frame.locator('.play-source summary').click();
-  await childFrame.waitForFunction(()=>document.querySelector('.play-source .game-img')?.naturalWidth>0,null,{timeout:15000});
-  assert.ok((await frame.locator('.play-source .game-img').getAttribute('src')).endsWith('/JC-001.webp'),
-    'Original declarer facsimile loads correctly from its WebP file');
+  assert.equal(await frame.locator('.play-source').count(),0,
+    'The original image toggle is removed from declarer exercises');
+  assert.equal(await frame.locator('.deal-viewer.compact .deal-seat.north').count(),1,
+    'The reconstructed diagram stays visible without the source image toggle');
 
   // Régression desktop : ouvrir « Pourquoi les autres propositions » ne doit
   // pas déclencher de changement de largeur lors de l'apparition de la scrollbar.

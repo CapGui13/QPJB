@@ -37,6 +37,8 @@ check(core.includes('-webkit-text-stroke:0!important')&&!core.includes('-webkit-
  'Black suits are solid glyphs without a pale outline on dark feedback');
 check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'),
  'Clubs are pure black without the former slate override or white outline');
+check(!app.includes('Afficher le visuel source')&&!app.includes('Masquer le visuel source')&&
+ !app.includes('<details class="play-source">'),'The optional original diagram toggle is removed');
 check(app.includes('sessionQuizStates')&&app.includes('rememberCurrentQuiz')&&app.includes('restoreQuizDetails'),
  'Previous/next remembers selected answers without restarting a visit');
 check(integrated.includes('suit-club')&&integrated.includes('suit-diamond'),'Four bridge suit colors are available');

@@ -129,8 +129,7 @@ function rememberCurrentQuiz(){
  sessionQuizStates.set(id,{
   redoAttempt:redoAttempt?{...redoAttempt}:null,redoAnswered,
   activeVisitId,chosen,revealed,playSeen,
-  alternativesOpen:!!document.querySelector('.postsolution-notes.is-open'),
-  sourceOpen:!!document.querySelector('.play-source[open]')
+  alternativesOpen:!!document.querySelector('.postsolution-notes.is-open')
  });
 }
 function restoreQuizDetails(s){
@@ -140,7 +139,6 @@ function restoreQuizDetails(s){
   const button=box?.querySelector('.postsolution-trigger'),body=box?.querySelector('.postsolution-body');
   if(button&&body){box.classList.add('is-open');button.setAttribute('aria-expanded','true');body.inert=false;body.setAttribute('aria-hidden','false')}
  }
- if(s.sourceOpen){const source=document.querySelector('.play-source');if(source)source.open=true}
 }
 let trainingNavSeq=0,trainingPendingNav=null,trainingQueuedNav=null;
 let trainingListScroll=0,trainingListScope='';
@@ -590,7 +588,7 @@ function renderLegacyDiagram(x){
    return `<figure class="game-img-wrap legacy-defense-source"><figcaption class="legacy-defense-heading">Diagramme original de défense</figcaption><img class="game-img" src="${x.image}" alt="Diagramme original de défense : ${esc(x.prompt)}"><figcaption>Positions d’origine conservées — aucune orientation supposée</figcaption></figure>`;
  }
  if(!ok)return `<div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Diagramme de cartes : ${esc(x.prompt)}"></div>`;
- return `${dealViewer(d.seats,{perspective:playerSeatFromExercise(x,d.seats),defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',contract:d.contract||'',lead:d.lead||'',leadSeat:resolveLeadSeat(x)})}<details class="play-source"><summary><span class="source-control-icon" aria-hidden="true">▣</span><span class="source-control-text"><span class="source-control-closed">Afficher le visuel source</span><span class="source-control-open">Masquer le visuel source</span></span><span class="source-control-chevron" aria-hidden="true">⌄</span></summary><div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Diagramme source : ${esc(x.prompt)}"></div></details>`;
+ return `${dealViewer(d.seats,{perspective:playerSeatFromExercise(x,d.seats),defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',contract:d.contract||'',lead:d.lead||'',leadSeat:resolveLeadSeat(x)})}`;
 }
 // Present the unmodified source wording in readable paragraphs.
 // Only whitespace between sentences is normalized; no sentence is rephrased.
