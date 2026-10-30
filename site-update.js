@@ -97,7 +97,10 @@
       if (!changed) return;
       const revision = JSON.stringify(current);
       if (storageGet(RELOAD_KEY) === revision) return;
+      // Ne jamais interrompre une donne : le contrôle reprend à la sortie du QCM.
+      if (document.body?.classList.contains('qpjb-training-in-quiz')) return;
       storageSet(RELOAD_KEY, revision);
+      storageSet('qpjb-auto-refresh', '1');
 
       // Actualise le SW si sa publication a changé, puis recharge. Le SW
       // force une récupération réseau des HTML/CSS/JS/JSON QPJB.
@@ -122,4 +125,5 @@
   });
   window.addEventListener('focus', checkForUpdate);
   window.addEventListener('online', checkForUpdate);
+  window.addEventListener('qpjb-training-safe-update', checkForUpdate);
 })();

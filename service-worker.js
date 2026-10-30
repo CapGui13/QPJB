@@ -65,13 +65,15 @@ self.addEventListener('fetch', event => {
       if (response.ok) await cache.put(request, response.clone());
       return response;
     } catch (error) {
-      const cached = await cache.match(request);
+      const cached = await cache.match(request) ||
+        await cache.match(url.pathname, {ignoreSearch: true});
       if (cached) return cached;
       // La page intégrée contient mode et rev dans sa query string : elle doit
       // pouvoir s'ouvrir hors ligne même si ce mode n'a jamais été visité.
       if (request.mode === 'navigate' &&
           (url.pathname === BASE + 'entrainement/' ||
-           url.pathname === BASE + 'entrainement/index.html')) {
+           url.pathname === BASE + 'entrainement/index.html' ||
+           url.pathname === BASE + 'entrainement/qp-training-corrige.html')) {
         const shell = await cache.match(BASE + 'entrainement/');
         if (shell) return shell;
       }

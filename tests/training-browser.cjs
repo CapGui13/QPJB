@@ -185,28 +185,32 @@ const server=http.createServer((req,res)=>{
   // même si les deux sauvegardes partent sans attendre les événements storage.
   const otherTab=await context.newPage();
   otherTab.on('pageerror',e=>errors.push(e.message));
-  await otherTab.goto('http://127.0.0.1:8765/QPJB/entrainement/?mode=bidding',{waitUntil:'domcontentloaded'});
-  await otherTab.locator('#root').waitFor({state:'visible'});
+  // Une page d'entraînement hors iframe doit être redirigée : tester le vrai parcours.
+  await otherTab.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+  await otherTab.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+  await otherTab.frameLocator('#training-frame').locator('#root').waitFor({state:'visible'});
+  const otherTrainingFrame=otherTab.frames().find(f=>f.url().includes('/entrainement/'));
+  assert.ok(otherTrainingFrame,'The second tab opens the embedded training frame');
   const syncIds=await accessibilityFrame.evaluate(()=>
     D.bidding.filter(x=>!saved[x.id]&&x.reviewStatus!=='a_verifier').slice(0,3).map(x=>x.id));
   assert.equal(syncIds.length,3,'Three untouched exercises are available for two-tab tests');
   await Promise.all([
     accessibilityFrame.evaluate(ex=>persistResult(ex,'A',true,true),syncIds[0]),
-    otherTab.evaluate(ex=>persistResult(ex,'B',false,true),syncIds[1])
+    otherTrainingFrame.evaluate(ex=>persistResult(ex,'B',false,true),syncIds[1])
   ]);
   await accessibilityFrame.waitForFunction(keys=>keys.every(ex=>!!saved[ex]),syncIds.slice(0,2));
-  await otherTab.waitForFunction(keys=>keys.every(ex=>!!saved[ex]),syncIds.slice(0,2));
-  assert.equal(await otherTab.evaluate(()=>JSON.stringify(saved)===localStorage.getItem(KEY)),true,
+  await otherTrainingFrame.waitForFunction(keys=>keys.every(ex=>!!saved[ex]),syncIds.slice(0,2));
+  assert.equal(await otherTrainingFrame.evaluate(()=>JSON.stringify(saved)===localStorage.getItem(KEY)),true,
     'A second tab has the complete persisted progress');
   // Deux visites concurrentes d'un MÊME exercice : combiner les deux
   // historiques et deux tentatives identifiées, pas uniquement le dernier choix.
   await Promise.all([
     accessibilityFrame.evaluate(ex=>persistResult(ex,'A',true,true),syncIds[2]),
-    otherTab.evaluate(ex=>persistResult(ex,'B',false,true),syncIds[2])
+    otherTrainingFrame.evaluate(ex=>persistResult(ex,'B',false,true),syncIds[2])
   ]);
   await accessibilityFrame.waitForFunction(ex=>saved[ex]?.attempts===2&&saved[ex]?.history?.length===2,syncIds[2]);
-  await otherTab.waitForFunction(ex=>saved[ex]?.attempts===2&&saved[ex]?.history?.length===2,syncIds[2]);
-  const reconciled=await otherTab.evaluate(ex=>({attempts:saved[ex].attempts,
+  await otherTrainingFrame.waitForFunction(ex=>saved[ex]?.attempts===2&&saved[ex]?.history?.length===2,syncIds[2]);
+  const reconciled=await otherTrainingFrame.evaluate(ex=>({attempts:saved[ex].attempts,
     visits:new Set(saved[ex]._syncVisits).size,history:saved[ex].history.map(x=>x.pick)}),syncIds[2]);
   assert.equal(reconciled.visits,2,'Both tabs preserve their separate visit IDs');
   assert.deepEqual([...reconciled.history].sort(),['A','B'],'Both choices remain in history');

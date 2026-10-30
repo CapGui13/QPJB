@@ -12,15 +12,10 @@ function qpjbStartAtTop() {
   document.documentElement.scrollTop = 0;
   if (document.body) document.body.scrollTop = 0;
 }
-// Premier rendu, retour depuis l'historique et réouverture depuis l'écran d'accueil.
-qpjbStartAtTop();
-window.addEventListener('pageshow', () => {
-  qpjbStartAtTop();
-  requestAnimationFrame(qpjbStartAtTop);
-});
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) requestAnimationFrame(qpjbStartAtTop);
-});
+// Remettre en haut uniquement lors d'une visite fraîche, jamais quand on
+// revient sur l'onglet, dans l'historique ou après un rechargement.
+if (performance.getEntriesByType('navigation')[0]?.type === 'navigate' &&
+    !history.state?.qpjbTraining) qpjbStartAtTop();
 </script>
 <script>
 // Android PWA: éviter un deuxième fondu de logo après l'écran natif.
@@ -2322,6 +2317,7 @@ window.addEventListener('message',e=>{
    window.scrollTo(0,0);
   }
   if(qpjbTrainingReady)document.getElementById('training-loading').hidden=true;
+  if(!quiz)window.dispatchEvent(new Event('qpjb-training-safe-update'));
  }
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
@@ -2340,11 +2336,17 @@ window.addEventListener('resize',qpjbTrainingResize);
 // Un rechargement explicite doit redémarrer à l'accueil, comme les séances d'Aix.
 // Les entrées d'historique restent utilisées pour Retour/Avancer sans rechargement.
 const qpjbIsReload=performance.getEntriesByType('navigation')[0]?.type==='reload';
-if(qpjbIsReload && (history.state?.qpjbTraining || location.hash.startsWith('#entrainement-'))){
+// Mise à jour automatique : on conserve la route. Rafraîchissement manuel : accueil.
+let qpjbAutoReload=false;
+try{
+ qpjbAutoReload=sessionStorage.getItem('qpjb-auto-refresh')==='1';
+ if(qpjbAutoReload)sessionStorage.removeItem('qpjb-auto-refresh');
+}catch(_){}
+if(qpjbIsReload&&!qpjbAutoReload&&(history.state?.qpjbTraining || location.hash.startsWith('#entrainement-'))){
  history.replaceState(null,'',location.pathname+location.search);
 }
-if(!qpjbIsReload&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
-else if(!qpjbIsReload&&(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play'))
+if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
+else if((!qpjbIsReload||qpjbAutoReload)&&(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play'))
  qpjbTrainingShow(location.hash.endsWith('play')?'play':'bidding',false);
 </script>
 <script defer src="./site-update.js?v=1"></script>

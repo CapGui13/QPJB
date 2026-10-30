@@ -48,18 +48,25 @@ const server=http.createServer((req,res)=>{
    assert.deepEqual(before,{images:23,training:true,data:true,app:true},
      'Full training shell and all 23 original WebP images must already be cached');
    await context.setOffline(true);
-   // The mode/rev URL has never been opened online; fallback to the precached index.
-   await page.goto('http://127.0.0.1:8766/QPJB/entrainement/?embedded=1&rev=offline-unseen&mode=play',
-     {waitUntil:'domcontentloaded',timeout:20000});
-   await page.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:12000});
-   await page.evaluate(()=>{playTopic('plan-libre');item('JC-001')});
-   await page.locator('.play-source summary').click();
-   await page.waitForFunction(()=>{
-     const image=document.querySelector('.play-source .game-img');
-     return !!image&&image.complete&&image.naturalWidth>0;
-   },null,{timeout:12000});
-   assert.ok((await page.locator('.play-source .game-img').getAttribute('src')).endsWith('/JC-001.webp'),
-     'Image of a previously unopened exercise is displayed offline');
+   // Repartir de l'accueil hors ligne, puis charger la vraie iframe d'entraînement.
+   await page.reload({waitUntil:'domcontentloaded',timeout:20000});
+   await page.locator('.training-button[data-training-mode="play"]').click({timeout:20000});
+   const frame=page.frameLocator('#training-frame');
+   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:20000});
+   const embeddedPage=page.frames().find(f=>f.url().includes('qp-training-corrige.html'));
+   assert.ok(embeddedPage,'Offline mode restores the embedded training page');
+   await embeddedPage.evaluate(()=>playTopic('plan-libre'));
+   await frame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+   await embeddedPage.evaluate(()=>item('JC-001'));
+   await frame.locator('.play-free-panel').waitFor({state:'visible',timeout:12000});
+   // La source n'est plus affichée dans le QCM, mais son WebP reste dans le cache.
+   const originalLoaded=await embeddedPage.evaluate(()=>new Promise(resolve=>{
+     const image=new Image();
+     image.onload=()=>resolve(image.naturalWidth>0);
+     image.onerror=()=>resolve(false);
+     image.src='/QPJB/entrainement/assets/JC-001.webp';
+   }));
+   assert.equal(originalLoaded,true,'A previously unopened source image remains usable offline');
    assert.equal(errors.length,0,'No uncaught offline JavaScript exceptions: '+errors.join('; '));
    console.log(JSON.stringify({result:'PASS',browser:name,offline:true,precacheImages:before.images,firstOpenImage:'JC-001'}));
    await context.close();
