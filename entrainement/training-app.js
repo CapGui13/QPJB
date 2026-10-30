@@ -146,7 +146,7 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
  requestAnimationFrame(focusTrainingPage);
  if(recordRoute&&embeddedMode){
    window.parent.postMessage({type:'qpjb-training-route',route:{
-     view,cat,id,status,ptopic,sessionIds:sessionIds.slice()
+     view,cat,id,status,ptopic,randomMode,sessionIds:sessionIds.slice()
    }},location.origin);
  }
 }
@@ -154,11 +154,11 @@ function go(v){
  if(v==='home'&&integratedMode){quitTraining();return}
  const restore=v==='list'&&view==='quiz';
  if((v==='topics'||v==='playtopics')&&view==='list')trainingTopicsScroll[v]=trainingTopicsScroll[v]||0;
- trainingNavigate(()=>trainingApplyPage(v,restore));
+ trainingNavigate(()=>{if(v==='topics'||v==='playtopics')randomMode=false;trainingApplyPage(v,restore)});
 }
 function typ(v,immediate=false){
  const apply=()=>{
-   cat=v;status='all';ptopic='all';sessionIds=[];
+   cat=v;status='all';ptopic='all';sessionIds=[];randomMode=false;
    trainingTopicsScroll[v==='play'?'playtopics':'topics']=0;
    trainingApplyPage(v==='play'?'playtopics':'topics',false,!immediate);
  };
@@ -166,20 +166,38 @@ function typ(v,immediate=false){
 }
 function topic(v){
  trainingTopicsScroll.topics=window.scrollY;
- trainingNavigate(()=>{cat=v;status='all';sessionIds=[];trainingApplyPage('list')});
+ trainingNavigate(()=>{cat=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
 }
 function playTopic(v){
  trainingTopicsScroll.playtopics=window.scrollY;
- trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];trainingApplyPage('list')});
+ trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
 }
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
+let randomMode=false;
+function shuffleExercises(items){
+ const a=items.slice();
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+ return a;
+}
+function startRandomBidding(){
+ const all=D.bidding.filter(x=>x.reviewStatus!=='a_verifier');
+ const fresh=shuffleExercises(all.filter(x=>!saved[x.id]?.done));
+ const seen=shuffleExercises(all.filter(x=>!!saved[x.id]?.done));
+ const deck=[...fresh,...seen].map(x=>x.id);
+ if(!deck.length)return;
+ trainingNavigate(()=>{
+   cat='all';status='all';ptopic='all';randomMode=true;
+   sessionIds=deck;id=deck[0];trainingApplyPage('quiz');
+ });
+}
+function biddingBackTarget(){return randomMode?'topics':'list'}
 function item(v){
  // Lists are filtered, but old routes and direct navigation can still carry an ID.
  if(!availableExercise(v))return;
  const fromList=view==='list'||view==='plays';
  if(fromList){trainingListScroll=window.scrollY;trainingListScope=trainingScope()}
  trainingNavigate(()=>{
-   if(fromList)sessionIds=filtered().map(x=>x.id);
+   if(fromList){sessionIds=filtered().map(x=>x.id);randomMode=false;}
    id=v;trainingApplyPage('quiz');
  });
 }
@@ -212,8 +230,8 @@ for(const c of D.categories){
  if(c.group==='2 · Construction des séquences')c.group='2 · Séquences approfondies';
  if(c.id==='suite-repondant')c.description='Décision du répondant après la redemande de l’ouvreur.';
  if(c.id==='intervention')c.name='Intervenir sur une ouverture adverse';
- if(c.id==='1m')c.name='Répondre à 1♣ / 1♦';
- if(c.id==='rep1M')c.name='Répondre à 1♥ / 1♠';
+ if(c.id==='1m')c.name='Répondre à l’ouverture de 1♣ / 1♦';
+ if(c.id==='rep1M')c.name='Répondre à l’ouverture de 1♥ / 1♠';
 }
 D.categories=D.categories.filter(c=>c.id!=='bicolore');
 const TRAINING_SOURCE_DESCRIPTION='Ces exercices sont issus de l’ensemble des numéros de Bridge Hebdo et de Bridge & Mois destinés aux débutants.';
@@ -221,7 +239,7 @@ function trainingOverview(kind){
  const isPlay=kind==='play',arr=(isPlay?D.play:D.bidding).filter(x=>x.reviewStatus!=='a_verifier'),ok=validatedCount(arr);
  return `<section class="training-overview"><h1>${isPlay?'Jeu de la carte':'Enchères'}</h1><p>${TRAINING_SOURCE_DESCRIPTION}</p><div class="training-overview-stats"><span>${ok}/${arr.length} validés</span><span>${isPlay?PLAY_TOPICS.length:D.categories.length} thèmes</span></div></section>`
 }
-function pageTopics(){const groups=[...new Set(D.categories.map(c=>c.group))];const section=groups.map(g=>`<section class="topic-group"><h2>${esc(g)}</h2><div class="grid2">${D.categories.filter(c=>c.group===g).map(c=>{const a=counted(c.id),ok=validatedCount(a);return `<button class="tile" onclick="topic('${c.id}')"><div class="topic-meta"><span class="badge">${a.length} exercices</span><span class="badge topic-validated">${ok}/${a.length} validés</span></div><span class="topic-title">${esc(c.name)}</span><span class="topic-description">${esc(c.description)}</span><div class="topic-progress-track" aria-hidden="true"><div style="width:${a.length?100*ok/a.length:0}%"></div></div></button>`}).join('')}</div></section>`).join('');return `${embeddedMode?trainingOverview('bidding'):`<button class="back" onclick="go('home')">← Accueil</button><h1>Enchères</h1><p class="muted">${TRAINING_SOURCE_DESCRIPTION}</p>`}${section}<p style="margin-top:18px"><button class="btn training-all-button" onclick="topic('all')">Toutes les enchères →</button></p>`}
+function pageTopics(){const groups=[...new Set(D.categories.map(c=>c.group))];const section=groups.map(g=>`<section class="topic-group"><h2>${esc(g)}</h2><div class="grid2">${D.categories.filter(c=>c.group===g).map(c=>{const a=counted(c.id),ok=validatedCount(a);return `<button class="tile" onclick="topic('${c.id}')"><div class="topic-meta"><span class="badge">${a.length} exercices</span><span class="badge topic-validated">${ok}/${a.length} validés</span></div><span class="topic-title">${esc(c.name)}</span><span class="topic-description">${esc(c.description)}</span><div class="topic-progress-track" aria-hidden="true"><div style="width:${a.length?100*ok/a.length:0}%"></div></div></button>`}).join('')}</div></section>`).join('');return `${embeddedMode?trainingOverview('bidding'):`<button class="back" onclick="go('home')">← Accueil</button><h1>Enchères</h1><p class="muted">${TRAINING_SOURCE_DESCRIPTION}</p>`}<div class="training-random-action"><button type="button" class="btn training-all-button" onclick="startRandomBidding()">Exercices aléatoires →</button></div>${section}`}
 function pagePlayTopics(){const gs=[...new Set(PLAY_TOPICS.map(t=>t.group))];const sections=gs.map(g=>`<section class="topic-group"><h2>${esc(g)}</h2><div class="grid2">${PLAY_TOPICS.filter(t=>t.group===g).map(t=>{const all=D.play.filter(x=>x.reviewStatus!=='a_verifier'&&playTopicId(x)===t.id),ok=validatedCount(all);return `<button class="tile" onclick="playTopic('${t.id}')"><div class="topic-meta"><span class="badge">${all.length} exercices</span><span class="badge topic-validated">${ok}/${all.length} validés</span></div><span class="topic-title">${esc(t.name)}</span><span class="topic-description">${esc(t.description)}</span><div class="pbar"><div style="width:${all.length?100*ok/all.length:0}%"></div></div></button>`}).join('')}</div></section>`).join('');return `${embeddedMode?trainingOverview('play'):`<button class="back" onclick="go('home')">← Accueil</button><h1>Jeu de la carte</h1><p class="muted">${TRAINING_SOURCE_DESCRIPTION}</p>`}${sections}<p style="margin-top:18px"><button class="btn training-all-button" onclick="playTopic('all')">Tous les exercices de carte →</button></p>`}
 function miniAuction(x){const items=(x.auction||[]).flat().filter(v=>v&&v!=='?');return items.length?'Séquence : '+items.slice(0,7).join(' · '):'Quelle enchère choisir ?'}
 function pageList(){let arr=filtered(), all=rel();return `<button class="back" onclick="go('${cat==='play'?'playtopics':'topics'}')">← ${cat==='play'?'Thèmes de carte':'Toutes les thématiques'}</button><section class="hero"><span class="badge">${all.length} exercices</span><h1>${esc(title())}</h1><p>${cat==='play'?'Étudiez les situations de jeu, de défense et d’entame avant de découvrir l’analyse.':'Choisissez une proposition, puis découvrez l’explication. Vous pouvez réessayer.'}</p><div class="list-progress">${validatedCount(all)}/${all.length} validés</div></section><div class="tools"><select class="field" aria-label="Progression" onchange="status=this.value;redrawList()"><option value="all">Tous les exercices</option><option value="todo" ${status==='todo'?'selected':''}>À faire</option><option value="ok" ${status==='ok'?'selected':''}>Validés</option><option value="failed" ${status==='failed'?'selected':''}>Non validés</option></select></div><div id="count" class="muted training-count" role="status" aria-live="polite" aria-atomic="true">${arr.length} exercice(s)</div><p class="muted training-legend">✓ Validé au premier choix · ✕ À revoir · → Pas encore commencé</p><div id="entries" class="list">${rows(arr)}</div>`}
@@ -405,10 +423,10 @@ function biddingChoiceEntries(choices){
  if(entries.some(entry=>score(entry.value)===null))return entries;
  return entries.sort((a,b)=>score(a.value)-score(b.value)||a.index-b.index);
 }
-function quizBSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;const special=x.exerciseFormat==='qcm_main'||x.exerciseFormat==='qcm_fit';return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${special?'Analyser la séquence':'Vous êtes en Sud'}</h2>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}${x.sourceContext?`<p class="source-context">${esc(x.sourceContext)}</p>`:''}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Choisissez votre réponse, puis comparez-la au corrigé du document.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:i})=>`<button data-answer-index="${i}" class="choice ${sel===b?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===b}">${esc(b)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${sourceCorrection(x)}</section></div>${nav()}`}
+function quizBSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;const special=x.exerciseFormat==='qcm_main'||x.exerciseFormat==='qcm_fit';return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${special?'Analyser la séquence':'Vous êtes en Sud'}</h2>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}${x.sourceContext?`<p class="source-context">${esc(x.sourceContext)}</p>`:''}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Choisissez votre réponse, puis comparez-la au corrigé du document.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:i})=>`<button data-answer-index="${i}" class="choice ${sel===b?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===b}">${esc(b)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${sourceCorrection(x)}</section></div>${nav()}`}
 function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Sélectionnez une proposition pour découvrir le corrigé d’origine.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${sel===i?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===i}">${esc(o)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${cardAnswerArea(x,true)}</div>${nav()}`}
 
-function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':'Vous êtes en Sud'}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}</section></div>${nav()}`}
+function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':'Vous êtes en Sud'}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}</section></div>${nav()}`}
 function revealPlay(){
  playSeen=true;render();
  // La création du corrigé remplace le bouton : conserver le focus clavier.
@@ -647,7 +665,7 @@ function cardChoicesCompact(x){return x?.options?.length===4&&x.options.every(o=
 function quizCard(x){if(sourceGuided(x))return quizCardSource(x);const p=visibleAnswer(id),picked=p?.done?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('list')">← Jeu de la carte</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage${cardChoicesCompact(x)?' cq-compact':''}"><h2>${x.type==='defense'?'À vous de défendre':'À vous de jouer'}</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead&&x.lead!=='À vous de choisir'?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${picked===i?'selected':''} ${p?.done&&i===p.pick?(p.ok?'correct':'wrong'):''}" onclick="pickCard(${i})" aria-pressed="${picked===i}">${esc(o)}</button>`).join('')}</div>${cardAnswerArea(x)}</div>${nav()}`}
 function nav(){
  const scope=rel(),deck=sessionIds.length?sessionIds.map(k=>scope.find(x=>x.id===k)).filter(Boolean):scope,pos=deck.findIndex(x=>x.id===id);
- return `<div class="footnav"><button class="btn" onclick="${pos>0?`item('${deck[pos-1].id}')`:`go('list')`}">← ${pos>0?'Précédent':'Liste'}</button><button class="btn primary" onclick="${pos+1<deck.length?`item('${deck[pos+1].id}')`:`go('list')`}">${pos+1<deck.length?'Suivant →':'Retour à la liste'}</button></div>`;
+ return `<div class="footnav"><button class="btn" onclick="${pos>0?`item('${deck[pos-1].id}')`:`go('${randomMode?'topics':'list'}')`}">← ${pos>0?'Précédent':randomMode?'Thématiques':'Liste'}</button><button class="btn primary" onclick="${pos+1<deck.length?`item('${deck[pos+1].id}')`:`go('${randomMode?'topics':'list'}')`}">${pos+1<deck.length?'Suivant →':randomMode?'Thématiques':'Retour à la liste'}</button></div>`;
 }
 function colorAllSuits(root){if(!root)return;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const list=[];let node;while((node=walker.nextNode())){if(!/[♠♥♦♣]/.test(node.nodeValue||''))continue;const el=node.parentElement;if(!el||el.closest('script,style,select,option,textarea,.sym,.symbol-suit,.deal-suit,.deal-playing-card'))continue;list.push(node)}for(const n of list){const frag=document.createDocumentFragment();// Inclure FE0F/FE0E : Safari peut autrement afficher un glyphe emoji monochrome/blanc.
 const parts=n.nodeValue.split(/([♠♥♦♣])[\uFE0E\uFE0F]?/g);for(const piece of parts){if(/^[♠♥♦♣]$/.test(piece)){const span=document.createElement('span');span.className='symbol-suit '+(/[♥♦]/.test(piece)?'suit-red':'suit-black');span.textContent=piece+'\uFE0E';frag.appendChild(span)}else if(piece){frag.appendChild(document.createTextNode(piece))}}n.parentNode.replaceChild(frag,n)}}
@@ -707,6 +725,7 @@ if(embeddedMode){
      cat=String(r.cat||'');id=String(r.id||'');
      status=String(r.status||'all');ptopic=String(r.ptopic||'all');
      sessionIds=Array.isArray(r.sessionIds)?r.sessionIds.filter(v=>typeof v==='string'):[];
+     randomMode=!!r.randomMode;
      trainingApplyPage(r.view,r.view==='list'||r.view==='plays',false);
    }finally{
      window.parent.postMessage({type:'qpjb-training-nav-done',seq:event.data.seq},location.origin);
