@@ -14,8 +14,11 @@ function qpjbStartAtTop() {
 }
 // Remettre en haut uniquement lors d'une visite fraîche, jamais quand on
 // revient sur l'onglet, dans l'historique ou après un rechargement.
-if (performance.getEntriesByType('navigation')[0]?.type === 'navigate' &&
-    !history.state?.qpjbTraining) qpjbStartAtTop();
+const qpjbNavigationType=performance.getEntriesByType('navigation')[0]?.type;
+let qpjbUpdating=false;
+try { qpjbUpdating=sessionStorage.getItem('qpjb-auto-refresh')==='1'; } catch (_) {}
+if ((qpjbNavigationType==='navigate'&&!history.state?.qpjbTraining) ||
+    (qpjbNavigationType==='reload'&&!qpjbUpdating)) qpjbStartAtTop();
 </script>
 <script>
 // Android PWA: éviter un deuxième fondu de logo après l'écran natif.

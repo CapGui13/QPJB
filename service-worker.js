@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v34';
+const CACHE = 'qpjb-v35';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -68,6 +68,13 @@ self.addEventListener('fetch', event => {
       const cached = await cache.match(request) ||
         await cache.match(url.pathname, {ignoreSearch: true});
       if (cached) return cached;
+      // Les images facultatives (vignettes des documents, logos secondaires)
+      // peuvent ne pas avoir été vues avant la déconnexion. Ne pas laisser
+      // le fetch rejeté produire une erreur JavaScript globale dans WebKit.
+      if (request.destination === 'image' ||
+          /\.(?:png|jpe?g|webp|gif|svg)$/i.test(url.pathname)) {
+        return new Response(null, {status: 204});
+      }
       // La page intégrée contient mode et rev dans sa query string : elle doit
       // pouvoir s'ouvrir hors ligne même si ce mode n'a jamais été visité.
       if (request.mode === 'navigate' &&
