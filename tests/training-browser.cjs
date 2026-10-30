@@ -48,30 +48,39 @@ const server=http.createServer((req,res)=>{
   const choices=quiz.locator('.choices>.choice');
   assert.equal(auctionRows,3,'Test QCM must include three auction rows');
   assert.equal(await choices.count(),4,'Four proposals must be present');
+  // L'ordre visuel n'est plus l'ordre éditorial : les données conservent
+  // leurs indices d'origine pour les réponses, les corrigés et la progression.
+  const choiceTwo=quiz.locator('.choices>.choice[data-answer-index="2"]');
+  const choiceZero=quiz.locator('.choices>.choice[data-answer-index="0"]');
+  assert.deepEqual((await choices.allTextContents()).map(x=>x.trim()),
+    ['Passe','3SA','4SA','5SA'],'Bidding replies are shown from cheapest to highest');
+  assert.deepEqual(await choices.evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.answerIndex))),
+    [3,2,0,1],'Visual sorting preserves original choice indices');
+
   const metrics=await quiz.evaluate(el=>{
    const buttons=el.querySelector('.choices').getBoundingClientRect();
    const rect=el.getBoundingClientRect();
    return {buttonsBottom:buttons.bottom,viewport:el.ownerDocument.documentElement.clientHeight,quizWidth:rect.width,bodyWidth:el.ownerDocument.documentElement.clientWidth};
   });
   assert.ok(metrics.quizWidth>metrics.bodyWidth*0.85,'QCM must use available mobile width');
-  await choices.nth(2).click();
+  await choiceTwo.click();
   await frame.locator('.qpjb-answer-area.is-open').waitFor({state:'visible',timeout:5000});
   assert.equal(await quiz.locator('.choice.selected').count(),1,'Answer selected');
   const firstAnswer=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
-  await choices.nth(2).click();
+  await choiceTwo.click();
   assert.equal(await quiz.locator('.choice.selected').count(),0,'Second tap unselects answer');
   assert.equal(await frame.locator('.qpjb-answer-area[aria-hidden="true"]').count(),1,'Explanation closes');
-  await choices.nth(2).click();
+  await choiceTwo.click();
   const afterRecheck=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
   assert.equal(afterRecheck.attempts,firstAnswer.attempts,'Unselect and reselect do not count as another visit');
   assert.equal(afterRecheck.history,firstAnswer.history+1,'Each selection remains in history');
   assert.equal(afterRecheck.validated,firstAnswer.validated,'First selection determines visit validation');
-  await choices.nth(0).click();
+  await choiceZero.click();
   const changedChoice=await quiz.evaluate(()=>({attempts:saved[id].attempts,history:saved[id].history.length,validated:saved[id].validated}));
   assert.equal(changedChoice.attempts,firstAnswer.attempts,'Changing to another choice does not increase visit count');
   assert.equal(changedChoice.history,afterRecheck.history+1,'Changed choice is recorded');
   assert.equal(changedChoice.validated,firstAnswer.validated,'Changed choice cannot rewrite first try');
-  await choices.nth(2).click();
+  await choiceTwo.click();
   const extra=frame.locator('.postsolution-trigger');
   await extra.waitFor({state:'attached',timeout:5000});
   const explanationId=await extra.getAttribute('aria-controls');
@@ -138,14 +147,14 @@ const server=http.createServer((req,res)=>{
       return window.__qpjbOriginalSetItem.call(this,key,val);
     };
   });
-  await choices.nth(0).click();
+  await choiceZero.click();
   await frame.locator('#root .storage-warning[role="alert"]').waitFor({state:'visible',timeout:5000});
   assert.equal(await quiz.count(),1,'Storage warning does not recreate the exercise');
   await quiz.evaluate(()=>{
     Storage.prototype.setItem=window.__qpjbOriginalSetItem;
     delete window.__qpjbOriginalSetItem;
   });
-  await choices.nth(2).click();
+  await choiceTwo.click();
   await frame.locator('#root .storage-warning').waitFor({state:'detached',timeout:5000});
   assert.equal(await frame.locator('.restart-exercise').count(),0,
     'No redo control is offered after the answer');
@@ -261,7 +270,9 @@ const server=http.createServer((req,res)=>{
   // Exercice 12 de la rubrique 2SA : les commentaires comportent des Cœurs et Carreaux.
   await frame.locator('.item').nth(11).click();
   await quiz.waitFor({state:'visible',timeout:15000});
-  await quiz.locator('.choices>.choice').nth(2).click();
+  const correctOriginalIndex=await accessibilityFrame.evaluate(()=>current().choices.indexOf(current().correct));
+  assert.ok(correctOriginalIndex>=0,'The correct option exists in the original source list');
+  await quiz.locator('.choices>.choice[data-answer-index="'+correctOriginalIndex+'"]').click();
   const redExtra=frame.locator('.postsolution-trigger');
   await redExtra.waitFor({state:'visible',timeout:5000});
   await redExtra.click();
@@ -272,6 +283,17 @@ const server=http.createServer((req,res)=>{
   }));
   assert.notEqual(suitColors.symbol,suitColors.parent,'Heart/Diamond must have a distinct red color');
   await page.goBack({waitUntil:'domcontentloaded'});
+  await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
+  // Les exercices guidés se trient aussi, mais gardent leur identifiant de choix source.
+  await accessibilityFrame.evaluate(()=>item('EN-2sa-005'));
+  await accessibilityFrame.waitForFunction(()=>view==='quiz'&&id==='EN-2sa-005',{timeout:15000});
+  const guidedChoices=frame.locator('.qpjb-bid-quiz .choices>.choice');
+  assert.deepEqual((await guidedChoices.allTextContents()).map(t=>t.trim()),
+    ['Passe','3♥','3♠','3SA'],'Guided exercises follow the same cheapest-first rule');
+  await frame.locator('.qpjb-bid-quiz .choice[data-answer-index="3"]').click();
+  assert.equal(await frame.locator('.qpjb-bid-quiz .choice.selected').getAttribute('data-answer-index'),'3',
+    'Guided choice retains original source index after visual sorting');
+  await frame.locator('.qpjb-quiz-nav button.back').click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
 
   // Le second espace pédagogique doit utiliser la même navigation et le même fondu.
