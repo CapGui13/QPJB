@@ -544,10 +544,14 @@ function dealViewer(seats,meta={}){
    (defenseSide||rotated)&&leadCard?'has-lead':'',
    longSide?'has-lateral-hand':''].filter(Boolean).join(' ');
  const actualLead=TABLE_ORDER.includes(meta.leadSeat)?meta.leadSeat:'west';
- const shown=leadCard?playedCard(leadCard,screenSeat(actualLead,perspective),meta.cardCaption||'Entame',actualLead):'';
+ const leadPosition=screenSeat(actualLead,perspective);
+ const shown=leadCard?playedCard(leadCard,leadPosition,meta.cardCaption||'Entame',actualLead):'';
+ // Une carte jouée depuis la position haute reste sous la pastille du joueur qui entame.
+ const leadAtTop=!!shown&&rotated&&leadPosition==='north'&&!projected.north.data?.rows?.length;
  const slot=pos=>seatMarker(pos,projected[pos].physical,
    longSide===pos?null:projected[pos].data);
- return `<div class="deal-viewer-wrap"><div class="deal-viewer-shell"><div class="${cls}" data-perspective="${perspective}">${slot('north')}${slot('west')}${dealCenter(meta)}${slot('east')}${rotated&&projected.south.data?.rows?.length?`<div class="deal-player-group">${seatMarker('south',projected.south.physical,null)}${slot('south')}</div>`:slot('south')}${shown}${longSide?`<div class="deal-lateral-hand">${seatBox(longSide,projected[longSide].data,projected[longSide].physical)}</div>`:''}</div></div></div>`;
+ const top=leadAtTop?`<div class="deal-leader-group">${slot('north')}${shown}</div>`:slot('north');
+ return `<div class="deal-viewer-wrap"><div class="deal-viewer-shell"><div class="${cls}${leadAtTop?' lead-at-top':''}" data-perspective="${perspective}">${top}${slot('west')}${dealCenter(meta)}${slot('east')}${rotated&&projected.south.data?.rows?.length?`<div class="deal-player-group">${seatMarker('south',projected.south.physical,null)}${slot('south')}</div>`:slot('south')}${leadAtTop?'':shown}${longSide?`<div class="deal-lateral-hand">${seatBox(longSide,projected[longSide].data,projected[longSide].physical)}</div>`:''}</div></div></div>`;
 }
 function buildCardSeats(x){const seats={};if(x.holdings){x.holdings.forEach((h,i)=>{const pos=seatFromLabel(h.label,i===0?'north':'south');seats[pos]={title:h.label,rows:(h.rows||[]).map(r=>({suit:r.suit,ranks:cleanRanks(r.ranks||'')})).filter(r=>r.ranks)}})}else{if(x.north)seats.north={title:x.northLabel||'Mort · Nord',rows:normRows(x.north)};if(x.south){const prompt=(x.prompt||'').toLowerCase();const playerPos=/vous êtes en est/.test(prompt)?'east':/vous êtes en ouest/.test(prompt)?'west':/vous êtes en nord/.test(prompt)?'north':'south';const pos=seatFromLabel(x.southLabel,playerPos);seats[pos]={title:x.southLabel==='Votre main'?`Votre main · ${prettySeat(pos)}`:(x.southLabel||'Votre main'),rows:normRows(x.south)}}}return seats}
 // Synchroniser seulement la carte jouée, sans réinitialiser le tableau ni le défilement.
