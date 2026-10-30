@@ -562,3 +562,11 @@ html.qpjb-embedded.qpjb-parent-scroll{overflow:hidden!important;scrollbar-gutter
  -webkit-text-fill-color:#584366!important;
  font-size:12px;
 }
+
+/* Empêcher la largeur de l'exercice de sauter à l'ouverture du détail.
+   L'iframe réutilise son défilement uniquement en mode exercice. */
+html.qpjb-embedded:not(.qpjb-parent-scroll){overflow-y:scroll;scrollbar-gutter:stable}
+.qpjb-embedded .postsolution-notes,.qpjb-embedded .postsolution-body,
+.qpjb-embedded .postsolution-body-inner,.qpjb-embedded .postsolution-item{min-width:0;max-width:100%}
+.qpjb-embedded .postsolution-grid{grid-template-columns:minmax(0,1fr)}
+.qpjb-embedded .postsolution-item{overflow-wrap:anywhere}
