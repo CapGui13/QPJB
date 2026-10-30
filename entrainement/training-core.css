@@ -949,6 +949,17 @@ body.theme-dark .review-transfer,body.dark .review-transfer,[data-theme="dark"] 
  text-align:center;color:var(--txt2,#c0abda);
  padding:8px 5px 2px;
 }
+/* Même langage graphique que les tables modernes, en respectant le fac-similé. */
+.legacy-defense-source{max-width:780px;margin-inline:auto;overflow:hidden;border-radius:18px}
+.legacy-defense-source .game-img{display:block;width:100%;height:auto;object-fit:contain}
+.legacy-defense-source .legacy-defense-heading{
+ color:var(--ink,#eee3fa);font:750 14px/1.4 'Exo 2',system-ui,sans-serif;
+ padding:8px 8px 10px;
+}
+.legacy-defense-source figcaption:last-child{
+ color:var(--muted,#c9bed4);font-size:12px;line-height:1.5;padding:10px 8px 6px;
+}
+
 
 /* Harmonisation finale des enseignes ♠ ♥ ♦ ♣ (y compris WebKit/iOS).
    Toutes les surfaces de Training sont dans #root : une règle unique et
