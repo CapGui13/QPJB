@@ -256,9 +256,42 @@ function trainingBiddingTheme(x){
 }
 function counted(k){return byDifficulty(D.bidding.filter(x=>x.reviewStatus!=='a_verifier'&&trainingBiddingTheme(x)===k))}
 function title(){return cat==='all'?'Toutes les enchères':cat==='play'?(PLAY_TOPICS.find(x=>x.id===ptopic)?.name||'Tout le jeu de la carte'):(D.categories.find(x=>x.id===cat)?.name||'Enchères')}
-function stat(x){const s=validatedState(saved[x.id]);return s===null?'→':s?'✓':'✕'}
-function resultLabel(x){const s=validatedState(saved[x.id]);return s===null?'Pas encore commencé':s?'Validé au premier choix':'À revoir : premier choix non validé'}
-function filtered(){return rel().filter(x=>{const s=validatedState(saved[x.id]);return status==='all'||(status==='todo'&&s===null)||(status==='ok'&&s===true)||(status==='failed'&&s===false)})}
+// Révisions sans altérer le statut historique « validé au premier choix ».
+const REVIEW_AFTER_DAYS=30;
+function reviewInformation(x,now=Date.now()){
+ const record=saved[x.id],state=validatedState(record);
+ if(state===false){
+   const parsed=Date.parse(record?.lastAttemptAt||record?._syncAt||'');
+   return {priority:0,age:Number.isFinite(parsed)?parsed:0};
+ }
+ if(state!==true)return null;
+ // Ne pas inventer une date pour les résultats anciens sans horodatage fiable.
+ const last=Date.parse(record?.lastAttemptAt||record?._syncAt||'');
+ return Number.isFinite(last)&&last>0&&now-last>=REVIEW_AFTER_DAYS*86400000
+   ?{priority:1,age:last}:null;
+}
+function orderedReview(arr){
+ return arr.slice().sort((a,b)=>{
+   const ra=reviewInformation(a),rb=reviewInformation(b);
+   return (ra?.priority??9)-(rb?.priority??9)||
+     (ra?.age??0)-(rb?.age??0)||
+     (Number(a.level)||1)-(Number(b.level)||1)||
+     String(a.id).localeCompare(String(b.id));
+ });
+}
+function stat(x){const s=validatedState(saved[x.id]);return s===null?'→':s?(reviewInformation(x)?'↻':'✓'):'✕'}
+function resultLabel(x){
+ const s=validatedState(saved[x.id]);
+ return s===null?'Pas encore commencé':s
+   ?(reviewInformation(x)?'Révision conseillée : dernier premier choix validé il y a au moins 30 jours':'Validé au premier choix')
+   :'À retravailler : premier choix non validé';
+}
+function filtered(){
+ const all=rel();
+ if(status==='failed')return orderedReview(all.filter(x=>reviewInformation(x)));
+ return all.filter(x=>{const s=validatedState(saved[x.id]);return status==='all'||
+   (status==='todo'&&s===null)||(status==='ok'&&s===true)});
+}
 function pageHome(){const nb=D.bidding.filter(x=>x.reviewStatus!=='a_verifier').length;return `<section class="hero"><span class="badge">QPJB · Entraînement · Bêta V7.43</span><h1>À vous de jouer !</h1><p>Choisissez l'un des <strong>deux espaces d'entraînement indépendants</strong> ci-dessous : les <strong>enchères</strong> ou le <strong>jeu de la carte</strong>.</p><p class="muted" style="font-size:12px;margin-bottom:0">Les exercices sont transposés à partir de leurs documents d’origine.</p></section><div class="home-intro"><strong>Choisissez votre entraînement</strong><span>Deux parcours distincts, dans l’esprit du QPJB.</span></div><div class="grid2 home-choices"><button type="button" class="tile home-tile home-bidding" aria-label="Enchères : choisir un thème parmi les ${D.categories.length} thématiques" onclick="typ('bidding')"><span class="home-kicker">ESPACE 1 · ENCHÈRES</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Enchères</span><span class="home-description">Entraînez-vous aux enchères avec <strong>${nb} QCM</strong> classés par thème : réponses à l'ouverture, interventions, redemandes, etc.</span><span class="home-action">Choisir un thème d’enchères <span aria-hidden="true">→</span></span></button><button type="button" class="tile home-tile home-play" aria-label="Jeu de la carte : accéder aux ${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} exercices" onclick="typ('play')"><span class="home-kicker">ESPACE 2 · JEU DE LA CARTE</span><span class="home-tile-title" style="color:#292244 !important;display:block !important;font-weight:850 !important;font-size:27px !important;line-height:1.2 !important">Jeu de la carte</span><span class="home-description">Travaillez <strong>${D.play.filter(x=>x.reviewStatus!=='a_verifier').length} situations</strong> de jeu du déclarant et de défense : étudiez les mains, réfléchissez, puis découvrez l’analyse.</span><span class="home-action">Choisir un thème de carte <span aria-hidden="true">→</span></span></button></div>`}
 // Les reclassements portent uniquement sur l'index : les exercices et leurs
 // identifiants/progressions restent inchangés dans les données source.
@@ -280,7 +313,7 @@ function trainingOverview(kind){
 function pageTopics(){const groups=[...new Set(D.categories.map(c=>c.group))];const section=groups.map(g=>`<section class="topic-group"><h2>${esc(g)}</h2><div class="grid2">${D.categories.filter(c=>c.group===g).map(c=>{const a=counted(c.id),ok=validatedCount(a);return `<button class="tile" onclick="topic('${c.id}')"><div class="topic-meta"><span class="badge">${a.length} exercices</span><span class="badge topic-validated">${ok}/${a.length} validés</span></div><span class="topic-title">${esc(c.name)}</span><span class="topic-description">${esc(c.description)}</span><div class="topic-progress-track" aria-hidden="true"><div style="width:${a.length?100*ok/a.length:0}%"></div></div></button>`}).join('')}</div></section>`).join('');return `${embeddedMode?trainingOverview('bidding'):`<button class="back" onclick="go('home')">← Accueil</button><h1>Enchères</h1><p class="muted">${TRAINING_SOURCE_DESCRIPTION}</p>`}<div class="training-random-action"><button type="button" class="btn training-all-button" onclick="startRandomBidding()">Exercices aléatoires →</button></div>${section}`}
 function pagePlayTopics(){const gs=[...new Set(PLAY_TOPICS.map(t=>t.group))];const sections=gs.map(g=>`<section class="topic-group"><h2>${esc(g)}</h2><div class="grid2">${PLAY_TOPICS.filter(t=>t.group===g).map(t=>{const all=D.play.filter(x=>x.reviewStatus!=='a_verifier'&&playTopicId(x)===t.id),ok=validatedCount(all);return `<button class="tile" onclick="playTopic('${t.id}')"><div class="topic-meta"><span class="badge">${all.length} exercices</span><span class="badge topic-validated">${ok}/${all.length} validés</span></div><span class="topic-title">${esc(t.name)}</span><span class="topic-description">${esc(t.description)}</span><div class="pbar"><div style="width:${all.length?100*ok/all.length:0}%"></div></div></button>`}).join('')}</div></section>`).join('');return `${embeddedMode?trainingOverview('play'):`<button class="back" onclick="go('home')">← Accueil</button><h1>Jeu de la carte</h1><p class="muted">${TRAINING_SOURCE_DESCRIPTION}</p>`}${sections}<p style="margin-top:18px"><button class="btn training-all-button" onclick="playTopic('all')">Tous les exercices de carte →</button></p>`}
 function miniAuction(x){const items=(x.auction||[]).flat().filter(v=>v&&v!=='?');return items.length?'Séquence : '+items.slice(0,7).join(' · '):'Quelle enchère choisir ?'}
-function pageList(){let arr=filtered(), all=rel();return `<button class="back" onclick="go('${cat==='play'?'playtopics':'topics'}')">← ${cat==='play'?'Thèmes de carte':'Toutes les thématiques'}</button><section class="hero"><span class="badge">${all.length} exercices</span><h1>${esc(title())}</h1><p>${cat==='play'?'Étudiez les situations de jeu, de défense et d’entame avant de découvrir l’analyse.':'Choisissez une proposition, puis découvrez l’explication. Vous pouvez réessayer.'}</p><div class="list-progress">${validatedCount(all)}/${all.length} validés</div></section><div class="tools"><select class="field" aria-label="Progression" onchange="status=this.value;redrawList()"><option value="all">Tous les exercices</option><option value="todo" ${status==='todo'?'selected':''}>À faire</option><option value="ok" ${status==='ok'?'selected':''}>Validés</option><option value="failed" ${status==='failed'?'selected':''}>Non validés</option></select></div><div id="count" class="muted training-count" role="status" aria-live="polite" aria-atomic="true">${arr.length} exercice(s)</div><p class="muted training-legend">✓ Validé au premier choix · ✕ À revoir · → Pas encore commencé</p><div id="entries" class="list">${rows(arr)}</div>`}
+function pageList(){let arr=filtered(), all=rel();return `<button class="back" onclick="go('${cat==='play'?'playtopics':'topics'}')">← ${cat==='play'?'Thèmes de carte':'Toutes les thématiques'}</button><section class="hero"><span class="badge">${all.length} exercices</span><h1>${esc(title())}</h1><p>${cat==='play'?'Étudiez les situations de jeu, de défense et d’entame avant de découvrir l’analyse.':'Choisissez une proposition, puis découvrez l’explication. Vous pouvez réessayer.'}</p><div class="list-progress">${validatedCount(all)}/${all.length} validés</div></section><div class="tools"><select class="field" aria-label="Progression" onchange="status=this.value;redrawList()"><option value="all">Tous les exercices</option><option value="todo" ${status==='todo'?'selected':''}>À faire</option><option value="ok" ${status==='ok'?'selected':''}>Validés</option><option value="failed" ${status==='failed'?'selected':''}>À retravailler</option></select></div><div id="count" class="muted training-count" role="status" aria-live="polite" aria-atomic="true">${arr.length} exercice(s)</div><p class="muted training-legend">✓ Validé au premier choix · ✕ À retravailler · ↻ Révision à 30 jours · → Pas encore commencé</p><div id="entries" class="list">${rows(arr)}</div>`}
 const LEGACY_SVG_CONTRACTS={"JC-BH-100-01":"3SA","JC-BH-060-01":"3SA","JC-BH-120-01":"3SA","JC-BH-044-01":"3SA","JC-BH-045-01":"4♥","JC-BH-046-01":"6♥","JC-BH-047-01":"4♠"};
 function neutralPlayListTitle(x){
   const direct=String(x.contract||'').trim();
