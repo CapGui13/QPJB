@@ -2310,8 +2310,14 @@ window.addEventListener('popstate',e=>{
  }
 });
 window.addEventListener('resize',qpjbTrainingResize);
-if(history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
-else if(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play')
+// Un rechargement explicite doit redémarrer à l'accueil, comme les séances d'Aix.
+// Les entrées d'historique restent utilisées pour Retour/Avancer sans rechargement.
+const qpjbIsReload=performance.getEntriesByType('navigation')[0]?.type==='reload';
+if(qpjbIsReload && (history.state?.qpjbTraining || location.hash.startsWith('#entrainement-'))){
+ history.replaceState(null,'',location.pathname+location.search);
+}
+if(!qpjbIsReload&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
+else if(!qpjbIsReload&&(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play'))
  qpjbTrainingShow(location.hash.endsWith('play')?'play':'bidding',false);
 </script>
 </body>
