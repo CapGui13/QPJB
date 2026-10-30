@@ -246,11 +246,11 @@ const server=http.createServer((req,res)=>{
   });
   assert.ok(numbersMatch,'All exercise numbers match the original order');
   const legend=await frame.locator('.training-legend').innerText();
-  assert.ok(legend.includes('premier choix')&&legend.includes('À revoir'),
+  assert.ok(legend.includes('premier choix')&&legend.includes('À retravailler'),
     'Progress legend distinguishes first try from final answer');
   const visibleStates=await frame.locator('#entries .state').evaluateAll(nodes=>
     nodes.every(n=>!!n.getAttribute('aria-label')&&
-      /Validé au premier choix|À revoir|Pas encore commencé/.test(n.getAttribute('aria-label'))));
+      /Validé au premier choix|À retravailler|Révision conseillée|Pas encore commencé/.test(n.getAttribute('aria-label'))));
   assert.ok(visibleStates,'Progress states have meaningful accessible labels');
   await listFilter.selectOption('all');
   assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Focus remains after reset filter');
