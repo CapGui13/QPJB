@@ -467,12 +467,15 @@ const server=http.createServer((req,res)=>{
       topSeat:top?.dataset.seat,
       correctVerticalOrder:!!lead&&!!top&&top.getBoundingClientRect().bottom<=lead.getBoundingClientRect().top+1,
       equalWidth:Math.abs(hand.width-dummy.width)<=1,
-      equalHeight:Math.abs(hand.height-dummy.height)<=1
+      equalHeight:Math.abs(hand.height-dummy.height)<=1,
+      playerWidth:hand.width,dummyWidth:dummy.width,playerHeight:hand.height,dummyHeight:dummy.height
     };
   });
-  assert.deepEqual(eastLeadPlacement,{
-    leadSeat:'west',topSeat:'west',correctVerticalOrder:true,equalWidth:true,equalHeight:true
-  },'West lead is attached to West at the top; North dummy and East hand use identical boxes');
+  assert.equal(eastLeadPlacement.leadSeat,'west','The lead belongs to West');
+  assert.equal(eastLeadPlacement.topSeat,'west','The top marker is West');
+  assert.ok(eastLeadPlacement.correctVerticalOrder,'West lead is shown under West');
+  assert.ok(eastLeadPlacement.equalWidth&&eastLeadPlacement.equalHeight,
+    'Dummy and player boxes must be identical: '+JSON.stringify(eastLeadPlacement));
 
 
   // Lorsqu'une seule main est visible, elle doit aussi être en bas (Est et Ouest).
