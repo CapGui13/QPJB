@@ -2300,6 +2300,8 @@ window.addEventListener('message',e=>{
      const depth=Math.max(0,history.state.trainingDepth||0)+1;
      history.pushState({qpjbTraining:qpjbTrainingMode,trainingDepth:depth,trainingRoute:e.data.route},'', location.pathname+location.search);
    }
+   // Déclencher le contrôle seulement quand la nouvelle route est enregistrée.
+   if(e.data.route?.view!=='quiz')window.dispatchEvent(new Event('qpjb-training-safe-update'));
  }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
   qpjbTrainingResize();
@@ -2320,7 +2322,6 @@ window.addEventListener('message',e=>{
    window.scrollTo(0,0);
   }
   if(qpjbTrainingReady)document.getElementById('training-loading').hidden=true;
-  if(!quiz)window.dispatchEvent(new Event('qpjb-training-safe-update'));
  }
  else if(e.data?.type==='qpjb-training-exit')qpjbTrainingExit();
 });
