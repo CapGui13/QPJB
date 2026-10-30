@@ -82,6 +82,8 @@ const seatFromLabel=new Function(seatFunction+'; return seatFromLabel;')();
 check(seatFromLabel('Vous · Ouest')==='west','Ouest must not be mistaken for Est');
 check(seatFromLabel('Vous · Est')==='east','Est seat recognized correctly');
 check(seatFromLabel('Mort · Nord')==='north','dummy remains North');
+check(seatFromLabel('Mort · Sud')==='south'&&seatFromLabel('Mort · Ouest')==='west',
+ 'Explicit dummy compass position wins over the default North convention');
 check(app.includes('defense-adjacent')&&app.includes('const defenseSide='),'adjacent defense layout implemented');
 check(integrated.includes('prefers-reduced-motion'),'reduced motion is supported');
 const raw=read('entrainement/training-data.js').trim();
