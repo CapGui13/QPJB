@@ -11,6 +11,16 @@ const initialMode=new URLSearchParams(location.search).get('mode');
 const integratedMode=initialMode==='bidding'||initialMode==='play';
 const embeddedMode=window.parent!==window&&new URLSearchParams(location.search).get('embedded')==='1';
 if(embeddedMode)document.documentElement.classList.add('qpjb-embedded');
+let trainingOuterScroll=embeddedMode&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+if(trainingOuterScroll)document.documentElement.classList.add('qpjb-parent-scroll');
+function trainingScrollY(){return trainingOuterScroll?window.parent.scrollY:window.scrollY}
+function trainingScrollTo(y){(trainingOuterScroll?window.parent:window).scrollTo(0,y)}
+function trainingReportHeight(){
+ if(!trainingOuterScroll||!embeddedMode)return;
+ const root=document.getElementById('root');if(!root)return;
+ const height=Math.max(240,Math.ceil(root.getBoundingClientRect().bottom+3));
+ window.parent.postMessage({type:'qpjb-training-content-height',height},location.origin);
+}
 let view=initialMode==='bidding'?'topics':initialMode==='play'?'playtopics':'home',cat=initialMode==='play'?'play':'',id='',status='all',ptopic='all',sessionIds=[],chosen=null,revealed=false,playSeen=false,redoAttempt=null,redoAnswered=false;
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 // Idempotente et indépendante de l'ordre de réception des événements storage.
@@ -139,10 +149,10 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
  view=next;redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;
  render();
  if(restoreList&&trainingListScope===trainingScope()){
-   requestAnimationFrame(()=>window.scrollTo(0,trainingListScroll));
+   requestAnimationFrame(()=>trainingScrollTo(trainingListScroll));
  }else if(next==='topics'||next==='playtopics'){
-   requestAnimationFrame(()=>window.scrollTo(0,trainingTopicsScroll[next]||0));
- }else window.scrollTo(0,0);
+   requestAnimationFrame(()=>trainingScrollTo(trainingTopicsScroll[next]||0));
+ }else trainingScrollTo(0);
  requestAnimationFrame(focusTrainingPage);
  if(recordRoute&&embeddedMode){
    window.parent.postMessage({type:'qpjb-training-route',route:{
@@ -165,11 +175,11 @@ function typ(v,immediate=false){
  if(immediate)apply();else trainingNavigate(apply);
 }
 function topic(v){
- trainingTopicsScroll.topics=window.scrollY;
+ trainingTopicsScroll.topics=trainingScrollY();
  trainingNavigate(()=>{cat=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
 }
 function playTopic(v){
- trainingTopicsScroll.playtopics=window.scrollY;
+ trainingTopicsScroll.playtopics=trainingScrollY();
  trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
 }
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
@@ -195,7 +205,7 @@ function item(v){
  // Lists are filtered, but old routes and direct navigation can still carry an ID.
  if(!availableExercise(v))return;
  const fromList=view==='list'||view==='plays';
- if(fromList){trainingListScroll=window.scrollY;trainingListScope=trainingScope()}
+ if(fromList){trainingListScroll=trainingScrollY();trainingListScope=trainingScope()}
  trainingNavigate(()=>{
    if(fromList){sessionIds=filtered().map(x=>x.id);randomMode=false;}
    id=v;trainingApplyPage('quiz');
@@ -669,7 +679,7 @@ function nav(){
 }
 function colorAllSuits(root){if(!root)return;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const list=[];let node;while((node=walker.nextNode())){if(!/[♠♥♦♣]/.test(node.nodeValue||''))continue;const el=node.parentElement;if(!el||el.closest('script,style,select,option,textarea,.sym,.symbol-suit,.deal-suit,.deal-playing-card'))continue;list.push(node)}for(const n of list){const frag=document.createDocumentFragment();// Inclure FE0F/FE0E : Safari peut autrement afficher un glyphe emoji monochrome/blanc.
 const parts=n.nodeValue.split(/([♠♥♦♣])[\uFE0E\uFE0F]?/g);for(const piece of parts){if(/^[♠♥♦♣]$/.test(piece)){const span=document.createElement('span');span.className='symbol-suit '+(/[♥♦]/.test(piece)?'suit-red':'suit-black');span.textContent=piece+'\uFE0E';frag.appendChild(span)}else if(piece){frag.appendChild(document.createTextNode(piece))}}n.parentNode.replaceChild(frag,n)}}
-function render(){document.documentElement.classList.toggle('qpjb-quiz-active',view==='quiz');const root=document.getElementById('root');root.innerHTML=view==='home'?pageHome():view==='topics'?pageTopics():view==='playtopics'?pagePlayTopics():view==='list'||view==='plays'?pageList():view==='quiz'?(cat==='play'?(current().exerciseFormat==='carte_qcm'?quizCard(current()):quizP(current())):quizB(current())):pageHome();if(storageWarning)root.insertAdjacentHTML('afterbegin',storageNotice());colorAllSuits(root);if(embeddedMode)window.parent.postMessage({type:'qpjb-training-view',quiz:view==='quiz'},location.origin)}
+function render(){document.documentElement.classList.toggle('qpjb-quiz-active',view==='quiz');const root=document.getElementById('root');root.innerHTML=view==='home'?pageHome():view==='topics'?pageTopics():view==='playtopics'?pagePlayTopics():view==='list'||view==='plays'?pageList():view==='quiz'?(cat==='play'?(current().exerciseFormat==='carte_qcm'?quizCard(current()):quizP(current())):quizB(current())):pageHome();if(storageWarning)root.insertAdjacentHTML('afterbegin',storageNotice());colorAllSuits(root);if(embeddedMode)window.parent.postMessage({type:'qpjb-training-view',quiz:view==='quiz'},location.origin);trainingReportHeight()}
 // Un autre onglet du même navigateur vient de sauver des réponses.
 // L'événement contient aussi les changements perdus lors d'une écriture
 // concurrente : les fusionner et réécrire uniquement si nécessaire.
@@ -680,10 +690,10 @@ function refreshSharedProgress(){
    if(progressLabel){const all=rel();progressLabel.textContent=validatedCount(all)+'/'+all.length+' validés'}
  }else if(view==='topics'||view==='playtopics'||view==='home'){
    const activeTiles=[...document.querySelectorAll('.topic-group .tile,.home-tile')];
-   const focusIndex=activeTiles.indexOf(document.activeElement),scroll=window.scrollY;
+   const focusIndex=activeTiles.indexOf(document.activeElement),scroll=trainingScrollY();
    render();
    if(focusIndex>=0)document.querySelectorAll('.topic-group .tile,.home-tile')[focusIndex]?.focus({preventScroll:true});
-   window.scrollTo(0,scroll);
+   trainingScrollTo(scroll);
  }
  // Ne pas détruire un QCM pendant la réponse : la progression est déjà à jour.
 }
@@ -705,6 +715,11 @@ window.addEventListener('keydown',e=>{
 if(embeddedMode){
  window.addEventListener('message',event=>{
   if(event.origin!==location.origin||event.source!==window.parent)return;
+  if(event.data?.type==='qpjb-training-scroll-mode'){
+   trainingOuterScroll=!!event.data.outer;
+   document.documentElement.classList.toggle('qpjb-parent-scroll',trainingOuterScroll);
+   trainingReportHeight();return;
+  }
   if(event.data?.type==='qpjb-training-nav-apply'){
    const pending=trainingPendingNav;
    if(!pending||pending.seq!==event.data.seq)return;
@@ -742,9 +757,15 @@ if(embeddedMode){
  });
 }
 render();
+if(embeddedMode&&typeof ResizeObserver!=='undefined'){
+ const resizeObserver=new ResizeObserver(trainingReportHeight);
+ resizeObserver.observe(document.getElementById('root'));
+}
+if(embeddedMode)window.addEventListener('resize',trainingReportHeight);
 if(typeof performance!=='undefined')performance.mark('qpjb-training-first-render');
 // Ne révéler l'iframe qu'une fois les polices prêtes : pas de saut de typographie après 600 ms.
 if(embeddedMode)document.fonts.ready.then(()=>{
  performance.mark('qpjb-training-fonts-ready');
+ trainingReportHeight();
  window.parent.postMessage({type:'qpjb-training-ready'},location.origin);
 });
