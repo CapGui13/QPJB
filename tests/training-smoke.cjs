@@ -39,7 +39,7 @@ check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'
  'Clubs are pure black without the former slate override or white outline');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v14'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes("CACHE = 'qpjb-v15'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
@@ -51,6 +51,8 @@ check(!html.includes('training-style.css'),'obsolete stylesheet is not loaded');
 check(html.indexOf('qpjb-design-tokens.css')<html.indexOf('training-core.css'),'shared tokens load before base');
 check(html.indexOf('training-core.css')<html.indexOf('training-integrated.css'),'integrated CSS loads last');
 check(html.indexOf('training-data.js')<html.indexOf('training-app.js'),'training data loads before logic');
+check(/<script defer src="\.\/training-data\.js/.test(html)&&/<script defer src="\.\/training-app\.js/.test(html),
+ 'Training scripts download in parallel but execute in source order');
 check(parent.includes('qpjbTrainingFadeNavigate')&&parent.includes('fadeSwap(()=>new Promise'),'QPJB owns page fades');
 check(app.includes('qpjb-training-nav-request')&&app.includes('qpjb-training-nav-apply'),'iframe uses coordinated transitions');
 check(parent.includes('trainingDepth')&&app.includes('qpjb-training-route-restore'),'browser history can restore pages');
