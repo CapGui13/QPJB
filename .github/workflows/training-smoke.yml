@@ -2,14 +2,12 @@ name: QPJB Training smoke
 on:
   push:
     branches: [main]
-    paths:
-      - index.html
-      - service-worker.js
-      - site-update.js
-      - qpjb-design-tokens.css
-      - entrainement/**
-      - tests/**
-      - .github/workflows/training-smoke.yml
+    # Les fichiers générés seuls ne déclenchent pas un nouveau cycle de tests.
+    paths-ignore:
+      - catalogue.json
+      - site-version.json
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,7 +15,30 @@ concurrency:
   group: qpjb-training-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  integrity:
+    name: Audit des données et du code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Contrôle de structure, exercices et mises à jour
+        run: |
+          node tests/training-smoke.cjs
+          node tests/training-card-integrity.cjs
+          node tests/site-update.cjs
+      - name: Rapport des 677 exercices
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-integrity
+          path: artifacts/training-integrity/report.json
+          retention-days: 14
+          if-no-files-found: warn
   smoke:
+    name: Validation ${{ matrix.browser }}
+    needs: integrity
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -28,10 +49,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check navigation, layout and data integrity
-        run: |
-          node tests/training-smoke.cjs
-          node tests/site-update.cjs
       - name: Install browser test dependencies
         run: |
           npm install --no-save playwright
