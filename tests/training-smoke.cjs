@@ -39,7 +39,7 @@ check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'
  'Clubs are pure black without the former slate override or white outline');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v18'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
+check(worker.includes("CACHE = 'qpjb-v19'")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
 check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
@@ -92,9 +92,33 @@ const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
 check(raw.length<1200000,'initial exercise data stays compact (no embedded WebP facsimiles)');
 const data=JSON.parse(raw.slice(8,-1));
+// Les enchères sont triées dans la vue seulement ; l'ordre source, la bonne
+// réponse et les identifiants restent inchangés.
+const bidStart=app.indexOf('function biddingChoiceEntries(');
+const bidEnd=app.indexOf('\nfunction quizBSource(',bidStart);
+check(bidStart>0&&bidEnd>bidStart,'price-ordering helper is available');
+const bidEntries=new Function(app.slice(bidStart,bidEnd)+';return biddingChoiceEntries')();
+check(JSON.stringify(bidEntries(['4SA','5SA','3SA','Passe']).map(x=>x.value))===
+ JSON.stringify(['Passe','3SA','4SA','5SA']),
+ 'bidding replies order by increasing bid value');
+check(JSON.stringify(bidEntries(['3SA','Passe','3♠','3♥']).map(x=>x.index))===
+ JSON.stringify([1,3,2,0]),
+ 'source-guided answers keep their original choice indices after sorting');
+check(JSON.stringify(bidEntries(['Main 1','Main 2','Main 3','Main 4']).map(x=>x.value))===
+ JSON.stringify(['Main 1','Main 2','Main 3','Main 4'])&&
+ JSON.stringify(bidEntries(['Oui','Non']).map(x=>x.value))===JSON.stringify(['Oui','Non']),
+ 'non-bidding QCM choices are never reordered');
+check(JSON.stringify(bidEntries(['Contre','1♠','Passe','1SA']).map(x=>x.value))===
+ JSON.stringify(['Passe','Contre','1♠','1SA']),
+ 'Pass and Double have an explicit stable position before bid values');
+
 check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===24,
  'All 24 source opening-lead problems remain available and unmodified');
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
+check(data.bidding.every(ex=>ex.choices.includes(ex.correct)&&
+  bidEntries(ex.choices).length===ex.choices.length&&
+  bidEntries(ex.choices).every(entry=>ex.choices[entry.index]===entry.value)),
+ 'all 563 bidding exercises retain original answers, indexes and corrections');
 const facsimiles=JSON.parse(read('tests/training-image-checksums.json'));
 check(facsimiles.files.length===23,'23 original image facsimiles externalized');
 for(const {id,sha} of facsimiles.files){
