@@ -168,6 +168,7 @@ const harness=[
  "const window={scrollY:0,scrollTo:(x,y)=>scrolls.push(y),parent:{postMessage:msg=>sent.push(msg)}};", 
   "const trainingScrollY=()=>window.scrollY,trainingScrollTo=y=>window.scrollTo(0,y);let randomMode=false;",
  "const location={origin:'https://test.invalid'},embeddedMode=true,integratedMode=true;",
+ "const trainingDataReady=()=>true;const ensureTrainingData=()=>Promise.resolve();",
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
