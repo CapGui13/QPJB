@@ -2219,7 +2219,7 @@ function qpjbTrainingResize(){
  if(view.style.display==='none')return;
  const quiz=document.body.classList.contains('qpjb-training-in-quiz');
  const height=quiz?0:(Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60);
- const outer=window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+ const outer=!quiz&&window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
  document.body.classList.toggle('qpjb-training-outer-scroll',outer);
  if(qpjbTrainingIsOuterScroll!==outer){
    qpjbTrainingIsOuterScroll=outer;
@@ -2257,7 +2257,7 @@ function qpjbTrainingShow(mode,navigate=true){
    document.getElementById('training-loading').hidden=false;
    if(!frame.dataset.started){
      frame.dataset.started='true';
-     frame.src='./entrainement/?embedded=1&rev=20261030r&mode='+encodeURIComponent(mode);
+     frame.src='./entrainement/?embedded=1&rev=20261030s&mode='+encodeURIComponent(mode);
    }else qpjbTrainingSelect(mode);
    if(navigate){
      if(history.state?.qpjbTraining)history.replaceState({qpjbTraining:mode,trainingDepth:history.state.trainingDepth||0},'', location.pathname+location.search);
