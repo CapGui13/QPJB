@@ -143,6 +143,8 @@ async function run(browser,spec){
    const nav=performance.getEntriesByType('navigation')[0];
    const assets=performance.getEntriesByType('resource').filter(x=>x.name.includes('/entrainement/'));
    return {navigationMs:Math.round(nav?.duration||0),
+    firstRenderMs:Math.round(performance.getEntriesByName('qpjb-training-first-render')[0]?.startTime||0),
+    fontsReadyMs:Math.round(performance.getEntriesByName('qpjb-training-fonts-ready')[0]?.startTime||0),
     resources:assets.map(x=>({name:x.name.split('/').at(-1),ms:Math.round(x.duration),
       bytes:x.decodedBodySize||0})).slice(0,12),
     dataResourceBytes:assets.filter(x=>x.name.includes('training-data.js')).reduce((a,x)=>a+x.decodedBodySize,0)};
