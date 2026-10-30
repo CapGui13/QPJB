@@ -132,8 +132,8 @@ async function run(browser,spec){
    await capture(locator,'.cq-stage',spec.name+'-long-card.png');
   }
   if(spec.name==='iphone12'||spec.name==='desktop'){
-   await frame.evaluate(()=>playTopic('plan-libre'));
-   await waitView(frame,'list','plan-libre');
+   await frame.evaluate(()=>playTopic('defense'));
+   await waitView(frame,'list','defense');
    await frame.evaluate(()=>item('JC-010'));
    await frame.waitForFunction(()=>id==='JC-010'&&view==='quiz',{timeout:15000});
    await locator.locator('.legacy-defense-source').waitFor({state:'visible'});
