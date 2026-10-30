@@ -28,6 +28,7 @@ jobs:
           node tests/training-smoke.cjs
           node tests/training-card-integrity.cjs
           node tests/training-ambiguity.cjs
+          node tests/training-review.cjs
           node scripts/split_training_data.cjs --check
           node tests/site-update.cjs
       - name: Rapports d'intégrité et d'ambiguïté
