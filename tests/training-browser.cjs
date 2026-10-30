@@ -200,6 +200,13 @@ const server=http.createServer((req,res)=>{
     });
   });
   assert.ok(numbersMatch,'All exercise numbers match the original order');
+  const legend=await frame.locator('.training-legend').innerText();
+  assert.ok(legend.includes('premier choix')&&legend.includes('À revoir'),
+    'Progress legend distinguishes first try from final answer');
+  const visibleStates=await frame.locator('#entries .state').evaluateAll(nodes=>
+    nodes.every(n=>!!n.getAttribute('aria-label')&&
+      /Validé au premier choix|À revoir|Pas encore commencé/.test(n.getAttribute('aria-label'))));
+  assert.ok(visibleStates,'Progress states have meaningful accessible labels');
   await listFilter.selectOption('all');
   assert.equal(await listFilter.evaluate(el=>document.activeElement===el),true,'Focus remains after reset filter');
 
@@ -404,6 +411,18 @@ const server=http.createServer((req,res)=>{
   assert.equal(await leadStage.locator('.deal-played').count(),0,
     'A wrong lead does not reveal the expected card');
 
+  // Les anciens diagrammes restent fidèles quand leur orientation est ambiguë.
+  for(const ex of ['JC-010','JC-012']){
+    await childFrame.evaluate(exercise=>item(exercise),ex);
+    await childFrame.waitForFunction(exercise=>id===exercise&&
+      !!document.querySelector('.legacy-defense-source .legacy-defense-heading'),ex,{timeout:15000});
+    const original=frame.locator('.legacy-defense-source');
+    assert.ok((await original.locator('figcaption').last().innerText()).includes('aucune orientation supposée'),
+      'Historical defense source never assigns unverified seats');
+    assert.ok((await original.locator('img').getAttribute('src')).includes(ex+'.webp'),
+      'Original defense image remains unchanged');
+  }
+
   // Une longue proposition garde la pleine largeur (pas de colonne illisible).
   await childFrame.evaluate(()=>playTopic('plan-qcm'));
   await childFrame.waitForFunction(()=>view==='list'&&ptopic==='plan-qcm',{timeout:15000});
@@ -413,7 +432,7 @@ const server=http.createServer((req,res)=>{
     getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length);
   assert.equal(longGrid,1,'Long card options remain in one readable column');
 
-  // // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
+  // Un choix de carte n'efface plus l'énoncé ou la table : même nœud DOM.
   await childFrame.evaluate(()=>item('JC-BH-041-Q02'));
   await childFrame.waitForFunction(()=>id==='JC-BH-041-Q02'&&document.querySelector('.cq-stage .cq-option'));
   const cardPanel=frame.locator('.cq-stage'),cardOptions=cardPanel.locator('.cq-option');
