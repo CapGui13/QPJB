@@ -68,7 +68,8 @@
       }
     } catch (_) {}
     // Le service worker charge HTML/CSS/JS/JSON en réseau d'abord (no-store).
-    location.reload();
+    try { location.reload(); }
+    finally { activating = false; }
   }
 
   async function check() {
