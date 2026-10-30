@@ -577,3 +577,26 @@ html.qpjb-embedded:not(.qpjb-parent-scroll){overflow-y:scroll;scrollbar-gutter:s
 html.qpjb-embedded.qpjb-parent-scroll.qpjb-quiz-active main:has(>.qpjb-bid-quiz){
  min-height:var(--qpjb-training-viewport-height,800px)!important;
 }
+
+/* Quatre couleurs distinctes sur les fonds violets de Training. */
+.qpjb-embedded #root .symbol-suit.suit-club,
+.qpjb-embedded #root .suit .sym.suit-club,
+.qpjb-embedded #root .candidate-suits b.suit-club,
+.qpjb-embedded #root .deal-suit.suit-club,
+.qpjb-embedded #root .deal-playing-card.suit-club{
+ color:#56AFFF!important;-webkit-text-fill-color:#56AFFF!important;
+}
+.qpjb-embedded #root .symbol-suit.suit-diamond,
+.qpjb-embedded #root .suit .sym.suit-diamond,
+.qpjb-embedded #root .candidate-suits b.suit-diamond,
+.qpjb-embedded #root .deal-suit.suit-diamond,
+.qpjb-embedded #root .deal-playing-card.suit-diamond{
+ color:#FFAF4D!important;-webkit-text-fill-color:#FFAF4D!important;
+}
+/* Contraste renforcé des signes seuls à l'intérieur des cartes blanches. */
+.qpjb-embedded #root :is(.choice,.cq-option,.deal-seat,.candidate-hand) :is(.symbol-suit.suit-club,.sym.suit-club,b.suit-club,.deal-suit.suit-club){
+ color:#1765B6!important;-webkit-text-fill-color:#1765B6!important;
+}
+.qpjb-embedded #root :is(.choice,.cq-option,.deal-seat,.candidate-hand) :is(.symbol-suit.suit-diamond,.sym.suit-diamond,b.suit-diamond,.deal-suit.suit-diamond){
+ color:#B35B08!important;-webkit-text-fill-color:#B35B08!important;
+}

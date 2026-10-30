@@ -103,7 +103,7 @@ const server=http.createServer((req,res)=>{
     el.appendChild(p);
     colorAllSuits(p);
   });
-  assert.equal(await frame.locator('.qpjb-suit-probe .symbol-suit.suit-black').count(),2,
+  assert.equal(await frame.locator('.qpjb-suit-probe .symbol-suit.suit-club').count(),2,
     'Two clubs from the screenshot are wrapped as suit glyphs');
 
   // Contrôler le trèfle noir (même dans les corrigés sombres) et l'absence de contour.
@@ -119,11 +119,14 @@ const server=http.createServer((req,res)=>{
       const errors=[];
       for(const el of elements){
         const isRed=el.classList.contains('red')||el.classList.contains('suit-red');
+        const club=el.classList.contains('suit-club'),diamond=el.classList.contains('suit-diamond');
         const style=getComputedStyle(el);
         const fill=style.getPropertyValue('-webkit-text-fill-color')||style.color;
         const values=(fill.match(/\d+/g)||[]).slice(0,3).map(Number);
-        const good=values.length===3&&(isRed
-          ?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
+        const good=values.length===3&&(club
+          ?values[2]>values[0]+35&&values[2]>values[1]+18
+          :diamond?values[0]>values[2]+70&&values[1]>values[2]+20
+          :isRed?values[0]>=120&&values[0]>values[1]+45&&values[0]>values[2]+35
           :values.every(n=>n<=80));
         if(!good)errors.push({where:el.parentElement?.className,cls:el.className,
           text:el.textContent?.slice(0,12),fill});
@@ -259,7 +262,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.footnav button').first().click();
   await trainingFrameForNav.waitForFunction(first=>view==='quiz'&&id===first,firstBidId);
   assert.equal(iframeNavigations,0,'Internal previous/next navigation does not reload the training iframe');
-  assert.equal(await quiz.locator('.choice.selected').count(),0,'Returning to a saved exercise starts without stale selection');
+  assert.equal(await quiz.locator('.choice.selected').count(),0,'Returning to an unanswered exercise leaves it blank');
   await frame.locator('.qpjb-quiz-nav button.back').click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
   const recordAfterNavigation=await trainingFrameForNav.evaluate(exId=>saved[exId],firstBidId);

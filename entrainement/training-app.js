@@ -122,6 +122,26 @@ function restoreChoiceFocus(kind,choiceIndex,ok){
 }
 
 function quitTraining(){if(embeddedMode){window.parent.postMessage({type:'qpjb-training-exit'},location.origin);return}location.assign('../')}
+// Garder l'état visuel de chaque exercice pendant la navigation Précédent/Suivant.
+const sessionQuizStates=new Map();
+function rememberCurrentQuiz(){
+ if(view!=='quiz'||!id)return;
+ sessionQuizStates.set(id,{
+  redoAttempt:redoAttempt?{...redoAttempt}:null,redoAnswered,
+  activeVisitId,chosen,revealed,playSeen,
+  alternativesOpen:!!document.querySelector('.postsolution-notes.is-open'),
+  sourceOpen:!!document.querySelector('.play-source[open]')
+ });
+}
+function restoreQuizDetails(s){
+ if(!s)return;
+ if(s.alternativesOpen){
+  const box=document.querySelector('.postsolution-notes');
+  const button=box?.querySelector('.postsolution-trigger'),body=box?.querySelector('.postsolution-body');
+  if(button&&body){box.classList.add('is-open');button.setAttribute('aria-expanded','true');body.inert=false;body.setAttribute('aria-hidden','false')}
+ }
+ if(s.sourceOpen){const source=document.querySelector('.play-source');if(source)source.open=true}
+}
 let trainingNavSeq=0,trainingPendingNav=null,trainingQueuedNav=null;
 let trainingListScroll=0,trainingListScope='';
 function trainingScope(){return cat+'|'+ptopic+'|'+status}
@@ -150,7 +170,13 @@ function trainingApplyPage(next,restoreList=false,recordRoute=true){
  // An old browser route must never reopen a quarantined or unknown exercise.
  if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
  view=next;redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;
- render();
+ const previous=next==='quiz'?sessionQuizStates.get(id):null;
+ if(previous){
+  redoAttempt=previous.redoAttempt?{...previous.redoAttempt}:null;
+  redoAnswered=previous.redoAnswered;activeVisitId=previous.activeVisitId;
+  chosen=previous.chosen;revealed=previous.revealed;playSeen=previous.playSeen;
+ }
+ render();restoreQuizDetails(previous);
  if(restoreList&&trainingListScope===trainingScope()){
    requestAnimationFrame(()=>trainingScrollTo(trainingListScroll));
  }else if(next==='topics'||next==='playtopics'){
@@ -171,7 +197,7 @@ function go(v){
 }
 function typ(v,immediate=false){
  const apply=()=>{
-   cat=v;status='all';ptopic='all';sessionIds=[];randomMode=false;
+   cat=v;status='all';ptopic='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();
    trainingTopicsScroll[v==='play'?'playtopics':'topics']=0;
    trainingApplyPage(v==='play'?'playtopics':'topics',false,!immediate);
  };
@@ -179,11 +205,11 @@ function typ(v,immediate=false){
 }
 function topic(v){
  trainingTopicsScroll.topics=trainingScrollY();
- trainingNavigate(()=>{cat=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
+ trainingNavigate(()=>{cat=v;status='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();trainingApplyPage('list')});
 }
 function playTopic(v){
  trainingTopicsScroll.playtopics=trainingScrollY();
- trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];randomMode=false;trainingApplyPage('list')});
+ trainingNavigate(()=>{cat='play';ptopic=v;status='all';sessionIds=[];randomMode=false;sessionQuizStates.clear();trainingApplyPage('list')});
 }
 function playTopicId(x){if(x.exerciseFormat!=='carte_qcm')return x.type==='defense'?'defense':'plan-libre';return {'Plan de jeu':'plan-qcm','Impasses':'impasses','Maniements de couleur':'maniements','Communications':'communications','Entame':'entames','Défense':'defense'}[x.topic]||'plan-qcm'}
 let randomMode=false;
@@ -199,7 +225,7 @@ function startRandomBidding(){
  const deck=[...fresh,...seen].map(x=>x.id);
  if(!deck.length)return;
  trainingNavigate(()=>{
-   cat='all';status='all';ptopic='all';randomMode=true;
+   cat='all';status='all';ptopic='all';randomMode=true;sessionQuizStates.clear();
    sessionIds=deck;id=deck[0];trainingApplyPage('quiz');
  });
 }
@@ -210,7 +236,8 @@ function item(v){
  const fromList=view==='list'||view==='plays';
  if(fromList){trainingListScroll=trainingScrollY();trainingListScope=trainingScope()}
  trainingNavigate(()=>{
-   if(fromList){sessionIds=filtered().map(x=>x.id);randomMode=false;}
+   if(fromList){sessionIds=filtered().map(x=>x.id);randomMode=false;sessionQuizStates.clear();}
+   else rememberCurrentQuiz();
    id=v;trainingApplyPage('quiz');
  });
 }
@@ -275,7 +302,7 @@ function redrawList(){
  colorAllSuits(entries);
 }
 function auction(x){let a=x.auction||[];return a.length?`<table class="auc"><thead><tr><th>Sud</th><th>Ouest</th><th>Nord</th><th>Est</th></tr></thead><tbody>${a.map(r=>'<tr>'+r.map(t=>`<td class="${t.includes('?')?'ask':''}">${esc(t||'—')}</td>`).join('')+'</tr>').join('')}</tbody></table>`:''}
-function hand(x){return `<div class="suits">${x.hand.map((s,i)=>`<div class="suit"><span class="sym ${i===1||i===2?'red':'black'}">${'♠♥♦♣'[i]}</span><span>${esc(s)}</span></div>`).join('')}</div>`}
+function hand(x){return `<div class="suits">${x.hand.map((s,i)=>`<div class="suit"><span class="sym ${i===1||i===2?'red':'black'} ${i===2?'suit-diamond':i===3?'suit-club':''}">${'♠♥♦♣'[i]}</span><span>${esc(s)}</span></div>`).join('')}</div>`}
 /* Actualiser uniquement les réponses : préserver la main, les enchères et le défilement. */
 function updateBiddingAnswer(x,guided=false){
  const quiz=document.querySelector('.qpjb-bid-quiz');
@@ -403,7 +430,7 @@ function correctDisplay(x){const p=visibleAnswer(id);if(!p?.done)return '';
   if(!p.ok){const note=safeDistractorNote(x,p.pick);return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Mauvaise réponse !</h3><p>${note?esc(note):'Ce choix ne correspond pas au corrigé retenu. Essayez une autre proposition.'}</p></div>`}
   return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedok">✓ Bonne réponse !</h3><p>${esc(pedagogicText(x.explanation||'Comparez votre raisonnement avec la réponse attendue.',x))}</p>${x.conventionWarning?`<p class="convention-note"><strong>Cadre conventionnel :</strong> ${esc(displayConventionWarning(x))}</p>`:''}${postSolutionAlternatives(x)}</div>`
 }
-function candidateHands(x){if(!x.handOptions)return '';return `<div class="compare-hands">${x.handOptions.map((h,i)=>`<div class="candidate-hand"><strong>Main ${i+1}</strong><div class="candidate-suits">${h.map((v,j)=>`<div><b class="${j===1||j===2?'red':'black'}">${'♠♥♦♣'[j]}</b> ${esc(v)}</div>`).join('')}</div></div>`).join('')}</div>`}
+function candidateHands(x){if(!x.handOptions)return '';return `<div class="compare-hands">${x.handOptions.map((h,i)=>`<div class="candidate-hand"><strong>Main ${i+1}</strong><div class="candidate-suits">${h.map((v,j)=>`<div><b class="${j===1||j===2?'red':'black'} ${j===2?'suit-diamond':j===3?'suit-club':''}">${'♠♥♦♣'[j]}</b> ${esc(v)}</div>`).join('')}</div></div>`).join('')}</div>`}
 
 function sourceGuided(x){return x?.reviewStatus==='transcrit_source'}
 function sourceExplanation(x){const t=x.explanation||'';const clean=x.id==='EN-BH-090-03'?t.replace(' Cette interprétation est celle du corrigé ancien et ne correspond pas au référentiel QPJB retenu : exercice maintenu en quarantaine.',''):t;return pedagogicText(clean,x)}
@@ -455,7 +482,7 @@ function assess(ok){
 }
 function quizAtelier(x){const p=visibleAnswer(id);return `<button class="back" onclick="go('list')">← Ateliers d’enchères</button><div class="quizhead"><span class="badge">Enchères · Atelier ${seqNum(x)}</span></div><section class="panel" style="margin-top:14px"><h2>${esc(x.lessonTitle)}</h2><p>Réfléchissez aux questions. Ce format est en auto-évaluation, et non en QCM.</p><div class="game-img-wrap"><img class="game-img" src="${x.image}" alt="Exercice d’enchères : ${esc(x.lessonTitle)}" /></div>${x.importMethod==='facsimile_exercice_anonyme'?`<button type="button" class="btn document-zoom-button" onclick="toggleDocumentZoom(this)">Agrandir l’énoncé</button>`:''}<div style="margin-top:14px"><button class="btn primary" onclick="revealPlay()">${playSeen||p?.done?'Revoir le corrigé':'Découvrir le corrigé'} →</button></div>${playSeen||p?.done?`<div class="feedback"><h3>Explications</h3><div class="game-solution">${esc(x.answerText)}</div>${p?.done?`<p class="completion-notice">${p.ok?'✓ Atelier terminé — réussi':'✓ Atelier terminé — à revoir'}</p>`:`<p class="muted">Votre raisonnement allait-il dans le bon sens ?</p><div class="gamecheck"><button class="btn" onclick="assess(true)">✓ J’avais bon</button><button class="btn" onclick="assess(false)">↻ À revoir</button></div>`}</div>`:''}</section>${nav()}`}
 function seatFromLabel(label,fallback='south'){const v=(label||'').toLowerCase();if(v.includes('nord'))return 'north';if(v.includes('sud'))return 'south';if(v.includes('ouest'))return 'west';if(v.includes('est'))return 'east';if(v.includes('mort'))return 'north';if(v.includes('déclarant'))return fallback;if(v.includes('votre main'))return fallback;return fallback}
-function suitClass(s){return '♥♦'.includes(s)?'red':'black'}
+function suitClass(s){return s==='♦'?'red suit-diamond':s==='♣'?'black suit-club':s==='♥'?'red':'black'}
 function prettySeat(pos){return {north:'Nord',south:'Sud',east:'Est',west:'Ouest'}[pos]||''}
 function cleanRanks(t){return (t||'').replace(/\s+/g,' ').trim()}
 function normRows(arr){return '♠♥♦♣'.split('').map((s,i)=>({suit:s,ranks:cleanRanks((arr||[])[i]||'')})).filter(r=>r.ranks)}
@@ -681,7 +708,7 @@ function nav(){
  return `<div class="footnav"><button class="btn" onclick="${pos>0?`item('${deck[pos-1].id}')`:`go('${randomMode?'topics':'list'}')`}">← ${pos>0?'Précédent':randomMode?'Thématiques':'Liste'}</button><button class="btn primary" onclick="${pos+1<deck.length?`item('${deck[pos+1].id}')`:`go('${randomMode?'topics':'list'}')`}">${pos+1<deck.length?'Suivant →':randomMode?'Thématiques':'Retour à la liste'}</button></div>`;
 }
 function colorAllSuits(root){if(!root)return;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const list=[];let node;while((node=walker.nextNode())){if(!/[♠♥♦♣]/.test(node.nodeValue||''))continue;const el=node.parentElement;if(!el||el.closest('script,style,select,option,textarea,.sym,.symbol-suit,.deal-suit,.deal-playing-card'))continue;list.push(node)}for(const n of list){const frag=document.createDocumentFragment();// Inclure FE0F/FE0E : Safari peut autrement afficher un glyphe emoji monochrome/blanc.
-const parts=n.nodeValue.split(/([♠♥♦♣])[\uFE0E\uFE0F]?/g);for(const piece of parts){if(/^[♠♥♦♣]$/.test(piece)){const span=document.createElement('span');span.className='symbol-suit '+(/[♥♦]/.test(piece)?'suit-red':'suit-black');span.textContent=piece+'\uFE0E';frag.appendChild(span)}else if(piece){frag.appendChild(document.createTextNode(piece))}}n.parentNode.replaceChild(frag,n)}}
+const parts=n.nodeValue.split(/([♠♥♦♣])[\uFE0E\uFE0F]?/g);for(const piece of parts){if(/^[♠♥♦♣]$/.test(piece)){const span=document.createElement('span');span.className='symbol-suit '+(piece==='♣'?'suit-black suit-club':piece==='♦'?'suit-red suit-diamond':piece==='♥'?'suit-red':'suit-black');span.textContent=piece+'\uFE0E';frag.appendChild(span)}else if(piece){frag.appendChild(document.createTextNode(piece))}}n.parentNode.replaceChild(frag,n)}}
 function render(){document.documentElement.classList.toggle('qpjb-quiz-active',view==='quiz');const root=document.getElementById('root');root.innerHTML=view==='home'?pageHome():view==='topics'?pageTopics():view==='playtopics'?pagePlayTopics():view==='list'||view==='plays'?pageList():view==='quiz'?(cat==='play'?(current().exerciseFormat==='carte_qcm'?quizCard(current()):quizP(current())):quizB(current())):pageHome();if(storageWarning)root.insertAdjacentHTML('afterbegin',storageNotice());colorAllSuits(root);if(embeddedMode)window.parent.postMessage({type:'qpjb-training-view',quiz:view==='quiz'},location.origin);trainingReportHeight()}
 // Un autre onglet du même navigateur vient de sauver des réponses.
 // L'événement contient aussi les changements perdus lors d'une écriture

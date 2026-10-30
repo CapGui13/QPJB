@@ -37,6 +37,9 @@ check(core.includes('-webkit-text-stroke:0!important')&&!core.includes('-webkit-
  'Black suits are solid glyphs without a pale outline on dark feedback');
 check(!core.includes('#b8becb')&&core.includes('-webkit-text-stroke:0!important'),
  'Clubs are pure black without the former slate override or white outline');
+check(app.includes('sessionQuizStates')&&app.includes('rememberCurrentQuiz')&&app.includes('restoreQuizDetails'),
+ 'Previous/next remembers selected answers without restarting a visit');
+check(integrated.includes('suit-club')&&integrated.includes('suit-diamond'),'Four bridge suit colors are available');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
 check(worker.includes("CACHE = 'qpjb-v")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
@@ -158,7 +161,7 @@ const harness=[
  "const requestAnimationFrame=callback=>callback();",
  "let view='topics',cat='',status='all',ptopic='all',sessionIds=[],chosen=null;",
  "let redoAttempt=null,redoAnswered=false,revealed=false,playSeen=false,id='';",
- "const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
+ "const document={querySelector:()=>null};const render=()=>{renders++};const filtered=()=>[{id:'EX1'},{id:'EX2'}];const quitTraining=()=>{};const D={bidding:[{id:'EX1'},{id:'EX2'}],play:[]};",
  nav,
  "function complete(){const p=trainingPendingNav;if(!p)throw Error('missing transition');trainingPendingNav=null;p.action();const q=trainingQueuedNav;trainingQueuedNav=null;if(q)trainingNavigate(q)}",
  "topic('2sa');const queued=view==='topics'&&sent.at(-1).type==='qpjb-training-nav-request';complete();",
