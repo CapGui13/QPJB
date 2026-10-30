@@ -528,3 +528,16 @@ html.qpjb-embedded{background:var(--qpjb-page-dark,#211d27)!important;scroll-beh
 @media(max-width:360px){
  .qpjb-embedded.qpjb-quiz-active .cq-stage .cq-option{font-size:13px!important;padding:8px 6px}
 }
+
+/* Accessibilité Safari/iOS : agrandissement système du texte.
+   Garder la largeur de la page stable, autoriser un défilement uniquement
+   à l'intérieur de la ligne des 13 cartes si elle ne tient plus à 150 %. */
+@media(max-width:600px){
+ .qpjb-embedded.qpjb-quiz-active .qpjb-bid-quiz .suits{
+   max-width:100%;
+   min-width:0;
+   overflow-x:auto!important;
+   overflow-y:hidden!important;
+   overscroll-behavior-x:contain;
+ }
+}

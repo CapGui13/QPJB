@@ -51,6 +51,7 @@ async function geometry(frame,kind){
   return {viewportWidth:document.documentElement.clientWidth,
    viewportHeight:document.documentElement.clientHeight,
    docWidth:document.documentElement.scrollWidth,
+   overflowNodes:[...root.querySelectorAll('*')].filter(el=>el.getBoundingClientRect().right>document.documentElement.clientWidth+3).slice(0,6).map(el=>({tag:el.tagName,cls:el.className?.baseVal||String(el.className||'').slice(0,80),right:Math.round(el.getBoundingClientRect().right)})),
    options,grid:getComputedStyle(choices).gridTemplateColumns};
  },kind==='bid'?'.qpjb-bid-quiz .choices':'.cq-stage .cq-options');
 }
