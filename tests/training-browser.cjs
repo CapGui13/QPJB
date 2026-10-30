@@ -543,6 +543,49 @@ const server=http.createServer((req,res)=>{
   assert.ok((await frame.locator('.play-source .game-img').getAttribute('src')).endsWith('/JC-001.webp'),
     'Original declarer facsimile loads correctly from its WebP file');
 
+  // Régression desktop : ouvrir « Pourquoi les autres propositions » ne doit
+  // pas déclencher de changement de largeur lors de l'apparition de la scrollbar.
+  const desktopContext=await browser.newContext({viewport:{width:1280,height:800},locale:'fr-FR'});
+  try{
+    const desktopPage=await desktopContext.newPage();
+    desktopPage.on('pageerror',e=>errors.push(e.message));
+    await desktopPage.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+    await desktopPage.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+    const deskFrame=desktopPage.frameLocator('#training-frame');
+    await deskFrame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
+    await deskFrame.locator('.item').first().click();
+    await deskFrame.locator('.qpjb-bid-quiz').waitFor({state:'visible',timeout:15000});
+    const deskChild=desktopPage.frames().find(f=>f.url().includes('/entrainement/'));
+    const correctIndex=await deskChild.evaluate(()=>current().choices.indexOf(current().correct));
+    await deskFrame.locator('.choice[data-answer-index="'+correctIndex+'"]').click();
+    const deskAccordion=deskFrame.locator('.postsolution-trigger').first();
+    await deskAccordion.waitFor({state:'visible',timeout:10000});
+    const measure=()=>deskChild.evaluate(()=>{
+      const main=document.querySelector('main').getBoundingClientRect();
+      const quiz=document.querySelector('.qpjb-bid-quiz').getBoundingClientRect();
+      return {width:document.documentElement.clientWidth,
+        gutter:getComputedStyle(document.documentElement).scrollbarGutter,
+        mainX:main.x,mainWidth:main.width,quizX:quiz.x,quizWidth:quiz.width,
+        overflow:document.documentElement.scrollWidth>window.innerWidth+1};
+    });
+    const before=await measure();
+    await deskAccordion.click();
+    await deskChild.waitForFunction(()=>document.querySelector('.postsolution-notes')?.classList.contains('is-open'));
+    await desktopPage.waitForTimeout(350);
+    const after=await measure();
+    assert.equal(before.gutter,'stable','Reserve scrollbar width inside desktop QCM');
+    assert.equal(after.width,before.width,'Expanding alternatives must not resize the document');
+    assert.ok(Math.abs(after.mainX-before.mainX)<1&&Math.abs(after.mainWidth-before.mainWidth)<1
+      &&Math.abs(after.quizX-before.quizX)<1&&Math.abs(after.quizWidth-before.quizWidth)<1,
+      'Expanding alternatives must not horizontally shift the QCM: '+JSON.stringify({before,after}));
+    assert.equal(after.overflow,false,'Expanded alternatives must not overflow horizontally');
+    await deskAccordion.click();
+    await desktopPage.waitForTimeout(350);
+    const closed=await measure();
+    assert.ok(Math.abs(closed.quizWidth-before.quizWidth)<1&&Math.abs(closed.quizX-before.quizX)<1,
+      'Collapsing alternatives keeps original dimensions');
+  }finally{await desktopContext.close()}
+
   // Les sauvegardes doivent survivre à un rechargement complet de QPJB.
   const savedBeforeReload=await childFrame.evaluate(()=>localStorage.getItem(KEY));
   const storageKey=await childFrame.evaluate(()=>KEY);
