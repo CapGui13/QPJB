@@ -453,6 +453,23 @@ const server=http.createServer((req,res)=>{
   });
   assert.ok(eastPos.below&&eastPos.right&&eastPos.wide&&eastPos.inShell&&!eastPos.sideMoved,
     'East-oriented hand, dummy and table stay usable on iPhone: '+JSON.stringify(eastPos));
+  const eastLeadPlacement=await eastTable.evaluate(el=>{
+    const top=el.querySelector('.deal-leader-group>.deal-marker.north');
+    const lead=el.querySelector('.deal-leader-group>.deal-played');
+    const hand=el.querySelector('.deal-seat.south').getBoundingClientRect();
+    const dummy=el.querySelector('.deal-seat.east').getBoundingClientRect();
+    return {
+      leadSeat:lead?.dataset.seat,
+      topSeat:top?.dataset.seat,
+      correctVerticalOrder:!!lead&&!!top&&top.getBoundingClientRect().bottom<=lead.getBoundingClientRect().top+1,
+      equalWidth:Math.abs(hand.width-dummy.width)<=1,
+      equalHeight:Math.abs(hand.height-dummy.height)<=1
+    };
+  });
+  assert.deepEqual(eastLeadPlacement,{
+    leadSeat:'west',topSeat:'west',correctVerticalOrder:true,equalWidth:true,equalHeight:true
+  },'West lead is attached to West at the top; North dummy and East hand use identical boxes');
+
 
   // Lorsqu'une seule main est visible, elle doit aussi être en bas (Est et Ouest).
   for(const [exercise,seat,badge] of [['JC-BH-023-Q01','east','E'],['JC-BH-021-Q01','west','O']]){
