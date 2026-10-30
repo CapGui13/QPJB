@@ -47,8 +47,38 @@ const server=http.createServer((req,res)=>{
        app:stored.some(url=>url.includes('/QPJB/entrainement/training-app.js?v='))
      };
    });
-   assert.deepEqual(before,{images:23,training:true,data:true,bidding:true,play:true,app:true},
-     'Full training shell and all 23 original WebP images must already be cached');
+   assert.equal(before.training,true,'The training shell is available immediately');
+   assert.equal(before.data,true,'The lightweight data bootstrap is available immediately');
+   assert.equal(before.app,true,'The training app is available immediately');
+   assert.equal(before.bidding&&before.play&&before.images===23,false,
+     'Installation is not blocked by preloading both full datasets and all facsimiles');
+   // Demander explicitement l'étape différée : le SW répond à la fin du cache.
+   // L'application déclenche ce même message automatiquement après l'accueil.
+   const warmed=await page.evaluate(()=>new Promise((resolve,reject)=>{
+     const channel=new MessageChannel();
+     const timeout=setTimeout(()=>reject(new Error('Deferred cache not complete')),30000);
+     channel.port1.onmessage=event=>{
+       clearTimeout(timeout);
+       channel.port1.close();
+       resolve(event.data);
+     };
+     navigator.serviceWorker.controller.postMessage(
+       {type:'QPJB_PREFETCH_OFFLINE'},[channel.port2]);
+   }));
+   assert.deepEqual(warmed,{type:'QPJB_OFFLINE_READY',ok:true},
+     'Background cache completes when online, without blocking installation');
+   const after=await page.evaluate(async()=>{
+     const cache=await caches.open((await caches.keys()).find(k=>k.startsWith('qpjb-v')));
+     const matches=await Promise.all([
+       cache.match('/QPJB/entrainement/training-data-bidding.js?v=20261030d1'),
+       cache.match('/QPJB/entrainement/training-data-play.js?v=20261030d1'),
+       ...Array.from({length:23},(_,i)=>cache.match(
+         '/QPJB/entrainement/assets/JC-'+String(i+1).padStart(3,'0')+'.webp'))
+     ]);
+     return {bidding:!!matches[0],play:!!matches[1],images:matches.slice(2).filter(Boolean).length};
+   });
+   assert.deepEqual(after,{bidding:true,play:true,images:23},
+     'All exercise data and original images are now available offline');
    await context.setOffline(true);
    // Repartir de l'accueil hors ligne, puis charger la vraie iframe d'entraînement.
    await page.reload({waitUntil:'domcontentloaded',timeout:20000});
@@ -69,8 +99,17 @@ const server=http.createServer((req,res)=>{
      image.src='/QPJB/entrainement/assets/JC-001.webp';
    }));
    assert.equal(originalLoaded,true,'A previously unopened source image remains usable offline');
+   // Le second espace doit également fonctionner sans réseau, même s'il
+   // n'a pas été ouvert pendant la phase de connexion.
+   await page.reload({waitUntil:'domcontentloaded',timeout:20000});
+   await page.locator('.training-button[data-training-mode="bidding"]').click({timeout:20000});
+   const biddingFrame=page.frameLocator('#training-frame');
+   await biddingFrame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:20000});
+   assert.equal(await biddingFrame.locator('.topic-group .tile').count()>0,true,
+     'Bidding exercises also work on their first offline launch');
    assert.equal(errors.length,0,'No uncaught offline JavaScript exceptions: '+errors.join('; '));
-   console.log(JSON.stringify({result:'PASS',browser:name,offline:true,precacheImages:before.images,firstOpenImage:'JC-001'}));
+   console.log(JSON.stringify({result:'PASS',browser:name,offline:true,initialCache:'shell-only',
+     deferredImages:after.images,firstOpenImage:'JC-001',bothModes:true}));
    await context.close();
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1;server.close()});

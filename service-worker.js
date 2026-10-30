@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v37';
+const CACHE = 'qpjb-v38';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -14,9 +14,14 @@ const TRAINING_SHELL = [
   BASE + 'entrainement/training-core.css?v=20261030h',
   BASE + 'entrainement/training-integrated.css?v=20261030z',
   BASE + 'entrainement/training-data-bootstrap.js?v=20261030d1',
-  BASE + 'entrainement/training-data-bidding.js?v=20261030d1',
-  BASE + 'entrainement/training-data-play.js?v=20261030d1',
   BASE + 'entrainement/training-app.js?v=20261030d1'
+];
+// Les modules pédagogiques volumineux ne doivent plus bloquer l'installation.
+// Ils restent chargés à la demande et sont sauvegardés en arrière-plan
+// pour que les deux espaces soient ensuite disponibles sans connexion.
+const TRAINING_MODULES = [
+  BASE + 'entrainement/training-data-bidding.js?v=20261030d1',
+  BASE + 'entrainement/training-data-play.js?v=20261030d1'
 ];
 // Ces fac-similés sont petits mais indispensables quand un exercice est ouvert
 // hors ligne pour la première fois. Conserver les 23 fichiers, sans retoucher
@@ -24,13 +29,40 @@ const TRAINING_SHELL = [
 const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
   BASE + 'entrainement/assets/JC-' + String(i+1).padStart(3,'0') + '.webp'
 );
-const PRECACHE = [...TRAINING_SHELL,...TRAINING_FACSIMILES];
-
+// L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
+// ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
+const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
+let warmPromise = null;
+async function cacheOfflineResources() {
+  const cache = await caches.open(CACHE);
+  for (const resource of BACKGROUND_TRAINING) {
+    if (await cache.match(resource)) continue;
+    const response = await fetch(resource, {cache: 'no-store'});
+    if (!response.ok) throw new Error('Cache QPJB incomplet: ' + resource);
+    await cache.put(resource, response);
+  }
+  return true;
+}
+self.addEventListener('message', event => {
+  if (event.data?.type !== 'QPJB_PREFETCH_OFFLINE') return;
+  if (!warmPromise) {
+    warmPromise = cacheOfflineResources().catch(() => false).finally(() => {
+      warmPromise = null;
+    });
+  }
+  const task = warmPromise;
+  event.waitUntil(task);
+  // Permet aux tests de vérifier la fin du téléchargement sans minuterie.
+  if (event.ports?.[0]) {
+    event.waitUntil(task.then(ok => {
+      try { event.ports[0].postMessage({type:'QPJB_OFFLINE_READY',ok}); } catch (_) {}
+    }));
+  }
+});
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
-    // Ne pas activer une nouvelle version avec une moitié de parcours manquante.
     const cache = await caches.open(CACHE);
-    await cache.addAll(PRECACHE);
+    await cache.addAll(TRAINING_SHELL);
     await self.skipWaiting();
   })());
 });

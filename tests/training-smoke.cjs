@@ -44,8 +44,12 @@ check(app.includes('sessionQuizStates')&&app.includes('rememberCurrentQuiz')&&ap
 check(integrated.includes('suit-club')&&integrated.includes('suit-diamond'),'Four bridge suit colors are available');
 check(app.includes('FE0E')&&app.includes('FE0F'),
  'Suit normalization handles the iPhone emoji variation selectors');
-check(worker.includes("CACHE = 'qpjb-v")&&worker.includes('cache.addAll(PRECACHE)'), 'service worker precaches training before activation');
-check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 external WebP diagrams are part of offline shell');
+check(worker.includes("CACHE = 'qpjb-v")&&worker.includes('cache.addAll(TRAINING_SHELL)'),
+ 'service worker installs only the small training shell before activation');
+check(worker.includes('BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES]')&&
+ worker.includes("event.data?.type !== 'QPJB_PREFETCH_OFFLINE'"),
+ 'Both exercise modules and 23 images are cached progressively in the background');
+check(worker.includes('length:23')&&worker.includes("'entrainement/assets/JC-'"),'all 23 original WebP diagrams are scheduled for offline caching');
 check(worker.includes("url.pathname === BASE + 'entrainement/'"),'offline training document handles dynamic mode and revision parameters');
 check(app.includes('function focusTrainingPage()')&&app.includes('root.focus({preventScroll:true})'),'single-page navigation restores focus for keyboard and VoiceOver');
 check(html.includes('<main id="root" tabindex="-1">'),'training main is programmatically focusable');

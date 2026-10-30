@@ -2099,6 +2099,29 @@ document.addEventListener('keydown', e => {
     navigator.serviceWorker.register('/QPJB/service-worker.js', { updateViaCache: 'none' })
       .then(registration => registration.update())
       .catch(() => {});
+    // L'accueil devient utilisable AVANT de compléter le cache hors ligne.
+    // Le téléchargement est décalé, ne bloque ni l'installation ni le rendu,
+    // et peut reprendre après une coupure réseau (éléments déjà en cache ignorés).
+    let warmScheduled = false;
+    function warmTrainingOffline() {
+      if (warmScheduled || navigator.onLine === false) return;
+      warmScheduled = true;
+      navigator.serviceWorker.ready.then(registration => {
+        const dispatch = () => {
+          warmScheduled = false;
+          if (navigator.onLine === false) return;
+          (navigator.serviceWorker.controller || registration.active)
+            ?.postMessage({type:'QPJB_PREFETCH_OFFLINE'});
+        };
+        setTimeout(() => {
+          if (typeof requestIdleCallback === 'function')
+            requestIdleCallback(dispatch, {timeout:5000});
+          else dispatch();
+        }, 2500);
+      }).catch(() => {warmScheduled = false});
+    }
+    warmTrainingOffline();
+    window.addEventListener('online', warmTrainingOffline);
   }
 </script>
 
