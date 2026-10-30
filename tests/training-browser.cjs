@@ -288,7 +288,7 @@ const server=http.createServer((req,res)=>{
   await accessibilityFrame.evaluate(()=>item('EN-2sa-005'));
   await accessibilityFrame.waitForFunction(()=>view==='quiz'&&id==='EN-2sa-005',{timeout:15000});
   const guidedChoices=frame.locator('.qpjb-bid-quiz .choices>.choice');
-  assert.deepEqual((await guidedChoices.allTextContents()).map(t=>t.trim()),
+  assert.deepEqual((await guidedChoices.allTextContents()).map(t=>t.replace(/[\uFE0E\uFE0F]/g,'').trim()),
     ['Passe','3♥','3♠','3SA'],'Guided exercises follow the same cheapest-first rule');
   await frame.locator('.qpjb-bid-quiz .choice[data-answer-index="3"]').click();
   assert.equal(await frame.locator('.qpjb-bid-quiz .choice.selected').getAttribute('data-answer-index'),'3',
