@@ -41,6 +41,7 @@ body.qpjb-training-in-quiz #vtraining .training-toolbar{display:none!important}
 body.qpjb-training-in-quiz #vtraining{background:#211d27!important}
 /* Hauteur du workspace d'entraînement : gérée uniquement par qpjbTrainingResize(). */
 body.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:100%!important;flex:1;min-height:0}
+body.qpjb-training-outer-scroll.qpjb-training-in-quiz #vtraining #training-frame-wrap{height:auto!important;flex:none!important}
 </style>
 <link rel="manifest" href="/QPJB/manifest.json?v=8">
 <link rel="icon" type="image/svg+xml" href="/QPJB/qpjb-logo-fixed.svg?v=1">
@@ -2212,14 +2213,30 @@ function qpjbTrainingFadeNavigate(seq,route=null,mode=null){
  };
  start();
 }
+let qpjbTrainingContentHeight=840,qpjbTrainingIsOuterScroll=null;
 function qpjbTrainingResize(){
  const view=document.getElementById('vtraining'),workspace=document.getElementById('training-workspace');
  if(view.style.display==='none')return;
  const quiz=document.body.classList.contains('qpjb-training-in-quiz');
  const height=quiz?0:(Math.ceil(document.getElementById('main-header').getBoundingClientRect().height)||60);
- // En QCM, ne pas placer la navigation sous la barre d'état de l'iPhone.
- view.style.paddingTop=quiz?'calc(env(safe-area-inset-top, 0px) + 18px)':height+'px';
- workspace.style.height=quiz?'calc(100dvh - env(safe-area-inset-top, 0px) - 18px)':'calc(100dvh - '+height+'px)';
+ const outer=window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+ document.body.classList.toggle('qpjb-training-outer-scroll',outer);
+ if(qpjbTrainingIsOuterScroll!==outer){
+   qpjbTrainingIsOuterScroll=outer;
+   if(qpjbTrainingReady)document.getElementById('training-frame').contentWindow?.postMessage({type:'qpjb-training-scroll-mode',outer},location.origin);
+ }
+ const frame=document.getElementById('training-frame'),wrap=document.getElementById('training-frame-wrap');
+ if(outer){
+   view.style.paddingTop=quiz?'0px':height+'px';
+   workspace.style.height='auto';
+   wrap.style.flex='none';
+   wrap.style.height=qpjbTrainingContentHeight+'px';
+   frame.style.height=qpjbTrainingContentHeight+'px';
+ }else{
+   view.style.paddingTop=quiz?'calc(env(safe-area-inset-top, 0px) + 18px)':height+'px';
+   workspace.style.height=quiz?'calc(100dvh - env(safe-area-inset-top, 0px) - 18px)':'calc(100dvh - '+height+'px)';
+   wrap.style.height='';wrap.style.flex='';frame.style.height='100%';
+ }
 }
 function qpjbTrainingSelect(mode){
  const frame=document.getElementById('training-frame');
@@ -2253,6 +2270,7 @@ function qpjbTrainingShow(mode,navigate=true){
 function qpjbTrainingHide(focus=false){
  document.body.classList.remove('qpjb-training-in-quiz');document.getElementById('main-header').style.display='';qpjbTrainingResize();
  document.getElementById('vtraining').style.display='none';
+ document.body.classList.remove('qpjb-training-outer-scroll');
  document.getElementById('vhome').style.display='block';window.scrollTo(0,0);
  if(focus)document.querySelector('.training-button[data-training-mode="'+qpjbTrainingMode+'"]')?.focus({preventScroll:true});
 }
@@ -2271,6 +2289,12 @@ window.addEventListener('message',e=>{
    if(document.getElementById('vtraining').style.display!=='none')qpjbTrainingFadeNavigate(e.data.seq);
  }else if(e.data?.type==='qpjb-training-nav-done'){
    if(qpjbTrainingNavAck?.seq===e.data.seq)qpjbTrainingNavAck.complete();
+ }else if(e.data?.type==='qpjb-training-content-height'){
+  const h=Math.ceil(Number(e.data.height));
+  if(Number.isFinite(h)&&h>=240&&h<=100000&&Math.abs(qpjbTrainingContentHeight-h)>1){
+    qpjbTrainingContentHeight=h;
+    if(qpjbTrainingIsOuterScroll)qpjbTrainingResize();
+  }
  }else if(e.data?.type==='qpjb-training-route'){
    if(history.state?.qpjbTraining){
      const depth=Math.max(0,history.state.trainingDepth||0)+1;
@@ -2278,6 +2302,7 @@ window.addEventListener('message',e=>{
    }
  }else if(e.data?.type==='qpjb-training-ready'){
   qpjbTrainingReady=true;
+  qpjbTrainingResize();
   // Le volet reste masqué jusqu'au rendu confirmé du bon parcours.
   if(history.state?.trainingRoute){
     frame.contentWindow.postMessage({type:'qpjb-training-route-restore',seq:'startup',route:history.state.trainingRoute},location.origin);
