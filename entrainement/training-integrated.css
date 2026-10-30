@@ -127,22 +127,7 @@ html.qpjb-embedded{background:var(--qpjb-page-dark,#211d27)!important;scroll-beh
 @media(max-width:360px){.qpjb-embedded main{padding:12px 10px 44px}.qpjb-embedded .topic-group .tile{padding:12px}.qpjb-embedded .panel{padding:13px}.qpjb-embedded .topic-title{font-size:14px!important}}
 
 
-/* QPJB mobile compact bids 2026-10-29: auction QCM only */
-@media(max-width:600px){
- .qpjb-embedded .quizgrid{gap:7px!important;margin-top:5px!important}
- .qpjb-embedded .quizgrid > .panel{padding:10px 12px!important}
- .qpjb-embedded .quizgrid > .panel h2{font-size:15px!important;line-height:1.3;margin:2px 0 6px!important}
- .qpjb-embedded .quizgrid > .panel h3{font-size:12px!important;line-height:1.3;margin:7px 0 3px!important}
- .qpjb-embedded .quizgrid .suits{padding:7px 6px!important;margin:5px 0!important;overflow-x:auto;scrollbar-width:thin}
- .qpjb-embedded .quizgrid .suits .suit{flex-shrink:0}
- .qpjb-embedded .quizgrid .auc{margin:4px 0 0!important;border-spacing:2px 3px}
- .qpjb-embedded .quizgrid .auc th{font-size:10px}
- .qpjb-embedded .quizgrid .auc td{padding:4px 2px;font-size:12px}
- .qpjb-embedded .quizgrid .choices{gap:6px}
- .qpjb-embedded .quizgrid .choice{min-height:45px!important;padding:7px 5px!important;font-size:18px}
- .qpjb-embedded .quizgrid > .panel > p.muted{font-size:12px;line-height:1.3;margin:3px 0 7px}
-}
-
+/* Ancien pré-réglage mobile retiré : les règles ci-dessous font autorité. */
 /* QCM intégré iPhone — réglages finaux centralisés, uniquement en mode exercice.
    Conserver une hauteur utile maximale sans masquer l'énoncé ou les réponses. */
 @media(max-width:600px){
@@ -541,8 +526,5 @@ html.qpjb-embedded{background:var(--qpjb-page-dark,#211d27)!important;scroll-beh
  }
 }
 @media(max-width:360px){
- .qpjb-embedded.qpjb-quiz-active .cq-stage.cq-compact .cq-options{
-   grid-template-columns:repeat(2,minmax(0,1fr))!important;
- }
  .qpjb-embedded.qpjb-quiz-active .cq-stage .cq-option{font-size:13px!important;padding:8px 6px}
 }
