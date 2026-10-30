@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v28';
+const CACHE = 'qpjb-v29';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -11,7 +11,7 @@ const TRAINING_SHELL = [
   BASE + 'entrainement/',
   BASE + 'entrainement/training-core.css?v=20261030g',
   BASE + 'entrainement/training-integrated.css?v=20261030w',
-  BASE + 'entrainement/training-data.js?v=20261029p',
+  BASE + 'entrainement/training-data.js?v=20261030-fix10',
   BASE + 'entrainement/training-app.js?v=20261030x'
 ];
 // Ces fac-similés sont petits mais indispensables quand un exercice est ouvert
@@ -49,7 +49,13 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     try {
-      const response = await fetch(request, {signal: AbortSignal.timeout(6500)});
+      // Ne jamais réutiliser une ancienne réponse HTTP pour l'interface ou les exercices.
+      const freshTraining = url.pathname === BASE || url.pathname === BASE + 'index.html' ||
+        url.pathname.startsWith(BASE + 'entrainement/');
+      const response = await fetch(request, {
+        cache: freshTraining ? 'no-store' : 'default',
+        signal: AbortSignal.timeout(6500)
+      });
       if (response.ok) await cache.put(request, response.clone());
       return response;
     } catch (error) {
