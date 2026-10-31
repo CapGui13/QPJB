@@ -1,0 +1,48 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
+const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
+assert.ok(match,'Quizz JSON data is embedded');
+const data=JSON.parse(match[1]);
+const exercises=data.exercises;
+assert.equal(exercises.length,969,'Original 969 exercises are retained');
+assert.equal(data.themes.length,22,'Original 22 topics are retained');
+const known=new Set();
+const themeIds=new Set(data.themes.map(x=>x.id));
+const validRanks=new Set(['A','R','D','V','10','9','8','7','6','5','4','3','2']);
+const hcp={A:4,R:3,D:2,V:1};
+for(const x of exercises){
+ assert.ok(x.id&&!known.has(x.id),'Unique exercise ID: '+x.id);
+ known.add(x.id);
+ assert.ok(themeIds.has(x.theme),'Valid topic: '+x.id);
+ assert.ok([1,2,3,4,5].includes(x.difficulty),'Valid level: '+x.id);
+ assert.equal(x.hand.length,4,'Four suits: '+x.id);
+ assert.equal(x.hand.flat().length,13,'Thirteen cards: '+x.id);
+ assert.deepEqual(x.hand.map(a=>a.length),x.shape,'Correct shape: '+x.id);
+ assert.equal(x.hand.flat().reduce((s,r)=>s+(hcp[r]||0),0),x.h,'Correct HCP: '+x.id);
+ for(const suit of x.hand){
+  assert.equal(new Set(suit).size,suit.length,'No duplicate rank in a suit: '+x.id);
+  assert.ok(suit.every(r=>validRanks.has(r)),'Known cards: '+x.id);
+ }
+ assert.ok(Array.isArray(x.auction),'Auction is available: '+x.id);
+ assert.ok(x.auction.every(c=>/^(Vous|Partenaire|Adversaire|Réponse)\s*:/.test(c)),'Auction speaker labels: '+x.id);
+ assert.equal(x.choices.length,4,'Four answers: '+x.id);
+ assert.equal(new Set(x.choices).size,4,'Unique answers: '+x.id);
+ assert.ok(x.choices.includes(x.answer),'Correct answer is a choice: '+x.id);
+ assert.ok(x.explain&&x.explain.trim(),'Explanation: '+x.id);
+}
+const script=html.match(/<script>\s*([\s\S]*?)<\/script><\/body>/);
+assert.ok(script,'Application script is embedded');
+new Function(script[1]);
+for(const marker of [
+ 'function conventionNote(', 'function getRecord(', 'function recordAttempt(',
+ 'function adaptiveLevel(', 'function diverseTake(', 'function stats(',
+ 'function finishSession(', 'function skipCurrent(',
+ 'function render(', 'function choose(', 'id="selection-mode"',
+ 'session-navigation', 'context-note'
+])assert.ok(html.includes(marker),'Expected new functionality: '+marker);
+const annotated=exercises.filter(x=>x.auction.some(a=>/\([^)]*\)\s*$/.test(a)));
+assert.ok(annotated.length>100,'Convention annotations are present in dataset');
+console.log('Quizz integrity: PASS | '+exercises.length+' exercises, '+data.themes.length+' topics, '+annotated.length+' annotated situations');
