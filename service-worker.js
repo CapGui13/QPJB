@@ -31,11 +31,12 @@ const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
 );
 // L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
 // ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
-const BACKGROUND_TRAINING = [BASE + 'quizz.html', ...TRAINING_MODULES, ...TRAINING_FACSIMILES];
+const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
+const BACKGROUND_QUIZZ = [BASE + 'quizz.html'];
 let warmPromise = null;
 async function cacheOfflineResources() {
   const cache = await caches.open(CACHE);
-  for (const resource of BACKGROUND_TRAINING) {
+  for (const resource of [...BACKGROUND_TRAINING, ...BACKGROUND_QUIZZ]) {
     if (await cache.match(resource)) continue;
     const response = await fetch(resource, {cache: 'no-store'});
     if (!response.ok) throw new Error('Cache QPJB incomplet: ' + resource);
