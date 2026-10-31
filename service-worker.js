@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v39';
+const CACHE = 'qpjb-v40';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -31,7 +31,7 @@ const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
 );
 // L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
 // ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
-const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
+const BACKGROUND_TRAINING = [BASE + 'quizz.html', ...TRAINING_MODULES, ...TRAINING_FACSIMILES];
 let warmPromise = null;
 async function cacheOfflineResources() {
   const cache = await caches.open(CACHE);
