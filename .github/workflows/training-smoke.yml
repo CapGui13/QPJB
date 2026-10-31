@@ -26,6 +26,7 @@ jobs:
       - name: Contrôle de structure, exercices et mises à jour
         run: |
           node tests/training-smoke.cjs
+          node tests/quizz-integrity.cjs
           node tests/training-card-integrity.cjs
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
@@ -65,6 +66,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-offline.cjs
       - name: Check visual layouts, reversibility and performance (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-visual.cjs
+      - name: Test the Quizz module and its revision modes (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Retain visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
