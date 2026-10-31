@@ -27,6 +27,7 @@ jobs:
         run: |
           node tests/training-smoke.cjs
           node tests/quizz-integrity.cjs
+          node tests/quizz-content-audit.cjs
           node tests/training-card-integrity.cjs
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
@@ -41,6 +42,8 @@ jobs:
             artifacts/training-integrity/report.json
             artifacts/training-ambiguity/report.json
             artifacts/training-ambiguity/report.csv
+            artifacts/quizz-content/report.json
+            artifacts/quizz-content/report.md
           retention-days: 14
           if-no-files-found: warn
   smoke:
