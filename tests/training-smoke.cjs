@@ -19,6 +19,31 @@ for(const [name,css] of Object.entries({core,integrated,tokens})){
  check(level===0&&min===0,name+' CSS blocks are balanced');
 }
 new Function(app);checks++;
+const playTopicsSource=app.slice(app.indexOf('function pagePlayTopics('),app.indexOf('function miniAuction('));
+check(playTopicsSource.includes('onclick="startRandomPlay()">Exercices aléatoires →') &&
+  playTopicsSource.indexOf('onclick="startRandomPlay()"')<playTopicsSource.lastIndexOf('$'+'{sections}'),
+  'Random card exercises button appears above the first topic');
+check(!app.includes('Tous les exercices de carte →'),
+  'Obsolete all-card-exercises bottom button is absent');
+check(app.includes("function playBackTarget(){return randomMode?'playtopics':'list'}") &&
+  app.includes("randomMode?(cat==='play'?'playtopics':'topics'):'list'"),
+  'Random card exercises return to card topics, not bidding topics');
+const randomPlaySource=app.slice(app.indexOf('function startRandomPlay()'),app.indexOf('function biddingBackTarget()'));
+const randomPlayScenario=[
+  "const D={play:[{id:'newA'},{id:'seenB'},{id:'quarantine',reviewStatus:'a_verifier'},{id:'newC'}]};",
+  "const saved={seenB:{done:true}};",
+  "let id='',cat='',status='',ptopic='',randomMode=false,sessionIds=[];",
+  "const trainingTopicsScroll={playtopics:0};const trainingScrollY=()=>42;",
+  "const trainingNavigate=fn=>fn();const sessionQuizStates={clear:()=>{}};",
+  "let nextPage='';const trainingApplyPage=page=>{nextPage=page};",
+  "const shuffleExercises=items=>items;",
+  randomPlaySource,
+  "startRandomPlay();",
+  "return cat==='play'&&status==='all'&&ptopic==='all'&&randomMode&&id==='newA'&&nextPage==='quiz'&&trainingTopicsScroll.playtopics===42&&sessionIds.join(',')==='newA,newC,seenB'&&playBackTarget()==='playtopics';"
+].join('\n');
+check(new Function(randomPlayScenario)(),
+  'Random card sessions skip quarantine, prioritize uncompleted exercises and preserve card navigation');
+
 check(app.includes('deal-player-group')&&core.includes('.deal-player-group>.deal-marker.south'),
  'The real player seat circle is placed just above the bottom hand');
 check(app.includes('function screenSeat(')&&app.includes('data-perspective=')&&app.includes('function playerSeatFromExercise('),
