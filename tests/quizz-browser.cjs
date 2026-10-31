@@ -120,6 +120,33 @@ const server=http.createServer((req,res)=>{
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#new').click();
   assert.equal(await page.locator('#total').textContent(),'1','The failed revision is eligible for review');
+
+  // Audit C01 : au moins une correction complète "pourquoi pas" + "à retenir"
+  // doit être réellement visible à l'écran après une tentative.
+  await page.locator('#back-home').click();
+  await page.locator('#selection-mode').selectOption('all');
+  await page.locator('#topic').selectOption('sa');
+  await page.locator('#difficulty').selectOption('2');
+  await page.locator('#mode').selectOption('0');
+  await page.locator('#new').click();
+  const dataC01=JSON.parse(await page.locator('#training-data').textContent());
+  assert.equal(dataC01.exercises.length,981,'Twelve curated cases are available');
+  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,54,'Curated comparisons are embedded');
+  let contrasted=false;
+  const count=Number(await page.locator('#total').textContent());
+  for(let i=0;i<count;i++){
+   await page.locator('#answers button').first().click();
+   if(await page.locator('.feedback-contrast').count()){
+    assert.equal(await page.locator('.feedback-lesson').count(),1,
+      'Each compared alternative includes a takeaway');
+    assert.ok((await page.locator('.feedback-contrast').textContent()).includes('Pourquoi pas'),
+      'A tempting wrong bid is explained');
+    contrasted=true;break;
+   }
+   if(i<count-1)await page.locator('#next').click();
+  }
+  assert.ok(contrasted,'At least one enriched answer is visible on simulated iPhone');
+
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
