@@ -85,6 +85,41 @@ const server=http.createServer((req,res)=>{
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#new').click();
   assert.ok((await page.locator('#level-name').textContent()).includes('Niveau 1'),'New learner starts at level one');
+
+  // A successful exercise becomes a revision, but a later error removes that mastery.
+  await page.locator('#back-home').click();
+  await page.locator('#topic').selectOption('ouv');
+  await page.locator('#difficulty').selectOption('1');
+  await page.locator('#selection-mode').selectOption('all');
+  await page.locator('#mode').selectOption('10');
+  await page.locator('#new').click();
+  const hand=await page.locator('#body .hand .suit .rank').allTextContents();
+  const source=JSON.parse(await page.locator('#training-data').textContent());
+  const chosen=source.exercises.find(x=>x.theme==='ouv'&&x.hand.map(s=>s.join('')).join('|')===hand.join('|')&&x.auction.length===0);
+  assert.ok(chosen,'Opening case is identifiable');
+  const displayed=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
+  await page.locator('#answers button').nth(displayed.indexOf(chosen.answer)).click();
+  let record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
+  assert.equal(record.lastResult,'correct','First successful attempt is retained');
+  assert.equal(record.ok,true,'Mastery is current after success');
+  await page.locator('#back-home').click();
+  await page.locator('#selection-mode').selectOption('revision');
+  await page.locator('#mode').selectOption('0');
+  await page.locator('#new').click();
+  assert.equal(await page.locator('#total').textContent(),'1','Revision proposes the successful exercise');
+  const revisionChoices=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
+  const wrongIndex=revisionChoices.findIndex(s=>s!==chosen.answer);
+  await page.locator('#answers button').nth(wrongIndex).click();
+  record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
+  assert.equal(record.lastResult,'wrong','Later mistake updates last result');
+  assert.equal(record.ok,false,'Incorrect new attempt cancels current mastery');
+  assert.equal(record.attempts,2,'Exactly two attempts were recorded');
+  assert.equal(record.correct,1,'Previous correct answer is still remembered');
+  assert.equal(record.wrong,1,'New error is counted');
+  await page.locator('#back-home').click();
+  await page.locator('#selection-mode').selectOption('review');
+  await page.locator('#new').click();
+  assert.equal(await page.locator('#total').textContent(),'1','The failed revision is eligible for review');
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
