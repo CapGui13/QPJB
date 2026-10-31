@@ -7,8 +7,16 @@ const match=html.match(/<script id="training-data" type="application\/json">([\s
 assert.ok(match,'Quizz JSON data is embedded');
 const data=JSON.parse(match[1]);
 const exercises=data.exercises;
-assert.equal(exercises.length,969,'Original 969 exercises are retained');
+assert.equal(exercises.length,981,'All 969 previous exercises and 12 curated cases are retained');
 assert.equal(data.themes.length,22,'Original 22 topics are retained');
+const annotated=exercises.filter(x=>x.whyNot);
+assert.equal(annotated.length,54,'At least the 54 curated pedagogical contrasts are retained');
+assert.equal(exercises.filter(x=>/^SEF-C-\d{3}$/.test(x.id)).length,12,'Twelve audited new situations');
+for(const x of annotated){
+ assert.ok(x.whyNot?.bid&&x.whyNot?.reason&&x.takeaway,'Complete teaching contrast '+x.id);
+ assert.ok(x.choices.includes(x.whyNot.bid),'Comparison corresponds to an offered option: '+x.id);
+ assert.notEqual(x.answer,x.whyNot.bid,'Comparison is not the right answer: '+x.id);
+}
 const known=new Set();
 const themeIds=new Set(data.themes.map(x=>x.id));
 const validRanks=new Set(['A','R','D','V','10','9','8','7','6','5','4','3','2']);
