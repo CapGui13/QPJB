@@ -277,10 +277,13 @@ function recordAttempt(x,result,choice){
   const at=new Date().toISOString();
   const history=Array.isArray(prev.history)?prev.history.slice(-11):[];
   history.push({at,result,choice:choice||null});
-  const attempts=(Number(prev.attempts)||Number(Boolean(prev.seen)))+(result==='skipped'?0:1);
-  const correct=(Number(prev.correct)||Number(Boolean(prev.ok)))+(result==='correct'?1:0);
-  const wrong=(Number(prev.wrong)||Number(Boolean(prev.seen&&!prev.ok)))+(result==='wrong'?1:0);
-  const skipped=(Number(prev.skipped)||0)+(result==='skipped'?1:0);
+  // Les anciennes sauvegardes possèdent seen/ok ; les nouvelles des compteurs explicites.
+  // Conserver les zéros explicites (notamment lorsqu'un exercice a seulement été passé).
+  const priorCount=(key,legacy)=>Number.isFinite(prev[key])?prev[key]:legacy;
+  const attempts=priorCount('attempts',Number(Boolean(prev.seen)))+(result==='skipped'?0:1);
+  const correct=priorCount('correct',Number(Boolean(prev.ok)))+(result==='correct'?1:0);
+  const wrong=priorCount('wrong',Number(Boolean(prev.seen&&!prev.ok&&prev.lastResult!=='skipped')))+(result==='wrong'?1:0);
+  const skipped=priorCount('skipped',0)+(result==='skipped'?1:0);
   saved[x.id]={...prev,seen:true,ok:result==='correct',lastResult:result,
     attempts,correct,wrong,skipped,streak:result==='correct'?(Number(prev.streak)||0)+1:0,
     first:prev.first||at,last:at,history};
