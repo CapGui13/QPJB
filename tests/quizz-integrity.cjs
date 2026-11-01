@@ -868,3 +868,26 @@ for(const marker of [
 const annotated=exercises.filter(x=>x.auction.some(a=>/\([^)]*\)\s*$/.test(a)));
 assert.ok(annotated.length>100,'Convention annotations are present in dataset');
 console.log('Quizz integrity: PASS | '+exercises.length+' exercises, '+data.themes.length+' topics, '+annotated.length+' annotated situations');
+
+
+ // Déterminisme et intégrité des séances : espacement sans suppression ni doublon.
+const vm=require('node:vm');
+const spacingSource=html.match(/function spaceCloseFamilies\(items,minGap=3\)\{[\s\S]*?\n\}/);
+assert.ok(spacingSource,'Spacing function exists');
+const spaceCloseFamilies=vm.runInNewContext('('+spacingSource[0]+')');
+const sample=[
+ {id:'A-1',caseFamily:'A'},{id:'A-2',caseFamily:'A'},
+ {id:'B-1',caseFamily:'B'},{id:'C-1',caseFamily:'C'},
+ {id:'D-1',caseFamily:'D'},{id:'B-2',caseFamily:'B'},
+ {id:'E-1',caseFamily:'E'}
+];
+const spaced=spaceCloseFamilies(sample);
+assert.equal(spaced.length,sample.length,'Spacing retains all exercises');
+assert.deepEqual([...spaced.map(x=>x.id)].sort(),sample.map(x=>x.id).sort(),'Spacing preserves exact IDs');
+assert.deepEqual(spaced.map(x=>x.id),spaceCloseFamilies(sample).map(x=>x.id),'Spacing deterministic for a given shuffled input');
+for(let i=0;i<spaced.length;i++){
+ const recent=spaced.slice(Math.max(0,i-3),i).map(x=>x.caseFamily);
+ if(spaced.slice(i+1).some(x=>!recent.includes(x.caseFamily)))
+  assert.ok(!recent.includes(spaced[i].caseFamily),'Avoid close repetition while alternatives exist');
+}
+assert.equal(exercises.length,993,'No exercise removed for spacing');
