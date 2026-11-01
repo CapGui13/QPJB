@@ -494,3 +494,27 @@ Les **17 explications** présentent le calcul H, L et D avec une courte explicit
 **Sources pédagogiques :** Fiche iBridge « Évaluation des mains », https://www.ibridge.fr/public/fichepdf/539 (L dès la cinquième carte ; HLD après fit) ; Sarzeau Bridge Club FFB, « Quand la réponse de 2SA est-elle fittée ? », https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523 (11–15 HLD et trois atouts après intervention naturelle à la couleur).
 
 Les tests GitHub Actions et leur publication sont suivis séparément.
+
+
+---
+
+## Lot 13 — trois erreurs de soutien à quatre atouts (V4.45, 1er novembre 2026)
+
+**Audit SEF 2024 des 4 situations de soutien avec quatre atouts après intervention naturelle adverse.** Il faut tenir compte du neuvième atout (+2), des courtes et des longueurs secondaires, plutôt que retenir les seuls H. Pour une intervention à la couleur, un soutien direct à 2M vaut 6–10 HLD ; à 3M, avec quatre atouts, 11–12 HLD ; le cue-bid de la couleur adverse impose la manche, avec au moins quatre atouts. Un soutien de palier 2 rendu impossible par le niveau adverse peut monter d'un seul palier.
+
+| Exercice | Séquence | H + L + D + atout | Ancienne réponse | Réponse SEF corrigée | Décision |
+|---|---|---|---|---|---|
+| `SEF-V419-007` | 1♥ – (2♠) | 8+0+1+2 = **11 HLD** | 3♥ | **3♥** | Soutien minimum légal ; 2♥ est dépassé |
+| `SEF-V420-011` | 1♥ – (1♠) | 7+0+1+2 = **10 HLD** | 3♥ | **2♥** | 3♥ avec quatre atouts serait 11–12 HLD |
+| `SEF-V421-008` | 1♠ – (2♥) | 7+0+1+2 = **10 HLD** | 3♠ | **2♠** | 3♠ serait trop encourageant avec 10 HLD |
+| `SEF-V425-008` | 1♠ – (2♣) | 9+1+2+2 = **14 HLD** | 3♠ | **3♣** | Cue-bid forcing de manche avec quatre atouts |
+
+Le dernier exercice a été rendu non ambigu en **remplaçant la main** auparavant ♠D1086 ♥A5 ♦V9743 ♣V6, 8H (13 HLD mais petits honneurs peu efficaces), par **♠A1086 ♥R5 ♦D9743 ♣76**, 9H (14 HLD, honneurs mieux placés). La mauvaise proposition `2♦` est remplacée par le véritable cue-bid `3♣`, désormais bonne réponse ; l'ancienne réponse `3♠` devient un piège pédagogique justifié. Les deux autres changements de bonnes réponses utilisent des choix déjà présents.
+
+**Bilan :** 993 exercices et 22 rubriques conservés ; **3 bonnes réponses corrigées**, **1 main clarifiée**, **1 distracteur remplacé**, **4 corrigés réécrits**, **2 nouveaux contrastes**, soit **278 comparaisons**. Nouveau score indicatif : **872 favorables, 113 vigilances, 8 priorités** (121 signaux) ; ce n'est pas un certificat d'exactitude.
+
+**Migration non destructive :** les trois exercices rectifiés `SEF-V420-011`, `SEF-V421-008` et `SEF-V425-008` rejoignent `revisedSefNov2026` : si l'élève les a déjà traités, l'ancien résultat est archivé et seul l'exercice concerné redevient à travailler. Les autres progressions sont conservées. Les nouveaux tests vérifient les 4 comptes HLD, les bonnes réponses, le cue-bid, le piège et la présence des codes de migration.
+
+**Références :** Fédération française de bridge, *L'As de Trèfle*, janvier 2024, article « Le SEF 2024 est arrivé », règles des soutiens après intervention, https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf ; page de synthèse du SEF 2024, https://scjc-bridge.fr/sef-2024 ; évaluation des mains HLD et des atouts, https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/la-main-et-son-evaluation.
+
+Tests d'intégrité et publication surveillés dans GitHub Actions.

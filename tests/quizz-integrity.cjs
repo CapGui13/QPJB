@@ -441,7 +441,38 @@ for(const id of ["SEF-V3-081-3","SEF-V3-082-1","SEF-V3-083-1","SEF-V3-084-3"]){
  const x=exercises.find(z=>z.id===id);
  assert.equal(x.whyNot?.bid,'3'+x.auction[0].slice(-1),'Le piège du soutien à 3M est expliqué : '+id);
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=272,'All revised pedagogical comparisons preserved');
+// V4.45 — soutien avec quatre atouts en compétition selon le SEF 2024.
+const fit4Cases={
+ 'SEF-V419-007':{answer:'3♥',h:8,L:0,D:1,S:2,hld:11},
+ 'SEF-V420-011':{answer:'2♥',h:7,L:0,D:1,S:2,hld:10,bad:'3♥'},
+ 'SEF-V421-008':{answer:'2♠',h:7,L:0,D:1,S:2,hld:10,bad:'3♠'},
+ 'SEF-V425-008':{answer:'3♣',h:9,L:1,D:2,S:2,hld:14,bad:'3♠'}
+};
+for(const [id,expected] of Object.entries(fit4Cases)){
+ const x=exercises.find(e=>e.id===id);
+ assert.ok(x,'Soutien à quatre atouts présent : '+id);
+ const major=x.auction[0].slice(-1),idx=major==='♥'?1:0;
+ assert.equal(x.shape[idx],4,'Quatre atouts : '+id);
+ const L=x.shape.reduce((sum,n,i)=>sum+(i===idx?0:Math.max(0,n-4)),0);
+ const D=x.shape.reduce((sum,n,i)=>sum+(i===idx?0:n===0?3:n===1?2:n===2?1:0),0);
+ const S=2;
+ assert.equal(x.h,expected.h,'H conservés ou corrigés : '+id);
+ assert.equal(L,expected.L,'Points de longueur : '+id);
+ assert.equal(D,expected.D,'Points de courte : '+id);
+ assert.equal(S,expected.S,'Neuvième atout : '+id);
+ assert.equal(x.h+L+D+S,expected.hld,'Décompte HLD : '+id);
+ assert.equal(x.answer,expected.answer,'Décision SEF correcte : '+id);
+ assert.ok(x.explain.includes(expected.hld+' HLD'),'Corrigé chiffré : '+id);
+ assert.ok(x.choices.includes(x.answer),'Quatre choix incluent la réponse : '+id);
+ if(expected.bad)assert.equal(x.whyNot?.bid,expected.bad,'Alternative expliquée : '+id);
+}
+for(const id of ['SEF-V420-011','SEF-V421-008','SEF-V425-008']){
+ assert.ok(html.includes("'"+id+"':'sef24-fit4-"),'Révision de progression non destructive : '+id);
+}
+const cueCase=exercises.find(x=>x.id==='SEF-V425-008');
+assert.ok(cueCase?.choices.includes('3♣')&&!cueCase?.choices.includes('2♦'),
+ 'Le cue-bid instructif remplace une nouvelle couleur hors sujet');
+assert.ok(exercises.filter(x=>x.whyNot).length>=278,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
