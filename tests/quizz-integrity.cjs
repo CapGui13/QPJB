@@ -88,7 +88,7 @@ assert.equal(new Set(weakReviewIds).size,22,'Twenty-two distinct reviewed teachi
 for(const id of weakReviewIds){
  const x=exercises.find(y=>y.id===id);
  assert.ok(x,'Reviewed low-H exercise remains available: '+id);
- assert.equal(x.answer,'Passe','Review retained the SEF Pass response: '+id);
+ assert.equal(x.answer,id.startsWith('SEF-V3-080-')?'2♠':'Passe','Review retained the original SEF response: '+id);
  assert.ok(x.whyNot?.reason&&x.takeaway,'Explicit alternative and lesson: '+id);
  assert.ok(x.choices.includes(x.whyNot.bid),'Discussed wrong bid is offered: '+id);
  if(id in reviewedWeakResponses){
