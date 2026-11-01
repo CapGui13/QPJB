@@ -69,6 +69,34 @@ for(const [id,[correct,jump]] of Object.entries(freeNtRebids)){
  assert.match(x.context,/non forcing/i,'The learner sees the SEF nonforcing rule: '+id);
  assert.ok(x.whyNot?.reason&&x.takeaway,'Explained pedagogical contrast: '+id);
 }
+// V4.37 : corriger les réponses caricaturales 2SA avec 0 à 4 H après
+// intervention adverse. Ne pas déplacer les bonnes réponses ni les IDs.
+const reviewedWeakResponses={
+ 'SEF-V3-085-3':'2♣',
+ 'SEF-V3-086-1':'2♦','SEF-V3-086-2':'2♦',
+ 'SEF-V3-087-3':'2♦','SEF-V3-087-2':'2♦',
+ 'SEF-V3-088-2':'2♥','SEF-V3-088-1':'2♥'
+};
+const weakReviewIds=[
+ 'SEF-V3-053-1','SEF-V3-053-3','SEF-V3-080-1','SEF-V3-080-2',
+ ...Object.keys(reviewedWeakResponses),
+ 'SEF-V3-089-2','SEF-V3-089-1','SEF-V3-106-1','SEF-V3-106-2',
+ 'SEF-V4-065-1','SEF-V4-065-2','SEF-V4-066-1',
+ 'SEF-V4-067-4','SEF-V4-067-1','SEF-V4-068-2','SEF-V4-068-3'
+];
+assert.equal(new Set(weakReviewIds).size,22,'Twenty-two distinct reviewed teaching situations');
+for(const id of weakReviewIds){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x,'Reviewed low-H exercise remains available: '+id);
+ assert.equal(x.answer,id.startsWith('SEF-V3-080-')?'2♠':'Passe','Review retained the original SEF response: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Explicit alternative and lesson: '+id);
+ assert.ok(x.choices.includes(x.whyNot.bid),'Discussed wrong bid is offered: '+id);
+ if(id in reviewedWeakResponses){
+  assert.ok(x.h<=4,'Corrected 2SA trap applies only to a very weak hand: '+id);
+  assert.ok(x.choices.includes(reviewedWeakResponses[id]),'Natural tempting new suit offered: '+id);
+  assert.ok(!x.choices.includes('2SA'),'An implausible 2SA is no longer offered: '+id);
+ }
+}
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

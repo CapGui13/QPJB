@@ -200,3 +200,45 @@ Les trois mauvaises propositions demeurent des enchères naturelles et légales 
 Ces scores sont des **indicateurs heuristiques** et ne certifient pas les enchères. Une revue individuelle reste nécessaire pour les 149 exercices encore signalés (141 vigilance et 8 prioritaires). Le fichier CSV des 993 exercices a été synchronisé et une régression automatique contrôle les onze situations.
 
 **Références pédagogiques :** Jean-Christophe Quantin, « La réponse de 1SA à l'ouverture », *L'As de Trèfle* : https://www.colybridge-enseignants.com/images/AsdeTrefle/Encheres/n32_-_La_rponse_de_1SA__louverture.pdf ; fiche SEF « Redemande de l'ouvreur après l'enchère de 1 SA », https://dev.ibridge-club.fr/public/fichedetails/40.
+
+---
+
+## Lot 5 — pièges plus réalistes avec de très petites mains (V4.37, 1er novembre 2026)
+
+**Périmètre :** revue individuelle de **22 des 149 exercices encore signalés** par le score heuristique après V4.36. Une vigilance automatique n'est pas une erreur avérée : ce lot cible principalement les mauvaises propositions caricaturales avec 0 à 4 points H et les réponses pouvant être mal interprétées par un débutant.
+
+### Sept distracteurs effectivement remplacés
+
+| Cas | Séquence | Main du répondant | Ancien piège | Nouveau piège | Réponse SEF conservée |
+|---|---|---|---|---|---|
+| `SEF-V3-085-3` | 1♥ – (1♠) | 3 H, quatre Trèfles | 2SA | **2♣** | Passe |
+| `SEF-V3-086-1` et `-2` | 1♥ – (2♣) | 1 / 3 H, quatre Carreaux | 2SA | **2♦** | Passe |
+| `SEF-V3-087-3` et `-2` | 1♠ – (2♣) | 0 / 4 H, quatre Carreaux | 2SA | **2♦** | Passe |
+| `SEF-V3-088-2` et `-1` | 1♠ – (2♦) | 1 / 4 H, trois Cœurs | 2SA | **2♥** | Passe |
+
+Ces remplacements conservent des enchères possibles dans l'ordre des annonces mais fausses avec la main présentée. Le piège fait désormais hésiter entre passer et **annoncer trop tôt une couleur** : il mobilise conjointement la force de la réponse, sa longueur et le palier atteint. Sur ces sept cas, il n'y a **aucune modification de la bonne enchère**.
+
+### Vingt-deux comparaisons pédagogiques nouvelles
+
+Les nouveaux champs « Pourquoi pas ? » et « À retenir » accompagnent les sept cas ci-dessus et quinze situations déjà présentes :
+
+- Deux interventions faibles sur 1♣ : différencier l'envie de contrer d'appel de la force et de la distribution réellement détenues.
+- Deux soutiens après 1♠–(2♥) : préférer les trois Piques au changement de couleur à 3♣ avec seulement quatre cartes et 7–9 H.
+- Deux réponses faibles après 1♣–(1♠) : quatre Cœurs ne suffisent pas à employer automatiquement le contre Spoutnik avec 0–4 H.
+- Deux réponses à une ouverture de 2♠ faible : un simple doubleton Pique n'autorise pas un soutien de barrage à 3♠.
+- Sept mains en position de réveil après 1♣, 1♦, 1♥ ou 1♠ : même en réveil, un contre requiert une base de force et de distribution.
+
+Avec ces corrections, **159 des 993 exercices** comportent une explication comparative explicite, contre 137 en V4.36. Les 993 exercices, leurs identifiants, leurs bonnes réponses et l'historique des élèves sont préservés ; aucune migration n'est nécessaire.
+
+### Ce qui reste volontairement inchangé
+
+Les cas avec 0 à 4 H et une distribution 4-3-3-3 *sans longue dans une couleur non annoncée* ne disposent pas toujours de trois erreurs très crédibles : fabriquer artificiellement un changement de couleur serait aussi trompeur. Le contrôle ne classe pas un piège comme « excellent » simplement parce qu'il existe une explication supplémentaire.
+
+**Bilan heuristique recalculé :** 844 signaux favorables, 141 vigilances et 8 priorités, soit les mêmes compteurs qu'en V4.36. **Ceci n'invalide pas les corrections** : les heuristiques mesurent la proximité avec d'autres cas et sont peu adaptées à l'évaluation d'erreurs de débutant sur des mains à 0–4 H. Les 149 cas restent signalés tant que le score automatique n'est pas réétalonné ; **22 ont bénéficié de cette revue manuelle et documentée**. Ne pas présenter ces compteurs comme une certification des 2 979 mauvaises réponses.
+
+Le relevé de 993 propositions a été mis à jour ; des tests de non-régression vérifient le maintien de « Passe », les sept substitutions et la présence des 22 explications.
+
+**Références pédagogiques :**
+- FFB, *Manuel d'enseignement du bridge*, règles après intervention à la couleur : https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf
+- iBridge, *Changement de couleur 2/1* : https://www.ibridge.fr/public/fichedetails/540
+- Sarzeau Bridge Club (FFB), *Quand la réponse de 2SA est-elle fittée ?*, 21 décembre 2025 : https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523
