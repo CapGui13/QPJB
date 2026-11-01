@@ -389,7 +389,7 @@ function stats(){
 function conventionNote(x){
   const notes=[];
   const context=String(x.context||'').trim();
-  if(/accord|walsh|syst[eè]me|convention|forcing|vuln[eé]rabilit[eé]|premi[eè]re position|troisi[eè]me position|réponse de 2SA|3[eè]me position/i.test(context)){
+  if(/accord|walsh|syst[eè]me|convention|forcing|vuln[eé]rabilit[eé]|premi[eè]re position|troisi[eè]me position|réponse de 2SA|3[eè]me position|blackwood|rkcb|atout|splinter|roudi|drury|landy|rubensohl|michaels|texas|arr[eê]t|sans fit|pas de fit|absence de fit|tricolore|unicolore|bicolore|courte|chicane|singleton/i.test(context)){
     notes.push(context.replace(/^Ouverture en première position\s*;\s*/i,''));
   }
   const speakers={'vous':'Sud','partenaire':'Nord','adversaire':'Adversaire','réponse':'Sud'};
