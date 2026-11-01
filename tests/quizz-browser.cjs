@@ -72,6 +72,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#difficulty').selectOption('5');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   let hasMaxNote=false;
   const totalRoudi=Number(await page.locator('#total').textContent());
   assert.ok(totalRoudi>=5,'Roudi level-five pool exists');
@@ -85,6 +87,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#difficulty').selectOption('1');
   await page.locator('#mode').selectOption('10');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.equal(await page.locator('#body .hand .suit').count(),4,'Hand displays four suits');
   assert.equal(await page.locator('#answers button').count(),0,'No propositions before choosing to display them');
   assert.equal(await page.locator('#free-answer').count(),1,'A free-response field comes first');
@@ -117,12 +121,16 @@ const server=http.createServer((req,res)=>{
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.ok(Number(await page.locator('#total').textContent())>=9,'Skipped questions appear in review mode');
   // New users start their smart session at the easiest level.
   await page.locator('#back-home').click();
   await page.evaluate(()=>localStorage.clear());
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.ok((await page.locator('#level-name').textContent()).includes('Niveau 1'),'New learner starts at level one');
 
   // A successful exercise becomes a revision, but a later error removes that mastery.
@@ -132,6 +140,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#mode').selectOption('10');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   const hand=await page.locator('#body .hand .suit .rank').allTextContents();
   const source=JSON.parse(await page.locator('#training-data').textContent());
   const chosen=source.exercises.find(x=>x.theme==='ouv'&&x.hand.map(s=>s.join('')).join('|')===hand.join('|')&&x.auction.length===0);
@@ -150,6 +160,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#selection-mode').selectOption('revision');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.equal(await page.locator('#total').textContent(),'1','Revision proposes the successful exercise');
   assert.equal(await page.locator('#answers button').count(),0,'Revisions also start without choices');
   await page.locator('#show-choices').click();
@@ -166,6 +178,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.equal(await page.locator('#total').textContent(),'1','The failed revision is eligible for review');
 
   // Audit C01 : au moins une correction complète "pourquoi pas" + "à retenir"
@@ -177,6 +191,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#difficulty').selectOption('2');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
   assert.equal(dataC01.exercises.length,993,'Twenty-four curated cases are available');
   assert.ok(dataC01.exercises.filter(x=>x.whyNot).length>=125,'The 125 reviewed pedagogical comparisons are embedded');
@@ -205,6 +221,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#difficulty').selectOption('4');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   const blackwoodData=JSON.parse(await page.locator('#training-data').textContent());
   const desired=blackwoodData.exercises.find(x=>x.id==='SEF-C2-009');
   assert.ok(desired,'Blackwood coeur C02 example is present');
@@ -240,6 +258,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#mode').selectOption('10');
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#new').click();
+  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
+  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   const hand2=await page.locator('#body .hand .suit .rank').allTextContents();
   const case2=blackwoodData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(s=>s.join('')).join('|')===hand2.join('|'));
   assert.ok(case2,'Opening question is identifiable in the catalog');
