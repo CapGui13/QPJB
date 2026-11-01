@@ -696,7 +696,133 @@ for(const x of exercises.filter(e=>e.theme==='reveil'&&e.auction.length===3)){
  assert.ok(length>=5,'Réveil à la couleur avec cinq cartes au moins : '+x.id);
  assert.ok(hl>=8&&hl<=13,'Réveil naturel limité à 8-13 HL : '+x.id+'='+hl);
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=311,'All revised pedagogical comparisons preserved');
+// V4.48 : contrôler les interventions directes et 18 comparaisons.
+const directCalls=[
+ {
+  "id": "SEF-V3-043-3",
+  "bid": "Contre",
+  "kind": "nt"
+ },
+ {
+  "id": "SEF-V3-044-1",
+  "bid": "Contre",
+  "kind": "nt"
+ },
+ {
+  "id": "SEF-V3-045-2",
+  "bid": "Contre",
+  "kind": "nt"
+ },
+ {
+  "id": "SEF-V3-046-3",
+  "bid": "Contre",
+  "kind": "nt"
+ },
+ {
+  "id": "SEF-V3-048-2",
+  "bid": "1SA",
+  "kind": "contre"
+ },
+ {
+  "id": "SEF-V3-048-1",
+  "bid": "1SA",
+  "kind": "contre"
+ },
+ {
+  "id": "SEF-V3-049-2",
+  "bid": "1SA",
+  "kind": "contre"
+ },
+ {
+  "id": "SEF-V3-050-1",
+  "bid": "1SA",
+  "kind": "contre"
+ },
+ {
+  "id": "SEF-V3-028-1",
+  "bid": "Contre",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V3-029-4",
+  "bid": "1SA",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V3-035-1",
+  "bid": "Contre",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V3-038-4",
+  "bid": "1SA",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V44-032",
+  "bid": "Contre",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V44-033",
+  "bid": "Contre",
+  "kind": "naturelle"
+ },
+ {
+  "id": "SEF-V3-055-2",
+  "bid": "2♣",
+  "kind": "passe"
+ },
+ {
+  "id": "SEF-V3-056-1",
+  "bid": "Contre",
+  "kind": "passe"
+ },
+ {
+  "id": "SEF-V49-029",
+  "bid": "2♣",
+  "kind": "passe"
+ },
+ {
+  "id": "SEF-V3-052-2",
+  "bid": "Contre",
+  "kind": "passe"
+ }
+];
+const directSuitIndices={'♠':0,'♥':1,'♦':2,'♣':3};
+assert.equal(directCalls.length,18);
+for(const item of directCalls){
+ const x=exercises.find(e=>e.id===item.id);
+ assert.ok(x,'Intervention existante '+item.id);
+ assert.equal(x.theme,'intervenir');
+ assert.ok(x.choices.includes(item.bid)&&x.answer!==item.bid);
+ assert.equal(x.whyNot?.bid,item.bid);
+ assert.ok(x.whyNot.reason.length>50&&x.takeaway.length>40);
+ const opener=x.auction[0].match(/^Adversaire : 1([♠♥♦♣])$/);
+ assert.ok(opener,'Ouverture adverse à 1 : '+item.id);
+ const idx=directSuitIndices[opener[1]];
+ if(item.kind==='nt'){
+  assert.equal(x.answer,'1SA');
+  assert.equal(x.h,16,'Main 1SA au-dessus du seuil FFB : '+item.id);
+  assert.ok(x.shape.every(k=>k>=2&&k<=4),'Main régulière : '+item.id);
+  assert.ok(x.hand[idx].includes('A'),'Arrêt de l’ouverture adverse : '+item.id);
+ }else if(item.kind==='contre'){
+  assert.equal(x.answer,'Contre');
+  assert.equal(x.shape[idx],1,'Singleton de la couleur adverse : '+item.id);
+  assert.ok(x.shape.every((n,i)=>i===idx||n===4),'Autres couleurs quatrièmes : '+item.id);
+ }else if(item.kind==='naturelle'){
+  const natural=x.answer.match(/^[12]([♠♥♦♣])$/);
+  assert.ok(natural,'Intervention à la couleur : '+item.id);
+  assert.ok(x.shape[directSuitIndices[natural[1]]]>=5,'Majeure/mineure longue : '+item.id);
+ }else if(item.kind==='passe'){
+  assert.equal(x.answer,'Passe');
+  assert.ok(x.h<=6,'Main faible : '+item.id);
+ }
+}
+for(const id of ["SEF-V3-044-1","SEF-V3-045-2","SEF-V3-046-3"]){
+ assert.ok(html.includes("'"+id+"':'sef-nt-direct-16h-"),'Ancienne tentative archivée : '+id);
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=329,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

@@ -574,3 +574,34 @@ Quatre variantes de **11–13 HL** gardent le réveil naturel comme bonne répon
 **Sources :** https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf#page=135 ; https://www.ibridge.fr/public/fichedetails/81 ; https://www.bridge-chailley.fr/wp-content/uploads/2013/01/E4015-R%C3%A9veils-2-s.pdf.
 
 Validation et publication à confirmer par GitHub Actions après commit.
+
+
+---
+
+## Lot 16 — interventions directes : 1SA, Contre, couleur et Passe (V4.48, 1er novembre 2026)
+
+La revue des **56 exercices d’intervention directe** confirme les bonnes réponses conservées, mais révèle des corrigés trop peu comparatifs. **18 nouveaux « Pourquoi pas ? »** sont ajoutés : 4 autour de 1SA, 4 sur le Contre d’appel, 6 interventions naturelles et 4 Passe. Les pièges cités figurent tous parmi les quatre propositions de chaque exercice.
+
+### Trois exemples de 1SA rendus non ambigus
+
+Le manuel FFB *Les Espoirs du Bridge*, deuxième année, séance 11 (p. 44), ainsi qu'un document FFB 2022, décrivent l’intervention directe par 1SA avec **16–18 H, une distribution régulière et l'arrêt adverse**. D'autres fiches de club adoptent parfois 15–17 H. Pour éviter un choix discutable chez un débutant, les trois exemples précédemment à 15 H sont portés à 16 H en modifiant un seul honneur, sans modifier l'enchère attendue :
+
+| ID | Carte modifiée | Ancien H | Nouveau H | Réponse conservée |
+|---|---|---:|---:|---|
+| `SEF-V3-044-1` | ♠V → ♠D | 15 | 16 | 1SA |
+| `SEF-V3-045-2` | ♠V → ♠D | 15 | 16 | 1SA |
+| `SEF-V3-046-3` | ♣V → ♣D | 15 | 16 | 1SA |
+
+Le quatrième exercice `SEF-V3-043-3` était déjà à 16 H. Tous possèdent un As dans la couleur d’ouverture adverse et une main régulière ; l’analyse explique maintenant pourquoi Contre serait moins adapté.
+
+### Bilan et tests
+
+- **993 exercices / 22 rubriques**, bonnes réponses et choix conservés.
+- **18 nouvelles explications comparatives**, soit **329** au total.
+- **3 mains légèrement modifiées** : archivage local des tentatives et remise au travail de ces trois exercices seulement, grâce à `revisedSefNov2026`. Les 15 autres exercices enrichis conservent leur progression.
+- Contrôles automatiques : quatre mains de 1SA à 16 H avec As d’arrêt et forme régulière ; quatre Contres sur singleton adverse avec les trois autres couleurs quatrièmes ; six annonces naturelles avec une couleur cinquième ou plus ; quatre Passe avec au maximum 6 H ; intégrité des points de toutes les mains.
+- Indicateur heuristique recalculé : 872 favorables, 113 vigilances et 8 priorités (121 signalements). Ce score n'est pas une certification SEF.
+
+**Sources :** FFB, *Les Espoirs du Bridge*, deuxième année, p. 44, https://cdn.ffbridge.fr/cms/geds/0001/01/c7a84cba11443f52affe686302d5b09ac43b97f8.pdf#page=44 ; FFB, séance du 14 septembre 2022, https://cdn-sandbox.ffbridge.fr/media/media/api/31408-fsi20220914s-pdf-63223bae69389_default.pdf ; Sarzeau Bridge Club FFB, fiche d’intervention à 1SA avec une variante 15–17 H, https://bridgesarzeau.club.ffbridge.fr/documents/contre-dappel-et-contre-de-reveil-322955.
+
+Publication à confirmer par GitHub Actions.
