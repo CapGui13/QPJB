@@ -72,3 +72,51 @@ Ils présentent souvent des séquences peu représentées dans le reste de la ba
 - [Script d'audit automatique](../tests/quizz-quality.cjs)
 
 La suite de validation GitHub produit également deux fichiers `artifacts/quizz-content/qualite-993.csv` et `qualite-993.md` à chaque exécution, pour surveiller les évolutions futures.
+
+
+---
+
+## Lot 2 — revue des 199 exercices signalés (1er novembre 2026)
+
+L'audit complémentaire prend pour point de départ les **199 exercices initialement signalés** par le score automatique (11 « prioritaires », 188 « vigilance »). Il étudie leurs mauvaises propositions par familles pédagogiques et distingue les **pièges utiles** (erreurs fréquentes, néanmoins bien fausses) des propositions vraiment trop évidentes. Ce n'est pas une attestation de perfection délivrée par un expert indépendant.
+
+| Action sur les 199 situations | Nombre |
+|---|---:|
+| Au moins une proposition remplacée dans ce lot | **11** |
+| Comparaison pédagogique « Pourquoi pas ? » ajoutée, sans remplacement supplémentaire | **37** |
+| Pièges conservés après revue thématique | **151** |
+| **Total** | **199** |
+
+Le total des modifications depuis l'audit initial V4.30 est désormais de **104 mauvaises propositions remplacées dans 94 exercices**, auquel s'ajoute **une correction de bonne réponse** sur un cas de seuil Stayman. Les 993 exercices et leurs identifiants sont conservés. **47 explications ciblées** ont été ajoutées, portant le total des comparaisons pédagogiques intégrées à **125**.
+
+### Correction de fond : Stayman à 6 H
+
+- `SEF-V49-016` montre 4 Piques, 4 Cœurs et seulement **6 H** face à 1SA 15–17 H. Le bon choix a été rectifié de **2♣** à **Passe**, conformément au Stayman classique (au moins 8 H). `2♣` est désormais proposé comme erreur tentante.
+- La famille pédagogique `cas-148` devient intentionnellement contrastive : avec 6 H on passe, avec 8 H dans la variante `SEF-N096-1`, on peut employer le Stayman. Cela transforme une ancienne incohérence en comparaison de seuil réellement instructive.
+- Seul l'exercice corrigé est remis « à refaire » lors de la première ouverture ; **son résultat historique est archivé dans la sauvegarde locale** au lieu d'être effacé. Toutes les autres progressions sont préservées.
+
+### Pièges remplacés dans les enchères compétitives
+
+Dans **dix** exercices après intervention adverse, une proposition de **3SA très peu crédible avec 6 à 9 H** a été remplacée par une nouvelle couleur au palier de 2 ou 3. La nouvelle proposition semble tentante lorsqu'on détient quatre cartes dans cette couleur, mais elle ne remplit pas les exigences de force/longueur d'un changement de couleur naturel dans la séquence concernée. Le soutien de la majeure ouverte reste l'enchère attendue.
+
+### Pièges maintenus volontairement
+
+- **Réponse au contre d'appel :** « Passe » après le contre du partenaire et le passe de l'adversaire de droite est une erreur typique de débutant. Elle est pédagogiquement bonne quand la main ne permet pas de transformer le contre en pénalité. **26 explications** ont été ajoutées à ces situations.
+- **Stayman/Texas :** passer sur une réponse artificielle, inviter avec trop peu de force, choisir le mauvais transfert ou réclamer une manche en majeure sans fit sont des contrastes utiles, même lorsque l'enchère erronée paraît immédiatement fausse à un joueur expérimenté.
+- **Réponses après fit, Drury, deuxième enchère :** une invitation trop ambitieuse, une préférence 5–2 plutôt que le fit 4–4 ou une confusion entre 2SA naturel et fitté sont des erreurs intéressantes à distinguer. Les onze cas prioritaires ont été examinés et enrichis quand un contraste clair manquait.
+- **Réveils :** les annonces de 1SA, 2SA et Contre de réveil mettent en évidence les différences de force et de distribution. Le score automatique de proximité est un mauvais juge de l'utilité de ces pièges.
+
+### Deux frontières de système à clarifier lors d'un audit des *bonnes* réponses
+
+1. **1M–1SA forcing :** quelques exercices utilisent explicitement cette convention ; dans le SEF standard, la réponse de 1SA sur une majeure est normalement non forcing. Ce point peut rendre « Passe » une option plus défendable qu'attendu selon la présentation de la convention. Les enchères correctes existantes n'ont pas été réécrites sans harmonisation globale du référentiel pédagogique.
+2. **Drury et 2SA fitté du SEF 2024 :** en troisième position, le traitement des mains fittées à quatre atouts avec singleton mérite une vérification distincte. Les séquences déjà engagées par un Drury n'ont pas été supprimées à ce stade.
+
+### Scores et documents finaux
+
+Après les nouvelles modifications, le classement automatique (indicatif) est : **831 signal favorable, 152 vigilance, 10 prioritaires**. Ces catégories ne mesurent ni la difficulté réelle ni une certitude de bon choix. La revue est documentée dans :
+
+- [Revue des 199 exercices signalés](./quizz-revue-199-2026-11-01.csv), avec décision et motif pour chaque cas ;
+- [Relevé actualisé des 993 exercices](./quizz-993-propositions-2026-11-01.csv), avec les quatre réponses et les modifications depuis la base initiale ;
+- [Vérifications programmatiques](../tests/quizz-quality.cjs) relancées avec GitHub Actions.
+
+**Références sur les conventions :** club Alençon FFB, « Stayman » (2021), https://alenconbridge.club.ffbridge.fr/en-savoir-plus/stayman-112041 ; Jean-Christophe Quantin, « La réponse de 1SA à l'ouverture », https://www.colybridge-enseignants.com/images/AsdeTrefle/Encheres/n32_-_La_rponse_de_1SA__louverture.pdf ; Sarzeau Bridge Club FFB, « Quand la réponse de 2SA est-elle fittée ? » (2025), https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
