@@ -105,7 +105,8 @@ const server=http.createServer((req,res)=>{
   const chosen=source.exercises.find(x=>x.theme==='ouv'&&x.hand.map(s=>s.join('')).join('|')===hand.join('|')&&x.auction.length===0);
   assert.ok(chosen,'Opening case is identifiable');
   assert.equal(await page.locator('#answers button').count(),0,'Free entry precedes QCM on a fresh question');
-  await page.locator('#free-answer').fill(chosen.answer);
+  const freeAlias=chosen.answer.replace('♠','P').replace('♥','C').replace('♦','K').replace('♣','T').replace('SA','NT').replace('Passe','PASS');
+  await page.locator('#free-answer').fill(freeAlias);
   await page.locator('#free-form button[type=submit]').click();
   assert.equal(await page.locator('#answers button').count(),0,'Successful free response never reveals QCM');
   let record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
@@ -143,7 +144,7 @@ const server=http.createServer((req,res)=>{
   await page.locator('#new').click();
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
   assert.equal(dataC01.exercises.length,993,'Twenty-four curated cases are available');
-  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,70,'All 70 curated comparisons are embedded');
+  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,78,'All 78 curated comparisons are embedded');
   let contrasted=false;
   const count=Number(await page.locator('#total').textContent());
   for(let i=0;i<count;i++){
