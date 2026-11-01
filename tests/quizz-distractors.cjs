@@ -61,4 +61,61 @@ fs.writeFileSync(path.join(output,'distractor-audit.md'),md);
 assert.equal(exercises.length,993,'The 993 SEF questions remain intact');
 assert.deepEqual(illegal,[],'Do not suggest impossible bids as distractors');
 assert.deepEqual(noNearMiss,[],'Each contract answer must have a nearby plausible contracting alternative');
+// Upgrade pédagogique : rendre explicite la couverture des trois mauvaises enchères.
+// Ce rapport est un outil de revue, pas une génération automatique de corrigés SEF.
+const comparisonRows=[];
+for(const x of exercises){
+ const mentioned=x.whyNot?.bid&&x.choices.includes(x.whyNot.bid)&&x.whyNot.bid!==x.answer;
+ const wrong=x.choices.filter(b=>b!==x.answer);
+ for(const bid of wrong){
+  const documented=Boolean(mentioned&&x.whyNot.bid===bid&&x.whyNot.reason);
+  const contractRank=rank(bid);
+  const answerRank=rank(x.answer);
+  const distance=(contractRank!==null&&answerRank!==null)?Math.abs(contractRank-answerRank):null;
+  const isVeryWeak=Number(x.h)<=5;
+  const ambitious=/^(?:3SA|4[♥♠]|5[♣♦])$/.test(bid);
+  const reasons=[];
+  if(!documented)reasons.push('comparaison individuelle manquante');
+  if(isVeryWeak&&ambitious)reasons.push('enchère haute avec main très faible : revoir le piège');
+  if(distance!==null&&distance>10)reasons.push('contrat éloigné de la bonne enchère');
+  comparisonRows.push({id:x.id,theme:x.theme,answer:x.answer,bid,documented,
+   h:x.h,auction:x.auction.join(' / '),reasons:reasons.join(' ; ')});
+ }
+}
+const quoteCsv=value=>'"'+String(value??'').replace(/"/g,'""')+'"';
+const comparisonCsv=[
+ ['id','rubrique','bonne_enchere','mauvaise_proposition','expliquee_individuellement','points_H','sequence','points_a_revoir'].join(','),
+ ...comparisonRows.map(r=>[r.id,r.theme,r.answer,r.bid,r.documented?'oui':'non',r.h,r.auction,r.reasons]
+ .map(quoteCsv).join(','))
+].join('\n')+'\n';
+fs.writeFileSync(path.join(output,'comparaison-2979-propositions.csv'),comparisonCsv);
+const individuallyExplained=comparisonRows.filter(r=>r.documented).length;
+const needsManualReview=comparisonRows.filter(r=>r.reasons.includes('enchère haute')||r.reasons.includes('contrat éloigné')).length;
+const comparisonMarkdown=[
+ '# Quizz QPJB — couverture des explications comparatives',
+ '',
+ '- Exercices conservés : **'+exercises.length+'**.',
+ '- Mauvaises propositions examinées : **'+comparisonRows.length+'**.',
+ '- Propositions avec explication individuelle explicite : **'+individuallyExplained+'**.',
+ '- Propositions encore sans explication individuelle : **'+(comparisonRows.length-individuallyExplained)+'**.',
+ '- Alertes heuristiques de pièges à revoir : **'+needsManualReview+'** (non assimilées à des erreurs).',
+ '',
+ 'Le fichier CSV `comparaison-2979-propositions.csv` recense **chaque** mauvaise option,',
+ 'la séquence et les points H, ainsi que les motifs de revue. Les indications ne',
+ 'valident ni ne réfutent automatiquement les enchères du référentiel SEF.',
+ 'Les corrigés restent inchangés tant que la pertinence individuelle n’est pas vérifiée.',
+ '',
+ '## Règle de travail',
+ '',
+ 'Pour chaque question, comparer les trois mauvaises enchères à la bonne :',
+ 'identifier la confusion de force, de fit, de longueur, de palier ou de convention.',
+ 'Ne jamais produire trois explications génériques qui pourraient transformer',
+ 'une enchère défendable en « erreur » catégorique.',
+ ''
+].join('\n');
+fs.writeFileSync(path.join(output,'comparaisons-pedagogiques.md'),comparisonMarkdown);
+assert.equal(comparisonRows.length,2979,'Three distractors per SEF exercise are audited');
+assert.equal(new Set(comparisonRows.map(r=>r.id+'|'+r.bid)).size,2979,
+ 'Each wrong bid is represented exactly once in the comparative audit');
+
 console.log('Quizz distractors: PASS | '+exercises.length+' questions | '+report.choices+' options | no illegal contract bids | near misses present');
