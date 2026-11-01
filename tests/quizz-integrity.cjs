@@ -613,8 +613,8 @@ for(const [id,expected] of Object.entries(newConventionContrasts)){
 }
 // Contrôle autonome des réponses 30–41 : 4 As + le Roi de l'atout agréé.
 const blackwoodKeys={
- 'SEF-V45-050':{trump:0,keys:0,queen:false,answer:'5♣'},
- 'SEF-V45-051':{trump:0,keys:1,queen:false,answer:'5♦'},
+ 'SEF-V45-050':{trump:0,keys:0,queen:true,answer:'5♣'},
+ 'SEF-V45-051':{trump:0,keys:1,queen:true,answer:'5♦'},
  'SEF-V45-052':{trump:0,keys:2,queen:false,answer:'5♥'},
  'SEF-V45-053':{trump:0,keys:2,queen:true,answer:'5♠'},
  'SEF-V45-054':{trump:0,keys:3,queen:false,answer:'5♣'},
