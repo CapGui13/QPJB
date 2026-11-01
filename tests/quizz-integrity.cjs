@@ -226,6 +226,41 @@ for(const id of detailedReviewIds){
  assert.notEqual(x.answer,x.whyNot.bid,'The compared alternative is not the right answer: '+id);
 }
 assert.ok(exercises.filter(x=>x.whyNot).length>=253,'All 32 new comparative explanations remain present');
+// V4.41 : contrôle systématique de toutes les anciennes vigilances
+// non expliquées, et remplacement de six « 2SA » caricaturaux en réveil.
+const reviewedUnexplained=[
+ 'SEF-N034-1','SEF-V4-061-2','SEF-V4-062-4','SEF-V4-062-1',
+ 'SEF-V4-063-1','SEF-V4-064-2','SEF-V4-064-1','SEF-V44-011',
+ 'SEF-V44-012','SEF-V45-008','SEF-V49-017','SEF-V410-028',
+ 'SEF-V411-013','SEF-V412-017','SEF-V413-010','SEF-V413-011',
+ 'SEF-V417-011','SEF-V419-001','SEF-V425-006'
+];
+assert.equal(new Set(reviewedUnexplained).size,19,'Nineteen unique exercises reviewed');
+const revisedBalancingBids={
+ 'SEF-V4-061-2':['Contre','1♠',4],
+ 'SEF-V4-062-4':['Contre','1♠',4],
+ 'SEF-V4-062-1':['Contre','2♣',4],
+ 'SEF-V4-063-1':['Contre','2♦',4],
+ 'SEF-V4-064-2':['Contre','2♥',4],
+ 'SEF-V4-064-1':['Contre','2♥',4]
+};
+for(const id of reviewedUnexplained){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x,'SEF situation still present: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Reasoned incorrect answer and takeaway: '+id);
+ assert.ok(x.choices.includes(x.whyNot.bid),'Explained incorrect answer must be offered: '+id);
+ assert.notEqual(x.answer,x.whyNot.bid,'Do not explain the correct choice as a distractor: '+id);
+ if(id in revisedBalancingBids){
+  const [correct,temptation,shortLength]=revisedBalancingBids[id];
+  assert.equal(x.answer,correct,'Correct balancing double is preserved: '+id);
+  assert.ok(x.choices.includes(temptation)&&!x.choices.includes('2SA'),
+    'Natural alternative replaces unrealistic 2NT: '+id);
+  assert.equal(x.whyNot.bid,temptation,'Explain new natural alternative: '+id);
+  const suit={'♠':0,'♥':1,'♦':2,'♣':3}[temptation.slice(-1)];
+  assert.equal(x.shape[suit],shortLength,'Four cards, not a natural five-card balancing suit: '+id);
+ }
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=272,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

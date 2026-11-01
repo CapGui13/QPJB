@@ -405,3 +405,13 @@ Toutes ces **32 explications « Pourquoi pas ? » / « À retenir »** s'ajouten
 Les 139 signaux restants ne correspondent pas à 139 erreurs : ils comprennent des comparaisons pédagogiques délibérées entre mains voisines de force différente. Le score automatique est conservé comme **outil de tri**, pas comme certificateur des 2 979 mauvaises propositions.
 
 **Non-régression :** les 993 identifiants, leurs mains, leurs séquences, leurs bonnes réponses et la progression des élèves restent strictement inchangés. Seules trois mauvaises propositions ont été remplacées et 32 champs de correction enrichis. Aucun archivage ou migration des résultats n'est nécessaire. Des tests bloquent la réintroduction des trois « 2SA » et vérifient toutes les nouvelles comparaisons.
+
+---
+
+## Lot 9 — réveils et derniers exercices sans comparaison (V4.41)
+
+Sur les 139 exercices signalés en V4.40, 19 n'avaient pas de corrigé comparatif. Ces 19 cas en disposent désormais, notamment six contres de réveil tricolores. Les six anciennes mauvaises propositions « 2SA » de ces réveils ont été remplacées par des annonces naturelles avec seulement quatre cartes, afin de travailler la distinction entre contre tricolore et longue couleur.
+
+**Bilan :** 993 exercices inchangés, 0 bonne réponse modifiée, 6 distracteurs remplacés, 272 comparaisons cumulées, 867 signaux favorables, 118 vigilances et 8 priorités. Les 126 alertes restantes sont des signaux heuristiques et non des erreurs attestées ; aucun cas encore signalé n'est dépourvu d'explication comparative.
+
+**Référence :** https://dev.ibridge-club.fr/public/fichedetails/564 (réveil direct naturel généralement cinquième, contre tricolore possible à partir de 8 HL). La progression des élèves est conservée ; aucune migration nécessaire. Les contrôles de non-régression protègent les 19 explications et les six propositions.
