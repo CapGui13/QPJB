@@ -28,6 +28,25 @@ const server=http.createServer((req,res)=>{
   const page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+  // Reprise de progression après la correction du seuil Stayman : archiver le passé,
+  // réinitialiser uniquement la question rectifiée et éviter les migrations répétées.
+  await page.evaluate(()=>{
+    localStorage.setItem('qpjb-sef-entrainement-01',JSON.stringify({
+      'SEF-V49-016':{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:2,correct:2,
+        history:[{at:'2026-10-31T11:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:2}
+    }));
+  });
+  await page.reload({waitUntil:'domcontentloaded'});
+  const migrated=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))['SEF-V49-016']);
+  assert.equal(migrated.seen,false,'The corrected Stayman exercise is available again');
+  assert.equal(migrated.lastResult,null,'An outdated success is no longer counted as mastered');
+  assert.equal(migrated.archivedPreRevision?.history?.[0]?.choice,'2♣','Earlier answers are archived, not lost');
+  await page.reload({waitUntil:'domcontentloaded'});
+  const migratedAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))['SEF-V49-016']);
+  assert.ok(migratedAgain.archivedPreRevision&&!migratedAgain.archivedPreRevision.archivedPreRevision,
+    'Migration happens once rather than recursively archiving itself');
+  await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
+  await page.reload({waitUntil:'domcontentloaded'});
   assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
   assert.ok(!(await page.locator('.stage').textContent()).includes('accord de paire'),'No pair settings are advertised');
   assert.equal(await page.locator('#selection-mode option').count(),5);
