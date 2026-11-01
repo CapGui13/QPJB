@@ -155,6 +155,32 @@ body.session-mode .layout{margin-top:6px}
 #qpjb-quiz-local-fade{position:fixed;inset:0;z-index:500;background:#211b29;opacity:0;pointer-events:none;transition:opacity .45s cubic-bezier(.22,1,.36,1)}
 #qpjb-quiz-local-fade.fade-in{opacity:1;pointer-events:all;transition-duration:.25s;transition-timing-function:ease-in}
 @media(prefers-reduced-motion:reduce){#qpjb-quiz-local-fade{transition:none!important}}
+
+/* QPJB UX : main plus lisible, avec défilement horizontal lorsque nécessaire. */
+#body .hand{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;min-height:67px;justify-content:flex-start;gap:12px;padding:15px 12px}
+#body .hand .suit{flex:0 0 auto;font:900 clamp(19px,5.4vw,24px)/1.2 var(--qpjb-font-ui);gap:4px;letter-spacing:-.025em}
+#body .hand .suit b{font-size:1.16em}
+@media(max-width:400px){#body .hand{gap:10px;padding:13px 10px}#body .hand .suit{font-size:clamp(19px,5.4vw,22px)}}
+@media(max-width:340px){#body .hand{gap:9px;padding:12px 8px}#body .hand .suit{font-size:19px}}
+/* Clavier de bridge : touches spécifiques sous le champ. */
+.bid-key-toggle{align-self:flex-start;min-height:34px;padding:6px 10px;background:#3b3048;color:#f5e8ff;border:1px solid #80649b;border-radius:8px;font:750 12px/1.25 var(--qpjb-font-ui)}
+.bid-keypad{background:#352b42;border:1px solid #735a8a;border-radius:12px;padding:10px;display:grid;gap:7px}
+.bid-keypad[hidden]{display:none!important}
+.bid-key-row{display:grid;gap:6px}
+.bid-key-levels{grid-template-columns:repeat(4,minmax(0,1fr))}
+.bid-key-suits{grid-template-columns:repeat(5,minmax(0,1fr))}
+.bid-key-calls{grid-template-columns:repeat(3,minmax(0,1fr))}
+.bid-keypad button{min-width:0;min-height:44px;padding:7px 2px;background:#fbf8ff;color:#251b33;border:1px solid #d8c7e8;border-radius:9px;font:800 18px/1.2 var(--qpjb-font-ui);touch-action:manipulation}
+.bid-keypad button:active{background:#e4d5f5}
+.bid-keypad .bid-key-suits button{font-size:21px}
+.bid-keypad .bid-key-calls button{font-size:clamp(12px,3vw,15px)}
+.bid-keypad button[data-bid-key="♦"]{color:#b35b08}
+.bid-keypad button[data-bid-key="♥"]{color:#b32138}
+.bid-keypad button[data-bid-key="♣"]{color:#1765b6}
+.bid-keypad button[data-bid-key="♠"]{color:#1d2535}
+.bid-keypad .bid-key-close{width:100%;background:#4b3a5d;color:#f5e8ff;border-color:#886ca2;font-size:13px}
+.bid-keypad .bid-key-help{margin:0;color:#e5d4f4;font:600 12px/1.35 var(--qpjb-font-ui)}
+
 </style></head><body>
 <div class="app-shell"><nav class="qpjb-quiz-nav" aria-label="Navigation QPJB"><a href="./" id="qpjb-quiz-return" class="qpjb-quiz-back">← Accueil QPJB</a><span>Entraînement · Quizz</span></nav><header class="app-top"><div class="app-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="#c0a8dc"/><path fill="#5e259d" fill-rule="evenodd" d="M135,142 135,219 184,219 185,218 191,218 203,213 208,208 210,204 210,200 211,199 210,191 208,187 203,182 198,180 196,178 203,172 206,164 205,155 203,151 200,148 193,144 187,143 186,142Z M157,189 158,188 164,188 165,187 177,187 178,188 182,188 184,189 187,193 187,199 184,202 179,204 158,204 157,203Z M157,158 158,157 178,157 183,161 184,166 183,168 178,172 158,172 157,171Z M67,142 67,158 95,158 96,159 95,194 94,195 94,197 91,200 87,202 81,202 75,199 70,194 70,193 69,193 56,206 56,208 64,215 74,219 77,219 78,220 93,220 94,219 101,218 109,214 115,208 118,202 119,196 120,195 120,142Z M135,44 135,122 157,122 157,102 158,101 181,101 182,100 191,99 201,94 208,86 210,81 210,78 211,77 211,67 207,57 200,50 192,46 185,45 184,44Z M157,62 158,61 178,61 183,63 187,69 187,76 186,78 182,82 178,84 158,84 157,83Z M57,51 50,58 46,64 46,66 43,72 43,76 42,77 42,87 43,88 43,93 50,107 57,114 63,118 76,122 87,132 92,135 94,135 98,137 106,137 107,138 108,137 114,137 115,136 118,136 127,131 130,127 122,118 114,123 105,123 101,120 102,118 104,118 110,115 119,107 122,103 127,91 127,87 128,86 128,77 127,76 127,72 126,71 126,68 120,57 110,48 104,45 102,45 98,43 95,43 94,42 79,42 78,43 74,43 73,44 68,45Z M83,58 87,58 91,60 95,64 96,66 96,73 94,76 100,76 102,77 106,81 107,86 108,87 107,88 106,93 103,96 99,98 94,98 93,97 91,97 87,93 91,102 93,104 92,106 77,106 76,105 80,100 82,94 76,98 71,98 70,97 68,97 64,93 62,89 63,82 68,77 70,76 76,76 74,73 74,66 80,59 82,59Z"/></svg></div><div class="app-brand"><span class="kicker">QPJB · ENTRAÎNEMENT</span><strong>Quizz</strong><small>Programme d’entraînement · SEF</small></div></header>
 <main><section class="stage"><div class="stage-tag">QUIZZ · ENTRAÎNEMENT AUX ENCHÈRES</div><h1>À vous de jouer !</h1><p>Une main, une séquence, une enchère à trouver. Le SEF est notre référence unique. Réponds sans propositions, puis affiche les quatre possibilités si tu hésites ou te trompes.</p><div class="hero-stats"><span>993 exercices sélectionnés</span><span>22 rubriques</span><span>5 niveaux de difficulté</span></div></section>
@@ -318,8 +344,25 @@ for(const [id,revision] of Object.entries(revisedSefNov2026)){
 }
 if(revisedSefProgress){try{localStorage.setItem(saveKey,JSON.stringify(saved))}catch(e){}}
 let deck=[],position=0,answered=false,selection=null,sessionResults={},sessionChoices={},sessionStages={};
+let bidKeyboardOpen=false;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mix=arr=>{let a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* Ordre de cherté identique à Training, avec les mêmes places pour Passe/Contre/Surcontre. */
+function sortedBridgeChoices(values){
+ const extra={PASSE:0,PASS:0,CONTRE:1,X:1,SURCONTRE:2,XX:2};
+ const suits={'♣':0,T:0,'♦':1,K:1,'♥':2,C:2,'♠':3,P:3,SA:4,NT:4};
+ const score=value=>{
+  const raw=String(value).trim().replace(/[\uFE0E\uFE0F\s]/g,'').toUpperCase();
+  if(Object.prototype.hasOwnProperty.call(extra,raw))return extra[raw];
+  const match=raw.match(/^([1-7])(♣|♦|♥|♠|SA|NT|T|K|C|P)$/);
+  return match?10+(Number(match[1])-1)*5+suits[match[2]]:null;
+ };
+ const entries=values.slice();
+ if(entries.some(value=>score(value)===null))return entries;
+ return entries.sort((a,b)=>score(a)-score(b));
+}
+
 const bidSuitClass=s=>({"♠":'bid-spade',"♥":'bid-heart',"♦":'bid-diamond',"♣":'bid-club'}[s]||'');
 function richText(text){return escapeHTML(text).replace(/[♠♥♦♣]/g,m=>`<span class="bid-suit ${bidSuitClass(m)}">${m}</span>`)}
 function richBid(text){return `<span class="choice-label">${richText(text)}</span>`}
@@ -333,14 +376,73 @@ function normalizeBid(input){
  const aliases={'♣':'♣',T:'♣',TREFLE:'♣',TREFLES:'♣',CLUB:'♣',CLUBS:'♣','♦':'♦',K:'♦',D:'♦',CARREAU:'♦',CARREAUX:'♦',DIAMOND:'♦',DIAMONDS:'♦','♥':'♥',C:'♥',H:'♥',COEUR:'♥',COEURS:'♥',HEART:'♥',HEARTS:'♥','♠':'♠',P:'♠',S:'♠',PIQUE:'♠',PIQUES:'♠',SPADE:'♠',SPADES:'♠',SA:'SA',NT:'SA',SANSATOUT:'SA',SANSATOUTS:'SA',NOTRUMP:'SA'};
  const suit=aliases[m[2]];return suit?m[1]+suit:null;
 }
+
+function bidKeypadHTML(){
+ const row=(values,kind)=>`<div class='bid-key-row bid-key-${kind}'>${values.map(v=>`<button type='button' data-bid-key='${v}' aria-label='${v==="⌫"?"Effacer":v}'>${v}</button>`).join('')}</div>`;
+ return `<button type='button' id='bid-key-toggle' class='bid-key-toggle' aria-controls='bid-keypad' aria-expanded='false'>♠ Clavier bridge</button>
+ <div id='bid-keypad' class='bid-keypad' hidden aria-label='Clavier de bridge'>
+ ${row(['1','2','3','4','5','6','7','⌫'],'levels')}
+ ${row(['♣','♦','♥','♠','SA'],'suits')}
+ ${row(['Passe','Contre','Surcontre'],'calls')}
+ <p id='bid-key-help' class='bid-key-help' role='status'>Choisis un palier puis une couleur, ou une action.</p>
+ <button type='button' id='bid-key-close' class='bid-key-close'>Terminé</button>
+ </div>`;
+}
+function setBidKeyboardOpen(open){
+ bidKeyboardOpen=Boolean(open);
+ const keypad=$('bid-keypad'),toggle=$('bid-key-toggle'),input=$('free-answer');
+ if(!keypad)return;
+ keypad.hidden=!bidKeyboardOpen;
+ if(toggle)toggle.setAttribute('aria-expanded',String(bidKeyboardOpen));
+ if(input)input.setAttribute('aria-expanded',String(bidKeyboardOpen));
+ quizReportHeight();
+}
+function pressBidKey(key){
+ const stage=stageAt(position),field=$('free-answer'),help=$('bid-key-help');
+ if(!field)return;
+ if(key==='⌫')stage.draft=/^[1-7][♣♦♥♠]$|^[1-7]SA$/.test(stage.draft)?stage.draft[0]:'';
+ else if(/^[1-7]$/.test(key))stage.draft=key;
+ else if(['♣','♦','♥','♠','SA'].includes(key)){
+   const level=String(stage.draft).match(/^([1-7])/);
+   if(!level){if(help)help.textContent='Choisis d’abord un chiffre de 1 à 7.';return}
+   stage.draft=level[1]+key;
+ }else if(['Passe','Contre','Surcontre'].includes(key))stage.draft=key;
+ else return;
+ stage.error='';
+ field.value=stage.draft;
+ field.setAttribute('aria-invalid','false');
+ $('bid-free-error')?.remove();
+ if(help)help.textContent=normalizeBid(stage.draft)?'Enchère prête : appuie sur Valider.':'Choisis maintenant une couleur ou SA.';
+}
+
 function stageAt(index){return sessionStages[index]||(sessionStages[index]={choicesShown:false,freeWrong:false,firstGuess:null,draft:'',error:''})}
+
+/* Montrer le corrigé vers le bas sans replacer l'exercice en haut. */
+function revealQuizFeedback(){
+ requestAnimationFrame(()=>{
+  quizReportHeight();
+  setTimeout(()=>{
+   const feedback=$('body').querySelector('.feedback');if(!feedback)return;
+   let page=window,top=feedback.getBoundingClientRect().top;
+   try{
+    if(quizEmbedded&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches){
+      page=window.parent;top+=window.frameElement.getBoundingClientRect().top;
+    }
+   }catch(_){}
+   const distance=Math.max(0,Math.round(top-page.innerHeight*.14));
+   if(distance>0)page.scrollBy({top:distance,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  },80);
+ });
+}
+
 function finalizeAnswer(x,choice,mode){
  if(answered)return;
  const stage=stageAt(position),result=choice===x.answer?'correct':'wrong',assisted=mode==='qcm';
  selection=choice;answered=true;
  sessionResults[position]={result,choice,mode,assisted,firstGuess:stage.firstGuess,hadFreeError:stage.freeWrong};
  recordAttempt(x,result,choice,{mode,assisted,firstGuess:stage.firstGuess,hadFreeError:stage.freeWrong});
- render();window.scrollTo({top:0,behavior:'smooth'});
+ bidKeyboardOpen=false;
+ render();revealQuizFeedback();
 }
 function submitFreeAnswer(x){
  if(answered)return;
@@ -348,9 +450,9 @@ function submitFreeAnswer(x){
  if(!bid){stage.error='Enchère non reconnue. Écris un palier et une couleur (P, C, K, T ou SA), ou Passe, Contre, Surcontre.';render();$('free-answer')?.focus();return}
  stage.error='';
  if(bid===x.answer){finalizeAnswer(x,bid,'libre');return}
- stage.firstGuess=bid;stage.freeWrong=true;stage.choicesShown=true;render();
+ stage.firstGuess=bid;stage.freeWrong=true;stage.choicesShown=true;bidKeyboardOpen=false;render();
 }
-function showChoices(){if(answered)return;const stage=stageAt(position);stage.choicesShown=true;stage.error='';render()}
+function showChoices(){if(answered)return;const stage=stageAt(position);stage.choicesShown=true;stage.error='';bidKeyboardOpen=false;render()}
 function auctionSpeaker(call){
   const label=String(call).split(':',1)[0].trim().toLowerCase();
   if(label==='vous'||label==='réponse')return [0];
@@ -510,7 +612,7 @@ function finishSession(){
 }
 function setPosition(newPosition){
  quizFadeNavigate(()=>{
-   position=newPosition;
+   position=newPosition;bidKeyboardOpen=false;
    const result=sessionResults[position]||null;
    answered=!!result;
    selection=result?.choice||null;
@@ -561,7 +663,7 @@ function start(){
   }else{
     deck=diverseTake(shuffledPriority(arr),n);
   }
-  position=0;answered=false;selection=null;sessionResults={};sessionChoices={};sessionStages={};
+  position=0;answered=false;selection=null;sessionResults={};sessionChoices={};sessionStages={};bidKeyboardOpen=false;
   updateLevelCounts();enterSession();render();
 }
 function stats(){
@@ -610,11 +712,11 @@ function render(){
  const seq=auctionHTML(x.auction);
  const hands=x.hand.map((s,i)=>`<div class="suit"><b>${['♠','♥','♦','♣'][i]}</b><span class="rank">${escapeHTML(s.join(''))}</span></div>`).join('');
  const stage=stageAt(position);
- if(!sessionChoices[x.id])sessionChoices[x.id]=mix(x.choices);
+ if(!sessionChoices[x.id])sessionChoices[x.id]=sortedBridgeChoices(x.choices);
  const choices=sessionChoices[x.id],current=sessionResults[position]||null;
  const displayChoices=stage.choicesShown||Boolean(current?.assisted);
  const answers=displayChoices?`<div class="answers" id="answers">${choices.map((o,i)=>`<button type="button" data-choice="${i}" class="${answered?(o===x.answer?'good':o===selection?'bad':''):''}" ${answered?'disabled':''}>${richBid(o)}</button>`).join('')}</div>`:'';
- const prompt=!answered&&!displayChoices?`<form id="free-form" class="free-answer-form" autocomplete="off"><label for="free-answer">Ton enchère, sans propositions</label><div class="free-entry-row"><input id="free-answer" name="bid" type="text" value="${escapeHTML(stage.draft)}" placeholder="Écris ton enchère" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="${Boolean(stage.error)}"/><button type="submit" class="primary">Valider</button></div>${stage.error?`<p class="free-entry-error" role="alert">${escapeHTML(stage.error)}</p>`:''}<button type="button" id="show-choices" class="free-reveal">Voir les 4 propositions</button></form>`:'';
+ const prompt=!answered&&!displayChoices?`<form id="free-form" class="free-answer-form" autocomplete="off"><label for="free-answer">Ton enchère, sans propositions</label><div class="free-entry-row"><input id="free-answer" name="bid" type="text" value="${escapeHTML(stage.draft)}" placeholder="Écris ton enchère" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="${Boolean(stage.error)}"/><button type="submit" class="primary">Valider</button></div>${bidKeypadHTML()}${stage.error?`<p id="bid-free-error" class="free-entry-error" role="alert">${escapeHTML(stage.error)}</p>`:''}<button type="button" id="show-choices" class="free-reveal">Voir les 4 propositions</button></form>`:'';
  const freeError=!answered&&stage.freeWrong?`<p class="free-retry-note" role="status">Ta première enchère (${richBid(stage.firstGuess)}) n’est pas la réponse attendue. À toi de choisir parmi ces quatre propositions.</p>`:'';
  const contrast=x.whyNot?.bid&&x.whyNot?.reason?`<div class="feedback-contrast"><strong>Pourquoi pas ${richBid(x.whyNot.bid)} ?</strong><p>${richText(x.whyNot.reason)}</p></div>`:'';
  const lesson=x.takeaway?`<div class="feedback-lesson"><strong>À retenir</strong><p>${richText(x.takeaway)}</p></div>`:'';
@@ -626,7 +728,17 @@ function render(){
  if(answered){const turnCell=$('body').querySelector('.auc .ask');if(turnCell)turnCell.classList.remove('pulse')}
  if(displayChoices)$('answers').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>choose(x,Number(btn.dataset.choice))));
  if(!answered&&!displayChoices){
-   $('free-answer').addEventListener('input',e=>{stage.draft=e.target.value});
+
+   const field=$('free-answer'),isTouch=window.matchMedia('(pointer:coarse)').matches;
+   if(isTouch){field.readOnly=true;field.setAttribute('inputmode','none');}
+   field.addEventListener('input',e=>{stage.draft=e.target.value});
+   field.addEventListener('click',()=>{if(isTouch)setBidKeyboardOpen(true)});
+   field.addEventListener('focus',()=>{if(isTouch)setBidKeyboardOpen(true)});
+   $('bid-key-toggle').onclick=()=>setBidKeyboardOpen(!bidKeyboardOpen);
+   $('bid-key-close').onclick=()=>setBidKeyboardOpen(false);
+   $('bid-keypad').querySelectorAll('[data-bid-key]').forEach(btn=>
+     btn.addEventListener('click',()=>pressBidKey(btn.dataset.bidKey)));
+   setBidKeyboardOpen(bidKeyboardOpen);
    $('free-form').addEventListener('submit',e=>{e.preventDefault();stage.draft=$('free-answer').value;submitFreeAnswer(x)});
    $('show-choices').onclick=showChoices;
  }
