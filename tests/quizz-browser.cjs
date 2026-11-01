@@ -24,7 +24,7 @@ const server=http.createServer((req,res)=>{
  const browser=await ({chromium,webkit})[engine].launch({headless:true,args:engine==='chromium'?['--no-sandbox']:[]});
  const errors=[];
  try{
-  const context=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
+  const context=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR',reducedMotion:'reduce'});
   const page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
@@ -241,6 +241,40 @@ const server=http.createServer((req,res)=>{
   const directRecord=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],case3.id);
   assert.equal(directRecord.assisted,true,'Direct choice mode also records assistance');
   assert.equal(directRecord.ok,false,'Direct assisted answers remain reviewable');
+
+
+  // Vérifier l'intégration dans QPJB : pas de navigation vers quizz.html,
+  // même iframe après retour, état de l'exercice et quatre choix conservés.
+  const integratedContext=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
+  try{
+    const app=await integratedContext.newPage();
+    await app.goto('http://127.0.0.1:8766/QPJB/',{waitUntil:'domcontentloaded'});
+    await app.addStyleTag({content:'#splash{opacity:0!important;visibility:hidden!important;pointer-events:none!important}'});
+    await app.locator('.training-button-quizz').click();
+    await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='block',null,{timeout:12000});
+    const embedded=app.frameLocator('#quizz-frame');
+    await embedded.locator('#new').waitFor({state:'visible',timeout:12000});
+    assert.equal(new URL(app.url()).pathname,'/QPJB/','The Quizz opens inside the parent app URL');
+    await app.evaluate(()=>document.getElementById('quizz-frame').dataset.persistenceProbe='same-iframe');
+    await embedded.locator('#new').click();
+    await embedded.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
+    await embedded.locator('#show-choices').click();
+    assert.equal(await embedded.locator('#answers button').count(),4,'Embedded Quizz keeps four choices on demand');
+    await embedded.locator('#qpjb-quiz-return').click();
+    await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='none',null,{timeout:12000});
+    assert.equal(new URL(app.url()).pathname,'/QPJB/','Back returns to the app without a document navigation');
+    await app.locator('.training-button-quizz').click();
+    await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='block',null,{timeout:12000});
+    assert.equal(await app.locator('#quizz-frame').getAttribute('data-persistence-probe'),'same-iframe','The iframe DOM is reused rather than reloaded');
+    assert.equal(await embedded.locator('body.session-mode').count(),1,'An ongoing Quizz session survives returning to the app');
+    assert.equal(await embedded.locator('#answers button').count(),4,'Previously revealed proposals remain visible');
+    await embedded.locator('#back-home').click();
+    await embedded.locator('body:not(.session-mode)').waitFor({state:'visible',timeout:12000});
+    assert.equal(await embedded.locator('#new').isVisible(),true,'The settings screen reappears without reload');
+    await embedded.locator('#qpjb-quiz-return').click();
+    await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='none',null,{timeout:12000});
+    await app.close();
+  }finally{await integratedContext.close()}
 
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
