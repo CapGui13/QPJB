@@ -166,8 +166,8 @@ body.session-mode .layout{margin-top:6px}
 .bid-key-toggle{align-self:flex-start;min-height:34px;padding:6px 10px;background:#3b3048;color:#f5e8ff;border:1px solid #80649b;border-radius:8px;font:750 12px/1.25 var(--qpjb-font-ui)}
 .bid-keypad{background:#352b42;border:1px solid #735a8a;border-radius:12px;padding:10px;display:grid;gap:7px}
 .bid-keypad[hidden]{display:none!important}
-.bid-keypad{transform-origin:top;overflow:hidden;max-height:0;opacity:0;padding-top:0;padding-bottom:0;margin:0;border-width:0;transform:translateY(-7px);transition:max-height .32s cubic-bezier(.22,1,.36,1),opacity .22s ease,transform .32s cubic-bezier(.22,1,.36,1),padding .32s ease,border-width .32s ease}
-.bid-keypad.is-open{max-height:320px;opacity:1;padding:10px;border-width:1px;transform:translateY(0)}
+.bid-keypad{transform-origin:top;overflow:hidden;max-height:0;opacity:0;padding-top:0;padding-bottom:0;margin:0;border-width:0;transform:translateY(-7px);transition:max-height .42s cubic-bezier(.22,1,.36,1),opacity .28s ease,transform .42s cubic-bezier(.22,1,.36,1),padding .42s ease,border-width .42s ease}
+.bid-keypad.is-open{max-height:390px;opacity:1;padding:10px;border-width:1px;transform:translateY(0)}
 .free-entry-row{position:relative}
 .bid-entry-display{position:absolute;left:15px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:1px;pointer-events:none;white-space:nowrap;max-width:calc(100% - 132px);overflow:hidden;font-family:var(--qpjb-font-ui);font-weight:800;line-height:1.2;color:#251b33}
 .bid-entry-display .bid-entry-level{font-size:18px;color:#251b33}
@@ -424,7 +424,7 @@ function setBidKeyboardOpen(open){
  }else{
    keypad.classList.remove('is-open');
    const closing=keypad;
-   setTimeout(()=>{if(closing.isConnected&&!closing.classList.contains('is-open'))closing.hidden=true},340);
+   setTimeout(()=>{if(closing.isConnected&&!closing.classList.contains('is-open'))closing.hidden=true},450);
  }
  if(toggle)toggle.setAttribute('aria-expanded',String(bidKeyboardOpen));
  if(input)input.setAttribute('aria-expanded',String(bidKeyboardOpen));
@@ -489,7 +489,7 @@ function finalizeAnswer(x,choice,mode){
  const finish=()=>{render();revealQuizFeedback()};
  if(bidKeyboardOpen&&$('bid-keypad')){
    setBidKeyboardOpen(false);
-   setTimeout(finish,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:330);
+   setTimeout(finish,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440);
  }else finish();
 }
 function submitFreeAnswer(x){
@@ -500,11 +500,11 @@ function submitFreeAnswer(x){
  if(bid===x.answer){finalizeAnswer(x,bid,'libre');return}
  stage.firstGuess=bid;stage.freeWrong=true;stage.choicesShown=true;
  if(bidKeyboardOpen&&$('bid-keypad')){
-  setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:330);
+  setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440);
  }else render();
 }
 function showChoices(){if(answered)return;const stage=stageAt(position);stage.choicesShown=true;stage.error='';
- if(bidKeyboardOpen&&$('bid-keypad')){setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:330)}
+ if(bidKeyboardOpen&&$('bid-keypad')){setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440)}
  else render();
 }
 function auctionSpeaker(call){
