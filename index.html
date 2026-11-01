@@ -2411,7 +2411,7 @@ window.addEventListener('message',e=>{
 });
 window.addEventListener('popstate',e=>{
  if(e.state?.qpjbQuizz){
-   if(document.getElementById('vquizz').style.display==='none')qpjbQuizzShow(false);
+   if(document.getElementById('vquizz').style.display==='none')qpjbTrainingWithFade(()=>qpjbQuizzShow(false));
  }else if(document.getElementById('vquizz').style.display!=='none'){
    qpjbTrainingWithFade(()=>qpjbQuizzHide());
  }
