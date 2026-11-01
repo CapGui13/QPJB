@@ -9,6 +9,13 @@ const data=JSON.parse(match[1]);
 const exercises=data.exercises;
 assert.equal(exercises.length,993,'All 969 previous exercises and 12 curated cases are retained');
 assert.equal(data.themes.length,22,'Original 22 topics are retained');
+assert.ok(html.includes('Le SEF est notre référence unique.'),'The SEF is explicitly shown as the single reference system');
+for(const x of exercises){
+ for(const part of [x.context,x.explain,x.takeaway,x.whyNot?.reason]){
+  assert.doesNotMatch(String(part||''),/accord de paire|accords SEF retenus|dans cet accord|dans ce système|^accord Walsh/i,'No pair-specific caveat in '+x.id);
+ }
+}
+
 const contrasted=exercises.filter(x=>x.whyNot);
 assert.equal(contrasted.length,70,'At least the 54 curated pedagogical contrasts are retained');
 assert.equal(exercises.filter(x=>/^SEF-C-\d{3}$/.test(x.id)).length,12,'Twelve audited C01 situations');
