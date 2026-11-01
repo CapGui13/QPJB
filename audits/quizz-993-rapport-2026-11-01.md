@@ -518,3 +518,29 @@ Le dernier exercice a été rendu non ambigu en **remplaçant la main** auparava
 **Références :** Fédération française de bridge, *L'As de Trèfle*, janvier 2024, article « Le SEF 2024 est arrivé », règles des soutiens après intervention, https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf ; page de synthèse du SEF 2024, https://scjc-bridge.fr/sef-2024 ; évaluation des mains HLD et des atouts, https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/la-main-et-son-evaluation.
 
 Tests d'intégrité et publication surveillés dans GitHub Actions.
+
+
+---
+
+## Lot 14 — audit ciblé des conventions et de la qualité des pièges (V4.46, 1er novembre 2026)
+
+La revue a porté principalement sur les erreurs **raisonnables mais non optimales** : confusion entre bicolore et intervention naturelle, mauvaise interprétation des Texas Rubensohl et défaut de comptage des clés du Blackwood. Les réponses correctes existantes ont été préservées.
+
+### Corrigés comparatifs ajoutés
+
+| Rubrique | Exercices enrichis | Point pédagogique traité |
+|---|---:|---|
+| Multi-Landy | **4** | 2♣ deux majeures, 2♦ majeure sixième, 2M majeure cinquième avec mineure quatrième |
+| Rubensohl | **8** | annonces naturelles faibles au palier de 2, Texas à partir de 2SA, Texas impossible–Stayman |
+| Michaels précisés | **7** | décrire les deux couleurs longues d'un coup, sans confondre cue-bid, 3♣ et 2SA |
+| Blackwood et Splinters | **6** | cinq clés 30–41, Roi d'atout comme clé, informations de courte et fit |
+
+**Résultat :** **25** nouveaux « Pourquoi pas ? », soit **303 comparaisons pédagogiques** en tout ; 993 exercices et 22 thèmes conservés. Aucune bonne réponse, aucune main et aucune des quatre propositions n'a changé. Les progrès des élèves ne sont ni réinitialisés ni migrés.
+
+**Tests de non-régression ajoutés :** présence des 25 fausses réponses réellement offertes et de leur explication ; contrôle des huit cas de Blackwood (Roi d'atout, nombre de clés, Dame d'atout et réponse 30–41) ; formes attendues de 18 exemples Multi-Landy, Rubensohl et Michaels.
+
+**Audit automatique indicatif recalculé :** 872 signaux favorables, 113 vigilances, 8 priorités. Le score mesure notamment la présence d'explications et la proximité d'autres réponses dans la base : il ne valide pas à lui seul une convention et ne doit pas guider artificiellement les choix.
+
+**Références consultées :** iBridge, « Le Rubensohl après une intervention » https://www.ibridge.fr/public/fichedetails/24 ; iBridge, « Les quatre conventions Michael » https://www.ibridge.fr/public/fichedetails/254 ; Alençon Bridge Club FFB, « Le Blackwood 5 clés » https://alenconbridge.club.ffbridge.fr/en-savoir-plus/le-blackwood-5-cles-112005 ; et les fiches pédagogiques déjà consignées dans ce rapport.
+
+**Publication :** contrôle d'intégrité, navigateurs et GitHub Pages à confirmer après le commit de V4.46.

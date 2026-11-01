@@ -472,7 +472,194 @@ for(const id of ['SEF-V420-011','SEF-V421-008','SEF-V425-008']){
 const cueCase=exercises.find(x=>x.id==='SEF-V425-008');
 assert.ok(cueCase?.choices.includes('3♣')&&!cueCase?.choices.includes('2♦'),
  'Le cue-bid instructif remplace une nouvelle couleur hors sujet');
-assert.ok(exercises.filter(x=>x.whyNot).length>=278,'All revised pedagogical comparisons preserved');
+// V4.46 : 25 nouveaux contrastes documentés dans les quatre familles de conventions.
+const newConventionContrasts={
+ "SEF-V45-023": {
+  "theme": "multilandy",
+  "bid": "2♥",
+  "answer": "2♣"
+ },
+ "SEF-V45-024": {
+  "theme": "multilandy",
+  "bid": "2♦",
+  "answer": "2♣"
+ },
+ "SEF-V45-026": {
+  "theme": "multilandy",
+  "bid": "2♥",
+  "answer": "2♦"
+ },
+ "SEF-V45-028": {
+  "theme": "multilandy",
+  "bid": "2♦",
+  "answer": "2♠"
+ },
+ "SEF-V45-031": {
+  "theme": "rubensohl",
+  "bid": "3♥",
+  "answer": "2♠"
+ },
+ "SEF-V45-032": {
+  "theme": "rubensohl",
+  "bid": "3♣",
+  "answer": "2SA"
+ },
+ "SEF-V45-033": {
+  "theme": "rubensohl",
+  "bid": "3♦",
+  "answer": "3♣"
+ },
+ "SEF-V45-034": {
+  "theme": "rubensohl",
+  "bid": "3♥",
+  "answer": "3♦"
+ },
+ "SEF-V45-035": {
+  "theme": "rubensohl",
+  "bid": "2♠",
+  "answer": "3♥"
+ },
+ "SEF-V45-036": {
+  "theme": "rubensohl",
+  "bid": "3♥",
+  "answer": "3SA"
+ },
+ "SEF-V45-038": {
+  "theme": "rubensohl",
+  "bid": "3♦",
+  "answer": "2♥"
+ },
+ "SEF-V45-039": {
+  "theme": "rubensohl",
+  "bid": "3♦",
+  "answer": "3♣"
+ },
+ "SEF-V45-041": {
+  "theme": "michaels",
+  "bid": "1♥",
+  "answer": "2♦"
+ },
+ "SEF-V45-042": {
+  "theme": "michaels",
+  "bid": "2♥",
+  "answer": "2♦"
+ },
+ "SEF-V45-044": {
+  "theme": "michaels",
+  "bid": "2♥",
+  "answer": "2♠"
+ },
+ "SEF-V45-045": {
+  "theme": "michaels",
+  "bid": "1♠",
+  "answer": "3♣"
+ },
+ "SEF-V45-046": {
+  "theme": "michaels",
+  "bid": "2♥",
+  "answer": "3♣"
+ },
+ "SEF-V45-047": {
+  "theme": "michaels",
+  "bid": "3♦",
+  "answer": "2SA"
+ },
+ "SEF-V45-048": {
+  "theme": "michaels",
+  "bid": "3♦",
+  "answer": "2SA"
+ },
+ "SEF-V45-050": {
+  "theme": "chelem",
+  "bid": "5♦",
+  "answer": "5♣"
+ },
+ "SEF-V45-054": {
+  "theme": "chelem",
+  "bid": "5♦",
+  "answer": "5♣"
+ },
+ "SEF-V45-055": {
+  "theme": "chelem",
+  "bid": "5♣",
+  "answer": "5♦"
+ },
+ "SEF-V45-056": {
+  "theme": "chelem",
+  "bid": "4♠",
+  "answer": "4♣"
+ },
+ "SEF-V45-057": {
+  "theme": "chelem",
+  "bid": "4♠",
+  "answer": "4♥"
+ },
+ "SEF-V45-058": {
+  "theme": "chelem",
+  "bid": "4♥",
+  "answer": "3♠"
+ }
+};
+assert.equal(Object.keys(newConventionContrasts).length,25,'Vingt-cinq situations de conventions vérifiées');
+for(const [id,expected] of Object.entries(newConventionContrasts)){
+ const x=exercises.find(z=>z.id===id);
+ assert.ok(x,'Exercice de convention disponible : '+id);
+ assert.equal(x.theme,expected.theme,'Bonne famille de convention : '+id);
+ assert.equal(x.answer,expected.answer,'Bonne réponse inchangée : '+id);
+ assert.equal(x.whyNot?.bid,expected.bid,'Mauvaise enchère expliquée : '+id);
+ assert.ok(x.choices.includes(x.whyNot.bid),'Piège toujours proposé : '+id);
+ assert.ok(x.whyNot.reason.length>45&&x.takeaway.length>35,
+    'Comparaison et règle pédagogique précises : '+id);
+}
+// Contrôle autonome des réponses 30–41 : 4 As + le Roi de l'atout agréé.
+const blackwoodKeys={
+ 'SEF-V45-050':{trump:0,keys:0,queen:false,answer:'5♣'},
+ 'SEF-V45-051':{trump:0,keys:1,queen:false,answer:'5♦'},
+ 'SEF-V45-052':{trump:0,keys:2,queen:false,answer:'5♥'},
+ 'SEF-V45-053':{trump:0,keys:2,queen:true,answer:'5♠'},
+ 'SEF-V45-054':{trump:0,keys:3,queen:false,answer:'5♣'},
+ 'SEF-V45-055':{trump:1,keys:1,queen:false,answer:'5♦'},
+ 'SEF-C2-009':{trump:1,keys:2,queen:false,answer:'5♥'},
+ 'SEF-C2-010':{trump:1,keys:2,queen:true,answer:'5♠'}
+};
+const _suitNames=['Pique','Cœur','Carreau','Trèfle'];
+for(const [id,expected] of Object.entries(blackwoodKeys)){
+ const x=exercises.find(e=>e.id===id);
+ assert.ok(x,'Question Blackwood présente : '+id);
+ const ases=x.hand.reduce((n,suit)=>n+Number(suit.includes('A')),0);
+ const k=ases+Number(x.hand[expected.trump].includes('R'));
+ assert.equal(k,expected.keys,'Quatre As plus Roi d’atout : '+id);
+ assert.equal(x.hand[expected.trump].includes('D'),expected.queen,
+   'Présence de la Dame d’atout : '+id);
+ assert.ok(x.context.includes(_suitNames[expected.trump]),'Atout agréé explicite : '+id);
+ assert.equal(x.answer,expected.answer,'Blackwood 30–41 : '+id);
+}
+// Comparaisons Multi-Landy, Rubensohl et Michaels : formes attendues des bicolores.
+const _conventionLengths={
+ 'SEF-V45-023':[5,4,2,2],
+ 'SEF-V45-024':[4,5,2,2],
+ 'SEF-V45-026':[2,6,3,2],
+ 'SEF-V45-028':[5,2,2,4],
+ 'SEF-V45-031':[5,2,3,3],
+ 'SEF-V45-032':[2,2,3,6],
+ 'SEF-V45-033':[2,2,6,3],
+ 'SEF-V45-034':[4,2,4,3],
+ 'SEF-V45-035':[5,2,3,3],
+ 'SEF-V45-038':[3,5,2,3],
+ 'SEF-V45-039':[4,4,2,3],
+ 'SEF-V45-041':[5,5,2,1],
+ 'SEF-V45-042':[5,5,1,2],
+ 'SEF-V45-044':[1,5,2,5],
+ 'SEF-V45-045':[5,1,5,2],
+ 'SEF-V45-046':[1,5,5,2],
+ 'SEF-V45-047':[1,2,5,5],
+ 'SEF-V45-048':[2,1,5,5]
+};
+for(const [id,shape] of Object.entries(_conventionLengths)){
+ const x=exercises.find(z=>z.id===id);
+ assert.deepEqual(x?.shape,shape,'La distribution conventionnelle est conservée : '+id);
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=303,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
