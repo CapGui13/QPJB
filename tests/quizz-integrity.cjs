@@ -137,6 +137,58 @@ for(const id of [...reviewedStayman,...reviewedSecond]){
  }
 }
 assert.ok(exercises.filter(x=>x.whyNot).length>=191,'All 32 new pedagogical contrasts are preserved');
+// V4.39 : distinguer SEF 2024 de la convention « collante » hors SEF.
+// Après une mineure et une intervention à 1♦/1♥, le Spoutnik dénie une majeure quatrième.
+const naturalMajorSef24={
+ 'SEF-V410-025':['1♠','1♦','1♥',4],
+ 'SEF-V418-005':['1♠','1♣','1♥',4],
+ 'SEF-V420-009':['1♥','1♣','1♦',4]
+};
+for(const [id,[bid,open,intervention,minLength]] of Object.entries(naturalMajorSef24)){
+ const x=exercises.find(v=>v.id===id);
+ assert.ok(x,'Corrected SEF natural-major answer exists: '+id);
+ assert.equal(x.auction[0],'Partenaire : '+open,'Opening correct: '+id);
+ assert.equal(x.auction[1],'Adversaire : '+intervention,'Intervention correct: '+id);
+ assert.equal(x.answer,bid,'Natural response, not inverted Spoutnik: '+id);
+ assert.ok(x.hand[bid==='1♠'?0:1].length>=minLength,'At least four cards in chosen major: '+id);
+ assert.ok(x.choices.includes('Contre')&&x.whyNot?.bid==='Contre',
+  'Incorrect Spoutnik retained only as a teaching alternative: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Corrective pedagogical contrast: '+id);
+ const mapEntry=new RegExp("'"+id+"':'sef24-spoutnik-");
+ assert.match(html,mapEntry,'Prior progress archived before the corrected answer: '+id);
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=221,'All V4.39 Drury and competitive explanations exist');
+// V4.39 : diversifier les pièges sans modifier les bonnes réponses des autres cas.
+const replacementTraps={
+ 'SEF-V4-047-1':['4♥','3♥','Passe'],
+ 'SEF-V4-100-2':['1SA','1♠','3♥'],
+ 'SEF-V4-100-3':['1SA','2♦','3♥'],
+ 'SEF-V4-106-1':['1SA','2♦','3♠'],
+ 'SEF-V4-106-2':['1SA','2♦','3♠'],
+ 'SEF-V44-041':['1♠','Contre','Passe'],
+ 'SEF-V44-042':['2♥','3♥','Passe'],
+ 'SEF-V417-010':['Contre','2♦','1SA'],
+ 'SEF-V421-007':['Surcontre','2♦','3♠']
+};
+for(const [id,[correct,pitfall,discarded]] of Object.entries(replacementTraps)){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x,'V4.39 exercise exists: '+id);
+ assert.equal(x.answer,correct,'SEF result remains correct: '+id);
+ assert.ok(x.choices.includes(pitfall)&&!x.choices.includes(discarded),
+  'Replaced a less instructive distractor: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'SEF contrast is explained: '+id);
+}
+const manualPriorityCases={
+ 'SEF-V44-045':'Surcontre', 'SEF-V410-027':'Contre',
+ 'SEF-V413-002':'Passe', 'SEF-V421-003':'Passe',
+ 'SEF-V421-005':'Passe', 'SEF-V422-002':'Passe',
+ 'SEF-V423-006':'Passe', 'SEF-V424-007':'Surcontre'
+};
+for(const [id,bid] of Object.entries(manualPriorityCases)){
+ const x=exercises.find(y=>y.id===id);
+ assert.equal(x?.answer,bid,'Manual priority review confirms SEF result: '+id);
+ assert.ok(x?.whyNot?.reason&&x?.takeaway,'Manual priority review retains teaching context: '+id);
+}
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
