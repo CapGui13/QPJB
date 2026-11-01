@@ -29,6 +29,7 @@ jobs:
           node tests/quizz-integrity.cjs
           node tests/quizz-content-audit.cjs
           node tests/quizz-distractors.cjs
+          node tests/quizz-quality.cjs
           node tests/quizz-free-input.cjs
           node tests/training-card-integrity.cjs
           node tests/training-ambiguity.cjs
@@ -49,6 +50,8 @@ jobs:
             artifacts/quizz-content/variant-families.csv
             artifacts/quizz-content/distractor-audit.json
             artifacts/quizz-content/distractor-audit.md
+            artifacts/quizz-content/qualite-993.md
+            artifacts/quizz-content/qualite-993.csv
           retention-days: 14
           if-no-files-found: warn
   smoke:
