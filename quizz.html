@@ -188,6 +188,13 @@ function quizReportView(){
  if(quizEmbedded)window.parent.postMessage({type:'qpjb-quizz-view',session:document.body.classList.contains('session-mode')},location.origin);
 }
 let quizNavigationSeq=0,quizPendingAction=null,quizLocalBusy=false,quizSettingsScroll=0;
+let quizDeferredAction=null;
+function quizRunDeferred(){
+ if(quizPendingAction||quizLocalBusy||!quizDeferredAction)return;
+ const next=quizDeferredAction;
+ quizDeferredAction=null;
+ quizFadeNavigate(next);
+}
 function quizScrollY(){
  try{if(quizEmbedded&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches)return window.parent.scrollY}catch(_){}
  return window.scrollY;
@@ -202,7 +209,7 @@ function quizScrollTo(y){
  window.scrollTo({top,behavior:'instant'});
 }
 function quizFadeNavigate(action){
- if(quizPendingAction||quizLocalBusy)return;
+ if(quizPendingAction||quizLocalBusy){quizDeferredAction=action;return;}
  // Respect de la préférence d'accessibilité : pas d'attente ni d'animation.
  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){action();return;}
  if(!quizEmbedded){
@@ -214,7 +221,7 @@ function quizFadeNavigate(action){
      try{action()}finally{
        requestAnimationFrame(()=>requestAnimationFrame(()=>{
          overlay.classList.remove('fade-in');
-         setTimeout(()=>{quizLocalBusy=false},460);
+         setTimeout(()=>{quizLocalBusy=false;quizRunDeferred()},460);
        }));
      }
    },255);
@@ -227,6 +234,7 @@ function quizFadeNavigate(action){
    if(quizPendingAction!==pending)return;
    quizPendingAction=null;
    action();
+   if(quizDeferredAction)setTimeout(quizRunDeferred,120);
  },3500);
  window.parent.postMessage({type:'qpjb-quizz-nav-request',seq},location.origin);
 }
@@ -239,6 +247,7 @@ window.addEventListener('message',e=>{
    clearTimeout(pending.timeout);
    quizPendingAction=null;
    try{pending.action()}catch(error){console.error('QPJB Quizz : navigation',error)}
+   if(quizDeferredAction)setTimeout(quizRunDeferred,120);
  }
  window.parent.postMessage({type:'qpjb-quizz-nav-done',seq},location.origin);
 });
