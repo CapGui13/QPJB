@@ -28,6 +28,8 @@ const server=http.createServer((req,res)=>{
   const page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+  assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
+  assert.ok(!(await page.locator('.stage').textContent()).includes('accord de paire'),'No pair settings are advertised');
   assert.equal(await page.locator('#selection-mode option').count(),5);
   assert.equal(await page.locator('#topic option').count(),23);
   const dimensions=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:document.documentElement.clientWidth}));
