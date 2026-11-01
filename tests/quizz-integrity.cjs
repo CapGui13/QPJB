@@ -189,6 +189,43 @@ for(const [id,bid] of Object.entries(manualPriorityCases)){
  assert.equal(x?.answer,bid,'Manual priority review confirms SEF result: '+id);
  assert.ok(x?.whyNot?.reason&&x?.takeaway,'Manual priority review retains teaching context: '+id);
 }
+// V4.40 : préserver l'audit des réponses « presque plausibles » sans
+// présenter le relais 2SA sur un 2 faible comme une faute systématique.
+const weakTwoChoiceReview={
+ 'SEF-V3-108-1':'4♠',
+ 'SEF-V44-049':'4♠',
+ 'SEF-V426-004':'Passe'
+};
+for(const [id,correct] of Object.entries(weakTwoChoiceReview)){
+ const x=exercises.find(e=>e.id===id);
+ assert.ok(x,'Reviewed weak-two exercise exists: '+id);
+ assert.equal(x.answer,correct,'Original SEF answer preserved: '+id);
+ assert.ok(!x.choices.includes('2SA'),'Remove ambiguous 2NT game inquiry as a wrong option: '+id);
+ assert.ok(x.choices.includes('3♦'),'Require a genuine new-suit length error instead: '+id);
+ assert.equal(x.whyNot?.bid,'3♦','Explain the exact replacement: '+id);
+ assert.ok(x.takeaway?.includes('2SA'),'Teach the status of the relay: '+id);
+}
+const detailedReviewIds=[
+ 'SEF-V3-108-1','SEF-V4-009-1','SEF-V4-010-1',
+ 'SEF-V4-011-1','SEF-V4-012-1','SEF-V4-021-1','SEF-V4-022-3',
+ 'SEF-V4-024-2','SEF-V44-002','SEF-V44-007','SEF-V44-013',
+ 'SEF-V44-014','SEF-V44-015','SEF-V44-016','SEF-V44-049',
+ 'SEF-V44-063','SEF-V44-065','SEF-V44-066','SEF-V45-013',
+ 'SEF-V45-014','SEF-V45-016','SEF-V45-017','SEF-V45-018',
+ 'SEF-V45-019','SEF-V45-022','SEF-V45-025','SEF-V45-037',
+ 'SEF-V412-016','SEF-V416-006','SEF-V423-003',
+ 'SEF-V426-004','SEF-V426-006'
+];
+assert.equal(detailedReviewIds.length,32,'Review includes thirty-two distinct decisions');
+assert.equal(new Set(detailedReviewIds).size,32);
+for(const id of detailedReviewIds){
+ const x=exercises.find(e=>e.id===id);
+ assert.ok(x,'Reviewed exercise exists: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Explanatory contrast is complete: '+id);
+ assert.ok(x.choices.includes(x.whyNot.bid),'Discussed alternative is shown: '+id);
+ assert.notEqual(x.answer,x.whyNot.bid,'The compared alternative is not the right answer: '+id);
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=253,'All 32 new comparative explanations remain present');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

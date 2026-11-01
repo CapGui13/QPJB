@@ -350,3 +350,58 @@ Le contrôle du **contre Spoutnik après une intervention à 1♦ ou à 1♥ sur
 **Attention :** les 30 nouveaux corrigés correspondent aux 28 ajoutés sur des exercices sans contraste antérieur et aux 2 nouveaux comparatifs créés en corrigeant les réponses Spoutnik. Un troisième corrigé Spoutnik existant a été remplacé par le bon sens de l'enchère. L'heuristique est recalculée sur les 993 exercices, ce qui peut reclasser un exercice non modifié à cause des trois changements de bonnes réponses utilisés comme exemples de référence. Ces variations ne prouvent pas que l'exercice est devenu objectivement meilleur ou pire.
 
 **Règles de publication :** tests d'intégrité et de non-régression sur les nouvelles règles Spoutnik, 9 distracteurs, 8 exercices prioritaires ; tests navigateur sur Chromium et WebKit, y compris l'archivage des anciennes tentatives. Déployer uniquement après réussite des tests sur la branche principale.
+
+---
+
+## Lot 8 — rechercher les choix potentiellement défendables (V4.40, 1er novembre 2026)
+
+**Objectif de l'audit :** au lieu de réduire mécaniquement les scores de vigilance, repérer les QCM où une mauvaise proposition peut être **licite et raisonnable sous certaines conditions**, même si elle n'est pas le choix pédagogique recommandé pour la main affichée. Une enchère permise dans la séquence n'est pas nécessairement correcte avec la main donnée ; une mauvaise proposition n'a cependant pas à reposer sur une interdiction fictive.
+
+### Trois mauvaises propositions « 2SA » retirées sur une ouverture de 2 faible
+
+| Identifiant | Situation | Réponse conservée | Ancienne mauvaise proposition | Nouveau piège |
+|---|---|---|---|---|
+| `SEF-V3-108-1` | Face à 2♠ faible ; 15 H et quatre Piques | **4♠** | 2SA | 3♦, alors que la main n'a que trois Carreaux |
+| `SEF-V44-049` | Face à 2♠ faible ; 11 H et quatre Piques | **4♠** | 2SA | 3♦, avec quatre Carreaux insuffisants pour un changement de couleur naturel forcing |
+| `SEF-V426-004` | Face à 2♥ faible ; 13 H, deux Cœurs et quatre Carreaux | **Passe** | 2SA | 3♦, couleur seulement quatrième et non constructive |
+
+**Pourquoi ?** En SEF, **2SA après une ouverture de 2 faible peut être un relais interrogatif avec un espoir de manche**. C'est donc une mauvaise idée de le présenter systématiquement comme une enchère absurde. Les nouveaux pièges demandent de distinguer une vraie couleur forcing au palier de 3 d'une couleur accessoire trop courte. Les bonnes réponses existantes sont conservées ; il ne s'agit pas de prétendre que 2SA serait le meilleur choix avec ces trois mains, mais d'éviter une condamnation pédagogique trop absolue.
+
+**Référence :** https://bridgesef.fr/wp-content/uploads/2025/07/Ouverture-2C.pdf (ouvertures 2♥/2♠ faibles, relais 2SA avec espoir de manche, changement de couleur naturel et forcing).
+
+### Trente-deux corrections comparatives supplémentaires
+
+**Répartition par décision étudiée :**
+- **Trois situations d'ouverture de 2 faible :** différence entre relais exploratoire, soutien direct ou Passe, et nouvelle couleur forcing.
+- **Neuf réponses à une enchère d'essai après fit majeur :** pourquoi 3♥/3♠ refuse la manche avec un soutien minimum, et 4♥/4♠ l'accepte avec une réponse maximum ; cas au palier de 2SA ou en couleur.
+- **Deux invitations quantitatives à 4SA :** éviter d'imposer 6SA avec seulement 31 H combinés au minimum ; 4SA n'est pas un Blackwood en l'absence de fit connu.
+- **Sept conventions de troisième ou quatrième couleur forcing :** distinguer l'enchère artificielle d'une répétition naturelle de majeure (longueur et force), ou d'une conclusion prématurée à Sans-Atout sans arrêt adéquat.
+- **Deux défenses contre 1SA adverse ou sur une intervention sur 1SA :** Multi-Landy (2♦ unicolore majeure vs 2♠ majeure-mineure) et Rubensohl (contre avec quatre Piques vs 2♠ naturel plus long).
+- **Trois développements du Roudi :** fit confirmé / refusé, minimum / maximum, proposition de manche vs conclusion.
+- **Trois réponses à Sans-Atout (Texas et Stayman classique) :** utiliser le transfert et éviter Stayman sans force de réponse.
+- **Une réponse à 1♣ avec 14 H réguliers :** pourquoi 3SA plutôt que l'invitation à 2SA.
+- **Une ouverture régulière de 22 H :** nécessité de passer par 2♣ plutôt que d'ouvrir de 2SA.
+- **Une réponse compétitive sur 2♠ faible contré :** pourquoi 3♠ avec cinq H plutôt que 4♠.
+
+Toutes ces **32 explications « Pourquoi pas ? » / « À retenir »** s'ajoutent aux précédentes, soit **253 exercices avec comparaison explicite** sur 993. Les nouveaux contrastes portent sur des choix plausibles à première vue, et non sur des enchères illégales.
+
+**Références de contrôle :**
+- SEF 2024 et 4SA quantitatif : https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/
+- Troisième couleur forcing : https://www.ibridge.fr/public/fichedetails/575
+- Multi-Landy : https://www.ibridge.fr/public/fichedetails/611
+
+### Bilan actualisé et limites
+
+| Indicateur | V4.39 | V4.40 |
+|---|---:|---:|
+| Nombre total d'exercices | 993 | **993** |
+| Bonnes réponses modifiées | — | **0** |
+| Alternatives litigieuses remplacées | — | **3** |
+| Comparaisons pédagogiques cumulées | 221 | **253** |
+| Signal automatique favorable | 850 | **854** |
+| Vigilance | 135 | **131** |
+| Priorité | 8 | **8** |
+
+Les 139 signaux restants ne correspondent pas à 139 erreurs : ils comprennent des comparaisons pédagogiques délibérées entre mains voisines de force différente. Le score automatique est conservé comme **outil de tri**, pas comme certificateur des 2 979 mauvaises propositions.
+
+**Non-régression :** les 993 identifiants, leurs mains, leurs séquences, leurs bonnes réponses et la progression des élèves restent strictement inchangés. Seules trois mauvaises propositions ont été remplacées et 32 champs de correction enrichis. Aucun archivage ou migration des résultats n'est nécessaire. Des tests bloquent la réintroduction des trois « 2SA » et vérifient toutes les nouvelles comparaisons.
