@@ -54,9 +54,14 @@ const server=http.createServer((req,res)=>{
   await page.locator('#mode').selectOption('10');
   await page.locator('#new').click();
   assert.equal(await page.locator('#body .hand .suit').count(),4,'Hand displays four suits');
-  assert.equal(await page.locator('#answers button').count(),4,'Four choices');
+  assert.equal(await page.locator('#answers button').count(),0,'No propositions before choosing to display them');
+  assert.equal(await page.locator('#free-answer').count(),1,'A free-response field comes first');
+  assert.equal(await page.locator('#show-choices').count(),1,'The learner may request four choices');
+  assert.equal(await page.locator('.feedback').count(),0,'No answer is revealed in advance');
   assert.equal(await page.locator('#next').isDisabled(),true,'Next is blocked until answered');
   assert.equal(await page.locator('#done').textContent(),'0','A viewed card is not a completed card');
+  await page.locator('#show-choices').click();
+  assert.equal(await page.locator('#answers button').count(),4,'All four choices appear on request');
   const initialOrder=await page.locator('#answers button').allTextContents();
   await page.locator('#answers button').first().click();
   assert.equal(await page.locator('#done').textContent(),'1','Answered card counts as completed');
@@ -99,16 +104,21 @@ const server=http.createServer((req,res)=>{
   const source=JSON.parse(await page.locator('#training-data').textContent());
   const chosen=source.exercises.find(x=>x.theme==='ouv'&&x.hand.map(s=>s.join('')).join('|')===hand.join('|')&&x.auction.length===0);
   assert.ok(chosen,'Opening case is identifiable');
-  const displayed=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
-  await page.locator('#answers button').nth(displayed.indexOf(chosen.answer)).click();
+  assert.equal(await page.locator('#answers button').count(),0,'Free entry precedes QCM on a fresh question');
+  await page.locator('#free-answer').fill(chosen.answer);
+  await page.locator('#free-form button[type=submit]').click();
+  assert.equal(await page.locator('#answers button').count(),0,'Successful free response never reveals QCM');
   let record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
   assert.equal(record.lastResult,'correct','First successful attempt is retained');
-  assert.equal(record.ok,true,'Mastery is current after success');
+  assert.equal(record.ok,true,'Independent mastery is current after an unassisted success');
+  assert.equal(record.assisted,false,'A free correct answer is not assisted');
   await page.locator('#back-home').click();
   await page.locator('#selection-mode').selectOption('revision');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
   assert.equal(await page.locator('#total').textContent(),'1','Revision proposes the successful exercise');
+  assert.equal(await page.locator('#answers button').count(),0,'Revisions also start without choices');
+  await page.locator('#show-choices').click();
   const revisionChoices=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
   const wrongIndex=revisionChoices.findIndex(s=>s!==chosen.answer);
   await page.locator('#answers button').nth(wrongIndex).click();
@@ -137,6 +147,7 @@ const server=http.createServer((req,res)=>{
   let contrasted=false;
   const count=Number(await page.locator('#total').textContent());
   for(let i=0;i<count;i++){
+   await page.locator('#show-choices').click();
    await page.locator('#answers button').first().click();
    if(await page.locator('.feedback-contrast').count()){
     assert.equal(await page.locator('.feedback-lesson').count(),1,
@@ -169,6 +180,8 @@ const server=http.createServer((req,res)=>{
     const contextText=await page.locator('#body .context-note').textContent();
     assert.ok(contextText.includes('Atout Cœur agréé'),
       'The agreed trump suit is visible before choosing a Blackwood reply');
+    assert.equal(await page.locator('#answers button').count(),0,'Blackwood opens without candidate answers');
+    await page.locator('#show-choices').click();
     const options=(await page.locator('#answers button').allTextContents()).map(x=>x.trim());
     await page.locator('#answers button').nth(options.indexOf('5♥')).click();
     assert.ok((await page.locator('#body .feedback').textContent()).includes('Bonne réponse'),
@@ -180,6 +193,53 @@ const server=http.createServer((req,res)=>{
   }
   assert.ok(validatedBlackwood,'C02 agreed-trump Blackwood is testable on an iPhone-sized screen');
 
+
+
+  // Nouvelle mécanique : une réponse erronée libre affiche les quatre pièges,
+  // sans révéler la bonne réponse, et ne donne pas la maîtrise autonome.
+  await page.locator('#back-home').click();
+  await page.locator('#topic').selectOption('ouv');
+  await page.locator('#difficulty').selectOption('1');
+  await page.locator('#mode').selectOption('10');
+  await page.locator('#selection-mode').selectOption('all');
+  await page.locator('#new').click();
+  const hand2=await page.locator('#body .hand .suit .rank').allTextContents();
+  const case2=blackwoodData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(s=>s.join('')).join('|')===hand2.join('|'));
+  assert.ok(case2,'Opening question is identifiable in the catalog');
+  assert.equal(await page.locator('#answers button').count(),0);
+  await page.locator('#free-answer').fill('2ZZ');
+  await page.locator('#free-form button[type=submit]').click();
+  assert.equal(await page.locator('#answers button').count(),0,'Malformed bid does not trigger suggestions');
+  assert.equal(await page.locator('#done').textContent(),'0','Malformed bid is not graded');
+  assert.ok(await page.locator('.free-entry-error').count(),'Invalid input has accessible feedback');
+  const wrong=case2.choices.find(c=>c!==case2.answer);
+  await page.locator('#free-answer').fill(wrong);
+  await page.locator('#free-form button[type=submit]').click();
+  assert.equal(await page.locator('#answers button').count(),4,'Incorrect free bid reveals four choices');
+  assert.equal(await page.locator('.feedback').count(),0,'The solution is not disclosed before choosing from the four');
+  assert.equal(await page.locator('#done').textContent(),'0','A wrong free guess is not a completed graded question');
+  const fourOptions=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
+  assert.ok(fourOptions.includes(case2.answer),'Correct bid is among plausible suggestions');
+  await page.locator('#answers button').nth(fourOptions.indexOf(case2.answer)).click();
+  let assistedRecord=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],case2.id);
+  assert.equal(assistedRecord.lastResult,'correct','Correct assisted answer is tracked');
+  assert.equal(assistedRecord.assisted,true,'Four-choice success is assisted');
+  assert.equal(assistedRecord.ok,false,'Assisted success is not considered independent mastery');
+  assert.equal(assistedRecord.history.at(-1).firstGuess,wrong,'First free bid is retained in history');
+  assert.ok((await page.locator('.feedback').textContent()).includes('À retravailler'),'Assisted questions are earmarked for review');
+  await page.locator('#next').click();
+  assert.equal(await page.locator('#answers button').count(),0,'Each new card again hides the four options');
+  await page.locator('#show-choices').click();
+  assert.equal(await page.locator('#answers button').count(),4,'Choices may be requested without a failed bid');
+  assert.equal(await page.locator('.feedback').count(),0,'Requesting choices does not reveal the correct option');
+  const directOptions=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
+  const hand3=await page.locator('#body .hand .suit .rank').allTextContents();
+  const case3=blackwoodData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(s=>s.join('')).join('|')===hand3.join('|'));
+  assert.ok(case3,'Second independent opening question is identifiable');
+  await page.locator('#answers button').nth(directOptions.indexOf(case3.answer)).click();
+  const directRecord=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],case3.id);
+  assert.equal(directRecord.assisted,true,'Direct choice mode also records assistance');
+  assert.equal(directRecord.ok,false,'Direct assisted answers remain reviewable');
 
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
