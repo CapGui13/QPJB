@@ -286,10 +286,10 @@ const hldFit=exercises.find(x=>x.id==='SEF-V3-075-3');
 assert.equal(hldFit?.h,9,'La main reste à neuf points H');
 assert.deepEqual(hldFit?.shape,[1,3,5,4],'Singleton Pique, trois atouts Cœur');
 assert.deepEqual(hldFit?.auction,['Partenaire : 1♥','Adversaire : 1♠'],'Séquence d’intervention');
-assert.equal(hldFit?.answer,'2SA','Onze HLD imposent 2SA fitté en SEF 2024');
+assert.equal(hldFit?.answer,'2SA','Douze HLD imposent 2SA fitté en SEF 2024');
 assert.ok(hldFit?.choices.includes('2♥'),'Le soutien insuffisant devient un piège instructif');
 assert.equal(hldFit?.whyNot?.bid,'2♥','Comparaison sur la vraie ambiguïté 2M / 2SA');
-assert.match(hldFit?.explain||'',/9 H.*11 HLD.*2SA/i,'Explication du décompte HLD');
+assert.match(hldFit?.explain||'',/9 H.*1 L.*2 D.*12 HLD/i,'Décompte complet avec le cinquième Carreau');
 assert.ok(html.includes("'SEF-V3-075-3':'sef24-hld-11-2nt-fit-after-overcall'"),
   'La tentative ancienne est archivée avant remise à travailler');
 const hldWeak=exercises.find(x=>x.id==='SEF-V3-075-2');
@@ -298,6 +298,149 @@ const forcingRoles=exercises.filter(x=>x.theme==='forcing'&&x.auction.some(a=>/^
 assert.ok(forcingRoles.length>=8,'Huit séquences de forcing décrivent explicitement Sud');
 assert.ok(!exercises.some(x=>x.auction.some(a=>/^Réponse :/.test(a))),
   'La rubrique forcing ne présente plus le rôle ambigu « Réponse »');
+// V4.44 : régression des 17 soutiens à exactement trois atouts après intervention.
+// Les points L d'une couleur secondaire cinquième comptent aussi en HLD.
+const fitHldAfterOvercall={
+ "SEF-V3-074-3": {
+  "h": 6,
+  "L": 0,
+  "D": 1,
+  "hld": 7,
+  "answer": "2♥"
+ },
+ "SEF-V3-074-2": {
+  "h": 9,
+  "L": 0,
+  "D": 1,
+  "hld": 10,
+  "answer": "2♥"
+ },
+ "SEF-V3-075-2": {
+  "h": 6,
+  "L": 1,
+  "D": 2,
+  "hld": 9,
+  "answer": "2♥"
+ },
+ "SEF-V3-075-3": {
+  "h": 9,
+  "L": 1,
+  "D": 2,
+  "hld": 12,
+  "answer": "2SA"
+ },
+ "SEF-V3-076-3": {
+  "h": 6,
+  "L": 0,
+  "D": 1,
+  "hld": 7,
+  "answer": "2♥"
+ },
+ "SEF-V3-076-2": {
+  "h": 9,
+  "L": 0,
+  "D": 1,
+  "hld": 10,
+  "answer": "2♥"
+ },
+ "SEF-V3-077-2": {
+  "h": 8,
+  "L": 0,
+  "D": 1,
+  "hld": 9,
+  "answer": "2♥"
+ },
+ "SEF-V3-078-3": {
+  "h": 7,
+  "L": 0,
+  "D": 1,
+  "hld": 8,
+  "answer": "2♠"
+ },
+ "SEF-V3-078-1": {
+  "h": 9,
+  "L": 0,
+  "D": 1,
+  "hld": 10,
+  "answer": "2♠"
+ },
+ "SEF-V3-079-2": {
+  "h": 6,
+  "L": 0,
+  "D": 1,
+  "hld": 7,
+  "answer": "2♠"
+ },
+ "SEF-V3-079-3": {
+  "h": 9,
+  "L": 0,
+  "D": 1,
+  "hld": 10,
+  "answer": "2♠"
+ },
+ "SEF-V3-080-1": {
+  "h": 7,
+  "L": 0,
+  "D": 1,
+  "hld": 8,
+  "answer": "2♠"
+ },
+ "SEF-V3-080-2": {
+  "h": 9,
+  "L": 0,
+  "D": 1,
+  "hld": 10,
+  "answer": "2♠"
+ },
+ "SEF-V3-081-3": {
+  "h": 11,
+  "L": 1,
+  "D": 2,
+  "hld": 14,
+  "answer": "2SA"
+ },
+ "SEF-V3-082-1": {
+  "h": 11,
+  "L": 0,
+  "D": 1,
+  "hld": 12,
+  "answer": "2SA"
+ },
+ "SEF-V3-083-1": {
+  "h": 11,
+  "L": 0,
+  "D": 1,
+  "hld": 12,
+  "answer": "2SA"
+ },
+ "SEF-V3-084-3": {
+  "h": 11,
+  "L": 0,
+  "D": 1,
+  "hld": 12,
+  "answer": "2SA"
+ }
+};
+assert.equal(Object.keys(fitHldAfterOvercall).length,17,'Dix-sept cas de soutien revus');
+for(const [id,expected] of Object.entries(fitHldAfterOvercall)){
+ const x=exercises.find(v=>v.id===id);
+ assert.ok(x,'La question de fit existe : '+id);
+ const trump=x.auction[0].slice(-1)==='♥'?1:0;
+ assert.equal(x.shape[trump],3,'Exactement trois atouts : '+id);
+ const L=x.shape.reduce((sum,len,i)=>sum+(i===trump?0:Math.max(0,len-4)),0);
+ const D=x.shape.reduce((sum,len,i)=>sum+(i===trump?0:len===0?3:len===1?2:len===2?1:0),0);
+ assert.equal(L,expected.L,'Points de longueur : '+id);
+ assert.equal(D,expected.D,'Points de courte : '+id);
+ assert.equal(x.h+L+D,expected.hld,'Total HLD avec fit : '+id);
+ assert.equal(x.answer,expected.answer,'Bon palier de soutien : '+id);
+ assert.ok(x.explain.includes(expected.hld+' HLD'),'Valeur HLD expliquée : '+id);
+ assert.ok(x.takeaway&&x.takeaway.includes('points L'),'Règle à retenir explicite : '+id);
+ assert.ok(x.choices.includes(x.answer),'Bonne réponse proposée : '+id);
+}
+for(const id of ["SEF-V3-081-3","SEF-V3-082-1","SEF-V3-083-1","SEF-V3-084-3"]){
+ const x=exercises.find(z=>z.id===id);
+ assert.equal(x.whyNot?.bid,'3'+x.auction[0].slice(-1),'Le piège du soutien à 3M est expliqué : '+id);
+}
 assert.ok(exercises.filter(x=>x.whyNot).length>=272,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');

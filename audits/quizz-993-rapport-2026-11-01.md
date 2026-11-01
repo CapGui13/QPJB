@@ -467,3 +467,30 @@ Les huit exercices `SEF-V45-013` à `SEF-V45-019` et `SEF-V45-022` indiquaient l
 **Sources SEF :** *L'As de Trèfle* n°50, janvier 2024, changements des réponses après intervention à la couleur, https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf ; fiche Évaluation des mains (points du singleton et des atouts), https://www.ibridge.fr/public/fichepdf/539 ; Sarzeau Bridge Club (FFB), « Quand la réponse de 2SA est-elle fittée ? », https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
 
 **Publication :** commit V4.43 enregistré séparément ; tests statiques et navigateurs Chromium/WebKit et déploiement GitHub Pages à valider sur GitHub Actions.
+
+
+---
+
+## Lot 12 — calcul complet des HLD et seuil du 2SA fitté (V4.44, 1er novembre 2026)
+
+La revue de **17 réponses avec exactement trois atouts après une intervention naturelle sur une ouverture majeure** confirme le choix correct du soutien économique (6–10 HLD) ou de **2SA fitté** (11–15 HLD, SEF 2024), mais identifie une insuffisance de détail dans certains corrigés.
+
+### Rectification du décompte de la V4.43
+
+- **`SEF-V3-075-3`** : ♠2 ♥1052 ♦AR942 ♣D764, après 1♥–(1♠) : **9 H + 1 L (cinquième Carreau) + 2 D (singleton Pique) = 12 HLD** et **non 11 HLD**. La bonne enchère **2SA fitté reste correcte** et n'est pas modifiée ; son explication, le piège 2♥ et le rappel de règle sont rectifiés.
+- **`SEF-V3-075-2`** : ♠2 ♥842 ♦R10965 ♣R1087, même séquence : **6 H + 1 L + 2 D = 9 HLD** et donc **2♥**. La comparaison porte désormais sur 9 et 12 HLD et non sur 8 et 11.
+- **`SEF-V3-081-3`** : ♠9 ♥R84 ♦RD1054 ♣DV75 : **11 H + 1 L + 2 D = 14 HLD** ; 2SA fitté, et non 3♥, reste le bon choix.
+
+Les **17 explications** présentent le calcul H, L et D avec une courte explicitée quand elle existe. Les **quatre exercices** `SEF-V3-081-3`, `SEF-V3-082-1`, `SEF-V3-083-1`, `SEF-V3-084-3` possèdent désormais un contraste supplémentaire « Pourquoi pas ? » sur le soutien direct au palier de 3, moins descriptif avec exactement trois atouts.
+
+### Contrôles et conservation des progrès
+
+- **993** exercices et **22** rubriques inchangés, aucune bonne réponse modifiée, aucun choix retiré ni ajouté.
+- **17** corrigés approfondis, **4** nouveaux contrastes comparatifs ; soit **276** corrigés avec « Pourquoi pas ? » au total.
+- Audit heuristique recalculé : **874 favorables, 111 vigilances, 8 priorités** ; ces catégories ne certifient pas la justesse pédagogique.
+- Tests ajoutés pour recalculer **H + L + D** sur ces 17 mains et vérifier leurs bonnes réponses, le nombre d'atouts et les comparaisons pédagogiques.
+- Les réponses attendues et identifiants étant inchangés, **aucune migration de progression** ni réinitialisation d'exercice n'est nécessaire.
+
+**Sources pédagogiques :** Fiche iBridge « Évaluation des mains », https://www.ibridge.fr/public/fichepdf/539 (L dès la cinquième carte ; HLD après fit) ; Sarzeau Bridge Club FFB, « Quand la réponse de 2SA est-elle fittée ? », https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523 (11–15 HLD et trois atouts après intervention naturelle à la couleur).
+
+Les tests GitHub Actions et leur publication sont suivis séparément.
