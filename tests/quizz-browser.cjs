@@ -147,6 +147,38 @@ const server=http.createServer((req,res)=>{
   }
   assert.ok(contrasted,'At least one enriched answer is visible on simulated iPhone');
 
+  // Audit C02 : la couleur d'atout est indispensable au comptage des cinq clés.
+  // Vérifier son rendu et la réponse au Blackwood dans la version iPhone.
+  await page.locator('#back-home').click();
+  await page.locator('#selection-mode').selectOption('all');
+  await page.locator('#topic').selectOption('chelem');
+  await page.locator('#difficulty').selectOption('4');
+  await page.locator('#mode').selectOption('0');
+  await page.locator('#new').click();
+  const blackwoodData=JSON.parse(await page.locator('#training-data').textContent());
+  const desired=blackwoodData.exercises.find(x=>x.id==='SEF-C2-009');
+  assert.ok(desired,'Blackwood coeur C02 example is present');
+  assert.equal(desired.answer,'5♥','Two keys without queen must answer 5♥ under agreed RKCB');
+  let validatedBlackwood=false;
+  const chelemCount=Number(await page.locator('#total').textContent());
+  for(let i=0;i<chelemCount;i++){
+   const handShown=(await page.locator('#body .hand .suit .rank').allTextContents()).join('|');
+   if(handShown===desired.hand.map(x=>x.join('')).join('|')){
+    const contextText=await page.locator('#body .context-note').textContent();
+    assert.ok(contextText.includes('Atout Cœur agréé'),
+      'The agreed trump suit is visible before choosing a Blackwood reply');
+    const options=(await page.locator('#answers button').allTextContents()).map(x=>x.trim());
+    await page.locator('#answers button').nth(options.indexOf('5♥')).click();
+    assert.ok((await page.locator('#body .feedback').textContent()).includes('Bonne réponse'),
+      'The agreed two-key response is accepted');
+    assert.equal(await page.locator('.feedback-contrast').count(),1,'The RKCB comparison is visible');
+    validatedBlackwood=true;break;
+   }
+   await page.locator('#pass').click();
+  }
+  assert.ok(validatedBlackwood,'C02 agreed-trump Blackwood is testable on an iPhone-sized screen');
+
+
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
