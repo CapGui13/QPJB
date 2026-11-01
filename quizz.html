@@ -653,6 +653,17 @@ function diverseTake(arr,n){
   }
   return chosen.concat(reserve.slice(0,take-chosen.length));
 }
+// Écarter les variantes proches sans retirer de question ni changer la sélection.
+function spaceCloseFamilies(items,minGap=3){
+ const remaining=items.slice(),out=[];
+ const family=x=>x.caseFamily||x.id.replace(/-\d+$/,'');
+ while(remaining.length){
+  const recent=new Set(out.slice(-minGap).map(family));
+  const index=remaining.findIndex(x=>!recent.has(family(x)));
+  out.push(remaining.splice(index<0?0:index,1)[0]);
+ }
+ return out;
+}
 function finishSession(){
  const outcomes=Object.values(sessionResults);
  const autonomous=outcomes.filter(r=>r.result==='correct'&&!r.assisted).length;
@@ -718,6 +729,7 @@ function start(){
   }else{
     deck=diverseTake(shuffledPriority(arr),n);
   }
+  deck=spaceCloseFamilies(deck);
   position=0;answered=false;selection=null;sessionResults={};sessionChoices={};sessionStages={};bidKeyboardOpen=false;
   updateLevelCounts();enterSession();render();
 }
