@@ -31,6 +31,7 @@ const server=http.createServer((req,res)=>{
   const tapBid=async(bid)=>{
     const input=page.locator('#free-answer');
     await input.click();
+    await page.locator('#bid-keypad.is-open').waitFor({state:'visible',timeout:2500});
     assert.equal(await page.locator('#bid-keypad').isVisible(),true,'Clavier bridge ouvert sur iPhone');
     const m=String(bid).match(/^([1-7])(SA|[♣♦♥♠])$/);
     const keys=m?[m[1],m[2]]:[bid];
