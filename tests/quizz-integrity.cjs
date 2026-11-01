@@ -285,11 +285,11 @@ for(const [id,temptation] of Object.entries(weakBalancingNatural)){
 const hldFit=exercises.find(x=>x.id==='SEF-V3-075-3');
 assert.equal(hldFit?.h,9,'La main reste à neuf points H');
 assert.deepEqual(hldFit?.shape,[1,3,5,4],'Singleton Pique, trois atouts Cœur');
-assert.deepEqual(hldFit?.auction,['Partenaire : 1♥','Adversaire : 1♠'],'Séquence de l'intervention');
+assert.deepEqual(hldFit?.auction,['Partenaire : 1♥','Adversaire : 1♠'],'Séquence d’intervention');
 assert.equal(hldFit?.answer,'2SA','Onze HLD imposent 2SA fitté en SEF 2024');
 assert.ok(hldFit?.choices.includes('2♥'),'Le soutien insuffisant devient un piège instructif');
 assert.equal(hldFit?.whyNot?.bid,'2♥','Comparaison sur la vraie ambiguïté 2M / 2SA');
-assert.match(hldFit?.explain||'',/9 H.*11 HLD.*2SA/i,'L'explication rappelle le décompte HLD');
+assert.match(hldFit?.explain||'',/9 H.*11 HLD.*2SA/i,'Explication du décompte HLD');
 assert.ok(html.includes("'SEF-V3-075-3':'sef24-hld-11-2nt-fit-after-overcall'"),
   'La tentative ancienne est archivée avant remise à travailler');
 const hldWeak=exercises.find(x=>x.id==='SEF-V3-075-2');
