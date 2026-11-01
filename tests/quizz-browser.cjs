@@ -119,7 +119,8 @@ const server=http.createServer((req,res)=>{
   const fontSize=await page.locator('#body .hand .suit').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
   assert.ok(fontSize>=19,'Readable hand cards on iPhone: '+fontSize);
   await page.locator('#free-answer').click();
-  assert.equal(await page.locator('#bid-keypad').isVisible(),true,'Bridge keypad opens on tap');
+  await page.locator('#bid-keypad.is-open').waitFor({state:'visible',timeout:2500});
+   assert.equal(await page.locator('#bid-keypad').isVisible(),true,'Bridge keypad opens on tap');
   assert.equal(await page.locator('#bid-keypad [data-bid-key]').count(),16,'All bridge keys present');
   await page.locator('#bid-keypad [data-bid-key="2"]').click();
   await page.locator('#bid-keypad [data-bid-key="♠"]').click();
@@ -131,7 +132,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
   assert.equal(await page.locator('#free-answer').inputValue(),'','Backspace clears call');
   await page.locator('#bid-key-close').click();
-  assert.equal(await page.locator('#bid-keypad').isVisible(),false,'Close the bridge keypad');
+  await page.locator('#bid-keypad').waitFor({state:'hidden',timeout:2500});
+   assert.equal(await page.locator('#bid-keypad').isVisible(),false,'Close the bridge keypad');
   assert.equal(await page.locator('#show-choices').count(),1,'The learner may request four choices');
   assert.equal(await page.locator('.feedback').count(),0,'No answer is revealed in advance');
   assert.equal(await page.locator('#next').isDisabled(),true,'Next is blocked until answered');
