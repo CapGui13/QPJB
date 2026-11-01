@@ -97,6 +97,46 @@ for(const id of weakReviewIds){
   assert.ok(!x.choices.includes('2SA'),'An implausible 2SA is no longer offered: '+id);
  }
 }
+// V4.38 : revue des 15 situations Stayman/Texas et des 23 deuxièmes
+// enchères encore signalées. Les bonnes réponses sont figées.
+const reviewedStayman=[
+ 'SEF-V3-002-1','SEF-V3-004-1','SEF-V3-005-1','SEF-V3-006-3',
+ 'SEF-V3-007-4','SEF-V3-008-2','SEF-V3-009-1','SEF-V3-010-2',
+ 'SEF-V3-021-2','SEF-V3-022-1','SEF-V3-024-1','SEF-V3-025-1',
+ 'SEF-V3-026-1','SEF-V416-012','SEF-V416-013'
+];
+const reviewedSecond=[
+ 'SEF-N140-1','SEF-V44-022','SEF-V49-022','SEF-V49-024','SEF-V49-025',
+ 'SEF-V49-026','SEF-V49-028','SEF-V49-039','SEF-V410-018','SEF-V410-019',
+ 'SEF-V411-010','SEF-V411-019','SEF-V411-020','SEF-V411-021','SEF-V412-005',
+ 'SEF-V413-002','SEF-V413-006','SEF-V417-007','SEF-V417-008',
+ 'SEF-V418-003','SEF-V421-003','SEF-V421-005','SEF-V423-006'
+];
+assert.equal(reviewedStayman.length,15,'All fifteen indicated Stayman/Texas cases are reviewed');
+assert.equal(reviewedSecond.length,23,'All twenty-three second-response cases are reviewed');
+assert.equal(new Set([...reviewedStayman,...reviewedSecond]).size,38);
+const expectedRevised={
+ 'SEF-N140-1':['Passe','2♣','3SA'],
+ 'SEF-V49-026':['Passe','2♦','2SA'],
+ 'SEF-V410-018':['2♠','2♥','3♠'],
+ 'SEF-V3-021-2':['3SA','Passe','4SA'],
+ 'SEF-V3-022-1':['3SA','Passe','4SA']
+};
+for(const id of [...reviewedStayman,...reviewedSecond]){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x,'SEF exercise not found: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Explicit comparative teaching for '+id);
+ assert.ok(x.choices.includes(x.whyNot.bid)&&x.whyNot.bid!==x.answer,'A genuinely wrong tempting bid is explained: '+id);
+ const theme=reviewedStayman.includes(id)?'stayman':'second';
+ assert.equal(x.theme,theme,'Exercise family still correct: '+id);
+ if(expectedRevised[id]){
+  const [correct,added,removed]=expectedRevised[id];
+  assert.equal(x.answer,correct,'SEF answer remains the same: '+id);
+  assert.ok(x.choices.includes(added),'New tempting answer present: '+id);
+  assert.ok(!x.choices.includes(removed),'Obvious or ambiguous old choice removed: '+id);
+ }
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=191,'All 32 new pedagogical contrasts are preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
