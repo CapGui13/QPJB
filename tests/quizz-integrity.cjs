@@ -50,6 +50,25 @@ for(const id of ['SEF-V44-067','SEF-V44-068']){
 const nonForcing=exercises.filter(x=>/1SA\s*\(?forcing\)?/i.test(
  x.auction.join(' ')+x.context+x.explain+(x.difficultyReason||'')));
 assert.deepEqual(nonForcing.map(x=>x.id),[],'SEF major-opening 1SA must be non forcing');
+// V4.36 : 1SA est non forcing ; « Passe » ne doit plus être traité comme un
+// distracteur absolument faux pour les onze redemandes à la couleur auditées.
+const freeNtRebids={
+ 'SEF-049-1':['2♥','3♥'], 'SEF-049-2':['2♥','3♥'],
+ 'SEF-050-2':['2♠','3♠'], 'SEF-N122-1':['2♥','3♥'],
+ 'SEF-N123-2':['2♠','3♠'], 'SEF-N123-1':['2♠','3♠'],
+ 'SEF-N127-2':['2♥','3♥'], 'SEF-N128-2':['2♦','3♦'],
+ 'SEF-N129-2':['2♣','3♣'], 'SEF-N131-1':['2♣','3♣'],
+ 'SEF-V410-005':['2♦','3♦']
+};
+for(const [id,[correct,jump]] of Object.entries(freeNtRebids)){
+ const x=exercises.find(z=>z.id===id);
+ assert.ok(x,'Reviewed opening major rebid exists: '+id);
+ assert.equal(x.answer,correct,'Maintain correct SEF economical rebid: '+id);
+ assert.ok(x.choices.includes(jump),'The tempting but excessive jump is offered: '+id);
+ assert.ok(!x.choices.includes('Passe'),'Nonforcing pass is not falsely presented as categorically illegal: '+id);
+ assert.match(x.context,/non forcing/i,'The learner sees the SEF nonforcing rule: '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Explained pedagogical contrast: '+id);
+}
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

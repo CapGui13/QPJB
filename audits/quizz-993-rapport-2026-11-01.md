@@ -165,3 +165,38 @@ Les nouveaux tests automatisés vérifient la conformité des séquences 1M–1S
 - « Les nouveautés du SEF », *L'As de Trèfle* (FFB), septembre 2024 : https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf.
 - Club du Haut Poitou, « SEF 2024 » : https://scjc-bridge.fr/sef-2024 (Drury et 2SA fitté après Passe).
 - Sarzeau Bridge Club, « Quand la réponse de 2SA est-elle fittée ? », décembre 2025 : https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
+
+---
+
+## Lot 4 — redemandes de l'ouvreur après 1M–1SA non forcing (V4.36, 1er novembre 2026)
+
+**Motif de la revue :** dans le SEF standard, la réponse de 1SA sur une ouverture majeure est **non forcing**. Même lorsqu'une redemande à la couleur est préférable, le simple fait de pouvoir passer rend « Passe » trop équivoque comme *mauvaise réponse nécessaire* dans certains QCM. L'objectif est d'enseigner le meilleur choix économique, sans qualifier abusivement Passe d'enchère interdite.
+
+### Corrections des onze exercices
+
+| ID | Réponse conservée | Ancienne proposition retirée | Nouveau piège |
+|---|---|---|---|
+| `SEF-049-1`, `SEF-049-2`, `SEF-N127-2` | 2♥ | Passe | 3♥ (saut excessif avec cinq Piques et quatre Cœurs) |
+| `SEF-050-2`, `SEF-N123-1`, `SEF-N123-2` | 2♠ | Passe | 3♠ (répétition à saut trop ambitieuse) |
+| `SEF-N122-1` | 2♥ | Passe | 3♥ (saut trop fort pour 13 H) |
+| `SEF-N128-2` | 2♦ | Passe | 3♦ (saut trop fort sur bicolore 5–4) |
+| `SEF-N129-2`, `SEF-N131-1` | 2♣ | Passe | 3♣ (saut trop fort sur bicolore 5–4) |
+| `SEF-V410-005` | 2♦ | Passe | 3♦ (saut excessif avec 14 H) |
+
+Les onze contextes rappellent maintenant explicitement le caractère non forcing de 1SA. **Dix nouveaux corrigés comparatifs** `whyNot` / `takeaway` ont été ajoutés (le onzième en possédait déjà un). Aucun exercice, aucune bonne enchère ni aucun identifiant n'a changé. La progression enregistrée reste donc applicable sans migration.
+
+Les trois mauvaises propositions demeurent des enchères naturelles et légales dans la séquence : les erreurs à reconnaître portent désormais sur la **force du saut**, la **longueur de la couleur** ou la **bonne description du bicolore**, au lieu d'une permission de passer dépendant de l'appréciation de l'ouvreur.
+
+### Contrôle indicatif après modifications
+
+| Indicateur | Avant V4.36 | V4.36 |
+|---|---:|---:|
+| Exercices | 993 | 993 |
+| Signal automatique favorable | 833 | **844** |
+| Vigilance | 152 | **141** |
+| Priorité | 8 | **8** |
+| Contrastes pédagogiques explicites | 127 | **137** |
+
+Ces scores sont des **indicateurs heuristiques** et ne certifient pas les enchères. Une revue individuelle reste nécessaire pour les 149 exercices encore signalés (141 vigilance et 8 prioritaires). Le fichier CSV des 993 exercices a été synchronisé et une régression automatique contrôle les onze situations.
+
+**Références pédagogiques :** Jean-Christophe Quantin, « La réponse de 1SA à l'ouverture », *L'As de Trèfle* : https://www.colybridge-enseignants.com/images/AsdeTrefle/Encheres/n32_-_La_rponse_de_1SA__louverture.pdf ; fiche SEF « Redemande de l'ouvreur après l'enchère de 1 SA », https://dev.ibridge-club.fr/public/fichedetails/40.
