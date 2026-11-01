@@ -27,6 +27,23 @@ const server=http.createServer((req,res)=>{
   const context=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR',reducedMotion:'reduce'});
   const page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));
+  // Exercices mobiles : composer les enchères avec les touches dédiées.
+  const tapBid=async(bid)=>{
+    const input=page.locator('#free-answer');
+    await input.click();
+    assert.equal(await page.locator('#bid-keypad').isVisible(),true,'Clavier bridge ouvert sur iPhone');
+    const m=String(bid).match(/^([1-7])(SA|[♣♦♥♠])$/);
+    const keys=m?[m[1],m[2]]:[bid];
+    for(const key of keys)await page.locator('#bid-keypad [data-bid-key="'+key+'"]').click();
+    assert.equal(await input.inputValue(),bid,'Enchère composée avec les touches bridge');
+  };
+  const setInvalidRawBid=async(value)=>{
+    // Sécurité : simuler une entrée invalide, que le clavier dédié ne peut produire.
+    await page.locator('#free-answer').evaluate((input,value)=>{
+      input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));
+    },value);
+  };
+
   await page.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
   // Reprise de progression après la correction du seuil Stayman : archiver le passé,
   // réinitialiser uniquement la question rectifiée et éviter les migrations répétées.
@@ -98,13 +115,38 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#body .hand .suit').count(),4,'Hand displays four suits');
   assert.equal(await page.locator('#answers button').count(),0,'No propositions before choosing to display them');
   assert.equal(await page.locator('#free-answer').count(),1,'A free-response field comes first');
+  assert.equal(await page.locator('#free-answer').getAttribute('readonly'),'','No native AZERTY on touch iPhone');
+  const fontSize=await page.locator('#body .hand .suit').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
+  assert.ok(fontSize>=19,'Readable hand cards on iPhone: '+fontSize);
+  await page.locator('#free-answer').click();
+  assert.equal(await page.locator('#bid-keypad').isVisible(),true,'Bridge keypad opens on tap');
+  assert.equal(await page.locator('#bid-keypad [data-bid-key]').count(),16,'All bridge keys present');
+  await page.locator('#bid-keypad [data-bid-key="2"]').click();
+  await page.locator('#bid-keypad [data-bid-key="♠"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'2♠','Compose a contract');
+  await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'2','Backspace removes denomination');
+  await page.locator('#bid-keypad [data-bid-key="Passe"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'Passe','Compose Passe');
+  await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'','Backspace clears call');
+  await page.locator('#bid-key-close').click();
+  assert.equal(await page.locator('#bid-keypad').isVisible(),false,'Close the bridge keypad');
   assert.equal(await page.locator('#show-choices').count(),1,'The learner may request four choices');
   assert.equal(await page.locator('.feedback').count(),0,'No answer is revealed in advance');
   assert.equal(await page.locator('#next').isDisabled(),true,'Next is blocked until answered');
   assert.equal(await page.locator('#done').textContent(),'0','A viewed card is not a completed card');
   await page.locator('#show-choices').click();
   assert.equal(await page.locator('#answers button').count(),4,'All four choices appear on request');
-  const initialOrder=await page.locator('#answers button').allTextContents();
+  const initialOrder=(await page.locator('#answers button').allTextContents()).map(x=>x.trim());
+  const orderScore=v=>{
+    const special={Passe:0,Contre:1,Surcontre:2};
+    if(Object.prototype.hasOwnProperty.call(special,v))return special[v];
+    const m=v.match(/^([1-7])(♣|♦|♥|♠|SA)$/);
+    return m?10+(Number(m[1])-1)*5+['♣','♦','♥','♠','SA'].indexOf(m[2]):1000;
+  };
+  assert.deepEqual(initialOrder,initialOrder.slice().sort((a,b)=>orderScore(a)-orderScore(b)),
+    'Choices sorted by bid cost like Training');
   await page.locator('#answers button').first().click();
   assert.equal(await page.locator('#done').textContent(),'1','Answered card counts as completed');
   assert.equal(await page.locator('#next').isEnabled(),true,'Next becomes available');
@@ -153,8 +195,7 @@ const server=http.createServer((req,res)=>{
   const chosen=source.exercises.find(x=>x.theme==='ouv'&&x.hand.map(s=>s.join('')).join('|')===hand.join('|')&&x.auction.length===0);
   assert.ok(chosen,'Opening case is identifiable');
   assert.equal(await page.locator('#answers button').count(),0,'Free entry precedes QCM on a fresh question');
-  const freeAlias=chosen.answer.replace('♠','P').replace('♥','C').replace('♦','K').replace('♣','T').replace('SA','NT').replace('Passe','PASS');
-  await page.locator('#free-answer').fill(freeAlias);
+  await tapBid(chosen.answer);
   await page.locator('#free-form button[type=submit]').click();
   assert.equal(await page.locator('#answers button').count(),0,'Successful free response never reveals QCM');
   let record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
@@ -270,13 +311,13 @@ const server=http.createServer((req,res)=>{
   const case2=blackwoodData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(s=>s.join('')).join('|')===hand2.join('|'));
   assert.ok(case2,'Opening question is identifiable in the catalog');
   assert.equal(await page.locator('#answers button').count(),0);
-  await page.locator('#free-answer').fill('2ZZ');
+  await setInvalidRawBid('2ZZ');
   await page.locator('#free-form button[type=submit]').click();
   assert.equal(await page.locator('#answers button').count(),0,'Malformed bid does not trigger suggestions');
   assert.equal(await page.locator('#done').textContent(),'0','Malformed bid is not graded');
   assert.ok(await page.locator('.free-entry-error').count(),'Invalid input has accessible feedback');
   const wrong=case2.choices.find(c=>c!==case2.answer);
-  await page.locator('#free-answer').fill(wrong);
+  await tapBid(wrong);
   await page.locator('#free-form button[type=submit]').click();
   assert.equal(await page.locator('#answers button').count(),4,'Incorrect free bid reveals four choices');
   assert.equal(await page.locator('.feedback').count(),0,'The solution is not disclosed before choosing from the four');
