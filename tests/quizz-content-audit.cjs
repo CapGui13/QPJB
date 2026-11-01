@@ -98,7 +98,9 @@ const md='# Rapport automatique Quizz — '+data.version+'\n\n'
  +'**Attention :** un texte répété peut accompagner une main différente. Ne pas supprimer ces exercices sans revue de l’intérêt pédagogique. Aucune probabilité de donne n’est déduite de ces volumes.\n';
 fs.writeFileSync(path.join(output,'report.md'),md);
 assert.equal(report.total,993,'Expected total for audit C02');
-assert.equal(report.withTeachingContrast,78,'Expected C02 teaching contrasts');
+assert.ok(report.withTeachingContrast>=125,'Reviewed SEF choices keep their pedagogical contrasts');
 assert.equal(familyVariants.length,203,'All 203 existing variant families must remain preserved');
-assert.equal(familyVariantCounts['decision-contrast']||0,0,'Baseline family variants must keep their original decision');
+assert.equal(familyVariantCounts['decision-contrast']||0,1,'A single family deliberately compares 6 H vs 8 H Stayman');
+const contrastedFamily=familyVariants.filter(x=>!x.sameAnswer);
+assert.deepEqual(contrastedFamily.map(x=>x.family),['cas-148'],'Only the Stayman threshold family changes the expected decision');
 console.log('Quizz content audit: PASS | '+report.total+' exercises | '+report.pedagogicalFamilies+' families | '+report.withTeachingContrast+' contrasted explanations | '+report.repeatedTextExtraExercises+' reused wordings');
