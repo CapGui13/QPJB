@@ -582,6 +582,15 @@ header{
 @keyframes qpjbTrainingSpin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){#training-loading-spinner{animation:none}}
 @media(max-width:350px){.training-toolbar{padding:9px}.training-return{font-size:12px}.training-tab{font-size:12px}}
+
+/* Quizz intégré : même espace sombre et même navigation persistante que l'entraînement. */
+#vquizz{display:none;background:#211d27;min-height:100dvh}
+#quizz-frame-wrap{position:relative;width:100%;min-height:100dvh;background:#211d27}
+#quizz-frame{display:block;width:100%;height:100dvh;border:0;background:#211d27}
+#quizz-loading{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px;min-height:180px;padding:18px;background:#211d27;color:#eee3fa;font:700 13px/1.5 'Exo 2',system-ui,sans-serif}
+#quizz-loading[hidden]{display:none}
+.quizz-loading-spinner{width:27px;height:27px;border:3px solid #665475;border-top-color:#d4b5ef;border-radius:50%;animation:qpjbTrainingSpin .85s linear infinite}
+@media(prefers-reduced-motion:reduce){.quizz-loading-spinner{animation:none}}
 </style>
 </head>
 <body>
@@ -698,7 +707,7 @@ function markSplashReady() {
     <div class="training-grid">
       <a class="training-button" data-training-mode="bidding" href="./" onclick="event.preventDefault();qpjbTrainingShow('bidding')">Enchères</a>
       <a class="training-button" data-training-mode="play" href="./" onclick="event.preventDefault();qpjbTrainingShow('play')">Jeu de la carte</a>
-      <a class="training-button training-button-quizz" href="./quizz.html" aria-label="Ouvrir le Quizz d’enchères">Quizz</a>
+      <a class="training-button training-button-quizz" data-training-mode="quizz" href="./quizz.html" onclick="event.preventDefault();qpjbQuizzShow()" aria-label="Ouvrir le Quizz d’enchères">Quizz</a>
     </div>
   </section>
   <div class="config" id="seance-config">
@@ -726,6 +735,15 @@ function markSplashReady() {
     <div id="training-frame-wrap">
       <iframe id="training-frame" src="about:blank" title="QPJB · Entraînement"></iframe>
       <div id="training-loading" role="status" aria-live="polite"><span id="training-loading-spinner" aria-hidden="true"></span><span>Chargement de l'entraînement…</span></div>
+    </div>
+  </div>
+</div>
+<!-- QUIZZ : vue intégrée persistante, même système de fondu que QPJB -->
+<div id="vquizz" style="display:none">
+  <div id="quizz-frame-wrap">
+    <iframe id="quizz-frame" src="about:blank" title="QPJB · Quizz d’enchères"></iframe>
+    <div id="quizz-loading" role="status" aria-live="polite">
+      <span class="quizz-loading-spinner" aria-hidden="true"></span><span>Chargement du Quizz…</span>
     </div>
   </div>
 </div>
@@ -2307,6 +2325,98 @@ function qpjbTrainingExit(){
    }else history.replaceState(null,'',location.pathname+location.search);
  });
 }
+
+/* Quizz : une seule iframe conservée en mémoire, aucune navigation de document. */
+let qpjbQuizzReady=false,qpjbQuizzContentHeight=900,qpjbQuizzHomeScroll=0;
+let qpjbQuizzNavAck=null;
+function qpjbQuizzResize(){
+ const view=document.getElementById('vquizz');
+ if(!view||view.style.display==='none')return;
+ const frame=document.getElementById('quizz-frame');
+ const outer=window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+ frame.style.height=outer?Math.max(window.innerHeight,qpjbQuizzContentHeight)+'px':'100dvh';
+}
+function qpjbQuizzShow(navigate=true){
+ const apply=()=>{
+   const view=document.getElementById('vquizz');
+   if(view.style.display==='none')qpjbQuizzHomeScroll=window.scrollY;
+   document.getElementById('vhome').style.display='none';
+   document.getElementById('vtraining').style.display='none';
+   document.getElementById('main-header').style.display='none';
+   view.style.display='block';
+   const frame=document.getElementById('quizz-frame');
+   if(!frame.dataset.started){
+     frame.dataset.started='1';
+     document.getElementById('quizz-loading').hidden=false;
+     frame.src='./quizz.html?embedded=1&rev=20261101-navigation';
+   }
+   qpjbQuizzResize();
+   window.scrollTo(0,0);
+   if(navigate)history.pushState({qpjbQuizz:true},'',location.pathname+location.search);
+ };
+ if(navigate)qpjbTrainingWithFade(apply);
+ else apply();
+}
+function qpjbQuizzHide(focus=false){
+ document.getElementById('vquizz').style.display='none';
+ document.getElementById('vhome').style.display='block';
+ document.getElementById('main-header').style.display='';
+ window.scrollTo(0,qpjbQuizzHomeScroll);
+ if(focus)document.querySelector('.training-button[data-training-mode="quizz"]')?.focus({preventScroll:true});
+}
+function qpjbQuizzExit(){
+ if(document.getElementById('vquizz').style.display==='none')return;
+ qpjbTrainingWithFade(()=>{
+   qpjbQuizzHide(true);
+   if(history.state?.qpjbQuizz)history.back();
+   else history.replaceState(null,'',location.pathname+location.search);
+ });
+}
+window.addEventListener('message',e=>{
+ const frame=document.getElementById('quizz-frame');
+ if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
+ const type=e.data?.type;
+ if(type==='qpjb-quizz-ready'){
+   qpjbQuizzReady=true;
+   document.getElementById('quizz-loading').hidden=true;
+   qpjbQuizzResize();
+ }else if(type==='qpjb-quizz-height'){
+   const h=Math.ceil(Number(e.data.height));
+   if(Number.isFinite(h)&&h>=200&&h<100000&&Math.abs(h-qpjbQuizzContentHeight)>1){
+     qpjbQuizzContentHeight=h;
+     qpjbQuizzResize();
+   }
+ }else if(type==='qpjb-quizz-exit'){
+   qpjbQuizzExit();
+ }else if(type==='qpjb-quizz-nav-request'){
+   if(document.getElementById('vquizz').style.display==='none')return;
+   const seq=e.data.seq;
+   if(!Number.isSafeInteger(seq)||seq<1)return;
+   const attempt=()=>{
+     if(!fadeSwap(()=>new Promise(resolve=>{
+       const complete=()=>{
+         if(qpjbQuizzNavAck?.seq!==seq)return;
+         clearTimeout(qpjbQuizzNavAck.watchdog);
+         qpjbQuizzNavAck=null;
+         resolve();
+       };
+       qpjbQuizzNavAck={seq,complete,watchdog:setTimeout(complete,1800)};
+       frame.contentWindow.postMessage({type:'qpjb-quizz-nav-apply',seq},location.origin);
+     })))setTimeout(attempt,75);
+   };
+   attempt();
+ }else if(type==='qpjb-quizz-nav-done'){
+   if(qpjbQuizzNavAck?.seq===e.data.seq)qpjbQuizzNavAck.complete();
+ }
+});
+window.addEventListener('popstate',e=>{
+ if(e.state?.qpjbQuizz){
+   if(document.getElementById('vquizz').style.display==='none')qpjbQuizzShow(false);
+ }else if(document.getElementById('vquizz').style.display!=='none'){
+   qpjbTrainingWithFade(()=>qpjbQuizzHide());
+ }
+});
+window.addEventListener('resize',qpjbQuizzResize);
 window.addEventListener('message',e=>{
  const frame=document.getElementById('training-frame');
  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
@@ -2374,7 +2484,8 @@ try{
 if(qpjbIsReload&&!qpjbAutoReload&&(history.state?.qpjbTraining || location.hash.startsWith('#entrainement-'))){
  history.replaceState(null,'',location.pathname+location.search);
 }
-if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
+if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbQuizz)qpjbQuizzShow(false);
+else if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
 else if((!qpjbIsReload||qpjbAutoReload)&&(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play'))
  qpjbTrainingShow(location.hash.endsWith('play')?'play':'bidding',false);
 </script>
