@@ -130,8 +130,8 @@ const server=http.createServer((req,res)=>{
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
-  assert.equal(dataC01.exercises.length,981,'Twelve curated cases are available');
-  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,54,'Curated comparisons are embedded');
+  assert.equal(dataC01.exercises.length,993,'Twenty-four curated cases are available');
+  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,66,'All 66 curated comparisons are embedded');
   let contrasted=false;
   const count=Number(await page.locator('#total').textContent());
   for(let i=0;i<count;i++){
