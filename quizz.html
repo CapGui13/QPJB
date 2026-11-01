@@ -489,7 +489,8 @@ function finalizeAnswer(x,choice,mode){
  const finish=()=>{render();revealQuizFeedback()};
  if(bidKeyboardOpen&&$('bid-keypad')){
    setBidKeyboardOpen(false);
-   setTimeout(finish,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440);
+   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();
+   else setTimeout(finish,440);
  }else finish();
 }
 function submitFreeAnswer(x){
@@ -500,11 +501,11 @@ function submitFreeAnswer(x){
  if(bid===x.answer){finalizeAnswer(x,bid,'libre');return}
  stage.firstGuess=bid;stage.freeWrong=true;stage.choicesShown=true;
  if(bidKeyboardOpen&&$('bid-keypad')){
-  setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440);
+  setBidKeyboardOpen(false);if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)render();else setTimeout(render,440);
  }else render();
 }
 function showChoices(){if(answered)return;const stage=stageAt(position);stage.choicesShown=true;stage.error='';
- if(bidKeyboardOpen&&$('bid-keypad')){setBidKeyboardOpen(false);setTimeout(render,window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:440)}
+ if(bidKeyboardOpen&&$('bid-keypad')){setBidKeyboardOpen(false);if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)render();else setTimeout(render,440)}
  else render();
 }
 function auctionSpeaker(call){
