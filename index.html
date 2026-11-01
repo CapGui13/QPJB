@@ -2493,7 +2493,7 @@ try{
  qpjbAutoReload=sessionStorage.getItem('qpjb-auto-refresh')==='1';
  if(qpjbAutoReload)sessionStorage.removeItem('qpjb-auto-refresh');
 }catch(_){}
-if(qpjbIsReload&&!qpjbAutoReload&&(history.state?.qpjbTraining || location.hash.startsWith('#entrainement-'))){
+if(qpjbIsReload&&!qpjbAutoReload&&(history.state?.qpjbTraining || history.state?.qpjbQuizz || location.hash.startsWith('#entrainement-'))){
  history.replaceState(null,'',location.pathname+location.search);
 }
 if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbQuizz)qpjbQuizzShow(false);
