@@ -254,6 +254,10 @@ const server=http.createServer((req,res)=>{
     await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='block',null,{timeout:12000});
     const embedded=app.frameLocator('#quizz-frame');
     await embedded.locator('#new').waitFor({state:'visible',timeout:12000});
+    // #new existe dans le HTML avant la fin du chargement et de l'initialisation de l'iframe.
+    // Attendre le signal prêt et la classe intégrée avant d'évaluer les règles CSS.
+    await embedded.locator('html.quizz-embedded').waitFor({state:'attached',timeout:12000});
+    await app.waitForFunction(()=>document.getElementById('quizz-loading').hidden===true,null,{timeout:12000});
     assert.equal(new URL(app.url()).pathname,'/QPJB/','The Quizz opens inside the parent app URL');
     assert.equal(await app.locator('#main-header').isVisible(),true,'Quizz settings share the normal QPJB header');
     assert.equal(await embedded.locator('.app-top').isVisible(),false,'No duplicate header in embedded Quizz');
