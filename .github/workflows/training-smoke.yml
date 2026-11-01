@@ -28,6 +28,7 @@ jobs:
           node tests/training-smoke.cjs
           node tests/quizz-integrity.cjs
           node tests/quizz-content-audit.cjs
+          node tests/quizz-distractors.cjs
           node tests/training-card-integrity.cjs
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
@@ -45,6 +46,8 @@ jobs:
             artifacts/quizz-content/report.json
             artifacts/quizz-content/report.md
             artifacts/quizz-content/variant-families.csv
+            artifacts/quizz-content/distractor-audit.json
+            artifacts/quizz-content/distractor-audit.md
           retention-days: 14
           if-no-files-found: warn
   smoke:
