@@ -396,6 +396,17 @@ function setBidKeyboardOpen(open){
  if(toggle)toggle.setAttribute('aria-expanded',String(bidKeyboardOpen));
  if(input)input.setAttribute('aria-expanded',String(bidKeyboardOpen));
  quizReportHeight();
+ // Faire apparaître les touches sous le champ sans demander un balayage supplémentaire.
+ if(bidKeyboardOpen)requestAnimationFrame(()=>{
+   let page=window,bottom=keypad.getBoundingClientRect().bottom;
+   try{
+     if(quizEmbedded&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches){
+       page=window.parent;bottom+=window.frameElement.getBoundingClientRect().top;
+     }
+   }catch(_){}
+   const delta=Math.max(0,Math.round(bottom-page.innerHeight+14));
+   if(delta>0)page.scrollBy({top:delta,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ });
 }
 function pressBidKey(key){
  const stage=stageAt(position),field=$('free-answer'),help=$('bid-key-help');
