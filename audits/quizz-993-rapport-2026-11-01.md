@@ -120,3 +120,48 @@ Après les nouvelles modifications, le classement automatique (indicatif) est : 
 - [Vérifications programmatiques](../tests/quizz-quality.cjs) relancées avec GitHub Actions.
 
 **Références sur les conventions :** club Alençon FFB, « Stayman » (2021), https://alenconbridge.club.ffbridge.fr/en-savoir-plus/stayman-112041 ; Jean-Christophe Quantin, « La réponse de 1SA à l'ouverture », https://www.colybridge-enseignants.com/images/AsdeTrefle/Encheres/n32_-_La_rponse_de_1SA__louverture.pdf ; Sarzeau Bridge Club FFB, « Quand la réponse de 2SA est-elle fittée ? » (2025), https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
+
+---
+
+## Lot 3 — alignement SEF 2024 sur 1M–1SA et Drury (1er novembre 2026)
+
+**Statut : corrections intégrées au catalogue V4.35.** Le catalogue conserve **993 exercices et 22 rubriques**. Le contrôle des mains et des conventions a confirmé quatre anciennes réponses incorrectes dans le Drury, ainsi qu'une main à rectifier pour respecter l'étendue du 1SA non forcing.
+
+### 1M–1SA : désormais explicitement non forcing
+
+Dans le **SEF**, la réponse de 1SA à l'ouverture de 1♥ ou 1♠ est **non forcing** (zone usuelle 5–10 HL, sans fit majeur adapté). Le 1SA forcing utilisé dans certaines paires n'est pas le référentiel de cette application débutant.
+
+Onze exercices qui mentionnaient la variante forcing ont été harmonisés. Les redemandes de l'ouvreur restent possibles : **non forcing ne signifie pas que l'ouvreur doit passer**, mais seulement qu'il en a la faculté avec une main appropriée.
+
+- `SEF-V421-004` : la main initiale comptait 11 H, incompatibles avec le choix préalable de 1SA non forcing ; le Roi de Pique a été remplacé par une Dame, donnant **10 H**, sans changer la distribution ni la continuation attendue à 3♥.
+- `SEF-V49-011` et `SEF-C-008` : les bonnes réponses 1SA sont conservées, mais les explications ne les présentent plus à tort comme forcing.
+- Les séquences de 1SA non forcing déjà données (sans libellé erroné) restent inchangées.
+
+### Drury et 2SA fitté après Passe d'entrée
+
+En troisième position après Passe, le **Drury fitté** à 2♣ s'emploie à partir de 11 HLD avec trois atouts ; avec quatre atouts, le Drury suppose 11 HLD ou plus **sans singleton ni chicane**.
+
+Le **2SA fitté** indique au moins quatre atouts et une courte (singleton/chicane), avec au moins 11 HLD.
+
+| Exercice | Ancienne bonne enchère | Nouvelle bonne enchère | Motif |
+|---|---|---|---|
+| `SEF-V4-097-1` | 2♣ Drury | **2♥** | Trois Cœurs, 10 HLD sans courte : seuil du Drury non atteint |
+| `SEF-V4-103-1` | 2♣ Drury | **2♠** | Trois Piques, 10 HLD sans courte : soutien simple |
+| `SEF-V44-067` | 4♥ après Drury | **2SA fitté** directement | Quatre Cœurs et singleton Trèfle : la question doit se poser dès la première réponse |
+| `SEF-V44-068` | 4♠ après Drury | **2SA fitté** directement | Quatre Piques et singleton Trèfle : même traitement |
+
+Pour ces quatre exercices, la séquence, les quatre propositions et les explications ont été révisées lorsque nécessaire. Leur correction pédagogique indique notamment pourquoi le Drury serait une erreur tentante dans le dernier couple.
+
+### Progression et validation
+
+Le mécanisme de migration archive l'historique des **quatre réponses rectifiées** et de **la main modifiée**, puis permet à l'élève de retravailler ces cinq situations. Les anciens historiques restent conservés, comme pour le Stayman à 6 H corrigé précédemment. Les autres exercices ne sont pas réinitialisés.
+
+Le relevé des 993 exercices et celui des 199 situations initialement signalées ont été actualisés. Depuis la version V4.30, **cinq bonnes réponses** ont finalement été rectifiées (le Stayman et les quatre Drury) ; **104 mauvaises propositions** ont changé de position/valeur depuis la même référence. **127** exercices contiennent maintenant un contraste pédagogique explicite « Pourquoi pas ? ».
+
+Les nouveaux tests automatisés vérifient la conformité des séquences 1M–1SA, les quatre bonnes réponses Drury/2SA et la conservation non destructive de la progression. L'exécution effective des suites de navigateurs doit rester distinguée de la seule validation de structure.
+
+**Sources SEF :**
+- BridgeSEF, « Les choix après l'ouverture de 1♥ ou 1♠ », avril 2025 : https://bridgesef.fr/wp-content/uploads/2025/04/Ouverture-1C-1P-1.pdf (SEF 1SA non forcing versus variantes non-SEF).
+- « Les nouveautés du SEF », *L'As de Trèfle* (FFB), septembre 2024 : https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf.
+- Club du Haut Poitou, « SEF 2024 » : https://scjc-bridge.fr/sef-2024 (Drury et 2SA fitté après Passe).
+- Sarzeau Bridge Club, « Quand la réponse de 2SA est-elle fittée ? », décembre 2025 : https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
