@@ -584,7 +584,8 @@ header{
 @media(max-width:350px){.training-toolbar{padding:9px}.training-return{font-size:12px}.training-tab{font-size:12px}}
 
 /* Quizz intégré : même espace sombre et même navigation persistante que l'entraînement. */
-#vquizz{display:none;background:#211d27;min-height:100dvh}
+#vquizz{display:none;background:#211d27;min-height:100dvh;padding-top:60px}
+#vquizz.is-session{padding-top:0}
 #quizz-frame-wrap{position:relative;width:100%;min-height:100dvh;background:#211d27}
 #quizz-frame{display:block;width:100%;height:100dvh;border:0;background:#211d27}
 #quizz-loading{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px;min-height:180px;padding:18px;background:#211d27;color:#eee3fa;font:700 13px/1.5 'Exo 2',system-ui,sans-serif}
@@ -2327,14 +2328,15 @@ function qpjbTrainingExit(){
 }
 
 /* Quizz : une seule iframe conservée en mémoire, aucune navigation de document. */
-let qpjbQuizzReady=false,qpjbQuizzContentHeight=900,qpjbQuizzHomeScroll=0;
+let qpjbQuizzReady=false,qpjbQuizzContentHeight=900,qpjbQuizzHomeScroll=0,qpjbQuizzSession=false;
 let qpjbQuizzNavAck=null;
 function qpjbQuizzResize(){
  const view=document.getElementById('vquizz');
  if(!view||view.style.display==='none')return;
  const frame=document.getElementById('quizz-frame');
  const outer=window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
- frame.style.height=outer?Math.max(window.innerHeight,qpjbQuizzContentHeight)+'px':'100dvh';
+ const height=qpjbQuizzSession?window.innerHeight:Math.max(320,window.innerHeight-60);
+ frame.style.height=outer?Math.max(height,qpjbQuizzContentHeight)+'px':(qpjbQuizzSession?'100dvh':'calc(100dvh - 60px)');
 }
 function qpjbQuizzShow(navigate=true){
  const apply=()=>{
@@ -2342,7 +2344,8 @@ function qpjbQuizzShow(navigate=true){
    if(view.style.display==='none')qpjbQuizzHomeScroll=window.scrollY;
    document.getElementById('vhome').style.display='none';
    document.getElementById('vtraining').style.display='none';
-   document.getElementById('main-header').style.display='none';
+   document.getElementById('main-header').style.display=qpjbQuizzSession?'none':'';
+   view.classList.toggle('is-session',qpjbQuizzSession);
    view.style.display='block';
    const frame=document.getElementById('quizz-frame');
    if(!frame.dataset.started){
@@ -2384,6 +2387,15 @@ window.addEventListener('message',e=>{
    const h=Math.ceil(Number(e.data.height));
    if(Number.isFinite(h)&&h>=200&&h<100000&&Math.abs(h-qpjbQuizzContentHeight)>1){
      qpjbQuizzContentHeight=h;
+     qpjbQuizzResize();
+   }
+ }else if(type==='qpjb-quizz-view'){
+   const session=!!e.data.session;
+   if(qpjbQuizzSession!==session){
+     qpjbQuizzSession=session;
+     document.getElementById('vquizz').classList.toggle('is-session',session);
+     if(document.getElementById('vquizz').style.display!=='none')
+       document.getElementById('main-header').style.display=session?'none':'';
      qpjbQuizzResize();
    }
  }else if(type==='qpjb-quizz-exit'){
