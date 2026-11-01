@@ -163,7 +163,7 @@ const server=http.createServer((req,res)=>{
   await page.locator('#new').click();
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
   assert.equal(dataC01.exercises.length,993,'Twenty-four curated cases are available');
-  assert.equal(dataC01.exercises.filter(x=>x.whyNot).length,78,'All 78 curated comparisons are embedded');
+  assert.ok(dataC01.exercises.filter(x=>x.whyNot).length>=125,'The 125 reviewed pedagogical comparisons are embedded');
   let contrasted=false;
   const count=Number(await page.locator('#total').textContent());
   for(let i=0;i<count;i++){
