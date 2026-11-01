@@ -659,7 +659,44 @@ for(const [id,shape] of Object.entries(_conventionLengths)){
  const x=exercises.find(z=>z.id===id);
  assert.deepEqual(x?.shape,shape,'La distribution conventionnelle est conservée : '+id);
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=303,'All revised pedagogical comparisons preserved');
+// V4.47 : audit des réveils naturels, zones HL et seuil du Contre de force.
+const wakeStrong=[{"id":"SEF-V4-053-3","bid":"2♥","hl":14},{"id":"SEF-V4-055-1","bid":"2♦","hl":14},{"id":"SEF-V4-056-1","bid":"2♣","hl":14},{"id":"SEF-V4-069-1","bid":"2♥","hl":14}];
+const wakeLimited=[{"id":"SEF-V4-053-4","bid":"2♥","hl":11},{"id":"SEF-V4-055-3","bid":"2♦","hl":11},{"id":"SEF-V4-056-2","bid":"2♣","hl":11},{"id":"SEF-V4-070-2","bid":"2♥","hl":13}];
+const wakeSuitIndex={'♠':0,'♥':1,'♦':2,'♣':3};
+for(const item of [...wakeStrong,...wakeLimited]){
+ const x=exercises.find(v=>v.id===item.id);
+ assert.ok(x,'Exercice de réveil disponible : '+item.id);
+ assert.equal(x.theme,'reveil','Famille réveil : '+item.id);
+ const idx=wakeSuitIndex[item.bid.slice(-1)];
+ const L=Math.max(0,x.shape[idx]-4);
+ assert.equal(x.shape[idx],6,'Six cartes : '+item.id);
+ assert.equal(L,2,'Cinquième et sixième cartes, soit deux points L : '+item.id);
+ assert.equal(x.h+L,item.hl,'Compte HL : '+item.id);
+ assert.ok(x.choices.includes(item.bid)&&x.choices.includes('Contre'),'Deux réponses à comparer : '+item.id);
+ assert.ok(x.explain.includes(item.hl+' HL'),'Corrigé complet : '+item.id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Piège expliqué : '+item.id);
+}
+for(const item of wakeStrong){
+ const x=exercises.find(e=>e.id===item.id);
+ assert.equal(x.answer,'Contre','La main de 14 HL commence par Contre : '+item.id);
+ assert.equal(x.whyNot.bid,item.bid,'La couleur immédiate est la tentation : '+item.id);
+ assert.ok(html.includes("'"+item.id+"':'sef-reveil-14hl-contre-"),'Archivage du résultat précédent : '+item.id);
+}
+for(const item of wakeLimited){
+ const x=exercises.find(e=>e.id===item.id);
+ assert.equal(x.answer,item.bid,'Réveil limité naturel maintenu : '+item.id);
+ assert.equal(x.whyNot.bid,'Contre','Comparaison sur le Contre fort : '+item.id);
+}
+// Tester tous les réveils naturels de la base, pas seulement les cas corrigés.
+// Les contre-exemples avec 14 HL sont traités par Contre et sortent de cet ensemble.
+for(const x of exercises.filter(e=>e.theme==='reveil'&&e.auction.length===3)){
+ const m=x.answer.match(/^([1-7])([♠♥♦♣])$/);
+ if(!m)continue;
+ const length=x.shape[wakeSuitIndex[m[2]]],hl=x.h+Math.max(0,length-4);
+ assert.ok(length>=5,'Réveil à la couleur avec cinq cartes au moins : '+x.id);
+ assert.ok(hl>=8&&hl<=13,'Réveil naturel limité à 8-13 HL : '+x.id+'='+hl);
+}
+assert.ok(exercises.filter(x=>x.whyNot).length>=311,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');

@@ -544,3 +544,33 @@ La revue a porté principalement sur les erreurs **raisonnables mais non optimal
 **Références consultées :** iBridge, « Le Rubensohl après une intervention » https://www.ibridge.fr/public/fichedetails/24 ; iBridge, « Les quatre conventions Michael » https://www.ibridge.fr/public/fichedetails/254 ; Alençon Bridge Club FFB, « Le Blackwood 5 clés » https://alenconbridge.club.ffbridge.fr/en-savoir-plus/le-blackwood-5-cles-112005 ; et les fiches pédagogiques déjà consignées dans ce rapport.
 
 **Publication :** contrôle d'intégrité, navigateurs et GitHub Pages à confirmer après le commit de V4.46.
+
+
+---
+
+## Lot 15 — réveils directs et plafond de 13 HL (V4.47, 1er novembre 2026)
+
+**Référence FFB :** *En route vers le SEF !*, séance 22 « Les réveils directs », p. 135–136 : réveil naturel sans saut **8–13 HL**, en principe cinq cartes au moins ; réveil à saut **11–13 HL** avec six belles cartes ; au-delà, **Contre de réveil** de force puis description de la main. Le compte HL ajoute un point pour la cinquième carte et un point pour la sixième. La fiche « Les différents réveils après une ouverture de 1 à la couleur » d'iBridge confirme l'approche du contre avec une main forte sans singleton dans une autre couleur non annoncée.
+
+### Quatre bonnes réponses rectifiées
+
+| Exercice | Séquence adverse | Main | Évaluation | Ancienne réponse | Nouvelle réponse |
+|---|---|---|---|---|---|
+| `SEF-V4-053-3` | 1♠ – Passe – Passe | ♠42 ♥RD8432 ♦A32 ♣R10 | 12 H + 2 L = **14 HL** | 2♥ | **Contre** |
+| `SEF-V4-055-1` | 1♠ – Passe – Passe | ♠97 ♥D42 ♦AR9652 ♣R5 | 12 H + 2 L = **14 HL** | 2♦ | **Contre** |
+| `SEF-V4-056-1` | 1♠ – Passe – Passe | ♠D7 ♥RV9 ♦106 ♣RDV532 | 12 H + 2 L = **14 HL** | 2♣ | **Contre** |
+| `SEF-V4-069-1` | 1♣ – Passe – Passe | ♠72 ♥AD10642 ♦A109 ♣D3 | 12 H + 2 L = **14 HL** | 2♥ (saut) | **Contre** |
+
+La couleur directe devient dans chaque question une mauvaise réponse **plausible mais techniquement trop limitée**. Les corrigés détaillent le calcul des 14 HL et le principe du Contre d'abord, puis de la couleur si nécessaire. Les quatre identifiants et les quatre propositions sont préservés.
+
+### Contrastes pédagogiques ajoutés
+
+Quatre variantes de **11–13 HL** gardent le réveil naturel comme bonne réponse (`SEF-V4-053-4`, `SEF-V4-055-3`, `SEF-V4-056-2`, `SEF-V4-070-2`). Leur nouvelle explication « Pourquoi pas Contre ? » insiste sur la différence entre réveil limité et contre initial fort. Les familles de décision contrastée sont désormais : `cas-148` (Stayman), `cas-275` (fit majeur) et `cas-363`, `cas-365`, `cas-366` (seuil du réveil).
+
+**Bilan :** 993 exercices, 22 rubriques et 4 réponses proposées par question conservés ; **4 bonnes réponses corrigées** et **8 nouveaux contrastes pédagogiques**, soit **311** comparaisons. Indicateur automatique : 872 favorables, 113 vigilances, 8 priorités (121 signalements), à ne pas confondre avec une validation SEF.
+
+**Historique des élèves :** les quatre exercices dont la bonne réponse change rejoignent `revisedSefNov2026` pour archiver la tentative antérieure et remettre ces exercices à travailler. Les quatre autres variantes, dont la bonne réponse ne change pas, conservent intégralement leur progression. Des tests de non-régression vérifient désormais le plafond HL de **tous** les réveils naturels du catalogue et ces quatre transitions de décision.
+
+**Sources :** https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf#page=135 ; https://www.ibridge.fr/public/fichedetails/81 ; https://www.bridge-chailley.fr/wp-content/uploads/2013/01/E4015-R%C3%A9veils-2-s.pdf.
+
+Validation et publication à confirmer par GitHub Actions après commit.
