@@ -437,3 +437,33 @@ Le choix de remplacement est une **enchère légale mais mauvaise avec cette mai
 **Intégrité :** 993 exercices, 22 rubriques et toutes les bonnes réponses conservés ; sept mauvaises propositions remplacées et sept contrastes réécrits, sans changement de progression. Le relevé CSV et les garde-fous du test d'intégrité suivent ces sept choix. Publication et tests navigateurs à confirmer via GitHub Actions après le commit.
 
 **Source documentaire :** Fédération française de bridge, *En route vers le SEF*, séance 22 « Les réveils directs », p. 135, https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf#page=135.
+
+
+---
+
+## Lot 11 — seuil HLD du 2SA fitté et lisibilité des séquences (V4.43, 1er novembre 2026)
+
+### Une véritable seconde bonne réponse détectée, puis corrigée
+
+L'exercice `SEF-V3-075-3` (main ♠2 ♥1052 ♦AR942 ♣D764, 9 H, séquence **1♥ – (1♠)**) présentait **2♥** comme seule bonne réponse et **2SA** comme mauvaise proposition. Pourtant, le singleton Pique donne **2 points de distribution**, donc **11 HLD** avec le fit de trois Cœurs face à une ouverture majeure cinquième. Le **SEF 2024** prévoit précisément **2SA fitté avec trois atouts et 11–15 HLD après intervention adverse à la couleur**. Le soutien simple à **2♥** reste adapté à 6–10 HLD, pas à cette main.
+
+- Bonne réponse corrigée : **2SA**, sans modifier ni la main, ni les quatre propositions, ni l'identifiant.
+- Le piège `2♥` est désormais expliqué et la comparaison repose sur le vrai compte HLD ; le niveau de difficulté est conservé.
+- La variante de la même famille `SEF-V3-075-2` contient seulement **6 H + 2 D = 8 HLD** et garde à juste titre **2♥** comme réponse. Elle devient un **contraste de seuil authentique**.
+- L'historique local précédent de `SEF-V3-075-3` est archivé dans `archivedPreRevision` par le mécanisme existant `revisedSefNov2026`. Seul cet exercice est remis à travailler pour éviter de valider un ancien résultat sur une réponse devenue fausse. Les autres progressions restent intactes.
+
+### Huit séquences de forcing rendues explicites
+
+Les huit exercices `SEF-V45-013` à `SEF-V45-019` et `SEF-V45-022` indiquaient la première enchère du répondant par le libellé **« Réponse : »**. Le moteur de positionnement interprétait déjà ce libellé comme Sud, mais le texte était ambigu. Ils affichent maintenant **« Vous : »** sans modifier les enchères jouées, les mains, les quatre choix ni les bonnes réponses. Leurs résultats historiques restent valables.
+
+### Bilan
+
+- **993** exercices et **22** rubriques préservés.
+- **1** bonne réponse réellement rectifiée, **0** distracteur retiré, **8** énoncés de séquence rendus plus clairs.
+- **272** comparaisons pédagogiques. Score heuristique recalculé : **874 favorables, 111 vigilances, 8 priorités**, soit **119** cas signalés. Il ne certifie pas les autres enchères.
+- Les tests d'intégrité vérifient la nouvelle réponse, le contraste des deux variantes, le compte HLD et l'archivage de progression. L'audit des familles reconnaît désormais deux familles différenciant la bonne réponse selon la force (Stayman et fit HLD).
+- Le fichier `audits/quizz-revue-199-2026-11-01.csv` reste conservé comme **historique du lot 2**, et non comme photographie de la version V4.43.
+
+**Sources SEF :** *L'As de Trèfle* n°50, janvier 2024, changements des réponses après intervention à la couleur, https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf ; fiche Évaluation des mains (points du singleton et des atouts), https://www.ibridge.fr/public/fichepdf/539 ; Sarzeau Bridge Club (FFB), « Quand la réponse de 2SA est-elle fittée ? », https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523.
+
+**Publication :** commit V4.43 enregistré séparément ; tests statiques et navigateurs Chromium/WebKit et déploiement GitHub Pages à valider sur GitHub Actions.

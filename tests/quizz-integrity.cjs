@@ -281,6 +281,23 @@ for(const [id,temptation] of Object.entries(weakBalancingNatural)){
  assert.equal(x.whyNot?.bid,temptation,'Contraste sur la nouvelle annonce : '+id);
  assert.ok(x.whyNot?.reason&&x.takeaway,'Leçon explicitement justifiée : '+id);
 }
+// V4.43 : compte HLD après une intervention à la couleur.
+const hldFit=exercises.find(x=>x.id==='SEF-V3-075-3');
+assert.equal(hldFit?.h,9,'La main reste à neuf points H');
+assert.deepEqual(hldFit?.shape,[1,3,5,4],'Singleton Pique, trois atouts Cœur');
+assert.deepEqual(hldFit?.auction,['Partenaire : 1♥','Adversaire : 1♠'],'Séquence de l'intervention');
+assert.equal(hldFit?.answer,'2SA','Onze HLD imposent 2SA fitté en SEF 2024');
+assert.ok(hldFit?.choices.includes('2♥'),'Le soutien insuffisant devient un piège instructif');
+assert.equal(hldFit?.whyNot?.bid,'2♥','Comparaison sur la vraie ambiguïté 2M / 2SA');
+assert.match(hldFit?.explain||'',/9 H.*11 HLD.*2SA/i,'L'explication rappelle le décompte HLD');
+assert.ok(html.includes("'SEF-V3-075-3':'sef24-hld-11-2nt-fit-after-overcall'"),
+  'La tentative ancienne est archivée avant remise à travailler');
+const hldWeak=exercises.find(x=>x.id==='SEF-V3-075-2');
+assert.equal(hldWeak?.answer,'2♥','À six H avec un singleton le soutien simple reste correct');
+const forcingRoles=exercises.filter(x=>x.theme==='forcing'&&x.auction.some(a=>/^Vous :/.test(a)));
+assert.ok(forcingRoles.length>=8,'Huit séquences de forcing décrivent explicitement Sud');
+assert.ok(!exercises.some(x=>x.auction.some(a=>/^Réponse :/.test(a))),
+  'La rubrique forcing ne présente plus le rôle ambigu « Réponse »');
 assert.ok(exercises.filter(x=>x.whyNot).length>=272,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
