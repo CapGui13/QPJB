@@ -242,3 +242,49 @@ Le relevé de 993 propositions a été mis à jour ; des tests de non-régressio
 - FFB, *Manuel d'enseignement du bridge*, règles après intervention à la couleur : https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf
 - iBridge, *Changement de couleur 2/1* : https://www.ibridge.fr/public/fichedetails/540
 - Sarzeau Bridge Club (FFB), *Quand la réponse de 2SA est-elle fittée ?*, 21 décembre 2025 : https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523
+
+---
+
+## Lot 6 — Stayman/Texas et deuxième enchère du répondant (V4.38, 1er novembre 2026)
+
+**Périmètre :** revue individuelle des **15 exercices Stayman/Texas** et **23 exercices « deuxième enchère »** encore signalés après V4.37, soit **38 situations** du catalogue des 993 exercices. Les bonnes enchères ont été conservées après examen : les améliorations portent sur la crédibilité des mauvaises réponses et sur la comparaison pédagogique.
+
+### Cinq distracteurs révisés
+
+| Exercice | Séquence | Réponse SEF | Mauvaise proposition retirée | Nouveau piège |
+|---|---|---|---|---|
+| `SEF-N140-1` | 1♣–1♠–1SA, 8 H et quatre Piques | **Passe** | 3SA, trop caricatural | **2♣ Roudi**, convention tentante mais inadaptée à quatre Piques |
+| `SEF-V49-026` | 1♣–1♥–2♣, 6 H et cinq Trèfles | **Passe** | 2SA, trop ambitieux | **2♦ troisième couleur forcing**, mal employée avec une petite main |
+| `SEF-V410-018` | 1♥–1♠–1SA, six Piques et huit H | **2♠** | 3♠, qui peut devenir discutable avec des honneurs concentrés | **2♥**, préférence trompeuse avec seulement deux Cœurs |
+| `SEF-V3-021-2` | 2SA–3♣–3♦, quatre Piques et sept H | **3SA** | 4SA, proposition de chelem invraisemblable | **Passe**, piège sur la réponse artificielle de 3♦ |
+| `SEF-V3-022-1` | 2SA–3♣–3♦, quatre Cœurs et cinq H | **3SA** | 4SA, proposition de chelem invraisemblable | **Passe**, même risque de confondre réponse artificielle et contrat naturel |
+
+Ces cinq remplacements conservent des enchères techniquement possibles, mais inappropriées à la force, à la distribution ou au sens conventionnel de la séquence.
+
+### Trente-deux nouveaux corrigés comparatifs
+
+- **Stayman après 1SA :** distinguer 2SA invitant avec 8–9 H de 3SA avec une force de manche ; avec un fit 4–4, préférer 4 dans la majeure à une invitation devenue inutile. La réponse 2♦ exclut une majeure quatrième chez l'ouvreur.
+- **Stayman après 2SA :** reconnaître que 3♦ est artificiel et ne doit pas devenir le contrat final ; choisir 3SA en l'absence de fit majeur.
+- **Texas après 2SA :** avec six cartes, la manche est en principe à 4 dans la majeure ; avec cinq cartes et la force de manche, 3SA laisse l'ouvreur choisir 3SA ou 4M suivant son appui.
+- **Deuxième enchère du répondant :** distinguer les mains limites et les réponses de manche, ne pas répéter quatre cartes comme une majeure cinquième/sixième, conserver un fit en mineure au palier économique, éviter le Roudi ou la troisième couleur forcing avec des mains inadaptées.
+
+Les **six exercices de deuxième enchère** qui possédaient déjà un contraste explicatif ont été relus et conservés tels quels ; **17** autres en reçoivent un. Les **15 exercices Stayman/Texas** en reçoivent un également, d'où **32 nouveaux corrigés**, et **191 exercices avec comparaison explicite « Pourquoi pas ? »** dans le catalogue.
+
+### Résultat et limites du contrôle
+
+| Indicateur | Après V4.37 | Après V4.38 |
+|---|---:|---:|
+| Exercices | 993 | **993** |
+| Signal favorable (heuristique) | 844 | **845** |
+| Vigilance | 141 | **140** |
+| Priorité | 8 | **8** |
+| Corrigés comparatifs intégrés | 159 | **191** |
+
+Une amélioration pédagogique n'entraîne pas nécessairement un meilleur score automatique : celui-ci mesure des analogies entre exercices et l'écart de palier, pas la qualité d'un piège pour un débutant. Les **148 exercices encore signalés** ne doivent pas être appelés « 148 erreurs ». Tous les identifiants, bonnes réponses, exercices et résultats d'élèves sont conservés ; aucune migration de progression n'est nécessaire.
+
+Le relevé CSV des 993 exercices a été actualisé et une suite de régression vérifie explicitement les 38 situations et les 5 nouveaux distracteurs. Les vérifications sur navigateurs sont distinctes de ce rapport pédagogique.
+
+**Références de contrôle :**
+- AtoutBridge, « Réponses à l'ouverture au palier de 1 » (Stayman et invitation 2SA / 3SA) : https://www.atoutbridge.com/les-dossiers-du-mois/reponses-a-l-ouverture-au-palier-de-1-3/
+- iBridge, « La convention 3ème couleur forcing » : https://www.ibridge.fr/public/fichedetails/575
+- Référentiel SEF, Roudi : https://graulhetbridgeclub.wifeo.com/documents/jouez-au-bridge-sef.pdf
