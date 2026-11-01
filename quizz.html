@@ -148,6 +148,7 @@ body{--seat-line:#594a67}
 
 /* Quizz V4.31 — même shell et mêmes transitions de vue que QPJB. */
 body.session-mode .app-top{display:none}
+html.quizz-embedded .app-top{display:none!important}
 body.session-mode .qpjb-quiz-nav{padding-bottom:4px}
 body.session-mode .layout{margin-top:6px}
 .qpjb-quiz-nav{padding-top:calc(12px + env(safe-area-inset-top,0px))}
@@ -182,6 +183,10 @@ body.session-mode .layout{margin-top:6px}
 
 /* Navigation Quizz — fondu commandé par la page mère, identique aux autres écrans. */
 const quizEmbedded=window.parent!==window&&new URLSearchParams(location.search).get('embedded')==='1';
+if(quizEmbedded)document.documentElement.classList.add('quizz-embedded');
+function quizReportView(){
+ if(quizEmbedded)window.parent.postMessage({type:'qpjb-quizz-view',session:document.body.classList.contains('session-mode')},location.origin);
+}
 let quizNavigationSeq=0,quizPendingAction=null,quizLocalBusy=false,quizSettingsScroll=0;
 function quizScrollY(){
  try{if(quizEmbedded&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches)return window.parent.scrollY}catch(_){}
@@ -374,11 +379,13 @@ function shuffledPriority(arr){
 function enterSession(){
  quizSettingsScroll=quizScrollY();
  document.body.classList.add('session-mode');
+ quizReportView();
  quizScrollTo(0);
  quizReportHeight();
 }
 function exitSession(){
  document.body.classList.remove('session-mode');
+ quizReportView();
  quizReportHeight();
  // Restaurer la position de la liste de réglages après le redimensionnement de l'iframe.
  setTimeout(()=>quizScrollTo(quizSettingsScroll),80);
@@ -595,6 +602,7 @@ if(quizEmbedded){
  });
  if('ResizeObserver' in window)new ResizeObserver(quizReportHeight).observe(document.body);
  window.addEventListener('resize',quizReportHeight);
+ quizReportView();
  quizReportHeight();
  window.parent.postMessage({type:'qpjb-quizz-ready'},location.origin);
 }
