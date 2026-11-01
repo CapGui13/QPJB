@@ -288,3 +288,65 @@ Le relevé CSV des 993 exercices a été actualisé et une suite de régression 
 - AtoutBridge, « Réponses à l'ouverture au palier de 1 » (Stayman et invitation 2SA / 3SA) : https://www.atoutbridge.com/les-dossiers-du-mois/reponses-a-l-ouverture-au-palier-de-1-3/
 - iBridge, « La convention 3ème couleur forcing » : https://www.ibridge.fr/public/fichedetails/575
 - Référentiel SEF, Roudi : https://graulhetbridgeclub.wifeo.com/documents/jouez-au-bridge-sef.pdf
+
+---
+
+## Lot 7 — audit prioritaire, Spoutnik et Drury (V4.39, 1er novembre 2026)
+
+**Méthode :** vérifier individuellement les huit exercices encore classés « Priorité » et les 52 exercices signalés dans les familles `intervenir`, `apres_inter`, `reponse_inter`, `contre` et `drury`. Comparer les règles du *SEF 2024* aux corrigés, chercher les pièges faciles et confirmer la légalité des quatre annonces. Ne pas confondre une alerte heuristique avec une erreur d'enchères.
+
+### Trois vraies erreurs SEF 2024 corrigées
+
+Le contrôle du **contre Spoutnik après une intervention à 1♦ ou à 1♥ sur une ouverture mineure** révèle une confusion entre le SEF et la convention dite « collante ». Dans le SEF 2024, le contre *dénie* une majeure quatrième dans ces séquences, alors que le répondant peut annoncer naturellement une majeure quatrième au palier de 1.
+
+| Identifiant | Séquence | Main | Ancienne réponse fautive | Réponse SEF 2024 corrigée |
+|---|---|---|---|---|
+| `SEF-V410-025` | 1♦ – (1♥) – ? | ♠ AV32, 8 H | Contre | **1♠** naturel, 4 cartes |
+| `SEF-V418-005` | 1♣ – (1♥) – ? | ♠ AV83, 8 H | Contre | **1♠** naturel, 4 cartes |
+| `SEF-V420-009` | 1♣ – (1♦) – ? | 4 Cœurs et 4 Piques, 8 H | Contre | **1♥** naturel, majeure la moins chère |
+
+**Justification documentaire directe :**
+
+- Fiche iBridge « Le contre Spoutnik du répondant » : https://www.ibridge.fr/public/fichedetails/657 (contre sur 1♦ ou 1♥ : dénie une majeure quatrième ; après 1♠ ou à un palier supérieur, recherche les majeures non nommées).
+- Olivier Chailley, *Le SEF 2024 (1)* : https://www.bridge-chailley.fr/le-sef-2024-1/ (1♣/♦–1♥–X : le contre dénie quatre Piques ; la convention contraire, « collante », n'est pas dans le SEF).
+
+**Historique des élèves :** ces trois identifiants gardent leur main et leur situation mais changent de bonne réponse. La migration existante (`revisedSefNov2026`) reçoit trois codes pédagogiques supplémentaires. Lors du chargement, si l'élève avait déjà tenté un de ces exercices, son dossier antérieur est placé dans `archivedPreRevision`; seule la maîtrise courante de cet exercice est réinitialisée. Les autres progrès restent intacts, et la migration ne se répète pas après un rechargement. Test d'intégration dédié.
+
+### Vérification des huit « Priorité » existants
+
+| Identifiant | Bonne réponse maintenue | Justification vérifiée |
+|---|---|---|
+| `SEF-V44-045` | Surcontre | Après 1♥–(X), 11 H et seulement deux Cœurs : réponse positive sans fit |
+| `SEF-V410-027` | Contre | Après 1♦–(2♣), 9 H et les deux majeures quatrièmes : contre Spoutnik |
+| `SEF-V413-002` | Passe | Après 1♥–1♠–2♦, soutien 4–4 Carreau et seulement 8 H |
+| `SEF-V421-003` | Passe | Après 1♠–1SA–2♥, fit Cœur 4–4 et réponse minimale de 7 H |
+| `SEF-V421-005` | Passe | Après 1♥–1SA–2♦, cinq Carreaux en main, six H, fit mineur économique |
+| `SEF-V422-002` | Passe | Quatrième position : règle des 15 = 10 H + 2 Piques = 12 |
+| `SEF-V423-006` | Passe | Après 1♣–1♦–2SA (18–19 H), cinq H ne suffisent pas pour imposer 3SA |
+| `SEF-V424-007` | Surcontre | Après 1♦–(X), 11 H sans soutien établi, surcontre constructif |
+
+**Bilan des huit :** aucune correction de bonne réponse n'est justifiée. Tous disposent déjà d'un contraste « Pourquoi pas ? ». Le marquage automatique « Priorité » est conservé pour ne pas masquer une limite du modèle de scoring. L'audit a été consigné dans le relevé CSV sans prétendre avoir corrigé huit erreurs.
+
+### Intervention, réponses et Drury : pièges améliorés
+
+- **28 nouvelles explications contrastives** (`whyNot` / `takeaway`) ajoutées dans les familles intervention, réponse à l'intervention, contre d'appel et Drury.
+- **9 mauvaises propositions remplacées** (exemples : 1♠ avec seulement trois cartes, 2♦ sans couleur assez longue après Passe, 3♥ comme simple invitation face à des valeurs de manche). Les pièges deviennent des erreurs de description plausibles plutôt que des annonces manifestement incohérentes.
+- Distinction SEF 2024 après Passe : `2♣` Drury avec fit constructif et sans courte lorsqu'il y a quatre atouts ; `2SA` fitté avec quatre atouts, une courte et 11 HLD minimum ; `2M` au palier minimal après Drury signale une ouverture légère, alors que `2♦` est positif.
+- Documentation Drury : https://www.ibridge.fr/public/fichepdf/113 et https://scjc-bridge.fr/sef-2024
+
+### Contrôle de cohérence, version V4.39
+
+| Indicateur | V4.38 | V4.39 |
+|---|---:|---:|
+| Nombre d'exercices | 993 | **993** |
+| Erreurs de bonne réponse corrigées dans ce lot | — | **3** |
+| Mauvaises propositions remplacées dans ce lot | — | **9** |
+| Nouvelles explications comparatives dans ce lot | — | **30** |
+| Exercices avec comparaison pédagogique | 191 | **221** |
+| Signal automatique favorable | 845 | **850** |
+| Vigilance | 140 | **135** |
+| Priorité | 8 | **8** |
+
+**Attention :** les 30 nouveaux corrigés correspondent aux 28 ajoutés sur des exercices sans contraste antérieur et aux 2 nouveaux comparatifs créés en corrigeant les réponses Spoutnik. Un troisième corrigé Spoutnik existant a été remplacé par le bon sens de l'enchère. L'heuristique est recalculée sur les 993 exercices, ce qui peut reclasser un exercice non modifié à cause des trois changements de bonnes réponses utilisés comme exemples de référence. Ces variations ne prouvent pas que l'exercice est devenu objectivement meilleur ou pire.
+
+**Règles de publication :** tests d'intégrité et de non-régression sur les nouvelles règles Spoutnik, 9 distracteurs, 8 exercices prioritaires ; tests navigateur sur Chromium et WebKit, y compris l'archivage des anciennes tentatives. Déployer uniquement après réussite des tests sur la branche principale.
