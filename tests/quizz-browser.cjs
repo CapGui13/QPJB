@@ -33,7 +33,10 @@ const server=http.createServer((req,res)=>{
   await page.evaluate(()=>{
     localStorage.setItem('qpjb-sef-entrainement-01',JSON.stringify({
       'SEF-V49-016':{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:2,correct:2,
-        history:[{at:'2026-10-31T11:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:2}
+        history:[{at:'2026-10-31T11:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:2},
+      ...Object.fromEntries(['SEF-V4-097-1','SEF-V4-103-1','SEF-V44-067','SEF-V44-068','SEF-V421-004','SEF-001-1']
+        .map(id=>[id,{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:1,correct:1,
+          history:[{at:'2026-10-31T10:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:1}]))
     }));
   });
   await page.reload({waitUntil:'domcontentloaded'});
@@ -41,10 +44,20 @@ const server=http.createServer((req,res)=>{
   assert.equal(migrated.seen,false,'The corrected Stayman exercise is available again');
   assert.equal(migrated.lastResult,null,'An outdated success is no longer counted as mastered');
   assert.equal(migrated.archivedPreRevision?.history?.[0]?.choice,'2♣','Earlier answers are archived, not lost');
+  const newRules=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01')));
+  for(const id of ['SEF-V4-097-1','SEF-V4-103-1','SEF-V44-067','SEF-V44-068','SEF-V421-004']){
+    assert.equal(newRules[id].seen,false,'Revised SEF exercise is available for reattempt: '+id);
+    assert.equal(newRules[id].lastResult,null,'Old assessment no longer counts: '+id);
+    assert.equal(newRules[id].archivedPreRevision?.history.length,1,'Prior SEF history archived: '+id);
+  }
+  assert.equal(newRules['SEF-001-1'].ok,true,'Unchanged exercise progress must remain mastered');
   await page.reload({waitUntil:'domcontentloaded'});
   const migratedAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))['SEF-V49-016']);
   assert.ok(migratedAgain.archivedPreRevision&&!migratedAgain.archivedPreRevision.archivedPreRevision,
     'Migration happens once rather than recursively archiving itself');
+  const newRulesAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01')));
+  assert.ok(!newRulesAgain['SEF-V44-067'].archivedPreRevision.archivedPreRevision,
+    'Drury migration also runs only once');
   await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
   await page.reload({waitUntil:'domcontentloaded'});
   assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
@@ -133,6 +146,7 @@ const server=http.createServer((req,res)=>{
   assert.equal(record.ok,true,'Independent mastery is current after an unassisted success');
   assert.equal(record.assisted,false,'A free correct answer is not assisted');
   await page.locator('#back-home').click();
+  await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('revision');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
@@ -149,6 +163,7 @@ const server=http.createServer((req,res)=>{
   assert.equal(record.correct,1,'Previous correct answer is still remembered');
   assert.equal(record.wrong,1,'New error is counted');
   await page.locator('#back-home').click();
+  await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#new').click();
   assert.equal(await page.locator('#total').textContent(),'1','The failed revision is eligible for review');
@@ -156,6 +171,7 @@ const server=http.createServer((req,res)=>{
   // Audit C01 : au moins une correction complète "pourquoi pas" + "à retenir"
   // doit être réellement visible à l'écran après une tentative.
   await page.locator('#back-home').click();
+  await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#topic').selectOption('sa');
   await page.locator('#difficulty').selectOption('2');
@@ -183,6 +199,7 @@ const server=http.createServer((req,res)=>{
   // Audit C02 : la couleur d'atout est indispensable au comptage des cinq clés.
   // Vérifier son rendu et la réponse au Blackwood dans la version iPhone.
   await page.locator('#back-home').click();
+  await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#topic').selectOption('chelem');
   await page.locator('#difficulty').selectOption('4');
