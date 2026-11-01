@@ -260,6 +260,27 @@ for(const id of reviewedUnexplained){
   assert.equal(x.shape[suit],shortLength,'Four cards, not a natural five-card balancing suit: '+id);
  }
 }
+// V4.42 : remplacer sept faux pièges 2SA sur des réveils très faibles
+// par des annonces naturelles légales mais trop courtes et trop faibles.
+const weakBalancingNatural={
+ 'SEF-V4-065-1':'1♦','SEF-V4-065-2':'1♦',
+ 'SEF-V4-066-1':'1♥',
+ 'SEF-V4-067-4':'1♠','SEF-V4-067-1':'1♠',
+ 'SEF-V4-068-2':'2♣','SEF-V4-068-3':'2♣'
+};
+assert.equal(Object.keys(weakBalancingNatural).length,7);
+for(const [id,temptation] of Object.entries(weakBalancingNatural)){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x,'Réveil très faible encore présent : '+id);
+ assert.equal(x.answer,'Passe','Bonne réponse inchangée : '+id);
+ assert.ok(x.h<=4,'Petite main de réveil : '+id);
+ assert.ok(x.choices.includes(temptation)&&!x.choices.includes('2SA'),
+   'Piège naturel à la place de 2SA : '+id);
+ const suit={'♠':0,'♥':1,'♦':2,'♣':3}[temptation.slice(-1)];
+ assert.equal(x.shape[suit],3,'Seulement trois cartes : '+id);
+ assert.equal(x.whyNot?.bid,temptation,'Contraste sur la nouvelle annonce : '+id);
+ assert.ok(x.whyNot?.reason&&x.takeaway,'Leçon explicitement justifiée : '+id);
+}
 assert.ok(exercises.filter(x=>x.whyNot).length>=272,'All revised pedagogical comparisons preserved');
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');

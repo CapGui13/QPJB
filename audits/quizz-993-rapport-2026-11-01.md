@@ -415,3 +415,25 @@ Sur les 139 exercices signalés en V4.40, 19 n'avaient pas de corrigé comparati
 **Bilan :** 993 exercices inchangés, 0 bonne réponse modifiée, 6 distracteurs remplacés, 272 comparaisons cumulées, 867 signaux favorables, 118 vigilances et 8 priorités. Les 126 alertes restantes sont des signaux heuristiques et non des erreurs attestées ; aucun cas encore signalé n'est dépourvu d'explication comparative.
 
 **Référence :** https://dev.ibridge-club.fr/public/fichedetails/564 (réveil direct naturel généralement cinquième, contre tricolore possible à partir de 8 HL). La progression des élèves est conservée ; aucune migration nécessaire. Les contrôles de non-régression protègent les 19 explications et les six propositions.
+
+
+---
+
+## Lot 10 — sept mains trop faibles en réveil (V4.42, 1er novembre 2026)
+
+**Constat pédagogique :** après l'ouverture adverse et deux Passe, sept mains de **0 à 4 H** proposaient encore `2SA` parmi les fausses réponses. Cette enchère, qui montre en réveil direct une main régulière forte d'environ **17–19 HL** avec l'arrêt, était un piège trop caricatural. Les sept situations conservent **Passe** comme unique réponse attendue et leurs identifiants.
+
+| Exercices | Ouverture adverse | Piège retiré | Piège naturel introduit | Pourquoi c'est faux |
+|---|---|---|---|---|
+| `SEF-V4-065-1`, `-2` | 1♣ | 2SA | **1♦** | Trois Carreaux et seulement 2 ou 4 H |
+| `SEF-V4-066-1` | 1♦ | 2SA | **1♥** | Trois Cœurs et 3 H |
+| `SEF-V4-067-4`, `-1` | 1♥ | 2SA | **1♠** | Trois Piques et 0 ou 4 H |
+| `SEF-V4-068-2`, `-3` | 1♠ | 2SA | **2♣** | Trois Trèfles et 0 ou 4 H |
+
+Le choix de remplacement est une **enchère légale mais mauvaise avec cette main**, non une seconde bonne réponse. La leçon ciblée : un réveil naturel sans saut demande normalement **au moins cinq cartes et 8–13 HL**. Un réveil n'est jamais automatique. Les sept corrections « Pourquoi pas ? » explicitent désormais la longueur et la force insuffisantes de l'annonce naturelle choisie ; leur nombre total reste **272**.
+
+**Résultat de l'indicateur automatique recalculé :** 874 favorables, 111 vigilances et 8 priorités (119 cas encore signalés). Le score n'établit pas la qualité intrinsèque d'un distracteur et ne constitue pas une certification pédagogique.
+
+**Intégrité :** 993 exercices, 22 rubriques et toutes les bonnes réponses conservés ; sept mauvaises propositions remplacées et sept contrastes réécrits, sans changement de progression. Le relevé CSV et les garde-fous du test d'intégrité suivent ces sept choix. Publication et tests navigateurs à confirmer via GitHub Actions après le commit.
+
+**Source documentaire :** Fédération française de bridge, *En route vers le SEF*, séance 22 « Les réveils directs », p. 135, https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf#page=135.
