@@ -30,6 +30,29 @@ assert.ok(stayman6.choices.includes('2♣'),'The natural beginner temptation is 
 const stayman8=exercises.find(x=>x.id==='SEF-N096-1');
 assert.equal(stayman8?.answer,'2♣','Contrasting hand at eight H still uses Stayman');
 assert.ok(html.includes('archivedPreRevision:former')&&html.includes('pedagogicalRevision:revisedStaymanCode'),'Prior student progress is archived for corrected exercise');
+const revisedRules={
+ 'SEF-V4-097-1':'2♥',
+ 'SEF-V4-103-1':'2♠',
+ 'SEF-V44-067':'2SA',
+ 'SEF-V44-068':'2SA'
+};
+for(const [id,bid] of Object.entries(revisedRules)){
+ const x=exercises.find(z=>z.id===id);
+ assert.equal(x?.answer,bid,'SEF 2024 Drury or 2SA after Passe: '+id);
+ assert.ok(x?.whyNot?.reason&&x.takeaway,'SEF 2024 cases explain the tempting alternative: '+id);
+}
+for(const id of ['SEF-V44-067','SEF-V44-068']){
+ const x=exercises.find(z=>z.id===id);
+ assert.equal(x.auction.length,4,'Fit with singleton is announced directly by 2SA: '+id);
+ assert.equal(x.shape[x.id==='SEF-V44-067'?1:0],4,'Four trump cards: '+id);
+ assert.ok(x.shape.includes(1),'Singleton required for 2SA in third seat: '+id);
+}
+const nonForcing=exercises.filter(x=>/1SA\s*\(?forcing\)?/i.test(
+ x.auction.join(' ')+x.context+x.explain+(x.difficultyReason||'')));
+assert.deepEqual(nonForcing.map(x=>x.id),[],'SEF major-opening 1SA must be non forcing');
+const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
+assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
+assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
 for(const x of contrasted){
  assert.ok(x.whyNot?.bid&&x.whyNot?.reason&&x.takeaway,'Complete teaching contrast '+x.id);
  assert.ok(x.choices.includes(x.whyNot.bid),'Comparison corresponds to an offered option: '+x.id);
