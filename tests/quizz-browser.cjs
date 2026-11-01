@@ -10,7 +10,7 @@ const server=http.createServer((req,res)=>{
  const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
  if(!pathname.startsWith('/QPJB/')){res.writeHead(404);res.end();return}
  let file=path.resolve(root,pathname.slice('/QPJB/'.length));
- if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
+ if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
  try{
   if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');
   res.writeHead(200,{'content-type':types[path.extname(file)]||'application/octet-stream'});
