@@ -198,6 +198,8 @@ function quizScrollTo(y){
 }
 function quizFadeNavigate(action){
  if(quizPendingAction||quizLocalBusy)return;
+ // Respect de la préférence d'accessibilité : pas d'attente ni d'animation.
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){action();return;}
  if(!quizEmbedded){
    quizLocalBusy=true;
    let overlay=document.getElementById('qpjb-quiz-local-fade');
