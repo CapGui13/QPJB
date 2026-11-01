@@ -255,6 +255,8 @@ const server=http.createServer((req,res)=>{
     const embedded=app.frameLocator('#quizz-frame');
     await embedded.locator('#new').waitFor({state:'visible',timeout:12000});
     assert.equal(new URL(app.url()).pathname,'/QPJB/','The Quizz opens inside the parent app URL');
+    assert.equal(await app.locator('#main-header').isVisible(),true,'Quizz settings share the normal QPJB header');
+    assert.equal(await embedded.locator('.app-top').isVisible(),false,'No duplicate header in embedded Quizz');
     await app.evaluate(()=>{
       document.getElementById('quizz-frame').dataset.persistenceProbe='same-iframe';
       window.__quizzInternalFadeSeen=false;
@@ -265,6 +267,7 @@ const server=http.createServer((req,res)=>{
     });
     await embedded.locator('#new').click();
     await embedded.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
+    await app.waitForFunction(()=>document.getElementById('main-header').style.display==='none',null,{timeout:12000});
     assert.equal(await app.evaluate(()=>window.__quizzInternalFadeSeen),true,'Quizz page transitions reuse the QPJB fade overlay');
     await embedded.locator('#show-choices').click();
     assert.equal(await embedded.locator('#answers button').count(),4,'Embedded Quizz keeps four choices on demand');
@@ -285,6 +288,7 @@ const server=http.createServer((req,res)=>{
     assert.equal(await embedded.locator('#answers button').count(),4,'Browser history preserves the active question');
     await embedded.locator('#back-home').click();
     await embedded.locator('body:not(.session-mode)').waitFor({state:'visible',timeout:12000});
+    await app.waitForFunction(()=>document.getElementById('main-header').style.display!=='none',null,{timeout:12000});
     assert.equal(await embedded.locator('#new').isVisible(),true,'The settings screen reappears without reload');
     await embedded.locator('#qpjb-quiz-return').click();
     await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='none',null,{timeout:12000});
