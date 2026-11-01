@@ -20,9 +20,16 @@ for(const x of exercises){
 }
 
 const contrasted=exercises.filter(x=>x.whyNot);
-assert.equal(contrasted.length,78,'At least the 54 curated pedagogical contrasts are retained');
+assert.ok(contrasted.length>=125,'Pedagogical contrasts from the focused SEF review are retained');
 assert.equal(exercises.filter(x=>/^SEF-C-\d{3}$/.test(x.id)).length,12,'Twelve audited C01 situations');
 assert.equal(exercises.filter(x=>/^SEF-C2-\d{3}$/.test(x.id)).length,12,'Twelve audited C02 convention situations');
+const stayman6=exercises.find(x=>x.id==='SEF-V49-016');
+assert.equal(stayman6?.h,6,'Boundary: six H in two four-card majors');
+assert.equal(stayman6?.answer,'Passe','Classic SEF Stayman requires at least 8 H');
+assert.ok(stayman6.choices.includes('2♣'),'The natural beginner temptation is still offered');
+const stayman8=exercises.find(x=>x.id==='SEF-N096-1');
+assert.equal(stayman8?.answer,'2♣','Contrasting hand at eight H still uses Stayman');
+assert.ok(html.includes('archivedPreRevision:former')&&html.includes('pedagogicalRevision:revisedStaymanCode'),'Prior student progress is archived for corrected exercise');
 for(const x of contrasted){
  assert.ok(x.whyNot?.bid&&x.whyNot?.reason&&x.takeaway,'Complete teaching contrast '+x.id);
  assert.ok(x.choices.includes(x.whyNot.bid),'Comparison corresponds to an offered option: '+x.id);
