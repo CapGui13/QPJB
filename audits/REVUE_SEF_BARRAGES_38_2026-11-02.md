@@ -2,7 +2,7 @@
 
 **Dépôt :** `CapGui13/QPJB`, branche `main`. **Source examinée :** les **38 fiches réelles** de la rubrique `barrage` dans `quizz.html`, après commit [`f66c997`](https://github.com/CapGui13/QPJB/commit/f66c997cc8e0e02d3fd631c05abac96b266e9322). **Référence :** SEF français pour débutants, sans choix de convention de paire.
 
-**Bilan :** 32 réponses retenues sans modification ; 5 fiches corrigées (trois bonnes réponses et deux mains) ; 1 cas conservé comme discutable (sans transformation en erreur certaine). **38/38 fiches examinées nominativement**, les 13 cartes, les points H, la distribution, les quatre propositions et la justification étant confrontés à la décision attendue. Une réponse retenue ne signifie pas que tous ses distracteurs sont optimaux.
+**Bilan :** 32 réponses retenues sans modification ; **6 fiches corrigées** (trois bonnes réponses et trois mains), **aucun cas litigieux restant dans ce lot**. **38/38 fiches examinées nominativement**, les 13 cartes, les points H, la distribution, les quatre propositions et la justification étant confrontés à la décision attendue. Une réponse retenue ne signifie pas que tous ses distracteurs sont optimaux.
 
 ## Références de méthode
 
@@ -32,7 +32,7 @@
 | `SEF-V3-099-3` | ♠107 ♥ADV10762 ♦97 ♣103 | 7 | Ouverture → **3♥** | validé | Sept Cœurs ADV10xxx, 7 H, main faible : 3♥ de barrage raisonnable. |
 | `SEF-V3-099-1` | ♠V8 ♥AR97432 ♦V4 ♣92 | 9 | Ouverture → **3♥** | validé | Sept Cœurs ARxxxxx, 9 H, sans valeur secondaire sérieuse : barrage à 3♥. |
 | `SEF-V3-100-4` | ♠DV109752 ♥R2 ♦42 ♣102 | 6 | Ouverture → **3♠** | validé | Sept Piques DV109xxx, 6 H, bonne texture et main faible : 3♠ de barrage. |
-| `SEF-V3-100-2` | ♠D986542 ♥R5 ♦V9 ♣D5 | 8 | Ouverture → **3♠** | discutable | Sept Piques D986542 peu robustes, 8 H éparpillés ; à vulnérabilité inconnue, 3♠ peut être très agressif en première position. Préciser la vulnérabilité ou renforcer la couleur avant de certifier une réponse unique. |
+| `SEF-V3-100-2` | ♠RDV9852 ♥95 ♦84 ♣D7 | 8 | Ouverture → **3♠** | corrigé | Sept Piques commandés par RDV, 8 H et vulnérabilité favorable précisée : la main remaniée permet un barrage cohérent et non ambigu, après [correction `d0b7efe`](https://github.com/CapGui13/QPJB/commit/d0b7efe1fb1f21599c3b7ef6a29c6f5a673e1b2f). |
 | `SEF-V3-101-2` | ♠42 ♥V98762 ♦654 ♣54 | 1 | Ouverture → **Passe** | validé | Un seul H et six Cœurs V987xx insuffisants pour un 2 faible : Passe. |
 | `SEF-V3-101-1` | ♠97 ♥1098642 ♦DV9 ♣72 | 3 | Ouverture → **Passe** | validé | 3 H et six Cœurs 10986xx sans gros honneur : Passe. |
 | `SEF-V3-102-2` | ♠V109653 ♥93 ♦653 ♣82 | 1 | Ouverture → **Passe** | validé | 1 H, six Piques V109xxx sans deux gros honneurs : Passe. |
@@ -57,12 +57,12 @@
 ## Distracteurs et limites
 
 - La série montre souvent `1SA` comme mauvaise réponse à l'ouverture avec six cartes majeures, y compris quand la main est très faible ou très distribuée : **18 fiches sur 38** proposent ce distracteur. Ce n'est pas une seconde bonne réponse, mais c'est souvent un piège trop facile. Liste des IDs concernés : `SEF-V3-091-1`, `SEF-V3-091-2`, `SEF-V3-092-3`, `SEF-V3-093-1`, `SEF-V3-093-3`, `SEF-V3-094-1`, `SEF-V3-095-1`, `SEF-V3-095-2`, `SEF-V3-096-2`, `SEF-V3-096-1`, `SEF-V3-097-3`, `SEF-V3-097-4`, `SEF-V3-098-1`, `SEF-V3-098-3`, `SEF-V3-101-2`, `SEF-V3-101-1`, `SEF-V3-102-2`, `SEF-V3-102-3`. **Amélioration à faire par petits lots** et sans introduire un autre contrat défendable.
-- `SEF-V3-100-2` : garder un avertissement éditorial tant que la vulnérabilité et la qualité de la majeure ne sont pas harmonisées avec la règle pédagogique ; la bonne réponse 3♠ n'a pas été modifiée.
-- Les cinq exercices rectifiés redeviennent à travailler uniquement pour les élèves ayant déjà un résultat enregistré sur ces IDs ; le précédent historique est archivé via la migration pédagogique ciblée, sans remettre les autres progrès à zéro.
+- `SEF-V3-100-2` : la réserve initiale est **levée après correction de la main** (♠RDV9852) et précision de la vulnérabilité favorable. L'ouverture de 3♠ est conservée, sans risque de seconde réponse aussi défendable.
+- Les six exercices rectifiés redeviennent à travailler uniquement pour les élèves ayant déjà un résultat enregistré sur ces IDs ; le précédent historique est archivé via la migration pédagogique ciblée, sans remettre les autres progrès à zéro.
 - **Tests structurels avant commit :** 993 IDs uniques, 13 cartes, comptes H, shapes, quatre réponses distinctes incluant la bonne, aucune situation strictement dupliquée. Les tests GitHub Actions du commit sont à vérifier séparément : ne pas qualifier une livraison de publiée avant CI + Pages.
 
 ## Suite
 
 1. Vérifier la réussite du nouveau workflow Chromium/WebKit/CI et la publication Pages.
-2. Reprendre `SEF-V3-100-2` en confrontant la qualité de Pique à la vulnérabilité.
+2. Le cas `SEF-V3-100-2` est clos après renforcement de la couleur septième et clarification de la vulnérabilité. Préparer le lot de distracteurs de barrage trop faciles.
 3. Ouvrir un lot distinct de conventions avancées (Rubensohl, Multi-Landy, Michaels et chelems), chacun avec ses identifiants et conditions de validité, sans fusionner les volumes.
