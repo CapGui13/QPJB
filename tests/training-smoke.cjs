@@ -269,8 +269,8 @@ for(const id of cleared){
    !!x.historicalQuarantineReason20261102&&!x.quarantineReason,
    'documentary SEF reservation resolved with history preserved: '+id);
 }
-check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===5,
- 'five active convention/tactical documentary caveats remain open');
+check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===3,
+ 'three unresolved slam/competitive documentary caveats remain open');
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261102e')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261102e'),
  'both entry points load the current pedagogical module');
