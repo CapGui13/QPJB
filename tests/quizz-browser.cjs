@@ -93,14 +93,15 @@ const server=http.createServer((req,res)=>{
   // A known convention case must retain its decision-relevant note.
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#topic').selectOption('roudi');
-  await page.locator('#difficulty').selectOption('5');
+  // Après le recalibrage, les cas de Roudi à inférences multiples sont au niveau 4.
+  await page.locator('#difficulty').selectOption('4');
   await page.locator('#mode').selectOption('0');
   await page.locator('#new').click();
   // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
   await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   let hasMaxNote=false;
   const totalRoudi=Number(await page.locator('#total').textContent());
-  assert.ok(totalRoudi>=5,'Roudi level-five pool exists');
+  assert.ok(totalRoudi>=5,'Roudi level-four pool exists after recalibration');
   for(let i=0;i<totalRoudi;i++){
    hasMaxNote=hasMaxNote||(await page.locator('#body .context-note').allTextContents()).some(t=>t.includes('fit, maximum'));
    await page.locator('#pass').click();
