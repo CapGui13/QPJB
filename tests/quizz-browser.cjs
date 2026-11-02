@@ -132,8 +132,18 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#free-answer').inputValue(),'Passe','Compose Passe');
   await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
   assert.equal(await page.locator('#free-answer').inputValue(),'','Backspace clears call');
+  // Régression iPhone : le repli du clavier ne doit pas déclencher de défilement programmatique brutal.
+  await page.evaluate(()=>{
+    window.__keypadScrollCalls=[];
+    const originalBy=window.scrollBy.bind(window);
+    const originalTo=window.scrollTo.bind(window);
+    window.scrollBy=function(...args){window.__keypadScrollCalls.push({method:'by',args});return originalBy(...args)};
+    window.scrollTo=function(...args){window.__keypadScrollCalls.push({method:'to',args});return originalTo(...args)};
+  });
   await page.locator('#bid-key-close').click();
   await page.locator('#bid-keypad').waitFor({state:'hidden',timeout:2500});
+  const keypadScrollCalls=await page.evaluate(()=>window.__keypadScrollCalls);
+  assert.deepEqual(keypadScrollCalls,[],'Closing bridge keypad must not force a programmatic scroll');
    assert.equal(await page.locator('#bid-keypad').isVisible(),false,'Close the bridge keypad');
   assert.equal(await page.locator('#show-choices').count(),1,'The learner may request four choices');
   assert.equal(await page.locator('.feedback').count(),0,'No answer is revealed in advance');
