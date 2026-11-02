@@ -420,6 +420,54 @@ const server=http.createServer((req,res)=>{
     await app.close();
   }finally{await integratedContext.close()}
 
+  // Animation du clavier Bridge — ouverture, repli et corrigé, avec mouvements autorisés.
+  // Les autres parcours de ce fichier restent en reducedMotion='reduce' pour leur stabilité.
+  const motionContext=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR',reducedMotion:'no-preference'});
+  try{
+    const motion=await motionContext.newPage();
+    motion.on('pageerror',e=>errors.push(e.message));
+    await motion.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+    await motion.locator('#topic').selectOption('ouv');
+    await motion.locator('#difficulty').selectOption('1');
+    await motion.locator('#mode').selectOption('10');
+    await motion.locator('#new').click();
+    await motion.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
+    const motionHand=await motion.locator('#body .hand .suit .rank').allTextContents();
+    const motionData=JSON.parse(await motion.locator('#training-data').textContent());
+    const motionExercise=motionData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(v=>v.join('')).join('|')===motionHand.join('|'));
+    assert.ok(motionExercise,'An opening exercise is identifiable for keyboard animation');
+    await motion.locator('#free-answer').click();
+    await motion.locator('#bid-keypad.is-open').waitFor({state:'visible',timeout:1500});
+    await motion.waitForTimeout(520);
+    const fullHeight=await motion.locator('#bid-keypad').evaluate(el=>el.getBoundingClientRect().height);
+    assert.ok(fullHeight>170,'Bridge keyboard opens to its real content height: '+fullHeight);
+    // Recliquer sur le bouton ne doit pas masquer instantanément le clavier.
+    await motion.locator('#bid-key-toggle').click();
+    await motion.waitForTimeout(160);
+    const foldingHeight=await motion.locator('#bid-keypad').evaluate(el=>el.getBoundingClientRect().height);
+    assert.ok(foldingHeight>0&&foldingHeight<fullHeight-3,
+      'Bridge keyboard folds progressively: '+JSON.stringify({fullHeight,foldingHeight}));
+    await motion.locator('#bid-keypad').waitFor({state:'hidden',timeout:1600});
+    assert.equal(await motion.locator('#free-form').count(),1,'Closing keyboard keeps the question and free entry');
+    assert.equal(await motion.locator('#answers button').count(),0,'Closing keyboard does not reveal proposals');
+    // Une validation réussie garde la fermeture animée avant d'afficher le corrigé.
+    await motion.locator('#free-answer').click();
+    await motion.locator('#bid-keypad.is-open').waitFor({state:'visible',timeout:1500});
+    await motion.waitForTimeout(450);
+    const m=String(motionExercise.answer).match(/^([1-7])(SA|[♣♦♥♠])$/);
+    const keys=m?[m[1],m[2]]:[motionExercise.answer];
+    for(const key of keys)await motion.locator('#bid-keypad [data-bid-key="'+key+'"]').click();
+    assert.equal(await motion.locator('#free-answer').inputValue(),motionExercise.answer);
+    await motion.locator('#free-form button[type=submit]').click();
+    await motion.waitForTimeout(80);
+    assert.equal(await motion.locator('.feedback').count(),0,'No corrected answer before the keyboard folds');
+    await motion.locator('.feedback').waitFor({state:'visible',timeout:2000});
+    assert.equal(await motion.locator('#bid-keypad').count(),0,'Keyboard removed only after the folding transition');
+    const motionRecord=await motion.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],motionExercise.id);
+    assert.equal(motionRecord.lastResult,'correct','Answer remains recorded after animated folding');
+    await motion.close();
+  }finally{await motionContext.close()}
+
   assert.deepEqual(errors,[],'No JavaScript runtime exceptions');
   console.log('Quizz browser: PASS ('+engine+')');
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
