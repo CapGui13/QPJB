@@ -430,3 +430,13 @@ Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_
 - [**Actualiser le catalogue #41523262134**](https://github.com/CapGui13/QPJB/actions/runs/41523262134) : **success**.
 - [**QPJB Pages #41523930063**](https://github.com/CapGui13/QPJB/actions/runs/41523930063) : **success**, publication du commit généré `2356b473` après validation du précédent `main`. Le lot **clavier + deux distracteurs B10 + trois quarantaines EN + mise à jour PWA** est donc **testé et publié**.
 - **Suite active :** vérification Safari sur iPhone physique, rapprochement des onze anciennes anomalies EN annoncées sans liste nominative, puis relecture individuelle des autres réserves des originaux PDF. Aucun résultat antérieur sauvegardé sur l'appareil n'a été effacé.
+
+
+---
+
+## Contrôle complémentaire EN — réserves historiques actives (2 novembre 2026)
+
+- **Rapport nominatif créé** : [`REVUE_STATUTS_EN_RESERVES_2026-11-02.md`](REVUE_STATUTS_EN_RESERVES_2026-11-02.md), commit [`0224f256`](https://github.com/CapGui13/QPJB/commit/0224f256be67c20df439746c2b021ad055c20e44). Rapprochement technique de l'actuel `training-data-bidding.js` et des anciens rapports Passe01–03, **sans prétendre avoir réaudité les PDF originaux dans ce lot**.
+- **563 fiches EN stockées, 560 accessibles** : 38 fiches avec `historicalReviewStatus: a_verifier`, dont **35 actuellement accessibles** ; **13 de ces 35 ont encore un `quarantineReason`** non levé explicitement dans leurs métadonnées. Trois fiches V6.10 sont bien masquées. Une réserve historique ne justifie pas à elle seule la suppression ou la remise en quarantaine de masse.
+- **Priorité pédagogique** : étudier d'abord `EN-2sa-006` (16 H en face de 2SA, réponse 4SA et divergence avec B19-Q4), puis les 12 autres motifs encore ouverts, spécialement les traitements Stayman/Texas/Smolen. Vérifier les PDF et le cadre SEF avant de changer l'accès, le barème ou les réponses. Vérifier aussi l'omission ancienne de vulnérabilité `EN-BH-049-04` ; `EN-BH-055-06` a déjà son contexte de vulnérabilité dans la banque actuelle.
+- **Aucune donnée, statut d'exercice, progression ni code applicatif modifié** dans cette passe ; seul un rapport de traçabilité et le présent suivi sont ajoutés. Les résultats de tests CI/Pages doivent être revérifiés après ces commits documentaires ; la réussite précédente du lot clavier/EN reste confirmée.
