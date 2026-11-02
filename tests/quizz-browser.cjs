@@ -244,8 +244,13 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#total').textContent(),'1','Revision proposes the successful exercise');
   assert.equal(await page.locator('#answers button').count(),0,'Revisions also start without choices');
   await page.locator('#show-choices').click();
+  // Le clic lance un fondu asynchrone : attendre les quatre propositions avant
+  // de calculer l'index (sinon -1 pointe vers .last() sur une liste vide).
+  await page.locator('#answers button').first().waitFor({state:'visible',timeout:12000});
+  await page.waitForFunction(()=>document.querySelectorAll('#answers button').length===4);
   const revisionChoices=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
   const wrongIndex=revisionChoices.findIndex(s=>s!==chosen.answer);
+  assert.ok(wrongIndex>=0,'Revision QCM must offer at least one incorrect choice');
   await page.locator('#answers button').nth(wrongIndex).click();
   record=await page.evaluate(id=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))[id],chosen.id);
   assert.equal(record.lastResult,'wrong','Later mistake updates last result');
