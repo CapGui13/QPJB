@@ -14,13 +14,13 @@ assert.ok(html.includes('function normalizeBid('),'Bidding input parser exists')
 assert.ok(html.includes('id="show-choices"'),'A reveal-choices button exists');
 assert.ok(html.includes('Le SEF est notre référence unique.'),'The SEF is explicitly shown as the single reference system');
 for(const x of exercises){
- for(const part of [x.context,x.explain,x.takeaway,x.whyNot?.reason]){
+ for(const part of [x.context,x.explain]){
   assert.doesNotMatch(String(part||''),/accord de paire|accords SEF retenus|dans cet accord|dans ce système|^accord Walsh/i,'No pair-specific caveat in '+x.id);
  }
 }
 
-const contrasted=exercises.filter(x=>x.whyNot);
-assert.ok(contrasted.length>=125,'Pedagogical contrasts from the focused SEF review are retained');
+assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
+
 assert.equal(exercises.filter(x=>/^SEF-C-\d{3}$/.test(x.id)).length,12,'Twelve audited C01 situations');
 assert.equal(exercises.filter(x=>/^SEF-C2-\d{3}$/.test(x.id)).length,12,'Twelve audited C02 convention situations');
 const stayman6=exercises.find(x=>x.id==='SEF-V49-016');
@@ -39,7 +39,7 @@ const revisedRules={
 for(const [id,bid] of Object.entries(revisedRules)){
  const x=exercises.find(z=>z.id===id);
  assert.equal(x?.answer,bid,'SEF 2024 Drury or 2SA after Passe: '+id);
- assert.ok(x?.whyNot?.reason&&x.takeaway,'SEF 2024 cases explain the tempting alternative: '+id);
+ 
 }
 for(const id of ['SEF-V44-067','SEF-V44-068']){
  const x=exercises.find(z=>z.id===id);
@@ -67,7 +67,7 @@ for(const [id,[correct,jump]] of Object.entries(freeNtRebids)){
  assert.ok(x.choices.includes(jump),'The tempting but excessive jump is offered: '+id);
  assert.ok(!x.choices.includes('Passe'),'Nonforcing pass is not falsely presented as categorically illegal: '+id);
  assert.match(x.context,/non forcing/i,'The learner sees the SEF nonforcing rule: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Explained pedagogical contrast: '+id);
+ 
 }
 // V4.37 : corriger les réponses caricaturales 2SA avec 0 à 4 H après
 // intervention adverse. Ne pas déplacer les bonnes réponses ni les IDs.
@@ -89,8 +89,8 @@ for(const id of weakReviewIds){
  const x=exercises.find(y=>y.id===id);
  assert.ok(x,'Reviewed low-H exercise remains available: '+id);
  assert.equal(x.answer,id.startsWith('SEF-V3-080-')?'2♠':'Passe','Review retained the original SEF response: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Explicit alternative and lesson: '+id);
- assert.ok(x.choices.includes(x.whyNot.bid),'Discussed wrong bid is offered: '+id);
+ 
+ 
  if(id in reviewedWeakResponses){
   assert.ok(x.h<=4,'Corrected 2SA trap applies only to a very weak hand: '+id);
   assert.ok(x.choices.includes(reviewedWeakResponses[id]),'Natural tempting new suit offered: '+id);
@@ -125,8 +125,8 @@ const expectedRevised={
 for(const id of [...reviewedStayman,...reviewedSecond]){
  const x=exercises.find(y=>y.id===id);
  assert.ok(x,'SEF exercise not found: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Explicit comparative teaching for '+id);
- assert.ok(x.choices.includes(x.whyNot.bid)&&x.whyNot.bid!==x.answer,'A genuinely wrong tempting bid is explained: '+id);
+ 
+ 
  const theme=reviewedStayman.includes(id)?'stayman':'second';
  assert.equal(x.theme,theme,'Exercise family still correct: '+id);
  if(expectedRevised[id]){
@@ -136,7 +136,7 @@ for(const id of [...reviewedStayman,...reviewedSecond]){
   assert.ok(!x.choices.includes(removed),'Obvious or ambiguous old choice removed: '+id);
  }
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=191,'All 32 new pedagogical contrasts are preserved');
+
 // V4.39 : distinguer SEF 2024 de la convention « collante » hors SEF.
 // Après une mineure et une intervention à 1♦/1♥, le Spoutnik dénie une majeure quatrième.
 const naturalMajorSef24={
@@ -151,13 +151,12 @@ for(const [id,[bid,open,intervention,minLength]] of Object.entries(naturalMajorS
  assert.equal(x.auction[1],'Adversaire : '+intervention,'Intervention correct: '+id);
  assert.equal(x.answer,bid,'Natural response, not inverted Spoutnik: '+id);
  assert.ok(x.hand[bid==='1♠'?0:1].length>=minLength,'At least four cards in chosen major: '+id);
- assert.ok(x.choices.includes('Contre')&&x.whyNot?.bid==='Contre',
-  'Incorrect Spoutnik retained only as a teaching alternative: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Corrective pedagogical contrast: '+id);
+ 
+ 
  const mapEntry=new RegExp("'"+id+"':'sef24-spoutnik-");
  assert.match(html,mapEntry,'Prior progress archived before the corrected answer: '+id);
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=221,'All V4.39 Drury and competitive explanations exist');
+
 // V4.39 : diversifier les pièges sans modifier les bonnes réponses des autres cas.
 const replacementTraps={
  'SEF-V4-047-1':['4♥','3♥','Passe'],
@@ -176,7 +175,7 @@ for(const [id,[correct,pitfall,discarded]] of Object.entries(replacementTraps)){
  assert.equal(x.answer,correct,'SEF result remains correct: '+id);
  assert.ok(x.choices.includes(pitfall)&&!x.choices.includes(discarded),
   'Replaced a less instructive distractor: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'SEF contrast is explained: '+id);
+ 
 }
 const manualPriorityCases={
  'SEF-V44-045':'Surcontre', 'SEF-V410-027':'Contre',
@@ -187,7 +186,7 @@ const manualPriorityCases={
 for(const [id,bid] of Object.entries(manualPriorityCases)){
  const x=exercises.find(y=>y.id===id);
  assert.equal(x?.answer,bid,'Manual priority review confirms SEF result: '+id);
- assert.ok(x?.whyNot?.reason&&x?.takeaway,'Manual priority review retains teaching context: '+id);
+ 
 }
 // V4.40 : préserver l'audit des réponses « presque plausibles » sans
 // présenter le relais 2SA sur un 2 faible comme une faute systématique.
@@ -202,8 +201,8 @@ for(const [id,correct] of Object.entries(weakTwoChoiceReview)){
  assert.equal(x.answer,correct,'Original SEF answer preserved: '+id);
  assert.ok(!x.choices.includes('2SA'),'Remove ambiguous 2NT game inquiry as a wrong option: '+id);
  assert.ok(x.choices.includes('3♦'),'Require a genuine new-suit length error instead: '+id);
- assert.equal(x.whyNot?.bid,'3♦','Explain the exact replacement: '+id);
- assert.ok(x.takeaway?.includes('2SA'),'Teach the status of the relay: '+id);
+ 
+ 
 }
 const detailedReviewIds=[
  'SEF-V3-108-1','SEF-V4-009-1','SEF-V4-010-1',
@@ -221,11 +220,11 @@ assert.equal(new Set(detailedReviewIds).size,32);
 for(const id of detailedReviewIds){
  const x=exercises.find(e=>e.id===id);
  assert.ok(x,'Reviewed exercise exists: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Explanatory contrast is complete: '+id);
- assert.ok(x.choices.includes(x.whyNot.bid),'Discussed alternative is shown: '+id);
- assert.notEqual(x.answer,x.whyNot.bid,'The compared alternative is not the right answer: '+id);
+ 
+ 
+ 
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=253,'All 32 new comparative explanations remain present');
+
 // V4.41 : contrôle systématique de toutes les anciennes vigilances
 // non expliquées, et remplacement de six « 2SA » caricaturaux en réveil.
 const reviewedUnexplained=[
@@ -247,15 +246,15 @@ const revisedBalancingBids={
 for(const id of reviewedUnexplained){
  const x=exercises.find(y=>y.id===id);
  assert.ok(x,'SEF situation still present: '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Reasoned incorrect answer and takeaway: '+id);
- assert.ok(x.choices.includes(x.whyNot.bid),'Explained incorrect answer must be offered: '+id);
- assert.notEqual(x.answer,x.whyNot.bid,'Do not explain the correct choice as a distractor: '+id);
+ 
+ 
+ 
  if(id in revisedBalancingBids){
   const [correct,temptation,shortLength]=revisedBalancingBids[id];
   assert.equal(x.answer,correct,'Correct balancing double is preserved: '+id);
   assert.ok(x.choices.includes(temptation)&&!x.choices.includes('2SA'),
     'Natural alternative replaces unrealistic 2NT: '+id);
-  assert.equal(x.whyNot.bid,temptation,'Explain new natural alternative: '+id);
+  
   const suit={'♠':0,'♥':1,'♦':2,'♣':3}[temptation.slice(-1)];
   assert.equal(x.shape[suit],shortLength,'Four cards, not a natural five-card balancing suit: '+id);
  }
@@ -278,8 +277,8 @@ for(const [id,temptation] of Object.entries(weakBalancingNatural)){
    'Piège naturel à la place de 2SA : '+id);
  const suit={'♠':0,'♥':1,'♦':2,'♣':3}[temptation.slice(-1)];
  assert.equal(x.shape[suit],3,'Seulement trois cartes : '+id);
- assert.equal(x.whyNot?.bid,temptation,'Contraste sur la nouvelle annonce : '+id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Leçon explicitement justifiée : '+id);
+ 
+ 
 }
 // V4.43 : compte HLD après une intervention à la couleur.
 const hldFit=exercises.find(x=>x.id==='SEF-V3-075-3');
@@ -288,7 +287,7 @@ assert.deepEqual(hldFit?.shape,[1,3,5,4],'Singleton Pique, trois atouts Cœur');
 assert.deepEqual(hldFit?.auction,['Partenaire : 1♥','Adversaire : 1♠'],'Séquence d’intervention');
 assert.equal(hldFit?.answer,'2SA','Douze HLD imposent 2SA fitté en SEF 2024');
 assert.ok(hldFit?.choices.includes('2♥'),'Le soutien insuffisant devient un piège instructif');
-assert.equal(hldFit?.whyNot?.bid,'2♥','Comparaison sur la vraie ambiguïté 2M / 2SA');
+
 assert.match(hldFit?.explain||'',/9 H.*1 L.*2 D.*12 HLD/i,'Décompte complet avec le cinquième Carreau');
 assert.ok(html.includes("'SEF-V3-075-3':'sef24-hld-11-2nt-fit-after-overcall'"),
   'La tentative ancienne est archivée avant remise à travailler');
@@ -434,12 +433,12 @@ for(const [id,expected] of Object.entries(fitHldAfterOvercall)){
  assert.equal(x.h+L+D,expected.hld,'Total HLD avec fit : '+id);
  assert.equal(x.answer,expected.answer,'Bon palier de soutien : '+id);
  assert.ok(x.explain.includes(expected.hld+' HLD'),'Valeur HLD expliquée : '+id);
- assert.ok(x.takeaway&&x.takeaway.includes('points L'),'Règle à retenir explicite : '+id);
+ 
  assert.ok(x.choices.includes(x.answer),'Bonne réponse proposée : '+id);
 }
 for(const id of ["SEF-V3-081-3","SEF-V3-082-1","SEF-V3-083-1","SEF-V3-084-3"]){
  const x=exercises.find(z=>z.id===id);
- assert.equal(x.whyNot?.bid,'3'+x.auction[0].slice(-1),'Le piège du soutien à 3M est expliqué : '+id);
+ 
 }
 // V4.45 — soutien avec quatre atouts en compétition selon le SEF 2024.
 const fit4Cases={
@@ -464,7 +463,7 @@ for(const [id,expected] of Object.entries(fit4Cases)){
  assert.equal(x.answer,expected.answer,'Décision SEF correcte : '+id);
  assert.ok(x.explain.includes(expected.hld+' HLD'),'Corrigé chiffré : '+id);
  assert.ok(x.choices.includes(x.answer),'Quatre choix incluent la réponse : '+id);
- if(expected.bad)assert.equal(x.whyNot?.bid,expected.bad,'Alternative expliquée : '+id);
+ if(expected.bad)
 }
 for(const id of ['SEF-V420-011','SEF-V421-008','SEF-V425-008']){
  assert.ok(html.includes("'"+id+"':'sef24-fit4-"),'Révision de progression non destructive : '+id);
@@ -606,10 +605,9 @@ for(const [id,expected] of Object.entries(newConventionContrasts)){
  assert.ok(x,'Exercice de convention disponible : '+id);
  assert.equal(x.theme,expected.theme,'Bonne famille de convention : '+id);
  assert.equal(x.answer,expected.answer,'Bonne réponse inchangée : '+id);
- assert.equal(x.whyNot?.bid,expected.bid,'Mauvaise enchère expliquée : '+id);
- assert.ok(x.choices.includes(x.whyNot.bid),'Piège toujours proposé : '+id);
- assert.ok(x.whyNot.reason.length>45&&x.takeaway.length>35,
-    'Comparaison et règle pédagogique précises : '+id);
+ 
+ 
+ 
 }
 // Contrôle autonome des réponses 30–41 : 4 As + le Roi de l'atout agréé.
 const blackwoodKeys={
@@ -674,18 +672,18 @@ for(const item of [...wakeStrong,...wakeLimited]){
  assert.equal(x.h+L,item.hl,'Compte HL : '+item.id);
  assert.ok(x.choices.includes(item.bid)&&x.choices.includes('Contre'),'Deux réponses à comparer : '+item.id);
  assert.ok(x.explain.includes(item.hl+' HL'),'Corrigé complet : '+item.id);
- assert.ok(x.whyNot?.reason&&x.takeaway,'Piège expliqué : '+item.id);
+ 
 }
 for(const item of wakeStrong){
  const x=exercises.find(e=>e.id===item.id);
  assert.equal(x.answer,'Contre','La main de 14 HL commence par Contre : '+item.id);
- assert.equal(x.whyNot.bid,item.bid,'La couleur immédiate est la tentation : '+item.id);
+ 
  assert.ok(html.includes("'"+item.id+"':'sef-reveil-14hl-contre-"),'Archivage du résultat précédent : '+item.id);
 }
 for(const item of wakeLimited){
  const x=exercises.find(e=>e.id===item.id);
  assert.equal(x.answer,item.bid,'Réveil limité naturel maintenu : '+item.id);
- assert.equal(x.whyNot.bid,'Contre','Comparaison sur le Contre fort : '+item.id);
+ 
 }
 // Tester tous les réveils naturels de la base, pas seulement les cas corrigés.
 // Les contre-exemples avec 14 HL sont traités par Contre et sortent de cet ensemble.
@@ -796,8 +794,8 @@ for(const item of directCalls){
  assert.ok(x,'Intervention existante '+item.id);
  assert.equal(x.theme,'intervenir');
  assert.ok(x.choices.includes(item.bid)&&x.answer!==item.bid);
- assert.equal(x.whyNot?.bid,item.bid);
- assert.ok(x.whyNot.reason.length>50&&x.takeaway.length>40);
+ 
+ 
  const opener=x.auction[0].match(/^Adversaire : 1([♠♥♦♣])$/);
  assert.ok(opener,'Ouverture adverse à 1 : '+item.id);
  const idx=directSuitIndices[opener[1]];
@@ -822,14 +820,14 @@ for(const item of directCalls){
 for(const id of ["SEF-V3-044-1","SEF-V3-045-2","SEF-V3-046-3"]){
  assert.ok(html.includes("'"+id+"':'sef-nt-direct-16h-"),'Ancienne tentative archivée : '+id);
 }
-assert.ok(exercises.filter(x=>x.whyNot).length>=329,'All revised pedagogical comparisons preserved');
+
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
-for(const x of contrasted){
- assert.ok(x.whyNot?.bid&&x.whyNot?.reason&&x.takeaway,'Complete teaching contrast '+x.id);
- assert.ok(x.choices.includes(x.whyNot.bid),'Comparison corresponds to an offered option: '+x.id);
- assert.notEqual(x.answer,x.whyNot.bid,'Comparison is not the right answer: '+x.id);
+for(const x of []){
+ 
+ 
+ 
 }
 const known=new Set();
 const themeIds=new Set(data.themes.map(x=>x.id));
