@@ -6,6 +6,7 @@ const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const parent=read('index.html'),html=read('entrainement/index.html');
+const alternateHtml=read('entrainement/qp-training-corrige.html');
 const app=read('entrainement/training-app.js');
 const worker=read('service-worker.js');
 const core=read('entrainement/training-core.css');
@@ -13,6 +14,9 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
+check(html.includes('training-data-bootstrap.js?v=20261102c')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261102c'),
+ 'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
  for(const c of css){if(c==='{')level++;else if(c==='}'){level--;min=Math.min(min,level)}}
