@@ -389,3 +389,36 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 **Publication GitHub Pages confirmée** : [QPJB Pages #41494835153](https://github.com/CapGui13/QPJB/actions/runs/41494835153), terminée avec **success** après validation, sur le commit automatique de catalogue `259dc697`. Le correctif `quizz.html` est resté identique au blob `61a2a0ffbaad8c3a07388bbcfe23d92b153bd454` depuis le commit `5d55d0a`.
 
 **Portée et limites** : les 31 correctifs de données, les 27 difficultés et les cinq révisions ciblées sont **testés et publiés**. La réussite WebKit est celle du navigateur automatisé simulant l'iPhone, **pas** un essai physique sur iPhone. La présente ligne de suivi, purement documentaire, ne constitue ni une nouvelle modification pédagogique ni une nouvelle condition de publication.
+
+
+---
+
+## Lot P2 — Repli du clavier Bridge et premières corrections EN (2 novembre 2026)
+
+### Clavier Bridge / défilement du Quizz
+
+- **Correction dans `quizz.html`** : [`43487c740`](https://github.com/CapGui13/QPJB/commit/43487c740d74698b62ceedd4c3f445618c320a89). La fermeture utilise une hauteur réelle mesurée et attend **`transitionend` du `max-height`** (ou une temporisation de secours si WebKit n'émet pas l'événement) avant de reconstruire les choix ou le corrigé. Plus de `setTimeout(render, 440)` / `setTimeout(finish, 440)`. Le bouton « Clavier bridge » doit plier comme il déplie ; les actions de réponse ne doivent plus couper l'animation.
+- **Test navigateur à mouvements autorisés** : [`bde39cee`](https://github.com/CapGui13/QPJB/commit/bde39cee46d98f2dc3579c5a7cd3cbe2220d4266) dans `tests/quizz-browser.cjs`. Il mesure l'ouverture, une hauteur intermédiaire pendant le repli, la fermeture complète, l'absence de propositions indésirables, puis l'apparition du corrigé seulement après la fermeture. Tests prévus sur Chromium et WebKit simulant un iPhone 12.
+- **Aucune main, réponse ou progression modifiée dans les 993 Quizz.** La validation sur **iPhone Safari physique** reste nécessaire ; un test WebKit simulé n'en tient pas lieu.
+
+### Entraînement EN : deux erreurs de distracteurs et trois quarantaines
+
+Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_EN_11_V610_2026-11-02.md).
+
+- `EN-1m-009` (B10-4) : l'ancien distracteur **2♣**, jugé envisageable par le corrigé, a été remplacé par **1♦** avec seulement deux Carreaux. Bonne réponse **1SA** inchangée.
+- `EN-1m-011` (B10-6) : l'ancien distracteur **1♠**, évoqué comme possible par la source, a été remplacé par **2♦** à saut excessif avec 7 H. Bonne réponse **1♦** inchangée.
+- La troisième réserve B10 déjà documentée, `EN-1m-020`, ne proposait déjà plus `1♦` comme choix pénalisé ; **aucune intervention supplémentaire**.
+- Trois identifiants portant une décision formelle `pedagogicalReview_v610.decision === "quarantaine"`, mais encore affichés faute de statut `a_verifier`, ont été **masqués provisoirement sans suppression** : `EN-BH-075-04`, `EN-BH-090-06`, `EN-BH-102-01`. Motifs documentés : signification du soutien direct à 3♠ et chelem direct sans exploration des contrôles.
+- **563 IDs d'enchères conservés, 560 maintenant accessibles, 3 en quarantaine**. Les 114 fiches de jeu de la carte (111 accessibles) restent intactes. **Aucun historique localStorage effacé** ; les réponses correctes et les mains sont identiques.
+- Banque maîtresse `training-data.js`, module `training-data-bidding.js`, bootstrap, générateur et compteurs synchronisés. PWA versionnée `20261102b`, cache `qpjb-v41` ; test hors ligne ajusté. Tests de non-régression dans `tests/training-smoke.cjs`.
+- **Limite de preuve importante :** la feuille de route mentionnait auparavant « 11 anomalies certaines » sur 563 EN sans liste de leurs IDs. Les **11 annotations `pedagogicalReview_v610`** recensées dans la banque (3 quarantaines et 8 mises au point) ne sont **pas automatiquement** ces 11 erreurs. Cette ancienne annonce reste à rapprocher nominativement des audits. Ne pas la déclarer résolue par simple concordance numérique et ne pas modifier les huit autres cas sans preuve.
+- Le rapport du présent lot ne remplace pas l'audit PDF des séquences Stayman/Texas, ni l'arbritrage des autres `a_verifier`. Le registre de **993 exercices Quizz** est indépendant des 563 exercices EN.
+
+### Validation / prochaines priorités
+
+1. **P0 :** contrôler le dernier `QPJB Training smoke` (audit, Chromium, WebKit, dont nouveau test de clavier avec mouvement), puis GitHub Pages. Réparer les vrais échecs, attendre les conclusions exactes. Les commits documentaires peuvent faire annuler les anciens runs.
+2. **P1 :** vérifier le lot EN en conservant la distinction 563 stockés / 560 accessibles et la protection des anciens résultats. Rechercher la liste source des 11 anomalies annoncées ; ne pas inventer leurs IDs.
+3. **P2 :** sur **Safari iPhone réel**, vérifier le repli au bouton, la validation avec clavier ouvert, l'arrivée du corrigé et le défilement. Si le problème persiste, utiliser une capture ou une vidéo de reproduction pour cibler la cause restante.
+4. **P2 :** poursuivre la vérification des autres EN dans leurs PDF originaux, sans déduire du seul statut `transcrit_source` que toute proposition est pédagogiquement certaine.
+
+**État au moment de cette mise à jour** : commits de code et de tests présents dans `main`, **pas de certification de la dernière publication ici avant lecture du résultat Pages**.
