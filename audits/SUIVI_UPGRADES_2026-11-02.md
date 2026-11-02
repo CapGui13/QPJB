@@ -63,3 +63,27 @@ Aucun e-mail de validation envoyé dans cette session : ne notifier qu'après CI
 7. **P3 — Traçabilité et publication** : regrouper seulement les corrections certaines ; à chaque lot, consigner les IDs, ancienne/nouvelle réponse, motif SEF, SHA de commit, tests, état réel de publication et points ouverts dans **ce fichier**. Ne pas envoyer de notification avant CI + Pages confirmés.
 
 **Règle de mise à jour** : après chaque intervention, actualiser l'état de l'étape concernée, conserver les points encore ouverts, et dater la dernière vérification. Ne jamais confondre *soumis*, *tests réussis*, *publié* et *vérifié visuellement sur iPhone*. Éviter les duplications de feuilles de route : cette section prolonge les précédentes sans les effacer.
+
+
+---
+
+## Lot P1 — 26 soutiens mineurs et compétitifs (2 novembre 2026)
+
+**Compte rendu détaillé (source unique des 26 verdicts) :** [`REVUE_SEF_26_SOUTIENS_2026-11-02.md`](REVUE_SEF_26_SOUTIENS_2026-11-02.md). Référentiel : `QUIZZ_REFERENCE_SEF.md`, recoupé avec les enseignements SEF sur la priorité des SA et les soutiens de barrage après intervention.
+
+- **26/26 fiches relues individuellement** : 12 réponses aux ouvertures mineures, 14 réponses à une intervention du partenaire. **17 fiches corrigées ou adaptées** dans [`c321fe6`](https://github.com/CapGui13/QPJB/commit/c321fe6112d930985f1d9bc4e431e7888a8b6eac).
+- Parmi les 12 soutiens mineurs : **8 réponses 2m → 1SA**, du fait de mains régulières de 6 à 10 H sans majeure quatrième ; **4 restent à arbitrer** avec leurs mains et l'alternative à SA : `SEF-020-1`, `SEF-N031-2`, `SEF-V412-014`, `SEF-V412-015`. Ne pas imposer un nouveau verdict sans préciser la méthode de réponse à 1♣ (6–7 H) ou la pertinence du soutien mineur à saut (11 H sans courte).
+- Parmi les 14 soutiens compétitifs : **5 soutiens simples à 2M conservés**, **4 soutiens à saut 3M → 2M avec 7 H et main plate 4-3-3-3**, **5 mains faibles modifiées en 4-4-4-1 avec singleton dans la couleur adverse pour justifier 3M de barrage**. Sur ces cinq, le contexte indique désormais une vulnérabilité favorable. Les 14 sont documentés individuellement dans le rapport.
+- **Protection de la progression** : 12 réponses modifiées assorties de codes de révision dans `quizz.html` ; archivage historique et nouvelle tentative sur ces seules fiches. Les autres progrès ne sont pas effacés.
+- **Validation précommit** : 993 identifiants distincts, 13 cartes, points H exacts, shapes cohérentes, 4 réponses distinctes et réponse présente : **aucune erreur structurelle**. Relu dans la branche `main` après commit.
+- **CI / Pages :** sur `c321fe6`, le workflow [catalogue](https://github.com/CapGui13/QPJB/actions/runs/41438269784) est **réussi** ; son workflow [smoke](https://github.com/CapGui13/QPJB/actions/runs/41438269779) a été **annulé** lors de commits ultérieurs, **pas considéré comme réussi**. Attendre un **smoke complet réussi sur le dernier commit**, puis la publication Pages associée, avant de déclarer ce lot totalement validé. Aucune validation iPhone physique réalisée dans cette intervention.
+
+### Prochaines priorités suite à ce lot
+
+1. **P0 tests et déploiement :** vérifier smoke du dernier commit et son déclenchement Pages ; résoudre tout échec avant de poursuivre les modifications de code.
+2. **P1 arbitrages restants de ce lot :** les quatre fiches mineures mentionnées ci-dessus ; documenter une réponse SEF pédagogiquement non ambiguë avant toute correction.
+3. **P1 autres cas litigieux :** trois interventions de barrage `SEF-V44-043`, `SEF-V44-044`, `SEF-V422-003` ; Drury `SEF-V4-101-2`, `SEF-V4-107-3` ; ouverture forte `SEF-V45-004` ; six conditions de séquence ; contrôle des distracteurs prioritaires et difficultés.
+4. **P1 couverture :** ne pas recalculer « 993 exercices uniques audités » à partir de passages qui se chevauchent ; produire un registre d'IDs relié à une preuve de lecture individuelle.
+5. **P2 UX :** reprendre la stabilité du clavier bridge, des réponses, du défilement et des transitions ; harmoniser les derniers énoncés encore formulés en tutoiement.
+
+**Règle :** toute nouvelle correction doit être justifiée par l'exercice réel et par le SEF ; inscrire dans cette feuille de route les faits vérifiés (notamment le statut CI), ne pas convertir « lancé » en « réussi ».
