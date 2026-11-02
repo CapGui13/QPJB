@@ -474,7 +474,10 @@ function revealQuizFeedback(){
       page=window.parent;top+=window.frameElement.getBoundingClientRect().top;
     }
    }catch(_){}
-   const distance=Math.max(0,Math.round(top-page.innerHeight*.14));
+   // Ne jamais remonter brutalement le corrigé en haut de l'écran.
+   // Défilement uniquement si le début du corrigé est réellement sous la zone visible.
+   const visibleBottom=page.innerHeight-24;
+   const distance=Math.max(0,Math.round(top-visibleBottom));
    if(distance>0)page.scrollBy({top:distance,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   },80);
  });
