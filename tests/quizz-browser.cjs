@@ -232,6 +232,9 @@ const server=http.createServer((req,res)=>{
   assert.equal(record.ok,true,'Independent mastery is current after an unassisted success');
   assert.equal(record.assisted,false,'A free correct answer is not assisted');
   await page.locator('#back-home').click();
+  // Les réglages restent dans le DOM pendant le fondu : attendre la sortie effective
+  // de session avant de modifier les filtres, surtout sur WebKit iPhone.
+  await page.locator('body:not(.session-mode)').waitFor({state:'attached',timeout:12000});
   await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
   await page.locator('#selection-mode').selectOption('revision');
   await page.locator('#mode').selectOption('0');
