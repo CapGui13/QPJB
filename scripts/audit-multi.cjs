@@ -7,7 +7,10 @@ const axis=process.argv[2];
 const allowed=['enchere','distracteurs','explications','difficulte'];
 if(!allowed.includes(axis))throw Error('Axe inconnu : '+axis);
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
-const match=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const startTag='<script id="training-data" type="application/json">';
+const start=html.indexOf(startTag);
+const end=html.indexOf('</script>',start+startTag.length);
+const match=start>=0&&end>start?['',html.slice(start+startTag.length,end)]:null;
 if(!match)throw Error('Catalogue introuvable');
 const exercises=JSON.parse(match[1]).exercises;
 const findings=[];
@@ -32,6 +35,6 @@ for(const x of exercises){
 }
 const report={axis,kind:'audit-statique-sans-IA',count:exercises.length,findings,summary:{errors:findings.filter(f=>f.severity==='error').length,toReview:findings.filter(f=>f.severity==='review').length},warning:'Les jugements SEF, la plausibilité des pièges et la difficulté réelle nécessitent une revue experte indépendante.'};
 fs.mkdirSync('audit-output',{recursive:true});
-fs.writeFileSync('audit-output/'+axis+'.json',JSON.stringify(report,null,2)+'\\n');
+fs.writeFileSync('audit-output/'+axis+'.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({axis,count:report.count,...report.summary}));
 if(report.summary.errors)process.exitCode=1;
