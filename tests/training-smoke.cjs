@@ -213,4 +213,26 @@ const harness=[
  "return queued&&list&&quiz&&priorOk&&secondClickQueued&&secondClickInFlight&&cat==='2sa'&&view==='list';"
 ].join('\n');
 check(new Function(harness)(),'navigation and scroll preservation scenario');
+// B10 ambiguity regressions : never mark an author-approved alternative as wrong.
+const splitBidding=read('entrainement/training-data-bidding.js').trim();
+check(splitBidding.startsWith('D.bidding=')&&splitBidding.endsWith(';'),'lazy bidding module is valid JS data');
+const splitItems=JSON.parse(splitBidding.slice('D.bidding='.length,-1));
+check(JSON.stringify(data.bidding)===JSON.stringify(splitItems),
+ 'source master and lazy bidding module stay in sync');
+const excludedAlternatives=[
+ {id:'EN-1m-009',answer:'1SA',excluded:'2♣',alternative:'1♦'},
+ {id:'EN-1m-011',answer:'1♦',excluded:'1♠',alternative:'2♦'}
+];
+for(const {id,answer,excluded,alternative} of excludedAlternatives){
+ const x=splitItems.find(e=>e.id===id);
+ check(!!x,'documented B10 exercise exists: '+id);
+ check(x.correct===answer&&x.choices.includes(answer),'correct bid is unchanged: '+id);
+ check(!x.choices.includes(excluded)&&x.choices.includes(alternative),
+   'second defensible bid not penalised: '+id);
+ check(x.choices.length===4&&new Set(x.choices).size===4,'four unique proposals: '+id);
+ check(Object.keys(x.pretryHints||{}).every(k=>x.choices.includes(k)&&k!==answer),
+   'pretry hints only refer to current wrong choices: '+id);
+ check(Object.keys(x.distractorNotes||{}).every(k=>x.choices.includes(k)&&k!==answer),
+   'distractor explanations only refer to current wrong choices: '+id);
+}
 console.log('QPJB Training smoke: '+checks+' checks passed.');
