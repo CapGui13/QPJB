@@ -118,3 +118,33 @@ Aucun e-mail de validation envoyé dans cette session : ne notifier qu'après CI
 **CI / Pages pour ce commit :** les workflows [smoke](https://github.com/CapGui13/QPJB/actions/runs/41444583076) et [catalogue](https://github.com/CapGui13/QPJB/actions/runs/41444583141) ont été lancés après le commit. Résultat **à recontrôler après le présent suivi**, puis publication GitHub Pages. Ne pas déclarer réussi un run simplement démarré ; la validation sur iPhone physique est distincte des tests simulés.
 
 **Prochain chantier prioritaire après validation :** audit individuel des distracteurs et des difficultés sur les 17 cas signalés en SA/conventions, puis les cas de séquence/forces encore litigieux ; poursuivre le registre d'IDs réellement vérifiés. Maintenir le suivi de la progression, de la stabilité mobile et des 11 anomalies distinctes de l'Entraînement (`EN-*`).
+
+
+---
+
+## Lot P2 — Revue des 17 distracteurs SA, conventions et ouvertures — 2 novembre 2026
+
+**Contrôle sur les 17 fiches réelles** du catalogue `quizz.html`, audit de la crédibilité des distracteurs et vérification que la bonne réponse reste une alternative sans ambiguïté.
+
+- **9 exercices** ont reçu **un distracteur amélioré chacun**, remplaçant surtout « Passe », « 4SA » ou « 3SA » manifestement hors zone par une faute plus instructive de seuil, d'ouverture mineure ou de Texas. **Aucune bonne réponse, main, ID ni progression modifiée.** Commit [`10f4a05`](https://github.com/CapGui13/QPJB/commit/10f4a056f74aee2af65d6dbd4efa10029919a12d).
+- **8 exercices** examinés et conservés : `SEF-N019-1`, `SEF-N019-2`, `SEF-N021-1`, `SEF-N021-2`, `SEF-N088-1`, `SEF-N088-3`, `SEF-N089-1`, `SEF-N089-2`. Les choix existants illustrent déjà les principales confusions de zone, distribution ou convention ; remplacement arbitraire non justifié.
+
+| ID | Distracteur remplacé | Motif du nouveau piège, qui reste faux |
+|---|---|---|
+| `SEF-005-2` | Passe → 2♣ | 2♣ fort tentant avec 21 H, mais main régulière 20–21 H = 2SA. |
+| `SEF-N017-1` | Passe → 1♣ | Tentative d’ouverture mineure à la place de 1SA avec 16 H réguliers. |
+| `SEF-N017-2` | Passe → 1♣ | Même piège avec 15 H réguliers. |
+| `SEF-N097-1` | 4SA → 3♦ | Après 2SA, 3♦ est Texas Cœur ; la main n'a que trois Cœurs. |
+| `SEF-N097-3` | 4SA → 3♦ | Même confusion entre Carreaux naturels et Texas Cœur. |
+| `SEF-N098-1` | 4SA → 3♠ | Après 2SA, 3♠ est Texas Trèfle, non adapté à quatre Trèfles et 2 H. |
+| `SEF-N098-2` | 4SA → 3♠ | Même piège de transfert mineur inadapté à 3 H. |
+| `SEF-V3-017-2` | 3SA → 3♥ | Sur rectification du Texas Cœur, 3♥ serait une invitation avec une longue majeure et des valeurs absentes. |
+| `SEF-V3-019-3` | 3SA → 3♠ | Sur rectification du Texas Pique, 3♠ serait une invitation injustifiée avec 3 H. |
+
+**Contrôles avant commit :** toujours 993 exercices à 13 cartes, points H cohérents, chaque QCM contient quatre choix distincts dont la bonne réponse. Les neuf modifications ne changent pas les bons contrats ; **aucune migration ni remise à zéro de progression nécessaire**.
+
+**Références de convention :** [Texas Cœur à 3♦ sur 2SA — document pédagogique du Simultané des élèves](https://bridgesarzeau.club.ffbridge.fr/document-download/65ae4d36982af_SDEJan24.pdf) ; [Texas après 1SA, répétition au palier de 3 pour proposer la manche](https://abc-du-bridge.scenari-community.org/003-03/co/003-03-02.html). Les nouveaux distracteurs restent incorrects pour les mains concernées.
+
+**CI / publication :** recontrôler sur le dernier `main` les jobs catalogue, intégrité, Chromium, WebKit et publication Pages ; aucune réussite non encore confirmée ne doit être anticipée.
+
+**Prochaines étapes :** priorité au registre des IDs effectivement audités, puis aux autres distracteurs et notes de difficulté signalés, sans imposer un changement automatique aux 993 fiches. Les 11 anomalies de l'Entraînement `EN-*` restent distinctes.
