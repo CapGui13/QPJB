@@ -96,7 +96,15 @@ fs.writeFileSync(path.join(output,'report.md'),md);
 assert.equal(report.total,993,'Expected total for audit C02');
 
 assert.equal(familyVariants.length,203,'All 203 existing variant families must remain preserved');
-assert.equal(familyVariantCounts['decision-contrast']||0,5,'Five families compare real thresholds (Stayman, fit HLD and three awakening cases)');
+// La correction pédagogique peut créer d'autres contrastes valables : ex. mains 4-3-3-3
+// opposées à des mains de barrage avec singleton. Préserver les cinq familles
+// historiques sans imposer un cardinal figé ni certifier automatiquement les nouvelles.
+const baselineContrasts=['cas-148','cas-275','cas-363','cas-365','cas-366'];
 const contrastedFamily=familyVariants.filter(x=>!x.sameAnswer);
-assert.deepEqual(contrastedFamily.map(x=>x.family).sort(),['cas-148','cas-275','cas-363','cas-365','cas-366'],'The five documented families change decisions at the threshold');
+assert.ok(contrastedFamily.length>=baselineContrasts.length,'All five documented threshold contrasts must remain');
+for(const family of baselineContrasts){
+ assert.ok(contrastedFamily.some(x=>x.family===family),'Baseline contrast absent: '+family);
+}
+assert.ok((familyVariantCounts['decision-contrast']||0)>=baselineContrasts.length,
+ 'Decision contrasts must preserve the five historic cases');
 console.log('Quizz content audit: PASS | '+report.total+' exercises | '+report.pedagogicalFamilies+' families | correct-bid explanations only | '+report.repeatedTextExtraExercises+' reused wordings');
