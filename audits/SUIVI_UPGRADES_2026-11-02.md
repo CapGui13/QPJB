@@ -253,3 +253,37 @@ Les rapports collectifs annoncent également la couverture intégrale de **586 f
 2. **P1** : auditer par lots les **conventions avancées restantes** (Rubensohl, Multi-Landy, Michaels, chelems, Drury, forcing) non encore couvertes par les 24 fiches nominatives déjà documentées ; distinguer les accords de paire et le SEF standard.
 3. **P2** : décider individuellement des niveaux de difficulté 5 sur reconnaissance de codage et de la valeur pédagogique des familles de variantes, sans suppression d'ID.
 4. **P2** : revisiter la stabilité du clavier bridge et de la navigation mobile, puis les 11 anomalies distinctes `EN-*` dans l'Entraînement.
+
+
+---
+
+## Lot P1 — Clôture des 46 fiches Multi-Landy, Rubensohl, Michaels et chelems (2 novembre 2026)
+
+### Bilan individuel des quatre familles
+
+- Dernier lot : [`REVUE_SEF_CONVENTIONS_COMPLEMENT_22_2026-11-02.md`](REVUE_SEF_CONVENTIONS_COMPLEMENT_22_2026-11-02.md), **22 fiches réelles inspectées** (5 Multi-Landy, 7 Rubensohl, 5 Michaels précisés, 5 chelems). **22 bonnes réponses conservées** : la grille conventionnelle nécessaire est indiquée dans chaque exercice. Aucune nouvelle règle de paire inventée.
+- Ce lot complète les [24 conventions déjà auditées](REVUE_SEF_CONVENTIONS_24_2026-11-02.md) ; ces deux rapports permettent désormais une traçabilité **46/46** sur les rubriques concernées : **11 Multi-Landy, 13 Rubensohl, 11 Michaels, 11 chelems**. Les autres conventions (Roudi, Drury, ouvertures fortes, forcing) sont des rubriques distinctes, non prétendues incluses dans ces 46.
+- **Quatre niveaux recalibrés** par examen individuel : `SEF-V45-030` (3→2, Passe sans bicolore face au 1SA adverse), `SEF-V45-039` (5→4, Texas impossible / Stayman forcing après 2♦), `SEF-V45-047` et `SEF-V45-048` (5→3, reconnaître les deux mineures 5-5 et l'enchère 2SA Michaels). Un corrigé `SEF-C2-009` a été reformulé **sans tutoiement**, en conservant 5♥ avec deux clés et sans Dame d'atout. **17 autres fiches laissées intactes**.
+- Commit de code [`481de6d`](https://github.com/CapGui13/QPJB/commit/481de6dd1860275aaefd380e80ff1af4280e77b1), **aucune bonne enchère, main, ID, séquence ou progression modifiée**. Contrôle de contenu précommit : 993 fiches, 13 cartes et points H exacts, distributions cohérentes, quatre propositions distinctes et la bonne réponse parmi elles.
+- Références : [Rubensohl, avec Texas impossible et contre d'appel](https://www.ibridge.fr/public/fichedetails/24) ; [Michaels précisés, tableau de codage des bicolores](https://pfbridge.fr/posts/2019/08/comment-m%C3%A9moriser-les-interventions-bicolores/). Ne pas extrapoler cette cohérence à toutes les versions alternatives de ces conventions.
+
+### Registre : état le plus récent
+
+[`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv) mis à jour pour les **22 nouveaux ID** du rapport :
+
+| Niveau nominatif justifié | IDs |
+|---|---:|
+| Revue ciblée récente avec identifiants explicites | **160** |
+| Correction nominative historique seulement | **16** |
+| Revue thématique nominative seulement | **175** |
+| Aucune pièce nominative retrouvée parmi les rapports rapprochés | **642** |
+| **Total** | **993** |
+
+Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** avaient une revue thématique seulement et **2** une correction historique seulement. Les quatre rubriques sont entièrement documentées individuellement dans les deux rapports, mais la présence de **642 sans pièce nominative** ne signifie **pas** qu'elles n'ont jamais fait l'objet d'un audit collectif. Les 586 enchères à deux et 249 compétitives annoncées auditées par rubrique restent séparées dans le CSV.
+
+### Prochaines étapes après cette clôture
+
+1. **P0 — CI et publication :** vérifier sur le dernier `main` le succès complet des jobs **audit des données**, **Chromium**, **WebKit** et la publication **GitHub Pages** après `481de6d` et les commits documentaires. Ne pas valider un run `skipped`, `cancelled` ou `in_progress`. Aucun test sur iPhone physique revendiqué.
+2. **P1 — Familles encore à documenter** : audits individuels ciblés des rubriques **Roudi (33), Drury (19), ouvertures fortes (12) et forcing (10)**, en évitant les ID déjà revus, puis analyse des éventuelles réponses conventionnelles discutables.
+3. **P2 — Pédagogie/UX** : vérifier le rappel des conventions accessibles en exercice sur iPhone, les distracteurs plausibles et les difficultés 4–5 ; maintenir la règle d'un corrigé impersonnel expliquant uniquement la bonne enchère.
+4. **P2 — Entraînement distinct** : reprendre les onze anomalies `EN-*` et le clavier bridge / défilement, avec tests sur les écrans mobiles.
