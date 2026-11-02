@@ -309,3 +309,19 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 2. **P1 :** traiter les trois anomalies Drury ouvertes `SEF-V4-099-2`, `SEF-V4-105-2`, `SEF-C2-011` avec corrections ciblées et tests ; ne pas changer de bonne réponse sans validation pédagogique solide.
 3. **P1 :** poursuivre la revue nominative **Roudi (33)**, puis **ouvertures fortes (12)** et **forcing (10)** par lots individuels, sans inventer de nouvelles règles de paire et sans compter deux fois les IDs déjà contrôlés.
 4. **P2 :** maintenir les tests clavier bridge / défilement iPhone et le chantier séparé des 11 anomalies d'Entraînement `EN-*`.
+
+
+---
+
+## Lot P1 — Audit nominatif des 33 exercices Roudi (2 novembre 2026)
+
+**Rapport :** [`REVUE_SEF_ROUDI_33_2026-11-02.md`](REVUE_SEF_ROUDI_33_2026-11-02.md). **33/33 IDs distincts réellement inspectés**, sans se baser sur une liste de rubriques seule. Les points H/13 cartes/propositions de chacun sont cohérents ; les **33 bonnes réponses** respectent le Roudi du SEF à **trois réponses** (2♦ pas de fit, 2♥ fit minimum, 2♠ fit maximum). Aucune donnée ni bonne réponse modifiée.
+
+- **1 anomalie pédagogique ouverte :** `SEF-C2-012`, dont le contexte explique déjà que **2♣** est le relais du Roudi ; réponse correcte mais divulgation de la solution. Réécrire l'énoncé, conserver la correction et vérifier la difficulté 3.
+- **12 exercices** de réponse codée de l'ouvreur actuellement notés **difficulté 4** : recommander un niveau **3** après arbitrage pédagogique, car le raisonnement se limite généralement au nombre d'atouts et à la force minimum/maximum. Aucun recalibrage encore appliqué.
+- **Diversité / distracteurs :** les variantes ♥/♠ et 1♣/1♦ enseignent la généralisation du code, mais une partie des fausses propositions reste simple à éliminer ; améliorer au cas par cas, pas par remplacement automatique.
+- **Registre nominatif actualisé**, toujours 993 IDs et aucune double comptabilisation : **205** revues ciblées récentes, **16** corrections historiques nominatives seules, **161** revues thématiques seules, **611** sans preuve nominative exploitable dans les pièces rapprochées. Parmi les 33 Roudi : **5** déjà ciblés, **1** déjà thématique, **27** sans pièce antérieure rapprochée. Les 611 ne sont pas déclarés jamais audités.
+- **Commits documentaires** : [rapport](https://github.com/CapGui13/QPJB/commit/67718fe6f518165e2f2a89d7e9c3fed3afbf7e38), [registre](https://github.com/CapGui13/QPJB/commit/c766ba97c62c11cb6fb1b8d94440164f9b3ec7ab). Ces commits ne touchent ni `quizz.html`, ni le stockage local, ni les tests.
+- **CI et Pages après ce lot :** recontrôler sur le dernier `main` les résultats `success` des jobs nécessaires ; les runs `cancelled`, `skipped` et `in_progress` ne valident rien. La publication Pages était confirmée **avant** les commits documentaires du lot Drury/Roudi.
+
+**À poursuivre en priorité :** (1) arbitrer les **3 anomalies Drury** et la **fuite de solution Roudi**, avec migration ciblée si besoin ; (2) auditer les **12 ouvertures fortes**, puis les **10 forcing** ; (3) revue ciblée des niveaux 4–5 et de l'UX clavier iPhone. Conserver la feuille de route unique et l'inventaire des IDs.
