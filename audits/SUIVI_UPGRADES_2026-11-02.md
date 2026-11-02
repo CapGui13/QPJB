@@ -148,3 +148,45 @@ Aucun e-mail de validation envoyé dans cette session : ne notifier qu'après CI
 **CI / publication :** recontrôler sur le dernier `main` les jobs catalogue, intégrité, Chromium, WebKit et publication Pages ; aucune réussite non encore confirmée ne doit être anticipée.
 
 **Prochaines étapes :** priorité au registre des IDs effectivement audités, puis aux autres distracteurs et notes de difficulté signalés, sans imposer un changement automatique aux 993 fiches. Les 11 anomalies de l'Entraînement `EN-*` restent distinctes.
+
+
+---
+
+## Lot P2 — Difficultés et registre nominatif des 993 exercices (2 novembre 2026)
+
+### Recalibrage individuel des difficultés — terminé
+
+- **22 exercices** étudiés individuellement ; **21 notes changées** et **une maintenue** (`SEF-008-2`) avec justification reformulée. Le rapport fournit les **22 identifiants**, anciennes/nouvelles notes et raisons : [`RECALIBRAGE_DIFFICULTES_22_2026-11-02.md`](RECALIBRAGE_DIFFICULTES_22_2026-11-02.md).
+- Commit [`7d889c5`](https://github.com/CapGui13/QPJB/commit/7d889c5494a296fa2d677c23371ff5ac60bc3764). Aucune main, réponse, proposition, séquence, sauvegarde ni ID modifié : seulement `difficulty` et `difficultyReason`.
+- Grille retenue : niveau 1 = rappel direct ; 2 = règle courante avec contrainte ; 3 = choix entre règles ou convention ; 4 = combiner plusieurs inférences ; 5 = arbitrage vraiment délicat. Éviter de classer 5 un exercice pour sa seule longueur de séquence.
+
+### Registre de preuve par identifiant — créé
+
+**Document de référence** : [`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv) ; **993 lignes, 993 IDs uniques**. Chaque ligne porte la rubrique, la difficulté actuelle, le contrôle structurel, le niveau de preuve pédagogique, ses sources et sa bonne réponse **au jour du relevé**.
+
+**Bilan vérifiable à partir des pièces nominatives accessibles :**
+
+| Niveau de preuve par ID | Nombre | Portée exacte |
+|---|---:|---|
+| Revue ciblée récente, avec IDs documentés | **76** | 26 soutiens + 11 conditions/Drury/fortes + 17 distracteurs + 22 difficultés |
+| Corrections antérieures nominatives, sans nouvelle lecture dans ce lot | **18** | Commits `196e3946` (13) et `ba32da4e` (6), avec 1 ID en doublon d'une revue récente |
+| Revue thématique historique seule, sans contrôle ciblé récent nominatif | **184** | Sous-ensemble des 199 lignes du rapport `quizz-revue-199-2026-11-01.csv`, dont 15 déjà classées ci-dessus |
+| **Sans pièce nominative exploitable dans les documents rapprochés** | **715** | **Ne veut PAS dire « 715 non audités »** : des audits antérieurs peuvent les avoir lus, mais leurs listes d'IDs manquent |
+| **Total des IDs** | **993** | Chaque ID compte une fois, sans addition artificielle des audits superposés |
+
+Les rapports collectifs annoncent également la couverture intégrale de **586 fiches d'enchères à deux** (8 rubriques) et **249 fiches compétitives** (5 rubriques) : **835 IDs couverts au niveau des rubriques déclarées**, mais cela **ne vaut pas une traçabilité nominative de la méthode et du verdict de chaque fiche**. Le CSV possède une colonne séparée `couverture_collective_declaree` pour conserver cette distinction. Les **36 barrages** et **2 chelems** déclarés vus dans les bilans antérieurs n'ont pas de liste nominative exhaustive ; on ne peut les attribuer arbitrairement.
+
+**Ne pas confondre :**
+- Structure validée sur 993 ≠ justesse SEF individuellement certifiée sur 993.
+- 1 561 passages annoncés et effectués ≠ 1 561 IDs uniques.
+- 278 IDs rapprochés de pièces nominatives ou d'une revue thématique ≠ les seuls exercices jamais lus par un autre audit.
+- Le registre constitue une **photographie datée**. Après des modifications ultérieures du catalogue, actualiser difficultés, réponses, décisions et sources.
+
+### Prochaines priorités
+
+1. **P0 — CI / Pages** : vérifier les workflows sur le dernier `main` après les commits de code et de documentation. Un run annulé par de nouveaux commits n'est ni un succès ni une régression du code. Ne marquer « publié » qu'après Pages réussi.
+2. **P1 — Traçabilité manquante** : obtenir les listes exactes de chaque lot antérieur quand elles existent ; pour les fiches restantes, organiser de nouvelles revues ciblées **sans supposer qu'elles n'ont jamais été lues**. Prioriser les **38 barrages** et les **120 fiches de conventions/approfondissement** non intégralement attestées par une liste de rubriques.
+3. **P2 — Pédagogie** : continuer par lots restreints les arbitrages des réponses contestables, les distracteurs et l'échelle 1–5, sans changements massifs ni seconde réponse défendable.
+4. **P2 — Interface et Entraînement** : stabilité du clavier mobile et du défilement ; traiter séparément les 11 anomalies `EN-*` ; conserver données locales et PDF d'origine.
+
+**Règle permanente :** après chaque lot, consigner IDs, verdict, changements, tests, publication et mettre à jour **ce fichier ainsi que le registre CSV**. Maintenir une distinction stricte entre une preuve nominative, un audit collectif déclaré et un simple contrôle automatique.
