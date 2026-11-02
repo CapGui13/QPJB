@@ -358,8 +358,8 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.qpjb-bid-quiz .choice[data-answer-index="3"]').click();
   assert.equal(await frame.locator('.qpjb-bid-quiz .choice.selected').getAttribute('data-answer-index'),'3',
     'Guided choice retains original source index after visual sorting');
-  await frame.locator('.source-correction strong').waitFor({state:'visible',timeout:15000});
-  assert.equal((await frame.locator('.source-correction strong').innerText()).trim(),'3♠',
+  await frame.locator('.source-correction > p:first-of-type > strong').waitFor({state:'visible',timeout:15000});
+  assert.equal((await frame.locator('.source-correction > p:first-of-type > strong').innerText()).replace(/[\uFE0E\uFE0F]/g,'').trim(),'3♠',
     'SEF chase-croise after 2SA negative Stayman must show five hearts with 3 spades');
   assert.match((await frame.locator('.source-correction h3').innerText()),/explication pédagogique validée/,
     'Corrected SEF result must not be attributed to the original PDF');
