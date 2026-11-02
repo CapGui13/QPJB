@@ -889,3 +889,36 @@ for(let i=0;i<spaced.length;i++){
   assert.ok(!recent.includes(spaced[i].caseFamily),'Avoid close repetition while alternatives exist');
 }
 assert.equal(exercises.length,993,'No exercise removed for spacing');
+
+
+// Régression ciblée SEF novembre 2026 — Drury, fuite de réponses et progression.
+// Les niveaux de difficulté ne sont pas figés ici : ils peuvent être recalibrés
+// individuellement sans casser la CI (incident antérieur sur Roudi).
+{
+ const byId=new Map(exercises.map(x=>[x.id,x]));
+ const supportCases=[
+  ['SEF-V4-099-2','2♥',1],
+  ['SEF-V4-105-2','2♠',0]
+ ];
+ for(const [id,bid,trumpSuit] of supportCases){
+  const x=byId.get(id);
+  assert.ok(x,'Drury support case exists: '+id);
+  assert.equal(x.h,6,'Drury 2M must meet the 6 HLD minimum: '+id);
+  assert.equal(x.hand[trumpSuit].length,3,'Drury support with three trumps: '+id);
+  assert.equal(x.answer,bid,'Drury support answer kept: '+id);
+  assert.match(x.explain,/6 HLD/,'Drury explanation states the limit: '+id);
+ }
+ const neutralContext=['SEF-C2-011','SEF-C2-012','SEF-V45-003'];
+ for(const id of neutralContext){
+  const x=byId.get(id);
+  assert.ok(x,'Neutralised hint exercise exists: '+id);
+  assert.ok(!x.context.includes(x.answer),'The question must not reveal the correct bid: '+id);
+  assert.equal(x.choices.length,4,'Distractors retained: '+id);
+ }
+ assert.ok(!/11 HLD/.test(byId.get('SEF-C2-011').context),'Do not reveal the precise HLD calculation in the question');
+ assert.ok(byId.get('SEF-V45-022').difficulty<=3,'A natural weak 2♥ repeat must not be level 5');
+ for(const id of [...supportCases.map(x=>x[0]),...neutralContext]){
+  assert.match(html,new RegExp("'"+id+"':'sef-2026-11-02-[^']+'"),
+   'Revision marker must archive prior progress for the modified exercise: '+id);
+ }
+}
