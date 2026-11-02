@@ -266,35 +266,16 @@ const server=http.createServer((req,res)=>{
   await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.equal(await page.locator('#total').textContent(),'1','The failed revision is eligible for review');
 
-  // Audit C01 : au moins une correction complète "pourquoi pas" + "à retenir"
-  // doit être réellement visible à l'écran après une tentative.
-  await page.locator('#back-home').click();
-  await page.locator('#selection-mode').waitFor({state:'visible',timeout:10000});
-  await page.locator('#selection-mode').selectOption('all');
-  await page.locator('#topic').selectOption('sa');
-  await page.locator('#difficulty').selectOption('2');
-  await page.locator('#mode').selectOption('0');
-  await page.locator('#new').click();
-  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
-  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
+  // Les corrigés justifient uniquement la bonne enchère, sans comparaisons.
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
-  assert.equal(dataC01.exercises.length,993,'Twenty-four curated cases are available');
-  assert.ok(dataC01.exercises.filter(x=>x.whyNot).length>=125,'The 125 reviewed pedagogical comparisons are embedded');
-  let contrasted=false;
-  const count=Number(await page.locator('#total').textContent());
-  for(let i=0;i<count;i++){
-   await page.locator('#show-choices').click();
-   await page.locator('#answers button').first().click();
-   if(await page.locator('.feedback-contrast').count()){
-    assert.equal(await page.locator('.feedback-lesson').count(),1,
-      'Each compared alternative includes a takeaway');
-    assert.ok((await page.locator('.feedback-contrast').textContent()).includes('Pourquoi pas'),
-      'A tempting wrong bid is explained');
-    contrasted=true;break;
-   }
-   if(i<count-1)await page.locator('#next').click();
-  }
-  assert.ok(contrasted,'At least one enriched answer is visible on simulated iPhone');
+  assert.equal(dataC01.exercises.length,993,'All exercises are available');
+  assert.ok(dataC01.exercises.every(x=>!x.whyNot&&!x.takeaway),'No obsolete comparative explanations');
+  await page.locator('#show-choices').click();
+  await page.locator('#answers button').first().click();
+  assert.equal(await page.locator('.feedback').count(),1,'Correct-answer feedback is visible');
+  assert.equal(await page.locator('.feedback-contrast').count(),0,'No comparative feedback');
+  assert.equal(await page.locator('.feedback-lesson').count(),0,'No additional takeaway');
+  await page.locator('#back-home').click();
 
   // Audit C02 : la couleur d'atout est indispensable au comptage des cinq clés.
   // Vérifier son rendu et la réponse au Blackwood dans la version iPhone.
@@ -325,7 +306,7 @@ const server=http.createServer((req,res)=>{
     await page.locator('#answers button').nth(options.indexOf('5♥')).click();
     assert.ok((await page.locator('#body .feedback').textContent()).includes('Bonne réponse'),
       'The agreed two-key response is accepted');
-    assert.equal(await page.locator('.feedback-contrast').count(),1,'The RKCB comparison is visible');
+    assert.equal(await page.locator('.feedback-contrast').count(),0,'No RKCB comparative feedback');
     validatedBlackwood=true;break;
    }
    await page.locator('#pass').click();
