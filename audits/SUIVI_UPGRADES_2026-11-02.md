@@ -349,3 +349,34 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 4. **P2** — Garder distincts le chantier d'ergonomie clavier/scroll iPhone et les 11 anomalies `EN-*` de l'Entraînement. Les **603 sans pièce nominative rapprochée** ne doivent pas être décrites comme 603 fiches « jamais auditées » : les revues collectives antérieures demeurent conservées séparément.
 
 **Maintenance :** actualiser conjointement ce fichier et le registre de 993 IDs après chaque nouvelle décision, correction et validation réelle. Toujours distinguer revue pédagogique, contrôles statiques, tests navigateurs, déploiement Pages et vérification matérielle iPhone.
+
+
+---
+
+## Lot P0/P1 — Corrections SEF après les 74 revues nominatives (2 novembre 2026)
+
+**État : correctifs enregistrés dans `main`; vérification des workflows la plus récente à confirmer ci-dessous.** Le suivi antérieur Drury/Roudi/fortes/forcing reste une **photographie historique avant correction** : ne plus réouvrir les cinq anomalies comme « non corrigées » sans relire le catalogue actuel.
+
+### Correctifs effectivement appliqués
+
+- **Commit de données `5d55d0a`** : [voir le diff](https://github.com/CapGui13/QPJB/commit/5d55d0a0ca9997652e545d792445e386640ed6b3). **31 IDs distincts modifiés**, dont **2 mains Drury réparées**, **3 énoncés neutralisés** et **27 difficultés recalibrées** ; chevauchement entre les catégories. **993 IDs conservés**. Toutes les réponses correctes, choix, séquences, rubriques et familles restent identiques.
+- **Deux erreurs SEF résolues par ajustement des mains** : `SEF-V4-099-2` (♦9→♦V, 5→6 H, donc 6 HLD, réponse 2♥) et `SEF-V4-105-2` (♦9→♦V, 5→6 H, donc 6 HLD, réponse 2♠). Après Passe, trois atouts et 6 HLD permettent le soutien simple : aucune bonne réponse n'a été changée.
+- **Trois fuites pédagogiques résolues** : les énoncés `SEF-C2-011` (Drury), `SEF-C2-012` (Roudi) et `SEF-V45-003` (fortes) ne donnent plus explicitement **2♣** ni le calcul HLD qui révélait la solution. Réponses et distracteurs conservés.
+- **27 difficultés ajustées, chacune avec nouveau `difficultyReason`** : 7 Drury (dont `SEF-C2-011`), 12 Roudi, 1 ouverture forte, 7 forcing. Pourcing `SEF-V45-022` passe de **5 à 2** (répétition simple faible des Cœurs). Les cinq conclusions Roudi conservées au niveau 4 restent des cas distincts des douze réponses codées passées à 3.
+- **Conservation ciblée des progrès** : cinq nouveaux marqueurs `pedagogicalRevision` seulement, pour les deux mains et les trois contextes modifiés. Les anciennes fiches de résultat restent archivées dans `archivedPreRevision` et ces cinq questions peuvent être retravaillées ; **pas de réinitialisation générale**. Les seules modifications de difficulté ne touchent pas les progrès.
+- **Test de non-régression** dans `tests/quizz-integrity.cjs` : [commit `7818594`](https://github.com/CapGui13/QPJB/commit/7818594651f0648a9df1a0452404e8d0a23cc8cd), vérification des deux mains à 6 HLD, des trois énoncés sans réponse révélée et des cinq marqueurs de révision, sans figer toutes les notes de difficulté.
+- **Rapport exhaustif avant/après pour les 31 IDs** : [`CORRECTIFS_SEF_DRURY_ROUDI_FORTES_FORCING_2026-11-02.md`](CORRECTIFS_SEF_DRURY_ROUDI_FORTES_FORCING_2026-11-02.md), commit [`290c08d`](https://github.com/CapGui13/QPJB/commit/290c08d65e204e09faad2a8bdaa76de808f30d67).
+- **Registre nominatif synchronisé** : [`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv), commit [`e771fc4`](https://github.com/CapGui13/QPJB/commit/e771fc4e419e3ebf5eae86d8da9e6bca8a7767b0). Les 31 niveaux/verdicts correspondent maintenant à `main`. **Répartition inchangée par niveau de preuve** : 222 revues ciblées récentes, 16 corrections historiques seules, 152 revues thématiques seules, 603 sans pièce nominative rapprochée (qui ne sont pas « non audités »). Les 31 corrections ne sont pas comptabilisées comme 31 nouveaux audits.
+
+### Vérifications réalisées et statut de publication
+
+- Avant commit et par lecture croisée après : **993 mains, 13 cartes chacune, comptes H exacts, distributions cohérentes, quatre réponses distinctes dont la bonne, absence de doublons stricts, zéro modification inattendue hors 31 IDs**.
+- **CI sur le commit des correctifs, des tests et du dernier suivi : à confirmer en fin de session.** Un run `skipped`, `cancelled`, `pending`, `in_progress` ou `failure` n'est pas un succès. Le smoke antérieur `b3f8d2fb` avait échoué, **avant** le lot des nouvelles corrections ; diagnostiquer toute erreur persistante dans les nouveaux runs, ne pas l'attribuer automatiquement à ce lot.
+- **Aucune vérification sur iPhone physique revendiquée**. Les tests Chromium/WebKit simulés et l'état Pages restent indépendants.
+
+### Prochaines priorités
+
+1. **P0** — Vérifier le dernier smoke Chromium/WebKit, les tests d'intégrité et la publication GitHub Pages ; si un test échoue, corriger uniquement la cause puis relancer.
+2. **P1** — Revoir au cas par cas les distracteurs et les difficultés qui restent réellement ambigus, sans revenir automatiquement sur les 27 décisions documentées ni inventer des accords de paire.
+3. **P2** — Reprendre les tests du clavier bridge et du défilement sur iPhone ; conserver les onze anomalies d'Entraînement `EN-*` dans leur chantier distinct.
+4. **Maintenance permanente** — Après chaque nouvel arbitrage, actualiser ensemble cette feuille de route, les IDs affectés dans le registre et les contrôles CI/Pages réellement conclus.
