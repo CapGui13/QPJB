@@ -325,3 +325,27 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 - **CI et Pages après ce lot :** recontrôler sur le dernier `main` les résultats `success` des jobs nécessaires ; les runs `cancelled`, `skipped` et `in_progress` ne valident rien. La publication Pages était confirmée **avant** les commits documentaires du lot Drury/Roudi.
 
 **À poursuivre en priorité :** (1) arbitrer les **3 anomalies Drury** et la **fuite de solution Roudi**, avec migration ciblée si besoin ; (2) auditer les **12 ouvertures fortes**, puis les **10 forcing** ; (3) revue ciblée des niveaux 4–5 et de l'UX clavier iPhone. Conserver la feuille de route unique et l'inventaire des IDs.
+
+
+---
+
+## Lot P1 — Revue nominative des 12 ouvertures fortes et des 10 forcing (2 novembre 2026)
+
+**Lot terminé — 22/22 fiches individuelles**. Rapport : [`REVUE_SEF_FORTES_FORCING_22_2026-11-02.md`](REVUE_SEF_FORTES_FORCING_22_2026-11-02.md). Contrôle de chaque main, compte H, séquence, réponse, distracteurs, corrigé et difficulté, sans modification de `quizz.html`.
+
+- **22 bonnes réponses conservables** sous le référentiel SEF annoncé (2♣ fort indéterminé, 2♦ forcing de manche, relais et réponses aux As, 3e/4e couleur forcing). Les 22 fiches passent le contrôle 13 cartes, points H et quatre choix distincts contenant la bonne réponse. Les modifications antérieures sur `SEF-V45-004` sont déjà intégrées.
+- **1 fuite certaine dans l'énoncé** : `SEF-V45-003` donne explicitement « 2♣ fort indéterminé » alors que c'est précisément la solution ; retirer cette mention sans changer la bonne réponse 2♣.
+- **1 niveau de difficulté manifestement excessif** : `SEF-V45-022`, noté 5, appelle simplement 2♥ naturel faible avec six Cœurs et 6 H. Proposition 2 ou 3 à faire valider avant modification.
+- **6 autres difficultés à examiner au cas par cas** : `SEF-V45-016` à `SEF-V45-021` actuellement notées 5 pour reconnaissance de la quatrième couleur forcing ou redemande après celle-ci ; propositions de niveau 4, non appliquées. Les exercices `SEF-V45-005` et `-006` présentent un rappel très direct du relais, à rendre éventuellement plus interactif.
+- **Aucune donnée du Quizz modifiée :** toutes les suggestions restent ouvertes et les historiques de progression sont préservés. Rapport documentaire enregistré par [`1b1c580`](https://github.com/CapGui13/QPJB/commit/1b1c580766daf38eb050fe97ae502466c368de24).
+- **Registre mis à jour** : [`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv), commit [`e20bf81`](https://github.com/CapGui13/QPJB/commit/e20bf81ca9b7188231114aa5c18e3047d7153d7e). Toujours **993 IDs uniques**, dont désormais **222 revues ciblées récentes**, **16 corrections historiques nominatives seules**, **152 revues thématiques nominatives seules**, **603 sans pièce nominative rapprochée**. Pour les 22 nouvelles fiches : 5 étaient déjà ciblées, 9 uniquement thématiques, 8 sans pièce nominative retrouvée.
+- **Cumul des trois nouvelles revues** : **19 Drury + 33 Roudi + 12 fortes + 10 forcing = 74 fiches réelles**, 74 IDs distincts (rubriques disjointes). Ce total n'est pas un ajout mécanique de 74 aux fiches déjà suivies ; le registre prévient les doubles comptes. Les rubriques **Drury 19/19, Roudi 33/33, fortes 12/12, forcing 10/10** disposent maintenant chacune d'un rapport nominatif.
+
+### Suite des priorités, sans prétendre que toutes les anomalies sont corrigées
+
+1. **P0** — Sur le dernier `main`, confirmer la CI (intégrité du catalogue, Chromium, WebKit) puis Pages ; ne pas qualifier un run `skipped`, `cancelled` ou `pending` de réussite. Aucun test iPhone physique déclaré.
+2. **P1** — Corriger les anomalies ouvertes après arbitrage : Drury `SEF-V4-099-2` et `SEF-V4-105-2` (5 HLD et soutien actuel malgré seuil 6), fuites de réponse `SEF-C2-011` (Drury), `SEF-C2-012` (Roudi), `SEF-V45-003` (ouvertures fortes) ; toute correction de fond exige un contrôle de progression ciblé.
+3. **P2** — Après validation pédagogique, revoir les difficultés clairement surévaluées et les distracteurs insuffisamment crédibles, sans écraser les décisions précédentes et sans remplacer en masse.
+4. **P2** — Garder distincts le chantier d'ergonomie clavier/scroll iPhone et les 11 anomalies `EN-*` de l'Entraînement. Les **603 sans pièce nominative rapprochée** ne doivent pas être décrites comme 603 fiches « jamais auditées » : les revues collectives antérieures demeurent conservées séparément.
+
+**Maintenance :** actualiser conjointement ce fichier et le registre de 993 IDs après chaque nouvelle décision, correction et validation réelle. Toujours distinguer revue pédagogique, contrôles statiques, tests navigateurs, déploiement Pages et vérification matérielle iPhone.
