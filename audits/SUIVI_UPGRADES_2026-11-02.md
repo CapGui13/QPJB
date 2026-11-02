@@ -287,3 +287,25 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 2. **P1 — Familles encore à documenter** : audits individuels ciblés des rubriques **Roudi (33), Drury (19), ouvertures fortes (12) et forcing (10)**, en évitant les ID déjà revus, puis analyse des éventuelles réponses conventionnelles discutables.
 3. **P2 — Pédagogie/UX** : vérifier le rappel des conventions accessibles en exercice sur iPhone, les distracteurs plausibles et les difficultés 4–5 ; maintenir la règle d'un corrigé impersonnel expliquant uniquement la bonne enchère.
 4. **P2 — Entraînement distinct** : reprendre les onze anomalies `EN-*` et le clavier bridge / défilement, avec tests sur les écrans mobiles.
+
+
+---
+
+## Lot P1 — Audit SEF nominatif des 19 exercices Drury (2 novembre 2026)
+
+**Rapport créé et enregistré sur `main` :** [`REVUE_SEF_DRURY_19_2026-11-02.md`](REVUE_SEF_DRURY_19_2026-11-02.md). **19 fiches réelles et 19 IDs uniques examinés individuellement** : mains, H/HLD, séquences, Drury, 2SA avec singleton, propositions, corrigés et difficultés. Ne pas réauditer ces mêmes IDs sans nouvelle preuve ou correction.
+
+- **17 bonnes réponses jugées conformes/défendables** au SEF 2024 ; **2 erreurs certaines dans les réponses actuelles** : `SEF-V4-099-2` (main 5 HLD, bonne réponse actuelle 2♥), `SEF-V4-105-2` (main 5 HLD, bonne réponse actuelle 2♠). Le soutien simple après passe requiert **6–10 HLD** avec trois atouts. `Passe` n'est pas proposé. **Aucune correction dans `quizz.html` n'a été faite dans ce lot** : corriger la bonne réponse/les choix, ou rééquilibrer les mains pour atteindre 6 HLD ; dans les deux cas, vérifier l'impact sur la progression et ajouter la révision ciblée nécessaire.
+- **1 anomalie pédagogique certaine :** `SEF-C2-011` donne dans le contexte **2♣** et calcule les **11 HLD**, ce qui fournit directement la réponse. Réécrire seulement l'énoncé (la bonne réponse 2♣ est valide) et revoir la difficulté 4.
+- **2 nuances sans changement de réponse :** `SEF-V44-067` et `SEF-V44-068` : 2SA après passe avec quatre atouts et singleton ; expliquer pourquoi la couleur annexe cinquième à ♦ ne suffit pas clairement pour une rencontre. Une couleur cinquième *vraiment belle* modifierait la comparaison.
+- **Recalibrage proposé, non appliqué** : les quatre redemandes de l'ouvreur après Drury actuellement en difficulté 4 semblent plutôt de niveau 3 ; les deux 2SA actuellement en niveau 5 semblent de niveau 4. Les autres remarques individuelles figurent dans le rapport.
+- **Registre synchronisé** : [`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv), toujours **993 lignes / 993 IDs**. Nouvelle ventilation : **177 ciblées nominatives récentes**, **16 corrections historiques nominatives seules**, **162 revues thématiques nominatives seules**, **638 sans pièce nominative exploitable** parmi les rapports rapprochés. Sur les 19, **2 étaient déjà ciblées**, **13 n'avaient qu'une revue thématique**, **4 n'avaient pas de preuve nominative retrouvée**. La catégorie « sans pièce » ne signifie pas « jamais auditée ».
+- **Conservation :** aucun exercice, aucune bonne enchère, aucun distracteur, aucune main, aucune difficulté, aucun ID et aucune sauvegarde locale modifiés. Commits documentaires uniquement, dont [rapport](https://github.com/CapGui13/QPJB/commit/dbc1fcfe0094a923272ba21e4e005aa9151fd124) et [registre](https://github.com/CapGui13/QPJB/commit/9b52cd2c87178204e86f008b4c3011fd7459fe2c).
+- **CI / Pages :** avant ce lot, smoke Chromium/WebKit et catalogue réussis sur `5e14533`, Pages réussi sur `47a23f4` ([Pages 41489485142](https://github.com/CapGui13/QPJB/actions/runs/41489485142)). Les commits documentaires du présent lot doivent être recontrôlés ; un nouveau `skipped` n'est pas une réussite. **Aucun test iPhone physique** revendiqué.
+
+### Priorité immédiatement suivante
+
+1. **P0 :** vérifier la dernière CI, l'audit catalogue, Chromium et WebKit ainsi que l'état Pages après les commits de suivi ; ne pas déclarer un déploiement sans confirmation.
+2. **P1 :** traiter les trois anomalies Drury ouvertes `SEF-V4-099-2`, `SEF-V4-105-2`, `SEF-C2-011` avec corrections ciblées et tests ; ne pas changer de bonne réponse sans validation pédagogique solide.
+3. **P1 :** poursuivre la revue nominative **Roudi (33)**, puis **ouvertures fortes (12)** et **forcing (10)** par lots individuels, sans inventer de nouvelles règles de paire et sans compter deux fois les IDs déjà contrôlés.
+4. **P2 :** maintenir les tests clavier bridge / défilement iPhone et le chantier séparé des 11 anomalies d'Entraînement `EN-*`.
