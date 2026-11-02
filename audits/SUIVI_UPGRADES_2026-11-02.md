@@ -449,3 +449,14 @@ Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_
 - **`EN-2sa-006`** : le corrigé imprimé répond 4SA avec 16 H face à 2SA 20–21 H après Stayman négatif. 36–37 H au total appellent 5SA quantitatif, invitation au grand chelem (cours SEF recoupé et cohérent avec `EN-2sa-004`). **Quarantaine provisoire** en attendant un arbitrage éditorial plutôt que de noter comme fausse la bonne enchère SEF. Rapport : [`DECISION_EN_B19_Q6_2026-11-02.md`](DECISION_EN_B19_Q6_2026-11-02.md).
 - **Compteurs** : 563 EN stockés / **559 accessibles**, **4 masqués** (trois V6.10 + B19-Q6), rubrique 2SA **12** accessibles. Toutes les réponses et sauvegardes conservées. Modules, générateur, cache PWA et tests alignés.
 - **Prochaine action** : validation éditoriale 5SA + correction ciblée de la progression si la bonne réponse change ; examen individuel des **12 autres** `quarantineReason` accessibles ; réception des tests Chromium/WebKit, Pages et iPhone physique. Aucune réussite de workflow non conclue ne doit être annoncée.
+
+
+---
+
+## P1 — Revue conventionnelle de 12 fiches EN, SEF chassé-croisé (2 novembre 2026)
+
+- **12/12 fiches individuellement contrôlées** : [`REVUE_CONVENTIONS_EN_12_2026-11-02.md`](REVUE_CONVENTIONS_EN_12_2026-11-02.md). **Trois corrections de bonne enchère** en contradiction avec le chassé-croisé SEF (`EN-1sa-011` 3♠→3♥ ; `EN-2sa-005` 3♥→3♠ ; `EN-BH-115-06` 4♥→4♠). Une erreur de total HL (B19-Q5) et une conclusion de chelem non démontrée ont également été corrigées. Les anciens corrigés source sont archivés par exercice et distingués de la correction SEF dans l'interface.
+- **Quatre autres fiches réhabilitées sur le fond**, sans changement de bonne réponse : `EN-1sa-008`, `EN-BH-048-03`, `EN-BH-115-05`, `EN-BH-092-05`. Leurs raisons historiques sont archivées, les `quarantineReason` injustifiés retirés ; sources SEF explicites dans le rapport.
+- **Cinq réserves restantes** : `EN-suite-repondant-003`, `EN-BH-077-04`, `EN-BH-078-05`, `EN-BH-019-04`, `EN-BH-025-01` ; elles restent accessibles sous mode `transcrit_source` d'auto-évaluation, sans prétendre à un barème certifié. Revoir en priorité les chelems/contrôles et le Texas direct à 2SA.
+- **Invariants** : 563 EN stockés / 559 accessibles / 4 masqués ; 114 exercices de carte / 111 accessibles. Les trois QCM SEF corrigés restent en `transcrit_source` non automatiquement noté, sans migration de progression ; corrigés PDF originaux intacts. Cache PWA `qpjb-v43`, données différées `20261102d`, tests smoke et navigateur renforcés.
+- **P0** : après publication du commit, vérifier CI audit+Chromium+WebKit, catalogue et GitHub Pages (ne jamais confondre soumis et succès) ; vérification iPhone réel toujours à faire.

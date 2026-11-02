@@ -239,6 +239,43 @@ for(const {id,answer,excluded,alternative} of excludedAlternatives){
  check(Object.keys(x.distractorNotes||{}).every(k=>x.choices.includes(k)&&k!==answer),
    'distractor explanations only refer to current wrong choices: '+id);
 }
+// 2 Nov 2026: trois inversions de chassé-croisé corrigées selon SEF.
+// Les 35 fiches historiques "transcrit_source" sont encore en auto-évaluation ; ne pas modifier le stockage.
+const sefCross=[
+ {id:'EN-1sa-011',before:'3♠',after:'3♥',choices:['3SA','3♥','3♠','Passe']},
+ {id:'EN-2sa-005',before:'3♥',after:'3♠',choices:['3SA','Passe','3♠','3♥']},
+ {id:'EN-BH-115-06',before:'4♥',after:'4♠',choices:['4♦','4♥','4♠','4♣']}
+];
+for(const {id,before,after,choices} of sefCross){
+ const x=splitItems.find(x=>x.id===id);
+ check(!!x&&x.correct===after&&JSON.stringify(x.choices)===JSON.stringify(choices),
+   'SEF chasse croise expected choices and new answer: '+id);
+ check(x.sourceOriginalCorrect===before&&x.sourceOriginalExplanation?.length>0,
+   'original documentary answer and explanation preserved: '+id);
+ check(x.reviewStatus==='transcrit_source'&&x.pedagogicalArbitration?.decision==='correction_SEF',
+   'source-guided self assessment and SEF arbitration documented: '+id);
+ check(x.choices.length===4&&new Set(x.choices).size===4&&
+   Object.keys(x.distractorNotes).length===3&&Object.keys(x.pretryHints).length===3&&
+   Object.keys(x.distractorNotes).every(choice=>x.choices.includes(choice)&&choice!==after)&&
+   Object.keys(x.pretryHints).every(choice=>x.choices.includes(choice)&&choice!==after),
+   'exactly 3 distinct wrong options with aligned hints: '+id);
+ check(!x.quarantineReason,'old convention caveat closed after SEF correction: '+id);
+}
+const cleared=['EN-1sa-008','EN-BH-048-03','EN-BH-115-05','EN-BH-092-05'];
+for(const id of cleared){
+ const x=splitItems.find(x=>x.id===id);
+ check(!!x&&x.reviewStatus==='transcrit_source'&&
+   x.pedagogicalReview_20261102?.decision==='reserve_levee'&&
+   !!x.historicalQuarantineReason20261102&&!x.quarantineReason,
+   'documentary SEF reservation resolved with history preserved: '+id);
+}
+check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===5,
+ 'five active convention/tactical documentary caveats remain open');
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261102d')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261102d'),
+ 'both entry points load the current pedagogical module');
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v43'"),
+ 'PWA cache revision invalidated for updated SEF exercises');
 // B19-6: do not score the printed 4SA answer with 16H opposite 2SA.
 const b19=splitItems.find(e=>e.id==='EN-2sa-006');
 check(!!b19&&b19.hand.join('|')==='RD104|AD5|D7|DV84'&&b19.correct==='4SA',
