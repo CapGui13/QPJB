@@ -422,3 +422,11 @@ Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_
 4. **P2 :** poursuivre la vérification des autres EN dans leurs PDF originaux, sans déduire du seul statut `transcrit_source` que toute proposition est pédagogiquement certaine.
 
 **État au moment de cette mise à jour** : commits de code et de tests présents dans `main`, **pas de certification de la dernière publication ici avant lecture du résultat Pages**.
+
+
+### Validation finale du lot clavier et EN — 2 novembre 2026
+
+- [**QPJB Training smoke #41523262175**](https://github.com/CapGui13/QPJB/actions/runs/41523262175) sur `2a345ebc` : **success**, y compris **Audit des données et du code**, **Validation chromium** et **Validation webkit**. Le nouveau scénario iPhone simulé avec mouvement et clavier repliable fait partie de cette validation ; cela ne constitue pas un essai sur un iPhone physique.
+- [**Actualiser le catalogue #41523262134**](https://github.com/CapGui13/QPJB/actions/runs/41523262134) : **success**.
+- [**QPJB Pages #41523930063**](https://github.com/CapGui13/QPJB/actions/runs/41523930063) : **success**, publication du commit généré `2356b473` après validation du précédent `main`. Le lot **clavier + deux distracteurs B10 + trois quarantaines EN + mise à jour PWA** est donc **testé et publié**.
+- **Suite active :** vérification Safari sur iPhone physique, rapprochement des onze anciennes anomalies EN annoncées sans liste nominative, puis relecture individuelle des autres réserves des originaux PDF. Aucun résultat antérieur sauvegardé sur l'appareil n'a été effacé.
