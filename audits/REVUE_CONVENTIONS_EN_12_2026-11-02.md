@@ -50,3 +50,17 @@ Ces cinq fiches étaient déjà accessibles en `transcrit_source`, donc **en aut
 - **563 EN en banque, 559 disponibles, 4 en quarantaine** (dont B19-Q6), sans modification de disponibilité durant cette passe ; jeu de carte 114 / 111 inchangé.
 - Gardes de test : trois inversions SEF, conservation des anciennes réponses/corrigés PDF, quatre réserves levées, cinq réserves restantes, 4 propositions toujours distinctes, commentaires et indices cohérents, bootstrap intégré/PWA actualisés, navigation Chromium/WebKit.
 - **Statut CI/Pages à renseigner après l'exécution effective sur le commit publié** ; le test Safari/PWA sur iPhone physique reste indépendant.
+
+
+---
+
+## Addendum — résolutions FFB des dossiers BH-019 et BH-025 (2 novembre 2026)
+
+Revue indépendante complémentaire des **deux** exercices cités dans les cinq réserves conservées ci-dessus. Le tableau des cinq reste la photographie de l'audit initial avant cette contre-expertise, et ne doit **pas** être lu comme l'état final du dépôt.
+
+1. **`EN-BH-019-04`** — **2♥ conservé, réserve levée.** La donne 19 du [Simultané des élèves de février 2024, FFB](https://bridgelegecapferret.club.ffbridge.fr/document-download/65dca7b3266b4_Livretpourlesite.pdf) montre explicitement avec un bicolore majeur 5–5 de manche la séquence **1SA–2♥ (Texas Pique)–2♠–4♥**, pour laisser le choix de la majeure à l'ouvreur. La main du QPJB, ♠RD852 ♥DV976 ♦7 ♣43, a 8 H et la distribution 5–5 avec courte mineure, d'où une ambition de manche cohérente. **D'autres conventions peuvent exister, notamment le 4♦ direct**, mais cela ne rend pas 2♥ incorrect dans le cadre pédagogique français : l'ancienne réserve n'a pas à bloquer ce choix.
+2. **`EN-BH-025-01`** — **4♥ conservé, réserve levée.** Dans [*L'As de Trèfle* nº27, mai 2016, p.32, sous le contrôle éditorial FFB](https://cdn.ffbridge.fr/cms/magazine/0001/01/6b39e4fb2e866fd51e561486d551cac61e47a5cf.pdf), 4♥ direct sur 2SA est expressément une enchère **naturelle de conclusion**, alors que **4♦ décrit conventionnellement un bicolore majeur 5–5**. La main ♠8 ♥R108652 ♦753 ♣964 a six Cœurs, un singleton Pique et 7 HLD avec un fit huitième assuré face à 2SA 20–21H : la manche naturelle à 4♥ est justifiée. L'ancien indice « 4♦ = mauvais contrat à Carreau » était **erroné** ; il est corrigé pour expliquer la véritable signification de 4♦, en conservant l'ancienne explication PDF dans `sourceOriginalExplanation`.
+
+**Mise en banque** : leurs anciens `quarantineReason` sont archivés sous `historicalQuarantineReason20261102` et une revue nominative `pedagogicalReview_20261102: reserve_levee` est inscrite. Pas de changement de bonne enchère, choix, main, séquence, ID, statut guidé ou progression. Le seul changement de texte concerne l'explication du 4♦ sur BH-025 et la précision de son corrigé.
+
+**Bilan final des douze réserves initiales : 3 réponses corrigées + 6 réserves levées sans changer la réponse + 3 réserves encore ouvertes.** Les **trois dossiers restants** sont : `EN-suite-repondant-003`, `EN-BH-077-04`, `EN-BH-078-05` (deux enchères directes de chelem et une décision compétitive sensible au contexte). Disponibilité toujours **563 fiches EN stockées / 559 accessibles / 4 masquées**. Cache PWA `qpjb-v44`, modules `20261102e`. Nouvelle CI/Pages à vérifier séparément après commit.

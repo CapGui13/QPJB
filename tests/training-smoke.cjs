@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261102d')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261102d'),
+check(html.includes('training-data-bootstrap.js?v=20261102e')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261102e'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -271,11 +271,26 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===5,
  'five active convention/tactical documentary caveats remain open');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261102d')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261102d'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261102e')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261102e'),
  'both entry points load the current pedagogical module');
 check(read('service-worker.js').includes("const CACHE = 'qpjb-v43'"),
  'PWA cache revision invalidated for updated SEF exercises');
+// Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
+for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
+ const x=splitItems.find(x=>x.id===id);
+ check(!!x&&x.correct===answer&&x.reviewStatus==='transcrit_source'&&
+   x.pedagogicalReview_20261102?.decision==='reserve_levee'&&
+   !!x.historicalQuarantineReason20261102&&!x.quarantineReason,
+   'FFB source verifies historical bidding reserve: '+id);
+}
+const d25=splitItems.find(x=>x.id==='EN-BH-025-01');
+check(d25.pretryHints['4♦'].includes('bicolore majeur 5–5')&&
+ d25.distractorNotes['4♦'].includes('5–5')&&
+ d25.sourceOriginalExplanation?.length>0,
+ '4-diamond distractor must be conventionally explained and original source text retained');
+check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===3,
+ 'exactly three competitive or slam source caveats remain');
 // B19-6: do not score the printed 4SA answer with 16H opposite 2SA.
 const b19=splitItems.find(e=>e.id==='EN-2sa-006');
 check(!!b19&&b19.hand.join('|')==='RD104|AD5|D7|DV84'&&b19.correct==='4SA',

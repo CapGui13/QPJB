@@ -460,3 +460,12 @@ Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_
 - **Cinq réserves restantes** : `EN-suite-repondant-003`, `EN-BH-077-04`, `EN-BH-078-05`, `EN-BH-019-04`, `EN-BH-025-01` ; elles restent accessibles sous mode `transcrit_source` d'auto-évaluation, sans prétendre à un barème certifié. Revoir en priorité les chelems/contrôles et le Texas direct à 2SA.
 - **Invariants** : 563 EN stockés / 559 accessibles / 4 masqués ; 114 exercices de carte / 111 accessibles. Les trois QCM SEF corrigés restent en `transcrit_source` non automatiquement noté, sans migration de progression ; corrigés PDF originaux intacts. Cache PWA `qpjb-v43`, données différées `20261102d`, tests smoke et navigateur renforcés.
 - **P0** : après publication du commit, vérifier CI audit+Chromium+WebKit, catalogue et GitHub Pages (ne jamais confondre soumis et succès) ; vérification iPhone réel toujours à faire.
+
+
+---
+
+## P1 — Deux réserves EN supplémentaires levées à partir des documents FFB (2 novembre 2026)
+
+- **`EN-BH-019-04` : 2♥ (Texas Pique) conservé** : Simultané des élèves FFB février 2024, donne 19, avec exactement la même séquence d'un bicolore majeur 5–5 de manche. **`EN-BH-025-01` : 4♥ direct naturel conservé** : FFB *As de Trèfle* nº27, p.32 ; 4♦ n'est pas un changement naturel à Carreau mais le bicolore majeur 5–5, donc son indice et son explication ont été réparés. Aucune autre réponse ni progression modifiée.
+- **Bilan actualisé des 12 réserves : 3 réponses corrigées, 6 réserves levées et 3 réserves encore à expertiser** (`EN-suite-repondant-003`, `EN-BH-077-04`, `EN-BH-078-05`). Le rapport [`REVUE_CONVENTIONS_EN_12_2026-11-02.md`](REVUE_CONVENTIONS_EN_12_2026-11-02.md) comporte un addendum et des preuves. **563 EN stockés / 559 accessibles / 4 masqués**, toujours 114 cartes / 111 accessibles.
+- **P0 validation** : fichiers maître/module/bootstrap, tests statiques, offline et PWA synchronisés (version `20261102e`, cache `qpjb-v44`). Lire le dernier smoke complet Chromium+WebKit et Pages avant de marquer cette étape testée et publiée. L'essai sur iPhone physique reste distinct.
