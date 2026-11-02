@@ -87,3 +87,34 @@ Aucun e-mail de validation envoyé dans cette session : ne notifier qu'après CI
 5. **P2 UX :** reprendre la stabilité du clavier bridge, des réponses, du défilement et des transitions ; harmoniser les derniers énoncés encore formulés en tutoiement.
 
 **Règle :** toute nouvelle correction doit être justifiée par l'exercice réel et par le SEF ; inscrire dans cette feuille de route les faits vérifiés (notamment le statut CI), ne pas convertir « lancé » en « réussi ».
+
+
+---
+
+## Lot P1 suivant — Barrages, Drury, ouverture forte et métadonnées SEF (2 novembre 2026)
+
+**Périmètre contrôlé : 11 exercices réels du Quizz, branche `main`.** Réponses réévaluées individuellement et **toutes les 11 réponses conservées**. Aucun changement de convention de paire, d'ID ou de distracteurs. Commit de code : [`05db9ff`](https://github.com/CapGui13/QPJB/commit/05db9ff1f3621c69c195d16f4420e24a1cc15a81).
+
+| ID vérifié | Verdict | Motif et modification |
+|---|---|---|
+| `SEF-V44-041` | 1♠ conservé | Préciser la séquence 1♣–(1♥) et corriger le motif de difficulté, auparavant hors sujet. |
+| `SEF-V44-043` | 3♥ conservé | Après 1♥–(Contre) : 5 H, quatre atouts, doubleton ♣, environ 8 HLD ; préciser la vulnérabilité favorable et le caractère barrage. |
+| `SEF-V44-044` | 3♠ conservé | Après 1♠–(Contre) : 5 H, quatre atouts, doubleton ♣, environ 8 HLD ; préciser la vulnérabilité favorable et le caractère barrage. |
+| `SEF-V410-025` | 1♠ conservé | 1♦–(1♥), quatre ♠ et 8 H : 1♠ naturel ; rendre la question et le critère de difficulté conformes à ce raisonnement. |
+| `SEF-V420-009` | 1♥ conservé | 1♣–(1♦), les deux majeures quatrièmes : 1♥ naturel ; rédaction neutre et explication du critère. |
+| `SEF-V424-005` | 2♣ conservé | 1♦–(1♥), six ♣ et 13 H : nouvelle couleur au palier de deux, forcing ; l'énoncé ne doit pas donner la réponse et le corrigé justifie la bonne enchère seulement. |
+| `SEF-V422-003` | 4♥ conservé | Après 1♥–(Contre), cinq atouts, 6 H, singleton ♣ : barrage avec vulnérabilité favorable explicitée. |
+| `SEF-V4-101-2` | 2♥ conservé | Drury : main 8 H remplacée par ♠R84 ♥AV1093 ♦732 ♣103, ouverture tactique en 3e position vulnérabilité favorable ; répétition faible de 2♥. |
+| `SEF-V4-107-3` | 2♠ conservé | Drury : main 8 H remplacée par ♠AV1093 ♥V85 ♦D73 ♣82, ouverture tactique en 3e position vulnérabilité favorable ; répétition faible de 2♠. |
+| `SEF-V45-004` | 2♣ conservé | 19 H + une majeure sixième de qualité = 20 HL ; retirer l'énoncé qui annonçait déjà 2♣, préciser la règle 2♣ fort indéterminé. |
+| `SEF-V3-069-1` | 2♠ conservé | Contre d'appel après 1♥ : améliorer les quatre Piques de la main à ♠RV104 ♥8 ♦D975 ♣DV87 (9 H), conserver le saut invitant à 2♠. |
+
+**Portée des changements :** six cas de séquence/conditions (`SEF-V44-041`, `-043`, `-044`, `SEF-V410-025`, `SEF-V420-009`, `SEF-V424-005`), un barrage supplémentaire `SEF-V422-003`, deux redemandes Drury, l'ouverture forte `SEF-V45-004` et un saut au contre d’appel `SEF-V3-069-1`. **Trois mains ont été redistribuées**, à points H inchangés, et possèdent chacune un identifiant de révision ciblé dans la sauvegarde locale ; aucune remise à zéro générale.
+
+**Contrôles effectués avant commit et relecture sur `main` :** 993 ID uniques, 13 cartes par main, comptes des points H exacts, distributions cohérentes, quatre choix distincts avec la réponse attendue incluse, absence de situations main+séquence strictement dupliquées. **Ne pas assimiler cette validation structurelle à un contrôle pédagogique indépendant des 993 fiches.**
+
+**Références SEF vérifiées :** [Drury et réponses au Drury — SEF 2024](https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/) ; [ouverture de 2♣ fort indéterminé](https://dev.ibridge-club.fr/public/fichedetails/778) ; [soutiens après contre adverse / 2SA Truscott](https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523). Ces références étayent la règle enseignée, sans constituer une approbation extérieure de chaque main.
+
+**CI / Pages pour ce commit :** les workflows [smoke](https://github.com/CapGui13/QPJB/actions/runs/41444583076) et [catalogue](https://github.com/CapGui13/QPJB/actions/runs/41444583141) ont été lancés après le commit. Résultat **à recontrôler après le présent suivi**, puis publication GitHub Pages. Ne pas déclarer réussi un run simplement démarré ; la validation sur iPhone physique est distincte des tests simulés.
+
+**Prochain chantier prioritaire après validation :** audit individuel des distracteurs et des difficultés sur les 17 cas signalés en SA/conventions, puis les cas de séquence/forces encore litigieux ; poursuivre le registre d'IDs réellement vérifiés. Maintenir le suivi de la progression, de la stabilité mobile et des 11 anomalies distinctes de l'Entraînement (`EN-*`).
