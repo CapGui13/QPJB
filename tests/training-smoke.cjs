@@ -235,4 +235,24 @@ for(const {id,answer,excluded,alternative} of excludedAlternatives){
  check(Object.keys(x.distractorNotes||{}).every(k=>x.choices.includes(k)&&k!==answer),
    'distractor explanations only refer to current wrong choices: '+id);
 }
+// Source v610 quarantines are actually enforced by the existing navigation filter.
+const pendingBiddingIds=['EN-BH-075-04','EN-BH-090-06','EN-BH-102-01'];
+check(data.bidding.length===563&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===560,
+ '563 EN IDs preserved, three flagged questions temporarily withheld');
+for(const id of pendingBiddingIds){
+ const x=data.bidding.find(e=>e.id===id);
+ check(!!x&&x.reviewStatus==='a_verifier'&&x.pedagogicalReview_v610?.decision==='quarantaine',
+   'source quarantine prevents automatically graded access: '+id);
+ check(!!x.correct&&x.choices.includes(x.correct)&&!!x.reason,
+   'quarantined question retains all original choices, answer and reason: '+id);
+}
+const lazyData=read('entrainement/training-data-bootstrap.js');
+const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
+check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
+const lazyBase=JSON.parse(baseMatch[1]);
+check(lazyBase.counts.bidding===560&&lazyBase.counts.play===111,
+ 'bootstrap count reflects unavailable bidding and card exercises');
+check(lazyBase.categories.find(c=>c.id==='rep1M').count===18&&
+ lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===15,
+ 'topic counters reflect the exact quarantined IDs');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
