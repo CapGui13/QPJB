@@ -275,7 +275,6 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('.feedback').count(),1,'Correct-answer feedback is visible');
   assert.equal(await page.locator('.feedback-contrast').count(),0,'No comparative feedback');
   assert.equal(await page.locator('.feedback-lesson').count(),0,'No additional takeaway');
-  await page.locator('#back-home').click();
 
   // Audit C02 : la couleur d'atout est indispensable au comptage des cinq clés.
   // Vérifier son rendu et la réponse au Blackwood dans la version iPhone.
