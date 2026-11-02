@@ -25,3 +25,9 @@ Référence : `QUIZZ_REFERENCE_SEF.md`. Ne jamais changer une bonne réponse, un
 
 ## Notifications
 Aucun e-mail de validation envoyé dans cette session : ne notifier qu'après CI **et** Pages confirmés réussis pour le nouveau lot. Ne pas marquer de commit comme notifié avant envoi Gmail effectif.
+
+## Session suivante — navigation mobile (upgrade 11)
+- CI précédente vérifiée : smoke `7a6dcf0` réussie, Pages `de92a304` réussie. Le lot d'espacement (upgrade 9) est donc publié.
+- Correction soumise : `a3a7039` évite de faire défiler le corrigé jusqu'à 14 % de la hauteur de l'écran ; ne défile plus que si le début du corrigé est sous le bord visible, avec marge de 24 px. Ne change ni les exercices ni les données locales.
+- À valider : CI WebKit et Chromium, puis publication Pages ; vérifier sur iPhone le défilement à la validation avec clavier ouvert et fermé, ainsi que les retours arrière. Ce correctif est ciblé et ne garantit pas encore la résolution de tous les sauts de scroll.
+- Upgrades 2, 3, 7 et 8 : pas de modification pédagogique sans contrôle SEF individuel.
