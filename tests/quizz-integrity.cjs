@@ -463,7 +463,7 @@ for(const [id,expected] of Object.entries(fit4Cases)){
  assert.equal(x.answer,expected.answer,'Décision SEF correcte : '+id);
  assert.ok(x.explain.includes(expected.hld+' HLD'),'Corrigé chiffré : '+id);
  assert.ok(x.choices.includes(x.answer),'Quatre choix incluent la réponse : '+id);
- if(expected.bad)
+
 }
 for(const id of ['SEF-V420-011','SEF-V421-008','SEF-V425-008']){
  assert.ok(html.includes("'"+id+"':'sef24-fit4-"),'Révision de progression non destructive : '+id);
