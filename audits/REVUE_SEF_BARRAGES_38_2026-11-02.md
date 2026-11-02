@@ -56,7 +56,7 @@
 
 ## Distracteurs et limites
 
-- La série montre souvent `1SA` comme mauvaise réponse à l'ouverture avec six cartes majeures, y compris quand la main est très faible ou très distribuée : **18 fiches sur 38** proposent ce distracteur. Ce n'est pas une seconde bonne réponse, mais c'est souvent un piège trop facile. Liste des IDs concernés : `SEF-V3-091-1`, `SEF-V3-091-2`, `SEF-V3-092-3`, `SEF-V3-093-1`, `SEF-V3-093-3`, `SEF-V3-094-1`, `SEF-V3-095-1`, `SEF-V3-095-2`, `SEF-V3-096-2`, `SEF-V3-096-1`, `SEF-V3-097-3`, `SEF-V3-097-4`, `SEF-V3-098-1`, `SEF-V3-098-3`, `SEF-V3-101-2`, `SEF-V3-101-1`, `SEF-V3-102-2`, `SEF-V3-102-3`. **Amélioration à faire par petits lots** et sans introduire un autre contrat défendable.
+- **Distracteurs 1SA repris (lot complémentaire)** : les **18 fiches** signalées initialement ont été revues. **14** ont reçu un choix alternatif `3♥`/`3♠` permettant de comparer l'ouverture constructive, le 2 faible sixième et le barrage septième ; **4** ont conservé `1SA` car une option au palier de 3 n'apportait pas d'intérêt pédagogique avec 1–3 H. Détail par ID : [`REVUE_DISTRACTEURS_BARRAGES_18_2026-11-02.md`](REVUE_DISTRACTEURS_BARRAGES_18_2026-11-02.md), code [`2bf86bf`](https://github.com/CapGui13/QPJB/commit/2bf86bf8b9329327354e0cbcf849e8050972cd51).
 - `SEF-V3-100-2` : la réserve initiale est **levée après correction de la main** (♠RDV9852) et précision de la vulnérabilité favorable. L'ouverture de 3♠ est conservée, sans risque de seconde réponse aussi défendable.
 - Les six exercices rectifiés redeviennent à travailler uniquement pour les élèves ayant déjà un résultat enregistré sur ces IDs ; le précédent historique est archivé via la migration pédagogique ciblée, sans remettre les autres progrès à zéro.
 - **Tests structurels avant commit :** 993 IDs uniques, 13 cartes, comptes H, shapes, quatre réponses distinctes incluant la bonne, aucune situation strictement dupliquée. Les tests GitHub Actions du commit sont à vérifier séparément : ne pas qualifier une livraison de publiée avant CI + Pages.
@@ -64,5 +64,5 @@
 ## Suite
 
 1. Vérifier la réussite du nouveau workflow Chromium/WebKit/CI et la publication Pages.
-2. Le cas `SEF-V3-100-2` est clos après renforcement de la couleur septième et clarification de la vulnérabilité. Préparer le lot de distracteurs de barrage trop faciles.
+2. Le cas `SEF-V3-100-2` est clos ; la revue complémentaire des 18 distracteurs a également été effectuée (**14 améliorés, 4 conservés**). Continuer sur les cas de conventions avancées non encore documentés individuellement.
 3. Ouvrir un lot distinct de conventions avancées (Rubensohl, Multi-Landy, Michaels et chelems), chacun avec ses identifiants et conditions de validité, sans fusionner les volumes.
