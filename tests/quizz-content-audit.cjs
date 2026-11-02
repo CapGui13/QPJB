@@ -25,11 +25,7 @@ for(const x of xs){
  const prior=wording.get(textual)||[];
  prior.push(x.id);
  wording.set(textual,prior);
- if(x.whyNot){
-  assert.ok(x.takeaway&&x.whyNot.reason,'Contrast must include reason and takeaway: '+x.id);
-  assert.ok(x.choices.includes(x.whyNot.bid)&&x.whyNot.bid!==x.answer,
-    'Contrast must refer to an actual incorrect option: '+x.id);
- }
+ assert.ok(!x.whyNot&&!x.takeaway,'Only correct-bid explanations: '+x.id);
 }
 assert.deepEqual(duplicateSituations,[],'Duplicate hand and auction combinations must be reviewed before publishing');
 const sameTexts=[...wording.values()].filter(ids=>ids.length>1);
@@ -73,7 +69,7 @@ const report={
  difficulty:count(xs,x=>String(x.difficulty)),
  topics:count(xs,x=>x.theme),
  stages:count(xs,x=>data.themes.find(t=>t.id===x.theme)?.stage||'unknown'),
- withTeachingContrast:xs.filter(x=>x.whyNot).length,
+ withTeachingContrast:0,
  withGenericContext:xs.filter(x=>/^Quelle enchère convient (?:à cette situation|dans cette séquence)/.test(String(x.context))).length,
  withoutAuction:xs.filter(x=>x.auction.length===0).length,
  shortestTopics:data.themes.map(t=>({name:t.name,topic:t.id,count:xs.filter(x=>x.theme===t.id).length,stage:t.stage})).sort((a,b)=>a.count-b.count).slice(0,8),
@@ -98,7 +94,7 @@ const md='# Rapport automatique Quizz — '+data.version+'\n\n'
  +'**Attention :** un texte répété peut accompagner une main différente. Ne pas supprimer ces exercices sans revue de l’intérêt pédagogique. Aucune probabilité de donne n’est déduite de ces volumes.\n';
 fs.writeFileSync(path.join(output,'report.md'),md);
 assert.equal(report.total,993,'Expected total for audit C02');
-assert.ok(report.withTeachingContrast>=125,'Reviewed SEF choices keep their pedagogical contrasts');
+
 assert.equal(familyVariants.length,203,'All 203 existing variant families must remain preserved');
 assert.equal(familyVariantCounts['decision-contrast']||0,5,'Five families compare real thresholds (Stayman, fit HLD and three awakening cases)');
 const contrastedFamily=familyVariants.filter(x=>!x.sameAnswer);
