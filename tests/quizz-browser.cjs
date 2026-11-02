@@ -150,7 +150,23 @@ const server=http.createServer((req,res)=>{
   };
   assert.deepEqual(initialOrder,initialOrder.slice().sort((a,b)=>orderScore(a)-orderScore(b)),
     'Choices sorted by bid cost like Training');
+  // Upgrade 11 : le corrigé ne doit pas provoquer de retour brutal vers le haut.
+  await page.evaluate(()=>{
+    window.__quizScrollCalls=[];
+    const original=window.scrollBy.bind(window);
+    window.scrollBy=function(options){
+      window.__quizScrollCalls.push({top:options?.top||0,behavior:options?.behavior});
+      return original(options);
+    };
+  });
   await page.locator('#answers button').first().click();
+  await page.locator('.feedback').waitFor({state:'visible',timeout:2500});
+  await page.waitForTimeout(180);
+  const scrollCalls=await page.evaluate(()=>window.__quizScrollCalls);
+  assert.ok(scrollCalls.every(call=>call.top>=0),'Feedback must never scroll upward: '+JSON.stringify(scrollCalls));
+  const feedbackPosition=await page.locator('.feedback').evaluate(el=>el.getBoundingClientRect().top);
+  assert.ok(feedbackPosition<=await page.evaluate(()=>window.innerHeight+3),
+    'Feedback start must be visible after assisted answer: '+feedbackPosition);
   assert.equal(await page.locator('#done').textContent(),'1','Answered card counts as completed');
   assert.equal(await page.locator('#next').isEnabled(),true,'Next becomes available');
   const before=await page.evaluate(()=>Object.values(JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01')||'{}')).reduce((s,x)=>s+(x.history?.length||0),0));
