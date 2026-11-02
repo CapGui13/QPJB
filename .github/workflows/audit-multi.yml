@@ -1,0 +1,26 @@
+name: QPJB — audit parallèle en lecture seule
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: Audit ${{ matrix.axis }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        axis: [enchere, distracteurs, explications, difficulte]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Contrôle indépendant
+        run: node scripts/audit-multi.cjs "${{ matrix.axis }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-${{ matrix.axis }}
+          path: audit-output/*.json
+          if-no-files-found: error
