@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261102c')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261102c'),
+check(html.includes('training-data-bootstrap.js?v=20261102d')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261102d'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
