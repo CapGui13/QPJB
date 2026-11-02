@@ -232,3 +232,24 @@ Les rapports collectifs annoncent également la couverture intégrale de **586 f
 5. **P2 Entraînement** : traiter séparément les 11 anomalies `EN-*` après récupération des preuves de chaque exercice, sans modifier les documents PDF d'origine.
 
 **Règle de synchronisation** : pour chaque nouveau lot, mettre à jour cette feuille et le registre, noter les commits et distinguer `contrôles statiques`, `tests navigateur`, `déploiement Pages` et `validation sur iPhone physique`.
+
+
+---
+
+## Lot P2 — 18 distracteurs d’ouverture de barrage (2 novembre 2026)
+
+**Statut : revue terminée, publication du dernier commit à vérifier.** Les 18 exercices signalés dans la revue des 38 barrages ont été repris **un par un** ; bilan **14 distracteurs améliorés, 4 conservés**. Rapport : [`REVUE_DISTRACTEURS_BARRAGES_18_2026-11-02.md`](REVUE_DISTRACTEURS_BARRAGES_18_2026-11-02.md).
+
+- **14 questions d’ouverture à majeure sixième** : `1SA`, distracteur presque caricatural dans une main manifestement unicolore, remplacé par `3♥` ou `3♠` selon la majeure. L'élève doit discriminer **1M** (ouverture constructive), **2M faible** (six cartes) et **3M barrage** (normalement sept cartes).
+- **4 questions avec 1–3 H** : `SEF-V3-101-2`, `SEF-V3-101-1`, `SEF-V3-102-2`, `SEF-V3-102-3` : `1SA` conservé. Ajouter un 3M serait encore plus irréaliste et n'améliorerait pas le raisonnement `Passe` vs `1M` / `2M`.
+- **Aucune réponse correcte modifiée**, aucune main, séquence, difficulté, aucun ID ou progrès local. Vérification structurelle des **993 exercices**, 13 cartes, points H exacts, 4 choix distincts et réponse incluse : **PASS** avant commit. Tests spécifiques de QCM ne doivent pas supposer d'anciennes mauvaises propositions.
+- Commit [`2bf86bf`](https://github.com/CapGui13/QPJB/commit/2bf86bf8b9329327354e0cbcf849e8050972cd51). Audit des 38 barrages mis à jour et **registre nominatif de 993 IDs synchronisé** : 18 nouveaux verdicts, sans ajouter artificiellement 18 IDs uniques, puisqu'ils étaient déjà dans la revue récente des barrages.
+- Référence pédagogique : ouverture **2M faible avec six cartes** / **3M barrage avec sept cartes** ([table SEF](https://www.bridge-chailley.fr/wp-content/uploads/2024/09/Ouvertures-corr-2.pdf)). Les nuances de vulnérabilité doivent rester dans l'énoncé lorsqu'elles affectent la décision.
+- **CI / Pages** : dernier état antérieur vérifié : [smoke Chromium + WebKit réussi](https://github.com/CapGui13/QPJB/actions/runs/41450738452) et [Pages réussi](https://github.com/CapGui13/QPJB/actions/runs/41451331357). **Ces runs précèdent le commit `2bf86bf`** : attendre le succès de la CI puis Pages sur le nouveau `main` avant de considérer ce lot publié. Aucune validation iPhone physique déclarée.
+
+### Suite de la feuille de route
+
+1. **P0** : confirmer les workflows **smoke Chromium/WebKit** et **GitHub Pages** associés au dernier commit (les nouveaux commits de documentation peuvent annuler les runs précédents). Corriger toute vraie régression, ne pas masquer un échec.
+2. **P1** : auditer par lots les **conventions avancées restantes** (Rubensohl, Multi-Landy, Michaels, chelems, Drury, forcing) non encore couvertes par les 24 fiches nominatives déjà documentées ; distinguer les accords de paire et le SEF standard.
+3. **P2** : décider individuellement des niveaux de difficulté 5 sur reconnaissance de codage et de la valeur pédagogique des familles de variantes, sans suppression d'ID.
+4. **P2** : revisiter la stabilité du clavier bridge et de la navigation mobile, puis les 11 anomalies distinctes `EN-*` dans l'Entraînement.
