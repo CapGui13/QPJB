@@ -88,7 +88,7 @@ const rows=report.shortestTopics.map(t=>'- '+t.name+' : '+t.count+' exercices').
 const md='# Rapport automatique Quizz — '+data.version+'\n\n'
  +'Exercices : **'+report.total+'**, familles : **'+report.pedagogicalFamilies+'**, variantes de familles : **'+report.familiesWithVariants+'**.\n\n'
  +'Textes identiques supplémentaires : **'+report.repeatedTextExtraExercises+'**, situations main+séquence identiques : **'+report.exactSituationDuplicates.length+'**.\n\n'
- +'Corrigés contrastifs : **'+report.withTeachingContrast+'**.\n\n'
+ +'Corrigés : justification de la bonne enchère uniquement.\n\n'
  +'Familles à variantes : **'+familyVariants.length+'**, dont '+(familyVariantCounts['hcp-variation']||0)+' variations de force, '+(familyVariantCounts['honor-repartition']||0)+' variations à force égale, '+(familyVariantCounts['decision-contrast']||0)+' contrastes de décision.\n\n'
  +'## Rubriques les moins couvertes\n'+rows+'\n\n'
  +'**Attention :** un texte répété peut accompagner une main différente. Ne pas supprimer ces exercices sans revue de l’intérêt pédagogique. Aucune probabilité de donne n’est déduite de ces volumes.\n';
@@ -99,4 +99,4 @@ assert.equal(familyVariants.length,203,'All 203 existing variant families must r
 assert.equal(familyVariantCounts['decision-contrast']||0,5,'Five families compare real thresholds (Stayman, fit HLD and three awakening cases)');
 const contrastedFamily=familyVariants.filter(x=>!x.sameAnswer);
 assert.deepEqual(contrastedFamily.map(x=>x.family).sort(),['cas-148','cas-275','cas-363','cas-365','cas-366'],'The five documented families change decisions at the threshold');
-console.log('Quizz content audit: PASS | '+report.total+' exercises | '+report.pedagogicalFamilies+' families | '+report.withTeachingContrast+' contrasted explanations | '+report.repeatedTextExtraExercises+' reused wordings');
+console.log('Quizz content audit: PASS | '+report.total+' exercises | '+report.pedagogicalFamilies+' families | correct-bid explanations only | '+report.repeatedTextExtraExercises+' reused wordings');
