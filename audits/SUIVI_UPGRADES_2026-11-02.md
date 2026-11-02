@@ -190,3 +190,45 @@ Les rapports collectifs annoncent également la couverture intégrale de **586 f
 4. **P2 — Interface et Entraînement** : stabilité du clavier mobile et du défilement ; traiter séparément les 11 anomalies `EN-*` ; conserver données locales et PDF d'origine.
 
 **Règle permanente :** après chaque lot, consigner IDs, verdict, changements, tests, publication et mettre à jour **ce fichier ainsi que le registre CSV**. Maintenir une distinction stricte entre une preuve nominative, un audit collectif déclaré et un simple contrôle automatique.
+
+
+---
+
+## Lot P1 — Audit nominatif des 38 barrages et 24 conventions avancées (2 novembre 2026)
+
+### Barrages — 38/38 revus, corrigés ou validés
+
+- **38 fiches réelles examinées individuellement** dans la rubrique `barrage` : main, compte H, longueur/qualité, vulnérabilité, séquence, réponse, distracteurs et corrigé. **32 exercices conservés et 6 corrigés**, aucun cas demeuré litigieux dans ce lot. Rapport complet : [`REVUE_SEF_BARRAGES_38_2026-11-02.md`](REVUE_SEF_BARRAGES_38_2026-11-02.md).
+- **3 bonnes réponses rectifiées** : `SEF-V3-104-4` (3♥ → 4♥), `SEF-V3-107-1` et `SEF-V3-107-2` (3♠ → 4♠), car quatre atouts face à six du partenaire appellent un prolongement de barrage au palier de quatre, vulnérabilité favorable précisée.
+- **3 mains remaniées** : `SEF-V3-093-3`, `SEF-V3-095-2` (supprimer deux gros honneurs extérieurs dans l'ouverture de 2 faible en première position), `SEF-V3-100-2` (concentrer les huit H dans sept Piques solides et préciser la vulnérabilité favorable).
+- Commits de données : [`f66c997`](https://github.com/CapGui13/QPJB/commit/f66c997cc8e0e02d3fd631c05abac96b266e9322) et [`d0b7efe`](https://github.com/CapGui13/QPJB/commit/d0b7efe1fb1f21599c3b7ef6a29c6f5a673e1b2f). **Six migrations ciblées de progression** prévues dans `quizz.html` ; aucun effacement global.
+- **18/38 fiches** proposent encore `1SA` comme mauvaise réponse : souvent pédagogiquement trop manifeste. Sujet prioritaire du prochain lot de distracteurs, sans modification non examinée des choix.
+- Références : [iBridge : 2 majeur faible](https://www.ibridge.fr/public/fichedetails/16), [iBridge : ouverture de barrage à 3](https://dev.ibridge-club.fr/public/fichedetails/150), [Réponses au deux faible](https://www.bridge-chailley.fr/wp-content/uploads/2013/02/E2024-2-faible-2-s.pdf). L'audit ne suppose aucun accord de paire externe aux règles annoncées.
+
+### Conventions avancées — 24 exercices documentés
+
+- **24/24 exercices lus individuellement** : six Multi-Landy, six Rubensohl, six Michaels précisés, six Blackwood 30–41. **24 bonnes réponses conservées**, aucune correction certaine de données. Rapport nominatif : [`REVUE_SEF_CONVENTIONS_24_2026-11-02.md`](REVUE_SEF_CONVENTIONS_24_2026-11-02.md).
+- Conformité aux **conventions explicitement annoncées dans chaque exercice**, sans affirmer que toutes les variantes sont équivalentes ou que les 120 approfondissements ont été audités.
+- **Vigilance pédagogique ouverte** : accessibilité du rappel complet des conventions dans la séance iPhone, niveau de difficulté 5 potentiellement excessif pour une reconnaissance de codage, crédibilité de certains distracteurs.
+
+### Traçabilité des 993 exercices — actualisation
+
+- Registre : [`REGISTRE_993_REVUES_2026-11-02.csv`](REGISTRE_993_REVUES_2026-11-02.csv) ; **993 lignes, IDs uniques**. **62 IDs** documentés par les deux nouveaux rapports, dont **7** possédaient déjà une trace nominative ou thématique ; **55** nouveaux IDs distincts ajoutés au périmètre nominativement raccordé.
+- **138 fiches** disposent désormais d'une **revue ciblée récente** dans les lots suivis ; **18** ont une correction historique nominative uniquement, **177** une revue thématique nominative uniquement, et **660** aucune trace nominative retrouvée dans les pièces recoupées. Les 660 ne sont **pas** déclarées non auditées : le volume collectif déclaré pour les enchères à deux (586) et compétitives (249) demeure conservé dans une colonne distincte. Aucune double comptabilisation.
+- Le registre inclut les colonnes `dernier_verdict_individuel`, `dernier_rapport_individuel` et `date_revue_individuelle`. Son état est une photographie des données du catalogue après les corrections de ce lot.
+
+### Contrôle technique et publication
+
+- L'ancien [smoke `41448418449`](https://github.com/CapGui13/QPJB/actions/runs/41448418449) **avait échoué** sur un test de Roudi fixant artificiellement la difficulté 5 alors que le recalibrage avait placé les cas au niveau 4. **Correctif du test** dans [`e3a8191`](https://github.com/CapGui13/QPJB/commit/e3a81919b221fbb688960cee68f0b980eecbf381), sans changer les règles ni les réponses.
+- Les contrôles structurels locaux avant chaque commit de données ont confirmé **993 fiches, 13 cartes, points H exacts, quatre choix distincts contenant la réponse, absence de doublon strict**.
+- La validation **CI Chromium/WebKit et publication Pages du dernier `main` ne sont pas encore déclarées acquises dans cette note** : vérifier les nouveaux runs après le commit présent, ne pas confondre `cancelled` / `skipped` et `success`. Aucun test sur iPhone physique n'est revendiqué.
+
+### Priorités suivantes
+
+1. **P0** : surveiller le dernier smoke `QPJB Training smoke` sur Chromium/WebKit et le workflow Pages ; réparer toute vraie régression avant nouveau chantier.
+2. **P1** : traiter individuellement les **18 distracteurs `1SA`** de la famille barrage, en cherchant des alternatives crédibles qui restent clairement fausses ; éviter une substitution en bloc.
+3. **P1** : poursuivre les conventions avancées non documentées (dont autres Multi-Landy, Rubensohl, Michaels, chelems, forcing et Drury) par lots diversifiés avec verdict par ID ; préserver la règle d'une seule bonne réponse.
+4. **P2** : recalibrer les exercices de difficulté 5 dépendant d'un simple codage conventionnel, puis continuer l'amélioration des corrigés et les tests de clavier / défilement iPhone.
+5. **P2 Entraînement** : traiter séparément les 11 anomalies `EN-*` après récupération des preuves de chaque exercice, sans modifier les documents PDF d'origine.
+
+**Règle de synchronisation** : pour chaque nouveau lot, mettre à jour cette feuille et le registre, noter les commits et distinguer `contrôles statiques`, `tests navigateur`, `déploiement Pages` et `validation sur iPhone physique`.
