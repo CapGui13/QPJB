@@ -6,13 +6,20 @@ from pathlib import Path
 from urllib.parse import quote
 
 root = Path(__file__).resolve().parents[1]
+def pbn_sort_key(path: Path):
+    """Trie B9 avant B10, sans modifier les noms ni l'ordre des autres fichiers."""
+    prefix = path.stem.split(" - ", 1)[0]
+    if prefix[:1].casefold() == "b" and prefix[1:].isdigit():
+        return (0, int(prefix[1:]), path.name.casefold())
+    return (1, 0, path.name.casefold())
+
 seances = []
 for folder in sorted(root.iterdir(), key=lambda p: p.name.casefold()):
     if not folder.is_dir() or folder.name.startswith(".") or folder.name in {"Docs", "scripts"}:
         continue
     fichiers = [
         {"name": f.name, "download_url": "./" + quote(folder.name, safe="") + "/" + quote(f.name, safe="")}
-        for f in sorted(folder.iterdir(), key=lambda p: p.name.casefold())
+        for f in sorted(folder.iterdir(), key=pbn_sort_key)
         if f.is_file() and f.suffix.lower() == ".pbn"
     ]
     if fichiers:
