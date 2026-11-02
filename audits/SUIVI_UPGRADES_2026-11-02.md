@@ -380,3 +380,12 @@ Sur ces 22, **18** n'avaient aucune pièce nominative dans le registre, **2** av
 2. **P1** — Revoir au cas par cas les distracteurs et les difficultés qui restent réellement ambigus, sans revenir automatiquement sur les 27 décisions documentées ni inventer des accords de paire.
 3. **P2** — Reprendre les tests du clavier bridge et du défilement sur iPhone ; conserver les onze anomalies d'Entraînement `EN-*` dans leur chantier distinct.
 4. **Maintenance permanente** — Après chaque nouvel arbitrage, actualiser ensemble cette feuille de route, les IDs affectés dans le registre et les contrôles CI/Pages réellement conclus.
+
+
+### Validation finale du lot correctif — 2 novembre 2026
+
+**Validation CI acquise pour le code et les tests corrigés** : [QPJB Training smoke #41494161871](https://github.com/CapGui13/QPJB/actions/runs/41494161871), commit `289e34af`, terminé avec **success** sur les **trois jobs** : audit des données, Chromium et WebKit. L'échec WebKit antérieur sur `b3f8d2fb` ne s'est pas reproduit dans ce nouveau test.
+
+**Publication GitHub Pages confirmée** : [QPJB Pages #41494835153](https://github.com/CapGui13/QPJB/actions/runs/41494835153), terminée avec **success** après validation, sur le commit automatique de catalogue `259dc697`. Le correctif `quizz.html` est resté identique au blob `61a2a0ffbaad8c3a07388bbcfe23d92b153bd454` depuis le commit `5d55d0a`.
+
+**Portée et limites** : les 31 correctifs de données, les 27 difficultés et les cinq révisions ciblées sont **testés et publiés**. La réussite WebKit est celle du navigateur automatisé simulant l'iPhone, **pas** un essai physique sur iPhone. La présente ligne de suivi, purement documentaire, ne constitue ni une nouvelle modification pédagogique ni une nouvelle condition de publication.
