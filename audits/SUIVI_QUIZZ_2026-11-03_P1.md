@@ -36,3 +36,12 @@
 - **Registre : 195 fiches datées / 993**, soit 20 nouvelles revues et **798 sans verdict individuel daté**. Dans l'ancien groupe de vigilance, **146 restent à examiner** ; les scores heuristiques ne constituent pas des verdicts.
 - **Réserve `SEF-V426-004`** : maintenue après confrontation avec les sources documentant le relais 2SA après deux majeur faible. Le 2SA ne figure pas parmi les quatre choix, mais cela ne démontre pas qu'il faille changer Passe. Pas de réponse corrigée sans preuve.
 - **CI/Pages :** résultats à confirmer après la fusion ; publication non présumée. Aucun changement des 677 exercices d'Entraînement.
+
+
+## Publication vérifiée de la V4.50
+
+- **[PR n°22](https://github.com/CapGui13/QPJB/pull/22) fusionnée** sur `main`, commit `7a1beafd75bda9acb77644c69e0c4948830000b2` : 20 fiches Quizz documentées, sept explications clarifiées, zéro modification de bonne réponse ou de proposition. Périmètre limité au Quizz, à ses tests et aux documents d'audit.
+- **[Tests de branche #41679035348](https://github.com/CapGui13/QPJB/actions/runs/41679035348) réussis** : audit des données, Chromium et WebKit. La première exécution #41678841024 avait échoué sur une apostrophe non échappée dans un *test* ; l'erreur de syntaxe a été réparée avant la validation et la fusion.
+- **[Tests post-fusion #41679668848](https://github.com/CapGui13/QPJB/actions/runs/41679668848) réussis** sur `main`, trois jobs verts ; [catalogue #41679668641](https://github.com/CapGui13/QPJB/actions/runs/41679668641) actualisé avec succès.
+- **[GitHub Pages #41680236850](https://github.com/CapGui13/QPJB/actions/runs/41680236850) réussi** : vérification du commit exact et publication de la version validée ; le Quizz **V4.50 est en ligne**. Le test réel iPhone/Safari physique demeure hors du périmètre des navigateurs simulés.
+- **Registre actuel : 195/993 fiches avec verdict individuel daté** ; 146 autres du groupe initial des 166 vigilances restent à revoir. La réserve `SEF-V426-004` reste ouverte conformément au rapport, aucune réponse élève n'a été changée.
