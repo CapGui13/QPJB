@@ -14,7 +14,7 @@ const TRAINING_SHELL = [
   BASE + 'entrainement/training-core.css?v=20261030h',
   BASE + 'entrainement/training-integrated.css?v=20261030z',
   BASE + 'entrainement/training-data-bootstrap.js?v=20261103d',
-  BASE + 'entrainement/training-app.js?v=20261031a'
+  BASE + 'entrainement/training-app.js?v=20261103d'
 ];
 // Les modules pédagogiques volumineux ne doivent plus bloquer l'installation.
 // Ils restent chargés à la demande et sont sauvegardés en arrière-plan
