@@ -21,6 +21,21 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+const reviewedV452 = [{"id":"SEF-V4-009-1","expected":"3♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-010-1","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-011-1","expected":"3♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-012-1","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-021-1","expected":"3♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-022-3","expected":"4♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-023-3","expected":"3♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V4-024-2","expected":"4♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V416-005","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V416-006","expected":"3♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V423-003","expected":"3♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-N140-1","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V44-022","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-023","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-024","expected":"4♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-025","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-026","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-028","expected":"1SA","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V49-039","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V410-018","expected":"2♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V410-019","expected":"2SA","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V411-010","expected":"4♥","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V411-019","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V411-020","expected":"4♠","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V411-021","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V412-005","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V413-006","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V417-007","expected":"Passe","review":"reponse_coherente_dans_les_choix"},{"id":"SEF-V417-008","expected":"4♠","review":"reserve_option_3pique_exploration_chelem"},{"id":"SEF-V418-003","expected":"3SA","review":"reponse_coherente_dans_les_choix"}];
+assert.equal(reviewedV452.length,30,'V4.52 Quizz : 30 revues');
+for (const review of reviewedV452) {
+ const ex=exercises.find(x=>x.id===review.id);
+ assert.ok(ex,'Exercice Quizz manquant : '+review.id);
+ assert.equal(ex.answer,review.expected,'Bonne enchère préservée : '+review.id);
+ assert.equal(ex.choices.length,4,'QCM conservé : '+review.id);
+ assert.equal(ex.pedagogicalReview20261104?.answerUnchanged,true,'Réponse élève stable : '+review.id);
+ assert.equal(ex.pedagogicalReview20261104.verdict,review.review,'Verdict traçable : '+review.id);
+ if(ex.pedagogicalReview20261104.editorialChange) {
+  assert.ok(ex.sourceOriginalExplain20261104&&ex.explain!==ex.sourceOriginalExplain20261104,'Ancien corrigé conservé : '+review.id);
+ }
+}
+
+
 // Quizz V4.51 : 31 reponses au Contre, distinction entre Passe adverse et soutien adverse.
 const counterReviewed=["SEF-V3-057-1","SEF-V3-057-4","SEF-V3-058-3","SEF-V3-058-1","SEF-V3-059-5","SEF-V3-059-1","SEF-V3-060-2","SEF-V3-060-1","SEF-V3-061-2","SEF-V3-061-3","SEF-V3-062-4","SEF-V3-062-1","SEF-V3-063-1","SEF-V3-063-2","SEF-V3-064-4","SEF-V3-064-2","SEF-V3-065-3","SEF-V3-066-4","SEF-V3-067-4","SEF-V3-068-4","SEF-V3-069-1","SEF-V3-070-2","SEF-V3-071-3","SEF-V3-072-1","SEF-V3-073-1","SEF-V49-030","SEF-V49-031","SEF-V419-008","SEF-V421-009","SEF-V422-005","SEF-C-010"];
 assert.equal(counterReviewed.length,31,'31 counter-review entries expected');
