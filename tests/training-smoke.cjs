@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103g')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103g'),
+check(html.includes('training-data-bootstrap.js?v=20261103h')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103h'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -206,6 +206,18 @@ check(data.play.find(x=>x.id==='JC-BH-028-Q04').prompt.includes('fournit le 2♥
 check(data.play.find(x=>x.id==='JC-BH-036-Q02').prompt.includes('reprise extérieure')&&
  data.play.find(x=>x.id==='JC-BH-036-Q02').options.every(o=>!o.includes('Jouer immédiatement le 7')),
  'suit combination has an external return and no ambiguous Ace-first distractor');
+
+// JC-021 : contre-exemple et archive du corrige historique.
+const jc021=data.play.find(x=>x.id==='JC-021');
+check(!!jc021&&jc021.reviewStatus==='a_relire'&&jc021.sourceOriginalAnswerText?.includes('Est n’a plus de Pique à rejouer')&&
+ jc021.answerText.includes('♠109876')&&jc021.answerText.includes('cinq levées')&&
+ !jc021.answerText.includes('Il ne peut rien lui arriver')&&
+ jc021.strategicAuditStatus==='contre_exemple_complet_documente_mais_plan_optimal_non_certifie',
+ 'JC-021 documents East five spades counterexample and archives original source');
+check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
+ jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
+ 'JC-021 40 HCP witness and matching visible hands');
+
 check(data.play.length===114&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===114,
  '114 card exercises preserved and accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
@@ -295,8 +307,8 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103g')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103g'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103h')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103h'),
  'both entry points load the current pedagogical module');
 check(read('service-worker.js').includes("const CACHE = 'qpjb-v51'"),
  'PWA cache revision invalidated for updated SEF exercises');
