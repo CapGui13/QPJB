@@ -85,3 +85,11 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 
 **Prochain lot recommandé** : traiter avec contre-exemples / analyses de distribution `JC-012` (défense et nombre de plis), `JC-021` (tempo et reprises), `JC-007` (commentaire sur le saut direct au chelem), puis `JC-002`, `JC-016` et `JC-BH-060-01`. La révision du plan complet de `JC-013` reste ouverte malgré la correction de son affirmation universelle. Essai Safari sur un iPhone physique toujours non effectué.
 
+
+
+## Reprise du 3 novembre — JC-012, JC-007 et réserve démontrée JC-021
+
+- **JC-012** : l'inférence abusive de ♥A forcément en Ouest a été corrigée dans `answerText` tout en conservant le texte d'origine et les cartes (commit `3ecb4188e6`). Tests audit/Chromium/WebKit [#41649902757](https://github.com/CapGui13/QPJB/actions/runs/41649902757) concluants ; publication Pages [#41650640695](https://github.com/CapGui13/QPJB/actions/runs/41650640695) réussie.
+- **JC-007** : la présentation d'un saut automatique à 6♥ après 2SA fort a été corrigée sans toucher à la donne ni au plan de carte (commit `a87f706f42`). Tests [#41652116357](https://github.com/CapGui13/QPJB/actions/runs/41652116357) réussis et Pages [#41652696036](https://github.com/CapGui13/QPJB/actions/runs/41652696036) réussi sur le commit de catalogue `136295a1c5`.
+- **JC-021** : un nouveau **contre-exemple de 52 cartes vérifié** réfute la garantie du corrigé en 3SA : Ouest ♠DV4, Est ♠109876 et ♦RV ; Est conserve des Piques après les deux impasses à Carreau et la défense encaisse cinq plis. Voir `AUDIT_JC_30_PLANS_PRELIMINAIRE_2026-11-03.md`. **Aucun corrigé de JC-021 modifié ni validé** : poursuivre l'étude stratégique avant toute adaptation notée ou publiée.
+- **Compteurs inchangés** : 563 exercices d'enchères et 114 de jeu de la carte accessibles ; cette mise à jour documente uniquement l'audit. Test iPhone Safari réel toujours en attente.
