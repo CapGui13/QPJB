@@ -25,7 +25,7 @@ Légende : **M** = mécanisme principal identifié, encore soumis aux distributi
 | `JC-010` | R | Défense contre 3SA : appel du ♣10 sur l'As d'entame selon le signalement « grosse carte = appel » **explicitement fourni** à l'élève. Conserver ce rappel de convention et ne pas affirmer que ce signal est universel hors de ce cadre. |
 | `JC-011` | M | 6♠ : 9 atouts dans la ligne, menace du Valet quatrième adversaire en 4–0. Commencer du côté Roi-Dame pour préserver les fourchettes A9 et D10, puis orienter l'impasse selon la chicane constatée. Contrôler l'ordre exact des retours. |
 | `JC-012` | R | Défense sur 3♦ : sous l'hypothèse de l'As de Cœur en Ouest, le retour du singleton Trèfle d'Est cherche une coupe. Réexaminer la déduction de l'As à Cœur, le nombre exact de plis encaissables (le texte parle d'« une de chute ») et les répartitions de Sud qui pourraient permettre de couper Cœur. |
-| `JC-013` | R | 5♣ : maximiser les atouts par des coupes alternées, sans réunir deux atouts dans un même pli. L'affirmation « il ne peut plus rien vous arriver » doit être bornée : une chicane adverse dans une couleur latérale et une surcoupe sur ♣2/♣3 peuvent changer le résultat ; analyse exhaustive à faire. |
+| `JC-013` | C | 5♣ : l'affirmation « il ne peut plus rien vous arriver » est **réfutée par une donne adverse complète et cohérente** : une chicane Pique en Ouest permet de couper l'As de Pique du mort. Corrigé nuancé en conservant la version PDF originale ; le plan de coupes croisées n'est pas certifié optimal à toute distribution. |
 | `JC-014` | M | 3SA : 7 plis maîtres (2 Cœurs, 4 Carreaux, As de Trèfle) ; concéder As de Pique permet d'établir deux levées supplémentaires grâce à Roi-Dame-Valet. Contrôler le nombre de communications et la durée de tenue à Cœur. |
 | `JC-015` | M | 4♥ : comparer l'impasse au Roi de Trèfle et celle au Roi d'atout, compte tenu de l'accès limité au mort. L'impasse Cœur pourrait devoir être répétée ; l'As de Pique du mort est une remontée précieuse. |
 | `JC-016` | R | 4♥ : ♥R-D au mort et ♦A10 en Sud ; rejouer Carreau dès la deuxième levée vise à défausser un Trèfle avant de purger l'atout. La certitude dépend du Roi de Carreau entamé et de la position/valeur de la Dame et du Valet ; vérifier la chaîne complète sous toutes les réponses défensives. |
@@ -44,11 +44,27 @@ Légende : **M** = mécanisme principal identifié, encore soumis aux distributi
 | `JC-BH-046-01` | M | 6♥ : huit Cœurs : Nord ♥AD109, Sud ♥7653 ; Roi et Valet manquants. Deux impasses successives exigent un placement favorable chez Ouest et des rentrées en Sud ; ne pas oublier que le premier pli Pique a déjà été perdu. |
 | `JC-BH-047-01` | R | 4♠ : jouer ♥V de Sud vers ♥D au mort pour profiter du placement favorable du Roi et défausser le Carreau urgent. La réussite dépend de la carte fournie par Ouest et de l'accès aux Cœurs du mort ; vérifier une défense qui cherche les atouts en premier. |
 
+
+### Contre-exemple formel à l'assertion universelle de JC-013
+
+Dans JC-013, Nord détient ♠AV654 ♥8 ♦AD5 ♣RV103 ; Sud ♠2 ♥AV975 ♦964 ♣AD92. La donne suivante est valide :
+
+| Siège | Piques | Cœurs | Carreaux | Trèfles |
+|---|---|---|---|---|
+| Nord (mort) | AV654 | 8 | AD5 | RV103 |
+| Est | RD109873 | 32 | V832 | — |
+| Sud (déclarant) | 2 | AV975 | 964 | AD92 |
+| Ouest | — | RD1064 | R107 | 87654 |
+
+**Contrôle de validité :** 13 cartes exactement par joueur ; les 13 cartes de chaque couleur sont distinctes et présentes une fois, sans doublon. Ouest peut entamer du **♦7**, Nord remporte le premier pli de l'**♦A**, puis joue **♠A** comme le prescrit le corrigé. **Ouest, chicane Pique, coupe ♠A avec ♣4** (Sud doit fournir son unique ♠2). La recommandation « il ne peut plus rien vous arriver » est donc fausse dans cette distribution, sans supposer de coup illégal ou de carte impossible. Le plan source peut fonctionner dans des répartitions plus favorables, mais ne doit pas être présenté comme garanti.
+
+**Correction éditoriale ciblée :** conservation du texte imprimé dans `sourceOriginalAnswerText`, précision du risque de coupe/surcoupe dans `answerText` et métadonnées `pedagogicalAudit_20261103`. Aucun changement de main, ID, PDF ou résultat élève ; cela ne constitue pas une résolution double-dummy exhaustive.
+
 ## Bilan et décisions
 
-- **30/30 fiches répertoriées et relues au niveau du mécanisme** ; **1 correction de rédaction objectivement justifiée et appliquée sur branche** (`JC-BH-120-01`), **plusieurs réserves sans correction automatique**.
-- **Aucune certification stratégique exhaustive revendiquée**, et aucune modification des 29 autres corrigés ni des PDF originaux.
-- Priorités de contre-expertise complète : **`JC-013`** (surcoupe et caractère « garanti »), **`JC-012`** (défense et décompte), **`JC-021`** (tempo de 3SA), **`JC-007`** (commentaire d'enchères de chelem), puis `JC-002`, `JC-016`, `JC-BH-060-01`.
+- **30/30 fiches répertoriées et relues au niveau du mécanisme** ; **2 corrections ciblées justifiées et appliquées sur branche** (`JC-BH-120-01`, `JC-013`), **plusieurs autres réserves sans correction automatique**.
+- **Aucune certification stratégique exhaustive revendiquée**, et aucune modification des 28 autres corrigés ni des PDF originaux.
+- Priorités de contre-expertise complète : **`JC-013`** (la fausse garantie est corrigée mais le plan demeure à prouver), **`JC-012`** (défense et décompte), **`JC-021`** (tempo de 3SA), **`JC-007`** (commentaire d'enchères de chelem), puis `JC-002`, `JC-016`, `JC-BH-060-01`.
 - `JC-BH-120-01` : ancien `answerText` archivé dans `sourceOriginalAnswerText`, nouvel `pedagogicalAudit_20261103`; **ID, diagramme, source PDF, statut d'accès et progression locale préservés**.
 - 563 enchères et 114 cartes sont conservées et accessibles. Le total 677 ne change pas. Modules `20261103e`, cache `qpjb-v49` ; tests d'intégrité à exécuter avant diffusion.
 
