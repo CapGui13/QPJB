@@ -21,6 +21,17 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+// Revue Quizz du 3 novembre : 2 atouts face à une ouverture de 2 majeur faible
+// promettant 6 cartes = fit huitième, sans invitation obligatoire.
+for(const [id,suit,h] of [['SEF-V3-106-1',0,2],['SEF-V3-106-2',0,6],['SEF-V3-103-4',1,4],['SEF-V3-103-3',1,6]]){
+ const ex=exercises.find(x=>x.id===id);
+ assert.ok(ex&&ex.answer==='Passe'&&ex.hand[suit].length===2&&ex.h===h,'Barrage source unchanged: '+id);
+ assert.equal(ex.sourceOriginalExplain20261103,'Sans fit ni force suffisante, Passe sur l’ouverture de 2 faible évite de monter inutilement.','Original wording archived: '+id);
+ assert.ok(ex.explain.includes('huit atouts')&&ex.explain.includes('Passe')&&!ex.explain.includes('Sans fit ni force'),'Correct eight-trump explanation: '+id);
+ assert.equal(ex.pedagogicalReview20261103?.answerUnchanged,true,'No change to correct answer: '+id);
+}
+
+
 assert.equal(exercises.filter(x=>/^SEF-C-\d{3}$/.test(x.id)).length,12,'Twelve audited C01 situations');
 assert.equal(exercises.filter(x=>/^SEF-C2-\d{3}$/.test(x.id)).length,12,'Twelve audited C02 convention situations');
 const stayman6=exercises.find(x=>x.id==='SEF-V49-016');
