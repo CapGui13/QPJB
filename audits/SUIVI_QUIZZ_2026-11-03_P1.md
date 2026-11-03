@@ -71,3 +71,12 @@
 - **Registre : 256 / 993 avec revue individuelle datée**, dont des réserves ouvertes, et **737 sans verdict daté**. Ne pas confondre revue documentée et certification pédagogique certaine.
 - **Quizz V4.52** : `prototype-2026-11-04-v4-52-apres-fit-redemande`, zéro bonne enchère modifiée, historique élève préservé. Tests d'intégrité ajoutés.
 - **Validation et publication** : à contrôler après PR/CI/Pages avant annonce de mise en ligne.
+
+
+## V4.52 — fusion, contrôles et publication vérifiés
+
+- **[PR n°24](https://github.com/CapGui13/QPJB/pull/24) fusionnée**, commit `96ea82e3a8cd9108836ac7f5b717fa6e2e7a286c`. Le lot concerne 30 fiches du Quizz (11 essais après fit, 19 deuxièmes enchères), 19 explications clarifiées et 30 verdicts enregistrés ; **aucune bonne réponse ni proposition modifiée**.
+- **[Tests sur branche #41741783253](https://github.com/CapGui13/QPJB/actions/runs/41741783253) réussis** : audit des données, Chromium et WebKit.
+- **[Tests sur main #41742267943](https://github.com/CapGui13/QPJB/actions/runs/41742267943) réussis**, trois jobs verts ; [catalogue #41742268061](https://github.com/CapGui13/QPJB/actions/runs/41742268061) actualisé.
+- **[GitHub Pages #41742724147](https://github.com/CapGui13/QPJB/actions/runs/41742724147) : publication réussie** du commit testé. La **V4.52 est en ligne**, sous réserve du cache éventuel côté navigateur. Les tests automatisés n'équivalent pas à une validation sur iPhone réel.
+- **Suivi rectifié** : 256/993 fiches avec revue individuelle datée, 737 sans revue datée ; **53 vigilances encore sans revue datée** dans le groupe heuristique des 166 (les 32 précédemment revues ne doivent pas être recomptées). Deux réserves pédagogiques restent ouvertes : `SEF-V417-008` et `SEF-V426-004`.
