@@ -43,3 +43,17 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 
 **État éditorial à cette étape :** aucune réécriture ni réintégration des trois QCM ci-dessus ; les compteurs documentés restent **563 EN en banque, 560 accessibles, 3 en quarantaine**. Les hypothèses ci-dessus sont un plan de correction et non des réponses SEF déjà certifiées.
 
+## Clôture des trois quarantaines EN — publication du 3 novembre 2026
+
+- **Pull request [#14](https://github.com/CapGui13/QPJB/pull/14) fusionnée** sur `main` par squash `b2cfae040a1d7cc02058e16c35b215cfd94f03a9`. Rapport : [REINTEGRATION_EN_3_SEF_2026-11-03.md](REINTEGRATION_EN_3_SEF_2026-11-03.md).
+- `EN-suite-repondant-003` : 6♠ immédiat remplacé par **5♥ contrôle**, avec recherche des contrôles avant chelem ; l'ancien corrigé source est archivé.
+- `EN-BH-077-04` : 6♥ immédiat remplacé par **3♥**, six Cœurs forcing après 2SA à saut, exploration du chelem ; ancien corrigé archivé.
+- `EN-BH-078-05` : **4♠ maintenu** dans un contexte de vulnérabilité favorable désormais explicite ; Passe ajouté comme alternative ; réponse source conservée.
+- **Protection :** les trois IDs, mains, séquences, PDF et historiques locaux sont conservés. Les anciens corrigés, choix et raisons de quarantaine ont été archivés en données. Chaque fiche est `transcrit_source`, c'est-à-dire une auto-évaluation **sans notation automatique**. Aucune migration/réinitialisation de `localStorage`.
+- **Compteurs après fusion : 563 exercices EN conservés et 563 accessibles, zéro quarantaine EN** ; 114 exercices de jeu de la carte conservés, dont 111 accessibles. Modules `20261103c`, cache PWA `qpjb-v47` ; rubriques `suite-repondant` 73 et `rep-barrage` 12.
+- **CI de la PR** : [run #41595887184](https://github.com/CapGui13/QPJB/actions/runs/41595887184), succès des trois jobs audit, Chromium et WebKit au SHA `1bd933bb`.
+- **Revalidation de `main` après fusion** : [run #41596542604](https://github.com/CapGui13/QPJB/actions/runs/41596542604) au SHA `b2cfae04`, succès des trois mêmes jobs. [Actualisation du catalogue #41596542501](https://github.com/CapGui13/QPJB/actions/runs/41596542501) : succès.
+- **Publication GitHub Pages finale** : [run #41596979603](https://github.com/CapGui13/QPJB/actions/runs/41596979603), succès des deux jobs vérification et publication, sur le commit généré `2be961b917236fc470877e42f1036c2466931836`. Ce succès constitue la preuve de publication ; il ne faut pas le confondre avec les anciens runs `skipped`.
+
+**P0 clôturé pour ce lot et cette version de code.** Vérification Safari sur **iPhone physique** encore à réaliser, à distinguer de WebKit automatisé. Le reste du projet reste ouvert : les 3 quarantaines du jeu de la carte, l'audit pédagogique transversal des EN, l'audit indépendant des 993 Quizz et le rapprochement des anciens rapports nominatifs ; ne pas les déclarer terminés du seul fait de ce lot.
+
