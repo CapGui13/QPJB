@@ -33,7 +33,7 @@ Légende : **M** = mécanisme principal identifié, encore soumis aux distributi
 | `JC-018` | M | 3SA : cumuler ♦3–2 (environ 68 %) avec une seconde chance à Cœur ; jouer As puis Roi de Carreau en choisissant l'ordre des rentrées mineures. Vérifier précisément les variantes de retour à Trèfle lorsque le partage est 4–1. |
 | `JC-019` | M | 1SA : ♠A-R en Sud face à ♠V au mort ; jouer petit de Sud vers le Valet pour chercher la Dame en Ouest offre une chance de septième levée à comparer à l'affranchissement des Trèfles. Le contrat est 1SA : vérifier les levées requises et le retour Cœur après échec. |
 | `JC-020` | R | 4♥ : entame ♦D, ♦R6 en Sud et ♦A104 au mort ; rendre urgent le transfert de perdante Trèfle sur le troisième Carreau. La ligne est conditionnée par la présence du ♦V avec ♦D chez Ouest et les cartes de sortie de la défense ; ne pas présenter la défausse comme garantie hors de cette condition. |
-| `JC-021` | R | 3SA : laisser passer l'entame Pique avant de travailler les Carreaux par double impasse pour couper les communications du flanc. La conclusion « il ne peut rien arriver » mérite une preuve du tempo et de la position de la Dame de Trèfle dans les variantes. |
+| `JC-021` | R | 3SA : laisser passer l'entame Pique avant de travailler les Carreaux par double impasse ne garantit pas la réussite. **Contre-exemple complet ci-dessous** : si Est possède cinq Piques et ♦R-V, il peut encaisser deux Piques après avoir remporté les deux impasses ; la certitude « Est n'a plus de Pique » est fausse sans hypothèse de répartition. Corrigé utilisateur à revoir ; source inchangée. |
 | `JC-022` | M | 4♠ : cinq atouts en Sud contre trois au mort, coupe utile du troisième Cœur par le Roi de Pique du mort ; donner un tour d'atout seulement puis préserver la coupe. Contrôler le risque de surcoupe et de défense 4–1 à l'atout. |
 | `JC-023` | R | 3SA : privilégier l'impasse Trèfle au Roi plutôt que celle à la Dame de Carreau pour choisir l'adversaire qui prendrait la main. L'expression « Roi de Pique protégé » dépend du siège de l'As et du retour choisi ; il faut comparer les variantes avant de certifier le plan optimal. |
 | `JC-BH-100-01` | M | 3SA : ♦ et ♥ fournissent les entrées ; ♣ARV52 au mort face à ♣763 permet un coup de sonde à l'As ou au Roi pour une Dame sèche, puis impasse en revenant en Sud. Refaire le calcul de gain selon la longueur manquante. |
@@ -94,3 +94,27 @@ Le texte imprimé précédent est sauvegardé dans `sourceOriginalAnswerText`, a
 - 563 enchères et 114 cartes sont conservées et accessibles. Le total 677 ne change pas. Modules `20261103e`, cache `qpjb-v49` ; tests d'intégrité à exécuter avant diffusion.
 
 **Prochaine passe :** démontrer les lignes des sept priorités sur distributions adverses concrètes ou contre-exemples, puis seulement corriger ce qui est confirmé. Des simulations / un moteur de jeu permettront d'éviter de certifier abusivement des plans plausibles.
+
+
+### Contre-exemple vérifié — JC-021 : Est peut encore rejouer Pique
+
+Le corrigé historique de **3SA, entame ♠D** conclut qu'après avoir laissé passer l'entame puis pris la deuxième levée de Pique, si les deux impasses à Carreau échouent, « Est n'a plus de Pique à rejouer » et le déclarant est à l'abri. Cette conclusion exige implicitement **au plus trois Piques en Est**, ce que l'entame de la Dame par Ouest ne garantit pas.
+
+| Siège | ♠ | ♥ | ♦ | ♣ | H |
+|---|---|---|---|---|---:|
+| Nord (mort) | 32 | R97 | AD1092 | RV2 | 13 |
+| Est | 109876 | 42 | RV | 8764 | 4 |
+| Sud (déclarant) | AR5 | A1086 | 83 | A1053 | 15 |
+| Ouest (entame) | DV4 | DV53 | 7654 | D9 | 8 |
+
+**Validité du contre-exemple :** quatre mains de 13 cartes ; les 52 cartes sont distinctes et chaque couleur contient exactement ses 13 valeurs ; total de **40 points H**. Les deux mains Nord/Sud et l'entame ♠D correspondent à l'énoncé de `JC-021`. Les mains Est/Ouest sont une distribution adverse possible, **non une reconstitution du document original**.
+
+1. Ouest entame **♠D** ; Nord ♠2, Est ♠6, Sud ♠5 : le déclarant laisse passer.
+2. Ouest rejoue **♠V** ; Nord ♠3, Est ♠7, Sud ♠A : Sud prend le deuxième tour, comme demandé.
+3. Sud joue **♦8** ; Ouest ♦4, Nord ♦2, Est **♦V** : première impasse perdue.
+4. Est rejoue **♠8** ; Sud **♠R** prend, Ouest fournit ♠4 et Nord défausse : Est a encore ♠10 et ♠9.
+5. Sud joue **♦3** ; Ouest ♦5, Nord ♦9, Est **♦R** : deuxième impasse perdue ; **Est encaisse ensuite ♠10 et ♠9**.
+
+La défense remporte **cinq levées** (♠D, ♦V, ♦R, ♠10, ♠9) : **3SA chute** malgré le jeu indiqué. Ce scénario montre que le retour Pique d'Est et l'hypothèse sur le partage des Piques sont indispensables à la démonstration ; le plan et la garantie du corrigé ne sont **pas universels**. Il ne détermine pas à lui seul le meilleur jeu minimax ou probabiliste dans la situation d'information incomplète.
+
+**Décision de cette passe :** réserver `JC-021` pour correction éditoriale indépendante ; ne pas changer les mains, l'image, le PDF ni l'`answerText` tant qu'un corrigé pédagogique conditionnel et ses tests n'ont pas été conçus. Le `strategicAuditStatus` de l'exercice reste non certifié.
