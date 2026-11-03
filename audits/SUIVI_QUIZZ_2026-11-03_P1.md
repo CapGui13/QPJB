@@ -27,3 +27,12 @@
 - [Tests après fusion sur main #41668397961](https://github.com/CapGui13/QPJB/actions/runs/41668397961) : trois jobs **réussis** ; [catalogue #41668398365](https://github.com/CapGui13/QPJB/actions/runs/41668398365) actualisé avec succès.
 - [Publication Pages #41669051961](https://github.com/CapGui13/QPJB/actions/runs/41669051961) : vérification du commit exact et déploiement **réussis** ; Quizz V4.49 publié. Cette validation couvre les navigateurs simulés, pas un essai physique iPhone.
 - **Registre après ce lot : 175/993 fiches avec verdict individuel daté ; 818 restantes**. Les 20 priorités heuristiques restent signalées par leur ancien score (qui n'analyse pas le texte des corrigés), mais ont leur verdict nominatif. La réserve `SEF-V426-004` reste volontairement ouverte.
+
+
+## P1 — Lot 1 des 166 cas en vigilance, 3 novembre
+
+- **20 fiches** relues nominativement : 5 réponses à une mineure, 2 réponses à 2SA, 13 suites Stayman/Texas. [Rapport détaillé](./REVUE_20_VIGILANCES_QUIZZ_2026-11-03.md). Les quatre choix, les 20 bonnes réponses et les exercices précédents demeurent inchangés.
+- **7 corrigés du Quizz clarifiés** avec seuils de force et mise en garde sur les fausses réponses : ancien texte archivé par exercice. `quizz.html` version `prototype-2026-11-03-v4-50-vigilances-20`. Contrôle Quizz ajouté à `tests/quizz-integrity.cjs`.
+- **Registre : 195 fiches datées / 993**, soit 20 nouvelles revues et **798 sans verdict individuel daté**. Dans l'ancien groupe de vigilance, **146 restent à examiner** ; les scores heuristiques ne constituent pas des verdicts.
+- **Réserve `SEF-V426-004`** : maintenue après confrontation avec les sources documentant le relais 2SA après deux majeur faible. Le 2SA ne figure pas parmi les quatre choix, mais cela ne démontre pas qu'il faille changer Passe. Pas de réponse corrigée sans preuve.
+- **CI/Pages :** résultats à confirmer après la fusion ; publication non présumée. Aucun changement des 677 exercices d'Entraînement.

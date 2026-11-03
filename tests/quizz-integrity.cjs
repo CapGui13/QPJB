@@ -21,6 +21,16 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+// Quizz V4.50 : sept précisions de seuils, sans changement d'enchère ni de QCM.
+for(const id of ["SEF-024-2","SEF-024-1","SEF-N034-1","SEF-N044-2","SEF-N044-1","SEF-N098-1","SEF-N098-2"]){
+ const ex=exercises.find(x=>x.id===id);
+ assert.ok(ex&&ex.answer==='Passe','Réponse SEF conservée pour '+id);
+ assert.equal(ex.choices.length,4,'Quatre choix conservés pour '+id);
+ assert.ok(ex.sourceOriginalExplain20261103V450&&ex.sourceOriginalExplain20261103V450!==ex.explain,"Corrigé d'origine archivé pour "+id);
+ assert.equal(ex.pedagogicalReview20261103V450?.answerUnchanged,true,'Aucune ancienne bonne réponse modifiée : '+id);
+}
+
+
 // Revue Quizz du 3 novembre : 2 atouts face à une ouverture de 2 majeur faible
 // promettant 6 cartes = fit huitième, sans invitation obligatoire.
 for(const [id,suit,h] of [['SEF-V3-106-1',0,2],['SEF-V3-106-2',0,6],['SEF-V3-103-4',1,4],['SEF-V3-103-3',1,6]]){
