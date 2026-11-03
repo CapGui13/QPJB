@@ -573,26 +573,41 @@ const server=http.createServer((req,res)=>{
   assert.equal(await cardPanel.locator('.cq-option.correct').count(),1,'Correct card answer marked');
   await cardPanel.locator('.qpjb-card-answer-area.is-open').waitFor({state:'visible',timeout:5000});
 
-  // Quarantaine : une ancienne route ou un appel direct ne doit pas présenter/noter un QCM ambigu.
+  // Les trois adaptations de carte sont ouvertes mais non notées : navigation et sauvegardes intactes.
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
-  const quarantineBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),111,
-    'Only 111 of 114 card exercises are available');
-  for(const blockedId of ['JC-BH-014-Q01','JC-BH-028-Q04','JC-BH-036-Q02']){
-    const direct=await childFrame.evaluate(bid=>{item(bid);return {view,id}},blockedId);
-    assert.equal(direct.view,'list','Direct navigation to '+blockedId+' is ignored');
-    assert.notEqual(direct.id,blockedId,'Quarantined ID is not selected');
-    const restored=await childFrame.evaluate(bid=>{
-      id=bid;trainingApplyPage('quiz',false,false);
-      return {view,id,answers:document.querySelectorAll('.cq-option').length};
-    },blockedId);
-    assert.equal(restored.view,'list','Restored route to '+blockedId+' falls back to list');
-    assert.equal(restored.id,'','Invalid restored route is cleared');
-    assert.equal(restored.answers,0,'Invalid restored route shows no answer buttons');
+  const guidedPlayBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),114,
+    'All 114 preserved card exercises are now available');
+  const adaptedCardRoutes=[
+    {id:'JC-BH-014-Q01',topic:'communications',answer:0,choices:4},
+    {id:'JC-BH-028-Q04',topic:'defense',answer:2,choices:3},
+    {id:'JC-BH-036-Q02',topic:'maniements',answer:1,choices:4}
+  ];
+  for(const entry of adaptedCardRoutes){
+    const rendered=await childFrame.evaluate(x=>{
+      cat='play';ptopic=x.topic;id=x.id;trainingApplyPage('quiz',false,false);
+      return {view,id,options:document.querySelectorAll('.cq-stage .cq-option').length,
+        guided:current()?.reviewStatus,original:current()?.sourceOriginalPrompt};
+    },entry);
+    assert.equal(rendered.view,'quiz','Guided card route opens for '+entry.id);
+    assert.equal(rendered.id,entry.id,'Guided card ID restored '+entry.id);
+    assert.equal(rendered.options,entry.choices,'All card choices displayed for '+entry.id);
+    assert.equal(rendered.guided,'transcrit_source','Card is in ungraded self-assessment '+entry.id);
+    assert.ok(rendered.original?.length>15,'Original prompt is retained '+entry.id);
+    await childFrame.evaluate(idx=>chooseSource(idx),entry.answer);
+    assert.equal(await childFrame.evaluate(()=>document.querySelector('.cq-option.selected')?.dataset.answerIndex),
+      String(entry.answer),'Guided answer selected for '+entry.id);
+    assert.equal(await childFrame.evaluate(()=>document.querySelector('.qpjb-card-answer-area')?.getAttribute('aria-hidden')),
+      null,'Correction is available without grading for '+entry.id);
+    assert.ok((await childFrame.evaluate(()=>document.querySelector('.qpjb-card-answer-area')?.textContent||''))
+      .includes('Il n’y a pas de notation automatique'),'No automatic grade for '+entry.id);
+    await childFrame.evaluate(idx=>chooseSource(idx),entry.answer);
+    assert.equal(await childFrame.evaluate(()=>document.querySelector('.qpjb-card-answer-area')?.getAttribute('aria-hidden')),
+      'true','Second click unchecks the guided answer for '+entry.id);
   }
-  assert.equal(await childFrame.evaluate(()=>localStorage.getItem(KEY)),quarantineBefore,
-    'Blocking quarantined questions does not modify saved learner progress');
+  assert.equal(await childFrame.evaluate(()=>localStorage.getItem(KEY)),guidedPlayBefore,
+    'Guided card selections never rewrite saved progress automatically');
 
   // BH-017 : le déclarant cherche à éviter l'adversaire dangereux, pas une défense.
   await childFrame.evaluate(()=>playTopic('plan-qcm'));
