@@ -156,8 +156,8 @@ if(stats.bidding!==563||stats.play!==114||stats.cardQcm!==84)
   error('dataset','unexpected-counts',JSON.stringify(stats));
 if(stats.openingLeadQuestions!==24)
   error('dataset','opening-lead-lessons-missing',String(stats.openingLeadQuestions));
-if(stats.quarantined!==3)
-  warn('dataset','quarantine-count-changed',String(stats.quarantined));
+if(stats.quarantined!==0)
+  error('dataset','unexpected-active-quarantine',String(stats.quarantined));
 for(const id of allowedFourHands){
   if(!D.play.some(ex=>ex.id===id))
     error(id,'missing-four-hand-exception','Known full-diagram lesson removed');
