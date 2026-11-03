@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103c')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103c'),
+check(html.includes('training-data-bootstrap.js?v=20261103d')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103d'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -180,10 +180,34 @@ const bh17=['JC-BH-017-Q01','JC-BH-017-Q02','JC-BH-017-Q03','JC-BH-017-Q04'].map
 check(bh17.length===4&&bh17.every(x=>x&&x.type==='declarant'&&x.topic==='Plan de jeu'),'BH-017 is a declarer plan-of-play series');
 check(bh17.every(x=>x.holdings?.[0]?.label==='Mort · Nord'&&x.holdings?.[1]?.label==='Vous · Sud'),'BH-017 has North dummy and South declarer');
 check(bh17.every(x=>x.options.length===2&&Number.isInteger(x.answerIndex)),'BH-017 answer options preserved');
-const quarantined=['JC-BH-014-Q01','JC-BH-028-Q04','JC-BH-036-Q02'].map(id=>data.play.find(x=>x.id===id));
-check(quarantined.every(x=>x&&x.reviewStatus==='a_verifier'&&x.quarantineReason),'ambiguous card QCMs are kept in quarantine');
-check(quarantined.every(x=>Array.isArray(x.options)&&Number.isInteger(x.answerIndex)&&x.explanation),'quarantined QCMs retain their source answers and explanations');
-check(data.play.length===114&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===111,'114 card exercises preserved and 111 available');
+// Le trio de QCM de carte est accessible avec un barème documentaire non automatique.
+const playAdaptations=[
+ ['JC-BH-014-Q01',0],['JC-BH-028-Q04',2],['JC-BH-036-Q02',1]
+];
+for(const [id,answer] of playAdaptations){
+ const x=data.play.find(z=>z.id===id);
+ check(!!x&&x.reviewStatus==='transcrit_source'&&x.answerIndex===answer&&
+  !x.quarantineReason&&x.pedagogicalArbitration?.decision==='adaptation_pedagogique',
+  'adapted card exercise is accessible in ungraded source-guided mode: '+id);
+ check(x.sourceOriginalPrompt?.length>20&&x.sourceOriginalOptions?.length>=3&&
+  Number.isInteger(x.sourceOriginalAnswerIndex)&&x.sourceOriginalExplanation?.length>15&&
+  x.quarantineHistoryBeforeArbitration?.length>30,
+  'all original card questions, answers and quarantine reasons archived: '+id);
+ check(x.options.length>=3&&new Set(x.options).size===x.options.length&&
+  Object.keys(x.playPretryHints||{}).length===x.options.length-1&&
+  x.playPretryHints[String(x.answerIndex)]===undefined,
+  'distinct options and correct alternate-answer hints: '+id);
+}
+check(data.play.find(x=>x.id==='JC-BH-014-Q01').explanation.includes('Roi et As de Carreau'),
+ 'communication exercise targets feasible diamond unblocking rather than impossible full plan');
+check(data.play.find(x=>x.id==='JC-BH-028-Q04').prompt.includes('fournit le 2♥')&&
+ data.play.find(x=>x.id==='JC-BH-028-Q04').options[2]==='♥9',
+ 'third-hand equivalence is explicitly conditioned on dummy playing the deuce');
+check(data.play.find(x=>x.id==='JC-BH-036-Q02').prompt.includes('reprise extérieure')&&
+ data.play.find(x=>x.id==='JC-BH-036-Q02').options.every(o=>!o.includes('Jouer immédiatement le 7')),
+ 'suit combination has an external return and no ambiguous Ace-first distractor');
+check(data.play.length===114&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===114,
+ '114 card exercises preserved and accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -271,10 +295,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103c')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103c'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103d')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103d'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v47'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v48'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -362,7 +386,7 @@ const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===563&&lazyBase.counts.play===111,
+check(lazyBase.counts.bidding===563&&lazyBase.counts.play===114,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===73&&
