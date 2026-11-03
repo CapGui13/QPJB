@@ -62,3 +62,12 @@
 - **[Contrôles après fusion #41736217163](https://github.com/CapGui13/QPJB/actions/runs/41736217163) : succès** des trois jobs sur `main` ; [catalogue #41736217180](https://github.com/CapGui13/QPJB/actions/runs/41736217180) actualisé avec succès.
 - **[Publication Pages #41736734978](https://github.com/CapGui13/QPJB/actions/runs/41736734978) : succès** de la vérification source et de la publication du commit testé. **Quizz V4.51 publié.** La validation Safari sur iPhone réel reste ouverte.
 - **Registre actuel : 226/993 fiches avec verdict individuel daté**, 767 sans verdict daté ; **115 fiches** du groupe initial des 166 vigilances restent à examiner. Le cas `SEF-V426-004` reste sous réserve, sans changement d'enchère.
+
+
+## P1 — Lot V4.52 du 4 novembre : 30 autres vigilances Quizz
+
+- **[Revue des 30 exercices](./REVUE_30_VIGILANCES_FIT_ET_SECONDE_2026-11-04.md)** : 11 après fit majeur, 19 deuxièmes enchères du répondant. 19 corrigés Quizz explicités et archivés ; 29 réponses cohérentes parmi les choix, **1 réserve** à contre-expertiser (`SEF-V417-008` sur 3♠ ou 4♠ après 1♠–2♣–2♠). Aucune réponse ni proposition modifiée.
+- **Correction de décompte** : sur les 166 vigilances initiales, **83 n'avaient pas de verdict daté** avant ce lot, et non 115 ; 32 avaient déjà une revue datée avant nos lots. Après les 30 fiches : **53 vigilances non revues**.
+- **Registre : 256 / 993 avec revue individuelle datée**, dont des réserves ouvertes, et **737 sans verdict daté**. Ne pas confondre revue documentée et certification pédagogique certaine.
+- **Quizz V4.52** : `prototype-2026-11-04-v4-52-apres-fit-redemande`, zéro bonne enchère modifiée, historique élève préservé. Tests d'intégrité ajoutés.
+- **Validation et publication** : à contrôler après PR/CI/Pages avant annonce de mise en ligne.
