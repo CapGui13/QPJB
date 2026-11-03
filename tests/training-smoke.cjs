@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103a')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103a'),
+check(html.includes('training-data-bootstrap.js?v=20261103b')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103b'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -271,10 +271,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103a')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103a'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103b')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103b'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v45'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v46'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -291,15 +291,45 @@ check(d25.pretryHints['4♦'].includes('bicolore majeur 5–5')&&
  '4-diamond distractor must be conventionally explained and original source text retained');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no unresolved historical source caveat is still accessible');
-// B19-6: do not score the printed 4SA answer with 16H opposite 2SA.
+// 3 Nov : corriger explicitement B19-Q6 en 5SA quantitatif et restituer la fiche guidée.
 const b19=splitItems.find(e=>e.id==='EN-2sa-006');
-check(!!b19&&b19.hand.join('|')==='RD104|AD5|D7|DV84'&&b19.correct==='4SA',
- 'B19-6 printed answer and hand remain preserved in source');
-check(b19.reviewStatus==='a_verifier'&&
- b19.pedagogicalReview_20261102?.decision==='quarantaine'&&
- b19.pedagogicalReview_20261102?.recommendedAnswer==='5SA'&&
- b19.reason.includes('36–37 H'),
- 'B19-6 is withheld from automatic grading pending SEF correction');
+check(!!b19&&b19.hand.join('|')==='RD104|AD5|D7|DV84'&&b19.correct==='5SA',
+ 'B19-6 holds 16 H and the quantitative grand-slam invitation 5SA');
+check(b19.reviewStatus==='transcrit_source'&&b19.sourceOriginalCorrect==='4SA'&&
+ b19.sourceOriginalExplanation?.length>0&&
+ b19.pedagogicalArbitration?.decision==='correction_SEF'&&
+ b19.pedagogicalReview_20261103?.decision==='reserve_levee_apres_correction',
+ 'B19-6 corrected SEF answer explicitly distinct from original PDF with progress preserved');
+check(b19.choices.length===4&&b19.choices.includes('5SA')&&
+ Object.keys(b19.distractorNotes||{}).length===3&&
+ Object.keys(b19.pretryHints||{}).length===3&&!b19.quarantineReason,
+ 'B19-6 original four choices remain unambiguous and SEF hints are synchronized');
+const b90=splitItems.find(e=>e.id==='EN-BH-090-06');
+check(!!b90&&b90.correct==='4SA'&&b90.choices.includes('4SA')&&
+ b90.choices.includes('6♠')&&b90.sourceOriginalCorrect==='6♠'&&
+ JSON.stringify(b90.sourceOriginalChoices)==='["6♥","6♠","6SA","6♦"]',
+ 'BH090-6 asks 4SA RKCB instead of a premature 6 spades, original PDF retained');
+check(b90.reviewStatus==='transcrit_source'&&
+ b90.pedagogicalArbitration?.decision==='correction_SEF'&&
+ b90.pedagogicalReview_20261103?.decision==='reserve_levee_apres_correction'&&
+ b90.sourceOriginalExplanation?.length>0&&b90.choices.length===4&&
+ new Set(b90.choices).size===4&&!b90.quarantineReason,
+ 'BH090-6 source-guided mode remains non automatically graded with original history');
+check(Object.keys(b90.pretryHints||{}).length===3&&
+ Object.keys(b90.distractorNotes||{}).length===3&&
+ Object.keys(b90.distractorNotes).every(choice=>b90.choices.includes(choice)&&choice!==b90.correct),
+ 'BH090-6 distractors match the new answer 4SA');
+for(const id of ['EN-BH-075-04','EN-BH-102-01']){
+ const x=splitItems.find(e=>e.id===id);
+ check(!!x&&x.correct==='3♠'&&x.reviewStatus==='transcrit_source'&&
+ x.pedagogicalReview_20261103?.decision==='reserve_levee'&&
+ x.historicalReviewReason20261103?.length>0&&
+ Object.keys(x.distractorNotes||{}).length===3&&
+ !x.quarantineReason,
+ 'SEF direct major 3-spades support with four trumps and 12 HLD: '+id);
+}
+check(splitItems.filter(x=>x.reviewStatus==='a_verifier').length===3,
+ 'only the three independently unresolved slam or competitive exercises remain withheld');
 // 3 Nov 2026 : trois cas sans réponse unique SEF retirés du parcours, mais non supprimés.
 // Source originale et progression conservées ; aucune erreur pédagogique non prouvée corrigée.
 const lastThree=[
@@ -317,27 +347,25 @@ for(const [id,answer] of lastThree){
 }
 check(!lastThree.some(([id])=>splitItems.find(x=>x.id===id)?.reviewStatus!=='a_verifier'),
  'all three ambiguous exercises excluded from normal browsing and random sessions');
-// Source v610 quarantines are actually enforced by the existing navigation filter.
-const pendingBiddingIds=['EN-BH-075-04','EN-BH-090-06','EN-BH-102-01'];
-check(data.bidding.length===563&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===556,
- '563 EN IDs preserved, seven flagged questions temporarily withheld');
-for(const id of pendingBiddingIds){
- const x=data.bidding.find(e=>e.id===id);
- check(!!x&&x.reviewStatus==='a_verifier'&&x.pedagogicalReview_v610?.decision==='quarantaine',
-   'source quarantine prevents automatically graded access: '+id);
- check(!!x.correct&&x.choices.includes(x.correct)&&!!x.reason,
-   'quarantined question retains all original choices, answer and reason: '+id);
-}
+// Les trois réserves V6.10 sont résolues ; le parcours conserve les trois quarantaines 2026-11-03.
+check(data.bidding.length===563&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===560,
+ '563 EN preserved, 560 visible and three still under review');
+const remainingIds=['EN-suite-repondant-003','EN-BH-077-04','EN-BH-078-05'];
+check(data.bidding.filter(x=>x.reviewStatus==='a_verifier').map(x=>x.id).sort().join('|')===
+ remainingIds.slice().sort().join('|'),
+ 'only the exact three unresolved exercises remain quarantined');
+check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
+ 'no active exercise exposes a pending quarantine reason');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===556&&lazyBase.counts.play===111,
+check(lazyBase.counts.bidding===560&&lazyBase.counts.play===111,
  'bootstrap count reflects unavailable bidding and card exercises');
-check(lazyBase.categories.find(c=>c.id==='2sa').count===12&&
+check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===71&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===11&&
- lazyBase.categories.find(c=>c.id==='rep1M').count===18&&
- lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===15,
+ lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
+ lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
  'topic counters reflect the exact quarantined IDs');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
