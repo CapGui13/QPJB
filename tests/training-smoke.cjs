@@ -298,7 +298,7 @@ check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').le
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103e')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103e'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v48'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v49'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
