@@ -18,3 +18,12 @@
 5. Recalibrer la difficulté des cinq niveaux et vérifier l'UX du Quizz sur un iPhone Safari physique.
 
 **Critère de sécurité** : chaque modification de bonne enchère éventuelle devra faire l'objet d'une preuve SEF, d'un archivage de l'ancien résultat et d'un test de migration. Aucun changement de bonne enchère dans ce lot.
+
+
+## Validation et publication GitHub vérifiées
+
+- [PR n°21](https://github.com/CapGui13/QPJB/pull/21) **fusionnée** sur `main` (commit `88aad8e7111a933d24f035c263d74261f88a1031`). Portée de la PR : `quizz.html`, `tests/quizz-integrity.cjs`, registre 993 et documents Quizz uniquement.
+- [Tests de branche #41667555295](https://github.com/CapGui13/QPJB/actions/runs/41667555295) : audit données et code, Chromium et WebKit **réussis**.
+- [Tests après fusion sur main #41668397961](https://github.com/CapGui13/QPJB/actions/runs/41668397961) : trois jobs **réussis** ; [catalogue #41668398365](https://github.com/CapGui13/QPJB/actions/runs/41668398365) actualisé avec succès.
+- [Publication Pages #41669051961](https://github.com/CapGui13/QPJB/actions/runs/41669051961) : vérification du commit exact et déploiement **réussis** ; Quizz V4.49 publié. Cette validation couvre les navigateurs simulés, pas un essai physique iPhone.
+- **Registre après ce lot : 175/993 fiches avec verdict individuel daté ; 818 restantes**. Les 20 priorités heuristiques restent signalées par leur ancien score (qui n'analyse pas le texte des corrigés), mais ont leur verdict nominatif. La réserve `SEF-V426-004` reste volontairement ouverte.
