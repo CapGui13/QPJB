@@ -21,6 +21,20 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+// Quizz V4.51 : 31 reponses au Contre, distinction entre Passe adverse et soutien adverse.
+const counterReviewed=["SEF-V3-057-1","SEF-V3-057-4","SEF-V3-058-3","SEF-V3-058-1","SEF-V3-059-5","SEF-V3-059-1","SEF-V3-060-2","SEF-V3-060-1","SEF-V3-061-2","SEF-V3-061-3","SEF-V3-062-4","SEF-V3-062-1","SEF-V3-063-1","SEF-V3-063-2","SEF-V3-064-4","SEF-V3-064-2","SEF-V3-065-3","SEF-V3-066-4","SEF-V3-067-4","SEF-V3-068-4","SEF-V3-069-1","SEF-V3-070-2","SEF-V3-071-3","SEF-V3-072-1","SEF-V3-073-1","SEF-V49-030","SEF-V49-031","SEF-V419-008","SEF-V421-009","SEF-V422-005","SEF-C-010"];
+assert.equal(counterReviewed.length,31,'31 counter-review entries expected');
+for(const id of counterReviewed){
+ const x=exercises.find(y=>y.id===id);
+ assert.ok(x&&x.pedagogicalReview20261103V451?.answerUnchanged===true,'Counter answer preserved '+id);
+ assert.ok(x.sourceOriginalExplain20261103V451&&x.explain!==x.sourceOriginalExplain20261103V451,'Counter explanation archived '+id);
+ assert.equal(x.choices.length,4,'Four options preserved '+id);
+ const rightHandPassed=x.auction.at(-1)==='Adversaire : Passe';
+ assert.equal(x.pedagogicalReview20261103V451.context,rightHandPassed?'obligatoire_apres_passe':'libre_apres_soutien','Counter logic '+id);
+ assert.ok(rightHandPassed?x.explain.includes('Passe convertirait')||x.explain.includes('Passe transformerait'):x.explain.includes('plus obligatoire')||x.explain.includes('facultatif')||x.explain.includes('supprime'), 'Pass explanation '+id);
+}
+
+
 // Quizz V4.50 : sept précisions de seuils, sans changement d'enchère ni de QCM.
 for(const id of ["SEF-024-2","SEF-024-1","SEF-N034-1","SEF-N044-2","SEF-N044-1","SEF-N098-1","SEF-N098-2"]){
  const ex=exercises.find(x=>x.id===id);
