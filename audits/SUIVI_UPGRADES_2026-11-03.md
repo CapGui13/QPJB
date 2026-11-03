@@ -57,3 +57,18 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 
 **P0 clôturé pour ce lot et cette version de code.** Vérification Safari sur **iPhone physique** encore à réaliser, à distinguer de WebKit automatisé. Le reste du projet reste ouvert : les 3 quarantaines du jeu de la carte, l'audit pédagogique transversal des EN, l'audit indépendant des 993 Quizz et le rapprochement des anciens rapports nominatifs ; ne pas les déclarer terminés du seul fait de ce lot.
 
+## Clôture des trois quarantaines jeu de la carte — publication du 3 novembre 2026
+
+- **[Pull request #15](https://github.com/CapGui13/QPJB/pull/15) fusionnée** sur `main` avec squash `edb62041c2f491182155f0f0bda09e4bec1bb1b1`. Le rapport pédagogique détaillé figure dans [REINTEGRATION_JC_3_2026-11-03.md](REINTEGRATION_JC_3_2026-11-03.md).
+- `JC-BH-014-Q01` : le plan source ne permettait pas d'encaisser tous les honneurs montrés ; la question adaptée cible uniquement le déblocage certain du **Roi de Carreau sec en Sud**, avant de quitter la main.
+- `JC-BH-028-Q04` : sur l'entame ♥3 avec ♥1072 au mort dont ♥2 est fourni, **♥9** reste la plus petite carte équivalente sur la levée ; preuve et hypothèses rendues explicites, sans généraliser l'équivalence à toutes les levées.
+- `JC-BH-036-Q02` : reprise extérieure en Sud annoncée, **As en sonde puis impasse au Valet** ; l'ancienne option « 7 vers As », compatible avec le bon plan, est remplacée par un distracteur réellement distinct.
+- Pour les trois ID : **`transcrit_source` (auto-évaluation sans notation automatique)** ; cartes, référence source, anciens énoncés/choix/réponses/explications et réserves archivés, sans suppression d'identifiant ni migration des résultats élèves. Le texte du module différencie désormais **explication pédagogique adaptée** et **corrigé original**.
+- **Compteurs : 563/563 enchères accessibles, 114/114 jeu de la carte accessibles ; zéro quarantaine active dans ces deux banques.** Cela clôt ces quarantaines nominatives, **pas** l'audit pédagogique intégral des deux catalogues ni celui des 993 Quizz.
+- Versions : ressources de données et interface `20261103d` ; PWA `qpjb-v48` ; modules différés et banque canonique synchronisés. Scénarios navigateur ajoutés pour ouverture directe des trois fiches, sélection/désélection des choix, affichage sans notation et absence d'écriture automatique dans `localStorage`.
+- **Tests sur la PR** : [QPJB Training smoke #41637950615](https://github.com/CapGui13/QPJB/actions/runs/41637950615), `success` pour audit des données/code, Chromium et WebKit, au SHA `2debdf9dd78f8064e777bf34b96689d83477df32`.
+- **Revalidation sur `main` fusionné** : [QPJB Training smoke #41638795018](https://github.com/CapGui13/QPJB/actions/runs/41638795018), succès des trois jobs sur `edb62041` ; [Actualiser le catalogue #41638795050](https://github.com/CapGui13/QPJB/actions/runs/41638795050), `success`.
+- **Publication GitHub Pages confirmée** : [QPJB Pages #41639320811](https://github.com/CapGui13/QPJB/actions/runs/41639320811), `success` sur le commit de catalogue généré `0142bf9aa7455a4db634d9084601069e61a915a1`. Les deux jobs de vérification et publication ont conclu avec succès. Ne pas confondre avec les runs antérieurs `skipped`.
+
+**Suite active :** test réel sur Safari iPhone/PWA, puis poursuite de l'audit pédagogique transversal des cartes et des 563 EN ainsi que de l'audit indépendant des 993 Quizz. Aucun essai matériel iPhone déclaré à ce stade.
+
