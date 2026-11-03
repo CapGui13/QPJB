@@ -31,7 +31,7 @@ for(const id of counterReviewed){
  assert.equal(x.choices.length,4,'Four options preserved '+id);
  const rightHandPassed=x.auction.at(-1)==='Adversaire : Passe';
  assert.equal(x.pedagogicalReview20261103V451.context,rightHandPassed?'obligatoire_apres_passe':'libre_apres_soutien','Counter logic '+id);
- assert.ok(rightHandPassed?x.explain.includes('Passe convertirait')||x.explain.includes('Passe transformerait'):x.explain.includes('plus obligatoire')||x.explain.includes('facultatif')||x.explain.includes('supprime'), 'Pass explanation '+id);
+ assert.ok(rightHandPassed?x.explain.includes('Passe convertirait')||x.explain.includes('Passe transformerait')||x.explain.includes('Passer transformerait'):x.explain.includes('plus obligatoire')||x.explain.includes('facultatif')||x.explain.includes('supprime'), 'Pass explanation '+id);
 }
 
 
