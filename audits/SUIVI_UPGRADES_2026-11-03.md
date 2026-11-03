@@ -72,3 +72,16 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 
 **Suite active :** test réel sur Safari iPhone/PWA, puis poursuite de l'audit pédagogique transversal des cartes et des 563 EN ainsi que de l'audit indépendant des 993 Quizz. Aucun essai matériel iPhone déclaré à ce stade.
 
+## Audit préliminaire des 30 plans de jeu classiques — 3 novembre 2026
+
+- **Revue indépendante de premier niveau des 30/30 fiches classiques de carte** : 23 `JC-001` à `JC-023` et sept `JC-BH-*`. Rapport nominatif : [AUDIT_JC_30_PLANS_PRELIMINAIRE_2026-11-03.md](AUDIT_JC_30_PLANS_PRELIMINAIRE_2026-11-03.md). Cette revue identifie les mécanismes, les hypothèses et les réserves, mais **ne constitue pas 30 certifications stratégiques complètes ou des simulations double-dummy**.
+- **[Pull request #16](https://github.com/CapGui13/QPJB/pull/16) fusionnée** par squash `00de5bc5f1990f30e6b01b203dd3a3267fc6c2f8`, après validation complète.
+- `JC-BH-120-01` : avec ♠AV9 au mort et ♠R10 en Sud, sur l'entame ♠4, ♠9 du mort et ♠2 d'Est, prendre avec ♠R puis **jouer ♠10 depuis Sud vers As-Valet**. L'ancien texte demandait de « revenir au mort » sans préciser l'unique communication ; la clarification est dans `answerText` et le texte initial dans `sourceOriginalAnswerText`.
+- `JC-013` : la promesse de coupes croisées garanties est **réfutée par une distribution adverse complète valide** (Ouest chicane Pique, ♣87654, ♥RD1064, ♦R107 ; Est ♠RD109873, ♥32, ♦V832). Sur l'entame ♦7, Nord prend ♦A et Ouest peut couper **♠A** du mort de ♣4 au deuxième pli. Le texte d'origine est archivé et le nouveau corrigé explicite le risque de coupe/surcoupe. **Aucune prétention à une stratégie complète certifiée**.
+- **Protection** : les 28 autres corrigés de ce groupe, les mains, identifiants, PDF, progression élève et statut d'accès restent inchangés. Aucun `localStorage` réinitialisé. Catalogue : **563/563 EN + 114/114 carte = 677 exercices accessibles**. Module et PWA versionnés `20261103e` / `qpjb-v49` ; smoke ciblé renforcé.
+- **Contrôle de la PR** : [QPJB Training smoke #41645715131](https://github.com/CapGui13/QPJB/actions/runs/41645715131) `success`, audit données/code, Chromium et WebKit, sur `51fa159a`.
+- **Contre-vérification après fusion sur `main`** : [QPJB Training smoke #41646477703](https://github.com/CapGui13/QPJB/actions/runs/41646477703), `success` des trois jobs sur `00de5bc5` ; [actualisation du catalogue #41646477712](https://github.com/CapGui13/QPJB/actions/runs/41646477712), `success`.
+- **Publication GitHub Pages effectivement conclue** : [QPJB Pages #41647000194](https://github.com/CapGui13/QPJB/actions/runs/41647000194), `success` sur commit de catalogue `67bc35a278cd4e199010ed7866a779f599870caf` (les deux jobs vérification et déploiement ont réussi).
+
+**Prochain lot recommandé** : traiter avec contre-exemples / analyses de distribution `JC-012` (défense et nombre de plis), `JC-021` (tempo et reprises), `JC-007` (commentaire sur le saut direct au chelem), puis `JC-002`, `JC-016` et `JC-BH-060-01`. La révision du plan complet de `JC-013` reste ouverte malgré la correction de son affirmation universelle. Essai Safari sur un iPhone physique toujours non effectué.
+
