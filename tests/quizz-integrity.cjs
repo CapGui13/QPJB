@@ -26,7 +26,7 @@ for(const id of ["SEF-024-2","SEF-024-1","SEF-N034-1","SEF-N044-2","SEF-N044-1",
  const ex=exercises.find(x=>x.id===id);
  assert.ok(ex&&ex.answer==='Passe','Réponse SEF conservée pour '+id);
  assert.equal(ex.choices.length,4,'Quatre choix conservés pour '+id);
- assert.ok(ex.sourceOriginalExplain20261103V450&&ex.sourceOriginalExplain20261103V450!==ex.explain,'Corrigé d'origine archivé pour '+id);
+ assert.ok(ex.sourceOriginalExplain20261103V450&&ex.sourceOriginalExplain20261103V450!==ex.explain,"Corrigé d'origine archivé pour "+id);
  assert.equal(ex.pedagogicalReview20261103V450?.answerUnchanged,true,'Aucune ancienne bonne réponse modifiée : '+id);
 }
 
