@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103e')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103e'),
+check(html.includes('training-data-bootstrap.js?v=20261103f')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103f'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -295,10 +295,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103e')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103e'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103f')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103f'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v49'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v50'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -407,4 +407,34 @@ check(!!cc13&&cc13.sourceOriginalAnswerText?.includes('Il ne peut plus rien vous
  cc13.pedagogicalAudit_20261103?.verdict?.includes('affirmation universelle erronée')&&
  cc13.reviewStatus!=='a_verifier',
  'JC-013 counterexample: preserve source and correct non-guaranteed cross-ruff claim');
+
+const defense12=data.play.find(x=>x.id==='JC-012');
+check(!!defense12&&defense12.sourceOriginalAnswerText?.includes('As de Coeur est forcément en Ouest')&&
+ defense12.answerText.includes('ne prouve pas que sa couleur est commandée par Roi-Dame-Valet')&&
+ defense12.answerText.includes('9 H')&&defense12.answerText.includes('le 2♣')&&
+ defense12.pedagogicalAudit_20261103b?.verdict?.includes('As de Coeur non localisable')&&
+ defense12.reviewStatus!=='a_verifier',
+ 'JC-012: heart Ace placement is conditional; original answer archived');
+const deal12=defense12.pedagogicalAudit_20261103b.counterexample;
+const ranks12='ARDVT98765432',points12={A:4,R:3,D:2,V:1};
+const suits12=['spades','hearts','diamonds','clubs'],seats12=['north','east','south','west'];
+let total12=0,south12=0,valid12=true;
+for(const seat of seats12){
+ let cards=0,score=0;
+ for(const suit of suits12){
+  const holding=String(deal12[seat][suit]).replace(/10/g,'T');
+  cards+=holding.length;
+  for(const rank of holding){valid12=valid12&&ranks12.includes(rank);score+=points12[rank]||0;}
+ }
+ valid12=valid12&&cards===13;
+ total12+=score;
+ if(seat==='south')south12=score;
+}
+for(const suit of suits12){
+ const all=seats12.map(seat=>String(deal12[seat][suit]).replace(/10/g,'T')).join('');
+ valid12=valid12&&all.length===13&&new Set(all).size===13;
+}
+check(valid12&&total12===40&&south12===9&&deal12.south.hearts==='A'&&
+ deal12.firstTrick.includes('E ♠D'),
+ 'JC-012: valid 52-card counterexample South has nine H including Heart Ace');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
