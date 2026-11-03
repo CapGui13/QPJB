@@ -100,3 +100,12 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 - Après la PR #19, le corrigé élève expose une ligne de double impasse à Carreau et un laisser-passer initial **conditionnels**. Le contre-exemple ♠DV4 en Ouest / ♠109876 et ♦RV en Est démontre cinq plis de défense.
 - L'ancien texte est archivé sous `sourceOriginalAnswerText`. Même main, question, image, ID, accès et historique. Plan optimal général **non certifié**.
 - 563 EN et 114 JC en banque. Versions `20261103h` / cache `qpjb-v52`. Vérifier la CI et Pages avant de déclarer publié ; Safari iPhone physique encore à tester.
+
+
+## JC-021 — validation et publication vérifiées de la PR n°20
+
+- **[PR #20](https://github.com/CapGui13/QPJB/pull/20) fusionnée** sur `main` au commit `629e77a8228529f4bc0483bc82b8138a1fcdea58` ; correction ciblée de l'affirmation de réussite garantie, source intégrale archivée, mains/ID/PDF et historique élèves inchangés.
+- **Contrôles sur la branche :** [QPJB Training smoke #41658053321](https://github.com/CapGui13/QPJB/actions/runs/41658053321), succès des trois jobs audit, Chromium et WebKit sur `b9d93a1653`.
+- **Revalidation après fusion :** [QPJB Training smoke #41658677966](https://github.com/CapGui13/QPJB/actions/runs/41658677966), succès des trois jobs sur `629e77a822` ; [catalogue #41658678106](https://github.com/CapGui13/QPJB/actions/runs/41658678106), succès.
+- **GitHub Pages publié :** [run #41659329200](https://github.com/CapGui13/QPJB/actions/runs/41659329200), succès de « Vérifier la source de publication » et « Publier uniquement la version validée », sur le catalogue `c26f4dff27e71de19af466aa8c998b305a1d0f8c`. Le run `skipped` n'est pas utilisé comme preuve.
+- **677 exercices disponibles (563 EN + 114 JC), zéro quarantaine active.** Module `20261103h`, PWA `qpjb-v52`. Le plan optimal de JC-021 n'est pas certifié par double-dummy. Il reste à faire le test Safari iPhone/PWA physique et à poursuivre l'audit de JC-002, JC-016, JC-BH-060-01 et des 993 Quizz.
