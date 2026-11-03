@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103d')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103d'),
+check(html.includes('training-data-bootstrap.js?v=20261103e')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103e'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -295,8 +295,8 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103d')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103d'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103e')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103e'),
  'both entry points load the current pedagogical module');
 check(read('service-worker.js').includes("const CACHE = 'qpjb-v48'"),
  'PWA cache revision invalidated for updated SEF exercises');
@@ -394,4 +394,10 @@ check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
  'topic counters reflect the exact quarantined IDs');
+const bh120=data.play.find(x=>x.id==='JC-BH-120-01');
+check(!!bh120&&bh120.sourceOriginalAnswerText?.includes('Revenez au mort')&&
+ bh120.answerText.includes('10 de Pique')&&bh120.answerText.includes('Dame se trouve en Ouest')&&
+ bh120.pedagogicalAudit_20261103?.verdict?.includes('erreur de formulation certaine')&&
+ bh120.reviewStatus!=='a_verifier',
+ 'BH-120 precision: preserve PDF source, use South ten as sole entry toward A-J');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
