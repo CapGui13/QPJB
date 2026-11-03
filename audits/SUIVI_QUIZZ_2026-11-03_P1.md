@@ -45,3 +45,11 @@
 - **[Tests post-fusion #41679668848](https://github.com/CapGui13/QPJB/actions/runs/41679668848) réussis** sur `main`, trois jobs verts ; [catalogue #41679668641](https://github.com/CapGui13/QPJB/actions/runs/41679668641) actualisé avec succès.
 - **[GitHub Pages #41680236850](https://github.com/CapGui13/QPJB/actions/runs/41680236850) réussi** : vérification du commit exact et publication de la version validée ; le Quizz **V4.50 est en ligne**. Le test réel iPhone/Safari physique demeure hors du périmètre des navigateurs simulés.
 - **Registre actuel : 195/993 fiches avec verdict individuel daté** ; 146 autres du groupe initial des 166 vigilances restent à revoir. La réserve `SEF-V426-004` reste ouverte conformément au rapport, aucune réponse élève n'a été changée.
+
+
+## P1 — Lot 2 des 166 vigilances : 31 réponses au Contre (V4.51)
+
+- [Revue nominative de 31 cas](./REVUE_31_VIGILANCES_CONTRE_2026-11-03.md), centrée sur `contre`. **28 réponses normalement obligatoires après Passe adverse**, **3 réponses libres après enchère adverse**. L'ancien distracteur « Passe » est conservé lorsqu'il est didactique, et chaque corrigé en explique désormais la différence ; exception 3♥ avec quatre Cœurs après 1♠–X–Passe précisée.
+- **31 corrigés Quizz clarifiés** et textes d'origine archivés. Aucun changement de bonne réponse, de distracteur, de main, d'identifiant, de difficulté ou de progression. Version `prototype-2026-11-03-v4-51-reponses-contre` et régression Quizz dans `tests/quizz-integrity.cjs`.
+- **Registre : 226 fiches datées sur 993** (+31) ; **767 fiches** sans verdict daté ; **115** autres de l'ancien groupe de 166 vigilances encore à examiner. Réserve `SEF-V426-004` toujours ouverte.
+- **CI et Pages** : état à vérifier après commit, avant d'affirmer que les explications sont en ligne.
