@@ -53,3 +53,12 @@
 - **31 corrigés Quizz clarifiés** et textes d'origine archivés. Aucun changement de bonne réponse, de distracteur, de main, d'identifiant, de difficulté ou de progression. Version `prototype-2026-11-03-v4-51-reponses-contre` et régression Quizz dans `tests/quizz-integrity.cjs`.
 - **Registre : 226 fiches datées sur 993** (+31) ; **767 fiches** sans verdict daté ; **115** autres de l'ancien groupe de 166 vigilances encore à examiner. Réserve `SEF-V426-004` toujours ouverte.
 - **CI et Pages** : état à vérifier après commit, avant d'affirmer que les explications sont en ligne.
+
+
+## V4.51 — validation et publication vérifiées
+
+- **[PR n°23](https://github.com/CapGui13/QPJB/pull/23) fusionnée** sur `main` : commit `d931ff953e4ae3749f5aca3a5bc2295098892d04`. Revue ciblée de 31 réponses au Contre d'appel, distinction obligatoire/libre et exception 3♥ sur 1♠–X–Passe. Aucune bonne réponse, option, main, difficulté, ID ou progression modifiés.
+- **[Contrôles sur branche #41735687326](https://github.com/CapGui13/QPJB/actions/runs/41735687326) : succès** de l'audit et des parcours Chromium/WebKit.
+- **[Contrôles après fusion #41736217163](https://github.com/CapGui13/QPJB/actions/runs/41736217163) : succès** des trois jobs sur `main` ; [catalogue #41736217180](https://github.com/CapGui13/QPJB/actions/runs/41736217180) actualisé avec succès.
+- **[Publication Pages #41736734978](https://github.com/CapGui13/QPJB/actions/runs/41736734978) : succès** de la vérification source et de la publication du commit testé. **Quizz V4.51 publié.** La validation Safari sur iPhone réel reste ouverte.
+- **Registre actuel : 226/993 fiches avec verdict individuel daté**, 767 sans verdict daté ; **115 fiches** du groupe initial des 166 vigilances restent à examiner. Le cas `SEF-V426-004` reste sous réserve, sans changement d'enchère.
