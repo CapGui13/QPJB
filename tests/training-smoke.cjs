@@ -400,4 +400,11 @@ check(!!bh120&&bh120.sourceOriginalAnswerText?.includes('Revenez au mort')&&
  bh120.pedagogicalAudit_20261103?.verdict?.includes('erreur de formulation certaine')&&
  bh120.reviewStatus!=='a_verifier',
  'BH-120 precision: preserve PDF source, use South ten as sole entry toward A-J');
+const cc13=data.play.find(x=>x.id==='JC-013');
+check(!!cc13&&cc13.sourceOriginalAnswerText?.includes('Il ne peut plus rien vous arriver')&&
+ cc13.answerText.includes('Ouest est chicane Pique')&&
+ cc13.answerText.includes('ne sont pas, à elles seules, des atouts maîtres')&&
+ cc13.pedagogicalAudit_20261103?.verdict?.includes('affirmation universelle erronée')&&
+ cc13.reviewStatus!=='a_verifier',
+ 'JC-013 counterexample: preserve source and correct non-guaranteed cross-ruff claim');
 console.log('QPJB Training smoke: '+checks+' checks passed.');
