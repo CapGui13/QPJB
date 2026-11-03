@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261103f')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261103f'),
+check(html.includes('training-data-bootstrap.js?v=20261103g')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261103g'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -295,10 +295,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103f')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103f'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103g')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103g'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v50'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v51'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -437,4 +437,17 @@ for(const suit of suits12){
 check(valid12&&total12===40&&south12===9&&deal12.south.hearts==='A'&&
  deal12.firstTrick.includes('E ♠D'),
  'JC-012: valid 52-card counterexample South has nine H including Heart Ace');
+
+const slam007=data.play.find(x=>x.id==='JC-007');
+const correctedHearts=data.bidding.find(x=>x.id==='EN-BH-077-04');
+check(!!slam007&&!!correctedHearts&&correctedHearts.correct==='3♥'&&
+ slam007.sourceOriginalAnswerText?.includes('Cela lui suffit pour sauter directement au petit chelem')&&
+ slam007.answerText.includes('ne doit pas être retenue comme une règle d’enchères du SEF')&&
+ slam007.answerText.includes('33 HLD ne suffit pas à imposer le petit chelem')&&
+ slam007.answerText.includes('répétition à 3♥')&&
+ slam007.answerText.includes('quatre As')&&
+ slam007.questionText.includes('6♥')&&
+ slam007.pedagogicalAudit_20261103c?.internalReference?.includes('EN-BH-077-04')&&
+ slam007.reviewStatus!=='a_verifier',
+ 'JC-007 SEF: historical direct slam preserved, pedagogical guidance corrected');
 console.log('QPJB Training smoke: '+checks+' checks passed.');

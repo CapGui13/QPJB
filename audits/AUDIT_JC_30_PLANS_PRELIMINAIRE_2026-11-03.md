@@ -19,7 +19,7 @@ Légende : **M** = mécanisme principal identifié, encore soumis aux distributi
 | `JC-004` | M | 4♠ : après trois Cœurs perdus, il faut trois plis de Carreau ; chercher Roi et Valet du bon côté par double impasse. L'estimation 25 % correspond à une hypothèse grossière d'honneurs, sans information dynamique de la défense. |
 | `JC-005` | M | 4♥ : ♥10 tombé, le ♥7 du mort peut devenir une communication en dépassant le dernier atout adverse ♥6. Confirmer le placement du Roi de Carreau et le nombre de retours autorisés. |
 | `JC-006` | M | 3SA : huit plis sûrs, Trèfle à affranchir ; laisser passer deux fois à Cœur avant de prendre le troisième vise à isoler l'adversaire détenteur de l'As de Trèfle. La position de cet As et la longueur réelle à Cœur sont des hypothèses essentielles. |
-| `JC-007` | R | 6♥ : ne pas présenter comme règle générale un saut direct au chelem sur le seul total de 33 HLD sans recherche des contrôles. Le thème de carte — deux tours d'atout avant la défausse du Pique sur les Carreaux — reste distinct de cette réserve d'enchères. |
+| `JC-007` | C | La séquence historique `1♣–1♥–2SA–6♥` n'est pas une recommandation SEF : le seul seuil de 33 HLD ne remplace pas la vérification des contrôles et des cartes clés. L'introduction a été rectifiée, le texte source archivé ; l'exercice reste consacré au plan de jeu à 6♥, sans certification de ses variantes défensives. |
 | `JC-008` | M | 3SA : ♦ARD62 au mort face à ♦54, cinq Carreaux dans la ligne du mort ; avec le reliquat 4–2, donner tôt la levée à Carreau préserve une rentrée par les honneurs au mort. Contrôler les retours adverses et le cas 3–3. |
 | `JC-009` | R | 3SA : inférence de ♦D en Est fondée sur l'ouverture de 1♥ en Est et le compte exact de 27 H dans la ligne (13 chez les adversaires). Ne conclure que sous l'hypothèse d'une ouverture SEF d'au moins 12 H et avec ♥V d'Ouest connu ; vérifier toutes les communications avant de tirer les honneurs de Carreau. |
 | `JC-010` | R | Défense contre 3SA : appel du ♣10 sur l'As d'entame selon le signalement « grosse carte = appel » **explicitement fourni** à l'élève. Conserver ce rappel de convention et ne pas affirmer que ce signal est universel hors de ce cadre. |
@@ -76,11 +76,20 @@ Le texte de source annonçait que l'As de Cœur était **forcément en Ouest** a
 
 **Action éditoriale limitée :** proposition de retour du **♣2 singleton** maintenue comme plan de coupe conditionnel, mais déduction de ♥A en Ouest et garantie d'une chute supprimées. Le texte original reste archivé dans `sourceOriginalAnswerText` ; aucune carte, ID, PDF ou progression élève ne change. La défense optimale selon toutes les distributions et les retours reste **à expertiser**.
 
+
+### Cohérence SEF — JC-007, saut direct à 6♥
+
+La séquence du document d'origine est **1♣–1♥–2SA–6♥**, avec six Cœurs en Sud et 2SA fort régulier (18–19 HL) en Nord. Le contrat et la donne sont conservés comme point de départ de l'exercice de jeu de la carte, **pas comme modèle d'enchères automatique**. L'indication documentaire « 33 HLD, donc sauter directement au petit chelem » n'est pas une preuve de contrôles ni de cartes clés. En particulier, 2SA ne promet pas trois Cœurs : il faut une recherche coordonnée des contrôles et de la qualité d'atout.
+
+La banque QPJB possède déjà le cas `EN-BH-077-04` (séquence identique) : l'ancienne réponse 6♥ y a été remplacée par **3♥**, répétition forcing de la majeure sixième avec espoir de chelem. L'introduction de `JC-007` est désormais cohérente avec cette décision pédagogique : le saut immédiat n'est pas à imiter, le plan de jeu étudié suppose simplement que l'on est déjà à 6♥. Dans la donne particulière, le camp possède les quatre As, mais ce fait n'était pas connu du répondant au stade de sa décision.
+
+Le texte imprimé précédent est sauvegardé dans `sourceOriginalAnswerText`, avec les métadonnées `pedagogicalAudit_20261103c`. **La suite consacrée au maniement des Cœurs et à la défausse Pique sur Carreau reste identique à la source**, sans prétendre l'avoir validée sur toutes les distributions adverses.
+
 ## Bilan et décisions
 
-- **30/30 fiches répertoriées et relues au niveau du mécanisme** ; **3 corrections ciblées justifiées et appliquées** (`JC-BH-120-01`, `JC-013`, `JC-012`), **plusieurs autres réserves sans correction automatique**.
-- **Aucune certification stratégique exhaustive revendiquée**, et aucune modification des 27 autres corrigés ni des PDF originaux.
-- Priorités de contre-expertise complète : **`JC-013`** (la fausse garantie est corrigée mais le plan demeure à prouver), **`JC-012`** (condition de coupe encore à étudier après rectification de l'inférence), **`JC-021`** (tempo de 3SA), **`JC-007`** (commentaire d'enchères de chelem), puis `JC-002`, `JC-016`, `JC-BH-060-01`.
+- **30/30 fiches répertoriées et relues au niveau du mécanisme** ; **4 corrections ciblées justifiées et appliquées** (`JC-BH-120-01`, `JC-013`, `JC-012`, `JC-007`), **plusieurs autres réserves sans correction automatique**.
+- **Aucune certification stratégique exhaustive revendiquée**, et aucune modification des 26 autres corrigés ni des PDF originaux.
+- Priorités de contre-expertise complète : **`JC-013`** (la fausse garantie est corrigée mais le plan demeure à prouver), **`JC-012`** (condition de coupe encore à étudier après rectification de l'inférence), **`JC-021`** (tempo de 3SA), **`JC-007`** (commentaire d'enchères corrigé, plan de carte encore à démontrer), puis `JC-002`, `JC-016`, `JC-BH-060-01`.
 - `JC-BH-120-01` : ancien `answerText` archivé dans `sourceOriginalAnswerText`, nouvel `pedagogicalAudit_20261103`; **ID, diagramme, source PDF, statut d'accès et progression locale préservés**.
 - 563 enchères et 114 cartes sont conservées et accessibles. Le total 677 ne change pas. Modules `20261103e`, cache `qpjb-v49` ; tests d'intégrité à exécuter avant diffusion.
 
