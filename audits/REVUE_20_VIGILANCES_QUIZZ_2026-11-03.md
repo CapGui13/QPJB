@@ -2,7 +2,7 @@
 
 ## Objectif et méthode
 
-Périmètre **exclusivement Quizz** : 20 des 166 exercices notés « À EXAMINER » par le contrôle automatique V4.49. Il s'agit de **5 réponses à une ouverture mineure**, **2 réponses à 2SA** et **13 suites de Stayman/Texas**. Toutes les fiches étaient sans verdict individuel daté ; 16 avaient une revue thématique antérieure et deux des sources de lot P2. La présente revue ne retire ni ne remplace ces traces.
+Périmètre **exclusivement Quizz** : 20 des 166 exercices notés « À EXAMINER » par le contrôle automatique V4.49. Il s'agit de **5 réponses à une ouverture mineure**, **2 réponses à 2SA** et **13 suites de Stayman/Texas**. Toutes les fiches étaient sans verdict individuel daté ; 14 avaient une revue thématique antérieure et deux possédaient une trace de revue ciblée P2, sans verdict daté. Quatre ne disposaient pas de ces traces. La présente revue ne retire ni ne remplace ces traces.
 
 Contrôles pour chaque ID : 13 cartes, concordance de points H et distribution, cohérence de la séquence et des quatre options, force combinée, conditions de fit, zone de l'enchère correcte et risques des erreurs offertes. Résultat : **20 réponses conservées** ; **7 textes élèves réécrits** pour rendre explicite le seuil et les mauvaises options tentantes ; **0 réponse / 0 choix / 0 main / 0 niveau modifiés**. Ce verdict signifie « cohérent parmi les options proposées » et non « certifié optimal contre tous les systèmes possibles ».
 
