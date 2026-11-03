@@ -19,3 +19,7 @@ Le détail des décisions et des sources figure dans [REINTEGRATION_EN_4_2026-11
 - Confirmer les tests GitHub sur Chromium et WebKit, puis la publication GitHub Pages.
 - Faire un essai sur un iPhone physique.
 - Poursuivre l'audit pédagogique global des exercices et les anciens dossiers sans identifiants rapprochés.
+
+## Revalidation intégrée après modification concurrente
+
+Le commit `e825e93e` a passé l'audit, Chromium et WebKit, mais Pages a refusé le déploiement, car une modification indépendante du sous-titre de la séance 2-04 et la mise à jour de `config.json` sont arrivées ensuite. Ce refus est volontaire et sûr. Une validation du nouvel état complet de `main` est requise ; le garde-fou Pages ne doit pas être élargi pour ignorer cette modification.
