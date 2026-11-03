@@ -93,3 +93,10 @@ L'[arbitrage des trois réserves](ARBITRAGE_EN_3_RESERVES_2026-11-03.md) est con
 - **JC-007** : la présentation d'un saut automatique à 6♥ après 2SA fort a été corrigée sans toucher à la donne ni au plan de carte (commit `a87f706f42`). Tests [#41652116357](https://github.com/CapGui13/QPJB/actions/runs/41652116357) réussis et Pages [#41652696036](https://github.com/CapGui13/QPJB/actions/runs/41652696036) réussi sur le commit de catalogue `136295a1c5`.
 - **JC-021** : un nouveau **contre-exemple de 52 cartes vérifié** réfute la garantie du corrigé en 3SA : Ouest ♠DV4, Est ♠109876 et ♦RV ; Est conserve des Piques après les deux impasses à Carreau et la défense encaisse cinq plis. Voir `AUDIT_JC_30_PLANS_PRELIMINAIRE_2026-11-03.md`. **Aucun corrigé de JC-021 modifié ni validé** : poursuivre l'étude stratégique avant toute adaptation notée ou publiée.
 - **Compteurs inchangés** : 563 exercices d'enchères et 114 de jeu de la carte accessibles ; cette mise à jour documente uniquement l'audit. Test iPhone Safari réel toujours en attente.
+
+
+## JC-021 — adaptation pédagogique ciblée (version 20261103h)
+
+- Après la PR #19, le corrigé élève expose une ligne de double impasse à Carreau et un laisser-passer initial **conditionnels**. Le contre-exemple ♠DV4 en Ouest / ♠109876 et ♦RV en Est démontre cinq plis de défense.
+- L'ancien texte est archivé sous `sourceOriginalAnswerText`. Même main, question, image, ID, accès et historique. Plan optimal général **non certifié**.
+- 563 EN et 114 JC en banque. Versions `20261103h` / cache `qpjb-v52`. Vérifier la CI et Pages avant de déclarer publié ; Safari iPhone physique encore à tester.
