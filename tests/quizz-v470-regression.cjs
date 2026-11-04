@@ -39,6 +39,8 @@ assert.equal(simple('003').answer,'1♠');
 assert.equal(simple('004').answer,'2♥');
 assert.equal(simple('005').answer,'2SA');
 assert.equal(simple('005').shape[1],4,'Truscott 4 atouts');
+assert.match(simple('005').explain,/au moins 11 HLD/,'Truscott sans plafond 12 HLD');
+assert.doesNotMatch(simple('005').explain,/valeur invitante \(11-12 HLD\)/,'Pas de confusion sur le Truscott');
 assert.equal(simple('006').answer,'Surcontre');
 assert.equal(simple('006').shape[1],3,'Surcontre fitté seulement 3 cartes');
 assert.equal(simple('007').answer,'Passe');

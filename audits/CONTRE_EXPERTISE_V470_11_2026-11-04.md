@@ -4,7 +4,7 @@
 
 Cette lecture compare les 11 mains aux sources d'enseignement, distingue la signification des enchères et explicite en interne la faiblesse de chacune des trois fausses options. Le corrigé affiché aux élèves continue de justifier **seulement la bonne enchère**.
 
-Sources principales : [iBridge réponses après contre](https://dev.ibridge-club.fr/public/fichedetails/102), [iBridge interventions sur 2 faible](https://dev.ibridge-club.fr/public/fichedetails/73), [SEF 2024, synthèse du club du Haut-Poitou](https://scjc-bridge.fr/sef-2024). Ces pages ne constituent pas le texte intégral de l'ouvrage officiel SEF ; arbitrer les cas contestables avant fusion.
+Sources principales : [iBridge réponses après contre](https://dev.ibridge-club.fr/public/fichedetails/102), [iBridge interventions sur 2 faible](https://dev.ibridge-club.fr/public/fichedetails/73), [SEF 2024, synthèse du club du Haut-Poitou](https://scjc-bridge.fr/sef-2024). Croisement avec le manuel pédagogique FFB « En route vers le SEF », séance 23 (https://cdn.ffbridge.fr/cms/default/0001/08/e59ea4330e7ca327d0a950ee3adaa3528f173607.pdf, p. 142) : changement de couleur au palier de 2 non forcing après contre ; 2SA Truscott avec quatre atouts majeurs et au moins 11 HLD. Les sources consultées ne remplacent pas une certification indépendante du SEF 2024.
 
 ## Rectifications par rapport à la première version
 - `SEF-V470-001` : remplacer « Surcontre » (piège trop caricatural à 1 H) par « 2♥ » (confusion avec le soutien sans véritable fit).
@@ -66,7 +66,7 @@ Sources principales : [iBridge réponses après contre](https://dev.ibridge-club
 
 **Séquence :** Partenaire : 1♥ – Adversaire : Contre. **Règle/objectif :** Distinguer Truscott 2SA d'un soutien barrage 3♥ avec quatre atouts et 11-12 HLD.
 
-**Corrigé proposé :** Les quatre Cœurs et le doubleton Trèfle font passer cette main de 9 H à environ 12 HLD : 2SA Truscott montre un soutien de quatre atouts de valeur invitante (11-12 HLD). Après Contre, le soutien direct à 3♥ serait un barrage, et Surcontre ne décrit pas aussi directement le fit quatrième.
+**Corrigé proposé :** Les quatre Cœurs et le doubleton Trèfle font passer cette main de 9 H à environ 12 HLD : 2SA Truscott est une réponse conventionnelle forcing, avec au moins quatre atouts et au moins 11 HLD (sans plafond à 12 HLD). Après Contre, le soutien direct à 3♥ serait un barrage, et Surcontre ne décrit pas aussi directement le fit quatrième.
 
 **Distracteurs (note interne, non affichée aux élèves) :**
 - **2♥ :** Soutien simple : sous-évalue le caractère invitant de 12 HLD avec quatre atouts.
