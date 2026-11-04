@@ -61,7 +61,8 @@ jobs:
   smoke:
     name: Validation ${{ matrix.browser }}
     needs: integrity
-    runs-on: ubuntu-latest
+    # WebKit est teste sur macOS pour eviter le blocage apt-get des dependances Linux.
+    runs-on: ${{ matrix.browser == 'webkit' && 'macos-latest' || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
@@ -75,6 +76,7 @@ jobs:
         timeout-minutes: 5
         run: npm install --no-save playwright
       - name: Install system dependencies for ${{ matrix.browser }}
+        if: matrix.browser == 'chromium'
         timeout-minutes: 6
         env:
           DEBIAN_FRONTEND: noninteractive
