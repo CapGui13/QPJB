@@ -115,3 +115,13 @@
 - [Tests post-fusion #41816126662](https://github.com/CapGui13/QPJB/actions/runs/41816126662) **réussis** (trois jobs) ; [actualisation du catalogue #41816126628](https://github.com/CapGui13/QPJB/actions/runs/41816126628) **réussie**.
 - [Publication Pages #41816574545](https://github.com/CapGui13/QPJB/actions/runs/41816574545) **réussie** : source publiée `a15fab044fa6a38cfcb11be2efefcd10e820f986`, Quizz `prototype-2026-11-04-v4-54-dernieres-vigilances` contrôlé sur `main`.
 - **Bilan net : 309/993 revues datées ; 0/166 vigilances initiales non datées ; 22 corrigés clarifiés et une bonne réponse corrigée (4SA → 3SA, `SEF-V44-014`) avec archivage/migration ciblée.** Les deux réserves `SEF-V417-008` et `SEF-V426-004` restent ouvertes. La validation physique sur iPhone réel est toujours distincte.
+
+
+## P2 — V4.55 du 4 novembre : 24 ouvertures et contre-expertise des réserves
+
+- [Rapport de 24 ouvertures et de deux contre-expertises](./REVUE_24_OUVERTURES_ET_2_RESERVES_2026-11-04.md) : 24 décisions nominatives d'ouverture, huit corrigés approfondis, 24 contextes passés du tutoiement au vouvoiement avec anciens textes archivés.
+- **Deux réserves levées dans le SEF du Quiz, sans modification des bonnes réponses :** `SEF-V417-008` (4♠ conclusif plutôt que 3♠ de recherche de chelem) et `SEF-V426-004` (Passe avec 13 H sans soutien suffisant après 2♥ faible). Verdicts historiques conservés dans les fiches, références FFB et iBridge dans le rapport.
+- **Registre : 333/993 revues individuelles datées**, 660 encore sans revue individuelle datée ; plus de réserve ouverte parmi les deux suivies. Les 166 vigilances heuristiques restent couvertes, sans prétendre certifier les 993 exercices.
+- **Version :** `prototype-2026-11-04-v4-55-ouvertures-et-reserves`. Aucun changement de bonne enchère, proposition, main, difficulté, rubrique, ID ni progression.
+- **Suivants :** revue nominative des 660 autres (priorité redemandes de l'ouvreur, soutiens majeurs, secondes enchères du répondant) ; contrôles des distracteurs et variantes.
+- **CI / fusion / GitHub Pages :** à confirmer séparément avant d'annoncer cette version publiée.
