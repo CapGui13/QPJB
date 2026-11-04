@@ -61,8 +61,11 @@ jobs:
   smoke:
     name: Validation ${{ matrix.browser }}
     needs: integrity
-    # Chromium sur Ubuntu ; WebKit utilise son job Docker officiel dedie.
     runs-on: ubuntu-latest
+    # Image officielle Playwright : dependances et Chromium deja presents.
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -72,22 +75,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install Playwright test package
+      - name: Installer le package Playwright 1.64.1
         timeout-minutes: 5
-        run: npm install --no-save playwright
-      - name: Install system dependencies for ${{ matrix.browser }}
-        if: matrix.browser == 'chromium'
-        timeout-minutes: 6
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          echo "Installing system packages for ${{ matrix.browser }}"
-          npx playwright install-deps ${{ matrix.browser }}
-      - name: Install browser binaries for ${{ matrix.browser }}
-        timeout-minutes: 6
-        run: |
-          echo "Installing ${{ matrix.browser }} browser binary"
-          npx playwright install ${{ matrix.browser }}
+        run: npm install --no-save playwright@1.64.1
       - name: Test the QCM flow on a simulated iPhone (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-browser.cjs
       - name: Test previously unopened training resources in offline mode (${{ matrix.browser }})
