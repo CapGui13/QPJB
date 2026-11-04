@@ -89,3 +89,20 @@
 - Version : `prototype-2026-11-04-v4-53-apres-intervention`. Réponses, quatre choix, mains, niveaux, identifiants et progression élèves inchangés.
 - **Réserves ouvertes :** `SEF-V417-008` et `SEF-V426-004`. Suite : 28 vigilances restant à revoir, contre-expertise sur les réserves, puis revue nominative des autres fiches.
 - **CI / fusion / publication Pages :** à confirmer séparément après création de la PR ; aucun succès présumé à cette étape.
+
+
+## V4.53 — fusion, validations et publication confirmées
+
+- [PR n°25](https://github.com/CapGui13/QPJB/pull/25) **fusionnée** sur `main`, commit `98a04f4c8ded9ca58897942e9a99737e75c08b50`.
+- [Tests de branche #41813977323](https://github.com/CapGui13/QPJB/actions/runs/41813977323) **réussis** : audit, Chromium et WebKit.
+- [Tests post-fusion #41814810987](https://github.com/CapGui13/QPJB/actions/runs/41814810987) **réussis** ; [catalogue #41814810964](https://github.com/CapGui13/QPJB/actions/runs/41814810964) actualisé.
+- [Publication Pages #41815219806](https://github.com/CapGui13/QPJB/actions/runs/41815219806) **réussie**. V4.53 en ligne, sous réserve du cache local et de la validation physique iPhone.
+
+## P1 — V4.54 du 4 novembre : clôture des 28 vigilances non datées et correction quantitative
+
+- [Rapport des 28 décisions](./REVUE_28_VIGILANCES_ET_CORRECTION_2SA_2026-11-04.md) : 4 interventions directes, 7 réponses à l'intervention, 3 réveils, 2 ouvertures, 1 réponse mineure, 2 soutiens majeurs, 6 réponses à SA, 3 redemandes de l'ouvreur.
+- **27 bonnes réponses maintenues ; une correction SEF : `SEF-V44-014` passe de 4SA à 3SA** avec 11 H réguliers en face de 2SA (20–21 H), selon la règle quantitative FFB (4SA avec 12 H).
+- **22 corrigés précisés**, anciens textes et ancienne bonne enchère archivés ; marqueur de migration non destructif pour le seul exercice dont la réponse change.
+- **Registre : 309 / 993 fiches avec verdict individuel daté**, 684 restantes ; les **166 vigilances initiales ont désormais toutes une revue datée**. Cela ne certifie pas l'ensemble des 993 exercices.
+- Les deux réserves `SEF-V417-008` et `SEF-V426-004` restent ouvertes. Priorités suivantes : contre-expertise de ces cas, élargissement des preuves à 993 fiches et audit des variantes.
+- Version `prototype-2026-11-04-v4-54-dernieres-vigilances`. **CI/Pages à vérifier** après PR, fusion et déploiement. Périmètre Quizz uniquement.
