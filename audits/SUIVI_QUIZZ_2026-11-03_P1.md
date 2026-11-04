@@ -220,3 +220,13 @@
 - [Publication GitHub Pages #41830692295](https://github.com/CapGui13/QPJB/actions/runs/41830692295) **réussie** pour la version `prototype-2026-11-04-v4-59-reponses-majeures-59`.
 - **Bilan publié : 510/993 revues individuelles datées, 483 restantes ; réponses à 1♥ / 1♠ : 81/81 revues.** Les 59 nouveaux contextes et explications sont publiés, sans modification de réponse, proposition, main, difficulté, ID, sauvegarde ou des 677 exercices d'Entraînement.
 - **Suite recommandée :** les 79 deuxièmes enchères du répondant sans revue individuelle datée, puis autres rubriques. Safari sur iPhone physique toujours à valider séparément.
+
+
+## P2 — V4.60 : 79 deuxièmes enchères du répondant (4 novembre 2026)
+
+- Rapport : [`REVUE_79_SECONDES_ENCHERES_REPONDANT_2026-11-04.md`](./REVUE_79_SECONDES_ENCHERES_REPONDANT_2026-11-04.md).
+- 79 exercices lus : 78 verdicts cohérents parmi les choix, 1 réserve (`SEF-V411-007`, arrêt Carreau insuffisamment établi pour 3SA).
+- Registre : **510 → 589 / 993** revues datées ; **404 restantes**. Rubrique `second` : **103 / 103** revues datées, dont 1 sous réserve.
+- 78 explications et 79 contextes révisés ; anciennes versions archivées. Aucune réponse, main, proposition, difficulté, ID ou progression modifiés.
+- Périmètre strictement Quiz : aucun fichier des 677 exercices d'Entraînement, PBN ou jeu de la carte touché.
+- Publication V4.60 à confirmer après CI de branche, fusion, contrôles sur `main` et réussite GitHub Pages. Suite : résoudre la réserve, puis les autres rubriques.
