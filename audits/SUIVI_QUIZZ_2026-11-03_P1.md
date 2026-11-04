@@ -259,3 +259,12 @@
 - **Bilan publié : 661/993 exercices avec revue individuelle datée, 332 restants ; rubrique `mineur` 78/78 revue, dont 7 réserves.**
 - Les 7 réserves sont suivies par [l'issue n°35](https://github.com/CapGui13/QPJB/issues/35), avec la [note de clarification Walsh](./NOTE_COMPLEMENTAIRE_WALSH_V461_2026-11-04.md). Aucun changement des bonnes réponses, choix, mains, difficulté, IDs, progression ou des 677 exercices d'Entraînement.
 - **Suite :** 54 réponses à 1SA/2SA sans revue datée, puis 52 interventions. Les tests WebKit/Chromium simulés ne constituent pas une validation sur Safari/iPhone physique.
+
+## P2 — V4.62 : 54 réponses à 1SA / 2SA (4 novembre 2026)
+
+- [Rapport des 54 réponses](./REVUE_54_REPONSES_SANS_ATOUT_2026-11-04.md) : 54 mains, calculs H, répartitions, ouvertures et quatre réponses vérifiées individuellement.
+- **54 réponses cohérentes** dans le cadre du Stayman et Texas classiques retenus ; 54 corrigés enrichis et 54 énoncés clarifiés, avec archivage de leurs versions précédentes.
+- **Registre 661 → 715/993** revues individuelles datées, **278 restantes** ; rubrique `sa` **62/62** revues.
+- 1SA 15–17 : Passe 0–7 sans majeur long, 2SA 8–9, 3SA 10+, Stayman 8+ avec majeure quatrième, Texas avec majeure cinquième sans minimum ; 2SA 20–21 : seuils adaptés, 3♣ Stayman, 3♦/3♥ Texas.
+- Aucun changement de réponse, proposition, main, séquence, difficulté, ID, sauvegarde ou des 677 exercices d'Entraînement.
+- **État de travail :** contrôles CI, fusion et Pages à confirmer séparément. Suite : 52 interventions sans revue individuelle, puis autres rubriques.
