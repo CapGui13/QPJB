@@ -230,3 +230,13 @@
 - 78 explications et 79 contextes révisés ; anciennes versions archivées. Aucune réponse, main, proposition, difficulté, ID ou progression modifiés.
 - Périmètre strictement Quiz : aucun fichier des 677 exercices d'Entraînement, PBN ou jeu de la carte touché.
 - Publication V4.60 à confirmer après CI de branche, fusion, contrôles sur `main` et réussite GitHub Pages. Suite : résoudre la réserve, puis les autres rubriques.
+
+## V4.60 — fusion, tests et publication confirmés le 4 novembre 2026
+
+- [PR n°32](https://github.com/CapGui13/QPJB/pull/32) **fusionnée** sur `main`, commit `c3fa760ec57b0194559d4546220a5b9ec618990e`.
+- [Tests de branche #41832091647](https://github.com/CapGui13/QPJB/actions/runs/41832091647) **réussis** : audit, Chromium et WebKit.
+- [Tests après fusion #41833089869](https://github.com/CapGui13/QPJB/actions/runs/41833089869) **réussis** : audit, Chromium et WebKit ; [catalogue #41833089981](https://github.com/CapGui13/QPJB/actions/runs/41833089981) **réussi**.
+- [Publication GitHub Pages #41833590866](https://github.com/CapGui13/QPJB/actions/runs/41833590866) **réussie** pour `prototype-2026-11-04-v4-60-secondes-encheres-79`.
+- **Bilan publié : 589/993 revues individuelles datées, 404 restantes.** Rubrique `second` : **103/103** revues, dont **1 réserve** ; 78 corrigés et 79 contextes améliorés.
+- Réserve traçable via [issue n°33](https://github.com/CapGui13/QPJB/issues/33) concernant `SEF-V411-007` (3SA et arrêt Carreau non démontré). Aucune réponse, main, proposition, difficulté, ID, progression ou module Entraînement modifié.
+- Prochaine revue prioritaire : les **72 réponses à l'ouverture mineure** encore sans revue individuelle, puis 54 réponses à 1SA/2SA et 52 interventions. Validation Safari sur iPhone physique toujours distincte des tests automatisés.
