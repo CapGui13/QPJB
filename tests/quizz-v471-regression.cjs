@@ -11,7 +11,7 @@ const db=JSON.parse(mt[1]),xs=db.exercises,ref=require('./quizz-baseline-1004-gi
 const base=JSON.stringify(xs.slice(0,ref.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(base,'utf8')+'\0'+base,'utf8').digest('hex');
 assert.equal(sha,ref.gitBlobSha,'Les 1004 objets V4.70 doivent rester identiques');
-assert.equal(xs.length,1010,'1010 fiches V4.71, ni moins ni plus');
+assert.ok(xs.length>=1010,'Conserver les 1004 fiches V4.70 et les 6 V4.71, même après les futures extensions');
 const lookup=new Map(xs.map(x=>[x.id,x]));
 assert.equal(lookup.size,xs.length,'IDs uniques');
 const answers=['Passe','1SA','2♥','2♦','2SA','1SA'];
