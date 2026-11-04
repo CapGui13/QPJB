@@ -269,7 +269,7 @@ const server=http.createServer((req,res)=>{
 
   // Les corrigés justifient uniquement la bonne enchère, sans comparaisons.
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
-  assert.equal(dataC01.exercises.length,993,'All exercises are available');
+  assert.ok(dataC01.exercises.length>=993,'All exercises are available');
   assert.ok(dataC01.exercises.every(x=>!x.whyNot&&!x.takeaway),'No obsolete comparative explanations');
   await page.locator('#show-choices').click();
   await page.locator('#answers button').first().click();

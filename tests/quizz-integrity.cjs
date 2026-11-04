@@ -7,7 +7,13 @@ const match=html.match(/<script id="training-data" type="application\/json">([\s
 assert.ok(match,'Quizz JSON data is embedded');
 const data=JSON.parse(match[1]);
 const exercises=data.exercises;
-assert.equal(exercises.length,993,'All 969 previous exercises and 12 curated cases are retained');
+const {createHash}=require('node:crypto');
+const historical=require('./quizz-baseline-993-gitsha.json');
+assert.ok(exercises.length>=historical.count,'The 993 historical exercises must be preserved');
+const oldPayload=JSON.stringify(exercises.slice(0,historical.count));
+const oldGitSha=createHash('sha1').update('blob '+Buffer.byteLength(oldPayload,'utf8')+'\0'+oldPayload,'utf8').digest('hex');
+assert.equal(oldGitSha,historical.gitBlobSha,'The 993 historical exercises MUST remain byte-for-byte unchanged as JSON objects');
+assert.ok(exercises.length>=historical.count,'All 969 previous exercises and 12 curated cases are retained');
 assert.equal(data.themes.length,22,'Original 22 topics are retained');
 assert.ok(html.includes('id="free-form"'),'A free response form precedes the choices');
 assert.ok(html.includes('function normalizeBid('),'Bidding input parser exists');
@@ -1052,7 +1058,7 @@ for(let i=0;i<spaced.length;i++){
  if(spaced.slice(i+1).some(x=>!recent.includes(x.caseFamily)))
   assert.ok(!recent.includes(spaced[i].caseFamily),'Avoid close repetition while alternatives exist');
 }
-assert.equal(exercises.length,993,'No exercise removed for spacing');
+assert.ok(exercises.length>=historical.count,'No exercise removed for spacing');
 
 
 // Régression ciblée SEF novembre 2026 — Drury, fuite de réponses et progression.
