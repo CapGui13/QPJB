@@ -173,3 +173,13 @@
 - **Walsh explicite maintenu** dans trois énoncés (`SEF-V419-002`, `SEF-V420-005`, `SEF-V424-001`). Les trois dossiers conditionnels de V4.56 restent signalés. La cohérence entre le SEF de référence et ces options doit rester un objet de vigilance pédagogique.
 - **Aucune bonne enchère, option, main, difficulté, ID, rubrique ni progression élève modifiés.** Aucun fichier des 677 exercices d'Entraînement, PBN ou jeu de la carte touché.
 - Version de travail : `prototype-2026-11-04-v4-57-redemandes-58`. **CI branche / fusion / tests main / Pages à confirmer séparément**. Prochaines grandes rubriques non couvertes : soutiens majeurs, 2e enchères du répondant, ouvertures et réponses à l'ouverture mineure.
+
+
+## V4.57 — publication confirmée le 4 novembre 2026
+
+- [PR n°29](https://github.com/CapGui13/QPJB/pull/29) **fusionnée** sur `main`, commit `41237f0695bcee935df5ac2ee9df817e551d538b`.
+- [CI de branche #41823157031](https://github.com/CapGui13/QPJB/actions/runs/41823157031) **réussie**, trois jobs (audit, Chromium et WebKit).
+- [CI après fusion #41823697797](https://github.com/CapGui13/QPJB/actions/runs/41823697797) **réussie**, trois jobs ; [catalogue #41823697895](https://github.com/CapGui13/QPJB/actions/runs/41823697895) actualisé avec succès.
+- [Publication Pages #41824174293](https://github.com/CapGui13/QPJB/actions/runs/41824174293) **réussie** pour la source `c3770cf10992013ed985518568bc7a6659b189ee`, contenant le Quizz `prototype-2026-11-04-v4-57-redemandes-58`.
+- **Bilan publié : 431/993 revues individuelles datées, 562 fiches restantes ; rubrique `red` entièrement couverte à 101/101.** Les 58 nouveaux corrigés et leurs 58 contextes ont été retravaillés avec archives, sans changement des réponses, cartes, distracteurs, niveaux, IDs ni progression. Les avertissements pédagogiques relatifs aux trois réponses sous Walsh explicite de V4.56 restent conservés.
+- Suite de l'audit : prioriser les **soutiens majeurs** et les **deuxièmes enchères du répondant**, puis les autres rubriques sans revue individuelle. Un contrôle physique sur Safari/iPhone reste distinct des tests automatisés.
