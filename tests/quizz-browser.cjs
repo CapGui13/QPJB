@@ -42,8 +42,8 @@ const server=http.createServer((req,res)=>{
   // Attendre l'etat stable avant de demander l'affichage des propositions.
   const revealChoicesAndWait=async(label)=>{
     await page.waitForFunction(()=>document.body.classList.contains('session-mode')
-      && !quizPendingAction && !quizLocalBusy && !quizDeferredAction
-      && !document.querySelector('#qpjb-quiz-local-fade')?.classList.contains('fade-in'),
+      && !document.querySelector('#qpjb-quiz-local-fade')?.classList.contains('fade-in')
+      && !!document.querySelector('#show-choices'),
       null,{timeout:15000});
     await page.locator('#show-choices').waitFor({state:'visible',timeout:10000});
     await page.locator('#show-choices').click();
@@ -52,11 +52,10 @@ const server=http.createServer((req,res)=>{
         null,{timeout:12000});
     }catch(error){
       const diagnostic=await page.evaluate(()=>({
-        mode:document.body.className,stageChoices:stageAt(position)?.choicesShown,
-        position,selection:document.querySelector('#selection-mode')?.value,
+        mode:document.body.className,
+        selection:document.querySelector('#selection-mode')?.value,
         buttonVisible:!!document.querySelector('#show-choices'),
         answerButtons:document.querySelectorAll('#answers button').length,
-        localBusy:quizLocalBusy,pending:!!quizPendingAction,deferred:!!quizDeferredAction,
         overlay:document.querySelector('#qpjb-quiz-local-fade')?.className
       }));
       console.error('QUIZZ_CHOICES_DIAGNOSTIC',label,JSON.stringify(diagnostic));
