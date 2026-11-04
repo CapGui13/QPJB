@@ -106,3 +106,12 @@
 - **Registre : 309 / 993 fiches avec verdict individuel daté**, 684 restantes ; les **166 vigilances initiales ont désormais toutes une revue datée**. Cela ne certifie pas l'ensemble des 993 exercices.
 - Les deux réserves `SEF-V417-008` et `SEF-V426-004` restent ouvertes. Priorités suivantes : contre-expertise de ces cas, élargissement des preuves à 993 fiches et audit des variantes.
 - Version `prototype-2026-11-04-v4-54-dernieres-vigilances`. **CI/Pages à vérifier** après PR, fusion et déploiement. Périmètre Quizz uniquement.
+
+
+## V4.54 — fusion et publication confirmées le 4 novembre 2026
+
+- [PR n°26](https://github.com/CapGui13/QPJB/pull/26) **fusionnée** sur `main`, commit `cb247e6a0dee5b04ebe452b091dd1f72fe67de56`.
+- [Tests de branche #41815658528](https://github.com/CapGui13/QPJB/actions/runs/41815658528) **réussis** (audit, Chromium, WebKit).
+- [Tests post-fusion #41816126662](https://github.com/CapGui13/QPJB/actions/runs/41816126662) **réussis** (trois jobs) ; [actualisation du catalogue #41816126628](https://github.com/CapGui13/QPJB/actions/runs/41816126628) **réussie**.
+- [Publication Pages #41816574545](https://github.com/CapGui13/QPJB/actions/runs/41816574545) **réussie** : source publiée `a15fab044fa6a38cfcb11be2efefcd10e820f986`, Quizz `prototype-2026-11-04-v4-54-dernieres-vigilances` contrôlé sur `main`.
+- **Bilan net : 309/993 revues datées ; 0/166 vigilances initiales non datées ; 22 corrigés clarifiés et une bonne réponse corrigée (4SA → 3SA, `SEF-V44-014`) avec archivage/migration ciblée.** Les deux réserves `SEF-V417-008` et `SEF-V426-004` restent ouvertes. La validation physique sur iPhone réel est toujours distincte.
