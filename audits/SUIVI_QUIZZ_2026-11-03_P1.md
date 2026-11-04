@@ -191,3 +191,15 @@
 - Registre **431 → 451/993** revues datées ; **542 non revues**, dont **59/81** dans `majeur` et **79/103** dans `second`. Le 2SA fitté du dossier `SEF-N051-2` a été distingué du soutien simple.
 - Aucune bonne réponse, proposition, ID, main, difficulté ni progression modifiée ; les 677 exercices d'Entraînement sont hors périmètre.
 - **État : branche de travail non publiée à la création du lot.** Tests CI / PR / fusion / publication à mettre à jour après confirmation. Prochaine priorité : 59 autres réponses à l'ouverture majeure, puis 79 deuxièmes enchères du répondant.
+
+
+## V4.58 — fusion, validation et publication confirmées le 4 novembre 2026
+
+- [PR n°30](https://github.com/CapGui13/QPJB/pull/30) **fusionnée** sur `main`, commit `09cd930d644310565faf3dcca2184abfa1ebc7f2`.
+- [CI de branche #41827434567](https://github.com/CapGui13/QPJB/actions/runs/41827434567) **réussie** : audit, Chromium et WebKit.
+- [CI après fusion #41828018367](https://github.com/CapGui13/QPJB/actions/runs/41828018367) **réussie** : trois jobs ; [catalogue #41828018400](https://github.com/CapGui13/QPJB/actions/runs/41828018400) **réussi**, commit de catalogue `c5c23a5aaff4f3ed529207560cc83b6dbb42b598`.
+- [Publication GitHub Pages #41828514870](https://github.com/CapGui13/QPJB/actions/runs/41828514870) **réussie** pour la version `prototype-2026-11-04-v4-58-soutiens-20`. La **V4.58 est publiée**.
+- **Bilan : 451/993 revues individuelles datées, 542 restantes ; rubrique réponses à 1♥/1♠ : 22/81, 59 restantes ; deuxième enchère du répondant : 24/103, 79 restantes.**
+- 20 explications et 20 contextes reformulés, anciens textes conservés ; aucune bonne enchère, proposition, main, difficulté, ID ou sauvegarde modifiés. Aucun fichier des 677 exercices d'Entraînement touché.
+- Prochaine priorité : les 59 autres réponses à l'ouverture majeure, puis les 79 deuxièmes enchères du répondant. Contrôle Safari/iPhone physique toujours distinct des simulateurs.
+
