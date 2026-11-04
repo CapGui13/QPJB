@@ -145,3 +145,13 @@
 - **Registre : 333 → 373 / 993 revues individuelles datées**, **620 fiches sans revue** ; rubrique redemandes : 3 → 43 revues datées sur 101, **58 redemandes restantes**.
 - **Version Quizz :** `prototype-2026-11-04-v4-56-redemandes-40`.
 - **CI/Pages :** tests sur branche, fusion, trois contrôles post-fusion et GitHub Pages à vérifier individuellement avant annonce de publication. Safari physique iPhone reste hors contrôle automatisé.
+
+
+## V4.56 — fusion et validations post-fusion du 4 novembre 2026
+
+- [PR n°28](https://github.com/CapGui13/QPJB/pull/28) **fusionnée** sur `main`, commit `2993ac03f15642768b9848b07f9d88ab3201503f`.
+- [CI de branche #41819655747](https://github.com/CapGui13/QPJB/actions/runs/41819655747) **réussie** (audit, Chromium, WebKit).
+- [CI post-fusion #41820032429](https://github.com/CapGui13/QPJB/actions/runs/41820032429) **réussie**, trois jobs ; [catalogue #41820032374](https://github.com/CapGui13/QPJB/actions/runs/41820032374) **réussi à la seconde tentative** (première : trois rejets GitHub HTTP 500 sur le push).
+- [Publication GitHub Pages #41820450266](https://github.com/CapGui13/QPJB/actions/runs/41820450266) **non validée** : première tentative erreur serveur GitHub HTTP 500 lors de la création du déploiement malgré un artefact correctement chargé ; seconde tentative échouée car deux artefacts `github-pages` de même nom existaient dans cette exécution. Ne pas réutiliser ce run pour un nouveau déploiement.
+- **Action de reprise :** ce commit documentaire déclenche une nouvelle validation `main` et, après réussite, une **nouvelle exécution de publication** dotée d'un nouvel identifiant, sans toucher aux exercices. Ne pas annoncer V4.56 publiée avant réussite explicite de ce nouveau déploiement.
+- **Bilan pédagogique intact : 373/993 revues individuelles datées ; 620 restantes, dont 58 redemandes ; 3 fiches sous Walsh explicitement signalées.** Aucun changement de bonne réponse ni de progression. Safari physique toujours à vérifier.
