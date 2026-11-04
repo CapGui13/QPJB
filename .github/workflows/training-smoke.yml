@@ -12,7 +12,9 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: qpjb-training-${{ github.ref }}
+  # Un ancien WebKit bloqué ne doit pas empêcher les tests du commit suivant.
+  # Sur main, la concurrence reste groupée par branche ; sur PR, par commit.
+  group: qpjb-training-${{ github.ref }}-${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'branch' }}
   cancel-in-progress: true
 jobs:
   integrity:
