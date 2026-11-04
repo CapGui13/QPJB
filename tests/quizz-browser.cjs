@@ -213,6 +213,10 @@ const server=http.createServer((req,res)=>{
 
   // A successful exercise becomes a revision, but a later error removes that mastery.
   await page.locator('#back-home').click();
+  // Important sous WebKit : attendre aussi la fin du fondu avant de préparer
+  // les filtres du prochain quiz, sinon une action peut rester différée.
+  await page.locator('body:not(.session-mode)').waitFor({state:'attached',timeout:12000});
+  await page.waitForFunction(()=>!document.querySelector('#qpjb-quiz-local-fade')?.classList.contains('fade-in'));
   await page.locator('#topic').selectOption('ouv');
   await page.locator('#difficulty').selectOption('1');
   await page.locator('#selection-mode').selectOption('all');
@@ -323,8 +327,13 @@ const server=http.createServer((req,res)=>{
   await page.locator('#mode').selectOption('10');
   await page.locator('#selection-mode').selectOption('all');
   await page.locator('#new').click();
-  // Attendre le montage de la séance, pas seulement le clic pendant le fondu.
-  await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
+  // Attendre le montage et conserver des diagnostics exploitables en cas de régression.
+  try{await page.locator('body.session-mode').waitFor({state:'visible',timeout:15000});}
+  catch(error){
+    const info=await page.evaluate(()=>({body:document.body.className,topic:document.getElementById('topic')?.value,difficulty:document.getElementById('difficulty')?.value,mode:document.getElementById('mode')?.value,selection:document.getElementById('selection-mode')?.value,fade:document.getElementById('qpjb-quiz-local-fade')?.className}));
+    console.error('QUIZZ_WEBKIT_TRANSITION_DIAGNOSTIC',JSON.stringify(info));
+    throw error;
+  }
   const hand2=await page.locator('#body .hand .suit .rank').allTextContents();
   const case2=blackwoodData.exercises.find(x=>x.theme==='ouv'&&x.auction.length===0&&x.hand.map(s=>s.join('')).join('|')===hand2.join('|'));
   assert.ok(case2,'Opening question is identifiable in the catalog');
