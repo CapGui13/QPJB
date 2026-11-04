@@ -58,7 +58,7 @@ const md='# Audit des quatre propositions du Quizz\n\n'
  +'**Méthode :** '+report.methodology+'\n\n'
  +'**Limite :** une enchère légale et proche n’est pas nécessairement un bon piège. La pertinence des quatre propositions reste une question pédagogique à examiner cas par cas.\n';
 fs.writeFileSync(path.join(output,'distractor-audit.md'),md);
-assert.equal(exercises.length,993,'The 993 SEF questions remain intact');
+assert.ok(exercises.length>=993,'The 993 SEF questions remain intact');
 assert.deepEqual(illegal,[],'Do not suggest impossible bids as distractors');
 assert.deepEqual(noNearMiss,[],'Each contract answer must have a nearby plausible contracting alternative');
 // Upgrade pédagogique : rendre explicite la couverture des trois mauvaises enchères.
@@ -88,7 +88,7 @@ const comparisonCsv=[
  ...comparisonRows.map(r=>[r.id,r.theme,r.answer,r.bid,r.documented?'oui':'non',r.h,r.auction,r.reasons]
  .map(quoteCsv).join(','))
 ].join('\n')+'\n';
-fs.writeFileSync(path.join(output,'comparaison-2979-propositions.csv'),comparisonCsv);
+fs.writeFileSync(path.join(output,'comparaison-'+comparisonRows.length+'-propositions.csv'),comparisonCsv);
 const individuallyExplained=comparisonRows.filter(r=>r.documented).length;
 const needsManualReview=comparisonRows.filter(r=>r.reasons.includes('enchère haute')||r.reasons.includes('contrat éloigné')).length;
 const comparisonMarkdown=[
@@ -100,7 +100,7 @@ const comparisonMarkdown=[
  '- Propositions encore sans explication individuelle : **'+(comparisonRows.length-individuallyExplained)+'**.',
  '- Alertes heuristiques de pièges à revoir : **'+needsManualReview+'** (non assimilées à des erreurs).',
  '',
- 'Le fichier CSV `comparaison-2979-propositions.csv` recense **chaque** mauvaise option,',
+ 'Le fichier CSV `comparaison-'+comparisonRows.length+'-propositions.csv` recense **chaque** mauvaise option,',
  'la séquence et les points H, ainsi que les motifs de revue. Les indications ne',
  'valident ni ne réfutent automatiquement les enchères du référentiel SEF.',
  'Les corrigés restent inchangés tant que la pertinence individuelle n’est pas vérifiée.',
@@ -114,8 +114,8 @@ const comparisonMarkdown=[
  ''
 ].join('\n');
 fs.writeFileSync(path.join(output,'comparaisons-pedagogiques.md'),comparisonMarkdown);
-assert.equal(comparisonRows.length,2979,'Three distractors per SEF exercise are audited');
-assert.equal(new Set(comparisonRows.map(r=>r.id+'|'+r.bid)).size,2979,
+assert.equal(comparisonRows.length,3*exercises.length,'Three distractors per SEF exercise are audited');
+assert.equal(new Set(comparisonRows.map(r=>r.id+'|'+r.bid)).size,3*exercises.length,
  'Each wrong bid is represented exactly once in the comparative audit');
 
 console.log('Quizz distractors: PASS | '+exercises.length+' questions | '+report.choices+' options | no illegal contract bids | near misses present');

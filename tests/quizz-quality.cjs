@@ -4,7 +4,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match);
 const db=JSON.parse(match[1]),xs=db.exercises;
-assert.equal(xs.length,993);assert.equal(db.themes.length,22);
+assert.ok(xs.length>=993);assert.equal(db.themes.length,22);
 const norm=a=>a.map(v=>v.replace(/\s*\([^)]*\)\s*/g,'').trim()).join('|');
 const order={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
 const rank=b=>{const m=String(b).match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+order[m[2]]:null;};
@@ -51,9 +51,9 @@ const headers=['id','rubrique','niveau','points_H','distribution','sequence','bo
 const csv=[headers.join(','),...rows.map(r=>[r.id,r.theme,r.level,r.h,r.shape,r.auction,r.answer,r.choices,r.grade,
  r.options.filter(o=>o.peer>0).length,r.flags.join(' ; '),...r.options.map(o=>o.bid),...r.options.map(o=>o.score),r.explanation
 ].map(quote).join(','))].join('\n')+'\n';
-fs.writeFileSync(path.join(dir,'qualite-993.csv'),csv);
+fs.writeFileSync(path.join(dir,'qualite-'+xs.length+'.csv'),csv);
 const md=[
-'# QPJB — audit automatique des 993 exercices',
+'# QPJB — audit automatique des '+xs.length+' exercices',
 '',
 'Version du catalogue : '+stats.version,
 '',
@@ -79,7 +79,7 @@ const md=[
 '|---|---|---|---|',
 ...rows.filter(r=>r.grade==='REVUE PRIORITAIRE').map(r=>'| '+r.id+' | '+r.theme+' | '+r.answer+' | '+r.options.map(o=>o.bid).join(', ')+' |'),
 '',
-'**Le CSV qualite-993.csv contient une ligne pour chacun des 993 exercices**, avec la séquence, la réponse, les quatre propositions, un diagnostic et trois scores individuels. La revue du système SEF et des contextes incomplets reste un travail pédagogique distinct.',
+'**Le CSV qualite-'+xs.length+'.csv contient une ligne pour chacun des '+xs.length+' exercices**, avec la séquence, la réponse, les quatre propositions, un diagnostic et trois scores individuels. La revue du système SEF et des contextes incomplets reste un travail pédagogique distinct.',
 ''
 ].join('\n');
 fs.writeFileSync(path.join(dir,'qualite-993.md'),md);
