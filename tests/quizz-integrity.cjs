@@ -22,6 +22,26 @@ for(const x of exercises){
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
 // V4.56 — 40 redemandes relues, trois questions conditionnelles sous Walsh.
+const reviewedV457 = exercises.filter(x=>x.pedagogicalReview20261104V457);
+assert.equal(reviewedV457.length,58,'V4.57 : 58 redemandes examinees');
+assert.equal(reviewedV457.filter(x=>x.context.includes('Walsh actif.')).length,3,'V4.57 : trois contextes Walsh');
+for(const ex of reviewedV457){
+ assert.equal(ex.theme,'red','V4.57 rubrique');
+ assert.equal(ex.hand.flat().length,13,'V4.57 13 cartes');
+ assert.deepEqual(ex.hand.map(h=>h.length),ex.shape,'V4.57 distribution');
+ assert.equal(ex.hand.flat().reduce((s,c)=>s+({A:4,R:3,D:2,V:1}[c]||0),0),ex.h,'V4.57 points H');
+ assert.equal(ex.choices.length,4,'V4.57 quatre choix');
+ assert.equal(new Set(ex.choices).size,4,'V4.57 choix distincts');
+ assert.ok(ex.choices.includes(ex.answer),'V4.57 bonne enchere presente');
+ assert.equal(ex.pedagogicalReview20261104V457.answerUnchanged,true,'V4.57 reponse conservee');
+ assert.ok(ex.sourceOriginalExplain20261104V457&&ex.explain!==ex.sourceOriginalExplain20261104V457,'V4.57 ancien corrige archive');
+ assert.ok(ex.sourceOriginalContext20261104V457&&ex.context!==ex.sourceOriginalContext20261104V457,'V4.57 ancien contexte archive');
+ assert.ok(ex.context.startsWith('Vous avez ouvert de '),'V4.57 vouvoiement');
+}
+assert.match(exercises.find(x=>x.id==='SEF-V412-002').explain,/mini-maxi/,'V4.57 2SA mini-maxi');
+assert.match(exercises.find(x=>x.id==='SEF-V416-003').explain,/forcing de manche/,'V4.57 bicolore a saut');
+assert.match(exercises.find(x=>x.id==='SEF-V413-013').explain,/ne garantit pas/,'V4.57 2K ne promet pas six cartes');
+
 const reviewedV456 = [{"id":"SEF-042-2","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-043-1","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-043-3","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-044-1","answer":"1SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-044-2","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-045-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-046-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-047-1","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-048-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-049-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-049-2","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-050-2","answer":"2♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-051-1","answer":"2♦","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N106-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N106-2","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N107-2","answer":"2♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N108-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N109-1","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N110-1","answer":"1♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N111-1","answer":"1♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N112-2","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-N113-1","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-N114-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N115-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N116-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N117-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N118-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N119-2","answer":"2SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N120-1","answer":"2SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N121-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N122-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N123-2","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N123-1","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N124-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N125-1","answer":"2♦","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N126-1","answer":"2♣","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N127-2","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N128-2","answer":"2♦","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N129-2","answer":"2♣","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N130-1","answer":"2♦","ctx":false,"edited":true,"walsh":false}];
 assert.equal(reviewedV456.length,40,'V4.56 : 40 redemandes');
 assert.equal(reviewedV456.filter(x=>x.ctx).length,36,'V4.56 : 36 contextes archives');
