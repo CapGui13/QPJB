@@ -135,3 +135,13 @@
 - [Publication GitHub Pages #41818645625](https://github.com/CapGui13/QPJB/actions/runs/41818645625) **réussie** du commit `50417fe5a81a6c3cb11bc25c7e308e0074fe2e02`, contenant le Quizz `prototype-2026-11-04-v4-55-ouvertures-et-reserves`.
 - **Bilan confirmé : 333 revues individuelles datées sur 993 ; 660 restantes.** Deux réserves pédagogiques initiales levées avec contre-expertise FFB/iBridge et anciennes décisions archivées ; 24 nouvelles ouvertures revues, 8 corrigés enrichis, 24 énoncés mis au vouvoiement. Aucune bonne réponse ni historique élève modifiés.
 - Suivi des prochaines revues : redemandes de l'ouvreur, soutiens majeurs, deuxièmes enchères du répondant. Un contrôle physique sur Safari/iPhone demeure nécessaire et distinct des simulateurs Chromium/WebKit.
+
+
+## P2 — V4.56 du 4 novembre : 40 redemandes de l'ouvreur
+
+- [Rapport nominatif des 40 redemandes](./REVUE_40_REDEMANDES_OUVREUR_2026-11-04.md) : 40 fiches sans revue datée relues, mains à 13 cartes, points H et distributions recalculés, séquences et quatre choix inspectés. **37 réponses cohérentes dans les choix SEF étudiés ; trois réponses 1SA seulement conditionnellement correctes avec Walsh actif explicitement annoncé.**
+- **20 corrigés enrichis**, anciens textes archivés dans les fiches ; **36 contextes au vouvoiement**, avec ancien contexte archivé ; **aucune bonne enchère, option, main, niveau, ID ni progression modifiés**.
+- Les trois cas `SEF-047-1`, `SEF-N112-2` et `SEF-N113-1` sont conservés mais marqués **`coherent_sous_walsh_explicite_reserve_referentiel`**, car Walsh n'appartient pas au SEF standard, bien qu'il soit explicitement indiqué dans les questions. Leur intégration au principe « SEF référence unique » devra faire l'objet d'une harmonisation, sans demander à l'élève de choisir des accords de paire.
+- **Registre : 333 → 373 / 993 revues individuelles datées**, **620 fiches sans revue** ; rubrique redemandes : 3 → 43 revues datées sur 101, **58 redemandes restantes**.
+- **Version Quizz :** `prototype-2026-11-04-v4-56-redemandes-40`.
+- **CI/Pages :** tests sur branche, fusion, trois contrôles post-fusion et GitHub Pages à vérifier individuellement avant annonce de publication. Safari physique iPhone reste hors contrôle automatisé.
