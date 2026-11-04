@@ -69,10 +69,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install browser test dependencies
+      - name: Install Playwright test package
+        timeout-minutes: 5
+        run: npm install --no-save playwright
+      - name: Install system dependencies for ${{ matrix.browser }}
+        timeout-minutes: 6
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-          npm install --no-save playwright
-          npx playwright install --with-deps ${{ matrix.browser }}
+          echo "Installing system packages for ${{ matrix.browser }}"
+          npx playwright install-deps ${{ matrix.browser }}
+      - name: Install browser binaries for ${{ matrix.browser }}
+        timeout-minutes: 6
+        run: |
+          echo "Installing ${{ matrix.browser }} browser binary"
+          npx playwright install ${{ matrix.browser }}
       - name: Test the QCM flow on a simulated iPhone (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-browser.cjs
       - name: Test previously unopened training resources in offline mode (${{ matrix.browser }})
