@@ -211,3 +211,12 @@
 - Distinctions pédagogiques vérifiées : soutien simple 6–10 HLD, proposition à 3M avec quatre atouts 11–12 HLD, 2SA fitté avec trois atouts et 11–12 HLD, 1SA non forcing non fitté, changement au palier de deux avec force suffisante.
 - Aucun changement de cartes, enchères attendues, options, difficultés, IDs ou progression ; aucun fichier des 677 exercices d’Entraînement touché.
 - **État de la V4.59 à sa création : branche non encore publiée.** CI sur branche, fusion, CI sur main et Pages à vérifier distinctement. Prochaine priorité : 79 deuxièmes enchères du répondant.
+
+## V4.59 — fusion et publication vérifiées le 4 novembre 2026
+
+- [PR n°31](https://github.com/CapGui13/QPJB/pull/31) **fusionnée** sur `main`, commit `c1982f35db1186fe6f0d87f7baca368425167c19`.
+- [Tests de branche #41829404268](https://github.com/CapGui13/QPJB/actions/runs/41829404268) **réussis** : audit, Chromium et WebKit.
+- [Tests après fusion #41830147252](https://github.com/CapGui13/QPJB/actions/runs/41830147252) **réussis** (trois jobs) ; [mise à jour du catalogue #41830148303](https://github.com/CapGui13/QPJB/actions/runs/41830148303) **réussie**.
+- [Publication GitHub Pages #41830692295](https://github.com/CapGui13/QPJB/actions/runs/41830692295) **réussie** pour la version `prototype-2026-11-04-v4-59-reponses-majeures-59`.
+- **Bilan publié : 510/993 revues individuelles datées, 483 restantes ; réponses à 1♥ / 1♠ : 81/81 revues.** Les 59 nouveaux contextes et explications sont publiés, sans modification de réponse, proposition, main, difficulté, ID, sauvegarde ou des 677 exercices d'Entraînement.
+- **Suite recommandée :** les 79 deuxièmes enchères du répondant sans revue individuelle datée, puis autres rubriques. Safari sur iPhone physique toujours à valider séparément.
