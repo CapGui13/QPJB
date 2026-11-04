@@ -240,3 +240,12 @@
 - **Bilan publié : 589/993 revues individuelles datées, 404 restantes.** Rubrique `second` : **103/103** revues, dont **1 réserve** ; 78 corrigés et 79 contextes améliorés.
 - Réserve traçable via [issue n°33](https://github.com/CapGui13/QPJB/issues/33) concernant `SEF-V411-007` (3SA et arrêt Carreau non démontré). Aucune réponse, main, proposition, difficulté, ID, progression ou module Entraînement modifié.
 - Prochaine revue prioritaire : les **72 réponses à l'ouverture mineure** encore sans revue individuelle, puis 54 réponses à 1SA/2SA et 52 interventions. Validation Safari sur iPhone physique toujours distincte des tests automatisés.
+
+## P2 — V4.61 : revue des 72 réponses à l’ouverture mineure (4 novembre)
+
+- [Rapport des 72 fiches](./REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md) : mains, points H, séquences et quatre propositions vérifiés individuellement.
+- **65 réponses cohérentes parmi les choix ; 7 réserves** dont 2 sur le référentiel Walsh et 5 sur des tenues majeures absentes ou faibles à Sans-Atout.
+- Registre **589 → 661/993** revues individuelles datées, soit **332 restantes** ; rubrique `mineur` : **78/78 revues datées, 7 sous réserve**.
+- 65 corrigés et contextes précisés avec archives ; aucune enchère attendue, proposition, main, difficulté, ID ni sauvegarde modifiés.
+- **Uniquement le Quiz** : aucun fichier des 677 exercices d’Entraînement, des PBN ou du jeu de la carte touché.
+- Fusion, tests et Pages à confirmer ; prochaine rubrique : 54 réponses à 1SA/2SA.
