@@ -38,6 +38,30 @@ const server=http.createServer((req,res)=>{
     for(const key of keys)await page.locator('#bid-keypad [data-bid-key="'+key+'"]').click();
     assert.equal(await input.inputValue(),bid,'Enchère composée avec les touches bridge');
   };
+  // Un changement d'ecran peut etre visible avant la fin de la transition.
+  // Attendre l'etat stable avant de demander l'affichage des propositions.
+  const revealChoicesAndWait=async(label)=>{
+    await page.waitForFunction(()=>document.body.classList.contains('session-mode')
+      && !document.querySelector('#qpjb-quiz-local-fade')?.classList.contains('fade-in')
+      && !!document.querySelector('#show-choices'),
+      null,{timeout:15000});
+    await page.locator('#show-choices').waitFor({state:'visible',timeout:10000});
+    await page.locator('#show-choices').click();
+    try{
+      await page.waitForFunction(()=>document.querySelectorAll('#answers button').length===4,
+        null,{timeout:12000});
+    }catch(error){
+      const diagnostic=await page.evaluate(()=>({
+        mode:document.body.className,
+        selection:document.querySelector('#selection-mode')?.value,
+        buttonVisible:!!document.querySelector('#show-choices'),
+        answerButtons:document.querySelectorAll('#answers button').length,
+        overlay:document.querySelector('#qpjb-quiz-local-fade')?.className
+      }));
+      console.error('QUIZZ_CHOICES_DIAGNOSTIC',label,JSON.stringify(diagnostic));
+      throw error;
+    }
+  };
   const setInvalidRawBid=async(value)=>{
     // Sécurité : simuler une entrée invalide, que le clavier dédié ne peut produire.
     await page.locator('#free-answer').evaluate((input,value)=>{
@@ -150,7 +174,7 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('.feedback').count(),0,'No answer is revealed in advance');
   assert.equal(await page.locator('#next').isDisabled(),true,'Next is blocked until answered');
   assert.equal(await page.locator('#done').textContent(),'0','A viewed card is not a completed card');
-  await page.locator('#show-choices').click();
+  await revealChoicesAndWait('QCM disponible après transition');
   assert.equal(await page.locator('#answers button').count(),4,'All four choices appear on request');
   const initialOrder=(await page.locator('#answers button').allTextContents()).map(x=>x.trim());
   const orderScore=v=>{
@@ -248,7 +272,7 @@ const server=http.createServer((req,res)=>{
   await page.locator('body.session-mode').waitFor({state:'visible',timeout:12000});
   assert.equal(await page.locator('#total').textContent(),'1','Revision proposes the successful exercise');
   assert.equal(await page.locator('#answers button').count(),0,'Revisions also start without choices');
-  await page.locator('#show-choices').click();
+  await revealChoicesAndWait('QCM disponible après transition');
   // Le clic lance un fondu asynchrone : attendre les quatre propositions avant
   // de calculer l'index (sinon -1 pointe vers .last() sur une liste vide).
   await page.locator('#answers button').first().waitFor({state:'visible',timeout:12000});
@@ -275,7 +299,7 @@ const server=http.createServer((req,res)=>{
   const dataC01=JSON.parse(await page.locator('#training-data').textContent());
   assert.ok(dataC01.exercises.length>=993,'All exercises are available');
   assert.ok(dataC01.exercises.every(x=>!x.whyNot&&!x.takeaway),'No obsolete comparative explanations');
-  await page.locator('#show-choices').click();
+  await revealChoicesAndWait('QCM disponible après transition');
   await page.locator('#answers button').first().click();
   assert.equal(await page.locator('.feedback').count(),1,'Correct-answer feedback is visible');
   assert.equal(await page.locator('.feedback-contrast').count(),0,'No comparative feedback');
@@ -305,7 +329,7 @@ const server=http.createServer((req,res)=>{
     assert.ok(contextText.includes('Atout Cœur agréé'),
       'The agreed trump suit is visible before choosing a Blackwood reply');
     assert.equal(await page.locator('#answers button').count(),0,'Blackwood opens without candidate answers');
-    await page.locator('#show-choices').click();
+    await revealChoicesAndWait('QCM disponible après transition');
     const options=(await page.locator('#answers button').allTextContents()).map(x=>x.trim());
     await page.locator('#answers button').nth(options.indexOf('5♥')).click();
     assert.ok((await page.locator('#body .feedback').textContent()).includes('Bonne réponse'),
@@ -360,7 +384,7 @@ const server=http.createServer((req,res)=>{
   assert.ok((await page.locator('.feedback').textContent()).includes('À retravailler'),'Assisted questions are earmarked for review');
   await page.locator('#next').click();
   assert.equal(await page.locator('#answers button').count(),0,'Each new card again hides the four options');
-  await page.locator('#show-choices').click();
+  await revealChoicesAndWait('QCM disponible après transition');
   assert.equal(await page.locator('#answers button').count(),4,'Choices may be requested without a failed bid');
   assert.equal(await page.locator('.feedback').count(),0,'Requesting choices does not reveal the correct option');
   const directOptions=(await page.locator('#answers button').allTextContents()).map(s=>s.trim());
