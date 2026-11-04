@@ -21,6 +21,35 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+const reviewedV455 = [{"id":"SEF-001-1","expected":"1SA","edited":false},{"id":"SEF-001-2","expected":"1SA","edited":false},{"id":"SEF-002-3","expected":"1SA","edited":true},{"id":"SEF-002-1","expected":"1SA","edited":true},{"id":"SEF-003-2","expected":"1SA","edited":true},{"id":"SEF-003-1","expected":"1SA","edited":true},{"id":"SEF-004-1","expected":"2SA","edited":false},{"id":"SEF-005-1","expected":"2SA","edited":false},{"id":"SEF-005-2","expected":"2SA","edited":false},{"id":"SEF-006-2","expected":"1♠","edited":false},{"id":"SEF-006-1","expected":"1♠","edited":false},{"id":"SEF-007-1","expected":"1♥","edited":false},{"id":"SEF-007-2","expected":"1♥","edited":false},{"id":"SEF-008-2","expected":"1♠","edited":true},{"id":"SEF-009-1","expected":"1♦","edited":false},{"id":"SEF-009-2","expected":"1♦","edited":false},{"id":"SEF-010-3","expected":"1♣","edited":false},{"id":"SEF-010-1","expected":"1♣","edited":false},{"id":"SEF-011-2","expected":"1♦","edited":true},{"id":"SEF-012-1","expected":"1♣","edited":true},{"id":"SEF-013-1","expected":"Passe","edited":false},{"id":"SEF-013-2","expected":"Passe","edited":false},{"id":"SEF-014-1","expected":"Passe","edited":true},{"id":"SEF-014-2","expected":"Passe","edited":false}];
+assert.equal(reviewedV455.length,24,'V4.55: 24 ouvertures revues');
+assert.equal(reviewedV455.filter(x=>x.edited).length,8,'V4.55: huit corriges enrichis');
+for(const item of reviewedV455){
+ const x=exercises.find(z=>z.id===item.id);
+ assert.ok(x&&x.theme==='ouv','V4.55 ID et rubrique : '+item.id);
+ assert.equal(x.answer,item.expected,'V4.55 reponse stable : '+item.id);
+ assert.equal(x.choices.length,4,'V4.55 quatre choix : '+item.id);
+ assert.equal(x.pedagogicalReview20261104V455?.answerUnchanged,true,'V4.55 reponse ancienne : '+item.id);
+ assert.equal(x.pedagogicalReview20261104V455?.editorialChange,item.edited,'V4.55 edition tracee : '+item.id);
+ assert.match(x.sourceOriginalContext20261104V455,/^Tu es donneur/,'V4.55 contexte archive : '+item.id);
+ assert.match(x.context,/^Vous êtes donneur/,'V4.55 vouvoiement : '+item.id);
+ if(item.edited)assert.ok(x.sourceOriginalExplain20261104V455&&x.explain!==x.sourceOriginalExplain20261104V455,'V4.55 ancien corrige archive : '+item.id);
+}
+const counterV455=[
+ {id:'SEF-V417-008',answer:'4♠',prior:'reserve_option_3pique_exploration_chelem'},
+ {id:'SEF-V426-004',answer:'Passe',prior:'reserve_relais_2sa_non_propose'}
+];
+assert.equal(counterV455.length,2,'V4.55 contre expertises');
+for(const row of counterV455){
+ const x=exercises.find(x=>x.id===row.id);
+ assert.ok(x,'V4.55 reserve : '+row.id);
+ assert.equal(x.answer,row.answer,'V4.55 ancienne reponse maintenue : '+row.id);
+ assert.equal(x.pedagogicalCounterExpertise20261104V455?.answerUnchanged,true,'V4.55 progression intacte : '+row.id);
+ assert.equal(x.pedagogicalCounterExpertise20261104V455?.previousVerdict,row.prior,'V4.55 ancienne reserve tracee : '+row.id);
+ assert.ok(x.pedagogicalCounterExpertise20261104V455?.verdict.startsWith('reserve_levee_'),'V4.55 reserve levee : '+row.id);
+ assert.ok(x.sourceOriginalExplain20261104V455&&x.explain!==x.sourceOriginalExplain20261104V455,'V4.55 ancien texte archive : '+row.id);
+}
+
 const reviewedV454 = [{"id":"SEF-V3-047-4","answer":"Contre","sourceAnswer":null,"edited":true},{"id":"SEF-V3-053-1","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V3-053-3","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V4-046-3","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V4-046-1","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V4-047-1","answer":"4♥","sourceAnswer":null,"edited":true},{"id":"SEF-V4-065-1","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V4-065-2","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V4-069-1","answer":"Contre","sourceAnswer":null,"edited":true},{"id":"SEF-V44-002","answer":"2♣","sourceAnswer":null,"edited":true},{"id":"SEF-V44-007","answer":"3SA","sourceAnswer":null,"edited":true},{"id":"SEF-V44-011","answer":"4♥","sourceAnswer":null,"edited":true},{"id":"SEF-V44-012","answer":"4♠","sourceAnswer":null,"edited":true},{"id":"SEF-V44-013","answer":"4SA","sourceAnswer":null,"edited":false},{"id":"SEF-V44-014","answer":"3SA","sourceAnswer":"4SA","edited":true},{"id":"SEF-V44-015","answer":"2♦","sourceAnswer":null,"edited":false},{"id":"SEF-V44-016","answer":"2♥","sourceAnswer":null,"edited":false},{"id":"SEF-V49-017","answer":"2♥","sourceAnswer":null,"edited":false},{"id":"SEF-V411-014","answer":"4♥","sourceAnswer":null,"edited":true},{"id":"SEF-V411-015","answer":"4♠","sourceAnswer":null,"edited":true},{"id":"SEF-V412-016","answer":"Passe","sourceAnswer":null,"edited":true},{"id":"SEF-V417-002","answer":"2♥","sourceAnswer":null,"edited":true},{"id":"SEF-V418-004","answer":"Contre","sourceAnswer":null,"edited":false},{"id":"SEF-V418-007","answer":"2♦","sourceAnswer":null,"edited":true},{"id":"SEF-V419-001","answer":"1♠","sourceAnswer":null,"edited":false},{"id":"SEF-V420-002","answer":"2♠","sourceAnswer":null,"edited":true},{"id":"SEF-V422-004","answer":"3♠","sourceAnswer":null,"edited":true},{"id":"SEF-V425-004","answer":"2♠","sourceAnswer":null,"edited":true}];
 assert.equal(reviewedV454.length,28,'V4.54 28 revues et 1 correction');
 assert.equal(reviewedV454.filter(x=>x.sourceAnswer).length,1,'Une seule bonne enchere modifiee');
