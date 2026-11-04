@@ -9,3 +9,5 @@ La réponse à la majeure quatrième est enseignée par certains supports comme 
 Sources : [ABC du Bridge — réponse à l’ouverture mineure](https://abc-du-bridge.scenari-community.org/003-01/co/003-01-02_1.html), [BridgeSEF — choix après 1♣/1♦](https://bridgesef.fr/wp-content/uploads/2025/07/Ouverture-1T-1K.pdf), [iBridge — réponse à 1♣](https://dev.ibridge-club.fr/public/fichedetails/194).
 
 Les deux fiches ont un statut de **réserve d’harmonisation SEF/Walsh** dans `quizz.html`. Leur enchère attendue, leur corrigé affiché et les sauvegardes des élèves restent inchangés. Le dossier doit être résolu par une contre-expertise pédagogique, pas par une correction automatique.
+
+Les sept réserves de la V4.61, y compris ces deux dossiers, sont suivies dans [l'issue pédagogique n°35](https://github.com/CapGui13/QPJB/issues/35).
