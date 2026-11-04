@@ -1,0 +1,64 @@
+# Quiz QPJB — V4.68 : 30 suites de Stayman et Texas examinées
+
+**4 novembre 2026.** Ce lot porte exclusivement sur la rubrique `stayman` du Quiz (nom affiché : « Après Stayman et Texas »), sans modification de l'Entraînement, PBN ou sauvegardes.
+
+## Méthode
+
+Chaque fiche a fait l'objet d'un contrôle des treize cartes, de la force H, de la distribution, de la séquence antérieure, des quatre choix, de l'enchère donnée comme correcte et de sa justification SEF. Les corrigés anciens restent archivés et les réponses / options ne sont pas modifiées.
+
+## Règles de référence
+
+- Le **Stayman SEF à quatre réponses** sur 1SA donne : 2♦ (aucune majeure quatrième), 2♥ (4 Cœurs sans 4 Piques), 2♠ (4 Piques sans 4 Cœurs), 2SA (les deux majeures quatrièmes).
+- Sur 1SA (15–17 H), après un fit 4–4 découvert : 3♥/3♠ avec 8–9 H invite à la manche ; 4♥/4♠ avec force suffisante conclut ; sans fit et avec 11 H, 3SA.
+- Face à 2SA (20–21 H), cinq points H suffisent à assurer la manche ; si le Stayman découvre quatre Cœurs, 4♥ est naturel.
+- Le **Texas** 2♦/2♥ montre respectivement cinq Cœurs / cinq Piques. Après rectification, Passe avec main faible ; cinq cartes et environ 9 H → 2SA invitation, onze H → 3SA manche ; six cartes et neuf H → 3M invitation, onze H → 4M manche.
+
+Sources pédagogiques : [AtoutBridge — ouverture 1SA et réponses Stayman/Texas](https://www.atoutbridge.com/les-dossiers-du-mois/reponses-a-l-ouverture-au-palier-de-1-3/) ; [Recherche du fit majeur, synthèse Stayman](https://stph.scenari-community.org/bridge/002-X/co/013-Synthese.html) ; [ABC du Bridge — Texas](https://abc-du-bridge.scenari-community.org/003-03/co/003-03-02.html) ; [référence SEF interne](../QUIZZ_REFERENCE_SEF.md).
+
+## Résultats
+
+- **30/30** vérifications structurelles conformes, **30/30** réponses conservées et **30** corrigés individualisés distincts.
+- **30** contextes harmonisés au vouvoiement et aux contraintes de la convention, anciens textes archivés.
+- Registre des 993 : **925 → 955/993** revues datées, **38** restantes. Rubrique Stayman/Texas **45/45** couverte, dont 15 auparavant.
+- **0 changement** des autres 963 exercices ou des champs protégés (cartes, enchères, réponses, choix, niveaux, IDs).
+
+## Détail individuel
+
+| N° | ID | H | Distribution ♠-♥-♦-♣ | Séquence | Enchère attendue | Justification individuelle |
+|---:|---|---:|---|---|---|---|
+| 1 | `SEF-V3-001-1` | 8 | 3-4-3-3 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2♥ | **3♥** | Vous avez 8 H et quatre Cœurs (♥V942), en face de l'ouverture de 1SA (15–17 H). La réponse 2♥ au Stayman garantit quatre cartes dans cette majeure : le fit 4–4 est trouvé. 3♥ est une invitation à la manche, laissant l'ouvreur minimum s'arrêter et l'ouvreur maximum conclure à quatre. |
+| 2 | `SEF-V3-003-1` | 8 | 4-3-3-3 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2♠ | **3♠** | Vous avez 8 H et quatre Piques (♠V432), en face de l'ouverture de 1SA (15–17 H). La réponse 2♠ au Stayman garantit quatre cartes dans cette majeure : le fit 4–4 est trouvé. 3♠ est une invitation à la manche, laissant l'ouvreur minimum s'arrêter et l'ouvreur maximum conclure à quatre. |
+| 3 | `SEF-V3-011-1` | 15 | 3-3-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♦** | Vous avez ouvert 1SA avec 15 H et une main 3-3-4-3, mais seulement 3 Piques (♠R42) et 3 Cœurs (♥1063). La réponse de 2♦ au Stayman nie toute majeure quatrième ; elle décrit exactement cette situation sans répéter la zone de force de 1SA. |
+| 4 | `SEF-V3-011-3` | 17 | 3-3-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♦** | Vous avez ouvert 1SA avec 17 H et une main 3-3-4-3, mais seulement 3 Piques (♠ARD) et 3 Cœurs (♥V83). La réponse de 2♦ au Stayman nie toute majeure quatrième ; elle décrit exactement cette situation sans répéter la zone de force de 1SA. |
+| 5 | `SEF-V3-012-1` | 15 | 3-3-3-4 | Vous : 1SA – Partenaire : 2♣ | **2♦** | Vous avez ouvert 1SA avec 15 H et une main 3-3-3-4, mais seulement 3 Piques (♠1063) et 3 Cœurs (♥A52). La réponse de 2♦ au Stayman nie toute majeure quatrième ; elle décrit exactement cette situation sans répéter la zone de force de 1SA. |
+| 6 | `SEF-V3-013-4` | 15 | 3-4-3-3 | Vous : 1SA – Partenaire : 2♣ | **2♥** | Sur 2♣ Stayman, vos 15 H et quatre Cœurs (♥RD53), contre seulement 3 Piques (♠AR2), imposent 2♥. Dans le Stayman à quatre réponses, cette annonce montre quatre Cœurs sans quatre Piques ; la distribution 3-4-3-3 reste régulière. |
+| 7 | `SEF-V3-014-2` | 15 | 2-4-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♥** | Sur 2♣ Stayman, vos 15 H et quatre Cœurs (♥A853), contre seulement 2 Piques (♠A9), imposent 2♥. Dans le Stayman à quatre réponses, cette annonce montre quatre Cœurs sans quatre Piques ; la distribution 2-4-4-3 reste régulière. |
+| 8 | `SEF-V3-014-1` | 17 | 2-4-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♥** | Sur 2♣ Stayman, vos 17 H et quatre Cœurs (♥AR98), contre seulement 2 Piques (♠R3), imposent 2♥. Dans le Stayman à quatre réponses, cette annonce montre quatre Cœurs sans quatre Piques ; la distribution 2-4-4-3 reste régulière. |
+| 9 | `SEF-V3-015-1` | 15 | 4-3-3-3 | Vous : 1SA – Partenaire : 2♣ | **2♠** | Après le Stayman 2♣ du partenaire, vos 15 H, quatre Piques (♠D1075) et seulement 3 Cœurs (♥D74) justifient la réponse codifiée de 2♠. Le Stayman SEF distingue cette majeure quatrième d'une réponse de 2SA, réservée au 4–4 majeur. |
+| 10 | `SEF-V3-016-1` | 15 | 4-2-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♠** | Après le Stayman 2♣ du partenaire, vos 15 H, quatre Piques (♠D1065) et seulement 2 Cœurs (♥A8) justifient la réponse codifiée de 2♠. Le Stayman SEF distingue cette majeure quatrième d'une réponse de 2SA, réservée au 4–4 majeur. |
+| 11 | `SEF-V3-016-2` | 17 | 4-2-4-3 | Vous : 1SA – Partenaire : 2♣ | **2♠** | Après le Stayman 2♣ du partenaire, vos 17 H, quatre Piques (♠AV62) et seulement 2 Cœurs (♥A4) justifient la réponse codifiée de 2♠. Le Stayman SEF distingue cette majeure quatrième d'une réponse de 2SA, réservée au 4–4 majeur. |
+| 12 | `SEF-V3-017-2` | 2 | 3-5-3-2 | Partenaire : 1SA – Vous : 2♦ – Partenaire : 2♥ | **Passe** | Vous avez seulement 2 H et cinq Cœurs (♥D8743). Après le Texas 2♦ rectifié à 2♥ par l'ouvreur de 1SA, vous avez atteint une partielle dans votre majeure longue ; Passe ne promet pas une force d'invitation à la manche. |
+| 13 | `SEF-V3-017-1` | 6 | 3-5-3-2 | Partenaire : 1SA – Vous : 2♦ – Partenaire : 2♥ | **Passe** | Vous avez seulement 6 H et cinq Cœurs (♥108432). Après le Texas 2♦ rectifié à 2♥ par l'ouvreur de 1SA, vous avez atteint une partielle dans votre majeure longue ; Passe ne promet pas une force d'invitation à la manche. |
+| 14 | `SEF-V3-018-1` | 11 | 3-6-2-2 | Partenaire : 1SA – Vous : 2♦ – Partenaire : 2♥ | **4♥** | Avec 11 H et six Cœurs (♥AR10876), vous avez au moins huit atouts après l'ouverture régulière de 1SA et la rectification du Texas. La force cumulée garantit la manche et la longue sixième permet de conclure directement à 4♥. |
+| 15 | `SEF-V3-019-3` | 3 | 5-3-3-2 | Partenaire : 1SA – Vous : 2♥ – Partenaire : 2♠ | **Passe** | Vous avez seulement 3 H et cinq Piques (♠D10972). Après le Texas 2♥ rectifié à 2♠ par l'ouvreur de 1SA, vous avez atteint une partielle dans votre majeure longue ; Passe ne promet pas une force d'invitation à la manche. |
+| 16 | `SEF-V3-019-1` | 6 | 5-3-3-2 | Partenaire : 1SA – Vous : 2♥ – Partenaire : 2♠ | **Passe** | Vous avez seulement 6 H et cinq Piques (♠109764). Après le Texas 2♥ rectifié à 2♠ par l'ouvreur de 1SA, vous avez atteint une partielle dans votre majeure longue ; Passe ne promet pas une force d'invitation à la manche. |
+| 17 | `SEF-V3-020-1` | 11 | 6-3-2-2 | Partenaire : 1SA – Vous : 2♥ – Partenaire : 2♠ | **4♠** | Avec 11 H et six Piques (♠ARD1092), vous avez au moins huit atouts après l'ouverture régulière de 1SA et la rectification du Texas. La force cumulée garantit la manche et la longue sixième permet de conclure directement à 4♠. |
+| 18 | `SEF-V3-023-2` | 5 | 3-4-3-3 | Partenaire : 2SA – Vous : 3♣ – Partenaire : 3♥ | **4♥** | Avec 5 H et quatre Cœurs (♥V876) face à l'ouverture de 2SA (20–21 H), vous trouvez un fit 4–4 grâce à la réponse 3♥ au Stayman. Le total du camp est d'au moins 25 H : annoncer 4♥ est la conclusion normale de manche. |
+| 19 | `SEF-V3-023-1` | 8 | 3-4-3-3 | Partenaire : 2SA – Vous : 3♣ – Partenaire : 3♥ | **4♥** | Avec 8 H et quatre Cœurs (♥V832) face à l'ouverture de 2SA (20–21 H), vous trouvez un fit 4–4 grâce à la réponse 3♥ au Stayman. Le total du camp est d'au moins 28 H : annoncer 4♥ est la conclusion normale de manche. |
+| 20 | `SEF-V44-026` | 9 | 3-5-3-2 | Partenaire : 1SA – Vous : 2♦ (Texas Cœur) – Partenaire : 2♥ | **2SA** | Avec exactement cinq Cœurs (♥A9764), 9 H et la forme 3-5-3-2, la rectification du Texas n'assure pas que l'ouvreur possède trois cartes dans votre majeure. 2SA constitue une invitation de manche : selon sa force et son soutien, l'ouvreur pourra passer, jouer 3SA ou choisir la majeure. |
+| 21 | `SEF-V44-027` | 9 | 5-3-3-2 | Partenaire : 1SA – Vous : 2♥ (Texas Pique) – Partenaire : 2♠ | **2SA** | Avec exactement cinq Piques (♠V10753), 9 H et la forme 5-3-3-2, la rectification du Texas n'assure pas que l'ouvreur possède trois cartes dans votre majeure. 2SA constitue une invitation de manche : selon sa force et son soutien, l'ouvreur pourra passer, jouer 3SA ou choisir la majeure. |
+| 22 | `SEF-V44-028` | 11 | 3-5-3-2 | Partenaire : 1SA – Vous : 2♦ (Texas Cœur) – Partenaire : 2♥ | **3SA** | Vos 11 H et cinq Cœurs (♥ADV63) suffisent à imposer la manche face à 1SA (15–17 H). Comme l'ouvreur ne garantit pas un fit par trois cartes lors de la rectification du Texas, 3SA conclut provisoirement et lui permet de choisir 4♥ avec un soutien adapté. |
+| 23 | `SEF-V44-029` | 11 | 5-3-3-2 | Partenaire : 1SA – Vous : 2♥ (Texas Pique) – Partenaire : 2♠ | **3SA** | Vos 11 H et cinq Piques (♠RV643) suffisent à imposer la manche face à 1SA (15–17 H). Comme l'ouvreur ne garantit pas un fit par trois cartes lors de la rectification du Texas, 3SA conclut provisoirement et lui permet de choisir 4♠ avec un soutien adapté. |
+| 24 | `SEF-V44-030` | 9 | 2-6-3-2 | Partenaire : 1SA – Vous : 2♦ (Texas Cœur) – Partenaire : 2♥ | **3♥** | Votre main de 9 H compte six Cœurs (♥ARV753), ce qui garantit au moins huit atouts face à un ouvreur de 1SA même s'il n'en a que deux. Après la rectification du Texas, 3♥ est une proposition de manche dans la longue, à distinguer du 2SA avec seulement cinq cartes. |
+| 25 | `SEF-V44-031` | 9 | 6-2-3-2 | Partenaire : 1SA – Vous : 2♥ (Texas Pique) – Partenaire : 2♠ | **3♠** | Votre main de 9 H compte six Piques (♠RV10965), ce qui garantit au moins huit atouts face à un ouvreur de 1SA même s'il n'en a que deux. Après la rectification du Texas, 3♠ est une proposition de manche dans la longue, à distinguer du 2SA avec seulement cinq cartes. |
+| 26 | `SEF-V416-007` | 16 | 4-4-3-2 | Vous : 1SA – Partenaire : 2♣ | **2SA** | Vous avez 16 H, quatre Piques (♠AR85) et quatre Cœurs (♥RD94). Sur 2♣ Stayman, 2SA est la quatrième réponse SEF : elle promet les deux majeures quatrièmes et laisse le répondant choisir sa majeure de fit. |
+| 27 | `SEF-V416-008` | 10 | 2-4-3-4 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2SA | **4♥** | Vous comptez 10 H et quatre Cœurs (♥AV83). La réponse de 2SA au Stayman garantit les deux majeures quatrièmes. Vous avez donc un fit majeur 4–4 et, avec 1SA promettant 15–17 H, assez de force pour conclure à 4♥ plutôt que de laisser seulement une invitation. |
+| 28 | `SEF-V416-009` | 10 | 4-2-3-4 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2SA | **4♠** | Vous comptez 10 H et quatre Piques (♠AD83). La réponse de 2SA au Stayman garantit les deux majeures quatrièmes. Vous avez donc un fit majeur 4–4 et, avec 1SA promettant 15–17 H, assez de force pour conclure à 4♠ plutôt que de laisser seulement une invitation. |
+| 29 | `SEF-V416-010` | 11 | 4-2-4-3 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2♥ | **3SA** | Après 1SA – 2♣, le partenaire a répondu 2♥, qui montre quatre cartes dans cette majeure, mais vous n'en avez que 2 (♥D5). Vos quatre cartes dans l'autre majeure (♠RV92) ne trouvent pas de fit. Avec 11 H, 3SA impose la manche en Sans-Atout. |
+| 30 | `SEF-V416-011` | 11 | 2-4-4-3 | Partenaire : 1SA – Vous : 2♣ – Partenaire : 2♠ | **3SA** | Après 1SA – 2♣, le partenaire a répondu 2♠, qui montre quatre cartes dans cette majeure, mais vous n'en avez que 2 (♠84). Vos quatre cartes dans l'autre majeure (♥AV93) ne trouvent pas de fit. Avec 11 H, 3SA impose la manche en Sans-Atout. |
+
+## Traçabilité
+
+- [Données de revue individuelles V4.68](./REVUES_V468_STAYMAN_TEXAS_INDIVIDUELLES.json).
+- Branche de préparation `audit/quizz-v468-stayman-texas-30-20261104` basée sur la V4.67 ; fusion sur `main` après la V4.67 uniquement, et après CI audit/Chromium/WebKit réussie. Vérifier aussi la CI post-fusion et GitHub Pages.
+- Les tests automatisés ne remplacent pas un contrôle réel sur iPhone/Safari.
