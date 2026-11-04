@@ -43,3 +43,8 @@ Chaque proposition comprend 13 cartes, un calcul H vérifié, la distribution, q
 1. Relire chaque candidat **main par main**, notamment les priorités naturelles/compétitives et la vulnérabilité.
 2. Décider si le candidat enseigne une décision différente ou n'est qu'un miroir sans intérêt ; rejeter sans quota.
 3. Uniquement pour les **validés**, transformer en exercices définitifs avec nouvel ID stable, justification pédagogique vérifiée, registre et tests dynamiques.
+
+
+## Ajustement après étude SEF
+
+Le candidat C02 est désormais une main de **8 H**, et le candidat C01 contient un nouveau distracteur **2♥** à la place de Surcontre. Les versions de référence sont dans `candidats-qcm.json` et dans la PR #46.

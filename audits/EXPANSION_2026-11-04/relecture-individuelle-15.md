@@ -193,3 +193,10 @@ Ne pas confondre **prévalidation** et « SEF certifié ». Les propositions res
 3. Comparer les 11 aux 993 fiches existantes et entre eux pour confirmer un **apport d'apprentissage** et ne pas publier deux miroirs inutiles.
 4. Refuser C08 ; conserver C05, C09, C14 hors lot tant que l'intérêt / la règle n'est pas démontré.
 5. Débloquer les tests historiquement figés à 993 **sans les affaiblir** avant tout ajout réel.
+
+
+## Addendum de seconde relecture (V4.70)
+
+- C01 : le distracteur Surcontre à 1 H, trop caricatural, a été remplacé par 2♥, erreur de fit avec deux atouts.
+- C02 : le candidat 1SA passe de 6 H à 8 H, avec As de Pique à la place de la Dame. Cela évite les désaccords entre supports sur la zone minimale de 1SA après Contre.
+- La PR #46 contient un contrôle détaillé des 11 fiches et de leurs 33 distracteurs ; les 993 exercices historiques restent inchangés.
