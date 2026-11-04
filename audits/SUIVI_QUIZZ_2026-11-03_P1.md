@@ -268,3 +268,13 @@
 - 1SA 15–17 : Passe 0–7 sans majeur long, 2SA 8–9, 3SA 10+, Stayman 8+ avec majeure quatrième, Texas avec majeure cinquième sans minimum ; 2SA 20–21 : seuils adaptés, 3♣ Stayman, 3♦/3♥ Texas.
 - Aucun changement de réponse, proposition, main, séquence, difficulté, ID, sauvegarde ou des 677 exercices d'Entraînement.
 - **État de travail :** contrôles CI, fusion et Pages à confirmer séparément. Suite : 52 interventions sans revue individuelle, puis autres rubriques.
+
+## V4.62 — fusion, tests et publication confirmés le 4 novembre 2026
+
+- [PR n°36](https://github.com/CapGui13/QPJB/pull/36) **fusionnée** sur `main`, commit `d897b438cddee440b11d5e782deb0291b8879d57`.
+- [CI de branche #41841500664](https://github.com/CapGui13/QPJB/actions/runs/41841500664) **réussie** : audit, Chromium et WebKit.
+- [CI sur main #41842354234](https://github.com/CapGui13/QPJB/actions/runs/41842354234) **réussie** : les trois jobs. [Catalogue #41842354675](https://github.com/CapGui13/QPJB/actions/runs/41842354675) **réussi**.
+- [Publication GitHub Pages #41842905915](https://github.com/CapGui13/QPJB/actions/runs/41842905915) **réussie** pour `prototype-2026-11-04-v4-62-reponses-sans-atout-54`.
+- **715/993 revues individuelles datées, 278 restantes.** Rubrique `sa` : **62/62 revues datées**. 54 nouvelles explications et contextes individualisés publiés.
+- Bonnes enchères, distracteurs, mains, séquences, niveaux, identifiants et sauvegardes inchangés. Aucun exercice de l'Entraînement (677), aucun PBN ni jeu de la carte modifié.
+- **Prochaine priorité : les 52 interventions encore sans revue individuelle**, puis autres rubriques. Les tests WebKit/Chromium simulés ne remplacent pas un contrôle sur Safari/iPhone physique.
