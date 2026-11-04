@@ -125,3 +125,13 @@
 - **Version :** `prototype-2026-11-04-v4-55-ouvertures-et-reserves`. Aucun changement de bonne enchère, proposition, main, difficulté, rubrique, ID ni progression.
 - **Suivants :** revue nominative des 660 autres (priorité redemandes de l'ouvreur, soutiens majeurs, secondes enchères du répondant) ; contrôles des distracteurs et variantes.
 - **CI / fusion / GitHub Pages :** à confirmer séparément avant d'annoncer cette version publiée.
+
+
+## V4.55 — validation et publication confirmées le 4 novembre 2026
+
+- [PR n°27](https://github.com/CapGui13/QPJB/pull/27) **fusionnée** sur `main`, commit `d1c386b461ce43f7beb87f355f6795326c8510a9`.
+- [Tests de branche #41817857485](https://github.com/CapGui13/QPJB/actions/runs/41817857485) **réussis** : audit données/code, Chromium et WebKit.
+- [Tests post-fusion #41818257800](https://github.com/CapGui13/QPJB/actions/runs/41818257800) **réussis** : trois jobs ; [catalogue #41818257632](https://github.com/CapGui13/QPJB/actions/runs/41818257632) actualisé avec succès.
+- [Publication GitHub Pages #41818645625](https://github.com/CapGui13/QPJB/actions/runs/41818645625) **réussie** du commit `50417fe5a81a6c3cb11bc25c7e308e0074fe2e02`, contenant le Quizz `prototype-2026-11-04-v4-55-ouvertures-et-reserves`.
+- **Bilan confirmé : 333 revues individuelles datées sur 993 ; 660 restantes.** Deux réserves pédagogiques initiales levées avec contre-expertise FFB/iBridge et anciennes décisions archivées ; 24 nouvelles ouvertures revues, 8 corrigés enrichis, 24 énoncés mis au vouvoiement. Aucune bonne réponse ni historique élève modifiés.
+- Suivi des prochaines revues : redemandes de l'ouvreur, soutiens majeurs, deuxièmes enchères du répondant. Un contrôle physique sur Safari/iPhone demeure nécessaire et distinct des simulateurs Chromium/WebKit.
