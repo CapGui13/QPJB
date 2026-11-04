@@ -249,3 +249,13 @@
 - 65 corrigés et contextes précisés avec archives ; aucune enchère attendue, proposition, main, difficulté, ID ni sauvegarde modifiés.
 - **Uniquement le Quiz** : aucun fichier des 677 exercices d’Entraînement, des PBN ou du jeu de la carte touché.
 - Fusion, tests et Pages à confirmer ; prochaine rubrique : 54 réponses à 1SA/2SA.
+
+## V4.61 — fusion, validations et publication confirmées le 4 novembre 2026
+
+- [PR n°34](https://github.com/CapGui13/QPJB/pull/34) **fusionnée** sur `main`, commit `0d61a912d72f69ce2b6fb09c787371e6f0bd33cd`.
+- [CI de branche #41837557042](https://github.com/CapGui13/QPJB/actions/runs/41837557042) **réussie** : audit, Chromium, WebKit. Une première exécution a été remplacée après un téléchargement anormalement long des dépendances WebKit, sans anomalie de Quiz.
+- [CI sur main #41838628097](https://github.com/CapGui13/QPJB/actions/runs/41838628097) **réussie** pour les trois jobs ; [actualisation du catalogue #41838628134](https://github.com/CapGui13/QPJB/actions/runs/41838628134) **réussie**.
+- [Publication GitHub Pages #41839271500](https://github.com/CapGui13/QPJB/actions/runs/41839271500) **réussie** pour le Quizz `prototype-2026-11-04-v4-61-reponses-mineures-72`.
+- **Bilan publié : 661/993 exercices avec revue individuelle datée, 332 restants ; rubrique `mineur` 78/78 revue, dont 7 réserves.**
+- Les 7 réserves sont suivies par [l'issue n°35](https://github.com/CapGui13/QPJB/issues/35), avec la [note de clarification Walsh](./NOTE_COMPLEMENTAIRE_WALSH_V461_2026-11-04.md). Aucun changement des bonnes réponses, choix, mains, difficulté, IDs, progression ou des 677 exercices d'Entraînement.
+- **Suite :** 54 réponses à 1SA/2SA sans revue datée, puis 52 interventions. Les tests WebKit/Chromium simulés ne constituent pas une validation sur Safari/iPhone physique.
