@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=path.join(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'quizz.html'),'utf8');
-const m=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Existing embedded quiz must be readable');
 const db=JSON.parse(m[1]);
 const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'candidats-qcm.json'),'utf8'));
@@ -27,7 +27,7 @@ for(const x of manifest.candidates){
  assert.ok(x.choices.includes(x.answer),x.id);
  assert.ok(!situations.has(JSON.stringify([x.hand,x.auction])),x.id+' already in Quizz');
  assert.ok(x.contrastWith.every(id=>existing.has(id)),x.id+' comparison ID absent');
- const contracts=x.auction.map(y=>y.split(':').slice(1).join(':').replace(/\\s*\\([^)]*\\).*/,'').trim()).map(rank).filter(n=>n!==null);
+ const contracts=x.auction.map(y=>y.split(':').slice(1).join(':').replace(/\s*\([^)]*\).*/,'').trim()).map(rank).filter(n=>n!==null);
  const last=contracts.at(-1);
  for(const bid of x.choices){const n=rank(bid);if(n!==null&&last!==undefined)assert.ok(n>last,x.id+' underbid '+bid)}
  if(x.choices.includes('Surcontre'))assert.equal(x.auction.at(-1),'Adversaire : Contre',x.id+' Surcontre may be illegal');
