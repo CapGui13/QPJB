@@ -163,3 +163,13 @@
 - Une mise à jour documentaire sans modification des exercices a provoqué une **nouvelle exécution propre** : [tests post-récupération #41820833228](https://github.com/CapGui13/QPJB/actions/runs/41820833228) **réussis** (audit, Chromium, WebKit), [catalogue #41820833239](https://github.com/CapGui13/QPJB/actions/runs/41820833239) **réussi**.
 - [GitHub Pages #41821628212](https://github.com/CapGui13/QPJB/actions/runs/41821628212) **réussi** sur la source `77249f82919a86039e240551b8a058d14bd5084a`, qui contient le Quizz `prototype-2026-11-04-v4-56-redemandes-40`. **La V4.56 est publiée.**
 - **Bilan pédagogique inchangé** : 373/993 fiches avec revue individuelle datée, 620 non revues ; 40 redemandes du lot, dont 3 réponses conditionnelles sous Walsh explicite à harmoniser avec l'intitulé SEF unique ; 20 corrigés enrichis, 36 contextes au vouvoiement, 0 bonne réponse ni progression modifiées. Validation Safari sur iPhone physique toujours ouverte.
+
+
+## P2 — V4.57 du 4 novembre : clôture des 58 redemandes restantes
+
+- [Revue nominative des 58 dernières redemandes](./REVUE_58_REDEMANDES_OUVREUR_2026-11-04.md) : 58 mains/points/distributions/séquences et quatre propositions vérifiés, 58 verdicts datés et 58 corrigés explicatifs réécrits avec archives précédentes ; 58 énoncés explicitant la séquence et le vouvoiement, anciens contextes archivés.
+- **Rubrique redemandes `red` : 101/101 exercices avec revue individuelle datée.** Registre global : **373 → 431/993**, **562 sans revue individuelle datée**. Attention : cette couverture ne certifie pas les variantes d'enchères non proposées ni les 562 fiches non encore vérifiées.
+- Précisions pédagogiques importantes : `SEF-V412-002`, 1♦–2♣–2SA *mini-maxi* du SEF 2024 (12–14 ou 18–19 H, séquence forcing de manche) ; `SEF-V416-003`, 1♦–1♥–2♠ = bicolore **à saut forcing de manche** ; `SEF-V413-013`, 1♦–2♣–2♦ ne garantit pas automatiquement six Carreaux.
+- **Walsh explicite maintenu** dans trois énoncés (`SEF-V419-002`, `SEF-V420-005`, `SEF-V424-001`). Les trois dossiers conditionnels de V4.56 restent signalés. La cohérence entre le SEF de référence et ces options doit rester un objet de vigilance pédagogique.
+- **Aucune bonne enchère, option, main, difficulté, ID, rubrique ni progression élève modifiés.** Aucun fichier des 677 exercices d'Entraînement, PBN ou jeu de la carte touché.
+- Version de travail : `prototype-2026-11-04-v4-57-redemandes-58`. **CI branche / fusion / tests main / Pages à confirmer séparément**. Prochaines grandes rubriques non couvertes : soutiens majeurs, 2e enchères du répondant, ouvertures et réponses à l'ouverture mineure.
