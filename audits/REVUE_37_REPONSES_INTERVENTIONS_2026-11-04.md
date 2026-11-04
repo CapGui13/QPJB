@@ -1,0 +1,83 @@
+# QPJB Quiz — V4.66 : revue de 37 réponses aux interventions
+
+**4 novembre 2026.** Périmètre : uniquement la rubrique `reponse_inter` du Quiz ; aucune modification à l'Entraînement (677 exercices), aux PBN, aux autres modules ou aux sauvegardes.
+
+## Méthode de revue
+
+Vérification individuelle des 13 cartes, des points H, de la distribution ♠-♥-♦-♣, de l'ouverture adverse, de l'intervention du partenaire, du Passe du troisième joueur, des quatre propositions distinctes et de la réponse du Quiz. Raisonnements fondés sur le système SEF utilisé par le Quiz.
+
+Sources pédagogiques : [Amour du bridge — Réponses aux interventions au palier de 1](https://amourdubridge.fr/reponses-aux-interventions-au-palier-de-1/) ; [iBridge — Réponses avec fit](https://dev.ibridge-club.fr/public/fichedetails/244) ; [iBridge — Après un cue-bid](https://dev.ibridge-club.fr/public/fichedetails/500) ; [iBridge — Après un soutien du partenaire](https://dev.ibridge-club.fr/public/fichedetails/766) ; [Référence SEF interne](../QUIZZ_REFERENCE_SEF.md).
+
+### Principes appliqués
+
+- Soutien direct de 2♥/2♠ : fit de trois cartes avec la majeure cinquième de l'intervenant, non forcing ; certains soutiens à 6 H sont à manier avec prudence.
+- Soutien à saut au palier de trois : soutien barrage avec quatre atouts, particulièrement justifié par une courte adverse et la vulnérabilité favorable explicitée dans le contexte.
+- Sans fit : Passe avec très peu de jeu ; 1SA naturel avec 9 H et arrêt de la couleur adverse ; changement naturel de couleur au palier de un, forcing.
+- Cue-bid dans la couleur adverse : main forte, enchère forcing permettant de connaître la force de l'intervenant, avec ou sans fit selon le contexte.
+- Sur une intervention au palier de deux, un soutien simple à trois dans la couleur majeure peut simplement prolonger la compétition avec quatre atouts.
+
+## Résultats et limites
+
+- **37 fiches relues et tracées**, 37 bonnes réponses conservées, 37 nouvelles explications propres à leur main, 37 énoncés harmonisés. Les textes d'origine sont archivés.
+- **5 vigilances** sur les soutiens très minimaux à 6 H et trois petits atouts, sans conclure à une faute systématique ni changer l'enchère.
+- **857 → 894 / 993** revues individuelles datées ; **99** restant sans revue datée.
+- **44 / 44** fiches de la rubrique `reponse_inter` couvertes, dont 7 revues antérieures et 37 nouvelles.
+- Vérifications de structure : 13 cartes, points H et distributions cohérents, 4 choix distincts avec bonne réponse présente.
+- Les 956 autres exercices, mains, réponses, choix, difficultés, séquences, IDs, sauvegardes et données d'Entraînement n'ont pas été modifiés.
+
+## Revue nominative
+
+| N° | ID | Ouverture – Intervention | H | Forme ♠-♥-♦-♣ | Réponse | Justification |
+|---:|---|---|---:|---|---|---|
+| 1 | `SEF-V4-025-2` | 1♣ – 1♥ | 6 | 3-3-4-3 | **2♥** | Après l'ouverture de 1♣, votre partenaire est intervenu à 1♥ et le troisième joueur a passé. Avec 6 H et trois atouts ♥D83, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♥ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 2 | `SEF-V4-025-1` | 1♣ – 1♥ | 8 | 3-3-4-3 | **2♥** | Après l'ouverture de 1♣, votre partenaire est intervenu à 1♥ et le troisième joueur a passé. Avec 8 H et trois atouts ♥1042, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♥ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 3 | `SEF-V4-026-4` | 1♣ – 1♥ | 5 | 4-4-4-1 | **3♥** | Face à l'intervention de votre partenaire à 1♥ après 1♣ adverse, vous possédez 5 H et quatre atouts ♥V543 avec un singleton dans la couleur adverse (♣6). À vulnérabilité favorable, 3♥ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte. |
+| 4 | `SEF-V4-026-3` | 1♣ – 1♥ | 7 | 3-4-3-3 | **2♥** | Après l'ouverture de 1♣ et l'intervention à 1♥ de votre partenaire, vous détenez 7 H et quatre atouts ♥V973, dans une main régulière 3-4-3-3 sans courte. Le soutien simple de 2♥ exprime le fit économiquement : le saut à 3♥ serait trop ambitieux sans distribution de barrage. |
+| 5 | `SEF-V4-027-1` | 1♣ – 1♥ | 3 | 3-2-4-4 | **Passe** | L'adversaire a ouvert de 1♣, votre partenaire est intervenu à 1♥, puis l'autre adversaire a passé. Avec 3 H et seulement deux cartes d'atout (♥103), votre main 3-2-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 6 | `SEF-V4-028-1` | 1♣ – 1♥ | 9 | 3-2-4-4 | **1SA** | Après 1♣ adverse et l'intervention de votre partenaire à 1♥, vous avez 9 H, seulement deux atouts (♥74) et un arrêt net dans la couleur ouverte (♣ARD4, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur. |
+| 7 | `SEF-V4-029-1` | 1♦ – 1♥ | 6 | 3-3-4-3 | **2♥** | Après l'ouverture de 1♦, votre partenaire est intervenu à 1♥ et le troisième joueur a passé. Avec 6 H et trois atouts ♥987, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♥ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 8 | `SEF-V4-029-2` | 1♦ – 1♥ | 8 | 3-3-4-3 | **2♥** | Après l'ouverture de 1♦, votre partenaire est intervenu à 1♥ et le troisième joueur a passé. Avec 8 H et trois atouts ♥873, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♥ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 9 | `SEF-V4-030-1` | 1♦ – 1♥ | 6 | 4-4-1-4 | **3♥** | Face à l'intervention de votre partenaire à 1♥ après 1♦ adverse, vous possédez 6 H et quatre atouts ♥DV97 avec un singleton dans la couleur adverse (♦5). À vulnérabilité favorable, 3♥ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte. |
+| 10 | `SEF-V4-031-1` | 1♦ – 1♥ | 2 | 3-2-4-4 | **Passe** | L'adversaire a ouvert de 1♦, votre partenaire est intervenu à 1♥, puis l'autre adversaire a passé. Avec 2 H et seulement deux cartes d'atout (♥V2), votre main 3-2-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 11 | `SEF-V4-031-4` | 1♦ – 1♥ | 4 | 3-2-4-4 | **Passe** | L'adversaire a ouvert de 1♦, votre partenaire est intervenu à 1♥, puis l'autre adversaire a passé. Avec 4 H et seulement deux cartes d'atout (♥V3), votre main 3-2-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 12 | `SEF-V4-032-2` | 1♦ – 1♥ | 9 | 3-2-4-4 | **1SA** | Après 1♦ adverse et l'intervention de votre partenaire à 1♥, vous avez 9 H, seulement deux atouts (♥V7) et un arrêt net dans la couleur ouverte (♦AR54, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur. |
+| 13 | `SEF-V4-033-4` | 1♣ – 1♠ | 6 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♣, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 6 H et trois atouts ♠973, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 14 | `SEF-V4-033-2` | 1♣ – 1♠ | 8 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♣, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 8 H et trois atouts ♠A96, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 15 | `SEF-V4-034-4` | 1♣ – 1♠ | 5 | 4-4-4-1 | **3♠** | Face à l'intervention de votre partenaire à 1♠ après 1♣ adverse, vous possédez 5 H et quatre atouts ♠10972 avec un singleton dans la couleur adverse (♣3). À vulnérabilité favorable, 3♠ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte. |
+| 16 | `SEF-V4-034-1` | 1♣ – 1♠ | 7 | 4-3-3-3 | **2♠** | Après l'ouverture de 1♣ et l'intervention à 1♠ de votre partenaire, vous détenez 7 H et quatre atouts ♠A1063, dans une main régulière 4-3-3-3 sans courte. Le soutien simple de 2♠ exprime le fit économiquement : le saut à 3♠ serait trop ambitieux sans distribution de barrage. |
+| 17 | `SEF-V4-035-1` | 1♣ – 1♠ | 3 | 2-3-4-4 | **Passe** | L'adversaire a ouvert de 1♣, votre partenaire est intervenu à 1♠, puis l'autre adversaire a passé. Avec 3 H et seulement deux cartes d'atout (♠94), votre main 2-3-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 18 | `SEF-V4-036-1` | 1♣ – 1♠ | 9 | 2-3-4-4 | **1SA** | Après 1♣ adverse et l'intervention de votre partenaire à 1♠, vous avez 9 H, seulement deux atouts (♠104) et un arrêt net dans la couleur ouverte (♣A1052, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur. |
+| 19 | `SEF-V4-037-1` | 1♦ – 1♠ | 6 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♦, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 6 H et trois atouts ♠1084, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 20 | `SEF-V4-037-2` | 1♦ – 1♠ | 8 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♦, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 8 H et trois atouts ♠R86, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 21 | `SEF-V4-038-4` | 1♦ – 1♠ | 5 | 4-4-1-4 | **3♠** | Face à l'intervention de votre partenaire à 1♠ après 1♦ adverse, vous possédez 5 H et quatre atouts ♠DV63 avec un singleton dans la couleur adverse (♦9). À vulnérabilité favorable, 3♠ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte. |
+| 22 | `SEF-V4-038-1` | 1♦ – 1♠ | 7 | 4-3-3-3 | **2♠** | Après l'ouverture de 1♦ et l'intervention à 1♠ de votre partenaire, vous détenez 7 H et quatre atouts ♠R1053, dans une main régulière 4-3-3-3 sans courte. Le soutien simple de 2♠ exprime le fit économiquement : le saut à 3♠ serait trop ambitieux sans distribution de barrage. |
+| 23 | `SEF-V4-039-3` | 1♦ – 1♠ | 3 | 2-3-4-4 | **Passe** | L'adversaire a ouvert de 1♦, votre partenaire est intervenu à 1♠, puis l'autre adversaire a passé. Avec 3 H et seulement deux cartes d'atout (♠V9), votre main 2-3-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 24 | `SEF-V4-040-1` | 1♦ – 1♠ | 9 | 2-3-4-4 | **1SA** | Après 1♦ adverse et l'intervention de votre partenaire à 1♠, vous avez 9 H, seulement deux atouts (♠83) et un arrêt net dans la couleur ouverte (♦AD52, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur. |
+| 25 | `SEF-V4-041-1` | 1♥ – 1♠ | 6 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♥, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 6 H et trois atouts ♠876, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 26 | `SEF-V4-041-2` | 1♥ – 1♠ | 8 | 3-3-4-3 | **2♠** | Après l'ouverture de 1♥, votre partenaire est intervenu à 1♠ et le troisième joueur a passé. Avec 8 H et trois atouts ♠862, vous avez au moins huit atouts dans le camp face à sa majeure cinquième. 2♠ est un soutien simple non forcing, qui signale le fit sans inviter à la manche. |
+| 27 | `SEF-V4-042-1` | 1♥ – 1♠ | 5 | 4-1-4-4 | **3♠** | Face à l'intervention de votre partenaire à 1♠ après 1♥ adverse, vous possédez 5 H et quatre atouts ♠9763 avec un singleton dans la couleur adverse (♥5). À vulnérabilité favorable, 3♠ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte. |
+| 28 | `SEF-V4-042-4` | 1♥ – 1♠ | 7 | 4-3-3-3 | **2♠** | Après l'ouverture de 1♥ et l'intervention à 1♠ de votre partenaire, vous détenez 7 H et quatre atouts ♠10953, dans une main régulière 4-3-3-3 sans courte. Le soutien simple de 2♠ exprime le fit économiquement : le saut à 3♠ serait trop ambitieux sans distribution de barrage. |
+| 29 | `SEF-V4-043-1` | 1♥ – 1♠ | 1 | 2-3-4-4 | **Passe** | L'adversaire a ouvert de 1♥, votre partenaire est intervenu à 1♠, puis l'autre adversaire a passé. Avec 1 H et seulement deux cartes d'atout (♠94), votre main 2-3-4-4 manque de force et de fit. Passe évite de soutenir sans huit atouts ou d'imposer Sans-Atout sans ressources suffisantes. |
+| 30 | `SEF-V4-044-1` | 1♥ – 1♠ | 9 | 2-3-4-4 | **1SA** | Après 1♥ adverse et l'intervention de votre partenaire à 1♠, vous avez 9 H, seulement deux atouts (♠A8) et un arrêt net dans la couleur ouverte (♥AV6, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur. |
+| 31 | `SEF-V4-045-1` | 1♠ – 2♥ | 6 | 2-4-4-3 | **3♥** | Votre partenaire est intervenu à 2♥ sur 1♠ adverse, et le troisième joueur a passé. Vous n'avez que 6 H mais quatre cartes à Cœur (♥D1085), soit un fit au moins dixième s'il intervient avec six cartes. 3♥ prolonge le soutien sur un mode compétitif, sans inviter à la manche. |
+| 32 | `SEF-V44-055` | 1♣ – 1♥ | 12 | 3-3-4-3 | **2♣** | Après 1♣ adverse et l'intervention à 1♥ de votre partenaire, votre main de 12 H compte trois cartes à ♥ (♥R94) et des valeurs de manche. 2♣ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité. |
+| 33 | `SEF-V44-056` | 1♦ – 1♠ | 12 | 3-3-4-3 | **2♦** | Après 1♦ adverse et l'intervention à 1♠ de votre partenaire, votre main de 12 H compte trois cartes à ♠ (♠AR10) et des valeurs de manche. 2♦ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité. |
+| 34 | `SEF-V44-057` | 1♥ – 1♠ | 12 | 3-3-4-3 | **2♥** | Après 1♥ adverse et l'intervention à 1♠ de votre partenaire, votre main de 12 H compte trois cartes à ♠ (♠RV6) et des valeurs de manche. 2♥ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité. |
+| 35 | `SEF-V49-032` | 1♣ – 1♥ | 9 | 2-3-4-4 | **2♥** | Avec 9 H, trois Cœurs (♥873) et un doubleton Pique (♠97), la main représente environ 10 HLD avec un fit huitième après 1♣ – 1♥ – Passe. Le soutien simple à 2♥ exprime le fit et une force limitée, sans engager le camp vers la manche. |
+| 36 | `SEF-V413-009` | 1♣ – 1♥ | 10 | 4-2-3-4 | **1♠** | Sur 1♣ adverse et 1♥ d'intervention du partenaire, vous avez 10 H, quatre Piques (♠AV107) et seulement deux Cœurs (♥86). L'enchère naturelle de 1♠ reste disponible au palier de un : elle recherche un éventuel fit 4–4 et est forcing pour un tour dans le cadre du SEF. |
+| 37 | `SEF-V421-010` | 1♠ – 2♥ | 12 | 3-4-4-2 | **2♠** | Après l'ouverture adverse de 1♠ et l'intervention à 2♥ du partenaire, votre main comporte 12 H et quatre Cœurs (♥RD83). Le cue-bid 2♠ utilise la couleur de l'ouvreur pour faire une demande forcing : 3♥ serait un soutien compétitif trop faible pour décrire votre potentiel de manche. |
+
+## Vigilances individuelles
+
+- `SEF-V4-025-2` : Soutien direct avec 6 H et trois petits Cœurs : cas limite, la répartition des honneurs et la vulnérabilité méritent un arbitrage pédagogique.
+- `SEF-V4-029-1` : Soutien direct avec 6 H, trois petits Cœurs et un Roi seulement dans la couleur adverse : attention aux valeurs utiles.
+- `SEF-V4-033-4` : Soutien direct avec 6 H et trois très petits Piques : choix dépendant aussi du contexte compétitif.
+- `SEF-V4-037-1` : Soutien direct avec 6 H et trois petits Piques : cas de seuil nécessitant de distinguer l'intérêt du fit de la force brute.
+- `SEF-V4-041-1` : Soutien direct avec 6 H et trois petits Piques : prudent selon la vulnérabilité et les levées rapides disponibles.
+
+## Traçabilité technique
+
+- Base de travail : branche V4.65 `audit/quizz-v465-reveils-40-20261104`, non encore fusionnée au lancement du lot.
+- Branche V4.66 : `audit/quizz-v466-reponses-interventions-37-20261104`.
+- Sources de revues et métadonnées : [`REVUES_V466_REPONSES_INTERVENTIONS_INDIVIDUELLES.json`](./REVUES_V466_REPONSES_INTERVENTIONS_INDIVIDUELLES.json).
+- Ne fusionner V4.66 sur `main` qu'après V4.65, contrôles GitHub réussis et confirmation de GitHub Pages.
