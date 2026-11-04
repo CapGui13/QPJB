@@ -83,9 +83,14 @@ jobs:
           python3 scripts/build_catalogue.py
           touch .nojekyll
       - uses: actions/configure-pages@v5
+      # À chaque nouvelle tentative d'un même workflow_run, utiliser un nom propre.
+      # Sinon upload-pages-artifact conserve plusieurs « github-pages » et deploy-pages échoue.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+          name: github-pages-${{ github.run_attempt }}
       - name: Déployer QPJB
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
