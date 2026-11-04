@@ -80,3 +80,12 @@
 - **[Tests sur main #41742267943](https://github.com/CapGui13/QPJB/actions/runs/41742267943) réussis**, trois jobs verts ; [catalogue #41742268061](https://github.com/CapGui13/QPJB/actions/runs/41742268061) actualisé.
 - **[GitHub Pages #41742724147](https://github.com/CapGui13/QPJB/actions/runs/41742724147) : publication réussie** du commit testé. La **V4.52 est en ligne**, sous réserve du cache éventuel côté navigateur. Les tests automatisés n'équivalent pas à une validation sur iPhone réel.
 - **Suivi rectifié** : 256/993 fiches avec revue individuelle datée, 737 sans revue datée ; **53 vigilances encore sans revue datée** dans le groupe heuristique des 166 (les 32 précédemment revues ne doivent pas être recomptées). Deux réserves pédagogiques restent ouvertes : `SEF-V417-008` et `SEF-V426-004`.
+
+
+## P1 — V4.53 du 4 novembre : 25 vigilances après intervention adverse
+
+- [Revue nominative de 25 cas](./REVUE_25_VIGILANCES_APRES_INTERVENTION_2026-11-04.md) de la rubrique `apres_inter` : contrôles des réponses naturelles, contres Spoutnik, soutiens compétitifs et Passes sans force. **25 réponses conservées** dans les choix proposés ; **9 corrigés clarifiés** et textes antérieurs archivés.
+- **Registre : 281/993 revues individuelles datées**, 712 encore sans revue datée. Groupe de 166 vigilances : **28 sans verdict daté** (53 moins ce lot de 25).
+- Version : `prototype-2026-11-04-v4-53-apres-intervention`. Réponses, quatre choix, mains, niveaux, identifiants et progression élèves inchangés.
+- **Réserves ouvertes :** `SEF-V417-008` et `SEF-V426-004`. Suite : 28 vigilances restant à revoir, contre-expertise sur les réserves, puis revue nominative des autres fiches.
+- **CI / fusion / publication Pages :** à confirmer séparément après création de la PR ; aucun succès présumé à cette étape.
