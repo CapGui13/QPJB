@@ -203,3 +203,11 @@
 - 20 explications et 20 contextes reformulés, anciens textes conservés ; aucune bonne enchère, proposition, main, difficulté, ID ou sauvegarde modifiés. Aucun fichier des 677 exercices d'Entraînement touché.
 - Prochaine priorité : les 59 autres réponses à l'ouverture majeure, puis les 79 deuxièmes enchères du répondant. Contrôle Safari/iPhone physique toujours distinct des simulateurs.
 
+## P2 — V4.59 du 4 novembre : 59 réponses à l’ouverture majeure
+
+- [Rapport nominatif des 59 réponses](./REVUE_59_REPONSES_MAJEURES_2026-11-04.md) ; contrôle des 13 cartes, H, distribution, séquence et quatre choix dans chacun des 59 cas.
+- 59 explications SEF précisées et 59 énoncés harmonisés au vouvoiement ; archives des anciens textes intégrées à chaque fiche ; aucune bonne réponse ni distracteur modifié.
+- **Registre 451 → 510/993** revues individuelles, **483 restantes**. Rubrique `majeur` : **81/81 revues**, entièrement couverte ; rubrique `second` : **24/103**, encore **79 non revues**.
+- Distinctions pédagogiques vérifiées : soutien simple 6–10 HLD, proposition à 3M avec quatre atouts 11–12 HLD, 2SA fitté avec trois atouts et 11–12 HLD, 1SA non forcing non fitté, changement au palier de deux avec force suffisante.
+- Aucun changement de cartes, enchères attendues, options, difficultés, IDs ou progression ; aucun fichier des 677 exercices d’Entraînement touché.
+- **État de la V4.59 à sa création : branche non encore publiée.** CI sur branche, fusion, CI sur main et Pages à vérifier distinctement. Prochaine priorité : 79 deuxièmes enchères du répondant.
