@@ -290,7 +290,15 @@ const server=http.createServer((req,res)=>{
   assert.ok(firstChoice.corrected,'First exercise reveals its explanation');
   const firstAlternatives=quiz.locator('.postsolution-trigger').first();
   const hasAlternatives=await firstAlternatives.count()>0;
-  if(hasAlternatives)await firstAlternatives.click();
+  if(hasAlternatives){
+    await firstAlternatives.click();
+    // La transition ne doit pas commencer tant que l'accordeon n'est pas ouvert.
+    // On teste bien l'ouverture effective, sans diminuer l'exigence de restauration.
+    await trainingFrameForNav.waitForFunction(
+      ()=>document.querySelector('.postsolution-trigger')?.getAttribute('aria-expanded')==='true',
+      null,{timeout:5000}
+    );
+  }
   await frame.locator('.footnav button.primary').click();
   await trainingFrameForNav.waitForFunction(previous=>view==='quiz'&&id!==previous,firstBidId);
   assert.equal(await quiz.locator('.choices>.choice').count(),4,'Next exercise has four choices');
@@ -312,6 +320,22 @@ const server=http.createServer((req,res)=>{
   }));
   assert.deepEqual(restored,firstChoice,'Previous preserves the exact answer state without recording a new attempt');
   if(hasAlternatives){
+    // Le changement d'ID peut precéder la fin du rendu de la page precedente.
+    try{
+      await trainingFrameForNav.waitForFunction(
+        ()=>document.querySelector('.postsolution-trigger')?.getAttribute('aria-expanded')==='true',
+        null,{timeout:5000}
+      );
+    }catch(error){
+      const diagnostic=await trainingFrameForNav.evaluate(()=>({
+        exercise:id,view,expanded:document.querySelector('.postsolution-trigger')?.getAttribute('aria-expanded'),
+        openClass:document.querySelector('.postsolution-notes')?.classList.contains('is-open'),
+        remembered:sessionQuizStates.get(id)?.alternativesOpen??null,
+        pendingNav:!!trainingPendingNav,queuedNav:!!trainingQueuedNav
+      }));
+      console.error('TRAINING_RESTORE_ALTERNATIVES_DIAGNOSTIC',JSON.stringify(diagnostic));
+      throw error;
+    }
     assert.equal(await quiz.locator('.postsolution-trigger').first().getAttribute('aria-expanded'),'true',
       'Opened alternative explanations stay open when going back');
   }
