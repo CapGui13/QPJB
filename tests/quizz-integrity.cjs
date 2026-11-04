@@ -21,6 +21,38 @@ for(const x of exercises){
 
 assert.ok(exercises.every(x=>!x.whyNot&&!x.takeaway),'Only correct-bid explanations are stored');
 
+// V4.56 — 40 redemandes relues, trois questions conditionnelles sous Walsh.
+const reviewedV456 = [{"id":"SEF-042-2","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-043-1","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-043-3","answer":"1♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-044-1","answer":"1SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-044-2","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-045-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-046-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-047-1","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-048-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-049-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-049-2","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-050-2","answer":"2♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-051-1","answer":"2♦","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N106-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N106-2","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N107-2","answer":"2♠","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N108-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N109-1","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N110-1","answer":"1♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N111-1","answer":"1♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N112-2","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-N113-1","answer":"1SA","ctx":false,"edited":true,"walsh":true},{"id":"SEF-N114-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N115-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N116-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N117-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N118-1","answer":"2SA","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N119-2","answer":"2SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N120-1","answer":"2SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N121-1","answer":"2♥","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N122-1","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N123-2","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N123-1","answer":"2♠","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N124-1","answer":"1SA","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N125-1","answer":"2♦","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N126-1","answer":"2♣","ctx":true,"edited":false,"walsh":false},{"id":"SEF-N127-2","answer":"2♥","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N128-2","answer":"2♦","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N129-2","answer":"2♣","ctx":true,"edited":true,"walsh":false},{"id":"SEF-N130-1","answer":"2♦","ctx":false,"edited":true,"walsh":false}];
+assert.equal(reviewedV456.length,40,'V4.56 : 40 redemandes');
+assert.equal(reviewedV456.filter(x=>x.ctx).length,36,'V4.56 : 36 contextes archives');
+assert.equal(reviewedV456.filter(x=>x.edited).length,20,'V4.56 : 20 corriges archives');
+assert.equal(reviewedV456.filter(x=>x.walsh).length,3,'V4.56 : trois questions conditionnelles Walsh');
+for(const row of reviewedV456){
+ const x=exercises.find(y=>y.id===row.id);
+ assert.ok(x&&x.theme==='red','V4.56 rubric and ID: '+row.id);
+ assert.equal(x.answer,row.answer,'V4.56 answer preserved: '+row.id);
+ assert.equal(x.hand.flat().length,13,'V4.56 thirteen cards: '+row.id);
+ assert.equal(x.choices.length,4,'V4.56 four choices: '+row.id);
+ assert.equal(new Set(x.choices).size,4,'V4.56 unique choices: '+row.id);
+ assert.ok(x.choices.includes(x.answer),'V4.56 expected choice present: '+row.id);
+ const expectedH=x.hand.flat().reduce((v,c)=>v+({A:4,R:3,D:2,V:1}[c]||0),0);
+ assert.equal(x.h,expectedH,'V4.56 HCP verified: '+row.id);
+ assert.deepEqual(x.hand.map(h=>h.length),x.shape,'V4.56 distribution verified: '+row.id);
+ assert.equal(x.pedagogicalReview20261104V456?.answerUnchanged,true,'V4.56 stable answer: '+row.id);
+ assert.equal(x.pedagogicalReview20261104V456?.editorialChange,row.edited,'V4.56 editorial flag: '+row.id);
+ assert.equal(x.pedagogicalReview20261104V456?.contextEdited,row.ctx,'V4.56 context flag: '+row.id);
+ if(row.ctx){
+  assert.ok(x.sourceOriginalContext20261104V456?.startsWith('Tu as ouvert'),'V4.56 original context stored: '+row.id);
+  assert.ok(x.context.startsWith('Vous avez ouvert'),'V4.56 vouvoiement: '+row.id);
+ }
+ if(row.edited){assert.ok(x.sourceOriginalExplain20261104V456&&x.explain!==x.sourceOriginalExplain20261104V456,'V4.56 prior explain stored: '+row.id);}
+ if(row.walsh){
+  assert.match(x.context,/Walsh actif/,'V4.56 explicit Walsh condition: '+row.id);
+  assert.equal(x.answer,'1SA','V4.56 Walsh 1NT conditional: '+row.id);
+  assert.equal(x.pedagogicalReview20261104V456.verdict,'coherent_sous_walsh_explicite_reserve_referentiel','V4.56 conditional not certified SEF: '+row.id);
+ }
+}
+
 const reviewedV455 = [{"id":"SEF-001-1","expected":"1SA","edited":false},{"id":"SEF-001-2","expected":"1SA","edited":false},{"id":"SEF-002-3","expected":"1SA","edited":true},{"id":"SEF-002-1","expected":"1SA","edited":true},{"id":"SEF-003-2","expected":"1SA","edited":true},{"id":"SEF-003-1","expected":"1SA","edited":true},{"id":"SEF-004-1","expected":"2SA","edited":false},{"id":"SEF-005-1","expected":"2SA","edited":false},{"id":"SEF-005-2","expected":"2SA","edited":false},{"id":"SEF-006-2","expected":"1♠","edited":false},{"id":"SEF-006-1","expected":"1♠","edited":false},{"id":"SEF-007-1","expected":"1♥","edited":false},{"id":"SEF-007-2","expected":"1♥","edited":false},{"id":"SEF-008-2","expected":"1♠","edited":true},{"id":"SEF-009-1","expected":"1♦","edited":false},{"id":"SEF-009-2","expected":"1♦","edited":false},{"id":"SEF-010-3","expected":"1♣","edited":false},{"id":"SEF-010-1","expected":"1♣","edited":false},{"id":"SEF-011-2","expected":"1♦","edited":true},{"id":"SEF-012-1","expected":"1♣","edited":true},{"id":"SEF-013-1","expected":"Passe","edited":false},{"id":"SEF-013-2","expected":"Passe","edited":false},{"id":"SEF-014-1","expected":"Passe","edited":true},{"id":"SEF-014-2","expected":"Passe","edited":false}];
 assert.equal(reviewedV455.length,24,'V4.55: 24 ouvertures revues');
 assert.equal(reviewedV455.filter(x=>x.edited).length,8,'V4.55: huit corriges enrichis');
