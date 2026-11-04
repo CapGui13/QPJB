@@ -183,3 +183,11 @@
 - [Publication Pages #41824174293](https://github.com/CapGui13/QPJB/actions/runs/41824174293) **réussie** pour la source `c3770cf10992013ed985518568bc7a6659b189ee`, contenant le Quizz `prototype-2026-11-04-v4-57-redemandes-58`.
 - **Bilan publié : 431/993 revues individuelles datées, 562 fiches restantes ; rubrique `red` entièrement couverte à 101/101.** Les 58 nouveaux corrigés et leurs 58 contextes ont été retravaillés avec archives, sans changement des réponses, cartes, distracteurs, niveaux, IDs ni progression. Les avertissements pédagogiques relatifs aux trois réponses sous Walsh explicite de V4.56 restent conservés.
 - Suite de l'audit : prioriser les **soutiens majeurs** et les **deuxièmes enchères du répondant**, puis les autres rubriques sans revue individuelle. Un contrôle physique sur Safari/iPhone reste distinct des tests automatisés.
+
+## P2 — V4.58, lot 01 (4 novembre) : 20 réponses à l'ouverture majeure
+
+- Branche de travail : `audit/quizz-v458-soutiens-majeurs-lot01-20261104` ; [rapport nominatif](./REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md).
+- 20 mains à 13 cartes, points H, répartitions, séquences, quatre choix et bonnes réponses contrôlés individuellement ; 20 explications pédagogiques et 20 contextes au vouvoiement révisés, anciens textes archivés.
+- Registre **431 → 451/993** revues datées ; **542 non revues**, dont **59/81** dans `majeur` et **79/103** dans `second`. Le 2SA fitté du dossier `SEF-N051-2` a été distingué du soutien simple.
+- Aucune bonne réponse, proposition, ID, main, difficulté ni progression modifiée ; les 677 exercices d'Entraînement sont hors périmètre.
+- **État : branche de travail non publiée à la création du lot.** Tests CI / PR / fusion / publication à mettre à jour après confirmation. Prochaine priorité : 59 autres réponses à l'ouverture majeure, puis 79 deuxièmes enchères du répondant.
