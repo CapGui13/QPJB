@@ -43,7 +43,7 @@
 | `chelem` | 37 | **+32** | 69 |
 | **TOTAL** | **1223** | **+300** | **1523** |
 
-## Grille de rédaction précise (54 cellules de compétences)
+## Grille de rédaction précise (56 cellules de compétences)
 
 Ces cellules sont des **commandes de rédaction**, pas encore des exercices vérifiés. Pour chaque cellule, comparer les exercices de sa rubrique, le `caseFamily` et les mains/séquences avant de rédiger.
 
