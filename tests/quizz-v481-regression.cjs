@@ -64,6 +64,7 @@ for(const n of ['003','004'])assert.ok(v(n).shape[0]<4&&v(n).hand[1].includes('A
 for(const n of ['005','006'])assert.ok(v(n).shape[0]<4&&!v(n).hand[1].some(r=>r==='A'||r==='R'),'3♥ cue-bid : pas quatre Piques, pas d’arrêt Cœur '+n);
 for(const n of ['007','008'])assert.equal(v(n).shape[1],4,'3♥ après Texas impossible sur 2♦ : quatre Cœurs '+n);
 assert.equal(v('009').shape[0],4,'3♠ sur 2♦ : quatre Piques');
+for(const n of ['008','009'])assert.ok(v(n).hand[2].includes('A'),'La tenue Carreau du répondant au Stayman est garantie par un As : '+n);
 for(const n of ['010','011'])assert.equal(v(n).shape[0],3,'3SA sans quatre Piques '+n);
 assert.deepEqual(v('012').hand[2],['8','4'],'3♦ sur 3♣ : absence de tenue ♦');
 assert.equal(v('013').answer,'3♣','2SA Texas ♣');
