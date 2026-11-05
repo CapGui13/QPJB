@@ -7,9 +7,15 @@ const arbitration=require('./quizz-v491-approved-revisions.json');
 const competitive=require('./quizz-v492-approved-revisions.json');
 const competitiveNext=require('./quizz-v493-approved-revisions.json');
 const competitiveExtra=require('./quizz-v494-approved-revisions.json');
+const currentV495=require('./quizz-v495-approved-revisions.json');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
   let x=original;
+  const v495=currentV495[x.id];
+  if(v495){
+   assert.deepStrictEqual(x,v495.after,'Only exact V4.95 user-approved changes allowed for '+x.id);
+   x=v495.before;
+  }
   const newestReview=competitiveExtra[x.id];
   if(newestReview){
    assert.deepStrictEqual(x,newestReview.after,'Only exact V4.94 approved competition changes allowed for '+x.id);
