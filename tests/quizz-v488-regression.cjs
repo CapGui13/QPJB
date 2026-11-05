@@ -1,0 +1,36 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
+const {normalizedPrefix,approved}=require('./quizz-v488-approved-revisions.cjs');
+const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
+assert.ok(m,'Quiz SEF JSON embedded');
+const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-1216-gitsha.json');
+assert.equal(xs.length,1223,'V4.88 modifies 4 solutions, no new exercises');
+assert.equal(db.themes.length,22,'22 rubriques preserved');
+const old=JSON.stringify(normalizedPrefix(xs,baseline.count));
+const sha=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
+assert.equal(sha,baseline.gitBlobSha,'Old 1216 records exactly reconstructable except approved V4.88 diffs');
+const actual=Object.keys(approved).sort(),ids=['SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005'].sort();
+assert.deepEqual(actual,ids,'Exactly 4 authorized exercises');
+const want={'SEF-V44-060':'1♦','SEF-V416-012':'4♥','SEF-V416-013':'4♠','SEF-C-005':'Passe'};
+const ranks={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
+const rank=s=>s==='Passe'?-3:s==='Contre'?-2:s==='Surcontre'?-1:(()=>{const m=s.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+ranks[m[2]]:null})();
+for(const id of ids){
+ const x=xs.find(x=>x.id===id),a=approved[id];
+ assert.deepEqual(x,a.after,'Current record matches individually approved pedagogical fix '+id);
+ assert.equal(x.answer,want[id],id+' SEF answer');
+ assert.notEqual(x.answer,a.before.answer,id+' answer materially updated');
+ assert.equal(x.sourceOriginalAnswer20261105V488,a.before.answer,id+' archived answer');
+ assert.equal(x.sourceOriginalExplain20261105V488,a.before.explain,id+' archived explanation');
+ assert.deepEqual(x.sourceOriginalChoices20261105V488,a.before.choices,id+' archived choices');
+ assert.ok(x.choices.includes(x.answer)&&x.choices.length===4&&new Set(x.choices).size===4,id+' plausible four choices');
+ assert.ok(x.choices.every(s=>rank(s)!==null),id+' legal bid syntax');
+ assert.equal(x.hand.flat().length,13,id+' cards');
+ assert.deepEqual(x.hand.map(a=>a.length),x.shape,id+' distribution');
+ assert.equal(x.hand.flat().reduce((n,c)=>n+({A:4,R:3,D:2,V:1}[c]||0),0),x.h,id+' points H');
+ assert.ok(x.explain.length>170,id+' explanation complete');
+ assert.equal(x.pedagogicalReview20261105V488.previousAnswer,a.before.answer,id+' explicit trace');
+ assert.ok(html.includes("'"+id+"':'sef-2026-11-05-v488-"),id+' per-question progress migration present');
+}
+assert.equal(new Set(xs.map(x=>x.id)).size,1223,'No duplicate IDs');
+console.log('PASS | V4.88: 4 corrected answers, 1216 baseline protected via exact authorized historical snapshots; 1223 exercises preserved');
