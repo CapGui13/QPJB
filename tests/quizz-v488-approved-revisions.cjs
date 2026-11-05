@@ -16,9 +16,10 @@ const currentV4100=require('./quizz-v4100-approved-revisions.json');
 const currentV4101=require('./quizz-v4101-approved-revisions.json');
 const currentV4102=require('./quizz-v4102-approved-revisions.json');
 const currentV4103=require('./quizz-v4103-approved-revisions.json');
+const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
-  let x=original;
+  let x=revisionRecentes.normalize(original);
   const v4103=currentV4103[x.id];
   if(v4103){
    assert.deepStrictEqual(x,v4103.after,'Only exact V4.103 approved contextual/calibration changes allowed for '+x.id);
