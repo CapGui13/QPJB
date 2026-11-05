@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
       pages: write
       id-token: write
     environment:
@@ -89,6 +90,25 @@ jobs:
         with:
           path: .
           name: github-pages-${{ github.run_attempt }}
+      # L'API des artifacts peut être en retard juste après l'upload.
+      # Attendre la visibilité de la nouvelle archive évite un échec artificiel de deploy-pages.
+      - name: Attendre l'indexation de l'archive GitHub Pages
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_NAME: github-pages-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            if gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts?per_page=100" --jq '.artifacts[]?.name' | grep -Fxq "${ARTIFACT_NAME}"; then
+              echo "Artifact ${ARTIFACT_NAME} visible sur GitHub (tentative ${attempt})."
+              exit 0
+            fi
+            echo "Archive non indexée ; nouvel essai."
+            sleep 2
+          done
+          echo "::error::L'archive ${ARTIFACT_NAME} reste introuvable après l'upload."
+          exit 1
       - name: Déployer QPJB
         id: deployment
         uses: actions/deploy-pages@v4
