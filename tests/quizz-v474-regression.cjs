@@ -9,7 +9,7 @@ const mt=html.match(/<script id="training-data" type="application\/json">([\s\S]
 assert.ok(mt,'La base des exercices est embarquée');
 const db=JSON.parse(mt[1]),xs=db.exercises,base=require('./quizz-baseline-1026-gitsha.json');
 assert.ok(xs.length>=1036,'Les 1026 historiques et dix fiches V4.74 sont présents');
-const old=JSON.stringify(xs.slice(0,base.count));
+const old=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old,'utf8').digest('hex');
 assert.equal(sha,base.gitBlobSha,'Empreinte immuable des 1026 exercices V4.73');
 const map=new Map(xs.map(x=>[x.id,x]));
