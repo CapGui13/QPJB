@@ -78,7 +78,10 @@ const server=http.createServer((req,res)=>{
         history:[{at:'2026-10-31T11:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:2},
       ...Object.fromEntries(['SEF-V4-097-1','SEF-V4-103-1','SEF-V44-067','SEF-V44-068','SEF-V421-004','SEF-V410-025','SEF-V418-005','SEF-V420-009','SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005','SEF-001-1']
         .map(id=>[id,{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:1,correct:1,
-          history:[{at:'2026-10-31T10:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:1}]))
+          history:[{at:'2026-10-31T10:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:1}])),
+      ...Object.fromEntries([['SEF-047-1','1SA'],['SEF-N112-2','1SA'],['SEF-N113-1','1SA'],['SEF-V49-005','1♦']]
+        .map(([id,choice])=>[id,{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:1,correct:1,
+          history:[{at:'2026-11-04T10:00:00Z',result:'correct',choice,mode:'qcm'}],streak:1}]))
     }));
   });
   await page.reload({waitUntil:'domcontentloaded'});
@@ -106,6 +109,18 @@ const server=http.createServer((req,res)=>{
     assert.equal(newRules[id].archivedPreRevision?.ok,true,'V4.88 former success retained historically: '+id);
     assert.match(newRules[id].pedagogicalRevision,/^sef-2026-11-05-v488-/,'V4.88 revision marker: '+id);
   }
+  // Les trois réponses rectifiées depuis V4.87 et SEF-V49-005 (V4.106).
+  const correctedAfterWalsh=[['SEF-047-1','1SA'],['SEF-N112-2','1SA'],['SEF-N113-1','1SA'],['SEF-V49-005','1♦']];
+  for(const [id,oldChoice] of correctedAfterWalsh){
+    assert.equal(newRules[id].seen,false,'Corrected bidding exercise must become available again: '+id);
+    assert.equal(newRules[id].ok,false,'Outdated success must no longer count: '+id);
+    assert.equal(newRules[id].lastResult,null,'Outdated result cleared: '+id);
+    assert.equal(newRules[id].archivedPreRevision?.history?.[0]?.choice,oldChoice,
+      'Historical choice is archived, not deleted: '+id);
+    assert.equal(newRules[id].archivedPreRevision?.ok,true,'Former mastery kept historically: '+id);
+    assert.ok(newRules[id].pedagogicalRevision?.startsWith('sef-2026-11-05-'),
+      'Version tag is recorded: '+id);
+  }
   assert.equal(newRules['SEF-001-1'].ok,true,'Unchanged exercise progress must remain mastered');
   await page.reload({waitUntil:'domcontentloaded'});
   const migratedAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))['SEF-V49-016']);
@@ -119,6 +134,10 @@ const server=http.createServer((req,res)=>{
   for(const id of revisedV488){
     assert.ok(newRulesAgain[id].archivedPreRevision&&!newRulesAgain[id].archivedPreRevision.archivedPreRevision,
       'V4.88 migration must happen only once: '+id);
+  }
+  for(const [id] of correctedAfterWalsh){
+    assert.ok(newRulesAgain[id].archivedPreRevision&&!newRulesAgain[id].archivedPreRevision.archivedPreRevision,
+      'Corrected response migration is applied exactly once: '+id);
   }
   await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
   await page.reload({waitUntil:'domcontentloaded'});
