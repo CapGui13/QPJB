@@ -2,9 +2,15 @@
 const assert=require('node:assert/strict');
 const approved=require('./quizz-v488-approved-revisions.json');
 const editorial=require('./quizz-v489-approved-revisions.json');
+const additional=require('./quizz-v490-approved-revisions.json');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
   let x=original;
+  const improvement=additional[x.id];
+  if(improvement){
+    assert.deepStrictEqual(x,improvement.after,'Only exact V4.90 editorial changes are allowed for '+x.id);
+    x=improvement.before;
+  }
   const correction=editorial[x.id];
   if(correction){
    assert.deepStrictEqual(x,correction.after,'Only exact V4.89 editorial changes are allowed for '+x.id);
