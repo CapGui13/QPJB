@@ -1,6 +1,6 @@
 
 const PLAY_TOPICS=[{"id":"plan-libre","name":"Construire son plan de jeu","description":"Situations ouvertes : réfléchir au plan complet, puis comparer son analyse au corrigé.","group":"Jeu du déclarant"},{"id":"plan-qcm","name":"Décisions de plan de jeu · QCM","description":"Choisir le meilleur plan parmi plusieurs propositions.","group":"Jeu du déclarant"},{"id":"impasses","name":"Impasses","description":"Placement des honneurs, impasses directes et indirectes.","group":"Jeu du déclarant"},{"id":"maniements","name":"Maniements de couleur","description":"Organiser les honneurs, préserver les fourchettes et jouer les couleurs.","group":"Jeu du déclarant"},{"id":"communications","name":"Communications et blocages","description":"Conserver les reprises et éviter de bloquer une couleur.","group":"Jeu du déclarant"},{"id":"entames","name":"Choisir l’entame","description":"Décider quelle carte entamer selon le contrat et la séquence.","group":"Jeu de la défense"},{"id":"defense","name":"Défense et signalisation","description":"Choisir la bonne carte en défense et coopérer avec son partenaire.","group":"Jeu de la défense"}];
-const KEY='QPJB_TRAINING_QCM_V1';let saved={},storageWarning=false;
+const KEY=new URLSearchParams(location.search).get('pilot')==='1'?'QPJB_TRAINING_PILOT_9_V1':'QPJB_TRAINING_QCM_V1';let saved={},storageWarning=false;
 const SYNC_TAB=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
 let syncSeq=0,activeVisitId=null;
 function syncId(){return SYNC_TAB+'-'+(++syncSeq)}
