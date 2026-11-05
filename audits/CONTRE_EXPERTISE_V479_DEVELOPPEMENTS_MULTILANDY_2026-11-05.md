@@ -69,6 +69,17 @@ Les textes élèves expliquent uniquement la bonne enchère, non les trois mauva
 4. Aucune modification des 22 rubriques, du module Entraînement, des PBN, de la navigation ni des anciens QCM.
 5. Fusion seulement après contrôles de code et tests Chromium/WebKit verts sur la SHA de la PR, puis vérification du déploiement public sur le commit fusionné.
 
+
+## Arbitrage explicite des alertes de qualité
+
+Le test heuristique `quizz-quality.cjs` signale trois fiches comme « revue prioritaire » parmi les nouvelles, en raison de distracteurs sans homologue déjà correct dans **la même séquence**. Cette alerte est **non bloquante** sur le plan technique, et ne démontre pas une erreur de bridge. Chaque situation a été contre-expertisée :
+
+- **SEF-V479-010 : Passe après 2♦ Multi / 2♥ avec six Cœurs.** Alternative 2♠ = confusion entre majeure montrée et majeure possédée ; 2SA = demande de précisions inutile ; 3♥ = jeu de la couleur juste mais au mauvais palier. Le choix Passe est central pour enseigner la rectification conditionnelle.
+- **SEF-V479-013 : Passe après 2♦ Multi / 2♠ avec six Piques.** 3♣/3♦ = confusion entre relais et mineures naturelles ; 3♥ = correction injustifiée. Passe est l'opposé exact de SEF-V479-012, qui rectifie à 3♥ avec six Cœurs.
+- **SEF-V479-014 : Passe après 2♥ bicolore / réponse 3♣ avec cinq Trèfles.** 3♦ = annoncer une mineure inexistante ; 3♥ = répéter la majeure au lieu de suivre le relais ; 3SA = ignorer l'intention de partielle. Passe est contrasté avec SEF-V479-015 (3♦ avec les Carreaux).
+
+**Verdict : conserver ces trois fiches** parce que l'enjeu n'est pas seulement de deviner une enchère : c'est de comprendre quand un relais faible doit être laissé au palier actuel. Les 48 distracteurs ont été confrontés à la décision exacte qu'ils risquent de déclencher chez un élève, et non au seul score automatique. Une revue pédagogique indépendante reste possible ; aucune certification exhaustive de la banque n'est revendiquée.
+
 ## Réserve éditoriale
 
 Le 2SA positif après Landy ou après intervention majeure dépend des développements choisis par la paire : ce lot emploie explicitement la convention Multi-Landy déjà annoncée dans la rubrique. L'élève ne doit pas transposer ces réponses sans vérifier son système.
