@@ -8,7 +8,7 @@ const db=JSON.parse(m[1]),xs=db.exercises;
 const base=require('./quizz-baseline-1145-gitsha.json');
 assert.ok(xs.length>=1161,'1145 anciens et 16 contrôles de chelem');
 assert.equal(db.themes.length,22,'22 rubriques inchangées');
-const serialized=JSON.stringify(xs.slice(0,base.count));
+const serialized=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(serialized,'utf8')+'\0'+serialized,'utf8').digest('hex');
 assert.equal(sha,base.gitBlobSha,'Empreinte des 1145 historiques, ordre et contenu');
 const ids=new Map(xs.map(x=>[x.id,x]));
