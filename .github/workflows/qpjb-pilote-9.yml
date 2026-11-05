@@ -4,11 +4,11 @@ on:
     branches:
       - qpjb/pilote-9-2026-11-05
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   pilot:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,5 +19,26 @@ jobs:
           node --check entrainement/training-pilot-v1.js
           node --check entrainement/training-app.js
           node --check entrainement/training-data-bootstrap.js
+          node --check tests/qpjb-pilote-browser.cjs
       - name: Vérification des 9 fiches
         run: node tests/qpjb-pilote-9.test.cjs
+  browser:
+    name: Application complète — ${{ matrix.browser }}
+    needs: pilot
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer Playwright
+        run: npm install --no-save playwright@1.64.1
+      - name: Tester les 9 fiches sur iPhone simulé et ordinateur
+        run: PW_BROWSER=${{ matrix.browser }} node tests/qpjb-pilote-browser.cjs
