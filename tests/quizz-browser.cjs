@@ -76,7 +76,7 @@ const server=http.createServer((req,res)=>{
     localStorage.setItem('qpjb-sef-entrainement-01',JSON.stringify({
       'SEF-V49-016':{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:2,correct:2,
         history:[{at:'2026-10-31T11:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:2},
-      ...Object.fromEntries(['SEF-V4-097-1','SEF-V4-103-1','SEF-V44-067','SEF-V44-068','SEF-V421-004','SEF-V410-025','SEF-V418-005','SEF-V420-009','SEF-001-1']
+      ...Object.fromEntries(['SEF-V4-097-1','SEF-V4-103-1','SEF-V44-067','SEF-V44-068','SEF-V421-004','SEF-V410-025','SEF-V418-005','SEF-V420-009','SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005','SEF-001-1']
         .map(id=>[id,{seen:true,ok:true,lastResult:'correct',assisted:false,attempts:1,correct:1,
           history:[{at:'2026-10-31T10:00:00Z',result:'correct',choice:'2♣',mode:'qcm'}],streak:1}]))
     }));
@@ -96,6 +96,16 @@ const server=http.createServer((req,res)=>{
     assert.equal(newRules[id].archivedPreRevision?.lastResult,'correct','Old Spoutnik mastery kept in archive: '+id);
     assert.equal(newRules[id].pedagogicalRevision.startsWith('sef24-spoutnik-'),true,'New SEF revision tag: '+id);
   }
+  // V4.88 : quatre bonnes réponses corrigées, sans perdre la trace des anciens essais.
+  const revisedV488=['SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005'];
+  for(const id of revisedV488){
+    assert.equal(newRules[id].seen,false,'V4.88 corrected exercise must be studied again: '+id);
+    assert.equal(newRules[id].ok,false,'V4.88 previous mastery cleared: '+id);
+    assert.equal(newRules[id].lastResult,null,'V4.88 old result no longer counted: '+id);
+    assert.equal(newRules[id].archivedPreRevision?.history?.length,1,'V4.88 past answer archived: '+id);
+    assert.equal(newRules[id].archivedPreRevision?.ok,true,'V4.88 former success retained historically: '+id);
+    assert.match(newRules[id].pedagogicalRevision,/^sef-2026-11-05-v488-/,'V4.88 revision marker: '+id);
+  }
   assert.equal(newRules['SEF-001-1'].ok,true,'Unchanged exercise progress must remain mastered');
   await page.reload({waitUntil:'domcontentloaded'});
   const migratedAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-entrainement-01'))['SEF-V49-016']);
@@ -106,6 +116,10 @@ const server=http.createServer((req,res)=>{
     'Drury migration also runs only once');
   assert.ok(!newRulesAgain['SEF-V410-025'].archivedPreRevision.archivedPreRevision,
     'Spoutnik migration runs only once');
+  for(const id of revisedV488){
+    assert.ok(newRulesAgain[id].archivedPreRevision&&!newRulesAgain[id].archivedPreRevision.archivedPreRevision,
+      'V4.88 migration must happen only once: '+id);
+  }
   await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
   await page.reload({waitUntil:'domcontentloaded'});
   assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
