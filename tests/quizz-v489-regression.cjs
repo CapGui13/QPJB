@@ -1,0 +1,35 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
+const approved=require('./quizz-v489-approved-revisions.json');
+const {normalizedPrefix}=require('./quizz-v488-approved-revisions.cjs');
+const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
+assert.ok(m,'Quiz JSON embedded');
+const data=JSON.parse(m[1]),xs=data.exercises;
+assert.equal(xs.length,1223,'unchanged 1223 exercises');
+const ids=['SEF-V486-014','SEF-V413-013','SEF-V425-003','SEF-V483-010'].sort();
+assert.deepEqual(Object.keys(approved).sort(),ids);
+for(const id of ids){
+ const x=xs.find(x=>x.id===id),a=approved[id];
+ assert.ok(x,id+' must exist');
+ assert.deepEqual(x,a.after,id+' exact approved editorial change');
+ assert.equal(x.answer,a.before.answer,id+' answer unchanged');
+ assert.deepEqual(x.choices,a.before.choices,id+' options unchanged');
+ assert.deepEqual(x.auction,a.before.auction,id+' auction unchanged');
+ assert.equal(x.sourceOriginalExplain20261105V489,a.before.explain,id+' old explanation archived');
+ assert.equal(x.hand.flat().length,13,id+' thirteen cards');
+ const pts={A:4,R:3,D:2,V:1};
+ assert.equal(x.hand.flat().reduce((s,r)=>s+(pts[r]||0),0),x.h,id+' points exact');
+ assert.ok(x.explain.length>=175,id+' explanation adequate');
+}
+const hld=xs.find(x=>x.id==='SEF-V483-010');
+assert.equal(hld.h,8);assert.deepEqual(hld.hand[0],['V','10','8','5']);
+assert.equal(hld.h+2+2,12,'12 HLD, compatible with 3S');
+assert.match(xs.find(x=>x.id==='SEF-V486-014').explain,/forcing pour un tour/);
+assert.match(xs.find(x=>x.id==='SEF-V425-003').explain,/2♦/);
+const baseline=require('./quizz-baseline-1223-gitsha.json');
+const normalized=JSON.stringify(normalizedPrefix(xs,baseline.count));
+const sha=createHash('sha1').update('blob '+Buffer.byteLength(normalized,'utf8')+'\0'+normalized,'utf8').digest('hex');
+assert.equal(sha,baseline.gitBlobSha,'V4.88 + V4.89 authorized changes only');
+console.log('PASS | V4.89: 4 targeted pedagogical corrections, no changed correct bid, 1223 histories protected');
