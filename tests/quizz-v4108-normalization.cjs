@@ -1,3 +1,3 @@
 'use strict';
-// Normalisation des révisions pédagogiques récentes, avant les gardes historiques.
-module.exports = {};
+const patches=Object.assign({},...Array.from({length:7},(_,i)=>require('./quizz-v4108-diff-p'+(i+1)+'.json')));
+module.exports={patches};
