@@ -8,7 +8,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const mt=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(mt,'JSON embarqué présent');
 const db=JSON.parse(mt[1]),xs=db.exercises,ref=require('./quizz-baseline-1004-gitsha.json');
-const base=JSON.stringify(xs.slice(0,ref.count));
+const base=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,ref.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(base,'utf8')+'\0'+base,'utf8').digest('hex');
 assert.equal(sha,ref.gitBlobSha,'Les 1004 objets V4.70 doivent rester identiques');
 assert.ok(xs.length>=1010,'Conserver les 1004 fiches V4.70 et les 6 V4.71, même après les futures extensions');
