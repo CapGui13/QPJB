@@ -1,13 +1,14 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
-const m=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz data');
 const db=JSON.parse(m[1]),xs=db.exercises,base=require('./quizz-baseline-1186-gitsha.json');
 assert.equal(base.count,1186);
 assert.ok(xs.length>=1216,'1186 historiques + 30 QCM V4.86');
 assert.equal(db.themes.length,22);
-const original=JSON.stringify(xs.slice(0,1186)),sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\\0'+original).digest('hex');
+const original=JSON.stringify(xs.slice(0,1186));
+const sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\0'+original).digest('hex');
 assert.equal(sha,base.gitBlobSha,'1186 anciens QCM conservés à l identique');
 const names=["SEF-V486-001","SEF-V486-002","SEF-V486-003","SEF-V486-004","SEF-V486-005","SEF-V486-006","SEF-V486-007","SEF-V486-008","SEF-V486-009","SEF-V486-010","SEF-V486-011","SEF-V486-012","SEF-V486-013","SEF-V486-014","SEF-V486-015","SEF-V486-016","SEF-V486-017","SEF-V486-018","SEF-V486-019","SEF-V486-020","SEF-V486-021","SEF-V486-022","SEF-V486-023","SEF-V486-024","SEF-V486-025","SEF-V486-026","SEF-V486-027","SEF-V486-028","SEF-V486-029","SEF-V486-030"];
 assert.deepEqual(xs.slice(1186,1216).map(x=>x.id),names,'Lot V4.86 au bon emplacement');
