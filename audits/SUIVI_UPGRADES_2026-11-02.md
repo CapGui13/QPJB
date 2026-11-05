@@ -479,3 +479,45 @@ Rapport détaillé : [`RECONCILIATION_EN_11_V610_2026-11-02.md`](RECONCILIATION_
 - **Décision** : trois **quarantaines conservatoires supplémentaires** (`reviewStatus: a_verifier`). Il s'agissait de questions guidées **déjà non notées automatiquement** ; il ne faut pas les présenter comme trois erreurs de barème prouvées. Réponses du corrigé, quatre propositions, mains, énoncés et résultats locaux **inchangés**. Une adaptation éditoriale contrôlée sera nécessaire avant réactivation.
 - **Nouveau décompte** : **563 EN en banque / 556 disponibles / 7 masqués** ; `suite-repondant` 73→71 ; `rep-barrage` 12→11 ; jeu de carte **114 / 111**, inchangé. Aucun `quarantineReason` accessible ne reste à traiter dans ce sous-lot. **Les autres quarantaines restent ouvertes**, ainsi que les anciennes anomalies EN sans rapprochement nominatif et les audits non certifiés.
 - **Livraison** : banque maître, module différé, bootstrap, générateur, tests, URLs PWA (`20261103a`) et cache (`qpjb-v45`) synchronisés. Vérifier **sur le commit exact** les jobs audit/Chromium/WebKit et GitHub Pages ; iPhone Safari physique toujours non testé.
+
+
+---
+
+## Actualisation finale Quiz SEF — V4.110 (5 novembre 2026)
+
+**Périmètre de cette actualisation : le Quiz SEF dans \`quizz.html\`, exclusivement.** Les sections plus haut sur les 993 exercices et les travaux Entraînement sont des **états historiques datés**, non des tâches restantes du Quiz actuel. Ne modifier ni \`/entrainement/\`, ni les données pédagogiques du Quiz pour un simple suivi documentaire.
+
+### État actuel vérifié
+
+- **1 223 QCM**, 1 223 IDs distincts dans le corpus actuel (contre 993 dans les photographies antérieures). Les tests d'intégrité contrôlent mains de 13 cartes, points H, quatre choix par QCM, réponse présente parmi les choix.
+- Audit qualité **V4.87** réparti entre six instances documentaires (236 + 212 + 178 + 209 + 199 + 189 = **1 223 QCM examinés selon leurs rapports**). Cette couverture déclarée et les tests structurels ne valent **pas** certification SEF externe et indépendante de toutes les 1 223 enchères.
+- Référence pédagogique retenue : **SEF 2024 sans Walsh**. Sur la réponse à 1♣ avec 4 ou 5 Carreaux et une majeure quatrième, la priorité va à la majeure jusqu'à **12 HL** inclus selon le passage du manuel apporté le 5 novembre. Ne pas réintroduire des explications ou automatismes Walsh dans le Quiz.
+- Dernières corrections publiées dans les PR [#88](https://github.com/CapGui13/QPJB/pull/88), [#89](https://github.com/CapGui13/QPJB/pull/89), [#90](https://github.com/CapGui13/QPJB/pull/90) et [#91](https://github.com/CapGui13/QPJB/pull/91), puis protection de progression par la [PR #92 — V4.110](https://github.com/CapGui13/QPJB/pull/92), fusionnée au commit \`f3dddedd888828574b37df9dfa1929af4e559362\`.
+- **Migration ciblée de progression** : ajout des IDs \`SEF-047-1\`, \`SEF-N112-2\` et \`SEF-N113-1\` à la liste des exercices dont la bonne réponse avait changé ; ancien historique archivé, maîtrise courante remise à travailler uniquement pour les fiches concernées, aucune remise à zéro générale. Quatre autres migrations de réponses corrigées existaient déjà.
+- **Tests réussis** après fusion V4.110 : [QPJB Training smoke #42098746516](https://github.com/CapGui13/QPJB/actions/runs/42098746516) (audit/intégrité, Chromium, WebKit). [Catalogue #42098746514](https://github.com/CapGui13/QPJB/actions/runs/42098746514) réussi. **Publication GitHub Pages** [#42099292516](https://github.com/CapGui13/QPJB/actions/runs/42099292516) réussie pour le commit testé \`f3dddedd...\` ; URL publique : https://capgui13.github.io/QPJB/.
+- **Essai manuel Safari sur iPhone physique** : pas de validation attestée ici. Les tests WebKit simulés sont réussis, mais ne constituent pas cet essai réel.
+
+### Clôture du registre historique V4.87 — 118 signalements
+
+Requalification documentée lors de la reprise finale du 5 novembre, en confrontant le registre V4.87 au Quiz V4.110, **sans modification de code lors de cette requalification** :
+
+| Situation | Nombre | Décision de suivi |
+|---|---:|---|
+| Déjà clos dans le suivi historique | 23 | Ne pas rouvrir sans nouvel élément |
+| Arbitrages SEF et de paire déjà rendus | 11 | Conserver les décisions validées par l'utilisatrice |
+| Réserves de convention/source | 3 | Landy / Multi-Landy explicitement définis comme accords de paire, pas comme SEF universel |
+| Points mineurs ayant reçu une modification pédagogique effective | 62 | Comparés à leur signalement initial, classés traités |
+| Redondances demeurées sans modification | 19 | Comparaisons individuelles : mains différentes, répétition pédagogique acceptée |
+| **Total requalifié** | **118** | **Aucun de ces 118 signalements ne demande une nouvelle validation utilisateur** |
+
+**Précision :** 62 fiches modifiées ne signifie pas 62 nouvelles modifications du 5 novembre ; elles l'avaient été dans les versions antérieures. Les 19 variantes conservées ne sont pas 19 erreurs SEF. Les 118 statuts sont clos **dans ce registre historique** ; ne pas écrire que « 1 223 / 1 223 solutions certifiées sans réserve ».
+
+### Feuille de route active après V4.110
+
+1. **Quiz SEF — correction et audit V4.87 : clos.** Pas de nouvelle passe systématique de 81 ou 1 223 QCM à lancer sans anomalie démontrée ; éviter tout arbitrage utilisateur déjà validé.
+2. **Qualité en situation réelle — vérification légère conseillée :** ouvrir le Quiz sur iPhone Safari physique et sur PC, essayer la navigation/retour, la réponse et la progression locale. Ce point ne remet pas en cause la réussite CI/Pages.
+3. **Maintenance corrective :** pour toute anomalie nouvelle, relever ID, main, enchères, réponse, règle SEF, historique et impact progression ; n'éditer qu'un lot ciblé, tester audit/Chromium/WebKit puis attendre Pages réussi.
+4. **Entraînement :** chantiers \`EN-*\` / \`JC-*\` séparés. Les comptes et réserves de leurs sections précédentes doivent être réévalués dans leur propre contexte ; **la clôture du Quiz V4.110 ne clôt pas ces travaux**.
+
+**Source de vérité :** cette feuille de route unique dans \`audits/SUIVI_UPGRADES_2026-11-02.md\`. Les sections antérieures restent conservées comme historique, et la présente section prévaut pour le **statut courant du Quiz**.
+
