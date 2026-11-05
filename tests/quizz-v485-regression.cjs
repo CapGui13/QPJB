@@ -5,7 +5,7 @@ const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*
 assert.ok(m,'La base du Quiz SEF est présente');
 const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-1175-gitsha.json');
 assert.equal(baseline.count,1175,'1175 historiques');
-assert.equal(xs.length,1186,'1175 historiques + 11 nouveaux');
+assert.ok(xs.length>=1186,'1175 historiques + 11 V4.85 et extensions ultérieures');
 assert.equal(db.themes.length,22,'22 thèmes historiques');
 const original=JSON.stringify(xs.slice(0,baseline.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\0'+original).digest('hex');
@@ -63,6 +63,6 @@ for(const [n,minor,H,shape,answer,options,skill] of cases){
  if(skill==='support'){assert.ok(trumps>=5&&H<9&&x.context.includes('camp est vulnérable'),id+' soutien simple sous le Truscott');}
 }
 assert.equal(xs.filter(x=>/^SEF-V485-\d{3}$/.test(x.id)).length,11,'onze QCM V4.85 exactement');
-assert.deepEqual(xs.slice(-11).map(x=>x.id),cases.map(c=>'SEF-V485-'+c[0]),'seuls les 11 derniers QCM sont nouveaux');
+assert.deepEqual(xs.slice(1175,1186).map(x=>x.id),cases.map(c=>'SEF-V485-'+c[0]),'les 11 QCM V4.85 restent aux positions historiques');
 console.log('PASS | V4.85 : 1175 historiques intacts, 11 décisions après mineure contrée, 33 distracteurs, 13 cartes, H, formes, enchères et vulnérabilité vérifiés');
 
