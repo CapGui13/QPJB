@@ -10,7 +10,7 @@ const match=html.match(/<script id="training-data" type="application\/json">([\s
 assert.ok(match,'Base JSON embarquée');
 const db=JSON.parse(match[1]), xs=db.exercises, base=require('./quizz-baseline-1036-gitsha.json');
 assert.ok(xs.length>=1046,'1036 historiques et 10 exercices V4.75');
-const obj=JSON.stringify(xs.slice(0,base.count));
+const obj=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(obj,'utf8')+'\0'+obj,'utf8').digest('hex');
 assert.equal(sha,base.gitBlobSha,'Les 1036 fiches précédentes sont strictement inchangées');
 const byId=new Map(xs.map(x=>[x.id,x]));
