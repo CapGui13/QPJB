@@ -1,0 +1,34 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
+const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
+const m=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+assert.ok(m,'Quiz data');
+const db=JSON.parse(m[1]),xs=db.exercises,base=require('./quizz-baseline-1186-gitsha.json');
+assert.equal(base.count,1186);
+assert.ok(xs.length>=1216,'1186 historiques + 30 QCM V4.86');
+assert.equal(db.themes.length,22);
+const original=JSON.stringify(xs.slice(0,1186)),sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\\0'+original).digest('hex');
+assert.equal(sha,base.gitBlobSha,'1186 anciens QCM conservés à l identique');
+const names=["SEF-V486-001","SEF-V486-002","SEF-V486-003","SEF-V486-004","SEF-V486-005","SEF-V486-006","SEF-V486-007","SEF-V486-008","SEF-V486-009","SEF-V486-010","SEF-V486-011","SEF-V486-012","SEF-V486-013","SEF-V486-014","SEF-V486-015","SEF-V486-016","SEF-V486-017","SEF-V486-018","SEF-V486-019","SEF-V486-020","SEF-V486-021","SEF-V486-022","SEF-V486-023","SEF-V486-024","SEF-V486-025","SEF-V486-026","SEF-V486-027","SEF-V486-028","SEF-V486-029","SEF-V486-030"];
+assert.deepEqual(xs.slice(1186,1216).map(x=>x.id),names,'Lot V4.86 au bon emplacement');
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'IDs uniques');
+const points={A:4,R:3,D:2,V:1},suits={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
+const rank=b=>b==='Passe'?-3:b==='Contre'?-2:b==='Surcontre'?-1:(()=>{const m=b.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+suits[m[2]]:null})();
+const cases=xs.slice(1186,1216);
+for(const x of cases){
+ assert.equal(x.hand.length,4,x.id+' four suits');
+ assert.equal(x.hand.flat().length,13,x.id+' thirteen cards');
+ assert.deepEqual(x.shape,x.hand.map(s=>s.length),x.id+' shape');
+ assert.equal(x.hand.flat().reduce((n,r)=>n+(points[r]||0),0),x.h,x.id+' H');
+ for(const suit of x.hand)assert.equal(new Set(suit).size,suit.length,x.id+' unique ranks per suit');
+ assert.equal(x.choices.length,4,x.id+' choices');
+ assert.equal(new Set(x.choices).size,4,x.id+' distinct choices');
+ assert.ok(x.choices.includes(x.answer),x.id+' correct option present');
+ assert.ok(x.choices.every(c=>rank(c)!==null),x.id+' valid bids');
+ assert.deepEqual(x.choices.map(rank),x.choices.map(rank).toSorted((a,b)=>a-b),x.id+' bidding order');
+ assert.ok(x.context.length>=230&&x.explain.length>=65,x.id+' pedagogical text');
+ assert.ok(!x.whyNot&&!x.takeaway,x.id+' correct explanation only');
+ assert.ok(x.difficulty>=1&&x.difficulty<=5,x.id+' difficulty');
+}
+assert.deepEqual([...new Set(cases.map(x=>x.theme))].sort(),['apres_fit','barrage','forcing','fortes','reponse_inter','rubensohl'].sort());
+console.log('PASS | V4.86 : 1186 historiques intacts, 30 nouveaux, 22 rubriques, mains, points, choix et difficultés vérifiés');
