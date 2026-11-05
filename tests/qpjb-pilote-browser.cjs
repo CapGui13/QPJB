@@ -31,6 +31,7 @@ async function run(browser,device){
   // Le parcours ordinaire de l'application reste strictement inchangé.
   await page.goto(url,{waitUntil:'domcontentloaded'});
   await page.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+  await page.frameLocator('#training-frame').locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const normal=page.frames().find(f=>f.url().includes('/entrainement/'));
   assert(normal,'L’iframe normal doit être présent');
   await normal.waitForFunction(()=>D.bidding.length===563,{timeout:30000});
