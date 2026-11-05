@@ -1,5 +1,8 @@
 # QPJB — suivi des upgrades (2 novembre 2026)
 
+> **POINT D'ENTRÉE ACTUEL — 5 novembre 2026 :** le Quiz SEF est en **V4.110**, avec **1 223 exercices** et **118 signalements historiques requalifiés**. Les paragraphes plus anciens ci-dessous (993 QCM, arbitrages en attente) sont conservés comme historique daté, pas comme liste de travail active. Pour reprendre le Quiz, lire d'abord [l'actualisation V4.110](#actualisation-finale-quiz-sef--v4110-5-novembre-2026) et surtout le [registre par identifiant des 118 clôtures](REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv). Les autres travaux Entraînement `EN-*`/`JC-*` ont un suivi distinct.
+
+
 Référence : `QUIZZ_REFERENCE_SEF.md`. Ne jamais changer une bonne réponse, un ID, le stockage local ou supprimer un exercice sans validation pédagogique.
 
 ## État vérifié au début de cette session
@@ -520,4 +523,47 @@ Requalification documentée lors de la reprise finale du 5 novembre, en confront
 4. **Entraînement :** chantiers `EN-*` / `JC-*` séparés. Les comptes et réserves de leurs sections précédentes doivent être réévalués dans leur propre contexte ; **la clôture du Quiz V4.110 ne clôt pas ces travaux**.
 
 **Source de vérité :** cette feuille de route unique dans `audits/SUIVI_UPGRADES_2026-11-02.md`. Les sections antérieures restent conservées comme historique, et la présente section prévaut pour le **statut courant du Quiz**.
+
+
+### Protocole anti-doublon : informations à consulter AVANT toute nouvelle intervention Quiz SEF
+
+**Référence nominative persistante dans GitHub** : [`REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv`](REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv) — **118 lignes, une par ID**, avec :
+- identifiant, famille, gravité et diagnostic V4.87 initial (historique, pas diagnostic courant) ;
+- proposition d'origine et anciens statuts conservés sans effacement ;
+- décision finale, justification, statut de clôture et bonne réponse **effectivement affichée en V4.110** ;
+- détail du choix de l'utilisatrice pour les 11 arbitrages, détail des 3 accords conventionnels hors SEF, et règle explicite de réouverture ;
+- les 62 fiches réellement améliorées depuis V4.87 et les 19 variantes volontairement conservées.
+
+**Archives intégrales dans la Bibliothèque ChatGPT** (dossier `/QPJB/Quiz SEF/Audit Qualite V4.87/`) : `QPJB_Quiz_SEF_Bilan_Final_V4110.md`, `QPJB_Quiz_SEF_Registre_Final_V4110_118.csv`, `QPJB_Quiz_SEF_Suivi_118_2026-11-05.csv`, rapports et registres des six instances A–F. Le CSV GitHub est une **copie de travail enrichie** destinée à rendre les décisions accessibles sans récupérer d'anciennes conversations. L'original V4.87 et ses observations restent consultables.
+
+**Arbitrages des réponses à ne pas redemander :**
+
+| ID(s) | Décision conservée |
+|---|---|
+| `SEF-V49-005` | **1♥** : priorité majeure 4e après 1♣ jusqu'à 12 HL, sans Walsh |
+| `SEF-V418-008` | **3♥** : invitation après 1♥–1♠–2♥ |
+| `SEF-V4-050-2` | **1♠** : réveil |
+| `SEF-V4-053-3`, `-055-1`, `-056-1`, `-069-1` (préfixe `SEF-V4-`) | **Contre** : accord de réveil à plus de 13 HL |
+| `SEF-V478-002` | **4♣** à vulnérabilité favorable |
+| `SEF-V478-005` | **4♥** à vulnérabilité favorable |
+| `SEF-V478-006` | **4♣**, jeu renforcé par une couvrante, indépendamment de la vulnérabilité |
+| `SEF-V478-008` | **Passe** à toute vulnérabilité |
+
+**Conventions hors SEF strict à ne pas remettre en cause comme « erreurs » du Quiz :**
+`SEF-V479-004` → **2SA** relais positif après Landy 2♣ ;
+`SEF-V479-008` → **2♠**, Passe ou corrige après 2♦ Multi-Landy (une majeure 6e) ;
+`SEF-V479-016` → **2SA** relais constructif après 2♠ Multi-Landy. Le sens de chaque enchère est annoncé dans les QCM ; il s'agit d'accords de paire, pas d'obligations SEF.
+
+**Contrôles après mise à jour documentaire précédente (PR #93)** : [CI sur `main` #42108456934](https://github.com/CapGui13/QPJB/actions/runs/42108456934) réussie (intégrité, Chromium, WebKit), [catalogue #42108456817](https://github.com/CapGui13/QPJB/actions/runs/42108456817) réussi et [GitHub Pages #42109004563](https://github.com/CapGui13/QPJB/actions/runs/42109004563) réussi. Ces validations ne prouvent pas un essai sur iPhone physique.
+
+**Procédure obligatoire lors d'un prochain « go » ou audit :**
+
+1. Lire **cette section**, puis chercher l'ID dans le CSV GitHub **avant** d'examiner ou de reproposer un problème. Si l'ID est clos, consulter sa justification et la PR correspondante ; **ne pas réouvrir sans élément nouveau et contradictoire** (main, séquence, convention, SEF 2024, effet visible pour l'élève).
+2. Ne pas interpréter `OUVERT_*` dans les **colonnes historiques** comme une action restante si `revue_finale_statut` est `CLOS_*`. Privilégier les **colonnes finales** du registre enrichi.
+3. Ne pas réinterroger l'utilisatrice pour un choix qu'elle a déjà rendu. Une nouvelle question n'est justifiée que par une ambiguïté véritablement nouvelle ; documenter la pièce contradictoire.
+4. Si un défaut inédit est prouvé : relever l'ID, le contexte exact, la main, les quatre choix, l'ancienne réponse, la nouvelle solution proposée, les sources SEF et l'impact sur la progression. Vérifier les migrations ciblées du `localStorage` lorsque la bonne réponse ou la main change.
+5. Modifier le **Quiz seulement**, sur branche + PR ; tests intégrité, Chromium, WebKit et Pages réussis avant d'écrire « publié ». Mettre à jour la ligne du registre **et la feuille de route dans le même lot**, afin d'éviter tout statut obsolète.
+6. Les **677 exercices d'Entraînement** (563 enchères et 114 carte) ne font **pas** partie du registre des 1 223 QCM SEF : ne pas fusionner leurs audits, réponses ou tâches.
+
+**État sans modification supplémentaire :** aucun arbitrage V4.87 restant à solliciter ; maintenance corrective uniquement sur signalement nouveau. L'essai manuel sur iPhone physique reste recommandé, non déclaré réalisé.
 
