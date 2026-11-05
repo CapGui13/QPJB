@@ -69,7 +69,7 @@ assert.equal(countFamily.size,5,'Cinq séquences de compétition réellement con
 for(const [key,answers] of countFamily){assert.deepEqual(answers,patterns[key].slice(1),'Contrastes de décisions '+key);}
 const byNum=n=>xs.find(x=>x.id==='SEF-V478-'+n);
 assert.equal(byNum('004').shape[0],5,'4♠ sur 4♥ : dix atouts garantis');
-assert.equal(byNum('006').shape[1],5,'4♥ sur 3♠ : dix atouts Cœur');
+assert.equal(byNum('005').shape[1],5,'4♥ sur 3♠ : dix atouts Cœur');
 assert.equal(byNum('008').shape[1],4,'Passe sur 3♠ : seulement neuf Cœurs et aucune force');
 for(const n of ['003','007','011'])assert.equal(byNum(n).answer,'Passe','Pas de fit malgré les points H');
 const keys=new Set();
