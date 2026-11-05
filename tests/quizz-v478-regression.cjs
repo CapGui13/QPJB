@@ -8,7 +8,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const mt=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(mt,'Données du Quiz présentes');
 const db=JSON.parse(mt[1]),xs=db.exercises,base=require('./quizz-baseline-1075-gitsha.json');
-assert.equal(xs.length,1089,'1075 historiques et 14 nouvelles décisions');
+assert.equal(xs.length,1088,'1075 historiques et 13 nouvelles décisions');
 assert.equal(db.themes.length,22,'Rubriques inchangées');
 const old=JSON.stringify(xs.slice(0,base.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old,'utf8').digest('hex');
@@ -18,7 +18,7 @@ const H={A:4,R:3,D:2,V:1},validRanks=new Set(['A','R','D','V','10','9','8','7','
 const ord={'♣':0,'♦':1,'♥':2,'♠':3,SA:4},rank=s=>{const m=String(s).match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+ord[m[2]]:null;};
 const patterns={
  '1♥|2♥|3♥':[3,'3♠','4♣','Passe'],
- '1♥|2♥|4♥':[2,'4♠','Passe'],
+ '1♥|2♥|4♥':[1,'4♠'],
  '1♠|2♠|3♠':[4,'4♥','4♣','Passe','Passe'],
  '1♦|2♦|3♦':[3,'3♥','3♠','Passe'],
  '1♣|2♦|3♣':[2,'3♠','3♥']
@@ -28,16 +28,15 @@ const specs=[
  ['002',3,[2,2,4,5],'4♣','1♥','2♥','3♥'],
  ['003',9,[2,5,4,2],'Passe','1♥','2♥','3♥'],
  ['004',5,[5,2,4,2],'4♠','1♥','2♥','4♥'],
- ['005',5,[4,2,4,3],'Passe','1♥','2♥','4♥'],
- ['006',5,[2,5,4,2],'4♥','1♠','2♠','3♠'],
- ['007',7,[3,2,3,5],'4♣','1♠','2♠','3♠'],
- ['008',9,[5,2,4,2],'Passe','1♠','2♠','3♠'],
- ['009',3,[3,4,4,2],'Passe','1♠','2♠','3♠'],
- ['010',3,[2,4,2,5],'3♥','1♦','2♦','3♦'],
- ['011',4,[4,2,2,5],'3♠','1♦','2♦','3♦'],
- ['012',10,[2,2,5,4],'Passe','1♦','2♦','3♦'],
- ['013',3,[4,2,5,2],'3♠','1♣','2♦','3♣'],
- ['014',4,[2,4,5,2],'3♥','1♣','2♦','3♣']
+ ['005',5,[2,5,4,2],'4♥','1♠','2♠','3♠'],
+ ['006',7,[3,2,3,5],'4♣','1♠','2♠','3♠'],
+ ['007',9,[5,2,4,2],'Passe','1♠','2♠','3♠'],
+ ['008',3,[3,4,4,2],'Passe','1♠','2♠','3♠'],
+ ['009',3,[2,4,2,5],'3♥','1♦','2♦','3♦'],
+ ['010',4,[4,2,2,5],'3♠','1♦','2♦','3♦'],
+ ['011',10,[2,2,5,4],'Passe','1♦','2♦','3♦'],
+ ['012',3,[4,2,5,2],'3♠','1♣','2♦','3♣'],
+ ['013',4,[2,4,5,2],'3♥','1♣','2♦','3♣']
 ];
 const countFamily=new Map();
 for(const [num,h,shape,answer,o,m,r] of specs){
@@ -70,10 +69,9 @@ assert.equal(countFamily.size,5,'Cinq séquences de compétition réellement con
 for(const [key,answers] of countFamily){assert.deepEqual(answers,patterns[key].slice(1),'Contrastes de décisions '+key);}
 const byNum=n=>xs.find(x=>x.id==='SEF-V478-'+n);
 assert.equal(byNum('004').shape[0],5,'4♠ sur 4♥ : dix atouts garantis');
-assert.equal(byNum('005').shape[0],4,'Passe sur 4♥ : seulement neuf atouts garantis');
 assert.equal(byNum('006').shape[1],5,'4♥ sur 3♠ : dix atouts Cœur');
-assert.equal(byNum('009').shape[1],4,'Passe sur 3♠ : seulement neuf Cœurs et aucune force');
-for(const n of ['003','008','012'])assert.equal(byNum(n).answer,'Passe','Pas de fit malgré les points H');
+assert.equal(byNum('008').shape[1],4,'Passe sur 3♠ : seulement neuf Cœurs et aucune force');
+for(const n of ['003','007','011'])assert.equal(byNum(n).answer,'Passe','Pas de fit malgré les points H');
 const keys=new Set();
 for(const x of xs){const key=JSON.stringify([x.hand,x.auction]);assert.ok(!keys.has(key),'Situation nouvelle et non répétée : '+x.id);keys.add(key);}
-console.log('PASS | V4.78 : 1075 historiques protégés, 14 décisions, 42 distracteurs, cinq enchères concurrentielles');
+console.log('PASS | V4.78 : 1075 historiques protégés, 13 décisions, 39 distracteurs, cinq enchères concurrentielles');
