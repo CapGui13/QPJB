@@ -8,7 +8,7 @@
 
 ## À arbitrer individuellement
 
-- **3C — Michaëls précisés et compétition au palier de 4** : `SEF-V478-002`, `005`, `006`, `008`. Évaluer main par main avec **vulnérabilité des deux camps et mode de marque** explicités. Tant que ces conditions ne sont pas tranchées, ne pas changer la bonne réponse ni fixer arbitrairement une vulnérabilité.
+- **3C — Michaëls précisés et compétition au palier de 4** : `SEF-V478-002` est **arbitré** en tournoi par paires : **notre camp non vulnérable (vert), adversaires vulnérables (rouge), conserver 4♣** grâce aux dix atouts garantis ; **notre camp vulnérable (rouge), Passe** selon la règle pédagogique validée. La vulnérabilité favorable est ajoutée à l'énoncé du QCM existant, sans changement de bonne réponse. Les trois autres fiches `SEF-V478-005`, `006`, `008` restent à examiner **une par une** avant tout changement.
 - **4 — Multi-Landy** : **hors SEF**. Les développements (`SEF-V479-004`, `008`, `016`) doivent être examinés individuellement avec convention et relais explicites. Ne pas présenter ces conventions comme des exigences du SEF. **Aucun changement de bonne réponse sans arbitrage.**
 - Le réveil `SEF-V4-050-2` reste à arbitrer avec la vulnérabilité.
 
