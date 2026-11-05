@@ -2,13 +2,13 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
-const m=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Données Quiz intégrées');
 const db=JSON.parse(m[1]),xs=db.exercises,base=require('./quizz-baseline-1135-gitsha.json');
 assert.ok(xs.length>=1145,'1135 exercices antérieurs et 10 nouveaux');
 assert.equal(db.themes.length,22,'22 rubriques préservées');
 const historical=JSON.stringify(xs.slice(0,base.count));
-const digest=createHash('sha1').update('blob '+Buffer.byteLength(historical,'utf8')+'\\0'+historical,'utf8').digest('hex');
+const digest=createHash('sha1').update('blob '+Buffer.byteLength(historical,'utf8')+'\0'+historical,'utf8').digest('hex');
 assert.equal(digest,base.gitBlobSha,'Les 1135 exercices historiques sont intacts, ordre compris');
 const map=new Map(xs.map(x=>[x.id,x]));
 assert.equal(map.size,xs.length,'Identifiants distincts');
