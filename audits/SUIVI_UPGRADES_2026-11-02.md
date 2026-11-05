@@ -2,6 +2,8 @@
 
 > **POINT D'ENTRÉE ACTUEL — 5 novembre 2026 :** le Quiz SEF est en **V4.110**, avec **1 223 exercices** et **118 signalements historiques requalifiés**. Les paragraphes plus anciens ci-dessous (993 QCM, arbitrages en attente) sont conservés comme historique daté, pas comme liste de travail active. Pour reprendre le Quiz, lire d'abord [l'actualisation V4.110](#actualisation-finale-quiz-sef--v4110-5-novembre-2026) et surtout le [registre par identifiant des 118 clôtures](REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv). Les autres travaux Entraînement `EN-*`/`JC-*` ont un suivi distinct.
 
+> **NOUVELLE PHASE — enrichissement de la banque** : après la clôture de l'audit V4.87, préparer **300 nouveaux QCM candidats** (objectif 1 523), en **10 lots de 30**. [Cartographie complète 1 223](CARTOGRAPHIE_PEDAGOGIQUE_1223_QUIZ_SEF_V4110_2026-11-05.md) · [CSV nominatif](CARTOGRAPHIE_1223_QUIZ_SEF_V4110_2026-11-05.csv) · [plan détaillé et L01](PLAN_EXTENSION_300_QUIZ_SEF_V4110_2026-11-05.md). **À ce jour 0 exercice ajouté** par cette phase ; plan prêt, contenu non rédigé.
+
 
 Référence : `QUIZZ_REFERENCE_SEF.md`. Ne jamais changer une bonne réponse, un ID, le stockage local ou supprimer un exercice sans validation pédagogique.
 
@@ -567,3 +569,27 @@ Requalification documentée lors de la reprise finale du 5 novembre, en confront
 
 **État sans modification supplémentaire :** aucun arbitrage V4.87 restant à solliciter ; maintenance corrective uniquement sur signalement nouveau. L'essai manuel sur iPhone physique reste recommandé, non déclaré réalisé.
 
+
+---
+
+## Nouvelle phase active — Élargissement de la banque d'enchères (5 novembre 2026)
+
+**Prise en compte du « go » utilisateur : cartographie complète et plan des +300 rédigés, sans modifier le Quiz en production.** Le chantier de correction et d'arbitrage des 118 cas V4.87 demeure clos : il ne faut pas le rouvrir pour générer du volume.
+
+### Sources actuelles et méthode anti-redondance
+
+- **Cartographie source intégralement relue** : [`CARTOGRAPHIE_PEDAGOGIQUE_1223_QUIZ_SEF_V4110_2026-11-05.md`](CARTOGRAPHIE_PEDAGOGIQUE_1223_QUIZ_SEF_V4110_2026-11-05.md), basée sur le blob réel de `quizz.html` `67036b9dfc68ebc28e96d4fd38c4eb671834f65c` ; banque de **1 223 ID uniques, 22 rubriques**, aucune entrée ancienne modifiée.
+- **Matrice exhaustive** : [`CARTOGRAPHIE_1223_QUIZ_SEF_V4110_2026-11-05.csv`](CARTOGRAPHIE_1223_QUIZ_SEF_V4110_2026-11-05.csv), **1 223 lignes**, ID, rubrique, niveau, H, distribution, séquence, réponse, famille, énoncé et indicateurs lexicaux. La séquence « vide » n'est pas une preuve que les énoncés sont identiques. Les critères textuels ne constituent pas une vérification SEF.
+- **Ne pas refaire la V4.82 :** 1 145 QCM, puis **+78** avant V4.110. Différences déjà intégrées : `apres_inter` +11, `barrage` +6, `apres_fit` +4, `reponse_inter` +8, `drury` +14, `fortes` +6, `forcing` +7, `rubensohl` +6, `chelem` +16. La cartographie historique V4.82 est une archive, pas une liste de manques.
+- **Registre de décisions antérieures à préserver** : [`REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv`](REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv). Les réponses et conventions déjà arbitrées ne doivent pas être reposées sans fait contradictoire nouveau.
+
+### Cible de production, pas encore livrée
+
+- [**Plan de 300 QCM**](PLAN_EXTENSION_300_QUIZ_SEF_V4110_2026-11-05.md) : 50 Débutant, 130 Consolidation, 120 Approfondissement, soit objectif **1 523 QCM** ; **56 cellules de compétences**, **10 lots de 30** avec critères de rédaction, règles de contrôle et références des anciennes données.
+- **Écarts quantifiés** : dans `chelem`, aucune bonne réponse `4SA` (question des cinq clés) ; dans `rubensohl`, 1 séquence explicitement marquée comme intervention **2♠ naturelle** ; dans `ouv`, 2 situations textuelles de quatrième position ; dans `drury`, 4 séquences explicites après le 2♦ d'attente. Cela fonde le premier pilote, sans prétendre que les autres rubriques sont vides.
+- **L01 : 30 candidats à rédiger** : 12 décisions de déclencher 4SA après contrôles, 8 situations Rubensohl sur 1SA–(2♠ naturel), 4 ouvertures de quatrième position, 6 suites Drury. **Aucun de ces 30 n'est encore validé ni inséré** ; tous requièrent une vérification individuelle de l'unicité de la réponse, des conventions de paire et des 1 223 voisins.
+- **Étape suivante** : rédiger le registre des candidats L01 **hors `quizz.html`**, évaluer chacun (lecture du SEF 2024 et accords, main/13 cartes, H/HL/HLD, 4 choix, bonne réponse unique, explication de cette seule réponse, vulnérabilité, nouveauté), ne publier que les candidats validés. Identifier les cas litigieux plutôt que les faire approuver en chaîne par l'utilisatrice.
+- **À respecter** : SEF 2024 sans Walsh, réponse de majeure au palier de 1 non limitée hors Passe initial, Landy/Multi-Landy explicites, anciennes réponses non retouchées, aucun reset de progression existante, pas de modification de `/entrainement/`. Tracer nouveaux IDs, rapport, PR, SHA, tests Chromium/WebKit et Pages.
+- **Statut actuel** : cartographie/plan **rédigés** ; QCM nouveaux **0/300**, revues SEF des nouveaux **0/300**, publication **non démarrée**. Pas de confusion avec les 1 223 anciens QCM déjà en production.
+
+**Source de vérité pour l'extension :** le plan, la cartographie et ce suivi ; mettre à jour ces trois pièces à chaque lot, sans laisser d'anciens statuts « à faire » non datés.
