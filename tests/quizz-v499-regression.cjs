@@ -24,7 +24,7 @@ assert.match(x.explain,/12 H/);
 assert.match(x.explain,/espoir de manche/);
 assert.match(x.explain,/2SA est un relais positif/);
 assert.match(x.explain,/sa mineure et la force/);
-assert.match(x.explain,/accord de paire Multi-Landy/);
+assert.match(x.explain,/développement conventionnel du Multi-Landy/);
 assert.equal(x.sourceOriginalContext20261105V499,row.before.context);
 assert.equal(x.sourceOriginalExplain20261105V499,row.before.explain);
 assert.equal(x.sourceOriginalDifficultyReason20261105V499,row.before.difficultyReason);
