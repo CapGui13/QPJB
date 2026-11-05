@@ -1,0 +1,23 @@
+name: QPJB — vérification du lot pilote 9
+on:
+  push:
+    branches:
+      - qpjb/pilote-9-2026-11-05
+  workflow_dispatch:
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntaxe des scripts
+        run: |
+          node --check entrainement/training-pilot-v1.js
+          node --check entrainement/training-app.js
+          node --check entrainement/training-data-bootstrap.js
+      - name: Vérification des 9 fiches
+        run: node tests/qpjb-pilote-9.test.cjs
