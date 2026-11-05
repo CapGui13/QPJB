@@ -8,7 +8,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const mt=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(mt,'Données du Quiz présentes');
 const db=JSON.parse(mt[1]),xs=db.exercises,base=require('./quizz-baseline-1075-gitsha.json');
-assert.equal(xs.length,1088,'1075 historiques et 13 nouvelles décisions');
+assert.ok(xs.length>=1088,'1075 historiques et 13 décisions V4.78 protégés lors des enrichissements ultérieurs');
 assert.equal(db.themes.length,22,'Rubriques inchangées');
 const old=JSON.stringify(xs.slice(0,base.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old,'utf8').digest('hex');
