@@ -30,8 +30,8 @@ Ordre ♠ / ♥ / ♦ / ♣. La force **15–17 H** et la forme régulière (4�
 | SEF-V481-005 | 2♥ (naturel) → 3♦ (Texas impossible : Stayman forcing de manche) | ARD / 84 / RV96 / D843 | 15 | **3♥** | 3♠, 3SA, 4♠ |
 | SEF-V481-006 | 2♥ (naturel) → 3♦ (Texas impossible : Stayman forcing de manche) | R8 / 873 / AD9 / AD1086 | 15 | **3♥** | 3♠, 3SA, 4♠ |
 | SEF-V481-007 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | A83 / RV94 / AR8 / D76 | 17 | **3♥** | 3♦, 3♠, 3SA |
-| SEF-V481-008 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | D8 / AR94 / R1083 / R76 | 15 | **3♥** | 3♦, 3♠, 3SA |
-| SEF-V481-009 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | AR94 / D83 / R107 / DV6 | 15 | **3♠** | 3♦, 3♥, 3SA |
+| SEF-V481-008 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | D8 / AR94 / A1083 / D76 | 15 | **3♥** | 3♦, 3♠, 3SA |
+| SEF-V481-009 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | AR94 / D83 / A107 / D106 | 15 | **3♠** | 3♦, 3♥, 3SA |
 | SEF-V481-010 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | A83 / RV9 / AR8 / 9732 | 15 | **3SA** | 3♦, 3♥, 3♠ |
 | SEF-V481-011 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | D83 / A97 / AR106 / D76 | 15 | **3SA** | 3♦, 3♥, 3♠ |
 | SEF-V481-012 | 2♦ (naturel) → 3♣ (Texas impossible : Stayman forcing de manche) | AR8 / D97 / 84 / AD1065 | 15 | **3♦** | 3♥, 3♠, 3SA |
@@ -50,7 +50,7 @@ Ordre ♠ / ♥ / ♦ / ♣. La force **15–17 H** et la forme régulière (4�
 - **SEF-V481-006 (3♥)** : 3♠ suggère quatre Piques alors qu'il n'y en a que deux ; 3SA est mal gardé à Cœur ; 4♠ exclut le partenaire de la recherche.
 - **SEF-V481-007 (3♥)** : 3♦ nie à tort le traitement de la majeure quatrième avec tenue ; 3♠ annonce des Piques quatrième inexistants ; 3SA masque les quatre Cœurs.
 - **SEF-V481-008 (3♥)** : 3♦ fait perdre les quatre Cœurs à montrer ; 3♠ est impossible comme description d'une majeure seconde ; 3SA cacherait le fit Cœur potentiel.
-- **SEF-V481-009 (3♠)** : 3♦ nie à tort un arrêt malgré Roi-10 ; 3♥ promettrait quatre Cœurs ; 3SA peut masquer le fit Pique 4-4 encore à explorer.
+- **SEF-V481-009 (3♠)** : 3♦ nie à tort un arrêt grâce à l'As ; 3♥ promettrait quatre Cœurs ; 3SA peut masquer le fit Pique 4-4 encore à explorer.
 - **SEF-V481-010 (3SA)** : 3♦ nie à tort l'arrêt As-Roi ; 3♥/3♠ promettent une majeure quatrième absente.
 - **SEF-V481-011 (3SA)** : 3♦ ne correspond pas à l'arrêt Carreau évident ; 3♥/3♠ inventeraient une quatrième carte majeure.
 - **SEF-V481-012 (3♦)** : 3♥/3♠ inventeraient quatre cartes majeures ; 3SA annoncerait une tenue Carreau qui n'existe pas.
@@ -60,6 +60,8 @@ Ordre ♠ / ♥ / ♦ / ♣. La force **15–17 H** et la forme régulière (4�
 - **SEF-V481-016 (3♠)** : 3SA suppose tenir les Cœurs adverses, alors que l'ouvreur n'y a aucune carte utile ; 4♣/4♠ ne rectifient pas le Texas au meilleur palier.
 
 Ces critiques figurent dans l'audit et non dans les explications des élèves : le corrigé affiché explique uniquement la **bonne** enchère.
+
+**Rectification de précision lors de la relecture :** dans les exercices 008 et 009, la tenue Carreau a été remplacée par un As, à total H constant (15 H dans les deux cas), pour éviter de qualifier de certaine une garde reposant seulement sur le Roi. Les réponses et les formes sont inchangées.
 
 ## Vérifications automatiques et limites
 
