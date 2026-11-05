@@ -995,6 +995,12 @@ for(const id of ["SEF-V3-044-1","SEF-V3-045-2","SEF-V3-046-3"]){
 const ntReply=exercises.find(x=>x.id==='SEF-V421-004');
 assert.equal(ntReply?.h,10,'Response of 1SA must not be 11 H with a major opening');
 assert.ok(html.includes('revisedSefNov2026')&&html.includes('revisedSefProgress'),'Corrected SEF progress is archived without touching unrelated records');
+// V4.110 : une correction de bonne réponse doit disposer d'une migration de progression ciblée.
+for(const [id,expected] of Object.entries({'SEF-047-1':'1♥','SEF-N112-2':'1♥','SEF-N113-1':'1♠'})){
+  assert.equal(exercises.find(x=>x.id===id)?.answer,expected,'Corrected non-Walsh answer: '+id);
+  assert.ok(html.includes("'"+id+"':'sef-2026-11-05-v4110-"),
+    'A former false mastery is invalidated for this exercise only: '+id);
+}
 for(const x of []){
  
  
