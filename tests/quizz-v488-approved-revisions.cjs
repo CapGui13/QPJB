@@ -1,8 +1,15 @@
 'use strict';
 const assert=require('node:assert/strict');
 const approved=require('./quizz-v488-approved-revisions.json');
+const editorial=require('./quizz-v489-approved-revisions.json');
 function normalizedPrefix(exercises,count){
- return exercises.slice(0,count).map(x=>{
+ return exercises.slice(0,count).map(original=>{
+  let x=original;
+  const correction=editorial[x.id];
+  if(correction){
+   assert.deepStrictEqual(x,correction.after,'Only exact V4.89 editorial changes are allowed for '+x.id);
+   x=correction.before;
+  }
   const item=approved[x.id];
   if(!item)return x;
   assert.deepStrictEqual(x,item.after,'Only exact V4.88-approved changes are allowed for '+x.id);
