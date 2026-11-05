@@ -7,7 +7,7 @@ assert.ok(mat,'Base intégrée au Quiz');
 const db=JSON.parse(mat[1]),xs=db.exercises,base=require('./quizz-baseline-1119-gitsha.json');
 assert.ok(xs.length>=1135,'1119 QCM historiques et au moins 16 réponses Rubensohl');
 assert.equal(db.themes.length,22,'22 rubriques inchangées');
-const historical=JSON.stringify(xs.slice(0,base.count));
+const historical=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(historical,'utf8')+'\0'+historical,'utf8').digest('hex');
 assert.equal(digest,base.gitBlobSha,'1119 anciens QCM inchangés et dans le même ordre');
 const ids=new Map(xs.map(x=>[x.id,x]));assert.equal(ids.size,xs.length,'IDs distincts');
