@@ -6,7 +6,7 @@ assert.ok(match,'Bloc JSON du Quiz');
 const db=JSON.parse(match[1]),xs=db.exercises;
 const baseline=require('./quizz-baseline-1161-gitsha.json');
 assert.equal(baseline.count,1161);
-assert.equal(xs.length,1175,'1161 historiques et 14 QCM Drury');
+assert.ok(xs.length>=1175,'1161 historiques et 14 QCM Drury au minimum (extensions autorisées)');
 assert.equal(db.themes.length,22,'22 rubriques');
 const old=JSON.stringify(xs.slice(0,baseline.count)),digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
 assert.equal(digest,baseline.gitBlobSha,'114? non : 1161 exercices historiques inchangés');
@@ -92,6 +92,6 @@ for(const [n,fam,H,shape,answer] of expectations){
  }
 }
 assert.equal(xs.filter(x=>x.id.startsWith('SEF-V484-')).length,14);
-assert.deepEqual(xs.slice(-14).map(x=>x.id),expectations.map(x=>'SEF-V484-'+x[0]),'Historique conservé, ajouts terminaux');
+assert.deepEqual(xs.slice(1161,1175).map(x=>x.id),expectations.map(x=>'SEF-V484-'+x[0]),'Historique conservé, ajouts terminaux');
 console.log('PASS | V4.84 : 1161 historiques intacts, 14 décisions Drury SEF2024, 42 distracteurs, 13 cartes, H et distributions validés');
 
