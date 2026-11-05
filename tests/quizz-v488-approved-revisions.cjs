@@ -14,9 +14,15 @@ const currentV498=require('./quizz-v498-approved-revisions.json');
 const currentV499=require('./quizz-v499-approved-revisions.json');
 const currentV4100=require('./quizz-v4100-approved-revisions.json');
 const currentV4101=require('./quizz-v4101-approved-revisions.json');
+const currentV4102=require('./quizz-v4102-approved-revisions.json');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
   let x=original;
+  const v4102=currentV4102[x.id];
+  if(v4102){
+   assert.deepStrictEqual(x,v4102.after,'Only exact V4.102 approved redundancy improvements allowed for '+x.id);
+   x=v4102.before;
+  }
   const v4101=currentV4101[x.id];
   if(v4101){
    assert.deepStrictEqual(x,v4101.after,'Only exact V4.101 approved distractor changes allowed for '+x.id);
