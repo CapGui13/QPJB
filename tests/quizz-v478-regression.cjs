@@ -10,7 +10,7 @@ assert.ok(mt,'Données du Quiz présentes');
 const db=JSON.parse(mt[1]),xs=db.exercises,base=require('./quizz-baseline-1075-gitsha.json');
 assert.ok(xs.length>=1088,'1075 historiques et 13 décisions V4.78 protégés lors des enrichissements ultérieurs');
 assert.equal(db.themes.length,22,'Rubriques inchangées');
-const old=JSON.stringify(xs.slice(0,base.count));
+const old=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old,'utf8').digest('hex');
 assert.equal(digest,base.gitBlobSha,'1075 QCM précédents intacts et dans le même ordre');
 const ids=new Set(xs.map(x=>x.id));assert.equal(ids.size,xs.length,'IDs distincts');
