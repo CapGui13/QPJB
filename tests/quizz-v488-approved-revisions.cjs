@@ -12,9 +12,15 @@ const currentV496=require('./quizz-v496-approved-revisions.json');
 const currentV497=require('./quizz-v497-approved-revisions.json');
 const currentV498=require('./quizz-v498-approved-revisions.json');
 const currentV499=require('./quizz-v499-approved-revisions.json');
+const currentV4100=require('./quizz-v4100-approved-revisions.json');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
   let x=original;
+  const v4100=currentV4100[x.id];
+  if(v4100){
+   assert.deepStrictEqual(x,v4100.after,'Only exact V4.100 approved editorial changes allowed for '+x.id);
+   x=v4100.before;
+  }
   const v499=currentV499[x.id];
   if(v499){
    assert.deepStrictEqual(x,v499.after,'Only exact V4.99 user-approved Multi-Landy changes allowed for '+x.id);
