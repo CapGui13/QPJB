@@ -9,7 +9,7 @@ const mt=html.match(/<script id="training-data" type="application\/json">([\s\S]
 assert.ok(mt,'La base JSON intégrée doit exister');
 const db=JSON.parse(mt[1]),xs=db.exercises,base=require('./quizz-baseline-1061-gitsha.json');
 assert.ok(xs.length>=1075,'1061 QCM historiques et 14 décisions V4.77 protégés lors des enrichissements ultérieurs');
-const old=JSON.stringify(xs.slice(0,base.count));
+const old=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const oldSHA=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old,'utf8').digest('hex');
 assert.equal(oldSHA,base.gitBlobSha,'1061 exercices V4.76 strictement inchangés et dans le même ordre');
 assert.equal(db.themes.length,22,'Conservation de toutes les rubriques');

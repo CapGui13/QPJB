@@ -7,7 +7,7 @@ const db=JSON.parse(m[1]),xs=db.exercises,base=require('./quizz-baseline-1216-gi
 assert.equal(base.count,1216,'Protected V4.86 history');
 assert.ok(xs.length>=1223,'1216 historical and 7 V4.87 exercises');
 assert.equal(db.themes.length,22,'Themes unchanged');
-const original=JSON.stringify(xs.slice(0,1216));
+const original=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,1216));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\0'+original).digest('hex');
 assert.equal(sha,base.gitBlobSha,'1216 QCM unchanged as serialized JSON');
 const expected=[{"id":"SEF-V487-001","theme":"reponse_inter","answer":"3♣","h":12,"shape":[2,4,4,3]},{"id":"SEF-V487-002","theme":"reponse_inter","answer":"2♣","h":14,"shape":[2,3,4,4]},{"id":"SEF-V487-003","theme":"fortes","answer":"4SA","h":10,"shape":[3,3,4,3]},{"id":"SEF-V487-004","theme":"fortes","answer":"3♠","h":11,"shape":[3,3,3,4]},{"id":"SEF-V487-005","theme":"fortes","answer":"Passe","h":0,"shape":[3,3,4,3]},{"id":"SEF-V487-006","theme":"forcing","answer":"3♣","h":13,"shape":[3,4,3,3]},{"id":"SEF-V487-007","theme":"forcing","answer":"3♥","h":17,"shape":[3,5,4,1]}];

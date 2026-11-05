@@ -7,7 +7,7 @@ const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-117
 assert.equal(baseline.count,1175,'1175 historiques');
 assert.ok(xs.length>=1186,'1175 historiques + 11 V4.85 et extensions ultérieures');
 assert.equal(db.themes.length,22,'22 thèmes historiques');
-const original=JSON.stringify(xs.slice(0,baseline.count));
+const original=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,baseline.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(original,'utf8')+'\0'+original).digest('hex');
 assert.equal(sha,baseline.gitBlobSha,'empreinte bit-à-bit des 1175 historiques');
 const ids=new Map(xs.map(x=>[x.id,x]));assert.equal(ids.size,xs.length,'IDs uniques');

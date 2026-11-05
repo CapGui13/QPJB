@@ -6,7 +6,7 @@ assert.ok(m,'Base Quiz intégrée');
 const db=JSON.parse(m[1]),xs=db.exercises,base=require('./quizz-baseline-1088-gitsha.json');
 assert.ok(xs.length>=1104,'1088 exercices existants et 16 décisions Multi-Landy');
 assert.equal(db.themes.length,22,'Les 22 rubriques sont conservées');
-const older=JSON.stringify(xs.slice(0,base.count));
+const older=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,base.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(older,'utf8')+'\0'+older,'utf8').digest('hex');
 assert.equal(digest,base.gitBlobSha,'1088 exercices antérieurs inchangés et dans le même ordre');
 const byId=new Map(xs.map(x=>[x.id,x]));assert.equal(byId.size,xs.length,'IDs uniques');

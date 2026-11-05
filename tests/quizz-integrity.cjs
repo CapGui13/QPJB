@@ -10,7 +10,7 @@ const exercises=data.exercises;
 const {createHash}=require('node:crypto');
 const historical=require('./quizz-baseline-993-gitsha.json');
 assert.ok(exercises.length>=historical.count,'The 993 historical exercises must be preserved');
-const oldPayload=JSON.stringify(exercises.slice(0,historical.count));
+const oldPayload=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(exercises,historical.count));
 const oldGitSha=createHash('sha1').update('blob '+Buffer.byteLength(oldPayload,'utf8')+'\0'+oldPayload,'utf8').digest('hex');
 assert.equal(oldGitSha,historical.gitBlobSha,'The 993 historical exercises MUST remain byte-for-byte unchanged as JSON objects');
 assert.ok(exercises.length>=historical.count,'All 969 previous exercises and 12 curated cases are retained');

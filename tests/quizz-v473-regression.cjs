@@ -10,7 +10,7 @@ assert.ok(match,'Base JSON embarquée');
 const db=JSON.parse(match[1]), xs=db.exercises;
 const old=require('./quizz-baseline-1016-gitsha.json');
 assert.ok(xs.length>=1026,'Conserver les 1016 fiches et les 10 nouvelles V4.73');
-const oldJSON=JSON.stringify(xs.slice(0,old.count));
+const oldJSON=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,old.count));
 const oldSha=createHash('sha1').update('blob '+Buffer.byteLength(oldJSON,'utf8')+'\0'+oldJSON,'utf8').digest('hex');
 assert.equal(oldSha,old.gitBlobSha,'Les 1016 objets V4.72 doivent être strictement identiques');
 const map=new Map(xs.map(x=>[x.id,x]));

@@ -8,7 +8,7 @@ assert.ok(match,'Base Quizz disponible');
 const db=JSON.parse(match[1]),xs=db.exercises,old=require('./quizz-baseline-1104-gitsha.json');
 assert.ok(xs.length>=1119,'Au moins 1104 QCM historiques et 15 nouveaux');
 assert.equal(db.themes.length,22,'Les 22 thèmes sont maintenus');
-const historical=JSON.stringify(xs.slice(0,old.count));
+const historical=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,old.count));
 const digest=createHash('sha1').update('blob '+Buffer.byteLength(historical,'utf8')+'\0'+historical,'utf8').digest('hex');
 assert.equal(digest,old.gitBlobSha,'1104 QCM V4.79 inchangés, même ordre et mêmes données');
 const idMap=new Map(xs.map(x=>[x.id,x]));

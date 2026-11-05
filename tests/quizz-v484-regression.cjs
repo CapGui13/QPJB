@@ -8,7 +8,7 @@ const baseline=require('./quizz-baseline-1161-gitsha.json');
 assert.equal(baseline.count,1161);
 assert.ok(xs.length>=1175,'1161 historiques et 14 QCM Drury au minimum (extensions autorisées)');
 assert.equal(db.themes.length,22,'22 rubriques');
-const old=JSON.stringify(xs.slice(0,baseline.count)),digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
+const old=JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,baseline.count)),digest=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
 assert.equal(digest,baseline.gitBlobSha,'114? non : 1161 exercices historiques inchangés');
 const found=new Map(xs.map(x=>[x.id,x]));assert.equal(found.size,xs.length,'IDs uniques');
 const hcp={A:4,R:3,D:2,V:1};

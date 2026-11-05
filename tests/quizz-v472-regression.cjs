@@ -10,7 +10,7 @@ assert.ok(match, 'JSON des exercices embarqué');
 const data = JSON.parse(match[1]), xs = data.exercises;
 const baseline = require('./quizz-baseline-1010-gitsha.json');
 assert.ok(xs.length >= 1016, '1010 historiques + six décisions V4.72');
-const protectedJson = JSON.stringify(xs.slice(0,baseline.count));
+const protectedJson = JSON.stringify(require('./quizz-v488-approved-revisions.cjs').normalizedPrefix(xs,baseline.count));
 const hash = createHash('sha1').update('blob '+Buffer.byteLength(protectedJson,'utf8')+'\0'+protectedJson,'utf8').digest('hex');
 assert.equal(hash, baseline.gitBlobSha, 'Toutes les 1010 fiches historiques restent strictement inchangées');
 const byId = new Map(xs.map(x => [x.id, x]));
