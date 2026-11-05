@@ -4,12 +4,12 @@ const {normalizedPrefix,approved}=require('./quizz-v488-approved-revisions.cjs')
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz SEF JSON embedded');
-const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-1216-gitsha.json');
+const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-1223-gitsha.json');
 assert.equal(xs.length,1223,'V4.88 modifies 4 solutions, no new exercises');
 assert.equal(db.themes.length,22,'22 rubriques preserved');
 const old=JSON.stringify(normalizedPrefix(xs,baseline.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
-assert.equal(sha,baseline.gitBlobSha,'Old 1216 records exactly reconstructable except approved V4.88 diffs');
+assert.equal(sha,baseline.gitBlobSha,'Old 1223 records exactly reconstructable except approved V4.88 diffs');
 const actual=Object.keys(approved).sort(),ids=['SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005'].sort();
 assert.deepEqual(actual,ids,'Exactly 4 authorized exercises');
 const want={'SEF-V44-060':'1♦','SEF-V416-012':'4♥','SEF-V416-013':'4♠','SEF-C-005':'Passe'};
@@ -33,4 +33,4 @@ for(const id of ids){
  assert.ok(html.includes("'"+id+"':'sef-2026-11-05-v488-"),id+' per-question progress migration present');
 }
 assert.equal(new Set(xs.map(x=>x.id)).size,1223,'No duplicate IDs');
-console.log('PASS | V4.88: 4 corrected answers, 1216 baseline protected via exact authorized historical snapshots; 1223 exercises preserved');
+console.log('PASS | V4.88: 4 corrected answers, 1223 baseline protected via exact authorized historical snapshots; 1223 exercises preserved');
