@@ -644,9 +644,12 @@ function renderLegacyDiagram(x){
  if(Array.isArray(x?.holdings)&&x.holdings.length===2&&
     x.holdings.every(h=>Array.isArray(h?.rows)&&h.rows.length>0)){
   const seats=buildCardSeats(x);
+  // Le champ lead peut aussi raconter la suite du premier pli ; seule
+  // l'entame elle-même doit être matérialisée sur le diagramme.
+  const firstLead=String(x.lead||'').split(/[,;]|\bpuis\b/i)[0].trim();
   return dealViewer(seats,{perspective:playerSeatFromExercise(x,seats),
    defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',
-   contract:x.contract||'',lead:x.lead||'',leadSeat:resolveLeadSeat(x)});
+   contract:x.contract||'',lead:firstLead,leadSeat:resolveLeadSeat(x)});
  }
  let d=parseLegacyDeal(x);
  let ok=['north','south','east','west'].some(p=>d.seats[p]?.rows?.length);
