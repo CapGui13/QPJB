@@ -7,10 +7,10 @@ const match=html.match(/<script id="training-data" type="application\/json">([\s
 assert.ok(match,'training-data present');
 const data=JSON.parse(match[1]);
 const exercises=data.exercises;
-assert.equal(exercises.length,1253,'Lot L01: 1223 anciens + 30 nouveaux');
-assert.match(data.description,/1253 QCM/,'Affichage du total');
+assert.ok(exercises.length>=1253,'Lot L01: 1223 anciens + 30 nouveaux préservés');
+assert.match(data.description,/1263 QCM/,'Affichage du total actuel');
 const byId=new Map(exercises.map(x=>[x.id,x]));
-assert.equal(byId.size,1253,'IDs uniques');
+assert.equal(byId.size,exercises.length,'IDs uniques');
 const lote=exercises.filter(x=>/^SEF-L01-[A-F]-\d\d$/.test(x.id));
 assert.equal(lote.length,30,'30 identifiants L01');
 const categories={A:'chelem',B:'chelem',C:'rubensohl',D:'rubensohl',E:'ouv',F:'drury'};
