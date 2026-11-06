@@ -439,7 +439,7 @@ const lazyBase=JSON.parse(baseMatch[1]);
 check(lazyBase.counts.bidding===618&&lazyBase.counts.play===169,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===81&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===82&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
