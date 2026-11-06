@@ -5,7 +5,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz SEF JSON embedded');
 const db=JSON.parse(m[1]),xs=db.exercises,baseline=require('./quizz-baseline-1223-gitsha.json');
-assert.equal(xs.length,1223,'V4.88 modifies 4 solutions, no new exercises');
+assert.ok(xs.length>=1223,'V4.88 historical baseline retained even if later lots add exercises');
 assert.equal(db.themes.length,22,'22 rubriques preserved');
 const old=JSON.stringify(normalizedPrefix(xs,baseline.count));
 const sha=createHash('sha1').update('blob '+Buffer.byteLength(old,'utf8')+'\0'+old).digest('hex');
@@ -32,5 +32,5 @@ for(const id of ids){
  assert.equal(x.pedagogicalReview20261105V488.previousAnswer,a.before.answer,id+' explicit trace');
  assert.ok(html.includes("'"+id+"':'sef-2026-11-05-v488-"),id+' per-question progress migration present');
 }
-assert.equal(new Set(xs.map(x=>x.id)).size,1223,'No duplicate IDs');
-console.log('PASS | V4.88: 4 corrected answers, 1223 baseline protected via exact authorized historical snapshots; 1223 exercises preserved');
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'No duplicate IDs in historical plus new exercises');
+console.log('PASS | V4.88: 4 corrected answers, 1223 historical records protected; '+xs.length+' exercises present');
