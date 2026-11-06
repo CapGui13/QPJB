@@ -192,7 +192,54 @@ for(const ex of lot02CardLessons){
     error(ex.id,'lot02-unaltered-source-duplicate','BH-135 must not invent which hand owns ♣6');
 }
 
-if(stats.bidding!==601||stats.play!==144||stats.cardQcm!==84)
+
+// Lot 03 : les dix plans libres doivent conserver uniquement Nord et Sud,
+// sans doublon de carte, et garder leur entame (BH-074 = ♠5 par Ouest).
+const expectedLot03CardIds=[
+ 'JC-BH-056-P2','JC-BH-057-P2','JC-BH-063-P2','JC-BH-065-P2',
+ 'JC-BH-066-P2','JC-BH-068-P2','JC-BH-074-P2','JC-BH-075-P2',
+ 'JC-BH-076-P2','JC-BH-078-P2'
+];
+const lot03Cards=D.play.filter(x=>x.playEditorialStatus==='lot03_double_lecture_20261106');
+if(lot03Cards.length!==10)
+ error('lot03','wrong-card-count','Expected 10 new plan-libre lessons, got '+lot03Cards.length);
+if(JSON.stringify(lot03Cards.map(x=>x.id))!==JSON.stringify(expectedLot03CardIds))
+ error('lot03','card-selection-changed','Only the 10 double-reviewed original references may be added');
+for(const ex of lot03Cards){
+ if(ex.exerciseFormat==='carte_qcm'||ex.options?.length)
+  error(ex.id,'lot03-wrong-format','A free-response plan must not be a single-answer QCM');
+ if(!Array.isArray(ex.holdings)||ex.holdings.length!==2){
+  error(ex.id,'lot03-hidden-hand-risk','Only two source-proven hands are allowed');continue;
+ }
+ const seen=new Set(),seats=actual.buildCardSeats(ex);
+ const known=Object.entries(seats).filter(([,h])=>h?.rows?.length);
+ if(known.length!==2||!seats.north||!seats.south||seats.east||seats.west)
+  error(ex.id,'lot03-wrong-seats',JSON.stringify(known.map(([p])=>p)));
+ if(actual.playerSeatFromExercise(ex,seats)!=='south')
+  error(ex.id,'lot03-wrong-declarer','South must be the visible declarer');
+ for(const h of ex.holdings){
+  let total=0;
+  for(const row of h.rows){
+   const ranks=rankChars(row.ranks);
+   if(!ranks){error(ex.id,'lot03-bad-rank',JSON.stringify(row));continue}
+   total+=ranks.length;
+   for(const rank of ranks){
+    const card=cardKey(rank,row.suit);
+    if(seen.has(card))error(ex.id,'lot03-duplicate-known-card',card);
+    seen.add(card);
+   }
+  }
+  if(total!==13)error(ex.id,'lot03-incomplete-source-hand',h.label+' has '+total);
+ }
+ if(!ex.prompt?.trim()||!ex.answerText?.trim()||!ex.sourceAudit?.known_hands_only)
+  error(ex.id,'lot03-missing-source-or-solution','Plan and source must be documented');
+ if(ex.id==='JC-BH-074-P2'&&
+   (ex.lead!=='♠5 (Ouest)'||!ex.prompt.includes('♠9 d’Est')||
+    !ex.prompt.includes('♠R')))
+  error(ex.id,'lot03-lead-sequence','Only opening lead ♠5 is shown on the diagram');
+}
+
+if(stats.bidding!==604||stats.play!==154||stats.cardQcm!==84)
   error('dataset','unexpected-counts',JSON.stringify(stats));
 if(stats.openingLeadQuestions!==24)
   error('dataset','opening-lead-lessons-missing',String(stats.openingLeadQuestions));

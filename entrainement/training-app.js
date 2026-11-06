@@ -638,13 +638,18 @@ function parseLegacyDeal(x){const raw=(x.questionText||'').replace(/\r/g,'');con
 function decodeInlineSvg(uri){if(!/^data:image\/svg\+xml;base64,/i.test(uri||''))return'';try{const raw=atob(String(uri).split(',')[1]);const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(bytes)}catch(e){return''}}
 function parseSvgDeal(x){const svg=decodeInlineSvg(x&&x.image);if(!svg)return {seats:{},contract:'',lead:''};const texts=[];for(const m of svg.matchAll(/<text\b([^>]*)>([\s\S]*?)<\/text>/g)){const attrs=m[1]||'';const body=(m[2]||'').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').trim();const xm=(attrs.match(/\bx="([^"]+)"/)||[])[1]||'';const ym=(attrs.match(/\by="([^"]+)"/)||[])[1]||'';texts.push({x:parseFloat(xm)||0,y:parseFloat(ym)||0,text:body})}if(!texts.length)return {seats:{},contract:'',lead:''};const header=(texts.find(t=>/entame\s*:/i.test(t.text))||{}).text||'';const hm=header.match(/^(.+?)\s*[—-]\s*Entame\s*:\s*(.+)$/i);const contract=cleanRanks(hm?hm[1]:header.split(/\s*[—-]\s*/)[0]||'');const lead=cleanRanks(hm?hm[2]:'');const seats={};for(const [label,pos,title] of [['N','north','Mort · Nord'],['S','south','Vous · Sud'],['E','east','Vous · Est'],['O','west','Vous · Ouest']]){const anchor=texts.find(t=>t.text===label);if(!anchor)continue;const after=texts.filter(t=>t.y>anchor.y+8&&t.y<anchor.y+120).sort((a,b)=>a.y-b.y||a.x-b.x);const rows=[];for(let i=0;i<after.length-1;i++){if('♠♥♦♣'.includes(after[i].text)){rows.push({suit:after[i].text,ranks:cleanRanks(after[i+1].text)})}}if(rows.length)seats[pos]={title,rows}}return {seats,contract,lead}}
 function renderLegacyDiagram(x){
- // Les exercices de la reprise C indiquent seulement deux mains authentifiées.
- // En défense, elles peuvent être Nord et Est : ne pas les rebaptiser Nord/Sud.
- if(x?.sourceFormat==='two_known_hands_20261106'&&Array.isArray(x.holdings)){
+ // Les plans libres importés du lot 02 et du lot 03 portent deux mains
+ // connues, indépendamment de la convention de nommage sourceFormat.
+ // Afficher seulement les mains effectivement fournies, sans déduire Ouest/Est.
+ if(Array.isArray(x?.holdings)&&x.holdings.length===2&&
+    x.holdings.every(h=>Array.isArray(h?.rows)&&h.rows.length>0)){
   const seats=buildCardSeats(x);
+  // Le champ lead peut aussi raconter la suite du premier pli ; seule
+  // l'entame elle-même doit être matérialisée sur le diagramme.
+  const firstLead=String(x.lead||'').split(/[,;]|\bpuis\b/i)[0].trim();
   return dealViewer(seats,{perspective:playerSeatFromExercise(x,seats),
    defense:x.type==='defense',title:x.type==='defense'?'Situation de défense':'Plan de jeu',
-   contract:x.contract||'',lead:x.lead||'',leadSeat:resolveLeadSeat(x)});
+   contract:x.contract||'',lead:firstLead,leadSeat:resolveLeadSeat(x)});
  }
  let d=parseLegacyDeal(x);
  let ok=['north','south','east','west'].some(p=>d.seats[p]?.rows?.length);

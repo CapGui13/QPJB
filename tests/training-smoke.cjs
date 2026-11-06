@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261106l02fix1')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261106l02fix1'),
+check(html.includes('training-data-bootstrap.js?v=20261106l03')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261106l03'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -136,7 +136,13 @@ check(app.includes('defense-adjacent')&&app.includes('const defenseSide='),'adja
 check(integrated.includes('prefers-reduced-motion'),'reduced motion is supported');
 const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
-check(raw.length<1200000,'initial exercise data stays compact (no embedded WebP facsimiles)');
+// Seul le bootstrap est chargé à l'ouverture : le fichier maître sert aux audits
+// et grandit naturellement avec les nouveaux exercices, sans ralentir l'accueil.
+const lazyInit=read('entrainement/training-data-bootstrap.js');
+check(lazyInit.length<8000&&!lazyInit.includes('data:image/'),
+ 'initial lazy-loaded metadata stays compact without embedded binary facsimiles');
+check(raw.length<1500000&&!raw.includes('data:image/webp;base64,'),
+ 'complete source dataset remains bounded without embedded WebP facsimiles');
 const data=JSON.parse(raw.slice(8,-1));
 // Les enchères sont triées dans la vue seulement ; l'ordre source, la bonne
 // réponse et les identifiants restent inchangés.
@@ -197,8 +203,8 @@ for(const key of extensionPlayIds){const q=data.play.find(x=>x.id===key);
  'extension card: only two certified 13-card hands: '+key);
 }
 check(data.play.find(x=>x.id==='JC-BH-116-P2').holdings[1].label==='Vous · Est'&&
- app.includes("x?.sourceFormat==='two_known_hands_20261106'"),
- 'extension defense: East is not incorrectly shown as South');
+ app.includes('x.holdings.length===2')&&app.includes('buildCardSeats(x)'),
+ 'extension defense: explicit East seat remains East regardless of sourceFormat');
 check(!data.bidding.some(x=>['EN-BH-129-04','EN-BH-032-P2-04','EN-BH-040-P2-06'].includes(x.id))&&
  !data.play.some(x=>x.id==='JC-BH-117-P2'),
  'extension blocked candidates remain excluded');
@@ -250,8 +256,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===144&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===144,
- '144 card exercises, including the 17 valid candidates du lot 02, accessible');
+check(data.play.length===154&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===154,
+ '154 card exercises, including the 17 lot 02 and 10 lot 03 plans, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -339,10 +345,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261106l02fix1')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261106l02fix1'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261106l03')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261106l03'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v57'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v58'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -422,18 +428,18 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===601&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===601,
- '601 bidding exercises, including the 15 validated candidates du lot 02, accessible');
+check(data.bidding.length===604&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===604,
+ '604 bidding exercises, including 15 lot 02 and 3 lot 03 candidates, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===601&&lazyBase.counts.play===144,
+check(lazyBase.counts.bidding===604&&lazyBase.counts.play===154,
  'bootstrap count reflects unavailable bidding and card exercises');
-check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===80&&
+check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===81&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
@@ -494,4 +500,28 @@ check(!!slam007&&!!correctedHearts&&correctedHearts.correct==='3♥'&&
  slam007.pedagogicalAudit_20261103c?.internalReference?.includes('EN-BH-077-04')&&
  slam007.reviewStatus!=='a_verifier',
  'JC-007 SEF: historical direct slam preserved, pedagogical guidance corrected');
+// Lot 03 : seuls les 13 candidats à double expertise concordante sont importés.
+const lot03ImportedBidIds=['EN-BH-029-03','EN-BH-095-06','EN-BH-108-06'];
+const lot03ImportedCardIds=[
+ 'JC-BH-056-P2','JC-BH-057-P2','JC-BH-063-P2','JC-BH-065-P2',
+ 'JC-BH-066-P2','JC-BH-068-P2','JC-BH-074-P2','JC-BH-075-P2',
+ 'JC-BH-076-P2','JC-BH-078-P2'
+];
+check(lot03ImportedBidIds.every(id=>data.bidding.some(x=>x.id===id))&&
+ lot03ImportedCardIds.every(id=>data.play.some(x=>x.id===id)),
+ 'All thirteen independently confirmed Lot 03 exercises exist in the app');
+check(data.play.filter(x=>x.playEditorialStatus==='lot03_double_lecture_20261106').length===10&&
+ lot03ImportedBidIds.every(id=>data.bidding.find(x=>x.id===id)?.reviewStatus==='relecture_pedagogique_necessaire'),
+ 'Lot 03 new exercises have explicit documentary review status');
+const lot03Excluded=['EN-BH-029-04','EN-BH-029-06','JC-BH-085-P2'];
+check(lot03Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)),
+ 'Unresolved Lot 03 discrepancies must not be imported');
+check(lazyBase.categories.find(c=>c.id==='2sa')?.count===14&&
+ lazyBase.categories.find(c=>c.id==='reveil')?.count===6&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===81,
+ 'Lot 03 categories retain exact expected counts');
+check(data.play.find(x=>x.id==='JC-BH-074-P2')?.lead==='♠5 (Ouest)'&&
+ data.play.find(x=>x.id==='JC-BH-074-P2')?.prompt.includes('♠9 d’Est'),
+ 'BH-074 lead appears alone on the diagram while the complete first trick is described');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
