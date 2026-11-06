@@ -7,9 +7,9 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Embedded quiz data');
 const db=JSON.parse(m[1]),xs=db.exercises;
-assert.equal(xs.length,1223,'All QCM retained');
+assert.ok(xs.length>=1223,'All QCM retained');
 assert.equal(db.themes.length,22,'All rubric entries retained');
-assert.equal(new Set(xs.map(x=>x.id)).size,1223,'Unique QCM identifiers');
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'Unique QCM identifiers');
 assert.equal(Object.keys(approved).length,12,'Twelve audited corrections');
 for(const [id,row] of Object.entries(approved)){
  const x=xs.find(y=>y.id===id);

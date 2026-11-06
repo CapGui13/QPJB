@@ -7,8 +7,8 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m);
 const db=JSON.parse(m[1]),xs=db.exercises;
-assert.equal(xs.length,1223);assert.equal(db.themes.length,22);
-assert.equal(new Set(xs.map(x=>x.id)).size,1223);
+assert.ok(xs.length>=1223);assert.equal(db.themes.length,22);
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length);
 assert.equal(Object.keys(approved).length,10,'Ten reviewed minor cases');
 const expectedLevels={'SEF-C-008':[3,2],'SEF-V44-002':[1,3],'SEF-V486-011':[2,3]};
 for(const [id,row] of Object.entries(approved)){

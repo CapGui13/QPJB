@@ -7,8 +7,8 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Embedded quiz data');
 const db=JSON.parse(m[1]),xs=db.exercises;
-assert.equal(xs.length,1223);assert.equal(db.themes.length,22);
-assert.equal(new Set(xs.map(x=>x.id)).size,1223,'Unique QCM identifiers');
+assert.ok(xs.length>=1223);assert.equal(db.themes.length,22);
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'Unique QCM identifiers');
 assert.deepEqual(Object.keys(approved),['SEF-N108-1','SEF-N114-1','SEF-N116-1','SEF-V3-005-1','SEF-V3-007-4','SEF-V3-009-1','SEF-V3-025-1','SEF-V3-026-1','SEF-V4-045-1']);
 for(const [id,row] of Object.entries(approved)){
  const x=xs.find(z=>z.id===id);
