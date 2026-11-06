@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v54';
+const CACHE = 'qpjb-v55';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
