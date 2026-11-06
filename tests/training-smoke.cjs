@@ -434,7 +434,7 @@ check(lazyBase.counts.bidding===601&&lazyBase.counts.play===144,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===80&&
- lazyBase.categories.find(c=>c.id==='rep-barrage').count===13&&
+ lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
  'topic counters reflect the exact quarantined IDs');
