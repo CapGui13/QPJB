@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
 const approved=require('./quizz-v489-approved-revisions.json');
+const {normalize:normalizeV4112}=require('./quizz-v4112-approved-revisions.cjs');
 const {normalizedPrefix}=require('./quizz-v488-approved-revisions.cjs');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
@@ -13,7 +14,7 @@ assert.deepEqual(Object.keys(approved).sort(),ids);
 for(const id of ids){
  const x=xs.find(x=>x.id===id),a=approved[id];
  assert.ok(x,id+' must exist');
- assert.deepEqual(x,a.after,id+' exact approved editorial change');
+ assert.deepEqual(normalizeV4112(x),a.after,id+' exact approved editorial change (V4.112 rollback)');
  assert.equal(x.answer,a.before.answer,id+' answer unchanged');
  assert.deepEqual(x.choices,a.before.choices,id+' options unchanged');
  assert.deepEqual(x.auction,a.before.auction,id+' auction unchanged');
