@@ -181,6 +181,27 @@ check(bh17.length===4&&bh17.every(x=>x&&x.type==='declarant'&&x.topic==='Plan de
 check(bh17.every(x=>x.holdings?.[0]?.label==='Mort · Nord'&&x.holdings?.[1]?.label==='Vous · Sud'),'BH-017 has North dummy and South declarer');
 check(bh17.every(x=>x.options.length===2&&Number.isInteger(x.answerIndex)),'BH-017 answer options preserved');
 // Le trio de QCM de carte est accessible avec un barème documentaire non automatique.
+// Lot d'extension B/C : 17 enchères + 10 jeux de carte, réserves exclues.
+const extensionBidIds=["EN-BH-134-05","EN-BH-135-02","EN-BH-084-01","EN-BH-084-02","EN-BH-084-03","EN-BH-084-04","EN-BH-084-05","EN-BH-084-06","EN-BH-111-02","EN-BH-111-03","EN-BH-111-05","EN-BH-032-P2-06","EN-BH-036-P2-05","EN-BH-036-P2-06","EN-BH-040-P2-01","EN-BH-040-P2-02","EN-BH-043-P2-02"];
+const extensionPlayIds=["JC-BH-107-P2","JC-BH-108-P2","JC-BH-109-P2","JC-BH-110-P2","JC-BH-115-P2","JC-BH-116-P2","JC-BH-119-P2","JC-BH-122-P2","JC-BH-123-P2","JC-BH-125-P2"];
+for(const key of extensionBidIds){const q=data.bidding.find(x=>x.id===key);
+ check(!!q&&q.hand.length===4&&q.hand.join(' ').replace(/10/g,'T').replace(/\s/g,'').length===13,
+ 'extension bidding 13-card hand: '+key);
+ check(q.auction.flatMap(row=>row.map((v,i)=>v==='?'?i:-1)).filter(i=>i>=0).length===1&&
+  q.auction.some(row=>row[0]==='?')&&q.choices.includes(q.correct),
+ 'extension bidding South seat and single expected answer: '+key);
+}
+for(const key of extensionPlayIds){const q=data.play.find(x=>x.id===key);
+ check(!!q&&q.sourceFormat==='two_known_hands_20261106'&&q.holdings.length===2&&
+ q.holdings.every(h=>h.rows.length===4&&h.rows.map(r=>r.ranks).join(' ').replace(/10/g,'T').replace(/\s/g,'').length===13),
+ 'extension card: only two certified 13-card hands: '+key);
+}
+check(data.play.find(x=>x.id==='JC-BH-116-P2').holdings[1].label==='Vous · Est'&&
+ app.includes("x?.sourceFormat==='two_known_hands_20261106'"),
+ 'extension defense: East is not incorrectly shown as South');
+check(!data.bidding.some(x=>['EN-BH-129-04','EN-BH-032-P2-04','EN-BH-040-P2-06'].includes(x.id))&&
+ !data.play.some(x=>x.id==='JC-BH-117-P2'),
+ 'extension blocked candidates remain excluded');
 // Contre-expertise des corrections documentaires BH-070 et BH-014 (2026-11-06).
 const bh70 = data.bidding.find(x=>x.id==='EN-BH-070-01');
 check(!!bh70 && bh70.correct==='3SA' && !bh70.choices.includes('2♣') &&
@@ -210,7 +231,7 @@ for(const [id,answer] of playAdaptations){
 }
 check(data.play.find(x=>x.id==='JC-BH-014-Q01').explanation.includes('six levées') &&
  data.play.find(x=>x.id==='JC-BH-014-Q01').options[0].includes('♥3'),
- 'communication exercise now preserves the feasible six-trick source plan');
+ 'BH-014 retains its six-trick source plan');
 check(data.play.find(x=>x.id==='JC-BH-028-Q04').prompt.includes('fournit le 2♥')&&
  data.play.find(x=>x.id==='JC-BH-028-Q04').options[2]==='♥9',
  'third-hand equivalence is explicitly conditioned on dummy playing the deuce');
@@ -229,8 +250,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===117&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===117,
- '117 card exercises, including the 3 new plans, accessible');
+check(data.play.length===127&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===127,
+ '127 card exercises, including the 10 validated free plans, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -321,7 +342,7 @@ check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').le
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103h')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103h'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v54'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v55'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -401,19 +422,19 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===569&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===569,
- '569 bidding exercises, including the 6 new QCM, accessible');
+check(data.bidding.length===586&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===586,
+ '586 bidding exercises, including the 17 validated new QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===569&&lazyBase.counts.play===117,
+check(lazyBase.counts.bidding===586&&lazyBase.counts.play===127,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===74&&
- lazyBase.categories.find(c=>c.id==='rep-barrage').count===12&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===80&&
+ lazyBase.categories.find(c=>c.id==='rep-barrage').count===13&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
  'topic counters reflect the exact quarantined IDs');
