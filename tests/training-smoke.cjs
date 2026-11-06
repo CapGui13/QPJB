@@ -139,7 +139,7 @@ check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app')
 // Seul le bootstrap est chargé à l'ouverture : le fichier maître sert aux audits
 // et grandit naturellement avec les nouveaux exercices, sans ralentir l'accueil.
 const lazyInit=read('entrainement/training-data-bootstrap.js');
-check(lazyInit.length<8000&&!/data:image\\/(?:webp|png|jpeg);base64,/i.test(lazyInit),
+check(lazyInit.length<8000&&!lazyInit.includes('data:image/'),
  'initial lazy-loaded metadata stays compact without embedded binary facsimiles');
 check(raw.length<1500000&&!raw.includes('data:image/webp;base64,'),
  'complete source dataset remains bounded without embedded WebP facsimiles');
