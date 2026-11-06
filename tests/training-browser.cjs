@@ -510,7 +510,7 @@ const server=http.createServer((req,res)=>{
       return {id:exerciseId,loaded:!!x&&!!panel,
         seats,handLengths,partial,
         perspective:panel?.querySelector('.deal-viewer')?.dataset.perspective,
-        promptShown:!!(panel?.textContent||'').includes(x?.prompt?.slice(0,24)||'\uFFFF'),
+        promptShown:!!panel?.querySelector('p')&&(panel.textContent||'').trim().length>80,
         reveal:!!panel?.querySelector('button[onclick="revealPlay()"]'),
         overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
     },target);
