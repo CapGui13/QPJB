@@ -181,6 +181,16 @@ check(bh17.length===4&&bh17.every(x=>x&&x.type==='declarant'&&x.topic==='Plan de
 check(bh17.every(x=>x.holdings?.[0]?.label==='Mort · Nord'&&x.holdings?.[1]?.label==='Vous · Sud'),'BH-017 has North dummy and South declarer');
 check(bh17.every(x=>x.options.length===2&&Number.isInteger(x.answerIndex)),'BH-017 answer options preserved');
 // Le trio de QCM de carte est accessible avec un barème documentaire non automatique.
+// Contre-expertise des corrections documentaires BH-070 et BH-014 (2026-11-06).
+const bh70 = data.bidding.find(x=>x.id==='EN-BH-070-01');
+check(!!bh70 && bh70.correct==='3SA' && !bh70.choices.includes('2♣') &&
+ bh70.explanation.includes('2♣') && /meilleure/.test(bh70.question),
+ 'BH-070: do not mark admissible 2 clubs as wrong');
+const jc14 = data.play.find(x=>x.id==='JC-BH-014-Q01');
+check(!!jc14 && jc14.answerIndex===0 && jc14.options[0].includes('♥3') &&
+ jc14.options[0].includes('♣D') && jc14.options[0].includes('♦R') &&
+ jc14.explanation.includes('six levées'),
+ 'BH-014: complete six-trick source plan restored');
 const playAdaptations=[
  ['JC-BH-014-Q01',0],['JC-BH-028-Q04',2],['JC-BH-036-Q02',1]
 ];
@@ -310,7 +320,7 @@ check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').le
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103h')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103h'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v53'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v54'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
