@@ -708,8 +708,10 @@ const server=http.createServer((req,res)=>{
     assert.equal(state.perspective,'south','Declarer remains in South '+entry.id);
   }
   await childFrame.evaluate(()=>revealPlay());
-  assert.ok((await childFrame.evaluate(()=>
-    document.querySelector('.play-free-panel .analysis-body')?.textContent||'')).includes('♣A'),
+  const lot03FreeAnswer=await childFrame.evaluate(()=>
+    document.querySelector('.play-free-panel .analysis-body')?.textContent||'');
+  const normalizedPlan=lot03FreeAnswer.replace(/[\uFE0E\uFE0F]/g,'');
+  assert.ok(normalizedPlan.includes('PLAN LÉVÉE PAR LÉVÉE')&&normalizedPlan.includes('♣A'),
     'Lot 03 free response reveals its full explanatory plan');
 
   // BH-017 : le déclarant cherche à éviter l'adversaire dangereux, pas une défense.
