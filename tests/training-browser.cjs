@@ -451,6 +451,94 @@ const server=http.createServer((req,res)=>{
       'Card player perspective and reveal action are correct: '+q.id);
    }
   }
+  // Lot 04 — contrôle explicite des 29 rendus sur le moteur navigateur réel.
+  // Les captures sont conservées comme preuves CI; ne modifie aucune donnée source.
+  const lot04BidIds=[
+    'EN-BH-032-P2-01','EN-BH-032-P2-02','EN-BH-033-P2-02',
+    'EN-BH-036-P2-01','EN-BH-036-P2-02','EN-BH-036-P2-03','EN-BH-036-P2-04',
+    'EN-BH-040-P2-03','EN-BH-040-P2-04','EN-BH-040-P2-05',
+    'EN-BH-042-P2-01','EN-BH-042-P2-02','EN-BH-043-P2-01','EN-BH-137-03'
+  ];
+  const lot04CardIds=[
+    'JC-BH-039-M02','JC-BH-039-M03','JC-BH-039-M04',
+    'JC-BH-087-P2','JC-BH-088-P2-A','JC-BH-092-P2','JC-BH-093-P2',
+    'JC-BH-094-P2','JC-BH-099-P2','JC-BH-102-P2','JC-BH-106-P2',
+    'JC-BH-054-P2','JC-BH-062-P2','JC-BH-067-P2','JC-BH-069-P2'
+  ];
+  const lot04Dir=path.join(project,'artifacts','training-visual',browserType,'lot04');
+  fs.mkdirSync(lot04Dir,{recursive:true});
+  const lot04RenderChecks=[];
+  for(const target of lot04BidIds){
+    const state=await childFrame.evaluate(exerciseId=>{
+      cat='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const x=current();
+      const quiz=document.querySelector('.qpjb-bid-quiz');
+      const options=[...(quiz?.querySelectorAll('.choices .choice')||[])];
+      const visibleSuits=quiz?.querySelectorAll('.suits .suit').length||0;
+      const auctionText=quiz?.querySelector('.auc')?.textContent||'';
+      return {id:exerciseId,loaded:!!x&&!!quiz,choices:options.length,
+        validAnswer:options.some(e=>e.textContent.replace(/[\uFE0E\uFE0F]/g,'').trim()===x?.correct),
+        visibleSuits,sourceSuits:x?.hand?.length||0,
+        yesNo:options.map(e=>e.textContent.trim()),
+        auctionShown:!!auctionText.trim(),
+        overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
+    },target);
+    assert.ok(state.loaded,'Lot 04 bidding screen opens: '+target);
+    assert.ok(state.validAnswer&&state.auctionShown&&!state.overflow,
+      'Lot 04 bidding answer/auction/mobile width: '+target+' '+JSON.stringify(state));
+    if(target==='EN-BH-137-03'){
+      assert.deepEqual(state.yesNo,['Oui','Non'],'Stayman question keeps exactly Oui/Non');
+      assert.equal(state.visibleSuits,0,'Stayman yes/no has no fabricated hand');
+    }else{
+      assert.equal(state.choices,4,'Lot 04 QCM has four answers: '+target);
+      assert.equal(state.visibleSuits,4,'Lot 04 four visible suits: '+target);
+      assert.equal(state.sourceSuits,4,'Lot 04 data contains four suits: '+target);
+    }
+    lot04RenderChecks.push({type:'bidding',...state});
+    await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'.png'),animations:'disabled'});
+  }
+  for(const target of lot04CardIds){
+    const state=await childFrame.evaluate(exerciseId=>{
+      cat='play';ptopic='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const x=current();
+      const panel=document.querySelector('.play-free-panel');
+      const seatEls=[...(panel?.querySelectorAll('.deal-seat')||[])];
+      const seats=seatEls.map(e=>e.dataset.seat).sort();
+      const partial=exerciseId.startsWith('JC-BH-039-')||exerciseId==='JC-BH-088-P2-A';
+      const handLengths=(x?.holdings||[]).map(h=>h.rows.reduce((n,row)=>n+
+        row.ranks.replace(/10/g,'T').replace(/\s/g,'').length,0));
+      return {id:exerciseId,loaded:!!x&&!!panel,
+        seats,handLengths,partial,
+        perspective:panel?.querySelector('.deal-viewer')?.dataset.perspective,
+        promptShown:!!(panel?.textContent||'').includes(x?.prompt?.slice(0,24)||'\uFFFF'),
+        reveal:!!panel?.querySelector('button[onclick="revealPlay()"]'),
+        overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
+    },target);
+    assert.ok(state.loaded&&state.reveal&&state.promptShown,
+      'Lot 04 free-plan question/answer action renders: '+target+' '+JSON.stringify(state));
+    assert.deepEqual(state.seats,['north','south'],'Lot 04 does not reveal defenders: '+target);
+    assert.equal(state.perspective,'south','Lot 04 declarer is correctly positioned: '+target);
+    assert.deepEqual(state.handLengths,state.partial
+      ? (target==='JC-BH-088-P2-A'?[4,3]:[4,4]):[13,13],
+      'Lot 04 authentic full vs partial hands: '+target);
+    assert.equal(state.overflow,false,'Lot 04 fits iPhone width: '+target);
+    lot04RenderChecks.push({type:'play',...state});
+    await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'.png'),animations:'disabled'});
+    if(['JC-BH-088-P2-A','JC-BH-062-P2','JC-BH-069-P2'].includes(target)){
+      await childFrame.evaluate(()=>revealPlay());
+      const actual=await childFrame.evaluate(()=>
+        document.querySelector('.play-free-panel .analysis-body')?.textContent||'');
+      const expected=target==='JC-BH-088-P2-A'?'double impasse':
+        target==='JC-BH-062-P2'?'CINQ levées':'Valet en Ouest';
+      assert.ok(actual.includes(expected),
+        'Lot 04 corrected pedagogical analysis displayed for '+target+' ('+expected+')');
+      await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'-corrige.png'),animations:'disabled'});
+    }
+  }
+  assert.equal(lot04RenderChecks.length,29,'All 29 Lot 04 screens inspected in actual browser');
+  fs.writeFileSync(path.join(lot04Dir,'lot04-render-audit.json'),
+    JSON.stringify({browser:browserType,screenCount:29,checks:lot04RenderChecks},null,2));
+
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
 
