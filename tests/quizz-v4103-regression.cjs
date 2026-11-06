@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node:crypto');
 const approved=require('./quizz-v4103-approved-revisions.json');
 const {normalizedPrefix}=require('./quizz-v488-approved-revisions.cjs');
+const {normalize:normalizeV4112}=require('./quizz-v4112-approved-revisions.cjs');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m);
@@ -13,7 +14,7 @@ assert.equal(Object.keys(approved).length,10,'Ten reviewed minor cases');
 const expectedLevels={'SEF-C-008':[3,2],'SEF-V44-002':[1,3],'SEF-V486-011':[2,3]};
 for(const [id,row] of Object.entries(approved)){
  const x=xs.find(z=>z.id===id);
- assert.deepEqual(x,row.after,id+' exact updated exercise');
+ assert.deepEqual(normalizeV4112(x),row.after,id+' exact updated exercise (V4.112 rollback)');
  for(const k of ['answer','choices','hand','h','shape','auction','theme','caseFamily'])
   assert.deepEqual(x[k],row.before[k],id+' '+k+' unchanged');
  assert.equal(x.hand.flat().length,13,id+' 13 cards');
