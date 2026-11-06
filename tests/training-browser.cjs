@@ -690,7 +690,7 @@ const server=http.createServer((req,res)=>{
   ];
   for(const entry of lot03FreePlanChecks){
     const state=await childFrame.evaluate(target=>{
-      cat='play';ptopic='plan-libre';item(target);
+      cat='play';ptopic='plan-libre';id=target;trainingApplyPage('quiz',false,false);
       const panel=document.querySelector('.play-free-panel');
       const viewer=panel?.querySelector('.deal-viewer');
       return {id,view,viewer:!!viewer,
