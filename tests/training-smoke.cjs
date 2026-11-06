@@ -203,8 +203,8 @@ for(const key of extensionPlayIds){const q=data.play.find(x=>x.id===key);
  'extension card: only two certified 13-card hands: '+key);
 }
 check(data.play.find(x=>x.id==='JC-BH-116-P2').holdings[1].label==='Vous · Est'&&
- app.includes("x?.sourceFormat==='two_known_hands_20261106'"),
- 'extension defense: East is not incorrectly shown as South');
+ app.includes('x.holdings.length===2')&&app.includes('buildCardSeats(x)'),
+ 'extension defense: explicit East seat remains East regardless of sourceFormat');
 check(!data.bidding.some(x=>['EN-BH-129-04','EN-BH-032-P2-04','EN-BH-040-P2-06'].includes(x.id))&&
  !data.play.some(x=>x.id==='JC-BH-117-P2'),
  'extension blocked candidates remain excluded');
