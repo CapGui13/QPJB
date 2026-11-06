@@ -136,7 +136,13 @@ check(app.includes('defense-adjacent')&&app.includes('const defenseSide='),'adja
 check(integrated.includes('prefers-reduced-motion'),'reduced motion is supported');
 const raw=read('entrainement/training-data.js').trim();
 check(raw.startsWith('const D=')&&raw.endsWith(';'),'data is separate from app');
-check(raw.length<1200000,'initial exercise data stays compact (no embedded WebP facsimiles)');
+// Seul le bootstrap est chargé à l'ouverture : le fichier maître sert aux audits
+// et grandit naturellement avec les nouveaux exercices, sans ralentir l'accueil.
+const lazyInit=read('entrainement/training-data-bootstrap.js');
+check(lazyInit.length<8000&&!/data:image\\/(?:webp|png|jpeg);base64,/i.test(lazyInit),
+ 'initial lazy-loaded metadata stays compact without embedded binary facsimiles');
+check(raw.length<1500000&&!raw.includes('data:image/webp;base64,'),
+ 'complete source dataset remains bounded without embedded WebP facsimiles');
 const data=JSON.parse(raw.slice(8,-1));
 // Les enchères sont triées dans la vue seulement ; l'ordre source, la bonne
 // réponse et les identifiants restent inchangés.
