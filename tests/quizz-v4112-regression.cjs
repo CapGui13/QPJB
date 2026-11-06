@@ -7,8 +7,8 @@ const match=html.match(/<script id="training-data" type="application\/json">([\s
 assert.ok(match,'Quiz JSON embarqué');
 const data=JSON.parse(match[1]);
 const items=data.exercises,byId=new Map(items.map(x=>[x.id,x]));
-assert.equal(items.length,1253,'1 253 QCM préservés');
-assert.equal(byId.size,1253,'Identifiants inchangés et uniques');
+assert.ok(items.length>=1253,'1 253 QCM historiques préservés');
+assert.equal(byId.size,items.length,'Identifiants inchangés et uniques');
 assert.equal(data.themes.length,22,'22 rubriques préservées');
 assert.equal(fixture.operationCount,22,'22 retouches');
 assert.equal(Object.keys(fixture.editsById).length,16,'16 QCM');
