@@ -527,6 +527,18 @@ const server=http.createServer((req,res)=>{
     assert.equal(state.overflow,false,'Lot 04 fits iPhone width: '+target);
     lot04RenderChecks.push({type:'play',...state});
     await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'.png'),animations:'disabled'});
+    // Sur téléphone, le contenu long défile DANS l'iframe. Un screenshot
+    // du root seul ne photographie pas les cartes situées sous le viewport.
+    // Faire réellement défiler le navigateur jusqu'à la main du déclarant.
+    const southHand=frame.locator('.play-free-panel .deal-seat[data-seat="south"]');
+    await southHand.scrollIntoViewIfNeeded();
+    const southView=await southHand.evaluate(el=>{
+      const rect=el.getBoundingClientRect();
+      return {top:rect.top,bottom:rect.bottom,viewport:el.ownerDocument.documentElement.clientHeight};
+    });
+    assert.ok(southView.top<southView.viewport&&southView.bottom>0,
+      'Lot 04 South hand is reachable by actual mobile scrolling: '+target+' '+JSON.stringify(southView));
+    await page.screenshot({path:path.join(lot04Dir,target+'-sud-visible.png'),fullPage:false});
     if(['JC-BH-088-P2-A','JC-BH-062-P2','JC-BH-069-P2'].includes(target)){
       await childFrame.evaluate(()=>revealPlay());
       const actual=await childFrame.evaluate(()=>
@@ -536,6 +548,9 @@ const server=http.createServer((req,res)=>{
       assert.ok(actual.includes(expected),
         'Lot 04 corrected pedagogical analysis displayed for '+target+' ('+expected+')');
       await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'-corrige.png'),animations:'disabled'});
+      const detailedAnswer=frame.locator('.play-free-panel .analysis-body');
+      await detailedAnswer.scrollIntoViewIfNeeded();
+      await page.screenshot({path:path.join(lot04Dir,target+'-corrige-visible.png'),fullPage:false});
     }
   }
   assert.equal(lot04RenderChecks.length,29,'All 29 Lot 04 screens inspected in actual browser');
