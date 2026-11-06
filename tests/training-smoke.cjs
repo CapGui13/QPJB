@@ -208,8 +208,9 @@ for(const [id,answer] of playAdaptations){
   x.playPretryHints[String(x.answerIndex)]===undefined,
   'distinct options and correct alternate-answer hints: '+id);
 }
-check(data.play.find(x=>x.id==='JC-BH-014-Q01').explanation.includes('Roi et As de Carreau'),
- 'communication exercise targets feasible diamond unblocking rather than impossible full plan');
+check(data.play.find(x=>x.id==='JC-BH-014-Q01').explanation.includes('six levées') &&
+ data.play.find(x=>x.id==='JC-BH-014-Q01').options[0].includes('♥3'),
+ 'communication exercise now preserves the feasible six-trick source plan');
 check(data.play.find(x=>x.id==='JC-BH-028-Q04').prompt.includes('fournit le 2♥')&&
  data.play.find(x=>x.id==='JC-BH-028-Q04').options[2]==='♥9',
  'third-hand equivalence is explicitly conditioned on dummy playing the deuce');
