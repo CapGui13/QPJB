@@ -246,12 +246,12 @@ check(!!jc021&&jc021.reviewStatus==='a_relire'&&jc021.sourceOriginalAnswerText?.
  !jc021.answerText.includes('Il ne peut rien lui arriver')&&
  jc021.strategicAuditStatus==='contre_exemple_complet_documente_mais_plan_optimal_non_certifie',
  'JC-021 documents East five spades counterexample and archives original source');
-check(jc021.pedagogicalAudit_20261106l02?.counterexample?.hcp?.east===4&&
- jc021.pedagogicalAudit_20261106l02?.counterexample?.hcp?.north===13,
+check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
+ jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===127&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===127,
- '127 card exercises, including the 10 validated free plans, accessible');
+check(data.play.length===144&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===144,
+ '144 card exercises, including the 17 valid candidates du lot 02, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -422,15 +422,15 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===586&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===586,
- '586 bidding exercises, including the 17 validated new QCM, accessible');
+check(data.bidding.length===601&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===601,
+ '601 bidding exercises, including the 15 validated candidates du lot 02, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===586&&lazyBase.counts.play===127,
+check(lazyBase.counts.bidding===601&&lazyBase.counts.play===144,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===80&&
