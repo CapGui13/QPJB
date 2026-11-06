@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const initialData=await page.frames().find(f=>f.url().includes('/entrainement/'))
     .evaluate(()=>({bidding:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initialData,{bidding:601,play:0},
+  assert.deepEqual(initialData,{bidding:604,play:0},
     'Bidding opens without parsing the complete card-play collection');
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
@@ -649,8 +649,8 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   const guidedPlayBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),144,
-    'All 144 card exercises are now available');
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),154,
+    'All 154 card exercises are now available');
   const adaptedCardRoutes=[
     {id:'JC-BH-014-Q01',topic:'communications',answer:0,choices:4},
     {id:'JC-BH-028-Q04',topic:'defense',answer:2,choices:3},
@@ -680,6 +680,37 @@ const server=http.createServer((req,res)=>{
   }
   assert.equal(await childFrame.evaluate(()=>localStorage.getItem(KEY)),guidedPlayBefore,
     'Guided card selections never rewrite saved progress automatically');
+
+  // Les plans libres importés ont deux mains réelles, jamais une image manquante.
+  // Exerce le rendu hérité du lot 02 ET les nouvelles fiches du lot 03.
+  const lot03FreePlanChecks=[
+    {id:'JC-BH-084-P2',expectedLead:'west'},
+    {id:'JC-BH-074-P2',expectedLead:'west'},
+    {id:'JC-BH-078-P2',expectedLead:'west'}
+  ];
+  for(const entry of lot03FreePlanChecks){
+    const state=await childFrame.evaluate(target=>{
+      cat='play';ptopic='plan-libre';item(target);
+      const panel=document.querySelector('.play-free-panel');
+      const viewer=panel?.querySelector('.deal-viewer');
+      return {id,view,viewer:!!viewer,
+        hands:[...(panel?.querySelectorAll('.deal-seat')||[])].map(e=>e.getAttribute('data-seat')).sort(),
+        leadSeat:panel?.querySelector('.deal-played')?.getAttribute('data-seat')||null,
+        imageFallback:!!panel?.querySelector('.game-img-wrap .game-img'),
+        perspective:viewer?.getAttribute('data-perspective')};
+    },entry.id);
+    assert.equal(state.id,entry.id,'Free plan navigates to exact original exercise');
+    assert.equal(state.view,'quiz','Free plan route opens correctly '+entry.id);
+    assert.equal(state.viewer,true,'Two-hand card diagram is rendered '+entry.id);
+    assert.deepEqual(state.hands,['north','south'],'Only the two known hands are displayed '+entry.id);
+    assert.equal(state.leadSeat,entry.expectedLead,'West opening lead is shown '+entry.id);
+    assert.equal(state.imageFallback,false,'No invalid legacy screenshot fallback '+entry.id);
+    assert.equal(state.perspective,'south','Declarer remains in South '+entry.id);
+  }
+  await childFrame.evaluate(()=>revealPlay());
+  assert.ok((await childFrame.evaluate(()=>
+    document.querySelector('.play-free-panel .analysis-body')?.textContent||'')).includes('♣A'),
+    'Lot 03 free response reveals its full explanatory plan');
 
   // BH-017 : le déclarant cherche à éviter l'adversaire dangereux, pas une défense.
   await childFrame.evaluate(()=>playTopic('plan-qcm'));
