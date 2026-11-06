@@ -152,6 +152,46 @@ for(const ex of D.play){
       error(ex.id,'expected-lead-not-in-hand',ex.options[ex.answerIndex]+' is absent from '+player);
   }
 }
+
+// Vérification du lot 02 de jeu de la carte : la source peut montrer une main
+// incomplète, mais jamais une carte identique à deux joueurs distincts.
+const lot02CardLessons=D.play.filter(x=>String(x.playEditorialStatus||'').startsWith('lot02_'));
+if(lot02CardLessons.length!==17)
+  error('lot02','missing-card-lessons','Expected 17 imported card exercises, found '+lot02CardLessons.length);
+for(const ex of lot02CardLessons){
+  if(!Array.isArray(ex.holdings)||ex.holdings.length!==2)
+    error(ex.id,'lot02-missing-known-hands','Only two genuine known hands may be displayed');
+  const seen=new Set();
+  for(const hand of ex.holdings||[]){
+    let count=0;
+    for(const row of hand.rows||[]){
+      const rr=rankChars(row.ranks);
+      if(!rr){error(ex.id,'lot02-invalid-rank',JSON.stringify(row));continue;}
+      count+=rr.length;
+      for(const rank of rr){
+        const card=cardKey(rank,row.suit);
+        if(seen.has(card))error(ex.id,'lot02-duplicate-card',card+' appears in two hands');
+        seen.add(card);
+      }
+    }
+    if(count>13)error(ex.id,'lot02-too-many-cards',hand.label+': '+count);
+  }
+  const seats=actual.buildCardSeats(ex);
+  const player=actual.playerSeatFromExercise(ex,seats);
+  if(ex.id==='JC-BH-129-01'&&
+      (player!=='west'||!seats.west?.rows?.some(r=>r.suit==='♠'&&r.ranks==='AR1054')||
+       !!seats.east?.rows?.length))
+    error(ex.id,'lot02-wrong-defender','BH-129 source is played by West with ♠AR1054');
+  if(ex.id==='JC-BH-131-01'&&player!=='east')
+    error(ex.id,'lot02-wrong-defender','BH-131 source is played by East');
+  if(ex.id==='JC-BH-135-J01'&&
+      (!ex.sourceAudit?.suitIssue?.includes('♣6 dupliqué')||
+       !ex.prompt.includes('mains affichées sont donc partielles')||
+       !seats.north?.rows?.some(r=>r.suit==='♣'&&r.ranks==='9842')||
+       !seats.south?.rows?.some(r=>r.suit==='♣'&&r.ranks==='A103')))
+    error(ex.id,'lot02-unaltered-source-duplicate','BH-135 must not invent which hand owns ♣6');
+}
+
 if(stats.bidding!==601||stats.play!==144||stats.cardQcm!==84)
   error('dataset','unexpected-counts',JSON.stringify(stats));
 if(stats.openingLeadQuestions!==24)
