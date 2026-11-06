@@ -218,8 +218,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===114&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===114,
- '114 card exercises preserved and accessible');
+check(data.play.length===117&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===117,
+ '117 card exercises, including the 3 new plans, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -310,7 +310,7 @@ check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').le
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261103h')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261103h'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v52'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v53'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -390,18 +390,18 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===563&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===563,
- '563 preserved and accessible EN exercises');
+check(data.bidding.length===569&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===569,
+ '569 bidding exercises, including the 6 new QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===563&&lazyBase.counts.play===114,
+check(lazyBase.counts.bidding===569&&lazyBase.counts.play===117,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===13&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===73&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===74&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===12&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,

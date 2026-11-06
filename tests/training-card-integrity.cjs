@@ -152,7 +152,7 @@ for(const ex of D.play){
       error(ex.id,'expected-lead-not-in-hand',ex.options[ex.answerIndex]+' is absent from '+player);
   }
 }
-if(stats.bidding!==563||stats.play!==114||stats.cardQcm!==84)
+if(stats.bidding!==569||stats.play!==117||stats.cardQcm!==84)
   error('dataset','unexpected-counts',JSON.stringify(stats));
 if(stats.openingLeadQuestions!==24)
   error('dataset','opening-lead-lessons-missing',String(stats.openingLeadQuestions));
