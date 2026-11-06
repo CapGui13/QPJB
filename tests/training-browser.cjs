@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const initialData=await page.frames().find(f=>f.url().includes('/entrainement/'))
     .evaluate(()=>({bidding:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initialData,{bidding:569,play:0},
+  assert.deepEqual(initialData,{bidding:586,play:0},
     'Bidding opens without parsing the complete card-play collection');
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
@@ -403,6 +403,54 @@ const server=http.createServer((req,res)=>{
   // La table est orientée depuis le JOUEUR (en bas), pas figée sur Nord en haut.
   const childFrame=page.frame({url:/\/entrainement\//});
   assert.ok(childFrame,'Training iframe must exist');
+  // Reprise B/C : ouvrir les 27 nouveaux écrans avec un vrai moteur navigateur.
+  // Contrôle de la question, des mains de 13 cartes et des places physiques.
+  const newBidIds=['EN-BH-134-05','EN-BH-135-02','EN-BH-084-01','EN-BH-084-02',
+   'EN-BH-084-03','EN-BH-084-04','EN-BH-084-05','EN-BH-084-06',
+   'EN-BH-111-02','EN-BH-111-03','EN-BH-111-05','EN-BH-032-P2-06',
+   'EN-BH-036-P2-05','EN-BH-036-P2-06','EN-BH-040-P2-01',
+   'EN-BH-040-P2-02','EN-BH-043-P2-02'];
+  const newCardIds=['JC-BH-107-P2','JC-BH-108-P2','JC-BH-109-P2','JC-BH-110-P2',
+   'JC-BH-115-P2','JC-BH-116-P2','JC-BH-119-P2','JC-BH-122-P2',
+   'JC-BH-123-P2','JC-BH-125-P2'];
+  const extensionScreens=await childFrame.evaluate(({bidIds,cardIds})=>{
+    const result=[];
+    for(const exerciseId of bidIds){
+      cat='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const q=current(),answers=[...document.querySelectorAll('.qpjb-bid-quiz .choices .choice')];
+      result.push({id:exerciseId,type:'bidding',loaded:!!q&&!!document.querySelector('.qpjb-bid-quiz'),
+       choices:answers.length,validAnswer:answers.some(n=>n.textContent.replace(/[\uFE0E\uFE0F]/g,'').trim()===q?.correct),
+       handSuits:document.querySelectorAll('.qpjb-bid-quiz .suits .suit').length,
+       wrongSeat:q?.auction.flat().filter(v=>v==='?').length!==1||!q.auction.some(row=>row[0]==='?'),
+       overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2});
+    }
+    for(const exerciseId of cardIds){
+      cat='play';ptopic='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const q=current(),seats=[...document.querySelectorAll('.play-free-panel .deal-seat')]
+        .map(x=>x.dataset.seat).sort();
+      const expected=exerciseId==='JC-BH-116-P2'?['east','north']:['north','south'];
+      result.push({id:exerciseId,type:'card',loaded:!!q&&!!document.querySelector('.play-free-panel'),
+       visibleSeats:seats,expected,correctPerspective:
+         document.querySelector('.play-free-panel .deal-viewer')?.dataset.perspective===
+         (exerciseId==='JC-BH-116-P2'?'east':'south'),
+       hasAnalysisButton:!!document.querySelector('.play-free-panel button[onclick="revealPlay()"]'),
+       overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2});
+    }
+    return result;
+  },{bidIds:newBidIds,cardIds:newCardIds});
+  assert.equal(extensionScreens.length,27,'All 27 extension screens inspected');
+  for(const q of extensionScreens){
+   assert.ok(q.loaded,'Extension exercise opens in integrated training: '+q.id);
+   assert.ok(!q.overflow,'Extension exercise fits the iPhone width: '+q.id);
+   if(q.type==='bidding'){
+    assert.ok(q.choices>=3&&q.choices<=4&&q.validAnswer&&q.handSuits===4&&!q.wrongSeat,
+      'Bidding hand, 3/4 choices, answer and South seat: '+q.id);
+   }else{
+    assert.deepEqual(q.visibleSeats,q.expected,'Only authentic known card hands are shown: '+q.id);
+    assert.ok(q.correctPerspective&&q.hasAnalysisButton,
+      'Card player perspective and reveal action are correct: '+q.id);
+   }
+  }
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
 
@@ -601,8 +649,8 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   const guidedPlayBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),117,
-    'All 117 card exercises are now available');
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),127,
+    'All 127 card exercises are now available');
   const adaptedCardRoutes=[
     {id:'JC-BH-014-Q01',topic:'communications',answer:0,choices:4},
     {id:'JC-BH-028-Q04',topic:'defense',answer:2,choices:3},
