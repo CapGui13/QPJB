@@ -475,10 +475,11 @@ const server=http.createServer((req,res)=>{
       const quiz=document.querySelector('.qpjb-bid-quiz');
       const options=[...(quiz?.querySelectorAll('.choices .choice')||[])];
       const visibleSuits=quiz?.querySelectorAll('.suits .suit').length||0;
+      const heading=quiz?.querySelector('.panel h2')?.textContent.trim()||'';
       const auctionText=quiz?.querySelector('.auc')?.textContent||'';
       return {id:exerciseId,loaded:!!x&&!!quiz,choices:options.length,
         validAnswer:options.some(e=>e.textContent.replace(/[\uFE0E\uFE0F]/g,'').trim()===x?.correct),
-        visibleSuits,sourceSuits:x?.hand?.length||0,
+        visibleSuits,sourceSuits:x?.hand?.length||0,heading,
         yesNo:options.map(e=>e.textContent.trim()),
         auctionShown:!!auctionText.trim(),
         overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
@@ -489,10 +490,12 @@ const server=http.createServer((req,res)=>{
     if(target==='EN-BH-137-03'){
       assert.deepEqual(state.yesNo,['Oui','Non'],'Stayman question keeps exactly Oui/Non');
       assert.equal(state.visibleSuits,0,'Stayman yes/no has no fabricated hand');
+      assert.equal(state.heading,'Analyser la séquence','No misleading seat on Stayman yes/no');
     }else{
       assert.equal(state.choices,4,'Lot 04 QCM has four answers: '+target);
       assert.equal(state.visibleSuits,4,'Lot 04 four visible suits: '+target);
       assert.equal(state.sourceSuits,4,'Lot 04 data contains four suits: '+target);
+      assert.equal(state.heading,'Vous êtes en Est','Lot 04 real turn to bid is East: '+target);
     }
     lot04RenderChecks.push({type:'bidding',...state});
     await frame.locator('#root').screenshot({path:path.join(lot04Dir,target+'.png'),animations:'disabled'});
