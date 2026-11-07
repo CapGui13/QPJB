@@ -812,8 +812,8 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   const guidedPlayBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),185,
-    'All 185 card exercises are now available');
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),188,
+    'All 188 card exercises are now available');
   const adaptedCardRoutes=[
     {id:'JC-BH-014-Q01',topic:'communications',answer:0,choices:4},
     {id:'JC-BH-028-Q04',topic:'defense',answer:2,choices:3},

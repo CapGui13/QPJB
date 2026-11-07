@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261107l07')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261107l07'),
+check(html.includes('training-data-bootstrap.js?v=20261108l08')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261108l08'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -199,7 +199,7 @@ check(JSON.stringify(bidEntries(['Contre','1♠','Passe','1SA']).map(x=>x.value)
  JSON.stringify(['Passe','Contre','1♠','1SA']),
  'Pass and Double have an explicit stable position before bid values');
 
-check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===29,
+check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===32,
  'All 24 original opening-lead problems and four new Lot 05 lead lessons remain available');
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
 check(data.bidding.every(ex=>ex.choices.includes(ex.correct)&&
@@ -291,8 +291,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===185&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===185,
- '185 card exercises including 6 Lot 06 lessons, accessible');
+check(data.play.length===188&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===188,
+ '188 card exercises including 6 Lot 06 lessons, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261107l07')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261107l07'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261108l08')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261108l08'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v62'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v63'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -471,7 +471,7 @@ const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===627&&lazyBase.counts.play===185,
+check(lazyBase.counts.bidding===627&&lazyBase.counts.play===188,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===85&&

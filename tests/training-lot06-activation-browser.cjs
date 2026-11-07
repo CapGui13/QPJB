@@ -47,7 +47,7 @@ const server=http.createServer((req,res)=>{
   assert.match(await frame.locator('.feedback').textContent(),/Bonne réponse/i);
   await child.evaluate(async()=>{
     await ensureTrainingData('play');
-    if(D.play.length!==185)throw new Error('Lot 06 play dataset missing');
+    if(D.play.length!==188)throw new Error('Lot 06 play dataset missing');
     cat='play';ptopic='all';id='JC-BH-079-02';randomMode=false;sessionIds=[id];
     trainingApplyPage('quiz',false,false);
   });
