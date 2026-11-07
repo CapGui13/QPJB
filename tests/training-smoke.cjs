@@ -159,6 +159,22 @@ check(lot02Clubs.holdings[0].rows[0].ranks==='ARV109'&&lot02Clubs.holdings[1].ro
  lot02Clubs.answerText.includes('♣D quatrième en Ouest')&&
  !lot02Clubs.answerText.includes('ne consomme aucune'),
  'Lot02 clubs: two small South cards support two finesses; exact probability comparison verified');
+
+const lot02Combinations=(n,k)=>{
+ if(k<0||k>n)return 0;
+ let c=1;
+ for(let i=1;i<=k;i++)c=c*(n+1-i)/i;
+ return Math.round(c);
+};
+const lot02Total=lot02Combinations(26,13);
+const lot02QueenWest=k=>lot02Combinations(5,k-1)*lot02Combinations(20,13-k);
+const lot02Double=[1,2,3,4].reduce((s,k)=>s+lot02QueenWest(k),0)/lot02Total;
+const lot02Probe=([1,2,3].reduce((s,k)=>s+lot02QueenWest(k),0)+lot02QueenWest(1))/lot02Total;
+check(Math.abs(lot02Double-0.43198757763975154)<1e-10&&
+ Math.abs(lot02Probe-0.2826086956521739)<1e-10&&
+ Math.round(lot02Double*1000)/10===43.2&&Math.round(lot02Probe*1000)/10===28.3,
+ 'Lot02 full 13-card combinatorial count independently verifies two fixed club lines');
+
 check(lot02Play('JC-BH-091-P2-2').answerText.includes('aucune reprise extérieure'),'Lot02 unnecessary entry to South removed');
 check(lot02Play('JC-BH-037-M03').answerText.includes('Nord → Sud')&&lot02Play('JC-BH-037-M03').answerText.includes('♥V de Sud'),'Lot02 correct direction of heart finesse');
 check(!lot02Play('JC-BH-104-P2-1').answerText.includes(' ; ')&&!lot02Play('JC-BH-104-P2-1').answerText.includes('garantie..'),'Lot02 punctuation cleaned');
