@@ -90,11 +90,11 @@ async function run(browser,spec){
   check(await frame.locator('.play-free-panel .deal-played').count()===0,rec.id+' does not draw an answer card in advance');
   const prompt=(await frame.locator('.play-free-panel p').first().textContent()).replace(/[\uFE0E\uFE0F]/g,'');
   check(prompt.includes('Accord de la paire'),rec.id+' convention is visible before reveal');
-  if(rec.id!=='JC-BH-091-03')check(!prompt.includes(leadById[rec.id]),rec.id+' prompt does not leak lead');
+  if(rec.id!=='JC-BH-091-03')check(!new RegExp(leadById[rec.id]+'(?![0-9ARDV])').test(prompt),rec.id+' prompt does not leak standalone answer card');
   await frame.locator('.play-free-panel button').filter({hasText:/Découvrir l’analyse/}).click();
   await frame.locator('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:10000});
   const answer=(await frame.locator('.play-free-panel .analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,'');
-  check(answer.includes(leadById[rec.id]),rec.id+' correct card revealed only after click');
+  check(new RegExp(leadById[rec.id]+'(?![0-9ARDV])').test(answer),rec.id+' correct standalone answer card revealed only after click');
   if(rec.id==='JC-BH-091-03')check(answer.includes('♣D'),rec.id+' alternative club lead explicitly accepted');
   if(rec.id==='JC-BH-091-04')check(answer.includes('1SA'),rec.id+' trump versus NT contrast discussed');
   await page.screenshot({path:path.join(out,spec.name+'-'+rec.id+'.png'),fullPage:true,animations:'disabled'});
