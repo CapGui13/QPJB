@@ -525,6 +525,8 @@ function quizBSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefine
 function quizCardSource(x){const p=visibleAnswer(id),sel=p?.done&&p.pick!==undefined?p.pick:chosen;return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${playBackTarget()}')">← ${randomMode?'Thèmes de carte':'Jeu de la carte'}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="panel cq-stage"><h2>À vous de jouer</h2><div class="cq-head">${x.contract?`<span class="pill">Contrat : ${esc(x.contract)}</span>`:''}${x.lead?`<span class="pill">Entame : ${esc(x.lead)}</span>`:''}</div><p class="q">${esc(x.prompt)}</p>${cardAuction(x)}${renderCardDiagram(x)}<p class="muted">${x.pedagogicalArbitration?'Sélectionnez une proposition pour découvrir l’explication pédagogique.':'Sélectionnez une proposition pour découvrir le corrigé d’origine.'}</p><div class="cq-options">${x.options.map((o,i)=>`<button data-answer-index="${i}" class="cq-option ${sel===i?'selected':''}" onclick="chooseSource(${i})" aria-pressed="${sel===i}">${esc(o)}</button>`).join('')}</div><div id="source-answer-status" role="status" class="sr-only"></div>${cardAnswerArea(x,true)}</div>${nav()}`}
 
 function biddingPlayerHeading(x){
+ // Lot 06 : conserver le siège physique confirmé par le sujet.
+ if(['Sud','Ouest','Nord','Est'].includes(x.playerSeat))return 'Vous êtes en '+x.playerSeat;
  // Le lot 04 reprend les positions physiques du PDF : la main est en Est,
  // même si les anciens QCM supposaient systématiquement Sud.
  if(x.reviewStatus!=='valide_edition_lot04_20261106')return 'Vous êtes en Sud';
@@ -651,7 +653,8 @@ function renderLegacyDiagram(x){
  // connues, indépendamment de la convention de nommage sourceFormat.
  // Afficher seulement les mains effectivement fournies, sans déduire Ouest/Est.
  if(Array.isArray(x?.holdings)&&x.holdings.length>=1&&x.holdings.length<=2&&
-    (x.holdings.length===2||x.playEditorialStatus==='lot05_editorial_final_20261107')&&
+    (x.holdings.length===2||x.playEditorialStatus==='lot05_editorial_final_20261107'||
+     x.sourceFormat==='une_main_connue_lot06_20261107')&&
     x.holdings.every(h=>Array.isArray(h?.rows)&&h.rows.length>0)){
   const seats=buildCardSeats(x);
   // Le champ lead peut aussi raconter la suite du premier pli ; seule
