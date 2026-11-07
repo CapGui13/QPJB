@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const initialData=await page.frames().find(f=>f.url().includes('/entrainement/'))
     .evaluate(()=>({bidding:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initialData,{bidding:618,play:0},
+  assert.deepEqual(initialData,{bidding:622,play:0},
     'Bidding opens without parsing the complete card-play collection');
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
@@ -810,8 +810,8 @@ const server=http.createServer((req,res)=>{
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
   const guidedPlayBefore=await childFrame.evaluate(()=>localStorage.getItem(KEY));
-  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),169,
-    'All 169 card exercises are now available');
+  assert.equal(await childFrame.evaluate(()=>D.play.filter(x=>x.reviewStatus!=='a_verifier').length),179,
+    'All 179 card exercises are now available');
   const adaptedCardRoutes=[
     {id:'JC-BH-014-Q01',topic:'communications',answer:0,choices:4},
     {id:'JC-BH-028-Q04',topic:'defense',answer:2,choices:3},
