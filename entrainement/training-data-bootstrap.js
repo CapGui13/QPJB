@@ -11,7 +11,7 @@ function ensureTrainingData(mode){
  if(trainingDataLoads[key])return trainingDataLoads[key];
  trainingDataLoads[key]=new Promise((resolve,reject)=>{
   const script=document.createElement('script');
-  script.src='./training-data-'+key+'.js?v=20261107l06';
+  script.src='./training-data-'+key+'.js?v=20261107l07';
   script.async=true;
   script.onload=()=>{
    if(trainingDataReady(key))resolve();
