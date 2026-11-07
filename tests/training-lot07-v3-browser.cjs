@@ -88,12 +88,12 @@ async function run(browser,spec){
   check(seen.length===1&&seen[0]===seatById[rec.id],rec.id+' displays only the actual known defender at the right seat');
   check(await frame.locator('.play-free-panel .analysis-body').count()===0,rec.id+' solution remains hidden before reveal');
   check(await frame.locator('.play-free-panel .deal-played').count()===0,rec.id+' does not draw an answer card in advance');
-  const prompt=await frame.locator('.play-free-panel p').first().textContent();
+  const prompt=(await frame.locator('.play-free-panel p').first().textContent()).replace(/[\uFE0E\uFE0F]/g,'');
   check(prompt.includes('Accord de la paire'),rec.id+' convention is visible before reveal');
   if(rec.id!=='JC-BH-091-03')check(!prompt.includes(leadById[rec.id]),rec.id+' prompt does not leak lead');
   await frame.locator('.play-free-panel button').filter({hasText:/Découvrir l’analyse/}).click();
   await frame.locator('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:10000});
-  const answer=await frame.locator('.play-free-panel .analysis-body').textContent();
+  const answer=(await frame.locator('.play-free-panel .analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,'');
   check(answer.includes(leadById[rec.id]),rec.id+' correct card revealed only after click');
   if(rec.id==='JC-BH-091-03')check(answer.includes('♣D'),rec.id+' alternative club lead explicitly accepted');
   if(rec.id==='JC-BH-091-04')check(answer.includes('1SA'),rec.id+' trump versus NT contrast discussed');
