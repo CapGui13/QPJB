@@ -153,11 +153,12 @@ check(lot02Bid('EN-BH-140-06').question.includes('vulnérabilité favorable')&&l
 check(lot02Play('JC-BH-129-01').prompt.includes('Accord de cette question')&&lot02Play('JC-BH-129-01').answerText.includes('hypothèse'),'Lot02 signal agreement explicit');
 const lot02Clubs=lot02Play('JC-BH-132-M02');
 check(lot02Clubs.holdings[0].rows[0].ranks==='ARV109'&&lot02Clubs.holdings[1].rows[0].ranks==='42'&&
- lot02Clubs.prompt.includes('deux impasses successives')&&
+ lot02Clubs.prompt.includes('quelle ligne privilégier')&&
  lot02Clubs.answerText.includes('oblige Sud à fournir ♣2 ou ♣4')&&
- lot02Clubs.answerText.includes("possibilité d'une seconde impasse")&&
+ lot02Clubs.answerText.includes('43,2 %')&&lot02Clubs.answerText.includes('28,3 %')&&
+ lot02Clubs.answerText.includes('♣D quatrième en Ouest')&&
  !lot02Clubs.answerText.includes('ne consomme aucune'),
- 'Lot02 Ace probe consumes one of South two clubs, preventing second finesse');
+ 'Lot02 clubs: two small South cards support two finesses; exact probability comparison verified');
 check(lot02Play('JC-BH-091-P2-2').answerText.includes('aucune reprise extérieure'),'Lot02 unnecessary entry to South removed');
 check(lot02Play('JC-BH-037-M03').answerText.includes('Nord → Sud')&&lot02Play('JC-BH-037-M03').answerText.includes('♥V de Sud'),'Lot02 correct direction of heart finesse');
 check(!lot02Play('JC-BH-104-P2-1').answerText.includes(' ; ')&&!lot02Play('JC-BH-104-P2-1').answerText.includes('garantie..'),'Lot02 punctuation cleaned');
