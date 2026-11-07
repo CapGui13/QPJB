@@ -574,10 +574,12 @@ const server=http.createServer((req,res)=>{
         suits:quiz?.querySelectorAll('.suits .suit').length||0,
         heading:quiz?.querySelector('.panel h2')?.textContent.trim()||'',
         auctionShown:!!quiz?.querySelector('.auc')?.textContent.trim(),
+        turnSeats:(x?.auction||[]).flatMap(row=>row.map((v,i)=>v==='?'?i:-1)).filter(i=>i>=0),
         overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
     },target);
     assert.ok(state.loaded&&state.choices===4&&state.correctShown&&state.suits===4&&
-      state.auctionShown&&!state.overflow&&state.heading==='Vous êtes en Sud',
+      state.auctionShown&&!state.overflow&&state.heading==='Vous êtes en Sud'&&
+      state.turnSeats.length===1&&state.turnSeats[0]===0,
       'Lot 05 bidding renders safely: '+target+' '+JSON.stringify(state));
     lot05RenderChecks.push({type:'bidding',...state});
     await frame.locator('#root').screenshot({path:path.join(lot05Dir,target+'.png'),animations:'disabled'});

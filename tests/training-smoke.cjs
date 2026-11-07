@@ -542,4 +542,12 @@ const lot05Excluded=['EN-BH-136-02','EN-BH-136-04','EN-BH-139-03',
 check(lot05Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)),
  'Lot 05 refused and unresolved exercises excluded');
 
+
+const lot05CorrectAuctions={"EN-BH-136-03":[["","","1♣","1♠"],["?","","",""]],"EN-BH-139-05":[["","","1♦","passe"],["1♠","passe","1SA","passe"],["?","","",""]],"EN-BH-126-06":[["","","1♠","passe"],["2♠","passe","3♠","passe"],["?","","",""]],"EN-BH-129-05":[["","1♥","1♠","passe"],["?","","",""]]};
+check(Object.entries(lot05CorrectAuctions).every(([id,rows])=>
+ JSON.stringify(data.bidding.find(x=>x.id===id)?.auction)===JSON.stringify(rows)&&
+ rows.flat().filter(x=>x==='?').length===1&&
+ rows.flatMap(row=>row.map((value,seat)=>value==='?'?seat:-1)).filter(seat=>seat>=0)[0]===0),
+ 'Lot 05 auction chronology and the South seat to play are faithfully reconstructed');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
