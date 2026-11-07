@@ -1,5 +1,5 @@
 'use strict';
-// Test de rendu par injection EN MEMOIRE : ne rend aucun candidat accessible en production.
+// Test des candidats effectivement activés dans les données; ne modifie pas les mains cachées.
 const {chromium,webkit,devices}=require('playwright');
 const http=require('node:http');
 const fs=require('node:fs');
@@ -34,26 +34,23 @@ const server=http.createServer((req,res)=>{
   const child=page.frames().find(x=>x.url().includes('/entrainement/'));
   assert.ok(child,'embedded training frame exists');
   const initial=await child.evaluate(()=>({bid:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initial,{bid:622,play:0},'live dataset remains unchanged on first load');
-  const stage=JSON.parse(fs.readFileSync(path.join(project,'entrainement/staging/lot06-candidats.json'),'utf8'));
-  await child.evaluate(list=>{
-   // L'injection est exclusivement locale au navigateur de tests.
-   D.bidding.push(...list.map(x=>({...x,reviewStatus:'lot06_test_preview'})));
-   cat='suite-repondant';id='EN-BH-130-06';randomMode=false;sessionIds=[id];
+  assert.deepEqual(initial,{bid:627,play:0},'activated bidding dataset loads lazily');
+  await child.evaluate(()=>{
+   cat='redemande';id='EN-BH-130-06';randomMode=false;sessionIds=[id];
    trainingApplyPage('quiz',false,false);
-  },stage.bidding);
+  });
   await frame.locator('.qpjb-bid-quiz').waitFor({state:'visible',timeout:10000});
   assert.match(await frame.locator('.qpjb-bid-quiz h2').first().textContent(),/Vous êtes en Nord/);
   assert.equal(await frame.locator('.qpjb-bid-quiz .choice').count(),4);
   await frame.locator('.qpjb-bid-quiz .choice').filter({hasText:/^Passe$/}).click();
   await frame.locator('.feedback').waitFor({state:'visible',timeout:5000});
   assert.match(await frame.locator('.feedback').textContent(),/Bonne réponse/i);
-  await child.evaluate(async list=>{
+  await child.evaluate(async()=>{
     await ensureTrainingData('play');
-    D.play.push(...list.map(x=>({...x,reviewStatus:'lot06_test_preview'})));
+    if(D.play.length!==185)throw new Error('Lot 06 play dataset missing');
     cat='play';ptopic='all';id='JC-BH-079-02';randomMode=false;sessionIds=[id];
     trainingApplyPage('quiz',false,false);
-  },stage.play);
+  });
   await frame.locator('.play-free-panel .deal-viewer').waitFor({state:'visible',timeout:10000});
   const seats=await frame.locator('.play-free-panel .deal-seat').evaluateAll(nodes=>nodes.map(x=>x.getAttribute('data-seat')));
   assert.deepEqual(seats,['south'],'only the genuine known defender hand is shown');
@@ -61,6 +58,6 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:5000});
   assert.match((await frame.locator('.analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,''),/♥V/);
   assert.deepEqual(errors,[],'no browser runtime errors');
-  console.log('LOT06 STAGING '+kind.toUpperCase()+' PASS — North bidder + South single-hand + choice feedback');
+  console.log('LOT06 ACTIVATION '+kind.toUpperCase()+' PASS — North bidder + South single-hand + choice feedback');
  }finally{if(context)await context.close();await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1}).finally(()=>server.close());

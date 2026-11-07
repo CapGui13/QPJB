@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v60';
+const CACHE = 'qpjb-v61';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -13,15 +13,15 @@ const TRAINING_SHELL = [
   BASE + 'entrainement/qp-training-corrige.html',
   BASE + 'entrainement/training-core.css?v=20261030h',
   BASE + 'entrainement/training-integrated.css?v=20261030z',
-  BASE + 'entrainement/training-data-bootstrap.js?v=20261107l05',
-  BASE + 'entrainement/training-app.js?v=20261107l05'
+  BASE + 'entrainement/training-data-bootstrap.js?v=20261107l06',
+  BASE + 'entrainement/training-app.js?v=20261107l06'
 ];
 // Les modules pédagogiques volumineux ne doivent plus bloquer l'installation.
 // Ils restent chargés à la demande et sont sauvegardés en arrière-plan
 // pour que les deux espaces soient ensuite disponibles sans connexion.
 const TRAINING_MODULES = [
-  BASE + 'entrainement/training-data-bidding.js?v=20261107l05',
-  BASE + 'entrainement/training-data-play.js?v=20261107l05'
+  BASE + 'entrainement/training-data-bidding.js?v=20261107l06',
+  BASE + 'entrainement/training-data-play.js?v=20261107l06'
 ];
 // Ces fac-similés sont petits mais indispensables quand un exercice est ouvert
 // hors ligne pour la première fois. Conserver les 23 fichiers, sans retoucher
