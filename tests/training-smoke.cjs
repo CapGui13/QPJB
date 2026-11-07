@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261107l06')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261107l06'),
+check(html.includes('training-data-bootstrap.js?v=20261107l07')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261107l07'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -144,6 +144,41 @@ check(lazyInit.length<8000&&!lazyInit.includes('data:image/'),
 check(raw.length<1500000&&!raw.includes('data:image/webp;base64,'),
  'complete source dataset remains bounded without embedded WebP facsimiles');
 const data=JSON.parse(raw.slice(8,-1));
+
+const lot02Bid=id=>data.bidding.find(x=>x.id===id);
+const lot02Play=id=>data.play.find(x=>x.id===id);
+check(lot02Bid('EN-BH-133-01').question.includes('sujet original indique 1♥')&&lot02Bid('EN-BH-133-01').correct==='1SA','Lot02 subject/correction divergence disclosed');
+check(lot02Bid('EN-BH-136-06').question.includes('sans arrêt ♠')&&lot02Bid('EN-BH-136-06').correct==='1SA','Lot02 1NT without stopper scoped');
+check(lot02Bid('EN-BH-140-06').question.includes('vulnérabilité favorable')&&lot02Bid('EN-BH-140-06').explanation.includes('Passe'),'Lot02 competitive bid conditions disclosed');
+check(lot02Play('JC-BH-129-01').prompt.includes('Accord de cette question')&&lot02Play('JC-BH-129-01').answerText.includes('hypothèse'),'Lot02 signal agreement explicit');
+const lot02Clubs=lot02Play('JC-BH-132-M02');
+check(lot02Clubs.holdings[0].rows[0].ranks==='ARV109'&&lot02Clubs.holdings[1].rows[0].ranks==='42'&&
+ lot02Clubs.prompt.includes('quelle ligne privilégier')&&
+ lot02Clubs.answerText.includes('oblige Sud à fournir ♣2 ou ♣4')&&
+ lot02Clubs.answerText.includes('43,2 %')&&lot02Clubs.answerText.includes('28,3 %')&&
+ lot02Clubs.answerText.includes('♣D quatrième en Ouest')&&
+ !lot02Clubs.answerText.includes('ne consomme aucune'),
+ 'Lot02 clubs: two small South cards support two finesses; exact probability comparison verified');
+
+const lot02Combinations=(n,k)=>{
+ if(k<0||k>n)return 0;
+ let c=1;
+ for(let i=1;i<=k;i++)c=c*(n+1-i)/i;
+ return Math.round(c);
+};
+const lot02Total=lot02Combinations(26,13);
+const lot02QueenWest=k=>lot02Combinations(5,k-1)*lot02Combinations(20,13-k);
+const lot02Double=[1,2,3,4].reduce((s,k)=>s+lot02QueenWest(k),0)/lot02Total;
+const lot02Probe=([1,2,3].reduce((s,k)=>s+lot02QueenWest(k),0)+lot02QueenWest(1))/lot02Total;
+check(Math.abs(lot02Double-0.43198757763975154)<1e-10&&
+ Math.abs(lot02Probe-0.2826086956521739)<1e-10&&
+ Math.round(lot02Double*1000)/10===43.2&&Math.round(lot02Probe*1000)/10===28.3,
+ 'Lot02 full 13-card combinatorial count independently verifies two fixed club lines');
+
+check(lot02Play('JC-BH-091-P2-2').answerText.includes('aucune reprise extérieure'),'Lot02 unnecessary entry to South removed');
+check(lot02Play('JC-BH-037-M03').answerText.includes('Nord → Sud')&&lot02Play('JC-BH-037-M03').answerText.includes('♥V de Sud'),'Lot02 correct direction of heart finesse');
+check(!lot02Play('JC-BH-104-P2-1').answerText.includes(' ; ')&&!lot02Play('JC-BH-104-P2-1').answerText.includes('garantie..'),'Lot02 punctuation cleaned');
+
 // Les enchères sont triées dans la vue seulement ; l'ordre source, la bonne
 // réponse et les identifiants restent inchangés.
 const bidStart=app.indexOf('function biddingChoiceEntries(');
@@ -345,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261107l06')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261107l06'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261107l07')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261107l07'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v61'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v62'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
