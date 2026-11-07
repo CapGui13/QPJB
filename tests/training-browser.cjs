@@ -557,6 +557,61 @@ const server=http.createServer((req,res)=>{
   fs.writeFileSync(path.join(lot04Dir,'lot04-render-audit.json'),
     JSON.stringify({browser:browserType,screenCount:29,checks:lot04RenderChecks},null,2));
 
+
+  // Lot 05 — 14 visual checks and screenshots on Chromium and WebKit.
+  const lot05BidIds=["EN-BH-136-03","EN-BH-139-05","EN-BH-126-06","EN-BH-129-05"];
+  const lot05PlayIds=["JC-BH-132-Q01","JC-BH-132-Q05","JC-BH-132-Q06","JC-BH-077-P2","JC-BH-086-P2","JC-BH-114-P2-01","JC-BH-114-P2-02","JC-BH-114-P2-03","JC-BH-114-P2-04","JC-BH-104-05"];
+  const lot05Dir=path.join(project,'artifacts','training-visual',browserType,'lot05');
+  fs.mkdirSync(lot05Dir,{recursive:true});
+  const lot05RenderChecks=[];
+  for(const target of lot05BidIds){
+    const state=await childFrame.evaluate(exerciseId=>{
+      cat='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const x=current(),quiz=document.querySelector('.qpjb-bid-quiz');
+      const choices=[...(quiz?.querySelectorAll('.choices .choice')||[])];
+      return {id:exerciseId,loaded:!!x&&!!quiz,choices:choices.length,
+        correctShown:choices.some(e=>e.textContent.replace(/[\uFE0E\uFE0F]/g,'').trim()===x?.correct),
+        suits:quiz?.querySelectorAll('.suits .suit').length||0,
+        heading:quiz?.querySelector('.panel h2')?.textContent.trim()||'',
+        auctionShown:!!quiz?.querySelector('.auc')?.textContent.trim(),
+        overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
+    },target);
+    assert.ok(state.loaded&&state.choices===4&&state.correctShown&&state.suits===4&&
+      state.auctionShown&&!state.overflow&&state.heading==='Vous êtes en Sud',
+      'Lot 05 bidding renders safely: '+target+' '+JSON.stringify(state));
+    lot05RenderChecks.push({type:'bidding',...state});
+    await frame.locator('#root').screenshot({path:path.join(lot05Dir,target+'.png'),animations:'disabled'});
+  }
+  for(const target of lot05PlayIds){
+    const state=await childFrame.evaluate(exerciseId=>{
+      cat='play';ptopic='all';id=exerciseId;trainingApplyPage('quiz',false,false);
+      const x=current(),panel=document.querySelector('.play-free-panel');
+      return {id:exerciseId,loaded:!!x&&!!panel,
+        seats:[...(panel?.querySelectorAll('.deal-seat')||[])].map(e=>e.dataset.seat).sort(),
+        expected:(x?.holdings||[]).map(h=>({N:'north',S:'south',E:'east',W:'west'}[h.seat])).sort(),
+        perspective:panel?.querySelector('.deal-viewer')?.dataset.perspective,
+        expectedPerspective:(x?.holdings||[]).some(h=>h.label==='Vous · Est')?'east':'south',
+        reveal:!!panel?.querySelector('button[onclick="revealPlay()"]'),
+        overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2};
+    },target);
+    assert.ok(state.loaded&&state.reveal&&!state.overflow&&
+      state.perspective===state.expectedPerspective,
+      'Lot 05 defender/declarer correctly oriented: '+target+' '+JSON.stringify(state));
+    assert.deepEqual(state.seats,state.expected,'Lot 05 source-visible hands only: '+target);
+    lot05RenderChecks.push({type:'play',...state});
+    await frame.locator('#root').screenshot({path:path.join(lot05Dir,target+'.png'),animations:'disabled'});
+    const player=frame.locator('.play-free-panel .deal-seat[data-seat="'+state.expectedPerspective+'"]');
+    await player.scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(lot05Dir,target+'-joueur-visible.png'),fullPage:false});
+    await childFrame.evaluate(()=>revealPlay());
+    const analysis=frame.locator('.play-free-panel .analysis-body');
+    assert.ok((await analysis.innerText()).length>80,'Lot 05 explanation revealed: '+target);
+    await frame.locator('#root').screenshot({path:path.join(lot05Dir,target+'-corrige.png'),animations:'disabled'});
+  }
+  assert.equal(lot05RenderChecks.length,14,'All 14 Lot 05 exercises checked');
+  fs.writeFileSync(path.join(lot05Dir,'lot05-render-audit.json'),
+    JSON.stringify({browser:browserType,screenCount:14,checks:lot05RenderChecks},null,2));
+
   await childFrame.evaluate(()=>playTopic('defense'));
   await frame.locator('.hero h1').filter({hasText:'Défense et signalisation'}).waitFor({state:'visible',timeout:15000});
 

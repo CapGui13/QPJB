@@ -239,7 +239,7 @@ for(const ex of lot03Cards){
   error(ex.id,'lot03-lead-sequence','Only opening lead ♠5 is shown on the diagram');
 }
 
-if(stats.bidding!==618||stats.play!==169||stats.cardQcm!==84)
+if(stats.bidding!==622||stats.play!==179||stats.cardQcm!==84)
   error('dataset','unexpected-counts',JSON.stringify(stats));
 if(stats.openingLeadQuestions!==24)
   error('dataset','opening-lead-lessons-missing',String(stats.openingLeadQuestions));
