@@ -650,7 +650,8 @@ function renderLegacyDiagram(x){
  // Les plans libres importés du lot 02 et du lot 03 portent deux mains
  // connues, indépendamment de la convention de nommage sourceFormat.
  // Afficher seulement les mains effectivement fournies, sans déduire Ouest/Est.
- if(Array.isArray(x?.holdings)&&x.holdings.length===2&&
+ if(Array.isArray(x?.holdings)&&x.holdings.length>=1&&x.holdings.length<=2&&
+    (x.holdings.length===2||x.playEditorialStatus==='lot05_editorial_final_20261107')&&
     x.holdings.every(h=>Array.isArray(h?.rows)&&h.rows.length>0)){
   const seats=buildCardSeats(x);
   // Le champ lead peut aussi raconter la suite du premier pli ; seule

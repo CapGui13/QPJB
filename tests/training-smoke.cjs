@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261106l04')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261106l04'),
+check(html.includes('training-data-bootstrap.js?v=20261107l05')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261107l05'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -164,8 +164,8 @@ check(JSON.stringify(bidEntries(['Contre','1♠','Passe','1SA']).map(x=>x.value)
  JSON.stringify(['Passe','Contre','1♠','1SA']),
  'Pass and Double have an explicit stable position before bid values');
 
-check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===24,
- 'All 24 source opening-lead problems remain available and unmodified');
+check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===28,
+ 'All 24 original opening-lead problems and four new Lot 05 lead lessons remain available');
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
 check(data.bidding.every(ex=>ex.choices.includes(ex.correct)&&
   bidEntries(ex.choices).length===ex.choices.length&&
@@ -256,8 +256,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===169&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===169,
- '169 card exercises, including the 17 lot 02 and 10 lot 03 plans, accessible');
+check(data.play.length===179&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===179,
+ '179 card exercises, including 10 Lot 05 edited open lessons, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -345,10 +345,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261106l04')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261106l04'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261107l05')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261107l05'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v59'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v60'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -428,18 +428,18 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===618&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===618,
- '618 bidding exercises, including 15 lot 02 and 3 lot 03 candidates, accessible');
+check(data.bidding.length===622&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===622,
+ '622 bidding exercises, including 4 Lot 05 edited QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===618&&lazyBase.counts.play===169,
+check(lazyBase.counts.bidding===622&&lazyBase.counts.play===179,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===82&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===84&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===20&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
@@ -518,10 +518,36 @@ check(lot03Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)
  'Unresolved Lot 03 discrepancies must not be imported');
 check(lazyBase.categories.find(c=>c.id==='2sa')?.count===14&&
  lazyBase.categories.find(c=>c.id==='reveil')?.count===6&&
- lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===82,
+ lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===84,
  'Lot 03 categories retain exact expected counts');
 check(data.play.find(x=>x.id==='JC-BH-074-P2')?.lead==='♠5 (Ouest)'&&
  data.play.find(x=>x.id==='JC-BH-074-P2')?.prompt.includes('♠9 d’Est'),
  'BH-074 lead appears alone on the diagram while the complete first trick is described');
+
+
+const lot05BidIds=["EN-BH-136-03","EN-BH-139-05","EN-BH-126-06","EN-BH-129-05"];
+const lot05PlayIds=["JC-BH-132-Q01","JC-BH-132-Q05","JC-BH-132-Q06","JC-BH-077-P2","JC-BH-086-P2","JC-BH-114-P2-01","JC-BH-114-P2-02","JC-BH-114-P2-03","JC-BH-114-P2-04","JC-BH-104-05"];
+check(lot05BidIds.every(id=>{const x=data.bidding.find(q=>q.id===id);
+ return x&&x.reviewStatus==='valide_edition_lot05_20261107'&&x.hand?.length===4&&
+ x.choices?.length===4&&x.choices.includes(x.correct);}),
+ 'Lot 05 four edited bidding QCM: complete hands and four choices');
+check(lot05PlayIds.every(id=>{const x=data.play.find(q=>q.id===id);
+ return x&&x.playEditorialStatus==='lot05_editorial_final_20261107'&&
+ x.prompt?.trim()&&x.answerText?.trim()&&x.holdings?.length>=1&&
+ x.holdings.length<=2&&x.sourceAudit?.hidden_defender_hands_not_shown;}),
+ 'Lot 05 ten edited open card lessons: only source-proven hands');
+const lot05Excluded=['EN-BH-136-02','EN-BH-136-04','EN-BH-139-03',
+ 'JC-BH-104-01','JC-BH-079-01','EN-BH-127-02','JC-BH-132-Q02',
+ 'JC-BH-090-P2','JC-BH-121-P2'];
+check(lot05Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)),
+ 'Lot 05 refused and unresolved exercises excluded');
+
+
+const lot05CorrectAuctions={"EN-BH-136-03":[["","","1♣","1♠"],["?","","",""]],"EN-BH-139-05":[["","","1♦","passe"],["1♠","passe","1SA","passe"],["?","","",""]],"EN-BH-126-06":[["","","1♠","passe"],["2♠","passe","3♠","passe"],["?","","",""]],"EN-BH-129-05":[["","1♥","1♠","passe"],["?","","",""]]};
+check(Object.entries(lot05CorrectAuctions).every(([id,rows])=>
+ JSON.stringify(data.bidding.find(x=>x.id===id)?.auction)===JSON.stringify(rows)&&
+ rows.flat().filter(x=>x==='?').length===1&&
+ rows.flatMap(row=>row.map((value,seat)=>value==='?'?seat:-1)).filter(seat=>seat>=0)[0]===0),
+ 'Lot 05 auction chronology and the South seat to play are faithfully reconstructed');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
