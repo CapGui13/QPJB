@@ -164,8 +164,8 @@ check(JSON.stringify(bidEntries(['Contre','1♠','Passe','1SA']).map(x=>x.value)
  JSON.stringify(['Passe','Contre','1♠','1SA']),
  'Pass and Double have an explicit stable position before bid values');
 
-check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===24,
- 'All 24 source opening-lead problems remain available and unmodified');
+check(data.play.filter(x=>x.topic==='Entame'&&x.reviewStatus!=='a_verifier').length===28,
+ 'All 24 original opening-lead problems and four new Lot 05 lead lessons remain available');
 check(data.bidding.length>=560&&data.play.length>=100,'bridge exercises remain available');
 check(data.bidding.every(ex=>ex.choices.includes(ex.correct)&&
   bidEntries(ex.choices).length===ex.choices.length&&
@@ -256,8 +256,8 @@ check(jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.east===4&&
  jc021.pedagogicalAudit_20261103h?.counterexample?.hcp?.north===13,
  'JC-021 40 HCP witness and matching visible hands');
 
-check(data.play.length===179&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===169,
- '169 card exercises, including the 17 lot 02 and 10 lot 03 plans, accessible');
+check(data.play.length===179&&data.play.filter(x=>x.reviewStatus!=='a_verifier').length===179,
+ '179 card exercises, including 10 Lot 05 edited open lessons, accessible');
 const bh42=data.play.find(x=>x.id==='JC-BH-042-Q01');
 check(bh42?.prompt.includes('Est a ouvert de 1♠')&&bh42?.answerIndex===1,'BH-042 preserves original auction context and answer');
 check(app.includes("D.play.filter(x=>x.reviewStatus!=='a_verifier'"),'play lists exclude quarantined exercises');
@@ -428,8 +428,8 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===622&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===618,
- '618 bidding exercises, including 15 lot 02 and 3 lot 03 candidates, accessible');
+check(data.bidding.length===622&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===622,
+ '622 bidding exercises, including 4 Lot 05 edited QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
