@@ -1,7 +1,7 @@
 name: QPJB Training smoke
 on:
   push:
-    branches: [main]
+    branches: [main, test/lot07-v3-integration-20261107]
     # Les fichiers générés seuls ne déclenchent pas un nouveau cycle de tests.
     paths-ignore:
       - catalogue.json
@@ -122,6 +122,16 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-visual.cjs
       - name: Test Lot 06 activation (chromium; activated dataset)
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot06-activation-browser.cjs
+      - name: Test Lot 07 V3 in the real training app (isolated fixtures; chromium)
+        run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot07-v3-browser.cjs
+      - name: Retain Lot 07 V3 screenshots (chromium)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-lot07-v3-chromium
+          path: artifacts/lot07-v3/chromium/
+          retention-days: 7
+          if-no-files-found: warn
       - name: Test the Quizz module and its revision modes (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Retain visual screenshots and timings
@@ -158,6 +168,16 @@ jobs:
         run: PW_BROWSER=webkit node tests/training-visual.cjs
       - name: Test Lot 06 activation (webkit; activated dataset)
         run: PW_BROWSER=webkit node tests/training-lot06-activation-browser.cjs
+      - name: Test Lot 07 V3 in the real training app (isolated fixtures; webkit)
+        run: PW_BROWSER=webkit node tests/training-lot07-v3-browser.cjs
+      - name: Retain Lot 07 V3 screenshots (webkit)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-lot07-v3-webkit
+          path: artifacts/lot07-v3/webkit/
+          retention-days: 7
+          if-no-files-found: warn
       - name: Test the Quizz module and its revision modes (webkit)
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
       - name: Retain WebKit visual screenshots and timings

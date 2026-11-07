@@ -535,7 +535,7 @@ function biddingPlayerHeading(x){
  const seat=['Sud','Ouest','Nord','Est'][questionRow.indexOf('?')];
  return seat?'Vous êtes en '+seat:'Analyser la séquence';
 }
-function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':biddingPlayerHeading(x)}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}</section></div>${nav()}`}
+function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div><div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':biddingPlayerHeading(x)}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2>${x.sourceContext?`<p class="source-context" data-prequestion-context="true">${esc(x.sourceContext)}</p>`:''}<p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}</section></div>${nav()}`}
 function revealPlay(){
  playSeen=true;render();
  // La création du corrigé remplace le bouton : conserver le focus clavier.
@@ -654,7 +654,8 @@ function renderLegacyDiagram(x){
  // Afficher seulement les mains effectivement fournies, sans déduire Ouest/Est.
  if(Array.isArray(x?.holdings)&&x.holdings.length>=1&&x.holdings.length<=2&&
     (x.holdings.length===2||x.playEditorialStatus==='lot05_editorial_final_20261107'||
-     x.sourceFormat==='une_main_connue_lot06_20261107')&&
+     x.sourceFormat==='une_main_connue_lot06_20261107'||
+     x.sourceFormat==='entame_une_main_connue_lot07_20261107')&&
     x.holdings.every(h=>Array.isArray(h?.rows)&&h.rows.length>0)){
   const seats=buildCardSeats(x);
   // Le champ lead peut aussi raconter la suite du premier pli ; seule
