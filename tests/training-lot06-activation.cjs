@@ -20,6 +20,7 @@ const chosen=[...D.bidding.slice(-5),...D.play.slice(-6)];
 for(const x of chosen){
  assert.equal(x.reviewStatus,'valide_edition_lot06_20261107',x.id);
  assert.equal(x.publicationAutorisee,undefined,x.id+' published flag must not say false');
+ if(x.sourceAuditLot)assert.ok(!/non publié|staging de contrôle/.test(x.sourceAuditLot),x.id+' stale staging flag');
  assert.ok(!x.quarantineReason,x.id+' is not quarantined');
  assert.match(x.sourceAudit.sha256_sujet,/^[0-9a-f]{64}$/);
  assert.match(x.sourceAudit.sha256_corrige,/^[0-9a-f]{64}$/);
