@@ -59,7 +59,7 @@ const server=http.createServer((req,res)=>{
   assert.deepEqual(seats,['south'],'only the genuine known defender hand is shown');
   await frame.locator('.play-free-panel button').filter({hasText:/Découvrir l’analyse/}).click();
   await frame.locator('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:5000});
-  assert.match(await frame.locator('.analysis-body').textContent(),/♥V/);
+  assert.match((await frame.locator('.analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,''),/♥V/);
   assert.deepEqual(errors,[],'no browser runtime errors');
   console.log('LOT06 STAGING '+kind.toUpperCase()+' PASS — North bidder + South single-hand + choice feedback');
  }finally{if(context)await context.close();await browser.close();}
