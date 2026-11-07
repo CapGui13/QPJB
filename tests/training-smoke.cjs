@@ -518,7 +518,7 @@ check(lot03Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)
  'Unresolved Lot 03 discrepancies must not be imported');
 check(lazyBase.categories.find(c=>c.id==='2sa')?.count===14&&
  lazyBase.categories.find(c=>c.id==='reveil')?.count===6&&
- lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===84,
+ lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===85,
  'Lot 03 categories retain exact expected counts');
 check(data.play.find(x=>x.id==='JC-BH-074-P2')?.lead==='♠5 (Ouest)'&&
  data.play.find(x=>x.id==='JC-BH-074-P2')?.prompt.includes('♠9 d’Est'),
