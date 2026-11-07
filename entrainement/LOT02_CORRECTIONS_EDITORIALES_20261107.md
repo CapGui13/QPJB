@@ -6,7 +6,7 @@ Cette branche corrige **7 exercices** déjà publiés et nettoie la ponctuation 
 - BH-136 : 1SA sans arrêt ♠ présenté seulement comme accord particulier.
 - BH-140 : vulnérabilité favorable explicitement ajoutée comme hypothèse pédagogique, et alternative Passe reconnue.
 - BH-129 carte : accord préférentiel annoncé avant le plan de retour à ♦.
-- BH-132 maniement : comparaison des stratégies sans prétendre disposer d'un calcul probabiliste exhaustif.
+- BH-132 maniement : correction d'une erreur de fond détectée en relecture indépendante. Un coup de sonde ♣A oblige Sud (♣42) à fournir l'une de ses deux petites cartes, ce qui empêche ensuite deux impasses successives depuis Sud. Le plan à deux impasses et ses communications sont explicités ; les positions favorables au coup de sonde (notamment ♣D sèche) sont reconnues, sans annoncer de pourcentage non vérifié.
 - BH-091 carte : suppression de la fausse reprise à Sud.
 - BH-037 maniement : sens de jeu corrigé Nord → Sud vers le Valet.
 - BH-104 chelem : nettoyage de ponctuation.
