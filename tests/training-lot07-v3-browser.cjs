@@ -64,10 +64,10 @@ async function run(browser,spec){
   'Convention gives 0-7 H and 8-10 H without preselecting a specific option');
  check(await frame.locator('.qpjb-bid-quiz .feedback').count()===0,'No bidding feedback before choice');
  check((await frame.locator('.qpjb-bid-quiz').textContent()).includes('Vous êtes en Est'),'Correct seat displayed');
- await frame.locator('.qpjb-bid-quiz .choice').filter({hasText:/^3♠$/}).click();
+ await frame.locator('.qpjb-bid-quiz .choice[data-answer-index="2"]').click();
  await frame.locator('.qpjb-bid-quiz .feedback').waitFor({state:'visible'});
  check((await frame.locator('.qpjb-bid-quiz .feedback').textContent()).includes('Mauvaise réponse'),'Wrong bid rejected under stated agreement');
- await frame.locator('.qpjb-bid-quiz .choice').filter({hasText:/^4♠$/}).click();
+ await frame.locator('.qpjb-bid-quiz .choice[data-answer-index="3"]').click();
  await frame.locator('.qpjb-bid-quiz .feedback').waitFor({state:'visible'});
  check((await frame.locator('.qpjb-bid-quiz .feedback').textContent()).includes('Bonne réponse'),'Correct bid accepted under stated agreement');
  check((await frame.locator('.qpjb-bid-quiz .feedback').textContent()).includes('11 HL'),'H versus HL explained after answer');
