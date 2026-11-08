@@ -72,6 +72,7 @@ jobs:
           node tests/quizz-v4103-regression.cjs
           node tests/training-card-integrity.cjs
           node tests/training-lot06-activation.cjs
+          node tests/training-lot07-publication.cjs
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
           node scripts/split_training_data.cjs --check
@@ -122,6 +123,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-visual.cjs
       - name: Test Lot 06 activation (chromium; activated dataset)
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot06-activation-browser.cjs
+      - name: Test Lot 07 selected leads (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot07-publication-browser.cjs
       - name: Test the Quizz module and its revision modes (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Retain visual screenshots and timings
@@ -158,6 +161,8 @@ jobs:
         run: PW_BROWSER=webkit node tests/training-visual.cjs
       - name: Test Lot 06 activation (webkit; activated dataset)
         run: PW_BROWSER=webkit node tests/training-lot06-activation-browser.cjs
+      - name: Test Lot 07 selected leads (webkit)
+        run: PW_BROWSER=webkit node tests/training-lot07-publication-browser.cjs
       - name: Test the Quizz module and its revision modes (webkit)
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
       - name: Retain WebKit visual screenshots and timings

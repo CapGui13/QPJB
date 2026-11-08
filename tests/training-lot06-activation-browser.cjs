@@ -33,10 +33,13 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const child=page.frames().find(x=>x.url().includes('/entrainement/'));
   assert.ok(child,'embedded training frame exists');
+  // WebKit peut encore acquitter une navigation parent après l'affichage des tuiles.
+  // Attendre la fin de cette navigation avant d'ouvrir directement le QCM de test.
+  await child.waitForFunction(()=>trainingPendingNav===null&&trainingQueuedNav===null,null,{timeout:30000});
   const initial=await child.evaluate(()=>({bid:D.bidding.length,play:D.play.length}));
   assert.deepEqual(initial,{bid:627,play:0},'activated bidding dataset loads lazily');
   await child.evaluate(()=>{
-   cat='redemande';id='EN-BH-130-06';randomMode=false;sessionIds=[id];
+   cat='suite-repondant';id='EN-BH-130-06';randomMode=false;sessionIds=[id];
    trainingApplyPage('quiz',false,false);
   });
   await frame.locator('.qpjb-bid-quiz').waitFor({state:'visible',timeout:10000});
@@ -47,7 +50,7 @@ const server=http.createServer((req,res)=>{
   assert.match(await frame.locator('.feedback').textContent(),/Bonne réponse/i);
   await child.evaluate(async()=>{
     await ensureTrainingData('play');
-    if(D.play.length!==185)throw new Error('Lot 06 play dataset missing');
+    if(D.play.length!==188)throw new Error('Lot 06 play dataset missing');
     cat='play';ptopic='all';id='JC-BH-079-02';randomMode=false;sessionIds=[id];
     trainingApplyPage('quiz',false,false);
   });
