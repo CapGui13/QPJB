@@ -585,4 +585,17 @@ check(Object.entries(lot05CorrectAuctions).every(([id,rows])=>
  rows.flatMap(row=>row.map((value,seat)=>value==='?'?seat:-1)).filter(seat=>seat>=0)[0]===0),
  'Lot 05 auction chronology and the South seat to play are faithfully reconstructed');
 
+
+// LOT 10 : les deux QCM validés par CE10-X doivent rester distincts, complets et lisibles.
+for(const [qid,answer,level] of [['EN-BH-126-01','Passe',1],['EN-BH-127-04','3♥',2]]){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(!!q&&q.correct===answer&&q.level===level&&
+  q.hand.length===4&&q.hand.flatMap(s=>s.trim().split(/\s+/)).length===13&&
+  q.choices.length===4&&new Set(q.choices).size===4&&q.choices.includes(answer)&&
+  Object.keys(q.distractorNotes||{}).length===3&&
+  Object.keys(q.pretryHints||{}).length===3&&
+  q.reviewStatus==='valide_contre_expertise_independante_lot10_20261109',
+  'Lot10 validated independent QCM: '+qid);
+}
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
