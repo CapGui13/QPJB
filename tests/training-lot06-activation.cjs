@@ -58,7 +58,7 @@ for(const id of ['JC-BH-111-01','JC-BH-126-01','JC-BH-058-P2']){
 }
 const boot=read('entrainement/training-data-bootstrap.js');
 assert.ok(boot.includes('"bidding":633,"play":188'));
-assert.ok(boot.includes('20261108l09'));
+assert.ok(boot.includes('20261109l10'));
 assert.ok(read('service-worker.js').includes("CACHE = 'qpjb-v64'"));
 const app=read('entrainement/training-app.js');
 assert.match(app,/x.playerSeat/);
