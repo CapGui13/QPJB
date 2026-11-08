@@ -25,7 +25,11 @@ for(const [id,s] of Object.entries(specs)){
  assert.equal(x.choices.filter(c=>c===x.correct).length,1,id+' exactly one selected answer');
  assert.equal(x.playerSeat,'Sud',id+' player');
  assert.ok(x.question&&x.explanation&&x.distractorNotes&&x.editorialWarnings,id+' pedagogical metadata');
+ assert.equal(Object.keys(x.distractorNotes).length,3,id+' three independent distractor explanations');
+ assert.ok(x.choices.every(c=>c===x.correct||typeof x.distractorNotes[c]==='string'),id+' each distractor explained');
  assert.equal(x.reviewStatus,'a_relire',id+' under review');
 }
+assert.ok(!D.bidding.find(x=>x.id==='EN-BH-089-03').choices.includes('2♣'),'non-unique 2♣ distractor replaced');
+assert.ok(D.bidding.find(x=>x.id==='EN-BH-089-03').choices.includes('3♣'),'new 3♣ distractor confirmed');
 assert.ok(!D.bidding.some(x=>['EN-BH-111-01','EN-BH-082-04'].includes(x.id)), 'excluded cases still excluded');
 console.log('LOT08 DRAFT PASS — 4 QCM candidates; 631 bidding, 188 card, 819 total');
