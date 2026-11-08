@@ -463,18 +463,18 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===631&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===631,
- '631 bidding exercises including 5 Lot 06 QCM, accessible');
+check(data.bidding.length===633&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===633,
+ '633 bidding exercises including Lot 09 QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===631&&lazyBase.counts.play===188,
+check(lazyBase.counts.bidding===633&&lazyBase.counts.play===188,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===86&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===87&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
  lazyBase.categories.find(c=>c.id==='rep1M').count===22&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
@@ -553,7 +553,7 @@ check(lot03Excluded.every(id=>![...data.bidding,...data.play].some(x=>x.id===id)
  'Unresolved Lot 03 discrepancies must not be imported');
 check(lazyBase.categories.find(c=>c.id==='2sa')?.count===14&&
  lazyBase.categories.find(c=>c.id==='reveil')?.count===6&&
- lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===86,
+ lazyBase.categories.find(c=>c.id==='suite-repondant')?.count===87,
  'Lot 03 categories retain exact expected counts');
 check(data.play.find(x=>x.id==='JC-BH-074-P2')?.lead==='♠5 (Ouest)'&&
  data.play.find(x=>x.id==='JC-BH-074-P2')?.prompt.includes('♠9 d’Est'),
