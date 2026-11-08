@@ -12,11 +12,11 @@ const idsB=["EN-BH-128-02","EN-BH-128-06","EN-BH-129-02","EN-BH-130-06","EN-BH-1
 const idsP=["JC-BH-127-01","JC-BH-079-02","JC-BH-111-01","JC-BH-118-P2","JC-BH-126-01","JC-BH-058-P2"];
 assert.equal(D.bidding.length,631);
 assert.equal(D.play.length,188);
-assert.deepEqual(D.bidding.slice(-5).map(x=>x.id),idsB);
+assert.deepEqual(D.bidding.filter(x=>idsB.includes(x.id)).map(x=>x.id),idsB);
 assert.deepEqual(D.play.filter(x=>idsP.includes(x.id)).map(x=>x.id),idsP);
 const all=[...D.bidding,...D.play];
 assert.equal(new Set(all.map(x=>x.id)).size,819);
-const chosen=[...D.bidding.slice(-5),...D.play.filter(x=>idsP.includes(x.id))];
+const chosen=[...D.bidding.filter(x=>idsB.includes(x.id)),...D.play.filter(x=>idsP.includes(x.id))];
 for(const x of chosen){
  assert.equal(x.reviewStatus,'valide_edition_lot06_20261107',x.id);
  assert.equal(x.publicationAutorisee,undefined,x.id+' published flag must not say false');
@@ -27,7 +27,7 @@ for(const x of chosen){
  assert.equal(x.sourceAudit.known_hands_only,true);
  assert.equal(x.sourceAudit.hidden_defender_hands_not_shown,true);
 }
-for(const x of D.bidding.slice(-5)){
+for(const x of D.bidding.filter(x=>idsB.includes(x.id))){
  assert.equal(x.hand.length,4,x.id);
  assert.equal(x.choices.length,4,x.id);
  assert.equal(new Set(x.choices).size,4,x.id);
@@ -63,4 +63,4 @@ assert.ok(read('service-worker.js').includes("CACHE = 'qpjb-v64'"));
 const app=read('entrainement/training-app.js');
 assert.match(app,/x.playerSeat/);
 assert.match(app,/une_main_connue_lot06_20261107/);
-console.log('LOT06 ACTIVATION PASS — 631 enchères, 188 cartes; 11 IDs, seats, sources and conditions checked');
+console.log('LOT06 ACTIVATION REGRESSION PASS — 11 historic Lot06 IDs preserved; catalogue now 631 enchères + 188 cartes');
