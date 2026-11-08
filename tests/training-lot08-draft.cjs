@@ -1,5 +1,5 @@
 'use strict';
-// LOT 08 — Brouillon d'intégration : 4 QCM, pas de publication avant revue.
+// LOT 08 — Test historique d'intégrité, actualisé après PR #113 et audit indépendant R8-C.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const D=JSON.parse(fs.readFileSync(path.join(root,'entrainement/training-data.js'),'utf8').trim().slice(8,-1));
@@ -27,9 +27,14 @@ for(const [id,s] of Object.entries(specs)){
  assert.ok(x.question&&x.explanation&&x.distractorNotes&&x.editorialWarnings,id+' pedagogical metadata');
  assert.equal(Object.keys(x.distractorNotes).length,3,id+' three independent distractor explanations');
  assert.ok(x.choices.every(c=>c===x.correct||typeof x.distractorNotes[c]==='string'),id+' each distractor explained');
- assert.equal(x.reviewStatus,'a_relire',id+' under review');
+ assert.equal(x.reviewStatus,['EN-BH-089-03','EN-BH-097-01'].includes(id)?'valide_contre_expertise_independante_lot08_20261108':'a_relire',id+' correct post-review status');
+ assert.equal(x.choiceStatus,['EN-BH-089-03','EN-BH-097-01'].includes(id)?'distracteurs_controles_r8c_20261108':'lot08_r8c_20261108_a_revoir',id+' correct distractor status');
+ assert.ok(!x.tags.includes('lot08_candidate_non_publie'),id+' no obsolete unpublished tag');
+ assert.ok(x.sourceAuditLot.includes('PR #113 fusionnée'),id+' updated publication provenance');
 }
 assert.ok(!D.bidding.find(x=>x.id==='EN-BH-089-03').choices.includes('2♣'),'non-unique 2♣ distractor replaced');
 assert.ok(D.bidding.find(x=>x.id==='EN-BH-089-03').choices.includes('3♣'),'new 3♣ distractor confirmed');
 assert.ok(!D.bidding.some(x=>['EN-BH-111-01','EN-BH-082-04'].includes(x.id)), 'excluded cases still excluded');
-console.log('LOT08 DRAFT PASS — 4 QCM candidates; 631 bidding, 188 card, 819 total');
+assert.match(D.bidding.find(x=>x.id==='EN-BH-097-04').explanation,/16–18 HL/,'097-04 source range clarified');
+assert.match(D.bidding.find(x=>x.id==='EN-BH-097-06').distractorNotes['3♠'],/V5/,'097-06 Pique holding corrected');
+console.log('LOT08 POSTFUSION PASS — 4 published QCM; 2 validated, 2 still under review; 819 total');
