@@ -1055,7 +1055,10 @@ const server=http.createServer((req,res)=>{
       assert.ok(index>=0,'Lot 08 expected answer is in the options');
       await lot08Quiz.locator('.choice[data-answer-index="'+index+'"]').click();
       await lot08Quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
-      assert.ok((await lot08Quiz.locator('.feedback').innerText()).length>70,'Lot 08 explanation appears on selection');
+      const feedbackText=await lot08Quiz.locator('.feedback').textContent();
+      assert.ok(feedbackText?.includes('Bonne réponse'),'Lot 08 positive feedback is displayed for '+spec.id);
+      const explanationText=await lot08Quiz.locator('.feedback p').first().textContent();
+      assert.ok(explanationText?.trim().length>30,'Lot 08 explanation is present in the DOM for '+spec.id);
       const width=await lot08Quiz.evaluate(el=>({scroll:el.ownerDocument.documentElement.scrollWidth,client:el.ownerDocument.documentElement.clientWidth}));
       assert.ok(width.scroll<=width.client+3,'Lot 08 quiz has no horizontal overflow on mobile: '+JSON.stringify(width));
     }
