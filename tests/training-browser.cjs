@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const initialData=await page.frames().find(f=>f.url().includes('/entrainement/'))
     .evaluate(()=>({bidding:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initialData,{bidding:627,play:0},
+  assert.deepEqual(initialData,{bidding:631,play:0},
     'Bidding opens without parsing the complete card-play collection');
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
@@ -1022,6 +1022,47 @@ const server=http.createServer((req,res)=>{
     'All four answers should be visible on a short mobile screen: '+JSON.stringify(smallMetrics));
   await smallContext.close();
 
+  // Lot 08 : parcourir effectivement les quatre nouvelles questions sur iPhone simulé.
+  // La validation d'affichage n'est pas une certification pédagogique indépendante.
+  const lot08Context=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
+  try{
+    const lot08Page=await lot08Context.newPage();
+    lot08Page.on('pageerror',e=>errors.push('Lot08 '+e.message));
+    await lot08Page.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+    await lot08Page.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+    const lot08Frame=lot08Page.frameLocator('#training-frame');
+    await lot08Frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
+    const lot08Child=lot08Page.frames().find(f=>f.url().includes('/entrainement/'));
+    const newCases=[
+      {id:'EN-BH-089-03',theme:'rep1M',correct:'1♠'},
+      {id:'EN-BH-097-01',theme:'redemande',correct:'3♦'},
+      {id:'EN-BH-097-04',theme:'redemande',correct:'3♠'},
+      {id:'EN-BH-097-06',theme:'suite-repondant',correct:'2SA'}
+    ];
+    for(const spec of newCases){
+      await lot08Child.evaluate(theme=>topic(theme),spec.theme);
+      await lot08Frame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+      await lot08Child.evaluate(exerciseId=>item(exerciseId),spec.id);
+      const lot08Quiz=lot08Frame.locator('.qpjb-bid-quiz');
+      await lot08Quiz.waitFor({state:'visible',timeout:12000});
+      const details=await lot08Child.evaluate(()=>({id,correct:current()?.correct,choices:current()?.choices,question:current()?.question}));
+      assert.equal(details.id,spec.id,'Lot 08 selected ID appears in the embedded quiz');
+      assert.equal(details.correct,spec.correct,'Lot 08 correct bid is preserved');
+      assert.equal(await lot08Quiz.locator('.suits .suit').count(),4,'Lot 08 hand shows four suits');
+      assert.equal(await lot08Quiz.locator('.choices>.choice').count(),4,'Lot 08 displays four actual choices');
+      assert.ok(details.question?.length>25,'Lot 08 includes the pedagogical question');
+      const index=details.choices.indexOf(spec.correct);
+      assert.ok(index>=0,'Lot 08 expected answer is in the options');
+      await lot08Quiz.locator('.choice[data-answer-index="'+index+'"]').click();
+      await lot08Quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
+      const feedbackText=await lot08Quiz.locator('.feedback').textContent();
+      assert.ok(feedbackText?.includes('Bonne réponse'),'Lot 08 positive feedback is displayed for '+spec.id);
+      const explanationText=await lot08Quiz.locator('.feedback p').first().textContent();
+      assert.ok(explanationText?.trim().length>30,'Lot 08 explanation is present in the DOM for '+spec.id);
+      const width=await lot08Quiz.evaluate(el=>({scroll:el.ownerDocument.documentElement.scrollWidth,client:el.ownerDocument.documentElement.clientWidth}));
+      assert.ok(width.scroll<=width.client+3,'Lot 08 quiz has no horizontal overflow on mobile: '+JSON.stringify(width));
+    }
+  }finally{await lot08Context.close()}
   assert.equal(errors.length,0,'No uncaught JavaScript errors: '+errors.join('; '));
   console.log(JSON.stringify({result:'PASS',device:'iPhone 12',browser:browserType,auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
