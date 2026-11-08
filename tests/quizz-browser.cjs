@@ -378,7 +378,14 @@ const server=http.createServer((req,res)=>{
 
   // Nouvelle mécanique : une réponse erronée libre affiche les quatre pièges,
   // sans révéler la bonne réponse, et ne donne pas la maîtrise autonome.
+  // WebKit peut encore traiter un fondu du dernier « Passer » de la séance
+  // précédente. Ne pas enchaîner retour aux paramètres et nouvelle séance
+  // avant que le corps de page ET le fondu soient revenus au repos.
   await page.locator('#back-home').click();
+  await page.waitForFunction(()=>!document.body.classList.contains('session-mode')
+    && !document.querySelector('#qpjb-quiz-local-fade')?.classList.contains('fade-in'),
+    null,{timeout:20000});
+  await page.waitForTimeout(550);
   await page.locator('#topic').selectOption('ouv');
   await page.locator('#difficulty').selectOption('1');
   await page.locator('#mode').selectOption('10');
