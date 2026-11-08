@@ -474,11 +474,11 @@ const lazyBase=JSON.parse(baseMatch[1]);
 check(lazyBase.counts.bidding===631&&lazyBase.counts.play===188,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
- lazyBase.categories.find(c=>c.id==='suite-repondant').count===85&&
+ lazyBase.categories.find(c=>c.id==='suite-repondant').count===86&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
- lazyBase.categories.find(c=>c.id==='rep1M').count===21&&
+ lazyBase.categories.find(c=>c.id==='rep1M').count===22&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
- 'topic counters reflect the exact quarantined IDs');
+ 'topic counters include Lot 08 candidates and preserve the earlier distribution');
 const bh120=data.play.find(x=>x.id==='JC-BH-120-01');
 check(!!bh120&&bh120.sourceOriginalAnswerText?.includes('Revenez au mort')&&
  bh120.answerText.includes('10 de Pique')&&bh120.answerText.includes('Dame se trouve en Ouest')&&
