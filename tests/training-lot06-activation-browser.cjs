@@ -37,7 +37,7 @@ const server=http.createServer((req,res)=>{
   // Attendre la fin de cette navigation avant d'ouvrir directement le QCM de test.
   await child.waitForFunction(()=>trainingPendingNav===null&&trainingQueuedNav===null,null,{timeout:30000});
   const initial=await child.evaluate(()=>({bid:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initial,{bid:627,play:0},'activated bidding dataset loads lazily');
+  assert.deepEqual(initial,{bid:631,play:0},'activated bidding dataset loads lazily');
   await child.evaluate(()=>{
    cat='suite-repondant';id='EN-BH-130-06';randomMode=false;sessionIds=[id];
    trainingApplyPage('quiz',false,false);
