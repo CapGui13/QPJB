@@ -11,7 +11,7 @@ const specs=[
 assert.equal(D.bidding.length,638);
 assert.equal(D.play.length,188);
 assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,826);
-assert.equal(D.categories.reduce((s,c)=>s+c.count,0),636);
+assert.equal(D.categories.reduce((s,c)=>s+c.count,0),638);
 assert.equal(D.categories.find(c=>c.id==='redemande').count,87);
 const honors={A:4,R:3,D:2,V:1};
 for(const s of specs){
