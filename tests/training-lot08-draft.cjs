@@ -9,10 +9,10 @@ const specs={
  'EN-BH-097-04':{correct:'3♠',theme:'redemande',level:3},
  'EN-BH-097-06':{correct:'2SA',theme:'suite-repondant',level:4}
 };
-assert.equal(D.bidding.length,635);
+assert.equal(D.bidding.length,638);
 assert.equal(D.play.length,188);
-assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,823);
-assert.equal(D.categories.reduce((s,c)=>s+c.count,0),635);
+assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,826);
+assert.equal(D.categories.reduce((s,c)=>s+c.count,0),638);
 for(const [id,s] of Object.entries(specs)){
  const x=D.bidding.find(x=>x.id===id);
  assert.ok(x,'missing '+id);
@@ -37,4 +37,4 @@ assert.ok(D.bidding.find(x=>x.id==='EN-BH-089-03').choices.includes('3♣'),'new
 assert.ok(!D.bidding.some(x=>['EN-BH-111-01','EN-BH-082-04'].includes(x.id)), 'excluded cases still excluded');
 assert.match(D.bidding.find(x=>x.id==='EN-BH-097-04').explanation,/16–18 HL/,'097-04 source range clarified');
 assert.match(D.bidding.find(x=>x.id==='EN-BH-097-06').distractorNotes['3♠'],/V5/,'097-06 Pique holding corrected');
-console.log('LOT08 POSTFUSION PASS — 4 published QCM; 2 validated, 2 still under review; 823 total');
+console.log('LOT08 POSTFUSION PASS — 4 published QCM; 2 validated, 2 still under review; 826 total');
