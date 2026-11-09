@@ -9,10 +9,10 @@ const selected=[
  {id:'EN-BH-111-04',hand:['D 8 6','R 7 5','R D V 10 8','8 2'],H:11,HL:12,correct:'Passe',theme:'forcing',bid:'4♠'},
  {id:'EN-BH-060-04',hand:['D 5 2','R V 10 8 6 3','A 3','7 4'],H:10,HL:12,correct:'3♥',theme:'suite-repondant',bid:'2♣'}
 ];
-assert.equal(D.bidding.length,633);
+assert.equal(D.bidding.length,636);
 assert.equal(D.play.length,188);
-assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,821);
-assert.equal(D.categories.reduce((sum,c)=>sum+c.count,0),633);
+assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,824);
+assert.equal(D.categories.reduce((sum,c)=>sum+c.count,0),636);
 assert.equal(D.categories.find(x=>x.id==='forcing').count,15);
 assert.equal(D.categories.find(x=>x.id==='suite-repondant').count,87);
 for(const exp of selected){
@@ -43,4 +43,4 @@ for(const exp of selected){
 }
 for(const id of ['EN-BH-065-05','EN-BH-098-04','EN-BH-075-06','EN-BH-071-04'])
  assert.ok(!D.bidding.some(x=>x.id===id),id+' must remain outside the catalogue');
-console.log('LOT09 PASS — 2 QCM, 633 enchères + 188 cartes = 821 total');
+console.log('LOT09 PASS — 2 QCM, 636 enchères + 188 cartes = 824 total');
