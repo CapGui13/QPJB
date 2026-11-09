@@ -859,11 +859,33 @@ for(const item of wakeLimited){
 // Tester tous les réveils naturels de la base, pas seulement les cas corrigés.
 // Les contre-exemples avec 14 HL sont traités par Contre et sortent de cet ensemble.
 for(const x of exercises.filter(e=>e.theme==='reveil'&&e.auction.length===3)){
+ // Plage 8–13 HL : réveils naturels après une ouverture au palier de 1 seulement.
+ // Après un 2 majeur faible, un réveil naturel robuste relève d'un traitement distinct.
+ const firstBid=String(x.auction[0]||'');
+ if(!/:\s*1[♠♥♦♣](?:\s|$)/.test(firstBid))continue;
+ // Cette zone vise (1x) - Passe - Passe ; après soutien adverse, règles différentes.
+ if(!/:\s*Passe(?:\s|$)/i.test(String(x.auction[2]||'')))continue;
  const m=x.answer.match(/^([1-7])([♠♥♦♣])$/);
  if(!m)continue;
  const length=x.shape[wakeSuitIndex[m[2]]],hl=x.h+Math.max(0,length-4);
  assert.ok(length>=5,'Réveil à la couleur avec cinq cartes au moins : '+x.id);
  assert.ok(hl>=8&&hl<=13,'Réveil naturel limité à 8-13 HL : '+x.id+'='+hl);
+}
+// Réveil après ouverture de 2♥ faible : six beaux ♦ sans limite automatique à 13 HL.
+{
+ const x=exercises.find(e=>e.id==='SEF-L10-018');
+ assert.ok(x,'Réveil après 2♥ faible disponible : SEF-L10-018');
+ assert.equal(x.answer,'3♦','Réveil descriptif après 2♥ faible : SEF-L10-018');
+ assert.equal(x.shape[wakeSuitIndex['♦']],6,'Six Carreaux pour le réveil : SEF-L10-018');
+ assert.equal(x.h+2,15,'Réveil sur 2♥ faible : 15 HL');
+}
+// Après (1♥) - Passe - (2♥), le réveil naturel avec six beaux ♠ est un cas distinct.
+{
+ const x=exercises.find(e=>e.id==='SEF-L10-021');
+ assert.ok(x,'Réveil après soutien adverse disponible : SEF-L10-021');
+ assert.equal(x.answer,'3♠','Six beaux Piques à 3♠ après (1♥)-P-(2♥)');
+ assert.equal(x.shape[wakeSuitIndex['♠']],6,'Six Piques : SEF-L10-021');
+ assert.equal(x.h+2,15,'15 HL sans borne 8–13 après soutien adverse');
 }
 // V4.48 : contrôler les interventions directes et 18 comparaisons.
 const directCalls=[

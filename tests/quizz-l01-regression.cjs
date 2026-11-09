@@ -8,7 +8,7 @@ assert.ok(match,'training-data present');
 const data=JSON.parse(match[1]);
 const exercises=data.exercises;
 assert.ok(exercises.length>=1253,'Lot L01: 1223 anciens + 30 nouveaux préservés');
-assert.match(data.description,/1263 QCM/,'Affichage du total actuel');
+assert.match(data.description,new RegExp(String(exercises.length)+' QCM'),'Affichage du total actuel');
 const byId=new Map(exercises.map(x=>[x.id,x]));
 assert.equal(byId.size,exercises.length,'IDs uniques');
 const lote=exercises.filter(x=>/^SEF-L01-[A-F]-\d\d$/.test(x.id));
