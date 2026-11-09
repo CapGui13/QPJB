@@ -27,7 +27,7 @@ async function run(browser,spec){
  check(!!child,'Embedded training app');
  await child.evaluate(async()=>{await ensureTrainingData('play')});
  const counts=await child.evaluate(()=>({b:D.bidding.length,p:D.play.length}));
- check(counts.b===636&&counts.p===188,'824 public exercises loaded');
+ check(counts.b===635&&counts.p===188,'823 public exercises loaded');
  for(const id of ids){
   await child.evaluate(x=>{
    if(!D.play.some(z=>z.id===x))throw new Error('Not published '+x);

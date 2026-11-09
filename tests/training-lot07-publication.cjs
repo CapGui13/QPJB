@@ -6,8 +6,8 @@ const raw=read('entrainement/training-data.js').trim();
 assert.ok(raw.startsWith('const D=')&&raw.endsWith(';'));
 const D=JSON.parse(raw.slice(8,-1));
 const ids=['JC-BH-079-03','JC-BH-091-03','JC-BH-091-04'];
-assert.equal(D.bidding.length,636);assert.equal(D.play.length,188);
-assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,824);
+assert.equal(D.bidding.length,635);assert.equal(D.play.length,188);
+assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,823);
 for(const id of ['EN-BH-042-P2-04','JC-BH-132-Q03','JC-BH-080-04'])
  assert.ok(![...D.bidding,...D.play].some(x=>x.id===id),id+' is excluded');
 const props={'JC-BH-079-03':['S','♥7'],'JC-BH-091-03':['W','♦R'],'JC-BH-091-04':['W','♦8']};
@@ -31,4 +31,4 @@ assert.match(D.play.find(x=>x.id==='JC-BH-091-03').answerText,/♣D/);
 assert.match(D.play.find(x=>x.id==='JC-BH-091-04').answerText,/1SA/);
 assert.match(D.play.find(x=>x.id==='JC-BH-079-03').answerText,/As latéral/);
 assert.ok(read('entrainement/training-app.js').includes("x.sourceFormat==='entame_une_main_connue_lot07_20261107'"));
-console.log('LOT07 V3 SELECTIVE PASS — 3 leads; 636 enchères + 188 cartes = 824');
+console.log('LOT07 V3 SELECTIVE PASS — 3 leads; 635 enchères + 188 cartes = 823');

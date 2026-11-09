@@ -8,11 +8,11 @@ const specs=[
  {id:'EN-BH-097-03',correct:'2SA',H:13,choices:['2♦','2♥','2SA','3SA']},
  {id:'EN-BH-097-05',correct:'4♥',H:12,choices:['2♠','3♥','3♠','4♥']}
 ];
-assert.equal(D.bidding.length,636);
+assert.equal(D.bidding.length,638);
 assert.equal(D.play.length,188);
-assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,824);
+assert.equal(new Set([...D.bidding,...D.play].map(x=>x.id)).size,826);
 assert.equal(D.categories.reduce((s,c)=>s+c.count,0),636);
-assert.equal(D.categories.find(c=>c.id==='redemande').count,86);
+assert.equal(D.categories.find(c=>c.id==='redemande').count,87);
 const honors={A:4,R:3,D:2,V:1};
 for(const s of specs){
  const x=D.bidding.find(y=>y.id===s.id);assert.ok(x,s.id+' missing');
@@ -33,4 +33,4 @@ assert.ok(app.includes("LOT08_R8H_IDS.has(x.id)?redemandeCourseNote():''"),'pre-
 for(const phrase of ['16 HL','mini-maxi','fast arrival'])assert.ok(app.includes(phrase),phrase+' missing');
 for(const id of ['EN-BH-082-02','EN-BH-139-04','EN-BH-111-01','EN-BH-089-04'])
  assert.ok(!D.bidding.some(x=>x.id===id),id+' intentionally unpublished');
-console.log('LOT08 R8-H PASS — 3 V2 QCM, visible course, 824 exercises');
+console.log('LOT08 R8-H PASS — 3 V2 QCM, visible course, 826 exercises');

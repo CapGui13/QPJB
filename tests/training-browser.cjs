@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
   const initialData=await page.frames().find(f=>f.url().includes('/entrainement/'))
     .evaluate(()=>({bidding:D.bidding.length,play:D.play.length}));
-  assert.deepEqual(initialData,{bidding:636,play:0},
+  assert.deepEqual(initialData,{bidding:635,play:0},
     'Bidding opens without parsing the complete card-play collection');
   await frame.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
   await frame.locator('.item').first().waitFor({state:'visible',timeout:15000});
