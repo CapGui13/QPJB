@@ -597,4 +597,19 @@ for(const [qid,answer,level] of [['EN-BH-126-01','Passe',1],['EN-BH-127-04','3�
   'Lot10 validated independent QCM: '+qid);
 }
 
+for(const [qid,expected,sourceAnswer] of [
+  ['EN-1sa-011','3♥','3♠'],
+  ['EN-BH-115-06','4♠','4♥']
+]){
+  const q=lot02Bid(qid);
+  check(q&&q.correct===expected&&q.choices.includes(sourceAnswer),
+    qid+' conserve sa réponse SEF et la variante du fascicule parmi les choix');
+  check(q.question?.includes('chassé-croisé')&&q.sourceContext?.includes('chassé-croisé'),
+    qid+' annonce le système avant la question, même hors parcours de thème');
+  check(q.explanation?.includes('corrigé')&&q.distractorNotes?.[sourceAnswer]?.includes('accord'),
+    qid+' explique pourquoi le traitement naturel du fascicule reste recevable');
+}
+check(app.includes("x.sourceContext?")&&app.includes("x.question||'Quelle est votre enchère ?'"),
+  'le rendu de la question contient le contexte pré-réponse et un énoncé éditorial');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
