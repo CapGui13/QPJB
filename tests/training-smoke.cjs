@@ -597,4 +597,30 @@ for(const [qid,answer,level] of [['EN-BH-126-01','Passe',1],['EN-BH-127-04','3�
   'Lot10 validated independent QCM: '+qid);
 }
 
+const p1Bh055=data.bidding.find(x=>x.id==='EN-BH-055-06');
+check(!!p1Bh055&&p1Bh055.correct==='5♦'&&
+ JSON.stringify(p1Bh055.choices)===JSON.stringify(['5♣','5♦','5♥','5♠'])&&
+ p1Bh055.question.includes('Si vous envisagez')&&
+ p1Bh055.question.includes('non vulnérable')&&
+ p1Bh055.explanation.includes('Passe reste')&&
+ p1Bh055.explanation.includes('au moins dix atouts')&&
+ p1Bh055.explanation.includes('ne garantit'),
+ 'P1 BH055: sacrifice explicitly conditional, vulnerability specified and no guaranteed tricks');
+check(JSON.stringify(Object.keys(p1Bh055.distractorNotes||{}).sort())===
+ JSON.stringify(p1Bh055.choices.filter(c=>c!==p1Bh055.correct).sort()),
+ 'P1 BH055: distractor notes fit all three actual wrong choices');
+const p1Bh061=data.bidding.find(x=>x.id==='EN-BH-061-05');
+check(!!p1Bh061&&p1Bh061.correct==='1♠'&&
+ JSON.stringify(p1Bh061.auction)===JSON.stringify([['','','','1♣'],['?','','','']])&&
+ p1Bh061.question.includes('Nord–Sud vulnérables')&&
+ p1Bh061.explanation.includes('1♥ chez Est')&&
+ p1Bh061.explanation.includes('SUJET')&&
+ p1Bh061.distractorNotes['1SA'].includes('selon les accords'),
+ 'P1 BH061: source 1 club retained, correction 1 heart disclosed, alternative 1NT qualified');
+check(JSON.stringify(Object.keys(p1Bh061.distractorNotes||{}).sort())===
+ JSON.stringify(p1Bh061.choices.filter(c=>c!==p1Bh061.correct).sort())&&
+ JSON.stringify(Object.keys(p1Bh061.pretryHints||{}).sort())===
+ JSON.stringify(p1Bh061.choices.filter(c=>c!==p1Bh061.correct).sort()),
+ 'P1 BH061: explanatory notes and hints correspond to choices');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
