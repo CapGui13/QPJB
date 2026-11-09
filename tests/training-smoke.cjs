@@ -606,7 +606,7 @@ for(const [qid,expected,sourceAnswer] of [
     qid+' conserve sa réponse SEF et la variante du fascicule parmi les choix');
   check(q.question?.includes('chassé-croisé')&&q.sourceContext?.includes('chassé-croisé'),
     qid+' annonce le système avant la question, même hors parcours de thème');
-  check(q.explanation?.includes('corrigé')&&q.distractorNotes?.[sourceAnswer]?.includes('accord'),
+  check(q.explanation?.includes('corrigé')&&q.distractorNotes?.[sourceAnswer]?.includes('chassé-croisé'),
     qid+' explique pourquoi le traitement naturel du fascicule reste recevable');
 }
 check(app.includes("x.sourceContext?")&&app.includes("x.question||'Quelle est votre enchère ?'"),
