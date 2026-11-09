@@ -6,13 +6,13 @@ const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz data embedded');
 const data=JSON.parse(m[1]); const xs=data.exercises;
-assert.equal(xs.length,1263,'1 253 historiques + 10 L02');
-assert.equal(new Set(xs.map(x=>x.id)).size,1263,'unique identifiers');
+assert.ok(xs.length>=1263,'Au moins 1 253 historiques + 10 L02');
+assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'unique identifiers');
 assert.equal(data.themes.length,22,'22 existing topics');
-assert.match(data.description,/1263 QCM/,'updated total');
+assert.match(data.description,new RegExp(String(xs.length)+' QCM'),'updated total');
 const fnv=(s)=>{let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;return h.toString(16).padStart(8,'0');};
 assert.equal(fnv(JSON.stringify(xs.slice(0,1253))),fixture.originalPrefixFnv1aUtf16,'1 253 historical exercises unchanged');
-assert.deepEqual(xs.slice(1253),fixture.additions,'only the exact 10 reviewed exercises appended');
+assert.deepEqual(xs.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly');
 const val={A:4,R:3,D:2,V:1};
 const suit={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
 const rank=x=>x==='Passe'?-3:x==='Contre'?-2:x==='Surcontre'?-1:(()=>{const m=x.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+suit[m[2]]:null})();
@@ -39,4 +39,4 @@ for(const x of fixture.additions){
  const key=JSON.stringify([x.hand,x.auction]);assert.ok(!seen.has(key),x.id+' unique hand and sequence');seen.add(key);
 }
 assert.ok(!xs.some(x=>x.id==='SEF-L02-E-04'),'ambiguous E-04 deliberately excluded');
-console.log('PASS | L02 V4.114: 1 253 historical exercises unchanged + 10 reviewed = 1 263');
+console.log('PASS | L02 V4.114: 1 253 historical exercises unchanged + 10 reviewed = 1 263; additional later exercises: '+(xs.length-1263));
