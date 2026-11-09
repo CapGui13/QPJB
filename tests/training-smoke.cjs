@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261108l09')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261108l09'),
+check(html.includes('training-data-bootstrap.js?v=20261109l10')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261109l10'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261108l09')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261108l09'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261109l10')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261109l10'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v65'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v66'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -463,20 +463,20 @@ for(const [id,originalAnswer,answer] of adapted){
 const adaptedBarrage=splitItems.find(x=>x.id==='EN-BH-078-05');
 check(adaptedBarrage.choices.includes('Passe')&&/non vulnérable/.test(adaptedBarrage.question),
  'barrage question supplies favorable vulnerability and Pass choice');
-check(data.bidding.length===633&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===633,
- '633 bidding exercises including Lot 09 QCM, accessible');
+check(data.bidding.length===635&&data.bidding.filter(x=>x.reviewStatus!=='a_verifier').length===635,
+ '635 bidding exercises including Lot 09 QCM, accessible');
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'no newly accessible card retains a quarantine warning');
 const lazyData=read('entrainement/training-data-bootstrap.js');
 const baseMatch=lazyData.match(/const D=([^\n]+);\nconst trainingDataLoads=/);
 check(!!baseMatch,'lazy bootstrap still declares its categories and counts');
 const lazyBase=JSON.parse(baseMatch[1]);
-check(lazyBase.counts.bidding===633&&lazyBase.counts.play===188,
+check(lazyBase.counts.bidding===635&&lazyBase.counts.play===188,
  'bootstrap count reflects unavailable bidding and card exercises');
 check(lazyBase.categories.find(c=>c.id==='2sa').count===14&&
  lazyBase.categories.find(c=>c.id==='suite-repondant').count===87&&
  lazyBase.categories.find(c=>c.id==='rep-barrage').count===14&&
- lazyBase.categories.find(c=>c.id==='rep1M').count===22&&
+ lazyBase.categories.find(c=>c.id==='rep1M').count===23&&
  lazyBase.categories.find(c=>c.id==='suite-ouvreur').count===16,
  'topic counters include Lot 08 candidates and preserve the earlier distribution');
 const bh120=data.play.find(x=>x.id==='JC-BH-120-01');
@@ -584,5 +584,17 @@ check(Object.entries(lot05CorrectAuctions).every(([id,rows])=>
  rows.flat().filter(x=>x==='?').length===1&&
  rows.flatMap(row=>row.map((value,seat)=>value==='?'?seat:-1)).filter(seat=>seat>=0)[0]===0),
  'Lot 05 auction chronology and the South seat to play are faithfully reconstructed');
+
+
+for(const [qid,answer,level] of [['EN-BH-126-01','Passe',1],['EN-BH-127-04','3♥',2]]){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(!!q&&q.correct===answer&&q.level===level&&
+  q.hand.length===4&&q.hand.flatMap(s=>s.trim().split(/\s+/)).length===13&&
+  q.choices.length===4&&new Set(q.choices).size===4&&q.choices.includes(answer)&&
+  Object.keys(q.distractorNotes||{}).length===3&&
+  Object.keys(q.pretryHints||{}).length===3&&
+  q.reviewStatus==='valide_contre_expertise_independante_lot10_20261109',
+  'Lot10 validated independent QCM: '+qid);
+}
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
