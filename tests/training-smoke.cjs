@@ -712,4 +712,27 @@ check(bm003.sourceContext.includes('31 octobre 2026')&&bm003.sourceContext.inclu
  bm003.explanation.includes('les deux versions'),
  'BM003: source/correction discrepancy is visible pre-choice and explained after response');
 
+
+// BH103: historical vulnerability is now explicit in all five published questions.
+const bh103Cases=[
+ ['EN-BH-103-01','Personne n\'est vulnérable','Passe'],
+ ['EN-BH-103-02','Tous vulnérables','1♠'],
+ ['EN-BH-103-03','Est–Ouest vulnérables','2SA'],
+ ['EN-BH-103-04','Personne n\'est vulnérable','4♠'],
+ ['EN-BH-103-05','Est–Ouest vulnérables','3♠']
+];
+for(const [qid,vul,expected] of bh103Cases){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(q&&q.question?.includes(vul)&&q.correct===expected&&q.choices.includes(expected),
+  'BH103: source vulnerability shown without changing the key: '+qid);
+}
+const bh103NoShort=data.bidding.find(x=>x.id==='EN-BH-103-04');
+check(bh103NoShort.explanation.includes('n\'affirme PAS')&&bh103NoShort.explanation.includes('Passe peut se défendre')&&
+ bh103NoShort.pretryHints.Passe.includes('fascicule'),
+ 'BH103-04: no invented partner shortness or mandatory profitable sacrifice');
+const bh103Ltt=data.bidding.find(x=>x.id==='EN-BH-103-05');
+check(bh103Ltt.explanation.includes('NE garantissent PAS neuf levées')&&
+ bh103Ltt.question.includes('Nord–Sud non')&&bh103Ltt.explanation.includes('fit précise'),
+ 'BH103-05: total trumps rule qualified and actual vulnerability given');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
