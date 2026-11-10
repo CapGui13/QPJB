@@ -735,4 +735,26 @@ check(bh103Ltt.explanation.includes('NE garantissent PAS neuf levées')&&
  bh103Ltt.question.includes('Nord–Sud non')&&bh103Ltt.explanation.includes('fit précise'),
  'BH103-05: total trumps rule qualified and actual vulnerability given');
 
+
+const bh112Cases=[
+ ['EN-BH-112-01',"Personne n'est vulnérable",'Contre'],
+ ['EN-BH-112-02','Nord–Sud vulnérables','Passe'],
+ ['EN-BH-112-03',"Personne n'est vulnérable",'1♠'],
+ ['EN-BH-112-04',"Personne n'est vulnérable",'2♠'],
+ ['EN-BH-112-05','Tous vulnérables','2♥'],
+ ['EN-BH-112-06','Est–Ouest vulnérables','Passe']
+];
+for(const [qid,vul,answer] of bh112Cases){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(q&&q.question?.includes(vul)&&q.correct===answer&&q.choices.includes(answer),
+  'BH112: source vulnerability visible before choice and unchanged answer: '+qid);
+}
+const bh112Two=data.bidding.find(x=>x.id==='EN-BH-112-02');
+check(bh112Two.explanation.includes('cinq TRÈS belles')&&
+ bh112Two.explanation.includes('six belles')&&bh112Two.explanation.includes('vulnérabilité'),
+ 'BH112-02: five exceptional cards alternative is not falsely excluded');
+const bh112Six=data.bidding.find(x=>x.id==='EN-BH-112-06');
+check(bh112Six.explanation.includes('pas garanti')&&bh112Six.explanation.includes('deux Cœurs'),
+ 'BH112-06: the missing heart support and lack of guaranteed second chance are explicit');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
