@@ -658,4 +658,18 @@ check(JSON.stringify(Object.keys(p1Bh049.distractorNotes||{}).sort())===JSON.str
 check(app.includes('x.sourceContext?')&&app.includes("x.question||'Quelle est votre enchère ?'"),
  'P1 BH-049 context and question are rendered before the choice buttons');
 
+
+const bh086ExpectedAnswers={"EN-BH-086-01":"2SA","EN-BH-086-02":"1♠","EN-BH-086-03":"1♠","EN-BH-086-04":"1♥","EN-BH-086-05":"1♣","EN-BH-086-06":"1♦"};
+for(const [qid,answer] of Object.entries(bh086ExpectedAnswers)){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(!!q && q.correct===answer && q.choices.length===4,
+   'BH086 revised metadata retains original answer and four choices: '+qid);
+ const wrong=q.choices.filter(choice=>choice!==q.correct).sort();
+ check(JSON.stringify(Object.keys(q.distractorNotes||{}).sort())===JSON.stringify(wrong) &&
+   wrong.every(choice=>typeof q.distractorNotes[choice]==='string' && q.distractorNotes[choice].length>40),
+   'BH086 legacy explanatory notes cover exactly the visible wrong choices: '+qid);
+ check(JSON.stringify(Object.keys(q.pretryHints||{}).sort())===JSON.stringify(wrong),
+   'BH086 existing pretry hints remain aligned with the choices: '+qid);
+}
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
