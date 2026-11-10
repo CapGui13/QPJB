@@ -688,4 +688,17 @@ const currentPretryMisalignments=data.bidding.filter(q=>
 check(currentPretryMisalignments.length===0,
  'All currently displayed pretry hints correspond to the current wrong choices');
 
+
+const bh090=data.bidding.find(x=>x.id==='EN-BH-090-03');
+check(!!bh090&&bh090.reviewStatus==='transcrit_source'&&bh090.correct==='3♥'&&
+ JSON.stringify(bh090.choices)===JSON.stringify(['3♦','3♥','3♠','3♣']),
+ 'BH090-03: source answer retained, source-guided self-assessment preserved');
+check(bh090.question.includes('novembre 2023')&&bh090.sourceContext.includes('AVANT')&&
+ bh090.sourceContext.includes('2SA')&&bh090.sourceContext.includes('3♥')&&
+ bh090.explanation.includes('2SA')&&bh090.explanation.includes('auto-évaluation'),
+ 'BH090-03: historic and current conventions distinguished before choices and in correction');
+check(app.includes("function sourceExplanation(x){return pedagogicText(x.explanation||'',x)}")&&
+ !app.includes("const clean=x.id==='EN-BH-090-03'"),
+ 'BH090-03: correction no longer hides the convention warning');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
