@@ -701,4 +701,15 @@ check(app.includes("function sourceExplanation(x){return pedagogicText(x.explana
  !app.includes("const clean=x.id==='EN-BH-090-03'"),
  'BH090-03: correction no longer hides the convention warning');
 
+
+const bm003=data.bidding.find(x=>x.id==='EN-1m-003');
+check(!!bm003 && bm003.reviewStatus==='transcrit_source'&&bm003.correct==='1SA'&&
+ JSON.stringify(bm003.hand)===JSON.stringify(['D 8 3','R 10 5','V 4','R 8 6 3 2'])&&
+ JSON.stringify(bm003.choices)===JSON.stringify(['2SA','1♠','Passe','1SA']),
+ 'BM003: editorial decision retains the correction hand and published answer/options');
+check(bm003.sourceContext.includes('31 octobre 2026')&&bm003.sourceContext.includes('♥A85')&&
+ bm003.sourceContext.includes('♥R105')&&bm003.question.includes('corrigé')&&
+ bm003.explanation.includes('les deux versions'),
+ 'BM003: source/correction discrepancy is visible pre-choice and explained after response');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
