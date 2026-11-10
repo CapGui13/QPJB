@@ -33,7 +33,7 @@ async function run(browser,spec){
    if(!D.play.some(z=>z.id===x))throw new Error('Not published '+x);
    cat='play';ptopic='defense';id=x;randomMode=false;sessionIds=[id];trainingApplyPage('quiz',false,false);
   },id);
-  await frame.locator('.play-free-panel .deal-seat').first().waitFor({state:'visible',timeout:10000});
+  // WebKit CI may take longer to render the lazy-loaded card diagram after a topic transition.\n  await frame.locator('.play-free-panel .deal-seat').first().waitFor({state:'visible',timeout:30000});
   const got=await frame.locator('.play-free-panel .deal-seat').evaluateAll(a=>a.map(e=>e.getAttribute('data-seat')));
   check(got.length===1&&got[0]===seat[id],id+' one known hand at correct seat');
   check(await frame.locator('.play-free-panel .analysis-body').count()===0,id+' correction hidden');
