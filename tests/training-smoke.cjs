@@ -597,4 +597,65 @@ for(const [qid,answer,level] of [['EN-BH-126-01','Passe',1],['EN-BH-127-04','3�
   'Lot10 validated independent QCM: '+qid);
 }
 
+const p1Bh055=data.bidding.find(x=>x.id==='EN-BH-055-06');
+check(!!p1Bh055&&p1Bh055.correct==='5♦'&&
+ JSON.stringify(p1Bh055.choices)===JSON.stringify(['5♣','5♦','5♥','5♠'])&&
+ p1Bh055.question.includes('Si vous envisagez')&&
+ p1Bh055.question.includes('non vulnérable')&&
+ p1Bh055.explanation.includes('Passe reste')&&
+ p1Bh055.explanation.includes('au moins dix atouts')&&
+ p1Bh055.explanation.includes('ne garantit'),
+ 'P1 BH055: sacrifice explicitly conditional, vulnerability specified and no guaranteed tricks');
+check(JSON.stringify(Object.keys(p1Bh055.distractorNotes||{}).sort())===
+ JSON.stringify(p1Bh055.choices.filter(c=>c!==p1Bh055.correct).sort()),
+ 'P1 BH055: distractor notes fit all three actual wrong choices');
+const p1Bh061=data.bidding.find(x=>x.id==='EN-BH-061-05');
+check(!!p1Bh061&&p1Bh061.correct==='1♠'&&
+ JSON.stringify(p1Bh061.auction)===JSON.stringify([['','','','1♣'],['?','','','']])&&
+ p1Bh061.question.includes('Nord–Sud vulnérables')&&
+ p1Bh061.explanation.includes('1♥ chez Est')&&
+ p1Bh061.explanation.includes('SUJET')&&
+ p1Bh061.distractorNotes['1SA'].includes('selon les accords'),
+ 'P1 BH061: source 1 club retained, correction 1 heart disclosed, alternative 1NT qualified');
+check(JSON.stringify(Object.keys(p1Bh061.distractorNotes||{}).sort())===
+ JSON.stringify(p1Bh061.choices.filter(c=>c!==p1Bh061.correct).sort())&&
+ JSON.stringify(Object.keys(p1Bh061.pretryHints||{}).sort())===
+ JSON.stringify(p1Bh061.choices.filter(c=>c!==p1Bh061.correct).sort()),
+ 'P1 BH061: explanatory notes and hints correspond to choices');
+
+for(const [qid,expected,sourceAnswer] of [
+  ['EN-1sa-011','3♥','3♠'],
+  ['EN-BH-115-06','4♠','4♥']
+]){
+  const q=lot02Bid(qid);
+  check(q&&q.correct===expected&&q.choices.includes(sourceAnswer),
+    qid+' conserve sa réponse SEF et la variante du fascicule parmi les choix');
+  check(q.question?.includes('chassé-croisé')&&q.sourceContext?.includes('chassé-croisé'),
+    qid+' annonce le système avant la question, même hors parcours de thème');
+  check(q.explanation?.includes('corrigé')&&q.distractorNotes?.[sourceAnswer]?.includes('chassé-croisé'),
+    qid+' explique pourquoi le traitement naturel du fascicule reste recevable');
+}
+check(app.includes("x.sourceContext?")&&app.includes("x.question||'Quelle est votre enchère ?'"),
+  'le rendu de la question contient le contexte pré-réponse et un énoncé éditorial');
+
+
+const p1Bh049=data.bidding.find(x=>x.id==='EN-BH-049-04');
+check(p1Bh049&&p1Bh049.correct==='3♦'&&
+ JSON.stringify(p1Bh049.hand)===JSON.stringify(['6','8 5','D V 9 8 6 3 2','R 7 5'])&&
+ JSON.stringify(p1Bh049.auction)===JSON.stringify([['','','Passe','Passe'],['?','','','']]),
+ 'P1 BH-049 retains original hand, sequence and answer');
+check(p1Bh049.question?.includes('non vulnérable')&&
+ p1Bh049.sourceContext?.includes('Non Vul.')&&
+ p1Bh049.explanation?.includes('6 H')&&
+ p1Bh049.explanation?.includes('Passe reste'),
+ 'P1 BH-049 explicitly announces vulnerability, points and acceptable alternatives');
+const p1Bh049Wrong=p1Bh049.choices.filter(c=>c!==p1Bh049.correct).sort();
+check(JSON.stringify(Object.keys(p1Bh049.distractorNotes||{}).sort())===JSON.stringify(p1Bh049Wrong)&&
+ JSON.stringify(Object.keys(p1Bh049.pretryHints||{}).sort())===JSON.stringify(p1Bh049Wrong)&&
+ p1Bh049.pretryHints['1♦'].includes('6 points H')&&
+ !p1Bh049.pretryHints['1♦'].includes('Trois points H'),
+ 'P1 BH-049 has exactly three applicable notes and correct six-H count');
+check(app.includes('x.sourceContext?')&&app.includes("x.question||'Quelle est votre enchère ?'"),
+ 'P1 BH-049 context and question are rendered before the choice buttons');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
