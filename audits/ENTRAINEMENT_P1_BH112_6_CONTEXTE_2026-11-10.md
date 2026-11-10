@@ -28,3 +28,7 @@ Les 6 énoncés QPJB étaient dépourvus de l'indication **de vulnérabilité**,
 - Aucun changement de mains, séquences, propositions, réponses, ID, provenance ni statuts historiques.
 - Tests dédiés intégrés à `tests/training-smoke.cjs` ; sources maître et module enchères synchronisées.
 - **Relecture documentaire informée** et non contre-expertise indépendante des 6 décisions d'enchère. Toute remise en cause de la clé nécessiterait un audit supplémentaire.
+
+## Fiabilité CI WebKit (correctif de test uniquement)
+
+Pendant la CI de cette PR, le contrôle de l'affichage des entames du Lot 07 dans WebKit a dépassé le délai de **10 secondes** lors de l'attente du diagramme, alors que l'audit des données et Chromium réussissaient. Ce même sélecteur a occasionnellement échoué lors d'autres publications sans modification du lot 07. Le délai d'attente pour **le seul sélecteur du diagramme** passe à **30 secondes** dans `tests/training-lot07-publication-browser.cjs` ; aucune assertion, aucune donnée et aucun code de l'application ne sont affaiblis ou modifiés. Si le diagramme ne devient pas visible, le test continue d'échouer. Le nouveau commit doit repasser la CI complète.
