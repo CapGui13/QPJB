@@ -494,7 +494,7 @@ function correctDisplay(x){const p=visibleAnswer(id);if(!p?.done)return '';
 function candidateHands(x){if(!x.handOptions)return '';return `<div class="compare-hands">${x.handOptions.map((h,i)=>`<div class="candidate-hand"><strong>Main ${i+1}</strong><div class="candidate-suits">${h.map((v,j)=>`<div><b class="${j===1||j===2?'red':'black'} ${j===2?'suit-diamond':j===3?'suit-club':''}">${'♠♥♦♣'[j]}</b> ${esc(v)}</div>`).join('')}</div></div>`).join('')}</div>`}
 
 function sourceGuided(x){return x?.reviewStatus==='transcrit_source'}
-function sourceExplanation(x){const t=x.explanation||'';const clean=x.id==='EN-BH-090-03'?t.replace(' Cette interprétation est celle du corrigé ancien et ne correspond pas au référentiel QPJB retenu : exercice maintenu en quarantaine.',''):t;return pedagogicText(clean,x)}
+function sourceExplanation(x){return pedagogicText(x.explanation||'',x)}
 function chooseSource(i){
  const x=current(),a=Array.isArray(x?.choices)?x.choices:x?.options;
  if(!sourceGuided(x)||!a||!Number.isInteger(i)||i<0||i>=a.length)return;
