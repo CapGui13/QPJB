@@ -672,4 +672,20 @@ for(const [qid,answer] of Object.entries(bh086ExpectedAnswers)){
    'BH086 existing pretry hints remain aligned with the choices: '+qid);
 }
 
+
+const remainingLegacyMisalignments=data.bidding.filter(q=>
+ Array.isArray(q.choices) && q.distractorNotes &&
+ JSON.stringify(Object.keys(q.distractorNotes).sort())!==
+ JSON.stringify(q.choices.filter(c=>c!==q.correct).sort())
+);
+check(remainingLegacyMisalignments.length===0,
+ 'All legacy bidding distractor notes correspond to the current wrong choices');
+const currentPretryMisalignments=data.bidding.filter(q=>
+ Array.isArray(q.choices) && q.pretryHints && Object.keys(q.pretryHints).length>0 &&
+ JSON.stringify(Object.keys(q.pretryHints).sort())!==
+ JSON.stringify(q.choices.filter(c=>c!==q.correct).sort())
+);
+check(currentPretryMisalignments.length===0,
+ 'All currently displayed pretry hints correspond to the current wrong choices');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
