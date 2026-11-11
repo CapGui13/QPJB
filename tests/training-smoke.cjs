@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261109l08r8hl10')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261109l08r8hl10'),
+check(html.includes('training-data-bootstrap.js?v=20261111bh085')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111bh085'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261109l08r8hl10')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261109l08r8hl10'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh085')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh085'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v67'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v68'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -756,5 +756,24 @@ check(bh112Two.explanation.includes('cinq TRÈS belles')&&
 const bh112Six=data.bidding.find(x=>x.id==='EN-BH-112-06');
 check(bh112Six.explanation.includes('pas garanti')&&bh112Six.explanation.includes('deux Cœurs'),
  'BH112-06: the missing heart support and lack of guaranteed second chance are explicit');
+
+// BH-085 : retrouver les deux décisions du fascicule d'origine.
+const bh085Targets=[
+ ['EN-BH-085-01','non_forcing','Passe'],
+ ['EN-BH-085-02','non_forcing','Passe'],
+ ['EN-BH-085-03','non_forcing','6SA'],
+ ['EN-BH-085-04','forcing','3SA'],
+ ['EN-BH-085-05','non_forcing','Passe']
+];
+for(const [qid,nature,answer] of bh085Targets){
+ const x=data.bidding.find(q=>q.id===qid);
+ check(x?.forcingClassification===nature&&x.correct===answer&&x.choices.includes(answer),
+  'BH085 classification obligatoire, enchère inchangée : '+qid);
+}
+check(data.bidding.filter(x=>x.forcingClassification).length===5,'BH085 limité aux cinq fiches déjà publiées');
+check(app.includes('function chooseForcing(value)')&&app.includes('function biddingAnswerPanel(x,p,selected)')&&
+ app.includes('if(x.forcingClassification&&!forcingChoice)return;')&&
+ app.includes('const ok=b===x.correct&&classificationCorrect;')&&app.includes('forcingPick:forcingChoice'),
+ 'BH085 deux réponses notées ensemble dans la progression historique');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
