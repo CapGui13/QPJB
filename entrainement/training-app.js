@@ -503,7 +503,10 @@ function postSolutionAlternatives(x){
 function forcingFeedback(x,p){
  const kind=x.forcingClassification==='forcing'?'forcing':'non forcing';
  const bidCorrect=p.pick===x.correct;
- return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Une des deux décisions est incorrecte.</h3><p>L’enchère du partenaire est <strong>${kind}</strong>. ${bidCorrect?'Votre enchère est correcte, mais pas sa classification.':'Votre classification est incorrecte ; l’enchère retenue est '+x.correct+'.'}</p><p>${esc(pedagogicText(x.explanation||'',x))}</p></div>`;
+ const reason=bidCorrect
+  ?'Votre enchère est correcte, mais sa classification ne l’est pas.'
+  :'La classification et l’enchère sont incorrectes. L’enchère attendue est '+x.correct+'.';
+ return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Au moins une décision incorrecte.</h3><p>L’enchère du partenaire est <strong>${kind}</strong>. ${esc(reason)}</p><p>${esc(pedagogicText(x.explanation||'',x))}</p></div>`;
 }
 function correctDisplay(x){const p=visibleAnswer(id);if(!p?.done)return '';if(x.forcingClassification&&p.forcingPick!==x.forcingClassification)return forcingFeedback(x,p);
   if(!p.ok){const note=safeDistractorNote(x,p.pick);return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Mauvaise réponse !</h3><p>${note?esc(note):'Ce choix ne correspond pas au corrigé retenu. Essayez une autre proposition.'}</p></div>`}
