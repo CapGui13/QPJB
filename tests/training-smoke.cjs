@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111bh086')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111bh086'),
+check(html.includes('training-data-bootstrap.js?v=20261111bh061ctx')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111bh061ctx'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh086')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh086'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh061ctx')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh061ctx'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v69'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v70'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -795,5 +795,31 @@ check(app.includes('function chooseDistribution(value)')&&
  app.includes('if(x.distributionClassification&&!distributionChoice)return;')&&
  app.includes('distributionPick:distributionChoice')&&app.includes('function distributionFeedback(x,p)'),
  'BH086 classifies the hand before grading its opening on the same historical ID');
+
+// BH-061 (28 avril 2023) : restaurer les vulnérabilités du sujet et la discordance du corrigé q6.
+const p1Bh061Ctx=[
+ ['EN-BH-061-02','Tous vulnérables','Passe','1♣'],
+ ['EN-BH-061-03','Est–Ouest vulnérables, Nord–Sud non vulnérables','1♠','1♥'],
+ ['EN-BH-061-04','Tous vulnérables','Contre','1♣'],
+ ['EN-BH-061-06',"Personne n'est vulnérable",'2♠','1♥']
+];
+for(const [qid,vul,bid,opening] of p1Bh061Ctx){
+ const q=data.bidding.find(x=>x.id===qid);
+ check(q&&q.question?.includes(vul)&&q.correct===bid&&q.choices.includes(bid),
+   'BH061: original vulnerability stated before response with unchanged correct answer: '+qid);
+ check(q.auction?.[0]?.[3]===opening&&q.question?.includes('Est ouvre '+opening),
+   'BH061: original East opening preserved on the original auction: '+qid);
+ check(q.pedagogicalRevisionP1==='BH061_contexte_source_20261111'&&q.sourceContext?.includes('sujet p. 1'),
+   'BH061: source and editorial traceability: '+qid);
+}
+const bh061six=data.bidding.find(x=>x.id==='EN-BH-061-06');
+check(bh061six.question.includes('CORRIGÉ imprime 1♣')&&
+ bh061six.explanation.includes('sujet')&&
+ bh061six.correct==='2♠'&&bh061six.auction[0][3]==='1♥',
+ 'BH061-06: original subject 1 heart and correction 1 club discrepancy disclosed before choice');
+const bh061five=data.bidding.find(x=>x.id==='EN-BH-061-05');
+check(bh061five.correct==='1♠'&&bh061five.auction[0][3]==='1♣'&&
+ bh061five.question.includes('Nord–Sud vulnérables'),
+ 'BH061-05: previously reviewed exception from PR121 remains unchanged');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
