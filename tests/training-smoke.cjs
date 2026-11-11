@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111bh085')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111bh085'),
+check(html.includes('training-data-bootstrap.js?v=20261111bh086')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111bh086'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh085')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh085'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh086')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh086'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v68'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v69'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -775,5 +775,25 @@ check(app.includes('function chooseForcing(value)')&&app.includes('function bidd
  app.includes('if(x.forcingClassification&&!forcingChoice)return;')&&
  app.includes('const ok=b===x.correct&&classificationCorrect;')&&app.includes('forcingPick:forcingChoice'),
  'BH085 deux réponses notées ensemble dans la progression historique');
+
+// BH-086 : deux compétences sources, distribution puis choix de l'ouverture.
+const bh086Targets=[
+ ['EN-BH-086-01','reguliere','2SA'],
+ ['EN-BH-086-02','unicolore','1♠'],
+ ['EN-BH-086-03','bicolore','1♠'],
+ ['EN-BH-086-04','bicolore','1♥'],
+ ['EN-BH-086-05','reguliere','1♣'],
+ ['EN-BH-086-06','tricolore','1♦']
+];
+for(const [qid,classification,answer] of bh086Targets){
+ const x=data.bidding.find(e=>e.id===qid);
+ check(x?.distributionClassification===classification&&x.correct===answer&&
+  x.choices.length===4&&x.choices.includes(answer),'BH086 distribution and unchanged opening '+qid);
+}
+check(data.bidding.filter(x=>x.distributionClassification).length===6,'exactly six BH086 distributions');
+check(app.includes('function chooseDistribution(value)')&&
+ app.includes('if(x.distributionClassification&&!distributionChoice)return;')&&
+ app.includes('distributionPick:distributionChoice')&&app.includes('function distributionFeedback(x,p)'),
+ 'BH086 classifies the hand before grading its opening on the same historical ID');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');

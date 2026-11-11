@@ -1111,6 +1111,58 @@ const server=http.createServer((req,res)=>{
     assert.equal(corrected?.validated,false,'Changing classification cannot rewrite the first try');
     assert.equal(corrected?.attempts,1,'Two stage edits stay in same visit');
   }finally{await bhContext.close()}
+  // BH-086 : les quatre distributions sont évaluées avant les enchères.
+  const distCtx=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
+  try{
+    const distPage=await distCtx.newPage();
+    distPage.on('pageerror',e=>errors.push('BH086 '+e.message));
+    await distPage.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+    await distPage.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+    const distFrame=distPage.frameLocator('#training-frame');
+    await distFrame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
+    const distChild=distPage.frames().find(f=>f.url().includes('/entrainement/'));
+    const six=[
+      ['EN-BH-086-01','reguliere','2SA'],
+      ['EN-BH-086-02','unicolore','1♠'],
+      ['EN-BH-086-03','bicolore','1♠'],
+      ['EN-BH-086-04','bicolore','1♥'],
+      ['EN-BH-086-05','reguliere','1♣'],
+      ['EN-BH-086-06','tricolore','1♦']
+    ];
+    for(const [qid,kind,answer] of six){
+      await distChild.evaluate(()=>topic('ouverture'));
+      await distFrame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+      await distChild.evaluate(id=>item(id),qid);
+      const quiz=distFrame.locator('.qpjb-bid-quiz');
+      await quiz.waitFor({state:'visible',timeout:12000});
+      assert.equal(await quiz.locator('.distribution-option').count(),4,'Four distribution types');
+      assert.equal(await quiz.locator('.choices>.choice').count(),0,'No bid revealed before type');
+      await quiz.locator('.distribution-option[data-distribution-value="'+kind+'"]').click();
+      assert.equal(await quiz.locator('.choices>.choice').count(),4,'Four unchanged opening choices');
+      const ix=await distChild.evaluate(()=>current().choices.indexOf(current().correct));
+      await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+      await quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
+      const stored=await distChild.evaluate(()=>saved[id]);
+      assert.equal(stored?.distributionPick,kind);
+      assert.equal(stored?.pick,answer);
+    }
+    await distChild.evaluate(()=>topic('ouverture'));
+    await distFrame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+    await distChild.evaluate(()=>item('EN-BH-086-01'));
+    const quiz=distFrame.locator('.qpjb-bid-quiz');
+    await quiz.locator('.distribution-option[data-distribution-value="bicolore"]').click();
+    const ix=await distChild.evaluate(()=>current().choices.indexOf(current().correct));
+    await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+    await quiz.locator('.feedback .feedno').waitFor({state:'visible',timeout:6000});
+    const first=await distChild.evaluate(()=>saved[id]);
+    assert.equal(first?.validated,false,'Good opening with wrong distribution is not validated');
+    await quiz.locator('.distribution-option[data-distribution-value="reguliere"]').click();
+    await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+    await quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
+    const second=await distChild.evaluate(()=>saved[id]);
+    assert.equal(second?.validated,false,'Correction never changes first try');
+    assert.equal(second?.attempts,2,'Revisiting an exercise counts one new attempt; correcting the classification adds none');
+  }finally{await distCtx.close()}
   assert.equal(errors.length,0,'No uncaught JavaScript errors: '+errors.join('; '));
   console.log(JSON.stringify({result:'PASS',device:'iPhone 12',browser:browserType,auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}
