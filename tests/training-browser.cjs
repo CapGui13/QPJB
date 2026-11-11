@@ -1063,6 +1063,54 @@ const server=http.createServer((req,res)=>{
       assert.ok(width.scroll<=width.client+3,'Lot 08 quiz has no horizontal overflow on mobile: '+JSON.stringify(width));
     }
   }finally{await lot08Context.close()}
+  // BH-085 : deux étapes, note conjointe et premier essai conservé.
+  const bhContext=await browser.newContext({...devices['iPhone 12'],locale:'fr-FR'});
+  try{
+    const bhPage=await bhContext.newPage();
+    bhPage.on('pageerror',e=>errors.push('BH085 '+e.message));
+    await bhPage.goto('http://127.0.0.1:8765/QPJB/',{waitUntil:'domcontentloaded'});
+    await bhPage.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+    const bhFrame=bhPage.frameLocator('#training-frame');
+    await bhFrame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
+    const bhChild=bhPage.frames().find(f=>f.url().includes('/entrainement/'));
+    for(const spec of [
+      {id:'EN-BH-085-01',classification:'non_forcing',correct:'Passe'},
+      {id:'EN-BH-085-04',classification:'forcing',correct:'3SA'},
+      {id:'EN-BH-085-05',classification:'non_forcing',correct:'Passe'}
+    ]){
+      await bhChild.evaluate(()=>topic('forcing'));
+      await bhFrame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+      await bhChild.evaluate(id=>item(id),spec.id);
+      const quiz=bhFrame.locator('.qpjb-bid-quiz');
+      await quiz.waitFor({state:'visible',timeout:12000});
+      assert.equal(await quiz.locator('.forcing-option').count(),2,'Two classifications first');
+      assert.equal(await quiz.locator('.choices>.choice').count(),0,'Bidding options are initially hidden');
+      await quiz.locator('.forcing-option[data-forcing-value="'+spec.classification+'"]').click();
+      assert.equal(await quiz.locator('.choices>.choice').count(),4,'Original four bidding answers');
+      const ix=await bhChild.evaluate(()=>current().choices.indexOf(current().correct));
+      await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+      await quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
+      const stored=await bhChild.evaluate(()=>saved[id]);
+      assert.equal(stored?.forcingPick,spec.classification);
+      assert.equal(stored?.pick,spec.correct);
+    }
+    await bhChild.evaluate(()=>topic('forcing'));
+    await bhFrame.locator('.item').first().waitFor({state:'visible',timeout:12000});
+    await bhChild.evaluate(()=>item('EN-BH-085-02'));
+    const quiz=bhFrame.locator('.qpjb-bid-quiz');
+    await quiz.locator('.forcing-option[data-forcing-value="forcing"]').click();
+    const ix=await bhChild.evaluate(()=>current().choices.indexOf(current().correct));
+    await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+    await quiz.locator('.feedback .feedno').waitFor({state:'visible',timeout:6000});
+    const wrong=await bhChild.evaluate(()=>saved[id]);
+    assert.equal(wrong?.validated,false,'Wrong classification fails first try even if bid is correct');
+    await quiz.locator('.forcing-option[data-forcing-value="non_forcing"]').click();
+    await quiz.locator('.choices>.choice[data-answer-index="'+ix+'"]').click();
+    await quiz.locator('.feedback .feedok').waitFor({state:'visible',timeout:6000});
+    const corrected=await bhChild.evaluate(()=>saved[id]);
+    assert.equal(corrected?.validated,false,'Changing classification cannot rewrite the first try');
+    assert.equal(corrected?.attempts,1,'Two stage edits stay in same visit');
+  }finally{await bhContext.close()}
   assert.equal(errors.length,0,'No uncaught JavaScript errors: '+errors.join('; '));
   console.log(JSON.stringify({result:'PASS',device:'iPhone 12',browser:browserType,auctionRows,choices:4,metrics,browserBack:'list',playNavigation:'passed',shortPhone:'passed',errors:0}));
  }finally{await browser.close();await new Promise(resolve=>server.close(resolve))}

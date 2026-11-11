@@ -24,7 +24,7 @@ function trainingReportHeight(){
  const height=Math.max(240,Math.ceil(root.getBoundingClientRect().bottom+3));
  window.parent.postMessage({type:'qpjb-training-content-height',height},location.origin);
 }
-let view=initialMode==='bidding'?'topics':initialMode==='play'?'playtopics':'home',cat=initialMode==='play'?'play':'',id='',status='all',ptopic='all',sessionIds=[],chosen=null,revealed=false,playSeen=false,redoAttempt=null,redoAnswered=false;
+let view=initialMode==='bidding'?'topics':initialMode==='play'?'playtopics':'home',cat=initialMode==='play'?'play':'',id='',status='all',ptopic='all',sessionIds=[],chosen=null,revealed=false,playSeen=false,redoAttempt=null,redoAnswered=false,forcingChoice=null;
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 // Idempotente et indépendante de l'ordre de réception des événements storage.
 function mergeExercise(a,b){
@@ -88,12 +88,12 @@ function validatedState(r){
 }
 // Une visite sur la fiche = une nouvelle tentative. Seul son premier choix
 // (ou l'autoévaluation explicite) détermine le statut validé/non validé.
-function persistResult(exId,choice,correct,first){
+function persistResult(exId,choice,correct,first,meta=null){
  const prev=(saved[exId]&&typeof saved[exId]==='object')?saved[exId]:{};
  const at=new Date().toISOString();
  if(first||!activeVisitId)activeVisitId=syncId();
  const changeId=syncId(),history=Array.isArray(prev.history)?prev.history.slice(-29):[];
- history.push({pick:choice===undefined?null:choice,ok:correct,at,syncId:changeId});
+ history.push({pick:choice===undefined?null:choice,ok:correct,at,syncId:changeId,...(meta||{})});
  // La base historique est inchangée ; les nouvelles visites ont des identifiants stables.
  const base=Number.isInteger(prev._syncBaseAttempts)?prev._syncBaseAttempts:(Number.isInteger(prev.attempts)?prev.attempts:0);
  const visits=Array.isArray(prev._syncVisits)?prev._syncVisits.slice():[];
@@ -101,14 +101,15 @@ function persistResult(exId,choice,correct,first){
  const result={...prev,done:true,ok:correct,attempts:base+visits.length,history,
    _syncBaseAttempts:base,_syncVisits:visits,_syncAt:at,_syncId:changeId};
  if(choice!==null&&choice!==undefined)result.pick=choice;
+ if(meta?.forcingPick)result.forcingPick=meta.forcingPick;
  if(first){result.validated=correct;result.lastAttemptAt=at;}
  saved[exId]=result;update();return saved[exId];
 }
-function recordAnswer(exId,choice,correct){
+function recordAnswer(exId,choice,correct,meta=null){
  const first=!redoAnswered;
  redoAnswered=true;
- redoAttempt={done:true,ok:correct,pick:choice};
- const record=persistResult(exId,choice,correct,first);
+ redoAttempt={done:true,ok:correct,pick:choice,...(meta||{})};
+ const record=persistResult(exId,choice,correct,first,meta);
  return {changed:true,record};
 }
 // N'utiliser JAMAIS le choix de la visite précédente pour dessiner la fiche.
@@ -128,7 +129,7 @@ function rememberCurrentQuiz(){
  if(view!=='quiz'||!id)return;
  sessionQuizStates.set(id,{
   redoAttempt:redoAttempt?{...redoAttempt}:null,redoAnswered,
-  activeVisitId,chosen,revealed,playSeen,
+  activeVisitId,chosen,revealed,playSeen,forcingChoice,
   alternativesOpen:!!document.querySelector('.postsolution-notes.is-open')
  });
 }
@@ -167,12 +168,12 @@ let trainingTopicsScroll={topics:0,playtopics:0};
 function trainingApplyPage(next,restoreList=false,recordRoute=true){
  // An old browser route must never reopen a quarantined or unknown exercise.
  if(next==='quiz'&&!availableExercise(id)){next='list';id='';sessionIds=[];}
- view=next;redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;
+ view=next;redoAttempt=null;redoAnswered=false;activeVisitId=null;chosen=null;revealed=false;playSeen=false;forcingChoice=null;
  const previous=next==='quiz'?sessionQuizStates.get(id):null;
  if(previous){
   redoAttempt=previous.redoAttempt?{...previous.redoAttempt}:null;
   redoAnswered=previous.redoAnswered;activeVisitId=previous.activeVisitId;
-  chosen=previous.chosen;revealed=previous.revealed;playSeen=previous.playSeen;
+  chosen=previous.chosen;revealed=previous.revealed;playSeen=previous.playSeen;forcingChoice=previous.forcingChoice||null;
  }
  render();restoreQuizDetails(previous);
  if(restoreList&&trainingListScope===trainingScope()){
@@ -375,8 +376,8 @@ function updateBiddingAnswer(x,guided=false){
   const b=x.choices[Number(button.dataset.answerIndex)];
   const active=b===selected;
   button.classList.toggle('selected',active);
-  button.classList.toggle('correct',!guided&&!!p?.done&&active&&!!p.ok);
-  button.classList.toggle('wrong',!guided&&!!p?.done&&active&&!p.ok);
+  button.classList.toggle('correct',!guided&&!!p?.done&&active&&(x.forcingClassification?b===x.correct:!!p.ok));
+  button.classList.toggle('wrong',!guided&&!!p?.done&&active&&(x.forcingClassification?b!==x.correct:!p.ok));
   button.setAttribute('aria-pressed',String(active));
  }
  let area=quiz.querySelector('.qpjb-answer-area');
@@ -421,11 +422,23 @@ function uncheckBiddingAnswer(x,guided=false){
  const live=document.getElementById('qpjb-answer-announcement');
  if(live)live.textContent='';
 }
+// BH-085 : évaluer la classification et la réponse sur le même exercice.
+function chooseForcing(value){
+ const x=current();if(!x?.forcingClassification||!['forcing','non_forcing'].includes(value))return;
+ if(forcingChoice===value)return;
+ if(visibleAnswer(id)?.done){redoAttempt=null;chosen=null;}
+ forcingChoice=value;render();
+ const button=document.querySelector('.forcing-option[data-forcing-value="'+value+'"]');
+ if(button)button.focus({preventScroll:true});
+}
 function respond(b){
  const x=current();if(!x||!x.choices.includes(b))return;
+ if(x.forcingClassification&&!forcingChoice)return;
  if(visibleAnswer(id)?.done&&visibleAnswer(id).pick===b){uncheckBiddingAnswer(x);return}
- chosen=b;const idx=x.choices.indexOf(b),ok=b===x.correct;
- recordAnswer(id,b,ok);
+ chosen=b;const idx=x.choices.indexOf(b);
+ const classificationCorrect=!x.forcingClassification||forcingChoice===x.forcingClassification;
+ const ok=b===x.correct&&classificationCorrect;
+ recordAnswer(id,b,ok,x.forcingClassification?{forcingPick:forcingChoice}:null);
  if(!updateBiddingAnswer(x))render();
  restoreChoiceFocus('bid',idx,ok);
 }
@@ -487,7 +500,15 @@ function postSolutionAlternatives(x){
   if(!entries.length)return '';
   return `<div class="postsolution-notes"><button type="button" class="postsolution-trigger" aria-expanded="false" aria-controls="postsolution-${esc(x.id)}" onclick="togglePostsolution(this)">Pourquoi les autres propositions ne conviennent pas</button><div id="postsolution-${esc(x.id)}" class="postsolution-body" aria-hidden="true" inert><div class="postsolution-body-inner"><div class="postsolution-grid">${entries.map(([choice,note])=>`<div class="postsolution-item"><strong>Pourquoi pas ${esc(choice)} ?</strong><p>${esc(note)}</p></div>`).join('')}</div></div></div></div>`;
 }
-function correctDisplay(x){const p=visibleAnswer(id);if(!p?.done)return '';
+function forcingFeedback(x,p){
+ const kind=x.forcingClassification==='forcing'?'forcing':'non forcing';
+ const bidCorrect=p.pick===x.correct;
+ const reason=bidCorrect
+  ?'Votre enchère est correcte, mais sa classification ne l’est pas.'
+  :'La classification et l’enchère sont incorrectes. L’enchère attendue est '+x.correct+'.';
+ return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Au moins une décision incorrecte.</h3><p>L’enchère du partenaire est <strong>${kind}</strong>. ${esc(reason)}</p><p>${esc(pedagogicText(x.explanation||'',x))}</p></div>`;
+}
+function correctDisplay(x){const p=visibleAnswer(id);if(!p?.done)return '';if(x.forcingClassification&&p.forcingPick!==x.forcingClassification)return forcingFeedback(x,p);
   if(!p.ok){const note=safeDistractorNote(x,p.pick);return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedno">✕ Mauvaise réponse !</h3><p>${note?esc(note):'Ce choix ne correspond pas au corrigé retenu. Essayez une autre proposition.'}</p></div>`}
   return `<div class="feedback qcm-feedback" role="status" aria-live="polite"><h3 class="feedok">✓ Bonne réponse !</h3><p>${esc(pedagogicText(x.explanation||'Comparez votre raisonnement avec la réponse attendue.',x))}</p>${x.conventionWarning?`<p class="convention-note"><strong>Cadre conventionnel :</strong> ${esc(displayConventionWarning(x))}</p>`:''}${postSolutionAlternatives(x)}</div>`
 }
@@ -538,7 +559,13 @@ function biddingPlayerHeading(x){
  const seat=['Sud','Ouest','Nord','Est'][questionRow.indexOf('?')];
  return seat?'Vous êtes en '+seat:'Analyser la séquence';
 }
-function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div>${LOT08_R8H_IDS.has(x.id)?redemandeCourseNote():''}<div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':biddingPlayerHeading(x)}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel"><h2>${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(p.ok?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>${p?.done?`${correctDisplay(x)}`:''}</section></div>${nav()}`}
+function biddingAnswerPanel(x,p,selected){
+ const dual=!!x.forcingClassification;
+ const nature=dual?`<h2>1. L’enchère de votre partenaire est-elle forcing ?</h2><p class="muted">Répondez à cette question avant de choisir votre enchère.</p><div class="forcing-options" role="group" aria-label="L’enchère du partenaire est-elle forcing ?">${[['forcing','Forcing'],['non_forcing','Non forcing']].map(([v,label])=>`<button type="button" class="choice forcing-option ${forcingChoice===v?'selected':''} ${p?.done&&forcingChoice===v?(v===x.forcingClassification?'correct':'wrong'):''}" data-forcing-value="${v}" aria-pressed="${forcingChoice===v}" onclick="chooseForcing('${v}')">${label}</button>`).join('')}</div>`:'';
+ const bids=(!dual||forcingChoice)?`<h2>${dual?'2. ':''}${esc(x.question||'Quelle est votre enchère ?')}</h2><p class="muted">Cliquez sur une réponse pour vérifier. Vous pouvez ensuite changer de choix.</p><div class="choices">${biddingChoiceEntries(x.choices).map(({value:b,index:ix})=>`<button data-answer-index="${ix}" class="choice ${selected===b?'selected':''} ${p?.done&&b===p.pick?(b===x.correct?'correct':'wrong'):''}" onclick="respond('${b}')" aria-pressed="${selected===b}">${esc(b)}</button>`).join('')}</div>`:'<p class="muted" role="status">Choisissez Forcing ou Non forcing pour afficher les enchères possibles.</p>';
+ return nature+bids+(p?.done?correctDisplay(x):'');
+}
+function quizB(x){if(sourceGuided(x))return quizBSource(x);const p=visibleAnswer(id);let selected=p?.done?p.pick:chosen;const special=!!x.exerciseFormat&&/^qcm_(main|fit)$/.test(x.exerciseFormat);return `<div class="qpjb-quiz-nav"><button class="back" onclick="go('${biddingBackTarget()}')">← ${esc(title())}</button><span class="badge">Exercice ${seqNum(x)}</span></div>${LOT08_R8H_IDS.has(x.id)?redemandeCourseNote():''}<div class="quizgrid qpjb-bid-quiz"><section class="panel"><h2>${x.exerciseFormat==='qcm_fit'?'Analyser la séquence':x.exerciseFormat==='qcm_main'?'Reconnaître la bonne main':biddingPlayerHeading(x)}</h2><p class="muted">${special?'Examinez les informations avant de répondre.':'Étudiez votre main et la séquence.'}</p>${x.handOptions?candidateHands(x):x.hand&&x.hand.length?hand(x):''}<h3>Séquence d’enchères</h3>${auction(x)}</section><section class="panel">${biddingAnswerPanel(x,p,selected)}</section></div>${nav()}`}
 function revealPlay(){
  playSeen=true;render();
  // La création du corrigé remplace le bouton : conserver le focus clavier.
