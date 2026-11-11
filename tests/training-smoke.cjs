@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111bh088src')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111bh088src'),
+check(html.includes('training-data-bootstrap.js?v=20261111p1fidelity')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111p1fidelity'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh088src')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh088src'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111p1fidelity')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111p1fidelity'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v71'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v72'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -837,5 +837,37 @@ check(p1Bh088.choices.length===4&&p1Bh088.choices.includes('Passe')&&
  p1Bh088.pretryHints.Passe.includes('Passe reste défendable')&&
  p1Bh088.distractorNotes.Passe===p1Bh088.pretryHints.Passe,
  'BH088-05 original choices and balanced alternative hint preserved');
+
+// Audit P1 du 11 novembre 2026 : fidélité à la source BH093-01 et adaptation explicite BH078-05.
+const bh093P1=data.bidding.find(x=>x.id==='EN-BH-093-01');
+check(bh093P1&&bh093P1.correct==='1SA'&&
+ JSON.stringify(bh093P1.hand)===JSON.stringify(['7 5','D 8 2','R 6 4 3','V 9 4 2'])&&
+ bh093P1.question.includes('6 H')&&bh093P1.question.includes('1♠'),
+ 'BH093-01: six H and subject auction with original answer and hand preserved');
+check(bh093P1.explanation.includes('6 à 10 HL')&&
+ bh093P1.explanation.includes('ne garantit PAS une main régulière')&&
+ bh093P1.explanation.includes('chicane')&&
+ bh093P1.pretryHints.Passe.includes('6 HL ou plus'),
+ 'BH093-01: non-regular 1NT response and threshold are explained without inventing shape');
+check(!bh093P1.sourceContext.includes('1SA')&&
+ bh093P1.pedagogicalRevisionP1==='BH093_01_1SA_ne_promet_pas_regularite_20261111',
+ 'BH093-01: pretry warning without leaking correct answer');
+const bh078P1=data.bidding.find(x=>x.id==='EN-BH-078-05');
+check(bh078P1&&bh078P1.correct==='4♠'&&
+ bh078P1.question.includes('Exercice ADAPTÉ')&&
+ bh078P1.question.includes('ne précise aucune vulnérabilité')&&
+ bh078P1.question.includes('Nord–Sud non vulnérables'),
+ 'BH078-05: hypothetical vulnerability explicitly distinguished from source');
+check(bh078P1.sourceContext.includes('hypothèses éditoriales')&&
+ !bh078P1.sourceContext.includes('4♠')&&
+ bh078P1.explanation.includes('Passe reste défendable'),
+ 'BH078-05: source and editorial scenario distinguished before answer without leaking key');
+check(bh078P1.pretryHints.Passe.includes('Hors de cette hypothèse')&&
+ bh078P1.pretryHints.Passe===bh078P1.distractorNotes.Passe&&
+ bh078P1.pedagogicalRevisionP1==='BH078_05_vulnerabilite_hypothetique_20261111',
+ 'BH078-05: passing is not declared universally false');
+check(data.bidding.length===638&&data.play.length===188&&
+ bh078P1.sourceOriginalCorrect==='4♠'&&bh093P1.choices.length===4,
+ 'P1 fidelity edits do not add any exercise or modify original keys');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
