@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111bh061ctx')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111bh061ctx'),
+check(html.includes('training-data-bootstrap.js?v=20261111bh088src')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111bh088src'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh061ctx')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh061ctx'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111bh088src')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111bh088src'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v70'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v71'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -821,5 +821,21 @@ const bh061five=data.bidding.find(x=>x.id==='EN-BH-061-05');
 check(bh061five.correct==='1♠'&&bh061five.auction[0][3]==='1♣'&&
  bh061five.question.includes('Nord–Sud vulnérables'),
  'BH061-05: previously reviewed exception from PR121 remains unchanged');
+
+// BH-088-05 : les contradictions de la source sont explicitées AVANT réponse, sans changer la clé.
+const p1Bh088=data.bidding.find(x=>x.id==='EN-BH-088-05');
+check(p1Bh088&&p1Bh088.correct==='1♠'&&p1Bh088.auction[0][3]==='1♣'&&
+ JSON.stringify(p1Bh088.hand)===JSON.stringify(['R V 10 8 5','7','D V 10 6 3','9 4']),
+ 'BH088-05 keeps original hand, subject opening and preferred bid');
+check(p1Bh088.question.includes('SUJET')&&p1Bh088.question.includes('1♣')&&
+ p1Bh088.question.includes('CORRIGÉ imprime 1♥')&&p1Bh088.question.includes('Vulnérabilité non précisée'),
+ 'BH088-05 subject/solution discrepancy and unknown vulnerability are visible before response');
+check(p1Bh088.sourceContext.includes('Ouest')&&p1Bh088.sourceContext.includes('Sud')&&
+ p1Bh088.explanation.includes('Sud possède 7 H')&&p1Bh088.explanation.includes('Passe peut rester raisonnable'),
+ 'BH088-05 corrects seat in original explanation and admits alternative');
+check(p1Bh088.choices.length===4&&p1Bh088.choices.includes('Passe')&&
+ p1Bh088.pretryHints.Passe.includes('Passe reste défendable')&&
+ p1Bh088.distractorNotes.Passe===p1Bh088.pretryHints.Passe,
+ 'BH088-05 original choices and balanced alternative hint preserved');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
