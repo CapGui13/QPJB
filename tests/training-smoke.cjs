@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111p1fidelity')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111p1fidelity'),
+check(html.includes('training-data-bootstrap.js?v=20261111p1sources')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261111p1sources'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111p1fidelity')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111p1fidelity'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111p1sources')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111p1sources'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v72'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v73'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -869,5 +869,39 @@ check(bh078P1.pretryHints.Passe.includes('Hors de cette hypothèse')&&
 check(data.bidding.length===638&&data.play.length===188&&
  bh078P1.sourceOriginalCorrect==='4♠'&&bh093P1.choices.length===4,
  'P1 fidelity edits do not add any exercise or modify original keys');
+
+// B12/B20/B22 : trois anciennes alertes P1 corrigées sans changer les réponses source.
+const b12P1=data.bidding.find(x=>x.id==='EN-barrage-002');
+check(b12P1&&b12P1.correct==='Passe'&&
+ JSON.stringify(b12P1.hand)===JSON.stringify(['R 6','5','R 4 2','D 9 8 6 5 4 2'])&&
+ b12P1.explanation.includes('8 H')&&b12P1.explanation.includes('Rois de Pique et de Carreau'),
+ 'B12-2: accurate eight H and two outside kings with unchanged hand/answer');
+check(b12P1.explanation.includes('qualité de la couleur')&&
+ !b12P1.explanation.includes('Même avec une force importante')&&
+ b12P1.pedagogicalRevisionP1==='B12_2_qualite_couleur_et_honneurs_exterieurs_20261111',
+ 'B12-2: bad long suit, not excessive point count, justifies pass');
+const b20P1=data.bidding.find(x=>x.id==='EN-suite-repondant-001');
+check(b20P1&&b20P1.correct==='3♥'&&
+ JSON.stringify(b20P1.hand)===JSON.stringify(['R75','D9872','R5','V42'])&&
+ b20P1.auction[2][0]==='?'&&b20P1.explanation.includes('9 H'),
+ 'B20-4: same hand and three-heart invitation in original auction');
+check(b20P1.explanation.includes('12 HLD')&&
+ b20P1.explanation.includes('27 HLD')&&
+ b20P1.explanation.includes('Nord minimum passera')&&b20P1.explanation.includes('4♥')&&
+ !b20P1.explanation.includes('Cet espoir se 3♥.'),
+ 'B20-4: no broken sentence and clear invitation/points reconstructed');
+const b22P1=data.bidding.find(x=>x.id==='EN-redemande-014');
+check(b22P1&&b22P1.correct==='3♣'&&
+ JSON.stringify(b22P1.hand)===JSON.stringify(['V','9 5 2','R D 3','R D V 10 7 3'])&&
+ b22P1.question.includes('celle du CORRIGÉ')&&
+ b22P1.sourceContext.includes('SUJET donne')&&b22P1.sourceContext.includes('CORRIGÉ donne'),
+ 'B22-6: historical correction hand retained and document discrepancy shown before choice');
+check(b22P1.sourceContext.includes('♥D52')&&b22P1.sourceContext.includes('♥952')&&
+ b22P1.explanation.includes('entame à Pique est une menace plausible')&&
+ b22P1.explanation.includes('3♣'),
+ 'B22-6: precise source cards and overcertain spade lead corrected');
+check(data.bidding.length===638&&data.play.length===188&&
+ b12P1.choices.length===4&&b20P1.choices.length===4&&b22P1.choices.length===4,
+ 'P1 lot of three preserves all 826 exercises and four bidding choices');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
