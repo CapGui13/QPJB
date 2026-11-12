@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112jc016')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112jc016'),
+check(html.includes('training-data-bootstrap.js?v=20261112jc020')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112jc020'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc016')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc016'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc020')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc020'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v75'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v76'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -938,5 +938,23 @@ check(jc016P1.questionText.includes('entame du Roi de Carreau')&&
  jc016P1.pedagogicalRevisionP1==='JC016_tempo_atout_vs_carreau_source_full_deal_20261112'&&
  data.bidding.length===638&&data.play.length===188,
  'JC-016: unchanged question, image and 826 exercises');
+
+
+// JC-020 : la défausse Carreau fonctionne dans le PDF, sans garantie universelle de l'impasse.
+const jc020P1=data.play.find(x=>x.id==='JC-020');
+check(jc020P1&&jc020P1.sourceOriginalAnswerText.includes('réussit à coup sûr')&&
+ jc020P1.answerText.includes('Ouest possède ♦DV93')&&
+ jc020P1.answerText.includes('♦6 vers ♦10')&&
+ jc020P1.answerText.includes('♦V se trouve aussi en Ouest, mais ne le prouve pas')&&
+ jc020P1.answerText.includes('♦D9 en Ouest')&&
+ jc020P1.answerText.includes('♦V87532 en Est')&&
+ jc020P1.answerText.includes('dix levées')&&
+ jc020P1.sourceRef==='B20-carte'&&jc020P1.reviewStatus==='a_relire',
+ 'JC-020: documented 13-trick PDF plan and valid counterexample to guaranteed finesse');
+check(jc020P1.questionText.includes('Entame : Dame de Carreau')&&
+ jc020P1.image==='./assets/JC-020.webp'&&
+ jc020P1.pedagogicalRevisionP1==='JC020_valet_carreau_hypothese_et_tempo_20261112'&&
+ data.bidding.length===638&&data.play.length===188,
+ 'JC-020: diagram and all 826 exercises conserved');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
