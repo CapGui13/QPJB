@@ -1,0 +1,26 @@
+name: Quiz SEF - integrite du catalogue
+
+on:
+  pull_request:
+    paths:
+      - quizz.html
+      - scripts/verify_quiz_sef.py
+      - tests/test_quiz_sef_integrite.py
+      - .github/workflows/quiz-sef-integrite.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tests unitaires du contrôle
+        run: python -m unittest discover -s tests -p "test_quiz_sef_integrite.py"
+      - name: Verifier cartes, points H, distributions, choix et IDs
+        run: python scripts/verify_quiz_sef.py --html quizz.html
