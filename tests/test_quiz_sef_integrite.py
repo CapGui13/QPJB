@@ -1,6 +1,7 @@
 """Tests du garde-fou de données ; aucune dépendance tierce."""
 import copy
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -59,6 +60,59 @@ class QuizSEFIntegrityTests(unittest.TestCase):
         self.assertEqual(len(exercises), 1)
         self.assertEqual(themes, {"ouv"})
         self.assertEqual(version, "test")
+
+    def test_non_text_cards_or_choices_are_rejected(self):
+        q = valid_question()
+        q["hand"][0][0] = 14
+        q["choices"][0] = 1
+        result = checker.inspect([q], source="test", known_themes={"ouv"})
+        self.assertTrue(any("chaînes de caractères" in e for e in result["errors"]))
+        self.assertTrue(any("textuels" in e for e in result["errors"]))
+
+    def test_boolean_values_are_not_numbers(self):
+        q = valid_question()
+        q["h"] = True
+        q["difficulty"] = True
+        result = checker.inspect([q], source="test", known_themes={"ouv"})
+        self.assertTrue(any("H déclarés" in e for e in result["errors"]))
+        self.assertTrue(any("difficulté invalide" in e for e in result["errors"]))
+
+    def test_staging_unsorted_cards_block_cli(self):
+        payload = {"version": "test", "themes": [{"id": "ouv"}], "exercises": [valid_question()]}
+        q = valid_question()
+        q["id"] = "SEF-TEST-002"
+        q["hand"][2] = ["5", "7", "6"]
+        with tempfile.TemporaryDirectory() as folder:
+            h = Path(folder) / "quizz.html"
+            h.write_text('<script id="training-data" type="application/json">'
+                         + json.dumps(payload, ensure_ascii=False) + '</script>', encoding="utf-8")
+            stage = Path(folder) / "lot.json"
+            stage.write_text(json.dumps([q], ensure_ascii=False), encoding="utf-8")
+            result = subprocess.run([sys.executable, str(Path(checker.__file__)),
+                                     "--html", str(h), "--staging", str(stage)],
+                                    capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("cartes mal classées", result.stderr)
+            q["hand"][2] = ["7", "6", "5"]
+            stage.write_text(json.dumps([q], ensure_ascii=False), encoding="utf-8")
+            result = subprocess.run([sys.executable, str(Path(checker.__file__)),
+                                     "--html", str(h), "--staging", str(stage)],
+                                    capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_malformed_catalogue_question_fails_cleanly(self):
+        payload = {"version": "test", "themes": [{"id": "ouv"}],
+                   "exercises": [valid_question(), None]}
+        with tempfile.TemporaryDirectory() as folder:
+            h = Path(folder) / "quizz.html"
+            h.write_text('<script id="training-data" type="application/json">'
+                         + json.dumps(payload, ensure_ascii=False) + '</script>', encoding="utf-8")
+            result = subprocess.run([sys.executable, str(Path(checker.__file__)),
+                                     "--html", str(h)], capture_output=True,
+                                    text=True, check=False)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("objet JSON attendu", result.stderr)
+            self.assertNotIn("Traceback", result.stderr)
 
     def test_role_sensitive_similarity_only_a_warning(self):
         q = valid_question(); q["auction"] = ["Partenaire : 1♣", "Adversaire : 1♠"]
