@@ -14,7 +14,7 @@ import argparse
 import json
 import re
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 HONORS = {"A": 4, "R": 3, "D": 2, "V": 1}
@@ -86,6 +86,8 @@ def inspect(exercises: list, *, source: str, known_themes: set[str],
             errors.append(f"{qid} : main non composée de quatre couleurs")
             continue
         cards = [(suit, str(card)) for suit, ranks in enumerate(hand) for card in ranks]
+        if any(not isinstance(card, str) for ranks in hand for card in ranks):
+            errors.append(f"{qid} : les cartes doivent être des chaînes de caractères")
         if len(cards) != 13:
             errors.append(f"{qid} : {len(cards)} cartes au lieu de 13")
         if len(set(cards)) != len(cards):
@@ -93,7 +95,7 @@ def inspect(exercises: list, *, source: str, known_themes: set[str],
         if any(card not in RANK_INDEX for _, card in cards):
             errors.append(f"{qid} : rang de carte inconnu")
         actual_h = sum(HONORS.get(card, 0) for _, card in cards)
-        if item.get("h") != actual_h:
+        if type(item.get("h")) is not int or item["h"] != actual_h:
             errors.append(f"{qid} : H déclarés {item.get('h')!r} ≠ {actual_h}")
         actual_shape = [len(ranks) for ranks in hand]
         if item.get("shape") != actual_shape:
@@ -104,17 +106,20 @@ def inspect(exercises: list, *, source: str, known_themes: set[str],
                 wrong_order += 1
                 warnings.append(f"{qid} : ordre des cartes {SUITS[suit_index]} incorrect")
         choices = item.get("choices")
-        if not isinstance(choices, list) or len(choices) != 4 or len(set(map(str, choices))) != 4:
-            errors.append(f"{qid} : les quatre choix ne sont pas distincts")
+        if (not isinstance(choices, list) or len(choices) != 4
+                or not all(isinstance(c, str) and c.strip() for c in choices)
+                or len(set(choices)) != 4):
+            errors.append(f"{qid} : quatre choix non vides, textuels et distincts attendus")
         elif choices.count(item.get("answer")) != 1:
             errors.append(f"{qid} : la clé n'apparaît pas exactement une fois dans les choix")
-        if not isinstance(item.get("auction"), list):
-            errors.append(f"{qid} : liste auction absente")
+        if (not isinstance(item.get("auction"), list)
+                or not all(isinstance(call, str) for call in item["auction"])):
+            errors.append(f"{qid} : liste auction de chaînes attendue")
         if not isinstance(item.get("context"), str) or not item["context"].strip():
             errors.append(f"{qid} : énoncé vide")
         if not isinstance(item.get("explain"), str) or not item["explain"].strip():
             errors.append(f"{qid} : explication vide")
-        if item.get("difficulty") not in (1, 2, 3, 4, 5):
+        if type(item.get("difficulty")) is not int or item["difficulty"] not in (1, 2, 3, 4, 5):
             errors.append(f"{qid} : difficulté invalide")
         if published is not None:
             key = (auction_signature(item.get("auction")), str(item.get("answer")))
@@ -136,14 +141,16 @@ def main() -> int:
     try:
         exercises, themes, version = load_catalogue(args.html)
         baseline = inspect(exercises, source="main", known_themes=themes)
-        # Catalogues publiés : l'ordre des cartes doit être correct (l'UI n'y remédie pas).
+        # Les cartes sont affichées dans l'ordre du JSON : contrairement aux choix,
+        # l'interface ne les retrie pas. Erreur bloquante en catalogue et en staging.
         if baseline["wrong_card_order"]:
             baseline["errors"].append(
                 f"main : {baseline['wrong_card_order']} couleur(s) aux cartes mal classées"
             )
         index = defaultdict(list)
         for ex in exercises:
-            index[(auction_signature(ex.get("auction")), str(ex.get("answer")))].append(ex)
+            if isinstance(ex, dict) and isinstance(ex.get("id"), str):
+                index[(auction_signature(ex.get("auction")), str(ex.get("answer")))].append(ex)
         known_ids = set(baseline["ids"])
         staged = []
         for path in args.staging:
@@ -152,6 +159,10 @@ def main() -> int:
                 raise ValueError(f"{path} : tableau d'objets QCM attendu")
             result = inspect(candidates, source=path.name, known_themes=themes,
                              taken_ids=known_ids, published=index)
+            if result["wrong_card_order"]:
+                result["errors"].append(
+                    f"{path.name} : {result['wrong_card_order']} couleur(s) aux cartes mal classées"
+                )
             staged.append(result)
             known_ids.update(result["ids"])
         summary = {
