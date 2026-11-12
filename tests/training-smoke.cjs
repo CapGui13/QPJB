@@ -1055,4 +1055,16 @@ check(data.play.find(x=>x.id==='JC-BH-123-P2')?.answerText.includes('puis exploi
  data.bidding.length===638&&data.play.length===188,
  'BH123: corrigé source conservé et 826 exercices intacts');
 
+// BH132 / BH135 : maniements, probabilités et coquille ♣6/♣7 du fascicule.
+const bh132135=require('./training-card-bh132-bh135-proof.cjs');
+check(bh132135.bh135.tricks===13&&bh132135.bh135.ns===9&&
+ Math.abs(bh132135.pFinesses-0.43198757763975154)<1e-12&&
+ Math.abs(bh132135.pProbe-0.2826086956521739)<1e-12,
+ 'BH132/BH135 : deux impasses, plan de 3SA et source défectueuse certifiés');
+check(data.play.find(x=>x.id==='JC-BH-132-M01')?.answerText.includes('coup de sonde')&&
+ data.play.find(x=>x.id==='JC-BH-132-M02')?.answerText.includes('43,2 %')&&
+ data.play.find(x=>x.id==='JC-BH-135-J01')?.sourceAudit?.suitIssue.includes('♣6 dupliqué')&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH132/BH135 : corrigés existants intacts, 826 exercices inchangés');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
