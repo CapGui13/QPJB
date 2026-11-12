@@ -19,13 +19,13 @@ BASE = {
 
 
 class AuctionLegalityTests(unittest.TestCase):
-    def check(self, auction=None, choices=None):
+    def check(self, auction=None, choices=None, complete_rotation=False):
         q = copy.deepcopy(BASE)
         if auction is not None:
             q['auction'] = auction
         if choices is not None:
             q['choices'] = choices
-        return audit.inspect_question(q)
+        return audit.inspect_question(q, complete_rotation=complete_rotation)
 
     def test_cas_valide(self):
         r = self.check()
@@ -38,7 +38,7 @@ class AuctionLegalityTests(unittest.TestCase):
         self.assertIn('contrat non supérieur', ' '.join(r['anomalies']))
 
     def test_rotation_incompatible(self):
-        r = self.check(['Partenaire : 1♣', 'Vous : 1♥'])
+        r = self.check(['Partenaire : 1♣', 'Vous : 1♥'], complete_rotation=True)
         self.assertIn('Rotation', ' '.join(r['anomalies']))
 
     def test_contre_du_meme_camp(self):
@@ -90,10 +90,21 @@ class AuctionLegalityTests(unittest.TestCase):
     def test_un_surcontre_avec_passe_intermediaire(self):
         r = self.check(['Partenaire : 1♣', 'Adversaire : Contre',
                         'Vous : Passe', 'Adversaire : Passe'],
-                       ['Passe', 'Surcontre', '1♦', '1♠'])
+                       ['Passe', 'Surcontre', '1♦', '1♠'], complete_rotation=True)
         # Sud vient déjà de passer : le prochain joueur n'est pas Sud.
         self.assertEqual(r['status'], 'ANOMALIE')
         self.assertIn('Rotation', ' '.join(r['anomalies']))
+
+    def test_sequence_abregee_avec_passe_implicite(self):
+        # Dans les anciennes fiches, le Passe de l'adversaire est parfois omis.
+        r = self.check(['Partenaire : 1♣'])
+        self.assertEqual(r['status'], 'CONFORME')
+        strict = self.check(['Partenaire : 1♣'], complete_rotation=True)
+        self.assertEqual(strict['status'], 'ANOMALIE')
+
+    def test_staging_complet_controle_rotation_stricte(self):
+        r = self.check(complete_rotation=True)
+        self.assertEqual(r['status'], 'CONFORME')
 
     def test_reveals_skipped_status_not_false_success(self):
         r = audit.audit([{'id': 'X', 'auction': 'pas une liste', 'choices': []}], 'test')
