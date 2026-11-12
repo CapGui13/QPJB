@@ -1029,4 +1029,21 @@ check(bh060Proof.originalSpades.tricks===13&&
  bh060Proof.hypotheticalThreeFiveHearts.declarer===10,
  'JC-BH-060-01: legal 52-card source and hypothetical proof cases revalidated');
 
+// BH109 : contredit sur les 52 cartes originales ; BH110 : reconstruction explicitement hypothétique.
+const proof109110=require('./training-card-bh109-bh110-proof.cjs');
+check(proof109110.source109.tricks===13&&proof109110.source109.defenders>=5&&
+ proof109110.reconstructed110.tricks===13&&proof109110.reconstructed110.declarer===9,
+ 'BH109: contre-exemple légal ; BH110: reconstruction seulement');
+const bh109p2=data.play.find(x=>x.id==='JC-BH-109-P2');
+const bh110p2=data.play.find(x=>x.id==='JC-BH-110-P2');
+check(bh109p2&&bh109p2.sourceOriginalAnswerText.includes('♣R en Ouest')&&
+ bh109p2.answerText.includes('sept levées sûres')&&
+ bh109p2.answerText.includes('six levées')&&
+ bh109p2.sourceAudit.original52CardsValid===true&&
+ bh110p2&&bh110p2.sourceOriginalAnswerText.includes('Le sujet montre Nord ♣AV3')&&
+ bh110p2.sourceAudit.printedFullDealInvalid===true&&
+ bh110p2.holdings[0].rows.some(r=>r.suit==='♣'&&r.ranks==='AV3')&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH109/BH110: explications archivées, provenance et 826 identifiants conservés');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
