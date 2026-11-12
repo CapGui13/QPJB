@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112jc023')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112jc023'),
+check(html.includes('training-data-bootstrap.js?v=20261112jc009')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112jc009'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc023')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc023'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc009')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc009'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v77'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v78'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -978,5 +978,25 @@ check(jc023P1.questionText.includes('Quel est votre plan de jeu pour réaliser n
  jc023P1.pedagogicalRevisionP1==='JC023_pique_duplique_et_comparaison_impasses_20261112'&&
  data.bidding.length===638&&data.play.length===188,
  'JC-023: preserve original problem, review restrictions and catalogue counts');
+
+
+// JC-009 : l'entame du Valet n'impose ♦D en Est que sous condition sur les points de l'ouvreur.
+const jc009P1=data.play.find(x=>x.id==='JC-009');
+check(jc009P1&&
+ jc009P1.sourceOriginalAnswerText.includes('une douzaine en Est')&&
+ jc009P1.answerText.includes('au moins 11 H')&&
+ jc009P1.answerText.includes('six Cœurs et cinq Piques')&&
+ jc009P1.answerText.includes('10 H')&&
+ jc009P1.answerText.includes('♦D9')&&
+ jc009P1.answerText.includes('♦D est en Ouest')&&
+ jc009P1.answerText.includes('règle des 20')&&
+ jc009P1.sourceRef==='B09-carte',
+ 'JC-009: original source archived and 11H force condition with 10H 6-5 counterexample explained');
+check(jc009P1.questionText.includes('Les adversaires vous laissent réaliser la première levée')&&
+ jc009P1.image==='./assets/JC-009.webp'&&
+ jc009P1.reviewStatus==='a_relire'&&
+ jc009P1.pedagogicalRevisionP1==='JC009_ouverture_10H_regle_20_dame_carreau_conditionnelle_20261112'&&
+ data.bidding.length===638&&data.play.length===188,
+ 'JC-009: original question and all 826 exercises preserved');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
