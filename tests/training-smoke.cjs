@@ -1020,4 +1020,13 @@ check(bh060P1.prompt.startsWith('Ouest entame du Roi de Cœur')&&
  data.bidding.length===638&&data.play.length===188,
  'JC-BH-060-01: card, source and all 826 exercises preserved');
 
+
+const bh060Proof=require('./training-card-bh060-proof.cjs');
+check(bh060Proof.originalSpades.tricks===13&&
+ bh060Proof.originalSpades.declarer===9&&bh060Proof.originalSpades.defenders===4&&
+ bh060Proof.originalDiamonds.tricks===8&&bh060Proof.originalDiamonds.defenders===5&&
+ bh060Proof.hypotheticalThreeFiveHearts.tricks===13&&
+ bh060Proof.hypotheticalThreeFiveHearts.declarer===10,
+ 'JC-BH-060-01: legal 52-card source and hypothetical proof cases revalidated');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
