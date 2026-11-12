@@ -1067,4 +1067,22 @@ check(data.play.find(x=>x.id==='JC-BH-132-M01')?.answerText.includes('coup de so
  data.bidding.length===638&&data.play.length===188,
  'BH132/BH135 : corrigés existants intacts, 826 exercices inchangés');
 
+// BH079-084 : 13 Trèfles des maniements et 13 plis des donnes originales 082/084.
+const bh079to084=require('./training-card-bh079-bh084-proof.cjs');
+check(bh079to084.bh79WestSmall===4&&bh079to084.bh79WestKing===4&&
+ bh079to084.bh80===4&&bh079to084.bh82King.ns===9&&
+ bh079to084.bh82Duck.ns===9&&bh079to084.bh84.ns===11,
+ 'BH079/080/082/084: toutes les lignes sources validées sans renonce');
+const x079=data.play.find(x=>x.id==='JC-BH-079-P2');
+const x082=data.play.find(x=>x.id==='JC-BH-082-P2');
+check(x079&&x079.sourceOriginalAnswerText.startsWith('Petit ♣ de Sud')&&
+ x079.answerText.includes('Si Ouest intercale ♣R')&&
+ x082&&x082.sourceOriginalAnswerText.startsWith('Prendre de ♥A')&&
+ x082.answerText.includes('fournissez **♠2**')===false&&
+ x082.answerText.includes('fournissez **♠2**')===false&&
+ x082.answerText.includes('fournissez')===false&&
+ x082.answerText.includes('fournir **♠2**')&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH079/BH082 : anciennes versions conservées et 826 exercices intacts');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
