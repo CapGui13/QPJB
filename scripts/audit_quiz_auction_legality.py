@@ -2,6 +2,8 @@
 """Diagnostic FORMEL (non pédagogique) des enchères des QCM QPJB.
 
 Conçu pour compléter verify_quiz_sef.py sans modifier les sujets.
+Les anciens QCM peuvent omettre les Passe : rotation stricte uniquement avec
+--complete-rotation, lorsque chaque Passe figure dans la séquence.
 Par défaut les anomalies sont informatives (exit 0) ; --strict les rend bloquantes.
 Le modèle des rôles « Adversaire » vérifie une rotation N/E/S/O compatible,
 mais ne prétend pas déterminer Est et Ouest à partir du texte.
@@ -49,7 +51,7 @@ def compatible_next_you(roles: list[str]) -> bool:
     return False
 
 
-def inspect_question(q: dict) -> dict:
+def inspect_question(q: dict, *, complete_rotation: bool = False) -> dict:
     """Analyse séquence + quatre choix ; le corrigé n'est jamais utilisé pour décider.
 
     `NON_ANALYSABLE` est explicitement distingué de « aucune anomalie ».
@@ -83,7 +85,7 @@ def inspect_question(q: dict) -> dict:
         return {"id": qid, "status": "NON_ANALYSABLE", "anomalies": [],
                 "limitations": limitations, "checked_choices": 0}
     anomalies: list[str] = []
-    if not compatible_next_you(roles):
+    if complete_rotation and not compatible_next_you(roles):
         anomalies.append("Rotation incompatible avec le prochain tour de Vous")
     contract_value: int | None = None
     contract_side: str | None = None
@@ -144,12 +146,12 @@ def load_html(path: Path) -> list[dict]:
     return data["exercises"]
 
 
-def audit(items: list, source: str) -> dict:
-    rows = [inspect_question(q) if isinstance(q, dict) else
+def audit(items: list, source: str, *, complete_rotation: bool = False) -> dict:
+    rows = [inspect_question(q, complete_rotation=complete_rotation) if isinstance(q, dict) else
             {"id": "NON_OBJET", "status": "NON_ANALYSABLE", "anomalies": [],
              "limitations": ["Entrée non objet"], "checked_choices": 0}
             for q in items]
-    return {"source": source, "count": len(rows),
+    return {"source": source, "count": len(rows), "rotation_stricte": complete_rotation,
             "conformes": sum(r["status"] == "CONFORME" for r in rows),
             "anomalies": sum(r["status"] == "ANOMALIE" for r in rows),
             "non_analysables": sum(r["status"] == "NON_ANALYSABLE" for r in rows),
@@ -163,18 +165,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--staging", action="append", type=Path, default=[])
     parser.add_argument("--json-out", type=Path)
     parser.add_argument("--strict", action="store_true", help="Échec de sortie si anomalie ou non-analysable")
+    parser.add_argument("--complete-rotation", action="store_true",
+                        help="Vérifier les quatre sièges, uniquement si tous les Passe sont explicités")
     args = parser.parse_args(argv)
     if args.html is None and not args.staging:
         parser.error("Indiquer --html et/ou --staging")
     try:
         reports = []
         if args.html:
-            reports.append(audit(load_html(args.html), args.html.name))
+            reports.append(audit(load_html(args.html), args.html.name,
+                                 complete_rotation=args.complete_rotation))
         for path in args.staging:
             stage = json.loads(path.read_text(encoding="utf-8"))
             if not isinstance(stage, list):
                 raise ValueError(f"{path} : liste de candidats attendue")
-            reports.append(audit(stage, path.name))
+            reports.append(audit(stage, path.name, complete_rotation=args.complete_rotation))
         if args.json_out:
             args.json_out.parent.mkdir(parents=True, exist_ok=True)
             args.json_out.write_text(json.dumps(reports, ensure_ascii=False, indent=2) + "\n",
@@ -186,6 +191,8 @@ def main(argv: list[str] | None = None) -> int:
             for d in r["details"][:15]:
                 print(f"  {d['id']}: {d['status']} ; "
                       + "; ".join(d["anomalies"] + d["limitations"]))
+        print("Rotation strictement vérifiée" if args.complete_rotation else
+              "Rotation non vérifiée : des Passe peuvent être omis dans les séquences abrégées")
         print("Diagnostic formel uniquement : ni contrôle SEF ni verdict pédagogique.")
         if args.strict and any(r["anomalies"] or r["non_analysables"] for r in reports):
             return 1
