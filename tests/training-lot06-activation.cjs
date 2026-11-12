@@ -58,8 +58,8 @@ for(const id of ['JC-BH-111-01','JC-BH-126-01','JC-BH-058-P2']){
 }
 const boot=read('entrainement/training-data-bootstrap.js');
 assert.ok(boot.includes('"bidding":638,"play":188'));
-assert.ok(boot.includes('20261112jc016'));
-assert.ok(read('service-worker.js').includes("CACHE = 'qpjb-v75'"));
+assert.ok(boot.includes('20261112jc020'));
+assert.ok(read('service-worker.js').includes("CACHE = 'qpjb-v76'"));
 const app=read('entrainement/training-app.js');
 assert.match(app,/x.playerSeat/);
 assert.match(app,/une_main_connue_lot06_20261107/);
