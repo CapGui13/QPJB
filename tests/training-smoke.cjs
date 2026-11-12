@@ -1078,10 +1078,7 @@ const x082=data.play.find(x=>x.id==='JC-BH-082-P2');
 check(x079&&x079.sourceOriginalAnswerText.startsWith('Petit ♣ de Sud')&&
  x079.answerText.includes('Si Ouest intercale ♣R')&&
  x082&&x082.sourceOriginalAnswerText.startsWith('Prendre de ♥A')&&
- x082.answerText.includes('fournissez **♠2**')===false&&
- x082.answerText.includes('fournissez **♠2**')===false&&
- x082.answerText.includes('fournissez')===false&&
- x082.answerText.includes('fournir **♠2**')&&
+ x082.answerText.includes('fournissez **♠2** du mort')&&
  data.bidding.length===638&&data.play.length===188,
  'BH079/BH082 : anciennes versions conservées et 826 exercices intacts');
 
