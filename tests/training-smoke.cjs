@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261111p1sources')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261111p1sources'),
+check(html.includes('training-data-bootstrap.js?v=20261112jc002jc015')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112jc002jc015'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261111p1sources')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261111p1sources'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc002jc015')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc002jc015'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v73'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v74'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -903,5 +903,22 @@ check(b22P1.sourceContext.includes('♥D52')&&b22P1.sourceContext.includes('♥9
 check(data.bidding.length===638&&data.play.length===188&&
  b12P1.choices.length===4&&b20P1.choices.length===4&&b22P1.choices.length===4,
  'P1 lot of three preserves all 826 exercises and four bidding choices');
+
+
+// P1 jeu de la carte : fidélité au PDF B06 et B09, sans changement de mains ni de réponses.
+const jc002P1=data.play.find(x=>x.id==='JC-002');
+check(jc002P1&&jc002P1.sourceOriginalAnswerText.includes('100%')&&
+ jc002P1.answerText.includes('pas une réussite garantie')&&
+ jc002P1.answerText.includes('Piques')&&
+ jc002P1.sourceRef==='B02-carte'&&jc002P1.reviewStatus==='a_relire',
+ 'JC-002: original PDF is archived and absolute guarantee removed');
+const jc015P1=data.play.find(x=>x.id==='JC-015');
+check(jc015P1&&jc015P1.sourceOriginalAnswerText.includes('Roi de Trèfle')&&
+ jc015P1.answerText.includes('♣D')&&jc015P1.answerText.includes('♥R')&&
+ jc015P1.answerText.includes('♣V')&&
+ jc015P1.sourceRef==='B15-carte'&&jc015P1.reviewStatus==='a_relire',
+ 'JC-015: missing queen of clubs and king of hearts accurately stated');
+check(data.bidding.length===638&&data.play.length===188,
+ 'P1 two-card corrections preserve all 826 exercises');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
