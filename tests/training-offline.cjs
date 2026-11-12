@@ -70,8 +70,8 @@ const server=http.createServer((req,res)=>{
    const after=await page.evaluate(async()=>{
      const cache=await caches.open((await caches.keys()).find(k=>k.startsWith('qpjb-v')));
      const matches=await Promise.all([
-       cache.match('/QPJB/entrainement/training-data-bidding.js?v=20261112bh109110'),
-       cache.match('/QPJB/entrainement/training-data-play.js?v=20261112bh109110'),
+       cache.match('/QPJB/entrainement/training-data-bidding.js?v=20261112bh079082'),
+       cache.match('/QPJB/entrainement/training-data-play.js?v=20261112bh079082'),
        ...Array.from({length:23},(_,i)=>cache.match(
          '/QPJB/entrainement/assets/JC-'+String(i+1).padStart(3,'0')+'.webp'))
      ]);

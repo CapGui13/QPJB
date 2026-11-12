@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112bh109110')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112bh109110'),
+check(html.includes('training-data-bootstrap.js?v=20261112bh079082')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112bh079082'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112bh109110')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112bh109110'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112bh079082')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112bh079082'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v80'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v81'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -1066,5 +1066,20 @@ check(data.play.find(x=>x.id==='JC-BH-132-M01')?.answerText.includes('coup de so
  data.play.find(x=>x.id==='JC-BH-135-J01')?.sourceAudit?.suitIssue.includes('♣6 dupliqué')&&
  data.bidding.length===638&&data.play.length===188,
  'BH132/BH135 : corrigés existants intacts, 826 exercices inchangés');
+
+// BH079-084 : 13 Trèfles des maniements et 13 plis des donnes originales 082/084.
+const bh079to084=require('./training-card-bh079-bh084-proof.cjs');
+check(bh079to084.bh79WestSmall===4&&bh079to084.bh79WestKing===4&&
+ bh079to084.bh80===4&&bh079to084.bh82King.ns===9&&
+ bh079to084.bh82Duck.ns===9&&bh079to084.bh84.ns===11,
+ 'BH079/080/082/084: toutes les lignes sources validées sans renonce');
+const x079=data.play.find(x=>x.id==='JC-BH-079-P2');
+const x082=data.play.find(x=>x.id==='JC-BH-082-P2');
+check(x079&&x079.sourceOriginalAnswerText.startsWith('Petit ♣ de Sud')&&
+ x079.answerText.includes('Si Ouest intercale ♣R')&&
+ x082&&x082.sourceOriginalAnswerText.startsWith('Prendre de ♥A')&&
+ x082.answerText.includes('fournissez **♠2** du mort')&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH079/BH082 : anciennes versions conservées et 826 exercices intacts');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
