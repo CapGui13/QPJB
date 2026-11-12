@@ -2,7 +2,7 @@
 """Validation mécanique du Quiz SEF QPJB (bibliothèque standard uniquement).
 
 Usage:
-  python scripts/verify_quiz_sef.py --html quizz.html
+  python scripts/verify_quiz_sef.py --html quizz.html --min-count 1274
   python scripts/verify_quiz_sef.py --html quizz.html --staging lot11.json --staging lot12.json
 
 Les doublons de compétence et la justesse des enchères ne se valident pas
@@ -142,10 +142,18 @@ def main() -> int:
     parser.add_argument("--html", type=Path, required=True, help="quizz.html publié")
     parser.add_argument("--staging", type=Path, action="append", default=[], help="lot JSON (répétable)")
     parser.add_argument("--json-out", type=Path, help="rapport JSON reproductible")
+    parser.add_argument("--min-count", type=int, default=0,
+                        help="taille minimale du catalogue ; 0 = contrôle désactivé")
     args = parser.parse_args()
     try:
+        if args.min_count < 0:
+            raise ValueError("--min-count doit être positif ou nul")
         exercises, themes, version = load_catalogue(args.html)
         baseline = inspect(exercises, source="main", known_themes=themes)
+        if len(exercises) < args.min_count:
+            baseline["errors"].append(
+                f"main : catalogue réduit à {len(exercises)} QCM, minimum requis {args.min_count}"
+            )
         # Les cartes sont affichées dans l'ordre du JSON : contrairement aux choix,
         # l'interface ne les retrie pas. Erreur bloquante en catalogue et en staging.
         if baseline["wrong_card_order"]:
@@ -171,7 +179,7 @@ def main() -> int:
             staged.append(result)
             known_ids.update(result["ids"])
         summary = {
-            "catalogue": {"count": baseline["count"], "version": version,
+            "catalogue": {"count": baseline["count"], "min_count": args.min_count, "version": version,
                           "errors": baseline["errors"], "warnings": baseline["warnings"]},
             "staging": [{k: v for k, v in x.items() if k != "ids"} for x in staged],
             "important": "Les chevauchements de séquence et de clé ne prouvent PAS un doublon pédagogique ; vérifier les rôles, siège, distribution, seuil, conventions, et faire une CE réellement indépendante.",
