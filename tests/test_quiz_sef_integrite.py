@@ -69,6 +69,18 @@ class QuizSEFIntegrityTests(unittest.TestCase):
         self.assertTrue(any("chaînes de caractères" in e for e in result["errors"]))
         self.assertTrue(any("textuels" in e for e in result["errors"]))
 
+    def test_non_bid_choices_are_rejected(self):
+        q = valid_question()
+        q["choices"][1] = "Une enchère au hasard"
+        result = checker.inspect([q], source="test", known_themes={"ouv"})
+        self.assertTrue(any("enchère SEF reconnue" in e for e in result["errors"]))
+
+    def test_noncanonical_bid_spelling_is_rejected(self):
+        q = valid_question()
+        q["choices"][1] = "3NT"
+        result = checker.inspect([q], source="test", known_themes={"ouv"})
+        self.assertTrue(any("enchère SEF reconnue" in e for e in result["errors"]))
+
     def test_boolean_values_are_not_numbers(self):
         q = valid_question()
         q["h"] = True
