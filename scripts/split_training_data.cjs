@@ -25,7 +25,7 @@ const files={
   ' if(trainingDataLoads[key])return trainingDataLoads[key];',
   ' trainingDataLoads[key]=new Promise((resolve,reject)=>{',
   "  const script=document.createElement('script');",
-  "  script.src='./training-data-'+key+'.js?v=20261112bh109110';",
+  "  script.src='./training-data-'+key+'.js?v=20261112bh079082';",
   '  script.async=true;',
   '  script.onload=()=>{',
   '   if(trainingDataReady(key))resolve();',
