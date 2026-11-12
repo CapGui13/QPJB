@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112jcbh06001')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112jcbh06001'),
+check(html.includes('training-data-bootstrap.js?v=20261112bh109110')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112bh109110'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jcbh06001')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jcbh06001'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112bh109110')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112bh109110'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v79'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v80'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
