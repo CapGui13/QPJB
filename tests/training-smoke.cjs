@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112jc020')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112jc020'),
+check(html.includes('training-data-bootstrap.js?v=20261112jc023')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112jc023'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc020')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc020'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc023')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc023'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v76'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v77'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -956,5 +956,26 @@ check(jc020P1.questionText.includes('Entame : Dame de Carreau')&&
  jc020P1.pedagogicalRevisionP1==='JC020_valet_carreau_hypothese_et_tempo_20261112'&&
  data.bidding.length===638&&data.play.length===188,
  'JC-020: diagram and all 826 exercises conserved');
+
+
+// JC-023 : duplication matérielle de ♠6 dans le PDF d'origine et audit conditionnel.
+const jc023P1=data.play.find(x=>x.id==='JC-023');
+check(jc023P1&&
+ jc023P1.sourceOriginalAnswerText.includes('Roi de Pique est protégé')&&
+ jc023P1.answerText.includes('♠6 apparaît à la fois en Ouest')&&
+ jc023P1.answerText.includes('♠3 manque')&&
+ jc023P1.answerText.includes('hypothétique')&&
+ jc023P1.answerText.includes('♠A853')&&
+ jc023P1.answerText.includes('cinq plis en six levées')&&
+ jc023P1.sourceRef==='B23-carte',
+ 'JC-023: material duplicate in original PDF disclosed, corrected deal only hypothetical');
+check(jc023P1.questionText.includes('Quel est votre plan de jeu pour réaliser neuf levées')&&
+ jc023P1.image==='./assets/JC-023.webp'&&
+ jc023P1.reviewStatus==='transcrit_source'&&
+ jc023P1.historicalReviewStatus==='a_verifier'&&
+ jc023P1.quarantineReason.includes('Vérification indépendante en attente')&&
+ jc023P1.pedagogicalRevisionP1==='JC023_pique_duplique_et_comparaison_impasses_20261112'&&
+ data.bidding.length===638&&data.play.length===188,
+ 'JC-023: preserve original problem, review restrictions and catalogue counts');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
