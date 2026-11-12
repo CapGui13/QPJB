@@ -112,6 +112,38 @@ class QuizSEFIntegrityTests(unittest.TestCase):
                                     capture_output=True, text=True, check=False)
             self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_catalogue_minimum_count_prevents_accidental_loss(self):
+        # Le test demeure petit : le seuil de production (1274) est dans le workflow.
+        payload = {"version": "test", "themes": [{"id": "ouv"}],
+                   "exercises": [valid_question()]}
+        with tempfile.TemporaryDirectory() as folder:
+            html = Path(folder) / "quizz.html"
+            html.write_text('<script id="training-data" type="application/json">'
+                            + json.dumps(payload, ensure_ascii=False) + '</script>', encoding="utf-8")
+            command = [sys.executable, str(Path(checker.__file__)), "--html", str(html)]
+            reduced = subprocess.run(command + ["--min-count", "2"],
+                                     capture_output=True, text=True, check=False)
+            self.assertEqual(reduced.returncode, 1)
+            self.assertIn("catalogue réduit à 1 QCM", reduced.stderr)
+            expected = subprocess.run(command + ["--min-count", "1"],
+                                      capture_output=True, text=True, check=False)
+            self.assertEqual(expected.returncode, 0, expected.stderr)
+            default = subprocess.run(command, capture_output=True, text=True, check=False)
+            self.assertEqual(default.returncode, 0, default.stderr)
+
+    def test_negative_minimum_rejected_cleanly(self):
+        payload = {"version": "test", "themes": [{"id": "ouv"}],
+                   "exercises": [valid_question()]}
+        with tempfile.TemporaryDirectory() as folder:
+            html = Path(folder) / "quizz.html"
+            html.write_text('<script id="training-data" type="application/json">'
+                            + json.dumps(payload, ensure_ascii=False) + '</script>', encoding="utf-8")
+            result = subprocess.run([sys.executable, str(Path(checker.__file__)),
+                                     "--html", str(html), "--min-count", "-1"],
+                                    capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("--min-count doit être positif ou nul", result.stderr)
+
     def test_malformed_catalogue_question_fails_cleanly(self):
         payload = {"version": "test", "themes": [{"id": "ouv"}],
                    "exercises": [valid_question(), None]}
