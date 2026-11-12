@@ -63,6 +63,6 @@ La défense possède **cinq levées dès le sixième pli** : ♦D, ♠A, ♠V, �
 - L'audit justifie la **préférence pédagogique des Trèfles** par les communications et le danger de rendre la main à Est sur l'impasse Carreau.
 - L'invalidité de la donne imprimée est **certaine** ; le remplacement de ♠6 d'Ouest par ♠3 demeure **hypothétique** et est distinct du sujet original.
 - Ni les exemples ni les raisonnements du document ne certifient l'optimalité contre **toutes les distributions** et tous les retours.
-- Ancien corrigé archivé mot pour mot, sans modifier main, question, image, sourceRef, reviewStatus, quarantineReason, historique ou progression.
+- Ancien corrigé archivé mot pour mot ; **quarantineReason** corrigé pour signaler l'erreur matérielle désormais prouvée, son ancien libellé archivé dans **sourceOriginalQuarantineReason**. Main, question, image, sourceRef, reviewStatus, historicalReviewStatus et progression inchangés.
 - **Un seul objet carte modifié éditorialement ; 187 autres exercices de carte et 638 enchères strictement inchangés. Total 826 ID.**
 - Synchronisation maître/module jeu de la carte, invalidation cache PWA et assertions ciblées. **CI intégrité + Chromium + WebKit requises avant toute fusion**.

@@ -973,7 +973,8 @@ check(jc023P1.questionText.includes('Quel est votre plan de jeu pour réaliser n
  jc023P1.image==='./assets/JC-023.webp'&&
  jc023P1.reviewStatus==='transcrit_source'&&
  jc023P1.historicalReviewStatus==='a_verifier'&&
- jc023P1.quarantineReason.includes('Vérification indépendante en attente')&&
+ jc023P1.quarantineReason.includes('Anomalie documentaire confirmée')&&
+ jc023P1.sourceOriginalQuarantineReason.includes('Vérification indépendante en attente')&&
  jc023P1.pedagogicalRevisionP1==='JC023_pique_duplique_et_comparaison_impasses_20261112'&&
  data.bidding.length===638&&data.play.length===188,
  'JC-023: preserve original problem, review restrictions and catalogue counts');
