@@ -14,8 +14,8 @@ const integrated=read('entrainement/training-integrated.css');
 const tokens=read('qpjb-design-tokens.css');
 let checks=0;
 function check(v,label){assert.ok(v,label);checks++}
-check(html.includes('training-data-bootstrap.js?v=20261112jc009')&&
- alternateHtml.includes('training-data-bootstrap.js?v=20261112jc009'),
+check(html.includes('training-data-bootstrap.js?v=20261112jcbh06001')&&
+ alternateHtml.includes('training-data-bootstrap.js?v=20261112jcbh06001'),
  'both integrated training entry points use the current bootstrap');
 for(const [name,css] of Object.entries({core,integrated,tokens})){
  let level=0,min=0;
@@ -380,10 +380,10 @@ for(const id of cleared){
 }
 check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').length===0,
  'the three slam/competitive documentary caveats are no longer accessible');
-check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jc009')&&
- read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jc009'),
+check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261112jcbh06001')&&
+ read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261112jcbh06001'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v78'"),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v79'"),
  'PWA cache revision invalidated for updated SEF exercises');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){
@@ -998,5 +998,26 @@ check(jc009P1.questionText.includes('Les adversaires vous laissent réaliser la 
  jc009P1.pedagogicalRevisionP1==='JC009_ouverture_10H_regle_20_dame_carreau_conditionnelle_20261112'&&
  data.bidding.length===638&&data.play.length===188,
  'JC-009: original question and all 826 exercises preserved');
+
+
+// JC-BH-060-01 : source PDF archivée, deux lignes source et contre-exemple 3-5 conditionnel.
+const bh060P1=data.play.find(x=>x.id==='JC-BH-060-01');
+check(bh060P1&&bh060P1.sourceOriginalAnswerText.includes('As de Pique en Ouest')&&
+ bh060P1.sourceOriginalTechnicalQA==='corrige_repris_du_pdf_analyse_de_bridge_independante_a_confirmer'&&
+ bh060P1.answerText.includes('six levées immédiates')&&
+ bh060P1.answerText.includes('partage 3-3')&&
+ bh060P1.answerText.includes('la défense atteint cinq levées')&&
+ bh060P1.answerText.includes('partage 4-4 des Cœurs')&&
+ bh060P1.answerText.includes('dix plis')&&
+ bh060P1.technicalQA==='contre_expertise_conditionnelle_52_cartes_2_lignes_pdf_et_3-5_coeurs_20261112'&&
+ bh060P1.sourceRef==='BH-060:JC-01',
+ 'JC-BH-060-01: original correction archived, source and hypothetical lines identified');
+check(bh060P1.prompt.startsWith('Ouest entame du Roi de Cœur')&&
+ bh060P1.reviewStatus==='revu_source_et_corrige_v54'&&
+ bh060P1.lessonTitle==='Éviter de rendre la main'&&
+ bh060P1.image.startsWith('data:image/svg+xml;base64,')&&
+ bh060P1.sourcePdfAudit.page===2&&
+ data.bidding.length===638&&data.play.length===188,
+ 'JC-BH-060-01: card, source and all 826 exercises preserved');
 
 console.log('QPJB Training smoke: '+checks+' checks passed.');
