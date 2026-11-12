@@ -21,6 +21,8 @@ HONORS = {"A": 4, "R": 3, "D": 2, "V": 1}
 RANKS = ("A", "R", "D", "V", "10", "9", "8", "7", "6", "5", "4", "3", "2")
 RANK_INDEX = {rank: i for i, rank in enumerate(RANKS)}
 SUITS = "♠♥♦♣"
+# Choix canoniques pris en charge par le Quiz SEF et son clavier d’enchères.
+BID_RE = re.compile(r"(?:[1-7](?:SA|♣|♦|♥|♠)|Passe|Contre|Surcontre)\Z")
 SCRIPT_RE = re.compile(
     r'<script\b(?=[^>]*\bid=["\']training-data["\'])([^>]*)>(.*?)</script\s*>',
     re.IGNORECASE | re.DOTALL,
@@ -110,8 +112,11 @@ def inspect(exercises: list, *, source: str, known_themes: set[str],
                 or not all(isinstance(c, str) and c.strip() for c in choices)
                 or len(set(choices)) != 4):
             errors.append(f"{qid} : quatre choix non vides, textuels et distincts attendus")
-        elif choices.count(item.get("answer")) != 1:
-            errors.append(f"{qid} : la clé n'apparaît pas exactement une fois dans les choix")
+        else:
+            if any(BID_RE.fullmatch(c) is None for c in choices):
+                errors.append(f"{qid} : proposition qui n'est pas une enchère SEF reconnue")
+            if choices.count(item.get("answer")) != 1:
+                errors.append(f"{qid} : la clé n'apparaît pas exactement une fois dans les choix")
         if (not isinstance(item.get("auction"), list)
                 or not all(isinstance(call, str) for call in item["auction"])):
             errors.append(f"{qid} : liste auction de chaînes attendue")
