@@ -1046,4 +1046,13 @@ check(bh109p2&&bh109p2.sourceOriginalAnswerText.includes('♣R en Ouest')&&
  data.bidding.length===638&&data.play.length===188,
  'BH109/BH110: explications archivées, provenance et 826 identifiants conservés');
 
+// Audit indépendant BH116/119/122/123/125 : source intacte et communications légales.
+const bh116to125=require('./training-card-bh116-125-proof.cjs').results;
+check(bh116to125.BH116.defenders===4&&bh116to125.BH119.declarer===10&&
+ bh116to125['BH123-retour-Dame'].declarer===11&&bh116to125.BH125.declarer===10,
+ 'BH116-125: 13 plis source, 52 cartes et défausse ♣7 sur ♠V valides');
+check(data.play.find(x=>x.id==='JC-BH-123-P2')?.answerText.includes('puis exploiter ♠V devenu maître')&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH123: corrigé source conservé et 826 exercices intacts');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
