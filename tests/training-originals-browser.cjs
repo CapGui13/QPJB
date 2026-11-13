@@ -49,11 +49,15 @@ const server=http.createServer((req,res)=>{
   await page.locator('#back-original-list').click();
   await page.locator('#original-progress').selectOption('ok');
   assert.equal(await page.locator('button.item').count(),1,'Filtre des exercices réussis');
-  await page.goto(base+'index.html?mode=bidding',{waitUntil:'domcontentloaded'});
-  await page.getByRole('link',{name:/Ouvrir les 139 exercices originaux/}).waitFor({state:'visible',timeout:30000});
-  await page.getByRole('link',{name:/Ouvrir les 139 exercices originaux/}).click();
-  await page.locator('button.item').first().waitFor({state:'visible',timeout:15000});
-  assert.equal(await page.locator('button.item').count(),139,'Accès direct depuis Entraînement');
+  // L'application Entraînement est intégrée à la page parente via iframe.
+  await page.goto('http://127.0.0.1:8774/QPJB/',{waitUntil:'domcontentloaded'});
+  await page.locator('.training-button[data-training-mode="bidding"]').click({timeout:30000});
+  const frame=page.frameLocator('#training-frame');
+  const link=frame.getByRole('link',{name:/Ouvrir les 139 exercices originaux/});
+  await link.waitFor({state:'visible',timeout:30000});
+  await link.click();
+  await frame.locator('button.item').first().waitFor({state:'visible',timeout:15000});
+  assert.equal(await frame.locator('button.item').count(),139,'Accès direct depuis Entraînement');
   assert.deepEqual(errors,[],'Aucune erreur JavaScript');
   console.log('MISSION H BROWSER OK : '+type+' · accès 139 · correction masquée · sauvegarde sans perte · navigation');
  }finally{await browser.close();await new Promise(ok=>server.close(ok))}
