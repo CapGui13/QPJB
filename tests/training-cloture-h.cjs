@@ -59,6 +59,13 @@ for(const x of rows){
     assert.equal(x.statut_application,'EXISTANT_SUR_MAIN');
   }else assert.equal(x.statut_application,'NON_PUBLIE_SUR_MAIN');
   if(x.decision_finale==='REDONDANT') assert(x.id_qpjb||x.source_a_conserver,'Redondance sans témoin : '+x.id_source);
+  if(x.decision_finale==='A_INTEGRER'){
+    assert.equal(x.id_branche_H,'SRC-'+x.id_source,'Nouvel ID H non traçable');
+    assert.equal(x.statut_branche_H,'INTEGRE_DANS_H_BROUILLON');
+  }else {
+    assert.equal(x.id_branche_H,'','Un ID de source bloquée ou redondante ne doit pas être publié');
+    assert(x.statut_branche_H,'Absence de statut de branche');
+  }
 }
 assert.equal(rows.length,1020,'Corpus original incomplet');
 for(const [status,n] of Object.entries(expected)) assert.equal(stats[status],n,'Bilan incorrect : '+status);
