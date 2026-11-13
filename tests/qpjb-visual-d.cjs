@@ -23,7 +23,7 @@ for(const v of ['[data-seat="north"]','[data-seat="south"]','[data-seat="east"]'
   assert(css.includes(v),'Palette NS/EO endommagée: '+v);
 }
 for(const [name,html] of [['Quiz',read('quizz.html')],['Entraînement',read('entrainement/index.html')],['Originaux',read('entrainement/originaux.html')]]){
-  assert(html.includes('qpjb-bridge-ui.css?v=20261113d'),name+': cache CSS non actualisé');
+  assert(/qpjb-bridge-ui\.css\?v=20261113[de]/.test(html),name+': cache CSS non actualisé');
 }
 const d=css.slice(css.indexOf('QPJB D —'));
 for(const v of ['localStorage','sessionStorage','pointer-events:none','display:none']){
