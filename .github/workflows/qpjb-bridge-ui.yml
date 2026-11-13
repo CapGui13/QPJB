@@ -1,0 +1,44 @@
+name: QPJB — palette NS/EO et charte commune
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'qpjb-bridge-ui.css'
+      - 'quizz.html'
+      - 'entrainement/index.html'
+      - 'entrainement/originaux.html'
+      - 'tests/qpjb-bridge-ui*.cjs'
+      - '.github/workflows/qpjb-bridge-ui.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    name: Intégrité de la charte et du Quiz
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/qpjb-bridge-ui.cjs
+      - run: node tests/quizz-integrity.cjs
+      - run: node tests/training-smoke.cjs
+  browser:
+    name: Axe réel NS/EO — ${{ matrix.browser }}
+    needs: static
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/qpjb-bridge-ui-browser.cjs

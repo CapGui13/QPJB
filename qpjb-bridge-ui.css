@@ -1,0 +1,192 @@
+/* QPJB — identité bridge commune à l'Entraînement, aux originaux et au Quiz SEF.
+   Les axes désignent toujours les partenariats RÉELS, jamais l'emplacement visuel.
+   Feuille purement graphique : aucune donnée de bridge ni logique de score modifiée. */
+:root {
+  --qpjb-ns-bg: #e7f2ff;
+  --qpjb-ns-head: #cfe5ff;
+  --qpjb-ns-border: #b5d0eb;
+  --qpjb-ns-ink: #23466c;
+  --qpjb-ew-bg: #fff0e3;
+  --qpjb-ew-head: #f8dfc9;
+  --qpjb-ew-border: #e9cbae;
+  --qpjb-ew-ink: #72441f;
+  --qpjb-ui-violet: #5e259d;
+  --qpjb-ui-focus: #b699dc;
+  --qpjb-ui-round: 12px;
+}
+
+/* B — détails communs, sans remplacer l'identité violette ni les états correct/incorrect. */
+:where(.btn, .choice, .cq-option, .answers button, .filters input, .filters select) {
+  border-radius: var(--qpjb-ui-round);
+}
+:where(button, a, input, select):focus-visible {
+  outline: 3px solid var(--qpjb-ui-focus);
+  outline-offset: 2px;
+}
+:where(.btn, .choice, .cq-option, .answers button) {
+  transition: border-color .14s ease, background-color .14s ease, box-shadow .14s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.btn, .choice, .cq-option, .answers button) { transition: none; }
+}
+
+/* A — tableaux d'enchères d'Entraînement. Ordre de colonnes : S, O, N, E. */
+.auc thead th:nth-child(odd),
+.auction-table thead th:nth-child(odd) {
+  background: var(--qpjb-ns-head);
+  border-color: var(--qpjb-ns-border);
+  color: var(--qpjb-ns-ink);
+  border-radius: 7px;
+}
+.auc thead th:nth-child(even),
+.auction-table thead th:nth-child(even) {
+  background: var(--qpjb-ew-head);
+  border-color: var(--qpjb-ew-border);
+  color: var(--qpjb-ew-ink);
+  border-radius: 7px;
+}
+.auc tbody td:not(.ask):nth-child(odd),
+.auction-table tbody td:not(.ask):nth-child(odd) {
+  background: var(--qpjb-ns-bg);
+  border-color: var(--qpjb-ns-border);
+  color: var(--qpjb-ns-ink);
+}
+.auc tbody td:not(.ask):nth-child(even),
+.auction-table tbody td:not(.ask):nth-child(even) {
+  background: var(--qpjb-ew-bg);
+  border-color: var(--qpjb-ew-border);
+  color: var(--qpjb-ew-ink);
+}
+.auc tbody td.auction-empty,
+.auction-table tbody td.auction-empty {
+  opacity: 1;  /* Une case vide doit aussi laisser voir son axe. */
+}
+/* La case interrogée reste violette : c'est une ACTION, non un partenariat. */
+.auc td.ask,
+.auction-table td.ask {
+  background: #e8dff9;
+  border-color: #9470c1;
+  color: #4d267a;
+}
+
+/* Contraste des couleurs d'enchères sur les deux fonds clairs, hors case à jouer. */
+.auc td:not(.ask) :is(.bid-spade, .symbol-suit.suit-spade) { color: #202635 !important; }
+.auc td:not(.ask) :is(.bid-heart, .symbol-suit.suit-heart) { color: #ad2339 !important; }
+.auc td:not(.ask) :is(.bid-diamond, .symbol-suit.suit-diamond) { color: #9e5700 !important; }
+.auc td:not(.ask) :is(.bid-club, .symbol-suit.suit-club) { color: #185e91 !important; }
+
+/* A — diagrammes : data-seat donne le siège réel même si la table est tournée.
+   Ne PAS cibler .north/.south/.east/.west : ce sont parfois des positions à l'écran. */
+.deal-seat:is([data-seat="north"], [data-seat="south"]) {
+  background: var(--qpjb-ns-bg) !important;
+  border-color: var(--qpjb-ns-border) !important;
+}
+.deal-seat:is([data-seat="east"], [data-seat="west"]) {
+  background: var(--qpjb-ew-bg) !important;
+  border-color: var(--qpjb-ew-border) !important;
+}
+.deal-seat:is([data-seat="north"], [data-seat="south"]) :is(.deal-seat-name, .deal-seat-pos) {
+  color: var(--qpjb-ns-ink);
+}
+.deal-seat:is([data-seat="east"], [data-seat="west"]) :is(.deal-seat-name, .deal-seat-pos) {
+  color: var(--qpjb-ew-ink);
+}
+.deal-seat:is([data-seat="north"], [data-seat="south"]) .deal-seat-pos {
+  background: var(--qpjb-ns-head);
+  border-color: var(--qpjb-ns-border);
+}
+.deal-seat:is([data-seat="east"], [data-seat="west"]) .deal-seat-pos {
+  background: var(--qpjb-ew-head);
+  border-color: var(--qpjb-ew-border);
+}
+.deal-marker:is([data-seat="north"], [data-seat="south"]) span {
+  background: var(--qpjb-ns-head);
+  border-color: var(--qpjb-ns-border);
+  color: var(--qpjb-ns-ink);
+}
+.deal-marker:is([data-seat="east"], [data-seat="west"]) span {
+  background: var(--qpjb-ew-head);
+  border-color: var(--qpjb-ew-border);
+  color: var(--qpjb-ew-ink);
+}
+/* Les rangs et symboles de cartes ne prennent jamais la couleur de leur axe. */
+
+/* A — Quiz SEF : table toujours sombre, palette NS/EO assourdie. */
+#body .auc {
+  --qpjb-ns-bg: #263f58;
+  --qpjb-ns-head: #385b7c;
+  --qpjb-ns-border: #5980a5;
+  --qpjb-ns-ink: #eaf4ff;
+  --qpjb-ew-bg: #513c30;
+  --qpjb-ew-head: #765641;
+  --qpjb-ew-border: #a67e60;
+  --qpjb-ew-ink: #ffefdf;
+}
+#body .auc thead th:nth-child(odd) {
+  color: var(--qpjb-ns-ink);
+  background: var(--qpjb-ns-head);
+}
+#body .auc thead th:nth-child(even) {
+  color: var(--qpjb-ew-ink);
+  background: var(--qpjb-ew-head);
+}
+#body .auc tbody td:not(.ask):nth-child(odd) {
+  color: var(--qpjb-ns-ink);
+  background: var(--qpjb-ns-bg);
+  border-color: var(--qpjb-ns-border);
+}
+#body .auc tbody td:not(.ask):nth-child(even) {
+  color: var(--qpjb-ew-ink);
+  background: var(--qpjb-ew-bg);
+  border-color: var(--qpjb-ew-border);
+}
+#body .auc tbody td.auction-empty:not(.ask) {
+  opacity: 1;
+}
+#body .auc tbody td.ask {
+  background: #624575;
+  border-color: #b28ad5;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #ad83cb;
+}
+/* Ne pas forcer les teintes foncées des enseignes sur le quiz sombre. */
+#body .auc td:not(.ask) :is(.bid-spade, .symbol-suit.suit-spade) { color: #f0f5ff !important; }
+#body .auc td:not(.ask) :is(.bid-heart, .symbol-suit.suit-heart) { color: #ffadb5 !important; }
+#body .auc td:not(.ask) :is(.bid-diamond, .symbol-suit.suit-diamond) { color: #ffd09e !important; }
+#body .auc td:not(.ask) :is(.bid-club, .symbol-suit.suit-club) { color: #a6d7ff !important; }
+
+/* Entraînement intégré sombre : même partenariat, mais harmonisé à son fond. */
+.qpjb-embedded :is(.auc, .auction-table) {
+  --qpjb-ns-bg: #263f58;
+  --qpjb-ns-head: #385b7c;
+  --qpjb-ns-border: #5980a5;
+  --qpjb-ns-ink: #eaf4ff;
+  --qpjb-ew-bg: #513c30;
+  --qpjb-ew-head: #765641;
+  --qpjb-ew-border: #a67e60;
+  --qpjb-ew-ink: #ffefdf;
+}
+.qpjb-embedded .auc td:not(.ask) :is(.bid-spade, .symbol-suit.suit-spade) { color: #f0f5ff !important; }
+.qpjb-embedded .auc td:not(.ask) :is(.bid-heart, .symbol-suit.suit-heart) { color: #ffadb5 !important; }
+.qpjb-embedded .auc td:not(.ask) :is(.bid-diamond, .symbol-suit.suit-diamond) { color: #ffd09e !important; }
+.qpjb-embedded .auc td:not(.ask) :is(.bid-club, .symbol-suit.suit-club) { color: #a6d7ff !important; }
+
+/* B — parcours originaux : mêmes polices et boutons, sans réécrire ses réponses. */
+body:has(#app) :is(.header-brand, .eyebrow, .stat, .btn, .status, .filters) {
+  font-family: var(--qpjb-font-ui, 'Exo 2', system-ui, sans-serif);
+}
+body:has(#app) :is(.question, .source-text, .analysis) {
+  font-family: var(--qpjb-font-text, 'Source Serif 4', Georgia, serif);
+}
+body:has(#app) .card {
+  border-radius: 16px;
+  border-color: var(--qpjb-border-light, #dcd0ec);
+}
+body:has(#app) .btn.primary {
+  background: var(--qpjb-violet, #5e259d);
+  border-color: var(--qpjb-violet, #5e259d);
+  color: #fff;
+}
+body:has(#app) :is(.btn, .filters input, .filters select) {
+  min-height: 44px;
+}
