@@ -44,7 +44,7 @@ const server=http.createServer((req,res)=>{
     assert.equal(q.o,'rgb(81, 60, 48)','Quiz : abricot sombre exact');
 
     await page.goto('http://127.0.0.1:'+port+'/QPJB/entrainement/originaux.html',{waitUntil:'load'});
-    await page.waitForFunction(() => [...document.styleSheets].some(x => x.href?.includes('qpjb-bridge-ui.css')), {timeout:15000});
+    await page.waitForFunction(() => [...document.styleSheets].some(x => x.href?.includes('qpjb-bridge-ui.css')), null, {timeout:15000});
     const t=await page.evaluate(()=>{
       const probe=document.createElement('div');probe.id='axis-probe';
       probe.innerHTML='<table class="auc"><thead><tr><th>S</th><th>O</th><th>N</th><th>E</th></tr></thead><tbody><tr><td>1♥</td><td>Passe</td><td>2♥</td><td>Passe</td></tr></tbody></table><div class="deal-seat north" data-seat="east"><span class="deal-seat-name">Est</span></div><div class="deal-seat east" data-seat="south"><span class="deal-seat-name">Sud</span></div><div class="deal-marker south" data-seat="west"><span>O</span></div>';
