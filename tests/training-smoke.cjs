@@ -1082,4 +1082,18 @@ check(x079&&x079.sourceOriginalAnswerText.startsWith('Petit ♣ de Sud')&&
  data.bidding.length===638&&data.play.length===188,
  'BH079/BH082 : anciennes versions conservées et 826 exercices intacts');
 
+// Audit BH037/039/056/057 : donnes originales, 13 plis et complément Dame sèche.
+const proof037to057=require('./training-card-bh037-bh039-bh056-bh057-proof.cjs');
+check(proof037to057['BH037-Q01'].declarer===9&&proof037to057['BH039-Q01'].declarer===10&&
+ proof037to057['BH056-P2'].declarer===10&&proof037to057['BH057-P2'].declarer===10&&
+ proof037to057['BH039-M01-8-sur-7'].declarer===4&&
+ proof037to057['BH039-M01-V-sur-7'].declarer===3,
+ 'BH037/039/056/057: 13 plis légaux et fourchette RV8 démontrés');
+const bh039m01=data.play.find(x=>x.id==='JC-BH-039-M01');
+check(bh039m01&&bh039m01.sourceOriginalAnswerText.includes('si ♥D ne tombe pas')&&
+ bh039m01.answerText.includes('mettez **♥8**')&&
+ bh039m01.sourceAudit.original13HeartsValid===true&&
+ data.bidding.length===638&&data.play.length===188,
+ 'BH039-M01: nouvelle branche archivée, 826 exercices préservés');
+
 console.log('QPJB Training smoke: '+checks+' checks passed.');
