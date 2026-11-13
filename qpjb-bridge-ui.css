@@ -274,3 +274,182 @@ body:has(#app) .btn:focus-visible{
   .app-shell .exercise-card{padding:15px 12px;}
   body:has(#app) .card{padding:16px;}
 }
+
+
+/* ────────────────────────────────────────────────────────────────
+   QPJB C — hiérarchie des écrans d'exercices et navigation.
+   CSS seulement : aucune donnée, saisie ni réponse modifiée.
+   ──────────────────────────────────────────────────────────────── */
+:root{
+  --qpjb-section-accent:#b995e3;
+  --qpjb-session-surface:#34293f;
+  --qpjb-session-border:#765c8c;
+  --qpjb-session-ink:#f8f2ff;
+}
+
+/* Quiz SEF : la navigation supérieure devient un repère visible.
+   Le conteneur d'exercice reçoit une délimitation plus nette. */
+.app-shell .qpjb-quiz-nav{
+  background:#2f253b;
+  border:1px solid #5b4769;
+  border-radius:14px;
+  padding:10px 12px;
+  margin-top:9px;
+  box-shadow:0 5px 18px rgba(8,5,14,.12);
+}
+.app-shell .qpjb-quiz-back{
+  min-height:44px;
+  border-radius:11px;
+  border-color:#896ba1;
+  background:#493553;
+  color:#fff;
+}
+body.session-mode .app-shell #session-card{
+  background:linear-gradient(155deg,#34293f 0%,#2e2537 100%);
+  border:1px solid var(--qpjb-session-border);
+  border-radius:18px;
+  padding:19px 17px 20px;
+  box-shadow:0 12px 30px rgba(8,4,17,.17);
+}
+.app-shell .session-tools{
+  gap:10px;
+  padding-bottom:9px;
+  margin-bottom:12px;
+  border-bottom:1px solid rgba(187,151,225,.18);
+}
+.app-shell .session-tools button{
+  min-height:44px;
+  border-radius:11px;
+}
+.app-shell .session-progress{
+  padding:3px 0 6px;
+  color:#e0d1ed;
+}
+.app-shell .session-progress .progress{
+  height:7px;
+  background:#4c3c57;
+}
+.app-shell .session-progress .progress>div{
+  background:linear-gradient(90deg,#a67cda,#d0adef);
+}
+.app-shell #body .seat-headline{
+  font-size:18px;
+  line-height:1.38;
+  padding:4px 0 4px 12px;
+  margin:14px 0 10px;
+  border-left:4px solid var(--qpjb-section-accent);
+  color:var(--qpjb-session-ink);
+}
+.app-shell #body .auction-label{
+  font-size:11.5px;
+  color:#dfc8f5;
+  letter-spacing:.075em;
+}
+.app-shell #body .question{
+  font-size:17px;
+  line-height:1.43;
+  margin:18px 0 12px;
+  color:var(--qpjb-session-ink);
+}
+.app-shell #body .hand{
+  border-radius:13px;
+  border-color:#ddd0ea;
+  box-shadow:0 3px 10px rgba(24,12,37,.08);
+}
+.app-shell #body .free-answer-form{
+  background:#382b45;
+  border:1px solid #654b7b;
+  border-radius:15px;
+  padding:13px;
+  gap:10px;
+}
+.app-shell #body .free-answer-form label{
+  color:#f3e5ff;
+  font-size:12px;
+}
+.app-shell #body .free-reveal{
+  border-color:#9879b1;
+  background:#483451;
+}
+.app-shell #body .free-reveal:hover{
+  background:#5a4068;
+}
+.app-shell .nextrow.session-navigation{
+  gap:10px;
+  padding-top:13px;
+  margin-top:18px;
+  border-top:1px solid rgba(187,151,225,.22);
+}
+.app-shell .nextrow.session-navigation button{
+  min-height:46px;
+  border-radius:11px;
+}
+
+/* Entraînement intégré : mêmes repères question/action, sans agrandir
+   les mains ni les colonnes de la table. */
+.qpjb-embedded .quizgrid .panel{
+  border-color:#745d89!important;
+  border-radius:18px;
+  box-shadow:0 10px 24px rgba(9,5,18,.12)!important;
+}
+.qpjb-embedded .quizhead{
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(187,151,225,.20);
+}
+.qpjb-embedded .quizgrid .q{
+  font-size:clamp(17px,3.5vw,20px);
+  line-height:1.43;
+  margin:15px 0 12px;
+  border-left:4px solid var(--qpjb-section-accent);
+  padding-left:12px;
+}
+.qpjb-embedded .quizgrid .auction-box{
+  border-radius:15px;
+}
+.qpjb-embedded .footnav{
+  gap:10px;
+  margin-top:18px;
+  padding-top:13px;
+  border-top:1px solid rgba(187,151,225,.20);
+}
+.qpjb-embedded .footnav .btn{
+  min-height:46px;
+  border-radius:11px;
+}
+
+/* Originaux : identification nette de la question et de l'analyse. */
+body:has(#app) header{
+  border-bottom:2px solid #c8b5e4;
+  box-shadow:0 3px 14px rgba(41,25,71,.05);
+}
+body:has(#app) .header-brand{
+  color:#4a287e;
+  letter-spacing:-.02em;
+}
+body:has(#app) .question{
+  font-size:clamp(18px,2.8vw,20px);
+  line-height:1.48;
+  border-left:4px solid #9270c1;
+  padding-left:14px;
+  margin:16px 0;
+}
+body:has(#app) .analysis{
+  border-top:2px solid #d9c9ea;
+  line-height:1.7;
+}
+body:has(#app) .stack{
+  padding-top:12px;
+  border-top:1px solid #e5deef;
+}
+@media(max-width:400px){
+  body.session-mode .app-shell #session-card{padding:15px 12px 16px;}
+  .app-shell .qpjb-quiz-nav{padding:7px 9px;}
+  .app-shell #body .seat-headline{font-size:17px;}
+  .app-shell #body .question{font-size:16px;}
+  .app-shell #body .free-answer-form{padding:11px;}
+  .app-shell .nextrow.session-navigation{gap:7px;}
+  .qpjb-embedded .quizgrid .q{font-size:17px;padding-left:9px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-shell .session-progress .progress>div{transition:none;}
+}
