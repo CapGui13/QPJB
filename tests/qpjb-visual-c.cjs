@@ -21,7 +21,7 @@ for(const s of [
  'body:has(#app) .question'
 ])assert(css.includes(s),'Style C non présent : '+s);
 for(const [name,html] of [['Quiz',quiz],['Entraînement',training],['Originaux',originals]]){
- assert(/qpjb-bridge-ui\.css\?v=20261113[cd]/.test(html),name+': version CSS périmée');
+ assert(/qpjb-bridge-ui\.css\?v=20261113[cde]/.test(html),name+': version CSS périmée');
 }
 for(const term of [
  '[data-seat="north"]','[data-seat="south"]','[data-seat="east"]','[data-seat="west"]',
