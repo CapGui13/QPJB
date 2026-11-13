@@ -1,6 +1,6 @@
 # MISSION A — Inventaire documentaire Bridge Hebdo — 13 novembre 2026
 
-**Projet** : `CapGui13/QPJB` — **périmètre exclusif** : application Entraînement.  **État** : inventaire des sources accessibles, avec réserves explicites de transcription partielle. Aucune donnée publiée / Quiz SEF n'est modifiée.
+**Projet** : `CapGui13/QPJB` — **périmètre exclusif** : application Entraînement.  **État** : inventaire des sources accessibles avec contrôle visuel ciblé finalisé le 13/11/2026 ; sources manquantes signalées explicitement. Aucune donnée publiée / Quiz SEF n'est modifiée.
 
 ## Sources effectivement accessibles
 
@@ -14,7 +14,7 @@
 ## Couverture et comptage
 
 - **140** fascicules Débutant individualisés dans l'archive, correspondant à **280** PDF originaux : 140 sujets, 140 corrigés.
-- **504 pages** PDF dans l'archive : chaque page a été ouverte et son texte natif extrait pour le repérage des exercices et du corrigé, et les dispositions atypiques ont été contrôlées par rendu visuel. Cela n'équivaudrait pas à affirmer que toutes les valeurs de cartes non extractibles ont été retranscrites.
+- **504 pages** PDF dans l'archive : chaque page a été ouverte et son texte natif extrait pour le repérage des exercices et du corrigé, et les dispositions atypiques ont été contrôlées par rendu visuel. Les passages non récupérables par extraction textuelle ont fait l’objet d’un contrôle visuel ciblé ultérieur, documenté dans `journal_controle_visuel_2026-11-13.csv`.
 - **1** fascicule Avancé supplémentaire distinct, dont le sujet PDF (2 pages) est accessible en double copie, sans corrigé.
 - **859 entrées** documentées dans l'inventaire, dont **850** rattachées à l'archive Débutant et **9** au fascicule Avancé indépendant (8 séquences de Contre + 1 flanc).
 - Parmi les 850 entrées Débutant, **3** sont des sous-questions complémentaires explicites du corrigé et **847** proviennent des sujets, y compris les cas autonomes d'une même page.
@@ -30,14 +30,16 @@
 4. `BH-091` et `BH-132` : deux maniements autonomes sur la seconde page ; `BH-114` : quatre cas de signalisation en défense ; six séquences autonomes sur `BH-137`.
 5. `BH-001`, `BH-002` et `BH-004-2` : une question explicite de **défense en troisième position** uniquement dans le corrigé, distinguée des questions principales du déclarant, avec source `corrigé`.
 6. Les interrogations rhétoriques et étapes d'un plan déjà posé sont signalées dans `candidats_variantes_corriges_non_comptes.csv`, non transformées artificiellement en exercices.
-7. Source exacte, SHA-256 PDF, page physique et numéro de cas sont attachés à chaque entrée. `cartes_ou_sequence_source` reprend le **texte extrait natif** et peut comporter des signes incomplets ; la source originale fait foi.
+7. Source exacte, SHA-256 PDF, page physique et numéro de cas sont attachés à chaque entrée. `cartes_ou_sequence_source` reprend le texte natif quand il suffit ; 108 lignes particulièrement difficiles ont été **corrigées sur rendu visuel** sans retoucher les originaux. Pour toute divergence ultérieure, la source originale reste prioritaire.
 
 ## Limites documentaires explicites
 
-- Certains caractères de mains ou séquences (notamment plusieurs cartes des pages 1 de BH-126 à BH-140) sont dessinés avec des glyphes non récupérables textuellement. La présence des 6 cas y a été constatée ; le champ source contient seulement ce qui est récupérable. **Aucun rang ni symbole absent n'a été deviné.** Ces entrées portent l'état de lecture `transcription partielle`; elles exigent une recopie visuelle pour un catalogue 100 % fidèle.
-- Pour des pages en tableaux/colonnes, le découpage par rectangles vise à attacher les fragments de texte aux cas. La référence de **la page originale** reste impérative pour reconstituer les couleurs / cartes dessinées.
-- La collection hors de l'archive datée du 23 octobre 2026 n'est pas présumée exhaustive pour l'histoire de Bridge Hebdo. Le fascicule Avancé n° 41 montre précisément qu'une autre série existe ; son corrigé est manquant.
-- Aucun arbitrage pédagogique, pas de déduplication ni d'import, aucun changement aux données publiées. Les ressemblances BH-001/BH-002 et les deux séries n° 41 sont signalées, jamais supprimées.
+- **Contrôle visuel complémentaire terminé (13 novembre 2026)** : les **85 lignes** BH-126 à BH-140 p.1 ont été relues sur les images des sujets originaux, et non pas 90 comme indiqué dans la note initiale : 78 mains de 13 cartes, 6 séquences autonomes BH-137 sans cartes, 1 question BH-138 proposant 4 mains de 13 cartes. Les champs `cartes_ou_sequence_source` et `etat_lecture` ont été mis à jour avec la transcription contrôlée. Les 78 lignes de Trèfles ont été recoupées contre le texte natif du PDF ; 63 lignes de Carreaux y concordent également, les 15 autres n'étant lisibles que sur les images. **Aucune carte manquante inventée.** Le décompte de 859 n'a pas changé.
+- Le contrôle visuel a également porté sur **BH-003 (5 mains)**, **BH-007 (5 maniements, chacun avec ses quatre questions imprimées conservées)**, **BH-114 p.2 (4 cas de flanc)** et **BH-041-AVANCE p.1 et p.2 (8 séquences et 1 jeu en défense ; seules les mains visibles Nord/Est sont retranscrites)**. Soit **108 entrées complétées et vérifiées**. Ces contrôles sont documentaires, non pédagogiques.
+- Les sources en tableaux/colonnes sont référencées par page originale ; toute divergence ultérieure doit se résoudre en consultant le PDF, seule source faisant foi. Les enregistrements à état `texte exploitable + repérage sur le PDF` ne sont pas une garantie de contrôle visuel de chaque carte individuellement : aucun contrôle intégral supplémentaire de 740 autres lignes n'est prétendu.
+- **Corrigé Avancé n° 41 introuvable** malgré vérification des PDF nommés de la bibliothèque, du manifeste et des ZIP BridgeHebdo originaux/import, de l'archive de maintenance et de l'arborescence du dépôt ; le sujet Avancé est intégralement inventorié et la source de corrigé explicitement marquée **INACCESSIBLE**. Aucun texte de correction n'a été produit en substitution.
+- Le numéro historique 38 reste absent des documents consultés ; le périmètre éditorial hors de l'archive du 23/10/2026 n'est pas démontré exhaustif.
+- Aucun arbitrage pédagogique, aucune déduplication ni import ; aucune modification des données publiées. Les ressemblances BH-001/BH-002 et deux séries n° 41 restent signalées, jamais supprimées.
 
 ## Livrables
 
@@ -46,5 +48,7 @@
 - `empreintes_sha256.csv` — SHA-256 de chaque fichier original et des supports.
 - `sources_introuvables_ambigues.csv` — trous, inconnus, sources hors collection.
 - `candidats_variantes_corriges_non_comptes.csv` — variantes en attente d'un verdict humain, sans décision de redondance.
+- `controle_visuel_BH126_140.csv` — 85 transcriptions de source corrigées sur images PDF.
+- `journal_controle_visuel_2026-11-13.csv` — traçabilité de 108 fiches relues, avec PDF exact et SHA-256.
 
-**Cette Mission A fournit l’inventaire des fascicules disponibles et une localisation des exercices. Les réserves de transcription des cartes restent ouvertes : ne pas déclarer « fidélité intégrale des mains » avant leur levée.**
+**État de clôture documentaire : les sources disponibles ont été inventoriées et les transcriptions textuelles initialement signalées comme partielles dans les 108 fiches identifiées ont été traitées par lecture visuelle. L'unique corrigé manquant identifié (Avancé n° 41), le n° 38 et l'étendue historique hors archive sont signalés explicitement comme inaccessibles / non établis. La fidélité totale des 859 fiches ne saurait être garantie sans une relecture indépendante ligne à ligne, non demandée ici.**
