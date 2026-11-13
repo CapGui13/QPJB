@@ -42,7 +42,14 @@ for(const x of rows){
   assert(x.id_source&&!ids.has(x.id_source),'ID source absent ou dupliqué : '+x.id_source);
   ids.add(x.id_source);
   assert(x.reference_pdf_sujet&&x.sha256_sujet&&x.reference_pdf_corrige&&x.sha256_corrige,'Provenance incomplète : '+x.id_source);
-  assert(/^[a-f0-9]{64}$/.test(x.sha256_sujet)&&/^[a-f0-9]{64}$/.test(x.sha256_corrige),'SHA-256 non valide : '+x.id_source);
+  assert(/^[a-f0-9]{64}$/.test(x.sha256_sujet),'SHA-256 du sujet non valide : '+x.id_source);
+  // Le corrigé BH-041 Avancé est réellement absent : sa SHA vaut NON_CALCULABLE.
+  // Ne jamais traiter cette absence comme une source consultée ou validée.
+  if(!/^[a-f0-9]{64}$/.test(x.sha256_corrige)){
+    assert.equal(x.decision_finale,'BLOQUE_SOURCE','Corrigé absent pour un exercice non bloqué : '+x.id_source);
+    assert.equal(x.sha256_corrige,'NON_CALCULABLE','Marqueur documentaire inattendu : '+x.id_source);
+    assert(x.id_source.startsWith('BH-041-AVANCE-')&&x.reference_pdf_corrige.startsWith('INACCESSIBLE'),'Corrigé prétendument inexistant hors BH-041 Avancé : '+x.id_source);
+  }
   assert(Object.hasOwn(expected,x.decision_finale),'Décision absente : '+x.id_source);
   stats[x.decision_finale]=(stats[x.decision_finale]||0)+1;
   assert(x.justification_decision,'Justification absente : '+x.id_source);
