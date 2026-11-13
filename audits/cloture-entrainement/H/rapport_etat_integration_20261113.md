@@ -40,3 +40,18 @@
 **Ne pas fusionner cette PR comme une clôture éditoriale achevée.** Le registre de décision est exhaustif **sur le corpus identifié de 1 020 sources** ; en revanche, les 139 exercices recevables ne figurent pas encore dans les modules de l'application. Les limites des archives historiques (BH nº38 ancien, corrigé BH-041 Avancé, sources hors archives) empêchent aussi de certifier l'exhaustivité de publications jamais retrouvées.
 
 L'étape restante n'est pas un nouvel audit pédagogique : c'est la **transcription technique des 139 cas validés depuis les originaux complets** et leur intégration dans `training-data-bidding.js`, `training-data-play.js`, `training-data.js`, avec mise à jour de `training-data-bootstrap.js` et validation Chromium/WebKit. Aucun résultat de tests de cette intégration n'est revendiqué ici.
+
+## Contrôle complémentaire des PDF originaux complets
+
+Les archives originales ont été retrouvées dans la bibliothèque QPJB : `/QPJB Training/Archives/BridgeHebdo_originaux_2026-10-23.zip` (280 PDF, corpus Débutant). Un contrôle sur les **137 dossiers intégrables de G**, représentant **67 PDF de sujets distincts**, a confirmé **137/137 fichiers sujets présents avec SHA-256 identique au registre** et **137/137 fichiers corrigés présents avec SHA-256 identique au registre**. Les **2 dossiers distincts de F** (`BH-001-S01-01` et `BH-001-C02-01`) ont également des fichiers originaux et corrigés présents avec empreintes concordantes.
+
+Ce contrôle est un contrôle **d'accès et d'authenticité des pièces**, non un nouvel audit pédagogique et **non une validation des 139 objets applicatifs**, qui restent à transcrire. Le corrigé de `BH-041-AVANCE` ne figure pas dans cette archive Débutant ; les 9 dossiers correspondants restent bloqués, comme décidé par G.
+
+## Tests de la branche et de la PR #167
+
+Au HEAD `b995d287154d1c452a260dff9f679c870c3e43b6`, GitHub Actions a exécuté avec succès :
+
+- `QPJB Entraînement — clôture documentaire H` : **succès**, exécution `43449558803` ; 1 020 décisions, liens aux 826 IDs publiés, concordance des 139 candidats, 46 blocages et 9 redondances ; le SHA-256 `NON_CALCULABLE` est explicitement accepté **uniquement** pour le corrigé absent des 9 cas BH-041 Avancé.
+- `QPJB Training smoke` : **audit statique succès, Chromium succès, WebKit succès**, exécution `43449558809`.
+
+**Ces tests s'exécutent encore avec les 826 exercices historiques inchangés. Ils ne constituent pas un test de publication des 139 candidats.** La branche et la PR restent en brouillon ; ne pas fusionner sans accord explicite.
