@@ -5,7 +5,9 @@ on:
     paths:
       - quizz.html
       - scripts/verify_quiz_sef.py
+      - scripts/audit_quiz_auction_legality.py
       - tests/test_quiz_sef_integrite.py
+      - tests/test_quiz_auction_legality.py
       - .github/workflows/quiz-sef-integrite.yml
   workflow_dispatch:
 
@@ -24,3 +26,7 @@ jobs:
         run: python -m unittest discover -s tests -p "test_quiz_sef_integrite.py"
       - name: Verifier cartes, points H, distributions, choix et IDs
         run: python scripts/verify_quiz_sef.py --html quizz.html --min-count 1274
+      - name: Tests unitaires du diagnostic formel des enchères
+        run: python -m unittest discover -s tests -p "test_quiz_auction_legality.py"
+      - name: Diagnostic des enchères (informatif, non homologuant)
+        run: python scripts/audit_quiz_auction_legality.py --html quizz.html
