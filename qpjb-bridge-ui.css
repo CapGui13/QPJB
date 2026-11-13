@@ -190,3 +190,87 @@ body:has(#app) .btn.primary {
 body:has(#app) :is(.btn, .filters input, .filters select) {
   min-height: 44px;
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   QPJB B2 — cohérence des cartes, champs et actions sur tous les parcours.
+   Les règles de partenariat NS/EO ci-dessus et les couleurs des réponses
+   restent totalement indépendantes de ces ajustements de présentation.
+   ──────────────────────────────────────────────────────────────────────── */
+:root{
+  --qpjb-card-radius:16px;
+  --qpjb-control-radius:12px;
+  --qpjb-control-height:44px;
+  --qpjb-component-gap:12px;
+  --qpjb-focus-outline:#b699dc;
+  --qpjb-card-stroke-dark:#635071;
+  --qpjb-card-stroke-light:#ddd0ec;
+}
+
+/* Quiz SEF : les surfaces ont la même géométrie que l'Entraînement. */
+.app-shell :is(.card,.stage){
+  border-radius:var(--qpjb-card-radius);
+  border-color:var(--qpjb-card-stroke-dark);
+}
+.app-shell .stage{padding:18px 16px;}
+.app-shell .layout{gap:var(--qpjb-component-gap);}
+.app-shell .exercise-card{padding:17px 15px 16px;}
+.app-shell :is(.answers button,.free-entry-row input,.free-entry-row button,.free-reveal,.session-tools button,select){
+  border-radius:var(--qpjb-control-radius);
+}
+.app-shell :is(.answers button,.free-entry-row button,.free-reveal,.session-tools button){
+  min-height:var(--qpjb-control-height);
+}
+.app-shell :is(.answers button,.free-entry-row input,select):focus-visible{
+  outline:3px solid var(--qpjb-focus-outline);
+  outline-offset:2px;
+}
+.app-shell .feedback{
+  border-radius:var(--qpjb-card-radius);
+  border-left:3px solid #ab84d0;
+}
+.app-shell .answers{gap:10px;}
+
+/* Entraînement classique : mêmes cartes et contrôles ; aucune modification
+   aux tailles de mains, aux tableaux d'enchères ni aux interactions. */
+.qpjb-embedded :is(.panel,.tile,.item,.hero){
+  border-radius:var(--qpjb-card-radius);
+}
+.qpjb-embedded :is(.btn,.choice,.cq-option,.field,.tools select){
+  border-radius:var(--qpjb-control-radius);
+}
+.qpjb-embedded :is(.btn,.choice,.cq-option){
+  min-height:var(--qpjb-control-height);
+}
+.qpjb-embedded .feedback{
+  border-radius:var(--qpjb-card-radius);
+  border-left:3px solid #ab84d0;
+}
+.qpjb-embedded :is(.btn,.choice,.cq-option,.item,.tile):focus-visible{
+  outline:3px solid var(--qpjb-focus-outline);
+  outline-offset:2px;
+}
+
+/* Originaux à réponse libre : gabarits, boutons et lecture cohérents. */
+body:has(#app) :is(.card,.item){
+  border-radius:var(--qpjb-card-radius);
+  border-color:var(--qpjb-card-stroke-light);
+}
+body:has(#app) :is(.btn,.filters input,.filters select){
+  border-radius:var(--qpjb-control-radius);
+}
+body:has(#app) .item{
+  min-height:100px;
+}
+body:has(#app) .question{
+  line-height:1.55;
+}
+body:has(#app) .analysis{
+  line-height:1.65;
+}
+body:has(#app) .btn:focus-visible{
+  outline-color:var(--qpjb-focus-outline);
+}
+@media (max-width:400px){
+  .app-shell .exercise-card{padding:15px 12px;}
+  body:has(#app) .card{padding:16px;}
+}
