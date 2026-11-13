@@ -1,0 +1,36 @@
+name: LOT11 - publication sélection ciblée (ponctuelle)
+on:
+  push:
+    branches:
+      - publication/quiz-sef-lot11-17-20261113
+    paths:
+      - .github/workflows/prepare-lot11-17.yml
+
+permissions:
+  contents: write
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Construire les 17 QCM sélectionnés sans toucher aux 1274 anciens
+        run: python scripts/prepare_lot11_17.py
+      - name: Vérifier les données et la légalité formelle
+        run: |
+          python scripts/verify_quiz_sef.py --html quizz.html --min-count 1291
+          python scripts/audit_quiz_auction_legality.py --html quizz.html --strict
+      - name: Commiter le seul fichier quizz.html (nettoyage du workflow ponctuel)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add quizz.html
+          git rm -f .github/workflows/prepare-lot11-17.yml scripts/prepare_lot11_17.py
+          git commit -m 'feat(quiz): intégrer 17 QCM du LOT11 sélectionnés après arbitrage'
+          git push origin HEAD:refs/heads/publication/quiz-sef-lot11-17-20261113
