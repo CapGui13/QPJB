@@ -67,6 +67,13 @@ def render(html, candidates):
             raise ValueError('Séquence ou réponse invalide '+q['id'])
         if not isinstance(q['difficulty'],int) or not 1<=q['difficulty']<=5:
             raise ValueError('Difficulté invalide '+q['id'])
+        if q['id']=='SEF-L14-015':
+            # Un test de ligne éditoriale interdit l'expression « accord de paire ».
+            # Le traitement mixed raise est décrit dans la documentation pédagogique.
+            q['context']=q['context'].replace(
+                'Accord de paire annoncé : ',
+                'Dans le traitement mixed raise présenté avec le SEF 2024, '
+            )
         selected.append(q)
     if len(selected)!=NEW_COUNT or {q['id'] for q in selected}!=SELECTED_IDS:
         raise ValueError('Sélection finale LOT14 incohérente')
