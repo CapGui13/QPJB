@@ -1,0 +1,21 @@
+name: QPJB Entraînement — clôture documentaire H
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audits/cloture-entrainement/H/**'
+      - 'tests/training-cloture-h.cjs'
+      - '.github/workflows/training-h-closure.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  decisions:
+    name: Contrôle des 1 020 décisions et des 826 fiches historiques
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/training-cloture-h.cjs
