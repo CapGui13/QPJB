@@ -453,3 +453,181 @@ body:has(#app) .stack{
 @media(prefers-reduced-motion:reduce){
   .app-shell .session-progress .progress>div{transition:none;}
 }
+
+
+/* ──────────────────────────────────────────────────────────────────
+   QPJB D — progression & corrections, Quiz + Entraînement + originaux.
+   La sémantique des états vient des modules, seule leur présentation change.
+   Ne pas teinter les cartes ni les symboles selon les états de réponse.
+   ────────────────────────────────────────────────────────────────── */
+:root{
+  --qpjb-progress-base:#4b3a59;
+  --qpjb-progress-fill:#c19be9;
+  --qpjb-verified-bg:#e8f8f0;
+  --qpjb-verified-ink:#14553d;
+  --qpjb-verified-line:#398966;
+  --qpjb-mistake-bg:#fff1f3;
+  --qpjb-mistake-ink:#7d263b;
+  --qpjb-mistake-line:#bd6277;
+}
+/* Quiz SEF — la progression devient une information de premier plan. */
+.app-shell #session-card .boxhead{
+  padding:4px 0 7px;
+  align-items:center;
+  gap:9px;
+}
+.app-shell #session-card #step{
+  padding:7px 13px;
+  background:#5a4170;
+  color:#fff;
+  border:1px solid #a184c2;
+  border-radius:999px;
+  font-size:12px;
+  letter-spacing:.015em;
+}
+.app-shell #session-card .session-progress{
+  margin:6px 0 12px;
+  padding:10px 12px 12px;
+  background:#392e46;
+  border:1px solid #59466c;
+  border-radius:12px;
+}
+.app-shell #session-card #session-progress-label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:#f1e5fc;
+  font-variant-numeric:tabular-nums;
+}
+.app-shell #session-card .session-progress .progress{
+  height:9px;
+  background:var(--qpjb-progress-base);
+  border:1px solid #68527d;
+  border-radius:999px;
+  overflow:hidden;
+}
+.app-shell #session-card .session-progress .progress>div{
+  background:linear-gradient(90deg,#9266c5,var(--qpjb-progress-fill));
+  border-radius:inherit;
+  transition:width .2s ease-out;
+}
+/* La sélection se distingue du verdict vert/rouge. */
+.app-shell #body .answers button:not(:disabled):focus-visible{
+  outline:3px solid #c3a4ec;
+  outline-offset:2px;
+}
+.app-shell #body .answers button.good{
+  background:var(--qpjb-verified-bg);
+  color:var(--qpjb-verified-ink);
+  border:2px solid var(--qpjb-verified-line);
+  box-shadow:inset 0 0 0 1px rgba(57,137,102,.14);
+}
+.app-shell #body .answers button.bad{
+  background:var(--qpjb-mistake-bg);
+  color:var(--qpjb-mistake-ink);
+  border:2px solid var(--qpjb-mistake-line);
+  box-shadow:inset 0 0 0 1px rgba(189,98,119,.12);
+}
+.app-shell #body .feedback{
+  border:1px solid #81679b;
+  border-left:4px solid #c29be8;
+  background:#392e47;
+  border-radius:14px;
+  padding:15px 16px;
+  margin-top:16px;
+}
+.app-shell #body .feedback strong{
+  color:#fff;
+  font-size:14px;
+}
+.app-shell #body .feedback :is(.feedback-contrast,.feedback-lesson){
+  margin-top:12px;
+  padding-top:11px;
+  border-top:1px solid #695777;
+}
+.app-shell #body .free-retry-note{
+  border-left:4px solid #e6a4ae;
+  background:#4c3345;
+  border-radius:10px;
+  padding:12px 14px;
+}
+
+/* Entraînement : progression de rubrique et de séance plus lisible. */
+.qpjb-embedded .topic-progress-track{
+  height:8px;
+  background:#473754;
+  border:1px solid #604a70;
+  border-radius:99px;
+}
+.qpjb-embedded .topic-progress-track div{
+  border-radius:99px;
+  background:linear-gradient(90deg,#9266c5,#c29ce9);
+}
+.qpjb-embedded .pbar{
+  height:9px;
+  background:#473754;
+  border:1px solid #604a70;
+  border-radius:99px;
+}
+.qpjb-embedded .pbar div{
+  border-radius:99px;
+  background:linear-gradient(90deg,#9266c5,#c29ce9);
+}
+.qpjb-embedded :is(.choice,.cq-option).selected:not(.correct):not(.wrong){
+  border-color:#a681d7!important;
+  box-shadow:0 0 0 2px rgba(170,125,221,.22)!important;
+}
+.qpjb-embedded :is(.choice,.cq-option).correct{
+  background:var(--qpjb-verified-bg)!important;
+  color:var(--qpjb-verified-ink)!important;
+  border-color:var(--qpjb-verified-line)!important;
+  box-shadow:inset 0 0 0 1px rgba(57,137,102,.14)!important;
+}
+.qpjb-embedded :is(.choice,.cq-option).wrong{
+  background:var(--qpjb-mistake-bg)!important;
+  color:var(--qpjb-mistake-ink)!important;
+  border-color:var(--qpjb-mistake-line)!important;
+  box-shadow:inset 0 0 0 1px rgba(189,98,119,.12)!important;
+}
+.qpjb-embedded .feedback{
+  border:1px solid #81679b!important;
+  border-left:4px solid #c29be8!important;
+  background:#392e47!important;
+  border-radius:14px;
+  padding:15px 16px;
+}
+/* Les symboles ♠ ♥ ♦ ♣ gardent leurs couleurs propres dans les réponses. */
+
+/* Originaux : repérer l'avancement et la correction à réponse libre. */
+body:has(#app) .stats{gap:9px;}
+body:has(#app) .stat{
+  background:#eee6f8;
+  border:1px solid #d5c5eb;
+  border-radius:999px;
+  padding:7px 12px;
+  color:#4d3173;
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+}
+body:has(#app) .status.ok{color:#15643d;}
+body:has(#app) .status.no{color:#963448;}
+body:has(#app) .analysis{
+  background:linear-gradient(180deg,#f9f5fd,#fff);
+  border:1px solid #ddd0ef;
+  border-top:3px solid #9575bc;
+  border-radius:13px;
+  padding:17px;
+  margin-top:18px;
+}
+
+/* Mobile : éviter de tasser les réponses ou d'élargir les enchères. */
+@media(max-width:400px){
+  .app-shell #session-card .session-progress{padding:9px 10px 11px;}
+  .app-shell #body .feedback{padding:12px 13px;}
+  .app-shell #body .answers{gap:8px;}
+  .qpjb-embedded .feedback{padding:12px 13px;}
+  body:has(#app) .analysis{padding:13px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-shell #session-card .session-progress .progress>div{transition:none;}
+}
