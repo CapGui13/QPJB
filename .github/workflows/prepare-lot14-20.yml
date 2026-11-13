@@ -1,0 +1,35 @@
+name: LOT14 - assembler 9 QCM Quiz SEF distincts (ponctuel)
+on:
+  push:
+    branches:
+      - production/quiz-sef-lot14-20-20261113
+    paths:
+      - .github/workflows/prepare-lot14-20.yml
+permissions:
+  contents: write
+jobs:
+  assembler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Construire 9 QCM sans changer les 1329 existants
+        run: python scripts/prepare_lot14_20.py
+      - name: Contrôler structure, enchères et script du Quiz
+        run: |
+          python scripts/verify_quiz_sef.py --html quizz.html --min-count 1338
+          python scripts/audit_quiz_auction_legality.py --html quizz.html --strict
+          node tests/quizz-integrity.cjs
+      - name: Conserver uniquement quizz.html dans la branche de publication
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add quizz.html
+          git rm -f audits/quiz-sef-lot14-20-candidats.json scripts/prepare_lot14_20.py .github/workflows/prepare-lot14-20.yml
+          git commit -m 'feat(quiz): intégrer 9 QCM distincts du LOT14 sur les thèmes sous-représentés'
+          git push origin HEAD:refs/heads/production/quiz-sef-lot14-20-20261113
