@@ -76,3 +76,17 @@ Les sommes de ces classes sont 189. Les statuts d'examen ne sont **pas** des aut
 
 **Nombre définitif d'exercices intégrables : non certifié.** Ne jamais présenter les **158** comme validés automatiquement.  
 **Aucun fichier de l'application ni aucun exercice ne sont modifiés.** Le Quiz SEF n'a pas été touché. Cette PR reste **en brouillon**, sans fusion.
+
+
+## Compléments individualisés vérifiés sur les sujets et corrigés
+
+Les pièces originales permettent aussi de relever **six problèmes supplémentaires ciblés** (voir les six lignes annotées du registre) :
+
+- `BH-004-1-S01-02` a été classé à tort comme `jeu_carte` par A/E. Il s'agit de **la seconde décision d'enchères**, le soutien 4♠ après le barrage 2♠ ; conserver les deux questions distinctes en **enchères**.
+- `BH-070-S01-03` : le corrigé recommande 2♣ sur 1♦ avec seulement **trois Trèfles** ; la compatibilité avec le SEF et le traitement d'un fit fort à Carreau restent à préciser.
+- `BH-050-S01-03` : le sujet indique ouverture 1♦, le corrigé indique ouverture 1♣. La conclusion 4♥ peut rester cohérente dans les deux cas, mais la contradiction d'enchères doit être tracée.
+- `BH-071-S01-04` : le sujet montre un singleton ♦ et quatre ♣, contrairement au doubleton ♦ et trois ♣ imprimés dans le corrigé. Cette différence change l'évaluation distributive.
+- `BH-032-S02-04` : annoncer 3SA peut être judicieux, mais le corrigé prétend que sept cartes à Carreau du partenaire garantissent sept levées et que 3SA est sûr ; cette affirmation n'est pas démontrée par le barrage seul.
+- `BH-035-S02-06` : le grand chelem 7♠ proposé n'est pas accompagné d'une vérification explicite des As/clefs ni des levées ; ne pas le traiter comme résultat assuré.
+
+Ce sont des **réserves de correction, non six doublons supplémentaires**. En cas d'ambiguïté, conserver les textes originaux et ne créer aucune réponse de remplacement supposée. Les contrôles non conclusifs restent bloquants pour une autorisation définitive.
