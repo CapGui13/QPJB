@@ -631,3 +631,111 @@ body:has(#app) .analysis{
 @media(prefers-reduced-motion:reduce){
   .app-shell #session-card .session-progress .progress>div{transition:none;}
 }
+
+
+/* ─────────────────────────────────────────────────────────────
+   QPJB E — derniers ajustements mobile et micro-interactions.
+   Pas de changement de disposition des mains, d'enchères ni de réponses.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --qpjb-touch-target:44px;
+  --qpjb-mobile-gutter:12px;
+}
+/* Retour clavier visible et états interactifs sans dépendre de la souris. */
+:where(.app-shell,.qpjb-embedded,body:has(#app)) :is(button,a,input,select):focus-visible{
+  outline:3px solid var(--qpjb-focus-outline,#b699dc);
+  outline-offset:2px;
+}
+:where(.app-shell,.qpjb-embedded,body:has(#app)) :is(button,a){-webkit-tap-highlight-color:rgba(185,149,227,.20);}
+@media (hover:hover) and (pointer:fine){
+  .app-shell .qpjb-quiz-back:hover{border-color:#b995e3;box-shadow:0 3px 12px rgba(8,4,20,.15);}
+  .app-shell #body .answers button:hover:not(:disabled){border-color:#9165bf;box-shadow:0 4px 12px rgba(18,9,31,.10);}
+  .qpjb-embedded .footnav .btn:hover{border-color:#b995e3;}
+  body:has(#app) .item:hover{box-shadow:0 5px 15px rgba(41,25,71,.08);}
+}
+
+/* iPhone / Android : respecter les encoches, la barre du bas et les zones
+   tactiles, sans imposer de scroll horizontal ni modifier le clavier bridge. */
+@media (max-width:600px){
+  .app-shell{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    padding-left:max(var(--qpjb-mobile-gutter),env(safe-area-inset-left,0px));
+    padding-right:max(var(--qpjb-mobile-gutter),env(safe-area-inset-right,0px));
+    padding-bottom:calc(48px + env(safe-area-inset-bottom,0px));
+  }
+  .app-shell :is(.layout,.card,.exercise-card,.controls,.control-row,#body,.auction-wrap){
+    min-width:0;
+    max-width:100%;
+  }
+  .app-shell :is(.qpjb-quiz-back,.session-tools button,.nextrow button,.answers button,.free-reveal){
+    min-height:var(--qpjb-touch-target);
+    touch-action:manipulation;
+  }
+  .app-shell .session-tools button{
+    white-space:normal;
+    overflow-wrap:break-word;
+    line-height:1.35;
+  }
+  .app-shell #body .free-entry-row{grid-template-columns:minmax(0,1fr) auto;}
+  .app-shell #body .free-entry-row input{
+    min-width:0;
+    font-size:max(16px,1em); /* Évite le zoom automatique du focus iOS. */
+  }
+  .app-shell .controls select{font-size:16px;}
+  .app-shell .nextrow.session-navigation{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .app-shell .nextrow.session-navigation button{
+    min-width:0;
+    padding:10px 5px;
+    white-space:normal;
+    overflow-wrap:break-word;
+    line-height:1.25;
+  }
+  .qpjb-embedded main{
+    max-width:100%;
+    padding-bottom:calc(52px + env(safe-area-inset-bottom,0px));
+  }
+  .qpjb-embedded :is(.quizgrid,.panel,.footnav,.q,.postsolution-body){min-width:0;max-width:100%;}
+  .qpjb-embedded .footnav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+  }
+  .qpjb-embedded .footnav .btn{
+    min-width:0;
+    min-height:var(--qpjb-touch-target);
+    flex:1 1 auto;
+    overflow-wrap:break-word;
+    white-space:normal;
+    touch-action:manipulation;
+  }
+  .qpjb-embedded :is(.choice,.cq-option){touch-action:manipulation;}
+  body:has(#app) header{
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+  }
+  body:has(#app) main{
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+    padding-bottom:calc(60px + env(safe-area-inset-bottom,0px));
+  }
+  body:has(#app) .filters :is(input,select){
+    min-width:0;
+    max-width:100%;
+    font-size:16px; /* Pas de zoom intempestif sur iPhone. */
+  }
+  body:has(#app) .stack .btn{min-height:var(--qpjb-touch-target);}
+}
+@media (max-width:360px){
+  .app-shell .session-tools{gap:7px;}
+  .app-shell .session-tools button{font-size:11px;padding:9px 7px;}
+  .app-shell #body .free-entry-row button{min-width:82px;padding:8px;}
+  .app-shell .nextrow.session-navigation{gap:6px;}
+  .app-shell .nextrow.session-navigation button{font-size:11px;}
+  .qpjb-embedded .footnav{gap:6px;}
+  body:has(#app) .filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+}
+@media (prefers-reduced-motion:reduce){
+  :where(.app-shell,.qpjb-embedded,body:has(#app)) :is(button,a){transition:none!important;}
+}
