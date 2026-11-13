@@ -1,0 +1,44 @@
+name: QPJB Entraînement — intégration contrôlée H
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audits/cloture-entrainement/H/**'
+      - 'tests/training-cloture-h.cjs'
+      - 'tests/training-originals*.cjs'
+      - 'entrainement/training-originals*'
+      - 'entrainement/originaux.html'
+      - 'entrainement/training-app.js'
+      - '.github/workflows/training-h-closure.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  decisions:
+    name: Sources, 139 nouvelles fiches et conservation des 826 historiques
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/training-cloture-h.cjs
+      - run: node tests/training-originals.cjs
+  browser:
+    name: Parcours originaux — ${{ matrix.browser }}
+    needs: decisions
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/training-originals-browser.cjs
