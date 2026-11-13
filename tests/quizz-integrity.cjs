@@ -867,6 +867,9 @@ for(const x of exercises.filter(e=>e.theme==='reveil'&&e.auction.length===3)){
  if(!/:\s*Passe(?:\s|$)/i.test(String(x.auction[2]||'')))continue;
  const m=x.answer.match(/^([1-7])([♠♥♦♣])$/);
  if(!m)continue;
+ // Un cue-bid de l'ouverture adverse (ex. 2♣ sur 1♣) n'est pas un réveil naturel.
+ const opening=firstBid.match(/:\s*1([♠♥♦♣])(?:\s|$)/);
+ if(opening&&opening[1]===m[2])continue;
  const length=x.shape[wakeSuitIndex[m[2]]],hl=x.h+Math.max(0,length-4);
  assert.ok(length>=5,'Réveil à la couleur avec cinq cartes au moins : '+x.id);
  assert.ok(hl>=8&&hl<=13,'Réveil naturel limité à 8-13 HL : '+x.id+'='+hl);
