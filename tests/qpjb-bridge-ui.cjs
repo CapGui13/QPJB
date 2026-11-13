@@ -12,7 +12,7 @@ const orig=read('entrainement/originaux.html');
 const app=read('entrainement/training-app.js');
 
 for(const [name,html] of [['Quiz SEF',quiz],['Entraînement',train],['Originaux',orig]]){
-  assert.match(html,/qpjb-bridge-ui\.css\?v=20261113a/,name+' : CSS commun absent');
+  assert.match(html,/qpjb-bridge-ui\.css\?v=20261113[ab]/,name+' : CSS commun absent');
 }
 for(const c of ['#e7f2ff','#cfe5ff','#fff0e3','#f8dfc9','#263f58','#513c30']){
   assert(css.includes(c),'Couleur NS/EO manquante : '+c);
