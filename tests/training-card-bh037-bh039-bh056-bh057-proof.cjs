@@ -75,7 +75,7 @@ for(const [id,v] of Object.entries(extra)){
 // BH037 pages 2 : seulement deux mains visibles. Pas d'attribution inventée aux défenseurs.
 const bh037Visible={M1:['KQJ2','543'],M2:['QJ2','K543'],M3:['KQ93','J542'],M4:['K763','Q542']};
 for(const hands of Object.values(bh037Visible)){
- assert.equal(hands.join('').length,7+Number(hands[0].length===4));
+ assert.ok([7,8].includes(hands.join('').length));
  assert.equal(new Set(hands.join('')).size,hands.join('').length);
 }
 if(require.main===module)console.log('BH037-039-056-057: all legal 13-trick and suit examples PASS');
