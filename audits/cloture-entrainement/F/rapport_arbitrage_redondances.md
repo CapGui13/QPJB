@@ -45,7 +45,7 @@ Les PDF BH-001 et BH-002 ont des **SHA-256 distincts** (il s'agit de fichiers di
 
 ## Ce que F ne tranche pas
 
-Les **6 divergences sujet/corrigé Bridge & Mois** décrites par E sont des **ambiguïtés de source**, pas des doublons attestés. Les **7 interrogations explicatives BH** et **2 questions complémentaires BM** hors inventaires sont des cas **d'autonomie pédagogique à statuer**, pas des groupes comparatifs explicitement marqués redondants. Aucun de ces 15 sujets n'est arbitrée ici. Les 189 autres absences et la qualité des corrigés ne sont pas réauditées.
+Les **6 divergences sujet/corrigé Bridge & Mois** décrites par E sont des **ambiguïtés de source**, pas des doublons attestés. Les **7 interrogations explicatives BH** et **2 questions complémentaires BM** hors inventaires sont des cas **d'autonomie pédagogique à statuer**, pas des groupes comparatifs explicitement marqués redondants. Aucun de ces 15 sujets n'est arbitré ici. Les 189 autres absences et la qualité des corrigés ne sont pas réauditées.
 
 ## Verrous de sécurité et livrables
 
