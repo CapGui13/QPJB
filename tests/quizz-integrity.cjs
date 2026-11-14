@@ -870,6 +870,13 @@ for(const x of exercises.filter(e=>e.theme==='reveil'&&e.auction.length===3)){
  // Un cue-bid de l'ouverture adverse (ex. 2♣ sur 1♣) n'est pas un réveil naturel.
  const opening=firstBid.match(/:\s*1([♠♥♦♣])(?:\s|$)/);
  if(opening&&opening[1]===m[2])continue;
+ // SEF 2024 : après (1♣)-Passe-Passe, 2♦ montre les deux majeures 5-5.
+ // Ce n'est pas un réveil naturel à Carreau, donc tester les deux majeures.
+ if(opening?.[1]==='♣'&&x.answer==='2♦'&&/bicolore majeur|deux majeures/i.test(x.context+' '+x.explain)){
+  assert.ok(x.shape[wakeSuitIndex['♠']]>=5&&x.shape[wakeSuitIndex['♥']]>=5,
+    'Réveil bicolore majeur à 2♦ : au moins cinq cartes dans chaque majeure : '+x.id);
+  continue;
+ }
  const length=x.shape[wakeSuitIndex[m[2]]],hl=x.h+Math.max(0,length-4);
  assert.ok(length>=5,'Réveil à la couleur avec cinq cartes au moins : '+x.id);
  assert.ok(hl>=8&&hl<=13,'Réveil naturel limité à 8-13 HL : '+x.id+'='+hl);
