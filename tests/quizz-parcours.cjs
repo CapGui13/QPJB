@@ -95,6 +95,55 @@ assert.equal(legacy.skills.ouv.level,2);
 assert.equal(legacy.skills.ouv.clean,2);
 assert.equal(legacy.skills.ouv.lastCleanSession,null);
 
+// V1.3 : classification vérifiable, sans analyse sémantique fragile.
+const tagged=exercises.filter(x=>P.microKey(x));
+assert.equal(tagged.length,903,'Conservative taxonomy covers exactly 903 catalog QCM');
+assert.equal(P.microKey(exercises.find(x=>x.id==='SEF-015-1')),'mineur:1♣');
+assert.equal(P.microKey(exercises.find(x=>x.id==='SEF-026-3')),'majeur:1♥');
+assert.equal(P.microKey(exercises.find(x=>x.id==='SEF-001-1')),'ouv:sa');
+assert.equal(P.microKey(exercises.find(x=>x.id==='SEF-V3-027-2')),'intervenir:mineure');
+assert.equal(P.microKey(exercises.find(x=>x.id==='SEF-V45-050')),null,
+  'Unclear slam situations must not be given a guessed micro-skill');
+
+// La même micro-compétence ne progresse qu'une fois par séance.
+const microDemo=P.empty();
+let microDeck=P.start(microDemo,exercises);
+const firstMinor=microDeck.find(x=>P.microKey(x)==='ouv:mineure');
+assert.ok(firstMinor);
+const secondMinor=microDeck.find(x=>P.microKey(x)==='ouv:mineure'&&x.id!==firstMinor.id);
+assert.ok(secondMinor);
+assert.ok(P.record(microDemo,firstMinor,'correct',microDeck.indexOf(firstMinor),firstMinor.answer,false,false));
+assert.equal(microDemo.micros['ouv:mineure'].score,1);
+assert.ok(P.record(microDemo,secondMinor,'wrong',microDeck.indexOf(secondMinor),null,false,false));
+assert.equal(microDemo.micros['ouv:mineure'].score,-1,'An error must override a previous success');
+assert.equal(microDemo.micros['ouv:mineure'].attempts,2);
+assert.equal(P.load(JSON.stringify(microDemo)).micros['ouv:mineure'].score,-1);
+
+// Faiblesse sur une sous-compétence sans diminuer le niveau de la rubrique.
+const custom=[{id:'FAKE-CLUB',theme:'mineur',difficulty:1,answer:'1♥',
+    auction:['Partenaire : 1♣'],caseFamily:'A'},
+  {id:'FAKE-DIAMOND',theme:'mineur',difficulty:1,answer:'1♥',
+    auction:['Partenaire : 1♦'],caseFamily:'B'}];
+for(const [weak,strong] of [['mineur:1♣','mineur:1♦'],['mineur:1♦','mineur:1♣']]){
+  const learner=P.empty();learner.completed=3;
+  learner.micros[weak]={score:-3,attempts:3,independent:0,lastSession:2,lastScoredSession:2,sessionBase:-2,sessionResult:'weak'};
+  learner.micros[strong]={score:3,attempts:3,independent:3,lastSession:2,lastScoredSession:2,sessionBase:2,sessionResult:'clean'};
+  assert.equal(P.microKey(custom.find(x=>P.microKey(x)===weak)),weak);
+  assert.equal(P.select(custom,learner,1)[0].id,custom.find(x=>P.microKey(x)===weak).id,
+    'Prefer fresh exercise in the weak micro-skill while preserving theme level');
+  assert.equal(P.weaknesses(learner)[0].label,P.MICRO_LABELS[weak]);
+}
+const oldMicro=P.load(JSON.stringify({version:1,completed:3,entries:{},
+  skills:{ouv:{level:2,clean:1,errors:0}},active:null}));
+assert.equal(oldMicro.skills.ouv.level,2,'Legacy skills must remain unchanged');
+assert.deepEqual(oldMicro.micros,{},'No artificial history fabricated for legacy users');
+
+// Ne pas faire monter la confiance avec des réussites aidées ou corrigées.
+const assistedMicro=P.empty(),microCard=P.start(assistedMicro,exercises)[0],key=P.microKey(microCard);
+assert.ok(P.record(assistedMicro,microCard,'correct',0,microCard.answer,false,true));
+assert.equal(assistedMicro.micros[key].score,-1);
+assert.equal(assistedMicro.micros[key].independent,0);
+
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
 const introduced=new Map();
