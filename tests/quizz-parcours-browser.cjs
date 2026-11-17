@@ -102,6 +102,20 @@ const server=http.createServer((req,res)=>{
       !document.body.classList.contains('parcours-session'));
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(state.active.ids,pending.active.ids,'Classic Quiz does not erase guided progress');
+   // Le profil transverse est chargé sans affecter la séance interrompue.
+   await page.evaluate(()=>{
+     const key='qpjb-sef-parcours-01',progress=JSON.parse(localStorage.getItem(key));
+     progress.axes={force:{score:-2,attempts:3,independent:0,lastSession:0,
+       lastScoredSession:0,sessionBase:-1,sessionResult:'weak'}};
+     localStorage.setItem(key,JSON.stringify(progress));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#parcours-status').waitFor({state:'visible'});
+   assert.match(await page.locator('#parcours-status').textContent(),/Évaluation de la force/,
+     'An audited weak transversal skill is visible on guided home');
+   const withAxis=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+   assert.deepEqual(withAxis.active.ids,pending.active.ids,
+     'Axis status must not modify the saved active session');
    assert.deepEqual(errors,[],'No browser JS errors');
    console.log('PARCOURS BROWSER '+engine+' PASS: varied openings incl 1♣/1♦, answers in second session, resume after reload, free Quiz preserved');
    await context.close();

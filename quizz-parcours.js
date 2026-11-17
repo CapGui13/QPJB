@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.3 : progression étayée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.4 : progression étayée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -55,6 +55,251 @@
     'reveil:majeure':'Réveiller après une ouverture majeure',
     'reveil:barrage':'Réveiller après une ouverture au palier de deux'
   };
+
+  // V1.4 : second niveau de suivi, distinct des micro-contextes V1.3.
+  // Liste d'IDs figée après audit des justifications éditoriales. Un ID seul
+  // ne suffit pas : rubrique et justification doivent toujours correspondre.
+  const AXIS_LABELS={
+    fit:'Reconnaissance et recherche du fit',
+    force:'Évaluation de la force',
+    palier:'Choix du palier'
+  };
+  const AXIS_AUDIT=[
+    [
+      "fit",
+      "majeur",
+      "Soutien simple sur ouverture majeure",
+      [
+        "SEF-026-3",
+        "SEF-026-1",
+        "SEF-027-2",
+        "SEF-027-1",
+        "SEF-N049-1",
+        "SEF-N049-3",
+        "SEF-N050-2",
+        "SEF-N050-1",
+        "SEF-N054-1",
+        "SEF-N055-2",
+        "SEF-N055-1"
+      ]
+    ],
+    [
+      "fit",
+      "mineur",
+      "Soutien mineur : différence entre main régulière et main avec singleton.",
+      [
+        "SEF-020-1",
+        "SEF-N031-2",
+        "SEF-V412-014",
+        "SEF-V412-015"
+      ]
+    ],
+    [
+      "fit",
+      "roudi",
+      "Déclencher le Roudi pour rechercher un fit 5-3",
+      [
+        "SEF-V4-073-1",
+        "SEF-V4-079-3",
+        "SEF-V4-085-3",
+        "SEF-V4-091-3"
+      ]
+    ],
+    [
+      "fit",
+      "drury",
+      "Employer le Drury après un Passe d’entrée et un fit",
+      [
+        "SEF-V4-098-1",
+        "SEF-V4-104-1"
+      ]
+    ],
+    [
+      "fit",
+      "reponse_inter",
+      "Reconnaître le fit 5-3 après l’intervention du partenaire.",
+      [
+        "SEF-V49-032"
+      ]
+    ],
+    [
+      "force",
+      "sa",
+      "Calcul élémentaire de la zone de manche face à Sans-Atout",
+      [
+        "SEF-031-2",
+        "SEF-031-1",
+        "SEF-032-1",
+        "SEF-033-1",
+        "SEF-033-2",
+        "SEF-041-2",
+        "SEF-041-1",
+        "SEF-N088-3",
+        "SEF-N088-1",
+        "SEF-N089-2",
+        "SEF-N089-1",
+        "SEF-N090-1",
+        "SEF-N091-3",
+        "SEF-N091-1",
+        "SEF-N092-1",
+        "SEF-N092-2",
+        "SEF-N093-1",
+        "SEF-N093-3",
+        "SEF-N097-3",
+        "SEF-N097-1",
+        "SEF-N098-1",
+        "SEF-N098-2",
+        "SEF-N099-2",
+        "SEF-N099-1",
+        "SEF-N100-3",
+        "SEF-N100-2"
+      ]
+    ],
+    [
+      "force",
+      "apres_fit",
+      "Refuser tout espoir de manche avec l’ouverture minimale",
+      [
+        "SEF-V4-001-1",
+        "SEF-V4-003-3",
+        "SEF-V4-013-3",
+        "SEF-V4-015-3"
+      ]
+    ],
+    [
+      "force",
+      "apres_fit",
+      "Apprécier une main non minimale pour proposer la manche",
+      [
+        "SEF-V4-002-1",
+        "SEF-V4-004-1",
+        "SEF-V4-014-1",
+        "SEF-V4-016-2"
+      ]
+    ],
+    [
+      "force",
+      "apres_fit",
+      "Réévaluer la force avec une courte et un fit établi",
+      [
+        "SEF-V4-007-1",
+        "SEF-V4-007-2",
+        "SEF-V4-008-1",
+        "SEF-V4-019-1",
+        "SEF-V4-020-1",
+        "SEF-V4-020-3"
+      ]
+    ],
+    [
+      "force",
+      "drury",
+      "Reconnaître le seuil exact du Drury : 10 HLD ne suffisent pas",
+      [
+        "SEF-V4-097-1",
+        "SEF-V4-103-1"
+      ]
+    ],
+    [
+      "palier",
+      "second",
+      "Choix du contrat partiel après la redemande de l’ouvreur",
+      [
+        "SEF-052-3",
+        "SEF-052-1",
+        "SEF-053-2",
+        "SEF-053-3",
+        "SEF-054-1",
+        "SEF-054-2",
+        "SEF-055-3",
+        "SEF-055-2",
+        "SEF-N134-1",
+        "SEF-N134-3",
+        "SEF-N135-3",
+        "SEF-N136-1",
+        "SEF-N137-1",
+        "SEF-N138-1",
+        "SEF-N138-2",
+        "SEF-N141-2",
+        "SEF-N142-1",
+        "SEF-N142-3",
+        "SEF-V44-025"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Déterminer le bon niveau après découverte du fit",
+      [
+        "SEF-V4-010-1",
+        "SEF-V4-012-1",
+        "SEF-V4-022-3",
+        "SEF-V4-024-2"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Distinguer le barrage d’une proposition de manche",
+      [
+        "SEF-V4-005-2",
+        "SEF-V4-006-2",
+        "SEF-V4-017-2",
+        "SEF-V4-018-1"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Accepter ou refuser une invitation à la manche",
+      [
+        "SEF-V4-009-1",
+        "SEF-V4-011-1",
+        "SEF-V4-021-1",
+        "SEF-V4-023-3"
+      ]
+    ],
+    [
+      "palier",
+      "reveil",
+      "Distinguer un réveil à saut ou au palier de deux",
+      [
+        "SEF-V4-053-4",
+        "SEF-V4-054-2",
+        "SEF-V4-070-2",
+        "SEF-V4-071-2",
+        "SEF-V4-072-3"
+      ]
+    ],
+    [
+      "palier",
+      "barrage",
+      "Évaluer la longueur et la qualité d’un barrage au palier de 3",
+      [
+        "SEF-V3-099-3",
+        "SEF-V3-099-1",
+        "SEF-V3-100-4",
+        "SEF-V44-046",
+        "SEF-V44-047"
+      ]
+    ]
+  ];
+  const AXIS_BY_ID=Object.create(null);
+  for(const [axis,theme,reason,ids] of AXIS_AUDIT){
+    for(const id of ids)AXIS_BY_ID[id]={axis,theme,reason};
+  }
+  function axisKey(x){
+    const proof=x&&AXIS_BY_ID[x.id];
+    return proof&&x.theme===proof.theme&&x.difficultyReason===proof.reason
+      ?proof.axis:null;
+  }
+  function axisWeaknesses(state,max=1){
+    return Object.entries(state.axes||{})
+      .filter(([key,r])=>Object.hasOwn(AXIS_LABELS,key)&&r&&r.score<=-2&&r.attempts>=2)
+      .sort((a,b)=>a[1].score-b[1].score||
+        a[1].lastSession-b[1].lastSession||a[0].localeCompare(b[0]))
+      .slice(0,Math.max(0,Math.min(3,max)))
+      .map(([key,r])=>({key,label:AXIS_LABELS[key],score:r.score}));
+  }
   function auctionBid(x,role){
     const bids=Array.isArray(x.auction)?x.auction:[];
     for(const raw of bids){
@@ -97,7 +342,7 @@
   }
   const int=(x,fallback=0)=>Number.isInteger(x)&&x>=0?x:fallback;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},active:null};}
+  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},active:null};}
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -142,6 +387,24 @@
         };
       }
     }
+
+    // Les sauvegardes antérieures ne contiennent pas d'axes : aucun score
+    // n'est déduit rétroactivement des réponses passées.
+    if(old.axes&&typeof old.axes==='object'&&!Array.isArray(old.axes)){
+      for(const [key,v] of Object.entries(old.axes)){
+        if(!Object.hasOwn(AXIS_LABELS,key)||!v||typeof v!=='object')continue;
+        const attempts=clamp(int(v.attempts),0,100000);
+        s.axes[key]={
+          score:clamp(Number.isInteger(v.score)?v.score:0,-3,3),
+          attempts,independent:clamp(int(v.independent),0,attempts),
+          lastSession:clamp(int(v.lastSession),0,s.completed),
+          lastScoredSession:Number.isInteger(v.lastScoredSession)&&v.lastScoredSession>=0
+            ?clamp(v.lastScoredSession,0,s.completed):null,
+          sessionBase:clamp(Number.isInteger(v.sessionBase)?v.sessionBase:0,-3,3),
+          sessionResult:v.sessionResult==='clean'||v.sessionResult==='weak'?v.sessionResult:null
+        };
+      }
+    }
     if(old.active&&typeof old.active==='object'&&Array.isArray(old.active.ids)){
       const ids=old.active.ids.filter(x=>typeof x==='string'&&x.length<=100);
       if(ids.length&&ids.length<=20&&new Set(ids).size===ids.length){
@@ -176,7 +439,7 @@
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
     const fresh=pool.filter(x=>!previous[x.id]);
-    const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={};
+    const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={},axisCount={};
     // Erreur récente -> priorité modérée aux nouveaux cas similaires.
     // Ne touche ni à la montée en difficulté ni aux révisions classiques.
     const needBySituation={},needByContext={};
@@ -266,10 +529,16 @@
         const microNeed=kind==='revision'||!microRecord?0:
           clamp(-microRecord.score*13,-39,39);
         const microVariety=micro?-Math.min(45,(microCount[micro]||0)*12):0;
+        // Bonus léger sur un axe transversal fragile. N'affecte que les
+        // exercices explicitement audités, sans modifier la difficulté.
+        const axis=axisKey(x),axisRecord=axis?(state.axes||{})[axis]:null;
+        const axisNeed=kind==='revision'||!axisRecord?0:
+          clamp(-axisRecord.score*11,-33,33);
+        const axisVariety=axis?-Math.min(32,(axisCount[axis]||0)*8):0;
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
@@ -277,6 +546,8 @@
       contextCount[context(winner)]=(contextCount[context(winner)]||0)+1;
       const mk=microKey(winner);
       if(mk)microCount[mk]=(microCount[mk]||0)+1;
+      const ak=axisKey(winner);
+      if(ak)axisCount[ak]=(axisCount[ak]||0)+1;
       const chosenAnswer=winner.theme+'|'+bid(winner);
       bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
       selected.push({exercise:winner,kind});
@@ -372,6 +643,28 @@
       if(!state.micros)state.micros={};
       state.micros[mk]=m;
     }
+
+    const ak=axisKey(x);
+    if(ak){
+      if(!state.axes)state.axes={};
+      const a=state.axes[ak]||{score:0,attempts:0,independent:0,
+        lastSession:0,lastScoredSession:null,sessionBase:0,sessionResult:null};
+      a.attempts=clamp(a.attempts+1,0,100000);
+      if(independent)a.independent=clamp(a.independent+1,0,a.attempts);
+      a.lastSession=state.completed;
+      // Une seule validation par axe et par séance. Une erreur/assistance
+      // prime sur les réussites autonomes de la même séance.
+      if(a.lastScoredSession!==state.completed){
+        a.sessionBase=a.score;
+        a.sessionResult=independent?'clean':'weak';
+        a.score=clamp(a.sessionBase+(independent?1:-1),-3,3);
+        a.lastScoredSession=state.completed;
+      }else if(!independent&&a.sessionResult!=='weak'){
+        a.sessionResult='weak';
+        a.score=clamp(a.sessionBase-1,-3,3);
+      }
+      state.axes[ak]=a;
+    }
     return true;
   }
   function move(state,index){
@@ -389,5 +682,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,empty,load,select,start,record,move,finish,summary,levelFor};
 });

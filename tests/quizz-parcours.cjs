@@ -144,6 +144,55 @@ assert.ok(P.record(assistedMicro,microCard,'correct',0,microCard.answer,false,tr
 assert.equal(assistedMicro.micros[key].score,-1);
 assert.equal(assistedMicro.micros[key].independent,0);
 
+// V1.4 : pistes transversales fondées sur 105 IDs + justifications audités.
+const axes=exercises.filter(x=>P.axisKey(x));
+assert.equal(axes.length,105);
+assert.deepEqual(Object.fromEntries(Object.keys(P.AXIS_LABELS).map(key=>[
+  key,axes.filter(x=>P.axisKey(x)===key).length
+])),{fit:22,force:42,palier:41});
+assert.equal(P.AXIS_AUDIT.reduce((n,row)=>n+row[3].length,0),105);
+assert.equal(P.axisKey(exercises.find(x=>x.id==='SEF-V44-052')),null,
+  'The second-colour case is explicitly excluded despite its generic editorial reason');
+assert.equal(P.axisKey({...exercises.find(x=>x.id==='SEF-026-3'),
+  difficultyReason:'A different unreviewed reason'}),null,
+  'Editorial changes revoke the proof instead of silently relabeling a question');
+assert.equal(P.axisKey({...exercises.find(x=>x.id==='SEF-026-3'),theme:'sa'}),null);
+assert.equal(P.axisKey(exercises.find(x=>x.id==='SEF-001-1')),null,
+  'The original opening taxonomy stays separate from transversal axes');
+
+// Une seule preuve par séance, correction d'une réponse erronée incluse.
+const fitDeck=axes.filter(x=>P.axisKey(x)==='fit').slice(0,2);
+assert.equal(fitDeck.length,2);
+const fitState=P.empty();
+fitState.active={ids:fitDeck.map(x=>x.id),index:0,answers:{},createdAt:0};
+assert.ok(P.record(fitState,fitDeck[0],'correct',0,fitDeck[0].answer,false,false));
+assert.equal(fitState.axes.fit.score,1);
+assert.ok(P.record(fitState,fitDeck[1],'wrong',1,null,false,false));
+assert.equal(fitState.axes.fit.score,-1,'Same-session errors override previous successes');
+assert.equal(fitState.axes.fit.attempts,2);
+assert.equal(fitState.axes.fit.independent,1);
+assert.ok(P.finish(fitState));
+assert.equal(P.load(JSON.stringify(fitState)).axes.fit.score,-1);
+assert.deepEqual(P.load(JSON.stringify({version:1,completed:2,entries:{},skills:{},micros:{},active:null})).axes,{},
+  'V1.3 progress migrates without invented transversal history');
+
+// Dans une rubrique identique, donner priorité à l'axe moins maîtrisé.
+const forceCase=axes.find(x=>x.theme==='apres_fit'&&P.axisKey(x)==='force');
+const palierCase=axes.find(x=>x.theme==='apres_fit'&&P.axisKey(x)==='palier');
+assert.ok(forceCase&&palierCase);
+for(const [weak,strong] of [['force','palier'],['palier','force']]){
+  const learner=P.empty();learner.completed=12;
+  learner.axes[weak]={score:-3,attempts:3,independent:0,lastSession:11,lastScoredSession:11,sessionBase:-2,sessionResult:'weak'};
+  learner.axes[strong]={score:3,attempts:3,independent:3,lastSession:11,lastScoredSession:11,sessionBase:2,sessionResult:'clean'};
+  const expected=weak==='force'?forceCase:palierCase;
+  assert.equal(P.select([forceCase,palierCase],learner,1)[0].id,expected.id);
+  assert.equal(P.axisWeaknesses(learner)[0].label,P.AXIS_LABELS[weak]);
+}
+const assistedAxes=P.empty(),helpAxis=axes.find(x=>P.axisKey(x)==='force');
+assistedAxes.active={ids:[helpAxis.id],index:0,answers:{},createdAt:0};
+assert.ok(P.record(assistedAxes,helpAxis,'correct',0,helpAxis.answer,false,true));
+assert.equal(assistedAxes.axes.force.score,-1,'Corrected answer cannot imply mastery');
+
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
 const introduced=new Map();
