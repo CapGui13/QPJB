@@ -39,6 +39,13 @@ assert.ok(categories.includes('mineur')&&categories.includes('majeur'),
   'Responses to major AND minor openings appear as early as session 2: '+categories.join(','));
 assert.ok(categories.filter(x=>x==='ouv').length<=4,'No 40 successive opening questions');
 assert.equal(new Set(second.map(x=>x.caseFamily||x.id)).size,second.length);
+// Vérifier les contextes de réponses, pas seulement les bonnes enchères.
+const firstOpener=x=>String(x.auction?.[0]||'').match(/:\s*([1-7](?:SA|[♣♦♥♠]))/)?.[1]||'';
+for(const [theme,expected] of [['mineur',['1♣','1♦']],['majeur',['1♥','1♠']]]){
+  const contexts=second.filter(x=>x.theme===theme).map(firstOpener);
+  assert.ok(expected.every(b=>contexts.includes(b)),
+    'Both opening contexts in first response lesson '+theme+': '+contexts.join(','));
+}
 const nextOpenings=second.filter(x=>x.theme==='ouv').map(x=>x.answer);
 assert.ok(nextOpenings.includes('1♣')&&nextOpenings.includes('1♦'),
  'Minor openings remain in the spiral on session two: '+nextOpenings.join(','));
@@ -57,6 +64,12 @@ for(let session=0;session<65;session++){
   assert.equal(deck.length,10,'Session '+session+' must have 10 cards');
   assert.equal(new Set(deck.map(x=>x.id)).size,10);
   assert.equal(new Set(deck.map(x=>x.caseFamily||x.id)).size,10,'Family repeated in session '+session);
+  for(const theme of ['mineur','majeur']){
+    const contexts=deck.filter(x=>x.theme===theme).map(firstOpener);
+    const counts=contexts.reduce((acc,b)=>(acc[b]=(acc[b]||0)+1,acc),{});
+    assert.ok(Object.values(counts).every(v=>v<=2),
+      'Too many identical contexts '+theme+' in session '+(session+1)+': '+JSON.stringify(counts));
+  }
   const groupedOpenings=deck.filter(x=>x.theme==='ouv');
   if(groupedOpenings.length){
     const countByBid=groupedOpenings.reduce((acc,x)=>(acc[x.answer]=(acc[x.answer]||0)+1,acc),{});

@@ -68,6 +68,17 @@ const server=http.createServer((req,res)=>{
    const secondTopics=state.active.ids.map(id=>themeMap[id]);
    assert.ok(secondTopics.includes('majeur')&&secondTopics.includes('mineur'),
      'Second session mixes opening responses: '+secondTopics.join(','));
+   const responseOpeners=await page.evaluate(ids=>{
+     const all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     const byId=new Map(all.map(x=>[x.id,x]));
+     return ids.map(id=>byId.get(id))
+       .filter(x=>x.theme==='mineur'||x.theme==='majeur')
+       .map(x=>({theme:x.theme,opening:String(x.auction?.[0]||'').match(/:\s*(1[♣♦♥♠])/)?.[1]}));
+   },state.active.ids);
+   for(const [theme,expected] of [['mineur',['1♣','1♦']],['majeur',['1♥','1♠']]]){
+     const got=responseOpeners.filter(x=>x.theme===theme).map(x=>x.opening);
+     assert.ok(expected.every(x=>got.includes(x)),theme+' opening mix '+got);
+   }
    await page.locator('#pass').click();
    await page.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
    const pending=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
