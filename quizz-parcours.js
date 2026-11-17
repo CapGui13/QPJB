@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1 : règles locales, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.1 : règles locales, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -19,6 +19,14 @@
   // La bonne enchère est déjà validée dans le catalogue : on n'infère rien
   // de la main. Une même réponse correcte répétée n'est pas une nouvelle notion.
   const bid=x=>String(x.answer||'').replace(/[\uFE0E\uFE0F\s]/g,'').trim();
+  // Empreinte contextuelle tirée exclusivement des QCM déjà validés.
+  const opener=x=>{
+    const first=Array.isArray(x.auction)?String(x.auction[0]||''):'';
+    const m=first.match(/:\s*([1-7](?:SA|[♣♦♥♠])|Passe|Contre|Surcontre)/);
+    return m?m[1]:'';
+  };
+  const context=x=>x.theme+'|'+opener(x);
+  const situation=x=>context(x)+'|'+bid(x);
   const int=(x,fallback=0)=>Number.isInteger(x)&&x>=0?x:fallback;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   function empty(){return {version:VERSION,completed:0,entries:{},skills:{},active:null};}
@@ -79,7 +87,19 @@
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
     const fresh=pool.filter(x=>!previous[x.id]);
-    const selected=[],picked=new Set(),count={},bidCount={};
+    const selected=[],picked=new Set(),count={},bidCount={},contextCount={};
+    // Erreur récente -> priorité modérée aux nouveaux cas similaires.
+    // Ne touche ni à la montée en difficulté ni aux révisions classiques.
+    const needBySituation={};
+    for(const x of exercises){
+      const r=previous[x.id];if(!r)continue;
+      const age=s-r.lastSession;
+      if(age<1||age>8)continue;
+      const weight=r.result==='wrong'?34:r.result==='skipped'?22:r.assisted?17:0;
+      if(!weight)continue;
+      const key=situation(x);
+      needBySituation[key]=Math.max(needBySituation[key]||0,Math.max(0,weight-Math.max(0,age-2)*4));
+    }
     const recentOpeningBids={};
     const latestTheme={};
     for(const x of exercises){
@@ -106,11 +126,18 @@
       if(noSameFamily.length)ranked=noSameFamily;
       const withinCap=ranked.filter(x=>(count[x.theme]||0)<maxPerTheme);
       if(withinCap.length)ranked=withinCap;
+      else if(kind==='revision'&&fresh.some(x=>!picked.has(x.id)&&(count[x.theme]||0)<maxPerTheme))
+        return false; // Une révision ne doit pas faire dépasser le plafond d'un thème.
       // À l'ouverture, deux décisions identiques maximum par séance si le
       // catalogue comporte assez d'alternatives réellement distinctes.
       const distinctBids=ranked.filter(x=>x.theme!=='ouv'||
         (bidCount['ouv|'+bid(x)]||0)<2);
       if(distinctBids.length)ranked=distinctBids;
+      // Ne pas confondre les réponses à 1♣ et à 1♦, ni à 1♥ et 1♠.
+      const otherContexts=ranked.filter(x=>
+        (x.theme!=='mineur'&&x.theme!=='majeur')||!opener(x)||
+        (contextCount[context(x)]||0)<2);
+      if(otherContexts.length)ranked=otherContexts;
       function score(x){
         const t=x.theme,age=s-INTRO[t],already=count[t]||0;
         const skill=targetByTheme[t];
@@ -131,14 +158,19 @@
             ((answer==='1♣'||answer==='1♦')&&sameAnswer<2?34:0)-
             Math.min(36,(recentOpeningBids[answer]||0)*9)
           :-Math.min(80,sameAnswer*27);
+        const lead=opener(x);
+        const contextVariety=(t==='mineur'||t==='majeur'||t==='sa')&&lead
+          ?-Math.min(90,(contextCount[context(x)]||0)*36):0;
+        const contextualNeed=kind==='revision'?0:(needBySituation[situation(x)]||0);
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
       count[winner.theme]=(count[winner.theme]||0)+1;
+      contextCount[context(winner)]=(contextCount[context(winner)]||0)+1;
       const chosenAnswer=winner.theme+'|'+bid(winner);
       bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
       selected.push({exercise:winner,kind});
