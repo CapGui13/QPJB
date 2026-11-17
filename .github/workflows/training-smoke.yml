@@ -29,6 +29,7 @@ jobs:
         run: |
           node tests/training-smoke.cjs
           node tests/quizz-integrity.cjs
+          node tests/quizz-parcours.cjs
           node tests/quizz-l01-regression.cjs
           node tests/quizz-l02-10-regression.cjs
           node tests/quizz-v4112-regression.cjs
@@ -130,6 +131,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot07-publication-browser.cjs
       - name: Test the Quizz module and its revision modes (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
+      - name: Test the guided progression flow (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
       - name: Retain visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
@@ -168,6 +171,8 @@ jobs:
         run: PW_BROWSER=webkit node tests/training-lot07-publication-browser.cjs
       - name: Test the Quizz module and its revision modes (webkit)
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
+      - name: Test the guided progression flow (webkit)
+        run: PW_BROWSER=webkit node tests/quizz-parcours-browser.cjs
       - name: Retain WebKit visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
