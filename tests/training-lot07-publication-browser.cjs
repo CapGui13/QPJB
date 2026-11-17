@@ -24,17 +24,26 @@ async function run(browser,spec){
  const frame=page.frameLocator('#training-frame');
  await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
  const child=page.frames().find(f=>f.url().includes('/entrainement/'));
+ // The embedded app routes asynchronously (fade + postMessage). Do not force
+ // a new exercise while an earlier parent navigation can still replace it.
+ await child.waitForFunction(()=>view==='topics'&&!trainingPendingNav&&!trainingQueuedNav,null,{timeout:30000});
  check(!!child,'Embedded training app');
  await child.evaluate(async()=>{await ensureTrainingData('play')});
  const counts=await child.evaluate(()=>({b:D.bidding.length,p:D.play.length}));
  check(counts.b===638&&counts.p===188,'826 public exercises loaded');
  for(const id of ids){
+  // Every checked card is an opening lead (topic "Entame"), not a generic
+  // defence topic. Assert the rendered exercise before waiting on visibility.
   await child.evaluate(x=>{
    if(!D.play.some(z=>z.id===x))throw new Error('Not published '+x);
-   cat='play';ptopic='defense';id=x;randomMode=false;sessionIds=[id];trainingApplyPage('quiz',false,false);
+   if(trainingPendingNav||trainingQueuedNav)throw new Error('Pending navigation before '+x);
+   cat='play';ptopic='entames';id=x;randomMode=false;sessionIds=[id];trainingApplyPage('quiz',false,false);
+   if(view!=='quiz'||current()?.id!==x||!document.querySelector('.play-free-panel .deal-seat'))
+     throw new Error('Entame not rendered: '+x+' (view='+view+', current='+current()?.id+')');
   },id);
-  // WebKit CI may take longer to render the lazy-loaded card diagram after a topic transition.
-  await frame.locator('.play-free-panel .deal-seat').first().waitFor({state:'visible',timeout:30000});
+  console.log('LOT07 '+browserName+' '+spec.name+' '+id+' rendered');
+  const hand=frame.locator('.play-free-panel .deal-seat').first();
+  await hand.waitFor({state:'visible',timeout:30000});
   const got=await frame.locator('.play-free-panel .deal-seat').evaluateAll(a=>a.map(e=>e.getAttribute('data-seat')));
   check(got.length===1&&got[0]===seat[id],id+' one known hand at correct seat');
   check(await frame.locator('.play-free-panel .analysis-body').count()===0,id+' correction hidden');
