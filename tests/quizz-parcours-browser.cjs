@@ -61,6 +61,8 @@ const server=http.createServer((req,res)=>{
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.equal(state.completed,1);
    assert.equal(state.active,null);
+   assert.equal(state.skills.ouv.level,1,'Skipped exercises cannot raise opening mastery');
+   assert.equal(state.skills.ouv.clean,0,'Skipped exercises reset proof of mastery');
    await page.locator('#repeat').click();
    await page.waitForFunction(()=>document.body.classList.contains('parcours-session')&&
      document.querySelector('#step')?.textContent.includes('1 / 10'));
