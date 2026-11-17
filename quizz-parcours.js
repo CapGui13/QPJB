@@ -72,6 +72,8 @@
     const s=state.completed,limit=clamp(int(n,10),1,20);
     const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
     const previous=state.entries||{};
+    // Pré-calcul : ne jamais rescanner les 1 523 QCM lors de chaque comparaison.
+    const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
     const fresh=pool.filter(x=>!previous[x.id]);
     const selected=[],picked=new Set(),count={};
@@ -98,7 +100,7 @@
       if(withinCap.length)ranked=withinCap;
       function score(x){
         const t=x.theme,age=s-INTRO[t],already=count[t]||0;
-        const skill=levelFor(state,exercises,t);
+        const skill=targetByTheme[t];
         const recent=Object.hasOwn(recentFamily,family(x))?s-recentFamily[family(x)]:999;
         const variety=recent<=1?-95:recent<=3?-30:recent<=5?-10:0;
         const focus=age<=1?95:age<=3?55:age<=7?20:0;
