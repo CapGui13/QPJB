@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.1 : règles locales, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.2 : progression étayée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -50,7 +50,11 @@
       for(const [id,v] of Object.entries(old.skills)){
         if(!Object.hasOwn(INTRO,id)||!v||typeof v!=='object')continue;
         s.skills[id]={level:clamp(int(v.level,1),1,5),
-          clean:clamp(int(v.clean),0,3),errors:clamp(int(v.errors),0,2)};
+          clean:clamp(int(v.clean),0,3),errors:clamp(int(v.errors),0,2),
+          lastCleanSession:Number.isInteger(v.lastCleanSession)&&v.lastCleanSession>=0
+            ?clamp(v.lastCleanSession,0,s.completed):null,
+          lastLevelChangeSession:Number.isInteger(v.lastLevelChangeSession)&&v.lastLevelChangeSession>=0
+            ?clamp(v.lastLevelChangeSession,0,s.completed):null};
       }
     }
     if(old.active&&typeof old.active==='object'&&Array.isArray(old.active.ids)){
@@ -90,7 +94,7 @@
     const selected=[],picked=new Set(),count={},bidCount={},contextCount={};
     // Erreur récente -> priorité modérée aux nouveaux cas similaires.
     // Ne touche ni à la montée en difficulté ni aux révisions classiques.
-    const needBySituation={};
+    const needBySituation={},needByContext={};
     for(const x of exercises){
       const r=previous[x.id];if(!r)continue;
       const age=s-r.lastSession;
@@ -99,6 +103,13 @@
       if(!weight)continue;
       const key=situation(x);
       needBySituation[key]=Math.max(needBySituation[key]||0,Math.max(0,weight-Math.max(0,age-2)*4));
+      // Transfert d'apprentissage : la même ouverture peut appeler une
+      // réponse différente. Favoriser aussi ce contexte, pas un seul libellé.
+      if(opener(x)){
+        const ctx=context(x);
+        needByContext[ctx]=Math.max(needByContext[ctx]||0,
+          Math.max(0,Math.min(28,weight)-Math.max(0,age-2)*4));
+      }
     }
     const recentOpeningBids={};
     const latestTheme={};
@@ -161,7 +172,9 @@
         const lead=opener(x);
         const contextVariety=(t==='mineur'||t==='majeur'||t==='sa')&&lead
           ?-Math.min(90,(contextCount[context(x)]||0)*36):0;
-        const contextualNeed=kind==='revision'?0:(needBySituation[situation(x)]||0);
+        const contextualNeed=kind==='revision'?0:
+          (Math.round((needBySituation[situation(x)]||0)*0.6)+
+           Math.round((needByContext[context(x)]||0)*0.6));
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
@@ -211,18 +224,38 @@
     if(!['correct','wrong','skipped'].includes(result))return false;
     active.answers[position]={result,choice:typeof choice==='string'?choice:null,
       assisted:!!assisted,hadFreeError:!!hadFreeError};
-    const old=state.entries[x.id]||{},streak=result==='correct'&&!assisted?(old.streak||0)+1:0;
-    state.entries[x.id]={result,assisted:!!assisted,lastSession:state.completed,
-      due:state.completed+(result==='correct'&&!assisted?(streak===1?3:streak===2?8:18):1),
+    // Une réponse juste après une aide (ou une première mauvaise enchère
+    // en saisie libre) n'est pas une preuve de maîtrise autonome.
+    const independent=result==='correct'&&!assisted&&!hadFreeError;
+    const old=state.entries[x.id]||{},streak=independent?(old.streak||0)+1:0;
+    state.entries[x.id]={result,assisted:!!assisted||!!hadFreeError,lastSession:state.completed,
+      due:state.completed+(independent?(streak===1?3:streak===2?8:18):1),
       seen:(old.seen||0)+1,streak,family:family(x)};
-    const skill=state.skills[x.theme]||{level:Math.max(1,x.difficulty===1?1:2),clean:0,errors:0};
-    if(result==='correct'&&!assisted){
+    const skill=state.skills[x.theme]||{level:Math.max(1,x.difficulty===1?1:2),
+      clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
+    if(independent){
       skill.errors=0;
-      if(x.difficulty>=skill.level)skill.clean++;
-      if(skill.clean>=3){skill.level=Math.min(5,skill.level+1);skill.clean=0}
+      // Une seule preuve par rubrique et par séance : trois exercices
+      // réussis à la suite ne doivent pas provoquer une promotion immédiate.
+      if(x.difficulty>=skill.level&&skill.lastCleanSession!==state.completed){
+        skill.clean++;
+        skill.lastCleanSession=state.completed;
+      }
+      if(skill.clean>=3&&skill.lastLevelChangeSession!==state.completed){
+        skill.level=Math.min(5,skill.level+1);
+        skill.lastLevelChangeSession=state.completed;
+        skill.clean=0;
+      }
     }else{
-      skill.clean=0;skill.errors++;
-      if(skill.errors>=2){skill.level=Math.max(1,skill.level-1);skill.errors=0}
+      skill.clean=0;
+      skill.errors++;
+      if(skill.errors>=2){
+        if(skill.lastLevelChangeSession!==state.completed){
+          skill.level=Math.max(1,skill.level-1);
+          skill.lastLevelChangeSession=state.completed;
+        }
+        skill.errors=0;
+      }
     }
     state.skills[x.theme]=skill;
     return true;

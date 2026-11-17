@@ -56,6 +56,45 @@ assert.deepEqual(backup.active.ids,state.active.ids,'Active deck survives reload
 assert.equal(P.start(backup,exercises).map(x=>x.id).join('|'),second.map(x=>x.id).join('|'));
 const previousIds=new Set(first.map(x=>x.id));
 assert.ok(second.some(x=>!previousIds.has(x.id)),'Next session includes new situations');
+// Les promotions exigent des succès indépendants sur trois séances.
+const proof=P.empty();
+proof.skills.ouv={level:1,clean:0,errors:0};
+for(let round=0;round<3;round++){
+  const q=P.start(proof,exercises);
+  for(let j=0;j<q.length;j++)
+    assert.ok(P.record(proof,q[j],'correct',j,q[j].answer,false,false));
+  assert.equal(proof.skills.ouv.level,round===2?2:1,
+    'A session cannot promote a skill with several easy successes');
+  assert.equal(proof.skills.ouv.clean,round===2?0:round+1);
+  assert.equal(P.finish(proof),true);
+}
+const persistedProof=P.load(JSON.stringify(proof));
+assert.equal(persistedProof.skills.ouv.lastCleanSession,2,
+  'Promotion evidence survives localStorage roundtrip');
+assert.equal(persistedProof.skills.ouv.lastLevelChangeSession,2);
+
+// Une erreur initiale corrigée en saisie libre ne fait pas réussir la compétence.
+const helped=P.empty(),helpDeck=P.start(helped,exercises);
+assert.ok(P.record(helped,helpDeck[0],'correct',0,helpDeck[0].answer,false,true));
+assert.equal(helped.skills.ouv.clean,0);
+assert.equal(helped.entries[helpDeck[0].id].streak,0);
+assert.equal(helped.entries[helpDeck[0].id].due,1);
+
+// Même avec quatre erreurs, pas de chute de plusieurs niveaux en une séance.
+const struggling=P.empty();
+struggling.skills.ouv={level:4,clean:0,errors:0};
+const struggleDeck=P.start(struggling,exercises);
+for(let j=0;j<4;j++)assert.ok(P.record(struggling,struggleDeck[j],'wrong',j,null,false,false));
+assert.equal(struggling.skills.ouv.level,3,'At most one demotion per session');
+assert.equal(P.load(JSON.stringify(struggling)).skills.ouv.lastLevelChangeSession,0);
+
+// Reprise d'une ancienne sauvegarde V1 sans les champs de confirmation.
+const legacy=P.load(JSON.stringify({version:1,completed:5,entries:{},
+  skills:{ouv:{level:2,clean:2,errors:0}},active:null}));
+assert.equal(legacy.skills.ouv.level,2);
+assert.equal(legacy.skills.ouv.clean,2);
+assert.equal(legacy.skills.ouv.lastCleanSession,null);
+
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
 const introduced=new Map();
