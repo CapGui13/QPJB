@@ -63,6 +63,9 @@ const server=http.createServer((req,res)=>{
    assert.equal(state.active,null);
    assert.equal(state.skills.ouv.level,1,'Skipped exercises cannot raise opening mastery');
    assert.equal(state.skills.ouv.clean,0,'Skipped exercises reset proof of mastery');
+   assert.ok(Object.keys(state.micros).length>=3,'Micro-skill progress is persisted after session 1');
+   assert.ok(Object.values(state.micros).every(x=>x.score<=0),
+     'Skipped exercises cannot count as independent mastery');
    await page.locator('#repeat').click();
    await page.waitForFunction(()=>document.body.classList.contains('parcours-session')&&
      document.querySelector('#step')?.textContent.includes('1 / 10'));
