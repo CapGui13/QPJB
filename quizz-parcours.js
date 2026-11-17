@@ -16,6 +16,9 @@
   ];
   const INTRO=Object.fromEntries(ROADMAP);
   const family=x=>String(x.caseFamily||x.id);
+  // La bonne enchère est déjà validée dans le catalogue : on n'infère rien
+  // de la main. Une même réponse correcte répétée n'est pas une nouvelle notion.
+  const bid=x=>String(x.answer||'').replace(/[\uFE0E\uFE0F\s]/g,'').trim();
   const int=(x,fallback=0)=>Number.isInteger(x)&&x>=0?x:fallback;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   function empty(){return {version:VERSION,completed:0,entries:{},skills:{},active:null};}
@@ -76,12 +79,17 @@
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
     const fresh=pool.filter(x=>!previous[x.id]);
-    const selected=[],picked=new Set(),count={};
+    const selected=[],picked=new Set(),count={},bidCount={};
+    const recentOpeningBids={};
     const latestTheme={};
     for(const x of exercises){
       const rec=previous[x.id];
       if(rec&&(!Object.hasOwn(latestTheme,x.theme)||rec.lastSession>latestTheme[x.theme]))
         latestTheme[x.theme]=rec.lastSession;
+      if(x.theme==='ouv'&&rec&&s-rec.lastSession<=3){
+        const answer=bid(x);
+        recentOpeningBids[answer]=(recentOpeningBids[answer]||0)+1;
+      }
     }
     const maxPerTheme=pool.every(x=>x.theme==='ouv')?limit:4;
     const recentFamily={};
@@ -98,6 +106,11 @@
       if(noSameFamily.length)ranked=noSameFamily;
       const withinCap=ranked.filter(x=>(count[x.theme]||0)<maxPerTheme);
       if(withinCap.length)ranked=withinCap;
+      // À l'ouverture, deux décisions identiques maximum par séance si le
+      // catalogue comporte assez d'alternatives réellement distinctes.
+      const distinctBids=ranked.filter(x=>x.theme!=='ouv'||
+        (bidCount['ouv|'+bid(x)]||0)<2);
+      if(distinctBids.length)ranked=distinctBids;
       function score(x){
         const t=x.theme,age=s-INTRO[t],already=count[t]||0;
         const skill=targetByTheme[t];
@@ -108,14 +121,26 @@
         const balance=-31*already;
         const fit=-28*Math.abs(x.difficulty-skill);
         const need=state.skills[t]?.errors?12*state.skills[t].errors:0;
+        const answer=bid(x),sameAnswer=bidCount[t+'|'+answer]||0;
+        // Couvrir d'abord plusieurs types d'ouvertures : 1♣ et 1♦ doivent
+        // apparaître tôt, même quand un tirage simple favoriserait 1SA/Passe.
+        // En dehors des ouvertures, varier aussi la réponse attendue à l'intérieur
+        // d'une rubrique pour réduire la mémorisation superficielle.
+        const bidVariety=t==='ouv'
+          ?(sameAnswer===0?60:sameAnswer===1?7:-105*(sameAnswer-1))+
+            ((answer==='1♣'||answer==='1♦')&&sameAnswer<2?34:0)-
+            Math.min(36,(recentOpeningBids[answer]||0)*9)
+          :-Math.min(80,sameAnswer*27);
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
       count[winner.theme]=(count[winner.theme]||0)+1;
+      const chosenAnswer=winner.theme+'|'+bid(winner);
+      bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
       selected.push({exercise:winner,kind});
       return true;
     }
