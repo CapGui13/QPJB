@@ -42,6 +42,16 @@ const server=http.createServer((req,res)=>{
      return Object.fromEntries(all.map(x=>[x.id,x.theme]));
    });
    assert.ok(state.active.ids.every(id=>themeMap[id]==='ouv'),'First session opens only');
+   const openingBids=await page.evaluate(ids=>{
+     const all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     const byId=new Map(all.map(x=>[x.id,x.answer]));
+     return ids.map(id=>byId.get(id));
+   },state.active.ids);
+   const bidCount=openingBids.reduce((acc,bid)=>(acc[bid]=(acc[bid]||0)+1,acc),{});
+   assert.ok((bidCount['1♣']||0)>=2&&(bidCount['1♦']||0)>=2,
+     'Minor openings expected in first session: '+JSON.stringify(bidCount));
+   assert.ok(Object.values(bidCount).every(n=>n<=2),
+     'No repeated Passe / 1SA openings: '+JSON.stringify(bidCount));
    assert.ok(await page.locator('#restart-session').isHidden(),'Classic restart must not reset a guided deck');
    for(let i=0;i<10;i++){
      await page.locator('#pass').click();
@@ -77,7 +87,7 @@ const server=http.createServer((req,res)=>{
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(state.active.ids,pending.active.ids,'Classic Quiz does not erase guided progress');
    assert.deepEqual(errors,[],'No browser JS errors');
-   console.log('PARCOURS BROWSER '+engine+' PASS: 10 openings, answers in second session, resume after reload, free Quiz preserved');
+   console.log('PARCOURS BROWSER '+engine+' PASS: varied openings incl 1♣/1♦, answers in second session, resume after reload, free Quiz preserved');
    await context.close();
  }finally{await browser.close()}
 })().catch(err=>{console.error(err.stack||err);process.exitCode=1}).finally(()=>server.close());
