@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.2 : progression étayée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.3 : progression étayée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -27,9 +27,77 @@
   };
   const context=x=>x.theme+'|'+opener(x);
   const situation=x=>context(x)+'|'+bid(x);
+
+  // Taxonomie volontairement prudente : on ne déduit pas une règle pédagogique
+  // d'un commentaire libre. Les 903 cas catégorisés sont déterminés par
+  // l'ouverture visible et le type d'enchère attendue (seulement à l'ouverture).
+  const MICRO_LABELS={
+    'ouv:passe':'Décider de passer',
+    'ouv:mineure':'Choisir une ouverture mineure',
+    'ouv:majeure':'Choisir une ouverture majeure',
+    'ouv:sa':'Choisir une ouverture à Sans-Atout',
+    'mineur:1♣':'Répondre à 1♣','mineur:1♦':'Répondre à 1♦',
+    'majeur:1♥':'Répondre à 1♥','majeur:1♠':'Répondre à 1♠',
+    'sa:1SA':'Répondre à 1SA','sa:2SA':'Répondre à 2SA',
+    'red:mineure':'Redemander après une ouverture mineure',
+    'red:majeure':'Redemander après une ouverture majeure',
+    'second:mineure':'Deuxième enchère après une mineure',
+    'second:majeure':'Deuxième enchère après une majeure',
+    'intervenir:mineure':'Intervenir sur une ouverture mineure',
+    'intervenir:majeure':'Intervenir sur une ouverture majeure',
+    'intervenir:barrage':'Intervenir sur un deux faible',
+    'contre:mineure':'Répondre au contre après une ouverture mineure',
+    'contre:majeure':'Répondre au contre après une ouverture majeure',
+    'contre:barrage':'Répondre au contre après un deux faible',
+    'apres_inter:mineure':'Répondre après intervention sur une mineure',
+    'apres_inter:majeure':'Répondre après intervention sur une majeure',
+    'reveil:mineure':'Réveiller après une ouverture mineure',
+    'reveil:majeure':'Réveiller après une ouverture majeure',
+    'reveil:barrage':'Réveiller après une ouverture au palier de deux'
+  };
+  function auctionBid(x,role){
+    const bids=Array.isArray(x.auction)?x.auction:[];
+    for(const raw of bids){
+      const str=String(raw||'');
+      if(!str.startsWith(role))continue;
+      const match=str.slice(role.length).match(/^\s*:\s*([1-7](?:SA|[♣♦♥♠]))/);
+      if(match)return match[1];
+    }
+    return '';
+  }
+  const colorOf=b=>/[♣♦]$/.test(b)?'mineure':/[♥♠]$/.test(b)?'majeure':'';
+  function microKey(x){
+    const t=x.theme,partner=auctionBid(x,'Partenaire'),
+      own=auctionBid(x,'Vous'),other=auctionBid(x,'Adversaire');
+    let key=null;
+    if(t==='ouv'){
+      const answer=bid(x);
+      if(answer==='Passe')key='ouv:passe';
+      else if(/^1[♣♦]$/.test(answer))key='ouv:mineure';
+      else if(/^1[♥♠]$/.test(answer))key='ouv:majeure';
+      else if(answer==='1SA'||answer==='2SA')key='ouv:sa';
+    }else if(t==='mineur'&&/^1[♣♦]$/.test(partner))key='mineur:'+partner;
+    else if(t==='majeur'&&/^1[♥♠]$/.test(partner))key='majeur:'+partner;
+    else if(t==='sa'&&/^[12]SA$/.test(partner))key='sa:'+partner;
+    else if(t==='red'&&/^1[♣♦♥♠]$/.test(own))key='red:'+colorOf(own);
+    else if(t==='second'&&/^1[♣♦♥♠]$/.test(partner))key='second:'+colorOf(partner);
+    else if((t==='intervenir'||t==='contre'||t==='reveil')&&/^[12][♣♦♥♠]$/.test(other))
+      key=t+':'+(other[0]==='2'?'barrage':colorOf(other));
+    else if(t==='apres_inter'&&/^1[♣♦♥♠]$/.test(partner))
+      key=t+':'+colorOf(partner);
+    return key&&Object.hasOwn(MICRO_LABELS,key)?key:null;
+  }
+  function weaknesses(state,max=2){
+    const records=state.micros||{};
+    return Object.entries(records)
+      .filter(([k,v])=>Object.hasOwn(MICRO_LABELS,k)&&v&&v.score<=-2&&v.attempts>=2)
+      .sort((a,b)=>a[1].score-b[1].score||a[1].lastSession-b[1].lastSession||a[0].localeCompare(b[0]))
+      .slice(0,Math.max(0,Math.min(5,max)))
+      .map(([key,v])=>({key,label:MICRO_LABELS[key],score:v.score}));
+  }
   const int=(x,fallback=0)=>Number.isInteger(x)&&x>=0?x:fallback;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},active:null};}
+  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},active:null};}
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -55,6 +123,23 @@
             ?clamp(v.lastCleanSession,0,s.completed):null,
           lastLevelChangeSession:Number.isInteger(v.lastLevelChangeSession)&&v.lastLevelChangeSession>=0
             ?clamp(v.lastLevelChangeSession,0,s.completed):null};
+      }
+    }
+    // Nouvelles données facultatives. Les sauvegardes V1/V1.1/V1.2 ne
+    // contiennent pas ce champ : leur progression précédente reste intacte.
+    if(old.micros&&typeof old.micros==='object'&&!Array.isArray(old.micros)){
+      for(const [key,v] of Object.entries(old.micros)){
+        if(!Object.hasOwn(MICRO_LABELS,key)||!v||typeof v!=='object')continue;
+        const attempts=clamp(int(v.attempts),0,100000);
+        s.micros[key]={
+          score:clamp(Number.isInteger(v.score)?v.score:0,-3,3),
+          attempts,independent:clamp(int(v.independent),0,attempts),
+          lastSession:clamp(int(v.lastSession),0,s.completed),
+          lastScoredSession:Number.isInteger(v.lastScoredSession)&&v.lastScoredSession>=0
+            ?clamp(v.lastScoredSession,0,s.completed):null,
+          sessionBase:clamp(Number.isInteger(v.sessionBase)?v.sessionBase:0,-3,3),
+          sessionResult:v.sessionResult==='clean'||v.sessionResult==='weak'?v.sessionResult:null
+        };
       }
     }
     if(old.active&&typeof old.active==='object'&&Array.isArray(old.active.ids)){
@@ -91,7 +176,7 @@
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
     const fresh=pool.filter(x=>!previous[x.id]);
-    const selected=[],picked=new Set(),count={},bidCount={},contextCount={};
+    const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={};
     // Erreur récente -> priorité modérée aux nouveaux cas similaires.
     // Ne touche ni à la montée en difficulté ni aux révisions classiques.
     const needBySituation={},needByContext={};
@@ -175,15 +260,23 @@
         const contextualNeed=kind==='revision'?0:
           (Math.round((needBySituation[situation(x)]||0)*0.6)+
            Math.round((needByContext[context(x)]||0)*0.6));
+        // Distinguer une lacune locale d'un échec sur toute la rubrique :
+        // un score faible oriente vers de nouveaux cas du même sous-thème.
+        const micro=microKey(x),microRecord=micro?(state.micros||{})[micro]:null;
+        const microNeed=kind==='revision'||!microRecord?0:
+          clamp(-microRecord.score*13,-39,39);
+        const microVariety=micro?-Math.min(45,(microCount[micro]||0)*12):0;
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
       count[winner.theme]=(count[winner.theme]||0)+1;
       contextCount[context(winner)]=(contextCount[context(winner)]||0)+1;
+      const mk=microKey(winner);
+      if(mk)microCount[mk]=(microCount[mk]||0)+1;
       const chosenAnswer=winner.theme+'|'+bid(winner);
       bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
       selected.push({exercise:winner,kind});
@@ -258,6 +351,27 @@
       }
     }
     state.skills[x.theme]=skill;
+    const mk=microKey(x);
+    if(mk){
+      const m=state.micros?.[mk]||{score:0,attempts:0,independent:0,
+        lastSession:0,lastScoredSession:null,sessionBase:0,sessionResult:null};
+      m.attempts=clamp(m.attempts+1,0,100000);
+      if(independent)m.independent=clamp(m.independent+1,0,m.attempts);
+      m.lastSession=state.completed;
+      // Une séance entière apporte au maximum une preuve au sous-thème.
+      // Une erreur dans la même séance prime sur un succès précédent.
+      if(m.lastScoredSession!==state.completed){
+        m.sessionBase=m.score;
+        m.sessionResult=independent?'clean':'weak';
+        m.score=clamp(m.sessionBase+(independent?1:-1),-3,3);
+        m.lastScoredSession=state.completed;
+      }else if(!independent&&m.sessionResult!=='weak'){
+        m.sessionResult='weak';
+        m.score=clamp(m.sessionBase-1,-3,3);
+      }
+      if(!state.micros)state.micros={};
+      state.micros[mk]=m;
+    }
     return true;
   }
   function move(state,index){
@@ -275,5 +389,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,empty,load,select,start,record,move,finish,summary,levelFor};
 });
