@@ -46,6 +46,14 @@ const url=pathToFileURL(path.resolve(__dirname,'../preview/parcours-v2-autonome.
         await page.locator('button.choice').first().click();
         await page.getByText('Réponse du catalogue :').waitFor();
         assert.ok(await page.locator('.feedback').isVisible());
+        if(i===0||i===9){
+          await page.locator('#nav-review').click();
+          await page.getByText('Revue pédagogique — 19 cas signalés').waitFor();
+          await page.locator('#nav-play').click();
+          await page.getByText('Question '+(i+1)+' sur 10').waitFor();
+          assert.ok(await page.locator('.feedback').isVisible(),
+            'Réponse conservée en reprenant une séance partielle');
+        }
         await page.locator('button[data-action=next]').click();
       }
       await page.getByText('Bilan de la séance 1').waitFor();
