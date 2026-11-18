@@ -1,0 +1,576 @@
+{
+  "schema": "QPJB_V2_PHASE_K_CARTOGRAPHIE_FONDATIONS_20261118_1",
+  "status": "CANDIDATURE_DOCUMENTAIRE_NON_ACTIVE",
+  "reference": "Docs/PARCOURS_V2_PREREQUIS_CANDIDATS_20261118.json",
+  "catalog": "quizz.html#training-data",
+  "auditMethod": "Rapprochement explicite des IDs, rubrique, famille et réponse originale ; sélection humaine de cas contrastés ; aucune revalidation SEF ni mesure de maîtrise",
+  "foundationCount": 15,
+  "sourceQcmCount": 47,
+  "crossFoundationReuseAllowed": true,
+  "gradingEnabled": false,
+  "unlockEngineEnabled": false,
+  "masteryInferenceEnabled": false,
+  "introductionRule": "suggestedEarliestCompletedSessions = repère exploratoire, jamais un déblocage ou seuil de maîtrise",
+  "foundations": [
+    {
+      "id": "fondation:eval_h",
+      "label": "Evaluer points H, longues et distribution",
+      "suggestedEarliestCompletedSessions": 0,
+      "progressionGroup": "SOCLE",
+      "coverageStatus": "INDIRECTE",
+      "evidence": [
+        {
+          "id": "SEF-013-1",
+          "theme": "ouv",
+          "caseFamily": "cas-013",
+          "originalAnswer": "Passe",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-009-1",
+          "theme": "ouv",
+          "caseFamily": "cas-009",
+          "originalAnswer": "1♦",
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-001-1",
+          "theme": "ouv",
+          "caseFamily": "cas-001",
+          "originalAnswer": "1SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-004-1",
+          "theme": "ouv",
+          "caseFamily": "cas-004",
+          "originalAnswer": "2SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Les décisions d'ouverture mobilisent des zones H, mais aucun de ces QCM ne demande de compter les points H isolément. Ne jamais certifier « sait compter H ».",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:open_1sa",
+      "label": "Identifier une ouverture 1SA 15–17 H",
+      "suggestedEarliestCompletedSessions": 0,
+      "progressionGroup": "SOCLE",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-001-1",
+          "theme": "ouv",
+          "caseFamily": "cas-001",
+          "originalAnswer": "1SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-002-1",
+          "theme": "ouv",
+          "caseFamily": "cas-002",
+          "originalAnswer": "1SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-N003-1",
+          "theme": "ouv",
+          "caseFamily": "cas-059",
+          "originalAnswer": "1♠",
+          "editorialReason": "Préférer l’ouverture d’une majeure cinquième à 1SA malgré 16 H réguliers."
+        }
+      ],
+      "distinctFamilies": 3,
+      "reviewNote": "Inclure le contre-exemple d'une majeure cinquième : 15–17 H ne suffisent pas sans la bonne distribution.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:open_2sa",
+      "label": "Identifier une ouverture 2SA 20–21 H",
+      "suggestedEarliestCompletedSessions": 0,
+      "progressionGroup": "SOCLE",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-005-1",
+          "theme": "ouv",
+          "caseFamily": "cas-005",
+          "originalAnswer": "2SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-004-1",
+          "theme": "ouv",
+          "caseFamily": "cas-004",
+          "originalAnswer": "2SA",
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-V44-002",
+          "theme": "ouv",
+          "caseFamily": "v44-cas-002",
+          "originalAnswer": "2♣",
+          "editorialReason": "Reconnaître 2♣ forte et artificielle avec 22 H réguliers, à distinguer de 2SA limité à 20–21 H."
+        }
+      ],
+      "distinctFamilies": 3,
+      "reviewNote": "La main de 22 H constitue un contraste avec 2♣ fort et artificiel ; ne pas la présenter comme ouverture de 2SA.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:fit_major",
+      "label": "Repérer le fit majeur et le nombre d'atouts",
+      "suggestedEarliestCompletedSessions": 1,
+      "progressionGroup": "SOCLE",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-026-3",
+          "theme": "majeur",
+          "caseFamily": "cas-026",
+          "originalAnswer": "2♥",
+          "editorialReason": "Soutien simple sur ouverture majeure"
+        },
+        {
+          "id": "SEF-027-2",
+          "theme": "majeur",
+          "caseFamily": "cas-027",
+          "originalAnswer": "2♠",
+          "editorialReason": "Soutien simple sur ouverture majeure"
+        },
+        {
+          "id": "SEF-030-3",
+          "theme": "majeur",
+          "caseFamily": "cas-030",
+          "originalAnswer": "Passe",
+          "editorialReason": "Passe ou soutien simple immédiatement déterminé par le fit et la force"
+        }
+      ],
+      "distinctFamilies": 3,
+      "reviewNote": "Les soutiens simples et le Passe contrastent reconnaissance du fit et force minimale. Aucun acquis indépendant n'en est déduit.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:invitation_game",
+      "label": "Distinguer invitation et conclusion à la manche",
+      "suggestedEarliestCompletedSessions": 3,
+      "progressionGroup": "DEVELOPPEMENT",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-032-1",
+          "theme": "sa",
+          "caseFamily": "cas-032",
+          "originalAnswer": "2SA",
+          "editorialReason": "Calcul élémentaire de la zone de manche face à Sans-Atout"
+        },
+        {
+          "id": "SEF-033-1",
+          "theme": "sa",
+          "caseFamily": "cas-033",
+          "originalAnswer": "3SA",
+          "editorialReason": "Calcul élémentaire de la zone de manche face à Sans-Atout"
+        },
+        {
+          "id": "SEF-V4-009-1",
+          "theme": "apres_fit",
+          "caseFamily": "cas-318",
+          "originalAnswer": "3♥",
+          "editorialReason": "Accepter ou refuser une invitation à la manche"
+        },
+        {
+          "id": "SEF-V4-010-1",
+          "theme": "apres_fit",
+          "caseFamily": "cas-319",
+          "originalAnswer": "4♥",
+          "editorialReason": "Déterminer le bon niveau après découverte du fit"
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Alterner Sans-Atout, essai après fit, refus et acceptation : ne pas juxtaposer quatre variantes mécaniques.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:stayman_1sa",
+      "label": "Comprendre l'objectif d'un Stayman après 1SA",
+      "suggestedEarliestCompletedSessions": 7,
+      "progressionGroup": "CONVENTION",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-034-1",
+          "theme": "sa",
+          "caseFamily": "cas-034",
+          "originalAnswer": "2♣",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-035-2",
+          "theme": "sa",
+          "caseFamily": "cas-035",
+          "originalAnswer": "2♣",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-V3-011-1",
+          "theme": "stayman",
+          "caseFamily": "cas-211",
+          "originalAnswer": "2♦",
+          "editorialReason": "Compléter naturellement un Stayman ou un Texas"
+        },
+        {
+          "id": "SEF-V3-013-4",
+          "theme": "stayman",
+          "caseFamily": "cas-213",
+          "originalAnswer": "2♥",
+          "editorialReason": "Compléter naturellement un Stayman ou un Texas"
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Différencier la demande de Stayman du répondant et les réponses de l'ouvreur à 1SA.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:texas_major_1sa",
+      "label": "Comprendre le transfert majeur après 1SA",
+      "suggestedEarliestCompletedSessions": 7,
+      "progressionGroup": "CONVENTION",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-037-1",
+          "theme": "sa",
+          "caseFamily": "cas-037",
+          "originalAnswer": "2♦",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-038-1",
+          "theme": "sa",
+          "caseFamily": "cas-038",
+          "originalAnswer": "2♥",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-V3-017-2",
+          "theme": "stayman",
+          "caseFamily": "cas-217",
+          "originalAnswer": "Passe",
+          "editorialReason": "Compléter naturellement un Stayman ou un Texas"
+        }
+      ],
+      "distinctFamilies": 3,
+      "reviewNote": "Les transferts majeurs sur 1SA sont distincts des développements fittés sur 2SA.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:intervention",
+      "label": "Comprendre le contre adverse et ses conséquences",
+      "suggestedEarliestCompletedSessions": 10,
+      "progressionGroup": "CONCURRENCE",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-V3-027-2",
+          "theme": "intervenir",
+          "caseFamily": "cas-227",
+          "originalAnswer": "1♥",
+          "editorialReason": "Reconnaître une intervention naturelle avec une majeure cinquième, malgré l'ouverture adverse"
+        },
+        {
+          "id": "SEF-V3-047-4",
+          "theme": "intervenir",
+          "caseFamily": "cas-247",
+          "originalAnswer": "Contre",
+          "editorialReason": "Reconnaître le contre d’appel face à une ouverture adverse"
+        },
+        {
+          "id": "SEF-V3-051-3",
+          "theme": "intervenir",
+          "caseFamily": "cas-251",
+          "originalAnswer": "Passe",
+          "editorialReason": "Reconnaître la nécessité de passer avec une force faible et une majeure seulement quatrième, malgré une intervention tentante."
+        }
+      ],
+      "distinctFamilies": 3,
+      "reviewNote": "La réponse à l'ouverture adverse est fonction du rôle, de la force et de la distribution ; exemples naturels, contre et Passe.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:stayman_2sa",
+      "label": "Comprendre le Stayman après 2SA",
+      "suggestedEarliestCompletedSessions": 12,
+      "progressionGroup": "CONVENTION",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-N101-3",
+          "theme": "sa",
+          "caseFamily": "cas-153",
+          "originalAnswer": "3♣",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-L40-001",
+          "theme": "sa",
+          "caseFamily": "LOT40-2026-11-16-001",
+          "originalAnswer": "3♦",
+          "editorialReason": "Appliquer la réponse négative au Stayman à quatre réponses sur ouverture de 2SA."
+        },
+        {
+          "id": "SEF-L41-001",
+          "theme": "sa",
+          "caseFamily": "LOT41-2026-11-16-001",
+          "originalAnswer": "3♥",
+          "editorialReason": "Reconnaître la réponse à 3♥ au Stayman sur 2SA avec une seule majeure quatrième."
+        },
+        {
+          "id": "SEF-L43-005",
+          "theme": "sa",
+          "caseFamily": "LOT43-2026-11-17-005",
+          "originalAnswer": "3♠",
+          "editorialReason": "Décision conventionnelle du SEF 2024."
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Réserver les quatre réponses du Stayman sur 2SA à un étage distinct des réponses après 1SA.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:texas_major_2sa",
+      "label": "Comprendre le transfert majeur après 2SA",
+      "suggestedEarliestCompletedSessions": 12,
+      "progressionGroup": "CONVENTION",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-N104-1",
+          "theme": "sa",
+          "caseFamily": "cas-156",
+          "originalAnswer": "3♦",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-N105-1",
+          "theme": "sa",
+          "caseFamily": "cas-157",
+          "originalAnswer": "3♥",
+          "editorialReason": "Choix d’une convention de recherche de majeure après Sans-Atout"
+        },
+        {
+          "id": "SEF-L23-006",
+          "theme": "sa",
+          "caseFamily": "LOT23-2026-11-13-006",
+          "originalAnswer": "3SA",
+          "editorialReason": "Rectification fittée du Texas majeur sur 2SA et retour à 3SA sans fit."
+        },
+        {
+          "id": "SEF-L39-001",
+          "theme": "sa",
+          "caseFamily": "LOT39-2026-11-16-001",
+          "originalAnswer": "3♠",
+          "editorialReason": "Rectification fittée après un Texas Pique sur ouverture de 2SA, distincte de la réponse 3SA sans fit."
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Sur 2SA, distinguer choix du Texas majeur et rectification fittée / retour à 3SA sans fit.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:texas_minor_1sa",
+      "label": "Comprendre le Texas mineur après 1SA",
+      "suggestedEarliestCompletedSessions": 16,
+      "progressionGroup": "EXTENSION",
+      "coverageStatus": "CONVENTION_A_ARBITRER",
+      "evidence": [
+        {
+          "id": "SEF-V482-001",
+          "theme": "sa",
+          "caseFamily": "v482-001",
+          "originalAnswer": "2♠",
+          "editorialReason": "Texas mineurs sur 1SA sans intervention, SEF 2024 : partielle ou description de la courte."
+        },
+        {
+          "id": "SEF-V482-002",
+          "theme": "sa",
+          "caseFamily": "v482-002",
+          "originalAnswer": "3♣",
+          "editorialReason": "Texas mineurs sur 1SA sans intervention, SEF 2024 : partielle ou description de la courte."
+        },
+        {
+          "id": "SEF-L25-007",
+          "theme": "sa",
+          "caseFamily": "LOT25-2026-11-13-007",
+          "originalAnswer": "2SA",
+          "editorialReason": "Texas Trèfle : modulation de l'ouvreur à 2SA avec gros honneur troisième et main maximum."
+        },
+        {
+          "id": "SEF-L25-008",
+          "theme": "sa",
+          "caseFamily": "LOT25-2026-11-13-008",
+          "originalAnswer": "3♣",
+          "editorialReason": "Texas Trèfle : distinguer Valet troisième et gros honneur troisième autorisant 2SA."
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Les conventions et la modulation du Texas Trèfle exigent encore une revue éditoriale SEF 2024 avant recommandation élève.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:texas_minor_2sa",
+      "label": "Comprendre le Texas mineur après 2SA",
+      "suggestedEarliestCompletedSessions": 22,
+      "progressionGroup": "EXTENSION",
+      "coverageStatus": "INSUFFISANTE",
+      "evidence": [
+        {
+          "id": "SEF-L41-004",
+          "theme": "sa",
+          "caseFamily": "LOT41-2026-11-16-004",
+          "originalAnswer": "3SA",
+          "editorialReason": "Refus de rectification du Texas Trèfle après 2SA avec seulement deux Trèfles."
+        }
+      ],
+      "distinctFamilies": 1,
+      "reviewNote": "Une seule famille, cas de refus de Texas Trèfle après 2SA. Ni compétence générale ni prérequis certifiables.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:quantitative",
+      "label": "Distinguer 4SA quantitatif de 4SA Blackwood",
+      "suggestedEarliestCompletedSessions": 24,
+      "progressionGroup": "CHELEM",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-V44-013",
+          "theme": "sa",
+          "caseFamily": "v44-cas-013",
+          "originalAnswer": "4SA",
+          "editorialReason": "Choix du contrat à Sans-Atout avec une contrainte supplémentaire"
+        },
+        {
+          "id": "SEF-L40-002",
+          "theme": "sa",
+          "caseFamily": "LOT40-2026-11-16-002",
+          "originalAnswer": "4SA",
+          "editorialReason": "Distinguer 4SA quantitatif de 4SA Blackwood sur une ouverture de 2SA régulière."
+        },
+        {
+          "id": "SEF-L41-002",
+          "theme": "sa",
+          "caseFamily": "LOT41-2026-11-16-002",
+          "originalAnswer": "6SA",
+          "editorialReason": "Décision de l'ouvreur maximum sur une invitation à 4SA quantitatif, non Blackwood."
+        },
+        {
+          "id": "SEF-L44-001",
+          "theme": "sa",
+          "caseFamily": "LOT44-2026-11-17-001",
+          "originalAnswer": "Passe",
+          "editorialReason": "Développement SEF 2024 avec choix d'enchère justifié."
+        },
+        {
+          "id": "SEF-V45-050",
+          "theme": "chelem",
+          "caseFamily": "v45-cas-050",
+          "originalAnswer": "5♣",
+          "editorialReason": "Compter les clés dans la réponse au Blackwood 30–41"
+        }
+      ],
+      "distinctFamilies": 5,
+      "reviewNote": "4SA quantitatif en l'absence de fit ≠ 4SA Blackwood à cinq clés ; le dernier QCM est un contraste avancé, pas un prérequis simple.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:gambling",
+      "label": "Comprendre l'ouverture conventionnelle de 3SA gambling",
+      "suggestedEarliestCompletedSessions": 30,
+      "progressionGroup": "CAS_PARTICULIER",
+      "coverageStatus": "INSUFFISANTE",
+      "evidence": [
+        {
+          "id": "SEF-L06-029",
+          "theme": "sa",
+          "caseFamily": "V17-RECONSTRUCTION-SEF-L06-029",
+          "originalAnswer": "4♦",
+          "editorialReason": "Rôle ouvreur après 3SA gambling–4♣ passe/corrige versus 4♦ interrogatif du répondant."
+        }
+      ],
+      "distinctFamilies": 1,
+      "reviewNote": "Un seul QCM, ouverture 3SA gambling suivie de 4♣ passe/corrige ; rattachement aux barrages à revoir. Ne pas en faire un verrou.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    },
+    {
+      "id": "fondation:slam",
+      "label": "Comprendre l'exploration de chelem",
+      "suggestedEarliestCompletedSessions": 39,
+      "progressionGroup": "CHELEM",
+      "coverageStatus": "CANDIDATE",
+      "evidence": [
+        {
+          "id": "SEF-V483-001",
+          "theme": "chelem",
+          "caseFamily": "v483-controles-4t-001",
+          "originalAnswer": "4♦",
+          "editorialReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+        },
+        {
+          "id": "SEF-V483-008",
+          "theme": "chelem",
+          "caseFamily": "v483-controles-4t-008",
+          "originalAnswer": "4♠",
+          "editorialReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+        },
+        {
+          "id": "SEF-V45-050",
+          "theme": "chelem",
+          "caseFamily": "v45-cas-050",
+          "originalAnswer": "5♣",
+          "editorialReason": "Compter les clés dans la réponse au Blackwood 30–41"
+        },
+        {
+          "id": "SEF-V45-051",
+          "theme": "chelem",
+          "caseFamily": "v45-cas-051",
+          "originalAnswer": "5♦",
+          "editorialReason": "Compter les clés dans la réponse au Blackwood 30–41"
+        }
+      ],
+      "distinctFamilies": 4,
+      "reviewNote": "Notions de contrôles et de Blackwood à introduire après la compréhension du fit ; leur présence n'est pas une preuve d'acquisition.",
+      "requiresTeacherReview": true,
+      "masteryThreshold": null,
+      "enforceUnlock": false
+    }
+  ]
+}
