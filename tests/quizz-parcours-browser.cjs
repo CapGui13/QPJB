@@ -189,6 +189,54 @@ const server=http.createServer((req,res)=>{
    assert.equal((await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')))).active.mode,
      undefined,'The regular session remains the normal parcours');
 
+   // V1.7 : le catalogue peut ne proposer que cinq variantes originales.
+   await page.evaluate(()=>{
+     const learner=window.QPJBParcours.empty();
+     learner.completed=14;
+     learner.micros['intervenir:barrage']={score:-3,attempts:4,independent:0,
+       lastSession:13,lastScoredSession:13,sessionBase:-2,sessionResult:'weak'};
+     localStorage.setItem('qpjb-sef-parcours-01',JSON.stringify(learner));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#parcours-consolidation').waitFor({state:'visible'});
+   assert.match(await page.locator('#parcours-consolidation-note').textContent(),/5 situations ciblées/);
+   await page.locator('#parcours-consolidation').click();
+   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
+   const shortState=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+   assert.equal(shortState.active.ids.length,5);
+   assert.equal(shortState.active.mode,'consolidation');
+   assert.match(await page.locator('#parcours-session-banner').textContent(),/5 situations adaptées/);
+   for(let i=0;i<5;i++){
+     await page.locator('#pass').click();
+     if(i<4)await page.waitForFunction(index=>
+       document.querySelector('#step')?.textContent.includes((index+2)+' / 5'),i);
+     else await page.locator('#repeat').waitFor({state:'visible'});
+   }
+   const afterShort=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+   assert.equal(afterShort.completed,14,'Short targeted practice cannot advance main itinerary');
+   assert.equal(afterShort.lastConsolidatedAt,14);
+   await page.locator('#done-home').click();
+   await page.waitForFunction(()=>!document.body.classList.contains('session-mode'));
+   assert.ok(await page.locator('#parcours-consolidation').isHidden(),
+     'No repeat consolidation at same milestone');
+
+   // Deux cas ne suffisent pas : ne pas fabriquer huit questions de complément.
+   await page.evaluate(()=>{
+     const learner=window.QPJBParcours.empty();
+     learner.completed=20;
+     learner.micros['reveil:barrage']={score:-3,attempts:4,independent:0,
+       lastSession:19,lastScoredSession:19,sessionBase:-2,sessionResult:'weak'};
+     localStorage.setItem('qpjb-sef-parcours-01',JSON.stringify(learner));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   assert.ok(await page.locator('#parcours-consolidation').isHidden(),
+     'Insufficient original cases must not generate false consolidation');
+   assert.equal(await page.evaluate(()=>{
+     const s=window.QPJBParcours.load(localStorage.getItem('qpjb-sef-parcours-01'));
+     const x=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     return window.QPJBParcours.consolidationPlan(s,x).reason;
+   }),'pool-insufficient');
+
    assert.deepEqual(errors,[],'No browser JS errors');
    console.log('PARCOURS BROWSER '+engine+' PASS: varied openings incl 1♣/1♦, answers in second session, resume after reload, free Quiz preserved');
    await context.close();
