@@ -1,0 +1,67 @@
+name: QPJB V2-U focused audit
+on:
+  push:
+    branches:
+      - audit/parcours-v2-sa-stayman-phase-c-20261118
+    paths:
+      - .github/workflows/qpjb-v2-u-focused.yml
+      - scripts/parcours-v2-decisions-u.cjs
+      - tests/quizz-v2-decisions-u.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - scripts/parcours-v2-audit-competition-t.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  phase-u:
+    name: Audit U isolé et rapport
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les 1 523 sources et la non-mutation
+        run: node tests/quizz-v2-decisions-u.cjs
+      - name: Exécuter neuf scénarios et enregistrer le JSON
+        run: |
+          mkdir -p artifacts/v2-u
+          node scripts/parcours-v2-decisions-u.cjs > artifacts/v2-u/phase-u.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const a=JSON.parse(fs.readFileSync('artifacts/v2-u/phase-u.json','utf8'));
+          if(a.scenarios!==9||a.catalogQuestions!==1523||
+             a.masteryInferred!==false||a.publicRuntimeWired!==false)
+             throw Error('Garde-fou U en échec');
+          const summary={
+            schema:a.schema,
+            scenarios:a.scenarios,
+            questionsPerScenario:a.questionsPerScenario,
+            originalFamiliesRange:a.originalFamiliesRange,
+            targetedReviewsRange:a.targetedReviewsRange,
+            distinctDecisionsRange:a.distinctDecisionsRange,
+            sameContextAnswerAdditionalPresentationsRange:
+              a.sameContextAnswerAdditionalPresentationsRange,
+            sameAuctionAnswerAdditionalPresentationsRange:
+              a.sameAuctionAnswerAdditionalPresentationsRange,
+            contextAnswerGroupsWithDifferentAuctionsRange:
+              a.contextAnswerGroupsWithDifferentAuctionsRange,
+            adjacentSessionDecisionOverlapsRange:
+              a.adjacentSessionDecisionOverlapsRange,
+            minorPresence:a.minorPresence,
+            inferenceOfMastery:false,
+            reference:'V2-F inchangée, pas de déploiement'
+          };
+          fs.writeFileSync('artifacts/v2-u/phase-u-summary.json',
+            JSON.stringify(summary,null,2)+'\n');
+          console.log('QPJB_PHASE_U_SUMMARY '+JSON.stringify(summary));
+          NODE
+      - name: Conserver les résultats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-u-audit
+          path: artifacts/v2-u/
+          retention-days: 14
+          if-no-files-found: warn
