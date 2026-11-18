@@ -110,7 +110,8 @@ function desiredSlots(session){
     const openCycle=[['ouv:1♣','ouv:1♦'],['ouv:1♥','ouv:1♠'],
       ['ouv:1SA','ouv:Passe']][session-1];
     return [openCycle[0],'rep:1♣',openCycle[1],'rep:1♦',
-      'rep:1♥','rep:1♠','any','any','any','any'];
+      'rep:1♥','rep:1♠',session>=2?'revision':'any',
+      'any','any','any'];
   }
   // Une rotation explicite : jamais un créneau de 1♣ imposé 65 séances.
   const openingCycle=['1♣','1♦','1♥','1♠','1SA','Passe'];
@@ -163,10 +164,11 @@ function select(exercises,state,annotations,n=10){
     if(slot==='revision'){
       // Rappel après échec (2 séances) OU réussite (5, puis 8, 16...).
       // Rechercher une AUTRE famille de la même catégorie candidate.
+      const alreadyTargeted=new Set(state.lastSelection
+        .filter(x=>x.source==='scheduled-recall').map(x=>x.concept));
       const due=pool.filter(q=>{
-        const c=state.reviewQueue[concept(q,annotations)];
-        const k=concept(q,annotations),recent=state.concepts[k];
-        return c&&c.due<=session&&c.lastSession<session-1&&
+        const k=concept(q,annotations),c=state.reviewQueue[k],recent=state.concepts[k];
+        return !alreadyTargeted.has(k)&&c&&c.due<=session&&c.lastSession<session-1&&
           (!recent||recent.lastSession<session-1)&&
           c.lastFamily!==family(q)&&
           (state.reviewSupport[k]||0)>=2;
@@ -238,12 +240,16 @@ function recordSession(state,deck,answers,annotations){
     const old=state.history[q.id];
     const c=state.concepts[co];
     const prior=conceptOutcomes.get(co);
-    if(!prior||(!ok&&prior.correct))conceptOutcomes.set(co,{
-      correct:ok,family:fam,questionId:q.id,
-      selectedReview:state.lastSelection.some(p=>p.id===q.id&&p.source==='scheduled-recall')
-    });
-    else if(prior&&ok===prior.correct&&state.lastSelection.some(p=>
-      p.id===q.id&&p.source==='scheduled-recall'))prior.selectedReview=true;
+    const scheduled=state.lastSelection.some(p=>p.id===q.id&&
+      p.source==='scheduled-recall');
+    if(!prior){
+      conceptOutcomes.set(co,{correct:ok,family:fam,questionId:q.id,
+        families:[fam],scheduledFamily:scheduled?fam:null});
+    }else{
+      prior.families.push(fam);
+      if(scheduled)prior.scheduledFamily=fam;
+      if(!ok&&prior.correct){prior.correct=false;prior.questionId=q.id}
+    }
     state.history[q.id]={lastSession:s,attempts:(old?.attempts||0)+1,due:s+(ok?5:2)};
     state.families[fam]={lastSession:s};
     // Une seule observation pédagogique *fictive* par notion et par séance.
@@ -264,7 +270,9 @@ function recordSession(state,deck,answers,annotations){
   for(const [key,answer] of conceptOutcomes){
     if((state.reviewSupport||{})[key]<2)continue;
     const previous=state.reviewQueue[key],correct=answer.correct;
-    const originFamily=answer.family;
+    const recallFamily=answer.scheduledFamily||
+      answer.families.find(f=>f!==previous?.lastFamily);
+    const originFamily=recallFamily||answer.family;
     const isDue=previous&&previous.due<=s&&previous.lastSession<s-1&&
       (previousPractice[key]===undefined||previousPractice[key]<s-1)&&
       previous.lastFamily!==originFamily;
@@ -276,8 +284,7 @@ function recordSession(state,deck,answers,annotations){
       const round=correct?previous.round+1:0;
       const interval=correct?Math.min(24,round===1?8:round===2?16:24):2;
       state.reviewEvents.push({session:s,concept:key,questionId:answer.questionId,
-        source:state.lastSelection.some(p=>p.concept===key&&
-          p.source==='scheduled-recall')?'scheduled':'incidental',
+        source:answer.scheduledFamily?'scheduled':'incidental',
         previousResult:previous.lastResult,result:correct?'correct':'wrong',
         delay:s-previous.lastSession});
       state.reviewQueue[key]={due:s+interval,lastSession:s,
