@@ -215,8 +215,25 @@ const server=http.createServer((req,res)=>{
    const afterShort=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.equal(afterShort.completed,14,'Short targeted practice cannot advance main itinerary');
    assert.equal(afterShort.lastConsolidatedAt,14);
+   assert.deepEqual(afterShort.lastConsolidation.counts,
+     {total:5,independent:0,helped:0,wrong:0,skipped:5});
+   assert.equal(afterShort.lastConsolidation.parts.length,1);
+   assert.equal(afterShort.lastConsolidation.parts[0].target,'micro:intervenir:barrage');
+   assert.match(await page.locator('#body .parcours-report').textContent(),
+     /Bilan ciblé/);
+   assert.match(await page.locator('#body .parcours-report').textContent(),
+     /Intervenir sur un deux faible/);
+   assert.match(await page.locator('#body .parcours-report').textContent(),
+     /Il ne confirme pas/);
    await page.locator('#done-home').click();
    await page.waitForFunction(()=>!document.body.classList.contains('session-mode'));
+   assert.ok(await page.locator('#parcours-consolidation-report').isVisible(),
+     'Last focused result is readable on guided home');
+   assert.match(await page.locator('#parcours-consolidation-report').textContent(),
+     /5 question\(s\) passée\(s\)/);
+   await page.reload({waitUntil:'domcontentloaded'});
+   assert.ok(await page.locator('#parcours-consolidation-report').isVisible(),
+     'Focused result survives reload');
    assert.ok(await page.locator('#parcours-consolidation').isHidden(),
      'No repeat consolidation at same milestone');
 

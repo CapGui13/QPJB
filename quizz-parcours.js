@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.7 : consolidation adaptée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.8 : bilan de consolidation vérifiable, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -419,11 +419,30 @@
         }
         s.active={ids,index:clamp(int(old.active.index),0,ids.length-1),
           answers,createdAt:int(old.active.createdAt,s.completed)};
-        if(old.active.mode==='consolidation')s.active.mode='consolidation';
+        if(old.active.mode==='consolidation'){
+          s.active.mode='consolidation';
+          if(Array.isArray(old.active.targets)&&old.active.targets.length===ids.length&&
+             old.active.targets.every(target=>focusLabel(target)))
+            s.active.targets=old.active.targets.slice();
+        }
       }
     }
     if(Number.isInteger(old.lastConsolidatedAt)&&old.lastConsolidatedAt>=0)
       s.lastConsolidatedAt=clamp(old.lastConsolidatedAt,0,s.completed);
+    if(old.lastConsolidation&&typeof old.lastConsolidation==='object'){
+      const report=old.lastConsolidation,counts=validCounts(report.counts);
+      if(counts&&counts.total>=4&&
+        Number.isInteger(report.atSession)&&report.atSession>=0&&report.atSession<=s.completed){
+        let parts=[];
+        if(Array.isArray(report.parts)&&report.parts.length<=2&&
+           report.parts.every(x=>x&&focusLabel(x.target)&&validCounts(x.counts))){
+          parts=report.parts.map(x=>({target:x.target,counts:validCounts(x.counts)}));
+          const sum=parts.reduce((total,x)=>total+x.counts.total,0);
+          if(sum!==counts.total||new Set(parts.map(x=>x.target)).size!==parts.length)parts=[];
+        }
+        s.lastConsolidation={atSession:report.atSession,counts,parts};
+      }
+    }
     return s;
   }
   function themeFloor(exercises,theme){
@@ -638,6 +657,49 @@
       focus:focus.map(t=>({kind:t.kind,key:t.key,label:t.label,score:t.score})),
       items:available?items:[]};
   }
+
+  // Bilan borné : un résultat de séance, pas une déclaration de maîtrise.
+  // Les libellés proviennent uniquement de la taxonomie déjà auditée.
+  function focusLabel(target){
+    if(typeof target!=='string')return null;
+    const p=target.indexOf(':');
+    if(p<0)return null;
+    const kind=target.slice(0,p),key=target.slice(p+1);
+    return kind==='micro'&&Object.hasOwn(MICRO_LABELS,key)?MICRO_LABELS[key]:
+      kind==='axis'&&Object.hasOwn(AXIS_LABELS,key)?AXIS_LABELS[key]:null;
+  }
+  function validCounts(raw){
+    if(!raw||typeof raw!=='object'||Array.isArray(raw))return null;
+    const fields=['total','independent','helped','wrong','skipped'];
+    if(fields.some(key=>!Number.isInteger(raw[key])||raw[key]<0||raw[key]>20))return null;
+    if(raw.independent+raw.helped+raw.wrong+raw.skipped!==raw.total)return null;
+    return Object.fromEntries(fields.map(key=>[key,raw[key]]));
+  }
+  function emptyCounts(total=0){return {total,independent:0,helped:0,wrong:0,skipped:0}}
+  function addOutcome(counts,answer){
+    if(answer.result==='skipped')counts.skipped++;
+    else if(answer.result==='wrong')counts.wrong++;
+    else if(answer.result==='correct'){
+      if(answer.assisted||answer.hadFreeError)counts.helped++;
+      else counts.independent++;
+    }
+    counts.total++;
+  }
+  function reportFor(active,atSession){
+    const counts=emptyCounts(),parts=new Map();
+    for(let i=0;i<active.ids.length;i++){
+      const a=active.answers[i];addOutcome(counts,a);
+      const tag=active.targets?.[i];
+      if(!focusLabel(tag))continue;
+      if(!parts.has(tag))parts.set(tag,emptyCounts());
+      addOutcome(parts.get(tag),a);
+    }
+    const byTarget=[...parts].map(([target,counts])=>({target,counts}));
+    // Legacy V1.7 focused sessions have no per-question target metadata:
+    // publish the observed total only rather than guessing labels.
+    return {atSession,counts,parts:byTarget.length&&
+      byTarget.reduce((n,x)=>n+x.counts.total,0)===counts.total?byTarget:[]};
+  }
   function startConsolidation(state,exercises){
     // La séance interrompue, qu'elle soit normale ou complémentaire, prime.
     if(state.active)return start(state,exercises);
@@ -645,7 +707,8 @@
     if(!plan.available)return [];
     const byId=new Map(exercises.map(x=>[x.id,x]));
     state.active={ids:plan.items.map(x=>x.id),index:0,answers:{},
-      createdAt:state.completed,mode:'consolidation'};
+      createdAt:state.completed,mode:'consolidation',
+      targets:plan.items.map(x=>x.target)};
     return state.active.ids.map(id=>byId.get(id));
   }
   function start(state,exercises){
@@ -752,8 +815,10 @@
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Les séances ciblées consolident les preuves mais ne débloquent pas
     // artificiellement de nouvelles rubriques du parcours principal.
-    if(state.active.mode==='consolidation')state.lastConsolidatedAt=state.completed;
-    else state.completed++;
+    if(state.active.mode==='consolidation'){
+      state.lastConsolidation=reportFor(state.active,state.completed);
+      state.lastConsolidatedAt=state.completed;
+    }else state.completed++;
     state.active=null;return true;
   }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
@@ -822,5 +887,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,summary,levelFor};
 });
