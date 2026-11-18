@@ -422,6 +422,8 @@
         if(old.active.mode==='consolidation')s.active.mode='consolidation';
       }
     }
+    if(Number.isInteger(old.lastConsolidatedAt)&&old.lastConsolidatedAt>=0)
+      s.lastConsolidatedAt=clamp(old.lastConsolidatedAt,0,s.completed);
     return s;
   }
   function themeFloor(exercises,theme){
@@ -578,6 +580,7 @@
   // déclenché par une erreur isolée ou une classification non auditée.
   function consolidationPlan(state,exercises,n=10){
     if(state.active)return {available:false,reason:'session-active',focus:[],items:[]};
+    if(state.lastConsolidatedAt===state.completed)return {available:false,reason:'already-consolidated',focus:[],items:[]};
     const limit=clamp(int(n,10),1,10),s=state.completed;
     const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
     const targets=[];
@@ -626,7 +629,7 @@
       if(choose(primary))continue;
       if(!focus.some(t=>t!==primary&&choose(t)))break;
     }
-    const available=items.length>=Math.min(6,limit);
+    const available=items.length===limit;
     return {available,reason:available?null:'pool-insufficient',
       focus:focus.map(t=>({kind:t.kind,key:t.key,label:t.label,score:t.score})),
       items:available?items:[]};
@@ -745,7 +748,8 @@
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Les séances ciblées consolident les preuves mais ne débloquent pas
     // artificiellement de nouvelles rubriques du parcours principal.
-    if(state.active.mode!=='consolidation')state.completed++;
+    if(state.active.mode==='consolidation')state.lastConsolidatedAt=state.completed;
+    else state.completed++;
     state.active=null;return true;
   }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
