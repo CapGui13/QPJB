@@ -143,6 +143,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Test the guided progression flow (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
+      - name: Test standalone QPJB V2 preview on desktop and mobile (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-preview-browser.cjs
       - name: Retain visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
@@ -183,6 +185,8 @@ jobs:
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
       - name: Test the guided progression flow (webkit)
         run: PW_BROWSER=webkit node tests/quizz-parcours-browser.cjs
+      - name: Test standalone QPJB V2 preview on desktop and mobile (webkit)
+        run: PW_BROWSER=webkit node tests/quizz-v2-preview-browser.cjs
       - name: Retain WebKit visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
