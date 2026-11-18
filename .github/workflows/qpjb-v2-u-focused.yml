@@ -40,7 +40,8 @@ jobs:
           const fs=require('node:fs');
           const a=JSON.parse(fs.readFileSync('artifacts/v2-u/phase-u.json','utf8'));
           if(a.scenarios!==9||a.catalogQuestions!==1523||
-             a.masteryInferred!==false||a.publicRuntimeWired!==false)
+             a.masteryInferred!==false||a.publicRuntimeWired!==false||
+             !Array.isArray(a.scenarioRows)||a.scenarioRows.length!==9)
              throw Error('Garde-fou U en échec');
           const summary={
             schema:a.schema,
@@ -76,7 +77,7 @@ jobs:
             '**Aucune preuve de redondance, de maîtrise ou de progrès. V2-F non modifiée.**'
           ];
           if(process.env.GITHUB_STEP_SUMMARY)
-            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join('\\n')+'\\n');
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join(String.fromCharCode(10))+String.fromCharCode(10));
           console.log('QPJB_PHASE_U_SUMMARY '+JSON.stringify(summary));
           NODE
       - name: Conserver les résultats
