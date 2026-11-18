@@ -1,0 +1,108 @@
+{
+  "schema": "QPJB_V2_SA_STAYMAN_CROSSWALK_20261118_1",
+  "status": "NON_ACTIF_DANS_LE_PARCOURS",
+  "sourceFiles": [
+    "Docs/PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json",
+    "Docs/PARCOURS_V2_STAYMAN_65_MICRO_OBJECTIFS_CANDIDATS_20261118.json"
+  ],
+  "totals": {
+    "saExercises": 14,
+    "staymanExercises": 65,
+    "uniqueExercises": 79,
+    "saSkills": 8,
+    "staymanSkills": 25,
+    "reviewLinks": 9
+  },
+  "semanticWarning": "Ces liens décrivent des complémentarités d'exercices par rôle, PAS des prérequis validés, ni des preuves de maîtrise, ni des contraintes de sélection.",
+  "links": [
+    {
+      "fromSA": "sa:stayman_2sa_reponses",
+      "toStayman": "stayman_2sa_negatif_conclure_sa",
+      "relation": "COMPLEMENT_DE_ROLE",
+      "reviewNote": "L'ouvreur répond 3♦ (sans majeure quatrième); le répondant conclut à 3SA selon sa force.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:stayman_2sa_reponses",
+      "toStayman": "stayman_2sa_fit_conclure",
+      "relation": "COMPLEMENT_DE_ROLE",
+      "reviewNote": "L'ouvreur montre une majeure quatrième; le répondant choisit la manche fittée.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:stayman_2sa_reponses",
+      "toStayman": "stayman_2sa_deux_majeures_transfert_manche",
+      "relation": "COMPLEMENT_DE_ROLE",
+      "reviewNote": "Réponse 3SA indiquant les deux majeures, puis transfert de manche 4♦ dans l'exemple Pique.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_majeur_2sa_fit",
+      "toStayman": "texas_majeur_2sa_fit_conclure_major",
+      "relation": "COMPLEMENT_DE_ROLE",
+      "reviewNote": "L'ouvreur distingue la rectification fittée de l'absence de fit; le répondant conclut après rectification fittée.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_trefle_1sa_modulation",
+      "toStayman": "texas_mineur_1sa_passe_partielle",
+      "relation": "COMPLEMENT_DE_ROLE_CONDITIONNEL",
+      "reviewNote": "Couleur Trèfle seulement : choix de l'ouvreur sur le Texas Trèfle, puis décision de partielle du répondant.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_trefle_1sa_modulation",
+      "toStayman": "texas_mineur_1sa_decrire_courte",
+      "relation": "COMPLEMENT_DE_ROLE_CONDITIONNEL",
+      "reviewNote": "Couleur Trèfle seulement : rectification de l'ouvreur, puis description de la courte par le répondant.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_carreau_1sa",
+      "toStayman": "texas_mineur_1sa_passe_partielle",
+      "relation": "COMPLEMENT_DE_ROLE_CONDITIONNEL",
+      "reviewNote": "Couleur Carreau seulement : rectification 3♦ avant que le répondant choisisse Passe.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_carreau_1sa",
+      "toStayman": "texas_mineur_1sa_decrire_courte",
+      "relation": "COMPLEMENT_DE_ROLE_CONDITIONNEL",
+      "reviewNote": "Couleur Carreau seulement : rectification 3♦ avant la courte annoncée par le répondant.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    },
+    {
+      "fromSA": "sa:texas_majeur_1sa_sans_fit",
+      "toStayman": "texas_majeur_1sa_5_conclure_sa",
+      "relation": "SUITE_DE_SEQUENCE",
+      "reviewNote": "Le répondant conclut à 3SA après Texas majeur à cinq cartes; l'ouvreur ne doit pas corriger sans trois cartes.",
+      "activationStatus": "NON_ACTIVE",
+      "semanticValidation": "A_REVOIR_PAR_ENSEIGNANT"
+    }
+  ],
+  "saSkillsWithoutCorrespondingStaymanQcm": [
+    {
+      "saSkill": "sa:quantitatif_2sa",
+      "reason": "Quantitatif hors des 65 QCM Stayman/Texas de ce lot"
+    },
+    {
+      "saSkill": "sa:texas_trefle_2sa",
+      "reason": "Texas mineur sur 2SA non couvert dans le lot des 65"
+    },
+    {
+      "saSkill": "sa:gambling_3sa_passe_corrige",
+      "reason": "A ranger selon son vrai contexte de barrage/3SA gambling"
+    }
+  ],
+  "validationStatus": "A_VALIDER_PAR_ENSEIGNANT",
+  "scoringEnabled": false,
+  "prerequisiteBlockingEnabled": false
+}
