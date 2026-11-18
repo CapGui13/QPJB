@@ -268,7 +268,7 @@ function recordSession(state,deck,answers,annotations){
   // Les rappels concernent un seul résultat par catégorie et par séance :
   // un échec prime sur une réussite, et les cas isolés restent non évaluables.
   for(const [key,answer] of conceptOutcomes){
-    if((state.reviewSupport||{})[key]<2)continue;
+    if(!((state.reviewSupport||{})[key]>=2))continue;
     const previous=state.reviewQueue[key],correct=answer.correct;
     const recallFamily=answer.scheduledFamily||
       answer.families.find(f=>f!==previous?.lastFamily);
