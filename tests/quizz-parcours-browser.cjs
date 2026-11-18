@@ -302,7 +302,7 @@ const server=http.createServer((req,res)=>{
    const badge=page.locator('#parcours-dashboard-content [data-item="ouv"] .parcours-dashboard-state');
    assert.equal(await badge.textContent(),'À consolider',
      'A focused correction must not restore a confirmed-acquisition badge');
-   assert.match(await page.locator('#parcours-dashboard-content .parcours-dashboard-note').textContent(),
+   assert.match(await page.locator('#parcours-dashboard-content > .parcours-dashboard-note').textContent(),
      /séances normales/);
    assert.equal(await page.evaluate(()=>{
      const P=window.QPJBParcours,ex=JSON.parse(document.querySelector('#training-data').textContent).exercises;
