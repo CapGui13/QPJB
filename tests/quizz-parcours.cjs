@@ -193,6 +193,53 @@ assistedAxes.active={ids:[helpAxis.id],index:0,answers:{},createdAt:0};
 assert.ok(P.record(assistedAxes,helpAxis,'correct',0,helpAxis.answer,false,true));
 assert.equal(assistedAxes.axes.force.score,-1,'Corrected answer cannot imply mastery');
 
+// V1.5 — tableau en lecture seule, résultats réellement observés.
+const emptyDashboard=P.dashboard(P.empty(),exercises);
+assert.equal(emptyDashboard.themes.length,22);
+assert.equal(emptyDashboard.micros.length,25);
+assert.equal(emptyDashboard.axes.length,3);
+assert.equal(emptyDashboard.total,1523);
+assert.equal(emptyDashboard.distinct,0);
+assert.equal(emptyDashboard.independent,0);
+assert.equal(emptyDashboard.themes.find(x=>x.id==='ouv').status,'available');
+assert.equal(emptyDashboard.themes.find(x=>x.id==='mineur').status,'upcoming');
+assert.ok(emptyDashboard.axes.every(x=>x.status==='unassessed'));
+const display=P.empty();
+const cards=exercises.filter(x=>x.theme==='ouv').filter((x,i,a)=>a.findIndex(y=>(y.caseFamily||y.id)===(x.caseFamily||x.id))===i).slice(0,4);
+assert.equal(cards.length,4);
+for(let session=0;session<3;session++){
+  display.active={ids:[cards[session].id],answers:{},index:0,createdAt:display.completed};
+  assert.ok(P.record(display,cards[session],'correct',0,cards[session].answer,false,false));
+  assert.ok(P.finish(display));
+  assert.equal(P.dashboard(display,exercises).themes.find(x=>x.id==='ouv').status,
+    session===2?'confirmed':'discovering',
+    'Only independent, distinct families in three completed sessions confirm an acquisition');
+}
+let view=P.dashboard(display,exercises);
+assert.equal(view.independent,3);
+assert.equal(view.confirmed,1);
+display.active={ids:[cards[3].id],answers:{},index:0,createdAt:display.completed};
+assert.ok(P.record(display,cards[3],'skipped',0,null,false,false));
+view=P.dashboard(display,exercises);
+assert.equal(view.themes.find(x=>x.id==='ouv').status,'consolidating');
+assert.equal(view.themes.find(x=>x.id==='ouv').skipped,1);
+assert.equal(view.independent,3);
+assert.equal(view.distinct,4);
+const displayBefore=JSON.stringify(display);
+P.dashboard(display,exercises);
+assert.equal(JSON.stringify(display),displayBefore,'Dashboard is read-only');
+assert.deepEqual(P.dashboard(P.load(displayBefore),exercises),view,'Dashboard survives reload');
+const repeatFamily=P.empty();repeatFamily.completed=4;
+for(let i=0;i<3;i++)repeatFamily.entries[cards[i].id]={result:'correct',assisted:false,lastSession:2};
+assert.notEqual(P.dashboard(repeatFamily,exercises).themes.find(x=>x.id==='ouv').status,'confirmed',
+ 'Three successes in one session are not sufficient');
+const confidence=P.empty();confidence.completed=4;
+confidence.axes.force={score:3,attempts:4,independent:3,lastSession:3,lastScoredSession:3};
+assert.equal(P.dashboard(confidence,exercises).axes.find(x=>x.id==='force').status,'repeated');
+confidence.micros['mineur:1♣']={score:-2,attempts:3,independent:1,lastSession:3,lastScoredSession:3};
+assert.equal(P.dashboard(confidence,exercises).micros.find(x=>x.id==='mineur:1♣').status,'reinforce');
+assert.equal(P.dashboard(confidence,exercises).axes.find(x=>x.id==='force').covered,42);
+
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
 const introduced=new Map();

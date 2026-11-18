@@ -33,6 +33,17 @@ const server=http.createServer((req,res)=>{
    await page.goto('http://127.0.0.1:8801/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
    await page.locator('#parcours-start').waitFor({state:'visible'});
    assert.match(await page.locator('#parcours-status').textContent(),/Séances terminées : 0/);
+   const dash=page.locator('#parcours-dashboard');
+   assert.equal(await dash.getAttribute('open'),null,'Progress dashboard starts collapsed');
+   await page.locator('#parcours-dashboard > summary').click();
+   assert.ok(await page.locator('#parcours-dashboard-content').isVisible());
+   await page.locator('#parcours-dashboard-themes > summary').click();
+   assert.equal(await page.locator('#parcours-dashboard-themes li').count(),22);
+   assert.match(await page.locator('#parcours-dashboard-themes [data-item="ouv"]').textContent(),/Disponible/);
+   assert.match(await page.locator('#parcours-dashboard-themes [data-item="chelem"]').textContent(),/À découvrir/);
+   await page.locator('#parcours-dashboard-axes > summary').click();
+   assert.equal(await page.locator('#parcours-dashboard-axes li').count(),3);
+   await page.locator('#parcours-dashboard > summary').click();
    await page.locator('#parcours-start').click();
    await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
    let state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
@@ -113,6 +124,16 @@ const server=http.createServer((req,res)=>{
    await page.locator('#parcours-status').waitFor({state:'visible'});
    assert.match(await page.locator('#parcours-status').textContent(),/Évaluation de la force/,
      'An audited weak transversal skill is visible on guided home');
+   await page.locator('#parcours-dashboard > summary').click();
+   await page.locator('#parcours-dashboard-axes > summary').click();
+   assert.match(await page.locator('#parcours-dashboard-axes [data-item="force"]').textContent(),/À retravailler/);
+   await page.locator('#parcours-dashboard-themes > summary').click();
+   assert.match(await page.locator('#parcours-dashboard-themes [data-item="ouv"]').textContent(),/0 sans aide/);
+   assert.match(await page.locator('#parcours-dashboard-themes [data-item="ouv"]').textContent(),/passés/);
+   await page.locator('#parcours-dashboard-micros > summary').click();
+   assert.equal(await page.locator('#parcours-dashboard-micros li').count(),25);
+   assert.equal(await page.locator('#parcours-dashboard-content').evaluate(el=>el.scrollWidth>el.clientWidth+2),false,
+     'Dashboard fits mobile and desktop viewports');
    const withAxis=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(withAxis.active.ids,pending.active.ids,
      'Axis status must not modify the saved active session');

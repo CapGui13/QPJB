@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.4 : progression étayée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.5 : progression étayée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -675,6 +675,65 @@
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     state.completed++;state.active=null;return true;
   }
+  // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
+  // ni de reconstruction spéculative de l'historique.
+  const DASH_LABELS={
+    upcoming:'À découvrir',available:'Disponible',discovering:'En découverte',
+    consolidating:'À consolider',confirmed:'Acquis confirmés',
+    unassessed:'Non évalué',working:'En cours',reinforce:'À retravailler',
+    repeated:'Réussites répétées'
+  };
+  function dashboard(state,exercises){
+    const entries=state.entries||{};
+    const themes=ROADMAP.map(([id,intro])=>{
+      const pool=exercises.filter(x=>x.theme===id);
+      const seen=pool.filter(x=>Object.hasOwn(entries,x.id));
+      const autonomous=x=>entries[x.id].result==='correct'&&!entries[x.id].assisted;
+      const independent=seen.filter(autonomous).length;
+      const helped=seen.filter(x=>entries[x.id].result==='correct'&&entries[x.id].assisted).length;
+      const wrong=seen.filter(x=>entries[x.id].result==='wrong').length;
+      const skipped=seen.filter(x=>entries[x.id].result==='skipped').length;
+      // Une seule observation par famille, la plus récente. En cas
+      // d'égalité, garder la preuve prudente (une erreur prime).
+      const families=new Map();
+      for(const x of seen){
+        const r=entries[x.id],key=family(x),ok=autonomous(x),old=families.get(key);
+        if(!old||r.lastSession>old.session)families.set(key,{session:r.lastSession,ok});
+        else if(r.lastSession===old.session)old.ok=old.ok&&ok;
+      }
+      const recent=[...families.values()].sort((a,b)=>b.session-a.session);
+      // Six familles récentes, avec toutes les égalités de la dernière séance.
+      const cutoff=recent[Math.min(5,recent.length-1)]?.session;
+      const recentFamily=recent.filter(r=>r.session>=cutoff);
+      const doneSessions=new Set(recentFamily.filter(r=>r.ok&&r.session<state.completed).map(r=>r.session));
+      const confirmed=recentFamily.length>=3&&recentFamily.every(r=>r.ok)&&doneSessions.size>=3;
+      const status=!seen.length?(state.completed>=intro?'available':'upcoming'):
+        confirmed?'confirmed':families.size>=3?'consolidating':'discovering';
+      return {id,intro,status,total:pool.length,seen:seen.length,independent,helped,wrong,skipped,
+        level:seen.length?levelFor(state,exercises,id):null};
+    });
+    function breakdown(labels,records,kind){
+      return Object.entries(labels).map(([id,label])=>{
+        const r=(records||{})[id];
+        const count=exercises.filter(x=>(kind==='axis'?axisKey(x):microKey(x))===id).length;
+        const attempted=!!r&&r.attempts>0;
+        const status=!attempted?'unassessed':
+          r.score<=-2&&r.attempts>=2?'reinforce':
+          r.score===3&&r.independent>=3&&r.lastScoredSession!==null&&
+            r.lastScoredSession<state.completed?'repeated':'working';
+        return {id,label,status,covered:count,attempts:attempted?r.attempts:0,
+          independent:attempted?r.independent:0};
+      });
+    }
+    return {completed:state.completed,active:!!state.active,themes,
+      micros:breakdown(MICRO_LABELS,state.micros,'micro'),
+      axes:breakdown(AXIS_LABELS,state.axes,'axis'),
+      distinct:themes.reduce((a,x)=>a+x.seen,0),
+      independent:themes.reduce((a,x)=>a+x.independent,0),
+      confirmed:themes.filter(x=>x.status==='confirmed').length,
+      practiced:themes.filter(x=>x.seen>0).length,
+      total:themes.reduce((a,x)=>a+x.total,0)};
+  }
   function summary(state,exercises){
     const available=ROADMAP.filter(pair=>state.completed>=pair[1]);
     const attempted=new Set(Object.keys(state.entries||{}));
@@ -682,5 +741,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,empty,load,select,start,record,move,finish,summary,levelFor};
 });
