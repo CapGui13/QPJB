@@ -38,6 +38,8 @@ jobs:
           node tests/quizz-v2-simulation.cjs
           node tests/quizz-v2-revision.cjs
           node tests/quizz-v2-preview.cjs
+          node tests/quizz-v2-prerequis.cjs
+          node scripts/parcours-v2-robustesse.cjs
           node scripts/parcours-v2-pilot.cjs --sessions=65 --seed=13 --check --summary
           node scripts/parcours-v2-pilot.cjs --sessions=65 --seed=13 --fragile-mineures --check --summary
           node tests/quizz-l01-regression.cjs
