@@ -160,6 +160,7 @@ function matrix(){
       contextsSeen:Object.keys(a.contexts).length,
       distinctDecisions:a.distinctDecisionKeys,
       alertCounts:a.alerts,
+      reviewExamples:a.sourceExamplesForPedagogicalReview,
       windows:a.windows.map(w=>({from:w.from,to:w.to,
         minorResponseAnswers:w.minorResponseAnswers,
         contexts:w.contexts,actionClasses:w.actionClasses,
@@ -188,7 +189,7 @@ function matrix(){
       x.alertCounts.contextAnswerGroupsWithDifferentAuctions),
     adjacentSessionDecisionOverlapsRange:range(x=>
       x.alertCounts.adjacentSessionDecisionOverlaps),
-    minorPresence,scenarios,masteryInferred:false,publicRuntimeWired:false,
+    minorPresence,scenarioRows:scenarios,masteryInferred:false,publicRuntimeWired:false,
     decision:'Audit de diversité, aucun algorithme de substitution activé'};
 }
 module.exports={WINDOWS,answer,actionClass,context,describe,summarise,trace,matrix};
