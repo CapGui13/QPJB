@@ -1436,7 +1436,7 @@ const annotations=window.PreviewPilot.loadAnnotations();
 const allById=new Map(catalog.map(q=>[q.id,q]));
 const toStudy=JSON.parse($('review-flags').textContent).map(([id,reason])=>({q:allById.get(id),reason}));
 const suitNames=[['♠','black'],['♥','red'],['♦','red'],['♣','black']];
-let learning=window.PreviewPilot.newState(13),deck=[],cursor=0,results=[],view='home',reviewIndex=0,reviewSelected=null;
+let learning=window.PreviewPilot.newState(13),deck=[],cursor=0,results=[],view='home',reviewIndex=0,reviewSelected=null,sessionInProgress=false;
 const themeNames={ouv:'Choix de l’ouverture',mineur:'Réponse à 1 mineure',majeur:'Réponse à 1 majeure',sa:'Sans-atout',stayman:'Stayman / Texas'};
 function meta(q){
  const a=annotations.get(q.id);
@@ -1538,14 +1538,14 @@ function render(){
 }
 function start(){
  // Ne pas perdre les réponses en passant provisoirement à la revue SEF.
- if(deck.length===10&&results.length<deck.length){view='play';render();return}
+ if(sessionInProgress&&deck.length===10){view='play';render();return}
  const selectedDeck=window.PreviewPilot.select(catalog,learning,annotations,10);
  if(selectedDeck.length!==10){$('app').innerHTML='<div class="panel">Aucun lot complet disponible.</div>';return}
- deck=selectedDeck;cursor=0;results=[];view='play';render();
+ deck=selectedDeck;cursor=0;results=[];sessionInProgress=true;view='play';render();
 }
 function act(button){
  const action=button.dataset.action;
- if(action==='reset'){learning=window.PreviewPilot.newState(13);deck=[];results=[];view='home';render();return}
+ if(action==='reset'){learning=window.PreviewPilot.newState(13);deck=[];results=[];sessionInProgress=false;view='home';render();return}
  if(action==='home'){view='home';render();return}
  if(action==='review-open'){view='review';reviewIndex=0;reviewSelected=null;render();return}
  if(action==='start'){start();return}
@@ -1561,7 +1561,7 @@ function act(button){
  if(action==='next'&&view==='play'&&results[cursor]!==undefined){
    if(cursor+1<deck.length){cursor++;render();return}
    window.PreviewPilot.recordSession(learning,deck,results.map((v,i)=>v===deck[i].answer),annotations);
-   view='summary';render();
+   sessionInProgress=false;view='summary';render();
  }
 }
 document.addEventListener('click',event=>{
