@@ -80,7 +80,7 @@ for(let j=0;j<10;j++){
   click('answer','0');
   assert.ok(app.innerHTML.includes('Réponse du catalogue'));
   if(j===0||j===9){
-    const previous=app.innerHTML.match(/Question (\\d+) sur 10/)?.[0];
+    const previous='Question '+(j+1)+' sur 10';
     click('review-open');
     assert.ok(app.innerHTML.includes('Revue pédagogique'));
     click('start');
