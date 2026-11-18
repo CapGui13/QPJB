@@ -79,6 +79,16 @@ assert.match(app.innerHTML,/Question 1 sur 10/);
 for(let j=0;j<10;j++){
   click('answer','0');
   assert.ok(app.innerHTML.includes('Réponse du catalogue'));
+  if(j===0||j===9){
+    const previous=app.innerHTML.match(/Question (\\d+) sur 10/)?.[0];
+    click('review-open');
+    assert.ok(app.innerHTML.includes('Revue pédagogique'));
+    click('start');
+    assert.ok(app.innerHTML.includes(previous),
+      'Reprendre exactement la question interrompue');
+    assert.ok(app.innerHTML.includes('Réponse du catalogue'),
+      'Le choix déjà effectué reste visible');
+  }
   click('next');
 }
 assert.match(app.innerHTML,/Bilan de la séance 1/);
