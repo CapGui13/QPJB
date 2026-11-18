@@ -4,7 +4,9 @@
  * et le niveau d'acquisition d'une notion.
  */
 const F=require('./parcours-v2-pilot.cjs');
-const P=require('./parcours-v2-observatoire-p.cjs');
+const fs=require('node:fs'),path=require('node:path');
+const loadMapping=()=>JSON.parse(fs.readFileSync(path.join(__dirname,
+  '../Docs/PARCOURS_V2_PHASE_P_AXES_SEMANTIQUES_20261118.json'),'utf8'));
 const EARLY=25;
 const COMPETITIVE=['intervenir','contre','reponse_inter','apres_inter'];
 const WINDOW_RANGES=[[1,5],[6,10],[11,15],[16,20],[21,25],[26,35],[36,45]];
@@ -26,7 +28,7 @@ function classify(q,source){
     mappedReplyToCounter:source.reply.has(q.id)
   }
 }
-function sources(mapping=P.load()){
+function sources(mapping=loadMapping()){
   if(mapping.publicRuntimeWired!==false||mapping.proposedAxes!==16)
     throw Error('Source P attendue pour le contraste lecture seule');
   const f=id=>new Set(mapping.axes.find(x=>x.id===id)?.sourceIds||[]);
