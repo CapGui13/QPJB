@@ -45,6 +45,12 @@ for(const profile of ['balanced','fragile-mineures']){
   assert.ok(a.alerts.sameAuctionAnswerAdditionalPresentations>=0);
   assert.ok(a.alerts.sameAuctionAnswerAdditionalPresentations<=
     a.alerts.sameContextAnswerAdditionalPresentations);
+  assert.ok(a.alerts.sameNonEmptyAuctionAnswerAdditionalPresentations>=0);
+  assert.ok(a.alerts.sameNonEmptyAuctionAnswerAdditionalPresentations<=
+    a.alerts.sameAuctionAnswerAdditionalPresentations);
+  assert.equal(a.alerts.emptyAuctionAnswerAdditionalPresentations+
+    a.alerts.sameNonEmptyAuctionAnswerAdditionalPresentations,
+    a.alerts.sameAuctionAnswerAdditionalPresentations);
   assert.ok(a.alerts.contextAnswerGroupsWithDifferentAuctions>=0);
   assert.ok(a.sourceExamplesForPedagogicalReview.length<=20);
   for(const item of a.sourceExamplesForPedagogicalReview){
