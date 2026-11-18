@@ -81,11 +81,19 @@ function available(q,session,annotations){
 function desiredSlots(session){
   if(session===0)return ['ouv:1♣','ouv:1♦','ouv:1♥','ouv:1♠','ouv:1SA',
     'ouv:Passe','ouv','ouv','ouv','ouv'];
-  if(session<=3)return ['ouv:1♣','rep:1♣','ouv:1♦','rep:1♦',
-    'rep:1♥','rep:1♠','ouv','ouv','any','any'];
-  const slots=['ouv:1♣','rep:1♦','rep:1♥'];
-  if(session>=3)slots.push('rep:1SA');
-  // Les créneaux de révision visent une autre famille de la même notion.
+  if(session<=3){
+    const openCycle=[['ouv:1♣','ouv:1♦'],['ouv:1♥','ouv:1♠'],
+      ['ouv:1SA','ouv:Passe']][session-1];
+    return [openCycle[0],'rep:1♣',openCycle[1],'rep:1♦',
+      'rep:1♥','rep:1♠','any','any','any','any'];
+  }
+  // Une rotation explicite : jamais un créneau de 1♣ imposé 65 séances.
+  const openingCycle=['1♣','1♦','1♥','1♠','1SA','Passe'];
+  const slots=['ouv:'+openingCycle[(session-4)%openingCycle.length],
+    session%2?'rep:1♣':'rep:1♦',
+    session%2?'rep:1♠':'rep:1♥'];
+  slots.push(session%3===0?'rep:1SA':'any');
+  // Les créneaux de révision visent une AUTRE famille de la même notion.
   if(session>=6)slots.push('revision');
   slots.push('any','any','any','any','any');
   return slots.slice(0,10);
@@ -128,7 +136,7 @@ function select(exercises,state,annotations,n=10){
       const due=pool.filter(q=>{
         const c=state.concepts[concept(q,annotations)];
         return c&&c.lastResult==='wrong'&&c.due<=session&&
-          c.lastSession<session-1;
+          c.lastSession<session-1&&!state.families[family(q)];
       });
       if(due.length)pool=due;
       else continue; // pas de révision artificielle
@@ -136,11 +144,15 @@ function select(exercises,state,annotations,n=10){
       const specific=pool.filter(q=>matches(q,slot));
       if(specific.length)pool=specific;
     }
-    const notRecent=pool.filter(q=>{
-      const f=state.families[family(q)];
-      return !f||session-f.lastSession>=3;
-    });
-    if(notRecent.length)pool=notRecent;
+    const globallyNew=pool.filter(q=>!state.families[family(q)]);
+    if(globallyNew.length)pool=globallyNew;
+    else {
+      const notRecent=pool.filter(q=>{
+        const f=state.families[family(q)];
+        return !f||session-f.lastSession>=3;
+      });
+      if(notRecent.length)pool=notRecent;
+    }
     pool.sort((a,b)=>score(b,state,session,chosen,annotations)
       -score(a,state,session,chosen,annotations)||a.id.localeCompare(b.id));
     const picked=pool[0];
@@ -151,9 +163,13 @@ function select(exercises,state,annotations,n=10){
   while(chosen.length<n){
     let pool=candidates.filter(q=>!ids.has(q.id)&&!families.has(family(q)));
     if(!pool.length)break;
-    const notRecent=pool.filter(q=>!state.families[family(q)]||
-      session-state.families[family(q)].lastSession>=3);
-    if(notRecent.length)pool=notRecent;
+    const globallyNew=pool.filter(q=>!state.families[family(q)]);
+    if(globallyNew.length)pool=globallyNew;
+    else {
+      const notRecent=pool.filter(q=>!state.families[family(q)]||
+        session-state.families[family(q)].lastSession>=3);
+      if(notRecent.length)pool=notRecent;
+    }
     pool.sort((a,b)=>score(b,state,session,chosen,annotations)
       -score(a,state,session,chosen,annotations)||a.id.localeCompare(b.id));
     const picked=pool[0];ids.add(picked.id);families.add(family(picked));chosen.push(picked);
@@ -278,6 +294,13 @@ if(require.main===module){
   if(args.includes('--check')){
     if(pilot.metrics.repeatedFamilySessions!==0||
       pilot.metrics.questionCount!==n*10)throw Error('Invariant du pilote violé');
+    if(n>=30){
+      const o=pilot.metrics.opening;
+      if((o['1♣']||0)<5||(o['1♦']||0)<5)
+        throw Error('Ouvertures mineures déséquilibrées');
+      if(pilot.metrics.uniqueFamilies<n*9)
+        throw Error('Réemploi excessif des familles sur '+n+' séances');
+    }
   }
   if(args.includes('--summary'))
     process.stdout.write(JSON.stringify({assumptions:report.assumptions,
