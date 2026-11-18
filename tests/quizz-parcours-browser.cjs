@@ -137,6 +137,58 @@ const server=http.createServer((req,res)=>{
    const withAxis=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(withAxis.active.ids,pending.active.ids,
      'Axis status must not modify the saved active session');
+   // V1.6 : l'interface ne propose une séance ciblée que sur faiblesse étayée.
+   await page.evaluate(()=>{
+     const learner=window.QPJBParcours.empty();
+     learner.completed=5;
+     learner.micros['mineur:1♣']={score:-3,attempts:4,independent:0,lastSession:4,
+       lastScoredSession:4,sessionBase:-2,sessionResult:'weak'};
+     localStorage.setItem('qpjb-sef-parcours-01',JSON.stringify(learner));
+   });
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#parcours-consolidation').waitFor({state:'visible'});
+   assert.match(await page.locator('#parcours-consolidation-note').textContent(),/Répondre à 1♣/);
+   assert.match(await page.locator('#parcours-start').textContent(),/Séance 6/);
+   await page.locator('#parcours-consolidation').click();
+   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
+   const targeted=await page.evaluate(()=>{
+     const state=JSON.parse(localStorage.getItem('qpjb-sef-parcours-01'));
+     const all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     const byId=new Map(all.map(x=>[x.id,x]));
+     return {state,keys:state.active.ids.map(id=>window.QPJBParcours.microKey(byId.get(id)))};
+   });
+   assert.equal(targeted.state.active.mode,'consolidation');
+   assert.equal(targeted.state.active.ids.length,10);
+   assert.ok(targeted.keys.every(key=>key==='mineur:1♣'));
+   assert.match(await page.locator('#parcours-session-banner').textContent(),/Consolidation ciblée/);
+   await page.reload({waitUntil:'domcontentloaded'});
+   assert.match(await page.locator('#parcours-start').textContent(),/Reprendre ma consolidation/);
+   assert.ok(await page.locator('#parcours-consolidation').isHidden(),
+     'A targeted session in progress must not be restarted');
+   await page.locator('#parcours-start').click();
+   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
+   assert.deepEqual((await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')))).active.ids,
+     targeted.state.active.ids,'Targeted deck survives reload and resumes unchanged');
+   for(let i=0;i<10;i++){
+     await page.locator('#pass').click();
+     if(i<9)await page.waitForFunction(index=>
+       document.querySelector('#step')?.textContent.includes((index+2)+' / 10'),i);
+     else await page.locator('#repeat').waitFor({state:'visible'});
+   }
+   assert.match(await page.locator('#body h2').textContent(),/Consolidation terminée/);
+   const focusFinished=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+   assert.equal(focusFinished.completed,5,'Targeted session cannot unlock normal lessons');
+   assert.equal(focusFinished.lastConsolidatedAt,5,'Limited to one targeted session per main-session milestone');
+   await page.locator('#done-home').click();
+   await page.waitForFunction(()=>!document.body.classList.contains('session-mode'));
+   assert.ok(await page.locator('#parcours-consolidation').isHidden(),
+     'After finishing, consolidation is held until the next normal session');
+   assert.match(await page.locator('#parcours-start').textContent(),/Séance 6/);
+   await page.locator('#parcours-start').click();
+   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
+   assert.equal((await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')))).active.mode,
+     undefined,'The regular session remains the normal parcours');
+
    assert.deepEqual(errors,[],'No browser JS errors');
    console.log('PARCOURS BROWSER '+engine+' PASS: varied openings incl 1♣/1♦, answers in second session, resume after reload, free Quiz preserved');
    await context.close();
