@@ -1471,6 +1471,7 @@ function showHome(){
  <p>Cette version autonome utilise les <b>1 523 QCM du catalogue</b>, le moteur de sélection V2 et
  <b>79 classifications pédagogiques candidates</b>. Elle ne modifie rien sur le site QPJB.</p>
  ${statCards([['1 523','QCM originaux'],['79','Cas préclassés'],['0','Données transmises']])}
+ ${learning.session>0?'<p class="muted">'+learning.session+' séance(s) déjà terminée(s) dans cet essai temporaire. Les résultats seront perdus à la fermeture ou à l’actualisation.</p>':''}
  <div class="note">Le prototype n’enregistre aucune donnée dans le navigateur et n’utilise aucun serveur.
  Les réponses, révisions et scores affichés sont temporaires. Une réussite n’est jamais
  une preuve définitive de maîtrise.</div>
@@ -1528,6 +1529,7 @@ function showReview(){
  </div></div></section>`;
 }
 function render(){
+ $('nav-play').textContent=sessionInProgress?'Reprendre la séance':'Parcours de 10 QCM';
  $('nav-play').setAttribute('aria-pressed',view==='play'||view==='summary');
  $('nav-review').setAttribute('aria-pressed',view==='review');
  $('nav-home').setAttribute('aria-pressed',view==='home');
