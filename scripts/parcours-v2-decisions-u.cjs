@@ -33,8 +33,10 @@ function context(q){
 }
 function describe(q){
   const ctx=context(q),a=answer(q);
+  const auction=Array.isArray(q.auction)?q.auction.map(String):[];
   return {id:q.id,family:F.family(q),theme:q.theme,context:ctx,
-    answer:a,actionClass:actionClass(q),decisionKey:JSON.stringify([ctx,a])};
+    answer:a,actionClass:actionClass(q),decisionKey:JSON.stringify([ctx,a]),
+    auction,auctionSignature:JSON.stringify(auction)};
 }
 function add(obj,key,n=1){obj[key]=(obj[key]||0)+n}
 function ordered(obj){return Object.fromEntries(Object.entries(obj).sort((a,b)=>a[0].localeCompare(b[0],'fr')))}
@@ -67,6 +69,7 @@ function trace(sessions,catalog){
   if(source.size!==catalog.length)throw Error('IDs catalogue non uniques');
   const seen=new Set(),perSession=[],all=[];
   let withinSessionRepeatedContextAnswer=0,adjacentContextAnswerOverlaps=0;
+  let sameAuctionAnswerAdditional=0,contextAnswerWithDistinctAuctions=0;
   let answerOnlyRepeatAcrossContexts=0,previousKeys=new Set();
   for(let s=0;s<sessions.length;s++){
     const deck=sessions[s],qrows=deck.map(q=>{
@@ -86,17 +89,31 @@ function trace(sessions,catalog){
     }
     const repeats=[...group.entries()].filter(([,v])=>v.length>1);
     const sameContextAnswer=repeats.reduce((n,[,v])=>n+v.length-1,0);
+    const exactGroups=new Map();
+    for(const r of qrows){
+      const key=JSON.stringify([r.decisionKey,r.auctionSignature]);
+      exactGroups.set(key,(exactGroups.get(key)||0)+1);
+    }
+    const sameExactAuction=[...exactGroups.values()].reduce((n,v)=>n+Math.max(0,v-1),0);
+    const differentAuctions=repeats.filter(([,v])=>
+      new Set(v.map(x=>x.auctionSignature)).size>1).length;
     const overlap=[...group.keys()].filter(k=>previousKeys.has(k)).length;
     const acrossContexts=[...answerGroups.values()].filter(v=>v.size>1).length;
     withinSessionRepeatedContextAnswer+=sameContextAnswer;
+    sameAuctionAnswerAdditional+=sameExactAuction;
+    contextAnswerWithDistinctAuctions+=differentAuctions;
     adjacentContextAnswerOverlaps+=overlap;
     answerOnlyRepeatAcrossContexts+=acrossContexts;
     perSession.push({session:s+1,contexts:new Set(qrows.map(x=>x.context)).size,
       distinctDecisions:group.size,distinctAnswers:answerGroups.size,
       sameContextAnswerAdditionalPresentations:sameContextAnswer,
-      repeatedContextsAndAnswers:repeats.map(([k,v])=>({
+      sameAuctionAnswerAdditionalPresentations:sameExactAuction,
+      repeatedContextAnswerGroupsWithDifferentAuctions:differentAuctions,
+      repeatedContextsAndAnswers:repeats.map(([,v])=>({
         context:v[0].context,answer:v[0].answer,
-        independentFamilies:v.length,ids:v.map(x=>x.id)})),
+        independentFamilies:v.length,distinctAuctionSequences:
+          new Set(v.map(x=>x.auctionSignature)).size,
+        examples:v.map(x=>({id:x.id,family:x.family,auction:x.auction}))})),
       previousSessionDecisionOverlaps:overlap,
       sameAnswerInMultipleContexts:acrossContexts});
     previousKeys=new Set(group.keys());
@@ -109,15 +126,23 @@ function trace(sessions,catalog){
       return {from:first,to,
         ...summarise(rows),
         repeatedContextAnswerExtra: sessionsIn.reduce((n,x)=>
-          n+x.sameContextAnswerAdditionalPresentations,0)};
+          n+x.sameContextAnswerAdditionalPresentations,0),
+        sameAuctionAnswerExtra: sessionsIn.reduce((n,x)=>
+          n+x.sameAuctionAnswerAdditionalPresentations,0)};
     });
   return {schema:'QPJB_V2_U_DECISIONS_1',status:'OBSERVATION_SYNTHETIQUE_LECTURE_SEULE',
     sessions:sessions.length,questions:all.length,catalogQuestions:catalog.length,
     originalIdsSeen:seen.size,originalFamiliesSeen:new Set(all.map(x=>x.family)).size,
     ...summarise(all),windows,perSession,
     alerts:{sameContextAnswerAdditionalPresentations:withinSessionRepeatedContextAnswer,
+      sameAuctionAnswerAdditionalPresentations:sameAuctionAnswerAdditional,
+      contextAnswerGroupsWithDifferentAuctions:contextAnswerWithDistinctAuctions,
       adjacentSessionDecisionOverlaps:adjacentContextAnswerOverlaps,
       sameAnswerInMultipleContexts:answerOnlyRepeatAcrossContexts},
+    sourceExamplesForPedagogicalReview:perSession.flatMap(row=>
+      row.repeatedContextsAndAnswers.map(item=>({session:row.session,...item})))
+      .sort((a,b)=>b.independentFamilies-a.independentFamilies||a.session-b.session)
+      .slice(0,20),
     sameAnswerIsNotNecessarilySamePedagogicalDecision:true,
     repeatedContextAnswerIsNotProofOfRedundancy:true,
     masteryInferred:false,selectionChanged:false,publicRuntimeWired:false};
@@ -157,6 +182,10 @@ function matrix(){
     distinctDecisionsRange:range(x=>x.distinctDecisions),
     sameContextAnswerAdditionalPresentationsRange:range(x=>
       x.alertCounts.sameContextAnswerAdditionalPresentations),
+    sameAuctionAnswerAdditionalPresentationsRange:range(x=>
+      x.alertCounts.sameAuctionAnswerAdditionalPresentations),
+    contextAnswerGroupsWithDifferentAuctionsRange:range(x=>
+      x.alertCounts.contextAnswerGroupsWithDifferentAuctions),
     adjacentSessionDecisionOverlapsRange:range(x=>
       x.alertCounts.adjacentSessionDecisionOverlaps),
     minorPresence,scenarios,masteryInferred:false,publicRuntimeWired:false,
