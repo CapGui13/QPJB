@@ -1,0 +1,548 @@
+{
+  "schema": "QPJB_V2_PHASE_R_COUVERTURE_LACUNES_20261118_1",
+  "status": "EXTENSION_DOCUMENTAIRE_NON_ACTIVE",
+  "reference": "Docs/PARCOURS_V2_PHASE_P_AXES_SEMANTIQUES_20261118.json",
+  "referenceEngine": "scripts/parcours-v2-pilot.cjs",
+  "originalAxes": 16,
+  "additionalAxes": 5,
+  "totalCandidateAxes": 21,
+  "previousOriginalQcm": 122,
+  "additionalSourceAssociations": 41,
+  "newUniqueQcm": 41,
+  "totalUniqueQcm": 163,
+  "sourceRoleLookup": "P.roleOpening sur le catalogue original",
+  "noQuizModification": true,
+  "publicRuntimeWired": false,
+  "unlockEngineEnabled": false,
+  "gradingEnabled": false,
+  "masteryInferenceEnabled": false,
+  "rules": [
+    "Ne pas confondre exposition à une enchère et maîtrise certifiée.",
+    "Ne pas créer de tirages supplémentaires ni de répétitions pour remplir artificiellement les axes.",
+    "Conserver le moteur V2-F et ses rappels ciblés.",
+    "Au moins une famille indépendante par exemple ; pas de comptage de questions du même cas comme preuves distinctes.",
+    "Contres d'entame sur Stayman et Texas : situations conventionnelles distinctes de l'intervention adverse sur une ouverture et à revoir."
+  ],
+  "extraAxes": [
+    {
+      "id": "fondation:ouvrir_1t",
+      "label": "Choisir l'ouverture de 1♣",
+      "role": "ouv:1♣",
+      "status": "CANDIDATE_REVUE_PEDAGOGIQUE",
+      "notes": "Meilleure mineure et cas limites ; ces six QCM sont des exemples, pas un inventaire complet",
+      "sourceFamilyCount": 6,
+      "sourceQcmCount": 6,
+      "source": [
+        {
+          "id": "SEF-010-1",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-010",
+          "auction": [],
+          "difficulty": 1,
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-012-1",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-012",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N005-1",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-061",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N010-1",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-066",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N011-1",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-067",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N012-2",
+          "theme": "ouv",
+          "answer": "1♣",
+          "family": "cas-068",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        }
+      ],
+      "earliestSuggested": null,
+      "enforceUnlock": false,
+      "masteryThreshold": null,
+      "requiresTeacherReview": true
+    },
+    {
+      "id": "fondation:ouvrir_1k",
+      "label": "Choisir l'ouverture de 1♦",
+      "role": "ouv:1♦",
+      "status": "CANDIDATE_REVUE_PEDAGOGIQUE",
+      "notes": "Inclure le contraste entre mineures et majeures quatrièmes, pas six ouvertures identiques",
+      "sourceFamilyCount": 6,
+      "sourceQcmCount": 6,
+      "source": [
+        {
+          "id": "SEF-011-2",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-011",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N004-3",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-060",
+          "auction": [],
+          "difficulty": 1,
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-N006-1",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-062",
+          "auction": [],
+          "difficulty": 1,
+          "editorialReason": "Reconnaissance directe de la zone d’ouverture, de la majeure cinquième ou de Passe"
+        },
+        {
+          "id": "SEF-N007-1",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-063",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Une exception de distribution ou une limite d’ouverture intervient"
+        },
+        {
+          "id": "SEF-N008-1",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-064",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Appliquer la meilleure mineure en présence de quatre Trèfles et quatre Carreaux."
+        },
+        {
+          "id": "SEF-N013-2",
+          "theme": "ouv",
+          "answer": "1♦",
+          "family": "cas-069",
+          "auction": [],
+          "difficulty": 2,
+          "editorialReason": "Appliquer la meilleure mineure avec deux majeures quatrièmes et trois Carreaux."
+        }
+      ],
+      "earliestSuggested": null,
+      "enforceUnlock": false,
+      "masteryThreshold": null,
+      "requiresTeacherReview": true
+    },
+    {
+      "id": "fondation:repondre_1t",
+      "label": "Répondre à l'ouverture de 1♣",
+      "role": "rep:1♣",
+      "status": "CANDIDATE_REVUE_SEF",
+      "notes": "Inclure les cas 1♣→majeure quatrième jusqu'à 12 HL, et la réponse 1♦ ; aucun automatisme Walsh ne doit être déduit",
+      "sourceFamilyCount": 12,
+      "sourceQcmCount": 12,
+      "source": [
+        {
+          "id": "SEF-015-1",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "cas-015",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-019-2",
+          "theme": "mineur",
+          "answer": "1♠",
+          "family": "cas-019",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-020-1",
+          "theme": "mineur",
+          "answer": "2♣",
+          "family": "cas-020",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Soutien mineur : différence entre main régulière et main avec singleton."
+        },
+        {
+          "id": "SEF-022-3",
+          "theme": "mineur",
+          "answer": "1SA",
+          "family": "cas-022",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-N030-1",
+          "theme": "mineur",
+          "answer": "1♦",
+          "family": "cas-086",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-N031-2",
+          "theme": "mineur",
+          "answer": "2♣",
+          "family": "cas-087",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Soutien mineur : différence entre main régulière et main avec singleton."
+        },
+        {
+          "id": "SEF-N033-1",
+          "theme": "mineur",
+          "answer": "1SA",
+          "family": "cas-089",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Priorité entre couleurs ou choix du niveau de réponse"
+        },
+        {
+          "id": "SEF-N025-1",
+          "theme": "mineur",
+          "answer": "1♠",
+          "family": "cas-081",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-V49-005",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "v49-005",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Après 1♣, majeure quatrième prioritaire sur quatre ou cinq Carreaux jusqu’à 12 HL."
+        },
+        {
+          "id": "SEF-V49-006",
+          "theme": "mineur",
+          "answer": "1♦",
+          "family": "v49-006",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 3,
+          "editorialReason": "Après 1♣, commencer par cinq Carreaux avec une main au-delà de 12 HL et une majeure quatrième."
+        },
+        {
+          "id": "SEF-V426-001",
+          "theme": "mineur",
+          "answer": "1♠",
+          "family": "v426-cas-001",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Privilégier la majeure quatrième jusqu’à 12 HL après 1♣, même avec cinq Carreaux."
+        },
+        {
+          "id": "SEF-V426-002",
+          "theme": "mineur",
+          "answer": "1♦",
+          "family": "v426-cas-002",
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "difficulty": 3,
+          "editorialReason": "Distinguer la réponse dans la majeure quatrième jusqu’à 12 HL et la priorité à 1♦ avec une main plus forte."
+        }
+      ],
+      "earliestSuggested": null,
+      "enforceUnlock": false,
+      "masteryThreshold": null,
+      "requiresTeacherReview": true
+    },
+    {
+      "id": "fondation:repondre_1k",
+      "label": "Répondre à l'ouverture de 1♦",
+      "role": "rep:1♦",
+      "status": "CANDIDATE_REVUE_SEF",
+      "notes": "Réponses en majeure, 1SA, 2♣ et soutien à carreau ; vérification éditoriale des seuils requise",
+      "sourceFamilyCount": 11,
+      "sourceQcmCount": 11,
+      "source": [
+        {
+          "id": "SEF-016-3",
+          "theme": "mineur",
+          "answer": "1♠",
+          "family": "cas-016",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-018-2",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "cas-018",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-021-2",
+          "theme": "mineur",
+          "answer": "1SA",
+          "family": "cas-021",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière."
+        },
+        {
+          "id": "SEF-023-3",
+          "theme": "mineur",
+          "answer": "1SA",
+          "family": "cas-023",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-N035-2",
+          "theme": "mineur",
+          "answer": "1♠",
+          "family": "cas-091",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-N036-2",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "cas-092",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Réponse naturelle simple à l’ouverture mineure"
+        },
+        {
+          "id": "SEF-N038-1",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "cas-094",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Priorité entre couleurs ou choix du niveau de réponse"
+        },
+        {
+          "id": "SEF-N045-1",
+          "theme": "mineur",
+          "answer": "2♣",
+          "family": "cas-101",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 2,
+          "editorialReason": "Priorité entre couleurs ou choix du niveau de réponse"
+        },
+        {
+          "id": "SEF-V49-007",
+          "theme": "mineur",
+          "answer": "1♥",
+          "family": "v49-007",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 1,
+          "editorialReason": "Décision fondamentale : double majeure 4 4 reponse."
+        },
+        {
+          "id": "SEF-V419-003",
+          "theme": "mineur",
+          "answer": "2♣",
+          "family": "v419-cas-003",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 3,
+          "editorialReason": "Répondre 2♣ sur 1♦ avec quatre cartes convenables et une force forcing."
+        },
+        {
+          "id": "SEF-V412-014",
+          "theme": "mineur",
+          "answer": "3♦",
+          "family": "v412-cas-014",
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "difficulty": 3,
+          "editorialReason": "Soutien mineur : différence entre main régulière et main avec singleton."
+        }
+      ],
+      "earliestSuggested": null,
+      "enforceUnlock": false,
+      "masteryThreshold": null,
+      "requiresTeacherReview": true
+    },
+    {
+      "id": "fondation:contre_convention_1sa",
+      "label": "Adapter Stayman/Texas après contre d'entame adverse",
+      "role": "special:1SA-stayman-texas-double",
+      "status": "CONVENTION_A_ARBITRER",
+      "notes": "Contre sur le 2♣ Stayman ou le 2♦ Texas ; ne pas confondre avec Contre d'appel sur 1♥/1♠ et conserver la relecture conventionnelle",
+      "sourceFamilyCount": 6,
+      "sourceQcmCount": 6,
+      "source": [
+        {
+          "id": "SEF-L25-001",
+          "theme": "stayman",
+          "answer": "Passe",
+          "family": "LOT25-2026-11-13-001",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♣ (Stayman)",
+            "Adversaire : Contre (d'entame, indiquant des Trèfles)"
+          ],
+          "difficulty": 4,
+          "editorialReason": "Contre d'entame sur Stayman : Passe sans arrêt Trèfle malgré une majeure quatrième."
+        },
+        {
+          "id": "SEF-L25-002",
+          "theme": "stayman",
+          "answer": "Surcontre",
+          "family": "LOT25-2026-11-13-002",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♣ (Stayman)",
+            "Adversaire : Contre (d'entame, indiquant des Trèfles)"
+          ],
+          "difficulty": 5,
+          "editorialReason": "Surcontre à jouer après le Contre d'entame du Stayman, avec vraie couleur à Trèfle."
+        },
+        {
+          "id": "SEF-L25-003",
+          "theme": "stayman",
+          "answer": "2♥",
+          "family": "LOT25-2026-11-13-003",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♣ (Stayman)",
+            "Adversaire : Contre (d'entame, indiquant des Trèfles)"
+          ],
+          "difficulty": 4,
+          "editorialReason": "Stayman contré : annoncer directement la majeure avec tenue de la couleur du Contre."
+        },
+        {
+          "id": "SEF-L25-004",
+          "theme": "stayman",
+          "answer": "Passe",
+          "family": "LOT25-2026-11-13-004",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (Texas pour les Cœurs)",
+            "Adversaire : Contre (d'entame, indiquant des Carreaux)"
+          ],
+          "difficulty": 3,
+          "editorialReason": "Contre du Texas majeur : Passe sans fit, plutôt que rectification systématique."
+        },
+        {
+          "id": "SEF-L25-005",
+          "theme": "stayman",
+          "answer": "Surcontre",
+          "family": "LOT25-2026-11-13-005",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (Texas pour les Cœurs)",
+            "Adversaire : Contre (d'entame, indiquant des Carreaux)"
+          ],
+          "difficulty": 5,
+          "editorialReason": "Surcontre fitté non punitif après Contre du Texas majeur : choix de la bonne main."
+        },
+        {
+          "id": "SEF-L25-006",
+          "theme": "stayman",
+          "answer": "2♥",
+          "family": "LOT25-2026-11-13-006",
+          "auction": [
+            "Vous : 1SA (15–17 H)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (Texas pour les Cœurs)",
+            "Adversaire : Contre (d'entame, indiquant des Carreaux)"
+          ],
+          "difficulty": 4,
+          "editorialReason": "Rectifier un Texas contré avec fit et arrêt de la couleur demandée à l'entame."
+        }
+      ],
+      "earliestSuggested": null,
+      "enforceUnlock": false,
+      "masteryThreshold": null,
+      "requiresTeacherReview": true
+    }
+  ]
+}
