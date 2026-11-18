@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.9 : évaluations distinctes des consolidations, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.10 : preuves de maîtrise séparées des entraînements, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -342,6 +342,17 @@
   }
   const int=(x,fallback=0)=>Number.isInteger(x)&&x>=0?x:fallback;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  // Les entrées suivent la DERNIÈRE pratique, le champ assessment suit la
+  // DERNIÈRE preuve d'une séance ordinaire (et rien d'autre).
+  // Pour les anciennes sauvegardes, laisser la lecture historique inchangée :
+  // elles ne permettent pas de reconstituer rétroactivement le mode d'origine.
+  function assessmentOf(entry){
+    if(!entry||typeof entry!=='object')return null;
+    if(Object.hasOwn(entry,'assessment'))return entry.assessment;
+    if(!['correct','wrong','skipped'].includes(entry.result))return null;
+    return {result:entry.result,assisted:!!entry.assisted,
+      lastSession:int(entry.lastSession)};
+  }
   function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},active:null};}
   function load(raw){
     let old=raw;
@@ -357,6 +368,13 @@
           lastSession:clamp(int(r.lastSession),0,s.completed),
           due:clamp(int(r.due),0,100010),seen:clamp(int(r.seen,1),1,10000),
           streak:clamp(int(r.streak),0,10000),family:String(r.family||id)};
+        if(Object.hasOwn(r,'assessment')){
+          const a=r.assessment;
+          s.entries[id].assessment=a&&typeof a==='object'&&!Array.isArray(a)&&
+            ['correct','wrong','skipped'].includes(a.result)&&
+            Number.isInteger(a.lastSession)&&a.lastSession>=0&&a.lastSession<=s.completed
+            ?{result:a.result,assisted:!!a.assisted,lastSession:a.lastSession}:null;
+        }
       }
     }
     if(old.skills&&typeof old.skills==='object'&&!Array.isArray(old.skills)){
@@ -732,9 +750,12 @@
     // en saisie libre) n'est pas une preuve de maîtrise autonome.
     const independent=result==='correct'&&!assisted&&!hadFreeError;
     const old=state.entries[x.id]||{},streak=independent?(old.streak||0)+1:0;
+    const assessment=active.mode==='consolidation'
+      ?assessmentOf(old)
+      :{result,assisted:!!assisted||!!hadFreeError,lastSession:state.completed};
     state.entries[x.id]={result,assisted:!!assisted||!!hadFreeError,lastSession:state.completed,
       due:state.completed+(independent?(streak===1?3:streak===2?8:18):1),
-      seen:(old.seen||0)+1,streak,family:family(x)};
+      seen:(old.seen||0)+1,streak,family:family(x),assessment};
     // V1.9 : la consolidation fournit un entraînement et des révisions réelles,
     // mais pas de preuve indépendante pour les niveaux et micro-compétences.
     // Sinon, sa numérotation (le même "completed" que la séance normale
@@ -849,12 +870,14 @@
       // d'égalité, garder la preuve prudente (une erreur prime).
       const families=new Map();
       for(const x of seen){
-        const r=entries[x.id],key=family(x),ok=autonomous(x),old=families.get(key);
+        const r=assessmentOf(entries[x.id]);if(!r)continue;
+        const key=family(x),ok=r.result==='correct'&&!r.assisted,old=families.get(key);
         if(!old||r.lastSession>old.session)families.set(key,{session:r.lastSession,ok});
         else if(r.lastSession===old.session)old.ok=old.ok&&ok;
       }
       const recent=[...families.values()].sort((a,b)=>b.session-a.session);
-      // Six familles récentes, avec toutes les égalités de la dernière séance.
+      // Seules les évaluations ordinaires peuvent valider "Acquis confirmés".
+      // Six familles évaluées récentes, avec toutes les égalités de la dernière séance.
       const cutoff=recent[Math.min(5,recent.length-1)]?.session;
       const recentFamily=recent.filter(r=>r.session>=cutoff);
       const doneSessions=new Set(recentFamily.filter(r=>r.ok&&r.session<state.completed).map(r=>r.session));

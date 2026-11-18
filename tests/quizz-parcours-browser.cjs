@@ -268,6 +268,48 @@ const server=http.createServer((req,res)=>{
      return window.QPJBParcours.consolidationPlan(s,x).reason;
    }),'pool-insufficient');
 
+   // V1.10 : un entraînement ciblé ne doit pas rétablir par accident
+   // l'étiquette « Acquis confirmés » après une erreur de séance normale.
+   const badgeAudit=await page.evaluate(()=>{
+     const P=window.QPJBParcours;
+     const ex=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     const cards=ex.filter(x=>x.theme==='ouv')
+       .filter((x,i,a)=>a.findIndex(y=>(y.caseFamily||y.id)===(x.caseFamily||x.id))===i)
+       .slice(0,7);
+     if(cards.length<7)throw Error('Seven independent opening situations required');
+     const s=P.empty();
+     for(let i=0;i<4;i++){
+       s.active={ids:[cards[i].id],index:0,answers:{},createdAt:s.completed};
+       P.record(s,cards[i],i<3?'correct':'wrong',0,
+         i<3?cards[i].answer:null,false,false);
+       P.finish(s);
+     }
+     const before=P.dashboard(s,ex).themes.find(t=>t.id==='ouv').status;
+     const selected=cards.slice(3,7);
+     s.active={ids:selected.map(x=>x.id),index:0,answers:{},
+       createdAt:s.completed,mode:'consolidation'};
+     selected.forEach((x,i)=>P.record(s,x,'correct',i,x.answer,false,false));
+     P.finish(s);
+     const after=P.dashboard(s,ex).themes.find(t=>t.id==='ouv').status;
+     localStorage.setItem('qpjb-sef-parcours-01',JSON.stringify(s));
+     return {before,after,last:s.entries[cards[3].id]};
+   });
+   assert.equal(badgeAudit.before,'consolidating');
+   assert.equal(badgeAudit.after,'consolidating');
+   assert.equal(badgeAudit.last.result,'correct');
+   assert.equal(badgeAudit.last.assessment.result,'wrong');
+   await page.reload({waitUntil:'domcontentloaded'});
+   const badge=page.locator('#parcours-dashboard-content [data-item="ouv"] .parcours-dashboard-state');
+   assert.equal(await badge.textContent(),'À consolider',
+     'A focused correction must not restore a confirmed-acquisition badge');
+   assert.match(await page.locator('#parcours-dashboard-content > .parcours-dashboard-note').textContent(),
+     /séances normales/);
+   assert.equal(await page.evaluate(()=>{
+     const P=window.QPJBParcours,ex=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+     return P.dashboard(P.load(localStorage.getItem('qpjb-sef-parcours-01')),ex)
+       .themes.find(t=>t.id==='ouv').status;
+   }),'consolidating','A browser reload must preserve the assessed error');
+   
    assert.deepEqual(errors,[],'No browser JS errors');
    console.log('PARCOURS BROWSER '+engine+' PASS: varied openings incl 1♣/1♦, answers in second session, resume after reload, free Quiz preserved');
    await context.close();

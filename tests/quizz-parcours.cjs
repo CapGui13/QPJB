@@ -233,6 +233,78 @@ const repeatFamily=P.empty();repeatFamily.completed=4;
 for(let i=0;i<3;i++)repeatFamily.entries[cards[i].id]={result:'correct',assisted:false,lastSession:2};
 assert.notEqual(P.dashboard(repeatFamily,exercises).themes.find(x=>x.id==='ouv').status,'confirmed',
  'Three successes in one session are not sufficient');
+// V1.10 : le dernier entraînement n'efface jamais une preuve évaluée.
+const assessed=P.empty();
+for(let session=0;session<3;session++){
+  assessed.active={ids:[cards[session].id],answers:{},index:0,createdAt:assessed.completed};
+  assert.ok(P.record(assessed,cards[session],'correct',0,cards[session].answer,false,false));
+  assert.ok(P.finish(assessed));
+}
+assert.equal(P.dashboard(assessed,exercises).themes.find(t=>t.id==='ouv').status,'confirmed');
+assessed.active={ids:[cards[3].id],answers:{},index:0,createdAt:assessed.completed};
+assert.ok(P.record(assessed,cards[3],'wrong',0,null,false,false));
+assert.ok(P.finish(assessed));
+assert.equal(P.dashboard(assessed,exercises).themes.find(t=>t.id==='ouv').status,'consolidating');
+// Reproduced V1.9 bug: this correction would erase the normal-session error
+// and falsely restore "Acquis confirmés" without a fresh normal assessment.
+assessed.active={ids:[cards[3].id],answers:{},index:0,createdAt:assessed.completed,
+  mode:'consolidation'};
+assert.ok(P.record(assessed,cards[3],'correct',0,cards[3].answer,false,false));
+assert.ok(P.finish(assessed));
+assert.equal(assessed.entries[cards[3].id].result,'correct','Latest practice remains visible');
+assert.deepEqual(assessed.entries[cards[3].id].assessment,
+  {result:'wrong',assisted:false,lastSession:3},'Earlier assessed error is preserved');
+assert.equal(P.dashboard(assessed,exercises).themes.find(t=>t.id==='ouv').status,
+  'consolidating','Focused practice cannot invent a confirmed acquisition');
+assert.equal(P.dashboard(P.load(JSON.stringify(assessed)),exercises).themes.find(t=>t.id==='ouv').status,
+  'consolidating','The assessed error persists through reload');
+assert.equal(P.load(JSON.stringify(assessed)).entries[cards[3].id].assessment.result,'wrong');
+
+// Opposite direction: a focused wrong answer must not revoke previous
+// confirmed mastery, although it stays visible in the practice totals.
+const previouslyConfirmed=P.empty();
+for(let session=0;session<3;session++){
+  previouslyConfirmed.active={ids:[cards[session].id],answers:{},index:0,
+    createdAt:previouslyConfirmed.completed};
+  assert.ok(P.record(previouslyConfirmed,cards[session],'correct',0,cards[session].answer,false,false));
+  assert.ok(P.finish(previouslyConfirmed));
+}
+previouslyConfirmed.active={ids:[cards[2].id],answers:{},index:0,
+  createdAt:3,mode:'consolidation'};
+assert.ok(P.record(previouslyConfirmed,cards[2],'wrong',0,null,false,false));
+assert.ok(P.finish(previouslyConfirmed));
+assert.equal(previouslyConfirmed.entries[cards[2].id].result,'wrong');
+assert.equal(previouslyConfirmed.entries[cards[2].id].assessment.result,'correct');
+assert.equal(P.dashboard(previouslyConfirmed,exercises).themes.find(t=>t.id==='ouv').status,
+  'confirmed','A focused practice alone cannot revoke assessed mastery');
+
+// A new, first-ever focused answer does not count as an evaluation.
+const practiceOnly=P.empty();practiceOnly.completed=4;
+practiceOnly.active={ids:[cards[3].id],index:0,answers:{},
+  createdAt:4,mode:'consolidation'};
+assert.ok(P.record(practiceOnly,cards[3],'correct',0,cards[3].answer,false,false));
+assert.equal(practiceOnly.entries[cards[3].id].assessment,null);
+assert.equal(P.load(JSON.stringify(practiceOnly)).entries[cards[3].id].assessment,null);
+assert.notEqual(P.dashboard(practiceOnly,exercises).themes.find(t=>t.id==='ouv').status,'confirmed');
+
+// Backward compatibility: no inferred history or destructive reset for
+// previous saves that lacked a separate assessment field.
+const historic=P.load(JSON.stringify({version:1,completed:3,entries:
+  Object.fromEntries(cards.slice(0,3).map((x,i)=>[x.id,
+    {result:'correct',assisted:false,lastSession:i,due:i+3,
+      seen:1,streak:1,family:x.caseFamily||x.id}]))}));
+assert.equal(P.dashboard(historic,exercises).themes.find(t=>t.id==='ouv').status,'confirmed',
+  'Previously visible historical badges remain unchanged');
+historic.active={ids:[cards[2].id],index:0,answers:{},createdAt:3,mode:'consolidation'};
+assert.ok(P.record(historic,cards[2],'wrong',0,null,false,false));
+assert.ok(P.finish(historic));
+assert.equal(historic.entries[cards[2].id].assessment.result,'correct',
+  'Historical evaluation remains available after a new targeted attempt');
+const invalid=JSON.parse(JSON.stringify(assessed));
+invalid.entries[cards[3].id].assessment={result:'correct',assisted:false,lastSession:999999};
+assert.equal(P.load(JSON.stringify(invalid)).entries[cards[3].id].assessment,null,
+  'Invalid proof timestamps cannot be used to claim mastery');
+
 const confidence=P.empty();confidence.completed=4;
 confidence.axes.force={score:3,attempts:4,independent:3,lastSession:3,lastScoredSession:3};
 assert.equal(P.dashboard(confidence,exercises).axes.find(x=>x.id==='force').status,'repeated');
