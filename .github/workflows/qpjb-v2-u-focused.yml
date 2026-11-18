@@ -9,6 +9,14 @@ on:
       - tests/quizz-v2-decisions-u.cjs
       - scripts/parcours-v2-pilot.cjs
       - scripts/parcours-v2-audit-competition-t.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-u-focused.yml
+      - scripts/parcours-v2-decisions-u.cjs
+      - tests/quizz-v2-decisions-u.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - scripts/parcours-v2-audit-competition-t.cjs
   workflow_dispatch:
 permissions:
   contents: read
@@ -55,6 +63,20 @@ jobs:
           };
           fs.writeFileSync('artifacts/v2-u/phase-u-summary.json',
             JSON.stringify(summary,null,2)+'\n');
+          const lines=[
+            '## QPJB Phase U — neuf simulations fictives',
+            '',
+            '- Familles différentes : '+summary.originalFamiliesRange.join('–'),
+            '- Rappels ciblés : '+summary.targetedReviewsRange.join('–'),
+            '- Couples contexte/réponse distincts : '+summary.distinctDecisionsRange.join('–'),
+            '- Répétitions contexte/réponse dans une séance : '+summary.sameContextAnswerAdditionalPresentationsRange.join('–'),
+            '- Répétitions avec enchères identiques : '+summary.sameAuctionAnswerAdditionalPresentationsRange.join('–'),
+            '- Couples ayant des enchères différentes : '+summary.contextAnswerGroupsWithDifferentAuctionsRange.join('–'),
+            '',
+            '**Aucune preuve de redondance, de maîtrise ou de progrès. V2-F non modifiée.**'
+          ];
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join('\\n')+'\\n');
           console.log('QPJB_PHASE_U_SUMMARY '+JSON.stringify(summary));
           NODE
       - name: Conserver les résultats
