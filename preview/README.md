@@ -9,7 +9,7 @@ Le fichier **[parcours-v2-autonome.html](./parcours-v2-autonome.html)** est une 
 3. Double-cliquer sur le document enregistré pour l'ouvrir dans Chrome, Edge ou Firefox.
 4. Choisir **Parcours de 10 QCM** pour jouer plusieurs séances avec les vraies mains et réponses du catalogue; ou **Cas à arbitrer** pour parcourir 19 situations sensibles.
 
-Les séances suivantes dépendent des réponses entrées **durant cette ouverture du navigateur**, et le simulateur utilise les règles candidates de rappels espacés. La page n'est pas le site QPJB, ne charge aucune ressource réseau et n'écrit pas de données persistantes. Fermer ou actualiser la page réinitialise la progression expérimentale.
+Les séances suivantes dépendent des réponses entrées **durant cette ouverture du navigateur**, et le simulateur utilise les règles candidates de rappels espacés. Les questions de **révision programmée** sont signalées pendant la séance et leur nombre apparaît dans le bilan. Tu peux ouvrir **Cas à arbitrer** puis revenir au parcours sans perdre la réponse ou la question en cours, y compris après avoir répondu à la dixième question avant validation du bilan. La page n'est pas le site QPJB, ne charge aucune ressource réseau et n'écrit pas de données persistantes. Fermer ou actualiser la page réinitialise la progression expérimentale.
 
 ## Contenu et limites
 
@@ -22,6 +22,6 @@ Les séances suivantes dépendent des réponses entrées **durant cette ouvertur
 
 ## Tests de non-régression
 
-Le test automatisé `tests/quizz-v2-preview.cjs` vérifie l'identité des 1 523 QCM avec la source, les 79 propositions, les 19 alertes et un parcours complet de dix QCM en navigateur simulé. Le simulateur dispose de tests distincts pour les rappels et la diversité des séances.
+Le test automatisé `tests/quizz-v2-preview.cjs` vérifie l'identité des 1 523 QCM avec la source, les 79 propositions, les 19 alertes, la reprise d'une question interrompue et une séance complète en navigateur simulé. Le test `tests/quizz-v2-preview-browser.cjs` vérifie aussi le rendu réel et la navigation hors-ligne avec Chromium et WebKit, en formats ordinateur et iPhone. Le simulateur dispose de tests distincts pour les rappels et la diversité des séances.
 
 **Ne pas fusionner cette prévisualisation vers le site élève sans arbitrage pédagogique.**
