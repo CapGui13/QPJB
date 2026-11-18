@@ -36,7 +36,8 @@ jobs:
           node tests/quizz-v2-stayman-micro.cjs
           node tests/quizz-v2-crosswalk.cjs
           node tests/quizz-v2-simulation.cjs
-          node scripts/parcours-v2-pilot.cjs --sessions=65 --seed=13 --check > /dev/null
+          node scripts/parcours-v2-pilot.cjs --sessions=65 --seed=13 --check --summary
+          node scripts/parcours-v2-pilot.cjs --sessions=65 --seed=13 --fragile-mineures --check --summary
           node tests/quizz-l01-regression.cjs
           node tests/quizz-l02-10-regression.cjs
           node tests/quizz-v4112-regression.cjs
