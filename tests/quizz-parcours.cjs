@@ -240,6 +240,47 @@ confidence.micros['mineur:1♣']={score:-2,attempts:3,independent:1,lastSession:
 assert.equal(P.dashboard(confidence,exercises).micros.find(x=>x.id==='mineur:1♣').status,'reinforce');
 assert.equal(P.dashboard(confidence,exercises).axes.find(x=>x.id==='force').covered,42);
 
+// V1.6 : séances ciblées proposées uniquement si l'historique prouve
+// une faiblesse répétée; leur pratique n'accélère pas les introductions.
+const emptyFocus=P.consolidationPlan(P.empty(),exercises);
+assert.equal(emptyFocus.available,false,'No consolidation offered without observed weakness');
+assert.equal(emptyFocus.items.length,0);
+const focusLearner=P.empty();
+focusLearner.completed=5;
+focusLearner.micros['mineur:1♣']={score:-3,attempts:4,independent:0,
+  lastSession:4,lastScoredSession:4,sessionBase:-2,sessionResult:'weak'};
+const focusBefore=JSON.stringify(focusLearner);
+const focusPlan=P.consolidationPlan(focusLearner,exercises);
+assert.equal(focusPlan.available,true);
+assert.equal(focusPlan.items.length,10);
+assert.deepEqual(focusPlan.focus.map(x=>x.key),['mineur:1♣']);
+const focusById=new Map(exercises.map(x=>[x.id,x]));
+assert.ok(focusPlan.items.every(({id})=>P.microKey(focusById.get(id))==='mineur:1♣'));
+assert.equal(new Set(focusPlan.items.map(x=>focusById.get(x.id).caseFamily||x.id)).size,10,
+  'Consolidation uses ten distinct case families');
+assert.equal(JSON.stringify(focusLearner),focusBefore,'Planning does not mutate progress');
+const targetDeck=P.startConsolidation(focusLearner,exercises);
+assert.equal(targetDeck.length,10);
+assert.equal(focusLearner.active.mode,'consolidation');
+const focusSaved=P.load(JSON.stringify(focusLearner));
+assert.equal(focusSaved.active.mode,'consolidation','Consolidation survives page reload');
+assert.deepEqual(P.start(focusSaved,exercises).map(x=>x.id),
+  targetDeck.map(x=>x.id),'An interrupted consolidation is resumed');
+assert.equal(P.consolidationPlan(focusSaved,exercises).reason,'session-active');
+for(let i=0;i<targetDeck.length;i++)
+  assert.ok(P.record(focusLearner,targetDeck[i],'wrong',i,null,false,false));
+assert.ok(P.finish(focusLearner));
+assert.equal(focusLearner.completed,5,'Focused session must not unlock next themes');
+assert.equal(focusLearner.active,null);
+assert.equal(P.load(JSON.stringify(focusLearner)).completed,5);
+const continueNormal=P.start(focusLearner,exercises);
+assert.equal(continueNormal.length,10,'Normal parcours remains available after consolidation');
+assert.ok(!focusLearner.active.mode,'The normal session retains legacy active shape');
+// Une preuve unique de difficulté ne doit jamais provoquer la proposition.
+const isolated=P.empty();isolated.completed=5;
+isolated.micros['mineur:1♣']={score:-1,attempts:1,independent:0,lastSession:4};
+assert.equal(P.consolidationPlan(isolated,exercises).available,false);
+
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
 const introduced=new Map();
