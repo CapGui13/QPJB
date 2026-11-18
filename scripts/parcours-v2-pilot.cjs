@@ -70,7 +70,30 @@ function stage(q,annotations){
 function newState(seed=13){
   if(!Number.isInteger(seed)||seed<0)throw Error('seed entier positif attendu');
   return {seed,history:Object.create(null),families:Object.create(null),
-    concepts:Object.create(null),recentOpening:Object.create(null),session:0};
+    concepts:Object.create(null),recentOpening:Object.create(null),session:0,
+    reviewQueue:Object.create(null),reviewSupport:null,reviewEvents:[],
+    lastSelection:[]};
+}
+// N'attribuer un rappel ciblé qu'aux catégories vérifiables et possédant au
+// moins deux familles indépendantes. Une rubrique entière n'est PAS une notion.
+function reviewEligible(q,annotations){
+  return !!annotations.get(q.id)||!!P.microKey(q);
+}
+function ensureReviewSupport(exercises,state,annotations){
+  if(state.reviewSupport)return;
+  const familySets=new Map();
+  for(const q of exercises){
+    if(!reviewEligible(q,annotations))continue;
+    const k=concept(q,annotations);
+    if(!familySets.has(k))familySets.set(k,new Set());
+    familySets.get(k).add(family(q));
+  }
+  state.reviewSupport=Object.fromEntries([...familySets].map(([k,v])=>[k,v.size]));
+}
+function pendingReviews(state,session){
+  return Object.entries(state.reviewQueue).filter(([key,entry])=>
+    (state.reviewSupport||{})[key]>=2&&entry.due<=session&&
+    entry.lastSession<session-1).map(([key,entry])=>({key,...entry}));
 }
 function available(q,session,annotations){
   const intro=P.INTRO[q.theme];
@@ -94,7 +117,8 @@ function desiredSlots(session){
     session%2?'rep:1♠':'rep:1♥'];
   slots.push(session%3===0?'rep:1SA':'any');
   // Les créneaux de révision visent une AUTRE famille de la même notion.
-  if(session>=6)slots.push('revision');
+  if(session>=2)slots.push('revision');
+  if(session>=10)slots.push('revision');
   slots.push('any','any','any','any','any');
   return slots.slice(0,10);
 }
@@ -125,21 +149,26 @@ function matches(q,slot){return slot==='any'||slot==='revision'||
   (slot==='ouv'&&q.theme==='ouv')||roleOpening(q)===slot}
 function select(exercises,state,annotations,n=10){
   const session=state.session;
+  ensureReviewSupport(exercises,state,annotations);
   const candidates=exercises.filter(q=>available(q,session,annotations));
   const chosen=[],ids=new Set(),families=new Set();
+  state.lastSelection=[];
   const slots=desiredSlots(session).slice(0,n);
   while(slots.length<n)slots.push('any');
   for(const slot of slots){
     let pool=candidates.filter(q=>!ids.has(q.id)&&!families.has(family(q)));
     if(!pool.length)break;
     if(slot==='revision'){
+      // Rappel après échec (2 séances) OU réussite (5, puis 8, 16...).
+      // Rechercher une AUTRE famille de la même catégorie candidate.
       const due=pool.filter(q=>{
-        const c=state.concepts[concept(q,annotations)];
-        return c&&c.lastResult==='wrong'&&c.due<=session&&
-          c.lastSession<session-1&&!state.families[family(q)];
+        const c=state.reviewQueue[concept(q,annotations)];
+        return c&&c.due<=session&&c.lastSession<session-1&&
+          c.lastFamily!==family(q)&&
+          (state.reviewSupport[concept(q,annotations)]||0)>=2;
       });
       if(due.length)pool=due;
-      else continue; // pas de révision artificielle
+      else continue; // aucune révision explicitement éligible
     }else if(slot!=='any'){
       const specific=pool.filter(q=>matches(q,slot));
       // Quand le sous-groupe est épuisé, élargir la sélection plutôt que
@@ -157,10 +186,21 @@ function select(exercises,state,annotations,n=10){
       });
       if(notRecent.length)pool=notRecent;
     }
-    pool.sort((a,b)=>score(b,state,session,chosen,annotations)
+    if(slot==='revision'){
+      pool.sort((a,b)=>{
+        const A=state.reviewQueue[concept(a,annotations)];
+        const B=state.reviewQueue[concept(b,annotations)];
+        return (B.lastResult==='wrong'?1:0)-(A.lastResult==='wrong'?1:0)||
+          A.due-B.due||
+          score(b,state,session,chosen,annotations)-score(a,state,session,chosen,annotations)||
+          a.id.localeCompare(b.id);
+      });
+    }else pool.sort((a,b)=>score(b,state,session,chosen,annotations)
       -score(a,state,session,chosen,annotations)||a.id.localeCompare(b.id));
     const picked=pool[0];
     chosen.push(picked);
+    state.lastSelection.push({id:picked.id,concept:concept(picked,annotations),
+      source:slot==='revision'?'scheduled-recall':'practice'});
     ids.add(picked.id);families.add(family(picked));
   }
   // Un créneau de révision vide ne doit jamais diminuer la taille de séance.
@@ -177,6 +217,8 @@ function select(exercises,state,annotations,n=10){
     pool.sort((a,b)=>score(b,state,session,chosen,annotations)
       -score(a,state,session,chosen,annotations)||a.id.localeCompare(b.id));
     const picked=pool[0];ids.add(picked.id);families.add(family(picked));chosen.push(picked);
+    state.lastSelection.push({id:picked.id,concept:concept(picked,annotations),
+      source:'practice'});
   }
   return chosen;
 }
@@ -184,11 +226,18 @@ function recordSession(state,deck,answers,annotations){
   if(deck.length!==answers.length)throw Error('Taille réponse/séance incohérente');
   if(new Set(deck.map(q=>family(q))).size!==deck.length)
     throw Error('Famille répétée au cours de la séance');
-  const s=state.session,credited=new Set();
+  const s=state.session,credited=new Set(),conceptOutcomes=new Map();
   for(let i=0;i<deck.length;i++){
     const q=deck[i],ok=answers[i]===true,co=concept(q,annotations),fam=family(q);
     const old=state.history[q.id];
     const c=state.concepts[co];
+    const prior=conceptOutcomes.get(co);
+    if(!prior||(!ok&&prior.correct))conceptOutcomes.set(co,{
+      correct:ok,family:fam,questionId:q.id,
+      selectedReview:state.lastSelection.some(p=>p.id===q.id&&p.source==='scheduled-recall')
+    });
+    else if(prior&&ok===prior.correct&&state.lastSelection.some(p=>
+      p.id===q.id&&p.source==='scheduled-recall'))prior.selectedReview=true;
     state.history[q.id]={lastSession:s,attempts:(old?.attempts||0)+1,due:s+(ok?5:2)};
     state.families[fam]={lastSession:s};
     // Une seule observation pédagogique *fictive* par notion et par séance.
@@ -202,6 +251,33 @@ function recordSession(state,deck,answers,annotations){
       state.concepts[co].lastResult='wrong';
       state.concepts[co].due=s+2;
       state.concepts[co].errors++;
+    }
+  }
+  // Les rappels concernent un seul résultat par catégorie et par séance :
+  // un échec prime sur une réussite, et les cas isolés restent non évaluables.
+  for(const [key,answer] of conceptOutcomes){
+    if((state.reviewSupport||{})[key]<2)continue;
+    const previous=state.reviewQueue[key],correct=answer.correct;
+    const originFamily=answer.family;
+    const isDue=previous&&previous.due<=s&&previous.lastSession<s&&
+      previous.lastFamily!==originFamily;
+    if(!previous){
+      state.reviewQueue[key]={due:s+(correct?5:2),lastSession:s,
+        lastFamily:originFamily,lastResult:correct?'correct':'wrong',
+        interval:correct?5:2,round:0};
+    }else if(isDue){
+      const round=correct?previous.round+1:0;
+      const interval=correct?Math.min(24,round===1?8:round===2?16:24):2;
+      state.reviewEvents.push({session:s,concept:key,questionId:answer.questionId,
+        source:answer.selectedReview?'scheduled':'incidental',
+        previousResult:previous.lastResult,result:correct?'correct':'wrong',
+        delay:s-previous.lastSession});
+      state.reviewQueue[key]={due:s+interval,lastSession:s,
+        lastFamily:originFamily,lastResult:correct?'correct':'wrong',interval,round};
+    }else if(!correct){
+      // Toute nouvelle erreur avance le rappel, sans attendre l'ancien délai.
+      state.reviewQueue[key]={due:s+2,lastSession:s,lastFamily:originFamily,
+        lastResult:'wrong',interval:2,round:0};
     }
   }
   const openings=Object.create(null);
@@ -249,13 +325,38 @@ function metrics(sessions){
 function simulateV2(exercises,annotations,options={}){
   const count=options.sessions??65,seed=options.seed??13;
   const state=newState(seed),sessions=[];
+  let scheduledSlotsUsed=0, eligibleErrorSessions=0,eligibleSuccessSessions=0,
+    unsupportedConcepts=0;
   for(let s=0;s<count;s++){
+    ensureReviewSupport(exercises,state,annotations);
+    const pending=pendingReviews(state,s);
+    const open=q=>available(q,s,annotations)&&
+      !state.families[family(q)]||available(q,s,annotations)&&
+      state.families[family(q)]?.lastSession<s-2;
+    const viable=pending.filter(item=>exercises.some(q=>
+      concept(q,annotations)===item.key&&
+      family(q)!==item.lastFamily&&open(q)));
+    if(viable.some(item=>item.lastResult==='wrong'))eligibleErrorSessions++;
+    if(viable.some(item=>item.lastResult==='correct'))eligibleSuccessSessions++;
     const deck=select(exercises,state,annotations,10);
     if(deck.length!==10)throw Error('Séance V2 incomplète '+s+': '+deck.length);
     sessions.push(deck);
+    scheduledSlotsUsed+=state.lastSelection.filter(x=>x.source==='scheduled-recall').length;
     recordSession(state,deck,simulatedAnswers(deck,s,seed,options.profile),annotations);
   }
-  return {sessions,state,metrics:metrics(sessions)};
+  const reviewEvents=state.reviewEvents;
+  const targeted=reviewEvents.filter(x=>x.source==='scheduled');
+  return {sessions,state,metrics:{...metrics(sessions),revision:{
+    scheduledSlotsUsed,actualDueRecalls:reviewEvents.length,
+    scheduledDueRecalls:targeted.length,
+    failedRecallOrigins:reviewEvents.filter(x=>x.previousResult==='wrong').length,
+    successfulRecallOrigins:reviewEvents.filter(x=>x.previousResult==='correct').length,
+    dueErrorOpportunitySessions:eligibleErrorSessions,
+    dueSuccessOpportunitySessions:eligibleSuccessSessions,
+    candidateOrContextQueueSize:Object.keys(state.reviewQueue).length,
+    unsupportedSingleFamilyCategories:Object.keys(state.reviewSupport).filter(k=>
+      state.reviewSupport[k]<2).length
+  }}};
 }
 function simulateV1(exercises,options={}){
   const count=options.sessions??65,seed=options.seed??13;
