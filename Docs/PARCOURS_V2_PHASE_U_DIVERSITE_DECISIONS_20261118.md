@@ -20,6 +20,8 @@ Pour chaque question réellement tirée, il conserve l'ID, la famille originale 
 - **La décision observable** : couple contexte + réponse exacte, à ne pas confondre avec une compétence.
 - **Les expositions** des réponses sur 1♣ et sur 1♦, avec détails des réponses exactes par périodes.
 
+L'audit différencie aussi les répétitions de **couple contexte/réponse** et les répétitions ayant **exactement la même séquence d'enchères d'origine**. Les deux mesures sont distinctes, notamment lorsque deux séquences différentes conduisent au même choix. Un ensemble borné de 20 groupes de QCM à revoir est fourni avec ses IDs, familles et enchères originales ; ce ne sont **pas** des propositions de suppression.
+
 Les fenêtres sont les séances **1–5, 6–15, 16–30 et 31–45**. Les compteurs de répétitions portent sur les couples contexte/réponse répétés dans une séance et présents dans deux séances consécutives. Ils sont uniquement des **signaux de revue**, et non des défauts automatiquement diagnostiqués. Les réponses identiques dans deux contextes différents sont suivies séparément.
 
 ## Garanties
