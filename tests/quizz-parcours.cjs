@@ -272,7 +272,20 @@ for(let i=0;i<targetDeck.length;i++)
 assert.ok(P.finish(focusLearner));
 assert.equal(focusLearner.completed,5,'Focused session must not unlock next themes');
 assert.equal(focusLearner.active,null);
+assert.equal(focusLearner.lastConsolidatedAt,5,'One focused session per main-session milestone');
+assert.equal(P.consolidationPlan(focusLearner,exercises).reason,'already-consolidated',
+  'Consolidations cannot be chained indefinitely without a normal session');
 assert.equal(P.load(JSON.stringify(focusLearner)).completed,5);
+assert.equal(P.load(JSON.stringify(focusLearner)).lastConsolidatedAt,5,
+  'The cooldown marker survives a reload');
+const afterMilestone=P.load(JSON.stringify(focusLearner));
+afterMilestone.completed++;
+assert.notEqual(P.consolidationPlan(afterMilestone,exercises).reason,'already-consolidated',
+  'A subsequent ordinary session reopens consolidation when still needed');
+const tooSmall=P.load(focusBefore);
+assert.equal(P.consolidationPlan(tooSmall,
+  exercises.filter(x=>P.microKey(x)==='mineur:1♣').slice(0,8)).available,false,
+  'Do not advertise a short or repetitive consolidation as ten questions');
 const continueNormal=P.start(focusLearner,exercises);
 assert.equal(continueNormal.length,10,'Normal parcours remains available after consolidation');
 assert.ok(!focusLearner.active.mode,'The normal session retains legacy active shape');
