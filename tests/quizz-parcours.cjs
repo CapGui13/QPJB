@@ -261,6 +261,8 @@ assert.equal(new Set(focusPlan.items.map(x=>focusById.get(x.id).caseFamily||x.id
 assert.equal(JSON.stringify(focusLearner),focusBefore,'Planning does not mutate progress');
 const targetDeck=P.startConsolidation(focusLearner,exercises);
 assert.equal(targetDeck.length,10);
+const observedBefore=JSON.stringify({skills:focusLearner.skills,
+  micros:focusLearner.micros,axes:focusLearner.axes});
 assert.equal(focusLearner.active.mode,'consolidation');
 const focusSaved=P.load(JSON.stringify(focusLearner));
 assert.equal(focusSaved.active.mode,'consolidation','Consolidation survives page reload');
@@ -270,6 +272,13 @@ assert.equal(P.consolidationPlan(focusSaved,exercises).reason,'session-active');
 for(let i=0;i<targetDeck.length;i++)
   assert.ok(P.record(focusLearner,targetDeck[i],'wrong',i,null,false,false));
 assert.ok(P.finish(focusLearner));
+assert.equal(JSON.stringify({skills:focusLearner.skills,
+  micros:focusLearner.micros,axes:focusLearner.axes}),observedBefore,
+  'Targeted training must not contribute a proof of mastery or lower skill levels');
+assert.equal(focusLearner.lastConsolidation.counts.wrong,10,
+  'The focused failures must nevertheless appear in the observed report');
+assert.equal(targetDeck.every(x=>focusLearner.entries[x.id]?.result==='wrong'),true,
+  'The genuine practice outcomes remain available to future revision');
 assert.equal(focusLearner.completed,5,'Focused session must not unlock next themes');
 assert.equal(focusLearner.active,null);
 assert.equal(focusLearner.lastConsolidatedAt,5,'One focused session per main-session milestone');
@@ -278,6 +287,21 @@ assert.equal(P.consolidationPlan(focusLearner,exercises).reason,'already-consoli
 assert.equal(P.load(JSON.stringify(focusLearner)).completed,5);
 assert.equal(P.load(JSON.stringify(focusLearner)).lastConsolidatedAt,5,
   'The cooldown marker survives a reload');
+// A regular session starting at the SAME completed index must still score
+// independent evidence, even if a focused practice has already happened there.
+const following=P.load(JSON.stringify(focusLearner));
+const afterFocusCards=exercises.filter(x=>P.microKey(x)==='mineur:1♣');
+const followingDeck=P.start(following,afterFocusCards);
+assert.equal(followingDeck.length,10);
+assert.equal(following.active.mode,undefined,'Normal route, not another consolidation');
+assert.ok(P.record(following,followingDeck[0],'correct',0,
+  followingDeck[0].answer,false,false));
+assert.equal(following.micros['mineur:1♣'].score,-2,
+  'The first clean normal-session answer is now counted');
+assert.equal(following.micros['mineur:1♣'].lastScoredSession,5);
+assert.equal(following.skills.mineur.clean,1,
+  'Level progression starts from regular-session evidence');
+
 const afterMilestone=P.load(JSON.stringify(focusLearner));
 afterMilestone.completed++;
 assert.notEqual(P.consolidationPlan(afterMilestone,exercises).reason,'already-consolidated',
@@ -321,6 +345,7 @@ const mixed=P.empty();mixed.completed=15;
 mixed.micros['mineur:1♣']={score:-3,attempts:4,independent:0,lastSession:14};
 mixed.axes.force={score:-2,attempts:3,independent:0,lastSession:14};
 const mixedDeck=P.startConsolidation(mixed,exercises);
+const mixedMasteryBefore=JSON.stringify({skills:mixed.skills,micros:mixed.micros,axes:mixed.axes});
 assert.equal(mixedDeck.length,10);
 assert.equal(mixed.active.targets.length,10);
 assert.equal(new Set(mixed.active.targets).size,2,'Two independently audited focuses');
@@ -335,6 +360,8 @@ for(let i=0;i<mixedDeck.length;i++){
     outcome==='correct'?mixedDeck[i].answer:null,i%4===1,false));
 }
 assert.equal(P.finish(mixed),true);
+assert.equal(JSON.stringify({skills:mixed.skills,micros:mixed.micros,axes:mixed.axes}),
+ mixedMasteryBefore,'Even mixed good/bad focused results cannot distort mastery evidence');
 assert.equal(mixed.completed,15);
 assert.deepEqual(mixed.lastConsolidation.counts,
   {total:10,independent:3,helped:3,wrong:2,skipped:2});
