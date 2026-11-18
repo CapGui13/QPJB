@@ -37,6 +37,13 @@ function tryImprove(deck,state,annotations,exercises,mapping,foundations,meta){
         !P.available(q,session,annotations)||
         q.difficulty>Math.min(5,2+Math.floor(session/12)))continue;
       // Eviter de perturber une notion qui a deja un rappel en attente.
+      const projected=deck.reduce((counts,entry,index)=>{
+        if(index===i)entry=q;
+        counts[entry.answer]=(counts[entry.answer]||0)+1;
+        return counts;
+      },Object.create(null));
+      // Le melange ne doit pas recreer le probleme de quatre reponses identiques.
+      if(Math.max(...Object.values(projected))>=4)continue;
       const concept=P.concept(q,annotations);
       if(state.reviewQueue[concept]?.due<=session)continue;
       swaps.push({idx:i,old,q,foundation:f,
