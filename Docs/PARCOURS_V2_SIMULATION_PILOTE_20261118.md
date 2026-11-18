@@ -22,6 +22,31 @@ La sortie est un **JSON** sur la console. La simulation est reproductible avec s
 4. **Étagement** : les catégories proposées de Stayman/Texas sont introduites en simulation à partir des séances fictives 8, 12, 16, 20 ou 24 (numérotation humaine) selon le niveau provisoire de revue. Cela **ne crée aucun prérequis réel** et ne garantit pas que la notion soit validée.
 5. **Comparaison** : on exécute aussi la vraie sélection V1.10 en mémoire avec les mêmes scénarios fictifs et on compare des mesures **descriptives** : nombre d'IDs et de familles distinctes, familles en double dans une séance, séances comportant quatre enchères identiques ou plus, distribution des choix d'ouverture.
 
+
+## Mesures reproductibles — graine 13, 65 séances, 650 questions
+
+Les calculs ci-dessous ont été obtenus **avec le véritable moteur V1.10**, le pilote V2-F et le **même catalogue** de 1 523 QCM. Ce sont exclusivement des simulations de tirages avec résultats de réponses fictifs ; **une plus grande diversité n'établit pas une meilleure mémorisation**.
+
+| Indicateur | V1.10 profil standard | Pilote V2-F standard | V1.10 profil fragile sur mineures | Pilote V2-F fragile |
+| --- | ---: | ---: | ---: | ---: |
+| Questions sélectionnées | 650 | 650 | 650 | 650 |
+| IDs distincts | 523 | **650** | 522 | **650** |
+| Familles originales distinctes | 505 | **650** | 489 | **650** |
+| Séances avec ≥4 réponses identiques | 2 | **0** | 1 | **0** |
+| Réponses à 1♣ | 8 | **30** | 4 | **30** |
+| Réponses à 1♦ | 8 | **28** | 54 | **28** |
+| Réponses à 1♥ | 13 | **30** | 14 | **30** |
+| Réponses à 1♠ | 8 | **27** | 7 | **27** |
+| Réponses à 1SA | 16 | **35** | 8 | **35** |
+
+Les choix d'**ouverture** sont également plus équilibrés : pilote standard **1♣ ×8, 1♦ ×12, 1♥ ×7, 1♠ ×8 et 1SA ×6**, contre **1♣ ×30, 1♦ ×26, 1♥ ×7, 1♠ ×11 et 1SA ×3** dans la V1.10 simulée. Le pilote couvre les **22 rubriques** sur le parcours complet ; le volume de certaines notions avancées reste à examiner.
+
+**Attention à l'interprétation :** V1.10 pratique volontairement des rappels du même exercice et de la même famille, alors que ce premier pilote choisit quasi exclusivement des familles nouvelles tant qu'il en reste. Le gain de diversité est réel *dans cette expérience*, mais il ne dit rien sur la consolidation à long terme. Les révisions V2 se font par nouveaux exercices rattachés à une notion déjà vue (quand disponibles). Il faudra comparer les courbes d'acquisition sur de vraies séances volontaires, et pas seulement maximiser l'unicité.
+
+### Défaut découvert puis corrigé pendant l'expérimentation
+
+La première version du pilote imposait un créneau 1♣ dans chaque séance (65 apparitions de 1♣ contre 6 de 1♦) et réutilisait trop de familles. Elle **a été corrigée** : rotation des créneaux d'ouverture et élargissement vers d'autres thèmes lorsque les familles d'un créneau sont épuisées. Ce point est désormais couvert par `--check`.
+
 ## Limites et alertes
 
 - Le simulateur n'utilise ni IA ni API externe, conformément au projet de moteur algorithmique autonome.
