@@ -34,7 +34,7 @@ function sources(mapping=P.load()){
   if(our.size!==13||reply.size!==12)throw Error('P non correspondante');
   return {our,reply};
 }
-function trace(sessions,catalog,index=sources()){
+function trace(sessions,catalog,index=sources(),annotations=F.loadAnnotations()){
   if(!sessions.length||sessions.some(d=>d.length!==10))throw Error('Séance invalide');
   const selected=sessions.flat();
   const whole=new Set(catalog.map(q=>q.id));
@@ -59,14 +59,13 @@ function trace(sessions,catalog,index=sources()){
     return {from,to:Math.min(to,sessions.length),counts};
   });
   const eligibleCheckpoints=[11,13,15,17,21,25].filter(x=>x<=sessions.length).map(s=>{
-    const available=catalog.filter(q=>F.available(q,s-1,new Map()));
-    // Attention: sans les 79 annotations précises, l'éligibilité peut
-    // surestimer les situations spécialisées. Cette mesure n'est qu'un
-    // plafond exploratoire. Les métriques de tirages n'ont pas ce biais.
+    const available=catalog.filter(q=>F.available(q,s-1,annotations));
+    // Plafond exploratoire : même le filtre de stage exact ne garantit
+    // pas une sélection parmi les dix créneaux de la séance.
     const counts=Object.fromEntries(keys.map(k=>[k,
       new Set(available.filter(q=>classify(q,index)[k]).map(F.family)).size]));
     return {session:s,eligibleFamilyUpperBound:counts,
-      qualified:'Plafond hors contraintes de stage des 79 annotations'};
+      qualified:'Plafond après introduction et stage, sans garantie de tirage'};
   });
   const early=perSession.slice(0,EARLY);
   return {schema:'QPJB_V2_T_FULL_CATALOG_TRACE_20261118_1',
@@ -86,7 +85,7 @@ function matrix(){
   for(const profile of ['balanced','fragile-mineures','facile'])
     for(const seed of [13,29,47]){
       const r=F.simulateV2(catalog,annotations,{sessions:45,profile,seed});
-      const audit=trace(r.sessions,catalog,index);
+      const audit=trace(r.sessions,catalog,index,annotations);
       rows.push({profile,seed,themes:audit.themesSeen,families:audit.familiesSeen,
         reviews:r.metrics.revision.scheduledDueRecalls,
         first:audit.firstSession,first25:audit.first25,
