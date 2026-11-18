@@ -1,0 +1,296 @@
+{
+  "schema": "QPJB_V2_Q_PARCOURS_CONCEPTUEL_NON_ACTIF_20261118_1",
+  "status": "PROPOSITION_EDITORIALE_NON_ACTIVE",
+  "referenceAxes": "Docs/PARCOURS_V2_PHASE_P_AXES_SEMANTIQUES_20261118.json",
+  "referenceJ": "Docs/PARCOURS_V2_PREREQUIS_CANDIDATS_20261118.json",
+  "referenceEngine": "scripts/parcours-v2-pilot.cjs",
+  "axesCount": 16,
+  "groupsCount": 5,
+  "conceptualEdgesCount": 15,
+  "groupOrderNotEnforced": true,
+  "selectionUnaffected": true,
+  "publicRuntimeWired": false,
+  "unlockEngineEnabled": false,
+  "masteryInferenceEnabled": false,
+  "exposureIsNotMastery": true,
+  "principles": [
+    "Les groupes sont des sujets pour la préparation des séances, jamais un verrou de progression.",
+    "Maintenir les ouvertures 1♣ 1♦ 1♥ 1♠ 1SA Passe et leurs réponses diversifiées dans toutes les étapes.",
+    "Ne pas répéter une même famille dans une séance et préserver les rappels ciblés du moteur V2-F.",
+    "Ne pas déduire que comprendre l'intervention de notre camp suffit pour répondre à un Contre adverse.",
+    "Ne jamais considérer un seul QCM ou des réponses fictives comme preuve de maîtrise.",
+    "Les micro-objectifs Stayman/Texas contrés après 1SA nécessitent leur propre axe spécialisé si validés, sans rattachement automatique au contre d'appel sur ouverture."
+  ],
+  "groups": [
+    {
+      "id": "socle_mixte",
+      "label": "Choix d'ouverture et premiers fits, entremêlés aux réponses 1♣/1♦/1♥/1♠",
+      "axes": [
+        "fondation:eval_h",
+        "fondation:open_1sa",
+        "fondation:open_2sa",
+        "fondation:fit_major"
+      ],
+      "priority": "EARLY_WITH_MIXED_OPENING_AND_RESPONSES",
+      "note": "Les axes P ne couvrent pas explicitement l'ouverture de 1♣/1♦ ni les réponses à 1m ; le moteur V2-F doit conserver ses sous-groupes roleOpening pour ces quatre réponses. 2SA est un contraste de force à introduire avec prudence, pas une leçon obligatoire dès la séance 1."
+    },
+    {
+      "id": "premieres_conventions",
+      "label": "Invitation, Stayman/Texas majeurs après 1SA",
+      "axes": [
+        "fondation:invitation_game",
+        "fondation:stayman_1sa",
+        "fondation:texas_major_1sa"
+      ],
+      "priority": "GRADUAL_NOT_BLOCKING",
+      "note": "Panacher les choix d'ouverture et de réponse, les invitations et les enchères conventionnelles ; ne pas imposer une série d'ouvertures."
+    },
+    {
+      "id": "concurrence_deux_roles",
+      "label": "Intervenir sur l'ouverture adverse et répondre après son contre d'appel",
+      "axes": [
+        "fondation:intervention",
+        "fondation:reponse_contre_adverse"
+      ],
+      "priority": "PARALLEL_DIFFERENT_ROLES",
+      "note": "Aucune relation de prérequis entre les deux : on peut intervenir et répondre au Contre dans des rôles distincts. Les révisions ciblées ne doivent pas confondre les deux."
+    },
+    {
+      "id": "deux_sa_et_extensions",
+      "label": "Stayman/Texas après 2SA, Texas mineurs et quantitatif",
+      "axes": [
+        "fondation:stayman_2sa",
+        "fondation:texas_major_2sa",
+        "fondation:texas_minor_1sa",
+        "fondation:texas_minor_2sa",
+        "fondation:quantitative"
+      ],
+      "priority": "CONVENTIONS_PROGRESSION_WITH_EDITORIAL_REVIEW",
+      "note": "Comparer après 1SA et 2SA sans confondre la zone de force ; garder les Texas mineurs sous réserve d'accords pédagogiques/SEF."
+    },
+    {
+      "id": "chelems_et_cas_speciaux",
+      "label": "Exploration de chelem et 3SA gambling",
+      "axes": [
+        "fondation:slam",
+        "fondation:gambling"
+      ],
+      "priority": "ADVANCED_NO_FORCED_COVERAGE",
+      "note": "Le gambling ne dispose que d'une famille candidate ; ne pas en faire un prérequis ou un verrou."
+    }
+  ],
+  "edges": [
+    {
+      "from": "fondation:open_1sa",
+      "to": "fondation:stayman_1sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTEXTE_OUVERTURE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_1sa",
+      "to": "fondation:texas_major_1sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTEXTE_OUVERTURE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_1sa",
+      "to": "fondation:texas_minor_1sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONVENTION_A_ARBITRER",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_2sa",
+      "to": "fondation:stayman_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTEXTE_OUVERTURE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_2sa",
+      "to": "fondation:texas_major_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTEXTE_OUVERTURE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_2sa",
+      "to": "fondation:texas_minor_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "PREUVES_INSUFFISANTES",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:open_2sa",
+      "to": "fondation:quantitative",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "SITUATION_DE_FORCE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:fit_major",
+      "to": "fondation:invitation_game",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CHOIX_INVIATION_OU_MANCHE",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:fit_major",
+      "to": "fondation:reponse_contre_adverse",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTRASTE_FIT_ET_SURCONTRE",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:fit_major",
+      "to": "fondation:slam",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "NOTION_ATOUT",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:stayman_1sa",
+      "to": "fondation:stayman_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "ANALOGIE_1SA_2SA",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:texas_major_1sa",
+      "to": "fondation:texas_major_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "ANALOGIE_1SA_2SA",
+      "highRisk": false,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:invitation_game",
+      "to": "fondation:quantitative",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "INVITATION_VERS_CHELEM",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:invitation_game",
+      "to": "fondation:slam",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "CONTRASTE_INVITATION_ET_CHELEM",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    },
+    {
+      "from": "fondation:texas_minor_1sa",
+      "to": "fondation:texas_minor_2sa",
+      "kind": "LIEN_CONCEPTUEL_POUR_REVUE",
+      "reason": "ANALOGIE_CONVENTION_A_VERIFIER",
+      "highRisk": true,
+      "teacherReviewRequired": true,
+      "isHardPrerequisite": false,
+      "preventsPresentation": false,
+      "proofOfMastery": false
+    }
+  ],
+  "unmappedContexts": [
+    {
+      "id": "ouvertures_mineures",
+      "label": "Choix de 1♣ et 1♦",
+      "existingEngineContext": "ouv:1♣ / ouv:1♦",
+      "needsCatalogReview": true
+    },
+    {
+      "id": "reponses_aux_mineures",
+      "label": "Répondre à 1♣ et à 1♦",
+      "existingEngineContext": "rep:1♣ / rep:1♦",
+      "needsCatalogReview": true
+    },
+    {
+      "id": "contre_sur_enchere_conventionnelle",
+      "label": "Contre adverse sur Stayman ou Texas après 1SA",
+      "existingEngineContext": "micro-objectifs J avec au moins une source SEF-L25-001..006",
+      "needsCatalogReview": true
+    }
+  ],
+  "specializedCounterSkillWarnings": [
+    {
+      "id": "stayman:stayman_1sa_contre_choisir_reponse",
+      "label": "Adapter la réponse de l’ouvreur au Stayman contré pour l’entame",
+      "sourceIds": [
+        "SEF-L25-001",
+        "SEF-L25-002",
+        "SEF-L25-003"
+      ],
+      "oldFoundationId": "fondation:intervention",
+      "issue": "Le contre porte sur le Stayman/Texas nommé par notre partenaire, pas sur l'ouverture 1m/1M du partenaire. Le libellé ancien des fondations est faux pour ces micro-objectifs ; ne pas les réaffecter automatiquement.",
+      "autoRetarget": false
+    },
+    {
+      "id": "stayman:texas_majeur_1sa_contre_choisir_reponse",
+      "label": "Adapter la rectification du Texas majeur contré pour l’entame",
+      "sourceIds": [
+        "SEF-L25-004",
+        "SEF-L25-005",
+        "SEF-L25-006"
+      ],
+      "oldFoundationId": "fondation:intervention",
+      "issue": "Le contre porte sur le Stayman/Texas nommé par notre partenaire, pas sur l'ouverture 1m/1M du partenaire. Le libellé ancien des fondations est faux pour ces micro-objectifs ; ne pas les réaffecter automatiquement.",
+      "autoRetarget": false
+    }
+  ],
+  "teacherReviewRequired": true
+}
