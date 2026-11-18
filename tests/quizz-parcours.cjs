@@ -315,6 +315,60 @@ for(const [micro,completed,expected] of [
   if(expected)assert.equal(new Set(plan.items.map(x=>
     focusById.get(x.id).caseFamily||x.id)).size,expected);
 }
+// V1.8 — bilan factuel, ventilé par cible et sauvegardé (pas de maîtrise
+// déduite de dix bonnes réponses). Les réponses corrigées ne sont pas autonomes.
+const mixed=P.empty();mixed.completed=15;
+mixed.micros['mineur:1♣']={score:-3,attempts:4,independent:0,lastSession:14};
+mixed.axes.force={score:-2,attempts:3,independent:0,lastSession:14};
+const mixedDeck=P.startConsolidation(mixed,exercises);
+assert.equal(mixedDeck.length,10);
+assert.equal(mixed.active.targets.length,10);
+assert.equal(new Set(mixed.active.targets).size,2,'Two independently audited focuses');
+assert.ok(mixed.active.targets.every(x=>P.focusLabel(x)),
+  'Focus labels must be from reviewed taxonomy');
+const resumedMixed=P.load(JSON.stringify(mixed));
+assert.deepEqual(resumedMixed.active.targets,mixed.active.targets);
+const targetsBefore=mixed.active.targets.slice();
+for(let i=0;i<mixedDeck.length;i++){
+  const outcome=['correct','correct','wrong','skipped'][i%4];
+  assert.ok(P.record(mixed,mixedDeck[i],outcome,i,
+    outcome==='correct'?mixedDeck[i].answer:null,i%4===1,false));
+}
+assert.equal(P.finish(mixed),true);
+assert.equal(mixed.completed,15);
+assert.deepEqual(mixed.lastConsolidation.counts,
+  {total:10,independent:3,helped:3,wrong:2,skipped:2});
+assert.equal(mixed.lastConsolidation.atSession,15);
+assert.deepEqual(new Set(mixed.lastConsolidation.parts.map(x=>x.target)),
+  new Set(targetsBefore),'Reports group answers under their actual selected focus');
+for(const part of mixed.lastConsolidation.parts){
+  const expected=targetsBefore.filter(x=>x===part.target).length;
+  assert.equal(part.counts.total,expected,'A QCM is counted under exactly one focus');
+  assert.equal(part.counts.total,
+    part.counts.independent+part.counts.helped+part.counts.wrong+part.counts.skipped);
+}
+assert.deepEqual(P.load(JSON.stringify(mixed)).lastConsolidation,
+  mixed.lastConsolidation,'Summary survives reload');
+const corrupt=JSON.parse(JSON.stringify(mixed));
+corrupt.lastConsolidation.counts.independent=10;
+assert.equal(P.load(JSON.stringify(corrupt)).lastConsolidation,undefined,
+  'Never display contradictory or tampered report counts');
+assert.equal(P.focusLabel('micro:unknown'),null,'Reject unreviewed focus identifiers');
+
+const oldFocused=P.empty();oldFocused.completed=14;
+const oldCards=exercises.filter(x=>P.microKey(x)==='intervenir:barrage').slice(0,5);
+assert.equal(oldCards.length,5);
+oldFocused.active={mode:'consolidation',createdAt:14,index:0,answers:{},
+  ids:oldCards.map(x=>x.id)};
+for(let i=0;i<5;i++)
+ assert.ok(P.record(oldFocused,oldCards[i],'skipped',i,null,false,false));
+assert.ok(P.finish(oldFocused));
+assert.equal(oldFocused.lastConsolidation.counts.skipped,5);
+assert.deepEqual(oldFocused.lastConsolidation.parts,[],
+ 'Legacy V1.7 sessions get a truthful total without invented group labels');
+assert.deepEqual(P.load(JSON.stringify(oldFocused)).lastConsolidation,
+ oldFocused.lastConsolidation,'Legacy focused total persists');
+
 const continueNormal=P.start(focusLearner,exercises);
 assert.equal(continueNormal.length,10,'Normal parcours remains available after consolidation');
 assert.ok(!focusLearner.active.mode,'The normal session retains legacy active shape');
