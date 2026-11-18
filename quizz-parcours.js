@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.6 : progression étayée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.7 : consolidation adaptée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -575,20 +575,24 @@
     return selected.map(v=>({id:v.exercise.id,kind:v.kind}));
   }
 
-  // V1.6 : séance complémentaire, indépendante du calendrier du parcours.
+  // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture
+  // réelle du catalogue ; ne jamais fabriquer ou répéter un cas pour remplir.
+  // Le parcours principal reste strictement composé de dix QCM.
   // Un besoin doit être confirmé par au moins deux essais : pas de rattrapage
   // déclenché par une erreur isolée ou une classification non auditée.
   function consolidationPlan(state,exercises,n=10){
     if(state.active)return {available:false,reason:'session-active',focus:[],items:[]};
     if(state.lastConsolidatedAt===state.completed)return {available:false,reason:'already-consolidated',focus:[],items:[]};
-    const limit=clamp(int(n,10),1,10),s=state.completed;
+    const limit=clamp(int(n,10),1,10),minFamilies=Math.min(4,limit),s=state.completed;
+    let hasEvidence=false;
     const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
     const targets=[];
     function collect(records,labels,kind,identify){
       for(const [key,r] of Object.entries(records||{})){
         if(!Object.hasOwn(labels,key)||!r||r.score>-2||r.attempts<2)continue;
+        hasEvidence=true;
         const candidates=pool.filter(x=>identify(x)===key);
-        if(new Set(candidates.map(family)).size<Math.min(6,limit))continue;
+        if(new Set(candidates.map(family)).size<minFamilies)continue;
         targets.push({kind,key,label:labels[key],score:r.score,candidates});
       }
     }
@@ -597,7 +601,7 @@
     targets.sort((a,b)=>a.score-b.score||b.candidates.length-a.candidates.length||
       (a.kind+':'+a.key).localeCompare(b.kind+':'+b.key));
     const focus=targets.slice(0,2);
-    if(!focus.length)return {available:false,reason:'no-evidenced-weakness',focus:[],items:[]};
+    if(!focus.length)return {available:false,reason:hasEvidence?'pool-insufficient':'no-evidenced-weakness',focus:[],items:[]};
     const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
     function choose(target){
       let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
@@ -629,7 +633,7 @@
       if(choose(primary))continue;
       if(!focus.some(t=>t!==primary&&choose(t)))break;
     }
-    const available=items.length===limit;
+    const available=items.length>=minFamilies;
     return {available,reason:available?null:'pool-insufficient',
       focus:focus.map(t=>({kind:t.kind,key:t.key,label:t.label,score:t.score})),
       items:available?items:[]};

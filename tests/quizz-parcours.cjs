@@ -282,10 +282,39 @@ const afterMilestone=P.load(JSON.stringify(focusLearner));
 afterMilestone.completed++;
 assert.notEqual(P.consolidationPlan(afterMilestone,exercises).reason,'already-consolidated',
   'A subsequent ordinary session reopens consolidation when still needed');
+// V1.7 : adapter la longueur au nombre réel de familles, sans inventer de QCM.
 const tooSmall=P.load(focusBefore);
-assert.equal(P.consolidationPlan(tooSmall,
-  exercises.filter(x=>P.microKey(x)==='mineur:1♣').slice(0,8)).available,false,
-  'Do not advertise a short or repetitive consolidation as ten questions');
+const eight=exercises.filter(x=>P.microKey(x)==='mineur:1♣')
+  .filter((x,i,arr)=>arr.findIndex(y=>(y.caseFamily||y.id)===(x.caseFamily||x.id))===i)
+  .slice(0,8);
+assert.equal(eight.length,8);
+const shortPlan=P.consolidationPlan(tooSmall,eight);
+assert.equal(shortPlan.available,true,'A short, genuinely distinct deck should be offered');
+assert.equal(shortPlan.items.length,8,'Exactly eight original families, without invented filler');
+const shortDeck=P.startConsolidation(tooSmall,eight);
+assert.equal(shortDeck.length,8);
+assert.equal(P.load(JSON.stringify(tooSmall)).active.ids.length,8,'Short deck survives reload');
+for(let i=0;i<shortDeck.length;i++)
+  assert.ok(P.record(tooSmall,shortDeck[i],'skipped',i,null,false,false));
+assert.equal(P.finish(tooSmall),true);
+assert.equal(tooSmall.completed,5,'Short consolidation does not unlock topics');
+const three=P.load(focusBefore);
+assert.equal(P.consolidationPlan(three,eight.slice(0,3)).available,false,
+  'Three original cases are not enough for a credible focused lesson');
+assert.equal(P.consolidationPlan(three,eight.slice(0,3)).reason,'pool-insufficient');
+
+for(const [micro,completed,expected] of [
+  ['ouv:passe',0,9],['intervenir:barrage',14,5],['reveil:barrage',20,0]
+]){
+  const learner=P.empty();learner.completed=completed;
+  learner.micros[micro]={score:-3,attempts:4,independent:0,
+    lastSession:Math.max(0,completed-1),lastScoredSession:Math.max(0,completed-1)};
+  const plan=P.consolidationPlan(learner,exercises);
+  assert.equal(plan.items.length,expected,'Catalog-backed lesson size for '+micro);
+  assert.equal(plan.available,expected>=4,'No artificial enlargement for '+micro);
+  if(expected)assert.equal(new Set(plan.items.map(x=>
+    focusById.get(x.id).caseFamily||x.id)).size,expected);
+}
 const continueNormal=P.start(focusLearner,exercises);
 assert.equal(continueNormal.length,10,'Normal parcours remains available after consolidation');
 assert.ok(!focusLearner.active.mode,'The normal session retains legacy active shape');
