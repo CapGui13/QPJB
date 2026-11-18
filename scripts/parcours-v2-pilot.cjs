@@ -207,9 +207,13 @@ function simulatedAnswers(deck,session,seed,profile='balanced'){
 function metrics(sessions){
   const all=sessions.flat(),unique=new Set(all.map(q=>q.id));
   const fams=new Set(all.map(family));
-  const opening={};
+  const opening={},responses={};
   for(const q of all.filter(x=>x.theme==='ouv'))
     opening[q.answer]=(opening[q.answer]||0)+1;
+  for(const q of all.filter(x=>['mineur','majeur','sa'].includes(x.theme))){
+    const c=roleOpening(q);
+    if(c)responses[c]=(responses[c]||0)+1;
+  }
   const repeatedFamiliesInside=sessions.filter(deck=>
     new Set(deck.map(family)).size!==deck.length).length;
   const overThreeSameAnswer=sessions.filter(deck=>
@@ -219,7 +223,7 @@ function metrics(sessions){
     uniqueIds:unique.size,uniqueFamilies:fams.size,
     repeatedFamilySessions:repeatedFamiliesInside,
     sessionsWith4SameAnswer:overThreeSameAnswer,
-    opening};
+    opening,responses};
 }
 function simulateV2(exercises,annotations,options={}){
   const count=options.sessions??65,seed=options.seed??13;
@@ -275,5 +279,9 @@ if(require.main===module){
     if(pilot.metrics.repeatedFamilySessions!==0||
       pilot.metrics.questionCount!==n*10)throw Error('Invariant du pilote violé');
   }
-  process.stdout.write(JSON.stringify(report,null,2)+'\n');
+  if(args.includes('--summary'))
+    process.stdout.write(JSON.stringify({assumptions:report.assumptions,
+      catalogSize:report.catalogSize,annotatedQcm:report.annotatedQcm,
+      V1:report.V1,V2pilot:report.V2pilot})+'\n');
+  else process.stdout.write(JSON.stringify(report,null,2)+'\n');
 }
