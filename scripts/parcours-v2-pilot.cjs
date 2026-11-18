@@ -303,6 +303,16 @@ if(require.main===module){
       const o=pilot.metrics.opening;
       if((o['1♣']||0)<5||(o['1♦']||0)<5)
         throw Error('Ouvertures mineures déséquilibrées');
+      const keyOpenings=STANDARD_OPENINGS.map(k=>o[k]||0);
+      if(Math.max(...keyOpenings)-Math.min(...keyOpenings)>12)
+        throw Error('Concentration excessive sur un type d ouverture');
+      const responseKeys=['rep:1♣','rep:1♦','rep:1♥','rep:1♠','rep:1SA'];
+      const responseCounts=responseKeys.map(k=>pilot.metrics.responses[k]||0);
+      if(Math.min(...responseCounts)<10||
+        Math.max(...responseCounts)-Math.min(...responseCounts)>20)
+        throw Error('Réponses trop peu diversifiées');
+      if(Object.keys(pilot.metrics.themes).length!==P.ROADMAP.length)
+        throw Error('Toutes les rubriques devraient être rencontrées');
       if(pilot.metrics.uniqueFamilies<n*9)
         throw Error('Réemploi excessif des familles sur '+n+' séances');
     }
