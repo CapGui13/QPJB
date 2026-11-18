@@ -54,6 +54,11 @@ for(const a of micro.assignments){
     clubs:original.originalHand[3].length
   });
   assert.equal(a.classificationStatus,'A_REVOIR_HUMAINEMENT');
+  const hcp={A:4,R:3,D:2,V:1};
+  const computedH=original.originalHand.flat().reduce((n,card)=>n+(hcp[card]||0),0);
+  assert.equal(computedH,original.originalH,'Points H source '+a.id);
+  assert.deepEqual(original.originalHand.map(suit=>suit.length),
+    original.originalShape,'Distribution source '+a.id);
 }
 assert.deepEqual(seen,new Set(bySource.keys()),'Exact coverage of 65 QCM');
 assert.equal(micro.skills.reduce((sum,s)=>sum+s.exerciseCount,0),65);
