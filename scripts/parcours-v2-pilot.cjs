@@ -142,7 +142,11 @@ function select(exercises,state,annotations,n=10){
       else continue; // pas de révision artificielle
     }else if(slot!=='any'){
       const specific=pool.filter(q=>matches(q,slot));
-      if(specific.length)pool=specific;
+      // Quand le sous-groupe est épuisé, élargir la sélection plutôt que
+      // recycler sans fin le même type d'ouverture ou la même famille.
+      const unusedSpecific=specific.filter(q=>!state.families[family(q)]);
+      if(unusedSpecific.length)pool=unusedSpecific;
+      else if(specific.length&&!pool.some(q=>!state.families[family(q)]))pool=specific;
     }
     const globallyNew=pool.filter(q=>!state.families[family(q)]);
     if(globallyNew.length)pool=globallyNew;
