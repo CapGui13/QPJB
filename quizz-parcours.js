@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.5 : progression étayée, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.6 : progression étayée, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -419,6 +419,7 @@
         }
         s.active={ids,index:clamp(int(old.active.index),0,ids.length-1),
           answers,createdAt:int(old.active.createdAt,s.completed)};
+        if(old.active.mode==='consolidation')s.active.mode='consolidation';
       }
     }
     return s;
@@ -571,6 +572,75 @@
     // ne sont disponibles qu'en cas d'épuisement du catalogue.
     return selected.map(v=>({id:v.exercise.id,kind:v.kind}));
   }
+
+  // V1.6 : séance complémentaire, indépendante du calendrier du parcours.
+  // Un besoin doit être confirmé par au moins deux essais : pas de rattrapage
+  // déclenché par une erreur isolée ou une classification non auditée.
+  function consolidationPlan(state,exercises,n=10){
+    if(state.active)return {available:false,reason:'session-active',focus:[],items:[]};
+    const limit=clamp(int(n,10),1,10),s=state.completed;
+    const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
+    const targets=[];
+    function collect(records,labels,kind,identify){
+      for(const [key,r] of Object.entries(records||{})){
+        if(!Object.hasOwn(labels,key)||!r||r.score>-2||r.attempts<2)continue;
+        const candidates=pool.filter(x=>identify(x)===key);
+        if(new Set(candidates.map(family)).size<Math.min(6,limit))continue;
+        targets.push({kind,key,label:labels[key],score:r.score,candidates});
+      }
+    }
+    collect(state.micros,MICRO_LABELS,'micro',microKey);
+    collect(state.axes,AXIS_LABELS,'axis',axisKey);
+    targets.sort((a,b)=>a.score-b.score||b.candidates.length-a.candidates.length||
+      (a.kind+':'+a.key).localeCompare(b.kind+':'+b.key));
+    const focus=targets.slice(0,2);
+    if(!focus.length)return {available:false,reason:'no-evidenced-weakness',focus:[],items:[]};
+    const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
+    function choose(target){
+      let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
+      if(!options.length)return false;
+      // Même en consolidation, ne pas aligner trois fois la même décision.
+      const diverse=options.filter(x=>(bids[x.theme+'|'+bid(x)]||0)<2);
+      if(diverse.length)options=diverse;
+      const contextual=options.filter(x=>!opener(x)||(contexts[context(x)]||0)<2);
+      if(contextual.length)options=contextual;
+      function score(x){
+        const rec=(state.entries||{})[x.id];
+        const recent=rec?s-rec.lastSession:999;
+        return (rec?-35:65)+(recent<=2?-80:recent<=5?-20:0)
+          -28*Math.abs(x.difficulty-levelFor(state,exercises,x.theme))
+          -16*(counts[x.theme]||0)-22*(bids[x.theme+'|'+bid(x)]||0)
+          -11*(contexts[context(x)]||0);
+      }
+      options.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
+      const x=options[0];
+      usedIds.add(x.id);usedFamilies.add(family(x));
+      counts[x.theme]=(counts[x.theme]||0)+1;
+      bids[x.theme+'|'+bid(x)]=(bids[x.theme+'|'+bid(x)]||0)+1;
+      contexts[context(x)]=(contexts[context(x)]||0)+1;
+      items.push({id:x.id,target:target.kind+':'+target.key});
+      return true;
+    }
+    for(let i=0;i<limit;i++){
+      const primary=focus[i%focus.length];
+      if(choose(primary))continue;
+      if(!focus.some(t=>t!==primary&&choose(t)))break;
+    }
+    const available=items.length>=Math.min(6,limit);
+    return {available,reason:available?null:'pool-insufficient',
+      focus:focus.map(t=>({kind:t.kind,key:t.key,label:t.label,score:t.score})),
+      items:available?items:[]};
+  }
+  function startConsolidation(state,exercises){
+    // La séance interrompue, qu'elle soit normale ou complémentaire, prime.
+    if(state.active)return start(state,exercises);
+    const plan=consolidationPlan(state,exercises,10);
+    if(!plan.available)return [];
+    const byId=new Map(exercises.map(x=>[x.id,x]));
+    state.active={ids:plan.items.map(x=>x.id),index:0,answers:{},
+      createdAt:state.completed,mode:'consolidation'};
+    return state.active.ids.map(id=>byId.get(id));
+  }
   function start(state,exercises){
     const byId=new Map(exercises.map(x=>[x.id,x]));
     if(state.active){
@@ -673,7 +743,10 @@
   function finish(state){
     if(!state.active)return false;
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
-    state.completed++;state.active=null;return true;
+    // Les séances ciblées consolident les preuves mais ne débloquent pas
+    // artificiellement de nouvelles rubriques du parcours principal.
+    if(state.active.mode!=='consolidation')state.completed++;
+    state.active=null;return true;
   }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
   // ni de reconstruction spéculative de l'historique.
@@ -741,5 +814,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,summary,levelFor};
 });
