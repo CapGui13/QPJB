@@ -69,7 +69,8 @@ function trace(sessions,catalog){
   if(source.size!==catalog.length)throw Error('IDs catalogue non uniques');
   const seen=new Set(),perSession=[],all=[];
   let withinSessionRepeatedContextAnswer=0,adjacentContextAnswerOverlaps=0;
-  let sameAuctionAnswerAdditional=0,contextAnswerWithDistinctAuctions=0;
+  let sameAuctionAnswerAdditional=0,sameNonEmptyAuctionAdditional=0;
+  let contextAnswerWithDistinctAuctions=0;
   let answerOnlyRepeatAcrossContexts=0,previousKeys=new Set();
   for(let s=0;s<sessions.length;s++){
     const deck=sessions[s],qrows=deck.map(q=>{
@@ -89,18 +90,25 @@ function trace(sessions,catalog){
     }
     const repeats=[...group.entries()].filter(([,v])=>v.length>1);
     const sameContextAnswer=repeats.reduce((n,[,v])=>n+v.length-1,0);
-    const exactGroups=new Map();
+    const exactGroups=new Map(),nonEmptyAuctionGroups=new Map();
     for(const r of qrows){
       const key=JSON.stringify([r.decisionKey,r.auctionSignature]);
       exactGroups.set(key,(exactGroups.get(key)||0)+1);
+      // L'ouverture sans historique d'enchères ne prouve pas une répétition
+      // de séquence : ne pas assimiler toutes les mains d'ouverture.
+      if(r.auction.length)
+        nonEmptyAuctionGroups.set(key,(nonEmptyAuctionGroups.get(key)||0)+1);
     }
     const sameExactAuction=[...exactGroups.values()].reduce((n,v)=>n+Math.max(0,v-1),0);
+    const sameNonEmptyAuction=[...nonEmptyAuctionGroups.values()].reduce((n,v)=>
+      n+Math.max(0,v-1),0);
     const differentAuctions=repeats.filter(([,v])=>
       new Set(v.map(x=>x.auctionSignature)).size>1).length;
     const overlap=[...group.keys()].filter(k=>previousKeys.has(k)).length;
     const acrossContexts=[...answerGroups.values()].filter(v=>v.size>1).length;
     withinSessionRepeatedContextAnswer+=sameContextAnswer;
     sameAuctionAnswerAdditional+=sameExactAuction;
+    sameNonEmptyAuctionAdditional+=sameNonEmptyAuction;
     contextAnswerWithDistinctAuctions+=differentAuctions;
     adjacentContextAnswerOverlaps+=overlap;
     answerOnlyRepeatAcrossContexts+=acrossContexts;
@@ -108,6 +116,8 @@ function trace(sessions,catalog){
       distinctDecisions:group.size,distinctAnswers:answerGroups.size,
       sameContextAnswerAdditionalPresentations:sameContextAnswer,
       sameAuctionAnswerAdditionalPresentations:sameExactAuction,
+      sameNonEmptyAuctionAnswerAdditionalPresentations:sameNonEmptyAuction,
+      emptyAuctionAnswerAdditionalPresentations:sameExactAuction-sameNonEmptyAuction,
       repeatedContextAnswerGroupsWithDifferentAuctions:differentAuctions,
       repeatedContextsAndAnswers:repeats.map(([,v])=>({
         context:v[0].context,answer:v[0].answer,
@@ -128,7 +138,9 @@ function trace(sessions,catalog){
         repeatedContextAnswerExtra: sessionsIn.reduce((n,x)=>
           n+x.sameContextAnswerAdditionalPresentations,0),
         sameAuctionAnswerExtra: sessionsIn.reduce((n,x)=>
-          n+x.sameAuctionAnswerAdditionalPresentations,0)};
+          n+x.sameAuctionAnswerAdditionalPresentations,0),
+        sameNonEmptyAuctionAnswerExtra:sessionsIn.reduce((n,x)=>
+          n+x.sameNonEmptyAuctionAnswerAdditionalPresentations,0)};
     });
   return {schema:'QPJB_V2_U_DECISIONS_1',status:'OBSERVATION_SYNTHETIQUE_LECTURE_SEULE',
     sessions:sessions.length,questions:all.length,catalogQuestions:catalog.length,
@@ -136,6 +148,9 @@ function trace(sessions,catalog){
     ...summarise(all),windows,perSession,
     alerts:{sameContextAnswerAdditionalPresentations:withinSessionRepeatedContextAnswer,
       sameAuctionAnswerAdditionalPresentations:sameAuctionAnswerAdditional,
+      sameNonEmptyAuctionAnswerAdditionalPresentations:sameNonEmptyAuctionAdditional,
+      emptyAuctionAnswerAdditionalPresentations:
+        sameAuctionAnswerAdditional-sameNonEmptyAuctionAdditional,
       contextAnswerGroupsWithDifferentAuctions:contextAnswerWithDistinctAuctions,
       adjacentSessionDecisionOverlaps:adjacentContextAnswerOverlaps,
       sameAnswerInMultipleContexts:answerOnlyRepeatAcrossContexts},
@@ -185,6 +200,10 @@ function matrix(){
       x.alertCounts.sameContextAnswerAdditionalPresentations),
     sameAuctionAnswerAdditionalPresentationsRange:range(x=>
       x.alertCounts.sameAuctionAnswerAdditionalPresentations),
+    sameNonEmptyAuctionAnswerAdditionalPresentationsRange:range(x=>
+      x.alertCounts.sameNonEmptyAuctionAnswerAdditionalPresentations),
+    emptyAuctionAnswerAdditionalPresentationsRange:range(x=>
+      x.alertCounts.emptyAuctionAnswerAdditionalPresentations),
     contextAnswerGroupsWithDifferentAuctionsRange:range(x=>
       x.alertCounts.contextAnswerGroupsWithDifferentAuctions),
     adjacentSessionDecisionOverlapsRange:range(x=>
