@@ -1,4 +1,4 @@
-/* QPJB — parcours algorithmique V1.8 : bilan de consolidation vérifiable, sans IA ni API. */
+/* QPJB — parcours algorithmique V1.9 : évaluations distinctes des consolidations, sans IA ni API. */
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -735,6 +735,12 @@
     state.entries[x.id]={result,assisted:!!assisted||!!hadFreeError,lastSession:state.completed,
       due:state.completed+(independent?(streak===1?3:streak===2?8:18):1),
       seen:(old.seen||0)+1,streak,family:family(x)};
+    // V1.9 : la consolidation fournit un entraînement et des révisions réelles,
+    // mais pas de preuve indépendante pour les niveaux et micro-compétences.
+    // Sinon, sa numérotation (le même "completed" que la séance normale
+    // suivante) pourrait bloquer l'évaluation de cette dernière.
+    // Les résultats ciblés sont rapportés par finish() et restent traçables.
+    if(active.mode==='consolidation')return true;
     const skill=state.skills[x.theme]||{level:Math.max(1,x.difficulty===1?1:2),
       clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
     if(independent){

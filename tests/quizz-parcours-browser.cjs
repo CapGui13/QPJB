@@ -161,6 +161,7 @@ const server=http.createServer((req,res)=>{
    assert.equal(targeted.state.active.ids.length,10);
    assert.ok(targeted.keys.every(key=>key==='mineur:1♣'));
    assert.match(await page.locator('#parcours-session-banner').textContent(),/Consolidation ciblée/);
+   assert.match(await page.locator('#parcours-session-banner').textContent(),/sans validation du niveau/);
    await page.reload({waitUntil:'domcontentloaded'});
    assert.match(await page.locator('#parcours-start').textContent(),/Reprendre ma consolidation/);
    assert.ok(await page.locator('#parcours-consolidation').isHidden(),
@@ -179,6 +180,14 @@ const server=http.createServer((req,res)=>{
    const focusFinished=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.equal(focusFinished.completed,5,'Targeted session cannot unlock normal lessons');
    assert.equal(focusFinished.lastConsolidatedAt,5,'Limited to one targeted session per main-session milestone');
+   assert.equal(focusFinished.micros['mineur:1♣'].score,-3,
+     'A focused practice must not create mastery points');
+   assert.equal(focusFinished.micros['mineur:1♣'].attempts,4,
+     'A focused practice is not an additional assessed attempt');
+   assert.deepEqual(focusFinished.skills,{},
+     'Focused training does not change the theme difficulty');
+   assert.equal(focusFinished.lastConsolidation.counts.skipped,10);
+   assert.equal(focusFinished.active,null);
    await page.locator('#done-home').click();
    await page.waitForFunction(()=>!document.body.classList.contains('session-mode'));
    assert.ok(await page.locator('#parcours-consolidation').isHidden(),
@@ -215,6 +224,11 @@ const server=http.createServer((req,res)=>{
    const afterShort=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.equal(afterShort.completed,14,'Short targeted practice cannot advance main itinerary');
    assert.equal(afterShort.lastConsolidatedAt,14);
+   assert.equal(afterShort.micros['intervenir:barrage'].score,-3,
+     'Five skipped focused QCM cannot lower mastery level');
+   assert.equal(afterShort.micros['intervenir:barrage'].attempts,4,
+     'The test still counts four prior assessed answers');
+   assert.deepEqual(afterShort.skills,{},'No fake difficulty downgrade');
    assert.deepEqual(afterShort.lastConsolidation.counts,
      {total:5,independent:0,helped:0,wrong:0,skipped:5});
    assert.equal(afterShort.lastConsolidation.parts.length,1);
