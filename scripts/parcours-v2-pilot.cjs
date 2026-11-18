@@ -93,7 +93,9 @@ function ensureReviewSupport(exercises,state,annotations){
 function pendingReviews(state,session){
   return Object.entries(state.reviewQueue).filter(([key,entry])=>
     (state.reviewSupport||{})[key]>=2&&entry.due<=session&&
-    entry.lastSession<session-1).map(([key,entry])=>({key,...entry}));
+    entry.lastSession<session-1&&
+    (!state.concepts[key]||state.concepts[key].lastSession<session-1))
+    .map(([key,entry])=>({key,...entry}));
 }
 function available(q,session,annotations){
   const intro=P.INTRO[q.theme];
@@ -163,9 +165,11 @@ function select(exercises,state,annotations,n=10){
       // Rechercher une AUTRE famille de la même catégorie candidate.
       const due=pool.filter(q=>{
         const c=state.reviewQueue[concept(q,annotations)];
+        const k=concept(q,annotations),recent=state.concepts[k];
         return c&&c.due<=session&&c.lastSession<session-1&&
+          (!recent||recent.lastSession<session-1)&&
           c.lastFamily!==family(q)&&
-          (state.reviewSupport[concept(q,annotations)]||0)>=2;
+          (state.reviewSupport[k]||0)>=2;
       });
       if(due.length)pool=due;
       else continue; // aucune révision explicitement éligible
@@ -227,6 +231,8 @@ function recordSession(state,deck,answers,annotations){
   if(new Set(deck.map(q=>family(q))).size!==deck.length)
     throw Error('Famille répétée au cours de la séance');
   const s=state.session,credited=new Set(),conceptOutcomes=new Map();
+  const previousPractice=Object.fromEntries(Object.entries(state.concepts)
+    .map(([key,entry])=>[key,entry.lastSession]));
   for(let i=0;i<deck.length;i++){
     const q=deck[i],ok=answers[i]===true,co=concept(q,annotations),fam=family(q);
     const old=state.history[q.id];
@@ -259,7 +265,8 @@ function recordSession(state,deck,answers,annotations){
     if((state.reviewSupport||{})[key]<2)continue;
     const previous=state.reviewQueue[key],correct=answer.correct;
     const originFamily=answer.family;
-    const isDue=previous&&previous.due<=s&&previous.lastSession<s&&
+    const isDue=previous&&previous.due<=s&&previous.lastSession<s-1&&
+      (previousPractice[key]===undefined||previousPractice[key]<s-1)&&
       previous.lastFamily!==originFamily;
     if(!previous){
       state.reviewQueue[key]={due:s+(correct?5:2),lastSession:s,
@@ -269,7 +276,8 @@ function recordSession(state,deck,answers,annotations){
       const round=correct?previous.round+1:0;
       const interval=correct?Math.min(24,round===1?8:round===2?16:24):2;
       state.reviewEvents.push({session:s,concept:key,questionId:answer.questionId,
-        source:answer.selectedReview?'scheduled':'incidental',
+        source:state.lastSelection.some(p=>p.concept===key&&
+          p.source==='scheduled-recall')?'scheduled':'incidental',
         previousResult:previous.lastResult,result:correct?'correct':'wrong',
         delay:s-previous.lastSession});
       state.reviewQueue[key]={due:s+interval,lastSession:s,
@@ -325,14 +333,15 @@ function metrics(sessions){
 function simulateV2(exercises,annotations,options={}){
   const count=options.sessions??65,seed=options.seed??13;
   const state=newState(seed),sessions=[];
-  let scheduledSlotsUsed=0, eligibleErrorSessions=0,eligibleSuccessSessions=0,
-    unsupportedConcepts=0;
+  let scheduledSlotsUsed=0, eligibleErrorSessions=0,eligibleSuccessSessions=0;
   for(let s=0;s<count;s++){
     ensureReviewSupport(exercises,state,annotations);
     const pending=pendingReviews(state,s);
     const open=q=>available(q,s,annotations)&&
-      !state.families[family(q)]||available(q,s,annotations)&&
-      state.families[family(q)]?.lastSession<s-2;
+      (!state.families[family(q)]||
+        state.families[family(q)].lastSession<s-2)&&
+      (!state.concepts[concept(q,annotations)]||
+        state.concepts[concept(q,annotations)].lastSession<s-1);
     const viable=pending.filter(item=>exercises.some(q=>
       concept(q,annotations)===item.key&&
       family(q)!==item.lastFamily&&open(q)));
