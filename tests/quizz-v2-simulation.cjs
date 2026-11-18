@@ -17,8 +17,9 @@ const state=Pilot.newState(13);
 const first=Pilot.select(catalog,state,annotations);
 assert.equal(first.length,10);
 assert.ok(first.every(q=>q.theme==='ouv'));
-assert.deepEqual(new Set(first.map(q=>q.answer)).isSuperset(new Set(Pilot.STANDARD_OPENINGS)),true,
-  'Dès la première séance: 1♣, 1♦, 1♥, 1♠ et 1SA, au moins une fois');
+for(const opening of Pilot.STANDARD_OPENINGS)
+  assert.ok(new Set(first.map(q=>q.answer)).has(opening),
+    'Dès la première séance, ouverture '+opening+' représentée');
 assert.equal(new Set(first.map(Pilot.family)).size,10);
 Pilot.recordSession(state,first,first.map(()=>true),annotations);
 const second=Pilot.select(catalog,state,annotations);
