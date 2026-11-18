@@ -54,6 +54,10 @@ jobs:
               a.sameContextAnswerAdditionalPresentationsRange,
             sameAuctionAnswerAdditionalPresentationsRange:
               a.sameAuctionAnswerAdditionalPresentationsRange,
+            sameNonEmptyAuctionAnswerAdditionalPresentationsRange:
+              a.sameNonEmptyAuctionAnswerAdditionalPresentationsRange,
+            emptyAuctionAnswerAdditionalPresentationsRange:
+              a.emptyAuctionAnswerAdditionalPresentationsRange,
             contextAnswerGroupsWithDifferentAuctionsRange:
               a.contextAnswerGroupsWithDifferentAuctionsRange,
             adjacentSessionDecisionOverlapsRange:
@@ -71,7 +75,8 @@ jobs:
             '- Rappels ciblés : '+summary.targetedReviewsRange.join('–'),
             '- Couples contexte/réponse distincts : '+summary.distinctDecisionsRange.join('–'),
             '- Répétitions contexte/réponse dans une séance : '+summary.sameContextAnswerAdditionalPresentationsRange.join('–'),
-            '- Répétitions avec enchères identiques : '+summary.sameAuctionAnswerAdditionalPresentationsRange.join('–'),
+            '- Répétitions avec enchères identiques non vides : '+summary.sameNonEmptyAuctionAnswerAdditionalPresentationsRange.join('–'),
+            '- Similitudes dues aux enchères vides : '+summary.emptyAuctionAnswerAdditionalPresentationsRange.join('–'),
             '- Couples ayant des enchères différentes : '+summary.contextAnswerGroupsWithDifferentAuctionsRange.join('–'),
             '',
             '**Aucune preuve de redondance, de maîtrise ou de progrès. V2-F non modifiée.**'
