@@ -26,8 +26,9 @@ const url=pathToFileURL(path.resolve(__dirname,'../preview/parcours-v2-autonome.
       await page.getByText('Un laboratoire pour tester').waitFor({state:'visible'});
       assert.ok(await page.getByText('1 523',{exact:true}).isVisible());
       assert.deepEqual(errors,[]);
-      assert.equal(requests.length,1,'Le document fonctionne sans ressources externes');
-      assert.ok(requests[0].startsWith('file://'),'Document uniquement local');
+      assert.ok(requests.every(u=>u.startsWith('file://')||u.startsWith('data:')),
+        'Aucune requête HTTP ni chargement externe');
+      assert.ok(requests.length<=2,'Un unique fichier local ; au plus une demande de favicon');
       async function noOverflow(){
         const sizes=await page.evaluate(()=>({
           content:document.documentElement.scrollWidth,
