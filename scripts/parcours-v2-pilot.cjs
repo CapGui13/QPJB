@@ -227,7 +227,8 @@ function simulatedAnswers(deck,session,seed,profile='balanced'){
 function metrics(sessions){
   const all=sessions.flat(),unique=new Set(all.map(q=>q.id));
   const fams=new Set(all.map(family));
-  const opening={},responses={};
+  const opening={},responses={},themes={};
+  for(const q of all)themes[q.theme]=(themes[q.theme]||0)+1;
   for(const q of all.filter(x=>x.theme==='ouv'))
     opening[q.answer]=(opening[q.answer]||0)+1;
   for(const q of all.filter(x=>['mineur','majeur','sa'].includes(x.theme))){
@@ -243,7 +244,7 @@ function metrics(sessions){
     uniqueIds:unique.size,uniqueFamilies:fams.size,
     repeatedFamilySessions:repeatedFamiliesInside,
     sessionsWith4SameAnswer:overThreeSameAnswer,
-    opening,responses};
+    opening,responses,themes};
 }
 function simulateV2(exercises,annotations,options={}){
   const count=options.sessions??65,seed=options.seed??13;
