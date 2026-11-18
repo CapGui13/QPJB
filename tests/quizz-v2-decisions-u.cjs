@@ -17,6 +17,8 @@ const enemyCounter={id:'TEST-A',theme:'apres_inter',answer:'2♥',
   auction:['Partenaire : 1♥','Adversaire : Contre'],caseFamily:'T5'};
 assert.equal(U.context(opening),'choix_ouverture');
 assert.equal(U.context(reply),'reponse_sur_1♣');
+assert.deepEqual(U.describe(reply).auction,['Partenaire : 1♣']);
+assert.equal(U.describe(reply).auctionSignature,'["Partenaire : 1♣"]');
 assert.equal(U.actionClass(reply),'majeure');
 assert.equal(U.actionClass(opening),'mineure');
 assert.equal(U.context(intervention),'notre_intervention');
@@ -40,6 +42,17 @@ for(const profile of ['balanced','fragile-mineures']){
   assert.equal(Object.values(a.actionClasses).reduce((n,x)=>n+x,0),150);
   assert.ok(a.distinctDecisionKeys>0);
   assert.ok(a.alerts.sameContextAnswerAdditionalPresentations>=0);
+  assert.ok(a.alerts.sameAuctionAnswerAdditionalPresentations>=0);
+  assert.ok(a.alerts.sameAuctionAnswerAdditionalPresentations<=
+    a.alerts.sameContextAnswerAdditionalPresentations);
+  assert.ok(a.alerts.contextAnswerGroupsWithDifferentAuctions>=0);
+  assert.ok(a.sourceExamplesForPedagogicalReview.length<=20);
+  for(const item of a.sourceExamplesForPedagogicalReview){
+    assert.ok(item.independentFamilies>=2);
+    assert.ok(item.distinctAuctionSequences>=1);
+    assert.equal(item.examples.length,item.independentFamilies);
+    assert.ok(item.examples.every(x=>Array.isArray(x.auction)&&x.id&&x.family));
+  }
   assert.ok(a.perSession.every(x=>x.distinctDecisions<=10&&x.contexts<=10));
   assert.equal(a.selectionChanged,false);
   assert.equal(a.masteryInferred,false);
