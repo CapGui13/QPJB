@@ -1480,9 +1480,12 @@ function showHome(){
 }
 function showDeck(){
  const q=deck[cursor],choice=results[cursor]??null,prev=results.slice(0,cursor).filter((r,i)=>r===deck[i].answer).length;
+ const scheduled=learning.lastSelection.some(x=>x.id===q.id&&x.source==='scheduled-recall');
  $('app').innerHTML=`<section class="panel">
  <div class="flex"><div><span class="eyebrow" style="color:#316eb6">Séance fictive ${learning.session+1}</span>
- <h2>Question ${cursor+1} sur ${deck.length}</h2></div><span class="tiny">${prev} réponse(s) conformes au corrigé</span></div>
+ <h2>Question ${cursor+1} sur ${deck.length}</h2>
+ <span class="status-pill">${scheduled?'Révision programmée • nouvelle situation':'Découverte ou pratique'}</span>
+ </div><span class="tiny">${prev} réponse(s) conformes au corrigé</span></div>
  <div class="progressbar" role="progressbar" aria-valuenow="${cursor+1}" aria-valuemin="1" aria-valuemax="${deck.length}">
  <span style="width:${Math.round((cursor+1)/deck.length*100)}%"></span></div>
  ${question(q,choice,'answer')}
@@ -1494,11 +1497,13 @@ function showDeck(){
 function endDeck(){
  const right=results.filter((v,i)=>v===deck[i].answer).length;
  const families=new Set(deck.map(q=>window.PreviewPilot.family(q))).size;
+ const recalls=learning.lastSelection.filter(x=>x.source==='scheduled-recall').length;
  $('app').innerHTML=`<section class="panel"><h2>Bilan de la séance ${learning.session}</h2>
  ${statCards([[right+'/'+deck.length,'Conformes au corrigé'],[families,'Familles distinctes dans cette séance'],
- [Object.keys(learning.reviewQueue).length,'Catégories en file de rappels']])}
+ [recalls,'Rappels programmés dans cette séance']])}
  <p>Cette séance a utilisé dix QCM originaux. La prochaine alternera les thèmes et proposera
- des révisions espacées sur des familles différentes lorsqu'elles existent.</p>
+ des révisions espacées sur des familles différentes lorsqu'elles existent.
+ ${Object.keys(learning.reviewQueue).length} catégories sont dans la file temporaire de révisions.</p>
  <div class="note">Ce résultat local ne correspond à aucun score enregistré par QPJB.
  Les micro-compétences candidates ne sont pas validées pédagogiquement.</div>
  <div class="actions" style="margin-top:20px">
@@ -1532,6 +1537,8 @@ function render(){
  else showReview();
 }
 function start(){
+ // Ne pas perdre les réponses en passant provisoirement à la revue SEF.
+ if(deck.length===10&&results.length<deck.length){view='play';render();return}
  const selectedDeck=window.PreviewPilot.select(catalog,learning,annotations,10);
  if(selectedDeck.length!==10){$('app').innerHTML='<div class="panel">Aucun lot complet disponible.</div>';return}
  deck=selectedDeck;cursor=0;results=[];view='play';render();
