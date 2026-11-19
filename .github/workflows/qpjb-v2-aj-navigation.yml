@@ -1,0 +1,57 @@
+name: QPJB V2-AJ opt-in navigation
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-aj-navigation.yml
+      - preview/v2-ai/parcours-v2-cohabitation.html
+      - quizz.html
+      - index.html
+      - tests/quizz-v2-switch-aj.cjs
+      - tests/quizz-v2-switch-aj-browser.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-aj-navigation.yml
+      - preview/v2-ai/parcours-v2-cohabitation.html
+      - quizz.html
+      - index.html
+      - tests/quizz-v2-switch-aj.cjs
+      - tests/quizz-v2-switch-aj-browser.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  aj-integrity:
+    name: V2 link hidden by default and source candidate byte-identical
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 1,523 original QCM and flag-gated V2 navigation
+        run: |
+          node tests/quizz-v2-switch-aj.cjs
+          node tests/quizz-v2-cohabitation-ai.cjs
+          node tests/quizz-v2-reprise-ag.cjs
+  aj-browser:
+    name: Existing QPJB home to V2 on ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.64.1
+      - name: Verify desktop/mobile flag, popup, V1 return and isolated progress
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-switch-aj-browser.cjs
