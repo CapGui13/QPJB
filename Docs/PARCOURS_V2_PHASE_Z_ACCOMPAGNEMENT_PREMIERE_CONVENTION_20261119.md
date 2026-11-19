@@ -45,4 +45,22 @@ Aucune sauvegarde, requête réseau, statistique de réussite ni passerelle vers
 
 Ne pas intégrer ces aides à l'interface élève sans relecture de l'enseignante (notamment de la **divulgation implicite** du raisonnement), essai ergonomique et contrôle que les QCM ne sont pas utilisés comme preuves de maîtrise lorsqu'une aide vient d'être proposée. Préserver les élèves qui souhaitent un parcours d'évaluation sans aide, et ne pas supprimer les rappels ni déplacer les conventions artificiellement.
 
-**Statut : `Z_PRELUDES_OPTIONNELLES / 5_SOURCES_CIBLEES / VALIDATION_ENSEIGNANTE_REQUISE / NON_DEPLOYE / V2_F_INCHANGE`.**
+## Validation CI et couverture effective (neuf parcours)
+
+**[GitHub Actions #44496200634](https://github.com/CapGui13/QPJB/actions/runs/44496200634) : succès.** Tests des cinq ancres originales, de la non-divulgation littérale des réponses, de l'absence de mutation et de l'aperçu HTML : réussis. La génération de `intro-z-preview.html` a réussi (11 857 octets, script JavaScript valide). Le rapport est archivé dans l'artefact GitHub **`qpjb-v2-z-experimental-preview`**.
+
+| QCM premier de sa rubrique | Nombre de parcours sur 9 | Fiche proposée |
+|---|---:|---|
+| `SEF-V486-022` Rubensohl / Landy | 6 | 3 étapes, non notées |
+| `SEF-V481-009` Rubensohl / intervention naturelle | 3 | 3 étapes, non notées |
+| `SEF-L04-029` Michaels / compétition avancée | 1 | 3 étapes, non notées |
+| `SEF-C2-007` Michaels / 1♦ adverse | 3 | 3 étapes, non notées |
+| `SEF-V45-044` Michaels / 1♠ adverse | 5 | 3 étapes, non notées |
+| **Total** | **18 premières rencontres** | **18 couvertes sur 18** |
+
+Cinq fiches distinctes suffisent à couvrir ces **18 situations d'exposition fictives**, car chaque scénario possède une première Rubensohl et une première Michaels. Les deux variantes Rubensohl ne doivent pas être confondues : **Landy artificiel et intervention naturelle sont pédagogiquement distincts**.
+
+Le moteur expérimental reste **exactement V2-F**, avec **440–450 familles distinctes** et **69–77 rappels ciblés**, sans modification de la sélection, de l'ordre des séances, du décompte ou des exercices. La validation est **technique** ; elle ne prouve pas qu'une fiche soit compréhensible ou qu'elle améliore l'apprentissage. **Le test final est la relecture par l'enseignante et, si souhaité, un essai guidé non noté.**
+
+**Statut validé : `Z_CI_OK / 18_SUR_18_EXPOSITIONS_COUVERTES / VALIDATION_ENSEIGNANTE_REQUISE / NON_DEPLOYE / V2_F_INCHANGE`.**
+
