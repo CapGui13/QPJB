@@ -1,0 +1,66 @@
+name: QPJB V2-AZ - vrai parcours adaptatif privé
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-az-live.yml
+      - scripts/parcours-v2-ay-live-build.cjs
+      - templates/parcours-v2-ay-live.html
+      - templates/parcours-v2-ay-live-runtime.js
+      - tests/quizz-v2-az-browser.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - scripts/parcours-v2-extension-ay.cjs
+      - quizz-parcours.js
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-az-live.yml
+      - scripts/parcours-v2-ay-live-build.cjs
+      - templates/parcours-v2-ay-live.html
+      - templates/parcours-v2-ay-live-runtime.js
+      - tests/quizz-v2-az-browser.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    name: HTML autonome AZ, origine QCM intacte
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compiler le vrai moteur et générer AZ
+        run: |
+          node --check scripts/parcours-v2-ay-live-build.cjs
+          node --check templates/parcours-v2-ay-live-runtime.js
+          node scripts/parcours-v2-ay-live-build.cjs
+      - name: Archiver le prototype privé, pas de déploiement
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-az-parcours-adaptatif
+          path: artifacts/v2-az/
+          retention-days: 30
+          if-no-files-found: error
+  browsers:
+    name: AZ fonctionne sur ${{ matrix.browser }} et mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer Playwright
+        run: npm install --no-save playwright@1.64.1
+      - name: Tester reprise et sources, sauvegardes V1/V2 intactes
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-az-browser.cjs
