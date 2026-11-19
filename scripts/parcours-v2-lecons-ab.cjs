@@ -16,6 +16,25 @@ const LESSONS=Object.freeze([
     id:'rubensohl',title:'Rubensohl : lire les interventions sur 1SA',
     lead:'Une même enchère peut changer de sens selon la nature de l’intervention adverse. Avant de répondre, décode toute la séquence.',
     aim:'Distinguer les deux situations précises décrites dans les exercices QPJB, sans extrapoler à toutes les défenses après 1SA.',
+    level:'Découverte des conventions — joueur connaissant déjà les enchères de base (pas débutant absolu)',
+    prerequisites:[
+      'Savoir lire une ouverture de 1SA et reconnaître le rôle de son partenaire.',
+      'Savoir suivre une séquence où un adversaire intervient après notre ouverture.',
+      'Connaître les quatre couleurs ; le sens des enchères artificielles est expliqué ci-dessous.'
+    ],
+    vocabulary:[
+      {term:'Enchère naturelle / artificielle',meaning:'Naturelle : elle décrit généralement la couleur nommée. Artificielle : son sens dépend d’un accord et peut désigner une autre couleur ou poser une question.'},
+      {term:'Landy',meaning:'Dans le cas étudié, 2♣ adverse après 1SA annonce les deux majeures (♥ et ♠).'},
+      {term:'Texas',meaning:'Transfert conventionnel : on nomme une couleur pour demander au partenaire d’en annoncer une autre. Dans notre exemple après Landy, 3♣ est un Texas Carreau.'},
+      {term:'Stayman forcing de manche',meaning:'Enchère artificielle recherchant une majeure quatrième et engageant le camp vers une manche. Dans le deuxième exemple, 3♣ a ce sens explicitement annoncé par la séquence.'},
+      {term:'Texas impossible',meaning:'Dans le deuxième exemple, la couleur vers laquelle un Texas transférerait est celle de l’intervention adverse à 2♦ ; l’accord transforme donc 3♣ en Stayman forcing de manche.'}
+    ],
+    cautions:[
+      '3♣ ne décrit pas nécessairement des Trèfles : dans les deux séquences étudiées, l’enchère est artificielle mais n’a pas le même sens.',
+      'On ne déduit pas le sens d’une enchère de son seul symbole : il faut connaître l’intervention adverse et l’accord de la paire.',
+      'Ces deux cas n’enseignent pas toutes les réponses possibles après une intervention sur 1SA.'
+    ],
+    learnerGoal:'À la fin, je peux expliquer pourquoi 3♣ change de sens entre Landy adverse et intervention naturelle à 2♦, sans prétendre connaître tout le Rubensohl.',
     sourceIds:['SEF-V486-022','SEF-V481-009'],
     blocks:[
       {label:'1. Reconnaître l’intervention',
@@ -40,6 +59,26 @@ const LESSONS=Object.freeze([
     id:'michaels',title:'Michaels précisés : comprendre un cue-bid bicolore',
     lead:'Un cue-bid peut décrire une distribution bicolore plutôt qu’un soutien à la couleur de l’adversaire.',
     aim:'Lire les deux couleurs garanties par les Michaels précisés des exercices QPJB et distinguer l’annonce du bicolore d’une décision compétitive ultérieure.',
+    level:'Découverte des interventions bicolores — joueur connaissant déjà les ouvertures au palier de 1',
+    prerequisites:[
+      'Savoir reconnaître une ouverture adverse de 1♦ ou de 1♠.',
+      'Distinguer les couleurs majeures (♥ et ♠) des mineures (♣ et ♦).',
+      'Pouvoir compter le nombre de cartes de deux couleurs et lire une intervention au palier de 2.'
+    ],
+    vocabulary:[
+      {term:'Cue-bid',meaning:'Dans ces exemples, annoncer au palier de 2 la couleur déjà annoncée par l’adversaire. Ce n’est pas vouloir jouer dans sa couleur : l’enchère décrit un accord.'},
+      {term:'Bicolore au moins 5–5',meaning:'Au moins cinq cartes dans chacune des deux couleurs promises, soit dix cartes au minimum dans ces deux couleurs.'},
+      {term:'Michaels précisés',meaning:'Accord d’intervention dans lequel certaines enchères décrivent précisément deux couleurs longues, selon la couleur d’ouverture adverse.'},
+      {term:'Fit',meaning:'Longueur d’atout cumulée avec le partenaire. Un fit d’au moins huit cartes est normalement recherché avant de surenchérir haut à l’atout.'},
+      {term:'Vulnérabilité',meaning:'Situation qui modifie les gains et pénalités au bridge ; elle entre dans la prudence des décisions compétitives.'}
+    ],
+    cautions:[
+      'Le cue-bid 2♠ après 1♠ adverse ne promet pas des Piques à notre camp : il décrit ici Cœurs + Trèfles.',
+      'Un bicolore 5–5 promet cinq cartes dans CHACUNE des deux couleurs, et non cinq cartes au total.',
+      'Une longue couleur personnelle ne prouve pas un fit dans les deux couleurs promises par le partenaire.',
+      'Ces exemples se limitent aux Michaels précisés : ne transpose pas leur signification aux variantes non précisées.'
+    ],
+    learnerGoal:'À la fin, je peux expliquer les deux bicolores promis après 1♦–2♦ et 1♠–2♠, puis distinguer la convention d’une décision compétitive ultérieure.',
     sourceIds:['SEF-C2-007','SEF-V45-044','SEF-L04-029'],
     blocks:[
       {label:'1. Qu’est-ce qu’un cue-bid ici ?',
@@ -67,7 +106,9 @@ const POLICY=Object.freeze({
   surface:'STANDALONE_LESSON_ONLY',
   graded:false,questionsIncluded:false,answersRecorded:false,
   publicRuntimeWired:false,selectionChanged:false,studentMasteryInferred:false,
-  externalSefCertified:false,teacherApprovalRequired:true
+  externalSefCertified:false,teacherApprovalRequired:true,
+  audience:'FIRST_CONVENTION_LEARNER_NOT_ABSOLUTE_BEGINNER',
+  glossaryProvided:true,prerequisitesExplicit:true,pedagogicalEffectNotMeasured:true
 });
 function validate(catalog){
   if(catalog.length!==1523)throw Error('AB: catalogue de 1523 QCM attendu');
@@ -76,8 +117,15 @@ function validate(catalog){
   const all=new Set(),review=[];
   for(const lesson of LESSONS){
     if(!lesson.id||lesson.blocks.length!==4||lesson.contrast.length!==2||
-       !lesson.aim||!lesson.takeaway||!lesson.boundary)
+       !lesson.aim||!lesson.takeaway||!lesson.boundary||
+       !lesson.level||lesson.prerequisites.length<3||
+       lesson.vocabulary.length<4||lesson.cautions.length<3||
+       !lesson.learnerGoal)
       throw Error('AB: leçon incomplète '+lesson.id);
+    if(lesson.prerequisites.some(x=>!x.trim())||
+       lesson.vocabulary.some(x=>!x.term||!x.meaning)||
+       lesson.cautions.some(x=>!x.trim()))
+      throw Error('AC: prérequis, lexique ou pièges incomplets '+lesson.id);
     for(const id of lesson.sourceIds){
       if(all.has(id))throw Error('AB: source dupliquée '+id);
       all.add(id);
