@@ -1,0 +1,75 @@
+name: QPJB V2-X scoring variant comparison
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-x-focused.yml
+      - scripts/parcours-v2-comparer-x.cjs
+      - tests/quizz-v2-comparer-x.cjs
+      - scripts/parcours-v2-pilot.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-x-focused.yml
+      - scripts/parcours-v2-comparer-x.cjs
+      - tests/quizz-v2-comparer-x.cjs
+      - scripts/parcours-v2-pilot.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare-x:
+    name: X compare V2-F and two local score variants
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source integrity, score-only clones, no mutations
+        run: node tests/quizz-v2-comparer-x.cjs
+      - name: Simulate nine paired scenarios per engine
+        run: |
+          mkdir -p artifacts/v2-x
+          node scripts/parcours-v2-comparer-x.cjs > artifacts/v2-x/phase-x-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const a=JSON.parse(fs.readFileSync('artifacts/v2-x/phase-x-matrix.json','utf8'));
+          if(a.schema!=='QPJB_V2_X_9_SCENARIOS_1'||a.scenarios!==9||
+             a.originalCatalog!==1523||a.referenceEngineUnmodified!==true||
+             a.publicRuntimeWired!==false||a.productionModified!==false||
+             a.masteryInferred!==false||!Array.isArray(a.rows)||a.rows.length!==9)
+             throw Error('X simulation guard failed');
+          const simple={
+            schema:a.schema,scenarios:a.scenarios,sessionsPerScenario:a.sessionsPerScenario,
+            referenceEngineUnmodified:a.referenceEngineUnmodified,
+            targetTrajectories:a.targetTrajectories,
+            results:a.results,fullyPassingCandidates:a.fullyPassingCandidates,
+            decision:a.decision,
+            noStudentMasteryClaims:true,publicRuntimeWired:false
+          };
+          fs.writeFileSync('artifacts/v2-x/phase-x-summary.json',
+            JSON.stringify(simple,null,2)+String.fromCharCode(10));
+          const line=String.fromCharCode(10);
+          const messages=['## QPJB X — isolated V2-F scoring comparison',
+            '9 paired scenarios, 45 × 10 QCM per engine (27 runs total).'];
+          for(const [name,x] of Object.entries(simple.results)){
+            messages.push(name+': guard-pass '+x.passingScenarios+'/9 ; early better '+
+              x.scenariosWithEarlyMeanImproved+'/9 ; families delta '+
+              x.independentFamiliesDeltaRange.join(' to ')+
+              ' ; targeted recalls delta '+x.scheduledRecallDeltaRange.join(' to '));
+          }
+          messages.push('Teacher review only, no publication or substitution.');
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,messages.join(line)+line);
+          console.log('QPJB_PHASE_X_SUMMARY '+JSON.stringify(simple));
+          NODE
+      - name: Archive paired results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-x-audit
+          path: artifacts/v2-x/
+          retention-days: 14
+          if-no-files-found: warn
