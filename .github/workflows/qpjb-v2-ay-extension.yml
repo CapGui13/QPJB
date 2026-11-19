@@ -1,0 +1,48 @@
+name: QPJB V2-AY - Parcours 65 seances enrichi (test hors production)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ay-extension.yml
+      - scripts/parcours-v2-extension-ay.cjs
+      - scripts/parcours-v2-extension-ay-pack.cjs
+      - templates/parcours-v2-extension-ay.html
+      - Docs/PARCOURS_V2_PHASE_AX_CANDIDATS_OUVERTURES_20261119.json
+      - Docs/PARCOURS_V2_PHASE_AV_ORIGINAUX_OUVERTURES_20261119.json
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ay-extension.yml
+      - scripts/parcours-v2-extension-ay.cjs
+      - scripts/parcours-v2-extension-ay-pack.cjs
+      - templates/parcours-v2-extension-ay.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulate:
+    name: 65 seances x 3 profils et HTML de comparaison
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Controle de syntaxe et validation des sources
+        run: |
+          node --check scripts/parcours-v2-extension-ay.cjs
+          node --check scripts/parcours-v2-extension-ay-pack.cjs
+          node -e "const x=require('./scripts/parcours-v2-extension-ay.cjs').buildSupplement(); if(x.length!==8) process.exit(1);"
+      - name: Simuler les parcours enrichis sans altérer le Quiz
+        run: node scripts/parcours-v2-extension-ay.cjs
+      - name: Generer le carnet HTML interactif hors ligne
+        run: node scripts/parcours-v2-extension-ay-pack.cjs
+      - name: Publier uniquement un artefact Actions (pas GitHub Pages)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ay-65-seances
+          path: artifacts/v2-ay/
+          retention-days: 30
+          if-no-files-found: error
