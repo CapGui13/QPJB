@@ -10,6 +10,33 @@
 - Ce contrôle s'ajoute à l'étape Node de `.github/workflows/qpjb-v2-aj-navigation.yml`. La réussite du contrôle signifie **provenance vérifiée**, pas validation de l'enchère ni conformité exhaustive au SEF.
 - Les sources externes ci-dessous sont **des explications pédagogiques secondaires** et des comptes rendus de changements du SEF 2024, pas une certification officielle de chacun des 19 corrigés. Avant de changer une réponse, confronter **la main et la séquence exacte** au référentiel SEF et aux accords retenus pour le projet.
 
+## Résultat reproductible : les 19 alertes EXACTES
+
+Le contrôle AJ-AK exécuté sur la branche a extrait les 19 couples `(ID, motif de vigilance)` et retrouvé, dans le catalogue actif, leurs mains, contextes, enchères, propositions, réponses et justifications. Dans la première extraction, **19/19 mains ont 13 cartes et leur total H indiqué est exact** ; aucun choix de réponse répété.
+
+| Groupe dans les 19 alertes effectivement affichées | IDs exacts | Total |
+| --- | --- | ---: |
+| Stayman et développements (direct / relais / chelem / invitation) | `SEF-V416-008`, `SEF-V416-009`, `SEF-L18-006`, `SEF-L18-007`, `SEF-L18-008`, `SEF-L37-005`, `SEF-L39-002`, `SEF-L07-028` | 8 |
+| Texas Trèfle modulé après 1SA | `SEF-L25-007`, `SEF-L25-008` | 2 |
+| Stayman contré | `SEF-L25-001`, `SEF-L25-002`, `SEF-L25-003` | 3 |
+| Texas majeur contré | `SEF-L25-004`, `SEF-L25-005`, `SEF-L25-006` | 3 |
+| Texas mineur, courte après rectification | `SEF-V482-005`, `SEF-V482-007` | 2 |
+| 3SA gambling | `SEF-L06-029` | 1 |
+| **Total** | **19 entrées distinctes** | **19** |
+
+**Important : les 19 alertes de l'aperçu et l'ensemble plus large étudié dans le rapport H ne sont pas exactement le même périmètre.** Le rapport H évoque les six IDs `SEF-V482-005` à `-010`, mais **seuls `-005` et `-007` font partie des 19 flags actuels**. Cela ne dispense pas de revoir les quatre autres si l'on lance un audit global du catalogue.
+
+### Constats tirés des mains et des options, pas d'une supposition
+
+- `SEF-V416-008` et `SEF-V416-009` : les réponses originales **4♥ et 4♠ directes** sont proposées comme décisions de SEF à la suite de 1SA–2♣–2SA, mais **4♣ / 4♦ transfert ne figurent pas parmi les choix** ; à l'inverse, `SEF-L18-007` propose explicitement 4♣ pour 4♥. Risque de contradiction pédagogique entre questions si enseignées sans précision, **non une autorisation de réécrire le Quiz SEF**.
+- `SEF-L25-007` : la main possède **16 H et ♣R103**. Elle vérifie la condition d'honneur troisième annoncée dans son explication ; appeler 16 H « maximum » d'une ouverture 15–17 H est une **formulation qui demande clarification**, pas une preuve que 2SA soit incorrect.
+- `SEF-L25-004` : deux Cœurs (♥R8), mais **♦AD84 constitue un arrêt solide dans la couleur contrée**. Le support eBridge décrit le Passe comme « non fitté sans arrêt » : il ne valide donc **pas directement ce cas précis de non-fit avec arrêt**. Cette divergence de portée appelle un arbitrage propre ; ni validation ni correction automatique.
+- `SEF-L25-005` : trois Cœurs (♥RD7), sans arrêt Carreau (♦974), Surcontre cohérent avec l'accord externe consulté ; `SEF-L25-006` : trois Cœurs (♥A107) et arrêt Carreau (♦A84), rectification à 2♥ cohérente avec le même support. Reste à confirmer l'adoption de cet accord.
+- `SEF-V482-005` : singleton ♥ et réponse originale 3♥ ; `SEF-V482-007` : singleton ♦ après Texas ♣ et réponse 3SA. **Compatibilité apparente** avec les présentations du SEF 2024 consultées, sous réserve d'arbitrage définitif.
+- `SEF-L06-029` : la réponse 4♦ sur 3SA gambling–4♣ passe/corrige est distincte du problème de classement : ne pas changer le corrigé pour une simple question de rubrique.
+
+La vérification automatisée ajoutée à AK contrôle désormais **13 cartes, calcul des points H, unicité des propositions, existence et provenance des 19 IDs**. Elle ne détermine pas la validité conventionnelle des réponses.
+
 ## Arbitrage provisoire, par priorité
 
 | Groupe d'IDs cités dans la revue H | Statut motivé | Action candidate **sans modification du corrigé** |
