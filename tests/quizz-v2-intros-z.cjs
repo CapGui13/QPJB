@@ -10,6 +10,9 @@ assert.equal(annotations.size,79);
 assert.equal(Z.POLICY.activation,'EXPERIMENTAL_TEACHER_REVIEW_ONLY');
 assert.equal(Z.POLICY.studentMasteryRecorded,false);
 assert.equal(Z.POLICY.originalSelectionChanged,false);
+assert.equal(Z.POLICY.pedagogicalRole,'METACOGNITIVE_PROMPT_ONLY');
+assert.equal(Z.POLICY.distinguishesGuidedFromUnaided,true);
+assert.equal(Z.POLICY.notFullConventionLesson,true);
 assert.equal(Z.IDS.length,5);
 assert.equal(Z.catalogGuard(catalog).checkedIds,5);
 for(const id of Z.IDS){
@@ -20,6 +23,27 @@ for(const id of Z.IDS){
   assert.ok(![item.title,...item.steps].join(' ').toLowerCase().includes(q.answer.toLowerCase()),
     'An unscored prelude cannot literally reveal answer: '+id);
 }
+
+const LEADING_OR_ANSWER_TRIGGERS={
+ 'SEF-V486-022':[/3♣\s*(?:est|:|=)/i,/texas\s+(?:pour|carreau)/i],
+ 'SEF-V481-009':[/quelle\s+majeure\s+poss[eè]de\s+quatre/i,/quatre\s+piques/i],
+ 'SEF-L04-029':[/compte\s+le\s+soutien\s+r[eé]el/i,/nouvelle\s+ench[eè]re\s+se\s+justifie/i,/fit\s+garanti/i],
+ 'SEF-C2-007':[/deux\s+couleurs\s+longues\s+de\s+ta\s+main/i],
+ 'SEF-V45-044':[/deux\s+couleurs\s+qu.un\s+bicolore\s+conventionnel\s+peut\s+d[eé]crire/i]
+};
+for(const [id,patterns] of Object.entries(LEADING_OR_ANSWER_TRIGGERS)){
+ const card=Z.CARDS[id],body=[card.title,...card.steps].join(' ');
+ assert.ok(patterns.every(pattern=>!pattern.test(body)),
+   'Indication trop directionnelle dans la fiche '+id);
+}
+// Un indice peut provenir du QCM lui-même : ni le cacher, ni le modifier.
+const longMichael=originalById.get('SEF-L04-029');
+assert.ok(longMichael.context.includes('Le répondant ne fabrique pas de fit absent'));
+assert.ok(longMichael.context.includes('deux cartes chacune'));
+const artificial=originalById.get('SEF-V486-022');
+assert.ok(artificial.explain.includes('3♣ est un Texas'));
+assert.ok(!artificial.context.includes('3♣ est un Texas'));
+
 const sim=F.simulateV2(catalog,annotations,{sessions:45,seed:13,profile:'balanced'});
 const state=JSON.stringify(sim.state);
 const chosen=sim.sessions.map(deck=>deck.map(q=>q.id));
@@ -59,6 +83,19 @@ const offlineHtml=PREVIEW.render(catalog);
 assert.ok(offlineHtml.includes('QPJB — Aperçu expérimental'));
 assert.ok(offlineHtml.includes('const CASES = '));
 assert.ok(!offlineHtml.includes('__DATA__'));
+assert.ok(offlineHtml.includes('id="mode"'));
+assert.ok(offlineHtml.includes('value="autonomous"'));
+assert.ok(offlineHtml.includes('id="prelude"'));
+assert.ok(offlineHtml.includes('byId("prelude").hidden=!guided'));
+assert.ok(offlineHtml.includes('qbox.classList.toggle("show",!guided)'));
+assert.ok(!offlineHtml.includes('localStorage.'));
+assert.ok(!offlineHtml.includes('fetch('));
+const previewStart=offlineHtml.lastIndexOf('<script>')+'<script>'.length;
+const previewEnd=offlineHtml.indexOf('</script>',previewStart);
+assert.ok(previewStart>8&&previewEnd>previewStart);
+assert.doesNotThrow(()=>new Function(offlineHtml.slice(previewStart,previewEnd)),
+  'Le JavaScript HTML doit se compiler');
+
 const payload=/const CASES = (\[.*?\]);\nconst byId/s.exec(offlineHtml);
 assert.ok(payload,'Preview embeds bounded local source data');
 const items=JSON.parse(payload[1]);
