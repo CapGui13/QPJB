@@ -13,7 +13,10 @@ const POLICY=Object.freeze({
   studentMasteryRecorded:false,
   originalQcmEdited:false,
   scoreAffectsProgression:false,
-  originalSelectionChanged:false
+  originalSelectionChanged:false,
+  pedagogicalRole:'METACOGNITIVE_PROMPT_ONLY',
+  distinguishesGuidedFromUnaided:true,
+  notFullConventionLesson:true
 });
 const CARDS=Object.freeze({
   'SEF-V486-022':{
@@ -21,9 +24,9 @@ const CARDS=Object.freeze({
     sourceAnchor:'2♣ (Landy',
     title:'Lire la défense après intervention sur 1SA',
     steps:[
-      'Repère quel camp a ouvert de 1SA et quel camp intervient ensuite.',
-      'Identifie précisément la signification de l’intervention adverse : une intervention artificielle ne se traite pas automatiquement comme une enchère naturelle.',
-      'Avant de choisir, vérifie quel dispositif de réponse la paire utilise dans cette situation.'
+      'Repère qui a ouvert de 1SA et interprète l’intervention adverse selon l’accord annoncé.',
+      'Distingue une intervention naturelle d’une intervention artificielle : leurs conséquences sur les réponses peuvent différer.',
+      'Pour chaque proposition, demande-toi si son sens est naturel ou conventionnel dans ce contexte.'
     ]
   },
   'SEF-V481-009':{
@@ -31,9 +34,9 @@ const CARDS=Object.freeze({
     sourceAnchor:'Stayman artificiel 3♣',
     title:'Identifier le rôle de chaque enchère après 1SA',
     steps:[
-      'Repère l’intervention naturelle adverse et la signification que la séquence attribue déjà au 3♣ du partenaire.',
-      'Vérifie maintenant quel joueur doit répondre et quelle majeure possède quatre cartes.',
-      'Évite d’attribuer à une enchère une longueur que la main ne possède pas.'
+      'Reconstitue l’ordre des enchères : ouvreur, intervenant, répondant, puis joueur à la parole.',
+      'Relis la signification de l’enchère artificielle du partenaire telle qu’elle est indiquée dans la séquence.',
+      'Compare chaque proposition avec les informations de la séquence et la distribution de ta main, sans anticiper la conclusion.'
     ]
   },
   'SEF-L04-029':{
@@ -41,9 +44,9 @@ const CARDS=Object.freeze({
     sourceAnchor:'Vous avez déjà PASSÉ sur 3♠',
     title:'Décider après un cue-bid bicolore et une surenchère',
     steps:[
-      'Relis les deux couleurs exactement promises par le cue-bid du partenaire.',
-      'Compte le soutien réel que tu possèdes dans chacune de ces deux couleurs, sans confondre longueur personnelle et fit garanti.',
-      'Relis la vulnérabilité et le palier atteint avant de décider si une nouvelle enchère se justifie.'
+      'Repère quel joueur a fait le cue-bid et ce que ce cue-bid promet dans l’accord décrit.',
+      'Sépare les éléments garantis par l’accord de ce qui reste inconnu sur les deux mains.',
+      'Considère toutes les propositions au palier atteint en tenant compte de la vulnérabilité.'
     ]
   },
   'SEF-C2-007':{
@@ -51,9 +54,9 @@ const CARDS=Object.freeze({
     sourceAnchor:'bicolore majeur 5–5',
     title:'Lire une convention bicolore en intervention',
     steps:[
-      'Observe l’ouverture adverse et les deux couleurs longues de ta main.',
-      'Repère le système convenu explicitement annoncé dans le contexte.',
-      'Fais correspondre la description conventionnelle à la situation avant de regarder les propositions.'
+      'Observe l’ouverture adverse et le rôle du joueur appelé à intervenir.',
+      'Relis la convention citée par l’énoncé : que promet-elle exactement en termes de répartition ?',
+      'Évalue séparément la force et la distribution avant de comparer les quatre options.'
     ]
   },
   'SEF-V45-044':{
@@ -61,9 +64,9 @@ const CARDS=Object.freeze({
     sourceAnchor:'Michaels précisés',
     title:'Reconnaître les couleurs d’un cue-bid',
     steps:[
-      'Repère la couleur d’ouverture de l’adversaire.',
-      'Identifie les deux couleurs qu’un bicolore conventionnel peut décrire dans l’accord annoncé.',
-      'Compare ensuite la distribution réelle de la main aux différentes propositions.'
+      'Distingue l’ouverture adverse de l’éventuelle intervention de ton camp.',
+      'Relis les exigences de distribution du bicolore convenu dans l’énoncé.',
+      'Examine ce que promettrait chaque enchère proposée et confronte-le à ta main.'
     ]
   }
 });
