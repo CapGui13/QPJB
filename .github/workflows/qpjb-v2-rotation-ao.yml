@@ -1,0 +1,44 @@
+name: QPJB V2-AO - rotation choix d'ouverture (prototype)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-rotation-ao.yml
+      - scripts/parcours-v2-rotation-ouvertures-ao.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-rotation-ao.yml
+      - scripts/parcours-v2-rotation-ouvertures-ao.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    name: Comparer 3 rotations et V2-F sur 9 profils artificiels
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier code prototype et reference
+        run: |
+          node --check scripts/parcours-v2-rotation-ouvertures-ao.cjs
+          node --check scripts/parcours-v2-pilot.cjs
+      - name: Comparer 9 profils et 45 seances (AUCUNE mise en ligne)
+        run: |
+          mkdir -p artifacts/v2-ao
+          node scripts/parcours-v2-rotation-ouvertures-ao.cjs --output=artifacts/v2-ao/comparaison-ouvertures.json
+      - name: Conserver les analyses
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ao-comparaison
+          path: artifacts/v2-ao/
+          retention-days: 30
+          if-no-files-found: error
