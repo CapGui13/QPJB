@@ -60,7 +60,7 @@ assert.equal((html.match(/<details>/g)||[]).length,6);
 assert.equal((html.match(/class="clear"/g)||[]).length,6);
 assert.ok(html.includes('data-lesson="rubensohl"'));
 assert.ok(html.includes('data-lesson="michaels"'));
-assert.ok(html.includes('Aucune réponse n’est enregistrée ou notée'));
+assert.ok(html.includes('aucune réponse n’est enregistrée ou notée'));
 assert.ok(html.includes('Repères de discussion pour l’enseignant'));
 assert.ok(html.includes('Landy'));
 assert.ok(html.includes('au moins 5–5'));
