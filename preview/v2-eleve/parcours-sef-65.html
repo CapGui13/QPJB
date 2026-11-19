@@ -25,6 +25,16 @@ button.danger{color:#903e3e;border-color:#dababa}button:focus-visible,input:focu
 .feedback{border:1px solid #c9e4d5;border-radius:11px;padding:15px;background:#f0f9f4;margin:16px 0}
 #warning{max-width:950px;margin:auto;color:#874b15;font-weight:650;padding:0 16px}
 .disclaimer{color:#667e91;font-size:.83rem;line-height:1.6}
+.sef-progress{margin:18px 0;padding:18px;background:#f7fafc;border:1px solid #d6e1eb;border-radius:12px}
+.sef-progress h3{font-size:1.1rem;margin:0 0 9px}
+.sef-progress p{margin:8px 0 13px}
+.sef-grid{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px;margin:12px 0}
+.sef-step{display:flex;align-items:center;justify-content:center;min-height:32px;min-width:0;font-size:.78rem;font-weight:650;border:1px solid #d7e0e8;background:#fff;color:#748194;border-radius:6px}
+.sef-step.done{background:#e3f2ed;border-color:#a5c9bc;color:#245b49}
+.sef-step.current{border:2px solid #236e9a;background:#eaf4fb;color:#12486c}
+.sef-history{margin-top:14px}.sef-history summary{cursor:pointer;color:#184f7d;font-weight:650}
+.sef-history ol{margin:12px 0 0;padding-left:22px}.sef-history li{padding:2px 0;font-size:.92rem}
+@media(max-width:650px){.sef-progress{padding:12px}.sef-grid{grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}.sef-step{min-height:28px;font-size:.72rem}}
 @media(max-width:650px){header{padding:24px 14px}.pane{padding:16px}.handAndAuction,.choices{grid-template-columns:1fr}.topline{justify-content:flex-start}}
 </style></head><body><header><div class="wrap"><div class="pill">Aperçu privé SEF — HORS PRODUCTION</div>
 <h1>Parcours guidé SEF — 65 séances</h1>
@@ -1486,12 +1496,42 @@ function header(){
  '<span class="pill">'+(!record||record.model==='core'?'QCM SEF uniquement':
  '7 ajouts'+(record.model==='eight'?' + cas 2SA conditionnel':''))+'</span></div>';
 }
+function studentProgress(){
+ if(!STUDENT_ONLY||!record)return '';
+ const completed=record.completed||[];
+ const n=completed.length,attempted=completed.reduce((sum,x)=>sum+(Number.isInteger(x.coreQuestions)?x.coreQuestions:x.questions||0),0);
+ const matched=completed.reduce((sum,x)=>sum+(Number.isInteger(x.coreCorrect)?x.coreCorrect:x.correct||0),0);
+ const upcoming=record.current?.number||record.nextSession;
+ const events=Array.isArray(record.engineState?.reviewEvents)?record.engineState.reviewEvents:[];
+ const scheduled=events.filter(e=>e.source==='scheduled').length;
+ const steps=Array.from({length:MAX_SESSIONS},(_,i)=>{
+   const index=i+1,isDone=index<=n,isCurrent=!record.finished&&index===upcoming;
+   const status=isDone?'terminée':isCurrent?'en cours ou prochaine':'à venir';
+   return '<span class="sef-step'+(isDone?' done':isCurrent?' current':'')+
+     '" title="Séance '+index+' : '+status+'" aria-label="Séance '+index+' : '+status+'">'+index+'</span>';
+ }).join('');
+ const recent=completed.slice(-8).reverse().map(x=>{
+   const correct=Number.isInteger(x.coreCorrect)?x.coreCorrect:x.correct;
+   const total=Number.isInteger(x.coreQuestions)?x.coreQuestions:x.questions;
+   return '<li>Séance '+x.number+' : <strong>'+correct+' / '+total+
+     '</strong> réponses correspondant au corrigé</li>';
+ }).join('');
+ return '<section class="sef-progress" aria-label="Progression des 65 séances">'+
+ '<h3>Mes 65 séances</h3>'+
+ '<p><strong>'+n+' / '+MAX_SESSIONS+'</strong> séances terminées · '+
+ '<strong>'+matched+' / '+attempted+'</strong> réponses correspondant au corrigé · '+
+ '<strong>'+scheduled+'</strong> rappels ciblés enregistrés</p>'+
+ '<div id="sef-session-grid" class="sef-grid" aria-label="Calendrier de progression">'+steps+'</div>'+
+ (recent?'<details class="sef-history"><summary>Voir les 8 dernières séances</summary><ol>'+recent+'</ol></details>':'')+
+ '<p class="muted">Ce suivi décrit tes réponses enregistrées, pas des compétences certifiées. Aucun classement.</p>'+
+ '</section>';
+}
 function welcome(){
  if(incompatibleSave){
   panel('<section class="pane">'+header()+
-   '<h2>Sauvegarde AZ incompatible</h2>'+
+   '<h2>'+(STUDENT_ONLY?'Sauvegarde du parcours incompatible':'Sauvegarde AZ incompatible')+'</h2>'+
    '<p>Une progression AZ existe déjà mais ne peut pas être relue. Pour éviter de la perdre, aucun nouveau parcours ne peut démarrer tant qu’elle est présente.</p>'+
-   '<button id="eraseIncompatible" class="danger">Effacer uniquement la sauvegarde AZ incompatible</button>'+
+   '<button id="eraseIncompatible" class="danger">'+(STUDENT_ONLY?'Effacer uniquement ma sauvegarde SEF incompatible':'Effacer uniquement la sauvegarde AZ incompatible')+'</button>'+
    '<p class="muted">Cette action exige ta confirmation. Les sauvegardes du Quiz SEF, du parcours classique et du parcours V2-F ne sont pas touchées.</p></section>');
   $('eraseIncompatible').onclick=()=>{
    if(!window.confirm('Supprimer définitivement la sauvegarde AZ incompatible sur cet appareil ?'))return;
@@ -1514,12 +1554,12 @@ function welcome(){
  panel('<section class="pane">'+header()+
  '<h2>'+(STUDENT_ONLY?'Parcours guidé SEF — 65 séances':'Parcours guidé adaptatif — test AZ')+'</h2>'+
  '<p>'+(STUDENT_ONLY?'65 séances de 10 QCM SEF, avec progression adaptée à tes réponses et rappels programmés. Aucun exercice complémentaire en attente de validation.':'65 séances de 10 QCM SEF, avec des rappels adaptés à tes réponses. Les exercices complémentaires, non validés pour les élèves, restent accessibles uniquement en mode expérimental.')+'</p>'+ 
- readonly+
+ readonly+studentProgress()+
  (record
  ?'<button id="start" class="primary">'+(record.current?'Reprendre la séance':record.finished?'Voir le bilan':'Commencer la séance')+'</button>'
  :(STUDENT_ONLY?'<button id="start" class="primary">Démarrer le parcours SEF</button>':'<label class="field" for="model">Choix du parcours</label><select id="model"><option value="core">Parcours SEF — recommandé (sans ajouts en attente)</option><option value="seven">Expérimental : 7 ouvertures complémentaires</option><option value="eight">Expérimental : 8 ouvertures dont 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>'))+
  '<p class="muted">Sauvegarde locale indépendante, aucune connexion au site et aucune synchronisation avec V1/V2-F.</p>'+
- (record?'<button id="erase" class="danger">Réinitialiser uniquement ce prototype AZ</button>':'')+
+ (record?'<button id="erase" class="danger">'+(STUDENT_ONLY?'Réinitialiser mon essai SEF':'Réinitialiser uniquement ce prototype AZ')+'</button>':'')+
  '</section>');
  $('start').onclick=()=>{
   if(!record)record=blank(STUDENT_ONLY?'core':$('model').value);
@@ -1583,9 +1623,9 @@ function summary(){
  '<p><strong>'+(Number.isInteger(latest.coreCorrect)?latest.coreCorrect:latest.correct)+' / '+(Number.isInteger(latest.coreQuestions)?latest.coreQuestions:latest.questions)+'</strong> QCM SEF conformes aux corrigés.</p>'+ 
  (latest.supplement?'<p>Complément authentique inclus : '+esc(latest.supplement)+
  '. Résultat complémentaire séparé : '+(latest.supplementMatched===true?'conforme au corrigé':latest.supplementMatched===false?'différent du corrigé':'non renseigné')+'. Il n’a pas été crédité comme preuve de maîtrise.</p>':'')+
- '<p class="muted">Ces résultats sont locaux et ne constituent ni un classement ni une certification pédagogique.</p>'+
+ '<p class="muted">Ces résultats sont locaux et ne constituent ni un classement ni une certification pédagogique.</p>'+studentProgress()+
  (record.finished?'':'<button id="nextSession" class="primary">Séance '+record.nextSession+'</button>')+
- '<button id="home">Accueil AZ</button></section>');
+ '<button id="home">'+(STUDENT_ONLY?'Voir mes 65 séances':'Accueil AZ')+'</button></section>');
  if(!record.finished)$('nextSession').onclick=startSession;
  $('home').onclick=()=>{showHome=true;render()};
 }
