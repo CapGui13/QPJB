@@ -1,0 +1,44 @@
+name: QPJB V2-AP - Etalement des ouvertures (prototype)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ouvertures-ap.yml
+      - scripts/parcours-v2-etaler-ouvertures-ap.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ouvertures-ap.yml
+      - scripts/parcours-v2-etaler-ouvertures-ap.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulate:
+    name: Verifier 9 parcours sur 45 seances et 3 sur 65
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier syntaxe, source de reference inchangee
+        run: |
+          node --check scripts/parcours-v2-etaler-ouvertures-ap.cjs
+          node --check scripts/parcours-v2-pilot.cjs
+      - name: Comparer les tirages et la couverture d'ouvertures
+        run: |
+          mkdir -p artifacts/v2-ap
+          node scripts/parcours-v2-etaler-ouvertures-ap.cjs --output=artifacts/v2-ap/etaler-ouvertures.json
+      - name: Conserver les analyses
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ap-etaler-ouvertures
+          path: artifacts/v2-ap/
+          retention-days: 30
+          if-no-files-found: error
