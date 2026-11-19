@@ -265,6 +265,10 @@ body.parcours-session .parcours-session-banner{display:block}
 <p>Des séances courtes qui mêlent nouvelles notions, ouvertures de plus en plus délicates, réponses et interventions. Les révisions s’adaptent à tes résultats.</p>
 <p id="parcours-status" role="status" aria-live="polite">Première séance : découvrir les ouvertures.</p>
 <button id="parcours-start" class="primary" type="button">Commencer mon parcours →</button>
+<div id="parcours-v2-preview-wrap" hidden style="display:none;margin:14px 0 0;padding:12px;border:1px solid #8cb9ec;border-radius:10px">
+<a id="parcours-v2-preview-link" href="./preview/v2-ai/parcours-v2-cohabitation.html" target="_blank" rel="noopener noreferrer" style="display:inline-block;font-weight:700">Tester le parcours V2 (prévisualisation) →</a>
+<p style="margin:7px 0 0;font-size:.9em">Version de test indépendante : ton parcours actuel et ses résultats sont conservés. Le test s’ouvre dans un nouvel onglet.</p>
+</div>
 <div id="parcours-consolidation-wrap" class="parcours-consolidation-wrap" hidden>
 <button id="parcours-consolidation" type="button" aria-describedby="parcours-consolidation-note">Consolider mes difficultés →</button>
 <p class="parcours-consolidation-note" id="parcours-consolidation-note"></p>
@@ -1105,6 +1109,13 @@ function choose(x,i){
  const sel=sessionChoices[x.id]?.[i];
  if(!sel)return;
  finalizeAnswer(x,sel,'qcm');
+}
+// Bascule AJ privée : inaccessible sans ?v2preview=1 dans le Quiz SEF.
+const ajV2PreviewRequested=new URLSearchParams(location.search).get('v2preview')==='1';
+const ajV2PreviewWrap=document.getElementById('parcours-v2-preview-wrap');
+if(ajV2PreviewWrap&&ajV2PreviewRequested){
+ ajV2PreviewWrap.hidden=false;
+ ajV2PreviewWrap.style.display='block';
 }
 makeOptions();$('parcours-dashboard').addEventListener('toggle',()=>quizReportHeight(),true);$('parcours-start').addEventListener('click',()=>quizFadeNavigate(startParcours));
 $('parcours-consolidation').addEventListener('click',()=>quizFadeNavigate(()=>startParcours('consolidation')));$('new').addEventListener('click',()=>quizFadeNavigate(start));$('topic').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('selection-mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('difficulty').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('back-home').addEventListener('click',()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()}));
