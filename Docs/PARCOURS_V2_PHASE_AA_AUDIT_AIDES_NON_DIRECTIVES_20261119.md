@@ -32,3 +32,14 @@ Le nouveau **mode « découverte guidée »** de la démonstration locale affich
 - `.github/workflows/qpjb-v2-z-focused.yml` : validation par GitHub Actions des scripts, simulations et fichier HTML produit.
 
 **Statut éditorial : cinq aides reformulées, deux limites intrinsèques relevées, validation enseignante encore nécessaire. Aucun changement de V2-F, aucune modification du catalogue 1 523 QCM, aucune fusion ni publication.**
+
+## Contrôle technique final — phase AA
+
+**GitHub Actions [#44498105146](https://github.com/CapGui13/QPJB/actions/runs/44498105146) : succès.** Les contrôles de provenance des cinq QCM, de formulations anciennes trop directionnelles, de séparation des modes, de syntaxe JavaScript de l'aperçu et de non-mutation ont réussi.
+
+Simulation sur **neuf parcours V2-F × 45 séances** : **18 premières rencontres sur 18** disposeraient d'une aide expérimentale. Sources initiales rencontrées : `SEF-V486-022` (6), `SEF-V481-009` (3), `SEF-L04-029` (1), `SEF-C2-007` (3), `SEF-V45-044` (5). Les **familles distinctes (440–450)** et les **rappels ciblés (69–77)** sont inchangés. Le nouvel aperçu HTML, avec les deux modes, est archivé dans `qpjb-v2-z-experimental-preview`, fichier `intro-z-preview.html` (12 652 octets).
+
+**Limites des tests :** ils ne valident pas la neutralité sémantique complète, l'efficacité d'une présentation en classe, ou l'aptitude de l'énoncé original `SEF-L04-029` à mesurer l'autonomie. Les cinq fiches restent **non actives** ; validation enseignante nécessaire.
+
+**Statut final AA : `AA_CI_SUCCESS / CINQ_FICHES_REVISEES / DEUX_MODES_APERCU / 18_SUR_18 / V2_F_INCHANGE / AUCUN_DEPLOIEMENT`.**
+
