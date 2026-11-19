@@ -83,6 +83,18 @@ jobs:
         run: |
           python3 scripts/build_catalogue.py
           touch .nojekyll
+      # Le dossier preview/ n'existe pas sur le site public V1.
+      # Tant qu'une publication V2 dédiée n'est pas autorisée, une fusion
+      # accidentelle ne doit pas exposer ses pages d'essai sur GitHub Pages.
+      - name: Exclure les prévisualisations non publiées de Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d preview ]]; then
+            rm -rf -- preview
+            echo "Répertoire preview/ retiré uniquement du paquet Pages."
+          fi
+          test ! -e preview
       - uses: actions/configure-pages@v5
       # À chaque nouvelle tentative d'un même workflow_run, utiliser un nom propre.
       # Sinon upload-pages-artifact conserve plusieurs « github-pages » et deploy-pages échoue.
