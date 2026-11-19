@@ -13,7 +13,7 @@ const template=read('templates/parcours-v2-ay-live.html');
 const start='<div id="parcours-v2-preview-wrap" hidden style="display:none;';
 const section=quiz.slice(quiz.indexOf(start),quiz.indexOf('</div>',quiz.indexOf(start))+6);
 assert.ok(section.startsWith(start),'Panneau de test masqué par défaut');
-const target='./preview/v2-az/parcours-v2-adaptatif.html';
+const target='./preview/v2-az/parcours-v2-adaptatif.html?mode=eleve';
 assert.equal((quiz.match(/id="parcours-v2-az-preview-link"/g)||[]).length,1);
 assert.ok(section.includes('id="parcours-v2-preview-link"'));
 assert.ok(section.includes('href="'+target+'"'));
@@ -23,6 +23,8 @@ assert.ok(quiz.includes("new URLSearchParams(location.search).get('v2preview')==
 assert.ok(quiz.includes('ajV2PreviewWrap.hidden=false'));
 assert.ok(index.includes("new URLSearchParams(location.search).get('v2preview')==='1'?'&v2preview=1':''"));
 assert.ok(az.includes('id="az-return-v1" href="../../quizz.html?v2preview=1"'));
+assert.ok(!quiz.includes('href="./preview/v2-az/parcours-v2-adaptatif.html"'));
+assert.ok(quiz.includes('65 séances de 10 QCM SEF'));
 assert.ok(template.includes('id="az-return-v1" href="../../quizz.html?v2preview=1"'));
 assert.equal((az.match(/id="az-return-v1"/g)||[]).length,1);
 assert.ok(!quiz.includes('window.localStorage.setItem("qpjb-preview-v2-az-01"'));
