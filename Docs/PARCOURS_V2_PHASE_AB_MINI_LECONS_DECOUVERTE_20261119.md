@@ -56,4 +56,17 @@ Le workflow `.github/workflows/qpjb-v2-ab-focused.yml` construit l'artefact **`q
 
 **Ne pas intégrer les leçons automatiquement au Quiz SEF** : pour l'instant, proposer un document à relire par l'enseignante. Toute utilisation réelle devra distinguer clairement **apprentissage guidé**, **entraînement** et **évaluation sans aide**. Aucun nouveau QCM, correction, famille, prérequis, score ni moteur n'est créé ou modifié.
 
-**Statut initial : `AB_DEUX_LECONS_SOURCES / NON_NOTE / HTML_HORS_LIGNE / VALIDATION_ENSEIGNANTE_REQUISE / AUCUN_DEPLOIEMENT`.**
+## Contrôle technique du prototype
+
+**GitHub Actions : [#44499785099](https://github.com/CapGui13/QPJB/actions/runs/44499785099), succès.** Les tests ont validé les cinq sources contre les 1 523 QCM, l'absence de reproduction de questions ou de corrigés, l'absence de notation, la syntaxe du HTML autonome et l'absence de mutation. L'artefact `qpjb-v2-ab-mini-lessons` fournit :
+
+- `mini-lecons-decouverte.html` : **9 228 octets**, deux onglets, quatre sections pédagogiques et deux sections dépliables par leçon, aucune question d'exercice intégrée ;
+- `phase-ab-lessons.json` : le texte sourcé des deux leçons ;
+- `phase-ab-matrix.json` et `phase-ab-summary.json` : les vérifications des neuf parcours fictifs.
+
+**Neuf parcours V2-F × 45 séances :** les **18 premières rencontres** d'une des deux conventions sont toutes associées à une leçon disponible (**18/18**). La diversité des familles (**440–450**) et les rappels ciblés (**69–77**) restent ceux de V2-F. **C'est une couverture documentaire, pas une mesure d'efficacité ni un déploiement des leçons dans les séances.**
+
+**Limites résiduelles :** les accords sont tirés du catalogue QPJB ; leur conformité externe à toutes les versions du SEF n'a pas été vérifiée. La progression d'apprentissage, la compréhension des textes et l'ergonomie des leçons restent à valider par l'enseignante. Aucun mécanisme ne comptabilise ces pages comme des questions réussies.
+
+**Statut final technique : `AB_CI_OK / 2_LECONS / 5_QCM_SOURCES / 18_SUR_18_EXPOSITIONS_DOCUMENTEES / V2_F_INCHANGE / VALIDATION_ENSEIGNANTE_REQUISE / AUCUN_DEPLOIEMENT`.**
+
