@@ -1,0 +1,81 @@
+name: QPJB V2-AI cohabitation V1 V2
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ai-cohabitation.yml
+      - scripts/parcours-v2-build-cohabitation-ai.cjs
+      - tests/quizz-v2-cohabitation-ai.cjs
+      - tests/quizz-v2-cohabitation-ai-browser.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ai-cohabitation.yml
+      - scripts/parcours-v2-build-cohabitation-ai.cjs
+      - tests/quizz-v2-cohabitation-ai.cjs
+      - tests/quizz-v2-cohabitation-ai-browser.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ai-unit:
+    name: No changes to V1 or Quiz SEF saves
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier le nouveau contexte V2 sans toucher les données V1
+        run: |
+          node tests/quizz-v2-reprise-ag.cjs
+          node tests/quizz-v2-cohabitation-ai.cjs
+      - name: Construire une page V2 de cohabitation hors production
+        run: |
+          mkdir -p artifacts/v2-ai
+          node scripts/parcours-v2-build-cohabitation-ai.cjs > artifacts/v2-ai/phase-ai-summary.json
+          test -s artifacts/v2-ai/parcours-v2-cohabitation.html
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=JSON.parse(fs.readFileSync('artifacts/v2-ai/phase-ai-summary.json','utf8'));
+          if(s.schema!=='QPJB_AI_COHABITATION_1'||s.originalQcm!==1523||
+             s.v1Key!=='qpjb-sef-parcours-01'||s.v1TrainingKey!=='qpjb-sef-entrainement-01'||
+             s.v2Key!=='qpjb-sef-parcours-v2-01'||s.v1ReadOnly!==true||
+             s.v1TrainingReadOnly!==true||s.v2NoAutomaticMigration!==true||
+             s.noMasteryTransfer!==true||s.teacherAuthorization!==false||
+             s.lessonsIncluded!==false||s.siteModified!==false||s.deployed!==false)
+            throw Error('AI: Save compatibility and separation contract failed');
+          console.log('QPJB_AI_SUMMARY '+JSON.stringify(s));
+          if(process.env.GITHUB_STEP_SUMMARY)fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            '## QPJB AI — V1/V2 côte à côte\n'+
+            'Les clés V1/Quiz SEF restent strictement en lecture seule ; la V2 utilise une nouvelle clé.\n'+
+            'Aucune migration de niveau supposée, aucun déploiement.\n');
+          NODE
+      - name: Archiver le prototype et le contrat de compatibilité
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ai-cohabitation
+          path: artifacts/v2-ai/
+          retention-days: 14
+          if-no-files-found: warn
+  ai-browser:
+    name: V1-V2 shared-origin ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer navigateur de test
+        run: npm install --no-save playwright@1.64.1
+      - name: Vérifier la navigation réelle QPJB et la sauvegarde indépendante
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-cohabitation-ai-browser.cjs
