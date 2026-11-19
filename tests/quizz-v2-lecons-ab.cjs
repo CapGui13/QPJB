@@ -73,7 +73,9 @@ assert.ok(html.includes('Texas impossible'));
 assert.ok(html.includes('Bicolore au moins 5–5'));
 assert.ok(html.includes('vulnérabilité'));
 assert.ok(html.includes('les deux majeures'));
-assert.ok(html.includes('seulement')||html.includes('limites'));
+assert.ok(html.includes('ne constituent pas une table complète du Rubensohl'));
+assert.ok(html.includes('ne doivent pas être transposés automatiquement'));
+
 
 assert.ok(html.includes('aucun résultat enregistré')||html.includes('aucun résultat de maîtrise'));
 assert.ok(!html.includes('__NAV__')&&!html.includes('__LESSONS__'));
