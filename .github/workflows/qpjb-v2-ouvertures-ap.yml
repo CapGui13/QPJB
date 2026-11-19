@@ -1,16 +1,9 @@
 name: QPJB V2-AP - Etalement des ouvertures (prototype)
 on:
+  # CI ciblee : push par fichiers modifies ; pas de doublon sur chaque synchro PR.
   push:
     branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
     paths:
-      - .github/workflows/qpjb-v2-ouvertures-ap.yml
-      - scripts/parcours-v2-etaler-ouvertures-ap.cjs
-      - scripts/parcours-v2-pilot.cjs
-      - quizz.html
-  pull_request:
-    branches: [main]
-    paths:
-      - .github/workflows/qpjb-v2-ouvertures-ap.yml
       - scripts/parcours-v2-etaler-ouvertures-ap.cjs
       - scripts/parcours-v2-pilot.cjs
       - quizz.html

@@ -1,16 +1,9 @@
 name: QPJB V2-AD comprehension worksheet
 on:
+  # CI ciblee : push par fichiers modifies ; pas de doublon sur chaque synchro PR.
   push:
     branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
     paths:
-      - .github/workflows/qpjb-v2-ad-focused.yml
-      - scripts/parcours-v2-comprehension-ad.cjs
-      - scripts/parcours-v2-apercu-comprehension-ad.cjs
-      - tests/quizz-v2-comprehension-ad.cjs
-  pull_request:
-    branches: [main]
-    paths:
-      - .github/workflows/qpjb-v2-ad-focused.yml
       - scripts/parcours-v2-comprehension-ad.cjs
       - scripts/parcours-v2-apercu-comprehension-ad.cjs
       - tests/quizz-v2-comprehension-ad.cjs

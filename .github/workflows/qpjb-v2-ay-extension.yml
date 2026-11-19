@@ -1,22 +1,15 @@
 name: QPJB V2-AY - Parcours 65 seances enrichi (test hors production)
 on:
+  # CI ciblee : push par fichiers modifies ; pas de doublon sur chaque synchro PR.
   push:
     branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
     paths:
-      - .github/workflows/qpjb-v2-ay-extension.yml
       - scripts/parcours-v2-extension-ay.cjs
       - scripts/parcours-v2-extension-ay-pack.cjs
       - templates/parcours-v2-extension-ay.html
       - Docs/PARCOURS_V2_PHASE_AX_CANDIDATS_OUVERTURES_20261119.json
       - Docs/PARCOURS_V2_PHASE_AV_ORIGINAUX_OUVERTURES_20261119.json
       - quizz.html
-  pull_request:
-    branches: [main]
-    paths:
-      - .github/workflows/qpjb-v2-ay-extension.yml
-      - scripts/parcours-v2-extension-ay.cjs
-      - scripts/parcours-v2-extension-ay-pack.cjs
-      - templates/parcours-v2-extension-ay.html
   workflow_dispatch:
 permissions:
   contents: read

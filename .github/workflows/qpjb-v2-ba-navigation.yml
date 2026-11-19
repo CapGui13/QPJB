@@ -1,9 +1,9 @@
 name: QPJB V2-BA - AZ navigation protegee
 on:
+  # CI ciblee : push par fichiers modifies ; pas de doublon sur chaque synchro PR.
   push:
     branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
     paths:
-      - .github/workflows/qpjb-v2-ba-navigation.yml
       - tests/quizz-v2-ba-navigation.cjs
       - tests/quizz-v2-ba-navigation-browser.cjs
       - quizz.html
@@ -12,17 +12,6 @@ on:
       - preview/v2-eleve/parcours-sef-65.html
       - scripts/parcours-v2-build-student-bg.cjs
       - templates/parcours-v2-ay-live.html
-  pull_request:
-    branches: [main]
-    paths:
-      - .github/workflows/qpjb-v2-ba-navigation.yml
-      - tests/quizz-v2-ba-navigation.cjs
-      - tests/quizz-v2-ba-navigation-browser.cjs
-      - quizz.html
-      - index.html
-      - preview/v2-az/parcours-v2-adaptatif.html
-      - preview/v2-eleve/parcours-sef-65.html
-      - scripts/parcours-v2-build-student-bg.cjs
   workflow_dispatch:
 permissions:
   contents: read
