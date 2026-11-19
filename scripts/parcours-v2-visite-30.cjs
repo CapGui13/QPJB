@@ -42,10 +42,10 @@ function generate(){
   const sourceIds=new Set(catalog.map(q=>q.id));
   assert.equal(sourceIds.size,catalog.length);
   const preview=fs.readFileSync(path.join(ROOT,'preview/parcours-v2-autonome.html'),'utf8');
-  const marker='<script id="review-flags" type="application/json">';
-  const at=preview.indexOf(marker),end=preview.indexOf('</script>',at+marker.length);
-  assert.ok(at>=0&&end>at,'Liste des questions sensibles absente');
-  const flags=JSON.parse(preview.slice(at+marker.length,end));
+  const flagScript=[...preview.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
+    .find(([,attrs])=>/\bid="review-flags"/.test(attrs));
+  assert.ok(flagScript,'Liste des questions sensibles absente');
+  const flags=JSON.parse(flagScript[2]);
   const sensitive=new Set(flags.map(x=>x[0]));
   assert.equal(sensitive.size,19);
   const scenarios=[];
