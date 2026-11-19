@@ -45,7 +45,7 @@ function studentHtml(html){
  html=once(html,
   'Essai privé non publié · les compléments AY ne sont pas encore approuvés pédagogiquement · aucune connexion réseau requise.\nLa sauvegarde, lorsqu\'elle fonctionne, est limitée au navigateur où ce prototype est ouvert. Elle ne se synchronise pas avec le site.',
   'Aperçu privé non publié · 1 523 QCM SEF originaux · sauvegarde locale indépendante. Aucun cours écrit, aucun ajout expérimental. Les accords des 19 cas sensibles attendent encore validation pédagogique.');
- const scripts=[...html.matchAll(/<script(?:\\s+[^>]*)?>([\\s\\S]*?)<\\/script>/g)];
+ const scripts=[...html.matchAll(/<script(?:\s+[^>]*)?>([\s\S]*?)<\/script>/g)];
  assert.equal(scripts.length,5,'HTML autonome incomplet');
  for(const item of scripts.slice(1))new vm.Script(item[1]);
  const actual=JSON.parse(html.slice(html.indexOf(source)+source.length,
