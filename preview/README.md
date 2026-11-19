@@ -25,3 +25,16 @@ Les séances suivantes dépendent des réponses entrées **durant cette ouvertur
 Le test automatisé `tests/quizz-v2-preview.cjs` vérifie l'identité des 1 523 QCM avec la source, les 79 propositions, les 19 alertes, la reprise d'une question interrompue et une séance complète en navigateur simulé. Le test `tests/quizz-v2-preview-browser.cjs` vérifie aussi le rendu réel et la navigation hors-ligne avec Chromium et WebKit, en formats ordinateur et iPhone. Le simulateur dispose de tests distincts pour les rappels et la diversité des séances.
 
 **Ne pas fusionner cette prévisualisation vers le site élève sans arbitrage pédagogique.**
+
+
+## Nouvelle version de test AG : reprise après fermeture ou actualisation
+
+Une **variante autonome et distincte** est désormais générée par `scripts/parcours-v2-build-reprise-ag.cjs` : **`parcours-v2-reprise.html`**, disponible dans l'artefact GitHub Actions **`qpjb-v2-ag-autonomous-resume`** ([validation navigateur #44512981377](https://github.com/CapGui13/QPJB/actions/runs/44512981377)).
+
+**Contrairement au fichier de prévisualisation initial**, la variante AG conserve la progression dans le stockage **local du navigateur**. Les tests ont confirmé la reprise après rechargement en question 1, question 2, après le bilan et au début de la séance suivante, sur Chromium/WebKit ordinateur et mobile.
+
+Pour l'utiliser : télécharger l'HTML AG, l'ouvrir **dans le même navigateur et depuis le même emplacement**, vérifier la mention « Sauvegarde locale active », puis commencer une séance. Si le navigateur interdit ce stockage, un avertissement indique que la reprise peut être indisponible. **Réinitialiser** efface la sauvegarde expérimentale. Aucune sauvegarde du site QPJB n'est lue ou modifiée.
+
+**Important :** les explications précédentes sur la perte de progression à la fermeture concernent uniquement le **fichier historique `parcours-v2-autonome.html`**, laissé inchangé. La variante AG reste un outil d'essai, hors production, avec les 1 523 QCM originaux, sans leçon, sans intervention de l'enseignante et sans déploiement.
+
+Voir `Docs/PARCOURS_V2_PHASE_AG_REPRISE_LOCALE_20261119.md`.
