@@ -1,0 +1,110 @@
+{
+  "schema": "QPJB_V2_AX_OUVERTURES_CANDIDATES_1",
+  "date": "2026-11-19",
+  "scope": "Only editorial shortlist. No QCM added; no publication.",
+  "sourceOfTruth": [
+    "entrainement/training-data-bidding.js",
+    "Docs/PARCOURS_V2_PHASE_AV_ORIGINAUX_OUVERTURES_20261119.json"
+  ],
+  "sourceProblemCount": 8,
+  "candidateSkillGroups": 7,
+  "integratedToQuizSEF": 0,
+  "editorialApproved": 0,
+  "releaseDecision": "HOLD",
+  "policy": "For EN cases preserve original QCM choices/answers; for BH-035 retain open-ended answers, no fabricated distractors",
+  "references": [
+    "https://www.ibridge.fr/public/fichedetails/778",
+    "https://dev.ibridge-club.fr/public/fichedetails/401",
+    "https://www.bridge-chailley.fr/le-sef-2024-1/"
+  ],
+  "cases": [
+    {
+      "id": "EN-BH-067-06",
+      "source": "BH-067:EN-06",
+      "family": "19H_regulier_mineure",
+      "answer": "1♣",
+      "sourceLevel": 1,
+      "stage": "S15-22",
+      "priority": "RAPPEL",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "19 H, 3-4-3-3, ouvrir de la meilleure mineure; ne pas compter comme famille nouvelle avec EN-BH-114-04"
+    },
+    {
+      "id": "EN-BH-114-04",
+      "source": "BH-114:EN-04",
+      "family": "19H_regulier_mineure",
+      "answer": "1♣",
+      "sourceLevel": 1,
+      "stage": "S15-22",
+      "priority": "VARIANTE",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "19 H, 4-3-3-3, même objectif que EN-BH-067-06; variante à conserver seulement si contraste utile"
+    },
+    {
+      "id": "EN-BH-114-05",
+      "source": "BH-114:EN-05",
+      "family": "fort_5_5_mineures",
+      "answer": "1♦",
+      "sourceLevel": 1,
+      "stage": "S28-38",
+      "priority": "FORT",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "20 H, bicolore mineur 5-5; ouvrir 1♦, description ultérieure à préciser"
+    },
+    {
+      "id": "EN-BH-096-06",
+      "source": "BH-096:EN-06",
+      "family": "fort_6_4_carreau_coeur",
+      "answer": "1♦",
+      "sourceLevel": 1,
+      "stage": "S28-38",
+      "priority": "FORT",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "20 H, 6♦-4♥; commencer par la longue et préparer la redemande"
+    },
+    {
+      "id": "EN-BH-114-06",
+      "source": "BH-114:EN-06",
+      "family": "2SA_exception_6322_mineure",
+      "answer": "2SA",
+      "sourceLevel": 1,
+      "stage": "S40-50",
+      "priority": "CONDITIONNEL",
+      "verdict": "SEF_AVANCE_CONDITIONNEL_ACC0RD_REQUIS",
+      "note": "19 H et 21 HL selon le fascicule, 6♣-3♦-2♥-2♠, doubletons majeurs gardés; ne pas généraliser à toutes les mains de 19H"
+    },
+    {
+      "id": "BH-035-S02-01",
+      "source": "BH-035 sujet/corrigé p2",
+      "family": "fort_5_4_coeur_trefle",
+      "answer": "1♥",
+      "sourceLevel": "2 étoiles",
+      "stage": "S30-40",
+      "priority": "FORT",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "20 H, 21 HL annoncés, 5♥-4♣; ne pas imposer 3♣ en redemande sans connaître la séquence"
+    },
+    {
+      "id": "BH-035-S02-02",
+      "source": "BH-035 sujet/corrigé p2",
+      "family": "2trefles_fort_6_piques",
+      "answer": "2♣",
+      "sourceLevel": "2 étoiles",
+      "stage": "S35-45",
+      "priority": "FORT",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "19 H, 21 HL annoncés, très beau unicolore 6♠; 2♣ fort indéterminé cohérent avec critère SEF 2024"
+    },
+    {
+      "id": "BH-035-S02-03",
+      "source": "BH-035 sujet/corrigé p2",
+      "family": "fort_6_5_coeur_carreau",
+      "answer": "1♥",
+      "sourceLevel": "2 étoiles",
+      "stage": "S35-45",
+      "priority": "FORT",
+      "verdict": "CONCORDANT_RELECTURE_V2_REQUISE",
+      "note": "17 H, 20 HL annoncés, 6♥-5♦; décrire naturellement le bicolore et adapter la redemande à la réponse"
+    }
+  ]
+}
