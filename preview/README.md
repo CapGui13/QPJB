@@ -50,3 +50,16 @@ Lorsqu'il est servi depuis **le même domaine web que QPJB**, il affiche à titr
 La validation [GitHub Actions #44516601579](https://github.com/CapGui13/QPJB/actions/runs/44516601579) a réussi les tests d'intégrité et de navigation V1 ↔ V2 sous Chromium et WebKit en formats ordinateur et iPhone. L'implémentation et ses limites sont détaillées dans `Docs/PARCOURS_V2_PHASE_AI_COHABITATION_20261119.md`.
 
 **Aucune modification des 1 523 QCM, de la progression du Quiz SEF public ou des sauvegardes réelles des élèves.** La recette d'intégration finale et une publication réversible restent à préparer.
+
+
+## Bascule opt-in depuis la vraie navigation QPJB (phase AJ)
+
+Une **vraie page V2 candidate** est désormais disponible **dans la branche de la PR** sous `preview/v2-ai/parcours-v2-cohabitation.html`, et non plus uniquement dans un fichier produit par la CI. Elle n'est pas encore sur le site QPJB publié.
+
+Pour tester la navigation, ouvrir un serveur HTTP local depuis le dossier **parent** de `QPJB` (`python -m http.server 8000`), puis consulter `http://localhost:8000/QPJB/index.html?v2preview=1`. Cliquer sur **Quizz** puis **Tester le parcours V2 (prévisualisation)**. V2 s'ouvre dans un **nouvel onglet** et contient un lien de retour vers le Quiz classique.
+
+**Sans `?v2preview=1`, aucun lien V2 n'est affiché** dans le Quiz actuel ; aucune convention ne doit être déverrouillée par l'enseignante, et aucune leçon n'est demandée.
+
+Le nouvel espace V2 utilise `qpjb-sef-parcours-v2-01` et **ne modifie jamais** l'historique V1 ou Quiz SEF. **Ne pas confondre un fichier téléchargé en `file://` avec une page servie sur le même domaine que QPJB** : la lecture du parcours V1 n'y est pas possible.
+
+La [CI AJ #44525493613](https://github.com/CapGui13/QPJB/actions/runs/44525493613) a validé ce parcours de navigation, en mode ordinateur et iPhone, sur Chromium et WebKit. Voir `Docs/PARCOURS_V2_PHASE_AJ_NAVIGATION_OPT_IN_20261119.md` pour les étapes de test et les limites. **Aucune fusion ni publication à ce stade.**
