@@ -1,0 +1,80 @@
+name: QPJB V2-Y advanced concept transitions
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-y-focused.yml
+      - scripts/parcours-v2-transitions-y.cjs
+      - tests/quizz-v2-transitions-y.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-y-focused.yml
+      - scripts/parcours-v2-transitions-y.cjs
+      - tests/quizz-v2-transitions-y.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review-y:
+    name: Y qualitative source transitions
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les QCM sources et l'absence de mutation
+        run: node tests/quizz-v2-transitions-y.cjs
+      - name: Neuf parcours, premières expositions et contextes précédents
+        run: |
+          mkdir -p artifacts/v2-y
+          node scripts/parcours-v2-transitions-y.cjs > artifacts/v2-y/phase-y-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const r=JSON.parse(fs.readFileSync('artifacts/v2-y/phase-y-matrix.json','utf8'));
+          if(r.schema!=='QPJB_V2_Y_NINE_SCENARIOS_1'||r.scenarios!==9||
+             r.catalogQuestions!==1523||r.watchThemes.length!==6||
+             r.allRubricsCovered!==true||r.masteryInferred!==false||
+             r.sourceEdited!==false||r.selectionChanged!==false||
+             r.publicRuntimeWired!==false||r.sourceCuesAreNotPrerequisites!==true||
+             !Array.isArray(r.rows)||r.rows.length!==9)
+            throw Error('Phase Y : garde-fous échoués');
+          const summary={
+            schema:r.schema,scenarios:r.scenarios,watchThemes:r.watchThemes,
+            cueWindowSessions:r.cueWindowSessions,
+            byTheme:r.byTheme,prioritySignalsTotal:r.prioritySignalsTotal,
+            prioritySignals:r.prioritySignals,
+            referenceFamiliesRange:r.referenceFamiliesRange,
+            referenceRecallsRange:r.referenceRecallsRange,
+            decision:r.decision,
+            noPedagogicalPrerequisiteInferred:true,noStudentMasteryInferred:true
+          };
+          fs.writeFileSync('artifacts/v2-y/phase-y-summary.json',
+            JSON.stringify(summary,null,2)+String.fromCharCode(10));
+          const nl=String.fromCharCode(10);
+          const text=['## QPJB V2-Y : premiers contacts avec 6 rubriques avancées',
+            'Neuf profils fictifs/graines ; aucun élève observé.'];
+          for(const [theme,v] of Object.entries(r.byTheme))
+            text.push(theme+': séance '+v.firstSessionRange.join('–')+
+              ', premier QCM 4/5 dans '+v.highFirstExposureScenarios+'/9 scénarios'+
+              ', rappel explicite dans '+v.explicitReminderInFirstQuestionScenarios+'/9');
+          text.push('Signaux de revue documentaire : '+r.prioritySignalsTotal);
+          text.push('Les rubriques analogues ne sont PAS des prérequis ; V2-F inchangée.');
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,text.join(nl)+nl);
+          console.log('QPJB_PHASE_Y_SUMMARY '+JSON.stringify({
+            schema:summary.schema,scenarios:summary.scenarios,
+            byTheme:summary.byTheme,prioritySignalsTotal:summary.prioritySignalsTotal,
+            referenceFamiliesRange:summary.referenceFamiliesRange,
+            referenceRecallsRange:summary.referenceRecallsRange}));
+          NODE
+      - name: Archiver les rapports Y
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-y-audit
+          path: artifacts/v2-y/
+          retention-days: 14
+          if-no-files-found: warn
