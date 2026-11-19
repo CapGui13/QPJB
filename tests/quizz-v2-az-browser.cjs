@@ -102,6 +102,23 @@ async function run(){
    await page.locator('#erase').click();
    // Reset must erase AZ only.
    assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),null);
+   // Une sauvegarde AZ illisible doit être conservée, non écrasée par un nouveau départ.
+   const incompatible='{sauvegarde-ancienne-incompatible';
+   await page.evaluate(({key,value})=>localStorage.setItem(key,value),
+     {key:AZ,value:incompatible});
+   await page.reload();
+   await page.getByText('Sauvegarde AZ incompatible',{exact:true}).waitFor();
+   assert.equal(await page.locator('#start').count(),0);
+   assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),incompatible);
+   page.once('dialog',dialog=>dialog.dismiss());
+   await page.locator('#eraseIncompatible').click();
+   assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),incompatible,
+     'Annuler doit préserver la sauvegarde illisible');
+   page.once('dialog',dialog=>dialog.accept());
+   await page.locator('#eraseIncompatible').click();
+   assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),null);
+   await page.locator('#model').waitFor();
+   assert.equal(await page.locator('#model').inputValue(),'core');
    assert.deepEqual(await page.evaluate(()=>({
      v1:localStorage.getItem('qpjb-sef-parcours-01'),
      v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
