@@ -70,3 +70,11 @@ Le workflow `.github/workflows/qpjb-v2-ab-focused.yml` construit l'artefact **`q
 
 **Statut final technique : `AB_CI_OK / 2_LECONS / 5_QCM_SOURCES / 18_SUR_18_EXPOSITIONS_DOCUMENTEES / V2_F_INCHANGE / VALIDATION_ENSEIGNANTE_REQUISE / AUCUN_DEPLOIEMENT`.**
 
+## Complément AC — adaptation au public de découverte
+
+La **phase AC** a identifié que les deux conventions étudiées nécessitent déjà des bases d'enchères. Le document de lecture affiche désormais **trois prérequis par leçon**, un **lexique de cinq termes**, les confusions les plus fréquentes et un objectif de restitution sans notation. Il distingue le joueur **débutant en Rubensohl ou Michaels** du débutant absolu au bridge. Les quatre blocs explicatifs et les **cinq accords issus du catalogue QPJB** restent intacts.
+
+L'aperçu HTML est donc régénéré par le même script `scripts/parcours-v2-apercu-lecons-ab.cjs`, et le test `tests/quizz-v2-lecons-ab.cjs` vérifie désormais les nouveaux garde-fous éditoriaux.
+
+Voir `Docs/PARCOURS_V2_PHASE_AC_REVUE_PEDAGOGIQUE_20261119.md` pour la grille de relecture, le rapprochement avec trois ressources pédagogiques externes et les points **nécessitant toujours une approbation humaine avant publication**.
+
