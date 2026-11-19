@@ -95,10 +95,9 @@ async function run(){
    }));
    assert.deepEqual(persisted,originals);
    await page.locator('#home').click();
+   page.once('dialog',dialog=>dialog.accept());
    await page.locator('#erase').click();
-   page.once('dialog',async dialog=>dialog.accept());
-   // Click again when dialog listener has been installed.
-   // After reset the AZ key only must be empty.
+   // Reset must erase AZ only.
    assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),null);
    assert.deepEqual(await page.evaluate(()=>({
      v1:localStorage.getItem('qpjb-sef-parcours-01'),
