@@ -1,0 +1,79 @@
+name: QPJB V2-Z optional convention preludes
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-z-focused.yml
+      - scripts/parcours-v2-intros-z.cjs
+      - scripts/parcours-v2-apercu-z.cjs
+      - tests/quizz-v2-intros-z.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-z-focused.yml
+      - scripts/parcours-v2-intros-z.cjs
+      - scripts/parcours-v2-apercu-z.cjs
+      - tests/quizz-v2-intros-z.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  phase-z:
+    name: Z sidecar read-only first-convention support
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Controler les cinq sources et absence de mutation
+        run: node tests/quizz-v2-intros-z.cjs
+      - name: Mesurer les aides sur neuf parcours V2-F
+        run: |
+          mkdir -p artifacts/v2-z
+          node scripts/parcours-v2-intros-z.cjs > artifacts/v2-z/phase-z-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const x=JSON.parse(fs.readFileSync('artifacts/v2-z/phase-z-matrix.json','utf8'));
+          if(x.schema!=='QPJB_V2_Z_9_SCENARIOS_1'||x.scenarios!==9||
+             x.catalogQuestions!==1523||x.sidecarCards!==5||
+             x.firstEncounters!==18||x.coveredFirstEncounters!==18||
+             x.everyFirstEncounterCovered!==true||
+             x.originalQcmEdited!==false||x.engineUnchanged!==true||
+             x.publicRuntimeWired!==false||x.studentMasteryInferred!==false||
+             x.pedagogicalApprovalRequired!==true||
+             !Array.isArray(x.rows)||x.rows.length!==9)
+             throw Error('Z guard failed');
+          const summary={
+            schema:x.schema,scenarios:x.scenarios,originalCatalog:x.catalogQuestions,
+            sourceCards:x.sidecarCards,firstEncounters:x.firstEncounters,
+            covered:x.coveredFirstEncounters,sourceIdsFirstSeen:x.sourceIdsFirstSeen,
+            familiesRange:x.familiesRange,targetedReviewsRange:x.targetedReviewsRange,
+            status:x.status,policy:x.policy,decision:x.decision
+          };
+          fs.writeFileSync('artifacts/v2-z/phase-z-summary.json',
+            JSON.stringify(summary,null,2)+String.fromCharCode(10));
+          const nl=String.fromCharCode(10);
+          const lines=['## QPJB Z — aide AVANT la première question, NON NOTÉE',
+            '5 QCM originaux, 2 conventions, 9 simulations.',
+            'Rencontres : '+summary.firstEncounters+' ; couvertes : '+summary.covered];
+          for(const [id,n] of Object.entries(summary.sourceIdsFirstSeen))
+            lines.push(id+': '+n+' premières rencontres');
+          lines.push('Validation enseignante exigée. Aucune intervention sur V2-F ou le site public.');
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join(nl)+nl);
+          console.log('QPJB_PHASE_Z_SUMMARY '+JSON.stringify(summary));
+          NODE
+      - name: Générer un aperçu HTML interactif et hors ligne
+        run: |
+          node scripts/parcours-v2-apercu-z.cjs artifacts/v2-z/intro-z-preview.html
+          test -s artifacts/v2-z/intro-z-preview.html
+      - name: Archiver le rapport et la démonstration locale
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-z-experimental-preview
+          path: artifacts/v2-z/
+          retention-days: 14
+          if-no-files-found: warn
