@@ -40,7 +40,7 @@ const legacyValue=JSON.stringify(legacy);
 const freeValue=JSON.stringify({'SEF-001-1':{seen:true,ok:true,lastResult:'correct'}});
 const storage=new Map([[AI.V1_KEY,legacyValue],[AI.V1_TRAINING_KEY,freeValue]]);
 const writes=[];
-function browser(){
+function browser(fileProtocol=false){
  const nodes=Object.fromEntries(htmlScripts.filter(s=>s[1].includes('application/json'))
    .map(s=>[s[1].match(/\bid="([^"]+)"/)[1],{textContent:s[2]}]));
  const app={innerHTML:''},legacyNode={textContent:''};
@@ -55,7 +55,7 @@ function browser(){
    getItem:k=>storage.get(k)??null,
    removeItem(k){writes.push({operation:'remove',key:k});storage.delete(k);}
  };
- const window={localStorage};
+ const window={localStorage,location:{protocol:fileProtocol?'file:':'http:'}};
  const box=vm.createContext({window,document,console});
  for(const [,attrs,body] of htmlScripts.filter(s=>!s[1].includes('application/json')))
    vm.runInContext(body,box,{timeout:60000});
@@ -96,4 +96,9 @@ assert.ok(writes.every(w=>w.key===AI.V2_KEY||w.key===AI.V2_KEY+'-probe'),
  'V1 or quiz progression must never be written or deleted: '+JSON.stringify(writes));
 assert.equal(P.load(storage.get(AI.V1_KEY)).completed,7);
 assert.equal(JSON.parse(storage.get(AI.V1_TRAINING_KEY))['SEF-001-1'].seen,true);
+const download=browser(true);
+assert.ok(download.legacyNode.textContent.includes('Fichier de test téléchargé'));
+assert.ok(download.app.innerHTML.includes('Sauvegarde locale active'));
+assert.equal(storage.get(AI.V1_KEY),legacyValue);
+assert.equal(storage.get(AI.V1_TRAINING_KEY),freeValue);
 console.log('QPJB AI PASS : 1,523 original QCM intact, V1/free progress never modified, V2 cohabitation and resume/reset isolated');
