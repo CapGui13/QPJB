@@ -165,7 +165,7 @@ function html(report){
  '</main><script type="application/json" id="dataset">'+data+'</script><script>'+
  "(function(){'use strict';"+
  'const data=JSON.parse(document.getElementById("dataset").textContent);'+
- 'const E=x=>String(x===undefined||x===null?"":x).replace(/[&<>"\\x27]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;","\\x27":"&#39;"}[c]));'+
+ 'const E=x=>String(x===undefined||x===null?"":x).replace(/[&<>"\\x27]/g,c=>c.charCodeAt(0)===39?"&#39;":({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"}[c]));'+
  'const $=id=>document.getElementById(id);let profile=0,number=1;'+
  'const profiles=$("profile");data.scenarios.forEach((s,i)=>{const x=document.createElement("option");x.value=i;x.textContent=s.name;profiles.append(x)});'+
  'function table(o){return Object.entries(o).filter(([,v])=>v>0).map(([k,v])=>E(k)+" : <b>"+v+"</b>").join(" · ")||"Aucune"}'+
