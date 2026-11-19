@@ -54,4 +54,25 @@ assert.equal(Z.buildCard(y.observations.find(x=>x.theme==='forcing'),catalog),nu
 assert.deepEqual(sim.sessions.map(deck=>deck.map(q=>q.id)),chosen);
 assert.equal(JSON.stringify(sim.state),state);
 assert.equal(JSON.stringify(catalog),before);
+const PREVIEW=require('../scripts/parcours-v2-apercu-z.cjs');
+const offlineHtml=PREVIEW.render(catalog);
+assert.ok(offlineHtml.includes('QPJB — Aperçu expérimental'));
+assert.ok(offlineHtml.includes('const CASES = '));
+assert.ok(!offlineHtml.includes('__DATA__'));
+const payload=/const CASES = (\[.*?\]);\nconst byId/s.exec(offlineHtml);
+assert.ok(payload,'Preview embeds bounded local source data');
+const items=JSON.parse(payload[1]);
+assert.equal(items.length,5);
+assert.deepEqual(items.map(x=>x.id),Z.IDS);
+for(const item of items){
+  const q=originalById.get(item.id);
+  assert.equal(item.q.answer,q.answer);
+  assert.equal(item.q.explain,q.explain);
+  assert.deepEqual(item.q.hand,q.hand);
+  assert.deepEqual(item.q.choices,q.choices);
+  assert.deepEqual(item.card.steps,Z.CARDS[item.id].steps);
+}
+assert.ok(offlineHtml.includes('Aucun résultat n&#39;est enregistré')||
+  offlineHtml.includes('Aucun résultat n\'est enregistré'));
+
 console.log('QPJB V2 Z PASS : five source-anchored unscored preludes; original sessions, answers and state unchanged');
