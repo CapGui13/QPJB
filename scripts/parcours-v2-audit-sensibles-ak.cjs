@@ -30,6 +30,13 @@ for(const item of flags){
   const q=byId.get(id);
   assert.ok(q,'Cas absent du catalogue : '+id);
   assert.ok(q.choices.includes(q.answer),'Réponse hors des choix : '+id);
+  assert.equal(new Set(q.choices).size,q.choices.length,'Choix répété : '+id);
+  assert.ok(Array.isArray(q.hand)&&q.hand.length===4&&
+    q.hand.every(cards=>Array.isArray(cards)),'Main non structurée : '+id);
+  assert.equal(q.hand.reduce((n,cards)=>n+cards.length,0),13,'Main incomplète : '+id);
+  const honorValue={A:4,R:3,D:2,V:1};
+  const countedH=q.hand.flat().reduce((n,card)=>n+(honorValue[card]||0),0);
+  assert.equal(countedH,q.h,'Total H incohérent : '+id);
   rows.push({id,note,theme:q.theme,caseFamily:q.caseFamily||q.id,
     difficulty:q.difficulty,h:q.h,hand:q.hand,context:q.context,
     auction:q.auction,choices:q.choices,answer:q.answer,explain:q.explain});
