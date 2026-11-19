@@ -1,0 +1,53 @@
+name: QPJB V2 - candidat prive 65 seances (jamais publie)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-release-candidate.yml
+      - scripts/v2-release-candidate.cjs
+      - Docs/PARCOURS_V2_CANDIDAT_LIVRAISON_20261119.md
+  workflow_dispatch:
+
+# Pas de permission Pages, de jeton d'ecriture, ni d'etape de deploiement.
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Fabriquer uniquement un fichier HTML telechargeable
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      QPJB_V2_SOURCE_SHA: 88b548763bf271109f7916acbf1858865070f8ae
+      QPJB_V2_EXPECTED_BLOB: e2f0d4c96b7bab67d0a684e22d1845961f659a9b
+      QPJB_V2_SOURCE_DIR: source-v2
+    steps:
+      - name: Recuperer le preparateur de livraison minimal
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Recuperer les sources figees de la PR 214
+        uses: actions/checkout@v4
+        with:
+          ref: 88b548763bf271109f7916acbf1858865070f8ae
+          path: source-v2
+          persist-credentials: false
+          sparse-checkout: |
+            preview/v2-eleve/
+            quizz.html
+            Docs/PARCOURS_V2_PHASE_AL_MANIFESTE_ARBITRAGE_20261119.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier le programme et empaqueter le HTML sans le modifier
+        run: |
+          node --check scripts/v2-release-candidate.cjs
+          node scripts/v2-release-candidate.cjs
+      - name: Produire un artefact Actions, jamais un artefact Pages
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-65-seances-apercu-prive
+          path: artifacts/v2-release-candidate/
+          if-no-files-found: error
+          retention-days: 14
