@@ -1,0 +1,41 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QPJB — Parcours guidé AZ, prototype adaptatif privé</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f2f6fb;color:#20324a}
+*{box-sizing:border-box}body{margin:0}
+header{padding:32px 16px;background:linear-gradient(120deg,#102f63,#0b727a);color:#fff}
+.wrap{max-width:950px;margin:auto}header h1{font-size:clamp(1.6rem,3vw,2.45rem);margin:6px 0}
+header p{max-width:820px;line-height:1.6;color:#e0edf7}main{padding:22px 14px 75px}
+.pane{background:#fff;border:1px solid #dbe4ef;border-radius:16px;padding:23px;margin:15px 0;box-shadow:0 4px 17px #2046780b}
+.pane.addon{border-left:6px solid #159278}.topline{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;margin:0 0 18px}
+.pill{display:inline-block;background:#e6f0fc;color:#185789;font-weight:700;font-size:.78rem;padding:5px 10px;border-radius:30px}
+h2{font-size:1.35rem;margin:0 0 16px;line-height:1.4}p{line-height:1.6}button,input,select{font:inherit}
+button{border:1px solid #b6cadd;border-radius:9px;padding:11px 16px;background:white;color:#234b77;cursor:pointer;margin:8px 10px 8px 0}
+button.primary{background:#176190;color:#fff;border-color:#176190;font-weight:700}
+button.danger{color:#903e3e;border-color:#dababa}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #6cc1eb}
+.field{display:block;font-weight:650;margin:12px 0 7px}select,input#free{border:1px solid #afc4d6;border-radius:10px;padding:11px;background:white;max-width:100%;min-width:235px}
+.hint{font-size:.88rem;color:#5b728f;margin:10px 0}.muted{font-size:.89rem;color:#6c7b8f}.track{height:8px;border-radius:14px;background:#e4eaf3;overflow:hidden;margin:14px 0}
+.track>div{height:100%;background:#2582ad}.handAndAuction{display:grid;grid-template-columns:minmax(230px,1fr) minmax(200px,1fr);gap:17px;margin:19px 0}
+.hand{background:#f1f6fc;padding:14px;border-radius:10px;display:grid;grid-template-columns:28px 1fr;gap:5px 8px;align-content:start}
+.symbol{font-weight:850;font-size:1.1rem}.red{color:#c53b50}.auction{padding:13px;background:#f6f9fe;border:1px solid #e2eaf4;border-radius:10px;white-space:pre-wrap;line-height:1.7;min-height:90px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}
+.choice{padding:12px;border:1px solid #d2dfea;border-radius:9px;display:flex;align-items:center;gap:9px;cursor:pointer}
+.choice:has(input:checked){border-color:#157f96;background:#eaf8fa}
+.feedback{border:1px solid #c9e4d5;border-radius:11px;padding:15px;background:#f0f9f4;margin:16px 0}
+#warning{max-width:950px;margin:auto;color:#874b15;font-weight:650;padding:0 16px}
+.disclaimer{color:#667e91;font-size:.83rem;line-height:1.6}
+@media(max-width:650px){header{padding:24px 14px}.pane{padding:16px}.handAndAuction,.choices{grid-template-columns:1fr}.topline{justify-content:flex-start}}
+</style></head><body><header><div class="wrap"><div class="pill">Aperçu AZ — HORS PRODUCTION</div>
+<h1>Parcours guidé adaptatif QPJB</h1>
+<p>65 séances possibles, 10 questions par séance, avec 7 situations d'ouverture authentiques intercalées (8 sur option).
+Le parcours s'adapte ici à tes réponses, sans toucher aux résultats ni à la progression de QPJB.</p>
+</div></header><main class="wrap"><div id="warning" role="status"></div>
+<div id="view"></div><div class="disclaimer">Essai privé non publié · les compléments AY ne sont pas encore approuvés pédagogiquement · aucune connexion réseau requise.
+La sauvegarde, lorsqu'elle fonctionne, est limitée au navigateur où ce prototype est ouvert. Elle ne se synchronise pas avec le site.</div></main>
+<script id="ay-payload" type="application/json">__AZ_DATA__</script>
+<script>window.__AZ_DATA=JSON.parse(document.getElementById("ay-payload").textContent);</script>
+<script>__AZ_P_LIB__</script>
+<script>__AZ_ENGINE__</script>
+<script>__AZ_RUNTIME__</script>
+</body></html>
