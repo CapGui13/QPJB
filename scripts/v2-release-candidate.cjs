@@ -11,12 +11,20 @@ const root = path.resolve(__dirname, '..');
 const sourceDir = path.resolve(root, process.env.QPJB_V2_SOURCE_DIR || 'source-v2');
 const expectedCommit = process.env.QPJB_V2_SOURCE_SHA;
 const expectedBlob = process.env.QPJB_V2_EXPECTED_BLOB;
+const publicDir = path.resolve(root, process.env.QPJB_V2_PUBLIC_DIR || 'public-main');
+const expectedPublicCommit = process.env.QPJB_V2_PUBLIC_SHA;
+assert.match(expectedPublicCommit || '', /^[0-9a-f]{40}$/, 'Commit public exact requis');
 assert.match(expectedCommit || '', /^[0-9a-f]{40}$/, 'Commit source exact requis');
 assert.match(expectedBlob || '', /^[0-9a-f]{40}$/, 'Git blob source exact requis');
 const currentSourceCommit = cp.execFileSync('git', ['rev-parse', 'HEAD'], {
   cwd: sourceDir, encoding: 'utf8'
 }).trim();
 assert.equal(currentSourceCommit, expectedCommit, 'Le commit V2 téléchargé a changé');
+const actualPublicCommit = cp.execFileSync('git', ['rev-parse', 'HEAD'], {
+  cwd: publicDir, encoding: 'utf8'
+}).trim();
+assert.equal(actualPublicCommit, expectedPublicCommit,
+  'Le commit de référence du site public a changé');
 
 const relative = 'preview/v2-eleve/parcours-sef-65.html';
 const htmlBytes = fs.readFileSync(path.join(sourceDir, relative));
@@ -38,6 +46,13 @@ function embeddedJSON(text, marker) {
 const student = embeddedJSON(html, '<script id="ay-payload" type="application/json">');
 const quiz = fs.readFileSync(path.join(sourceDir, 'quizz.html'), 'utf8');
 const original = embeddedJSON(quiz, '<script id="training-data" type="application/json">').exercises;
+const publicQuiz = fs.readFileSync(path.join(publicDir, 'quizz.html'), 'utf8');
+const publicOriginal = embeddedJSON(publicQuiz,
+  '<script id="training-data" type="application/json">').exercises;
+assert.equal(publicOriginal.length, 1523, 'Le site public doit contenir 1 523 QCM');
+assert.deepEqual(student.catalog, publicOriginal,
+  'Le candidat diffère des QCM réellement publiés sur main');
+
 const review = JSON.parse(fs.readFileSync(path.join(sourceDir,
   'Docs/PARCOURS_V2_PHASE_AL_MANIFESTE_ARBITRAGE_20261119.json'), 'utf8'));
 
@@ -66,6 +81,8 @@ fs.writeFileSync(path.join(outputDir, fileName), htmlBytes);
 const manifest = {
   schema: 'QPJB_V2_RELEASE_CANDIDATE_1',
   sourceCommit: expectedCommit,
+  publicReferenceCommit: expectedPublicCommit,
+  originalPublicQcmIdentical: true,
   sourceBlobSHA1: expectedBlob,
   sha256: crypto.createHash('sha256').update(htmlBytes).digest('hex'),
   file: fileName,
