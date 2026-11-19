@@ -1,59 +1,31 @@
-# QPJB — Phase AF : retour au parcours de QUESTIONS SEULES, Rubensohl sous contrôle de l'enseignante
+# QPJB — Phase AF : questions seules et progression automatique
 
-**19 novembre 2026 · PR #214 · consigne pédagogique explicite de l'utilisatrice.**
+**19 novembre 2026 · PR #214 · consigne utilisateur actualisée.**
 
-## Décision de produit
+## Décision pédagogique
 
-- **Pas de leçons dans le programme pour l'instant.** L'enseignante explique les notions **à l'oral**, puis le parcours ne propose que des **questions** provenant du catalogue QPJB.
-- **Rubensohl est très avancé.** Son apparition ne doit **pas** être déclenchée par le seul numéro de séance. Il est bloqué **par défaut**, jusqu'à une **confirmation positive de l'enseignante** indiquant que la convention a été enseignée. La réussite à des questions antérieures **ne déverrouille pas** le Rubensohl et ne constitue pas une validation automatique d'enseignement.
-- Cette décision ne retire **aucune** des **1 523 questions** du catalogue : elle protège leur **éligibilité de sélection** dans le seul prototype V2-F. Les cinq questions d'ouverture initiales, les réponses aux ouvertures et les rappels continuent à utiliser le système existant.
-- La feuille de route originale `quizz-parcours.js` introduit la rubrique Rubensohl à partir de l'index **34**, c'est-à-dire la **35e séance**. La préférence de difficulté V2-F n'est qu'un classement, et ne peut pas remplacer le choix de l'enseignante.
+- **Aucune leçon écrite dans le parcours.** L'enseignante enseigne à l'oral. QPJB sert à s'entraîner avec les QCM existants.
+- **Progression automatique, sans supervision imposée.** Aucun thème à valider manuellement par l'enseignante. Quand un élève rencontre une notion non encore étudiée à l'oral, il peut la demander à l'enseignante.
+- **Rubensohl est avancé**, mais il est éligible à partir de la **séance 35** (index 34) selon la feuille de route existante. Les notions précédentes comprennent 1SA, Stayman, intervention et Multi-Landy. L'éligibilité n'oblige pas à faire apparaître une question dès cette séance dans tous les profils.
+- **49 QCM Rubensohl** et les **1 523 QCM du catalogue** restent inchangés ; les séances comprennent toujours **10 questions**.
+- Le verrou manuel proposé lors de la phase AF initiale est **annulé**. Aucune interface de confirmation n'est à construire.
 
-## Mise de côté des mini-leçons
+## Implémentation dans la branche expérimentale
 
-Les expérimentations documentaires **AB à AE** (mini-leçons, reformulations et protocole d'observation) sont **ARCHIVÉES / HORS PÉRIMÈTRE ACTIF**. Aucun HTML de leçon, présentation de cours, repère de lecture ou questionnaire de reformulation n'est inséré dans la nouvelle expérience « questions seules ». Ces fichiers restent des archives expérimentales sur la branche de travail, sans intégration au Quiz SEF, sans nouveau bouton ou obligation d'en consulter le contenu. **Aucun essai avec des joueurs n'est demandé pour poursuivre la création du parcours de QCM.**
+Le script de simulation AF ne filtre plus les questions Rubensohl et utilise le même catalogue que V2-F. Il délègue leur disponibilité à la règle d'introduction P.INTRO et aux étapes candidates existantes. L'option obsolète teacherConfirmedBeforeSession est refusée pour éviter le retour d'un verrou manuel. Le moteur V2-F de référence, les QCM et les corrigés ne sont pas modifiés.
 
-## Implémentation expérimentale AF
+Les essais documentaires AB–AE (mini-leçons, reformulations, fiches) restent archivés, **non activés** et ne sont pas requis pour poursuivre le parcours.
 
-Le fichier `scripts/parcours-v2-questions-seules-af.cjs` constitue une **surcouche de test**, sans modification du moteur V2-F ni de la page publique :
+## Contrôles
 
-1. `visibleQuestions(catalog,false)` conserve les objets originaux mais **exclut** ceux de la rubrique `rubensohl` et ceux qui **mentionnent explicitement « Rubensohl »** dans leur énoncé, séquence ou explication. Cela évite de masquer seulement l'étiquette alors que des exercices d'une autre rubrique demanderaient la convention.
-2. `run(...,{teacherConfirmedBeforeSession:null})` est le **comportement de test par défaut** : aucun déverrouillage automatique, même tardivement.
-3. Une **confirmation explicite** est représentée dans les scénarios synthétiques par `teacherConfirmedBeforeSession:N`. Le nombre N est **l'événement fictif de décision d'une enseignante**, pas un moment prescrit d'enseignement. Même après confirmation, le moteur respecte l'introduction originale de la rubrique ; il ne force pas l'apparition immédiate de la convention.
-4. Les **10 questions d'origine par séance**, l'absence de famille répétée dans une même séance, les réponses aux ouvertures et les rappels ciblés restent des invariants à examiner et non des acquis supposés.
-5. Lors d'un déverrouillage expérimental, le support des rappels est recalculé à partir des sources originales autorisées pour éviter de figer l'état de révision à la première séance.
+- Le test AF vérifie 34 premières séances sans Rubensohl, puis disponibilité automatique à la 35e ; dix questions par séance, familles distinctes et absence de leçons.
+- Les sélections et les rappels doivent être **identiques à V2-F**, sans filtre Rubensohl ajouté.
+- Le workflow AF vérifie **9 simulations fictives × 45 séances × 10 QCM** et contrôle le catalogue original. Les réponses d'élèves ne sont pas collectées.
 
-**Attention** : aucune **interface de contrôle enseignante** n'est encore intégrée au site. La confirmation est pour l'instant un **paramètre de simulation**, pas un bouton utilisable en production. Il faudra définir puis tester l'interface plus tard, avec l'utilisatrice.
+## Publication
 
-## Vérifications
+**La PR #214 est une branche de travail, sans déploiement automatique de V2-F sur le site QPJB.** La validation du changement de code dépend du résultat de la CI ; la publication future de la nouvelle version complète est une étape distincte.
 
-- `tests/quizz-v2-questions-seules-af.cjs` : Rubensohl exclu sans confirmation (y compris mention dans la source), objets QCM et réponses inchangés, 10 questions par séance, absence de répétition de famille, déverrouillage fictif explicite seulement, zéro leçon.
-- `.github/workflows/qpjb-v2-af-focused.yml` : comparaison **9 profils/graines × 45 séances** entre V2-F de référence, V2-F sans Rubensohl enseigné et un scénario **uniquement illustratif** de confirmation avant la séance 40.
-- `.github/workflows/training-smoke.yml` : nouveau test AF inclus dans la suite générale.
+## Historique
 
-Les statistiques simulées de diversité et de rappels servent à **détecter les effets secondaires** d'un verrou de convention, **pas** à estimer les chances de réussite d'un élève. Une baisse éventuelle de diversité doit être déclarée avant tout arbitrage et ne justifie pas une réintroduction automatique de Rubensohl.
-
-## Limites
-
-La décision confirmée porte explicitement sur **Rubensohl**. On ne déduit pas que **Michaels, Multi-Landy, chelem ou forcing** ont déjà été enseignés. Ils continuent pour l'instant à suivre la progression V2-F existante ; un éventuel contrôle enseignant pour d'autres notions devra être discuté séparément. Aucun élève réel ni séance d'enseignement n'ont été observés.
-
-## Résultats vérifiés — contrôle GitHub Actions AF
-
-**[CI #44508545810](https://github.com/CapGui13/QPJB/actions/runs/44508545810) : succès.** Les tests individuels et la comparaison **9 profils/graines × 45 séances × 10 questions** ont tous réussi. Artefact GitHub `qpjb-v2-af-questions-only` : `phase-af-matrix.json` et `phase-af-summary.json`.
-
-| Mesure | V2-F initial | Rubensohl non enseigné | Confirmation fictive avant séance 40 |
-|---|---:|---:|---:|
-| Première apparition Rubensohl | **Séance 35, 9/9 parcours** | **Aucune, 9/9 parcours** | **Séance 40 (8/9), séance 42 (1/9)** |
-| Familles distinctes / 450 QCM | **440–450** | **440–449** | **440–450** |
-| Rappels ciblés | **69–77** | **69–77** | **69–77** |
-
-**49 QCM originaux** sont classés dans la rubrique `rubensohl` ; l'audit des énoncés, enchères et explications ne recense **aucune mention explicite de « Rubensohl » sous une autre rubrique**. Les 49 exercices restent intacts dans le catalogue ; seule leur disponibilité change dans le banc d'essai.
-
-**Les 34 premières séances sont rigoureusement identiques à V2-F** dans les neuf profils/graines. Sur 45 séances, la différence de nombre de familles indépendantes par rapport à la référence est comprise entre **−1 et +3**, et la différence de rappels ciblés est **exactement zéro** dans les neuf cas. Chaque séance conserve **10 QCM originaux**, sans répétition de famille au sein de la séance. Les 9 parcours de référence restent le point de comparaison.
-
-Le **40** ci-dessus est **une décision fictive d'enseignante utilisée uniquement pour tester le mécanisme de déverrouillage**. Il ne signifie pas que Rubensohl doit être enseigné à ce moment. Après autorisation, le moteur ne force pas immédiatement une question Rubensohl : une première apparition en séance 42 est normale.
-
-**Portée technique limitée :** les contrôles prouvent l'invariance des tests et le comportement des simulations, non la qualité des apprentissages réels. Aucune interface de confirmation n'est encore livrée, aucun QCM n'a été corrigé, aucun cours n'est inséré.
-
-**Statut final : `AF_CI_SUCCES / 49_QCM_RUBENSOHL / 34_PREMIERES_SEANCES_IDENTIQUES / 9_SUR_9_SANS_RUBENSOHL_NON_ENSEIGNE / 0_LECON / 0_DEPLOIEMENT`.**
-
+La version précédente de ce rapport prévoyait un blocage manuel du Rubensohl. **Cette décision a été explicitement remplacée le 19 novembre 2026 par une progression automatique**. Les résultats antérieurs de l'ancien scénario bloqué ne sont plus les résultats attendus pour la version en cours.
