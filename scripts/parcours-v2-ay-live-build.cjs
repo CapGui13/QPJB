@@ -63,8 +63,8 @@ function build(){
   '__AZ_ENGINE__':engine,'__AZ_RUNTIME__':runtime
  }))html=once(html,needle,value);
  const totalScripts=[...html.matchAll(/<script(?:\s+[^>]*)?>([\s\S]*?)<\/script>/g)];
- assert.equal(totalScripts.length,4);
- for(const item of totalScripts)new vm.Script(item[1]);
+ assert.equal(totalScripts.length,5,'Un JSON et quatre scripts exécutables attendus');
+ for(const item of totalScripts.slice(1))new vm.Script(item[1]);
  const outdir=path.join(ROOT,'artifacts/v2-az');
  fs.mkdirSync(outdir,{recursive:true});
  const output=path.join(outdir,'QPJB_V2_AZ_Parcours_Adaptatif.html');
