@@ -31,7 +31,7 @@ assert.notEqual(engines[1],F);
 assert.notEqual(engines[2],F);
 for(const e of engines){
   assert.deepEqual(Object.keys(e).sort(),Object.keys(F).sort());
-  assert.equal(e.available,F.available===e.available?F.available(e.loadCatalog()[0],0,annotations):e.available(catalog[0],0,annotations));
+  assert.equal(e.available(catalog[0],0,annotations),F.available(catalog[0],0,annotations));
 }
 const opts={sessions:12,seed:13,profile:'balanced'};
 const a=engines[0].simulateV2(catalog,annotations,opts);
