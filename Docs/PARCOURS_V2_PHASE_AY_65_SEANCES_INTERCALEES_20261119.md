@@ -31,3 +31,22 @@ Le workflow `.github/workflows/qpjb-v2-ay-extension.yml` est entièrement **hors
 5. Avant toute publication, choisir explicitement si une réponse libre peut entrer dans la formule pédagogique visée (ou rester en atelier séparé) ; valider les cas douteux et refaire une recette sur vrais élèves.
 
 **Décision : `PR_DRAFT / RELEASE_HOLD / 0_VALIDATION_EDITORIALE / 0_QCM_SEF_MODIFIE / 0_DEPLOIEMENT`.**
+
+
+## Résultats de l'exécution réelle du prototype (3 profils × 65 séances)
+
+[Workflow AY #44558919750](https://github.com/CapGui13/QPJB/actions/runs/44558919750) : **succès**, génération de l'[artefact AY 65 séances](https://github.com/CapGui13/QPJB/actions/runs/44558919750/artifacts/14547250997). Le fichier HTML autonome a également été ouvert et manipulé en Chromium 1440×900 et 390×844, sans erreur JavaScript ni débordement horizontal : navigation entre séances, passage à la question 5 du BH-035, saisie d'une réponse libre, correction, bascule au témoin V2-F.
+
+| Profil fictif | Ouvertures S21–30 V2-F → AY-7 | Ouvertures S31–50 V2-F → AY-7 | Familles sur 65 séances V2-F → AY-7 | Rappels programmés V2-F → AY-7 |
+| --- | --- | --- | --- | --- |
+| Équilibré, graine 13 | 1 → 3 | 4 → 5 | 636 → 634 | 117 → 117 |
+| Fragile mineures, graine 29 | 4 → 6 | 0 → 4 | 645 → 641 | 116 → 116 |
+| Très à l'aise, graine 47 | 7 → 9 | 2 → 6 | 625 → 623 | 107 → 106 |
+
+En **AY-8**, le cas conditionnel à 2SA ajoute une question d'ouverture supplémentaire dans S31–50 : 6/5/7 respectivement selon le profil ; les rappels sont 117/116/105 et les familles 637/640/622. Le choix **AY-7 par défaut** évite de présupposer un accord SEF avancé non validé.
+
+**Lecture de ces résultats :** l'enrichissement reconstitue des choix d'ouverture dans la seconde partie du parcours avec une perte modeste de diversité (−2 à −4 familles sur 65 séances) et 0 à 1 rappel programmé en moins selon les trois profils. Cela ne démontre ni l'absence de régression pour toutes les graines, ni la validation pédagogique. La prochaine décision doit porter sur l'intérêt réel des nouvelles situations, puis sur leur prise en compte par le vrai moteur des élèves (non modifié ici).
+
+## Audit de non-régression des fichiers GitHub
+
+La comparaison de commits de `e07681d` à `17f6378` confirme **cinq fichiers nouveaux seulement** : le script de simulation AY, le générateur HTML AY, son modèle HTML, le workflow Actions et ce rapport. **Zéro modification de `quizz.html`, `quizz-parcours.js`, d'Entraînement ou des sauvegardes.** La PR demeure en brouillon ; aucune fusion ou publication.
