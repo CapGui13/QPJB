@@ -1,0 +1,41 @@
+name: QPJB V2-AP - Carnet de 30 seances a comparer
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-carnet-ap.yml
+      - scripts/parcours-v2-carnet-ap.cjs
+      - scripts/parcours-v2-etaler-ouvertures-ap.cjs
+      - scripts/parcours-v2-visite-30.cjs
+      - scripts/parcours-v2-pilot.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-carnet-ap.yml
+      - scripts/parcours-v2-carnet-ap.cjs
+      - scripts/parcours-v2-etaler-ouvertures-ap.cjs
+      - scripts/parcours-v2-visite-30.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  create:
+    name: Generer apercu AP a partir des 1523 QCM sans deploiement
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier la syntaxe du carnet AP
+        run: node --check scripts/parcours-v2-carnet-ap.cjs
+      - name: Creer les 30 seances a comparer a AN
+        run: node scripts/parcours-v2-carnet-ap.cjs
+      - name: Telecharger en HTML autonome (pas de publication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ap-carnet-30-seances
+          path: artifacts/v2-ap-carnet/
+          retention-days: 30
+          if-no-files-found: error
