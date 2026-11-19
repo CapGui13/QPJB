@@ -1,0 +1,83 @@
+name: QPJB V2-AG reprise locale hors production
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ag-reprise.yml
+      - scripts/parcours-v2-build-reprise-ag.cjs
+      - tests/quizz-v2-reprise-ag.cjs
+      - tests/quizz-v2-reprise-ag-browser.cjs
+      - preview/parcours-v2-autonome.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ag-reprise.yml
+      - scripts/parcours-v2-build-reprise-ag.cjs
+      - tests/quizz-v2-reprise-ag.cjs
+      - tests/quizz-v2-reprise-ag-browser.cjs
+      - preview/parcours-v2-autonome.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reprise-integrite:
+    name: Original data and local resume are isolated
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier la reprise complète sans modification du catalogue
+        run: |
+          node tests/quizz-v2-preview.cjs
+          node tests/quizz-v2-reprise-ag.cjs
+      - name: Générer le nouveau prototype autonome, sans le publier
+        run: |
+          mkdir -p artifacts/v2-ag
+          node scripts/parcours-v2-build-reprise-ag.cjs > artifacts/v2-ag/phase-ag-summary.json
+          test -s artifacts/v2-ag/parcours-v2-reprise.html
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const d=JSON.parse(fs.readFileSync('artifacts/v2-ag/phase-ag-summary.json','utf8'));
+          if(d.schema!=='QPJB_AG_LOCAL_PREVIEW_1'||d.catalogQcm!==1523||
+             d.existingPreviewChanged!==false||d.publicSiteChanged!==false||
+             d.automaticProgression!==true||d.teacherGate!==false||
+             d.lessonsIncluded!==false||d.localOnly!==true)
+            throw Error('AG: illegal production alteration or incomplete preview');
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '## QPJB V2-AG : aperçu autonome avec reprise locale\n'+
+              'Conserve 1 523 QCM, zéro leçon, progression entièrement automatique.\n'+
+              'Sauvegarde locale du navigateur, aucune sauvegarde QPJB modifiée.\n'+
+              'Aucune publication ni intégration au site public.\n');
+          console.log('QPJB_AG_SUMMARY '+JSON.stringify(d));
+          NODE
+      - name: Archiver un HTML testable et le rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ag-autonomous-resume
+          path: artifacts/v2-ag/
+          retention-days: 14
+          if-no-files-found: warn
+  browser-reprise:
+    name: AG reprise on ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer Playwright correspondant au navigateur
+        run: npm install --no-save playwright@1.64.1
+      - name: Réel navigateur, desktop et mobile, mode hors ligne
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-reprise-ag-browser.cjs
