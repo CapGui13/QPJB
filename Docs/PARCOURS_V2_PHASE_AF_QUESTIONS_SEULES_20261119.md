@@ -37,4 +37,23 @@ Les statistiques simulées de diversité et de rappels servent à **détecter le
 
 La décision confirmée porte explicitement sur **Rubensohl**. On ne déduit pas que **Michaels, Multi-Landy, chelem ou forcing** ont déjà été enseignés. Ils continuent pour l'instant à suivre la progression V2-F existante ; un éventuel contrôle enseignant pour d'autres notions devra être discuté séparément. Aucun élève réel ni séance d'enseignement n'ont été observés.
 
-**Statut de départ : `AF_QUESTIONS_SEULES / RUBENSOHL_BLOQUE_PAR_DEFAUT / 0_LECON / AUCUNE_MODIFICATION_PRODUCTION / RESULTATS_CI_A_VERIFIER`.**
+## Résultats vérifiés — contrôle GitHub Actions AF
+
+**[CI #44508545810](https://github.com/CapGui13/QPJB/actions/runs/44508545810) : succès.** Les tests individuels et la comparaison **9 profils/graines × 45 séances × 10 questions** ont tous réussi. Artefact GitHub `qpjb-v2-af-questions-only` : `phase-af-matrix.json` et `phase-af-summary.json`.
+
+| Mesure | V2-F initial | Rubensohl non enseigné | Confirmation fictive avant séance 40 |
+|---|---:|---:|---:|
+| Première apparition Rubensohl | **Séance 35, 9/9 parcours** | **Aucune, 9/9 parcours** | **Séance 40 (8/9), séance 42 (1/9)** |
+| Familles distinctes / 450 QCM | **440–450** | **440–449** | **440–450** |
+| Rappels ciblés | **69–77** | **69–77** | **69–77** |
+
+**49 QCM originaux** sont classés dans la rubrique `rubensohl` ; l'audit des énoncés, enchères et explications ne recense **aucune mention explicite de « Rubensohl » sous une autre rubrique**. Les 49 exercices restent intacts dans le catalogue ; seule leur disponibilité change dans le banc d'essai.
+
+**Les 34 premières séances sont rigoureusement identiques à V2-F** dans les neuf profils/graines. Sur 45 séances, la différence de nombre de familles indépendantes par rapport à la référence est comprise entre **−1 et +3**, et la différence de rappels ciblés est **exactement zéro** dans les neuf cas. Chaque séance conserve **10 QCM originaux**, sans répétition de famille au sein de la séance. Les 9 parcours de référence restent le point de comparaison.
+
+Le **40** ci-dessus est **une décision fictive d'enseignante utilisée uniquement pour tester le mécanisme de déverrouillage**. Il ne signifie pas que Rubensohl doit être enseigné à ce moment. Après autorisation, le moteur ne force pas immédiatement une question Rubensohl : une première apparition en séance 42 est normale.
+
+**Portée technique limitée :** les contrôles prouvent l'invariance des tests et le comportement des simulations, non la qualité des apprentissages réels. Aucune interface de confirmation n'est encore livrée, aucun QCM n'a été corrigé, aucun cours n'est inséré.
+
+**Statut final : `AF_CI_SUCCES / 49_QCM_RUBENSOHL / 34_PREMIERES_SEANCES_IDENTIQUES / 9_SUR_9_SANS_RUBENSOHL_NON_ENSEIGNE / 0_LECON / 0_DEPLOIEMENT`.**
+
