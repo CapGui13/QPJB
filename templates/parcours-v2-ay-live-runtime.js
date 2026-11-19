@@ -145,6 +145,7 @@ function welcome(){
  '</section>');
  $('start').onclick=()=>{
   if(!record)record=blank($('model').value);
+  if(record.current){render();return}
   startSession();
  };
  if(record)$('erase').onclick=()=>{
