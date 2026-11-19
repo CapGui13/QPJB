@@ -32,7 +32,7 @@ function restore(){
   if(!raw)return null;
   if(raw.length>1500000)throw Error('Taille de sauvegarde anormale');
   const v=JSON.parse(raw);
-  if(!v||v.schema!==1||!MODELS[v.model]||
+  if(!v||v.schema!==1||!Object.prototype.hasOwnProperty.call(MODELS,v.model)||
      !Number.isInteger(v.nextSession)||v.nextSession<1||v.nextSession>66||
      !Array.isArray(v.completed)||!Array.isArray(v.addonAnswers)||
      !v.engineState||typeof v.engineState!=='object')throw Error('Structure de sauvegarde invalide');
