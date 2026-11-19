@@ -12,7 +12,7 @@ const committed=read('preview/v2-ai/parcours-v2-cohabitation.html');
 const rebuilt=AI.build(original);
 assert.equal(committed,rebuilt,'V2 branch HTML must match audited generator exactly');
 assert.ok(committed.length>1000000);
-assert.equal((committed.match(/<script\b/g)||[]).length,7);
+assert.equal((committed.match(/<script\b/g)||[]).length,(original.match(/<script\b/g)||[]).length,'Script structure matches original preview');
 const tag=id=>{const token='<script type="application/json" id="'+id+'">';const i=committed.indexOf(token);
  assert.ok(i>=0,'missing '+id);return JSON.parse(committed.slice(i+token.length,committed.indexOf('</script>',i+token.length)))};
 assert.equal(tag('catalog-data').length,1523);
