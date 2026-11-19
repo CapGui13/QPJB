@@ -63,7 +63,7 @@ async function main(){
    const popup=await promise;
    popup.on('pageerror',e=>errors.push('AZ: '+e.message));
    await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
-   assert.ok(popup.url().startsWith(base+'preview/v2-az/parcours-v2-adaptatif.html?mode=eleve'));
+   assert.ok(popup.url().startsWith(base+'preview/v2-eleve/parcours-sef-65.html'));
    assert.ok(await popup.locator('#az-return-v1').isVisible());
    assert.equal(await popup.locator('#model').count(),0,'Pas de modes complémentaires dans l’essai élève');
    await popup.locator('#start').click();
@@ -97,7 +97,7 @@ async function main(){
    await popup.locator('#parcours-v2-az-preview-link')
      .waitFor({state:'visible',timeout:30000});
    assert.match(await popup.locator('#parcours-status').textContent(),/Séances terminées : 7/);
-   await popup.goto(base+'preview/v2-az/parcours-v2-adaptatif.html?mode=eleve');
+   await popup.goto(base+'preview/v2-eleve/parcours-sef-65.html');
    await popup.getByText('Question 2/10').waitFor();
    await popup.locator('#home').click();
    await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
