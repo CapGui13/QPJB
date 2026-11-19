@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QPJB · Parcours V2 AY · 65 séances avec ouvertures authentiques</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1a2d49;background:#f2f6fb}
+*{box-sizing:border-box}body{margin:0}button,select,input{font:inherit}
+.mast{background:linear-gradient(112deg,#103263,#17617d);color:white;padding:30px 20px}
+.wrap{max-width:1110px;margin:auto}.mast h1{font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.18;margin:.3em 0}
+.kicker{font-size:.73rem;letter-spacing:.13em;text-transform:uppercase;color:#c4f4f0;font-weight:800}
+.mast p{max-width:920px;line-height:1.5;color:#e0edf7}
+main{padding:20px 18px 80px}.panel{border:1px solid #d5e0ee;background:white;border-radius:13px;padding:17px;margin:12px 0;box-shadow:0 3px 14px #1537520b}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.controls label{font-weight:680;font-size:.9rem}
+.controls select{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid #b5c7dd;border-radius:9px;background:#fff;color:#243b60}
+.compare{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:14px}
+.stat{border:1px solid #e1e8f3;border-radius:10px;padding:11px 12px}.stat strong{display:block;font-size:1.36rem;color:#195585}.stat span{display:block;color:#536982;font-size:.8rem}
+.note{border-left:4px solid #8cb2d1;padding:10px 14px;background:#edf3fb;line-height:1.5;border-radius:7px;margin:14px 0}
+.note.important{border-left-color:#ca8a2c;background:#fff5e5}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row.spread{justify-content:space-between}
+.pill{display:inline-block;font-size:.76rem;font-weight:750;border-radius:100px;padding:5px 9px;background:#e7effa;color:#245585}
+.pill.extra{background:#d9f5eb;color:#146b53}.pill.alert{background:#fff0d7;color:#865d17}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}
+.buttons{display:flex;flex-wrap:wrap;gap:9px}
+button{border:1px solid #b6c9dc;background:white;color:#1a4674;border-radius:9px;padding:10px 13px;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+button.primary{background:#16538b;border-color:#16538b;color:white;font-weight:730}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #80bfff;outline-offset:2px}
+.jump{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.jump button{padding:6px 9px;font-size:.83rem}
+.jump button.active{background:#176387;color:#fff;border-color:#176387}
+.progress{height:8px;border-radius:10px;background:#e3eaf3;margin:12px 0;overflow:hidden}
+.progress div{height:100%;background:#2381ab;transition:width .15s}
+.question{border-left:5px solid #2c7bba}
+.question.is-extra{border-left-color:#21826a}
+.question h2{font-size:1.22rem;line-height:1.3;margin:6px 0}
+.question .source{color:#526783;font-size:.83rem}
+.hand-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin:16px 0}
+.hand{background:#f7f9fc;border-radius:10px;padding:12px 15px;display:grid;grid-template-columns:30px minmax(0,1fr);gap:5px 6px;align-content:start;font-variant-numeric:tabular-nums}
+.symbol{font-weight:850;font-size:1.2rem}.red{color:#c3364e}.auction{border-radius:10px;background:#f6f9fe;padding:12px;white-space:pre-wrap;font-size:.91rem;line-height:1.5;min-height:85px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.choice{border:1px solid #d5e2ef;border-radius:9px;display:flex;gap:9px;align-items:center;padding:13px;cursor:pointer;background:#fff}
+.choice:has(input:checked){border-color:#1d73a5;background:#eaf6ff}
+.choice input{accent-color:#1c6897}
+.free{display:block;width:100%;max-width:300px;padding:12px;border-radius:9px;border:1px solid #a6bfce;margin:10px 0}
+.answer{border:1px solid #d4e6db;background:#f1faf5;padding:14px;border-radius:10px;line-height:1.6;display:none}
+.answer.visible{display:block}.answer b{color:#126345}
+.foot{font-size:.84rem;color:#607086;line-height:1.5;margin-top:20px}
+@media(max-width:720px){.controls{grid-template-columns:1fr}.compare{grid-template-columns:repeat(2,minmax(0,1fr))}.hand-grid{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.mast{padding:25px 14px}main{padding:14px 12px 60px}}
+</style></head>
+<body>
+<header class="mast"><div class="wrap">
+<div class="kicker">QPJB · Prototype pédagogique hors production</div>
+<h1>Le parcours V2 avec ses ouvertures avancées</h1>
+<p>Compare le moteur V2-F avec deux variantes expérimentales. Chaque séance contient <b>10 situations</b>. Aux séances ciblées, 9 QCM SEF sont conservés et 1 exercice authentique est intercalé. Les réponses libres du BH-035 restent à réponse libre.</p>
+<p>Élèves fictifs, aucune donnée enregistrée, aucun changement au site QPJB. Les 8 situations supplémentaires attendent encore une validation éditoriale.</p>
+</div></header>
+<main class="wrap">
+<div class="panel"><div class="controls">
+<label for="profile">Profil simulé<select id="profile"></select></label>
+<label for="mode">Parcours à inspecter<select id="mode">
+<option value="mode7">AY : 7 ouvertures (variante 2SA exclue)</option>
+<option value="mode8">AY : 8 ouvertures (inclut 2SA conditionnel)</option>
+<option value="baseline">V2-F : version de référence inchangée</option>
+</select></label>
+<label for="session">Séance<select id="session"></select></label>
+</div><div id="stats" class="compare"></div>
+<div class="note" id="guide"></div>
+<div class="jump" id="jump"></div></div>
+<div class="panel question" id="card">
+<div class="row spread"><span id="progressText" class="pill"></span><span id="typeBadge" class="pill"></span></div>
+<div class="progress"><div id="bar"></div></div>
+<h2 id="questionTitle"></h2>
+<div id="tags" class="pills"></div>
+<p id="context"></p>
+<div class="hand-grid">
+<div class="hand" id="hand"></div>
+<div><div class="source" style="font-weight:700;margin-bottom:6px">Séquence / contexte d'enchères</div>
+<div class="auction" id="auction"></div></div>
+</div>
+<div id="options"></div>
+<div class="buttons"><button class="primary" id="verify">Afficher le corrigé d'origine</button>
+<button id="previous">Question précédente</button><button id="next">Question suivante</button></div>
+<div id="answer" class="answer" aria-live="polite"></div>
+</div>
+<div class="foot">Prototype de consultation sur 65 séances. Les QCM SEF proviennent des 1 523 questions d'origine ; les QCM Entraînement conservent leurs choix et corrigés ; les questions BH-035 n'ont pas de distracteurs inventés. Les réponses fictives utilisées pour sélectionner les séances ne sont pas les tiennes. Jouer ici ne modifie aucune progression et ne démontre pas la maîtrise d'une notion.</div>
+</main>
+<script type="application/json" id="dataset">__AY_DATA__</script>
+<script>
+(function(){
+'use strict';
+const data=JSON.parse(document.getElementById('dataset').textContent);
+const $=id=>document.getElementById(id);
+const E=x=>String(x===undefined||x===null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const suits=['♠','♥','♦','♣'];
+const scenario=$('profile'),mode=$('mode'),session=$('session');
+let currentQuestion=0;let checked={};let revealed={};
+const key=()=>[scenario.value,mode.value,session.value,currentQuestion].join('|');
+function setSelect(el,items){el.innerHTML=items.map(x=>'<option value="'+E(x.value)+'">'+E(x.label)+'</option>').join('')}
+setSelect(scenario,data.output.map((x,i)=>({value:i,label:x.profile.title+' · graine '+x.profile.seed})));
+setSelect(session,Array.from({length:65},(_,i)=>({value:i+1,label:'Séance '+(i+1)})));
+function item(){const profile=data.output[Number(scenario.value)||0];
+ const m=mode.value;
+ const sessions=m==='baseline'?profile.baselineSessions:profile[m].sessions;
+ return {profile,session:sessions[Number(session.value)-1],mode:m};
+}
+function stat(label,v){return '<div class="stat"><strong>'+E(v)+'</strong><span>'+E(label)+'</span></div>'}
+function formatAuction(lines){
+ if(!lines||!lines.length)return 'Tu es donneur. Aucune enchère précédente indiquée.';
+ return lines.map(x=>Array.isArray(x)?x.map(t=>t||'—').join('   |   '):String(x)).join('\n');
+}
+function render(){
+ const result=item(),profile=result.profile,row=result.session,q=row.questions[currentQuestion];
+ if(!q)return;
+ const test=result.mode==='baseline'?profile.baseline:profile[result.mode].metrics;
+ $('stats').innerHTML=stat('Situations par séance',10)
+   +stat('Ajouts sur 65 séances',result.mode==='baseline'?0:test.extraShown)
+   +stat('Ouvertures S21–30',test.lateOpening21to30)
+   +stat('Rappels programmés',result.mode==='baseline'?test.scheduledRecallEvents:test.scheduledRecallEvents);
+ const added=row.extensionId;
+ const guide=$('guide');
+ const messages=added?('Cette séance inclut un exercice complémentaire : <b>'+E(added)+'</b>. À comparer avec le parcours V2-F.'): 'Séance issue du moteur SEF sans complément. Sélection réalisée à partir de réponses simulées.';
+ guide.innerHTML=messages;
+ guide.className='note'+(added==='EN-BH-114-06'?' important':'');
+ $('jump').innerHTML=[18,21,29,32,36,39,43,46].map(n=>'<button data-n="'+n+'" class="'+(n===row.number?'active':'')+'">S'+n+'</button>').join('');
+ $('progressText').textContent='Séance '+row.number+' / 65 · question '+(currentQuestion+1)+' / 10';
+ $('bar').style.width=String((currentQuestion+1)*10)+'%';
+ $('typeBadge').textContent=q.origin==='SEF'?'Quiz SEF · original':q.origin==='ENTRAINEMENT'?'Entraînement · ajouté':'Bridge Hebdo · réponse libre';
+ $('typeBadge').className='pill'+(q.origin==='SEF'?'':' extra');
+ $('card').className='panel question'+(q.origin==='SEF'?'':' is-extra');
+ $('questionTitle').textContent='Quelle est ton enchère ?';
+ $('tags').innerHTML='<span class="pill">'+E(q.id)+'</span>'
+  +'<span class="pill">'+E(q.sourceRef)+'</span>'
+  +(q.difficulty===null?'':'<span class="pill">Difficulté '+E(q.difficulty)+'/5</span>')
+  +(q.conditional?'<span class="pill alert">Accord avancé à confirmer</span>':'')
+  +(q.teacherApproval==='PENDING'?'<span class="pill alert">Validation éditoriale en attente</span>':'');
+ $('context').textContent=q.context||'Choisis la meilleure enchère pour cette main.';
+ $('hand').innerHTML=q.hand.map((cards,i)=>'<span class="symbol '+(i===1||i===2?'red':'')+'">'+suits[i]+'</span><span>'+E(Array.isArray(cards)?cards.join(' '):cards)+'</span>').join('');
+ $('auction').textContent=formatAuction(q.auction);
+ const selected=checked[key()];
+ if(q.kind==='free'){
+  $('options').innerHTML='<label for="freeBid">Ta réponse (sans choix proposé) :</label><input class="free" id="freeBid" placeholder="Ex. 1♥" autocomplete="off" value="'+E(selected||'')+'">';
+ }else{
+  $('options').innerHTML='<div class="source" style="font-weight:700">Choix d’origine</div><div class="choices">'
+    +q.choices.map((x,i)=>'<label class="choice"><input type="radio" name="bid" value="'+i+'" '+(selected===x?'checked':'')+'><span>'+E(x)+'</span></label>').join('')+'</div>';
+ }
+ $('answer').className='answer'+(revealed[key()]?' visible':'');
+ showAnswer(q);
+ $('previous').disabled=row.number===1&&currentQuestion===0;
+ $('next').disabled=row.number===65&&currentQuestion===9;
+ $('verify').textContent='Afficher le corrigé d’origine';
+}
+function showAnswer(q){
+ if(!revealed[key()]){$('answer').innerHTML='';return}
+ const user=checked[key()];
+ const result=user?((String(user).trim().replace(/\s/g,'').toUpperCase()===
+   String(q.answer).trim().replace(/\s/g,'').toUpperCase())
+   ?'Ta réponse correspond à celle du support.':'Ta réponse diffère de celle du support.'):'Aucune réponse saisie.';
+ $('answer').innerHTML='<strong>'+E(result)+'</strong><p><b>Réponse d’origine : '+E(q.answer)+'</b></p>'
+ +'<p>'+E(q.explain)+'</p>'
+ +(q.note?'<p><b>Précaution pédagogique :</b> '+E(q.note)+'</p>':'')
+ +(q.origin==='SEF'?'':'<p>Ce complément n’est pas encore validé pour le parcours public.</p>');
+}
+$('verify').addEventListener('click',()=>{
+ const row=item().session, q=row.questions[currentQuestion];
+ const chosen=q.kind==='free'?$('freeBid')?.value:document.querySelector('input[name=bid]:checked');
+ checked[key()]=q.kind==='free'?(chosen||''):chosen?q.choices[Number(chosen.value)]:'';
+ revealed[key()]=true;render();
+});
+function move(n){
+ let s=Number(session.value),idx=currentQuestion+n;
+ if(idx<0){if(s>1){s--;idx=9}else return}
+ if(idx>9){if(s<65){s++;idx=0}else return}
+ session.value=String(s);currentQuestion=idx;render();
+}
+$('previous').addEventListener('click',()=>move(-1));
+$('next').addEventListener('click',()=>move(1));
+scenario.addEventListener('change',()=>{currentQuestion=0;render()});
+mode.addEventListener('change',()=>{currentQuestion=0;render()});
+session.addEventListener('change',()=>{currentQuestion=0;render()});
+$('jump').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-n]');if(!b)return;
+ session.value=b.dataset.n;currentQuestion=0;render();
+});
+scenario.value='0';session.value='18';render();
+})();
+</script>
+</body></html>
