@@ -63,3 +63,17 @@ Pour tester la navigation, ouvrir un serveur HTTP local depuis le dossier **pare
 Le nouvel espace V2 utilise `qpjb-sef-parcours-v2-01` et **ne modifie jamais** l'historique V1 ou Quiz SEF. **Ne pas confondre un fichier téléchargé en `file://` avec une page servie sur le même domaine que QPJB** : la lecture du parcours V1 n'y est pas possible.
 
 La [CI AJ #44525493613](https://github.com/CapGui13/QPJB/actions/runs/44525493613) a validé ce parcours de navigation, en mode ordinateur et iPhone, sur Chromium et WebKit. Voir `Docs/PARCOURS_V2_PHASE_AJ_NAVIGATION_OPT_IN_20261119.md` pour les étapes de test et les limites. **Aucune fusion ni publication à ce stade.**
+
+## Essai des élèves : 65 séances SEF uniquement (phase BF)
+
+**Sur la branche de la PR #214 uniquement**, le lien « Tester les 65 séances du parcours guidé SEF (aperçu) » du Quiz, lorsqu'il est rendu visible par `index.html?v2preview=1`, ouvre désormais :
+
+`preview/v2-az/parcours-v2-adaptatif.html?mode=eleve`
+
+- Mode `core` **imposé dans l'interface**, sans choix des 7 ou 8 compléments non validés ; 10 QCM provenant des **1 523 QCM SEF existants** à chaque séance.
+- Sauvegarde locale dédiée : `qpjb-preview-v2-eleve-01`. Aucune migration de la sauvegarde expérimentale `qpjb-preview-v2-az-01`, ni des clés historiques `qpjb-sef-parcours-01`, `qpjb-sef-parcours-v2-01` et `qpjb-sef-entrainement-01`.
+- La version expérimentale avec modes `core` / `seven` / `eight` reste disponible dans le **même fichier sans** `?mode=eleve` pour les vérifications internes ; elle conserve sa clé AZ propre.
+- Les sauvegardes incompatibles sont préservées, avec effacement ciblé sur confirmation ; rechargement et retour au Quiz classique restent disponibles.
+- **Important** : le paramètre `mode=eleve` est une configuration d'interface, **pas une authentification**. Le HTML de prévisualisation conserve ses données expérimentales embarquées ; celles-ci ne sont pas proposées dans l'interface élève. Ne pas diffuser la branche comme site public tant que la recette pédagogique reste `HOLD`.
+
+Mode d'essai local sur Windows depuis le dossier parent de QPJB : lancer `python -m http.server 8000`, puis ouvrir `http://localhost:8000/QPJB/index.html?v2preview=1`, cliquer sur **Quizz** et sur **Tester les 65 séances du parcours guidé SEF (aperçu)**. Le lien et la sauvegarde restent distincts du parcours public.
