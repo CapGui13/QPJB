@@ -11,6 +11,7 @@ on:
       - scripts/parcours-v2-audit-sensibles-ak.cjs
       - scripts/parcours-v2-publication-gate-al.cjs
       - scripts/parcours-v2-contre-revue-am.cjs
+      - tests/quizz-v2-publication-gate-al.cjs
       - Docs/PARCOURS_V2_PHASE_AL_MANIFESTE_ARBITRAGE_20261119.json
       - tests/quizz-v2-switch-aj-browser.cjs
   pull_request:
@@ -24,6 +25,7 @@ on:
       - scripts/parcours-v2-audit-sensibles-ak.cjs
       - scripts/parcours-v2-publication-gate-al.cjs
       - scripts/parcours-v2-contre-revue-am.cjs
+      - tests/quizz-v2-publication-gate-al.cjs
       - Docs/PARCOURS_V2_PHASE_AL_MANIFESTE_ARBITRAGE_20261119.json
       - tests/quizz-v2-switch-aj-browser.cjs
   workflow_dispatch:
@@ -46,6 +48,7 @@ jobs:
           node tests/quizz-v2-reprise-ag.cjs
           node scripts/parcours-v2-audit-sensibles-ak.cjs
           node scripts/parcours-v2-publication-gate-al.cjs
+          node tests/quizz-v2-publication-gate-al.cjs
           node scripts/parcours-v2-contre-revue-am.cjs
   aj-browser:
     name: Existing QPJB home to V2 on ${{ matrix.browser }}
