@@ -115,6 +115,67 @@ async function main(){
     training:localStorage.getItem('qpjb-sef-entrainement-01'),
     azTeacher:localStorage.getItem('qpjb-preview-v2-az-01')
    })),saved);
+   // Recette utile : dix vraies réponses puis un vrai bilan, sans données fictives.
+   // Le scénario long (neuf séances) ne tourne qu'une fois pour limiter la CI.
+   async function completeStudentSession(session){
+     for(let question=1;question<=10;question++){
+       await popup.getByText('Séance '+session+'/65').waitFor();
+       await popup.getByText('Question '+question+'/10').waitFor();
+       await popup.locator('.choice').first().click();
+       await popup.locator('#answer').click();
+       await popup.locator('.feedback').waitFor();
+       await popup.locator('#next').click();
+     }
+     await popup.getByRole('heading',{name:'Bilan de la séance '+session,level:2}).waitFor();
+   }
+   await popup.locator('#start').click();
+   await completeStudentSession(1);
+   const afterOne=await popup.evaluate(()=>
+     JSON.parse(localStorage.getItem('qpjb-preview-v2-eleve-01')));
+   assert.equal(afterOne.completed.length,1,'Une séance doit être réellement clôturée');
+   assert.equal(afterOne.completed[0].coreQuestions,10);
+   assert.equal(afterOne.current,null);
+   const matched=afterOne.completed[0].coreCorrect;
+   assert.ok(Number.isInteger(matched)&&matched>=0&&matched<=10);
+   assert.equal(await popup.locator('#sef-session-grid .sef-step').count(),65);
+   assert.equal(await popup.locator('#sef-session-grid .sef-step.done').count(),1);
+   assert.equal(await popup.locator('#sef-session-grid .sef-step.current').count(),1);
+   assert.match(await popup.locator('.sef-progress').textContent(),
+     new RegExp(matched+' / 10'));
+   assert.match(await popup.locator('.sef-history li').first().textContent(),
+     new RegExp('Séance 1\\s*:\\s*'+matched+' / 10'));
+   await popup.reload({waitUntil:'domcontentloaded'});
+   await popup.getByRole('heading',{name:'Bilan de la séance 1',level:2}).waitFor();
+   assert.equal(await popup.locator('#sef-session-grid .sef-step.done').count(),1);
+   if(engine==='chromium'&&device==='desktop'){
+     for(let session=2;session<=9;session++){
+       await popup.locator('#nextSession').click();
+       await completeStudentSession(session);
+     }
+     const afterNine=await popup.evaluate(()=>
+       JSON.parse(localStorage.getItem('qpjb-preview-v2-eleve-01')));
+     assert.equal(afterNine.completed.length,9);
+     assert.equal(await popup.locator('#sef-session-grid .sef-step.done').count(),9);
+     assert.equal(await popup.locator('#sef-session-grid .sef-step.current').count(),1);
+     assert.equal(await popup.locator('.sef-history li').count(),8,
+       'Ne montrer que les huit dernières séances');
+     assert.match(await popup.locator('.sef-history li').first().textContent(),/Séance 9/);
+     assert.match(await popup.locator('.sef-history li').last().textContent(),/Séance 2/);
+     const sum=afterNine.completed.reduce((n,x)=>n+x.coreCorrect,0);
+     assert.match(await popup.locator('.sef-progress').textContent(),
+       new RegExp(sum+' / 90'));
+     await popup.reload({waitUntil:'domcontentloaded'});
+     await popup.getByRole('heading',{name:'Bilan de la séance 9',level:2}).waitFor();
+     assert.equal(await popup.locator('.sef-history li').count(),8);
+   }
+   // Le jeu complet ne doit pas toucher aux sauvegardes du vrai Quiz.
+   assert.deepEqual(await popup.evaluate(()=>({
+     old:localStorage.getItem('qpjb-sef-parcours-01'),
+     v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
+     training:localStorage.getItem('qpjb-sef-entrainement-01'),
+     azTeacher:localStorage.getItem('qpjb-preview-v2-az-01')
+   })),saved);
+
    const width=await popup.evaluate(()=>({
     doc:document.documentElement.scrollWidth,
     viewport:document.documentElement.clientWidth
