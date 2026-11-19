@@ -1,4 +1,4 @@
-name: QPJB V2-AF questions only teacher Rubensohl lock
+name: QPJB V2-AF questions only automatic Rubensohl
 on:
   push:
     branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
@@ -17,7 +17,7 @@ permissions:
   contents: read
 jobs:
   questions-only-af:
-    name: Explicit teacher unlock only, no lesson or Quiz SEF changes
+    name: Automatic Rubensohl from session 35, no lessons
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -25,53 +25,46 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Protéger les questions seules et le verrou enseignante
+      - name: Protéger les QCM et vérifier la progression automatique
         run: node tests/quizz-v2-questions-seules-af.cjs
-      - name: Simuler neuf parcours sans Rubensohl enseigné
+      - name: Simuler neuf parcours de 45 séances
         run: |
           mkdir -p artifacts/v2-af
           node scripts/parcours-v2-questions-seules-af.cjs > artifacts/v2-af/phase-af-matrix.json
           node - <<'NODE'
           const fs=require('node:fs');
           const r=JSON.parse(fs.readFileSync('artifacts/v2-af/phase-af-matrix.json','utf8'));
-          if(r.schema!=='QPJB_AF_TEACHER_TAUGHT_RUBENSOHL_1'||
+          if(r.schema!=='QPJB_AF_AUTOMATIC_RUBENSOHL_2'||
              r.scenarios!==9||r.catalogQuestions!==1523||
              r.sessionsPerScenario!==45||r.questionsPerSession!==10||
-             r.noConfirmationAllLocked!==true||
-             r.confirmationNeverEarlierThan40!==true||
              r.policy.noLessons!==true||r.policy.noLessonGate!==true||
-             r.policy.teacherConfirmationRequired!==true||
-             r.policy.noAutomaticMasteryUnlock!==true||
+             r.policy.teacherConfirmationRequired!==false||
+             r.policy.automaticRubensohlIntroSession!==35||
              r.policy.publicRuntimeWired!==false||
+             r.allSelectionsMatchReference!==true||
+             !r.rows.every(x=>x.firstRubensohlSession===35)||
              r.lessonsAdded!==0||r.productionTouched!==false||
              r.actualStudentsObserved!==0||r.rows.length!==9)
-            throw Error('AF : protection questions seules/Rubensohl non conforme');
+            throw Error('AF : progression automatique / questions seules non conforme');
           const summary={
             schema:r.schema,profiles:r.scenarios,
-            rubensohlSourceQuestions:r.advancedSourceQuestions,
-            rubricMentionsElsewhere:r.rubensohlMentionedUnderOtherThemes,
-            defaultQuestionSessions:r.sessionsPerScenario,
-            allLockedWithoutTeacher:true,
-            first34ReferenceIdentical:r.allFirst34Identical,
-            teacherConfirmationFixture:'session 40 only, simulated action',
-            referenceFamilyRange:r.defaultFamilyRange,
-            familyDeltaRange:r.familyDeltaRange,
-            targetedRecallRange:r.defaultRecallRange,
-            recallDeltaRange:r.recallDeltaRange,
-            noLessonContent:true,publicDeployment:false
+            sourceQuestions:r.catalogQuestions,rubensohlSourceQuestions:r.advancedSourceQuestions,
+            firstRubensohlSession:r.firstRubensohlSessionRange,
+            familyRange:r.familyRange,targetedRecallRange:r.recallRange,
+            allSelectionsMatchReference:r.allSelectionsMatchReference,
+            noManualUnlock:true,noLessonContent:true,publicDeployment:false
           };
           fs.writeFileSync('artifacts/v2-af/phase-af-summary.json',
             JSON.stringify(summary,null,2)+String.fromCharCode(10));
           if(process.env.GITHUB_STEP_SUMMARY){
             fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-              '## QPJB AF — Uniquement des QCM, Rubensohl après enseignement oral\n'+
-              '9 profils/graines fictifs × 45 séances, aucun Rubensohl sans confirmation.\n'+
-              'Déverrouillage s40 uniquement comme scénario de TEST, non comme obligation pédagogique.\n'+
-              'Aucune leçon, aucun changement du site public.\n');
+              '## QPJB AF — QCM uniquement, progression automatique'+String.fromCharCode(10)+
+              '9 simulations × 45 séances : Rubensohl à partir de la séance 35, sans confirmation manuelle.'+String.fromCharCode(10)+
+              'Sélections et rappels identiques à la V2-F de référence. Aucun déploiement.'+String.fromCharCode(10));
           }
           console.log('QPJB_PHASE_AF_SUMMARY '+JSON.stringify(summary));
           NODE
-      - name: Archiver la comparaison et les garde-fous
+      - name: Archiver les résultats
         if: always()
         uses: actions/upload-artifact@v4
         with:
