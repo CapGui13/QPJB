@@ -1,0 +1,84 @@
+name: QPJB AB standalone discovery lessons
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ab-focused.yml
+      - scripts/parcours-v2-lecons-ab.cjs
+      - scripts/parcours-v2-apercu-lecons-ab.cjs
+      - tests/quizz-v2-lecons-ab.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ab-focused.yml
+      - scripts/parcours-v2-lecons-ab.cjs
+      - scripts/parcours-v2-apercu-lecons-ab.cjs
+      - tests/quizz-v2-lecons-ab.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lessons-ab:
+    name: AB two source-anchored lessons (not QCM)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les leçons contre les cinq QCM sources sans les reproduire
+        run: node tests/quizz-v2-lecons-ab.cjs
+      - name: Générer le document pédagogique source
+        run: |
+          mkdir -p artifacts/v2-ab
+          node scripts/parcours-v2-lecons-ab.cjs > artifacts/v2-ab/phase-ab-lessons.json
+      - name: Vérifier la disponibilité documentaire sur neuf parcours V2-F
+        run: |
+          node scripts/parcours-v2-lecons-ab.cjs --matrix > artifacts/v2-ab/phase-ab-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const a=JSON.parse(fs.readFileSync('artifacts/v2-ab/phase-ab-lessons.json','utf8'));
+          const m=JSON.parse(fs.readFileSync('artifacts/v2-ab/phase-ab-matrix.json','utf8'));
+          if(a.schema!=='QPJB_AB_SOURCE_VALIDATION_1'||a.catalogQuestions!==1523||
+             a.lessons.length!==2||a.sourceQuestions!==5||
+             a.originalCatalogEdited!==false||a.noQcmCopiedIntoLesson!==true||
+             a.policy.graded!==false||a.policy.questionsIncluded!==false||
+             a.policy.externalSefCertified!==false||
+             m.schema!=='QPJB_AB_9_SCENARIOS_1'||m.scenarios!==9||
+             m.encounteredConventions!==18||m.availableLessons!==18||
+             m.selectionChanged!==false||m.publicRuntimeWired!==false||
+             m.teacherApprovalRequired!==true)
+            throw Error('AB : garde-fous sources / leçons / V2-F échoués');
+          const summary={schema:m.schema,lessonCount:m.lessonCount,
+            sourceQcmCount:m.sourceQcmCount,scenarios:m.scenarios,
+            firstEncounters:m.encounteredConventions,
+            lessonsAvailable:m.availableLessons,
+            independentFamiliesRange:m.uniqueFamiliesRange,
+            targetedRecallsRange:m.targetedRecallsRange,
+            siteUpdated:false,teacherApprovalRequired:true,
+            decision:'Deux leçons hors Quiz SEF, aucune note ni déploiement'};
+          fs.writeFileSync('artifacts/v2-ab/phase-ab-summary.json',
+            JSON.stringify(summary,null,2)+String.fromCharCode(10));
+          const lines=['## QPJB AB — deux leçons séparées des QCM',
+            'Cinq sources contrôlées, aucune main d’exercice reproduite.',
+            'Neuf parcours fictifs : '+summary.lessonsAvailable+
+              '/'+summary.firstEncounters+' premières rencontres documentées.',
+            'Aucune notation, aucune mutation V2-F, validation enseignante requise.'];
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              lines.join(String.fromCharCode(10))+String.fromCharCode(10));
+          console.log('QPJB_PHASE_AB_SUMMARY '+JSON.stringify(summary));
+          NODE
+      - name: Générer les deux mini-leçons HTML hors ligne
+        run: |
+          node scripts/parcours-v2-apercu-lecons-ab.cjs artifacts/v2-ab/mini-lecons-decouverte.html
+          test -s artifacts/v2-ab/mini-lecons-decouverte.html
+      - name: Archiver les leçons séparées et les preuves
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ab-mini-lessons
+          path: artifacts/v2-ab/
+          retention-days: 14
+          if-no-files-found: warn
