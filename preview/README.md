@@ -80,3 +80,17 @@ Il s'agit d'un **vrai fichier HTML autonome distinct**, sans paramètre de mode 
 **Essai local sous Windows :** depuis le répertoire parent de QPJB lancer `python -m http.server 8000` puis ouvrir `http://localhost:8000/QPJB/index.html?v2preview=1`, cliquer sur **Quizz** puis sur le lien d'essai. Il est aussi possible d'ouvrir directement `http://localhost:8000/QPJB/preview/v2-eleve/parcours-sef-65.html`. Si le fichier est téléchargé et ouvert en `file://`, le retour relatif vers le Quiz peut ne plus fonctionner et la sauvegarde est propre à l'origine de ce fichier, distincte de celle du site QPJB.
 
 **Point de sécurité :** le drapeau `v2preview=1` est un déclencheur de navigation de test, pas une authentification ; n'expose pas ce fichier sur GitHub Pages tant que la validation pédagogique et la décision de publication restent en attente.
+
+## Tableau de progression des 65 séances (phase BH)
+
+Le **fichier élève dédié** `preview/v2-eleve/parcours-sef-65.html` comporte un tableau de progression, sans modifier les 1 523 QCM et sans introduire de leçon écrite :
+
+- Grille de **65 séances** sur ordinateur et mobile, avec distinction entre séances terminées, séance en cours/prochaine et séances à venir.
+- Nombre de séances terminées, **réponses correspondant aux corrigés** sur les questions effectivement répondues en fin de séance et nombre de **rappels ciblés enregistrés** dans le moteur.
+- Historique des **8 dernières séances** dépliable ; tous les chiffres proviennent de la sauvegarde locale élève `qpjb-preview-v2-eleve-01`, sans score fictif ni classification de compétences acquises.
+- Les messages de retour au tableau de bord et de confirmation d'effacement mentionnent bien la progression SEF, sans faire référence au prototype AZ ; les sauvegardes restent isolées.
+- Le laboratoire AZ conserve sa présentation habituelle et ses options expérimentales, sans tableau élève lorsqu'il fonctionne en mode laboratoire.
+
+Tests spécifiques : `tests/quizz-v2-ba-navigation.cjs` vérifie l'intégrité du fichier élève, la présence du tableau et l'absence des suppléments ; `tests/quizz-v2-ba-navigation-browser.cjs` contrôle les **65 cases** après reprise et l'absence de score inventé avant la clôture d'une séance. La CI doit confirmer ces tests sur Chromium/WebKit avant de les déclarer réussis.
+
+**Toujours `HOLD` :** les 19 validations éditoriales restent en attente, aucune fusion/publication et aucune modification des fichiers de production.
