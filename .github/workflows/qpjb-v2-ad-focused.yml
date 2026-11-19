@@ -1,0 +1,80 @@
+name: QPJB V2-AD comprehension worksheet
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ad-focused.yml
+      - scripts/parcours-v2-comprehension-ad.cjs
+      - scripts/parcours-v2-apercu-comprehension-ad.cjs
+      - tests/quizz-v2-comprehension-ad.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ad-focused.yml
+      - scripts/parcours-v2-comprehension-ad.cjs
+      - scripts/parcours-v2-apercu-comprehension-ad.cjs
+      - tests/quizz-v2-comprehension-ad.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  comprehension-ad:
+    name: Six open reformulation prompts, no Quiz SEF changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les leçons sources et les six reformulations
+        run: |
+          node tests/quizz-v2-lecons-ab.cjs
+          node tests/quizz-v2-comprehension-ad.cjs
+      - name: Générer la grille ouverte de discussion
+        run: |
+          mkdir -p artifacts/v2-ad
+          node scripts/parcours-v2-comprehension-ad.cjs > artifacts/v2-ad/phase-ad-rubric.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const x=JSON.parse(fs.readFileSync('artifacts/v2-ad/phase-ad-rubric.json','utf8'));
+          if(x.schema!=='QPJB_AD_COMPREHENSION_EDITORIAL_1'||
+             x.items!==6||x.lessons!==2||x.counts.rubensohl!==3||
+             x.counts.michaels!==3||x.sourceQuestions!==5||
+             x.originalCatalogCount!==1523||x.checkpoints<12||
+             x.sourceAnchors<10||x.policy.noQcmAdded!==true||
+             x.policy.noAutomatedCorrection!==true||x.policy.scored!==false||
+             x.policy.answersPersisted!==false||x.policy.readinessInferred!==false||
+             x.policy.publicRuntimeWired!==false||x.policy.studentValidationDone!==false||
+             x.policy.teacherApprovalRequired!==true||!Array.isArray(x.tasks)||
+             x.tasks.length!==6)
+            throw Error('AD : validation pédagogique documentaire échouée');
+          const summary={schema:x.schema,lessons:x.lessons,
+            openQuestions:x.items,sourceQcmCount:x.sourceQuestions,
+            originalCatalog:x.originalCatalogCount,referenceAnchors:x.sourceAnchors,
+            teacherReviewIndicators:x.checkpoints,studentAnswersObserved:0,
+            noScoring:true,noPersistence:true,publicRuntimeWired:false,
+            teacherApprovalRequired:true,
+            decision:'Essai de reformulation manuel avec enseignant; aucune maîtrise démontrée'};
+          fs.writeFileSync('artifacts/v2-ad/phase-ad-summary.json',
+            JSON.stringify(summary,null,2)+String.fromCharCode(10));
+          console.log('QPJB_PHASE_AD_SUMMARY '+JSON.stringify(summary));
+          if(process.env.GITHUB_STEP_SUMMARY){
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '## QPJB AD : épreuve de compréhension ouverte, non notée\n'+
+              '6 questions de reformulation, 2 leçons, 5 QCM sources contrôlés.\n'+
+              'Zéro élève ou réponse observé ; aucune note ni déploiement.\n');
+          }
+          NODE
+      - name: Générer le support HTML hors ligne
+        run: |
+          node scripts/parcours-v2-apercu-comprehension-ad.cjs artifacts/v2-ad/atelier-comprehension.html
+          test -s artifacts/v2-ad/atelier-comprehension.html
+      - name: Archiver le support et les repères pédagogiques
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ad-comprehension-workshop
+          path: artifacts/v2-ad/
+          retention-days: 14
+          if-no-files-found: warn
