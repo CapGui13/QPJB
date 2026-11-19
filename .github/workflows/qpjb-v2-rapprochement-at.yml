@@ -1,0 +1,42 @@
+name: QPJB V2-AT - Rapprochement ouvertures (lecture seule)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-rapprochement-at.yml
+      - scripts/parcours-v2-candidats-ouvertures-at.cjs
+      - entrainement/training-data-bidding.js
+      - entrainement/training-originals-data.js
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-rapprochement-at.yml
+      - scripts/parcours-v2-candidats-ouvertures-at.cjs
+      - entrainement/training-data-bidding.js
+      - entrainement/training-originals-data.js
+      - quizz.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    name: Reperer sources authentiques sans ajouter aucun QCM
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparer Entrainement, originaux et Quiz SEF
+        run: |
+          node --check scripts/parcours-v2-candidats-ouvertures-at.cjs
+          node scripts/parcours-v2-candidats-ouvertures-at.cjs
+      - name: Archiver les candidats et la provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-at-candidats-ouvertures
+          path: artifacts/v2-at/
+          retention-days: 30
+          if-no-files-found: error
