@@ -41,7 +41,27 @@ Les deux exercices d'abord suspects (`SEF-V49-006` et `SEF-V426-002`) sont les *
 
 **Verdict : `CONTRASTE_A_CONSERVER`.** Même réponse finale, mais le second explore le piège d'une mineure cinquième. Des variantes existent déjà au sein des familles `cas-140` et `cas-141` ; ne pas les compter comme des notions totalement nouvelles.
 
-## 5. Décision
+## 5. Résultats du banc d'exposition (validés par GitHub Actions)
+
+**Exécution #44488564587 : contrôle ciblé U/V réussi**, test de lecture des 1 523 sources compris. Matrice disponible dans l'artefact `qpjb-v2-u-audit`, fichier `phase-v-matrix.json`. Ce sont **neuf parcours fictifs** (3 profils × 3 graines), chacun de 45 séances de 10 QCM ; aucune donnée d'élève.
+
+| Source de la grille 1♣, cinq ♦ et quatre M | Premier passage dans les 9 parcours |
+|---|---|
+| `SEF-V49-005` (7 H, 1♥) | séances **16–20** |
+| `SEF-V49-006` (14 H, 1♦) | séances **24–27** |
+| `SEF-V426-001` (8 H, 1♠) | séances **16–24** |
+| `SEF-V426-002` (13 H, 1♦) | séances **22–27** |
+
+**Chaque exercice apparaît exactement une fois dans chacun des neuf parcours** : 36 présentations au total pour les quatre IDs. Les deux variantes ♥ (faible/forte) et les deux variantes ♠ (faible/forte) sont donc toutes rencontrées dans les neuf parcours simulés.
+
+Dans **4/9** parcours, deux des quatre questions sont présentées à la même séance. Détail :
+- Profil équilibré graine 29 et profil fragile-mineures graine 29 : **deux variantes fortes**, toutes deux avec la réponse 1♦, réunies en séance 26.
+- Profil fragile-mineures graine 47 : **variante ♠ faible et forte** réunies en séance 22, un contraste direct de réponse 1♠ / 1♦.
+- Profil facile graine 29 : **deux variantes faibles**, réponses 1♥ et 1♠, réunies en séance 16.
+
+Le groupe est donc **déjà couvert dans chaque simulation sans injection spécifique**. La présence simultanée de deux variantes fortes et de la même réponse 1♦ dans 2/9 parcours peut mériter une revue visuelle du déroulement des séances, mais **n'établit pas une répétition nocive**. Les autres co-présentations peuvent même créer des contrastes intéressants. Il n'est pas justifié de modifier V2-F sur cette seule observation.
+
+## 6. Décision
 
 - **Aucune suppression, aucun changement de corrigé, d'ID ou de famille.**
 - **Pas de pénalité de score automatique** sur un même libellé d'enchère.
