@@ -17,19 +17,23 @@ const normalize=s=>String(s||'').replace(/\s+/g,'').replace(/\uFE0F/g,'').toUppe
 let record=null;
 let storageWarning='';
 let selectedAnswer=null;
+let incompatibleSave=false;
 function blank(mode='core'){
  const state=F.newState(13);
  return {schema:1,model:mode,engineState:state,current:null,
   completed:[],addonAnswers:[],nextSession:1,finished:false};
 }
 function safeStore(){
+ // Ne jamais écraser silencieusement une sauvegarde AZ devenue incompatible.
+ if(incompatibleSave)return false;
  try{localStorage.setItem(STORAGE,JSON.stringify(record));storageWarning='';return true}
  catch(_){storageWarning='Le stockage local est inaccessible : la progression risque de disparaître à la fermeture.';return false}
 }
 function restore(){
+ let raw=null;
  try{
-  const raw=localStorage.getItem(STORAGE);
-  if(!raw)return null;
+  raw=localStorage.getItem(STORAGE);
+  if(raw===null)return null;
   if(raw.length>1500000)throw Error('Taille de sauvegarde anormale');
   const v=JSON.parse(raw);
   if(!v||v.schema!==1||!Object.prototype.hasOwnProperty.call(MODELS,v.model)||
@@ -48,7 +52,12 @@ function restore(){
   }
   return v;
  }catch(e){
-  storageWarning='Une sauvegarde AZ existe mais semble incompatible. Elle reste intacte ; le parcours n’y touche pas.';
+  if(raw!==null){
+   incompatibleSave=true;
+   storageWarning='Une sauvegarde AZ est incompatible. Elle est conservée : aucun nouveau parcours ne peut l’écraser.';
+  }else{
+   storageWarning='Le stockage local est inaccessible : la progression risque de disparaître à la fermeture.';
+  }
   return null;
  }
 }
@@ -130,6 +139,24 @@ function header(){
  '7 ajouts'+(record.model==='eight'?' + cas 2SA conditionnel':''))+'</span></div>';
 }
 function welcome(){
+ if(incompatibleSave){
+  panel('<section class="pane">'+header()+
+   '<h2>Sauvegarde AZ incompatible</h2>'+
+   '<p>Une progression AZ existe déjà mais ne peut pas être relue. Pour éviter de la perdre, aucun nouveau parcours ne peut démarrer tant qu’elle est présente.</p>'+
+   '<button id="eraseIncompatible" class="danger">Effacer uniquement la sauvegarde AZ incompatible</button>'+
+   '<p class="muted">Cette action exige ta confirmation. Les sauvegardes du Quiz SEF, du parcours classique et du parcours V2-F ne sont pas touchées.</p></section>');
+  $('eraseIncompatible').onclick=()=>{
+   if(!window.confirm('Supprimer définitivement la sauvegarde AZ incompatible sur cet appareil ?'))return;
+   try{
+    localStorage.removeItem(STORAGE);
+    incompatibleSave=false;storageWarning='';record=null;selectedAnswer=null;
+   }catch(_){
+    storageWarning='Suppression impossible : sauvegarde AZ préservée.';
+   }
+   render();
+  };
+  return;
+ }
  const c=record?.completed.length||0;
  const txt=record?.finished?'Parcours terminé (65 séances).':
    record?.current?'Séance '+record.current.number+' en cours, question '+(record.current.position+1)+'/10':
