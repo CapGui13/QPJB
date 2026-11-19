@@ -62,7 +62,7 @@ async function main(){
    await frame.locator('#parcours-v2-az-preview-link').click();
    const popup=await promise;
    popup.on('pageerror',e=>errors.push('AZ: '+e.message));
-   await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
+   await popup.getByRole('heading',{name:'Parcours guidé SEF — 65 séances',level:2}).waitFor();
    assert.ok(popup.url().startsWith(base+'preview/v2-eleve/parcours-sef-65.html'));
    assert.ok(await popup.locator('#az-return-v1').isVisible());
    assert.equal(await popup.locator('#model').count(),0,'Pas de modes complémentaires dans l’essai élève');
@@ -100,7 +100,12 @@ async function main(){
    await popup.goto(base+'preview/v2-eleve/parcours-sef-65.html');
    await popup.getByText('Question 2/10').waitFor();
    await popup.locator('#home').click();
-   await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
+   await popup.getByRole('heading',{name:'Parcours guidé SEF — 65 séances',level:2}).waitFor();
+   assert.equal(await popup.locator('#sef-session-grid .sef-step').count(),65,
+     'Le tableau affiche les 65 séances');
+   assert.equal(await popup.locator('#sef-session-grid .sef-step.current').count(),1);
+   assert.ok((await popup.locator('.sef-progress').textContent()).includes('0 / 0'),
+     'Aucun résultat ne doit être inventé avant la fin de la première séance');
    popup.once('dialog',d=>d.accept());
    await popup.locator('#erase').click();
    assert.equal(await popup.evaluate(()=>localStorage.getItem('qpjb-preview-v2-eleve-01')),null);
