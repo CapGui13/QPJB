@@ -1,4 +1,4 @@
-name: QPJB V2-U focused audit
+name: QPJB V2-U and V focused audit
 on:
   push:
     branches:
@@ -7,6 +7,8 @@ on:
       - .github/workflows/qpjb-v2-u-focused.yml
       - scripts/parcours-v2-decisions-u.cjs
       - tests/quizz-v2-decisions-u.cjs
+      - scripts/parcours-v2-revue-v.cjs
+      - tests/quizz-v2-revue-v.cjs
       - scripts/parcours-v2-pilot.cjs
       - scripts/parcours-v2-audit-competition-t.cjs
   pull_request:
@@ -15,6 +17,8 @@ on:
       - .github/workflows/qpjb-v2-u-focused.yml
       - scripts/parcours-v2-decisions-u.cjs
       - tests/quizz-v2-decisions-u.cjs
+      - scripts/parcours-v2-revue-v.cjs
+      - tests/quizz-v2-revue-v.cjs
       - scripts/parcours-v2-pilot.cjs
       - scripts/parcours-v2-audit-competition-t.cjs
   workflow_dispatch:
@@ -22,7 +26,7 @@ permissions:
   contents: read
 jobs:
   phase-u:
-    name: Audit U isolé et rapport
+    name: Audit U/V isolé et rapport
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -31,7 +35,9 @@ jobs:
         with:
           node-version: '22'
       - name: Vérifier les 1 523 sources et la non-mutation
-        run: node tests/quizz-v2-decisions-u.cjs
+        run: |
+          node tests/quizz-v2-decisions-u.cjs
+          node tests/quizz-v2-revue-v.cjs
       - name: Exécuter neuf scénarios et enregistrer le JSON
         run: |
           mkdir -p artifacts/v2-u
@@ -84,6 +90,37 @@ jobs:
           if(process.env.GITHUB_STEP_SUMMARY)
             fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join(String.fromCharCode(10))+String.fromCharCode(10));
           console.log('QPJB_PHASE_U_SUMMARY '+JSON.stringify(summary));
+          NODE
+      - name: Comparer les 8 cas V et leurs expositions sans toucher au tirage
+        run: |
+          node scripts/parcours-v2-revue-v.cjs > artifacts/v2-u/phase-v-cases.json
+          node scripts/parcours-v2-revue-v.cjs --matrix > artifacts/v2-u/phase-v-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const c=JSON.parse(fs.readFileSync('artifacts/v2-u/phase-v-cases.json','utf8'));
+          const m=JSON.parse(fs.readFileSync('artifacts/v2-u/phase-v-matrix.json','utf8'));
+          if(c.catalogQuestions!==1523||c.reviewedCases!==8||
+             c.originalSourcesUnchanged!==true||c.answerModified!==false||
+             m.scenarios!==9||m.cases!==8||m.masteryInferred!==false||
+             m.selectionChanged!==false||!Array.isArray(m.rows)||m.rows.length!==9)
+             throw Error('Garde-fou revue V en échec');
+          const summary={schema:m.schema,scenarios:m.scenarios,
+            cases:m.cases,contrastSeenRange:m.fourContrastCasesSeenRange,
+            bothHeartVariantsSeen:m.scenariosShowingBothForHearts,
+            bothSpadeVariantsSeen:m.scenariosShowingBothForSpades,
+            sameSessionContrast:m.anySameSessionContrast,
+            decision:'Aucun QCM supprimé ou réécrit, V2-F inchangé'};
+          fs.writeFileSync('artifacts/v2-u/phase-v-summary.json',
+            JSON.stringify(summary,null,2)+'\\n');
+          if(process.env.GITHUB_STEP_SUMMARY){
+            const nl=String.fromCharCode(10);
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              nl+'## QPJB Phase V — revue de huit cas originaux'+nl+
+              'Grille faible/forte et ♥/♠ conservée. V2-F non modifié.'+nl+
+              'Variantes du contraste vues par parcours : '+
+              summary.contrastSeenRange.join(' à ')+nl);
+          }
+          console.log('QPJB_PHASE_V_SUMMARY '+JSON.stringify(summary));
           NODE
       - name: Conserver les résultats
         if: always()
