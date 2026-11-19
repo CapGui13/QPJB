@@ -38,3 +38,15 @@ Pour l'utiliser : télécharger l'HTML AG, l'ouvrir **dans le même navigateur e
 **Important :** les explications précédentes sur la perte de progression à la fermeture concernent uniquement le **fichier historique `parcours-v2-autonome.html`**, laissé inchangé. La variante AG reste un outil d'essai, hors production, avec les 1 523 QCM originaux, sans leçon, sans intervention de l'enseignante et sans déploiement.
 
 Voir `Docs/PARCOURS_V2_PHASE_AG_REPRISE_LOCALE_20261119.md`.
+
+## Coexistence avec le vrai Quiz SEF : phase AI
+
+Le candidat d'intégration de la phase AI est **un troisième fichier HTML distinct**, généré par `scripts/parcours-v2-build-cohabitation-ai.cjs` dans `artifacts/v2-ai/parcours-v2-cohabitation.html`, archivé par GitHub Actions sous **`qpjb-v2-ai-cohabitation`**. Il ne remplace pas `quizz.html` et n'est pas publié sur le site.
+
+Lorsqu'il est servi depuis **le même domaine web que QPJB**, il affiche à titre d'information le nombre de séances du parcours classique (clé `qpjb-sef-parcours-01`, **lecture seule**) et propose un lien **Retour au parcours classique**. La progression V2 est stockée sous sa propre clé `qpjb-sef-parcours-v2-01`. **Réinitialiser V2 n'efface ni la progression V1, ni l'historique des réponses au Quiz SEF** (clé `qpjb-sef-entrainement-01`). Aucune note ou réussite V1 n'est convertie en compétence V2.
+
+**Attention :** téléchargé directement en `file://`, ce fichier ne partage pas l'espace local du navigateur avec le site QPJB. Il affiche donc un message d'avertissement et masque le lien de retour relatif. La cohabitation réelle se teste sur une même origine web (comme dans les tests automatisés).
+
+La validation [GitHub Actions #44516601579](https://github.com/CapGui13/QPJB/actions/runs/44516601579) a réussi les tests d'intégrité et de navigation V1 ↔ V2 sous Chromium et WebKit en formats ordinateur et iPhone. L'implémentation et ses limites sont détaillées dans `Docs/PARCOURS_V2_PHASE_AI_COHABITATION_20261119.md`.
+
+**Aucune modification des 1 523 QCM, de la progression du Quiz SEF public ou des sauvegardes réelles des élèves.** La recette d'intégration finale et une publication réversible restent à préparer.
