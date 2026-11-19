@@ -9,6 +9,8 @@ on:
       - quizz.html
       - index.html
       - preview/v2-az/parcours-v2-adaptatif.html
+      - preview/v2-eleve/parcours-sef-65.html
+      - scripts/parcours-v2-build-student-bg.cjs
       - templates/parcours-v2-ay-live.html
   pull_request:
     branches: [main]
@@ -19,6 +21,8 @@ on:
       - quizz.html
       - index.html
       - preview/v2-az/parcours-v2-adaptatif.html
+      - preview/v2-eleve/parcours-sef-65.html
+      - scripts/parcours-v2-build-student-bg.cjs
   workflow_dispatch:
 permissions:
   contents: read
@@ -32,8 +36,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verifier les liens, les scripts et les sources
-        run: node tests/quizz-v2-ba-navigation.cjs
+      - name: Verifier les liens, le fichier eleve et les sources
+        run: |
+          node scripts/parcours-v2-build-student-bg.cjs
+          cmp artifacts/v2-bg/QPJB_V2_BG_Parcours_SEF_65.html preview/v2-eleve/parcours-sef-65.html
+          node tests/quizz-v2-ba-navigation.cjs
   browsers:
     name: QPJB vers AZ et retour sur ${{ matrix.browser }}
     runs-on: ubuntu-latest
