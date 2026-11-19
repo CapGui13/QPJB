@@ -63,6 +63,11 @@ function inspect(catalog){
     contrastGrid:{
       weakHearts:'SEF-V49-005',strongHearts:'SEF-V49-006',
       weakSpades:'SEF-V426-001',strongSpades:'SEF-V426-002'},
+    reviewVerdicts:{
+      oneDiamondNoMajor:'CONTRASTE_LONGUEUR_5D_CONTRE_3D_A_CONSERVER',
+      oneClubFiveDiamondsFourMajor:'MATRICE_2X2_FORCE_ET_MAJEURE_A_PRESERVER',
+      oneNoTrumpPass:'CONTRASTE_FAIBLESSE_MINEURE_5E_A_CONSERVER'
+    },
     meaning:'Le groupe quatre QCM oppose le choix de 1M et de 1♦ selon la force, pour les deux majeures',
     originalSourcesUnchanged:true,answerModified:false,
     pedagogicalMasteryInferred:false,publicRuntimeWired:false};
