@@ -48,3 +48,16 @@ Les **cinq QCM source et leurs corrigés restent la référence du contenu**. Po
 - **Éthique pédagogique :** toute évaluation ultérieure sera-t-elle proposée **sans aide**, sans assimiler la lecture préalable du document à une compétence acquise ?
 
 **Verdict AC : contenu restructuré pour être plus accessible à un débutant *de ces conventions*, avec cohérence documentaire corroborée sur les cas ciblés. `VALIDATION_PEDAGOGIQUE_HUMAINE_REQUISE` ; aucune réussite d'élève observée ; aucun déploiement.**
+
+## Validation technique finale — 19 novembre 2026
+
+**GitHub Actions : [#44501679421](https://github.com/CapGui13/QPJB/actions/runs/44501679421) : succès**, sans erreur.
+
+- **2 leçons** et **5 QCM d'origine** vérifiés, **1 523 exercices** du catalogue inchangés ;
+- affichage effectif dans l'HTML de **2 sections de lexique**, des prérequis et des confusions à éviter ; **14 494 octets**, un fichier autonome sans chargement de ressources externes ;
+- **9 scénarios × 45 séances**, **18/18 premières rencontres documentées**, **440–450 familles distinctes**, **69–77 rappels ciblés** ; aucun effet sur V2-F ;
+- tests automatiques de fidélité des accords sources, d'absence des énoncés/corrigés entiers et d'absence de formulaire, de notation ou de sauvegarde : réussis.
+
+L'artefact GitHub `qpjb-v2-ab-mini-lessons` contient le nouveau `mini-lecons-decouverte.html`, ses sources structurées et la matrice complète. **Cette réussite est exclusivement technique** ; elle ne valide ni la compréhension de la leçon par un élève ni l'approbation du contenu par une enseignante.
+
+**Statut de clôture : `AC_TECHNIQUEMENT_VALIDEE / ADAPTEE_AUX_DEBUTANTS_EN_CONVENTION / APPROBATION_ENSEIGNANTE_REQUISE / 0_DEPLOIEMENT`.**
