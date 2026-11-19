@@ -1,0 +1,46 @@
+name: QPJB V2 — visite pedagogique 30 seances (hors production)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-visite-30.yml
+      - scripts/parcours-v2-visite-30.cjs
+      - tests/quizz-v2-visite-30.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+      - quizz-parcours.js
+      - Docs/PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json
+      - Docs/PARCOURS_V2_STAYMAN_65_MICRO_OBJECTIFS_CANDIDATS_20261118.json
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-visite-30.yml
+      - scripts/parcours-v2-visite-30.cjs
+      - tests/quizz-v2-visite-30.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+      - quizz-parcours.js
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visit:
+    name: 30 seances du vrai moteur V2-F avec 3 profils fictifs
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Controle de fidelite des 900 QCM presentes
+        run: node tests/quizz-v2-visite-30.cjs
+      - name: Generer le carnet HTML autonome et les rapports JSON
+        run: node scripts/parcours-v2-visite-30.cjs
+      - name: Archiver le carnet 30 seances (aucun deploiement)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-visite-30-seances
+          path: artifacts/v2-30-seances/
+          if-no-files-found: error
+          retention-days: 30
