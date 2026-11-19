@@ -32,10 +32,10 @@ const allowed=new Set(['A_REVOIR','CLARIFICATION_CONVENTION',
   'HARMONISATION_PEDAGOGIQUE','RECLASSEMENT_PEDAGOGIQUE',
   'VALIDE_DANS_ACCORD','CORRECTION_JUSTIFIEE']);
 for(const item of report.cases){
-  assert.ok(item&&typeof item.id==='string','ID d'arbitrage absent');
+  assert.ok(item&&typeof item.id==='string',"ID d'arbitrage absent");
   assert.ok(!seen.has(item.id),'ID répété : '+item.id);
   seen.add(item.id);
-  assert.ok(flagById.has(item.id),'ID d'arbitrage hors des 19 flags : '+item.id);
+  assert.ok(flagById.has(item.id),"ID d'arbitrage hors des 19 flags : "+item.id);
   assert.equal(item.sourceNote,flagById.get(item.id),'Note source altérée : '+item.id);
   assert.ok(sourceById.has(item.id),'QCM source absent : '+item.id);
   assert.ok(['P1','P2'].includes(item.priority),'Priorité inconnue : '+item.id);
