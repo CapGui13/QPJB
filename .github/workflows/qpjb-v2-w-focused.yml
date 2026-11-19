@@ -1,0 +1,78 @@
+name: QPJB V2-W progression focused audit
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-w-focused.yml
+      - scripts/parcours-v2-progression-w.cjs
+      - tests/quizz-v2-progression-w.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-w-focused.yml
+      - scripts/parcours-v2-progression-w.cjs
+      - tests/quizz-v2-progression-w.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  phase-w:
+    name: Audit W difficultés et introductions
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier les sources et la non-mutation
+        run: node tests/quizz-v2-progression-w.cjs
+      - name: Neuf scénarios de progression, lecture seule
+        run: |
+          mkdir -p artifacts/v2-w
+          node scripts/parcours-v2-progression-w.cjs > artifacts/v2-w/phase-w-matrix.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const d=JSON.parse(fs.readFileSync('artifacts/v2-w/phase-w-matrix.json','utf8'));
+          if(d.schema!=='QPJB_V2_W_9_SCENARIOS_1'||d.scenarios!==9||
+            d.originalCatalog.count!==1523||d.themeCoverage22EveryScenario!==true||
+            d.publicRuntimeWired!==false||d.selectionChanged!==false||
+            d.masteryInferred!==false||d.learnerDifficultyMeasured!==false||
+            !Array.isArray(d.rows)||d.rows.length!==9)
+            throw Error('Garde-fous W en échec');
+          const x={schema:d.schema,scenarios:d.scenarios,
+            questionsPerScenario:d.questionsPerScenario,
+            referenceFamiliesRange:d.referenceFamiliesRange,
+            referenceRecallsRange:d.referenceRecallsRange,
+            firstFiveDifficulty4Or5Range:d.firstFiveDifficulty4Or5Range,
+            firstTenDifficulty4Or5Range:d.firstTenDifficulty4Or5Range,
+            lastTenDifficulty1Or2Range:d.lastTenDifficulty1Or2Range,
+            firstThemeDifficulty4Or5Range:d.firstThemeDifficulty4Or5Range,
+            firstMicroContextDifficulty4Or5Range:d.firstMicroContextDifficulty4Or5Range,
+            firstMicroContextsSeenRange:d.firstMicroContextsSeenRange,
+            periodRanges:d.periodRanges,themeExposures:d.themeExposures,
+            catalogEditorialHistogram:d.originalCatalog.histogram,
+            classification:'NOTE_EDITORIALE_ET_NON_DIFFICULTE_REELLE',
+            decision:'V2-F inchangé, pas de preuve de maîtrise'};
+          fs.writeFileSync('artifacts/v2-w/phase-w-summary.json',
+            JSON.stringify(x,null,2)+String.fromCharCode(10));
+          const nl=String.fromCharCode(10);
+          const lines=['## QPJB V2-W — audit des difficultés éditoriales',
+            '9 parcours fictifs × 45 séances ; catalogue 1 523 QCM.',
+            'Notes 4/5, séances 1–5 : '+x.firstFiveDifficulty4Or5Range.join(' à '),
+            'Notes 4/5, séances 1–10 : '+x.firstTenDifficulty4Or5Range.join(' à '),
+            'Premières rubriques avec note 4/5 : '+x.firstThemeDifficulty4Or5Range.join(' à '),
+            'Micro-contextes vus : '+x.firstMicroContextsSeenRange.join(' à '),
+            '**Ce ne sont pas des données d’élèves. Aucune mutation V2-F.**'];
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join(nl)+nl);
+          console.log('QPJB_PHASE_W_SUMMARY '+JSON.stringify(x));
+          NODE
+      - name: Publier artefact audit W
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-w-audit
+          path: artifacts/v2-w/
+          if-no-files-found: warn
+          retention-days: 14
