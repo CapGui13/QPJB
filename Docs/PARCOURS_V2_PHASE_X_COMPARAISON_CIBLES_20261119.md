@@ -47,4 +47,33 @@ Contrôles :
 - Les rapports détaillés de W, U et V conservent leurs propres artefacts.
 - Aucun QCM, correction, famille, date d'introduction, sauvegarde ou programme public n'est modifié.
 
-**Statut au lancement : `X_COPIES_EXPERIMENTALES / REFERENCE_V2_F / RESULTATS_CI_A_VERIFIER / AUCUN_DEPLOIEMENT`.**
+## 5. Verdict confirmé par GitHub Actions
+
+**Exécution dédiée : [QPJB V2-X #44492286877](https://github.com/CapGui13/QPJB/actions/runs/44492286877), réussite technique.** Les tests de non-mutation du fichier original, des 1 523 QCM et de la première partie des parcours ont réussi. Les 27 simulations ont été produites ; le compte rendu détaillé et sa synthèse sont conservés dans l'artefact `qpjb-v2-x-audit`.
+
+| Mesure par scénario par rapport à V2-F | X-mild | X-early |
+|---|---:|---:|
+| Scénarios respectant **tous** les garde-fous (sur 9) | **4** | **0** |
+| Scénarios avec niveau éditorial initial plus élevé | 9 | 9 |
+| Cinq premières séances identiques | 9 | 9 |
+| Variation familles distinctes (sur 450 QCM) | **−10 à 0** | **−10 à +2** |
+| Variation rappels ciblés | **−2 à +5** | **−3 à +3** |
+| Niveaux 3 supplémentaires pendant les dix premières séances | **+1 à +3** | **+2 à +4** |
+| Différence de moyenne éditoriale des dix premières séances | **+0,16 à +0,20** | **+0,24 à +0,28** |
+| Différence du nombre de QCM notés 4/5 durant les 30 premières séances | **−2 à +1** | **−1 à +6** |
+
+### Causes des rejets
+
+**X-mild : échec dans 5 scénarios sur 9.** Quatre scénarios perdent plus de deux familles distinctes ; un scénario débute trop de rubriques par une question de difficulté éditoriale 4/5 par rapport à V2-F. Les familles distinctes peuvent descendre jusqu'à **dix de moins**, malgré une hausse légère du niveau moyen initial.
+
+**X-early : échec dans 9 scénarios sur 9.** La progression accélérée augmente trop souvent le nombre de premières questions de rubriques notées 4/5. Plusieurs scénarios perdent plus de deux familles, et un scénario perd plus de deux rappels ciblés. Avoir une difficulté moyenne plus élevée ne signifie pas un apprentissage plus efficace.
+
+**Attention :** les différences sont **appariées par graine/profil** ; les fourchettes ne représentent ni des scores d'élèves ni des intervalles statistiques extrapolables. Les règles de refus avaient été définies **avant** l'analyse des résultats. Le workflow a réussi parce que le comparateur a correctement produit et contrôlé les résultats ; cela **ne valide pas les deux variantes en tant que choix pédagogique**.
+
+### Décision définitive de la phase X
+
+**`X_MILD_REJETEE / X_EARLY_REJETEE / V2_F_REFERENCE / AUCUNE_MUTATION / AUCUN_DEPLOIEMENT`.**
+
+Ne modifier ni le niveau cible V2-F, ni les dates d'introduction des thèmes, ni les rappels. La suite possible est une revue **qualitative** de la transition et des situations d'apprentissage (par exemple les séances où un sujet difficile arrive en premier), sans nouvelle préférence aveugle. Une variante future devrait démontrer ses gains sans ces régressions dans des simulations appariées et, avant publication, être validée pédagogiquement.
+
+**Statut : phase X clôturée, aucun changement de V2-F.**
