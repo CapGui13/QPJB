@@ -27,7 +27,10 @@ async function run(){
    await page.goto(pathToFileURL(output).href,{waitUntil:'domcontentloaded'});
    await page.getByText('Parcours guidé adaptatif — test AZ').waitFor();
    assert.ok(await page.locator('#model').isVisible());
+   // Le mode élève démarre sans les huit compléments en attente d'arbitrage.
+   assert.equal(await page.locator('#model').inputValue(),'core');
    await page.locator('#start').click();
+   assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-preview-v2-az-01')).model),'core');
    await page.getByText('Séance 1/65').waitFor();
    const q1=await page.locator('.hint').filter({hasText:'SEF'}).first().textContent();
    assert.ok(q1);
