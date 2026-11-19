@@ -1411,7 +1411,7 @@ function restore(){
  }catch(e){
   if(raw!==null){
    incompatibleSave=true;
-   storageWarning='Une sauvegarde AZ est incompatible. Elle est conservée : aucun nouveau parcours ne peut l’écraser.';
+   storageWarning='Une sauvegarde '+(STUDENT_ONLY?'SEF':'AZ')+' est incompatible. Elle est conservée : aucun nouveau parcours ne peut l’écraser.';
   }else{
    storageWarning='Le stockage local est inaccessible : la progression risque de disparaître à la fermeture.';
   }
@@ -1530,11 +1530,11 @@ function welcome(){
  if(incompatibleSave){
   panel('<section class="pane">'+header()+
    '<h2>'+(STUDENT_ONLY?'Sauvegarde du parcours incompatible':'Sauvegarde AZ incompatible')+'</h2>'+
-   '<p>Une progression AZ existe déjà mais ne peut pas être relue. Pour éviter de la perdre, aucun nouveau parcours ne peut démarrer tant qu’elle est présente.</p>'+
+   '<p>Une progression '+(STUDENT_ONLY?'SEF':'AZ')+' existe déjà mais ne peut pas être relue. Pour éviter de la perdre, aucun nouveau parcours ne peut démarrer tant qu’elle est présente.</p>'+
    '<button id="eraseIncompatible" class="danger">'+(STUDENT_ONLY?'Effacer uniquement ma sauvegarde SEF incompatible':'Effacer uniquement la sauvegarde AZ incompatible')+'</button>'+
    '<p class="muted">Cette action exige ta confirmation. Les sauvegardes du Quiz SEF, du parcours classique et du parcours V2-F ne sont pas touchées.</p></section>');
   $('eraseIncompatible').onclick=()=>{
-   if(!window.confirm('Supprimer définitivement la sauvegarde AZ incompatible sur cet appareil ?'))return;
+   if(!window.confirm(STUDENT_ONLY?'Supprimer définitivement la sauvegarde SEF incompatible sur cet appareil ?':'Supprimer définitivement la sauvegarde AZ incompatible sur cet appareil ?'))return;
    try{
     localStorage.removeItem(STORAGE);
     incompatibleSave=false;storageWarning='';record=null;selectedAnswer=null;
@@ -1567,7 +1567,7 @@ function welcome(){
   startSession();
  };
  if(record)$('erase').onclick=()=>{
-   if(!window.confirm('Effacer uniquement la progression AZ sur cet appareil ?'))return;
+   if(!window.confirm(STUDENT_ONLY?'Effacer uniquement la progression de cet essai SEF sur cet appareil ?':'Effacer uniquement la progression AZ sur cet appareil ?'))return;
    try{localStorage.removeItem(STORAGE)}catch(_){}
    record=null;selectedAnswer=null;render();
  };
