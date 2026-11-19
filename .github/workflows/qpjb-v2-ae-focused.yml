@@ -1,0 +1,81 @@
+name: QPJB V2-AE anonymous teacher pilot
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ae-focused.yml
+      - scripts/parcours-v2-pilote-ae.cjs
+      - scripts/parcours-v2-apercu-pilote-ae.cjs
+      - tests/quizz-v2-pilote-ae.cjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ae-focused.yml
+      - scripts/parcours-v2-pilote-ae.cjs
+      - scripts/parcours-v2-apercu-pilote-ae.cjs
+      - tests/quizz-v2-pilote-ae.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot-ae:
+    name: Verify blank, anonymous, unscored pilot
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier le protocole et la feuille imprimable sans données d'élèves
+        run: |
+          node tests/quizz-v2-comprehension-ad.cjs
+          node tests/quizz-v2-pilote-ae.cjs
+      - name: Générer le protocole structuré
+        run: |
+          mkdir -p artifacts/v2-ae
+          node scripts/parcours-v2-pilote-ae.cjs > artifacts/v2-ae/phase-ae-protocole.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const a=JSON.parse(fs.readFileSync('artifacts/v2-ae/phase-ae-protocole.json','utf8'));
+          if(a.schema!=='QPJB_AE_CLASSROOM_PILOT_PROTOCOL_1'||a.questions.length!==6||
+             a.conventions!==2||a.sourceQcm!==5||a.originalCatalog!==1523||
+             a.protocolStages!==6||a.observationSections!==6||
+             a.participantsObserved!==0||a.actualDataCollected!==false||
+             a.noteStored!==false||a.publicRuntimeWired!==false||
+             a.policy.inventedResults!==false||a.policy.gradeComputed!==false||
+             a.policy.participationVoluntary!==true||
+             a.policy.teacherReviewRequired!==true||
+             a.studentResultsNotInvented!==true||
+             a.observations.length!==0||a.qualitativeFindings.length!==0)
+            throw Error('AE : données réelles ou notation détectées, protocole refusé');
+          const summary={
+            schema:a.schema,status:a.status,conventions:a.conventions,
+            sourceQcm:a.sourceQcm,originalCatalog:a.originalCatalog,
+            questions:a.questions.length,participantsObserved:0,
+            protocolStages:a.protocolStages,observations:[],
+            scoresRecorded:0,publicSiteChanged:false,
+            teacherApprovalRequired:true
+          };
+          fs.writeFileSync('artifacts/v2-ae/phase-ae-summary.json',
+            JSON.stringify(summary,null,2)+String.fromCharCode(10));
+          console.log('QPJB_AE_SUMMARY '+JSON.stringify(summary));
+          if(process.env.GITHUB_STEP_SUMMARY)
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '## QPJB AE : protocole d’essai, zéro donnée d’élève'+String.fromCharCode(10)+
+              'Deux conventions, six questions AD intactes, observation qualitative facultative.'+
+              String.fromCharCode(10)+'Aucun déploiement ou changement du Quiz SEF.'+
+              String.fromCharCode(10));
+          NODE
+      - name: Construire le HTML autonome de l'enseignant
+        run: |
+          node scripts/parcours-v2-apercu-pilote-ae.cjs artifacts/v2-ae/fiche-essai-pilote.html
+          test -s artifacts/v2-ae/fiche-essai-pilote.html
+      - name: Archiver le protocole et la fiche vide
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-ae-anonymous-pilot
+          path: artifacts/v2-ae/
+          retention-days: 14
+          if-no-files-found: warn
