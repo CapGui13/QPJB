@@ -20,10 +20,18 @@ const POLICY=Object.freeze({
   publicRuntimeWired:false,
   anyStudentDataUsed:false
 });
+function requiresRubensohl(q){
+  // An original QCM might mention a convention under a broader rubric.
+  // Do not expose such a question before the teacher confirms the oral lesson.
+  return q.theme===LOCKED_THEME||/rubensohl/i.test([
+    q.context||'',...(Array.isArray(q.auction)?q.auction:[]),
+    q.explain||''
+  ].join(' '));
+}
 function visibleQuestions(catalog,taughtRubensohl=false){
   if(typeof taughtRubensohl!=='boolean')
     throw Error('AF : confirmation enseignante booléenne obligatoire');
-  return taughtRubensohl?catalog:catalog.filter(q=>q.theme!==LOCKED_THEME);
+  return taughtRubensohl?catalog:catalog.filter(q=>!requiresRubensohl(q));
 }
 // 1-based session before which teacher explicitly confirms teaching.
 // null = no teacher confirmation during this test. A numeric scenario is
@@ -53,8 +61,8 @@ function run(catalog,annotations,options={}){
     const deck=F.select(pool,state,annotations,10);
     if(deck.length!==10||deck.some(q=>!pool.includes(q)))
       throw Error('AF : séance incomplète ou question verrouillée : '+session);
-    if(deck.some(q=>q.theme===LOCKED_THEME)&&
-       (!taught||index<P.INTRO[LOCKED_THEME]))
+    if(deck.some(q=>requiresRubensohl(q))&&
+       (!taught||deck.some(q=>q.theme===LOCKED_THEME&&index<P.INTRO[LOCKED_THEME])))
       throw Error('AF : Rubensohl présenté sans enseignement ou avant introduction');
     if(new Set(deck.map(F.family)).size!==10)
       throw Error('AF : famille répétée dans la même séance');
@@ -133,6 +141,8 @@ function analyze(){
   const report={schema:'QPJB_AF_TEACHER_TAUGHT_RUBENSOHL_1',policy:POLICY,
     scenarios:rows.length,sessionsPerScenario:45,questionsPerSession:10,
     catalogQuestions:catalog.length,advancedSourceQuestions:catalog.filter(q=>q.theme===LOCKED_THEME).length,
+    rubensohlMentionedUnderOtherThemes:catalog.filter(q=>
+      q.theme!==LOCKED_THEME&&requiresRubensohl(q)).map(q=>({id:q.id,theme:q.theme})),
     comparison:'baseline vs teacher-not-taught vs explicit confirmation before synthetic session 40',
     noConfirmationAllLocked:rows.every(x=>x.defaultLocked.firstRubensohlSession===null),
     confirmationNeverEarlierThan40:rows.every(x=>x.taughtAt40.firstRubensohlSession===null||
@@ -147,5 +157,5 @@ function analyze(){
     rows};
   return report;
 }
-module.exports={POLICY,LOCKED_THEME,visibleQuestions,run,analyze};
+module.exports={POLICY,LOCKED_THEME,requiresRubensohl,visibleQuestions,run,analyze};
 if(require.main===module)process.stdout.write(JSON.stringify(analyze(),null,2)+'\n');
