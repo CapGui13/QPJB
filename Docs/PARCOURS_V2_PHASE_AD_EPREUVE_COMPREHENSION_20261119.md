@@ -50,4 +50,26 @@ La personne enseignante devra vérifier : (1) le niveau de langage, (2) le temps
 
 **Portée de l'AD :** évaluer la **reformulation des deux leçons**, pas la capacité générale à jouer le Rubensohl/Michaels, ni une amélioration de performance mesurée. **Aucune réponse réelle d'élève n'a été recueillie ou notée.**
 
-**Statut initial : `AD_SIX_REFORMULATIONS_DOCUMENTAIRES / ZERO_QCM_AJOUTE / SANS_NOTE / VALIDATION_ENSEIGNANTE_REQUISE / AUCUN_DEPLOIEMENT`.**
+## Vérification technique et démonstration livrée
+
+**Contrôle dédié : [GitHub Actions #44504318372](https://github.com/CapGui13/QPJB/actions/runs/44504318372), réussite.** Le premier essai de CI avait échoué sur une **assertion de casse textuelle** (majuscule attendue sur un libellé réellement écrit en minuscules), sans erreur établie dans le contenu des questions. L'assertion a été corrigée, puis les contrôles complets ont réussi.
+
+Résultats certifiés par les tests de la version AD :
+
+| Mesure | Résultat |
+|---|---:|
+| Mini-leçons sources | **2** |
+| QCM originaux dont proviennent les accords | **5** |
+| Questions ouvertes de reformulation | **6** |
+| Ancrages exacts dans les deux leçons | **14** |
+| Repères de discussion destinés à l'enseignante | **16** |
+| Réponses d'élèves recueillies ou évaluées | **0** |
+| Questions ajoutées au Quiz SEF | **0** |
+| Modifications de V2-F ou du site public | **0** |
+
+Le fichier `atelier-comprehension.html` a été généré (**10 960 octets**) et vérifié : six zones libres, six volets de repères, aucun formulaire soumis, aucune requête ni stockage. L'artefact GitHub `qpjb-v2-ad-comprehension-workshop` contient également `phase-ad-rubric.json` et `phase-ad-summary.json`.
+
+**Interprétation :** la grille est *techniquement vérifiée et prête à une relecture humaine* ; elle n'a **pas** démontré la compréhension d'élèves, ni mesuré une efficacité pédagogique. Les formulations de la leçon et les repères attendus doivent rester révisables sur retour réel d'enseignant.
+
+**Statut final : `AD_CI_SUCCESS / SIX_QUESTIONS_OUVERTES / 14_ANCRES / 16_REPERES / ZERO_ELEVE_OBSERVE / ZERO_NOTE / AUCUN_DEPLOIEMENT`.**
+
