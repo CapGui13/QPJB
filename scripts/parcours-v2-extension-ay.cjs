@@ -179,7 +179,7 @@ function evaluate(){
       assert.equal(run.supplementalJournal.length,run.includeConditional?8:7);
       assert.ok(run.supplementalJournal.every(x=>x.sidecarOnly&&!x.storedInSEF));
     }
-    output.push({profile,baseline:{
+    output.push({profile,baselineSessions:baseline.sessions.map((deck,i)=>({number:i+1,questions:deck.map(compactCore)})),baseline:{
       totalShown:650,
       lateOpening21to30:baseline.sessions.slice(20,30).flat().filter(q=>q.theme==='ouv').length,
       lateOpening31to50:baseline.sessions.slice(30,50).flat().filter(q=>q.theme==='ouv').length,
