@@ -124,6 +124,24 @@ async function run(){
      v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
      training:localStorage.getItem('qpjb-sef-entrainement-01')
    })),originals);
+   // Le lien élève est distinct de l'atelier AZ : pas de suppléments ni de migration implicite.
+   await page.goto(pathToFileURL(output).href+'?mode=eleve',{waitUntil:'domcontentloaded'});
+   await page.getByText('Parcours guidé SEF — 65 séances').waitFor();
+   assert.equal(await page.locator('#model').count(),0);
+   assert.equal(await page.getByText('Expérimental : 7 ouvertures complémentaires').count(),0);
+   await page.locator('#start').click();
+   await page.getByText('Séance 1/65').waitFor();
+   const pupil=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-preview-v2-eleve-01')));
+   assert.equal(pupil.model,'core');
+   assert.equal(pupil.current.items.length,10);
+   assert.ok(pupil.current.items.every(q=>q.origin==='SEF'));
+   assert.equal(await page.evaluate(key=>localStorage.getItem(key),AZ),null,
+     'La sauvegarde du mode enseignant doit rester distincte');
+   assert.deepEqual(await page.evaluate(()=>({
+     v1:localStorage.getItem('qpjb-sef-parcours-01'),
+     v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
+     training:localStorage.getItem('qpjb-sef-entrainement-01')
+   })),originals);
    assert.deepEqual(errors,[],'Browser exceptions: '+browserName+'/'+mobile);
    assert.ok(requests.every(u=>u.startsWith('file://')||u.startsWith('data:')),
      'Network request blocked');
