@@ -62,4 +62,23 @@ Ne pas inférer la maîtrise d'un joueur, son niveau FFB ou une performance futu
 
 **Décision :** le matériel AE peut être proposé à une enseignante pour inspection ; il **ne déclenche aucun recrutement ni essai**. Une expérimentation avec des joueurs ne se fera qu'avec des participants effectivement volontaires, et les corrections pédagogiques seront décidées à partir de leurs retours réels.
 
-**Statut au lancement : `AE_PROTOCOLE_PREPARE / 0_PARTICIPANT / 0_REPONSE / 0_DEPLOIEMENT`.**
+## Contrôle technique de la fiche imprimable
+
+**[GitHub Actions #44506072476](https://github.com/CapGui13/QPJB/actions/runs/44506072476) : succès.** Les tests de provenance, de correspondance aux six questions ouvertes, d'absence de stockage et de transmission, de compilation JavaScript du support autonome et de non-mutation des **1 523 QCM** ont réussi.
+
+La CI a généré `fiche-essai-pilote.html` (**17 271 octets**), `phase-ae-protocole.json` et `phase-ae-summary.json`, archivés dans l'artefact **`qpjb-v2-ae-anonymous-pilot`**.
+
+| Vérification | Résultat |
+|---|---:|
+| Conventions abordées | **2** |
+| Questions ouvertes déjà validées par AD | **6** |
+| QCM utilisés uniquement comme sources d'accord | **5** |
+| Étapes du protocole | **6** |
+| Participations humaines réalisées par ce travail | **0** |
+| Notes / scores enregistrés | **0** |
+| Modifications du moteur V2-F et de l'interface publique | **0** |
+
+**Important :** le succès technique de cette fiche n'autorise **aucune conclusion** sur ce qu'un joueur comprend réellement. L'essai ne pourra être qualifié de « réalisé » qu'après des séances volontaires et des observations effectivement recueillies par l'enseignante.
+
+**Statut final technique : `AE_CI_OK / PROTOCOLE_PRET / FICHE_HTML_IMPRIMABLE / 0_PARTICIPANT_OBSERVE / 0_NOTE / 0_DEPLOIEMENT`.**
+
