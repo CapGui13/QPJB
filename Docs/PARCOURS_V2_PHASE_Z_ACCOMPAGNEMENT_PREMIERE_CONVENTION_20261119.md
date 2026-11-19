@@ -64,3 +64,17 @@ Le moteur expérimental reste **exactement V2-F**, avec **440–450 familles dis
 
 **Statut validé : `Z_CI_OK / 18_SUR_18_EXPOSITIONS_COUVERTES / VALIDATION_ENSEIGNANTE_REQUISE / NON_DEPLOYE / V2_F_INCHANGE`.**
 
+## Complément AA — relecture des cinq aides
+
+Le protocole complémentaire **AA (19/11/2026)** a remplacé les formulations trop orientantes. Les cinq fiches restent **en attente de validation enseignante**. L'ancien conseil de la fiche `SEF-V481-009` désignait précisément la majeure quatrième, et celui de `SEF-L04-029` la faiblesse du soutien ; ils ont été neutralisés.
+
+L'aperçu HTML possède maintenant un sélecteur de **deux modes** : *découverte guidée* (fiche avant le QCM original) et *essai sans aide* (QCM original immédiatement). **Les deux modes ne sont pas notés.** Le choix du mode réinitialise la question affichée et masque l'ancien corrigé. Aucun mode n'écrit dans les sauvegardes.
+
+La revue constate aussi un point indépendant : **l'énoncé original `SEF-L04-029` fournit lui-même des indices très forts en faveur de Passe**. La correction reste inchangée. **L'exercice nécessite une revue éditoriale distincte** avant d'être utilisé comme preuve d'autonomie.
+
+Pour la revue ligne par ligne des cinq cas, des exemples et des risques restants, voir `Docs/PARCOURS_V2_PHASE_AA_AUDIT_AIDES_NON_DIRECTIVES_20261119.md`.
+
+**Statut AA : texte des cinq fiches revu ; validation technique de la nouvelle version requise, validation pédagogique humaine encore requise.**
+
+
+
