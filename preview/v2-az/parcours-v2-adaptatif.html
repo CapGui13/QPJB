@@ -1606,7 +1606,7 @@ function player(){
  choices+feedback+
  (s.revealed?'<button id="next" class="primary">'+(s.position===9?'Terminer la séance':'Question suivante')+'</button>':
  '<button id="answer" class="primary">Valider ma réponse</button>')+
- '<button id="home">Accueil AZ</button></section>');
+ '<button id="home">'+(STUDENT_ONLY?'Voir mes 65 séances':'Accueil AZ')+'</button></section>');
  $('home').onclick=()=>{const v=record.current;record.current=null; // retain current in memory while showing home
  record.current=v;showHome=true;render()};
  if(s.revealed)$('next').onclick=next;
