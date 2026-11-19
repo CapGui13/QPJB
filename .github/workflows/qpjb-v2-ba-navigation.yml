@@ -1,0 +1,55 @@
+name: QPJB V2-BA - AZ navigation protegee
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ba-navigation.yml
+      - tests/quizz-v2-ba-navigation.cjs
+      - tests/quizz-v2-ba-navigation-browser.cjs
+      - quizz.html
+      - index.html
+      - preview/v2-az/parcours-v2-adaptatif.html
+      - templates/parcours-v2-ay-live.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ba-navigation.yml
+      - tests/quizz-v2-ba-navigation.cjs
+      - tests/quizz-v2-ba-navigation-browser.cjs
+      - quizz.html
+      - index.html
+      - preview/v2-az/parcours-v2-adaptatif.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    name: Acces AZ masque par defaut et 1523 QCM identiques
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier les liens, les scripts et les sources
+        run: node tests/quizz-v2-ba-navigation.cjs
+  browsers:
+    name: QPJB vers AZ et retour sur ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installer Playwright
+        run: npm install --no-save playwright@1.64.1
+      - name: Valider le trajet navigateur et les sauvegardes isolees
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v2-ba-navigation-browser.cjs
