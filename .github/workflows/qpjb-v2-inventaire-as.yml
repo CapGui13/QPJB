@@ -1,0 +1,32 @@
+name: QPJB V2-AS - Inventaire sources ouvertures (lecture seule)
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-inventaire-as.yml
+      - scripts/parcours-v2-inspecter-sources-as.cjs
+      - entrainement/training-data-bidding.js
+      - entrainement/training-originals-data.js
+      - entrainement/training-data-bootstrap.js
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-inventaire-as.yml
+      - scripts/parcours-v2-inspecter-sources-as.cjs
+      - entrainement/training-data-bidding.js
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-check:
+    name: Inspecter corpus existants sans mutation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inventorier les structures, les IDs et les catégories
+        run: node scripts/parcours-v2-inspecter-sources-as.cjs
