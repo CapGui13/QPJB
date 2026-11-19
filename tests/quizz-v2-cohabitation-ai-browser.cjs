@@ -64,7 +64,8 @@ const server=http.createServer((req,res)=>{
    await page.getByText('Question 1 sur 10').waitFor();
    assert.equal(await page.locator('.feedback').count(),1);
    await page.locator('#ai-return-v1').click();
-   await page.locator('#parcours-status').waitFor();
+   // Wait for the async V1 progress render, not merely the status element's presence.
+   await page.getByText(/Séances terminées : 7/).waitFor({state:'visible',timeout:30000});
    assert.match(await page.locator('#parcours-status').textContent(),/Séances terminées : 7/);
    assert.deepEqual(await page.evaluate(x=>({
      v1:localStorage.getItem(x.v1),training:localStorage.getItem(x.trainingKey)
