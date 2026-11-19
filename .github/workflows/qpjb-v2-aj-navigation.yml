@@ -8,6 +8,7 @@ on:
       - quizz.html
       - index.html
       - tests/quizz-v2-switch-aj.cjs
+      - scripts/parcours-v2-audit-sensibles-ak.cjs
       - tests/quizz-v2-switch-aj-browser.cjs
   pull_request:
     branches: [main]
@@ -17,6 +18,7 @@ on:
       - quizz.html
       - index.html
       - tests/quizz-v2-switch-aj.cjs
+      - scripts/parcours-v2-audit-sensibles-ak.cjs
       - tests/quizz-v2-switch-aj-browser.cjs
   workflow_dispatch:
 permissions:
@@ -36,6 +38,7 @@ jobs:
           node tests/quizz-v2-switch-aj.cjs
           node tests/quizz-v2-cohabitation-ai.cjs
           node tests/quizz-v2-reprise-ag.cjs
+          node scripts/parcours-v2-audit-sensibles-ak.cjs
   aj-browser:
     name: Existing QPJB home to V2 on ${{ matrix.browser }}
     runs-on: ubuntu-latest
