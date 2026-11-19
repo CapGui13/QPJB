@@ -4,12 +4,14 @@
 'use strict';
 const DATA=JSON.parse(document.getElementById('ay-payload').textContent);
 const F=window.AYEngine;
-const STORAGE='qpjb-preview-v2-az-01';
-const MODELS={core:0,seven:7,eight:8};
+// Le lien élève reste strictement SEF ; les modes de revue AY sont isolés.
+const STUDENT_ONLY=new URLSearchParams(location.search).get('mode')==='eleve';
+const STORAGE=STUDENT_ONLY?'qpjb-preview-v2-eleve-01':'qpjb-preview-v2-az-01';
+const MODELS=STUDENT_ONLY?{core:0}:{core:0,seven:7,eight:8};
 const MAX_SESSIONS=65;
 const byId=new Map(DATA.catalog.map(x=>[x.id,x]));
 const addons=new Map(DATA.addons.map(x=>[x.id,x]));
-const schedule=new Map(DATA.addons.map(x=>[x.introSession,x]));
+const schedule=new Map((STUDENT_ONLY?[]:DATA.addons).map(x=>[x.introSession,x]));
 const annotations=F.loadAnnotations();
 const $=id=>document.getElementById(id);
 const esc=s=>String(s===undefined||s===null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -62,6 +64,7 @@ function restore(){
  }
 }
 function activeAddon(session){
+ if(STUDENT_ONLY)return null;
  const a=schedule.get(session);
  return record.model==='core'?null:(a&&(record.model==='eight'||!a.conditional)?a:null);
 }
@@ -134,7 +137,7 @@ function next(){
 }
 function panel(content){$('view').innerHTML=content;$('warning').textContent=storageWarning}
 function header(){
- return '<div class="topline"><span class="pill">Version AZ · privée et expérimentale</span>'+
+ return '<div class="topline"><span class="pill">'+(STUDENT_ONLY?'Parcours SEF · aperçu privé':'Version AZ · privée et expérimentale')+'</span>'+
  '<span class="pill">'+(!record||record.model==='core'?'QCM SEF uniquement':
  '7 ajouts'+(record.model==='eight'?' + cas 2SA conditionnel':''))+'</span></div>';
 }
@@ -164,17 +167,17 @@ function welcome(){
  const readonly=!record?'': '<div class="hint">'+esc(txt)+' · '+c+' séance(s) terminée(s)</div>'+
  '<div class="track" role="progressbar" aria-label="Séances terminées" aria-valuemin="0" aria-valuemax="65" aria-valuenow="'+c+'"><div style="width:'+(c*100/65).toFixed(2)+'%"></div></div>';
  panel('<section class="pane">'+header()+
- '<h2>Parcours guidé adaptatif — test AZ</h2>'+
- '<p>65 séances de 10 QCM SEF, avec des rappels adaptés à tes réponses. Les exercices complémentaires, non validés pour les élèves, restent accessibles uniquement en mode expérimental.</p>'+ 
+ '<h2>'+(STUDENT_ONLY?'Parcours guidé SEF — 65 séances':'Parcours guidé adaptatif — test AZ')+'</h2>'+
+ '<p>'+(STUDENT_ONLY?'65 séances de 10 QCM SEF, avec progression adaptée à tes réponses et rappels programmés. Aucun exercice complémentaire en attente de validation.':'65 séances de 10 QCM SEF, avec des rappels adaptés à tes réponses. Les exercices complémentaires, non validés pour les élèves, restent accessibles uniquement en mode expérimental.')+'</p>'+ 
  readonly+
  (record
  ?'<button id="start" class="primary">'+(record.current?'Reprendre la séance':record.finished?'Voir le bilan':'Commencer la séance')+'</button>'
- :'<label class="field" for="model">Choix du parcours</label><select id="model"><option value="core">Parcours SEF — recommandé (sans ajouts en attente)</option><option value="seven">Expérimental : 7 ouvertures complémentaires</option><option value="eight">Expérimental : 8 ouvertures dont 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>')+
+ :(STUDENT_ONLY?'<button id="start" class="primary">Démarrer le parcours SEF</button>':'<label class="field" for="model">Choix du parcours</label><select id="model"><option value="core">Parcours SEF — recommandé (sans ajouts en attente)</option><option value="seven">Expérimental : 7 ouvertures complémentaires</option><option value="eight">Expérimental : 8 ouvertures dont 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>'))+
  '<p class="muted">Sauvegarde locale indépendante, aucune connexion au site et aucune synchronisation avec V1/V2-F.</p>'+
  (record?'<button id="erase" class="danger">Réinitialiser uniquement ce prototype AZ</button>':'')+
  '</section>');
  $('start').onclick=()=>{
-  if(!record)record=blank($('model').value);
+  if(!record)record=blank(STUDENT_ONLY?'core':$('model').value);
   if(record.current||record.finished){render();return}
   startSession();
  };
@@ -246,6 +249,12 @@ function render(){
  if(showHome||!record){showHome=false;welcome();return}
  if(record.current){player();return}
  if(record.completed.length)summary();else welcome();
+}
+if(STUDENT_ONLY){
+ document.querySelector('header .wrap p').textContent=
+  '65 séances de 10 QCM SEF avec progression adaptative et rappels. Aucun supplément non validé dans ce parcours.';
+ document.querySelector('.disclaimer').textContent=
+  'Aperçu privé du parcours SEF uniquement · aucune publication · sauvegarde locale propre à cet essai. Le Quiz classique, V2-F et les autres tests ne sont pas modifiés.';
 }
 record=restore();render();
 })();
