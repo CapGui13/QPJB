@@ -70,7 +70,7 @@ async function run(){
    await popup.getByText('Question 1 sur 10').waitFor();
    assert.equal(await popup.locator('.feedback').count(),1);
    await popup.locator('#ai-return-v1').click();
-   await popup.locator('#parcours-status').waitFor();
+   await popup.getByText(/Séances terminées : 7/).waitFor({state:'visible',timeout:30000});
    assert.match(await popup.locator('#parcours-status').textContent(),/Séances terminées : 7/);
    assert.deepEqual(await popup.evaluate(()=>({
      old:localStorage.getItem('qpjb-sef-parcours-01'),
