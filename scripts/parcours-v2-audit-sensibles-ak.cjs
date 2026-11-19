@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,'..');
 const preview=fs.readFileSync(path.join(root,'preview/parcours-v2-autonome.html'),'utf8');
 const original=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 function embeddedJson(html,id){
-  const script=[...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)]
+  const script=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
     .find(([,attributes])=>new RegExp('\\bid="'+id+'"').test(attributes));
   assert.ok(script,'Bloc source introuvable : '+id);
   return JSON.parse(script[2]);
