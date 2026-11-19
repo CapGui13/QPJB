@@ -125,7 +125,7 @@ function next(){
 function panel(content){$('view').innerHTML=content;$('warning').textContent=storageWarning}
 function header(){
  return '<div class="topline"><span class="pill">Version AZ · privée et expérimentale</span>'+
- '<span class="pill">7 ajouts'+(record.model==='eight'?' + cas 2SA conditionnel':'')+'</span></div>';
+ '<span class="pill">7 ajouts'+(record&&record.model==='eight'?' + cas 2SA conditionnel':'')+'</span></div>';
 }
 function welcome(){
  const c=record?.completed.length||0;
@@ -145,7 +145,7 @@ function welcome(){
  '</section>');
  $('start').onclick=()=>{
   if(!record)record=blank($('model').value);
-  if(record.current){render();return}
+  if(record.current||record.finished){render();return}
   startSession();
  };
  if(record)$('erase').onclick=()=>{
