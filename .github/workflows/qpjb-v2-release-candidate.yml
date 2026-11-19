@@ -1,11 +1,11 @@
 name: QPJB V2 - candidat prive 65 seances (jamais publie)
 on:
-  pull_request:
-    branches: [main]
+  # Tests ciblas uniquement quand le preparateur ou ce workflow change.
+  push:
+    branches: [prep/qpjb-v2-release-candidate-65-20261119]
     paths:
       - .github/workflows/qpjb-v2-release-candidate.yml
       - scripts/v2-release-candidate.cjs
-      - Docs/PARCOURS_V2_CANDIDAT_LIVRAISON_20261119.md
   workflow_dispatch:
 
 # Pas de permission Pages, de jeton d'ecriture, ni d'etape de deploiement.
@@ -61,4 +61,4 @@ jobs:
           name: qpjb-v2-65-seances-apercu-prive
           path: artifacts/v2-release-candidate/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 3
