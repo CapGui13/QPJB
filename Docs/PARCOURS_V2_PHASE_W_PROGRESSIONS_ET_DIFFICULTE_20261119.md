@@ -27,7 +27,45 @@ Une note de difficulté éditoriale n'évalue pas la *difficulté réelle* : seu
 
 La classification candidate SA/Stayman et les graphes d'axes P/Q/R sont **documentaires** et partiellement à arbitrer. W ne crée ni prérequis bloquant, ni catégorie acquise, ni règle SEF supplémentaire. Les questions `reponse_inter` et `apres_inter` conservent leur rôle d'origine ; pas de regroupement abusif des différents Contres.
 
-## Décision attendue après la CI
+## Résultats contrôlés — GitHub Actions #44489961198
+
+**CI W réussie le 19/11/2026** : tests de provenance/non-mutation et 9 simulations complètes, artefact `qpjb-v2-w-audit` (fichiers `phase-w-matrix.json` et `phase-w-summary.json`). L'audit global de la PR est indépendant de cette validation ciblée.
+
+| Fenêtre | Moyenne de difficulté éditoriale (9 scénarios, min–max) | Part des QCM notés 4/5 | Nouvelles rubriques |
+|---|---:|---:|---:|
+| 1–5 | **1,14–1,20** | **0 %** | 5 |
+| 6–10 | **1,50–1,56** | **0 %** | 2–3 |
+| 11–20 | **2,04–2,16** | **1–2 %** | 2–6 |
+| 21–30 | **2,55–2,66** | **10–12 %** | 2–8 |
+| 31–45 | **3,39–3,52** | **51,33–57,33 %** | 4–6 |
+
+**Au démarrage :** sur les 50 premiers QCM, **41 à 44 sont classés niveau 1**, **5 à 8 niveau 2** et **1 niveau 3** ; aucun niveau 4/5. Pour les séances 6–10, les 50 QCM comprennent **22 à 25 niveau 1**, **24 à 28 niveau 2**, et **0 à 2 niveau 3**. Cela rend la phase initiale **très facile au sens des étiquettes éditoriales**, malgré le mélange de types d'ouvertures/réponses. Il ne faut pas conclure qu'elle est trop facile *pour les élèves* sans observation réelle.
+
+**Sur les dix dernières séances**, seulement **2 à 9 QCM** sont notés niveau 1/2 parmi les 100 QCM. Le passage d'une part 4/5 de 10–12 % aux séances 21–30 à plus de 50 % aux séances 31–45 **mérite une étude d'étalement** : ce n'est pas un « saut de difficulté » prouvé, car l'introduction des thèmes et le niveau cible éditorial changent aussi.
+
+**Première exposition des rubriques (exemples utiles) :**
+- `intervenir` : admissible dès **séance 11**, rencontré pour la première fois **séances 12–29** selon le scénario ; cette dispersion est réelle, mais la phase T avait déjà montré pourquoi un remplacement forcé pouvait nuire à la variété et aux rappels.
+- `reponse_inter` : admissible dès **séance 14**, première présence **14–27**.
+- `forcing` : admissible dès **séance 29**, premier exemple **29–40**, parfois noté 4.
+- `michaels` : admissible dès **séance 37**, première présence **37–44**, toujours avec une question notée 4 dans les neuf parcours.
+- `chelem` : admissible dès **séance 40**, rencontré en **séance 40** dans les neuf parcours, première question toujours notée 4.
+
+Toutes les **22 rubriques** sont rencontrées dans chaque simulation. Les micro-contextes identifiables (et non certifiés comme acquis) sont au nombre de **30–38 par parcours**. **2 à 4 rubriques** sont abordées pour la première fois avec un QCM noté 4 ou 5 selon les scénarios ; ce sont principalement des rubriques avancées, et non des premiers cours d'ouverture.
+
+**Contrôle de contenu pour des exemples de première exposition difficile :**
+- `SEF-V45-044` (`michaels`, niveau 4) : cue-bid bicolore après 1♠ adverse, réponse 2♠.
+- `SEF-V483-016` (`chelem`, niveau 4) : contrôles et arrêt à 4♠ avant Blackwood.
+- `SEF-V480-015` (`forcing`, niveau 4) : priorité de redemande 3♣ après quatrième couleur forcing.
+Ces exemples sont conformes aux réponses **présentes dans le catalogue**, mais ne constituent pas une certification extérieure des conventions ou de leur difficulté cognitive.
+
+### Interprétation et option suivante
+
+1. **Ne rien supprimer et ne pas changer les 22 introductions.**
+2. Le risque éditorial prioritaire à étudier est **l'étalement** : très peu de questions niveau 3 dans les dix premières séances, puis concentration des 4/5 dans les 15 dernières. La diversité des familles et des réponses est un garde-fou incontournable.
+3. Un futur comparateur **X**, seulement sur une **copie hors production de V2-F**, pourrait tester une montée éditoriale légèrement plus rapide à l'intérieur des seules rubriques déjà éligibles, sans nouveaux QCM, sans forcer de nouveaux thèmes et sans déplacer les rappels programmés. Critères d'abandon : recul de la couverture des 22 rubriques, des réponses mineures, des familles distinctes ou des rappels, ou multiplication des niveaux 4/5 avant les prérequis contextuels.
+4. **Pas de conclusion selon laquelle une question plus difficile est automatiquement plus formatrice.** Les profils de réussite restent fictifs.
+
+## Décision après validation de la CI
 
 Ne retenir un éventuel changement de progression que si des cas **concrets et vérifiés** révèlent un défaut substantiel, puis comparer la proposition avec V2-F sur le **maintien des familles distinctes, des ouvertures/réponses mineures, des 22 rubriques et des rappels**. Les métriques ne justifient **aucune injection ou exclusion automatique**.
 
