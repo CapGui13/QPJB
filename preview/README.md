@@ -64,16 +64,19 @@ Le nouvel espace V2 utilise `qpjb-sef-parcours-v2-01` et **ne modifie jamais** l
 
 La [CI AJ #44525493613](https://github.com/CapGui13/QPJB/actions/runs/44525493613) a validé ce parcours de navigation, en mode ordinateur et iPhone, sur Chromium et WebKit. Voir `Docs/PARCOURS_V2_PHASE_AJ_NAVIGATION_OPT_IN_20261119.md` pour les étapes de test et les limites. **Aucune fusion ni publication à ce stade.**
 
-## Essai des élèves : 65 séances SEF uniquement (phase BF)
+## Page élève distincte : 65 séances SEF uniquement (phase BG)
 
-**Sur la branche de la PR #214 uniquement**, le lien « Tester les 65 séances du parcours guidé SEF (aperçu) » du Quiz, lorsqu'il est rendu visible par `index.html?v2preview=1`, ouvre désormais :
+**Sur la branche de la PR #214 uniquement**, le lien « Tester les 65 séances du parcours guidé SEF (aperçu) » du Quiz, visible par `index.html?v2preview=1`, ouvre désormais :
 
-`preview/v2-az/parcours-v2-adaptatif.html?mode=eleve`
+`preview/v2-eleve/parcours-sef-65.html`
 
-- Mode `core` **imposé dans l'interface**, sans choix des 7 ou 8 compléments non validés ; 10 QCM provenant des **1 523 QCM SEF existants** à chaque séance.
-- Sauvegarde locale dédiée : `qpjb-preview-v2-eleve-01`. Aucune migration de la sauvegarde expérimentale `qpjb-preview-v2-az-01`, ni des clés historiques `qpjb-sef-parcours-01`, `qpjb-sef-parcours-v2-01` et `qpjb-sef-entrainement-01`.
-- La version expérimentale avec modes `core` / `seven` / `eight` reste disponible dans le **même fichier sans** `?mode=eleve` pour les vérifications internes ; elle conserve sa clé AZ propre.
-- Les sauvegardes incompatibles sont préservées, avec effacement ciblé sur confirmation ; rechargement et retour au Quiz classique restent disponibles.
-- **Important** : le paramètre `mode=eleve` est une configuration d'interface, **pas une authentification**. Le HTML de prévisualisation conserve ses données expérimentales embarquées ; celles-ci ne sont pas proposées dans l'interface élève. Ne pas diffuser la branche comme site public tant que la recette pédagogique reste `HOLD`.
+Il s'agit d'un **vrai fichier HTML autonome distinct**, sans paramètre de mode requis, contenant **les 1 523 QCM SEF originaux** mais **aucun des huit suppléments AY**. Les options `seven` et `eight` ne figurent pas dans son interface. Son moteur reste adaptatif (10 QCM par séance, jusqu'à 65 séances, avec rappels). La version AZ expérimentale demeure dans `preview/v2-az/parcours-v2-adaptatif.html`, séparée.
 
-Mode d'essai local sur Windows depuis le dossier parent de QPJB : lancer `python -m http.server 8000`, puis ouvrir `http://localhost:8000/QPJB/index.html?v2preview=1`, cliquer sur **Quizz** et sur **Tester les 65 séances du parcours guidé SEF (aperçu)**. Le lien et la sauvegarde restent distincts du parcours public.
+- Sauvegarde locale élève : `qpjb-preview-v2-eleve-01`, conservée aussi pour les personnes ayant testé le précédent lien `?mode=eleve`. Pas de migration artificielle ni de modification des clés du Quiz V1 `qpjb-sef-parcours-01`, V2-F `qpjb-sef-parcours-v2-01`, Entraînement `qpjb-sef-entrainement-01` ou AZ laboratoire `qpjb-preview-v2-az-01`.
+- En cas de sauvegarde locale incompatible : elle n'est pas écrasée ; une confirmation explicite est exigée avant son effacement. Aucun effacement d'une autre clé n'est effectué.
+- Générateur reproductible : `node scripts/parcours-v2-build-student-bg.cjs` produit `artifacts/v2-bg/QPJB_V2_BG_Parcours_SEF_65.html` et un manifeste SHA-256. Le contrôle BA compare **octet pour octet** la page versionnée au résultat du générateur, puis vérifie la navigation.
+- Les **19 cas pédagogiques sensibles** restent dans le corpus source et attendent validation ; ce fichier est donc un **aperçu privé à relire**, pas encore une version recommandée aux élèves sans réserve. La PR reste en `HOLD`, non fusionnée et non publiée.
+
+**Essai local sous Windows :** depuis le répertoire parent de QPJB lancer `python -m http.server 8000` puis ouvrir `http://localhost:8000/QPJB/index.html?v2preview=1`, cliquer sur **Quizz** puis sur le lien d'essai. Il est aussi possible d'ouvrir directement `http://localhost:8000/QPJB/preview/v2-eleve/parcours-sef-65.html`. Si le fichier est téléchargé et ouvert en `file://`, le retour relatif vers le Quiz peut ne plus fonctionner et la sauvegarde est propre à l'origine de ce fichier, distincte de celle du site QPJB.
+
+**Point de sécurité :** le drapeau `v2preview=1` est un déclencheur de navigation de test, pas une authentification ; n'expose pas ce fichier sur GitHub Pages tant que la validation pédagogique et la décision de publication restent en attente.
