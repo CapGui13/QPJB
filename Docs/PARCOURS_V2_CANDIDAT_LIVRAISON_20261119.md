@@ -12,8 +12,8 @@ Le candidat conserve **1 523 QCM SEF d'origine**, **65 séances de 10 QCM**, le 
 
 Le workflow `.github/workflows/qpjb-v2-release-candidate.yml` :
 
-1. récupère la page et les preuves de provenance à un SHA de commit **immuable** ;
-2. vérifie l'empreinte Git du HTML, l'identité des 1 523 QCM face au Quiz original de ce même commit, les 65 séances, les éléments de suivi, l'absence de suppléments, les 19 décisions en attente et l'état `HOLD` ;
+1. récupère la page de la PR #214 et le vrai `quizz.html` de la version publique `main` à leurs **SHA de commits immuables** (respectivement `88b5487` et `a0ffaed6`) ;
+2. vérifie l'empreinte Git du HTML, l'identité des 1 523 QCM **à la fois face au Quiz source et face au Quiz actuellement publié dans le commit `main` épinglé**, les 65 séances, les éléments de suivi, l'absence de suppléments, les 19 décisions en attente et l'état `HOLD` ;
 3. produit une archive GitHub Actions `qpjb-v2-65-seances-apercu-prive` avec un **seul HTML autonome** et un manifeste comportant le SHA-256 calculé ;
 4. n'a **aucun** droit `pages: write`, **aucune** commande `deploy-pages` et ne modifie ni `index.html`, ni `quizz.html`, ni GitHub Pages.
 
@@ -34,4 +34,4 @@ Le manifeste d'arbitrage de la PR #214 contient **19 cas avec approbation `PENDI
 
 ## Etat du présent chantier
 
-**Candidat d'artefact prêt à être testé, pas de recette CI déclarée réussie à sa création, pas de validation éditoriale et aucune publication.** La PR #214 reste distincte et expérimentale.
+**Contrôle de concordance direct exécuté : 1 523/1 523 QCM identiques au `main` épinglé, 0 différence de contenu et 0 supplément**. Cette comparaison est maintenant intégrée dans le build ; son exécution GitHub Actions reste à confirmer. Pas de validation éditoriale et aucune publication. La PR #214 reste distincte et expérimentale.
