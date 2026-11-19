@@ -5,7 +5,7 @@
 const DATA=JSON.parse(document.getElementById('ay-payload').textContent);
 const F=window.AYEngine;
 const STORAGE='qpjb-preview-v2-az-01';
-const MODELS={seven:7,eight:8};
+const MODELS={core:0,seven:7,eight:8};
 const MAX_SESSIONS=65;
 const byId=new Map(DATA.catalog.map(x=>[x.id,x]));
 const addons=new Map(DATA.addons.map(x=>[x.id,x]));
@@ -17,7 +17,7 @@ const normalize=s=>String(s||'').replace(/\s+/g,'').replace(/\uFE0F/g,'').toUppe
 let record=null;
 let storageWarning='';
 let selectedAnswer=null;
-function blank(mode='seven'){
+function blank(mode='core'){
  const state=F.newState(13);
  return {schema:1,model:mode,engineState:state,current:null,
   completed:[],addonAnswers:[],nextSession:1,finished:false};
@@ -54,7 +54,7 @@ function restore(){
 }
 function activeAddon(session){
  const a=schedule.get(session);
- return a&&(record.model==='eight'||!a.conditional)?a:null;
+ return record.model==='core'?null:(a&&(record.model==='eight'||!a.conditional)?a:null);
 }
 function currentQuestion(){
  const x=record.current;
@@ -110,7 +110,8 @@ function finishSession(){
  }
  record.completed.push({number:cur.number,
    correct:cur.answers.filter(x=>x.correct).length,questions:10,
-   supplement:addon?.id||null});
+   coreCorrect:answers.filter(Boolean).length,coreQuestions:core.length,
+   supplement:addon?.id||null,supplementMatched:addon?cur.answers[cur.items.indexOf(addon)].correct:null});
  record.nextSession=cur.number+1;
  record.current=null;
  record.finished=record.nextSession>MAX_SESSIONS;
@@ -125,21 +126,23 @@ function next(){
 function panel(content){$('view').innerHTML=content;$('warning').textContent=storageWarning}
 function header(){
  return '<div class="topline"><span class="pill">Version AZ · privée et expérimentale</span>'+
- '<span class="pill">7 ajouts'+(record&&record.model==='eight'?' + cas 2SA conditionnel':'')+'</span></div>';
+ '<span class="pill">'+(!record||record.model==='core'?'QCM SEF uniquement':
+ '7 ajouts'+(record.model==='eight'?' + cas 2SA conditionnel':''))+'</span></div>';
 }
 function welcome(){
  const c=record?.completed.length||0;
  const txt=record?.finished?'Parcours terminé (65 séances).':
    record?.current?'Séance '+record.current.number+' en cours, question '+(record.current.position+1)+'/10':
    'Prochaine séance : '+(record?.nextSession||1)+'/65';
- const readonly=!record?'': '<div class="hint">'+esc(txt)+' · '+c+' séance(s) terminée(s)</div>';
+ const readonly=!record?'': '<div class="hint">'+esc(txt)+' · '+c+' séance(s) terminée(s)</div>'+
+ '<div class="track" role="progressbar" aria-label="Séances terminées" aria-valuemin="0" aria-valuemax="65" aria-valuenow="'+c+'"><div style="width:'+(c*100/65).toFixed(2)+'%"></div></div>';
  panel('<section class="pane">'+header()+
  '<h2>Parcours guidé adaptatif — test AZ</h2>'+
- '<p>Les réponses aux questions du Quiz SEF influencent les prochaines séances. Les exercices ajoutés sont affichés et corrigés à part, sans devenir des preuves de maîtrise.</p>'+
+ '<p>65 séances de 10 QCM SEF, avec des rappels adaptés à tes réponses. Les exercices complémentaires, non validés pour les élèves, restent accessibles uniquement en mode expérimental.</p>'+ 
  readonly+
  (record
  ?'<button id="start" class="primary">'+(record.current?'Reprendre la séance':record.finished?'Voir le bilan':'Commencer la séance')+'</button>'
- :'<label class="field" for="model">Choix du test</label><select id="model"><option value="seven">AY-7 : sans 2SA conditionnel</option><option value="eight">AY-8 : avec 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>')+
+ :'<label class="field" for="model">Choix du parcours</label><select id="model"><option value="core">Parcours SEF — recommandé (sans ajouts en attente)</option><option value="seven">Expérimental : 7 ouvertures complémentaires</option><option value="eight">Expérimental : 8 ouvertures dont 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>')+
  '<p class="muted">Sauvegarde locale indépendante, aucune connexion au site et aucune synchronisation avec V1/V2-F.</p>'+
  (record?'<button id="erase" class="danger">Réinitialiser uniquement ce prototype AZ</button>':'')+
  '</section>');
@@ -202,9 +205,9 @@ function summary(){
  const done=record.completed,latest=done[done.length-1];
  panel('<section class="pane">'+header()+'<h2>'+
  (record.finished?'Parcours de 65 séances terminé':'Bilan de la séance '+latest.number)+'</h2>'+
- '<p>'+latest.correct+' réponses correspondant aux corrigés d’origine sur 10.</p>'+
+ '<p><strong>'+(Number.isInteger(latest.coreCorrect)?latest.coreCorrect:latest.correct)+' / '+(Number.isInteger(latest.coreQuestions)?latest.coreQuestions:latest.questions)+'</strong> QCM SEF conformes aux corrigés.</p>'+ 
  (latest.supplement?'<p>Complément authentique inclus : '+esc(latest.supplement)+
- '. Il n’a pas été crédité comme preuve de maîtrise.</p>':'')+
+ '. Résultat complémentaire séparé : '+(latest.supplementMatched===true?'conforme au corrigé':latest.supplementMatched===false?'différent du corrigé':'non renseigné')+'. Il n’a pas été crédité comme preuve de maîtrise.</p>':'')+
  '<p class="muted">Ces résultats sont locaux et ne constituent ni un classement ni une certification pédagogique.</p>'+
  (record.finished?'':'<button id="nextSession" class="primary">Séance '+record.nextSession+'</button>')+
  '<button id="home">Accueil AZ</button></section>');
