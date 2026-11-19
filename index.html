@@ -2351,7 +2351,7 @@ function qpjbQuizzShow(navigate=true){
    if(!frame.dataset.started){
      frame.dataset.started='1';
      document.getElementById('quizz-loading').hidden=false;
-     frame.src='./quizz.html?embedded=1&rev=20261101-ux-clavier';
+     frame.src='./quizz.html?embedded=1&rev=20261101-ux-clavier'+(new URLSearchParams(location.search).get('v2preview')==='1'?'&v2preview=1':'');
    }
    qpjbQuizzResize();
    window.scrollTo(0,0);
