@@ -1,0 +1,40 @@
+name: QPJB V2-AQ - Ouvertures alternees
+on:
+  push:
+    branches: [audit/parcours-v2-sa-stayman-phase-c-20261118]
+    paths:
+      - .github/workflows/qpjb-v2-ouvertures-aq.yml
+      - scripts/parcours-v2-ouvertures-aq.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/qpjb-v2-ouvertures-aq.yml
+      - scripts/parcours-v2-ouvertures-aq.cjs
+      - scripts/parcours-v2-pilot.cjs
+      - quizz.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    name: 9 profils x 45 et 3 profils x 65
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparaison sans modifier V2-F
+        run: |
+          mkdir -p artifacts/v2-aq
+          node --check scripts/parcours-v2-ouvertures-aq.cjs
+          node scripts/parcours-v2-ouvertures-aq.cjs --output=artifacts/v2-aq/comparaison.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-aq-comparaison
+          path: artifacts/v2-aq/
+          retention-days: 30
+          if-no-files-found: error
