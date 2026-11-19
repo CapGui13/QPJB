@@ -43,11 +43,13 @@ async function main(){
    assert.equal(await page.locator('#parcours-v2-az-preview-link').isVisible(),false);
    const legacy=P.empty();legacy.completed=7;
    const saved={old:JSON.stringify(legacy),v2:JSON.stringify({sentinel:'V2-F-stays'}),
-     training:JSON.stringify({sentinel:'Training-stays'})};
+     training:JSON.stringify({sentinel:'Training-stays'}),
+     azTeacher:JSON.stringify({sentinel:'AZ-teacher-stays'})};
    await page.evaluate(a=>{
     localStorage.setItem('qpjb-sef-parcours-01',a.old);
     localStorage.setItem('qpjb-sef-parcours-v2-01',a.v2);
     localStorage.setItem('qpjb-sef-entrainement-01',a.training);
+    localStorage.setItem('qpjb-preview-v2-az-01',a.azTeacher);
    },saved);
    await page.goto(base+'index.html?v2preview=1',{waitUntil:'domcontentloaded'});
    await page.locator('.training-button-quizz').click();
@@ -60,16 +62,17 @@ async function main(){
    await frame.locator('#parcours-v2-az-preview-link').click();
    const popup=await promise;
    popup.on('pageerror',e=>errors.push('AZ: '+e.message));
-   await popup.getByText('Parcours guidé adaptatif — test AZ').waitFor();
-   assert.ok(popup.url().startsWith(base+'preview/v2-az/parcours-v2-adaptatif.html'));
+   await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
+   assert.ok(popup.url().startsWith(base+'preview/v2-az/parcours-v2-adaptatif.html?mode=eleve'));
    assert.ok(await popup.locator('#az-return-v1').isVisible());
-   await popup.locator('#model').selectOption('seven');
+   assert.equal(await popup.locator('#model').count(),0,'Pas de modes complémentaires dans l’essai élève');
    await popup.locator('#start').click();
    await popup.getByText('Séance 1/65').waitFor();
    await popup.locator('.choice').first().click();
    await popup.locator('#answer').click();
    await popup.locator('.feedback').waitFor();
-   const first=await popup.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-preview-v2-az-01')));
+   const first=await popup.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-preview-v2-eleve-01')));
+   assert.equal(first.model,'core');
    assert.equal(first.current.number,1);
    assert.equal(first.current.position,0);
    assert.equal(first.current.revealed,true);
@@ -80,7 +83,8 @@ async function main(){
    const beforeReturn=await popup.evaluate(()=>({
     old:localStorage.getItem('qpjb-sef-parcours-01'),
     v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
-    training:localStorage.getItem('qpjb-sef-entrainement-01')
+    training:localStorage.getItem('qpjb-sef-entrainement-01'),
+    azTeacher:localStorage.getItem('qpjb-preview-v2-az-01')
    }));
    assert.deepEqual(beforeReturn,saved,'AZ must not change classic or V2-F keys');
    await popup.locator('#az-return-v1').click();
@@ -93,17 +97,18 @@ async function main(){
    await popup.locator('#parcours-v2-az-preview-link')
      .waitFor({state:'visible',timeout:30000});
    assert.match(await popup.locator('#parcours-status').textContent(),/Séances terminées : 7/);
-   await popup.goto(base+'preview/v2-az/parcours-v2-adaptatif.html');
+   await popup.goto(base+'preview/v2-az/parcours-v2-adaptatif.html?mode=eleve');
    await popup.getByText('Question 2/10').waitFor();
    await popup.locator('#home').click();
-   await popup.getByText('Parcours guidé adaptatif — test AZ').waitFor();
+   await popup.getByText('Parcours guidé SEF — 65 séances').waitFor();
    popup.once('dialog',d=>d.accept());
    await popup.locator('#erase').click();
-   assert.equal(await popup.evaluate(()=>localStorage.getItem('qpjb-preview-v2-az-01')),null);
+   assert.equal(await popup.evaluate(()=>localStorage.getItem('qpjb-preview-v2-eleve-01')),null);
    assert.deepEqual(await popup.evaluate(()=>({
     old:localStorage.getItem('qpjb-sef-parcours-01'),
     v2:localStorage.getItem('qpjb-sef-parcours-v2-01'),
-    training:localStorage.getItem('qpjb-sef-entrainement-01')
+    training:localStorage.getItem('qpjb-sef-entrainement-01'),
+    azTeacher:localStorage.getItem('qpjb-preview-v2-az-01')
    })),saved);
    const width=await popup.evaluate(()=>({
     doc:document.documentElement.scrollWidth,
@@ -112,7 +117,7 @@ async function main(){
    assert.ok(width.doc<=width.viewport+2,'Unexpected horizontal overflow '+JSON.stringify(width));
    assert.deepEqual(errors,[],engine+'/'+device+' JS errors');
    console.log('QPJB BA BROWSER PASS '+engine+' '+device+
-      ' defaultHidden=OK optin=OK popup=OK return=OK resume=OK V1/V2=unchanged reset=AZ-only');
+      ' defaultHidden=OK studentOnly=OK popup=OK return=OK resume=OK V1/V2/AZ unchanged reset=student-only');
    await context.close();
   }
  }finally{await browser.close()}
