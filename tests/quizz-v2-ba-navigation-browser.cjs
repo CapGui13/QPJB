@@ -86,8 +86,12 @@ async function main(){
    await popup.locator('#az-return-v1').click();
    await popup.locator('#parcours-status').waitFor({state:'visible'});
    assert.ok(popup.url().includes('quizz.html?v2preview=1'));
-   assert.ok(await popup.locator('#parcours-v2-preview-link').isVisible());
-   assert.ok(await popup.locator('#parcours-v2-az-preview-link').isVisible());
+   // Le Quiz initialise ses panneaux après DOMContentLoaded. Sur Chromium,
+   // attendre la visibilité des liens, pas seulement celle du statut V1.
+   await popup.locator('#parcours-v2-preview-link')
+     .waitFor({state:'visible',timeout:30000});
+   await popup.locator('#parcours-v2-az-preview-link')
+     .waitFor({state:'visible',timeout:30000});
    assert.match(await popup.locator('#parcours-status').textContent(),/Séances terminées : 7/);
    await popup.goto(base+'preview/v2-az/parcours-v2-adaptatif.html');
    await popup.getByText('Question 2/10').waitFor();
