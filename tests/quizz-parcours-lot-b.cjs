@@ -142,6 +142,28 @@ function run(){
     'Pas d’effondrement des familles distinctes');
   assert.ok(persistent.after[40].level4plus<=persistent.before[40].level4plus+2,
     'Pas d’injection massive de difficulté 4+ en échec persistant');
+  // L'amélioration des fondamentaux ne doit pas appauvrir fortement la
+  // diversité des familles, des contextes et des décisions avec aide.
+  const helped=results.profiles.aides;
+  assert.ok(helped.after[65].uniqueFamilies>=helped.before[65].uniqueFamilies,
+    'Le soutien précoce doit préserver la diversité des familles évaluées');
+  assert.ok(helped.after[153].uniqueFamilies>=helped.before[153].uniqueFamilies-25,
+    'La perte de familles avec aide doit rester inférieure à 25 sur 153 séances');
+  assert.ok(helped.after[153].contexts>=helped.before[153].contexts,
+    'La diversité des contextes d enchères ne doit plus régresser');
+  assert.ok(helped.after[153].decisions>=helped.before[153].decisions,
+    'La diversité des décisions attendues ne doit plus régresser');
+  assert.ok(helped.after[153].level4plus<=helped.before[153].level4plus-60,
+    'Conserver une réduction substantielle des QCM difficiles avec aide');
+  assert.ok(helped.after[153].advancedWhileWeak<=
+    helped.before[153].advancedWhileWeak-40,
+    'Moins de contenus avancés pendant une fragilité observée');
+  assert.ok(results.profiles.echec_persistant.after[153].level4plus<
+    results.profiles.echec_persistant.before[153].level4plus,
+    'Les échecs persistants doivent rencontrer moins de cas difficiles');
+  assert.deepEqual(results.profiles.erreurs_moderees.before,
+    results.profiles.erreurs_moderees.after,
+    'Les erreurs modérées n activent pas un rattrapage global artificiel');
   assert.deepEqual(results.profiles.tout_juste.before,
     results.profiles.tout_juste.after,'Élève sans erreurs : sélection strictement identique');
   for(const profile of profiles){
