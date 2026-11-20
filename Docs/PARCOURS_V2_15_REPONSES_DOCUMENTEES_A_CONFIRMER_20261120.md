@@ -1,6 +1,6 @@
-# Parcours V2 — 15 réponses documentées, en attente de confirmation pédagogique
+# Parcours V2 — 15 réponses documentées, confirmées par l'utilisatrice
 
-**20 novembre 2026 · PR #216 · HOLD.** Les 4 décisions particulières ont été explicitement confirmées par l'utilisatrice dans le dossier `PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json`. Les 15 réponses ci-dessous n'ont **pas encore été approuvées**. Cette feuille est un récapitulatif pour permettre une validation rapide sans audits répétés.
+**20 novembre 2026 · PR #216 · HOLD publication uniquement.** Les 4 décisions particulières et les 15 réponses ci-dessous ont été explicitement confirmées par l'utilisatrice ; décision enregistrée dans `PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json`. Les 15 corrigés et leurs réponses restent strictement inchangés.
 
 Sources internes : manifeste des 19 cas de la PR #214 et `quizz.html` sur `main` (1 523 QCM, blob `dfd1f21dfc3c2256b066b36b777c437d2973e895`). Les références sont des corroborations documentaires, **pas** une certification officielle SEF ni une approbation pédagogique.
 
@@ -39,8 +39,8 @@ Sources internes : manifeste des 19 cas de la PR #214 et `quizz.html` sur `main`
 | `SEF-V482-005` | **3♥** | Texas mineur : courte majeure — accord à confirmer |
 | `SEF-V482-007` | **3SA** | Texas mineur : courte dans l’autre mineure — accord à confirmer |
 
-## Décision à recueillir
+## Décision recueillie
 
-Une confirmation globale explicite peut porter sur ces **15 réponses inchangées dans l'accord QPJB**. En cas de réserve sur une famille ou un ID, ne confirmer que les autres ; aucun mécanisme ne doit déduire une approbation du silence.
+**Validation en bloc explicite : 15/15 réponses conservées sans changement de corrigé.** Aucune approbation n'est déduite du silence. La validation pédagogique ne constitue pas une autorisation de publier.
 
-**Interdictions maintenues :** ne modifier ni les réponses ni les mains de ces 15 QCM ; ne pas fusionner la PR #216, ne pas publier le parcours V2, ne pas supprimer de sauvegardes élèves. La classification V2 « Ouvertures conventionnelles / barrages » de `SEF-L06-029` est une décision distincte et déjà validée.
+**Interdictions maintenues :** ne modifier ni les réponses ni les mains de ces 15 QCM ; ne pas fusionner la PR #216, ne pas publier le parcours V2 sans autorisation spécifique, ne pas supprimer de sauvegardes élèves. La classification V2 « Ouvertures conventionnelles / barrages » de `SEF-L06-029` est une décision distincte et déjà validée.
