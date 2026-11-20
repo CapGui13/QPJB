@@ -8,6 +8,7 @@ on:
       - 'scripts/v2-editorial-dry-run.cjs'
       - 'scripts/v2-editorial-hold-sandbox.cjs'
       - 'scripts/v2-candidate-r1.cjs'
+      - 'tests/v2-candidate-r1-browser.cjs'
       - 'tests/v2-editorial-hold-browser.cjs'
       - '.github/workflows/qpjb-v2-editorial-hold.yml'
   workflow_dispatch:
@@ -90,3 +91,5 @@ jobs:
         run: node tests/v2-editorial-hold-browser.cjs
       - name: Verifier le candidat pedagogique R1
         run: node scripts/v2-candidate-r1.cjs
+      - name: Recette du candidat R1 dans les navigateurs
+        run: node tests/v2-candidate-r1-browser.cjs
