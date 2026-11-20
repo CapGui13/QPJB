@@ -34,7 +34,10 @@ async function check(which,mobile,url){
   const page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url,{waitUntil:'domcontentloaded'});
-  await page.getByRole('alert').getByText(/PARCOURS GUIDÉ SEF — 65 SÉANCES/).waitFor();
+  await page.getByRole('heading',{name:'Parcours guidé SEF'}).waitFor();
+  const publicText=await page.locator('body').innerText();
+  assert.doesNotMatch(publicText,/Aperçu privé|HORS PRODUCTION|19 DÉCISIONS PÉDAGOGIQUES|V1\/V2-F/);
+  assert.match(publicText,/Ta progression est enregistrée/);
   assert.equal(await page.locator('#ux-progress-export').count(),1);
   assert.equal(await page.locator('#backup-export').count(),1);
   assert.equal(await page.locator('#backup-import').count(),1);
