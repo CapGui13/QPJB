@@ -50,13 +50,12 @@ assert.equal(candidateOriginal.length,1937683);
 assert.equal(crypto.createHash('sha256').update(candidateOriginal).digest('hex'),
  '4edc289dfa6d1e929e6985985152321adf8edb342923b4fadc061405aef386b6');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert.equal(index.split('id="qpjb-v2-quizz-entry"').length,2);
-assert.equal(index.split('href="./'+htmlPath+'"').length,2);
+assert.ok(!index.includes('qpjb-v2-quizz-entry'),'V2 absente de la navigation');
+assert.ok(!index.includes('href="./'+htmlPath+'"'),'Lien de la V2 retire');
 assert.ok(!index.includes('qpjb-v2-preview-entry'));
-assert.match(index,/#vquizz\.is-session #qpjb-v2-quizz-entry\{display:none\}/);
-const original=index
- .replace('#vquizz.is-session #qpjb-v2-quizz-entry{display:none}\n','')
- .replace(/  <div id="qpjb-v2-quizz-entry"[\s\S]*?(?=  <div id="quizz-frame-wrap">)/,'');
+assert.match(index,/href="\.\/quizz\.html"/,'Bouton Quizz inchange');
+assert.match(index,/id="quizz-frame"/,'Iframe du quiz preservee');
+const original=index;
 const ob=Buffer.from(original);
 const baseline=crypto.createHash('sha1').update('blob '+ob.length+'\0').update(ob).digest('hex');
 assert.equal(baseline,'a7bdd7f9f3eb67d4d1f42d5b065e548a97a20065','Accueil modifié hors opt-in');
@@ -72,4 +71,4 @@ assert.equal(d.candidateVersion,'QPJB-V2-65-19A-20261120-R1');
 const gambling=d.catalog.find(x=>x.id==='SEF-L06-029');
 assert.equal(gambling.theme,'sa');assert.equal(gambling.answer,'4♦');
 assert.match(file,/barrage:gambling_3sa_passe_corrige/);
-console.log('QPJB V2 RELEASE GUARD PASS : contenu R1 inchange, accueil preserve, 1523 QCM, public');
+console.log('QPJB V1 ENTRY PASS : navigation unique V1, 1523 QCM et archive V2 preserves');
