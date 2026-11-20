@@ -1,0 +1,2723 @@
+{
+  "schema": "QPJB_V1_FORTES_REVIEW_PRECLASS_20261120",
+  "source": "audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json",
+  "sourceGroups": "audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json",
+  "date": "2026-11-20",
+  "issue": 226,
+  "readOnly": true,
+  "publicationAllowed": false,
+  "validatedCount": 0,
+  "sourceCount": 42,
+  "sourceFamilies": 42,
+  "proposedSkillCount": 18,
+  "flagsCount": {
+    "CODAGE_REPONSES_AS_SEF_A_VERIFIER": 9,
+    "2SA_4SA_SENS_DEPEND_SEQUENCE": 3,
+    "VULNERABILITE_A_RESPECTER": 6,
+    "GROUPE_COMPETENCE_UN_SEUL_ITEM": 6,
+    "SEUIL_OUVERTURE_FORTE_A_VALIDER": 1,
+    "RAISON_DIFFICULTE_GENERIQUE": 2
+  },
+  "rows": [
+    {
+      "id": "SEF-V45-001",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-001",
+      "candidateSkill": "fortes:2c_ouverture_fi",
+      "candidateLabel": "Reconnaître 2♣ fort indéterminé : force et levées",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-001",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-001",
+        "hand": [
+          [
+            "A",
+            "10",
+            "6"
+          ],
+          [
+            "A",
+            "V",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "4",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "9"
+          ]
+        ],
+        "h": 22,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [],
+        "context": "Système d'ouvertures fortes : une ouverture artificielle forte indéterminée et une ouverture artificielle forcing de manche sont prévues.",
+        "choices": [
+          "1♣",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2♣",
+        "explain": "Une main régulière de 22-23 H relève du 2♣ fort indéterminé ; 2SA ne couvre que 20-21 H.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer les ouvertures fortes et leur redemande précise"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-002",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-002",
+      "candidateSkill": "fortes:2d_ouverture_fm",
+      "candidateLabel": "Choisir 2♦ forcing de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-002",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-002",
+        "hand": [
+          [
+            "A",
+            "R",
+            "6"
+          ],
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "9",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "V"
+          ]
+        ],
+        "h": 25,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [],
+        "context": "Système d'ouvertures fortes : une ouverture artificielle forte indéterminée et une ouverture artificielle forcing de manche sont prévues.",
+        "choices": [
+          "2♣",
+          "2♦",
+          "2SA",
+          "1♦"
+        ],
+        "answer": "2♦",
+        "explain": "Avec 24-25 H réguliers, l’ouverture de 2♦ forcing de manche permet ensuite de décrire la force exceptionnelle.",
+        "difficulty": 3,
+        "difficultyReason": "Avec 25 H réguliers, distinguer 2♦ forcing de manche de l’ouverture 2♣ de 22–23 H."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-003",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-003",
+      "candidateSkill": "fortes:2c_ouverture_fi",
+      "candidateLabel": "Reconnaître 2♣ fort indéterminé : force et levées",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-003",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-003",
+        "hand": [
+          [
+            "D",
+            "10"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "10",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9"
+          ],
+          [
+            "R",
+            "8"
+          ]
+        ],
+        "h": 21,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "auction": [],
+        "context": "Vous êtes en première position. Quelle ouverture convient avec cette main selon le SEF ?",
+        "choices": [
+          "1♥",
+          "2♣",
+          "2♦",
+          "2♥"
+        ],
+        "answer": "2♣",
+        "explain": "Avec une très belle majeure sixième et la force de troisième zone, 2♣ fort indéterminé précède la description des Cœurs.",
+        "difficulty": 4,
+        "difficultyReason": "Séquence d’ouverture forte et redemande au palier adapté"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-004",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-004",
+      "candidateSkill": "fortes:2c_ouverture_fi",
+      "candidateLabel": "Reconnaître 2♣ fort indéterminé : force et levées",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-004",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-004",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "7",
+            "6"
+          ],
+          [
+            "D",
+            "8"
+          ],
+          [
+            "R",
+            "5",
+            "2"
+          ],
+          [
+            "A",
+            "3"
+          ]
+        ],
+        "h": 19,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [],
+        "context": "Vous êtes en première position. Avec cette main, quelle ouverture convient selon le SEF 2024 ?",
+        "choices": [
+          "1♠",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2♣",
+        "explain": "Avec 19 H et une belle couleur sixième à Pique commandée par ARDV, la main atteint 20 HL en ajoutant le point de longueur. Cette force permet l’ouverture de 2♣ fort indéterminé avec une majeure sixième de très bonne qualité.",
+        "difficulty": 4,
+        "difficultyReason": "Reconnaître 20 HL et une belle majeure sixième justifiant 2♣ fort indéterminé."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-005",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-005",
+      "candidateSkill": "fortes:2c_relais_2d",
+      "candidateLabel": "Répondre 2♦ relais à 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-005",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-005",
+        "hand": [
+          [
+            "8",
+            "6",
+            "5"
+          ],
+          [
+            "D",
+            "9",
+            "7",
+            "2"
+          ],
+          [
+            "10",
+            "8",
+            "2"
+          ],
+          [
+            "R",
+            "7",
+            "2"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)"
+        ],
+        "context": "Rappel : la réponse relais à une ouverture forte indéterminée est systématique, quelle que soit la force détenue.",
+        "choices": [
+          "Passe",
+          "2♦",
+          "2♥",
+          "2SA"
+        ],
+        "answer": "2♦",
+        "explain": "Après 2♣ fort indéterminé, la réponse de 2♦ est le relais obligatoire, même avec une main très faible.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître le relais obligatoire sur ouverture forte"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-006",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-006",
+      "candidateSkill": "fortes:2c_relais_2d",
+      "candidateLabel": "Répondre 2♦ relais à 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-006",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-006",
+        "hand": [
+          [
+            "9",
+            "6",
+            "4",
+            "3"
+          ],
+          [
+            "V",
+            "10",
+            "5"
+          ],
+          [
+            "R",
+            "D",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "6"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)"
+        ],
+        "context": "Rappel : la réponse relais à une ouverture forte indéterminée est systématique, quelle que soit la force détenue.",
+        "choices": [
+          "2♥",
+          "2SA",
+          "2♦",
+          "3♦"
+        ],
+        "answer": "2♦",
+        "explain": "Le relais de 2♦ reste obligatoire après 2♣ fort indéterminé, indépendamment de la force du répondant.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître le relais obligatoire sur ouverture forte"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-007",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-007",
+      "candidateSkill": "fortes:2c_ouvreur_redemande",
+      "candidateLabel": "Redemande de l’ouvreur après 2♣–2♦",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-007",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-007",
+        "hand": [
+          [
+            "A",
+            "10",
+            "3"
+          ],
+          [
+            "A",
+            "10",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "5"
+          ]
+        ],
+        "h": 22,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 2♣ (fort indéterminé)",
+          "Partenaire : 2♦ (relais)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "2SA",
+          "3SA",
+          "2♥",
+          "3♣"
+        ],
+        "answer": "2SA",
+        "explain": "La redemande à 2SA décrit une main régulière de 22-23 H après l’ouverture forte de 2♣.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer les ouvertures fortes et leur redemande précise"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-008",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-008",
+      "candidateSkill": "fortes:2c_ouvreur_redemande",
+      "candidateLabel": "Redemande de l’ouvreur après 2♣–2♦",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-008",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-008",
+        "hand": [
+          [
+            "10",
+            "5"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "2"
+          ],
+          [
+            "D",
+            "3"
+          ]
+        ],
+        "h": 19,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 2♣ (fort indéterminé)",
+          "Partenaire : 2♦ (relais)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "2SA",
+          "2♥",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "2♥",
+        "explain": "Après le relais de 2♦, 2♥ décrit un unicolore fort à Cœur. La longueur et la qualité de la couleur sont déterminantes.",
+        "difficulty": 4,
+        "difficultyReason": "Séquence d’ouverture forte et redemande au palier adapté"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-009",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-009",
+      "candidateSkill": "fortes:2d_reponse_0_1as",
+      "candidateLabel": "Codage zéro ou un As en réponse à 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-009",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-009",
+        "hand": [
+          [
+            "5",
+            "4",
+            "3"
+          ],
+          [
+            "V",
+            "10",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "5",
+            "3"
+          ]
+        ],
+        "h": 3,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♣"
+        ],
+        "answer": "2♥",
+        "explain": "Dans les réponses aux As retenues ici, 2♥ indique l’absence d’As ; le camp est déjà forcé à la manche.",
+        "difficulty": 3,
+        "difficultyReason": "Appliquer la réponse conventionnelle montrant zéro As après l’ouverture forcing de manche."
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-010",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-010",
+      "candidateSkill": "fortes:2d_reponse_0_1as",
+      "candidateLabel": "Codage zéro ou un As en réponse à 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-010",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-010",
+        "hand": [
+          [
+            "A",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "9",
+            "6",
+            "2"
+          ],
+          [
+            "V",
+            "10",
+            "7"
+          ],
+          [
+            "10",
+            "9",
+            "6"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♣"
+        ],
+        "answer": "2♠",
+        "explain": "Avec exactement un As majeur, la réponse de 2♠ montre cet As dans le système de réponses aux As.",
+        "difficulty": 3,
+        "difficultyReason": "Appliquer le codage d’un As majeur après l’ouverture de 2♦ forcing de manche."
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-011",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-011",
+      "candidateSkill": "fortes:2d_reponse_0_1as",
+      "candidateLabel": "Codage zéro ou un As en réponse à 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-011",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-011",
+        "hand": [
+          [
+            "D",
+            "7",
+            "4"
+          ],
+          [
+            "10",
+            "5",
+            "4"
+          ],
+          [
+            "10",
+            "9",
+            "3"
+          ],
+          [
+            "A",
+            "10",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+        "choices": [
+          "2♥",
+          "2♠",
+          "3♣",
+          "3♦"
+        ],
+        "answer": "3♣",
+        "explain": "L’As de Trèfle, seul As de la main, se décrit par 3♣ après l’ouverture forcing de manche à 2♦.",
+        "difficulty": 3,
+        "difficultyReason": "Appliquer le codage d’un As de Trèfle unique après l’ouverture de 2♦ forcing de manche."
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V45-012",
+      "theme": "fortes",
+      "sourceFamily": "v45-cas-012",
+      "candidateSkill": "fortes:2d_reponse_0_1as",
+      "candidateLabel": "Codage zéro ou un As en réponse à 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V45-012",
+        "theme": "fortes",
+        "caseFamily": "v45-cas-012",
+        "hand": [
+          [
+            "7",
+            "6",
+            "2"
+          ],
+          [
+            "9",
+            "5",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "5",
+            "3"
+          ],
+          [
+            "D",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+        "choices": [
+          "2♥",
+          "2♠",
+          "3♣",
+          "3♦"
+        ],
+        "answer": "3♦",
+        "explain": "Avec l’As de Carreau comme unique As, la réponse de 3♦ identifie directement la couleur de cet As.",
+        "difficulty": 3,
+        "difficultyReason": "Appliquer le codage d’un As de Carreau unique après l’ouverture de 2♦ forcing de manche."
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-001",
+      "theme": "fortes",
+      "sourceFamily": "v475-2k-sans-as-8h",
+      "candidateSkill": "fortes:2d_reponse_2rois",
+      "candidateLabel": "Réponse 2SA : cas conventionnel avec deux Rois",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-001",
+        "theme": "fortes",
+        "caseFamily": "v475-2k-sans-as-8h",
+        "hand": [
+          [
+            "R",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "8",
+            "5"
+          ],
+          [
+            "D",
+            "8",
+            "6"
+          ],
+          [
+            "9",
+            "7",
+            "2"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche. Vous possédez 8 points d'honneurs dans une main régulière, mais aucun As. Quelle réponse du SEF distingue cette main de la réponse faible à 2♥ ?",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♣"
+        ],
+        "answer": "2SA",
+        "explain": "Après l'ouverture de 2♦ forcing de manche, 2SA est la réponse conventionnelle sans As à partir de 8 H, avec une main régulière. Vos 8 H sans As appellent donc 2SA ; 2♥ serait la réponse négative des mains sans As plus faibles.",
+        "difficulty": 3,
+        "difficultyReason": "Différencier 2SA et 2♥ sans As après l'ouverture forte de 2♦"
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER",
+        "2SA_4SA_SENS_DEPEND_SEQUENCE"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-002",
+      "theme": "fortes",
+      "sourceFamily": "v475-2k-deux-rois",
+      "candidateSkill": "fortes:2d_reponse_2rois",
+      "candidateLabel": "Réponse 2SA : cas conventionnel avec deux Rois",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-002",
+        "theme": "fortes",
+        "caseFamily": "v475-2k-deux-rois",
+        "hand": [
+          [
+            "R",
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "7",
+            "5"
+          ],
+          [
+            "9",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "8",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche. Vous n'avez aucun As et seulement 6 H, mais votre main régulière possède exactement deux Rois. Le SEF prévoit une exception à la limite habituelle des 8 H : quelle réponse choisissez-vous ?",
+        "choices": [
+          "2♥",
+          "2SA",
+          "3♦",
+          "3SA"
+        ],
+        "answer": "2SA",
+        "explain": "Le SEF autorise exceptionnellement la réponse de 2SA à 2♦ forcing de manche avec deux Rois, même si la main ne compte que 6 H. Ces deux cartes apportent une valeur qui justifie de quitter la réponse sans As faible de 2♥. Vous indiquez donc 2SA, sans prétendre posséder un As.",
+        "difficulty": 4,
+        "difficultyReason": "Exception des deux Rois : réponse 2SA malgré seulement 6 H"
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER",
+        "2SA_4SA_SENS_DEPEND_SEQUENCE"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-003",
+      "theme": "fortes",
+      "sourceFamily": "v475-2k-deux-as-couleur",
+      "candidateSkill": "fortes:2d_reponse_2as",
+      "candidateLabel": "Réponses codées avec deux As sur 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-003",
+        "theme": "fortes",
+        "caseFamily": "v475-2k-deux-as-couleur",
+        "hand": [
+          [
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "8",
+            "5",
+            "2"
+          ],
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Le partenaire ouvre de 2♦ forcing de manche, avec réponses conventionnelles aux As. Vous détenez exactement deux As : celui de Cœur et celui de Carreau. Ils sont tous deux rouges, mais l'un est majeur et l'autre mineur. Quelle réponse les décrit ?",
+        "choices": [
+          "2♠",
+          "3♥",
+          "3♠",
+          "3SA"
+        ],
+        "answer": "3♥",
+        "explain": "Les As de Cœur et de Carreau sont deux As de même couleur, puisqu'ils appartiennent tous deux aux couleurs rouges. Dans les réponses au 2♦ forcing de manche, 3♥ décrit précisément deux As de même couleur. On ne confond pas couleur rouge/noire et rang majeure/mineure.",
+        "difficulty": 4,
+        "difficultyReason": "Deux As de même couleur : deux As rouges, réponse 3♥"
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER",
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-004",
+      "theme": "fortes",
+      "sourceFamily": "v475-2k-deux-as-rang",
+      "candidateSkill": "fortes:2d_reponse_2as",
+      "candidateLabel": "Réponses codées avec deux As sur 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-004",
+        "theme": "fortes",
+        "caseFamily": "v475-2k-deux-as-rang",
+        "hand": [
+          [
+            "A",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "A",
+            "7",
+            "5"
+          ],
+          [
+            "9",
+            "8",
+            "7"
+          ],
+          [
+            "10",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Après l'ouverture forcing de manche de 2♦ du partenaire, vous comptez deux As : Pique et Cœur. Ils sont l'un noir et l'autre rouge, mais appartiennent tous deux aux majeures. Quelle réponse conventionnelle choisissez-vous ?",
+        "choices": [
+          "2♠",
+          "3♥",
+          "3♠",
+          "3SA"
+        ],
+        "answer": "3♠",
+        "explain": "L'As de Pique et l'As de Cœur sont deux As de même rang, parce que Pique et Cœur sont deux majeures. En réponse à 2♦ forcing de manche, 3♠ annonce deux As de même rang, distinct de 3♥ qui correspond à deux As de même couleur rouge ou noire.",
+        "difficulty": 4,
+        "difficultyReason": "Deux As de même rang : deux majeures, réponse 3♠"
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER",
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-005",
+      "theme": "fortes",
+      "sourceFamily": "v475-2k-deux-as-melanges",
+      "candidateSkill": "fortes:2d_reponse_2as",
+      "candidateLabel": "Réponses codées avec deux As sur 2♦ FM",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-005",
+        "theme": "fortes",
+        "caseFamily": "v475-2k-deux-as-melanges",
+        "hand": [
+          [
+            "A",
+            "8",
+            "6"
+          ],
+          [
+            "8",
+            "5",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "6",
+            "4"
+          ],
+          [
+            "9",
+            "7",
+            "3"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♦ (forcing de manche)"
+        ],
+        "context": "Le partenaire ouvre de 2♦ forcing de manche. Vous avez exactement deux As : Pique et Carreau. Ils ne sont ni de même couleur (noir/rouge) ni de même rang (majeure/mineure). Quelle réponse du SEF les annonce ?",
+        "choices": [
+          "2SA",
+          "3♥",
+          "3♠",
+          "3SA"
+        ],
+        "answer": "3SA",
+        "explain": "Pique est une majeure noire et Carreau une mineure rouge : ces deux As sont mélangés, sans même couleur et sans même rang. La réponse de 3SA à l'ouverture de 2♦ forcing de manche signifie précisément deux As mélangés. Elle n'est pas une proposition de contrat naturel à Sans-Atout.",
+        "difficulty": 4,
+        "difficultyReason": "Deux As mélangés (Pique et Carreau) : 3SA conventionnel"
+      },
+      "flags": [
+        "CODAGE_REPONSES_AS_SEF_A_VERIFIER",
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-006",
+      "theme": "fortes",
+      "sourceFamily": "v475-2t-bicolore-majeur",
+      "candidateSkill": "fortes:2c_ouvreur_redemande",
+      "candidateLabel": "Redemande de l’ouvreur après 2♣–2♦",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-006",
+        "theme": "fortes",
+        "caseFamily": "v475-2t-bicolore-majeur",
+        "hand": [
+          [
+            "A",
+            "R",
+            "V",
+            "10",
+            "9"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "8"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 21,
+        "shape": [
+          5,
+          5,
+          2,
+          1
+        ],
+        "auction": [
+          "Vous : 2♣ (fort indéterminé)",
+          "Partenaire : 2♦ (relais)"
+        ],
+        "context": "Vous avez ouvert de 2♣ fort indéterminé et votre partenaire a effectué le relais obligatoire de 2♦. Votre main contient deux belles majeures cinquièmes, Pique et Cœur, seulement trois perdantes potentielles et 21 H. Quelle redemande conventionnelle du SEF 2024 montre ce puissant bicolore majeur ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "3SA",
+        "explain": "Après 2♣ fort indéterminé – 2♦ relais, la redemande conventionnelle de 3SA montre un très puissant bicolore majeur 5–5, évalué à environ trois perdantes. Ici vous détenez bien cinq Piques et cinq Cœurs très solides ; 3SA ne propose pas un contrat naturel à Sans-Atout.",
+        "difficulty": 5,
+        "difficultyReason": "Reconnaître 3SA conventionnel pour un bicolore majeur 5–5 puissant"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-007",
+      "theme": "fortes",
+      "sourceFamily": "v475-2t-unicolore-mineur",
+      "candidateSkill": "fortes:2c_ouvreur_redemande",
+      "candidateLabel": "Redemande de l’ouvreur après 2♣–2♦",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-007",
+        "theme": "fortes",
+        "caseFamily": "v475-2t-unicolore-mineur",
+        "hand": [
+          [
+            "A",
+            "8"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "8"
+          ]
+        ],
+        "h": 18,
+        "shape": [
+          2,
+          2,
+          2,
+          7
+        ],
+        "auction": [
+          "Vous : 2♣ (fort indéterminé)",
+          "Partenaire : 2♦ (relais)"
+        ],
+        "context": "Vous ouvrez de 2♣ fort indéterminé, puis votre partenaire répond au relais 2♦. Avec sept Trèfles maîtres (ARDV1098) et deux As extérieurs, vous comptez neuf levées de jeu immédiates. Quelle redemande naturelle décrit cet unicolore mineur exceptionnel ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3SA",
+          "4♣"
+        ],
+        "answer": "3♣",
+        "explain": "Après le relais 2♦, la redemande à 3♣ montre une très belle couleur septième à Trèfle et une main capable de produire neuf levées de jeu. Vos sept Trèfles sont maîtres et les As de Pique et de Cœur apportent deux levées supplémentaires. Cette description précise est plus utile que de sauter artificiellement à Sans-Atout.",
+        "difficulty": 4,
+        "difficultyReason": "Après 2♣–2♦, 3♣ décrit sept Trèfles très solides et neuf levées de jeu"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-008",
+      "theme": "fortes",
+      "sourceFamily": "v475-2t-developpement-55",
+      "candidateSkill": "fortes:2c_suite_fit_manche",
+      "candidateLabel": "Développement avec fit majeur après 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-008",
+        "theme": "fortes",
+        "caseFamily": "v475-2t-developpement-55",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "9",
+            "5"
+          ],
+          [
+            "R",
+            "9",
+            "7",
+            "5"
+          ],
+          [
+            "7",
+            "6",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          2,
+          3,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 3SA (bicolore majeur 5-5)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Après votre 2♦ relais, sa redemande à 3SA révèle un puissant bicolore 5 Piques–5 Cœurs et non une main régulière. Avec trois Cœurs et seulement deux Piques, quel contrat de manche choisissez-vous ?",
+        "choices": [
+          "Passe",
+          "4♥",
+          "4♠",
+          "5♦"
+        ],
+        "answer": "4♥",
+        "explain": "La redemande conventionnelle de 3SA décrit cinq Cœurs et cinq Piques chez l'ouvreur. Avec vos trois Cœurs mais seulement deux Piques, le camp dispose d'au moins huit atouts à Cœur, contre sept à Pique. Vous choisissez donc naturellement 4♥ pour jouer la manche dans le meilleur fit majeur.",
+        "difficulty": 4,
+        "difficultyReason": "Développer le 3SA bicolore majeur en choisissant le fit Cœur 5–3"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-009",
+      "theme": "fortes",
+      "sourceFamily": "v475-2t-apres-relais-passe",
+      "candidateSkill": "fortes:2c_suite_passe",
+      "candidateLabel": "Passer sur redemande forte non forcing",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-009",
+        "theme": "fortes",
+        "caseFamily": "v475-2t-apres-relais-passe",
+        "hand": [
+          [
+            "9",
+            "8",
+            "5"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "10",
+            "8",
+            "7",
+            "6"
+          ],
+          [
+            "9",
+            "8",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 0,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 2♥ (unicolore fort)"
+        ],
+        "context": "Après l'ouverture forte indéterminée 2♣ de votre partenaire, vous avez répondu automatiquement 2♦. Il redemande à 2♥, décrivant un unicolore fort, normalement sixième. Vous n'avez aucun honneur et seulement deux Cœurs. Quelle décision permet de ne pas imposer une manche inexistante ?",
+        "choices": [
+          "Passe",
+          "2♠",
+          "2SA",
+          "3♥"
+        ],
+        "answer": "Passe",
+        "explain": "Le relais 2♦ sur l'ouverture de 2♣ est obligatoire, mais la redemande naturelle à 2♥ de l'ouvreur n'est pas systématiquement forcing de manche dans le SEF. Avec zéro point et seulement deux Cœurs, vous pouvez passer sur 2♥ : il n'y a aucune raison de monter plus haut.",
+        "difficulty": 3,
+        "difficultyReason": "Savoir passer après 2♣–2♦–2♥ avec zéro point et sans fit"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V475-010",
+      "theme": "fortes",
+      "sourceFamily": "v475-2t-apres-relais-manche",
+      "candidateSkill": "fortes:2c_suite_fit_manche",
+      "candidateLabel": "Développement avec fit majeur après 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V475-010",
+        "theme": "fortes",
+        "caseFamily": "v475-2t-apres-relais-manche",
+        "hand": [
+          [
+            "R",
+            "D",
+            "3"
+          ],
+          [
+            "D",
+            "10",
+            "8"
+          ],
+          [
+            "V",
+            "7",
+            "6",
+            "4"
+          ],
+          [
+            "8",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 2♥ (unicolore fort)"
+        ],
+        "context": "Votre partenaire ouvre de 2♣ fort indéterminé ; après votre 2♦ relais il redemande à 2♥, annonçant normalement six Cœurs dans une forte main. Vous possédez trois atouts Cœur et 8 H. Quelle deuxième enchère soutient utilement son ambition de manche ?",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♥",
+          "4♥"
+        ],
+        "answer": "4♥",
+        "explain": "Votre partenaire a montré un unicolore fort à Cœur après 2♣–2♦. Avec trois Cœurs de soutien et 8 H, le contrat de manche à 4♥ est justifié : le fit d'au moins neuf atouts et les valeurs du répondant complètent les nombreuses levées attendues de l'ouvreur. 3♥ serait trop timide avec une telle aide.",
+        "difficulty": 3,
+        "difficultyReason": "Après 2♣–2♦–2♥, atteindre la manche avec fit troisième et 8 H"
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V486-023",
+      "theme": "fortes",
+      "sourceFamily": "v486-e-001",
+      "candidateSkill": "fortes:2c_suite_passe",
+      "candidateLabel": "Passer sur redemande forte non forcing",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V486-023",
+        "theme": "fortes",
+        "caseFamily": "v486-e-001",
+        "hand": [
+          [
+            "9",
+            "6",
+            "2"
+          ],
+          [
+            "8",
+            "5",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "5",
+            "2"
+          ],
+          [
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 0,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 2SA (22–23 H réguliers)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Vous avez répondu automatiquement 2♦, relais ; il vient de préciser sa force et sa distribution. Les adversaires passent. Vous êtes le répondant : tenez compte de la zone d'honneurs particulière de la redemande et des développements du SEF 2024. Quelle est votre enchère ? Séquence : Partenaire : 2♣ (fort indéterminé) — Vous : 2♦ (relais) — Partenaire : 2SA (22–23 H réguliers). Précision : Non déterminante (tous non vulnérables par convention de présentation).",
+        "choices": [
+          "Passe",
+          "3♣",
+          "3♦",
+          "3SA"
+        ],
+        "answer": "Passe",
+        "explain": "Après 2♣–2♦, 2SA décrit 22–23 H réguliers et ne rend pas la manche obligatoire. Avec 0 H, vous pouvez arrêter les enchères à 2SA.",
+        "difficulty": 2,
+        "difficultyReason": "SEF 2024 — Comprendre le caractère non forcing de la redemande 2SA"
+      },
+      "flags": [
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V486-024",
+      "theme": "fortes",
+      "sourceFamily": "v486-e-002",
+      "candidateSkill": "fortes:super2sa_conclure",
+      "candidateLabel": "Conclure 3SA après 2♣–2♦–2SA",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V486-024",
+        "theme": "fortes",
+        "caseFamily": "v486-e-002",
+        "hand": [
+          [
+            "7",
+            "4",
+            "2"
+          ],
+          [
+            "9",
+            "5",
+            "3"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "2"
+          ],
+          [
+            "10",
+            "7",
+            "6"
+          ]
+        ],
+        "h": 3,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 2SA (22–23 H réguliers)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Vous avez répondu automatiquement 2♦, relais ; il vient de préciser sa force et sa distribution. Les adversaires passent. Vous êtes le répondant : tenez compte de la zone d'honneurs particulière de la redemande et des développements du SEF 2024. Quelle est votre enchère ? Séquence : Partenaire : 2♣ (fort indéterminé) — Vous : 2♦ (relais) — Partenaire : 2SA (22–23 H réguliers). Précision : Non déterminante (tous non vulnérables par convention de présentation).",
+        "choices": [
+          "Passe",
+          "3♣",
+          "3SA",
+          "4SA"
+        ],
+        "answer": "3SA",
+        "explain": "La redemande à 2SA garantit 22–23 H réguliers. Vos 3 H donnent au camp au moins 25 H ; sans majeure quatrième ni cinquième, concluez directement à 3SA.",
+        "difficulty": 3,
+        "difficultyReason": "SEF 2024 — Seuil de manche abaissé après le super 2SA à 22–23 H"
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": []
+    },
+    {
+      "id": "SEF-V486-025",
+      "theme": "fortes",
+      "sourceFamily": "v486-e-003",
+      "candidateSkill": "fortes:super2sa_stayman",
+      "candidateLabel": "Stayman sur 2SA après ouverture 2♣",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V486-025",
+        "theme": "fortes",
+        "caseFamily": "v486-e-003",
+        "hand": [
+          [
+            "A",
+            "10",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "5",
+            "2"
+          ],
+          [
+            "10",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 4,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais)",
+          "Partenaire : 2SA (22–23 H réguliers)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Vous avez répondu automatiquement 2♦, relais ; il vient de préciser sa force et sa distribution. Les adversaires passent. Vous êtes le répondant : tenez compte de la zone d'honneurs particulière de la redemande et des développements du SEF 2024. Quelle est votre enchère ? Séquence : Partenaire : 2♣ (fort indéterminé) — Vous : 2♦ (relais) — Partenaire : 2SA (22–23 H réguliers). Précision : Non déterminante (tous non vulnérables par convention de présentation).",
+        "choices": [
+          "Passe",
+          "3♣",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "3♣",
+        "explain": "Face aux 22–23 H réguliers promis par 2SA, vos 4 H suffisent à envisager la manche. Avec quatre Piques, 3♣ Stayman recherche d’abord un fit majeur 4–4.",
+        "difficulty": 3,
+        "difficultyReason": "SEF 2024 — Stayman après le super 2SA avec force de manche réduite"
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "VULNERABILITE_A_RESPECTER"
+      ],
+      "notes": []
+    },
+    {
+      "id": "SEF-V487-003",
+      "theme": "fortes",
+      "sourceFamily": "v487-003",
+      "candidateSkill": "fortes:super2sa_quantitatif",
+      "candidateLabel": "4SA quantitatif après 2♣–2♦–2SA",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V487-003",
+        "theme": "fortes",
+        "caseFamily": "v487-003",
+        "hand": [
+          [
+            "R",
+            "V",
+            "6"
+          ],
+          [
+            "D",
+            "9",
+            "7"
+          ],
+          [
+            "R",
+            "10",
+            "6",
+            "2"
+          ],
+          [
+            "V",
+            "8",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais obligatoire)",
+          "Partenaire : 2SA (22–23 H réguliers)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Après votre relais obligatoire de 2♦, il redemande 2SA : une main régulière de 22–23 points H. Les adversaires passent. Vous êtes le répondant, avec une main régulière et sans majeure quatrième ou longue. Votre force justifie de proposer le chelem sans l’imposer ; votre enchère ne doit pas être confondue avec un Blackwood à l’atout. Quelle est votre enchère ?",
+        "choices": [
+          "3SA",
+          "4SA",
+          "5SA",
+          "6SA"
+        ],
+        "answer": "4SA",
+        "explain": "Après 2♣–2♦–2SA, l’ouvreur possède 22–23 H réguliers. Avec 10 H, vous totalisez 32–33 H, une zone d’invitation à 6SA : l’enchère de 4SA est quantitative et non un Blackwood. Votre partenaire accepte l’invitation avec une main suffisamment maximale et adaptée.",
+        "difficulty": 4,
+        "difficultyReason": "SEF 2024 : 4SA quantitatif avec 10 HL réguliers face à une redemande à 2SA de 22–23 H."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "2SA_4SA_SENS_DEPEND_SEQUENCE"
+      ],
+      "notes": []
+    },
+    {
+      "id": "SEF-V487-004",
+      "theme": "fortes",
+      "sourceFamily": "v487-004",
+      "candidateSkill": "fortes:2c_soutien_espoir_chelem",
+      "candidateLabel": "Soutien majeur sous manche après 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V487-004",
+        "theme": "fortes",
+        "caseFamily": "v487-004",
+        "hand": [
+          [
+            "R",
+            "D",
+            "6"
+          ],
+          [
+            "A",
+            "9",
+            "5"
+          ],
+          [
+            "D",
+            "10",
+            "7"
+          ],
+          [
+            "8",
+            "7",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais obligatoire)",
+          "Partenaire : 2♠ (majeure forte)"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé, vous avez donné le relais de 2♦ et il a décrit un jeu fort à Pique par 2♠. Les adversaires passent. Vous êtes le répondant avec trois cartes à Pique, une belle force complémentaire et de quoi envisager davantage que la manche. Le soutien au palier de trois après cette redemande n’est pas une simple invitation à la manche. Quelle est votre enchère ?",
+        "choices": [
+          "Passe",
+          "3♠",
+          "3SA",
+          "4♠"
+        ],
+        "answer": "3♠",
+        "explain": "Vous possédez trois atouts Pique dont Roi-Dame, ainsi que 11 H avec un As extérieur. Le soutien économique à 3♠ après 2♣–2♦–2♠ indique un intérêt pour le chelem et conserve de l’espace pour les contrôles. Il est plus descriptif qu’une conclusion prématurée à 4♠.",
+        "difficulty": 4,
+        "difficultyReason": "SEF 2024 : soutien sous le palier de la manche après 2♣ fort, avec espoir de chelem."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-V487-005",
+      "theme": "fortes",
+      "sourceFamily": "v487-005",
+      "candidateSkill": "fortes:2c_suite_passe",
+      "candidateLabel": "Passer sur redemande forte non forcing",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V487-005",
+        "theme": "fortes",
+        "caseFamily": "v487-005",
+        "hand": [
+          [
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "9",
+            "5",
+            "2"
+          ],
+          [
+            "10",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "7",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 0,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Vous : 2♦ (relais obligatoire)",
+          "Partenaire : 3♣ (sept très beaux Trèfles, environ neuf levées de jeu)"
+        ],
+        "context": "Votre partenaire ouvre de 2♣ fort indéterminé, vous annoncez le relais obligatoire de 2♦ puis il redemande 3♣. Cette redemande décrit une très belle couleur septième à Trèfle et un nombre élevé de levées de jeu, sans rendre la manche automatiquement obligatoire. Les adversaires passent. Vous êtes le répondant, totalement dépourvu d’honneurs. Quelle est votre enchère ?",
+        "choices": [
+          "Passe",
+          "3SA",
+          "4♣",
+          "5♣"
+        ],
+        "answer": "Passe",
+        "explain": "La redemande de 3♣ annonce une mineure très forte, mais elle n’impose pas la manche. Avec 0 H et aucune levée utile clairement apportée à votre partenaire, vous ne disposez pas des compléments nécessaires pour déclarer 3SA ou 5♣. Vous pouvez vous arrêter à 3♣ en passant.",
+        "difficulty": 3,
+        "difficultyReason": "SEF 2024 : savoir s’arrêter après une forte redemande en mineure sans levée complémentaire."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L03-005",
+      "theme": "fortes",
+      "sourceFamily": "FOR-1-5",
+      "candidateSkill": "fortes:2d_ouverture_fm",
+      "candidateLabel": "Choisir 2♦ forcing de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L03-005",
+        "theme": "fortes",
+        "caseFamily": "FOR-1-5",
+        "hand": [
+          [
+            "R",
+            "5"
+          ],
+          [
+            "A",
+            "2"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "8",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "5"
+          ]
+        ],
+        "h": 21,
+        "shape": [
+          2,
+          2,
+          7,
+          2
+        ],
+        "auction": [],
+        "context": "Vous êtes donneur avec la main affichée, notamment une très longue couleur à Carreau. Après avoir calculé vous-même les points H et les points de longueur HL, quelle ouverture choisissez-vous dans le SEF 2024 ?",
+        "choices": [
+          "1♦",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2♦",
+        "explain": "Avec sept Carreaux, les trois cartes à partir de la cinquième ajoutent 3 points L : 21 H + 3 L = 24 HL. Le SEF 2024 permet d’ouvrir de 2♦ forcing de manche à partir de 24 HL, quelle que soit la distribution.",
+        "difficulty": 4,
+        "difficultyReason": "Identifier la différence huit/neuf levées majeure/mineure."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L13-017",
+      "theme": "fortes",
+      "sourceFamily": "LOT13-2026-11-13-17",
+      "candidateSkill": "fortes:2c_nouvelle_couleur_palier3",
+      "candidateLabel": "Nouvelle couleur au palier de 3 après 2♣ fort : seuil",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L13-017",
+        "theme": "fortes",
+        "caseFamily": "LOT13-2026-11-13-17",
+        "hand": [
+          [
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "9",
+            "5"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "A",
+            "V",
+            "10",
+            "8",
+            "7"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          2,
+          3,
+          5
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez une vraie couleur cinquième à Trèfle et suffisamment de points H pour un changement de couleur naturel au palier de 3. Quel est ce changement de couleur ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3♥"
+        ],
+        "answer": "3♣",
+        "explain": "Après 2♣ fort indéterminé – 2♦ – 2♥, la nouvelle couleur naturelle au palier de 3 est possible à partir de 7 H dans le SEF 2024. Avec cinq Trèfles et les valeurs requises, 3♣ décrit votre couleur.",
+        "difficulty": 4,
+        "difficultyReason": "Seuil 7 H pour couleur naturelle au palier de trois après 2♣ FI."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L14-013",
+      "theme": "fortes",
+      "sourceFamily": "LOT14-2026-11-13-013",
+      "candidateSkill": "fortes:2c_texas_apres2sa",
+      "candidateLabel": "Texas après redemande forte 2SA",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L14-013",
+        "theme": "fortes",
+        "caseFamily": "LOT14-2026-11-13-013",
+        "hand": [
+          [
+            "D",
+            "10",
+            "9",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "3",
+            "2"
+          ],
+          [
+            "8",
+            "6",
+            "2"
+          ],
+          [
+            "9",
+            "5"
+          ]
+        ],
+        "h": 2,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (22–23 H réguliers)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire a précisé 22–23 H réguliers après 2♣ fort indéterminé et votre relais 2♦. Vous détenez six Piques, très peu de points et souhaitez lui faire déclarer la couleur Pique. Vous jouez les mêmes Texas que sur une ouverture directe à 2SA. Quelle enchère faites-vous ?",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♥",
+          "3♠"
+        ],
+        "answer": "3♥",
+        "explain": "Après 2♣–2♦–2SA, les réponses conventionnelles à 2SA restent utilisables : 3♥ est un Texas pour les Piques. Le partenaire rectifie à 3♠, où l’on pourra s’arrêter avec une main faible.",
+        "difficulty": 4,
+        "difficultyReason": "Texas Pique après la redemande 2SA sur ouverture 2♣ fort indéterminé."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L20-002",
+      "theme": "fortes",
+      "sourceFamily": "LOT20-2026-11-13-002",
+      "candidateSkill": "fortes:2c_splinter",
+      "candidateLabel": "Splinter après 2♣ fort et majeure",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L20-002",
+        "theme": "fortes",
+        "caseFamily": "LOT20-2026-11-13-002",
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "D",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "9",
+            "6",
+            "4"
+          ],
+          [
+            "10",
+            "7",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais obligatoire)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez quatre atouts Cœur, un singleton Pique et pour unique contrôle d'honneur extérieur le Roi de Carreau. Quelle enchère à saut est le Splinter du SEF 2024 ?",
+        "choices": [
+          "2♠",
+          "3♥",
+          "3♠",
+          "4♥"
+        ],
+        "answer": "3♠",
+        "explain": "3♠ est un saut dans une nouvelle couleur après la redemande 2♥ : c'est un Splinter montrant la courte à Pique et au moins quatre Cœurs. Le SEF 2024 accepte au maximum un contrôle d'honneur, y compris à l'atout ; le Roi de Carreau ne l'exclut pas.",
+        "difficulty": 5,
+        "difficultyReason": "Splinter après 2♣ fort indéterminé et relais, avec courte et contrôle extérieur limité."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L20-003",
+      "theme": "fortes",
+      "sourceFamily": "LOT20-2026-11-13-003",
+      "candidateSkill": "fortes:2d_fm_redemande",
+      "candidateLabel": "Suite de l’ouvreur après 2♦ forcing de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L20-003",
+        "theme": "fortes",
+        "caseFamily": "LOT20-2026-11-13-003",
+        "hand": [
+          [
+            "A",
+            "D",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "10",
+            "9"
+          ],
+          [
+            "R",
+            "D",
+            "2"
+          ],
+          [
+            "A"
+          ]
+        ],
+        "h": 25,
+        "shape": [
+          3,
+          6,
+          3,
+          1
+        ],
+        "auction": [
+          "Vous : 2♦ (forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (réponse positive sans As)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous ouvrez de 2♦ forcing de manche avec 25 H et six beaux Cœurs. Le partenaire répond 2SA, une réponse positive sans As dans la structure étudiée. Quelle redemande naturelle sans saut décrit votre couleur sixième au palier de 3 ?",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "3♥",
+        "explain": "Après 2♦ forcing de manche puis 2SA, 3♥ est une redemande naturelle au palier de 3 : elle décrit normalement six Cœurs, ou cinq très beaux Cœurs avec une distribution irrégulière. Le SEF 2024 précise cette exigence de longueur pour les redemandes sans saut au palier de 3.",
+        "difficulty": 5,
+        "difficultyReason": "Redemande de 3♥ après 2♦ forcing de manche : six cartes ou cinq très belles irrégulières."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L24-003",
+      "theme": "fortes",
+      "sourceFamily": "LOT24-2026-11-13-003",
+      "candidateSkill": "fortes:2c_nouvelle_couleur_palier3",
+      "candidateLabel": "Nouvelle couleur au palier de 3 après 2♣ fort : seuil",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L24-003",
+        "theme": "fortes",
+        "caseFamily": "LOT24-2026-11-13-003",
+        "hand": [
+          [
+            "7",
+            "4"
+          ],
+          [
+            "9",
+            "6",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "8",
+            "7"
+          ],
+          [
+            "10",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          2,
+          3,
+          5,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais obligatoire)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé et redemandé 2♠ après votre relais à 2♦. Vous détenez 7 H exactement, une bonne couleur cinquième à Carreau (♦ADV87) et seulement deux Piques. Dans le SEF 2024, quelle réponse naturelle au palier de 3 devient possible dès 7 H ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3♠"
+        ],
+        "answer": "3♦",
+        "explain": "Dans la séquence 2♣ fort indéterminé–2♦–2♠, un changement de couleur naturel au palier de 3 exige désormais au moins 7 H (au lieu de 5 H en 2018). Avec ♦ADV87 et 7 H, 3♦ est l'annonce naturelle de votre longue ; 3♠ inventerait un soutien plus important.",
+        "difficulty": 4,
+        "difficultyReason": "Seuil SEF 2024 à 7 H pour une couleur nouvelle au palier de 3 après 2♣ fort."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L27-003",
+      "theme": "fortes",
+      "sourceFamily": "LOT27-2026-11-13-003",
+      "candidateSkill": "fortes:refuser_ouverture_forte",
+      "candidateLabel": "Ne pas forcer l’ouverture artificielle sans force",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L27-003",
+        "theme": "fortes",
+        "caseFamily": "LOT27-2026-11-13-003",
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "9"
+          ],
+          [
+            "A",
+            "4",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "8",
+            "7"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          1,
+          1,
+          3,
+          8
+        ],
+        "auction": [],
+        "context": "Vous êtes donneur. Vous avez huit Trèfles maîtres ♣ARDV10987 et l'As de Carreau, mais seulement 14 H. Malgré vos nombreuses levées de jeu, quelle ouverture applique la condition d'honneurs du SEF 2024 pour les ouvertures artificiellement fortes de 2♣ et 2♦ ?",
+        "choices": [
+          "1♣",
+          "2♣",
+          "2♦",
+          "3SA"
+        ],
+        "answer": "1♣",
+        "explain": "Les ouvertures fortes à la couleur 2♣/2♦ exigent aussi au moins 15–16 H et suffisamment de levées de défense : beaucoup de levées de jeu ne suffisent pas. Avec 14 H, on commence naturellement à 1♣. L'ouverture de barrage 3SA à mineure maîtresse ne convient pas ici avec un As extérieur.",
+        "difficulty": 5,
+        "difficultyReason": "Longue maîtresse et levées de jeu ne dispensent pas du minimum de points H pour ouvrir artificiellement fort."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "SEUIL_OUVERTURE_FORTE_A_VALIDER"
+      ],
+      "notes": []
+    },
+    {
+      "id": "SEF-L28-004",
+      "theme": "fortes",
+      "sourceFamily": "LOT28-2026-11-14-004",
+      "candidateSkill": "fortes:2c_splinter",
+      "candidateLabel": "Splinter après 2♣ fort et majeure",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L28-004",
+        "theme": "fortes",
+        "caseFamily": "LOT28-2026-11-14-004",
+        "hand": [
+          [
+            "V",
+            "10",
+            "9",
+            "5"
+          ],
+          [
+            "9",
+            "7",
+            "4",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "8",
+            "4"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          4,
+          4,
+          4,
+          1
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais obligatoire)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le partenaire ouvre de 2♣ fort indéterminé puis redemande 2♠ après votre relais à 2♦. Vous avez quatre Piques, un singleton Trèfle et pour seul contrôle d'honneur l'As de Carreau. Quelle enchère à saut est le Splinter du SEF 2024 qui montre simultanément le fit et la courte ?",
+        "choices": [
+          "3♠",
+          "4♣",
+          "4♦",
+          "4♠"
+        ],
+        "answer": "4♣",
+        "explain": "Après 2♣–2♦–2♠, 4♣ est un Splinter avec au moins quatre Piques et une courte à Trèfle. Le SEF 2024 autorise jusqu'à un contrôle d'honneur, extérieur ou à l'atout : l'As de Carreau unique n'empêche donc pas cette réponse.",
+        "difficulty": 5,
+        "difficultyReason": "Splinter 4♣ après 2♣ fort indéterminé ; un contrôle d'honneur extérieur est permis."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L29-005",
+      "theme": "fortes",
+      "sourceFamily": "LOT29-2026-11-14-005",
+      "candidateSkill": "fortes:2d_fm_redemande",
+      "candidateLabel": "Suite de l’ouvreur après 2♦ forcing de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L29-005",
+        "theme": "fortes",
+        "caseFamily": "LOT29-2026-11-14-005",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "5"
+          ],
+          [
+            "A",
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "8"
+          ],
+          [
+            "D",
+            "10",
+            "9"
+          ]
+        ],
+        "h": 24,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Vous : 2♦ (ouverture forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 3♣ (réponse montrant l'As de Trèfle)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez ouvert de 2♦ forcing de manche avec 24 H réguliers. Le partenaire répond 3♣, montrant l'As de Trèfle. Vous n'avez pas de couleur longue à décrire et souhaitez proposer 3SA comme contrat final. Quelle redemande naturelle n'est plus forcing sur une réponse au palier de 3, selon le SEF 2024 ?",
+        "choices": [
+          "3♦",
+          "3♥",
+          "3SA",
+          "4SA"
+        ],
+        "answer": "3SA",
+        "explain": "La redemande à 3SA sans saut après 2♦ forcing de manche est forcing seulement sur une réponse à 2SA ; après une réponse au palier de 3, comme ici 3♣, elle est naturelle et non forcing. Elle convient à cette main régulière de 24 H sans couleur longue.",
+        "difficulty": 5,
+        "difficultyReason": "Différencier le caractère forcing de 3SA selon le palier de la réponse au 2♦ forcing de manche."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L30-001",
+      "theme": "fortes",
+      "sourceFamily": "LOT30-2026-11-14-001",
+      "candidateSkill": "fortes:2c_ouverture_fi",
+      "candidateLabel": "Reconnaître 2♣ fort indéterminé : force et levées",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L30-001",
+        "theme": "fortes",
+        "caseFamily": "LOT30-2026-11-14-001",
+        "hand": [
+          [
+            "A",
+            "R",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "10",
+            "7"
+          ],
+          [
+            "A",
+            "6"
+          ],
+          [
+            "V"
+          ]
+        ],
+        "h": 19,
+        "shape": [
+          5,
+          5,
+          2,
+          1
+        ],
+        "auction": [],
+        "context": "Vous êtes donneur en première position, sans intervention. Vous avez cinq Piques et cinq Cœurs solides, 19 H et 21 HL avec les longueurs. Quelle ouverture du SEF 2024 convient à ce puissant bicolore majeur 5–5, sans traiter la main comme un simple unicolore ?",
+        "choices": [
+          "1♠",
+          "1♥",
+          "2♣",
+          "2♦"
+        ],
+        "answer": "2♣",
+        "explain": "Le SEF 2024 préconise l'ouverture de 2♣ fort indéterminé avec un puissant bicolore majeur au moins 5–5. Avec 19 H, 21 HL et les deux majeures solides, on commence à 2♣ puis l'on décrit sa force et sa distribution après le relais à 2♦. Une simple ouverture de 1♠ sous-décrirait ici la main, tandis que 2♦ exige une force de manche exceptionnelle non déduite de 21 HL seuls.",
+        "difficulty": 5,
+        "difficultyReason": "Reconnaître l'ouverture artificielle 2♣ avec deux majeures cinquièmes et une main très forte."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L31-005",
+      "theme": "fortes",
+      "sourceFamily": "LOT31-2026-11-14-005",
+      "candidateSkill": "fortes:2c_nouvelle_couleur_palier3",
+      "candidateLabel": "Nouvelle couleur au palier de 3 après 2♣ fort : seuil",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L31-005",
+        "theme": "fortes",
+        "caseFamily": "LOT31-2026-11-14-005",
+        "hand": [
+          [
+            "V",
+            "8"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "9",
+            "7"
+          ],
+          [
+            "V",
+            "9",
+            "6"
+          ],
+          [
+            "7",
+            "4",
+            "3"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais obligatoire)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (majeure naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire ouvre 2♣ fort indéterminé, puis annonce des Piques après votre relais 2♦. Vous avez exactement 7 H, cinq beaux Cœurs commandés par Roi-Dame et seulement deux Piques. Quelle nouvelle couleur au palier de 3 est naturelle et respecte le minimum de 7 H fixé par le SEF 2024 ?",
+        "choices": [
+          "2SA",
+          "3♥",
+          "3♠",
+          "4♥"
+        ],
+        "answer": "3♥",
+        "explain": "Après 2♣–2♦–2♠, la nouvelle couleur naturelle au palier de 3 réclame cinq cartes correctes et au moins 7 H depuis le SEF 2024. Avec ♥RD1097, exactement 7 H et seulement deux Piques, 3♥ décrit la couleur. La nomination de 4♥ serait une enchère à saut d'une nature différente, pas la description économique de ces cinq Cœurs.",
+        "difficulty": 5,
+        "difficultyReason": "Minimum exact de 7 H pour une nouvelle couleur au palier de 3 après 2♣ FI."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L43-004",
+      "theme": "fortes",
+      "sourceFamily": "LOT43-2026-11-17-004",
+      "candidateSkill": "fortes:2c_nouvelle_couleur_palier3",
+      "candidateLabel": "Nouvelle couleur au palier de 3 après 2♣ fort : seuil",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L43-004",
+        "theme": "fortes",
+        "caseFamily": "LOT43-2026-11-17-004",
+        "hand": [
+          [
+            "R",
+            "6"
+          ],
+          [
+            "9",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "10",
+            "8",
+            "5"
+          ],
+          [
+            "V",
+            "9",
+            "7",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          2,
+          5,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le partenaire ouvre de 2♣ fort indéterminé et annonce 2♥ après votre relais. Vous avez cinq Carreaux et 10 H sans fit Cœur. Quelle enchère naturelle au palier de 3 décrit la longue Carreau ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3♥"
+        ],
+        "answer": "3♦",
+        "explain": "Après 2♣ fort indéterminé–2♦–2♥, une nouvelle couleur naturelle au palier de 3 montre au moins cinq cartes correctes et 7 H minimum. Avec cinq Carreaux et 10 H, répondez 3♦.",
+        "difficulty": 4,
+        "difficultyReason": "Décision conventionnelle du SEF 2024."
+      },
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L44-004",
+      "theme": "fortes",
+      "sourceFamily": "LOT44-2026-11-17-004",
+      "candidateSkill": "fortes:2c_suite_fit_manche",
+      "candidateLabel": "Développement avec fit majeur après 2♣ fort",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L44-004",
+        "theme": "fortes",
+        "caseFamily": "LOT44-2026-11-17-004",
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "R",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "V",
+            "7",
+            "5"
+          ],
+          [
+            "D",
+            "V",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 9,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Après 2♣ fort indéterminé–2♦–2♥, vous possédez quatre Cœurs, un singleton Pique et 9 H avec un seul contrôle d'honneur, le Roi de Cœur. Vous souhaitez annoncer le fit et la courte dans une enchère à saut au palier de 4. Que dites-vous ?",
+        "choices": [
+          "3♥",
+          "3♠",
+          "4♥",
+          "4♠"
+        ],
+        "answer": "4♠",
+        "explain": "Après 2♣ fort indéterminé puis 2♥, un saut en nouvelle couleur au palier de 4 constitue un Splinter : au moins quatre atouts Cœur, singleton ou chicane dans la couleur nommée et au plus un contrôle d'honneur. Ici 4♠ montre la courte Pique ; 3♠ serait une nouvelle couleur naturelle au palier de 3.",
+        "difficulty": 5,
+        "difficultyReason": "Développement SEF 2024 avec choix d'enchère justifié."
+      },
+      "flags": [
+        "RAISON_DIFFICULTE_GENERIQUE"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    },
+    {
+      "id": "SEF-L44-005",
+      "theme": "fortes",
+      "sourceFamily": "LOT44-2026-11-17-005",
+      "candidateSkill": "fortes:2c_nouvelle_couleur_palier3",
+      "candidateLabel": "Nouvelle couleur au palier de 3 après 2♣ fort : seuil",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L44-005",
+        "theme": "fortes",
+        "caseFamily": "LOT44-2026-11-17-005",
+        "hand": [
+          [
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "10",
+            "7"
+          ],
+          [
+            "D",
+            "V",
+            "10",
+            "8",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          3,
+          3,
+          5
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (majeure naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire ouvre de 2♣ fort indéterminé, puis redemande 2♠ après le relais 2♦. Vous avez cinq Trèfles corrects, 10 H et seulement deux Piques. Quelle enchère naturelle au palier de 3 annonce cette couleur ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3♠"
+        ],
+        "answer": "3♣",
+        "explain": "Après 2♣ fort indéterminé–2♦–2♠, un changement de couleur au palier de 3 est naturel avec au moins cinq cartes correctes et 7 H. Avec ♣DV1085 et 10 H, 3♣ indique les Trèfles ; ce n'est pas un Splinter.",
+        "difficulty": 4,
+        "difficultyReason": "Développement SEF 2024 avec choix d'enchère justifié."
+      },
+      "flags": [
+        "RAISON_DIFFICULTE_GENERIQUE"
+      ],
+      "notes": [
+        "Ne pas confondre 2♣ fort indéterminé et 2♦ forcing de manche : force H, HL et levées de jeu selon le système étudié."
+      ]
+    }
+  ]
+}
