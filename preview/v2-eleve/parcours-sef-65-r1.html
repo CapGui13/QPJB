@@ -1583,6 +1583,63 @@ function studentProgress(){
  '<p class="muted">Ce suivi décrit tes réponses enregistrées, pas des compétences certifiées. Aucun classement.</p>'+
  '</section>';
 }
+
+/*
+ * Observatoire factuel des notions déjà rencontrées.
+ * Les 79 correspondances SA/Stayman restent candidates et ne sont jamais
+ * converties en maîtrise, prérequis bloquant ou résultat attribué à l'élève.
+ */
+function studentCompetences(){
+ if(!STUDENT_ONLY||!record)return '';
+ const evidence=record.engineState?.concepts||{};
+ const names=new Map();
+ const statuses=new Map();
+ for(const [key,label] of Object.entries(window.QPJBParcours.MICRO_LABELS||{})){
+   names.set(key,label);statuses.set(key,'Repère contextuel automatique');
+ }
+ const sa=DATA.docs['PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json'];
+ const stayman=DATA.docs['PARCOURS_V2_STAYMAN_65_MICRO_OBJECTIFS_CANDIDATS_20261118.json'];
+ for(const row of sa.skills){
+   names.set(row.id,row.label);statuses.set(row.id,'Classification candidate');
+ }
+ for(const row of stayman.skills){
+   names.set('stayman:'+row.id,row.label);
+   statuses.set('stayman:'+row.id,'Classification candidate');
+ }
+ const gambling='sa:gambling_3sa_passe_corrige',retag='barrage:gambling_3sa_passe_corrige';
+ if(names.has(gambling)){
+   names.set(retag,names.get(gambling));statuses.set(retag,'Classification candidate');
+ }
+ const all=Object.entries(evidence).filter(([,entry])=>entry&&
+   Number.isInteger(entry.attempts)&&entry.attempts>0);
+ const detailed=all.filter(([key])=>!key.startsWith('rubrique:')&&names.has(key));
+ const broad=all.filter(([key])=>key.startsWith('rubrique:'));
+ const wrong=detailed.filter(([,entry])=>entry.lastResult==='wrong');
+ const proposed=detailed.filter(([key])=>statuses.get(key)==='Classification candidate');
+ const rows=detailed.sort((a,b)=>
+   Number(b[1].lastResult==='wrong')-Number(a[1].lastResult==='wrong')||
+   (b[1].lastSession||0)-(a[1].lastSession||0)||a[0].localeCompare(b[0]))
+   .map(([key,entry])=>
+     '<li><strong>'+esc(names.get(key))+'</strong> — '+
+     esc(entry.lastResult==='wrong'?'Dernier résultat à revoir':'Dernier résultat conforme')+
+     ' · '+entry.attempts+' séance(s) observée(s)'+
+     (entry.errors?' · '+entry.errors+' erreur(s)':'')+
+     ' <span class="muted">('+esc(statuses.get(key))+')</span></li>').join('');
+ return '<details id="v2-competences" class="pane sef-history" aria-label="Observatoire des notions">'+
+ '<summary>Mes notions travaillées · '+detailed.length+' repère(s)</summary>'+
+ '<p><strong>'+wrong.length+'</strong> repère(s) à revoir sur le dernier essai · '+
+ '<strong>'+proposed.length+'</strong> classification(s) encore candidate(s).</p>'+
+ '<p class="muted">Observations fondées uniquement sur les réponses enregistrées : '+
+ 'une notion rencontrée n’est pas une notion maîtrisée. Les catégories candidates '+
+ 'et les repères automatiques ne sont pas des validations SEF.</p>'+
+ (rows?'<ol>'+rows+'</ol>':'<p>Aucune notion fine encore observée.</p>')+
+ (broad.length?'<p class="muted">'+broad.length+
+ ' rubrique(s) observée(s) sans classification fine : leurs réponses ne sont pas '+
+ 'converties artificiellement en acquis.</p>':'')+
+ '<p class="muted">Aucun de ces indicateurs ne bloque la séance suivante ; '+
+ 'les rappels prévus par le parcours restent inchangés.</p></details>';
+}
+
 function welcome(){
  if(incompatibleSave){
   panel('<section class="pane">'+header()+
@@ -1611,7 +1668,7 @@ function welcome(){
  panel('<section class="pane">'+header()+
  '<h2>'+(STUDENT_ONLY?'Parcours guidé SEF — 65 séances':'Parcours guidé adaptatif — test AZ')+'</h2>'+
  '<p>'+(STUDENT_ONLY?'65 séances de 10 QCM SEF, avec progression adaptée à tes réponses et rappels programmés. Aucun exercice complémentaire en attente de validation.':'65 séances de 10 QCM SEF, avec des rappels adaptés à tes réponses. Les exercices complémentaires, non validés pour les élèves, restent accessibles uniquement en mode expérimental.')+'</p>'+ 
- readonly+studentProgress()+
+ readonly+studentProgress()+studentCompetences()+
  (record
  ?'<button id="start" class="primary">'+(record.current?'Reprendre la séance':record.finished?'Voir le bilan':'Commencer la séance')+'</button>'
  :(STUDENT_ONLY?'<button id="start" class="primary">Démarrer le parcours SEF</button>':'<label class="field" for="model">Choix du parcours</label><select id="model"><option value="core">Parcours SEF — recommandé (sans ajouts en attente)</option><option value="seven">Expérimental : 7 ouvertures complémentaires</option><option value="eight">Expérimental : 8 ouvertures dont 2SA conditionnel</option></select><button id="start" class="primary">Démarrer un nouveau parcours</button>'))+
@@ -1705,7 +1762,7 @@ function summary(){
  [['easy','Trop facile'],['adapted','Niveau adapté'],['hard','Trop difficile']].map(
  item=>'<button type="button" data-ux-feeling="'+item[0]+'" aria-pressed="'+
  (felt===item[0]?'true':'false')+'">'+item[1]+'</button>').join('')+
- '</div></div>'+studentProgress()+
+ '</div></div>'+studentProgress()+studentCompetences()+
  (record.finished?'':'<button id="nextSession" class="primary">Séance '+record.nextSession+'</button>')+
  '<button id="home">'+(STUDENT_ONLY?'Voir mes 65 séances':'Accueil AZ')+'</button></section>');
  document.querySelectorAll('[data-ux-feeling]').forEach(button=>{

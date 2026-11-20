@@ -1,0 +1,54 @@
+name: QPJB V2 — observatoire de compétences (HOLD)
+on:
+  push:
+    branches:
+      - feature/v2-65-observatoire-competences-20261120
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'preview/v2-eleve/parcours-sef-65-r1.html'
+      - 'scripts/v2-competences-audit.cjs'
+      - 'tests/v2-competences-observatoire*.cjs'
+      - '.github/workflows/qpjb-v2-observatoire-competences.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: Catalogue, classification et syntaxe
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/v2-competences-audit.cjs
+      - run: node --check tests/v2-competences-observatoire.cjs
+      - run: node --check tests/v2-competences-observatoire-browser.cjs
+      - run: node scripts/v2-competences-audit.cjs
+      - run: node tests/v2-competences-observatoire.cjs
+      - run: node tests/v2-ergonomie-65-structure.cjs
+      - run: node tests/quizz-parcours.cjs
+  browsers:
+    name: V2 Chromium et WebKit, sauvegardes intactes
+    needs: audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: node tests/v2-competences-observatoire-browser.cjs
+      - run: node tests/v2-ergonomie-65-browser.cjs
+      - run: node tests/v2-integration-entry-browser.cjs
