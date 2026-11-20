@@ -518,6 +518,31 @@
       return true;
     });
     const fresh=pool.filter(x=>!previous[x.id]);
+    // Rappeler une notion sur un exercice d'une AUTRE famille, sans inventer
+    // d'historique : seulement les évaluations réellement enregistrées en V1.
+    const origins=new Map();
+    for(const x of pool){
+      const key=microKey(x),entry=previous[x.id];
+      if(!key||!entry)continue;
+      const a=assessmentOf(entry);
+      if(!a)continue;
+      const candidate={session:a.lastSession,result:a.result,
+        assisted:a.assisted,family:family(x)};
+      const current=origins.get(key);
+      if(!current||candidate.session>current.session||
+        (candidate.session===current.session&&
+         candidate.result!=='correct'&&current.result==='correct'))
+        origins.set(key,candidate);
+    }
+    const conceptDue=new Set([...origins].filter(([key,origin])=>{
+      const delay=origin.result==='correct'&&!origin.assisted?5:2;
+      return s-origin.session>=delay&&
+        new Set(pool.filter(x=>microKey(x)===key).map(family)).size>=2;
+    }).map(([key])=>key));
+    const conceptRecall=fresh.filter(x=>{
+      const key=microKey(x),origin=origins.get(key);
+      return key&&conceptDue.has(key)&&origin&&family(x)!==origin.family;
+    });
     const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={},axisCount={};
     // Erreur récente -> priorité modérée aux nouveaux cas similaires.
     // Ne touche ni à la montée en difficulté ni aux révisions classiques.
@@ -660,15 +685,27 @@
     // pas automatiquement deux anciens QCM a chaque seance. En cas d'erreur
     // ou de reponse aidee encore eligibles, conserver deux places de rappel.
     const weakDue=due.some(x=>previous[x.id].result!=='correct'||previous[x.id].assisted);
-    const reviewQuota=Math.min(weakDue?2:1,Math.floor(limit/4),due.length);
+    const reviewQuota=Math.min(weakDue?2:1,Math.floor(limit/4),
+      due.length+(conceptRecall.length?1:0));
+    // Dès la première séance, les cinq ouvertures usuelles et Passe ;
+    // conserver deux exemples de chaque mineure, comme la V1 actuelle.
+    if(s===0&&limit>=8){
+      for(const answer of ['1♣','1♦','1♣','1♦','1♥','1♠','1SA','Passe']){
+        const options=fresh.filter(x=>x.theme==='ouv'&&bid(x)===answer);
+        if(options.length)pick(options,'nouveau');
+      }
+    }
     // Placer les révisions parmi les nouveautés plutôt qu'en bloc.
     const plan=[];
     for(let i=0;i<limit;i++)plan.push(i===3||i===7?'revision':'nouveau');
     let plannedReviews=0;
-    for(let i=0;i<limit;i++){
+    for(let i=selected.length;i<limit;i++){
       let kind=plan[i];
       if(kind==='revision'&&plannedReviews>=reviewQuota)kind='nouveau';
-      if(kind==='revision'&&pick(due,'revision')){plannedReviews++;continue}
+      if(kind==='revision'&&
+        (pick(due,'revision')||pick(conceptRecall,'revision'))){
+        plannedReviews++;continue;
+      }
       if(pick(fresh,'nouveau'))continue;
       if(pick(due,'revision'))continue;
       if(pick(pool,'revision'))continue;
@@ -986,6 +1023,40 @@
       quizQuestionHistory:quizRecords||{}
     };
   }
+  // Les imports doivent être valides avant tout remplacement localStorage.
+  function importProgress(data,exercises){
+    if(!data||typeof data!=='object'||Array.isArray(data)||
+       data.format!=='QPJB_PROGRESS_EXPORT_1'||
+       data.storageKeys?.parcours!=='qpjb-sef-parcours-01')
+      throw Error('Fichier de progression V1 non reconnu');
+    const src=data.algorithmState;
+    if(!src||typeof src!=='object'||Array.isArray(src)||
+       src.version!==VERSION||!Number.isInteger(src.completed)||
+       src.completed<0||src.completed>100000||
+       !src.entries||typeof src.entries!=='object'||Array.isArray(src.entries))
+      throw Error('État du parcours incompatible');
+    const known=new Set(exercises.map(x=>x.id));
+    if(Object.keys(src.entries).some(id=>!known.has(id)))
+      throw Error('Exercice inconnu dans la progression');
+    if(src.active!==null&&src.active!==undefined){
+      if(!src.active||!Array.isArray(src.active.ids)||
+         !src.active.ids.length||src.active.ids.length>20||
+         new Set(src.active.ids).size!==src.active.ids.length||
+         src.active.ids.some(id=>!known.has(id))||
+         !src.active.answers||typeof src.active.answers!=='object')
+        throw Error('Séance en cours incompatible');
+    }
+    const restored=load(src);
+    if(restored.completed!==src.completed||
+       Object.keys(restored.entries).length!==Object.keys(src.entries).length||
+       (!!restored.active)!=(!!src.active)||
+       (src.active&&
+        (restored.active.ids.join('|')!==src.active.ids.join('|')||
+         Object.keys(restored.active.answers).length!==
+         Object.keys(src.active.answers).length)))
+      throw Error('La sauvegarde ne peut pas être restaurée intégralement');
+    return restored;
+  }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
   // ni de reconstruction spéculative de l'historique.
   const DASH_LABELS={
@@ -1054,5 +1125,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,summary,levelFor};
 });
