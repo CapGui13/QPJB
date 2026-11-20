@@ -1,0 +1,29 @@
+name: QPJB — ergonomie, benchmark longitudinal
+on:
+  push:
+    branches:
+      - 'test/qpjb-ergonomie-longitudinal-20261120'
+    paths:
+      - 'tests/quizz-ergonomie-longitudinal.cjs'
+      - '.github/workflows/qpjb-ergonomie-longitudinal.yml'
+  pull_request:
+    paths:
+      - 'tests/quizz-ergonomie-longitudinal.cjs'
+      - '.github/workflows/qpjb-ergonomie-longitudinal.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  longitudinal:
+    name: Profils fictifs, 23 séances, aucun historique personnel
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tests/quizz-ergonomie-longitudinal.cjs
+      - run: node tests/quizz-ergonomie-longitudinal.cjs
