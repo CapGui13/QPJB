@@ -29,6 +29,7 @@ function removeBlock(source,mark,indent){
 let previousSource=removeBlock(code,'EVIDENCE','    ');
 previousSource=removeBlock(previousSource,'PICK','      ');
 previousSource=removeBlock(previousSource,'SCORE','        ');
+previousSource=removeBlock(previousSource,'DIVERSITY','    ');
 const afterTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery+lotBPriority;';
 const beforeTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery;';
 assert.ok(previousSource.includes(afterTail),'Marqueur de score conservé');
