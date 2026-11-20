@@ -107,4 +107,56 @@ assert.equal(hardDeck.length,10);assert.equal(easyDeck.length,10);
 assert.ok(mean(hardDeck)>mean(easyDeck),
   'Le choix doit influencer les QCM : '+mean(hardDeck)+' vs '+mean(easyDeck));
 assert.equal(P.adjustDifficulty(s,'increase'),false,'Pas de modification en cours de séance');
+// Suivi prospectif des causes du tirage : le même catalogue et les mêmes
+// dix questions, mais des explications conservées après rechargement.
+// Tests fictifs uniquement ; aucune progression personnelle dans GitHub.
+const traced=P.empty();
+const tracedDeck=P.start(traced,catalog);
+const tracedPlan=traced.active.selection;
+assert.equal(tracedPlan.length,10);
+assert.deepEqual(tracedPlan.map(x=>x.id),tracedDeck.map(x=>x.id));
+assert.ok(tracedPlan.every(x=>P.SELECTION_REASONS.includes(x.reason)));
+assert.ok(tracedPlan.every(x=>x.kind==='nouveau'));
+assert.ok(tracedPlan.some(x=>x.reason==='equilibre_ouvertures'),
+  'The existing opening diversity choice is explicitly traceable');
+const priorSelection=JSON.stringify(traced.active.selection);
+assert.deepEqual(P.load(JSON.stringify(traced)).active.selection,tracedPlan,
+  'The selection motives survive a mid-session reload');
+assert.deepEqual(P.start(traced,catalog).map(x=>x.id),tracedDeck.map(x=>x.id),
+  'Instrumenting the plan never changes a resumed deck');
+for(let i=0;i<tracedDeck.length;i++)
+  assert.equal(P.record(traced,tracedDeck[i],'correct',i,tracedDeck[i].answer,false,false),true);
+assert.equal(P.finish(traced,catalog),true);
+assert.deepEqual(traced.journal[0].answers.map(x=>x.selectionReason),
+  JSON.parse(priorSelection).map(x=>x.reason),
+  'The original selection reasons are carried into the finished session');
+const diag=P.selectionDiagnostics(traced);
+assert.equal(diag.observedSessions,1);
+assert.equal(diag.knownReasons,10);
+assert.equal(diag.unknownReasons,0);
+assert.equal(diag.questions,10);
+assert.equal(Object.values(diag.themes).reduce((a,b)=>a+b,0),10);
+assert.equal(Object.values(diag.reasons).reduce((a,b)=>a+b,0),10);
+assert.equal(diag.perSession[0].largestThemeCount,10);
+assert.equal(diag.perSession[0].largestThemeShare,1);
+const rawBeforeDiagnostic=JSON.stringify(traced);
+assert.deepEqual(P.exportProgress(traced,catalog,{}).selectionDiagnostics,diag);
+assert.equal(JSON.stringify(traced),rawBeforeDiagnostic,
+  'Read-only analysis must never mutate progress');
+assert.deepEqual(P.load(rawBeforeDiagnostic).journal,traced.journal,
+  'Saving/reloading does not erase selection explanations');
+const exportedTraced=P.exportProgress(traced,catalog,{});
+assert.deepEqual(P.importProgress(JSON.stringify(exportedTraced)).journal,traced.journal,
+  'Existing import remains compatible with the new export');
+const unseen=P.selectionDiagnostics({journal:[{mode:'parcours',session:14,
+  answers:[{id:'HISTORICAL',theme:'sa',result:'correct'},
+    {id:'HISTORICAL-2',theme:'majeur',result:'wrong'}]}]});
+assert.equal(unseen.knownReasons,0,'No invented historical explanation');
+assert.equal(unseen.unknownReasons,2);
+assert.equal(unseen.perSession[0].distinctThemes,2);
+assert.equal(unseen.perSession[0].topTwoThemeShare,1);
+const balanced=P.selectionDiagnostics({journal:[{mode:'parcours',session:8,
+  answers:[...Array(6)].map((_,i)=>({theme:i<4?'mineur':'majeur'}))}]});
+assert.equal(balanced.perSession[0].largestThemeShare,0.667);
+assert.equal(balanced.perSession[0].topTwoThemeShare,1);
 console.log('QPJB ERGONOMIE NODE PASS : 13 séances, journal réel, export, migration, maîtrise et difficulté');
