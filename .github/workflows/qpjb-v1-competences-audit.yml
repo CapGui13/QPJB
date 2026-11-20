@@ -12,6 +12,10 @@ on:
       - 'audits/QPJB_V1_APRES_FIT_48_PRECLASSIFICATION_20261120.json'
       - 'scripts/verify-v1-apres-fit-48.cjs'
       - 'Docs/QUIZZ_V1_APRES_FIT_48_PRECLASS_20261120.md'
+      - 'audits/QPJB_V1_BARRAGE_65_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_CHELEM_65_PRECLASSIFICATION_20261120.json'
+      - 'scripts/verify-v1-barrages-chelems-130.cjs'
+      - 'Docs/QUIZZ_V1_BARRAGES_CHELEMS_130_PRECLASS_20261120.md'
       - '.github/workflows/qpjb-v1-competences-audit.yml'
   workflow_dispatch:
 permissions:
@@ -34,3 +38,5 @@ jobs:
       - run: node scripts/verify-v1-stayman-texas-65.cjs
       - run: node --check scripts/verify-v1-apres-fit-48.cjs
       - run: node scripts/verify-v1-apres-fit-48.cjs
+      - run: node --check scripts/verify-v1-barrages-chelems-130.cjs
+      - run: node scripts/verify-v1-barrages-chelems-130.cjs
