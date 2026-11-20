@@ -748,7 +748,7 @@
         // LOT_B_SCORE_BEGIN
         // Repondérer les fondamentaux fragiles. Aucune rubrique n'est exclue.
         const evidence=recentFoundation[t];
-        const foundationNeed=kind==='revision'||!foundationThemes.has(t)||!evidence||
+        const foundationNeed=!struggling||kind==='revision'||!foundationThemes.has(t)||!evidence||
           evidence.attempts<3||evidence.weak<2?0:
           Math.round(200*evidence.weak/evidence.attempts);
         // Ne pas sacrifier toute la découverte : réserver de la place aux autres thèmes.
@@ -757,7 +757,7 @@
         const discovery=struggling&&kind!=='revision'&&s>=8&&
           !foundationThemes.has(t)&&!Object.hasOwn(latestTheme,t)
           ?(x.difficulty<=2?260:x.difficulty===3?130:0):0;
-        const newFamily=struggling&&kind!=='revision'&&recent>=999?65:0;
+        const newFamily=struggling&&kind!=='revision'&&recent>=999?100:0;
         // Éviter de présenter des cas de niveau 4–5 à un élève qui échoue partout.
         const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4?-150:0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
