@@ -8,15 +8,13 @@ const sha=crypto.createHash('sha256').update(bytes).digest('hex');
 assert.equal(sha,'4edc289dfa6d1e929e6985985152321adf8edb342923b4fadc061405aef386b6');
 assert.equal(bytes.length,1937683);
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert.equal(index.split('id="qpjb-v2-preview-entry"').length,2);
+assert.equal(index.split('id="qpjb-v2-quizz-entry"').length,2);
 assert.equal(index.split('href="./'+htmlPath+'"').length,2);
-assert.match(index,/id="qpjb-v2-preview-entry" hidden style="display:none/);
-assert.match(index,/new URLSearchParams\(location.search\)\.get\('v2preview'\)==='1'/);
+assert.ok(!index.includes('qpjb-v2-preview-entry'));
+assert.match(index,/#vquizz\.is-session #qpjb-v2-quizz-entry\{display:none\}/);
 const original=index
- .replace(/    <!-- V2 R1 : accès opt-in seulement,[\s\S]*?    <\/div>\n  <\/section>/,
-          '  </section>')
- .replace(/<script>\n\/\* Aucun accès V2 dans l'interface normale[\s\S]*?<\/script>\n<script defer src="\.\/site-update\.js\?v=1"><\/script>/,
-          '<script defer src="./site-update.js?v=1"></script>');
+ .replace('#vquizz.is-session #qpjb-v2-quizz-entry{display:none}\n','')
+ .replace(/  <div id="qpjb-v2-quizz-entry"[\s\S]*?(?=  <div id="quizz-frame-wrap">)/,'');
 const ob=Buffer.from(original);
 const baseline=crypto.createHash('sha1').update('blob '+ob.length+'\0').update(ob).digest('hex');
 assert.equal(baseline,'a7bdd7f9f3eb67d4d1f42d5b065e548a97a20065','Accueil modifié hors opt-in');
