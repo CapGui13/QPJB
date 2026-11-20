@@ -86,7 +86,8 @@ assert.equal(P.load(JSON.stringify(feedback)).difficultyAdjustment,-1);
 const hard=P.empty();hard.completed=30;hard.difficultyAdjustment=2;
 const easy=P.empty();easy.completed=30;easy.difficultyAdjustment=-2;
 const hardDeck=P.select(catalog,hard,10),easyDeck=P.select(catalog,easy,10);
-const mean=deck=>deck.reduce((n,q)=>n+q.difficulty,0)/deck.length;
+const byId=new Map(catalog.map(q=>[q.id,q]));
+const mean=deck=>deck.reduce((n,q)=>n+byId.get(q.id).difficulty,0)/deck.length;
 assert.equal(hardDeck.length,10);assert.equal(easyDeck.length,10);
 assert.ok(mean(hardDeck)>mean(easyDeck),
   'Le choix doit influencer les QCM : '+mean(hardDeck)+' vs '+mean(easyDeck));
