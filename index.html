@@ -586,6 +586,7 @@ header{
 /* Quizz intégré : même espace sombre et même navigation persistante que l'entraînement. */
 #vquizz{display:none;background:#211d27;min-height:100dvh;padding-top:60px}
 #vquizz.is-session{padding-top:0}
+#vquizz.is-session #qpjb-v2-quizz-entry{display:none}
 #quizz-frame-wrap{position:relative;width:100%;min-height:100dvh;background:#211d27}
 #quizz-frame{display:block;width:100%;height:100dvh;border:0;background:#211d27}
 #quizz-loading{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px;min-height:180px;padding:18px;background:#211d27;color:#eee3fa;font:700 13px/1.5 'Exo 2',system-ui,sans-serif}
@@ -710,14 +711,6 @@ function markSplashReady() {
       <a class="training-button" data-training-mode="play" href="./" onclick="event.preventDefault();qpjbTrainingShow('play')">Jeu de la carte</a>
       <a class="training-button training-button-quizz" data-training-mode="quizz" href="./quizz.html" onclick="event.preventDefault();qpjbQuizzShow()" aria-label="Ouvrir le Quizz d’enchères">Quizz</a>
     </div>
-    <!-- V2 R1 : accès opt-in seulement, jamais visible sur l'accueil standard. -->
-    <div id="qpjb-v2-preview-entry" hidden style="display:none;margin-top:13px;text-align:center">
-      <a href="./preview/v2-eleve/parcours-sef-65-r1.html" target="_blank" rel="noopener noreferrer"
-         style="display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 13px;color:inherit;text-decoration:none;font-weight:700">
-        Parcours guidé SEF V2 · 65 séances (aperçu)
-      </a>
-      <div style="font-size:.79rem;opacity:.73;margin-top:5px">Prévisualisation non publiée · sauvegarde indépendante · ouverture dans un nouvel onglet</div>
-    </div>
   </section>
   <div class="config" id="seance-config">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
@@ -749,6 +742,13 @@ function markSplashReady() {
 </div>
 <!-- QUIZZ : vue intégrée persistante, même système de fondu que QPJB -->
 <div id="vquizz" style="display:none">
+  <div id="qpjb-v2-quizz-entry" style="padding:14px 20px;text-align:center;background:#211d27;color:#eee3fa;font-family:'Exo 2',system-ui,sans-serif">
+    <a href="./preview/v2-eleve/parcours-sef-65-r1.html" target="_blank" rel="noopener noreferrer"
+       style="display:inline-block;padding:12px 20px;border:1px solid #a88cc3;border-radius:11px;color:#eee3fa;text-decoration:none;font-weight:700">
+      Parcours guidé · 65 séances
+    </a>
+    <div style="font-size:.8rem;opacity:.75;margin-top:7px">Quiz SEF classique ci-dessous · Parcours guidé en nouvel onglet</div>
+  </div>
   <div id="quizz-frame-wrap">
     <iframe id="quizz-frame" src="about:blank" title="QPJB · Quizz d’enchères"></iframe>
     <div id="quizz-loading" role="status" aria-live="polite">
@@ -2508,17 +2508,6 @@ if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbQuizz)qpjbQuizzShow(false
 else if((!qpjbIsReload||qpjbAutoReload)&&history.state?.qpjbTraining)qpjbTrainingShow(history.state.qpjbTraining,false);
 else if((!qpjbIsReload||qpjbAutoReload)&&(location.hash==='#entrainement-bidding'||location.hash==='#entrainement-play'))
  qpjbTrainingShow(location.hash.endsWith('play')?'play':'bidding',false);
-</script>
-<script>
-/* Aucun accès V2 dans l'interface normale : opt-in manuel ?v2preview=1. */
-(function(){
-  const enabled=new URLSearchParams(location.search).get('v2preview')==='1';
-  const entry=document.getElementById('qpjb-v2-preview-entry');
-  if(enabled && entry){
-    entry.hidden=false;
-    entry.style.display='block';
-  }
-})();
 </script>
 <script defer src="./site-update.js?v=1"></script>
 </body>
