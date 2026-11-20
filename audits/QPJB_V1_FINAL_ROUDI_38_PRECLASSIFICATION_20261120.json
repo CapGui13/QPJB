@@ -1,0 +1,2529 @@
+{
+  "schema": "QPJB_V1_ROUDI_REVIEW_PRECLASS_20261120",
+  "source": "audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json",
+  "sourceGroups": "audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json",
+  "date": "2026-11-20",
+  "issue": 226,
+  "readOnly": true,
+  "publicationAllowed": false,
+  "validatedCount": 0,
+  "sourceCount": 38,
+  "sourceFamilies": 35,
+  "proposedSkillCount": 12,
+  "flagsCount": {
+    "VARIANTE_FAMILLE_SOURCE": 6,
+    "GROUPE_COMPETENCE_UN_SEUL_ITEM": 5,
+    "JUSTIFICATION_SOURCE_VS_GROUPE_A_REVOIR": 1,
+    "FORCING_MANCHE_EXCEPTION_A_VERIFIER": 1
+  },
+  "rows": [
+    {
+      "id": "SEF-V4-073-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-383",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-073-1",
+        "theme": "roudi",
+        "caseFamily": "cas-383",
+        "hand": [
+          [
+            "A",
+            "R",
+            "2"
+          ],
+          [
+            "V",
+            "10",
+            "9",
+            "8",
+            "3"
+          ],
+          [
+            "10",
+            "5",
+            "2"
+          ],
+          [
+            "R",
+            "V"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Le partenaire ouvre de 1♣, vous répondez 1♥ et il redemande 1SA (12–14 H). Vous possédez cinq Cœurs et 12 H : quelle enchère permet de vérifier un éventuel fit 5–3 avant de choisir la manche ?",
+        "choices": [
+          "3SA",
+          "2SA",
+          "2♣",
+          "2♥"
+        ],
+        "answer": "2♣",
+        "explain": "Après 1♣–1♥–1SA, l'ouvreur peut détenir trois Cœurs malgré sa redemande à Sans-Atout. Avec cinq Cœurs (♥V10983) et 12 H, vous avez assez de force pour envisager la manche. Le Roudi à 2♣ interroge l'ouvreur sur son éventuel soutien troisième pour découvrir un fit 5–3.",
+        "difficulty": 3,
+        "difficultyReason": "Déclencher le Roudi pour rechercher un fit 5-3"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-074-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-384",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-074-3",
+        "theme": "roudi",
+        "caseFamily": "cas-384",
+        "hand": [
+          [
+            "D",
+            "V",
+            "5"
+          ],
+          [
+            "10",
+            "6",
+            "5",
+            "4",
+            "3"
+          ],
+          [
+            "A",
+            "9",
+            "5"
+          ],
+          [
+            "6",
+            "4"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♥",
+          "2♣",
+          "3♥",
+          "2SA"
+        ],
+        "answer": "2♥",
+        "explain": "Avec cinq cartes dans la majeure et une main faible, sa répétition simple au palier de 2 est préférable à un Roudi.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-075-2",
+      "theme": "roudi",
+      "sourceFamily": "cas-385",
+      "candidateSkill": "roudi:passer_1sa",
+      "candidateLabel": "Passer sur redemande 1SA sans ambition",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-075-2",
+        "theme": "roudi",
+        "caseFamily": "cas-385",
+        "hand": [
+          [
+            "8",
+            "6",
+            "5"
+          ],
+          [
+            "D",
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "D",
+            "V",
+            "2"
+          ],
+          [
+            "D",
+            "10",
+            "6"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2SA",
+          "2♥"
+        ],
+        "answer": "Passe",
+        "explain": "Avec seulement quatre cartes dans la majeure et peu de points, Passe sur 1SA évite de monter inutilement.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître l’absence de perspective et conserver 1SA"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-076-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-386",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-076-3",
+        "theme": "roudi",
+        "caseFamily": "cas-386",
+        "hand": [
+          [
+            "10",
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "R",
+            "10",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "9",
+            "6"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          2,
+          3,
+          5
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Vous ouvrez de 1♣, le partenaire répond 1♥ et vous redemandez 1SA (12–14 H). Il poursuit par 2♣ Roudi, à trois réponses. Vous avez 13 H et seulement deux Cœurs (♥R7) : quelle réponse donnez-vous ?",
+        "choices": [
+          "2♦",
+          "2SA",
+          "2♥",
+          "2♠"
+        ],
+        "answer": "2♦",
+        "explain": "Dans le Roudi à trois réponses utilisé ici, 2♦ nie trois cartes dans la majeure annoncée par le répondant. Avec seulement ♥R7, vous n'avez aucun fit 5–3 à Cœur à révéler : répondez 2♦, même avec 13 H. Les réponses de soutien à Cœur sont réservées aux mains possédant trois atouts.",
+        "difficulty": 3,
+        "difficultyReason": "Sans fit majeur : deux Cœurs, répondre 2♦ à un Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-077-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-387",
+      "candidateSkill": "roudi:fit_min_2coeur",
+      "candidateLabel": "Réponse 2♥ : fit troisième et main minimum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-077-1",
+        "theme": "roudi",
+        "caseFamily": "cas-387",
+        "hand": [
+          [
+            "R",
+            "6",
+            "5"
+          ],
+          [
+            "D",
+            "9",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "10",
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♦",
+          "2SA",
+          "2♠",
+          "2♥"
+        ],
+        "answer": "2♥",
+        "explain": "Trois atouts et une ouverture minimum : 2♥ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Cœurs et une ouverture minimum de 12 H, répondre 2♥ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-078-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-388",
+      "candidateSkill": "roudi:fit_max_2pique",
+      "candidateLabel": "Réponse 2♠ : fit troisième et main maximum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-078-1",
+        "theme": "roudi",
+        "caseFamily": "cas-388",
+        "hand": [
+          [
+            "A",
+            "D",
+            "V"
+          ],
+          [
+            "D",
+            "4",
+            "2"
+          ],
+          [
+            "D",
+            "10",
+            "9"
+          ],
+          [
+            "R",
+            "7",
+            "6",
+            "5"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Vous ouvrez de 1♣, le partenaire répond 1♥ et vous redemandez 1SA (12–14 H). Il poursuit par 2♣ Roudi, à trois réponses. Avec 14 H et trois Cœurs (♥D42), que répondez-vous ?",
+        "choices": [
+          "2SA",
+          "2♥",
+          "2♦",
+          "2♠"
+        ],
+        "answer": "2♠",
+        "explain": "Votre redemande initiale à 1SA situe la main entre 12 et 14 H. Avec trois Cœurs (♥D42), vous détenez le soutien recherché par le Roudi et vos 14 H vous placent au maximum de cette zone. Dans les trois réponses de Roudi enseignées ici, 2♠ décrit précisément un fit troisième à Cœur et le maximum de la première zone.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Cœurs et une ouverture maximum de 14 H, répondre 2♠ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-389",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-079-3",
+        "theme": "roudi",
+        "caseFamily": "cas-389",
+        "hand": [
+          [
+            "A",
+            "V",
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "R",
+            "9",
+            "5"
+          ],
+          [
+            "R",
+            "9",
+            "6"
+          ],
+          [
+            "9",
+            "7"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "2♣",
+          "3SA"
+        ],
+        "answer": "2♣",
+        "explain": "Avec cinq cartes dans la majeure et un espoir de manche, le Roudi à 2♣ permet de rechercher un fit 5-3.",
+        "difficulty": 3,
+        "difficultyReason": "Déclencher le Roudi pour rechercher un fit 5-3"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-080-4",
+      "theme": "roudi",
+      "sourceFamily": "cas-390",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-080-4",
+        "theme": "roudi",
+        "caseFamily": "cas-390",
+        "hand": [
+          [
+            "9",
+            "8",
+            "6",
+            "4",
+            "2"
+          ],
+          [
+            "R",
+            "V",
+            "5"
+          ],
+          [
+            "10",
+            "6",
+            "4"
+          ],
+          [
+            "D",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Après 1♣–1♠–1SA, vous êtes le répondant. Quelle est votre deuxième enchère ?",
+        "choices": [
+          "2♠",
+          "2♣",
+          "3♠",
+          "2SA"
+        ],
+        "answer": "2♠",
+        "explain": "Avec cinq cartes dans la majeure et une main faible, sa répétition simple au palier de 2 est préférable à un Roudi.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-080-2",
+      "theme": "roudi",
+      "sourceFamily": "cas-390",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-080-2",
+        "theme": "roudi",
+        "caseFamily": "cas-390",
+        "hand": [
+          [
+            "R",
+            "D",
+            "10",
+            "9",
+            "2"
+          ],
+          [
+            "7",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "2"
+          ],
+          [
+            "9",
+            "8"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Après 1♣ du partenaire, vous avez annoncé 1♠ avec cinq Piques (♠RD1092) et 8 H. Le partenaire redemande 1SA, montrant une main régulière de première zone (12–14 H). Répétez-vous les Piques ou utilisez-vous le Roudi ?",
+        "choices": [
+          "3SA",
+          "2♣",
+          "2SA",
+          "2♠"
+        ],
+        "answer": "2♠",
+        "explain": "Avec 8 H et cinq Piques commandés par Roi-Dame-10-9, vous êtes trop faible pour rechercher la manche : le Roudi à 2♣ ne se justifie pas. Après 1♣–1♠–1SA, la répétition simple à 2♠ montre votre longueur cinquième et vise une partielle dans votre majeure, sans forcer le partenaire à reparler.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-081-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-391",
+      "candidateSkill": "roudi:passer_1sa",
+      "candidateLabel": "Passer sur redemande 1SA sans ambition",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-081-3",
+        "theme": "roudi",
+        "caseFamily": "cas-391",
+        "hand": [
+          [
+            "R",
+            "D",
+            "5",
+            "3"
+          ],
+          [
+            "V",
+            "8",
+            "5"
+          ],
+          [
+            "V",
+            "7",
+            "3"
+          ],
+          [
+            "10",
+            "9",
+            "8"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "Passe",
+          "2♠",
+          "2SA",
+          "2♣"
+        ],
+        "answer": "Passe",
+        "explain": "Avec seulement quatre cartes dans la majeure et peu de points, Passe sur 1SA évite de monter inutilement.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître l’absence de perspective et conserver 1SA"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-082-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-392",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-082-1",
+        "theme": "roudi",
+        "caseFamily": "cas-392",
+        "hand": [
+          [
+            "R",
+            "9"
+          ],
+          [
+            "A",
+            "10",
+            "2"
+          ],
+          [
+            "R",
+            "V",
+            "7"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "7",
+            "4"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          2,
+          3,
+          3,
+          5
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2SA",
+          "2♠",
+          "2♦",
+          "2♥"
+        ],
+        "answer": "2♦",
+        "explain": "Avec deux cartes dans la majeure du partenaire, 2♦ est la réponse négative au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec seulement deux Piques, répondre 2♦ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-083-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-393",
+      "candidateSkill": "roudi:fit_min_2coeur",
+      "candidateLabel": "Réponse 2♥ : fit troisième et main minimum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-083-1",
+        "theme": "roudi",
+        "caseFamily": "cas-393",
+        "hand": [
+          [
+            "A",
+            "5",
+            "4"
+          ],
+          [
+            "V",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "9"
+          ],
+          [
+            "D",
+            "9",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♠",
+          "2♥",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2♥",
+        "explain": "Trois atouts et une ouverture minimum : 2♥ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Piques et 12 H, répondre 2♥ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-084-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-394",
+      "candidateSkill": "roudi:fit_max_2pique",
+      "candidateLabel": "Réponse 2♠ : fit troisième et main maximum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-084-1",
+        "theme": "roudi",
+        "caseFamily": "cas-394",
+        "hand": [
+          [
+            "A",
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "2"
+          ],
+          [
+            "10",
+            "6",
+            "5"
+          ],
+          [
+            "8",
+            "6",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Vous avez ouvert de 1♣ et redemandé 1SA. Votre partenaire annonce 2♣ (Roudi à trois réponses). Quelle est votre réponse ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "2♦",
+          "2♥"
+        ],
+        "answer": "2♠",
+        "explain": "Trois atouts et une ouverture maximum : 2♠ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Piques et 14 H, répondre 2♠ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-085-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-395",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-085-3",
+        "theme": "roudi",
+        "caseFamily": "cas-395",
+        "hand": [
+          [
+            "8",
+            "3",
+            "2"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "6",
+            "5"
+          ],
+          [
+            "D",
+            "9",
+            "3"
+          ],
+          [
+            "R",
+            "6"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "3SA",
+          "2♥",
+          "2SA",
+          "2♣"
+        ],
+        "answer": "2♣",
+        "explain": "Avec cinq cartes dans la majeure et un espoir de manche, le Roudi à 2♣ permet de rechercher un fit 5-3.",
+        "difficulty": 3,
+        "difficultyReason": "Déclencher le Roudi pour rechercher un fit 5-3"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-086-2",
+      "theme": "roudi",
+      "sourceFamily": "cas-396",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-086-2",
+        "theme": "roudi",
+        "caseFamily": "cas-396",
+        "hand": [
+          [
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "V",
+            "7",
+            "5",
+            "2"
+          ],
+          [
+            "8",
+            "3",
+            "2"
+          ],
+          [
+            "V",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "3♥",
+          "2SA",
+          "2♥",
+          "2♣"
+        ],
+        "answer": "2♥",
+        "explain": "Avec cinq cartes dans la majeure et une main faible, sa répétition simple au palier de 2 est préférable à un Roudi.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-086-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-396",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-086-1",
+        "theme": "roudi",
+        "caseFamily": "cas-396",
+        "hand": [
+          [
+            "V",
+            "5",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "5",
+            "3",
+            "2"
+          ],
+          [
+            "A",
+            "V",
+            "2"
+          ],
+          [
+            "8",
+            "7"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "3SA",
+          "2♥",
+          "2♣",
+          "2SA"
+        ],
+        "answer": "2♥",
+        "explain": "Avec cinq cartes dans la majeure et une main faible, sa répétition simple au palier de 2 est préférable à un Roudi.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-087-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-397",
+      "candidateSkill": "roudi:passer_1sa",
+      "candidateLabel": "Passer sur redemande 1SA sans ambition",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-087-1",
+        "theme": "roudi",
+        "caseFamily": "cas-397",
+        "hand": [
+          [
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "R",
+            "10",
+            "6"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♣",
+          "2♥",
+          "2SA",
+          "Passe"
+        ],
+        "answer": "Passe",
+        "explain": "Avec seulement quatre cartes dans la majeure et peu de points, Passe sur 1SA évite de monter inutilement.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître l’absence de perspective et conserver 1SA"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-088-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-398",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-088-1",
+        "theme": "roudi",
+        "caseFamily": "cas-398",
+        "hand": [
+          [
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "5"
+          ],
+          [
+            "A",
+            "R",
+            "7",
+            "5",
+            "3"
+          ],
+          [
+            "D",
+            "6",
+            "5"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          2,
+          5,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2SA",
+          "2♦",
+          "2♥",
+          "2♠"
+        ],
+        "answer": "2♦",
+        "explain": "Avec deux cartes dans la majeure du partenaire, 2♦ est la réponse négative au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Sans fit Cœur : deux atouts seulement, répondre 2♦ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-089-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-399",
+      "candidateSkill": "roudi:fit_min_2coeur",
+      "candidateLabel": "Réponse 2♥ : fit troisième et main minimum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-089-1",
+        "theme": "roudi",
+        "caseFamily": "cas-399",
+        "hand": [
+          [
+            "10",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♦",
+          "2SA",
+          "2♥",
+          "2♠"
+        ],
+        "answer": "2♥",
+        "explain": "Trois atouts et une ouverture minimum : 2♥ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Cœurs et 12 H, répondre 2♥ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-090-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-400",
+      "candidateSkill": "roudi:fit_max_2pique",
+      "candidateLabel": "Réponse 2♠ : fit troisième et main maximum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-090-1",
+        "theme": "roudi",
+        "caseFamily": "cas-400",
+        "hand": [
+          [
+            "V",
+            "3",
+            "2"
+          ],
+          [
+            "R",
+            "V",
+            "8"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "7"
+          ],
+          [
+            "A",
+            "7",
+            "5"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♥",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♥",
+          "2SA",
+          "2♦",
+          "2♠"
+        ],
+        "answer": "2♠",
+        "explain": "Trois atouts et une ouverture maximum : 2♠ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Cœurs et 14 H, répondre 2♠ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-091-3",
+      "theme": "roudi",
+      "sourceFamily": "cas-401",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-091-3",
+        "theme": "roudi",
+        "caseFamily": "cas-401",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "10"
+          ],
+          [
+            "9",
+            "8",
+            "7"
+          ],
+          [
+            "7",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "3SA",
+          "2♣",
+          "2SA",
+          "2♠"
+        ],
+        "answer": "2♣",
+        "explain": "Avec cinq cartes dans la majeure et un espoir de manche, le Roudi à 2♣ permet de rechercher un fit 5-3.",
+        "difficulty": 3,
+        "difficultyReason": "Déclencher le Roudi pour rechercher un fit 5-3"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-092-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-402",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-092-1",
+        "theme": "roudi",
+        "caseFamily": "cas-402",
+        "hand": [
+          [
+            "A",
+            "V",
+            "5",
+            "4",
+            "3"
+          ],
+          [
+            "V",
+            "10",
+            "8"
+          ],
+          [
+            "10",
+            "8",
+            "5"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Après 1♦–1♠–1SA, vous êtes le répondant. Quelle est votre deuxième enchère ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♠",
+          "2♣"
+        ],
+        "answer": "2♠",
+        "explain": "Avec cinq cartes dans la majeure et une main faible, sa répétition simple au palier de 2 est préférable à un Roudi.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-092-2",
+      "theme": "roudi",
+      "sourceFamily": "cas-402",
+      "candidateSkill": "roudi:repetition_faible",
+      "candidateLabel": "Répéter une majeure sixième faible sans Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-092-2",
+        "theme": "roudi",
+        "caseFamily": "cas-402",
+        "hand": [
+          [
+            "R",
+            "V",
+            "9",
+            "8",
+            "2"
+          ],
+          [
+            "6",
+            "4",
+            "2"
+          ],
+          [
+            "R",
+            "V",
+            "9"
+          ],
+          [
+            "8",
+            "6"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Après 1♦ du partenaire, vous avez annoncé 1♠ avec cinq Piques (♠RV982) et 8 H. Le partenaire redemande 1SA, montrant une main régulière de première zone (12–14 H). Quelle seconde enchère choisissez-vous ?",
+        "choices": [
+          "2♠",
+          "2♣",
+          "3SA",
+          "2SA"
+        ],
+        "answer": "2♠",
+        "explain": "Avec cinq Piques (♠RV982) et 8 H, vous préférez jouer la partielle dans votre majeure. Sur 1♦–1♠–1SA, 2♠ est une répétition simple, naturelle et non forcing. Le Roudi à 2♣ chercherait un fit 5–3 dans une perspective constructive ; ici, la force de manche n'est pas en vue.",
+        "difficulty": 2,
+        "difficultyReason": "Répétition faible de la majeure sans lancer le Roudi"
+      },
+      "flags": [
+        "VARIANTE_FAMILLE_SOURCE"
+      ],
+      "notes": [
+        "Plusieurs QCM utilisent la même famille source : ils ne démontrent pas nécessairement des acquis indépendants.",
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-093-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-403",
+      "candidateSkill": "roudi:passer_1sa",
+      "candidateLabel": "Passer sur redemande 1SA sans ambition",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-093-1",
+        "theme": "roudi",
+        "caseFamily": "cas-403",
+        "hand": [
+          [
+            "10",
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "9",
+            "6",
+            "5"
+          ],
+          [
+            "V",
+            "8",
+            "2"
+          ],
+          [
+            "R",
+            "D",
+            "5"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2SA",
+          "Passe",
+          "2♣",
+          "2♠"
+        ],
+        "answer": "Passe",
+        "explain": "Avec seulement quatre cartes dans la majeure et peu de points, Passe sur 1SA évite de monter inutilement.",
+        "difficulty": 2,
+        "difficultyReason": "Reconnaître l’absence de perspective et conserver 1SA"
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-094-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-404",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-094-1",
+        "theme": "roudi",
+        "caseFamily": "cas-404",
+        "hand": [
+          [
+            "5",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "9"
+          ],
+          [
+            "D",
+            "V",
+            "9",
+            "5",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          2,
+          3,
+          5,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
+        "choices": [
+          "2♦",
+          "2♠",
+          "2♥",
+          "2SA"
+        ],
+        "answer": "2♦",
+        "explain": "Avec deux cartes dans la majeure du partenaire, 2♦ est la réponse négative au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec seulement deux Piques, répondre 2♦ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-095-2",
+      "theme": "roudi",
+      "sourceFamily": "cas-405",
+      "candidateSkill": "roudi:fit_min_2coeur",
+      "candidateLabel": "Réponse 2♥ : fit troisième et main minimum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-095-2",
+        "theme": "roudi",
+        "caseFamily": "cas-405",
+        "hand": [
+          [
+            "A",
+            "3",
+            "2"
+          ],
+          [
+            "V",
+            "8",
+            "5"
+          ],
+          [
+            "R",
+            "D",
+            "8",
+            "6"
+          ],
+          [
+            "D",
+            "8",
+            "7"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Vous avez ouvert de 1♦ et redemandé 1SA. Votre partenaire annonce 2♣ (Roudi à trois réponses). Quelle est votre réponse ?",
+        "choices": [
+          "2SA",
+          "2♥",
+          "2♠",
+          "2♦"
+        ],
+        "answer": "2♥",
+        "explain": "Trois atouts et une ouverture minimum : 2♥ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Piques et 12 H, répondre 2♥ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V4-096-1",
+      "theme": "roudi",
+      "sourceFamily": "cas-406",
+      "candidateSkill": "roudi:fit_max_2pique",
+      "candidateLabel": "Réponse 2♠ : fit troisième et main maximum",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V4-096-1",
+        "theme": "roudi",
+        "caseFamily": "cas-406",
+        "hand": [
+          [
+            "R",
+            "10",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "3"
+          ],
+          [
+            "A",
+            "6",
+            "3",
+            "2"
+          ],
+          [
+            "V",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Partenaire : 1♠",
+          "Vous : 1SA",
+          "Partenaire : 2♣ (Roudi)"
+        ],
+        "context": "Vous avez ouvert de 1♦ et redemandé 1SA. Votre partenaire annonce 2♣ (Roudi à trois réponses). Quelle est votre réponse ?",
+        "choices": [
+          "2♠",
+          "2♥",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2♠",
+        "explain": "Trois atouts et une ouverture maximum : 2♠ est la réponse au Roudi.",
+        "difficulty": 3,
+        "difficultyReason": "Avec trois Piques et 14 H, répondre 2♠ au Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V44-062",
+      "theme": "roudi",
+      "sourceFamily": "v44-cas-062",
+      "candidateSkill": "roudi:repondant_2sa_invitant",
+      "candidateLabel": "Proposer la manche par 2SA après refus de fit",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-062",
+        "theme": "roudi",
+        "caseFamily": "v44-cas-062",
+        "hand": [
+          [
+            "R",
+            "5",
+            "4"
+          ],
+          [
+            "V",
+            "10",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "8"
+          ],
+          [
+            "R",
+            "10"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "2SA",
+          "3SA",
+          "3♥",
+          "2♥"
+        ],
+        "answer": "2SA",
+        "explain": "Le Roudi n’a pas retrouvé trois Cœurs. Avec cinq Cœurs et 11 H, 2SA propose la manche sans imposer 3SA.",
+        "difficulty": 4,
+        "difficultyReason": "Interpréter une réponse négative au Roudi et proposer la manche à 2SA avec 11 H."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V44-063",
+      "theme": "roudi",
+      "sourceFamily": "v44-cas-063",
+      "candidateSkill": "roudi:repondant_3sa",
+      "candidateLabel": "Conclure 3SA après réponse négative au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-063",
+        "theme": "roudi",
+        "caseFamily": "v44-cas-063",
+        "hand": [
+          [
+            "R",
+            "V",
+            "7",
+            "6",
+            "4"
+          ],
+          [
+            "A",
+            "V",
+            "9"
+          ],
+          [
+            "A",
+            "3",
+            "2"
+          ],
+          [
+            "7",
+            "3"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "3SA",
+          "2SA",
+          "3♠",
+          "2♠"
+        ],
+        "answer": "3SA",
+        "explain": "L’absence de fit 5-3 à Pique et les 13 H du répondant conduisent à conclure à 3SA.",
+        "difficulty": 4,
+        "difficultyReason": "Interpréter l’absence de fit au Roudi et conclure à 3SA avec 13 H."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V44-064",
+      "theme": "roudi",
+      "sourceFamily": "v44-cas-064",
+      "candidateSkill": "roudi:repondant_3m_invitant",
+      "candidateLabel": "Proposer 3M avec fit confirmé",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-064",
+        "theme": "roudi",
+        "caseFamily": "v44-cas-064",
+        "hand": [
+          [
+            "A",
+            "7",
+            "6"
+          ],
+          [
+            "R",
+            "8",
+            "7",
+            "4",
+            "3"
+          ],
+          [
+            "D",
+            "5",
+            "3"
+          ],
+          [
+            "D",
+            "6"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "3♥",
+          "4♥",
+          "2SA",
+          "3SA"
+        ],
+        "answer": "3♥",
+        "explain": "Le fit 5-3 à Cœur est confirmé, mais l’ouvreur est minimum : 3♥ constitue une proposition de manche.",
+        "difficulty": 4,
+        "difficultyReason": "Combiner réponse minimum au Roudi, fit confirmé et force propositionnelle pour annoncer 3♥."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V44-065",
+      "theme": "roudi",
+      "sourceFamily": "v44-cas-065",
+      "candidateSkill": "roudi:repondant_4m_manche",
+      "candidateLabel": "Conclure à 4M avec fit et force",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-065",
+        "theme": "roudi",
+        "caseFamily": "v44-cas-065",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "9",
+            "8"
+          ],
+          [
+            "V",
+            "9",
+            "3"
+          ],
+          [
+            "V",
+            "8",
+            "7"
+          ],
+          [
+            "V",
+            "8"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♠ (fit, maximum)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "4♠",
+          "3♠",
+          "3SA",
+          "2SA"
+        ],
+        "answer": "4♠",
+        "explain": "Trois atouts et une ouverture maximum sont connus. Avec cinq Piques et 12 H, la manche à 4♠ devient logique.",
+        "difficulty": 4,
+        "difficultyReason": "Combiner fit confirmé, ouverture maximum et force du répondant pour conclure à 4♠."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-V44-066",
+      "theme": "roudi",
+      "sourceFamily": "v44-cas-066",
+      "candidateSkill": "roudi:repondant_4m_manche",
+      "candidateLabel": "Conclure à 4M avec fit et force",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-066",
+        "theme": "roudi",
+        "caseFamily": "v44-cas-066",
+        "hand": [
+          [
+            "R",
+            "5",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "2"
+          ],
+          [
+            "10",
+            "8",
+            "2"
+          ],
+          [
+            "8",
+            "7"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "context": "Quelle enchère convient à cette situation ?",
+        "choices": [
+          "4♥",
+          "3♥",
+          "3SA",
+          "2SA"
+        ],
+        "answer": "4♥",
+        "explain": "Le Roudi confirme le fit 5-3 à Cœur. Avec 13 H, la force de manche est acquise même face à une ouverture minimum.",
+        "difficulty": 4,
+        "difficultyReason": "Combiner fit confirmé au Roudi et force de manche du répondant pour conclure à 4♥."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-C2-012",
+      "theme": "roudi",
+      "sourceFamily": "audit-c02-SEF-C2-012",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-C2-012",
+        "theme": "roudi",
+        "caseFamily": "audit-c02-SEF-C2-012",
+        "hand": [
+          [
+            "R",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "10",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "6",
+            "3"
+          ],
+          [
+            "9",
+            "5"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "context": "Le partenaire a ouvert de 1♣, vous avez répondu 1♥, et il a redemandé 1SA. Quelle est votre prochaine enchère avec cette main ?",
+        "choices": [
+          "2♣",
+          "2♥",
+          "2SA",
+          "3SA"
+        ],
+        "answer": "2♣",
+        "explain": "Avec cinq Cœurs et 12 H, le répondant commence par 2♣ Roudi pour chercher le fit majeur 5–3 avant de choisir la manche.",
+        "difficulty": 3,
+        "difficultyReason": "Avec cinq Cœurs et un espoir de manche, déterminer l’utilité du relais Roudi."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-L10-030",
+      "theme": "roudi",
+      "sourceFamily": "ROU-2:030",
+      "candidateSkill": "roudi:declencher",
+      "candidateLabel": "Déclencher Roudi avec majeure cinquième et projet de manche",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L10-030",
+        "theme": "roudi",
+        "caseFamily": "ROU-2:030",
+        "hand": [
+          [
+            "A",
+            "D",
+            "10",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "9",
+            "3"
+          ],
+          [
+            "8",
+            "2"
+          ]
+        ],
+        "h": 9,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes Sud, donneur Nord. Séquence 1♣–Passe–1♠–Passe–1SA–Passe. Votre main vaut 11 HL avec six Piques et non une simple main faible. Jouant le Roudi trois réponses qui s’emploie aussi avec une sixième majeure et 11–12 HL, que répondez-vous ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♠",
+          "3♠"
+        ],
+        "answer": "2♣",
+        "explain": "Avec une majeure sixième et exactement 11–12 HL, utilisez 2♣ Roudi pour préciser le fit et la force de l’ouvreur. La répétition directe 2♠ s’emploie ici avec une main plus faible.",
+        "difficulty": 3,
+        "difficultyReason": "répétition 6 cartes faible"
+      },
+      "flags": [
+        "JUSTIFICATION_SOURCE_VS_GROUPE_A_REVOIR"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum).",
+        "La justification source évoque une répétition faible à six cartes malgré une réponse 2♣ ; vérifier le but exact de l'exercice, pas seulement la réponse."
+      ]
+    },
+    {
+      "id": "SEF-L13-002",
+      "theme": "roudi",
+      "sourceFamily": "LOT13-2026-11-13-02",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L13-002",
+        "theme": "roudi",
+        "caseFamily": "LOT13-2026-11-13-02",
+        "hand": [
+          [
+            "A",
+            "D",
+            "V"
+          ],
+          [
+            "9",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "6",
+            "5"
+          ],
+          [
+            "R",
+            "10",
+            "8",
+            "2"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : Passe",
+          "Vous : 1SA",
+          "Adversaire : Passe",
+          "Partenaire : 2♣ (Roudi à trois réponses)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes l’ouvreur. Après 1♦–1♥–1SA, votre partenaire utilise 2♣ Roudi. Vous êtes dans le haut de la zone 12–14 H, mais vous n’avez que deux Cœurs. Quelle réponse précise convient dans le Roudi à trois réponses ?",
+        "choices": [
+          "2♦",
+          "2♥",
+          "2♠",
+          "2SA"
+        ],
+        "answer": "2♦",
+        "explain": "En Roudi à trois réponses, 2♦ nie le fit troisième dans la majeure du répondant, quelle que soit la force de l’ouvreur. La réponse 2SA pour montrer un maximum sans fit n’existe pas dans cette version.",
+        "difficulty": 4,
+        "difficultyReason": "Roudi à trois réponses : distinguer absence de fit et zone maximale sans utiliser 2SA."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-L14-006",
+      "theme": "roudi",
+      "sourceFamily": "LOT14-2026-11-13-006",
+      "candidateSkill": "roudi:sans_fit_2carreau",
+      "candidateLabel": "Réponse 2♦ sans fit majeur au Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L14-006",
+        "theme": "roudi",
+        "caseFamily": "LOT14-2026-11-13-006",
+        "hand": [
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "2"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "3"
+          ],
+          [
+            "V",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Passe",
+          "Vous : 1SA",
+          "Adversaire : Passe",
+          "Partenaire : 2♣ (Roudi trois réponses)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez ouvert de 1♦ et redemandé 1SA, votre partenaire a demandé votre fit à Pique par 2♣ Roudi. Vous êtes maximum de la zone 12–14 H mais ne possédez que deux Piques. Quelle réponse est correcte ?",
+        "choices": [
+          "2♦",
+          "2♥",
+          "2♠",
+          "2SA"
+        ],
+        "answer": "2♦",
+        "explain": "Sans trois cartes à Pique, la réponse est toujours 2♦, même avec 14 H. Les réponses 2♥ et 2♠ exigent trois atouts ; 2SA n’est pas l’une des trois réponses de ce Roudi.",
+        "difficulty": 4,
+        "difficultyReason": "Roudi : deux cartes dans la majeure priment sur le maximum de points."
+      },
+      "flags": [],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-L14-007",
+      "theme": "roudi",
+      "sourceFamily": "LOT14-2026-11-13-007",
+      "candidateSkill": "roudi:repondant_autre_majeure",
+      "candidateLabel": "Nommer une autre majeure après Roudi négatif",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L14-007",
+        "theme": "roudi",
+        "caseFamily": "LOT14-2026-11-13-007",
+        "hand": [
+          [
+            "A",
+            "V",
+            "10",
+            "9",
+            "3"
+          ],
+          [
+            "R",
+            "10",
+            "8",
+            "5"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "V",
+            "6"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe",
+          "Vous : 2♣ (Roudi trois réponses)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (pas trois Piques)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire a dénié un fit de trois cartes à Pique. Vous avez cinq Piques et quatre Cœurs, avec un espoir de manche. Dans vos développements du Roudi, quelle enchère naturelle non forcing permet encore de chercher un fit à Cœur ?",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♥"
+        ],
+        "answer": "2♥",
+        "explain": "Après 2♦ (deux Piques chez l’ouvreur), 2♥ montre les quatre Cœurs du répondant et reste non forcing avec seulement un espoir de manche. 3♥ serait forcing de manche ; 2SA ignorerait le fit 4-4 possible.",
+        "difficulty": 4,
+        "difficultyReason": "Roudi : après refus du fit majeur, retrouver une autre majeure quatrième."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    },
+    {
+      "id": "SEF-L21-003",
+      "theme": "roudi",
+      "sourceFamily": "LOT21-2026-11-13-003",
+      "candidateSkill": "roudi:repondant_2pique_fm",
+      "candidateLabel": "2♠ cher forcing manche selon la séquence Roudi",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-L21-003",
+        "theme": "roudi",
+        "caseFamily": "LOT21-2026-11-13-003",
+        "hand": [
+          [
+            "A",
+            "V",
+            "9",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "8",
+            "5"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "9",
+            "6"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi à trois réponses)",
+          "Partenaire : 2♦ (deux Cœurs, sans indication de force)"
+        ],
+        "context": "Votre partenaire a répondu 2♦ à votre Roudi : il ne possède que deux Cœurs. Vous détenez cinq Cœurs, quatre Piques et 14 H. Quelle enchère de bicolore cher, forcing de manche, décrit vos quatre Piques après la réponse négative au Roudi ?",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♥"
+        ],
+        "answer": "2♠",
+        "explain": "Après 1♣–1♥–1SA–2♣ (Roudi)–2♦, 2♠ est le bicolore cher du répondant : cinq Cœurs, quatre Piques et un jeu forcing de manche. Il ne faut pas le confondre avec les continuations non forcing au palier de 2, comme 2SA. Le Roudi reste ici celui à trois réponses.",
+        "difficulty": 5,
+        "difficultyReason": "Exception forcing de manche : 2♠ bicolore cher après 2♦ du Roudi."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "FORCING_MANCHE_EXCEPTION_A_VERIFIER"
+      ],
+      "notes": [
+        "Séparer le relais Roudi après redemande à 1SA de la répétition naturelle faible et des réponses codées (2♦ sans fit, 2♥ fit minimum, 2♠ fit maximum)."
+      ]
+    }
+  ]
+}
