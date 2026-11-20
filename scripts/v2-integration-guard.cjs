@@ -8,7 +8,7 @@ const bytes=fs.readFileSync(path.join(root,htmlPath));
 // La proteger par le SHA Git du fichier public reel, non par les anciennes
 // substitutions de texte issues de la release #217.
 const blobSha=crypto.createHash('sha1')
- .update('blob '+bytes.length+'\\0').update(bytes).digest('hex');
+ .update('blob '+bytes.length+String.fromCharCode(0)).update(bytes).digest('hex');
 assert.equal(blobSha,'12095819f58980163b4d79d31e7b7f3c1575ea9b',
  'Archive V2 modifiee : analyse pedagogique et migration requises avant alteration');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
