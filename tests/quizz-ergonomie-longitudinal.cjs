@@ -134,5 +134,5 @@ assert.ok(mixed.next10.directReviews >= fluent.next10.directReviews,
   'Des erreurs doivent favoriser les rappels directs');
 assert.ok(fragile.next10.directReviews >= fluent.next10.directReviews);
 assert.ok(assisted.next10.directReviews >= fluent.next10.directReviews,
-  'Une reussite aidee n'est pas une preuve autonome');
+  "Une reussite aidee n'est pas une preuve autonome");
 console.log('QPJB LONGITUDINAL RECALLS PASS : 4 profils x 23 seances, rappels reels classes');
