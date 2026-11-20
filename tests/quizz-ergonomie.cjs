@@ -55,6 +55,21 @@ assert.equal(result.sessions[0].answers[0].id,sessions[0][0]);
 assert.equal(result.quizQuestionHistory.EXAMPLE.attempts,2);
 assert.ok(result.mastery.skills&&result.mastery.micros&&result.mastery.dashboard);
 assert.deepEqual(JSON.parse(before).journal,s.journal,'Exporter ne modifie pas les réponses');
+// Import du même JSON produit par la V1 : progression, séance en cours
+// et historique réel conservés, sans écrire dans le Quiz classique.
+const imported=P.importProgress(JSON.stringify(result));
+assert.equal(imported.completed,13);
+assert.deepEqual(imported.journal,s.journal);
+assert.deepEqual(imported.active.ids,s.active.ids);
+assert.deepEqual(imported.skills,s.skills);
+assert.throws(()=>P.importProgress('{}'),/export de progression V1/);
+assert.throws(()=>P.importProgress('{'),/JSON valide/);
+const corruptExport=JSON.parse(JSON.stringify(result));
+corruptExport.summary.completedSessions=99;
+assert.throws(()=>P.importProgress(corruptExport),/incohérent/);
+const brokenHistory=JSON.parse(JSON.stringify(result));
+brokenHistory.algorithmState.journal[0].answers[0].result='invented';
+assert.throws(()=>P.importProgress(brokenHistory),/incohérente/);
 // Reprise d'une ancienne sauvegarde sans historique détaillé : aucune séance
 // inventée, et les compteurs existants demeurent exploitables.
 const legacy=JSON.parse(before);
