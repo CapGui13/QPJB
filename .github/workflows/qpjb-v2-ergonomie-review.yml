@@ -1,5 +1,15 @@
 name: QPJB ergonomie — progression et quiz (HOLD)
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'quizz.html'
+      - 'quizz-parcours.js'
+      - 'tests/quizz-parcours-browser.cjs'
+      - 'tests/quizz-ergonomie.cjs'
+      - 'tests/quizz-ergonomie-browser.cjs'
+      - '.github/workflows/qpjb-v2-ergonomie-review.yml'
   push:
     branches:
       - 'feature/qpjb-v2-ergonomie-progression-20261120'
