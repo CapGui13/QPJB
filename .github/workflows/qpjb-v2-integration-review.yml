@@ -1,4 +1,4 @@
-name: QPJB V2 — integration R1 opt-in (sans publication)
+name: QPJB V2 — recette finale integration publique
 on:
   push:
     branches:
@@ -14,7 +14,7 @@ permissions:
   contents: read
 jobs:
   guard:
-    name: Controle du candidat et du lien opt-in
+    name: Controle du contenu R1 et de l'acces Quizz
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

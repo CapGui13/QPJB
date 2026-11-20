@@ -48,15 +48,15 @@ async function check(which,mobile,url){
    await link.click();
    candidate=await popup;
    await candidate.waitForLoadState('domcontentloaded');
-   await candidate.getByRole('alert').getByText(/CANDIDAT PRIVÉ, 19 DÉCISIONS VALIDÉES/).waitFor();
+   await candidate.getByRole('alert').getByText(/PARCOURS GUIDÉ SEF — 65 SÉANCES/).waitFor();
    const verified=await candidate.evaluate(()=>{
     const v=JSON.parse(document.querySelector('#ay-payload').textContent);
     return {questions:v.catalog.length,addons:v.addons.length,
      decision:v.releaseDecision,approval:v.editorialApproval,
-     version:v.candidateVersion};
+     version:v.candidateVersion,published:v.candidatePublished};
    });
-   assert.deepEqual(verified,{questions:1523,addons:0,decision:'HOLD',
-    approval:'APPROVED_BY_USER',version:'QPJB-V2-65-19A-20261120-R1'});
+   assert.deepEqual(verified,{questions:1523,addons:0,decision:'PUBLISHED',
+    approval:'APPROVED_BY_USER',version:'QPJB-V2-65-19A-20261120-R1',published:true});
    assert.equal(new URL(candidate.url()).pathname,'/preview/v2-eleve/parcours-sef-65-r1.html');
    assert.equal(await candidate.locator('#backup-tools').count(),1);
    assert.equal(await home.locator('.training-button[data-training-mode="quizz"]').count(),1);
