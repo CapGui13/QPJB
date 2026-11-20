@@ -652,21 +652,25 @@
       foundationSummary.weak*2>=foundationSummary.attempts;
     // LOT_B_EVIDENCE_END
     const maxPerTheme=pool.every(x=>x.theme==='ouv')?limit:4;
-    // Viser des familles, ouvertures et décisions encore inédites sans
-    // confondre nouveauté et niveau adapté aux acquis de l'élève.
-    const recentFamily={},seenContexts=new Set(),seenDecisions=new Set();
+    const recentFamily={};
     for(const x of exercises){
       const r=previous[x.id],key=family(x);
-      if(!r)continue;
-      if(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key])
+      if(r&&(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key]))
         recentFamily[key]=r.lastSession;
+    }
+    // LOT_B_DIVERSITY_BEGIN
+    // Favoriser de nouveaux contextes et types de réponses, sans les imposer.
+    const seenContexts=new Set(),seenDecisions=new Set();
+    for(const x of exercises){
+      if(!previous[x.id])continue;
       seenContexts.add(x.theme+'|'+String(x.auction?.[0]||''));
       seenDecisions.add(x.theme+'|'+String(x.answer||''));
     }
-    // Un échec quasi constant ne justifie pas la même montée en difficulté
-    // qu'un élève qui réussit souvent mais sollicite de l'aide.
+    // Les échecs quasi systématiques exigent une protection plus forte
+    // contre les cas difficiles que les succès fréquents avec assistance.
     const severeStruggling=struggling&&foundationSummary.weak*4>=
       foundationSummary.attempts*3;
+    // LOT_B_DIVERSITY_END
     function pick(list,kind,reason){
       let ranked=list.filter(x=>!picked.has(x.id));
       if(!ranked.length)return false;
