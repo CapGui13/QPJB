@@ -45,9 +45,9 @@ for(const [avant,apres] of substitutions){
  assert.equal(canonical.split(apres).length,2,'Mention manquante ou dupliquée: '+apres.slice(0,40));
  canonical=canonical.replace(apres,avant);
 }
-const original=Buffer.from(canonical,'utf8');
-assert.equal(original.length,1937683);
-assert.equal(crypto.createHash('sha256').update(original).digest('hex'),
+const candidateOriginal=Buffer.from(canonical,'utf8');
+assert.equal(candidateOriginal.length,1937683);
+assert.equal(crypto.createHash('sha256').update(candidateOriginal).digest('hex'),
  '4edc289dfa6d1e929e6985985152321adf8edb342923b4fadc061405aef386b6');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.equal(index.split('id="qpjb-v2-quizz-entry"').length,2);
