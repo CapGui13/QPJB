@@ -60,7 +60,7 @@ async function run(engine,mobile){
     nextSession:1,finished:false}));
   },key);
   await page.reload({waitUntil:'domcontentloaded'});
-  const hint=await page.locator('.hint').last().textContent();
+  const hint=await page.locator('.hint').filter({hasText:'SEF-L06-029'}).first().textContent();
   assert.ok(hint.includes('Ouvertures conventionnelles / barrages'),hint);
   await answer(page,'4♦');
   for(let i=1;i<10;i++){await page.locator('#next').click();await answer(page)}
