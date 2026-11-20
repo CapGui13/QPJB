@@ -5,6 +5,7 @@ on:
     paths:
       - 'Docs/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json'
       - 'scripts/v2-editorial-dry-run.cjs'
+      - 'scripts/v2-editorial-hold-sandbox.cjs'
       - '.github/workflows/qpjb-v2-editorial-hold.yml'
   workflow_dispatch:
 permissions:
@@ -23,3 +24,23 @@ jobs:
           node-version: '22'
       - run: node --check scripts/v2-editorial-dry-run.cjs
       - run: node scripts/v2-editorial-dry-run.cjs
+      - name: Recuperer l'aperçu V2 d'origine épinglé (lecture seule)
+        uses: actions/checkout@v4
+        with:
+          ref: 88b548763bf271109f7916acbf1858865070f8ae
+          path: source-v2
+          persist-credentials: false
+          sparse-checkout: |
+            preview/v2-eleve/
+          sparse-checkout-cone-mode: false
+      - name: Contrôler l'isolement de sauvegarde et construire l'aperçu HOLD
+        run: |
+          node --check scripts/v2-editorial-hold-sandbox.cjs
+          node scripts/v2-editorial-hold-sandbox.cjs
+      - name: Archiver le seul prototype privé — rétention minimale
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-prototype-65-seances-edition-hold
+          path: artifacts/v2-editorial-hold-private/
+          if-no-files-found: error
+          retention-days: 1
