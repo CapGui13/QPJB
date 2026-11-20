@@ -543,4 +543,53 @@ assert.equal(run.completed,65);
 const summary=P.summary(run,exercises);
 assert.equal(summary.completed,65);
 assert.ok(summary.seen>200,'Diverse pool used over repeated sessions');
+
+// V1 : une micro-categorie large ne vaut pas une competence homologuee.
+// Une question Stayman et une Texas apres 1SA ne sont pas interchangeables
+// pour repousser les rappels, meme si microKey() vaut sa:1SA pour les deux.
+const distinctSA=Array.from({length:80},(_,i)=>({
+  id:'SCENARIO-SA-'+i,theme:'sa',difficulty:2+i%2,
+  caseFamily:'SCENARIO-FAMILY-'+i,
+  answer:['2♣','2♦','2♥','2♠','2SA','3♣','3♦','3SA'][i%8],
+  auction:['Partenaire : 1SA']
+}));
+assert.equal(P.microKey(distinctSA[0]),'sa:1SA');
+assert.equal(P.microKey(distinctSA[1]),'sa:1SA');
+assert.notEqual(distinctSA[0].answer,distinctSA[1].answer,
+  'Stayman and Texas have distinct expected bids');
+const oldStayman=P.empty();oldStayman.completed=10;
+oldStayman.entries[distinctSA[0].id]={
+  result:'correct',assisted:false,lastSession:5,due:8,seen:1,streak:1
+};
+oldStayman.entries[distinctSA[1].id]={
+  result:'correct',assisted:false,lastSession:9,due:12,seen:1,streak:1
+};
+const oldStaymanBefore=JSON.stringify(oldStayman);
+const staymanRecall=P.select(distinctSA,oldStayman,10);
+const saById=new Map(distinctSA.map(x=>[x.id,x]));
+const reminded=staymanRecall.filter(x=>x.kind==='revision');
+assert.equal(reminded.length,1,
+  'Due Stayman cannot be suppressed by a recent success on Texas');
+assert.equal(reminded[0].reason,'rappel_nouvelle_situation');
+assert.equal(saById.get(reminded[0].id).answer,'2♣',
+  'Alternate recall must keep the opening AND the expected bid');
+assert.equal(JSON.stringify(oldStayman),oldStaymanBefore,
+  'The planner remains read-only on saved progress');
+assert.deepEqual(P.select(distinctSA,oldStayman,10),staymanRecall,
+  'Same progress yields exactly the same deck');
+const reinforced=JSON.parse(oldStaymanBefore);
+delete reinforced.entries[distinctSA[1].id];
+reinforced.entries[distinctSA[8].id]={
+  result:'correct',assisted:false,lastSession:9,due:12,seen:1,streak:1
+};
+assert.equal(P.select(distinctSA,reinforced,10).filter(x=>x.kind==='revision').length,0,
+  'A recent autonomous success on the same opening and bid still defers recall');
+const failedRecall=P.empty();failedRecall.completed=10;
+failedRecall.entries[distinctSA[0].id]={
+  result:'wrong',assisted:false,lastSession:9,due:10,seen:1,streak:0
+};
+assert.ok(P.select(distinctSA,failedRecall,10).some(x=>
+  x.id===distinctSA[0].id&&x.kind==='revision'),
+  'The direct review of a previous mistake stays unchanged');
+
 console.log('PARCOURS ALGORITHMIQUE V1 PASS: 1523 QCM unchanged, 22 themes, early answers, local resume, mastery and 65 simulated sessions; '+summary.seen+' IDs seen');

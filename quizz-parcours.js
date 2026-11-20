@@ -578,9 +578,11 @@
     const s=state.completed,limit=clamp(int(n,10),1,20);
     const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
     const previous=state.entries||{};
-    // Réviser une notion sur une situation différente est aussi un vrai rappel.
-    // Cela n'ajoute pas de tentative fictive à l'ancienne question.
-    const concept=x=>microKey(x)||'situation:'+situation(x);
+    // Les micro-categories (ex. sa:1SA) regroupent plusieurs conventions.
+    // Une reussite en Texas ne doit pas repousser le rappel d'un Stayman.
+    // Pour rapprocher deux cas, exiger la meme ouverture visible et la meme
+    // enchere attendue, sans pretendre avoir homologue une competence fine.
+    const concept=x=>'situation:'+situation(x);
     const latestIndependent={};
     for(const x of pool){
       const r=previous[x.id];
@@ -592,8 +594,8 @@
     const due=pool.filter(x=>{
       const r=previous[x.id];if(!r||r.due>s||r.lastSession>=s)return false;
       // Les succès autonomes attendent au minimum 5/11/19 séances.
-      // Une nouvelle bonne réponse au même concept repousse le rappel,
-      // sans prétendre que la question initiale a été rejouée.
+      // Seule une bonne reponse du meme contexte ET de la meme enchere
+      // repousse le rappel. Une simple micro-categorie commune ne suffit pas.
       if(r.result==='correct'&&!r.assisted)
         return s-Math.max(r.lastSession,latestIndependent[concept(x)]??-1)>=
           (r.streak>=3?19:r.streak===2?11:5);
@@ -748,8 +750,8 @@
         if(candidates.length)pick(candidates,'nouveau','equilibre_ouvertures');
       }
     }
-    // Révisions : erreur/aide = revoir le cas dû ; réussite autonome =
-    // exercer la même notion sur une nouvelle situation, si disponible.
+    // Revisions : erreur/aide = revoir le cas du ; reussite autonome =
+    // proposer une autre main avec ouverture et reponse identiques, si possible.
     const weakDueCandidates=due.filter(x=>
       previous[x.id].result!=='correct'||previous[x.id].assisted);
     const strongConcepts=new Set(due.filter(x=>
