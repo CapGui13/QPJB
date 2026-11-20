@@ -22,6 +22,8 @@ const openingDistribution=Object.fromEntries([...new Set(first.map(x=>x.answer))
   .map(bid=>[bid,first.filter(x=>x.answer===bid).length]));
 assert.ok((openingDistribution['1♣']||0)>=2,'At least two 1♣ openings in first session');
 assert.ok((openingDistribution['1♦']||0)>=2,'At least two 1♦ openings in first session');
+for(const bid of ['1♣','1♦','1♥','1♠','1SA'])
+  assert.ok((openingDistribution[bid]||0)>=1,'First lesson must cover '+bid);
 assert.ok(Object.keys(openingDistribution).length>=6,'At least six distinct opening bids');
 assert.ok(Object.values(openingDistribution).every(n=>n<=2),
   'No three identical opening answers: '+JSON.stringify(openingDistribution));
@@ -475,6 +477,36 @@ assert.ok(!focusLearner.active.mode,'The normal session retains legacy active sh
 const isolated=P.empty();isolated.completed=5;
 isolated.micros['mineur:1♣']={score:-1,attempts:1,independent:0,lastSession:4};
 assert.equal(P.consolidationPlan(isolated,exercises).available,false);
+
+// Une bonne réponse autonome doit être rappelée sur un autre cas de la
+// même notion dès que possible ; les erreurs conservent le rappel direct.
+const conceptCatalog=[{id:'OLD-CLUB',theme:'ouv',difficulty:1,
+  answer:'1♣',caseFamily:'OLDER'}];
+for(let i=0;i<24;i++)conceptCatalog.push({
+  id:'NEW-'+i,theme:'ouv',difficulty:1,answer:i%2?'1♦':'1♣',
+  caseFamily:'FAMILY-'+i
+});
+const conceptLearner=P.empty();conceptLearner.completed=5;
+conceptLearner.entries['OLD-CLUB']={result:'correct',assisted:false,
+  lastSession:0,due:3,seen:1,streak:1,family:'OLDER'};
+const conceptDeck=P.select(conceptCatalog,conceptLearner,10);
+assert.equal(conceptDeck.length,10);
+assert.ok(conceptDeck.some(x=>x.kind==='revision'&&x.id!=='OLD-CLUB'),
+  'Independent success should be reviewed on a fresh exercise of the same concept');
+assert.ok(!conceptDeck.some(x=>x.id==='OLD-CLUB'),
+  'Old solved question should not be replayed when fresh alternatives exist');
+const weakLearner=P.load(JSON.stringify(conceptLearner));
+weakLearner.entries['OLD-CLUB'].result='wrong';
+weakLearner.entries['OLD-CLUB'].streak=0;
+const weakDeck=P.select(conceptCatalog,weakLearner,10);
+assert.ok(weakDeck.some(x=>x.id==='OLD-CLUB'&&x.kind==='revision'),
+  'An error must retain the existing direct review');
+const refreshed=P.load(JSON.stringify(conceptLearner));
+refreshed.completed=6;
+refreshed.entries['NEW-0']={result:'correct',assisted:false,
+  lastSession:5,due:8,seen:1,streak:1,family:'FAMILY-0'};
+assert.ok(!P.select(conceptCatalog,refreshed,10).some(x=>x.id==='OLD-CLUB'),
+  'Independent successful reinforcement postpones the old question by concept');
 
 // Go through 60 sessions with deterministic synthetic learner behaviour.
 const run=P.empty();
