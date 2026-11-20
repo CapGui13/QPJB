@@ -1,8 +1,6 @@
-name: QPJB V2 — recette finale integration publique
+name: QPJB — entree V1 unique et archive V2 preservee
 on:
-  push:
-    branches:
-      - 'prep/qpjb-v2-integration-r1-20261120'
+  pull_request:
     paths:
       - 'index.html'
       - 'preview/v2-eleve/parcours-sef-65-r1.html'
@@ -14,7 +12,7 @@ permissions:
   contents: read
 jobs:
   guard:
-    name: Controle du contenu R1 et de l'acces Quizz
+    name: Integrite V1/V2 et absence du lien V2
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -27,7 +25,7 @@ jobs:
       - run: node --check scripts/v2-integration-guard.cjs
       - run: node scripts/v2-integration-guard.cjs
   browser:
-    name: Navigation accueil vers V2 en Chromium et WebKit
+    name: Navigation V1 / archive V2 sous Chromium et WebKit
     needs: guard
     runs-on: ubuntu-latest
     timeout-minutes: 12
