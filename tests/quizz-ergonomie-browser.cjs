@@ -117,6 +117,36 @@ async function check(engine,mobile,url){
    const final=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(final.active.ids,active.active.ids,'Sauvegarde de séance reprise');
    assert.deepEqual(final.journal,active.journal,'Journal conservé au rechargement');
+   // Import V1 : fichier refusé sans modification ; import valide avec
+   // confirmation, copie de secours locale et Quiz classique inchangé.
+   await page.locator('#progress-import').waitFor({state:'visible'});
+   const original=await page.evaluate(()=>({
+     guided:localStorage.getItem('qpjb-sef-parcours-01'),
+     quiz:localStorage.getItem('qpjb-sef-entrainement-01')
+   }));
+   await page.locator('#progress-import-file').setInputFiles({
+     name:'invalide.json',mimeType:'application/json',buffer:Buffer.from('{"bad":true}')
+   });
+   await page.waitForFunction(()=>document.querySelector('#progress-export-status')
+     ?.textContent.includes('Import refusé'));
+   const afterInvalid=await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01'));
+   assert.equal(afterInvalid,original.guided,'Invalid import cannot erase data');
+   page.once('dialog',dialog=>dialog.accept());
+   await page.locator('#progress-import-file').setInputFiles({
+     name:'v1-valide.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(json))
+   });
+   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')).completed===13);
+   const afterRestore=await page.evaluate(()=>({
+     saved:JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),
+     quiz:localStorage.getItem('qpjb-sef-entrainement-01'),
+     backup:Object.keys(localStorage).filter(k=>
+       k.startsWith('qpjb-sef-parcours-01-avant-import-'))
+       .map(k=>localStorage.getItem(k))
+   }));
+   assert.equal(afterRestore.saved.completed,13,'Original guided progression imported');
+   assert.equal(afterRestore.saved.journal.length,0,'No fabricated old history');
+   assert.equal(afterRestore.quiz,original.quiz,'Classic Quiz remains untouched');
+   assert.ok(afterRestore.backup.includes(original.guided),'Prior progress backed up locally');
    assert.deepEqual(errors,[],'Aucune erreur JS');
    const size=await page.evaluate(()=>({
      scroll:document.documentElement.scrollWidth,width:document.documentElement.clientWidth
