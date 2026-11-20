@@ -69,8 +69,11 @@ async function run(engine,mobile){
   assert.ok(record.engineState.concepts['barrage:gambling_3sa_passe_corrige'],'Concept barrage absent');
   assert.ok(!record.engineState.concepts['sa:gambling_3sa_passe_corrige'],'Ancien concept SA');
   page.once('dialog',d=>d.accept());
+  const navigated=page.waitForEvent('framenavigated');
   await page.locator('#backup-import').setInputFiles({name:'good.json',mimeType:'application/json',
     buffer:Buffer.from(JSON.stringify(backup))});
+  await navigated;
+  await page.locator('#backup-tools').waitFor({state:'visible'});
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('qpjb-v2-eleve-65-pedago-r1')).nextSession===2);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),oldKey),'OLD_SAVE_UNTOUCHED');
   assert.deepEqual(errors,[],'Exceptions JS navigateur');
