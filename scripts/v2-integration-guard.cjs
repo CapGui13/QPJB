@@ -4,51 +4,13 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require(
 const root=path.resolve(__dirname,'..');
 const htmlPath='preview/v2-eleve/parcours-sef-65-r1.html';
 const bytes=fs.readFileSync(path.join(root,htmlPath));
-// Vérifier qu'après annulation des seules mentions de diffusion, le contenu
-// est strictement identique au candidat pédagogique R1 déjà testé.
-const substitutions=[
- [
-  "QPJB — Parcours guidé 65 séances · pédagogie validée · publication HOLD",
-  "QPJB — Parcours guidé SEF · 65 séances"
- ],
- [
-  "PARCOURS V2 — CANDIDAT PRIVÉ, 19 DÉCISIONS VALIDÉES — PAS ENCORE PUBLIÉ.",
-  "PARCOURS GUIDÉ SEF — 65 SÉANCES · 19 DÉCISIONS PÉDAGOGIQUES VALIDÉES."
- ],
- [
-  "Aperçu privé NON PUBLIÉ · 1 523 QCM SEF (3 corrections validées) · sauvegarde isolée. Aucun cours écrit, aucun ajout expérimental. Les 19 décisions pédagogiques sont validées. Publication toujours non autorisée.",
-  "Parcours guidé SEF · 1 523 QCM source · 65 séances · sauvegarde locale indépendante et exportable. Les 19 décisions pédagogiques sont validées."
- ],
- [
-  "\"releaseDecision\":\"HOLD\"",
-  "\"releaseDecision\":\"PUBLISHED\""
- ],
- [
-  "\"candidatePublished\":false",
-  "\"candidatePublished\":true"
- ],
- [
-  "Parcours SEF · projet éditorial HOLD",
-  "Parcours guidé SEF · 65 séances"
- ],
- [
-  "Question du catalogue de test (HOLD)",
-  "Question du Quiz SEF"
- ],
- [
-  "CANDIDAT PRIVÉ V2 : 19 décisions validées. 65 séances, 1 523 QCM, 0 ajout. Sauvegarde versionnée et exportable. Aucun déploiement ni changement du Quiz SEF public.",
-  "PARCOURS GUIDÉ V2 : 65 séances, 1 523 QCM source, aucune question expérimentale. Sauvegarde indépendante, versionnée et exportable. Quiz SEF classique inchangé."
- ]
-];
-let canonical=bytes.toString('utf8');
-for(const [avant,apres] of substitutions){
- assert.equal(canonical.split(apres).length,2,'Mention manquante ou dupliquée: '+apres.slice(0,40));
- canonical=canonical.replace(apres,avant);
-}
-const candidateOriginal=Buffer.from(canonical,'utf8');
-assert.equal(candidateOriginal.length,1937683);
-assert.equal(crypto.createHash('sha256').update(candidateOriginal).digest('hex'),
- '4edc289dfa6d1e929e6985985152321adf8edb342923b4fadc061405aef386b6');
+// La V2 a recu ensuite ses propres modifications d'ergonomie (#221 et #222).
+// La proteger par le SHA Git du fichier public reel, non par les anciennes
+// substitutions de texte issues de la release #217.
+const blobSha=crypto.createHash('sha1')
+ .update('blob '+bytes.length+'\\0').update(bytes).digest('hex');
+assert.equal(blobSha,'12095819f58980163b4d79d31e7b7f3c1575ea9b',
+ 'Archive V2 modifiee : analyse pedagogique et migration requises avant alteration');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.ok(!index.includes('qpjb-v2-quizz-entry'),'V2 absente de la navigation');
 assert.ok(!index.includes('href="./'+htmlPath+'"'),'Lien de la V2 retire');
