@@ -111,6 +111,14 @@ async function check(engine,mobile,url){
    const saved=JSON.parse(fs.readFileSync(await (await d2).path(),'utf8'));
    assert.equal(saved.summary.recordedDetailedSessions,1);
    assert.equal(saved.sessions[0].answers.length,10);
+   assert.equal(saved.selectionDiagnostics.observedSessions,1);
+   assert.equal(saved.selectionDiagnostics.knownReasons,10,
+     'The export explains every new selection prospectively');
+   assert.equal(saved.selectionDiagnostics.unknownReasons,0);
+   assert.ok(saved.sessions[0].answers.every(a=>a.selectionReason),
+     'Selection reasons are attached to responses after completing the lesson');
+   assert.equal(saved.currentSession.selection.length,10,
+     'The next session selection explanations are kept in the export');
    assert.equal(saved.summary.difficultyAdjustment,1);
    assert.equal(saved.currentSession.ids.length,10);
    await page.reload({waitUntil:'domcontentloaded'});
@@ -132,10 +140,16 @@ async function check(engine,mobile,url){
    const afterInvalid=await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01'));
    assert.equal(afterInvalid,original.guided,'Invalid import cannot erase data');
    page.once('dialog',dialog=>dialog.accept());
+   // La restauration déclenche un rechargement : attendre la navigation
+   // évite d'évaluer le DOM entre deux contextes JavaScript.
+   const restoreNavigation=page.waitForEvent('framenavigated',{
+     predicate:frame=>frame===page.mainFrame()
+   });
    await page.locator('#progress-import-file').setInputFiles({
      name:'v1-valide.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(json))
    });
-   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')).completed===13);
+   await restoreNavigation;
+   await page.waitForLoadState('domcontentloaded');
    const afterRestore=await page.evaluate(()=>({
      saved:JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),
      quiz:localStorage.getItem('qpjb-sef-entrainement-01'),

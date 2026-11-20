@@ -58,6 +58,14 @@
 })(typeof window!=='undefined'?window:null,function(){
   'use strict';
   const VERSION=1;
+  // Métadonnées de sélection purement descriptives : aucun changement des
+  // poids, de l'éligibilité, de la notation ou des corrigés.
+  const SELECTION_REASONS=[
+    'equilibre_ouvertures','nouveau_qcm','rappel_erreur_aide',
+    'rappel_nouvelle_situation','rappel_question','complement_catalogue'
+  ];
+  const validSelection=(item,id)=>item&&item.id===id&&
+    ['nouveau','revision'].includes(item.kind)&&SELECTION_REASONS.includes(item.reason);
   const ROADMAP=[
     ['ouv',0],['majeur',1],['mineur',1],['sa',3],['red',4],
     ['second',6],['stayman',7],['apres_fit',8],['intervenir',10],
@@ -490,6 +498,13 @@
         }
         s.active={ids,index:clamp(int(old.active.index),0,ids.length-1),
           answers,createdAt:int(old.active.createdAt,s.completed)};
+        // Facultatif : les séances commencées avant ce suivi restent lisibles.
+        // Aucun motif de sélection n'est réinventé a posteriori.
+        if(Array.isArray(old.active.selection)&&old.active.selection.length===ids.length&&
+          old.active.selection.every((v,i)=>validSelection(v,ids[i])))
+          s.active.selection=old.active.selection.map(v=>({
+            id:v.id,kind:v.kind,reason:v.reason
+          }));
         if(old.active.mode==='consolidation'){
           s.active.mode='consolidation';
           if(Array.isArray(old.active.targets)&&old.active.targets.length===ids.length&&
@@ -533,7 +548,10 @@
           difficulty:Number.isInteger(a.difficulty)?a.difficulty:null,
           family:typeof a.family==='string'?a.family:null,
           micro:typeof a.micro==='string'?a.micro:null,
-          axis:typeof a.axis==='string'?a.axis:null
+          axis:typeof a.axis==='string'?a.axis:null,
+          ...(SELECTION_REASONS.includes(a.selectionReason)&&
+            ['nouveau','revision'].includes(a.selectionKind)
+            ?{selectionKind:a.selectionKind,selectionReason:a.selectionReason}:{})
         }))
       }));
     }
@@ -620,7 +638,7 @@
       if(r&&(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key]))
         recentFamily[key]=r.lastSession;
     }
-    function pick(list,kind){
+    function pick(list,kind,reason){
       let ranked=list.filter(x=>!picked.has(x.id));
       if(!ranked.length)return false;
       const famUsed=new Set(selected.map(x=>family(x.exercise)));
@@ -717,7 +735,7 @@
       if(ak)axisCount[ak]=(axisCount[ak]||0)+1;
       const chosenAnswer=winner.theme+'|'+bid(winner);
       bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
-      selected.push({exercise:winner,kind});
+      selected.push({exercise:winner,kind,reason});
       return true;
     }
     // Dès la toute première séance : cinq couleurs/contrats distincts,
@@ -727,7 +745,7 @@
       for(const target of ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']){
         const candidates=fresh.filter(x=>x.theme==='ouv'&&bid(x)===target&&
           !selected.some(chosen=>family(chosen.exercise)===family(x)));
-        if(candidates.length)pick(candidates,'nouveau');
+        if(candidates.length)pick(candidates,'nouveau','equilibre_ouvertures');
       }
     }
     // Révisions : erreur/aide = revoir le cas dû ; réussite autonome =
@@ -745,16 +763,17 @@
       let kind=plan[i];
       if(kind==='revision'&&plannedReviews>=reviewQuota)kind='nouveau';
       if(kind==='revision'&&
-        (pick(weakDueCandidates,'revision')||pick(alternateReviews,'revision')||
-         pick(due,'revision'))){plannedReviews++;continue}
-      if(pick(fresh,'nouveau'))continue;
-      if(pick(due,'revision'))continue;
-      if(pick(pool,'revision'))continue;
+        (pick(weakDueCandidates,'revision','rappel_erreur_aide')||
+         pick(alternateReviews,'revision','rappel_nouvelle_situation')||
+         pick(due,'revision','rappel_question'))){plannedReviews++;continue}
+      if(pick(fresh,'nouveau','nouveau_qcm'))continue;
+      if(pick(due,'revision','rappel_question'))continue;
+      if(pick(pool,'revision','complement_catalogue'))continue;
       break;
     }
     // La même famille ne doit pas se suivre ; les candidats alternatifs
     // ne sont disponibles qu'en cas d'épuisement du catalogue.
-    return selected.map(v=>({id:v.exercise.id,kind:v.kind}));
+    return selected.map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
   }
 
   // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture
@@ -882,7 +901,10 @@
     }
     const chosen=select(exercises,state,10);
     if(!chosen.length)return [];
-    state.active={ids:chosen.map(x=>x.id),index:0,answers:{},createdAt:state.completed};
+    state.active={ids:chosen.map(x=>x.id),index:0,answers:{},
+      createdAt:state.completed,selection:chosen.map(x=>({
+        id:x.id,kind:x.kind,reason:x.reason
+      }))};
     return state.active.ids.map(id=>byId.get(id));
   }
   function record(state,x,result,position,choice,assisted,hadFreeError){
@@ -992,10 +1014,14 @@
       session:state.completed+1,recordedAt:new Date().toISOString(),
       answers:active.ids.map((id,i)=>{
         const a=active.answers[i],q=byId.get(id);
+        const reason=active.selection?.[i];
         return {id,result:a.result,choice:a.choice,assisted:a.assisted,
           hadFreeError:a.hadFreeError,theme:q?.theme||null,
           difficulty:q?.difficulty??null,family:q?family(q):state.entries[id]?.family||null,
-          micro:q?microKey(q):null,axis:q?axisKey(q):null};
+          micro:q?microKey(q):null,axis:q?axisKey(q):null,
+          ...(validSelection(reason,id)?{
+            selectionKind:reason.kind,selectionReason:reason.reason
+          }:{})};
       })
     };
     if(!Array.isArray(state.journal))state.journal=[];
@@ -1020,6 +1046,37 @@
       session:state.completed,choice,recordedAt:new Date().toISOString()
     });
     return true;
+  }
+  // Mesure factuelle, strictement en lecture seule ; aucune cible de proportion
+  // inventée et aucune reconstitution de la cause des anciens tirages.
+  function selectionDiagnostics(state,last=5){
+    const normal=(state.journal||[]).filter(x=>x.mode==='parcours');
+    const recent=normal.slice(-clamp(int(last,5),1,100));
+    const totals={reasons:{},themes:{},knownReasons:0,unknownReasons:0,questions:0};
+    const perSession=recent.map(event=>{
+      const reasons={},themes={},answers=event.answers||[];
+      let knownReasons=0;
+      for(const a of answers){
+        themes[a.theme||'inconnue']=(themes[a.theme||'inconnue']||0)+1;
+        const reason=SELECTION_REASONS.includes(a.selectionReason)?a.selectionReason:null;
+        if(reason){reasons[reason]=(reasons[reason]||0)+1;knownReasons++;}
+      }
+      const counts=Object.values(themes).sort((a,b)=>b-a);
+      const n=answers.length;
+      const entry={session:event.session,questions:n,distinctThemes:counts.length,
+        themes,reasons,knownReasons,unknownReasons:n-knownReasons,
+        largestThemeCount:counts[0]||0,
+        largestThemeShare:n?Number(((counts[0]||0)/n).toFixed(3)):0,
+        topTwoThemeShare:n?Number(((counts[0]||0)+(counts[1]||0)).toFixed(0)/n):0};
+      totals.questions+=n;totals.knownReasons+=knownReasons;totals.unknownReasons+=n-knownReasons;
+      for(const [k,v] of Object.entries(themes))totals.themes[k]=(totals.themes[k]||0)+v;
+      for(const [k,v] of Object.entries(reasons))totals.reasons[k]=(totals.reasons[k]||0)+v;
+      return entry;
+    });
+    return {lastSessionsRequested:clamp(int(last,5),1,100),
+      totalDetailedSessions:normal.length,observedSessions:recent.length,
+      ...totals,perSession,
+      note:'Les raisons ne sont disponibles que pour les séances créées avec ce suivi. Les séances historiques ne sont pas requalifiées et la répartition n’implique pas à elle seule un défaut pédagogique.'};
   }
   function exportProgress(state,exercises,quizRecords){
     const byId=new Map(exercises.map(q=>[q.id,q]));
@@ -1053,6 +1110,7 @@
       summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
         totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
       sessions:journal,
+      selectionDiagnostics:selectionDiagnostics(state,5),
       currentSession:state.active||null,
       questions,
       repetitions:{questions:questions.filter(q=>q.attemptsRecorded>1).map(q=>({id:q.id,count:q.attemptsRecorded})),
@@ -1157,5 +1215,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
