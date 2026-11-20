@@ -127,6 +127,12 @@ const assisted = run('aides-frequentes', ({round, position}) => ({
 }));
 assert.ok(fluent.next10.discoveries >= 80,
   'Les reussites laissent de la place a la decouverte');
+assert.ok(fluent.next10.alternateReviews > 0,
+  'Une reussite autonome doit produire des rappels sur d autres mains');
+assert.ok(mixed.next10.directReviews > 0,
+  'Des erreurs doivent produire des rappels directs observes');
+assert.ok(assisted.next10.directReviews > 0,
+  'Les reussites aidees doivent programmer des rappels directs');
 assert.ok(mixed.next10.discoveries >= 80);
 assert.ok(fragile.next10.discoveries >= 80);
 assert.ok(assisted.next10.discoveries >= 80);
