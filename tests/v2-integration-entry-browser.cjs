@@ -48,7 +48,9 @@ async function check(which,mobile,url){
    await link.click();
    candidate=await popup;
    await candidate.waitForLoadState('domcontentloaded');
-   await candidate.getByRole('alert').getByText(/PARCOURS GUIDÉ SEF — 65 SÉANCES/).waitFor();
+   await candidate.locator('header h1').getByText('Parcours guidé SEF',{exact:true}).waitFor();
+   const publicText=await candidate.locator('body').innerText();
+   assert.doesNotMatch(publicText,/Aperçu privé|HORS PRODUCTION|19 DÉCISIONS PÉDAGOGIQUES|V1\/V2-F/);
    const verified=await candidate.evaluate(()=>{
     const v=JSON.parse(document.querySelector('#ay-payload').textContent);
     return {questions:v.catalog.length,addons:v.addons.length,
