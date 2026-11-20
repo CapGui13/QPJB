@@ -1,0 +1,2854 @@
+{
+  "schema": "QPJB_V1_APRES_FIT_48_PRECLASSIFICATION_1",
+  "date": "2026-11-20",
+  "issue": 226,
+  "source": "audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json",
+  "readOnly": true,
+  "publicationAllowed": false,
+  "certifiedCount": 0,
+  "assignmentsCount": 48,
+  "proposedGroups": [
+    {
+      "key": "fit:ouvreur_minimum_passe",
+      "label": "S'arrêter au palier 2 avec ouverture minimale après soutien simple",
+      "count": 4,
+      "ids": [
+        "SEF-V4-001-1",
+        "SEF-V4-003-3",
+        "SEF-V4-013-3",
+        "SEF-V4-015-3"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:ouvreur_essai_generalise_2sa",
+      "label": "Proposer la manche par 2SA essai généralisé après 1M–2M",
+      "count": 4,
+      "ids": [
+        "SEF-V4-002-1",
+        "SEF-V4-004-1",
+        "SEF-V4-014-1",
+        "SEF-V4-016-2"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:ouvreur_3m_competitif",
+      "label": "Distinguer le palier 3M compétitif du véritable essai de manche",
+      "count": 4,
+      "ids": [
+        "SEF-V4-005-2",
+        "SEF-V4-006-2",
+        "SEF-V4-017-2",
+        "SEF-V4-018-1"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:ouvreur_conclure_manche",
+      "label": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "count": 7,
+      "ids": [
+        "SEF-V4-007-1",
+        "SEF-V4-007-2",
+        "SEF-V4-008-1",
+        "SEF-V4-019-1",
+        "SEF-V4-020-1",
+        "SEF-V4-020-3",
+        "SEF-L09-028"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:repondant_essai_2sa_refus",
+      "label": "Refuser la proposition de manche après 1M–2M–2SA",
+      "count": 4,
+      "ids": [
+        "SEF-V4-009-1",
+        "SEF-V4-011-1",
+        "SEF-V4-021-1",
+        "SEF-V4-023-3"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:repondant_essai_2sa_accept",
+      "label": "Accepter la proposition de manche après 1M–2M–2SA",
+      "count": 4,
+      "ids": [
+        "SEF-V4-010-1",
+        "SEF-V4-012-1",
+        "SEF-V4-022-3",
+        "SEF-V4-024-2"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:ouvreur_essai_couleur",
+      "label": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "count": 6,
+      "ids": [
+        "SEF-V44-050",
+        "SEF-V44-051",
+        "SEF-V44-052",
+        "SEF-V44-053",
+        "SEF-V44-054",
+        "SEF-V423-001"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:repondant_refus_essai_couleur",
+      "label": "Refuser un essai de manche à la couleur sans valeurs utiles",
+      "count": 4,
+      "ids": [
+        "SEF-V416-006",
+        "SEF-V418-006",
+        "SEF-V421-012",
+        "SEF-V423-003"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:repondant_accept_essai_couleur",
+      "label": "Accepter un essai à la couleur avec valeurs utiles",
+      "count": 3,
+      "ids": [
+        "SEF-V416-005",
+        "SEF-V421-011",
+        "SEF-V423-002"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:2sa_fitte_ouvreur",
+      "label": "Décrire la main de l'ouvreur après 1M–2SA fitté sans intervention",
+      "count": 4,
+      "ids": [
+        "SEF-V486-007",
+        "SEF-V486-008",
+        "SEF-V486-009",
+        "SEF-V486-010"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:2sa_fitte_competitif",
+      "label": "Développer après 2SA fitté sur intervention adverse",
+      "count": 3,
+      "ids": [
+        "SEF-L21-005",
+        "SEF-L21-006",
+        "SEF-L21-007"
+      ],
+      "status": "A_VERIFIER"
+    },
+    {
+      "key": "fit:michaels_cuebid_force_manche",
+      "label": "Employer le premier cuebid sur Michaël avec fit majeur forcing de manche",
+      "count": 1,
+      "ids": [
+        "SEF-L09-029"
+      ],
+      "status": "A_VERIFIER"
+    }
+  ],
+  "alerts": {
+    "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER": 7,
+    "CONSIGNE_ESSAI_TROP_GENERIQUE": 8,
+    "CAS_COMPETITIF_MICH_A_ISOLER": 1
+  },
+  "rows": [
+    {
+      "id": "SEF-V4-001-1",
+      "candidateKey": "fit:ouvreur_minimum_passe",
+      "candidateLabel": "S'arrêter au palier 2 avec ouverture minimale après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-309",
+      "sourceAnswer": "Passe",
+      "sourceHand": [
+        [
+          "A",
+          "V",
+          "9"
+        ],
+        [
+          "A",
+          "D",
+          "8",
+          "6",
+          "2"
+        ],
+        [
+          "V",
+          "6",
+          "3"
+        ],
+        [
+          "10",
+          "7"
+        ]
+      ],
+      "sourceH": 12,
+      "sourceShape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 12 H et une main 3-5-3-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "2SA",
+        "Passe",
+        "3♥",
+        "4♥"
+      ],
+      "sourceExplanation": "Vous avez 12 H, cinq Cœurs (♥AD862) et une distribution 3-5-3-2. Après 1♥–2♥, le soutien simple du partenaire ne garantit pas assez de force pour la manche face à cette ouverture minimale. Passe conserve la partielle au bon palier.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-002-1",
+      "candidateKey": "fit:ouvreur_essai_generalise_2sa",
+      "candidateLabel": "Proposer la manche par 2SA essai généralisé après 1M–2M",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-310",
+      "sourceAnswer": "2SA",
+      "sourceHand": [
+        [
+          "R",
+          "7",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "8",
+          "6",
+          "5"
+        ],
+        [
+          "D",
+          "4",
+          "2"
+        ],
+        [
+          "R",
+          "6"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 3-5-3-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♥",
+        "2SA",
+        "Passe",
+        "4♥"
+      ],
+      "sourceExplanation": "Vos 15 H, ♥AR865 et une distribution 3-5-3-2 placent l'ouverture en deuxième zone. Après le soutien à 2♥, 2SA est l'enchère d'essai généralisée : le partenaire évaluera ses compléments avant de décider de la manche à Cœur.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-003-3",
+      "candidateKey": "fit:ouvreur_minimum_passe",
+      "candidateLabel": "S'arrêter au palier 2 avec ouverture minimale après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-311",
+      "sourceAnswer": "Passe",
+      "sourceHand": [
+        [
+          "8",
+          "4",
+          "2"
+        ],
+        [
+          "D",
+          "V",
+          "9",
+          "8",
+          "4"
+        ],
+        [
+          "A",
+          "V"
+        ],
+        [
+          "R",
+          "V",
+          "7"
+        ]
+      ],
+      "sourceH": 12,
+      "sourceShape": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 12 H et une main 3-5-2-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "4♥",
+        "3♥",
+        "2SA"
+      ],
+      "sourceExplanation": "Avec 12 H, cinq Cœurs seulement moyens (♥DV984) et la forme 3-5-2-3, vous êtes minimum malgré le doubleton Carreau. Le partenaire peut avoir le bas de la zone du soutien simple : Passe évite de pousser inutilement au palier de trois.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-004-1",
+      "candidateKey": "fit:ouvreur_essai_generalise_2sa",
+      "candidateLabel": "Proposer la manche par 2SA essai généralisé après 1M–2M",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-312",
+      "sourceAnswer": "2SA",
+      "sourceHand": [
+        [
+          "R",
+          "9",
+          "7"
+        ],
+        [
+          "A",
+          "V",
+          "7",
+          "4",
+          "2"
+        ],
+        [
+          "A",
+          "2"
+        ],
+        [
+          "R",
+          "6",
+          "3"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 3-5-2-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "4♥",
+        "2SA",
+        "3♥"
+      ],
+      "sourceExplanation": "Vos 15 H, ♥AV742 et le doubleton ♦A2 constituent une main de deuxième zone. Après 1♥–2♥, 2SA propose un essai généralisé de manche et laisse au répondant le soin de préciser s'il est maximum ou minimum.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-005-2",
+      "candidateKey": "fit:ouvreur_3m_competitif",
+      "candidateLabel": "Distinguer le palier 3M compétitif du véritable essai de manche",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-313",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "8",
+          "4",
+          "3"
+        ],
+        [
+          "A",
+          "D",
+          "V",
+          "10",
+          "9",
+          "2"
+        ],
+        [
+          "A",
+          "10",
+          "9"
+        ],
+        [
+          "7"
+        ]
+      ],
+      "sourceH": 11,
+      "sourceShape": [
+        3,
+        6,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 3-6-3-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "4♥",
+        "2SA",
+        "3♥"
+      ],
+      "sourceExplanation": "Vous n'avez que 11 H mais six Cœurs liés (♥ADV1092) et un singleton Trèfle. Dans le cadre enseigné, 3♥ est une surenchère préventive grâce aux neuf atouts présumés du camp ; ce n'est pas une demande de manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-006-2",
+      "candidateKey": "fit:ouvreur_3m_competitif",
+      "candidateLabel": "Distinguer le palier 3M compétitif du véritable essai de manche",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-314",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "9",
+          "7",
+          "5"
+        ],
+        [
+          "R",
+          "V",
+          "9",
+          "8",
+          "6",
+          "2"
+        ],
+        [
+          "R"
+        ],
+        [
+          "A",
+          "4",
+          "2"
+        ]
+      ],
+      "sourceH": 11,
+      "sourceShape": [
+        3,
+        6,
+        1,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 3-6-1-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "3♥",
+        "2SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Avec 11 H, six Cœurs (♥RV9862) et un singleton Carreau (♦R), vous disposez d'un atout supplémentaire et d'une courte sans véritable surplus de force. La répétition à 3♥ a une fonction préventive et ne constitue pas un essai de manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-007-1",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-315",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "D",
+          "V",
+          "9"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "V",
+          "7"
+        ],
+        [
+          "A",
+          "10",
+          "5",
+          "2"
+        ],
+        [
+          "V"
+        ]
+      ],
+      "sourceH": 18,
+      "sourceShape": [
+        3,
+        5,
+        4,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 18 H et une main 3-5-4-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♥",
+        "4♥",
+        "2SA",
+        "Passe"
+      ],
+      "sourceExplanation": "La main compte 18 H, cinq beaux Cœurs (♥ARDV7), quatre Carreaux et un singleton Trèfle. Après le soutien à 2♥, les valeurs de tête et la distribution rendent la manche très probable : 4♥ est une conclusion directe.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-007-2",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-316",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "D",
+          "9",
+          "7"
+        ],
+        [
+          "A",
+          "R",
+          "V",
+          "5",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "7",
+          "5"
+        ],
+        [
+          "4"
+        ]
+      ],
+      "sourceH": 17,
+      "sourceShape": [
+        3,
+        5,
+        4,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 17 H et une main 3-5-4-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "2SA",
+        "4♥",
+        "3♥",
+        "Passe"
+      ],
+      "sourceExplanation": "Avec 17 H, ♥ARV53, ♦AR75 et un singleton Trèfle, la main est puissante en points utiles et en distribution. Le soutien simple assure un fit d'au moins huit cartes : 4♥ impose directement la manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-008-1",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-317",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "A",
+          "V",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "V",
+          "8",
+          "4"
+        ],
+        [
+          "V",
+          "4",
+          "3"
+        ],
+        [
+          "A"
+        ]
+      ],
+      "sourceH": 17,
+      "sourceShape": [
+        4,
+        5,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 17 H et une main 4-5-3-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "2SA",
+        "4♥",
+        "3♥",
+        "Passe"
+      ],
+      "sourceExplanation": "Vos 17 H comprennent trois As, cinq Cœurs (♥ADV84), quatre Piques et un singleton Trèfle. Face à un soutien simple à Cœur, la force et la courte rendent la manche accessible même si le partenaire est minimum : annoncez 4♥.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-009-1",
+      "candidateKey": "fit:repondant_essai_2sa_refus",
+      "candidateLabel": "Refuser la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-318",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "9",
+          "4",
+          "3"
+        ],
+        [
+          "9",
+          "5",
+          "4"
+        ],
+        [
+          "A",
+          "10",
+          "6",
+          "5"
+        ],
+        [
+          "V",
+          "7",
+          "4"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "3♥",
+        "3SA",
+        "Passe",
+        "4♥"
+      ],
+      "sourceExplanation": "L'ouvreur a proposé la manche par 2SA, enchère d'essai généralisée forcing pour un tour après le fit à Cœur. Avec seulement 5 H et trois Cœurs, le soutien est minimum : 3♥ refuse l'invitation. Passe laisserait 2SA comme contrat alors que cette enchère demande une réponse.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER",
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé.",
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-010-1",
+      "candidateKey": "fit:repondant_essai_2sa_accept",
+      "candidateLabel": "Accepter la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-319",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "A",
+          "7",
+          "2"
+        ],
+        [
+          "A",
+          "6",
+          "2"
+        ],
+        [
+          "V",
+          "8",
+          "5",
+          "4"
+        ],
+        [
+          "8",
+          "6",
+          "5"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "Passe",
+        "4♥",
+        "3SA",
+        "3♥"
+      ],
+      "sourceExplanation": "L'enchère d'essai généralisée à 2SA est forcing après 1♥–2♥. Avec 9 H, trois Cœurs dont l'As et un soutien maximum, il faut accepter la manche à 4♥. 3♥ refuserait l'invitation ; 3SA écarterait sans raison le fit majeur.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-011-1",
+      "candidateKey": "fit:repondant_essai_2sa_refus",
+      "candidateLabel": "Refuser la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-320",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "8",
+          "6",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "7",
+          "6"
+        ],
+        [
+          "V",
+          "10",
+          "6"
+        ],
+        [
+          "10",
+          "4",
+          "2"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "3SA",
+        "Passe",
+        "3♥",
+        "4♥"
+      ],
+      "sourceExplanation": "Sur 1♥–2♥–2SA, la recherche de manche impose une réponse. Avec seulement 5 H, un soutien troisième à Cœur et une main minimale, 3♥ indique le refus de la proposition. Passe sur 2SA n'est pas approprié et 4♥ surévaluerait la main.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER",
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé.",
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-012-1",
+      "candidateKey": "fit:repondant_essai_2sa_accept",
+      "candidateLabel": "Accepter la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-321",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "A",
+          "9",
+          "7",
+          "2"
+        ],
+        [
+          "R",
+          "10",
+          "2"
+        ],
+        [
+          "10",
+          "4",
+          "3"
+        ],
+        [
+          "D",
+          "8",
+          "3"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "3♥",
+        "4♥",
+        "3SA",
+        "Passe"
+      ],
+      "sourceExplanation": "Après 1♥–2♥–2SA, 9 H et trois Cœurs emmenés par le Roi placent le répondant dans le maximum du soutien simple. 4♥ accepte l'essai de manche ; 3♥ serait un refus injustifié. Passe n'est pas possible sur le 2SA d'essai forcing.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-013-3",
+      "candidateKey": "fit:ouvreur_minimum_passe",
+      "candidateLabel": "S'arrêter au palier 2 avec ouverture minimale après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-322",
+      "sourceAnswer": "Passe",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "V",
+          "10",
+          "9"
+        ],
+        [
+          "A",
+          "9",
+          "8"
+        ],
+        [
+          "7",
+          "4",
+          "2"
+        ],
+        [
+          "7",
+          "5"
+        ]
+      ],
+      "sourceH": 12,
+      "sourceShape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 12 H et une main 5-3-3-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♠",
+        "4♠",
+        "2SA",
+        "Passe"
+      ],
+      "sourceExplanation": "Avec 12 H, une belle couleur de cinq Piques (♠ARV109) mais une main régulière 5-3-3-2, vous restez dans la première zone d'ouverture. Le soutien 2♠ peut être minimal : Passe garde le contrat partiel sans extrapoler la force du partenaire.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-014-1",
+      "candidateKey": "fit:ouvreur_essai_generalise_2sa",
+      "candidateLabel": "Proposer la manche par 2SA essai généralisé après 1M–2M",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-323",
+      "sourceAnswer": "2SA",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "D",
+          "9",
+          "7"
+        ],
+        [
+          "R",
+          "7",
+          "5"
+        ],
+        [
+          "D",
+          "V",
+          "6"
+        ],
+        [
+          "7",
+          "2"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 5-3-3-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "4♠",
+        "3♠",
+        "2SA"
+      ],
+      "sourceExplanation": "Vos 15 H reposent notamment sur ♠ARD97 et les honneurs ♦DV6 : l'ouverture est en deuxième zone, mais le soutien à 2♠ peut n'apporter que 6 HLD. 2SA est l'essai généralisé de manche, qui invite le partenaire à réévaluer sa main.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-015-3",
+      "candidateKey": "fit:ouvreur_minimum_passe",
+      "candidateLabel": "S'arrêter au palier 2 avec ouverture minimale après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-324",
+      "sourceAnswer": "Passe",
+      "sourceHand": [
+        [
+          "A",
+          "10",
+          "7",
+          "5",
+          "3"
+        ],
+        [
+          "R",
+          "7",
+          "6"
+        ],
+        [
+          "R",
+          "9"
+        ],
+        [
+          "D",
+          "7",
+          "6"
+        ]
+      ],
+      "sourceH": 12,
+      "sourceShape": [
+        5,
+        3,
+        2,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 12 H et une main 5-3-2-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "4♠",
+        "2SA",
+        "3♠",
+        "Passe"
+      ],
+      "sourceExplanation": "Vos 12 H, cinq Piques (♠A10753) et la distribution 5-3-2-3 ne justifient pas une initiative de manche après 1♠–2♠. Le soutien simple peut être tout juste suffisant ; Passe est la redemande économique adaptée.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-016-2",
+      "candidateKey": "fit:ouvreur_essai_generalise_2sa",
+      "candidateLabel": "Proposer la manche par 2SA essai généralisé après 1M–2M",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-325",
+      "sourceAnswer": "2SA",
+      "sourceHand": [
+        [
+          "A",
+          "D",
+          "10",
+          "8",
+          "2"
+        ],
+        [
+          "R",
+          "V",
+          "5"
+        ],
+        [
+          "6",
+          "3"
+        ],
+        [
+          "A",
+          "V",
+          "7"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        5,
+        3,
+        2,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 5-3-2-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "4♠",
+        "2SA",
+        "3♠",
+        "Passe"
+      ],
+      "sourceExplanation": "Avec 15 H, ♠AD1082 et deux As, vous avez une ouverture de deuxième zone après le soutien à 2♠. 2SA est ici une enchère d'essai généralisée, et non une proposition de jouer nécessairement à Sans-Atout.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-017-2",
+      "candidateKey": "fit:ouvreur_3m_competitif",
+      "candidateLabel": "Distinguer le palier 3M compétitif du véritable essai de manche",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-326",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "V",
+          "10",
+          "7",
+          "3"
+        ],
+        [
+          "9",
+          "8",
+          "5"
+        ],
+        [
+          "D",
+          "V",
+          "5"
+        ],
+        [
+          "4"
+        ]
+      ],
+      "sourceH": 11,
+      "sourceShape": [
+        6,
+        3,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 6-3-3-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "2SA",
+        "4♠",
+        "Passe",
+        "3♠"
+      ],
+      "sourceExplanation": "Votre main est minimale en force (11 H), avec six Piques (♠ARV1073) et un singleton Trèfle. Après 1♠–2♠, la répétition de 3♠ exploite les neuf atouts présumés pour gêner une intervention ; elle est préventive, non une invitation de manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-018-1",
+      "candidateKey": "fit:ouvreur_3m_competitif",
+      "candidateLabel": "Distinguer le palier 3M compétitif du véritable essai de manche",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-327",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "R",
+          "V",
+          "10",
+          "8",
+          "4",
+          "3"
+        ],
+        [
+          "V",
+          "10",
+          "6"
+        ],
+        [
+          "D"
+        ],
+        [
+          "A",
+          "9",
+          "3"
+        ]
+      ],
+      "sourceH": 11,
+      "sourceShape": [
+        6,
+        3,
+        1,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 6-3-1-3, quelle est votre redemande ?",
+      "sourceChoices": [
+        "4♠",
+        "3♠",
+        "2SA",
+        "Passe"
+      ],
+      "sourceExplanation": "Vos 11 H s'accompagnent de six Piques (♠RV10843) et d'un singleton Carreau (♦D). 3♠ utilise le fit d'au moins neuf cartes au palier de trois dans une logique de barrage préventif, sans promettre un supplément de points.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-019-1",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-328",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "10",
+          "6",
+          "5"
+        ],
+        [
+          "6",
+          "4",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "4",
+          "3"
+        ],
+        [
+          "R"
+        ]
+      ],
+      "sourceH": 17,
+      "sourceShape": [
+        5,
+        3,
+        4,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 17 H et une main 5-3-4-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♠",
+        "2SA",
+        "Passe",
+        "4♠"
+      ],
+      "sourceExplanation": "Avec 17 H, ♠AR1065, ♦AR43 et le singleton ♣R, vous avez des levées de tête et une courte valorisable à l'atout. Le partenaire a promis au moins trois Piques : 4♠ fixe logiquement la manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-020-1",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-329",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "R",
+          "D",
+          "V",
+          "4",
+          "2"
+        ],
+        [
+          "R",
+          "V",
+          "8",
+          "5"
+        ],
+        [
+          "A",
+          "R",
+          "10"
+        ],
+        [
+          "5"
+        ]
+      ],
+      "sourceH": 17,
+      "sourceShape": [
+        5,
+        4,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 17 H et une main 5-4-3-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "2SA",
+        "3♠",
+        "Passe",
+        "4♠"
+      ],
+      "sourceExplanation": "Vous avez 17 H, cinq Piques (♠RDV42), quatre Cœurs et les deux gros honneurs à Carreau (♦AR10), avec un singleton Trèfle. Cette main de troisième zone et irrégulière justifie de conclure immédiatement à 4♠.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-020-3",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-330",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "A",
+          "9",
+          "7",
+          "6",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "7"
+        ],
+        [
+          "R",
+          "D",
+          "5"
+        ],
+        [
+          "9"
+        ]
+      ],
+      "sourceH": 18,
+      "sourceShape": [
+        5,
+        4,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 18 H et une main 5-4-3-1, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "2SA",
+        "4♠",
+        "3♠"
+      ],
+      "sourceExplanation": "Vos 18 H, cinq Piques, quatre Cœurs dominés par ♥ARD et le singleton ♣9 dépassent nettement une simple proposition de manche. Le soutien 2♠ suffit à rendre 4♠ prioritaire : il n'est pas utile de s'arrêter à un essai.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V4-021-1",
+      "candidateKey": "fit:repondant_essai_2sa_refus",
+      "candidateLabel": "Refuser la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-331",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "V",
+          "3",
+          "2"
+        ],
+        [
+          "7",
+          "4",
+          "2"
+        ],
+        [
+          "A",
+          "9",
+          "8",
+          "2"
+        ],
+        [
+          "7",
+          "3",
+          "2"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "3♠",
+        "3SA",
+        "4♠",
+        "Passe"
+      ],
+      "sourceExplanation": "Le 2SA de l'ouvreur est un essai de manche forcing un tour après 1♠–2♠. Avec 5 H et seulement trois Piques, le répondant est minimum et revient à 3♠. Passe sur 2SA ne tient pas compte du caractère forcing de l'essai.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER",
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé.",
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-022-3",
+      "candidateKey": "fit:repondant_essai_2sa_accept",
+      "candidateLabel": "Accepter la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-332",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "V",
+          "10",
+          "2"
+        ],
+        [
+          "V",
+          "10",
+          "3"
+        ],
+        [
+          "R",
+          "D",
+          "9",
+          "4"
+        ],
+        [
+          "D",
+          "6",
+          "3"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "3♠",
+        "Passe",
+        "3SA",
+        "4♠"
+      ],
+      "sourceExplanation": "Sur 1♠–2♠–2SA, avec 9 H et trois Piques, le répondant est maximum. Les Roi-Dame de Carreau complètent utilement la main : 4♠ accepte l'essai. 3♠ refuserait la manche et 3SA s'éloignerait du fit majeur acquis.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-023-3",
+      "candidateKey": "fit:repondant_essai_2sa_refus",
+      "candidateLabel": "Refuser la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-333",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "9",
+          "5",
+          "3"
+        ],
+        [
+          "D",
+          "V",
+          "9",
+          "3"
+        ],
+        [
+          "D",
+          "6",
+          "4"
+        ],
+        [
+          "8",
+          "6",
+          "4"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "4♠",
+        "Passe",
+        "3♠",
+        "3SA"
+      ],
+      "sourceExplanation": "Sur l'essai généralisé 2SA après 1♠–2♠, la force de 5 H reste minimale malgré Dame-Valet de Cœur. Le contrat partiel à 3♠ convient : 3♠ refuse l'invitation ; Passe ne convient pas puisque 2SA est forcing un tour.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER",
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé.",
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V4-024-2",
+      "candidateKey": "fit:repondant_essai_2sa_accept",
+      "candidateLabel": "Accepter la proposition de manche après 1M–2M–2SA",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "cas-334",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "A",
+          "V",
+          "5"
+        ],
+        [
+          "R",
+          "V",
+          "10",
+          "7"
+        ],
+        [
+          "9",
+          "8",
+          "3"
+        ],
+        [
+          "7",
+          "6",
+          "5"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 2SA"
+      ],
+      "sourceContext": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
+      "sourceChoices": [
+        "Passe",
+        "4♠",
+        "3♠",
+        "3SA"
+      ],
+      "sourceExplanation": "Après 1♠–2♠–2SA, le répondant maximum avec 9 H et trois Piques dont As-Valet peut accepter l'invitation à la manche : 4♠. 3♠ serait une réponse minimale. 3SA n'est pas prioritaire lorsqu'un fit majeur a été trouvé.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "CONSIGNE_ESSAI_TROP_GENERIQUE"
+      ],
+      "notes": [
+        "La séquence identifie 1M–2M–2SA ; expliciter la logique et la décision à prendre pour un élève débutant."
+      ]
+    },
+    {
+      "id": "SEF-V44-050",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v44-cas-050",
+      "sourceAnswer": "3♣",
+      "sourceHand": [
+        [
+          "9",
+          "4"
+        ],
+        [
+          "A",
+          "R",
+          "8",
+          "7",
+          "4"
+        ],
+        [
+          "V",
+          "9"
+        ],
+        [
+          "A",
+          "R",
+          "6",
+          "5"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        2,
+        5,
+        2,
+        4
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 2-5-2-4, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♣",
+        "3♥",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Vous détenez 15 H, cinq Cœurs (♥AR874) et quatre Trèfles forts (♣AR65). Après 1♥–2♥, 3♣ est une enchère d'essai naturelle qui décrit la seconde couleur et permet au partenaire de juger ses compléments utiles avant 4♥.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V44-051",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v44-cas-051",
+      "sourceAnswer": "3♦",
+      "sourceHand": [
+        [
+          "D",
+          "V"
+        ],
+        [
+          "A",
+          "V",
+          "10",
+          "8",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "7",
+          "5"
+        ],
+        [
+          "9",
+          "3"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        2,
+        5,
+        4,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 2-5-4-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♦",
+        "3♥",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Avec 15 H, cinq Cœurs (♥AV1083) et quatre Carreaux solides (♦AR75), vous êtes trop fort pour passer sans être certain de la manche. 3♦ est l'essai naturel dans la seconde couleur et sollicite l'appréciation du partenaire.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V44-052",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v44-cas-052",
+      "sourceAnswer": "3♣",
+      "sourceHand": [
+        [
+          "A",
+          "D",
+          "7",
+          "6",
+          "5"
+        ],
+        [
+          "D",
+          "9"
+        ],
+        [
+          "4",
+          "2"
+        ],
+        [
+          "A",
+          "R",
+          "8",
+          "6"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        5,
+        2,
+        2,
+        4
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 5-2-2-4, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♣",
+        "3♠",
+        "3SA",
+        "4♠"
+      ],
+      "sourceExplanation": "Vous avez 15 H, cinq Piques (♠AD765) et quatre Trèfles commandés par ♣AR. Après 1♠–2♠, 3♣ décrit une seconde couleur et une force d'essai de manche ; le contrat final reste à décider à Pique.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V44-053",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v44-cas-053",
+      "sourceAnswer": "3♦",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "9",
+          "7",
+          "4"
+        ],
+        [
+          "D",
+          "9"
+        ],
+        [
+          "R",
+          "10",
+          "9",
+          "3"
+        ],
+        [
+          "R",
+          "10"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        5,
+        2,
+        4,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 5-2-4-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♦",
+        "3♠",
+        "3SA",
+        "4♠"
+      ],
+      "sourceExplanation": "Avec 15 H, cinq Piques (♠AR974) et quatre Carreaux (♦R1093), la main mérite un essai mais pas une manche automatique. 3♦ est un essai naturel dans la couleur secondaire après le soutien simple à 2♠.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V44-054",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v44-cas-054",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "R",
+          "V",
+          "10",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "V",
+          "6",
+          "2"
+        ],
+        [
+          "10",
+          "3"
+        ],
+        [
+          "A",
+          "2"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        4,
+        5,
+        2,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "sourceContext": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 4-5-2-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "3♠",
+        "3♥",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Vos 15 H associent cinq Cœurs (♥ADV62) et quatre Piques (♠RV102). Après le fit à Cœur, 3♠ est une enchère d'essai naturelle dans la couleur secondaire ; elle ne déplace pas le fit d'atout déjà établi.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V416-005",
+      "candidateKey": "fit:repondant_accept_essai_couleur",
+      "candidateLabel": "Accepter un essai à la couleur avec valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v416-cas-005",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "V",
+          "9",
+          "2"
+        ],
+        [
+          "R",
+          "8",
+          "3"
+        ],
+        [
+          "10",
+          "7",
+          "5",
+          "4"
+        ],
+        [
+          "A",
+          "V",
+          "6"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 3♣"
+      ],
+      "sourceContext": "Rappel : 3♣ est une enchère d’essai à la couleur après le fit simple à Cœur.",
+      "sourceChoices": [
+        "3♥",
+        "3♦",
+        "4♥",
+        "3SA"
+      ],
+      "sourceExplanation": "Après le soutien 1♥–2♥, l'ouvreur annonce 3♣ pour demander un complément à Trèfle en vue de la manche. Avec 9 H et As-Valet de Trèfle, les valeurs répondent précisément à l'essai : 4♥. 3♥ serait négatif, et 3♦ ne décrit pas ce complément.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V416-006",
+      "candidateKey": "fit:repondant_refus_essai_couleur",
+      "candidateLabel": "Refuser un essai de manche à la couleur sans valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v416-cas-006",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "R",
+          "9",
+          "3"
+        ],
+        [
+          "D",
+          "8",
+          "4"
+        ],
+        [
+          "10",
+          "7",
+          "5",
+          "2"
+        ],
+        [
+          "9",
+          "6",
+          "3"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 3♦"
+      ],
+      "sourceContext": "Rappel : 3♦ est une enchère d’essai à la couleur après le fit simple à Pique.",
+      "sourceChoices": [
+        "3♠",
+        "3SA",
+        "4♠",
+        "Passe"
+      ],
+      "sourceExplanation": "Après le fit 1♠–2♠, 3♦ est un essai à la couleur, forcing pour un tour. Avec seulement 5 H et aucun honneur à Carreau, le répondant refuse la manche en revenant à 3♠. Passe sur 3♦ ignorerait le fit majeur et le caractère forcing de l'essai.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé."
+      ]
+    },
+    {
+      "id": "SEF-V418-006",
+      "candidateKey": "fit:repondant_refus_essai_couleur",
+      "candidateLabel": "Refuser un essai de manche à la couleur sans valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v418-cas-006",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "D",
+          "8",
+          "5"
+        ],
+        [
+          "V",
+          "7",
+          "4"
+        ],
+        [
+          "V",
+          "10",
+          "8",
+          "2"
+        ],
+        [
+          "V",
+          "9",
+          "2"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 3♣"
+      ],
+      "sourceContext": "Vous avez soutenu votre partenaire à 2♥, puis il a fait une enchère d’essai à 3♣. Avec 5 H et une distribution 3-3-4-3, comment réagissez-vous ?",
+      "sourceChoices": [
+        "3♥",
+        "3SA",
+        "4♥",
+        "4♣"
+      ],
+      "sourceExplanation": "Vous n'avez que 5 H, trois atouts Cœur (♥V74) et seulement ♣V92 dans la couleur d'essai à Trèfle. L'ouvreur a proposé la manche par 3♣ ; 3♥ refuse cet essai et exprime le minimum du soutien simple.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé."
+      ]
+    },
+    {
+      "id": "SEF-V421-011",
+      "candidateKey": "fit:repondant_accept_essai_couleur",
+      "candidateLabel": "Accepter un essai à la couleur avec valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v421-cas-011",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "D",
+          "7",
+          "3"
+        ],
+        [
+          "V",
+          "9",
+          "6"
+        ],
+        [
+          "A",
+          "V",
+          "8",
+          "4"
+        ],
+        [
+          "V",
+          "8",
+          "2"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 3♦"
+      ],
+      "sourceContext": "Vous avez soutenu votre partenaire à 2♠, puis il a fait une enchère d’essai à 3♦. Avec 9 H et une distribution 3-3-4-3, comment réagissez-vous ?",
+      "sourceChoices": [
+        "3♠",
+        "4♠",
+        "3SA",
+        "4♦"
+      ],
+      "sourceExplanation": "Vous détenez 9 H, trois atouts Pique (♠D73) et ♦AV84 dans la couleur de l'essai à 3♦. La main est proche du maximum du soutien simple et apporte des valeurs utiles à Carreau : 4♠ accepte la proposition de manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V421-012",
+      "candidateKey": "fit:repondant_refus_essai_couleur",
+      "candidateLabel": "Refuser un essai de manche à la couleur sans valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v421-cas-012",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "R",
+          "6",
+          "4"
+        ],
+        [
+          "9",
+          "7",
+          "5"
+        ],
+        [
+          "10",
+          "8",
+          "6",
+          "3"
+        ],
+        [
+          "D",
+          "9",
+          "4"
+        ]
+      ],
+      "sourceH": 5,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Vous : 2♥",
+        "Partenaire : 3♦"
+      ],
+      "sourceContext": "Vous avez soutenu votre partenaire à 2♥, puis il a fait une enchère d’essai à 3♦. Avec 5 H et une distribution 3-3-4-3, comment réagissez-vous ?",
+      "sourceChoices": [
+        "3♥",
+        "4♥",
+        "3SA",
+        "4♦"
+      ],
+      "sourceExplanation": "Vous avez 5 H, trois Cœurs (♥975) et ♦10863 sans honneur utile dans la couleur de l'essai. La main est minimum : 3♥ refuse la tentative de manche et revient à la majeure fittée au niveau le plus bas.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "SOUTIEN_SIMPLE_5H_SANS_COURTE_A_EXPERTISER"
+      ],
+      "notes": [
+        "La réponse initiale 2M est montrée avec seulement 5 H et sans courte ; vérifier le seuil HLD du soutien simple avant enseignement, sans changer le corrigé."
+      ]
+    },
+    {
+      "id": "SEF-V423-001",
+      "candidateKey": "fit:ouvreur_essai_couleur",
+      "candidateLabel": "Choisir une enchère d'essai à la couleur après soutien simple",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v423-cas-001",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "A",
+          "D",
+          "10",
+          "8",
+          "4"
+        ],
+        [
+          "R",
+          "D",
+          "V",
+          "5"
+        ],
+        [
+          "A",
+          "9"
+        ],
+        [
+          "7",
+          "2"
+        ]
+      ],
+      "sourceH": 16,
+      "sourceShape": [
+        5,
+        4,
+        2,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "sourceContext": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 16 H et une main 5-4-2-2, quelle est votre redemande ?",
+      "sourceChoices": [
+        "Passe",
+        "3♠",
+        "3♥",
+        "4♠"
+      ],
+      "sourceExplanation": "Avec 16 H, cinq Piques (♠AD1084) et quatre Cœurs solides (♥RDV5), vous avez assez de force et une seconde couleur pour chercher la manche. 3♥ est l'enchère d'essai naturelle après 1♠–2♠, sans abandonner le fit Pique.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V423-002",
+      "candidateKey": "fit:repondant_accept_essai_couleur",
+      "candidateLabel": "Accepter un essai à la couleur avec valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v423-cas-002",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "R",
+          "9",
+          "4"
+        ],
+        [
+          "D",
+          "7",
+          "3"
+        ],
+        [
+          "A",
+          "8",
+          "5",
+          "2"
+        ],
+        [
+          "9",
+          "7",
+          "6"
+        ]
+      ],
+      "sourceH": 9,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 3♥"
+      ],
+      "sourceContext": "Vous avez soutenu votre partenaire à 2♠, puis il a fait une enchère d’essai à 3♥. Avec 9 H et une distribution 3-3-4-3, comment réagissez-vous ?",
+      "sourceChoices": [
+        "3♠",
+        "4♠",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Vos 9 H, trois Piques (♠R94) et la Dame de Cœur (♥D73) conviennent particulièrement à l'essai du partenaire à 3♥. Dans le haut de la zone du soutien simple, vous acceptez la proposition par 4♠.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V423-003",
+      "candidateKey": "fit:repondant_refus_essai_couleur",
+      "candidateLabel": "Refuser un essai de manche à la couleur sans valeurs utiles",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v423-cas-003",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "D",
+          "8",
+          "5"
+        ],
+        [
+          "9",
+          "7",
+          "4"
+        ],
+        [
+          "R",
+          "8",
+          "6",
+          "3"
+        ],
+        [
+          "V",
+          "9",
+          "2"
+        ]
+      ],
+      "sourceH": 6,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♠",
+        "Vous : 2♠",
+        "Partenaire : 3♥"
+      ],
+      "sourceContext": "Rappel : après un fit majeur, un changement de couleur au palier de 3 est une enchère d’essai de manche.",
+      "sourceChoices": [
+        "3♠",
+        "4♠",
+        "3SA",
+        "Passe"
+      ],
+      "sourceExplanation": "Sur 1♠–2♠–3♥, l'ouvreur cherche un complément à Cœur pour la manche. Avec 6 H, trois Piques et aucun honneur à Cœur, les valeurs sont peu utiles à cet essai : 3♠ refuse l'invitation. Passe sur 3♥ n'est pas adapté à cette séquence.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": []
+    },
+    {
+      "id": "SEF-V486-007",
+      "candidateKey": "fit:2sa_fitte_ouvreur",
+      "candidateLabel": "Décrire la main de l'ouvreur après 1M–2SA fitté sans intervention",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v486-b-001",
+      "sourceAnswer": "3♥",
+      "sourceHand": [
+        [
+          "R",
+          "7"
+        ],
+        [
+          "A",
+          "D",
+          "10",
+          "8",
+          "6"
+        ],
+        [
+          "D",
+          "7",
+          "4"
+        ],
+        [
+          "V",
+          "9",
+          "3"
+        ]
+      ],
+      "sourceH": 12,
+      "sourceShape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+      ],
+      "sourceContext": "Vous avez ouvert de 1 en majeure en première position, sans intervention adverse. Votre partenaire répond directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l'ouvreur. Quelle redemande décrit le mieux votre force et votre distribution selon le SEF 2024 ? Séquence : Vous : 1♥ — Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD). Précision : Indifférente.",
+      "sourceChoices": [
+        "3♣",
+        "3♥",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Le 2SA direct de Nord promet exactement trois Cœurs et 11–12 HLD. Avec seulement 13 HL et une main d’ouverture minimale, Sud décline la proposition de manche et conclut à 3♥.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-V486-008",
+      "candidateKey": "fit:2sa_fitte_ouvreur",
+      "candidateLabel": "Décrire la main de l'ouvreur après 1M–2SA fitté sans intervention",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v486-b-002",
+      "sourceAnswer": "4♠",
+      "sourceHand": [
+        [
+          "R",
+          "D",
+          "V",
+          "8",
+          "5"
+        ],
+        [
+          "A",
+          "8",
+          "2"
+        ],
+        [
+          "7"
+        ],
+        [
+          "A",
+          "V",
+          "9",
+          "4"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        5,
+        3,
+        1,
+        4
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+      ],
+      "sourceContext": "Vous avez ouvert de 1 en majeure en première position, sans intervention adverse. Votre partenaire répond directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l'ouvreur. Quelle redemande décrit le mieux votre force et votre distribution selon le SEF 2024 ? Séquence : Vous : 1♠ — Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD). Précision : Indifférente.",
+      "sourceChoices": [
+        "3♣",
+        "3♠",
+        "3SA",
+        "4♠"
+      ],
+      "sourceExplanation": "Nord a annoncé un soutien troisième et une zone invitante de 11–12 HLD. Les 15 H de Sud, ses cinq Piques et son singleton Carreau rendent la manche à Pique suffisamment probable : l’ouvreur conclut à 4♠ sans décrire inutilement ses Trèfles.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-V486-009",
+      "candidateKey": "fit:2sa_fitte_ouvreur",
+      "candidateLabel": "Décrire la main de l'ouvreur après 1M–2SA fitté sans intervention",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v486-b-003",
+      "sourceAnswer": "3♠",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "7",
+          "4"
+        ],
+        [
+          "A",
+          "V",
+          "9",
+          "5",
+          "3"
+        ],
+        [
+          "R",
+          "6",
+          "2"
+        ],
+        [
+          "8"
+        ]
+      ],
+      "sourceH": 15,
+      "sourceShape": [
+        4,
+        5,
+        3,
+        1
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+      ],
+      "sourceContext": "Vous avez ouvert de 1 en majeure en première position, sans intervention adverse. Votre partenaire répond directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l'ouvreur. Quelle redemande décrit le mieux votre force et votre distribution selon le SEF 2024 ? Séquence : Vous : 1♥ — Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD). Précision : Indifférente.",
+      "sourceChoices": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Après 2SA fitté, l’ouvreur sait que Nord a trois Cœurs, mais Nord peut détenir quatre Piques. En nommant sa seconde majeure quatrième par 3♠, Sud permet de découvrir un éventuel fit 4–4 à Pique, préférable dans certaines distributions au fit 5–3 à Cœur.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-V486-010",
+      "candidateKey": "fit:2sa_fitte_ouvreur",
+      "candidateLabel": "Décrire la main de l'ouvreur après 1M–2SA fitté sans intervention",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "v486-b-004",
+      "sourceAnswer": "3SA",
+      "sourceHand": [
+        [
+          "V",
+          "9",
+          "6",
+          "4",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "7"
+        ],
+        [
+          "R",
+          "D"
+        ],
+        [
+          "A",
+          "10",
+          "8"
+        ]
+      ],
+      "sourceH": 16,
+      "sourceShape": [
+        5,
+        3,
+        2,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♠",
+        "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+      ],
+      "sourceContext": "Vous avez ouvert de 1 en majeure en première position, sans intervention adverse. Votre partenaire répond directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l'ouvreur. Quelle redemande décrit le mieux votre force et votre distribution selon le SEF 2024 ? Séquence : Vous : 1♠ — Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD). Précision : Indifférente.",
+      "sourceChoices": [
+        "3♣",
+        "3♠",
+        "3SA",
+        "4♠"
+      ],
+      "sourceExplanation": "Malgré la force de manche, les cinq Piques de Sud sont faibles. Avec une main 5-3-3-2 et des arrêts dans les autres couleurs, notamment Roi-Dame dans le doubleton Carreau, l’ouvreur propose 3SA comme contrat alternatif non forcing ; le répondant choisira selon sa distribution.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-L09-029",
+      "candidateKey": "fit:michaels_cuebid_force_manche",
+      "candidateLabel": "Employer le premier cuebid sur Michaël avec fit majeur forcing de manche",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "V18-CORRECTION-CRITIQUE-SEF-L09-029",
+      "sourceAnswer": "2♠",
+      "sourceHand": [
+        [
+          "A",
+          "8",
+          "3"
+        ],
+        [
+          "R",
+          "D",
+          "V",
+          "8"
+        ],
+        [
+          "A",
+          "9",
+          "5"
+        ],
+        [
+          "7",
+          "6",
+          "4"
+        ]
+      ],
+      "sourceH": 14,
+      "sourceShape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Adversaire : 2♥ (Michaël précisé : ♠ + ♣)"
+      ],
+      "sourceContext": "Nord ouvre 1♥ et Est intervient à 2♥, Michaël précisé annonçant les ♠ et les ♣ au moins cinquièmes. Vous êtes Sud, non passé, avec quatre atouts ♥, 14 H, sans cinq ♦ ni singleton dans une couleur adverse. Dans le SEF 2024, les deux cue-bids implicites répondent à des fonctions différentes. Quelle enchère de votre part montre ici un fit ♥ forcing de manche ?",
+      "sourceChoices": [
+        "2♠",
+        "3♣",
+        "3♠",
+        "4♣"
+      ],
+      "sourceExplanation": "Les couleurs adverses sont ♠ et ♣. Dans l'ordre des enchères, le premier cue-bid disponible est 2♠ (au palier 2) : il exprime ici le fit ♥ forcing de manche. Le second est 3♣ (au palier 3) et promet au moins cinq ♦, absents de Sud. Selon les accords de Splinter après Michaël, 3♠ indiquerait une courte ♠ et 4♣ une courte ♣ ; Sud a trois cartes dans chaque couleur adverse. Attention à ne pas classer les cue-bids par hiérarchie intrinsèque des couleurs : c'est l'espace d'enchère réellement consommé qui compte. Le document de modifications du SEF 2024 et la fiche technique 1♥–2♥ confirment cette inversion par rapport à V17.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [
+        "CAS_COMPETITIF_MICH_A_ISOLER"
+      ],
+      "notes": [
+        "Situation d'intervention Michaël à examiner avec la taxonomie compétitive, pas uniquement avec le soutien simple."
+      ]
+    },
+    {
+      "id": "SEF-L09-028",
+      "candidateKey": "fit:ouvreur_conclure_manche",
+      "candidateLabel": "Conclure directement à 4M après soutien simple avec valeurs et distribution appropriées",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "l09-fit-1-028",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "8"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "10",
+          "9",
+          "7"
+        ],
+        [
+          "A",
+          "8",
+          "4"
+        ],
+        [
+          "R",
+          "9",
+          "6"
+        ]
+      ],
+      "sourceH": 16,
+      "sourceShape": [
+        1,
+        6,
+        3,
+        3
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Adversaire : Passe",
+        "Partenaire : 2♥",
+        "Adversaire : Passe"
+      ],
+      "sourceContext": "Vous êtes Sud, avez ouvert de 1♥ en premier. Ouest passe, Nord vous soutient à 2♥ (6–10 HLD, au moins trois atouts), Est passe. Vous reparlez. Vulnérabilité : Tous non vulnérables. Quelle est votre enchère ?",
+      "sourceChoices": [
+        "2SA",
+        "3♣",
+        "3♥",
+        "4♥"
+      ],
+      "sourceExplanation": "Avec six Cœurs très forts et une courte à Pique, la main possède d’importantes plus-values HLD ; même un soutien simple suffit pour demander la manche à 4♥.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Préciser la prise en compte de la vulnérabilité et de la distribution avant validation du niveau de manche."
+      ]
+    },
+    {
+      "id": "SEF-L21-005",
+      "candidateKey": "fit:2sa_fitte_competitif",
+      "candidateLabel": "Développer après 2SA fitté sur intervention adverse",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "LOT21-2026-11-13-005",
+      "sourceAnswer": "4♥",
+      "sourceHand": [
+        [
+          "A",
+          "9",
+          "4"
+        ],
+        [
+          "R",
+          "D",
+          "7"
+        ],
+        [
+          "R",
+          "9",
+          "6",
+          "3"
+        ],
+        [
+          "V",
+          "8",
+          "5"
+        ]
+      ],
+      "sourceH": 13,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠ (naturel)",
+        "Vous : 2SA (fitté : trois Cœurs, 11–15 HLD)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (ouvreur minimum)",
+        "Adversaire : Passe"
+      ],
+      "sourceContext": "Après 1♥–(1♠)–2SA fitté (trois Cœurs, 11–15 HLD), l'ouvreur se décrit minimum en revenant à 3♥. Vous détenez 13 H, exactement trois Cœurs, aucun singleton et donc 13 HLD : votre 2SA était dans la zone de manche. Quelle décision prenez-vous maintenant ?",
+      "sourceChoices": [
+        "Passe",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Le 2SA fitté derrière une intervention couvre 11–15 HLD avec trois atouts. Quand l'ouvreur minimum revient à 3♥, le répondant passe avec 11–12 HLD, mais impose 4♥ avec 13–15 HLD. Votre main régulière apporte 13 HLD : il faut demander la manche.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-L21-006",
+      "candidateKey": "fit:2sa_fitte_competitif",
+      "candidateLabel": "Développer après 2SA fitté sur intervention adverse",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "LOT21-2026-11-13-006",
+      "sourceAnswer": "Passe",
+      "sourceHand": [
+        [
+          "R",
+          "9",
+          "4"
+        ],
+        [
+          "D",
+          "8",
+          "7"
+        ],
+        [
+          "A",
+          "9",
+          "6",
+          "3"
+        ],
+        [
+          "D",
+          "8",
+          "5"
+        ]
+      ],
+      "sourceH": 11,
+      "sourceShape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "sourceAuction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠ (naturel)",
+        "Vous : 2SA (fitté : trois Cœurs, 11–15 HLD)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (ouvreur minimum)",
+        "Adversaire : Passe"
+      ],
+      "sourceContext": "Après 1♥–(1♠)–2SA fitté, l'ouvreur revient à 3♥ avec une main minimum. Vous possédez trois Cœurs et 11 HLD sans courte : votre 2SA constituait seulement une proposition de manche. Quelle est maintenant votre décision ?",
+      "sourceChoices": [
+        "Passe",
+        "3SA",
+        "4♥",
+        "4♠"
+      ],
+      "sourceExplanation": "Après 2SA fitté derrière intervention, l'ouvreur traite d'abord le répondant comme limite. Son 3♥ montre une main minimum. Avec seulement 11–12 HLD et trois atouts, le répondant passe ; 4♥ nécessiterait 13–15 HLD dans cette suite.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    },
+    {
+      "id": "SEF-L21-007",
+      "candidateKey": "fit:2sa_fitte_competitif",
+      "candidateLabel": "Développer après 2SA fitté sur intervention adverse",
+      "sourceTheme": "apres_fit",
+      "sourceFamily": "LOT21-2026-11-13-007",
+      "sourceAnswer": "3SA",
+      "sourceHand": [
+        [
+          "A",
+          "R",
+          "5"
+        ],
+        [
+          "A",
+          "10",
+          "8",
+          "7",
+          "6"
+        ],
+        [
+          "R",
+          "9",
+          "2"
+        ],
+        [
+          "D",
+          "10"
+        ]
+      ],
+      "sourceH": 16,
+      "sourceShape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "sourceAuction": [
+        "Vous : 1♥",
+        "Adversaire : 1♠ (intervention naturelle)",
+        "Partenaire : 2SA (fitté, trois Cœurs et 11–15 HLD)",
+        "Adversaire : Passe"
+      ],
+      "sourceContext": "Vous avez ouvert de 1♥ avec 16 H, cinq Cœurs et deux tenues distinctes à Pique (♠AR5). Sur 2SA fitté du partenaire, avec une main non minimum, quelle redemande décrit vos deux arrêts Pique et propose le contrat de 3SA comme alternative à 4♥ ?",
+      "sourceChoices": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "sourceExplanation": "Dans les développements du 2SA fitté après intervention, l'ouvreur peut proposer 3SA avec un jeu non minimum et deux tenues dans la couleur adverse. Ici ♠AR5 apporte ces deux arrêts : 3SA informe le partenaire de l'option Sans-Atout sans nier les trois atouts Cœur promis par son 2SA.",
+      "review": "PROPOSITION_A_VALIDER_PEDAGOGIQUEMENT",
+      "structural": "VERIFIE",
+      "flags": [],
+      "notes": [
+        "Ne pas confondre 2SA fitté en réponse à 1M et 2SA essai généralisé après 1M–2M."
+      ]
+    }
+  ]
+}

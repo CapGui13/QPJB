@@ -9,6 +9,9 @@ on:
       - 'audits/QPJB_V1_STAYMAN_TEXAS_65_REVUE_20261120.json'
       - 'scripts/verify-v1-stayman-texas-65.cjs'
       - 'Docs/QUIZZ_V1_REVUE_65_STAYMAN_TEXAS_20261120.md'
+      - 'audits/QPJB_V1_APRES_FIT_48_PRECLASSIFICATION_20261120.json'
+      - 'scripts/verify-v1-apres-fit-48.cjs'
+      - 'Docs/QUIZZ_V1_APRES_FIT_48_PRECLASS_20261120.md'
       - '.github/workflows/qpjb-v1-competences-audit.yml'
   workflow_dispatch:
 permissions:
@@ -29,3 +32,5 @@ jobs:
       - run: node scripts/verify-v1-competences-register.cjs
       - run: node --check scripts/verify-v1-stayman-texas-65.cjs
       - run: node scripts/verify-v1-stayman-texas-65.cjs
+      - run: node --check scripts/verify-v1-apres-fit-48.cjs
+      - run: node scripts/verify-v1-apres-fit-48.cjs
