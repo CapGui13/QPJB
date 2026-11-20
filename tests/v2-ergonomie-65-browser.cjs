@@ -34,7 +34,7 @@ async function check(which,mobile,url){
   const page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url,{waitUntil:'domcontentloaded'});
-  await page.getByRole('heading',{name:'Parcours guidé SEF'}).waitFor();
+  await page.locator('header h1').getByText('Parcours guidé SEF',{exact:true}).waitFor();
   const publicText=await page.locator('body').innerText();
   assert.doesNotMatch(publicText,/Aperçu privé|HORS PRODUCTION|19 DÉCISIONS PÉDAGOGIQUES|V1\/V2-F/);
   assert.match(publicText,/Ta progression est enregistrée/);
