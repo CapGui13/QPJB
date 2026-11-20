@@ -1,0 +1,46 @@
+name: QPJB V2 — recette finale integration publique
+on:
+  push:
+    branches:
+      - 'prep/qpjb-v2-integration-r1-20261120'
+    paths:
+      - 'index.html'
+      - 'preview/v2-eleve/parcours-sef-65-r1.html'
+      - 'scripts/v2-integration-guard.cjs'
+      - 'tests/v2-integration-entry-browser.cjs'
+      - '.github/workflows/qpjb-v2-integration-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guard:
+    name: Controle du contenu R1 et de l'acces Quizz
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/v2-integration-guard.cjs
+      - run: node scripts/v2-integration-guard.cjs
+  browser:
+    name: Navigation accueil vers V2 en Chromium et WebKit
+    needs: guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: node --check tests/v2-integration-entry-browser.cjs
+      - run: node tests/v2-integration-entry-browser.cjs
