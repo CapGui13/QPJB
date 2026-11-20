@@ -68,7 +68,6 @@ assert.ok(start>=0&&end>start);
 const d=JSON.parse(file.slice(start+m.length,end));
 assert.equal(d.catalog.length,1523);assert.equal(d.addons.length,0);
 assert.equal(d.releaseDecision,'PUBLISHED');assert.equal(d.candidatePublished,true);assert.equal(d.editorialApproval,'APPROVED_BY_USER');
-assert.equal(d.candidatePublished,false);
 assert.equal(d.candidateVersion,'QPJB-V2-65-19A-20261120-R1');
 const gambling=d.catalog.find(x=>x.id==='SEF-L06-029');
 assert.equal(gambling.theme,'sa');assert.equal(gambling.answer,'4♦');
