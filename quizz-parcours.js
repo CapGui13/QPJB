@@ -2,7 +2,59 @@
 (function(root,factory){
   const api=factory();
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
-  if(root)root.QPJBParcours=api;
+  if(root){
+    root.QPJBParcours=api;
+    // Le gros fichier quizz.html reste intact : la restauration se greffe
+    // uniquement à côté du bouton d'export de la V1.
+    if(root.document){
+      const setupImport=()=>{
+        const exportButton=root.document.getElementById('progress-export');
+        if(!exportButton||root.document.getElementById('progress-import'))return;
+        const button=root.document.createElement('button');
+        button.id='progress-import';button.type='button';
+        button.textContent='Importer une sauvegarde (JSON)';
+        button.style.marginLeft='8px';
+        const input=root.document.createElement('input');
+        input.type='file';input.id='progress-import-file';
+        input.accept='.json,application/json';input.hidden=true;
+        exportButton.insertAdjacentElement('afterend',button);
+        button.insertAdjacentElement('afterend',input);
+        button.addEventListener('click',()=>input.click());
+        input.addEventListener('change',async()=>{
+          const file=input.files&&input.files[0];
+          if(!file)return;
+          const status=root.document.getElementById('progress-export-status');
+          try{
+            if(file.size>5_000_000)throw Error('Fichier trop volumineux (5 Mo maximum).');
+            const restored=api.importProgress(await file.text());
+            const key='qpjb-sef-parcours-01';
+            const oldRaw=root.localStorage.getItem(key);
+            const current=api.load(oldRaw);
+            const msg='Restaurer '+restored.completed+' séance(s) terminée(s) à la place de '+
+              current.completed+' ? Une copie locale de la progression actuelle sera conservée. '+
+              'Le Quiz SEF classique ne sera pas modifié.';
+            if(!root.confirm(msg)){
+              if(status)status.textContent='Import annulé : progression actuelle conservée.';
+              return;
+            }
+            // Pas de remplacement destructeur : enregistrer d'abord l'ancien état.
+            if(oldRaw!==null){
+              const backup=key+'-avant-import-'+new Date().toISOString().replace(/[:.]/g,'-');
+              root.localStorage.setItem(backup,oldRaw);
+            }
+            root.localStorage.setItem(key,JSON.stringify(restored));
+            if(status)status.textContent='Sauvegarde restaurée. Rechargement du parcours…';
+            root.location.reload();
+          }catch(err){
+            if(status)status.textContent='Import refusé : '+String(err.message||err);
+          }finally{input.value='';}
+        });
+      };
+      if(root.document.readyState==='loading')
+        root.document.addEventListener('DOMContentLoaded',setupImport,{once:true});
+      else setupImport();
+    }
+  }
 })(typeof window!=='undefined'?window:null,function(){
   'use strict';
   const VERSION=1;
@@ -508,13 +560,25 @@
     const s=state.completed,limit=clamp(int(n,10),1,20);
     const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
     const previous=state.entries||{};
+    // Réviser une notion sur une situation différente est aussi un vrai rappel.
+    // Cela n'ajoute pas de tentative fictive à l'ancienne question.
+    const concept=x=>microKey(x)||'situation:'+situation(x);
+    const latestIndependent={};
+    for(const x of pool){
+      const r=previous[x.id];
+      if(r&&r.result==='correct'&&!r.assisted)
+        latestIndependent[concept(x)]=Math.max(latestIndependent[concept(x)]??-1,r.lastSession);
+    }
     // Pré-calcul : ne jamais rescanner les 1 523 QCM lors de chaque comparaison.
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
     const due=pool.filter(x=>{
       const r=previous[x.id];if(!r||r.due>s||r.lastSession>=s)return false;
       // Les succès autonomes attendent au minimum 5/11/19 séances.
+      // Une nouvelle bonne réponse au même concept repousse le rappel,
+      // sans prétendre que la question initiale a été rejouée.
       if(r.result==='correct'&&!r.assisted)
-        return s-r.lastSession>=(r.streak>=3?19:r.streak===2?11:5);
+        return s-Math.max(r.lastSession,latestIndependent[concept(x)]??-1)>=
+          (r.streak>=3?19:r.streak===2?11:5);
       return true;
     });
     const fresh=pool.filter(x=>!previous[x.id]);
@@ -656,19 +720,33 @@
       selected.push({exercise:winner,kind});
       return true;
     }
-    // Une reussite autonome confirmée nécessite des rappels espacés, mais
-    // pas automatiquement deux anciens QCM a chaque seance. En cas d'erreur
-    // ou de reponse aidee encore eligibles, conserver deux places de rappel.
-    const weakDue=due.some(x=>previous[x.id].result!=='correct'||previous[x.id].assisted);
-    const reviewQuota=Math.min(weakDue?2:1,Math.floor(limit/4),due.length);
-    // Placer les révisions parmi les nouveautés plutôt qu'en bloc.
+    // Dès la toute première séance : cinq couleurs/contrats distincts,
+    // deux mineures de chaque type et Passe, si le catalogue les permet.
+    // Le score général remplit les dernières places sans doublon de famille.
+    if(s===0&&limit>=8){
+      for(const target of ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']){
+        const candidates=fresh.filter(x=>x.theme==='ouv'&&bid(x)===target&&
+          !selected.some(chosen=>family(chosen.exercise)===family(x)));
+        if(candidates.length)pick(candidates,'nouveau');
+      }
+    }
+    // Révisions : erreur/aide = revoir le cas dû ; réussite autonome =
+    // exercer la même notion sur une nouvelle situation, si disponible.
+    const weakDueCandidates=due.filter(x=>
+      previous[x.id].result!=='correct'||previous[x.id].assisted);
+    const strongConcepts=new Set(due.filter(x=>
+      previous[x.id].result==='correct'&&!previous[x.id].assisted).map(concept));
+    const alternateReviews=fresh.filter(x=>strongConcepts.has(concept(x)));
+    const reviewQuota=Math.min(weakDueCandidates.length?2:1,Math.floor(limit/4),due.length);
     const plan=[];
     for(let i=0;i<limit;i++)plan.push(i===3||i===7?'revision':'nouveau');
     let plannedReviews=0;
-    for(let i=0;i<limit;i++){
+    for(let i=selected.length;i<limit;i++){
       let kind=plan[i];
       if(kind==='revision'&&plannedReviews>=reviewQuota)kind='nouveau';
-      if(kind==='revision'&&pick(due,'revision')){plannedReviews++;continue}
+      if(kind==='revision'&&
+        (pick(weakDueCandidates,'revision')||pick(alternateReviews,'revision')||
+         pick(due,'revision'))){plannedReviews++;continue}
       if(pick(fresh,'nouveau'))continue;
       if(pick(due,'revision'))continue;
       if(pick(pool,'revision'))continue;
@@ -986,6 +1064,31 @@
       quizQuestionHistory:quizRecords||{}
     };
   }
+  // Un export est un rapport accompagné de l'état réellement enregistré.
+  // Ne jamais réimporter les agrégats du rapport comme s'ils étaient des
+  // preuves, ni écrire la clé du Quiz classique en restaurant le parcours.
+  function importProgress(raw){
+    let backup;
+    try{backup=typeof raw==='string'?JSON.parse(raw):raw}
+    catch(_){throw Error('Le fichier ne contient pas un JSON valide.')}
+    if(!backup||Array.isArray(backup)||backup.format!=='QPJB_PROGRESS_EXPORT_1'||
+      backup.storageKeys?.parcours!=='qpjb-sef-parcours-01')
+      throw Error('Ce fichier n’est pas un export de progression V1 QPJB.');
+    const old=backup.algorithmState;
+    if(!old||Array.isArray(old)||old.version!==VERSION||
+      !Number.isInteger(old.completed)||old.completed<0||old.completed>100000||
+      !old.entries||typeof old.entries!=='object'||Array.isArray(old.entries)||
+      !old.skills||typeof old.skills!=='object'||Array.isArray(old.skills)||
+      backup.summary?.completedSessions!==old.completed)
+      throw Error('État de progression manquant ou incohérent.');
+    const restored=load(old);
+    // Un ancien journal incomplet reste incomplet : ni invention ni perte.
+    if(Object.keys(restored.entries).length!==Object.keys(old.entries).length||
+      (old.active&&!restored.active)||
+      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0))
+      throw Error('Sauvegarde incohérente : aucune donnée n’a été remplacée.');
+    return restored;
+  }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
   // ni de reconstruction spéculative de l'historique.
   const DASH_LABELS={
@@ -1054,5 +1157,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,summary,levelFor};
 });
