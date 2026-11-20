@@ -601,7 +601,7 @@
         // Le ressenti règle la difficulté des prochaines questions, sans modifier
         // les preuves indépendantes ni les niveaux de maîtrise calculés.
         const target=clamp(skill+state.difficultyAdjustment,1,5);
-        const fit=-36*Math.abs(x.difficulty-target);
+        const fit=-28*Math.abs(x.difficulty-target);
         const need=state.skills[t]?.errors?12*state.skills[t].errors:0;
         const answer=bid(x),sameAnswer=bidCount[t+'|'+answer]||0;
         // Couvrir d'abord plusieurs types d'ouvertures : 1♣ et 1♦ doivent
