@@ -74,6 +74,68 @@ for(const [idx,q] of changed.entries()){
  assert.equal(new Set(q.choices).size,q.choices.length,'Choix doublonnés');
 }
 
+// Préparer une proposition de patch strictement limitée aux champs étudiés.
+// Ce n'est ni une correction source ni une approbation éditoriale.
+const allowedDiffs=new Map([
+  ['SEF-V416-008',['answer','choices','context','explain']],
+  ['SEF-V416-009',['answer','choices','context','explain']],
+  ['SEF-L25-007',['explain']],
+  ['SEF-L06-029',[]]
+]);
+const patchEntries=proposals.map((proposal,n)=>{
+  const before=original[n],after=changed[n];
+  const differingKeys=[...new Set([...Object.keys(before),...Object.keys(after)])]
+    .filter(key=>JSON.stringify(before[key])!==JSON.stringify(after[key])).sort();
+  assert.deepEqual(differingKeys,allowedDiffs.get(proposal.id).slice().sort(),
+    'Champs non autorisés modifiés : '+proposal.id);
+  const changes=Object.fromEntries(differingKeys.map(key=>[key,after[key]]));
+  return {
+    id:proposal.id,
+    originalQuestionSHA256:crypto.createHash('sha256')
+      .update(JSON.stringify(before)).digest('hex'),
+    proposedChanges:changes,
+    affectedFields:differingKeys,
+    editorialApproval:'PENDING'
+  };
+});
+// Recette de non-régression : 1523 IDs conservés, et seulement 3 QCM
+// changeraient après application théorique de ce patch.
+const patchById=new Map(patchEntries.map(entry=>[entry.id,entry]));
+assert.equal(patchById.size,4);
+const simulated=items.map(q=>({...q,...(patchById.get(q.id)?.proposedChanges||{})}));
+assert.equal(simulated.length,1523);
+assert.deepEqual(simulated.map(q=>q.id),items.map(q=>q.id));
+const modifiedIds=simulated.filter((q,n)=>JSON.stringify(q)!==JSON.stringify(items[n]))
+  .map(q=>q.id);
+assert.deepEqual(modifiedIds,['SEF-L25-007','SEF-V416-008','SEF-V416-009']
+  .sort((a,b)=>items.findIndex(q=>q.id===a)-items.findIndex(q=>q.id===b)),
+  'Neuf ou anciens exercices modifiés hors périmètre');
+for (let n=0;n<items.length;n++){
+ const before=items[n],after=simulated[n];
+ assert.deepEqual(after.hand,before.hand,'Main changée : '+before.id);
+ assert.equal(after.h,before.h,'Points changés : '+before.id);
+ assert.deepEqual(after.auction,before.auction,'Séquence changée : '+before.id);
+ assert.equal(after.theme,before.theme,'Thème source changé : '+before.id);
+ assert.ok(after.choices.includes(after.answer),'Réponse non proposée : '+before.id);
+}
+const patchDocument={
+ schema:'QPJB_V2_EDITORIAL_PATCH_PROPOSAL_1',
+ publicReferenceCommit:publicSha,
+ sourceQuestionCount:1523,
+ sourceEdited:false,
+ approved:false,
+ releaseDecision:'HOLD',
+ hypotheticalModifiedIDs:modifiedIds,
+ proposedPatches:patchEntries,
+ proposedClassification:{
+   id:'SEF-L06-029',
+   sourceThemeUnchanged:'sa',
+   learningCategory:'Ouvertures conventionnelles / barrages',
+   editorialApproval:'PENDING'
+ },
+ note:'Propositions uniquement. Ne pas appliquer automatiquement à quizz.html.'
+};
+
 function hand(q){
  return '<div class="hand">'+q.hand.map((cards,n)=>
    '<span><b class="'+([1,2].includes(n)?'red':'')+'">'+['♠','♥','♦','♣'][n]+'</b> '+e(cards.join(''))+'</span>').join('')+'</div>';
@@ -125,5 +187,12 @@ const manifest={schema:'QPJB_V2_EDITORIAL_PREVIEW_1',publicReferenceCommit:publi
   proposedExplainChanges:['SEF-V416-008','SEF-V416-009','SEF-L25-007'],
   classificationOnly:'SEF-L06-029',sourceEdited:false,teacherApproval:false,
   releaseDecision:'HOLD',sitePublished:false,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),filename};
+const patchFileName='corrections-proposees-HOLD.json';
+const patchBytes=Buffer.from(JSON.stringify(patchDocument,null,2)+'\n','utf8');
+fs.writeFileSync(path.join(out,patchFileName),patchBytes);
+manifest.patchProposalFile=patchFileName;
+manifest.patchProposalSHA256=crypto.createHash('sha256').update(patchBytes).digest('hex');
+manifest.hypotheticalModifiedIDs=modifiedIds;
+manifest.concreteQcmSourceChanges=0;
 fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log('QPJB EDITORIAL REVIEW PREVIEW ONLY '+JSON.stringify(manifest));
