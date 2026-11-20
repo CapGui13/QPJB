@@ -353,7 +353,8 @@
     return {result:entry.result,assisted:!!entry.assisted,
       lastSession:int(entry.lastSession)};
   }
-  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},active:null};}
+  function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},
+    active:null,journal:[],difficultyFeedback:[],difficultyAdjustment:0};}
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -461,6 +462,38 @@
         s.lastConsolidation={atSession:report.atSession,counts,parts};
       }
     }
+    // Champs facultatifs : les anciennes sauvegardes restent lisibles sans historique reconstruit.
+    if(Array.isArray(old.journal)){
+      s.journal=old.journal.slice(-1000).filter(event=>
+        event&&['parcours','consolidation'].includes(event.mode)&&
+        Number.isInteger(event.session)&&event.session>=1&&event.session<=s.completed+1&&
+        Array.isArray(event.answers)&&event.answers.length<=20&&event.answers.length>0&&
+        event.answers.every(a=>a&&typeof a.id==='string'&&a.id.length<=100&&
+          ['correct','wrong','skipped'].includes(a.result)&&
+          (a.choice===null||typeof a.choice==='string'))
+      ).map(event=>({
+        mode:event.mode,session:event.session,
+        recordedAt:typeof event.recordedAt==='string'?event.recordedAt:null,
+        answers:event.answers.map(a=>({
+          id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
+          assisted:!!a.assisted,hadFreeError:!!a.hadFreeError,
+          theme:typeof a.theme==='string'?a.theme:null,
+          difficulty:Number.isInteger(a.difficulty)?a.difficulty:null,
+          family:typeof a.family==='string'?a.family:null,
+          micro:typeof a.micro==='string'?a.micro:null,
+          axis:typeof a.axis==='string'?a.axis:null
+        }))
+      }));
+    }
+    s.difficultyAdjustment=Number.isInteger(old.difficultyAdjustment)?
+      clamp(old.difficultyAdjustment,-2,2):0;
+    if(Array.isArray(old.difficultyFeedback)){
+      s.difficultyFeedback=old.difficultyFeedback.filter(f=>f&&
+        Number.isInteger(f.session)&&f.session>=1&&f.session<=s.completed&&
+        ['increase','same','decrease'].includes(f.choice)).slice(-100)
+        .map(f=>({session:f.session,choice:f.choice,
+          recordedAt:typeof f.recordedAt==='string'?f.recordedAt:null}));
+    }
     return s;
   }
   function themeFloor(exercises,theme){
@@ -477,7 +510,13 @@
     const previous=state.entries||{};
     // Pré-calcul : ne jamais rescanner les 1 523 QCM lors de chaque comparaison.
     const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
-    const due=pool.filter(x=>previous[x.id]&&previous[x.id].due<=s&&previous[x.id].lastSession<s);
+    const due=pool.filter(x=>{
+      const r=previous[x.id];if(!r||r.due>s||r.lastSession>=s)return false;
+      // Les succès autonomes attendent au minimum 5/11/19 séances.
+      if(r.result==='correct'&&!r.assisted)
+        return s-r.lastSession>=(r.streak>=3?19:r.streak===2?11:5);
+      return true;
+    });
     const fresh=pool.filter(x=>!previous[x.id]);
     const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={},axisCount={};
     // Erreur récente -> priorité modérée aux nouveaux cas similaires.
@@ -537,15 +576,32 @@
         (x.theme!=='mineur'&&x.theme!=='majeur')||!opener(x)||
         (contextCount[context(x)]||0)<2);
       if(otherContexts.length)ranked=otherContexts;
+      // Jamais trois occurrences d'une micro-compétence dans une même séance
+      // si le catalogue offre d'autres notions éligibles.
+      if(s>=4){
+        const otherMicros=ranked.filter(x=>!microKey(x)||(microCount[microKey(x)]||0)<2);
+        if(otherMicros.length)ranked=otherMicros;
+      }
+      // Écarter les micro-compétences confirmées récemment, sauf véritable rappel.
+      if(kind!=='revision'){
+        const exploratory=ranked.filter(x=>{
+          const key=microKey(x),m=key&&(state.micros||{})[key];
+          return !m||m.score<2||m.independent<2||s-m.lastSession>=4;
+        });
+        if(exploratory.length)ranked=exploratory;
+      }
       function score(x){
         const t=x.theme,age=s-INTRO[t],already=count[t]||0;
         const skill=targetByTheme[t];
         const recent=Object.hasOwn(recentFamily,family(x))?s-recentFamily[family(x)]:999;
-        const variety=recent<=1?-95:recent<=3?-30:recent<=5?-10:0;
+        const variety=recent<=2?-145:recent<=5?-85:recent<=8?-35:0;
         const focus=age<=1?95:age<=3?55:age<=7?20:0;
         const last=Object.hasOwn(latestTheme,t)?s-latestTheme[t]:Math.min(9,age+1);
         const balance=-31*already;
-        const fit=-28*Math.abs(x.difficulty-skill);
+        // Le ressenti règle la difficulté des prochaines questions, sans modifier
+        // les preuves indépendantes ni les niveaux de maîtrise calculés.
+        const target=clamp(skill+state.difficultyAdjustment,1,5);
+        const fit=-28*Math.abs(x.difficulty-target);
         const need=state.skills[t]?.errors?12*state.skills[t].errors:0;
         const answer=bid(x),sameAnswer=bidCount[t+'|'+answer]||0;
         // Couvrir d'abord plusieurs types d'ouvertures : 1♣ et 1♦ doivent
@@ -568,7 +624,14 @@
         const micro=microKey(x),microRecord=micro?(state.micros||{})[micro]:null;
         const microNeed=kind==='revision'||!microRecord?0:
           clamp(-microRecord.score*13,-39,39);
-        const microVariety=micro?-Math.min(45,(microCount[micro]||0)*12):0;
+        const microVariety=micro?-Math.min(60,(microCount[micro]||0)*20):0;
+        const masteryCooldown=kind==='revision'||!microRecord?0:
+          microRecord.score>=2&&microRecord.independent>=2
+            ?(s-microRecord.lastSession<4?-145:
+              s-microRecord.lastSession<8?-80:
+              s-microRecord.lastSession<12?-30:0):0;
+        const microDiscovery=kind==='revision'||!micro?0:
+          !microRecord?42:microRecord.score<=-2?42:0;
         // Bonus léger sur un axe transversal fragile. N'affecte que les
         // exercices explicitement audités, sans modifier la difficulté.
         const axis=axisKey(x),axisRecord=axis?(state.axes||{})[axis]:null;
@@ -578,7 +641,7 @@
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
@@ -837,9 +900,24 @@
   function move(state,index){
     if(state.active)state.active.index=clamp(int(index),0,state.active.ids.length-1);
   }
-  function finish(state){
+  function finish(state,exercises){
     if(!state.active)return false;
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
+    // Journal prospectif : aucune réponse d'une séance ancienne n'est inventée.
+    const active=state.active,byId=new Map((exercises||[]).map(x=>[x.id,x]));
+    const record={
+      mode:active.mode==='consolidation'?'consolidation':'parcours',
+      session:state.completed+1,recordedAt:new Date().toISOString(),
+      answers:active.ids.map((id,i)=>{
+        const a=active.answers[i],q=byId.get(id);
+        return {id,result:a.result,choice:a.choice,assisted:a.assisted,
+          hadFreeError:a.hadFreeError,theme:q?.theme||null,
+          difficulty:q?.difficulty??null,family:q?family(q):state.entries[id]?.family||null,
+          micro:q?microKey(q):null,axis:q?axisKey(q):null};
+      })
+    };
+    if(!Array.isArray(state.journal))state.journal=[];
+    state.journal.push(record);
     // Les séances ciblées consolident les preuves mais ne débloquent pas
     // artificiellement de nouvelles rubriques du parcours principal.
     if(state.active.mode==='consolidation'){
@@ -847,6 +925,62 @@
       state.lastConsolidatedAt=state.completed;
     }else state.completed++;
     state.active=null;return true;
+  }
+  function adjustDifficulty(state,choice){
+    const delta={increase:1,same:0,decrease:-1};
+    if(!state||state.active||state.completed<1||!Object.hasOwn(delta,choice))return false;
+    if(!Array.isArray(state.difficultyFeedback))state.difficultyFeedback=[];
+    const previous=state.difficultyFeedback.find(x=>x.session===state.completed);
+    const old=previous?delta[previous.choice]:0;
+    state.difficultyAdjustment=clamp((state.difficultyAdjustment||0)-old+delta[choice],-2,2);
+    if(previous){previous.choice=choice;previous.recordedAt=new Date().toISOString();}
+    else state.difficultyFeedback.push({
+      session:state.completed,choice,recordedAt:new Date().toISOString()
+    });
+    return true;
+  }
+  function exportProgress(state,exercises,quizRecords){
+    const byId=new Map(exercises.map(q=>[q.id,q]));
+    const journal=state.journal||[];
+    const detailed=journal.filter(x=>x.mode==='parcours').length;
+    const questions=Object.entries(state.entries||{}).map(([id,r])=>{
+      const q=byId.get(id);
+      return {id,theme:q?.theme||null,difficulty:q?.difficulty??null,
+        micro:q?microKey(q):null,axis:q?axisKey(q):null,
+        family:r.family,lastResult:r.result,lastSession:r.lastSession,
+        attemptsRecorded:r.seen,consecutiveIndependentSuccesses:r.streak,
+        nextEligibleSession:r.due,assisted:r.assisted,
+        assessedResult:r.assessment||null};
+    });
+    const counts=new Map();
+    for(const event of journal)for(const a of event.answers){
+      const concept=a.micro||'rubrique:'+(a.theme||'inconnue');
+      const key=concept;
+      const old=counts.get(key)||{concept:key,attempts:0,correct:0,independent:0};
+      old.attempts++;if(a.result==='correct')old.correct++;
+      if(a.result==='correct'&&!a.assisted&&!a.hadFreeError)old.independent++;
+      counts.set(key,old);
+    }
+    return {
+      format:'QPJB_PROGRESS_EXPORT_1',exportedAt:new Date().toISOString(),
+      storageKeys:{parcours:'qpjb-sef-parcours-01',quiz:'qpjb-sef-entrainement-01'},
+      limitations:{
+        historicalSessionsWithoutDetailedAnswers:Math.max(0,state.completed-detailed),
+        note:'Les séances antérieures à la création du journal n’ont pas leurs réponses détaillées reconstituées. Le suivi par question et les anciennes réponses du Quiz sont limités aux données réellement conservées.'
+      },
+      summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
+        totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
+      sessions:journal,
+      currentSession:state.active||null,
+      questions,
+      repetitions:{questions:questions.filter(q=>q.attemptsRecorded>1).map(q=>({id:q.id,count:q.attemptsRecorded})),
+        concepts:[...counts.values()]},
+      mastery:{skills:state.skills,micros:state.micros,axes:state.axes,
+        dashboard:dashboard(state,exercises)},
+      difficultyFeedback:state.difficultyFeedback||[],
+      algorithmState:state,
+      quizQuestionHistory:quizRecords||{}
+    };
   }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
   // ni de reconstruction spéculative de l'historique.
@@ -916,5 +1050,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,summary,levelFor};
+  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,summary,levelFor};
 });

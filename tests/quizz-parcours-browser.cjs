@@ -67,7 +67,7 @@ const server=http.createServer((req,res)=>{
    for(let i=0;i<10;i++){
      await page.locator('#pass').click();
      if(i<9)await page.waitForFunction(index=>document.querySelector('#step')?.textContent.includes((index+2)+' / 10'),i);
-     else await page.locator('#repeat').waitFor({state:'visible'});
+     else await page.locator('[data-difficulty-feedback="same"]').waitFor({state:'visible'});
    }
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.equal(state.completed,1);
@@ -77,7 +77,7 @@ const server=http.createServer((req,res)=>{
    assert.ok(Object.keys(state.micros).length>=3,'Micro-skill progress is persisted after session 1');
    assert.ok(Object.values(state.micros).every(x=>x.score<=0),
      'Skipped exercises cannot count as independent mastery');
-   await page.locator('#repeat').click();
+   await page.locator('[data-difficulty-feedback="same"]').click();
    await page.waitForFunction(()=>document.body.classList.contains('parcours-session')&&
      document.querySelector('#step')?.textContent.includes('1 / 10'));
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
@@ -302,8 +302,8 @@ const server=http.createServer((req,res)=>{
    const badge=page.locator('#parcours-dashboard-content [data-item="ouv"] .parcours-dashboard-state');
    assert.equal(await badge.textContent(),'À consolider',
      'A focused correction must not restore a confirmed-acquisition badge');
-   assert.match(await page.locator('#parcours-dashboard-content > .parcours-dashboard-note').textContent(),
-     /séances normales/);
+   assert.equal(await page.locator('#parcours-dashboard-content > .parcours-dashboard-note').count(),0,
+     'Le paragraphe technique est retiré sans supprimer le tableau');
    assert.equal(await page.evaluate(()=>{
      const P=window.QPJBParcours,ex=JSON.parse(document.querySelector('#training-data').textContent).exercises;
      return P.dashboard(P.load(localStorage.getItem('qpjb-sef-parcours-01')),ex)

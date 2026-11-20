@@ -255,10 +255,18 @@ body.parcours-session #restart-session{display:none}
 .parcours-session-banner{display:none;color:#d5b9f5;font:750 12px/1.4 var(--qpjb-font-ui);margin:0 0 9px}
 body.parcours-session .parcours-session-banner{display:block}
 @media(prefers-reduced-motion:reduce){.parcours-card{scroll-behavior:auto}}
+
+/* Export explicite et réglage ressenti — sans impact sur la notation pédagogique. */
+.parcours-export{margin:12px 0 0}.parcours-export button{margin:0}
+.parcours-export-status{font-size:.84rem;margin:7px 0;color:#d5e7fa;line-height:1.5}
+.difficulty-feedback{margin:18px 0;padding:18px;border:1px solid #8a73a7;border-radius:12px}
+.difficulty-feedback legend{font-weight:750;padding:0 8px}
+.difficulty-feedback p{font-size:.92rem;line-height:1.5}
+.difficulty-feedback-actions{display:flex;gap:10px;flex-wrap:wrap}
+.difficulty-feedback-actions button{flex:1 1 200px;white-space:normal;min-height:48px}
 </style><link rel="stylesheet" href="./qpjb-design-tokens.css?v=20261113b"><link rel="stylesheet" href="./qpjb-bridge-ui.css?v=20261113e"></head><body>
 <div class="app-shell"><nav class="qpjb-quiz-nav" aria-label="Navigation QPJB"><a href="./" id="qpjb-quiz-return" class="qpjb-quiz-back">← Accueil QPJB</a><span>Entraînement · Quizz</span></nav><header class="app-top"><div class="app-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="#c0a8dc"/><path fill="#5e259d" fill-rule="evenodd" d="M135,142 135,219 184,219 185,218 191,218 203,213 208,208 210,204 210,200 211,199 210,191 208,187 203,182 198,180 196,178 203,172 206,164 205,155 203,151 200,148 193,144 187,143 186,142Z M157,189 158,188 164,188 165,187 177,187 178,188 182,188 184,189 187,193 187,199 184,202 179,204 158,204 157,203Z M157,158 158,157 178,157 183,161 184,166 183,168 178,172 158,172 157,171Z M67,142 67,158 95,158 96,159 95,194 94,195 94,197 91,200 87,202 81,202 75,199 70,194 70,193 69,193 56,206 56,208 64,215 74,219 77,219 78,220 93,220 94,219 101,218 109,214 115,208 118,202 119,196 120,195 120,142Z M135,44 135,122 157,122 157,102 158,101 181,101 182,100 191,99 201,94 208,86 210,81 210,78 211,77 211,67 207,57 200,50 192,46 185,45 184,44Z M157,62 158,61 178,61 183,63 187,69 187,76 186,78 182,82 178,84 158,84 157,83Z M57,51 50,58 46,64 46,66 43,72 43,76 42,77 42,87 43,88 43,93 50,107 57,114 63,118 76,122 87,132 92,135 94,135 98,137 106,137 107,138 108,137 114,137 115,136 118,136 127,131 130,127 122,118 114,123 105,123 101,120 102,118 104,118 110,115 119,107 122,103 127,91 127,87 128,86 128,77 127,76 127,72 126,71 126,68 120,57 110,48 104,45 102,45 98,43 95,43 94,42 79,42 78,43 74,43 73,44 68,45Z M83,58 87,58 91,60 95,64 96,66 96,73 94,76 100,76 102,77 106,81 107,86 108,87 107,88 106,93 103,96 99,98 94,98 93,97 91,97 87,93 91,102 93,104 92,106 77,106 76,105 80,100 82,94 76,98 71,98 70,97 68,97 64,93 62,89 63,82 68,77 70,76 76,76 74,73 74,66 80,59 82,59Z"/></svg></div><div class="app-brand"><span class="kicker">QPJB · ENTRAÎNEMENT</span><strong>Quizz</strong><small>Programme d’entraînement · SEF</small></div></header>
 <main><section class="stage"><div class="stage-tag">QUIZZ · ENTRAÎNEMENT AUX ENCHÈRES</div><h1>À vous de jouer !</h1><p>Une main, une séquence, une enchère à trouver. Le SEF est notre référence unique. Réponds sans propositions, puis affiche les quatre possibilités si tu hésites ou te trompes.</p><div class="hero-stats"><span id="qpjb-qcm-count">1 061 exercices sélectionnés</span><span>22 rubriques</span><span>5 niveaux de difficulté</span></div></section>
-<div class="notice"><strong>Entraînement aux enchères.</strong> <span id="qpjb-qcm-notice">1 061 exercices après diversification et enrichissement de la base, regroupés en 854 familles pédagogiques indicatives</span>, classés en cinq niveaux pédagogiques, du mécanisme très simple à la convention la plus élaborée. Les situations suivent le SEF, des bases aux conventions d’approfondissement.</div>
 <section class="parcours-card" id="parcours-card" aria-label="Mon parcours de progression">
 <span class="parcours-label">Apprendre progressivement · Nouveau</span>
 <h2>Mon parcours guidé</h2>
@@ -276,7 +284,10 @@ body.parcours-session .parcours-session-banner{display:block}
 <p class="parcours-dashboard-note">Ton historique se construit lors des séances du parcours guidé.</p>
 </div>
 </details>
-<small>100 % algorithmique, sans IA. Le Quiz libre reste disponible plus bas.</small>
+<div class="parcours-export">
+<button id="progress-export" type="button">Exporter ma progression (JSON)</button>
+<p class="parcours-export-status" id="progress-export-status" role="status" aria-live="polite"></p>
+</div>
 </section>
 <div class="layout"><section class="card side" id="setup-card" aria-label="Préparer sa séance"><div class="controls">
 <div class="control-row control-topic"><div><label for="topic">Rubrique</label><select id="topic"></select></div></div>
@@ -495,7 +506,24 @@ let parcoursState;
 try{parcoursState=QPJBParcours.load(localStorage.getItem(parcoursKey))}
 catch(_){parcoursState=QPJBParcours.empty()}
 let sessionType='libre';
-function saveParcours(){try{localStorage.setItem(parcoursKey,JSON.stringify(parcoursState))}catch(_){}}
+function saveParcours(){
+ try{localStorage.setItem(parcoursKey,JSON.stringify(parcoursState));return true}
+ catch(_){return false}
+}
+function exportMyProgress(){
+ const status=$('progress-export-status');
+ try{
+   const exported=QPJBParcours.exportProgress(parcoursState,DATA.exercises,saved);
+   const data=new Blob([JSON.stringify(exported,null,2)],{type:'application/json;charset=utf-8'});
+   const url=URL.createObjectURL(data),a=document.createElement('a');
+   a.href=url;a.download='QPJB_progression_'+new Date().toISOString().slice(0,10)+'.json';
+   document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),5000);
+   status.textContent='Progression exportée : les historiques absents sont signalés dans le JSON.';
+ }catch(err){
+   status.textContent='Export impossible : '+String(err.message||err);
+ }
+}
 function parcoursDashboard(){
  const host=$('parcours-dashboard-content');if(!host)return;
  const d=QPJBParcours.dashboard(parcoursState,DATA.exercises);
@@ -508,7 +536,7 @@ function parcoursDashboard(){
  const overview='<div class="parcours-dashboard-kpis">'+kpi(d.completed,'Séances terminées')+
    kpi(d.distinct+' / '+d.total,'QCM distincts vus')+kpi(d.independent,'Réussis sans aide')+
    kpi(d.practiced+' / '+d.themes.length,'Rubriques vues')+'</div>';
- const note='<p class="parcours-dashboard-note">Les compteurs incluent les dernières réponses du parcours et des consolidations. « Acquis confirmés » : seules les réponses évaluées en séances normales peuvent valider plusieurs familles sur au moins 3 séances terminées, sans difficulté dans les familles récemment évaluées. Les historiques antérieurs à cette distinction sont conservés. Ce n’est pas une maîtrise exhaustive de la rubrique.</p>';
+ const note='';
  const topicRows=d.themes.map(t=>{
    const name=DATA.themes.find(x=>x.id===t.id)?.name.replace(/^\d+\s*·\s*/,'')||t.id;
    const detail=t.seen?t.seen+'/'+t.total+' QCM vus · '+t.independent+' sans aide · '+t.helped+' aidés · '+t.wrong+' erreurs · '+t.skipped+' passés · Niveau cible '+t.level+'/5':
@@ -934,15 +962,29 @@ function spaceCloseFamilies(items,minGap=3){
 function finishSession(){
  if(sessionType==='parcours'){
    const focused=parcoursState.active?.mode==='consolidation';
-   const advanced=QPJBParcours.finish(parcoursState);if(advanced)saveParcours();
+   const advanced=QPJBParcours.finish(parcoursState,DATA.exercises);if(advanced)saveParcours();
    const outcomes=Object.values(sessionResults);
    const independent=outcomes.filter(r=>r.result==='correct'&&!r.assisted).length;
    const helped=outcomes.filter(r=>r.result==='correct'&&r.assisted).length;
    const incorrect=outcomes.filter(r=>r.result==='wrong'||r.result==='skipped').length;
    $('body').innerHTML='<h2>'+(focused?'Consolidation terminée !':'Séance du parcours terminée !')+'</h2><p class="subhead">'+outcomes.length+' situations travaillées : '+independent+' réussite(s) sans aide, '+helped+' avec les propositions, '+incorrect+' erreur(s) ou questions passées. Les notions difficiles reviendront en révision.</p>'+
      (focused?'<div class="parcours-report">'+consolidationReportHTML(parcoursState.lastConsolidation,'Bilan ciblé')+'</div>':'')+
-     '<div class="nextrow"><button id="done-home">← Accueil</button><button id="repeat" class="primary">Séance suivante →</button></div>';
-   $('repeat').onclick=()=>quizFadeNavigate(startParcours);
+     (focused?'<div class="nextrow"><button id="done-home">← Accueil</button><button id="repeat" class="primary">Séance suivante →</button></div>':
+       '<fieldset class="difficulty-feedback"><legend>Comment as-tu trouvé cette séance ?</legend>'+
+       '<p>Ce choix ajuste la difficulté du prochain tirage, sans effacer tes acquis ni modifier les résultats mesurés.</p>'+
+       '<div class="difficulty-feedback-actions">'+
+       '<button type="button" data-difficulty-feedback="increase">Trop facile — Augmenter la difficulté</button>'+
+       '<button type="button" data-difficulty-feedback="same" class="primary">Niveau adapté — Continuer</button>'+
+       '<button type="button" data-difficulty-feedback="decrease">Trop difficile — Diminuer la difficulté</button>'+
+       '</div></fieldset><div class="nextrow"><button id="done-home">← Accueil</button></div>');
+   if(focused)$('repeat').onclick=()=>quizFadeNavigate(startParcours);
+   else $('body').querySelectorAll('[data-difficulty-feedback]').forEach(button=>{
+     button.onclick=()=>{
+       if(!QPJBParcours.adjustDifficulty(parcoursState,button.dataset.difficultyFeedback))return;
+       if(!saveParcours()){alert('Sauvegarde locale indisponible : la séance suivante ne sera pas démarrée.');return}
+       quizFadeNavigate(startParcours);
+     };
+   });
    $('done-home').onclick=()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()});
    parcoursHomeStatus();return;
  }
@@ -1106,7 +1148,7 @@ function choose(x,i){
  if(!sel)return;
  finalizeAnswer(x,sel,'qcm');
 }
-makeOptions();$('parcours-dashboard').addEventListener('toggle',()=>quizReportHeight(),true);$('parcours-start').addEventListener('click',()=>quizFadeNavigate(startParcours));
+makeOptions();$('progress-export').addEventListener('click',exportMyProgress);$('parcours-dashboard').addEventListener('toggle',()=>quizReportHeight(),true);$('parcours-start').addEventListener('click',()=>quizFadeNavigate(startParcours));
 $('parcours-consolidation').addEventListener('click',()=>quizFadeNavigate(()=>startParcours('consolidation')));$('new').addEventListener('click',()=>quizFadeNavigate(start));$('topic').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('selection-mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('difficulty').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('back-home').addEventListener('click',()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()}));
 $('restart-session').addEventListener('click',()=>quizFadeNavigate(start));
 updateLevelCounts();renderHomePlaceholder();stats();

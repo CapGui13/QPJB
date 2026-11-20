@@ -1,0 +1,61 @@
+name: QPJB ergonomie — progression et quiz (HOLD)
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'quizz.html'
+      - 'quizz-parcours.js'
+      - 'tests/quizz-parcours-browser.cjs'
+      - 'tests/quizz-ergonomie.cjs'
+      - 'tests/quizz-ergonomie-browser.cjs'
+      - '.github/workflows/qpjb-v2-ergonomie-review.yml'
+  push:
+    branches:
+      - 'feature/qpjb-v2-ergonomie-progression-20261120'
+    paths:
+      - 'quizz.html'
+      - 'quizz-parcours.js'
+      - 'tests/quizz-parcours-browser.cjs'
+      - 'tests/quizz-ergonomie.cjs'
+      - 'tests/quizz-ergonomie-browser.cjs'
+      - '.github/workflows/qpjb-v2-ergonomie-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  moteur:
+    name: Compatibilite et progression (Node)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check quizz-parcours.js
+      - run: node --check tests/quizz-ergonomie.cjs
+      - run: node tests/quizz-parcours.cjs
+      - run: node tests/quizz-ergonomie.cjs
+  navigateurs:
+    name: Chromium et WebKit (progression preservee)
+    needs: moteur
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: node --check tests/quizz-ergonomie-browser.cjs
+      - run: node tests/quizz-ergonomie-browser.cjs
+      - run: PW_BROWSER=chromium node tests/quizz-parcours-browser.cjs
+      - run: PW_BROWSER=webkit node tests/quizz-parcours-browser.cjs
