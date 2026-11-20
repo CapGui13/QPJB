@@ -41,6 +41,7 @@ async function check(which,mobile,url){
    assert.equal(await home.locator('.training-button[data-training-mode="play"]').count(),1);
    await home.locator('.training-button[data-training-mode="quizz"]').click();
    assert.equal(await home.locator('#quizz-frame').count(),1);
+   await home.waitForFunction(()=>document.querySelector('#quizz-frame')?.getAttribute('src')?.startsWith('./quizz.html?embedded=1')); 
    assert.equal(await home.locator('#quizz-frame').getAttribute('src'),'./quizz.html?embedded=1&rev=20261101-ux-clavier');
    const frame=home.frameLocator('#quizz-frame');
    await frame.locator('#parcours-start').waitFor({state:'visible'});
