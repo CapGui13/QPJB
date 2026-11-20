@@ -92,4 +92,40 @@ assert.equal(hardDeck.length,10);assert.equal(easyDeck.length,10);
 assert.ok(mean(hardDeck)>mean(easyDeck),
   'Le choix doit influencer les QCM : '+mean(hardDeck)+' vs '+mean(easyDeck));
 assert.equal(P.adjustDifficulty(s,'increase'),false,'Pas de modification en cours de séance');
-console.log('QPJB ERGONOMIE NODE PASS : 13 séances, journal réel, export, migration, maîtrise et difficulté');
+// V1 enrichie : toutes les décisions d'ouverture dès le départ.
+const debut=P.start(P.empty(),catalog);
+const openings=debut.reduce((acc,q)=>(acc[q.answer]=(acc[q.answer]||0)+1,acc),{});
+assert.ok(['1♣','1♦','1♥','1♠','1SA','Passe'].every(b=>(openings[b]||0)>=1),
+ 'Ouvertures absentes de la première séance : '+JSON.stringify(openings));
+assert.ok(openings['1♣']>=2&&openings['1♦']>=2,'Les deux mineures restent exercées deux fois');
+assert.ok(Object.values(openings).every(n=>n<=2),'Pas de répétition excessive');
+
+// Rappel d'une notion déjà rencontrée, avec un QCM d'une autre famille.
+const source=catalog.find(q=>q.theme==='ouv'&&q.answer==='1SA'),practice=P.empty();
+practice.completed=7;
+practice.entries[source.id]={result:'wrong',assisted:false,lastSession:3,due:90,
+ seen:1,streak:0,family:family(source),
+ assessment:{result:'wrong',assisted:false,lastSession:3}};
+const conceptDeck=P.select(catalog,practice,10);
+assert.ok(conceptDeck.some(x=>x.kind==='revision'&&x.id!==source.id&&
+ P.microKey(catalog.find(q=>q.id===x.id))===P.microKey(source)&&
+ family(catalog.find(q=>q.id===x.id))!==family(source)),
+ 'Le rappel doit proposer une autre famille de la même micro-compétence');
+
+// Restaurer une sauvegarde de 13 séances et une séance interrompue, sans
+// reconstituer d'anciens détails ni modifier les données de départ.
+const restored=P.importProgress(result,catalog);
+assert.equal(restored.completed,13);
+assert.deepEqual(restored.active.ids,s.active.ids);
+assert.deepEqual(restored.journal,s.journal);
+assert.deepEqual(restored.entries,s.entries);
+assert.deepEqual(P.importProgress(oldExport,catalog).journal,[]);
+assert.throws(()=>P.importProgress({},catalog),/non reconnu/);
+const unsafe=JSON.parse(JSON.stringify(result));
+unsafe.algorithmState.entries['ID-ABSENT']={result:'correct',lastSession:0};
+assert.throws(()=>P.importProgress(unsafe,catalog),/inconnu/);
+const broken=JSON.parse(JSON.stringify(result));
+broken.algorithmState.active.ids.push('ID-ABSENT');
+assert.throws(()=>P.importProgress(broken,catalog),/Séance en cours incompatible/);
+
+console.log('QPJB ERGONOMIE NODE PASS : V1, 13 séances, ouvertures, rappel par notion, import et intégrité');
