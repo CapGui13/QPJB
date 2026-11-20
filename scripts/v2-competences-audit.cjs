@@ -23,8 +23,17 @@ for(const [origin,list] of [['SA',sa.assignments],['STAYMAN_TEXAS',stayman.assig
   const q=byId.get(entry.id);
   assert.ok(q,'ID proposé absent : '+entry.id);
   assert.ok(!proposed.has(entry.id),'Double classification : '+entry.id);
-  if(typeof entry.originalAnswer==='string')assert.equal(q.answer,entry.originalAnswer,
-    'La réponse source a changé : '+entry.id);
+  // Les deux doubles transferts ont été modifiés et explicitement
+  // approuvés le 20/11 : ne pas comparer au vieux corrigé provisoire.
+  if(typeof entry.originalAnswer==='string'&&q.answer!==entry.originalAnswer){
+    assert.ok(data.editorialPatchIDs.includes(entry.id),
+      'Correction sans approbation éditoriale : '+entry.id);
+    assert.ok(['SEF-V416-008','SEF-V416-009'].includes(entry.id),
+      'Décalage éditorial inédit : '+entry.id);
+    assert.equal(q.answer,
+      entry.id==='SEF-V416-008'?'4♣':'4♦',
+      'Correction pédagogique validée non respectée : '+entry.id);
+  }
   assert.ok(typeof entry.candidateSkill==='string'&&entry.candidateSkill,
     'Compétence candidate absente : '+entry.id);
   proposed.set(entry.id,{origin,competence:entry.candidateSkill});
