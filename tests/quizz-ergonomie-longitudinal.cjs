@@ -25,6 +25,16 @@ function run(name, answerFor) {
     assert.equal(new Set(picked.map(q => q.id)).size, 10, 'Unicite des QCM');
     assert.equal(new Set(picked.map(fam)).size, 10, 'Unicite des familles');
     const repeated = picked.filter(q => old.has(q.id));
+    // Les rappels des reussites autonomes respectent les intervalles minimum.
+    for (const q of repeated) {
+      const prior = state.entries[q.id], age = round - prior.lastSession;
+      assert.ok(prior.due <= round, 'Rappel jamais avant la date prevue : ' + q.id);
+      if (prior.result === 'correct' && !prior.assisted) {
+        const wait = prior.streak >= 3 ? 19 : prior.streak === 2 ? 11 : 5;
+        assert.ok(age >= wait,
+          'Intervalle apres reussite autonome pour ' + q.id + ': ' + age + ' < ' + wait);
+      }
+    }
     const fresh = picked.length - repeated.length;
     const weak = picked.filter(q => {
       const previous = state.entries[q.id];
@@ -78,7 +88,10 @@ const mixed = run('erreurs-moderees', ({round, position, q}) =>
   ((round + position) % 7 === 0 && q.difficulty >= 2) ? 'wrong' : 'correct');
 const fragile = run('fragilites-persistantes', ({round, position}) =>
   ((round * 3 + position) % 4 === 0) ? 'wrong' : 'correct');
-assert.ok(fluent.next10.distinctNew >= 80);
+assert.ok(fluent.next10.distinctNew >= 90,
+  'Un profil sans erreur doit recevoir au moins 90 situations nouvelles');
 assert.ok(mixed.next10.distinctNew >= 80);
+assert.ok(mixed.next10.repeated >= fluent.next10.repeated,
+  'Les difficultees doivent garder leurs rappels sans penaliser le profil autonome');
 assert.ok(fragile.next10.distinctNew >= 80);
 console.log('QPJB LONGITUDINAL PASS : 3 profils x 23 seances, tous les tirages verifies');
