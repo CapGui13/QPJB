@@ -286,6 +286,8 @@ body.parcours-session .parcours-session-banner{display:block}
 </details>
 <div class="parcours-export">
 <button id="progress-export" type="button">Exporter ma progression (JSON)</button>
+<button id="progress-import" type="button">Restaurer mon parcours (JSON)</button>
+<input id="progress-import-file" type="file" accept=".json,application/json" hidden>
 <p class="parcours-export-status" id="progress-export-status" role="status" aria-live="polite"></p>
 </div>
 </section>
@@ -1148,7 +1150,30 @@ function choose(x,i){
  if(!sel)return;
  finalizeAnswer(x,sel,'qcm');
 }
-makeOptions();$('progress-export').addEventListener('click',exportMyProgress);$('parcours-dashboard').addEventListener('toggle',()=>quizReportHeight(),true);$('parcours-start').addEventListener('click',()=>quizFadeNavigate(startParcours));
+async function restoreMyProgress(event){
+  const file=event.target.files?.[0],status=$('progress-export-status');
+  if(!file)return;
+  try{
+    if(file.size>6*1024*1024)throw Error('Fichier trop volumineux');
+    const imported=JSON.parse(await file.text());
+    const restored=QPJBParcours.importProgress(imported,DATA.exercises);
+    const warning='Restaurer '+restored.completed+' séance(s) terminée(s) à la place de '+
+      parcoursState.completed+' séance(s) actuellement enregistrée(s) ? '+
+      'La séance éventuellement en cours sera remplacée. '+
+      'Le Quiz libre et le parcours V2 ne seront pas modifiés.';
+    if(!window.confirm(warning)){status.textContent='Restauration annulée.';return}
+    localStorage.setItem(parcoursKey,JSON.stringify(restored));
+    window.location.reload();
+  }catch(error){
+    status.textContent='Restauration refusée : '+error.message;
+  }finally{
+    event.target.value='';
+  }
+}
+makeOptions();$('progress-export').addEventListener('click',exportMyProgress);
+$('progress-import').addEventListener('click',()=>$('progress-import-file').click());
+$('progress-import-file').addEventListener('change',restoreMyProgress);
+$('parcours-dashboard').addEventListener('toggle',()=>quizReportHeight(),true);$('parcours-start').addEventListener('click',()=>quizFadeNavigate(startParcours));
 $('parcours-consolidation').addEventListener('click',()=>quizFadeNavigate(()=>startParcours('consolidation')));$('new').addEventListener('click',()=>quizFadeNavigate(start));$('topic').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('selection-mode').addEventListener('change',()=>{renderHomePlaceholder();stats()});$('difficulty').addEventListener('change',()=>{updateLevelCounts();renderHomePlaceholder();stats()});$('back-home').addEventListener('click',()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()}));
 $('restart-session').addEventListener('click',()=>quizFadeNavigate(start));
 updateLevelCounts();renderHomePlaceholder();stats();
