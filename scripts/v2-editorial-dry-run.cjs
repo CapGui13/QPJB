@@ -32,15 +32,45 @@ function review(items, patch) {
   assert.equal(patch.sourceEdited,false);
   assert.equal(patch.approved,false);
   assert.equal(patch.releaseDecision,'HOLD');
+  assert.equal(patch.pedagogicalApproval,'APPROVED_BY_USER');
+  assert.equal(patch.approvedForPublication,false);
+  assert.equal(patch.pedagogicallyApprovedQuestionCount,19);
   assert.equal(items.length,1523);
   const byId=new Map(items.map(q=>[q.id,q]));
+  const ledger=JSON.parse(fs.readFileSync(path.join(root,
+    'Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'),'utf8'));
+  assert.equal(ledger.caseDecisions.length,19,'La validation de 19 QCM est requise');
+  assert.equal(ledger.pedagogicalApproval.status,'APPROVED_BY_USER');
+  assert.equal(ledger.approvedForPublication,false);
+  assert.equal(ledger.releaseDecision,'HOLD');
+  const validated=new Map(ledger.caseDecisions.map(c=>[c.id,c]));
+  assert.equal(validated.size,19,'Une décision par QCM');
+  for(const [id,c] of validated){
+    assert.equal(c.approval,'APPROVED_BY_USER','Décision non approuvée : '+id);
+    const source=byId.get(id);
+    assert.ok(source,'QCM approuvé absent : '+id);
+    if(c.sourceAnswerUnchanged===true){
+      assert.equal(c.decision,'CONSERVER_REPONSE_ORIGINALE');
+      assert.equal(c.approvedAnswer,source.answer,'Corrigé modifié : '+id);
+    }
+  }
+  assert.equal([...validated.values()].filter(c=>c.sourceAnswerUnchanged===true).length,15,
+    '15 corrigés approuvés inchangés attendus');
+  for(const id of allowed.keys()){
+    const d=validated.get(id);
+    assert.ok(d,'Décision manquante pour '+id);
+    assert.equal(d.approvedAnswer,id==='SEF-L06-029'?byId.get(id).answer:
+      id==='SEF-L25-007'?byId.get(id).answer:patch.proposedPatches.find(e=>e.id===id).proposedChanges.answer);
+  }
+  assert.equal(validated.get('SEF-L06-029').approvedLearningCategory,
+    'Ouvertures conventionnelles / barrages');
   assert.equal(byId.size,1523,'Doublon ID');
   assert.equal(patch.proposedPatches.length,4);
   const changes=new Map();
   for(const entry of patch.proposedPatches){
     assert.ok(allowed.has(entry.id),'ID hors périmètre : '+entry.id);
     assert.ok(!changes.has(entry.id),'Patch en double : '+entry.id);
-    assert.equal(entry.editorialApproval,'PENDING');
+    assert.equal(entry.editorialApproval,'APPROVED_BY_USER');
     const before=byId.get(entry.id);
     assert.ok(before,'ID original absent : '+entry.id);
     assert.equal(sha256(JSON.stringify(before)),entry.originalQuestionSHA256,
@@ -54,7 +84,7 @@ function review(items, patch) {
   assert.deepEqual([...changes.keys()].sort(),[...allowed.keys()].sort());
   assert.equal(patch.proposedClassification.id,'SEF-L06-029');
   assert.equal(patch.proposedClassification.sourceThemeUnchanged,'sa');
-  assert.equal(patch.proposedClassification.editorialApproval,'PENDING');
+  assert.equal(patch.proposedClassification.editorialApproval,'APPROVED_BY_USER');
   assert.equal(byId.get('SEF-L06-029').theme,'sa');
   const proposed=items.map(q=>changes.has(q.id)?{...q,...changes.get(q.id)}:q);
   assert.equal(proposed.length,1523);

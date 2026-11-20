@@ -54,14 +54,16 @@ async function browserRecipe(browserName,mobile){
     const payload=JSON.parse(document.querySelector('#ay-payload').textContent);
     return {count:payload.catalog.length,addons:payload.addons.length,
       decision:payload.releaseDecision,approval:payload.editorialApproval,
+      learningCategory:payload.learningClassificationOverrides?.['SEF-L06-029'],
       answers:Object.fromEntries(payload.catalog
         .filter(q=>['SEF-V416-008','SEF-V416-009','SEF-L25-007','SEF-L06-029'].includes(q.id))
         .map(q=>[q.id,q.answer]))};
   });
   assert.equal(catalog.count,1523);
   assert.equal(catalog.addons,0);
+  assert.equal(catalog.learningCategory,'Ouvertures conventionnelles / barrages');
   assert.equal(catalog.decision,'HOLD');
-  assert.equal(catalog.approval,'PENDING');
+  assert.equal(catalog.approval,'APPROVED_BY_USER');
   for(let k=0;k<ids.length;k++)assert.equal(catalog.answers[ids[k]],expected[k]);
 
   // Conserver une sauvegarde ancienne AVANT toute réponse au nouveau parcours.
@@ -119,6 +121,8 @@ async function browserRecipe(browserName,mobile){
   for(let n=0;n<ids.length;n++){
     assert.ok((await page.locator('.hint').allTextContents()).some(s=>s.includes(ids[n])),
       'Question éditoriale non affichée : '+ids[n]);
+    if(ids[n]==='SEF-L06-029')assert.match(await page.locator('.hint').first().textContent(),
+      /Ouvertures conventionnelles \/ barrages/);
     await answerQuestion(page,expected[n]);
     const s=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),newKey);
     assert.equal(s.current.answers[n].correct,true,'Réponse corrigée incohérente '+ids[n]);

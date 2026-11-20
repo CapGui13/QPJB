@@ -58,6 +58,10 @@ function build(){
  assert.equal(review.sourceEdited,false);
  assert.equal(review.approved,false);
  assert.equal(review.releaseDecision,'HOLD');
+ assert.equal(review.pedagogicalApproval,'APPROVED_BY_USER');
+ assert.equal(review.approvedForPublication,false);
+ // Vérifier les 19 décisions approuvées, dont les 15 corrigés originaux préservés.
+ require('./v2-editorial-dry-run.cjs').review(publicCatalog,review);
  assert.equal(review.sourceQuestionCount,1523);
  assert.equal(review.proposedPatches.length,4);
 
@@ -72,7 +76,7 @@ function build(){
  for(const entry of review.proposedPatches){
    assert.ok(permitted.has(entry.id),'QCM hors périmètre : '+entry.id);
    assert.ok(!changes.has(entry.id),'QCM en double');
-   assert.equal(entry.editorialApproval,'PENDING');
+   assert.equal(entry.editorialApproval,'APPROVED_BY_USER');
    const orig=originalById.get(entry.id);
    assert.ok(orig,'QCM original introuvable');
    assert.equal(sha256(JSON.stringify(orig)),entry.originalQuestionSHA256,
@@ -84,7 +88,7 @@ function build(){
  assert.deepEqual([...changes.keys()].sort(),[...permitted.keys()].sort());
  assert.equal(review.proposedClassification.id,'SEF-L06-029');
  assert.equal(review.proposedClassification.sourceThemeUnchanged,'sa');
- assert.equal(review.proposedClassification.editorialApproval,'PENDING');
+ assert.equal(review.proposedClassification.editorialApproval,'APPROVED_BY_USER');
  const proposedCatalog=publicCatalog.map(orig=>{
   const delta=changes.get(orig.id);
   return delta?{...orig,...delta}:orig;
@@ -109,17 +113,18 @@ function build(){
  // Isoler les sauvegardes : jamais de copie ni lecture de l'ancienne clé,
  // même pour une séance partiellement corrigée.
  const draftPayload={...payload,catalog:proposedCatalog,sourceModified:true,
-   editorialApproval:'PENDING',releaseDecision:'HOLD',
-   editorialPatchPreview:true,editorialPatchIDs:modified};
+   editorialApproval:'APPROVED_BY_USER',releaseDecision:'HOLD',
+   editorialPatchPreview:true,editorialPatchIDs:modified,
+   learningClassificationOverrides:{'SEF-L06-029':'Ouvertures conventionnelles / barrages'}};
  const json=JSON.stringify(draftPayload).replace(/</g,'\\u003c');
  let html=originalHtml.slice(0,begin)+json+originalHtml.slice(end);
  html=single(html,oldKey,newKey);
  html=single(html,
    '<title>QPJB — Parcours guidé SEF, 65 séances (aperçu privé)</title>',
-   '<title>QPJB — Parcours guidé 65 séances · corrections NON VALIDÉES · HOLD</title>\n<meta name="robots" content="noindex,nofollow">');
+   '<title>QPJB — Parcours guidé 65 séances · pédagogie validée · publication HOLD</title>\n<meta name="robots" content="noindex,nofollow">');
  html=single(html,'<body>',
    '<body><div role="alert" style="position:relative;z-index:9999;padding:18px 24px;background:#fff0c7;border-bottom:3px solid #ba7b15;color:#352307;font:700 17px/1.5 system-ui;text-align:center">'
-   +'PROTOTYPE ÉDITORIAL — CORRECTIONS NON VALIDÉES — NE PAS DISTRIBUER AUX ÉLÈVES. '
+   +'PROTOTYPE ÉDITORIAL — CORRECTIONS VALIDÉES — PUBLICATION NON AUTORISÉE. '
    +'Sauvegarde séparée : aucune reprise ni suppression de l’ancien parcours.</div>');
  html=single(html,
    'Correspondance avec le corrigé d’origine',
@@ -130,20 +135,27 @@ function build(){
  html=single(html,'Réponse publiée : <b>','Réponse de cet aperçu : <b>');
  html=single(html,'Question du Quiz SEF','Question du catalogue de test (HOLD)');
  html=single(html,
+  "return {...q,kind:'qcm',origin:'SEF',sourceRef:'Quiz SEF · 1 523 QCM'};",
+  "return {...q,kind:'qcm',origin:'SEF',sourceRef:'Quiz SEF · 1 523 QCM',learningCategory:DATA.learningClassificationOverrides?.[item.id]||null};");
+ html=single(html,
+  "const label=q.origin==='SEF'?'Question du catalogue de test (HOLD)':'Complément authentique · validation éditoriale en attente';",
+  "const label=q.learningCategory?('Rubrique V2 : '+q.learningCategory):(q.origin==='SEF'?'Question du catalogue de test (HOLD)':'Complément authentique · validation éditoriale en attente');");
+ html=single(html,
   'Parcours SEF · aperçu privé',
   'Parcours SEF · projet éditorial HOLD');
  html=single(html,
   'Aperçu privé du parcours SEF uniquement · aucune publication · sauvegarde locale propre à cet essai. Le Quiz classique, V2-F et les autres tests ne sont pas modifiés.',
-  'PROTOTYPE ÉDITORIAL NON VALIDÉ. 3 QCM seraient modifiés ; les 1 523 identifiants sont conservés. Sauvegarde isolée V2 02-hold ; aucune publication et aucun changement de V1/V2-F ni du Quiz public.');
+  'PROTOTYPE ÉDITORIAL VALIDÉ SUR LE FOND (19/19) MAIS NON PUBLIÉ. 3 QCM modifiés dans cet aperçu privé ; les 1 523 identifiants sont conservés. Sauvegarde isolée V2 02-hold ; aucune publication et aucun changement de V1/V2-F ni du Quiz public.');
  html=single(html,
   'Aperçu privé non publié · 1 523 QCM SEF originaux · sauvegarde locale indépendante.',
-  'Aperçu privé NON VALIDÉ · 1 523 QCM SEF (3 propositions modifiées) · sauvegarde isolée.');
+  'Aperçu privé NON PUBLIÉ · 1 523 QCM SEF (3 corrections validées) · sauvegarde isolée.');
  // Test final depuis le HTML livré, et non uniquement depuis les objets en mémoire.
  const parsed=parseBlock(html,block).value;
  assert.deepEqual(parsed.catalog,proposedCatalog);
  assert.equal(parsed.sourceModified,true);
  assert.equal(parsed.releaseDecision,'HOLD');
- assert.equal(parsed.editorialApproval,'PENDING');
+ assert.equal(parsed.editorialApproval,'APPROVED_BY_USER');
+ assert.equal(parsed.learningClassificationOverrides['SEF-L06-029'],'Ouvertures conventionnelles / barrages');
  assert.equal(parsed.editorialPatchPreview,true);
  assert.deepEqual(parsed.addons,[]);
  assert.equal(html.split(newKey).length,2);
@@ -151,7 +163,7 @@ function build(){
  assert.ok(html.includes('const STUDENT_ONLY=true;'));
  assert.ok(html.includes('const MAX_SESSIONS=65;'));
  assert.ok(html.includes('noindex,nofollow'));
- assert.ok(html.includes('PROTOTYPE ÉDITORIAL — CORRECTIONS NON VALIDÉES'));
+ assert.ok(html.includes('PROTOTYPE ÉDITORIAL — CORRECTIONS VALIDÉES'));
  assert.ok(!html.includes('Réponse publiée :'));
  const dir=path.join(root,'artifacts/v2-editorial-hold-private');
  fs.mkdirSync(dir,{recursive:true});
@@ -159,6 +171,7 @@ function build(){
  const bytes=Buffer.from(html,'utf8');
  fs.writeFileSync(path.join(dir,filename),bytes);
  const manifest={schema:'QPJB_V2_EDITORIAL_SANDBOX_1',status:'HOLD',approved:false,
+   pedagogicalApproval:'APPROVED_BY_USER',approvedCaseCount:19,
    published:false,originalPublicQcmSourceUnchanged:true,
    originalPreviewSHA256:sourceHash,
    proposedQcmModified:modified,previewQuestionCount:1523,
