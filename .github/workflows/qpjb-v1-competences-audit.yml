@@ -1,0 +1,26 @@
+name: QPJB V1 — registre de competences (audit lecture seule)
+on:
+  pull_request:
+    paths:
+      - 'audits/QPJB_V1_COMPETENCES_79_CANDIDATES_20261120.json'
+      - 'audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json'
+      - 'scripts/verify-v1-competences-register.cjs'
+      - 'Docs/QUIZZ_V1_CARTOGRAPHIE_AUDIT_20261120.md'
+      - '.github/workflows/qpjb-v1-competences-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: Verifier 1523 QCM, 79 propositions, 541 candidats non classes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/verify-v1-competences-register.cjs
+      - run: node scripts/verify-v1-competences-register.cjs
