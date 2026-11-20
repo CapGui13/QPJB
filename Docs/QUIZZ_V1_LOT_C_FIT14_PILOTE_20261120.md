@@ -38,6 +38,18 @@ Source exclusive des cas : `audits/QPJB_V1_APRES_FIT_48_PRECLASSIFICATION_202611
 
 **Distinctions nécessaires :** `1M–2M–2SA` (essai de manche de l'ouvreur) n'est pas `1M–2SA` (soutien fitté direct du répondant). Les interventions, les courtes et la réponse du répondant à l'essai sont **hors de ce pilote**. Une question ne constitue pas une preuve générale de l'applicabilité SEF à toutes les situations.
 
+## Vérification SEF complémentaire — références pédagogiques, sans importer de QCM
+
+La **provenance des 14 QCM reste exclusivement** le catalogue V1 et les deux registres audités. Les liens suivants servent uniquement à contrôler la logique des enchères, **pas à ajouter des exemples, corriger un QCM ou homologuer les réponses**.
+
+- [iBridge — L'enchère d'essai par une couleur](https://www.ibridge.fr/public/fichedetails/515) décrit la recherche d'un complément utile à la couleur nommée, et rappelle que le répondant peut refuser en revenant à la majeure au niveau de 3 lorsque ce retour est disponible.
+- [iBridge — L'enchère d'essai généralisée](https://dev.ibridge-club.fr/public/fichedetails/544) distingue explicitement l'essai à **2SA après le soutien simple** du soutien fitté direct du répondant ; la plage indicative de l'ouvreur y est **15–16 H**.
+- [Bridge Saint-Cloud — Enchères d'essai](https://www.bridgesaintcloud.fr/quesaquo38.html) illustre notamment `1♠–2♠–3♥` avec possibilité de retour à `3♠` et discute le sens des essais dans une seconde majeure.
+
+**Conséquence :** les huit cas `12 H/Passe` et `15 H/2SA` ont une logique SEF appuyée par ces références, dans les séquences et conditions exactes affichées. `SEF-V44-054` **n'est pas une faute de règle d'enchères** (3♠ est légal), mais sa classification comme *simple essai de manche refusé à 3♥* serait structurellement incohérente : après `1♥–2♥–3♠`, le palier de 3♥ n'est plus accessible. La fonction exacte de 3♠ et son éventuelle interprétation forcing de manche **doivent être arbitrées**, et **on ne change pas sa réponse automatiquement**. L'essai `SEF-V44-053` à ♦R1093 reste une **question d'appréciation pédagogique** : ces références ne suffisent pas à prouver une erreur de corrigé.
+
+Ces sources de vulgarisation ne remplacent ni la validation éditoriale des 14 situations dans le référentiel QPJB, ni une preuve expérimentale de la maîtrise des élèves.
+
 ## 3. Familles et indépendance des exemples
 
 - **14 QCM originaux, 14 valeurs `caseFamily` distinctes** : pas de répétition de famille source entre ces 14.
