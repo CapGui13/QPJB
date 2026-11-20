@@ -33,7 +33,6 @@ for(const r of review.questions){
  assert.ok(Array.isArray(q.choices)&&q.choices.length>=2,'Choix absents '+r.id);
  assert.equal(new Set(q.choices).size,q.choices.length,'Choix répétés '+r.id);
  assert.equal(q.choices.filter(x=>x===q.answer).length,1,'Corrigé non unique '+r.id);
- assert.equal(r.approvedEarlier?.approvedAnswer, null === r.approvedEarlier ? undefined : r.approvedEarlier.approvedAnswer);
  assert.ok(Array.isArray(r.flags)&&Array.isArray(r.notes));
  if(r.id==='SEF-V416-008')assert.equal(r.sourceV1Answer,'4♥');
  if(r.id==='SEF-V416-009')assert.equal(r.sourceV1Answer,'4♠');
