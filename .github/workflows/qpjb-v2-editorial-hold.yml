@@ -7,6 +7,7 @@ on:
       - 'Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'
       - 'scripts/v2-editorial-dry-run.cjs'
       - 'scripts/v2-editorial-hold-sandbox.cjs'
+      - 'scripts/v2-candidate-r1.cjs'
       - 'tests/v2-editorial-hold-browser.cjs'
       - '.github/workflows/qpjb-v2-editorial-hold.yml'
   workflow_dispatch:
@@ -39,11 +40,20 @@ jobs:
         run: |
           node --check scripts/v2-editorial-hold-sandbox.cjs
           node scripts/v2-editorial-hold-sandbox.cjs
+          node --check scripts/v2-candidate-r1.cjs
+          node scripts/v2-candidate-r1.cjs
       - name: Archiver le seul prototype privé — rétention minimale
         uses: actions/upload-artifact@v4
         with:
           name: qpjb-v2-prototype-65-seances-edition-hold
           path: artifacts/v2-editorial-hold-private/
+          if-no-files-found: error
+          retention-days: 1
+      - name: Archiver le candidat V2 valide, non publie
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-candidat-65-pedagogie-validee
+          path: artifacts/v2-pedagogy-candidate-private/
           if-no-files-found: error
           retention-days: 1
 
@@ -78,3 +88,5 @@ jobs:
           node scripts/v2-editorial-hold-sandbox.cjs
       - name: Recette navigateur et protection des sauvegardes
         run: node tests/v2-editorial-hold-browser.cjs
+      - name: Verifier le candidat pedagogique R1
+        run: node scripts/v2-candidate-r1.cjs
