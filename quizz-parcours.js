@@ -652,12 +652,21 @@
       foundationSummary.weak*2>=foundationSummary.attempts;
     // LOT_B_EVIDENCE_END
     const maxPerTheme=pool.every(x=>x.theme==='ouv')?limit:4;
-    const recentFamily={};
+    // Viser des familles, ouvertures et décisions encore inédites sans
+    // confondre nouveauté et niveau adapté aux acquis de l'élève.
+    const recentFamily={},seenContexts=new Set(),seenDecisions=new Set();
     for(const x of exercises){
       const r=previous[x.id],key=family(x);
-      if(r&&(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key]))
+      if(!r)continue;
+      if(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key])
         recentFamily[key]=r.lastSession;
+      seenContexts.add(x.theme+'|'+String(x.auction?.[0]||''));
+      seenDecisions.add(x.theme+'|'+String(x.answer||''));
     }
+    // Un échec quasi constant ne justifie pas la même montée en difficulté
+    // qu'un élève qui réussit souvent mais sollicite de l'aide.
+    const severeStruggling=struggling&&foundationSummary.weak*4>=
+      foundationSummary.attempts*3;
     function pick(list,kind,reason){
       let ranked=list.filter(x=>!picked.has(x.id));
       if(!ranked.length)return false;
@@ -757,11 +766,18 @@
         const discovery=struggling&&kind!=='revision'&&s>=8&&
           !foundationThemes.has(t)&&!Object.hasOwn(latestTheme,t)
           ?(x.difficulty<=2?260:x.difficulty===3?130:0):0;
-        const newFamily=struggling&&kind!=='revision'&&recent>=999?100:0;
+        const newFamily=struggling&&kind!=='revision'&&recent>=999?200:0;
+        // La couverture se mesure aussi par contextes d'ouverture et réponses,
+        // pas seulement par le nombre d'identifiants de QCM distincts.
+        const rareContext=struggling&&kind!=='revision'&&
+          !seenContexts.has(t+'|'+String(x.auction?.[0]||''))?70:0;
+        const rareAnswer=struggling&&kind!=='revision'&&
+          !seenDecisions.has(t+'|'+String(x.answer||''))?30:0;
         // Éviter de présenter des cas de niveau 4–5 à un élève qui échoue partout.
-        const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4?-150:0;
+        const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4
+          ?(severeStruggling?-250:-110):0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
-          newFamily+hardWhileStruggling;
+          newFamily+rareContext+rareAnswer+hardWhileStruggling;
         // LOT_B_SCORE_END
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
