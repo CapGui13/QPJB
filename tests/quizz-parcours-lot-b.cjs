@@ -12,7 +12,7 @@ const CURRENT=require('../quizz-parcours.js');
 const root=path.join(__dirname,'..');
 const code=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
-const match=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match,'Catalogue SEF embarqué présent');
 const DATA=JSON.parse(match[1]),catalogue=DATA.exercises;
 assert.equal(catalogue.length,1523,'Le catalogue original reste inchangé');
@@ -20,8 +20,8 @@ assert.equal(DATA.themes.length,22,'Les 22 rubriques restent disponibles');
 const beforeCatalogue=JSON.stringify(catalogue);
 
 function removeBlock(source,mark,indent){
-  const begin=indent+'// LOT_B_'+mark+'_BEGIN\\n';
-  const end=indent+'// LOT_B_'+mark+'_END\\n';
+  const begin=indent+'// LOT_B_'+mark+'_BEGIN\n';
+  const end=indent+'// LOT_B_'+mark+'_END\n';
   const a=source.indexOf(begin),b=source.indexOf(end,a);
   assert.ok(a>=0&&b>a,'Le bloc LOT B '+mark+' est présent');
   return source.slice(0,a)+source.slice(b+end.length);
@@ -33,7 +33,7 @@ const afterTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+mi
 const beforeTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery;';
 assert.ok(previousSource.includes(afterTail),'Marqueur de score conservé');
 previousSource=previousSource.replace(afterTail,beforeTail);
-const prefix=Buffer.from('blob '+Buffer.byteLength(previousSource,'utf8')+'\\0');
+const prefix=Buffer.from('blob '+Buffer.byteLength(previousSource,'utf8')+'\0');
 const blobSHA=crypto.createHash('sha1').update(prefix).update(previousSource,'utf8').digest('hex');
 assert.equal(blobSHA,'504450f6254e91927c6945ac42dfc15c995fdaf9',
   'La référence AVANT est exactement le quizz-parcours.js de main audité');
@@ -154,7 +154,7 @@ function run(){
   assert.equal(JSON.stringify(catalogue),beforeCatalogue,'QCM jamais modifiés');
   const out=path.join(root,'artifacts','lot-b');
   fs.mkdirSync(out,{recursive:true});
-  fs.writeFileSync(path.join(out,'comparatif.json'),JSON.stringify(results,null,2)+'\\n');
+  fs.writeFileSync(path.join(out,'comparatif.json'),JSON.stringify(results,null,2)+'\n');
   console.log('LOT B PASS — 5 profils x 153 séances x 2 versions, résultats avant/après aux séances 40,65,153');
   return results;
 }
