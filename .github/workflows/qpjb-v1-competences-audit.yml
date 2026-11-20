@@ -21,6 +21,16 @@ on:
       - 'audits/QPJB_V1_RUBENSOHL_49_PRECLASSIFICATION_20261120.json'
       - 'scripts/verify-v1-inter-forcing-rubensohl-170.cjs'
       - 'Docs/QUIZZ_V1_INTER_FORCING_RUBENSOHL_170_PRECLASS_20261120.md'
+      - 'audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json'
+      - 'audits/QPJB_V1_FINAL_FORTES_42_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_DRURY_40_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_MICHAELS_40_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_ROUDI_38_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_MULTILANDY_31_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_OUV_1_PRECLASSIFICATION_20261120.json'
+      - 'audits/QPJB_V1_FINAL_APRES_INTER_1_PRECLASSIFICATION_20261120.json'
+      - 'scripts/verify-v1-193-final-preclassification.cjs'
+      - 'Docs/QUIZZ_V1_193_DERNIERS_CANDIDATS_20261120.md'
       - '.github/workflows/qpjb-v1-competences-audit.yml'
   workflow_dispatch:
 permissions:
@@ -47,3 +57,5 @@ jobs:
       - run: node scripts/verify-v1-barrages-chelems-130.cjs
       - run: node --check scripts/verify-v1-inter-forcing-rubensohl-170.cjs
       - run: node scripts/verify-v1-inter-forcing-rubensohl-170.cjs
+      - run: node --check scripts/verify-v1-193-final-preclassification.cjs
+      - run: node scripts/verify-v1-193-final-preclassification.cjs
