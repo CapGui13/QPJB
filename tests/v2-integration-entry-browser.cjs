@@ -47,6 +47,7 @@ async function check(which,mobile,url){
    await frame.locator('#parcours-start').waitFor({state:'visible'});
    assert.match(await frame.locator('#parcours-status').textContent(),/Séances terminées : 0/);
    await frame.locator('#parcours-start').click();
+   await frame.locator('body.parcours-session').waitFor({state:'attached'});
    assert.equal(await frame.locator('#parcours-status').count(),1);
    const v1=await home.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01'));
    assert.ok(v1,'La V1 garde sa cle de progression');
