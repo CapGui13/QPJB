@@ -1,0 +1,55 @@
+name: QPJB V1 — LOT A tableau de progression (sans publication)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'quizz.html'
+      - 'tests/quizz-v1-lot-a-dashboard-browser.cjs'
+      - '.github/workflows/qpjb-v1-lot-a-dashboard.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    name: Moteur et intégrité du catalogue inchangés
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tests/quizz-v1-lot-a-dashboard-browser.cjs
+      - run: node tests/quizz-parcours.cjs
+      - run: node tests/quizz-integrity.cjs
+  browsers:
+    name: Tableau LOT A — ${{ matrix.browser }}
+    needs: integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-v1-lot-a-dashboard-browser.cjs
+      - name: Capture de recette (non publiée)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v1-lot-a-${{ matrix.browser }}-screenshots
+          path: artifacts/qpjb-v1-lot-a-${{ matrix.browser }}.png
+          if-no-files-found: ignore
+          retention-days: 7

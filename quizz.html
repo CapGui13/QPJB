@@ -524,11 +524,29 @@ function exportMyProgress(){
    status.textContent='Export impossible : '+String(err.message||err);
  }
 }
+// LOT A : couverture évaluée affichée uniquement ; aucun impact moteur/sauvegarde.
+function parcoursEvaluationCoverage(state,exercises){
+ const themes=new Map();
+ for(const x of exercises){
+  let info=themes.get(x.theme);
+  if(!info){info={all:new Set(),evaluated:new Set()};themes.set(x.theme,info)}
+  const key=String(x.caseFamily||x.id);
+  info.all.add(key);
+  const entry=state.entries?.[x.id];
+  if(!entry)continue;
+  // assessment garde la dernière évaluation ordinaire, même après consolidation.
+  // Repli historique identique au moteur V1 pour les états sans ce champ.
+  const evidence=Object.hasOwn(entry,'assessment')?entry.assessment:entry;
+  if(evidence&&(evidence.result==='correct'||evidence.result==='wrong'))info.evaluated.add(key);
+ }
+ return themes;
+}
 function parcoursDashboard(){
  const host=$('parcours-dashboard-content');if(!host)return;
  const d=QPJBParcours.dashboard(parcoursState,DATA.exercises);
  const labels=QPJBParcours.DASH_LABELS;
- const pill=(status)=>'<span class="parcours-dashboard-state" data-status="'+escapeHTML(status)+'">'+escapeHTML(labels[status])+'</span>';
+ const coverage=parcoursEvaluationCoverage(parcoursState,DATA.exercises);
+ const pill=(status)=>'<span class="parcours-dashboard-state" data-status="'+escapeHTML(status)+'">'+escapeHTML(status==='confirmed'?'Réussites confirmées':labels[status])+'</span>';
  const kpi=(value,label)=>'<div class="parcours-dashboard-kpi"><strong>'+escapeHTML(value)+'</strong><span>'+escapeHTML(label)+'</span></div>';
  const row=(id,label,status,note)=>'<li class="parcours-dashboard-row" data-item="'+escapeHTML(id)+'"><div class="parcours-dashboard-row-title"><strong>'+escapeHTML(label)+'</strong>'+pill(status)+'</div><span class="parcours-dashboard-row-note">'+escapeHTML(note)+'</span></li>';
  const section=(id,label,note,list)=>'<details class="parcours-dashboard-group" id="'+id+'"><summary>'+escapeHTML(label)+'</summary><p class="parcours-dashboard-note">'+escapeHTML(note)+'</p><ul class="parcours-dashboard-list">'+list.join('')+'</ul></details>';
@@ -539,7 +557,10 @@ function parcoursDashboard(){
  const note='';
  const topicRows=d.themes.map(t=>{
    const name=DATA.themes.find(x=>x.id===t.id)?.name.replace(/^\d+\s*·\s*/,'')||t.id;
-   const detail=t.seen?t.seen+'/'+t.total+' QCM vus · '+t.independent+' sans aide · '+t.helped+' aidés · '+t.wrong+' erreurs · '+t.skipped+' passés · Niveau cible '+t.level+'/5':
+   const evidence=coverage.get(t.id);
+   const families=(evidence?.evaluated.size||0)+' / '+(evidence?.all.size||0)+' familles évaluées';
+   const scope=t.status==='confirmed'?' · Confirmation limitée aux situations récemment évaluées, pas à toute la rubrique.':'';
+   const detail=t.seen?families+' · '+t.seen+'/'+t.total+' QCM vus · '+t.independent+' sans aide · '+t.helped+' aidés · '+t.wrong+' erreurs · '+t.skipped+' passés · Niveau cible '+t.level+'/5'+scope:
      t.status==='upcoming'?'Prévue à partir de la séance '+(t.intro+1):'Disponible dans le parcours';
    return row(t.id,name,t.status,detail);
  });
@@ -548,7 +569,7 @@ function parcoursDashboard(){
    'Pas encore évalué · '+x.covered+' QCM classés'));
  host.innerHTML=overview+note+
    section('parcours-dashboard-themes','Rubriques · '+d.practiced+' / '+d.themes.length+' vues',
-     'Ordre prévu de découverte des notions. Les acquis sont des indices, pas des notes.',topicRows)+
+     '« Réussites confirmées » : plusieurs familles distinctes réussies sans aide lors de séances ordinaires différentes, parmi les dernières évaluations. Cela ne valide pas tous les QCM ni toute la rubrique. Les questions passées et la consolidation ciblée sans évaluation ordinaire ne comptent pas comme familles évaluées.',topicRows)+
    section('parcours-dashboard-micros','Micro-compétences · '+d.micros.length,
      'Résultats enregistrés depuis le suivi des sous-thèmes, une preuve au maximum par séance.',competencyRows(d.micros))+
    section('parcours-dashboard-axes','Compétences transversales · '+d.axes.length,
