@@ -1756,6 +1756,27 @@ render();
     v.current.position<0||v.current.position>9)
     throw Error('Séance incompatible');
   }
+  // Restaurer uniquement une sauvegarde structurellement saine. Les champs
+  // facultatifs de la mise à jour ergonomique restent compatibles avec l'ancien V2.
+  if(v.uxDifficultyAdjustment!==undefined&&
+    (!Number.isInteger(v.uxDifficultyAdjustment)||
+     Math.abs(v.uxDifficultyAdjustment)>2))
+    throw Error('Ajustement de difficulté invalide');
+  if(v.uxJournal!==undefined&&(!Array.isArray(v.uxJournal)||
+    v.uxJournal.length>65||v.uxJournal.some(event=>
+      !event||!Number.isInteger(event.session)||event.session<1||
+      event.session>v.completed.length||!Array.isArray(event.answers)||
+      event.answers.length!==10||event.answers.some(a=>
+        !a||typeof a.id!=='string'||a.id.length>100||
+        typeof a.correct!=='boolean'||typeof a.choice!=='string'||
+        a.choice.length>500))))
+    throw Error('Historique de réponses invalide');
+  if(v.uxFeedback!==undefined&&(!Array.isArray(v.uxFeedback)||
+    v.uxFeedback.length>65||v.uxFeedback.some(e=>!e||
+      !Number.isInteger(e.session)||e.session<1||
+      e.session>v.completed.length||
+      !['easy','adapted','hard'].includes(e.feeling))))
+    throw Error('Ressenti de difficulté invalide');
   return v;
  }
  $('backup-export').onclick=()=>{
