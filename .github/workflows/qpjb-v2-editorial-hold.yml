@@ -6,6 +6,7 @@ on:
       - 'Docs/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json'
       - 'scripts/v2-editorial-dry-run.cjs'
       - 'scripts/v2-editorial-hold-sandbox.cjs'
+      - 'tests/v2-editorial-hold-browser.cjs'
       - '.github/workflows/qpjb-v2-editorial-hold.yml'
   workflow_dispatch:
 permissions:
@@ -44,3 +45,35 @@ jobs:
           path: artifacts/v2-editorial-hold-private/
           if-no-files-found: error
           retention-days: 1
+
+  browser:
+    name: Recette ciblee V2 HOLD — Chromium bureau, WebKit mobile
+    needs: dry-run
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - name: Recuperer la source élève figée
+        uses: actions/checkout@v4
+        with:
+          ref: 88b548763bf271109f7916acbf1858865070f8ae
+          path: source-v2
+          persist-credentials: false
+          sparse-checkout: |
+            preview/v2-eleve/
+          sparse-checkout-cone-mode: false
+      - name: Fabriquer localement la version de test (HOLD)
+        run: |
+          node scripts/v2-editorial-dry-run.cjs
+          node scripts/v2-editorial-hold-sandbox.cjs
+      - name: Recette navigateur et protection des sauvegardes
+        run: node tests/v2-editorial-hold-browser.cjs
