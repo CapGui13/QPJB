@@ -656,7 +656,11 @@
       selected.push({exercise:winner,kind});
       return true;
     }
-    const reviewQuota=Math.min(2,Math.floor(limit/4),due.length);
+    // Une reussite autonome confirmée nécessite des rappels espacés, mais
+    // pas automatiquement deux anciens QCM a chaque seance. En cas d'erreur
+    // ou de reponse aidee encore eligibles, conserver deux places de rappel.
+    const weakDue=due.some(x=>previous[x.id].result!=='correct'||previous[x.id].assisted);
+    const reviewQuota=Math.min(weakDue?2:1,Math.floor(limit/4),due.length);
     // Placer les révisions parmi les nouveautés plutôt qu'en bloc.
     const plan=[];
     for(let i=0;i<limit;i++)plan.push(i===3||i===7?'revision':'nouveau');
