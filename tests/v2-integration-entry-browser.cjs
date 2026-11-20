@@ -33,12 +33,13 @@ async function check(which,mobile,url){
   const home=await context.newPage();let candidate=null;
   try{
    await home.goto(url+'index.html',{waitUntil:'domcontentloaded'});
-   assert.equal(await home.locator('#qpjb-v2-preview-entry').isVisible(),false);
-   await home.goto(url+'index.html?v2preview=0',{waitUntil:'domcontentloaded'});
-   assert.equal(await home.locator('#qpjb-v2-preview-entry').isVisible(),false);
-   await home.goto(url+'index.html?v2preview=1',{waitUntil:'domcontentloaded'});
-   const entry=home.locator('#qpjb-v2-preview-entry');
+   assert.equal(await home.locator('#qpjb-v2-quizz-entry').isVisible(),false);
+   assert.equal(await home.locator('#qpjb-v2-preview-entry').count(),0);
+   await home.locator('.training-button[data-training-mode="quizz"]').click();
+   const entry=home.locator('#qpjb-v2-quizz-entry');
    await entry.waitFor({state:'visible'});
+   assert.equal(await home.locator('#quizz-frame').count(),1);
+   assert.equal(await home.locator('#quizz-frame').getAttribute('src'),'./quizz.html?embedded=1&rev=20261101-ux-clavier');
    const link=entry.locator('a');
    assert.equal(await link.count(),1);
    assert.equal(await link.getAttribute('target'),'_blank');
