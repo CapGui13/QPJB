@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/qpjb-v2-release-candidate.yml
       - scripts/v2-release-candidate.cjs
+      - scripts/v2-editorial-preview.cjs
   workflow_dispatch:
 
 # Pas de permission Pages, de jeton d'ecriture, ni d'etape de deploiement.
@@ -60,5 +61,16 @@ jobs:
         with:
           name: qpjb-v2-65-seances-apercu-prive
           path: artifacts/v2-release-candidate/
+          if-no-files-found: error
+          retention-days: 3
+      - name: Generer le comparatif editorial des 4 QCM (non valide)
+        run: |
+          node --check scripts/v2-editorial-preview.cjs
+          node scripts/v2-editorial-preview.cjs
+      - name: Archiver la revue QCM privee (jamais Pages)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qpjb-v2-revue-4-qcm-non-validee
+          path: artifacts/v2-revue-editoriale/
           if-no-files-found: error
           retention-days: 3
