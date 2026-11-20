@@ -1,0 +1,77 @@
+{
+  "schema": "QPJB_V1_FIT14_LOT_C_EXPERIMENTAL_1",
+  "date": "2026-11-20",
+  "sources": {
+    "original48": "audits/QPJB_V1_APRES_FIT_48_PRECLASSIFICATION_20261120.json",
+    "original541": "audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json",
+    "realQuiz": "quizz.html"
+  },
+  "sourceV1Blob": "8e8100fdad9e52c160b11670098dd08050214374",
+  "reviewStatus": "A_VALIDER_EDITORIALEMENT",
+  "activationAllowed": false,
+  "selectionPolicy": "SIMULATION_HORS_PRODUCTION",
+  "masteryEvidence": null,
+  "validatedSkills": 0,
+  "groups": [
+    {
+      "key": "fit:ouvreur_minimum_passe",
+      "title": "Ouverture minimale : Passe après 1M–2M",
+      "candidateOnly": true,
+      "ids": [
+        "SEF-V4-001-1",
+        "SEF-V4-003-3",
+        "SEF-V4-013-3",
+        "SEF-V4-015-3"
+      ]
+    },
+    {
+      "key": "fit:ouvreur_essai_generalise_2sa",
+      "title": "2SA essai généralisé après 1M–2M",
+      "candidateOnly": true,
+      "ids": [
+        "SEF-V4-002-1",
+        "SEF-V4-004-1",
+        "SEF-V4-014-1",
+        "SEF-V4-016-2"
+      ]
+    },
+    {
+      "key": "fit:ouvreur_essai_couleur",
+      "title": "Essai naturel à la couleur après 1M–2M",
+      "candidateOnly": true,
+      "ids": [
+        "SEF-V44-050",
+        "SEF-V44-051",
+        "SEF-V44-052",
+        "SEF-V44-053",
+        "SEF-V44-054",
+        "SEF-V423-001"
+      ]
+    }
+  ],
+  "blocked": [
+    {
+      "id": "SEF-V44-054",
+      "key": "fit:ouvreur_essai_couleur",
+      "reason": "Après 1♥–2♥, 3♠ dépasse 3♥ : impossibilité de refuser l'essai en revenant à 3♥. Nature SEF de 3♠ à arbitrer ; réponse d'origine non modifiée.",
+      "editorialDecisionRequired": true
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "MINIMUM_FRAGILE",
+      "weakKey": "fit:ouvreur_minimum_passe",
+      "otherSkills": "réussies synthétiquement"
+    },
+    {
+      "id": "ESSAI_COULEUR_FRAGILE",
+      "weakKey": "fit:ouvreur_essai_couleur",
+      "otherSkills": "réussies synthétiquement"
+    }
+  ],
+  "notes": [
+    "14 QCM réels et 14 familles-source ; 10 contextes majeures+distribution distincts.",
+    "13 QCM admis à la simulation, dont cinq essais à la couleur ; 1 QCM contesté exclu du tirage expérimental.",
+    "Aucune étiquette active, aucune attribution de maîtrise ni changement de réponse."
+  ]
+}
