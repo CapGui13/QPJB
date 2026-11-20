@@ -31,6 +31,7 @@ async function check(engine,mobile,url){
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto(url+'quizz.html',{waitUntil:'domcontentloaded'});
    await page.locator('#progress-export').waitFor();
+   assert.ok(await page.locator('#progress-import').isVisible(),'Restauration V1 visible');
    assert.equal(await page.locator('#parcours-dashboard').count(),1);
    assert.equal(await page.locator('.notice').count(),0);
    assert.equal(await page.locator('#parcours-dashboard-content > .parcours-dashboard-note').count(),0);
@@ -113,6 +114,33 @@ async function check(engine,mobile,url){
    assert.equal(saved.sessions[0].answers.length,10);
    assert.equal(saved.summary.difficultyAdjustment,1);
    assert.equal(saved.currentSession.ids.length,10);
+   // Import invalide : aucun remplacement de la progression de l'élève.
+   const preceding=await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01'));
+   const invalid=JSON.parse(JSON.stringify(saved));
+   invalid.algorithmState.entries['INCONNU']={result:'correct',lastSession:0};
+   await page.locator('#progress-import-file').setInputFiles({
+     name:'invalide.json',mimeType:'application/json',
+     buffer:Buffer.from(JSON.stringify(invalid),'utf8')
+   });
+   assert.match(await page.locator('#progress-export-status').textContent(),/Restauration refusée/);
+   assert.equal(await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01')),preceding);
+   // Confirmation explicitement annulée : ne rien effacer.
+   page.once('dialog',dialog=>dialog.dismiss());
+   await page.locator('#progress-import-file').setInputFiles({
+     name:'annulation.json',mimeType:'application/json',
+     buffer:Buffer.from(JSON.stringify(saved),'utf8')
+   });
+   assert.equal(await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01')),preceding);
+   // Restaurer une séance commencée après une réinitialisation volontaire de recette.
+   await page.evaluate(()=>localStorage.setItem('qpjb-sef-parcours-01',
+     JSON.stringify(window.QPJBParcours.empty())));
+   await page.reload({waitUntil:'domcontentloaded'});
+   page.once('dialog',dialog=>dialog.accept());
+   await page.locator('#progress-import-file').setInputFiles({
+     name:'sauvegarde.json',mimeType:'application/json',
+     buffer:Buffer.from(JSON.stringify(saved),'utf8')
+   });
+   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01'))?.completed===1);
    await page.reload({waitUntil:'domcontentloaded'});
    const final=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(final.active.ids,active.active.ids,'Sauvegarde de séance reprise');
