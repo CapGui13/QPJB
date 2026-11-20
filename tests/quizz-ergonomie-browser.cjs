@@ -140,10 +140,16 @@ async function check(engine,mobile,url){
    const afterInvalid=await page.evaluate(()=>localStorage.getItem('qpjb-sef-parcours-01'));
    assert.equal(afterInvalid,original.guided,'Invalid import cannot erase data');
    page.once('dialog',dialog=>dialog.accept());
+   // La restauration déclenche un rechargement : attendre la navigation
+   // évite d'évaluer le DOM entre deux contextes JavaScript.
+   const restoreNavigation=page.waitForEvent('framenavigated',{
+     predicate:frame=>frame===page.mainFrame()
+   });
    await page.locator('#progress-import-file').setInputFiles({
      name:'v1-valide.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(json))
    });
-   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')).completed===13);
+   await restoreNavigation;
+   await page.waitForLoadState('domcontentloaded');
    const afterRestore=await page.evaluate(()=>({
      saved:JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),
      quiz:localStorage.getItem('qpjb-sef-entrainement-01'),
