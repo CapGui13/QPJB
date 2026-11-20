@@ -578,8 +578,10 @@
       if(otherContexts.length)ranked=otherContexts;
       // Jamais trois occurrences d'une micro-compétence dans une même séance
       // si le catalogue offre d'autres notions éligibles.
-      const otherMicros=ranked.filter(x=>!microKey(x)||(microCount[microKey(x)]||0)<2);
-      if(otherMicros.length)ranked=otherMicros;
+      if(s>=4){
+        const otherMicros=ranked.filter(x=>!microKey(x)||(microCount[microKey(x)]||0)<2);
+        if(otherMicros.length)ranked=otherMicros;
+      }
       // Écarter les micro-compétences confirmées récemment, sauf véritable rappel.
       if(kind!=='revision'){
         const exploratory=ranked.filter(x=>{
