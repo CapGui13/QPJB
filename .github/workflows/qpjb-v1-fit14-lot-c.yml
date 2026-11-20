@@ -1,0 +1,33 @@
+name: QPJB V1 LOT C — pilote fit14 non actif
+on:
+  pull_request:
+    paths:
+      - 'audits/QPJB_V1_FIT14_LOT_C_PILOTE_NON_ACTIF_20261120.json'
+      - 'scripts/pilot-v1-fit14-lot-c.cjs'
+      - 'tests/quizz-v1-fit14-lot-c.cjs'
+      - 'Docs/QUIZZ_V1_LOT_C_FIT14_PILOTE_20261120.md'
+      - '.github/workflows/qpjb-v1-fit14-lot-c.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lot-c-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifier le registre amont sans modification
+        run: node scripts/verify-v1-apres-fit-48.cjs
+      - name: Syntaxe pilote et tests
+        run: |
+          node --check scripts/pilot-v1-fit14-lot-c.cjs
+          node --check tests/quizz-v1-fit14-lot-c.cjs
+      - name: Test strict sur les QCM reels et profils opposés
+        run: node tests/quizz-v1-fit14-lot-c.cjs
+      - name: Resultat JSON autonome (logs seulement, sans publication)
+        run: node scripts/pilot-v1-fit14-lot-c.cjs
