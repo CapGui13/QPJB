@@ -1,0 +1,80 @@
+{
+  "schema": "QPJB_V1_OUV_REVIEW_PRECLASS_20261120",
+  "source": "audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json",
+  "sourceGroups": "audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json",
+  "date": "2026-11-20",
+  "issue": 226,
+  "readOnly": true,
+  "publicationAllowed": false,
+  "validatedCount": 0,
+  "sourceCount": 1,
+  "sourceFamilies": 1,
+  "proposedSkillCount": 1,
+  "flagsCount": {
+    "GROUPE_COMPETENCE_UN_SEUL_ITEM": 1,
+    "THEME_ISOLE_TRANSVERSAL": 1
+  },
+  "rows": [
+    {
+      "id": "SEF-V44-002",
+      "theme": "ouv",
+      "sourceFamily": "v44-cas-002",
+      "candidateSkill": "ouv:2trefle_regulier",
+      "candidateLabel": "2♣ fort avec 22–23 H réguliers",
+      "classificationStatus": "PROPOSITION_NON_HOMOLOGUEE",
+      "structuralCheck": "OK",
+      "sourceV1": {
+        "id": "SEF-V44-002",
+        "theme": "ouv",
+        "caseFamily": "v44-cas-002",
+        "hand": [
+          [
+            "A",
+            "9",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "D"
+          ],
+          [
+            "D",
+            "10",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 22,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [],
+        "context": "Vous êtes donneur en première position, sans enchère précédente. Avec une main régulière de 22 H, quelle est votre ouverture selon le SEF ?",
+        "choices": [
+          "2♣",
+          "2SA",
+          "1♣",
+          "3SA"
+        ],
+        "answer": "2♣",
+        "explain": "Avec 22 H dans une distribution régulière 3–3–3–4, vous dépassez la zone d'ouverture de 2SA (20–21 H). Dans le cadre SEF étudié, ouvrez de 2♣ fort indéterminé afin de décrire ensuite la force régulière de cette main : 2SA direct serait insuffisant.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître 2♣ forte et artificielle avec 22 H réguliers, à distinguer de 2SA limité à 20–21 H."
+      },
+      "flags": [
+        "GROUPE_COMPETENCE_UN_SEUL_ITEM",
+        "THEME_ISOLE_TRANSVERSAL"
+      ],
+      "notes": []
+    }
+  ]
+}
