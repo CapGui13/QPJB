@@ -4,14 +4,14 @@
 
 ## Coordination avec l'autre instance
 
-Le **20 novembre**, la PR <https://github.com/CapGui13/QPJB/pull/231> est en cours en **brouillon HOLD** pour tracer le **motif de sélection des QCM** et ajouter des diagnostics dans les exports de progression. Ses changements connus concernent exclusivement :
+Le **20 novembre**, la PR <https://github.com/CapGui13/QPJB/pull/231> a été **fusionnée** dans `main` (commit `511ff2ed6ef8dd057c473b28e1343ead81ecbe42`) pour tracer le **motif de sélection des QCM** et ajouter des diagnostics dans les exports de progression. Ses changements concernent exclusivement :
 - `quizz-parcours.js`
 - `tests/quizz-ergonomie.cjs`
 - `tests/quizz-ergonomie-browser.cjs`
 
 **Ce lot de cartographie n'écrit dans aucun de ces fichiers.** Il crée trois registres dans `audits/`, un vérificateur propre à la cartographie dans `scripts/`, ce rapport, et étend uniquement `.github/workflows/qpjb-v1-competences-audit.yml`. Il ne modifie aucun moteur, aucun paramètre de tirage, aucune mesure de répartition, aucune sauvegarde.
 
-Le périmètre est donc séparé au niveau des fichiers et des règles. Comme les branches peuvent évoluer en parallèle, vérifier leurs HEAD avant fusion ; ne pas fusionner la PR #231 à la place de l'autre instance.
+Le périmètre est donc séparé au niveau des fichiers et des règles. Les PR #231 et #232 ont été comparées par la liste GitHub des fichiers : **aucun chemin modifié en commun**. La PR #232 est préparée après récupération de cette information ; sa fusion exige toujours la réussite de ses contrôles sur la base actuelle de `main`. Aucun changement de la PR #231 n'est annulé.
 
 ## Sources vérifiables
 
