@@ -593,3 +593,6 @@ assert.ok(P.select(distinctSA,failedRecall,10).some(x=>
   'The direct review of a previous mistake stays unchanged');
 
 console.log('PARCOURS ALGORITHMIQUE V1 PASS: 1523 QCM unchanged, 22 themes, early answers, local resume, mastery and 65 simulated sessions; '+summary.seen+' IDs seen');
+
+// LOT B : banc longitudinal déterministe sur le moteur et le catalogue réels.
+require('./quizz-parcours-lot-b.cjs').run();
