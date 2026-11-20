@@ -127,7 +127,12 @@ function simulate(eligible, weakKey, targeted) {
   const weak=eligible.filter(x=>x.key===weakKey);
   const other=eligible.filter(x=>x.key!==weakKey);
   assert.ok(weak.length>=2 && other.length>=2);
-  const all = eligible, selections=[], sessions=[];
+  // Comparateur neutre : rotation equilibree entre familles, sans tenir compte des erreurs.
+  const buckets = [...new Set(eligible.map(x=>x.key))].map(k=>eligible.filter(x=>x.key===k));
+  const all=[];
+  for(let j=0;j<Math.max(...buckets.map(b=>b.length));j++)
+    for(const bucket of buckets) if(bucket[j]) all.push(bucket[j]);
+  const selections=[], sessions=[];
   for(let i=0;i<12;i++){
     const items = targeted ?
       [weak[(2*i)%weak.length],weak[(2*i+1)%weak.length],
