@@ -10,6 +10,7 @@ const start=html.indexOf(tag),end=html.indexOf('</script>',start+tag.length);
 assert.ok(start>=0&&end>start,'Embedded Quiz catalogue');
 const data=JSON.parse(html.slice(start+tag.length,end));
 const P=require('../quizz-parcours.js');
+const approvedLotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const proposed=JSON.parse(fs.readFileSync(path.join(root,'Docs',
   'PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json'),'utf8'));
 assert.equal(proposed.status,'NON_ACTIVE_DANS_LE_PARCOURS');
@@ -40,8 +41,18 @@ for(const item of proposed.assignments){
   assert.equal(item.caseFamily,source.caseFamily||source.id);
   assert.equal(item.originalAnswer,source.answer,'Do not rewrite an original answer');
   assert.deepEqual(item.originalAuction,source.auction,'Keep actual bidder roles');
-  assert.equal(item.originalDifficultyReason,source.difficultyReason,
-    'Original editorial source must match exactly');
+  // Le registre V2 est un instantané figé (18/11), pas un ordre de
+  // réécriture du Quiz : seul le Texas Trèfle L25-007 a été relu en V1.
+  const approvedV1=approvedLotD.proposals.find(x=>x.id===item.id);
+  if(approvedV1){
+    assert.equal(item.originalDifficultyReason,approvedV1.before.difficultyReason,
+      'Conserver à l identique le document V2 d origine : '+item.id);
+    assert.equal(source.difficultyReason,approvedV1.after.difficultyReason,
+      'Le Quiz V1 applique le motif approuvé : '+item.id);
+  }else{
+    assert.equal(item.originalDifficultyReason,source.difficultyReason,
+      'Original editorial source must match exactly');
+  }
   used.add(item.id);
 }
 assert.deepEqual(used,pendingIds,'All and only the 14 unclassified SA QCM proposed');
