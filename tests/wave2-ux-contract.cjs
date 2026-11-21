@@ -6,7 +6,7 @@ const cp=require('node:child_process');
 const path=require('node:path');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const embedded=source=>{
- const match=source.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+ const match=source.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
  assert.ok(match,'Catalogue JSON embarqué introuvable');
  return match[1];
 };
@@ -31,16 +31,16 @@ const checks=[
  ['navigation directe',/class="qpjb-quiz-skip" href="#question-heading"/],
  ['cible question',/id="question-heading" tabindex="-1"/],
  ['annonces séparées',/id="qpjb-quiz-announcement"[^>]*role="status" aria-live="polite"/],
- ['conteneur non live',/<div id="body"><\\/div>/],
- ['erreur associée au champ',/stage\\.error\\?'aria-describedby="bid-free-error"'/],
+ ['conteneur non live',/<div id="body"><\/div>/],
+ ['erreur associée au champ',/stage\.error\?'aria-describedby="bid-free-error"'/],
  ['corrigé focalisable',/id="answer-feedback" role="region" tabindex="-1"/],
- ['annonce réponse',/announceQuizChange\\('Réponse enregistrée\\./],
- ['annonce choix',/announceQuizChange\\('Quatre propositions disponibles\\./],
- ['annonce progression',/announceQuizChange\\('Question '/],
- ['largeur mobile 390',/@media\\(max-width:390px\\)/],
- ['largeur mobile 345',/@media\\(max-width:345px\\)/],
- ['mouvement réduit',/@media\\(prefers-reduced-motion:reduce\\)/],
- ['retour visible clavier',/\\.qpjb-quiz-skip:focus-visible/]
+ ['annonce réponse',/announceQuizChange\('Réponse enregistrée\./],
+ ['annonce choix',/announceQuizChange\('Quatre propositions disponibles\./],
+ ['annonce progression',/announceQuizChange\('Question '/],
+ ['largeur mobile 390',/@media\(max-width:390px\)/],
+ ['largeur mobile 345',/@media\(max-width:345px\)/],
+ ['mouvement réduit',/@media\(prefers-reduced-motion:reduce\)/],
+ ['retour visible clavier',/\.qpjb-quiz-skip:focus-visible/]
 ];
 for(const [label,pattern] of checks)assert.match(html,pattern,label);
 console.log('PASS '+checks.length+' garde-fous UI/ARIA et catalogue '+data.exercises.length+'/'+data.themes.length);
