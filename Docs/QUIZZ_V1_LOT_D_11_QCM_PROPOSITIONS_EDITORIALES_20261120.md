@@ -1,6 +1,6 @@
 # LOT D — contre-expertise éditoriale de 11 QCM V1 (propositions à valider)
 
-**20 novembre 2026 · Statut : PROPOSITIONS / NON APPROUVÉ · PR BROUILLON · NE PAS FUSIONNER · NE PAS PUBLIER**
+**20–21 novembre 2026 · Statut : 11 PROPOSITIONS APPROUVÉES PÉDAGOGIQUEMENT PAR L'UTILISATRICE (QCM 11 AVEC CORRIGÉ 4♥) / NON APPLIQUÉES · PR BROUILLON · NE PAS FUSIONNER · NE PAS PUBLIER**
 
 ## Périmètre et méthode
 
@@ -21,8 +21,8 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 ## Principes de la proposition
 
 1. **7 supports simples :** main V1 de 5 HLD, 3 atouts, aucun singleton/chicane, donc l'enchère intermédiaire 2M est injustifiable selon la plage 6–10 HLD. Pour conserver le problème pédagogique « refuser l'essai », on **propose** de remplacer une petite carte par un Valet dans une couleur autre que l'atout et, en cas d'essai à la couleur, autre que la couleur d'essai. On obtient 6 H, 6 HLD, toujours une main régulière et minimale. **Ce sont des mains candidates nouvelles, jamais des corrections automatiquement approuvées.**
-2. **Aucune séquence, aucun distracteur et aucune bonne réponse modifiés**, y compris pour L25-007 et les deux Texas ; le changement de main pour sept cas exige une validation pédagogique même si le corrigé reste stable.
-3. **19 décisions antérieures respectées (19/19)** : le seul QCM commun est `SEF-L25-007`, dont on reproduit **exactement** l'explication approuvée ; aucun des quinze corrigés conservés n'est modifié. Les décisions `SEF-V416-008` / `009` sur les doubles transferts ne sont pas transposées à des questions V1 formulées autrement. **Un changement de réponse V2 ne se copie jamais sans changer la consigne et les choix correspondants.**
+2. **11 séquences et 11 jeux de quatre choix conservés.** Dans 10/11 cas, la bonne réponse reste inchangée ; l'utilisatrice a corrigé le **11e, SEF-V44-030 (3♥ → 4♥)** et approuvé les sept nouvelles mains à 6 HLD. Ce changement de réponse impose de modifier aussi la consigne, l'explication et le motif, sans copier une réponse isolée depuis V2.
+3. **19 décisions antérieures respectées (19/19)** : le seul QCM commun est `SEF-L25-007`, dont on reproduit **exactement** l'explication approuvée ; aucun des quinze corrigés conservés n'est modifié. Les décisions `SEF-V416-008` / `009` sur les doubles transferts ne sont pas transposées à des questions V1 formulées autrement. **Un changement de réponse ne se copie jamais isolément : vérifier la consigne et les choix. Dans SEF-V44-030, l'option 4♥ préexistait parmi les quatre choix, et la consigne ainsi que l'explication sont adaptées.**
 4. La classification `theme: stayman` des deux V44 est conservée pour compatibilité V1 ; seul le **motif de difficulté** confond Stayman et Texas. Aucune activation de compétence, modification de sauvegarde ou édition du catalogue.
 
 ## Audit individuel — 11/11 cas
@@ -427,7 +427,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 ---
 
-### 11. `SEF-V44-030` — Texas majeur : motif étiqueté Stayman
+### 11. `SEF-V44-030` — Texas Cœur : erreur de corrigé de manche et motif Stayman
 
 **Contenu original V1** (thème : `stayman` ; famille : `v44-cas-030` ; difficulté : 3/5)
 
@@ -437,33 +437,35 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Consigne originale :** « Votre partenaire a ouvert de 1SA (15–17 H). Vous avez fait un Texas à 2♦ pour les Cœurs, rectifié par l'ouvreur à 2♥. Quelle est votre deuxième enchère ? »
 
-**Choix originale :** `3♥` ; `2SA` ; `3SA` ; `4♥`.
+**Choix originaux :** `3♥` ; `2SA` ; `3SA` ; `4♥`.
 
-**Bonne réponse originale :** **3♥**.
+**Bonne réponse originale :** **3♥** (corrigé **incorrect**, à remplacer).
 
 **Explication originale :** « Votre main de 9 H compte six Cœurs (♥ARV753), ce qui garantit au moins huit atouts face à un ouvreur de 1SA même s'il n'en a que deux. Après la rectification du Texas, 3♥ est une proposition de manche dans la longue, à distinguer du 2SA avec seulement cinq cartes. »
 
-**Motif de difficulté originale :** « Réévaluer la manche ou le fit après la réponse au Stayman »
+**Motif de difficulté original :** « Réévaluer la manche ou le fit après la réponse au Stayman »
 
-**Problème concret :** Le motif de difficulté parle de Stayman alors que 2♦ est un Texas Cœur, rectifié par l'ouvreur à 2♥ ; la justification de 3♥ doit rester une invitation avec six cartes.
+**Problème concret :** Double erreur. Le motif confond Stayman et Texas. **Surtout, le corrigé 3♥ ne tient pas compte des points de longueur : avec six Cœurs, 9 H + 2 L = 11 HL, et ♥ARV753 est une solide couleur sixième.** Face à l'ouverture 1SA 15–17 H et au fit garanti d'au moins huit Cœurs, la ligne a au moins 26 HL ; la manche 4♥ doit être imposée. L'ancienne proposition documentaire qui conservait 3♥ a été expressément **rejetée et rectifiée par l'utilisatrice le 21/11/2026**. Contrairement au cas 10 `SEF-V44-027` (cinq Piques faibles, 9 H, invitation 2SA), ce cas justifie une conclusion à la manche.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `difficultyReason`.
+**Proposition éditoriale complète, approuvée pédagogiquement et NON activée** — champs à modifier : `context`, `answer`, `explain`, `difficultyReason`. Le choix `4♥` existe déjà dans les quatre réponses, aucune substitution de distracteur n'est nécessaire.
 
-**Main proposée :** ♠94 · ♥ARV753 · ♦V52 · ♣103 — **9 H**, distribution 2–6–3–2.
+**Main proposée :** ♠94 · ♥ARV753 · ♦V52 · ♣103 — **9 H, 11 HL**, distribution 2–6–3–2 ; main inchangée.
 
 **Séquence proposée :** `Partenaire : 1SA` ; `Vous : 2♦ (Texas Cœur)` ; `Partenaire : 2♥`.
 
-**Consigne proposée :** « Votre partenaire a ouvert de 1SA (15–17 H). Vous avez fait un Texas à 2♦ pour les Cœurs, rectifié par l'ouvreur à 2♥. Quelle est votre deuxième enchère ? »
+**Consigne proposée :** « Votre partenaire ouvre de 1SA (15–17 H). Vous avez fait un Texas à 2♦ pour vos six Cœurs ♥ARV753 et l'ouvreur a rectifié à 2♥. Avec 9 H, à combien évaluez-vous cette main en HL et quelle est votre deuxième enchère ? »
 
-**Choix proposée :** `3♥` ; `2SA` ; `3SA` ; `4♥`.
+**Choix proposés (inchangés) :** `3♥` ; `2SA` ; `3SA` ; `4♥`.
 
-**Bonne réponse proposée :** **3♥**.
+**Bonne réponse proposée :** **4♥** — manche imposée, validée par l'utilisatrice.
 
-**Explication proposée :** « Votre main de 9 H compte six Cœurs (♥ARV753), ce qui garantit au moins huit atouts face à un ouvreur de 1SA même s'il n'en a que deux. Après la rectification du Texas, 3♥ est une proposition de manche dans la longue, à distinguer du 2SA avec seulement cinq cartes. »
+**Explication proposée :** « Avec six beaux Cœurs ♥ARV753, la main vaut 11 HL : 9 H et 2 points de longueur pour la sixième carte. L'ouvreur de 1SA (15–17 H) détient au moins deux Cœurs, donc le fit d'au moins huit cartes est assuré et le camp possède au moins 26 HL. Après 1SA–2♦ (Texas Cœur)–2♥, imposez la manche à 4♥. L'enchère de 3♥ serait seulement une proposition de manche, trop timide avec cette main. »
 
-**Motif de difficulté proposée :** « Après Texas Cœur 1SA–2♦–2♥, inviter à la manche à 3♥ avec six Cœurs, 9 H et un fit d'au moins huit atouts. »
+**Motif de difficulté proposé :** « Après Texas Cœur 1SA–2♦–2♥, compter 11 HL avec six beaux Cœurs (9 H + 2 L) et imposer 4♥, au lieu de proposer 3♥. »
 
-**Impact sur la bonne réponse :** aucun changement ; même main, même séquence, mêmes choix et même corrigé. **Niveau de confiance :** Élevé pour l'erreur de motif ; assez élevé pour la séquence et la réponse dans l'accord enseigné.
+**Impact sur la bonne réponse :** **OUI, corrigé changé 3♥ → 4♥** ; l'ID, le `h` (toujours 9 H), la main, la forme, la séquence, la liste des quatre choix, le thème et la famille restent inchangés. **Niveau de confiance :** Élevé, rectification pédagogique explicite de l'utilisatrice après comparaison des cas 10/11.
+
+**Référence pédagogique externe :** [ABC du Bridge — recherche du fit en majeure après 1SA](https://abc-du-bridge.scenari-community.org/002-10/co/002-10-Synthese.html) : les réponses après Texas dépendent de la force/distribution ; la manche majeure se conclut avec une main de manche et six cartes.
 
 ---
 
@@ -471,8 +473,8 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 - **11 IDs uniques** ; chaque original a **13 cartes**, une distribution cohérente avec les 13 cartes, le total H déclaré et une seule bonne réponse parmi quatre choix distincts ; aucun QCM reconstruit artificiellement à partir de V2.
 - Dans les **7 mains candidates modifiées**, mettre à jour conjointement le champ `h` de **5 à 6** (indispensable à la cohérence du catalogue) : exactement **+1 H par Valet**, **6 H = 6 HLD**, répartition originale conservée, 3 atouts sans courte, essai couleur sans honneur utile quand requis ; leur 2M antérieur devient SEF-compatible. La qualité de la carte ajoutée et de la main après retouche reste un **arbitrage éditorial**, non une validation définitive d'enchère.
-- **7/7** bonnes réponses d'essais inchangées (3♥/3♠) ; **4/4** autres bonnes réponses inchangées (`2♣`, `2SA`, `2SA`, `3♥`). **11/11 séquences, 11/11 jeux de choix et 11/11 IDs maintenus**.
-- Les questions **L10-030, V44-027, V44-030** ne demandent que la correction du `difficultyReason`. **L25-007** requiert l'application de l'explication `explain` **déjà validée**, ainsi que l'alignement de `difficultyReason` pour ne plus présenter « maximum » comme obligatoire. Seuls les 7 premiers proposent la substitution de cartes et un meilleur libellé de consigne/corrigé explicatif.
+- **7/7** bonnes réponses d'essais inchangées (3♥/3♠) ; **3/4** autres réponses conservées (`2♣`, `2SA`, `2SA`) ; **1 corrigé changé** pour `SEF-V44-030` (**3♥ → 4♥**, à la demande explicite de l'utilisatrice). **11/11 séquences, 11/11 jeux de choix, 11/11 IDs et familles maintenus**.
+- Les questions **L10-030 et V44-027** ne demandent que la correction du `difficultyReason`. **V44-030** exige aussi `answer`, `context` et `explain` (11 HL, manche 4♥). **L25-007** requiert l'application de l'explication `explain` **déjà validée**, ainsi que l'alignement de `difficultyReason` pour ne plus présenter « maximum » comme obligatoire. Seuls les 7 premiers proposent la substitution de cartes et un meilleur libellé de consigne/corrigé explicatif.
 - **Réserve Texas :** le qualificatif « réponse au Stayman » dans `difficultyReason` est incorrect ; le groupe historique `stayman` peut fonctionner comme rubrique englobante, ce qui n'autorise pas une migration implicite du thème ou de la compétence.
 - **Réserve L25-007 :** conserver la signification approuvée de la modulation 2SA ; en cas de divergence avec une fiche de convention extérieure, expliciter l'accord de la paire plutôt que changer l'explication validée en « maximum absolu ».
 - **Réserve après-fit :** si l'utilisatrice préfère ne pas modifier des mains originelles, l'alternative honnête est **de laisser les sept exercices en attente de correction/homologation**, et non de faire croire que 5 HLD suffisent au soutien simple.
@@ -484,6 +486,6 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 | **D1 — 7 soutiens simples** | `SEF-V4-009-1`, `SEF-V4-011-1`, `SEF-V4-021-1`, `SEF-V4-023-3`, `SEF-V416-006`, `SEF-V418-006`, `SEF-V421-012` | Accepter les sept mains à 6 HLD et les reformulations, demander modifications individuelles, ou maintenir les 7 en attente. |
 | **D2 — Roudi** | `SEF-L10-030` | Accepter seulement le nouveau motif ; `2♣` conservé. |
 | **D3 — Texas Trèfle** | `SEF-L25-007` | Appliquer l'explication **déjà validée** ; aligner aussi le motif de difficulté sur « non minimum » plutôt que « maximum obligatoire » ; `2SA` conservé. |
-| **D4 — Texas majeur** | `SEF-V44-027`, `SEF-V44-030` | Accepter les deux nouveaux motifs Texas ; réponses inchangées. |
+| **D4 — Texas majeur** | `SEF-V44-027`, `SEF-V44-030` | `-027` : motif Texas à corriger, 2SA conservé (**validé**). `-030` : 11 HL, **imposer 4♥** au lieu de 3♥, adapter consigne, explication et motif (**rectification explicite approuvée le 21/11**). |
 
-**Statut final de LOT D : 11 propositions rédigées ; 0 correction de QCM appliquée ; 0 classification activée ; 0 autorisation de publication ; 0 fusion.** L'unique fichier créé par cette PR doit être ce document `Docs/` ; aucun moteur, catalogue, exercice, historique ou interface ne doit être touché.
+**Statut actuel de LOT D : 11 propositions corrigées et approuvées pédagogiquement dans la conversation ; 0 correction de QCM appliquée ; 0 classification activée ; 0 autorisation de publication ; 0 fusion.** L'unique fichier créé par cette PR doit être ce document `Docs/` ; aucun moteur, catalogue, exercice, historique ou interface ne doit être touché.
