@@ -20,13 +20,20 @@ const actualCatalogueSha256=crypto.createHash('sha256').update(embedded(html),'u
 assert.equal(actualCatalogueSha256,expectedCatalogueSha256,
  'Le JSON training-data doit rester octet pour octet celui de la base figée, même si Git est indisponible');
 console.log('PASS catalogue SHA-256 base figée '+expectedCatalogueSha256);
+const preservedStorageContracts=[
+ ['clé sauvegarde du Quiz',"const saveKey='qpjb-sef-entrainement-01'"],
+ ['clé sauvegarde du parcours',"const parcoursKey='qpjb-sef-parcours-01'"],
+ ['écriture de progression guidée','localStorage.setItem(parcoursKey,JSON.stringify(parcoursState))'],
+ ['réinjection des réponses sauvegardées','for(const [index,value] of Object.entries(a.answers))'],
+ ['enregistrement des tentatives','QPJBParcours.record(parcoursState,x,result,position,choice,assisted,meta.hadFreeError)']
+];
+for(const [label,fragment] of preservedStorageContracts){
+ assert.ok(html.includes(fragment),'Contrat de sauvegarde/reprise manquant : '+label);
+}
 const base='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 try{
  const original=cp.execFileSync('git',['show',base+':quizz.html'],{encoding:'utf8',maxBuffer:10*1024*1024});
  assert.equal(embedded(html),embedded(original),'Catalogue strictement inchangé (octet pour octet)');
- for(const anchor of ["const saveKey='qpjb-sef-entrainement-01'","function saveParcours()"]){
-  assert.ok(html.includes(anchor),'Sauvegarde manquante : '+anchor);
- }
  console.log('PASS catalogue strictement identique à '+base);
 }catch(e){
  if(e.code==='ERR_ASSERTION'||e.name==='AssertionError')throw e;
