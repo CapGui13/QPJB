@@ -3,6 +3,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
 const {chromium,webkit}=require('playwright');
+const {runScenarioPlan}=require('./wave2-ux-plan.cjs');
 const root=path.resolve(__dirname,'..');
 const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml'};
 const server=http.createServer((req,res)=>{
@@ -191,15 +192,51 @@ async function keyboardScenario(browser,engine,base){
  }finally{await context.close()}
 }
 (async()=>{
- const requested=process.env.PW_BROWSER;
- const engines=requested?[requested]:['chromium','webkit'];
- assert.ok(engines.every(x=>['chromium','webkit'].includes(x)));
- await new Promise((ok,fail)=>{server.once('error',fail);server.listen(0,'127.0.0.1',ok)});
+ const selected=process.env.PW_BROWSER;
+ const engines=selected?[selected]:['chromium','webkit'];
+ assert.ok(engines.every(x=>['chromium','webkit'].includes(x)),'Moteur navigateur inconnu');
+ const reports=[];
+ await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
+ const base='http://127.0.0.1:'+server.address().port;
  try{
   for(const engine of engines){
-   const browser=await ({chromium,webkit})[engine].launch({headless:true,args:engine==='chromium'?['--no-sandbox']:[]});
-   try{const base='http://127.0.0.1:'+server.address().port;for(const width of [320,390])await scenario(browser,engine,width,base);await touchScenario(browser,engine,base);await emptySelectionScenario(browser,engine,base);await keyboardScenario(browser,engine,base);for(const [w,h] of [[195,422],[844,390]])await layoutScenario(browser,engine,w,h,base)}
-   finally{await browser.close()}
+   let browser;
+   try{
+    browser=await ({chromium,webkit})[engine].launch({headless:true,
+     args:engine==='chromium'?['--no-sandbox']:[]});
+   }catch(err){
+    reports.push({engine,passed:0,failed:1,
+     results:[{name:'démarrage '+engine,status:'failed',error:String(err.stack||err),durationMs:0}]});
+    console.error('M3 FAIL lancement '+engine+' : '+String(err.stack||err));
+    continue;
+   }
+   try{
+    const cases=[
+     {name:'parcours 320px',run:()=>scenario(browser,engine,320,base)},
+     {name:'parcours 390px',run:()=>scenario(browser,engine,390,base)},
+     {name:'clavier tactile 390px',run:()=>touchScenario(browser,engine,base)},
+     {name:'aucun exercice',run:()=>emptySelectionScenario(browser,engine,base)},
+     {name:'navigation clavier',run:()=>keyboardScenario(browser,engine,base)},
+     {name:'reflow 195x422px',run:()=>layoutScenario(browser,engine,195,422,base)},
+     {name:'paysage 844x390px',run:()=>layoutScenario(browser,engine,844,390,base)}
+    ];
+    const report=await runScenarioPlan(cases);
+    reports.push({engine,...report});
+   }finally{
+    await browser.close();
+   }
   }
- }finally{await new Promise(ok=>server.close(ok))}
+ }finally{
+  await new Promise(resolve=>server.close(resolve));
+  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
+  fs.mkdirSync(dir,{recursive:true});
+  const outfile=path.join(dir,'rapport-m3-'+engines.join('-')+'.json');
+  fs.writeFileSync(outfile,JSON.stringify({schemaVersion:1,source:'wave2-ux-browser.cjs',
+   generatedAt:new Date().toISOString(),reports},null,2)+'\n');
+  console.log('Rapport détaillé M3 : '+outfile);
+ }
+ const failures=reports.reduce((n,r)=>n+r.failed,0);
+ const passed=reports.reduce((n,r)=>n+r.passed,0);
+ console.log('M3 SCÉNARIOS : '+passed+' réussis / '+failures+' échecs sur '+reports.length+' moteur(s)');
+ if(failures)throw new Error('Recette navigateur M3 incomplète : '+failures+' scénario(s) en échec');
 })().catch(err=>{console.error(err.stack||err);process.exitCode=1});

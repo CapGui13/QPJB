@@ -16,6 +16,7 @@ const engines=selector?[selector]:['chromium','webkit'];
 const steps=[
  {name:'Contrat statique et SHA-256 catalogue',file:'tests/wave2-ux-contract.cjs'},
  {name:'Focus et transitions isolés',file:'tests/wave2-ux-focus.cjs'},
+ {name:'Orchestration et isolation des erreurs',file:'tests/wave2-ux-plan-test.cjs'},
  ...engines.map(engine=>({name:'Navigation navigateur '+engine,
    file:'tests/wave2-ux-browser.cjs',engine}))
 ];
