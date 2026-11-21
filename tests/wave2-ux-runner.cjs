@@ -18,7 +18,9 @@ const steps=[
  {name:'Focus et transitions isolés',file:'tests/wave2-ux-focus.cjs'},
  {name:'Orchestration et isolation des erreurs',file:'tests/wave2-ux-plan-test.cjs'},
  ...engines.map(engine=>({name:'Navigation navigateur '+engine,
-   file:'tests/wave2-ux-browser.cjs',engine}))
+   file:'tests/wave2-ux-browser.cjs',engine})),
+ ...engines.map(engine=>({name:'Comparaison visuelle avant/après '+engine,
+   file:'tests/wave2-ux-visual.cjs',engine}))
 ];
 let fails=0;
 for(const step of steps){
