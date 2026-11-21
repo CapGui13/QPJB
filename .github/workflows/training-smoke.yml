@@ -30,7 +30,6 @@ jobs:
           node tests/training-smoke.cjs
           node tests/quizz-integrity.cjs
           node tests/quizz-v1-lot-d-11-integration.cjs
-          node tests/quizz-parcours.cjs
           node tests/quizz-v2-audit.cjs
           node tests/quizz-v2-sa.cjs
           node tests/quizz-l01-regression.cjs
@@ -82,6 +81,8 @@ jobs:
           node tests/training-lot09-publication.cjs
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
+          # Parcours long après les audits QCM rapides : diagnostiquer tôt toute dérive documentaire.
+          node tests/quizz-parcours.cjs
           node scripts/split_training_data.cjs --check
           node tests/site-update.cjs
       - name: Rapports d'intégrité et d'ambiguïté
