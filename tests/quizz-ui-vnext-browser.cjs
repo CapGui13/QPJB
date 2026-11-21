@@ -2,7 +2,7 @@
 /* Mission 3 — recette Chromium/WebKit et captures avant/après réelles.
  * Exécution : node tests/quizz-ui-vnext-browser.cjs
  * Option : PW_BROWSER=webkit (ou chromium), PW_ARTIFACT_DIR=/chemin/captures
- * Pour les vues "avant", le commit de référence doit être accessible via git show.
+ * Pour les vues « avant », récupère le commit de référence si nécessaire.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -20,7 +20,16 @@ try{
   cwd:root,encoding:'utf8',maxBuffer:8*1024*1024,stdio:['ignore','pipe','ignore']
  });
 }catch(_){
- console.warn('Baseline absente du checkout : les captures AVANT nécessitent git fetch du commit '+BASE);
+ try{
+  execFileSync('git',['fetch','--no-tags','--depth=1','origin',BASE],{
+   cwd:root,stdio:['ignore','ignore','ignore'],timeout:60000
+  });
+  baseline=execFileSync('git',['show',BASE+':quizz.html'],{
+   cwd:root,encoding:'utf8',maxBuffer:8*1024*1024,stdio:['ignore','pipe','ignore']
+  });
+ }catch(err){
+  throw new Error('Capture AVANT impossible : récupérer le commit '+BASE+' dans ce checkout', {cause:err});
+ }
 }
 const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8',
  '.css':'text/css; charset=utf-8','.png':'image/png','.svg':'image/svg+xml',
@@ -76,11 +85,12 @@ async function scenario(browser,engine,device,version,url){
     'La première proposition prend le focus après révélation');
    const sizes=await page.locator('#answers button').evaluateAll(buttons=>
     buttons.map(b=>({height:b.getBoundingClientRect().height,
-     label:b.getAttribute('aria-label'),number:getComputedStyle(b,'::before').content})));
+     label:b.getAttribute('aria-label'),counter:getComputedStyle(b,'::before').content})));
    assert.ok(sizes.every(s=>s.height>=60),'Cibles tactiles >= 60px sur 390px ou bureau');
    assert.ok(sizes.every((s,i)=>s.label?.startsWith('Proposition '+(i+1)+' : ')),
     'Les propositions sont annoncées avec leur numéro');
-   assert.ok(sizes.every((s,i)=>s.number.includes(String(i+1))),'Numéros visibles 1 à 4');
+   assert.ok(sizes.every(s=>s.counter.includes('qpjb-answer')),
+    'Le compteur CSS des numéros de choix est bien présent');
    assert.equal(await page.locator('#answers').getAttribute('role'),'group');
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=
     document.documentElement.clientWidth+2),true,'Pas de débordement horizontal');
