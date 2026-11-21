@@ -26,6 +26,7 @@ function verify(workflow,publication){
   'node tests/wave2-ci-lot07-static.cjs',
   'node tests/wave2-ci-performance.cjs',
   'node tests/wave2-ci-pages-rollback.cjs',
+  'node tests/wave2-ci-pages-conditions.cjs',
   'node tests/wave2-ci-coverage.cjs'
  ])assert.equal(quick.split('\n').filter(line=>line.trim()===guard).length,1,
   'Quick audit must execute exactly once '+guard);
@@ -56,5 +57,5 @@ for(const [brokenCi,brokenPages] of [
              '      - name: Retain WebKit visual screenshots and timings\n        if: never()'),pages],
  [ci,pages.replace("workflow_run.event != 'pull_request'","workflow_run.event == 'pull_request'")]
 ])assert.throws(()=>verify(brokenCi,brokenPages),'Injected coverage regression must be detected');
-console.log('WAVE2 CI COVERAGE PASS: 8 browser scripts + probe per engine, 5 quick guards, artifacts and Pages protected; 4 regressions rejected');
+console.log('WAVE2 CI COVERAGE PASS: 8 browser scripts + probe per engine, 6 quick guards, artifacts and Pages protected; 4 regressions rejected');
 
