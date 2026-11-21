@@ -453,7 +453,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Séquence proposée :** `Partenaire : 1SA` ; `Vous : 2♦ (Texas Cœur)` ; `Partenaire : 2♥`.
 
-**Consigne proposée :** « Votre partenaire ouvre de 1SA (15–17 H). Vous avez fait un Texas à 2♦ pour vos six Cœurs ♥ARV753 et l'ouvreur a rectifié à 2♥. Avec 9 H, à combien évaluez-vous cette main en HL et quelle est votre deuxième enchère ? »
+**Consigne proposée :** « Votre partenaire ouvre de 1SA (15–17 H). Après votre Texas à 2♦ pour les Cœurs, il rectifie à 2♥. Avec 9 H et six beaux Cœurs ♥ARV753, quelle est votre deuxième enchère ? »
 
 **Choix proposés (inchangés) :** `3♥` ; `2SA` ; `3SA` ; `4♥`.
 
