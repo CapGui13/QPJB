@@ -17,17 +17,18 @@ test('P2 assistance, erreur libre et saut ne prouvent pas une maîtrise',()=>{
   assert.deepEqual(r.observations.parcours,{autonomous:0,helped:2,wrong:1,skipped:1});
   assert.ok(!types(r).includes('repeated_autonomous'));
 });
-test('P2 micro/axe : deux cartes sur les mêmes deux échecs',()=>{
+test('P2 micro/axe : même faits, une seule carte après correction P3',()=>{
   const s=engine.empty();
   const q=x('SEF-026-3','2♠',{theme:'majeur',auction:['Partenaire : 1♠'],
     difficultyReason:'Soutien simple sur ouverture majeure'});
   assert.equal(engine.microKey(q),'majeur:1♠');assert.equal(engine.axisKey(q),'fit');
   one(s,q);one(s,q);
   const r=build(s);
-  assert.equal(r.recommendations.filter(x=>x.type==='persistent_difficulty').length,2);
+  assert.equal(r.recommendations.filter(x=>x.type==='persistent_difficulty').length,1);
+  assert.deepEqual(r.recommendations[0].evidence.sameAnswersAs,[{source:'axes',key:'fit',label:engine.AXIS_LABELS.fit}]);
   assert.equal(r.observations.parcours.wrong,2);
 });
-test('P2 visibilité top 3 : une révision disponible peut être masquée',()=>{
+test('P2 visibilité top 3 : la révision disponible est visible après P3',()=>{
   const s=engine.empty();
   for(const [i,a] of ['Passe','1♣','1♥'].entries())
     for(let j=0;j<2;j++)one(s,x('W-'+i+'-'+j,a));
@@ -36,7 +37,7 @@ test('P2 visibilité top 3 : une révision disponible peut être masquée',()=>{
   assert.equal(full.revision.available,true);
   assert.ok(types(full).includes('revision_session'));
   const short=rec.buildReport(s,{exercises:pool,maxRecommendations:3});
-  assert.deepEqual(types(short),['persistent_difficulty','persistent_difficulty','persistent_difficulty']);
+  assert.deepEqual(types(short),['persistent_difficulty','persistent_difficulty','revision_session']);
 });
 test('P2 reprise active prioritaire, aucune nouvelle révision disponible',()=>{
   const s=engine.empty();one(s,x('W1'));one(s,x('W2'));

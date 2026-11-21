@@ -81,6 +81,62 @@
         lastScoredSession:area.lastScoredSession}:null};
   }
 
+  // Un axe et un micro peuvent classifier LES MEMES REPONSES, sans constituer
+  // deux preuves indépendantes. Regrouper seulement si TOUTES les tentatives
+  // agrégées de chacun sont identifiables dans le journal conservé.
+  // Une ancienne sauvegarde sans journal ne satisfait jamais ce critère.
+  function overlappingAreas(proposals,state){
+    const responses=new Map();
+    for(const event of state.journal||[]){
+      if(!event||event.mode!=='parcours'||!integer(event.session)||
+          event.session<1||event.session>state.completed)continue;
+      for(const a of event.answers||[]){
+        if(!safeRecord(a)||typeof a.id!=='string')continue;
+        const answerId=event.session+'|'+a.id;
+        for(const kind of ['micro','axis']){
+          if(typeof a[kind]!=='string')continue;
+          const id=kind+':'+a[kind];
+          if(!responses.has(id))responses.set(id,new Set());
+          responses.get(id).add(answerId);
+        }
+      }
+    }
+    const erased=new Set();
+    for(const micro of proposals){
+      if(micro.evidence?.source!=='micros')continue;
+      const a=micro.evidence;
+      const left=responses.get('micro:'+a.key);
+      if(!left||left.size!==a.attempts)continue;
+      for(const axis of proposals){
+        if(erased.has(axis)||axis.type!==micro.type||axis.evidence?.source!=='axes')continue;
+        const b=axis.evidence,right=responses.get('axis:'+b.key);
+        if(!right||right.size!==b.attempts||right.size!==left.size||
+           a.score!==b.score||a.attempts!==b.attempts||
+           a.independent!==b.independent)continue;
+        if(![...left].every(id=>right.has(id)))continue;
+        // Métadonnée de classement complémentaire : PAS une seconde preuve.
+        if(!Array.isArray(micro.evidence.sameAnswersAs))micro.evidence.sameAnswersAs=[];
+        micro.evidence.sameAnswersAs.push({source:'axes',key:b.key,label:b.label});
+        erased.add(axis);
+      }
+    }
+    return {items:proposals.filter(p=>!erased.has(p)),merged:erased.size};
+  }
+
+  // Une révision disponible est une action réalisable, distincte de la liste
+  // des difficultés. Lorsque la place le permet, préserver au moins une action.
+  // La reprise active interdit une nouvelle révision et garde toujours priorité.
+  function visibleRecommendations(items,limit){
+    const sorted=items.slice().sort((a,b)=>a.priority-b.priority||a.id.localeCompare(b.id));
+    const visible=sorted.slice(0,limit);
+    const revision=sorted.find(x=>x.type==='revision_session');
+    if(limit>=2&&revision&&!visible.includes(revision)){
+      visible[visible.length-1]=revision;
+      visible.sort((a,b)=>a.priority-b.priority||a.id.localeCompare(b.id));
+    }
+    return visible;
+  }
+
   // Ne modifie ni les scores, ni l'état, ni le catalogue. Les étiquettes sont
   // celles de quizz-parcours.js ; aucun thème ou axe nouveau n'est créé.
   function buildReport(rawState,options={}){
@@ -148,7 +204,8 @@
       proposals.push(suggestion('not_evaluated',90,null,
         'Aucune notion encore évaluée','Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
     }
-    proposals.sort((a,b)=>a.priority-b.priority||a.id.localeCompare(b.id));
+    const grouped=overlappingAreas(proposals,state);
+    const visible=visibleRecommendations(grouped.items,limit);
     const limitations=[];
     if(stats.sessionsWithoutDetail)
       limitations.push(`${stats.sessionsWithoutDetail} séance(s) terminée(s) sans journal détaillé : résultats non reconstitués.`);
@@ -161,7 +218,7 @@
         detailedSessions:stats.detailedSessions,sessionsWithoutDetail:stats.sessionsWithoutDetail,
         evaluatedMicros:areas.filter(a=>a.kind==='micro').length,
         evaluatedAxes:areas.filter(a=>a.kind==='axis').length},
-      revision,recommendations:proposals.slice(0,limit),limitations};
+      revision,recommendations:visible,limitations};
   }
   return {VERSION,OUTCOMES,outcome,buildReport};
 });
