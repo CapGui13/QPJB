@@ -1525,6 +1525,9 @@ function showHomeFromSeance() {
   });
 }
 function buildFileListHtml(folderName) {
+  if (!pbnFiles.length) {
+    return '<div class="file-list"><div class="loading" role="status">Séance en préparation : aucune donne publiée pour le moment.</div></div>';
+  }
   const toggleHtml = `<div class="blur-toggle-wrap" style="justify-content:flex-start;padding:0 4px 10px">
     <label class="blur-toggle">
       <input type="checkbox" id="blur-toggle-input" checked onchange="toggleBlur(this.checked)">

@@ -22,7 +22,8 @@ for folder in sorted(root.iterdir(), key=lambda p: p.name.casefold()):
         for f in sorted(folder.iterdir(), key=pbn_sort_key)
         if f.is_file() and f.suffix.lower() == ".pbn"
     ]
-    if fichiers:
+    # Le marqueur permet de publier une séance encore vide sans faux PBN.
+    if fichiers or (folder / ".seance-vide").is_file():
         seances.append({"folder": folder.name, "fichiers": fichiers})
 
 docs = root / "Docs"
