@@ -164,6 +164,32 @@ async function emptySelectionScenario(browser,engine,base){
   console.log('PASS M3 '+engine+'/selection-vide : retour clavier accessible');
  }finally{await context.close()}
 }
+async function keyboardScenario(browser,engine,base){
+ const context=await browser.newContext({viewport:{width:1280,height:900},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
+ const page=await context.newPage();const errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ try{
+  await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+  await page.locator('#parcours-start').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('#question-heading').waitFor({state:'visible'});
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'question-heading','Focus du titre après ouverture au clavier');
+  await page.locator('#show-choices').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('#answers button').first().waitFor({state:'visible'});
+  assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('data-choice')),'0','Première proposition focalisée');
+  await page.keyboard.press('Enter');
+  await page.locator('#answer-feedback').waitFor({state:'visible'});
+  await page.waitForFunction(()=>document.activeElement?.id==='answer-feedback');
+  assert.ok((await page.locator('.feedback-explanation').textContent()).trim().length>10);
+  await page.locator('#next').focus();
+  await page.keyboard.press('Enter');
+  await page.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'question-heading','Retour du focus sur la nouvelle question');
+  assert.deepEqual(errors,[],'Aucune exception JS en navigation clavier');
+  console.log('PASS M3 '+engine+'/clavier : lancement, QCM, correction, question suivante');
+ }finally{await context.close()}
+}
 (async()=>{
  const requested=process.env.PW_BROWSER;
  const engines=requested?[requested]:['chromium','webkit'];
@@ -172,7 +198,7 @@ async function emptySelectionScenario(browser,engine,base){
  try{
   for(const engine of engines){
    const browser=await ({chromium,webkit})[engine].launch({headless:true,args:engine==='chromium'?['--no-sandbox']:[]});
-   try{const base='http://127.0.0.1:'+server.address().port;for(const width of [320,390])await scenario(browser,engine,width,base);await touchScenario(browser,engine,base);await emptySelectionScenario(browser,engine,base);for(const [w,h] of [[195,422],[844,390]])await layoutScenario(browser,engine,w,h,base)}
+   try{const base='http://127.0.0.1:'+server.address().port;for(const width of [320,390])await scenario(browser,engine,width,base);await touchScenario(browser,engine,base);await emptySelectionScenario(browser,engine,base);await keyboardScenario(browser,engine,base);for(const [w,h] of [[195,422],[844,390]])await layoutScenario(browser,engine,w,h,base)}
    finally{await browser.close()}
   }
  }finally{await new Promise(ok=>server.close(ok))}

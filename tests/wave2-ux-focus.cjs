@@ -49,3 +49,14 @@ assert.equal(empty.link.href,'#parcours-start');
 assert.ok(empty.events.includes('focus:back-home:true'),'Pas de focus perdu sans exercice');
 assert.ok(empty.events.includes('focus:new:true'),'Retour en séance libre');
 console.log('PASS M3 focus simulé : question, liste vide, sortie guidée/libre, anti-saut de défilement');
+const focusChoices=js.match(/function renderChoicesWithFocus\(\)\{[^\n]+\}/);
+assert.ok(focusChoices,'Fonction de révélation des choix');
+const choiceEvents=[];
+vm.runInNewContext(focusChoices[0]+'\nrenderChoicesWithFocus()',{
+ render:()=>choiceEvents.push('render'),
+ announceQuizChange:message=>choiceEvents.push('announce:'+message),
+ $:id=>id==='answers'?{querySelector:selector=>selector==='button'?{focus:options=>choiceEvents.push('focus:'+Boolean(options?.preventScroll))}:null}:null
+});
+assert.deepEqual(choiceEvents,['render','announce:Quatre propositions disponibles.','focus:true']);
+console.log('PASS M3 focus propositions : rendu, annonce puis première proposition focalisée');
+
