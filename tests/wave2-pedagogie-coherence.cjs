@@ -8,8 +8,8 @@ const found=read('quizz.html').match(/<script id="training-data" type="applicati
 assert(found,'Missing embedded QCM');const data=JSON.parse(found[1]);assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
 const dict=new Map(data.exercises.map(x=>[x.id,x]));
 const excluded=new Set([
- ...p('../v1-evolutions/pedagogie/propositions-mineures-fit-20.json').proposals,
- ...p('../v1-evolutions/pedagogie/propositions-roudi-conventions-16.json').proposals
+ ...JSON.parse(read('audits/v1-evolutions/pedagogie/propositions-mineures-fit-20.json')).proposals,
+ ...JSON.parse(read('audits/v1-evolutions/pedagogie/propositions-roudi-conventions-16.json')).proposals
 ].map(x=>x.id));
 assert.equal(excluded.size,36);
 const ids=m7.profiles.flatMap(p=>p.phases.flatMap(ph=>ph.cases.map(x=>x.id)));
