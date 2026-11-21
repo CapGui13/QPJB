@@ -251,7 +251,22 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#progressbar').evaluate(el=>el.style.width),'20%','Progress follows processed questions');
   for(let i=2;i<10;i++)await page.locator('#pass').click();
   assert.ok((await page.locator('#body').textContent()).includes('Fin de la séance'),'Session ends after ten treated questions');
-  assert.ok((await page.locator('#body').textContent()).includes('9 passé(s)'),'Summary distinguishes skipped questions');
+  const summaryCounts=await page.locator('.session-summary-stats').evaluate(el=>
+    Object.fromEntries([...el.querySelectorAll('div')].map(row=>[
+      row.querySelector('dt')?.textContent.trim(),
+      row.querySelector('dd')?.textContent.trim()
+    ]))
+  );
+  assert.equal(summaryCounts['Questions passées'],'9',
+    'Le bilan doit distinguer les neuf questions passées');
+  const summaryTotals=['Réussis sans propositions','Réussis avec propositions',
+    'Erreurs définitives','Questions passées'];
+  assert.ok(summaryTotals.every(label=>/^\d+$/.test(summaryCounts[label]||'')),
+    'Chaque catégorie du bilan doit comporter un compteur entier');
+  assert.equal(summaryTotals.reduce((sum,label)=>sum+Number(summaryCounts[label]),0),10,
+    'Les quatre catégories sont disjointes et couvrent les dix réponses');
+  assert.ok(Number(summaryCounts['Erreurs définitives'])<=1,
+    'Seule la première réponse peut avoir été évaluée ; les neuf autres sont passées');
   await page.locator('#done-home').click();
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#mode').selectOption('0');
