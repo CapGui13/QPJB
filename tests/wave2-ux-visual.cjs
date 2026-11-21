@@ -9,7 +9,7 @@ const http=require('node:http');
 const crypto=require('node:crypto');
 const {execFileSync}=require('node:child_process');
 const {chromium,webkit}=require('playwright');
-const {projectStorage}=require('./wave2-ux-storage-projection.cjs');
+const {projectStorage,assertProgressEvidence}=require('./wave2-ux-storage-projection.cjs');
 const root=path.resolve(__dirname,'..');
 const BASE='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 const artifactDir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
@@ -87,6 +87,7 @@ async function capture(browser,engine,width,height,version,url){
    records:localStorage.getItem('qpjb-sef-entrainement-01')
   }));
   const stableProgress=projectStorage(storageRaw);
+  assertProgressEvidence(stableProgress);
   return {engine,width,height,version,...metrics,stableProgress,images};
  }finally{await context.close()}
 }

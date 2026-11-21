@@ -22,4 +22,13 @@ function projectStorage(raw){
   activeIndex:active?.index??null,
   activeMode:active?.mode??null,answers,attempts};
 }
-module.exports={projectStorage};
+function assertProgressEvidence(projection){
+ if(!projection||!Array.isArray(projection.activeIds)||!projection.activeIds.length)
+  throw new Error('Aucune séance guidée sauvegardée : comparaison avant/après vide');
+ if(!Array.isArray(projection.answers)||projection.answers.length!==1)
+  throw new Error('Une réponse enregistrée attendue avant les captures du corrigé');
+ if(!Array.isArray(projection.attempts)||projection.attempts.length<1)
+  throw new Error('Historique de tentative absent du stockage');
+ return true;
+}
+module.exports={projectStorage,assertProgressEvidence};
