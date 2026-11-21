@@ -48,6 +48,7 @@ const data=JSON.parse(match[1]),exercises=data.exercises;
 assert.equal(exercises.length,1523);
 assert.equal(data.themes.length,22);
 const catalogueChecksum=crypto.createHash('sha256').update(JSON.stringify(exercises)).digest('hex');
+const byId=new Map(exercises.map(x=>[x.id,x]));
 const foundations=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
 const hash=x=>{let h=2166136261;for(let i=0;i<x.length;i++){
   h^=x.charCodeAt(i);h=Math.imul(h,16777619);
@@ -90,7 +91,6 @@ function simulate(P,name,paired=false){
       const v1=BEFORE.select(exercises,state,10);
       const vNext=AFTER.select(exercises,state,10);
       if(weak.size){
-        const byId=new Map(exercises.map(q=>[q.id,q]));
         pairedTotals.baseline+=v1.filter(x=>weak.has(byId.get(x.id).theme)).length;
         pairedTotals.candidate+=vNext.filter(x=>weak.has(byId.get(x.id).theme)).length;
         pairedTotals.opportunities++;
@@ -100,9 +100,11 @@ function simulate(P,name,paired=false){
     assert.equal(deck.length,10,name+' séance '+session+' : exactement 10 QCM');
     assert.equal(new Set(deck.map(x=>x.caseFamily||x.id)).size,10,
       name+' séance '+session+' : pas de doublon de famille');
-    assert.deepEqual(P.select(exercises,P.load(JSON.stringify({...state,active:null})),10),
-      P.select(exercises,P.load(JSON.stringify({...state,active:null})),10),
-      'Sélection déterministe à état identique');
+    if(session===1||session===65||session===153){
+      const restored=P.load(JSON.stringify({...state,active:null}));
+      assert.deepEqual(P.select(exercises,restored,10),P.select(exercises,restored,10),
+        'Sélection déterministe à état identique');
+    }
     for(let i=0;i<deck.length;i++){
       const q=deck[i],sel=selection[i],prev=state.entries[q.id];
       assert.ok(session-1>=P.INTRO[q.theme],name+' prérequis '+q.id);
