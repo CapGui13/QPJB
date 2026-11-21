@@ -50,7 +50,12 @@ const checks=[
  ['focus retour accueil',/sessionType==='parcours'\?\$\('parcours-start'\):\$\('new'\)/],
  ['reprise annoncée',/if\(resuming\)announceQuizChange\('Séance reprise/],
  ['progression descriptive',/\$\('session-progress-label'\)\.textContent=deck\.length\?'Question '/],
- ['position explicite',/Math\.min\(position\+1,deck\.length\)/]
+ ['position explicite',/Math\.min\(position\+1,deck\.length\)/],
+ ['main mobile deux colonnes',/@media\(max-width:390px\)\{\s*#body \.hand\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/],
+ ['zoom reflow une colonne',/@media\(max-width:270px\)\{/],
+ ['clavier au zoom',/#body \.bid-key-levels\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/],
+ ['focus titre',/#body #question-heading:focus,#body #answer-feedback:focus/],
+ ['contraste cellule vide',/#body \.auc td\.auction-empty\{color:#c0b2ce;opacity:1\}/]
 ];
 for(const [label,pattern] of checks)assert.match(html,pattern,label);
 console.log('PASS '+checks.length+' garde-fous UI/ARIA et catalogue '+data.exercises.length+'/'+data.themes.length);
