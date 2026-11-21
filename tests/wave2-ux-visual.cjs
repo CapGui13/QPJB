@@ -9,6 +9,7 @@ const http=require('node:http');
 const crypto=require('node:crypto');
 const {execFileSync}=require('node:child_process');
 const {chromium,webkit}=require('playwright');
+const {projectStorage}=require('./wave2-ux-storage-projection.cjs');
 const root=path.resolve(__dirname,'..');
 const BASE='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 const artifactDir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
@@ -81,7 +82,12 @@ async function capture(browser,engine,width,height,version,url){
     sha256:crypto.createHash('sha256').update(bytes).digest('hex')});
   }
   assert.deepEqual(errors,[],'Aucune exception JavaScript pour '+engine+'/'+version);
-  return {engine,width,height,version,...metrics,images};
+  const storageRaw=await page.evaluate(()=>({
+   parcours:localStorage.getItem('qpjb-sef-parcours-01'),
+   records:localStorage.getItem('qpjb-sef-entrainement-01')
+  }));
+  const stableProgress=projectStorage(storageRaw);
+  return {engine,width,height,version,...metrics,stableProgress,images};
  }finally{await context.close()}
 }
 (async()=>{
@@ -100,6 +106,8 @@ async function capture(browser,engine,width,height,version,url){
    const second=await capture(browser,engine,width,height,'apres',url);
    assert.equal(first.handText,second.handText,'Même main avant/après : '+width);
    assert.equal(first.auctionText,second.auctionText,'Même séquence avant/après : '+width);
+   assert.deepEqual(first.stableProgress,second.stableProgress,
+    'Les mêmes actions doivent produire la même progression, sans divergence de stockage : '+width);
    assert.ok(second.documentWidth<=second.viewportWidth+2,
     'Débordement dans la version M3 '+width+' : '+second.documentWidth+'/'+second.viewportWidth);
    if(width<=390){

@@ -17,6 +17,7 @@ const steps=[
  {name:'Contrat statique et SHA-256 catalogue',file:'tests/wave2-ux-contract.cjs'},
  {name:'Focus et transitions isolés',file:'tests/wave2-ux-focus.cjs'},
  {name:'Orchestration et isolation des erreurs',file:'tests/wave2-ux-plan-test.cjs'},
+ {name:'Projection de sauvegarde avant/après',file:'tests/wave2-ux-storage-projection-test.cjs'},
  ...engines.map(engine=>({name:'Navigation navigateur '+engine,
    file:'tests/wave2-ux-browser.cjs',engine})),
  ...engines.map(engine=>({name:'Comparaison visuelle avant/après '+engine,
