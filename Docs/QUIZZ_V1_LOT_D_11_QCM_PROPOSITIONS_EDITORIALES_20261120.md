@@ -47,7 +47,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** Soutien préalable 2♥ présenté avec 5 HLD, en dessous des 6 HLD requis ; le choix final 3♥ est conditionnellement logique mais la séquence initiale ne l'est pas.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♠3 → ♠V (+1 H) ; le soutien ♥954 reste troisième..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♠3 → ♠V (+1 H) ; le soutien ♥954 reste troisième..
 
 **Main proposée :** ♠V94 · ♥954 · ♦A1065 · ♣V74 — **6 H**, distribution 3–3–4–3.
 
@@ -87,7 +87,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** Avec seulement 5 HLD et trois Cœurs, le 2♥ antérieur était hors zone ; le refus de l'essai reste défendable une fois le soutien rendu valide.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♣2 → ♣V (+1 H) ; ♥A76 inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♣2 → ♣V (+1 H) ; ♥A76 inchangé..
 
 **Main proposée :** ♠8632 · ♥A76 · ♦V106 · ♣V104 — **6 H**, distribution 4–3–3–3.
 
@@ -127,7 +127,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** L'annonce préalable 2♠ correspondait à 5 HLD seulement ; la réponse finale 3♠ ne suffit pas à rendre l'énoncé SEF cohérent.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♣2 → ♣V (+1 H) ; ♠V32 inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♣2 → ♣V (+1 H) ; ♠V32 inchangé..
 
 **Main proposée :** ♠V32 · ♥742 · ♦A982 · ♣V73 — **6 H**, distribution 3–3–4–3.
 
@@ -167,7 +167,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** Le 2♠ de la séquence était donné avec 5 HLD sans courte ; le caractère approprié de 3♠ ne valide pas rétroactivement 2♠.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♣4 → ♣V (+1 H) ; ♠953 inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♣4 → ♣V (+1 H) ; ♠953 inchangé..
 
 **Main proposée :** ♠953 · ♥DV93 · ♦D64 · ♣V86 — **6 H**, distribution 3–4–3–3.
 
@@ -207,7 +207,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** L'ancienne main ne possédait que 5 HLD pour soutenir à 2♠ ; le corrigé 3♠ répond bien à l'essai mais dépend d'un soutien initial régulier.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♣3 → ♣V (+1 H) ; ♦10752 sans honneur inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♣3 → ♣V (+1 H) ; ♦10752 sans honneur inchangé..
 
 **Main proposée :** ♠R93 · ♥D84 · ♦10752 · ♣V96 — **6 H**, distribution 3–3–4–3.
 
@@ -247,7 +247,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** La main originale de 5 HLD ne permettait pas le soutien 2♥ antérieur ; il faut aussi conserver une question explicite, plutôt que supposer l'essai déjà compris.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♠5 → ♠V (+1 H) ; ♣V92 peu utile pour l'essai inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♠5 → ♠V (+1 H) ; ♣V92 peu utile pour l'essai inchangé..
 
 **Main proposée :** ♠DV8 · ♥V74 · ♦V1082 · ♣V92 — **6 H**, distribution 3–3–4–3.
 
@@ -287,7 +287,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** L'ancien soutien 2♥ était indiqué avec 5 HLD seulement ; la réponse 3♥ demeure logique après réparation de la main.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `context`, `explain`, `difficultyReason` ; ♣4 → ♣V (+1 H) ; ♦10863 sans honneur inchangé..
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `hand`, `h`, `context`, `explain`, `difficultyReason` ; ♣4 → ♣V (+1 H) ; ♦10863 sans honneur inchangé..
 
 **Main proposée :** ♠R64 · ♥975 · ♦10863 · ♣DV9 — **6 H**, distribution 3–3–4–3.
 
@@ -470,7 +470,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 ## Vérifications de cohérence et limites
 
 - **11 IDs uniques** ; chaque original a **13 cartes**, une distribution cohérente avec les 13 cartes, le total H déclaré et une seule bonne réponse parmi quatre choix distincts ; aucun QCM reconstruit artificiellement à partir de V2.
-- Dans les **7 mains candidates modifiées**, exactement **+1 H par Valet**, **6 H = 6 HLD**, répartition originale conservée, 3 atouts sans courte, essai couleur sans honneur utile quand requis ; leur 2M antérieur devient SEF-compatible. La qualité de la carte ajoutée et de la main après retouche reste un **arbitrage éditorial**, non une validation définitive d'enchère.
+- Dans les **7 mains candidates modifiées**, mettre à jour conjointement le champ `h` de **5 à 6** (indispensable à la cohérence du catalogue) : exactement **+1 H par Valet**, **6 H = 6 HLD**, répartition originale conservée, 3 atouts sans courte, essai couleur sans honneur utile quand requis ; leur 2M antérieur devient SEF-compatible. La qualité de la carte ajoutée et de la main après retouche reste un **arbitrage éditorial**, non une validation définitive d'enchère.
 - **7/7** bonnes réponses d'essais inchangées (3♥/3♠) ; **4/4** autres bonnes réponses inchangées (`2♣`, `2SA`, `2SA`, `3♥`). **11/11 séquences, 11/11 jeux de choix et 11/11 IDs maintenus**.
 - Les questions **L10-030, V44-027, V44-030** ne demandent que la correction du `difficultyReason`. **L25-007** requiert l'application de l'explication `explain` **déjà validée**, ainsi que l'alignement de `difficultyReason` pour ne plus présenter « maximum » comme obligatoire. Seuls les 7 premiers proposent la substitution de cartes et un meilleur libellé de consigne/corrigé explicatif.
 - **Réserve Texas :** le qualificatif « réponse au Stayman » dans `difficultyReason` est incorrect ; le groupe historique `stayman` peut fonctionner comme rubrique englobante, ce qui n'autorise pas une migration implicite du thème ou de la compétence.
