@@ -894,7 +894,7 @@ function seanceDisplayName(folder) {
 // Tri par série puis par numéro de séance.
 function compareSeances(a, b) {
   const parse = folder => {
-    const m = folder.match(/^Séance (\d+)-(\d+) Aix$/i);
+    const m = folder.match(/^Séance (\d+)-(\d+)(?: .+)?$/i);
     return m ? [Number(m[1]), Number(m[2])] : [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
   };
   const [serieA, numA] = parse(a.folder);
