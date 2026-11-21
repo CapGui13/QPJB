@@ -1,5 +1,5 @@
 'use strict';
-/* LOT B — simulations V1 comparées, catalogue ORIGINAL, sans mutation ni publication.
+/* LOT B — simulations V1 comparées, catalogue courant approuvé, sans mutation ni publication.
  * Run: node tests/quizz-parcours-lot-b.cjs
  * Chaque profil déroule 153 séances; snapshots à 40, 65 et 153.
  * Le moteur d'avant est reconstruit EXACTEMENT en retirant les 3 blocs LOT_B.
@@ -9,6 +9,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const CURRENT=require('../quizz-parcours.js');
+const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const root=path.join(__dirname,'..');
 const code=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
@@ -34,8 +35,20 @@ const afterTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+mi
 const beforeTail='+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery;';
 assert.ok(previousSource.includes(afterTail),'Marqueur de score conservé');
 previousSource=previousSource.replace(afterTail,beforeTail);
-const prefix=Buffer.from('blob '+Buffer.byteLength(previousSource,'utf8')+'\0');
-const blobSHA=crypto.createHash('sha1').update(prefix).update(previousSource,'utf8').digest('hex');
+// Comparer l'ancien moteur au SHA historique en neutralisant UNIQUEMENT les
+// quatre motifs éditoriaux homologués le 21/11. L'ancien simulateur tourne
+// avec ces motifs à jour : les algorithmes avant/après disposent des mêmes
+// 105 preuves, sur le même catalogue corrigé.
+const approvedIds=['SEF-V4-009-1','SEF-V4-011-1','SEF-V4-021-1','SEF-V4-023-3'];
+assert.deepEqual(approvedIds.map(id=>approvedD11.proposals.find(p=>p.id===id)?.group),
+  Array(4).fill('D1_MAINS_A_VALIDER'),'Justifications du lot D approuvées');
+const auditOriginal="    [\n      \"palier\",\n      \"apres_fit\",\n      \"Accepter ou refuser une invitation à la manche\",\n      [\n        \"SEF-V4-009-1\",\n        \"SEF-V4-011-1\",\n        \"SEF-V4-021-1\",\n        \"SEF-V4-023-3\"\n      ]\n    ],";
+const auditCorrige="    // Lot D validé : 4 justifications individuelles remplacent l'ancien\n    // libellé générique. Axe \"palier\" et 105 preuves conservés ; filtre exact inchangé.\n    [\n      \"palier\",\n      \"apres_fit\",\n      \"Après 1♥–2♥–2SA, refuser l'essai généralisé avec un soutien minimum de 6 HLD.\",\n      [\n        \"SEF-V4-009-1\"\n      ]\n    ],\n    [\n      \"palier\",\n      \"apres_fit\",\n      \"Distinguer soutien minimum et acceptation de manche après 1♥–2♥–2SA.\",\n      [\n        \"SEF-V4-011-1\"\n      ]\n    ],\n    [\n      \"palier\",\n      \"apres_fit\",\n      \"Refuser un essai généralisé de manche avec un fit Pique minimum de 6 HLD.\",\n      [\n        \"SEF-V4-021-1\"\n      ]\n    ],\n    [\n      \"palier\",\n      \"apres_fit\",\n      \"Ne pas confondre honneurs épars et soutien suffisant pour accepter la manche après 2SA d'essai.\",\n      [\n        \"SEF-V4-023-3\"\n      ]\n    ],";
+assert.equal(previousSource.split(auditCorrige).length-1,1,
+  'Les 4 motifs du lot D correspondent exactement à la table auditée');
+const sourceHistorique=previousSource.replace(auditCorrige,auditOriginal);
+const prefix=Buffer.from('blob '+Buffer.byteLength(sourceHistorique,'utf8')+String.fromCharCode(0));
+const blobSHA=crypto.createHash('sha1').update(prefix).update(sourceHistorique,'utf8').digest('hex');
 assert.equal(blobSHA,'504450f6254e91927c6945ac42dfc15c995fdaf9',
   'La référence AVANT est exactement le quizz-parcours.js de main audité');
 const oldModule={exports:{}};
