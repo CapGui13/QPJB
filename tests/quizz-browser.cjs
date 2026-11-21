@@ -251,7 +251,16 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#progressbar').evaluate(el=>el.style.width),'20%','Progress follows processed questions');
   for(let i=2;i<10;i++)await page.locator('#pass').click();
   assert.ok((await page.locator('#body').textContent()).includes('Fin de la séance'),'Session ends after ten treated questions');
-  assert.ok((await page.locator('#body').textContent()).includes('9 passé(s)'),'Summary distinguishes skipped questions');
+  const summaryCounts=await page.locator('.session-summary-stats').evaluate(el=>
+    Object.fromEntries([...el.querySelectorAll('div')].map(row=>[
+      row.querySelector('dt')?.textContent.trim(),
+      row.querySelector('dd')?.textContent.trim()
+    ]))
+  );
+  assert.equal(summaryCounts['Questions passées'],'9',
+    'Le bilan doit distinguer les neuf questions passées');
+  assert.equal(summaryCounts['Erreurs définitives'],'0',
+    'Les questions passées ne doivent pas être comptées comme des erreurs');
   await page.locator('#done-home').click();
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#mode').selectOption('0');
