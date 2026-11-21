@@ -90,3 +90,7 @@ Les liens ci-dessous visent **les SHA exacts des têtes des sept PR**, et non de
 - Les sept PR A–G sont **documentaires**, déjà exploitées par H : elles peuvent être fermées **sans fusion**, avec renvoi à cette note et à la version figée de leurs preuves.
 - Aucune correction des 46 blocages, des six cas indéterminables et des neuf champs historiques `false` n'est inventée ni appliquée.
 - Ne modifier ni `quizz` / Quiz SEF, ni moteur V1, ni fichiers applicatifs d'Entraînement, ni les 139 originaux déjà intégrés. **Aucune correction applicative publiée ou fusionnée.**
+
+## Addendum — régularisation des 9 drapeaux
+
+L'analyse ci-dessus décrit l'état **avant** le correctif technique. Après la [revue nominative des neuf fiches](STATUTS_9_PUBLICATION_20261121.md), la [PR #246](https://github.com/CapGui13/QPJB/pull/246) propose de synchroniser leur seul champ `sourceAudit.publication_autorisee` avec la publication déjà effective. Les réserves pédagogiques `a_relire` **ne changent pas**. Le présent registre historique A–G, les 46 blocages, les neuf redondances et les 139 nouveaux originaux restent intacts. La fusion de #246 détermine si cette régularisation est présente dans `main`.

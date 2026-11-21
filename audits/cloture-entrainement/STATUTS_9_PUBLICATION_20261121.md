@@ -40,3 +40,7 @@
 - Les fichiers applicatifs `entrainement/training-data-bidding.js` et `entrainement/training-data-play.js` ont été lus en l'état sur `main` pour récupérer les neuf enregistrements, leurs réponses, notes de pilotage, statuts et réserves.
 - Les PDF n'ont **pas** été réexpertisés à cette étape ; il ne s'agit pas d'une réouverture des 75 cas résolus de D, ni d'un nouvel audit de validité des 826 exercices.
 - **Diff autorisé : documentation uniquement.** Quiz SEF, moteur V1, catalogue, sauvegardes, 139 originaux de H et interface inchangés.
+
+## Complément technique ultérieur — PR #246
+
+Le constat nominatif ci-dessus est **l'état historique antérieur au correctif**. La [PR #246](https://github.com/CapGui13/QPJB/pull/246) régularise **exclusivement** les neuf valeurs `sourceAudit.publication_autorisee` de `false` vers `true` dans `training-data.js`, `training-data-bidding.js` et `training-data-play.js`. **Aucun nouvel exercice n'est publié** : les neuf figurent déjà dans les 826 historiques. `reviewStatus=a_relire`, les trois `playEditorialStatus=plan_libre_pret_a_relire` et toutes les notes de prudence restent inchangés. Cette autorisation de présence dans l'application n'est **pas** une validation pédagogique inconditionnelle. L'effet sur `main` dépend de la fusion effective de #246.
