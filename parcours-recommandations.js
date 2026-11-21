@@ -180,6 +180,9 @@
   // Ne modifie ni les scores, ni l'état, ni le catalogue. Les étiquettes sont
   // celles de quizz-parcours.js ; aucun thème ou axe nouveau n'est créé.
   function buildReport(rawState,options={}){
+    // Les intégrateurs peuvent transmettre null depuis un champ facultatif :
+    // ne pas lever d'exception ni inventer de recommandations dans ce cas.
+    options=safeRecord(options)?options:{};
     const core=engineOrNull(options.parcours);
     if(!core||typeof core.load!=='function'||!core.MICRO_LABELS||!core.AXIS_LABELS)
       throw Error('Moteur QPJBParcours V1 requis en lecture seule.');
