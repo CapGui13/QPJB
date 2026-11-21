@@ -26,3 +26,11 @@ test('P13 garde-fou : aucun chargeur CI éphémère ne reste en production',()=>
   assert.equal(src.includes('SONDE CI TEMPORAIRE'),false);
   assert.equal(src.includes("require('./tests/wave2-recos-"),false);
 });
+
+test('P25 garde-fou : aucun crochet GitHub Actions ni exploration de tests dans le module',()=>{
+  const src=read('parcours-recommandations.js').toString('utf8');
+  for(const snippet of ['GITHUB_ACTIONS','PASSE 22 : adaptateur',
+    'process.argv[1]','readdirSync(',"require('node:fs')"]){
+    assert.equal(src.includes(snippet),false,snippet);
+  }
+});

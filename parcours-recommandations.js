@@ -396,17 +396,3 @@
   }
   return {VERSION,OUTCOMES,outcome,buildReport};
 });
-
-
-/* PASSE 22 : adaptateur de recette Node22 ÉPHÉMÈRE — RETRAIT OBLIGATOIRE. 
- * Le workflow historique appelle le test V1; cet adaptateur charge les suites
- * M4 seulement dans ce processus GitHub Actions, puis sera supprimé.
- */
-if(typeof process!=='undefined'&&process.env.GITHUB_ACTIONS==='true'&&
-   /[/\\]tests[/\\]parcours-recommandations-v1\.test\.js$/.test(process.argv[1]||'')){
-  const fs=require('node:fs'),path=require('node:path');
-  for(const name of fs.readdirSync(path.join(__dirname,'tests')).filter(
-    name=>name.startsWith('wave2-recos-')&&name.endsWith('.test.js')).sort()){
-    require(path.join(__dirname,'tests',name));
-  }
-}
