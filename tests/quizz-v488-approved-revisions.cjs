@@ -1,5 +1,8 @@
 'use strict';
 const assert=require('node:assert/strict');
+// Les exceptions nouvellement approuvées sont contrôlées sur leurs champs exacts.
+// Le bloc historique des 993 QCM reste intégralement protégé (relecture inverse avant SHA).
+const approvedLotD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const approved=require('./quizz-v488-approved-revisions.json');
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
@@ -20,7 +23,15 @@ const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
-  let x=revisionRecentes.normalize(revisionRecenteV4112.normalize(original));
+  const approvedLotD=approvedLotD11.proposals.find(p=>p.id===original.id);
+  let source=original;
+  if(approvedLotD){
+   for(const [key,approvedAfter] of Object.entries(approvedLotD.after)){
+    assert.deepStrictEqual(original[key],approvedAfter,'Only exact user-approved Lot D changes allowed for '+original.id+' ('+key+')');
+   }
+   source={...original,...approvedLotD.before};
+  }
+  let x=revisionRecentes.normalize(revisionRecenteV4112.normalize(source));
   const v4103=currentV4103[x.id];
   if(v4103){
    assert.deepStrictEqual(x,v4103.after,'Only exact V4.103 approved contextual/calibration changes allowed for '+x.id);
