@@ -86,7 +86,7 @@
   // agrégées de chacun sont identifiables dans le journal conservé.
   // Une ancienne sauvegarde sans journal ne satisfait jamais ce critère.
   function overlappingAreas(proposals,state){
-    const responses=new Map(),autonomousByArea=new Map();
+    const responses=new Map(),autonomousByArea=new Map(),assessedByArea=new Map();
     const firstVersion=new Map(),ambiguous=new Set();
     // Les doublons de journal ne sont acceptables comme preuve que si
     // l'issue, l'aide et les étiquettes de la réponse restent identiques.
@@ -119,9 +119,28 @@
             responses.get(id).add(answerId);
             if(outcome(a)==='autonomous')
               autonomousByArea.set(id,(autonomousByArea.get(id)||0)+1);
+            if(outcome(a)!=='skipped')
+              assessedByArea.set(id,(assessedByArea.get(id)||0)+1);
           }
         }
       }
+    }
+    // Le score V1 baisse également sur un saut. Deux questions sautées
+    // ne constituent pourtant pas deux erreurs effectivement constatées.
+    // Adapter le conseil UNIQUEMENT quand le journal complet en atteste.
+    for(const item of proposals){
+      if(!['persistent_difficulty','consolidate'].includes(item.type))continue;
+      const e=item.evidence;
+      if(!e||!['micros','axes'].includes(e.source))continue;
+      const id=(e.source==='micros'?'micro':'axis')+':'+e.key;
+      if(responses.get(id)?.size!==e.attempts||(assessedByArea.get(id)||0)!==0)
+        continue;
+      item.type='not_evaluated';
+      item.id='not_evaluated:'+id;
+      item.priority=90;
+      item.title='Notion à réessayer après des questions sautées : '+e.label;
+      item.message='Les tentatives détaillées ont toutes été sautées : aucune erreur de réponse n’a été constatée pour cette notion.';
+      e.skippedOnly=true;
     }
     const divergent=new Set();
     for(const item of proposals){
@@ -182,6 +201,11 @@
   // de maîtrise ni indicateur d'apprentissage supplémentaire.
   function explain(item,completed,stats){
     const e=item.evidence;
+    if(item.type==='not_evaluated'&&e?.skippedOnly)return {
+      observed:'Les '+e.attempts+' tentative(s) enregistrée(s) pour « '+e.label+' » ont été sautées.',
+      caveat:'Un saut ne démontre ni un échec constaté ni une réussite autonome ; le score V1 reste inchangé.',
+      action:'Réessayer la notion en répondant à de nouvelles questions du parcours.'
+    };
     if(item.type==='not_evaluated'&&e?.source==='journalConsistency')return {
       observed:e.count+' suivi(s) de notion présentent des compteurs indépendants contradictoires avec leur journal détaillé.',
       caveat:'Ces données ne permettent de conclure ni à une maîtrise ni à une difficulté persistante.',
