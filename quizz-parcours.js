@@ -307,14 +307,37 @@
         "SEF-V4-018-1"
       ]
     ],
+    // Lot D validé : 4 justifications individuelles remplacent l'ancien
+    // libellé générique. Axe "palier" et 105 preuves conservés ; filtre exact inchangé.
     [
       "palier",
       "apres_fit",
-      "Accepter ou refuser une invitation à la manche",
+      "Après 1♥–2♥–2SA, refuser l'essai généralisé avec un soutien minimum de 6 HLD.",
       [
-        "SEF-V4-009-1",
-        "SEF-V4-011-1",
-        "SEF-V4-021-1",
+        "SEF-V4-009-1"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Distinguer soutien minimum et acceptation de manche après 1♥–2♥–2SA.",
+      [
+        "SEF-V4-011-1"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Refuser un essai généralisé de manche avec un fit Pique minimum de 6 HLD.",
+      [
+        "SEF-V4-021-1"
+      ]
+    ],
+    [
+      "palier",
+      "apres_fit",
+      "Ne pas confondre honneurs épars et soutien suffisant pour accepter la manche après 2SA d'essai.",
+      [
         "SEF-V4-023-3"
       ]
     ],
