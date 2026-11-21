@@ -40,9 +40,17 @@ function assertProgressEvidence(projection){
     !['correct','wrong','skipped'].includes(answer.result))
   throw new Error('Réponse sauvegardée hors séance ou résultat invalide');
  const answeredId=projection.activeIds[index];
+ const attempt=projection.attempts.find(r=>r.id===answeredId);
  if(typeof answeredId!=='string'||!answeredId||
-    !projection.attempts.some(r=>r.id===answeredId&&r.lastResult===answer.result))
+    !attempt||attempt.lastResult!==answer.result)
   throw new Error('Historique sans tentative correspondant à la réponse sauvegardée');
+ // En comparatif visuel, un état neuf doit garder la trace de l'action
+ // effective, et pas seulement des compteurs de synthèse concordants.
+ const latest=attempt.history?.at(-1);
+ if(!latest||latest.result!==answer.result||
+    latest.choice!==answer.choice||latest.assisted!==answer.assisted||
+    latest.hadFreeError!==answer.hadFreeError)
+  throw new Error('Historique détaillé incohérent avec la réponse sauvegardée');
  return true;
 }
 module.exports={projectStorage,assertProgressEvidence};
