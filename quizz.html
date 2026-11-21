@@ -264,14 +264,41 @@ body.parcours-session .parcours-session-banner{display:block}
 .difficulty-feedback p{font-size:.92rem;line-height:1.5}
 .difficulty-feedback-actions{display:flex;gap:10px;flex-wrap:wrap}
 .difficulty-feedback-actions button{flex:1 1 200px;white-space:normal;min-height:48px}
-</style><link rel="stylesheet" href="./qpjb-design-tokens.css?v=20261113b"><link rel="stylesheet" href="./qpjb-bridge-ui.css?v=20261113e"></head><body>
+</style><link rel="stylesheet" href="./qpjb-design-tokens.css?v=20261113b"><link rel="stylesheet" href="./qpjb-bridge-ui.css?v=20261113e"><style id="quizz-ui-vnext">
+/* Mission 3 — lisibilité du Quiz et du parcours, sans refonte graphique. */
+#body .question{font-size:clamp(16px,3.8vw,18px);line-height:1.5;margin:15px 0 12px}
+#body .question:focus,#body .feedback:focus,.session-summary h2:focus{outline:none}
+#body .answers{counter-reset:qpjb-answer;gap:10px;margin-top:11px}
+#body .answers button{counter-increment:qpjb-answer;position:relative;display:flex;align-items:center;justify-content:center;min-height:64px;padding:12px 12px 12px 41px;line-height:1.35;touch-action:manipulation}
+#body .answers button::before{content:counter(qpjb-answer);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:22px;height:24px;border-right:1px solid #d1c5da;color:#5b4b6b;font:800 12px/1 var(--qpjb-font-ui)}
+#body .answers button.good::before{color:#14563e;border-color:#88b9a6}
+#body .answers button.bad::before{color:#78253c;border-color:#d9a3b2}
+#body .answers button:focus-visible,#body .hand:focus-visible{outline:3px solid #c4a0ff;outline-offset:2px}
+#body .feedback{margin-top:17px;padding:17px 16px 15px;border-left:4px solid #b994de;line-height:1.65;overflow-wrap:anywhere}
+#body .feedback strong{font-size:15px;line-height:1.45}
+#body .feedback-heading{font:800 12px/1.4 var(--qpjb-font-ui);letter-spacing:.035em;color:#e6caff;text-transform:uppercase;margin:14px 0 5px;padding-top:12px;border-top:1px solid #695879}
+#body .feedback .feedback-explanation{font-size:14px;line-height:1.75;margin:0;color:#f3ebfa;white-space:pre-line}
+#body .nextrow.session-navigation{margin-top:17px;gap:9px}
+#body .nextrow.session-navigation button{min-height:46px;white-space:normal;line-height:1.3}
+.parcours-card .parcours-resume-help{margin:9px 0 2px;padding:9px 11px;border-left:3px solid #bd9adc;background:#332842;color:#f5eaff;font:650 12px/1.5 var(--qpjb-font-ui)}
+.parcours-card .parcours-resume-help[hidden]{display:none!important}
+.session-summary h2{margin:4px 0 10px!important;line-height:1.35!important}
+.session-summary .subhead{font-size:14px;line-height:1.6}
+.session-summary-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0 18px}
+.session-summary-stats>div{min-width:0;padding:11px 12px;border:1px solid #715989;border-radius:9px;background:#392e47;display:flex;flex-direction:column-reverse;gap:4px}
+.session-summary-stats dt{color:#dfcde9;font:650 12px/1.4 var(--qpjb-font-ui)}
+.session-summary-stats dd{margin:0;color:#fff;font:850 23px/1.15 var(--qpjb-font-ui);font-variant-numeric:tabular-nums}
+@media(max-width:400px){#body .answers button{min-height:64px;padding-left:34px;font-size:19px}#body .answers button::before{left:8px;width:19px}#body .nextrow.session-navigation{grid-template-columns:repeat(2,minmax(0,1fr))}#body .nextrow.session-navigation #next{grid-column:1/-1;min-height:49px}#body .feedback{padding:15px 13px}}
+@media(max-width:340px){#body .answers{grid-template-columns:1fr}#body .answers button{min-height:54px;font-size:20px}}
+@media(prefers-reduced-motion:reduce){#body .feedback,#body .answers{animation:none!important}}
+</style></head><body>
 <div class="app-shell"><nav class="qpjb-quiz-nav" aria-label="Navigation QPJB"><a href="./" id="qpjb-quiz-return" class="qpjb-quiz-back">← Accueil QPJB</a><span>Entraînement · Quizz</span></nav><header class="app-top"><div class="app-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="#c0a8dc"/><path fill="#5e259d" fill-rule="evenodd" d="M135,142 135,219 184,219 185,218 191,218 203,213 208,208 210,204 210,200 211,199 210,191 208,187 203,182 198,180 196,178 203,172 206,164 205,155 203,151 200,148 193,144 187,143 186,142Z M157,189 158,188 164,188 165,187 177,187 178,188 182,188 184,189 187,193 187,199 184,202 179,204 158,204 157,203Z M157,158 158,157 178,157 183,161 184,166 183,168 178,172 158,172 157,171Z M67,142 67,158 95,158 96,159 95,194 94,195 94,197 91,200 87,202 81,202 75,199 70,194 70,193 69,193 56,206 56,208 64,215 74,219 77,219 78,220 93,220 94,219 101,218 109,214 115,208 118,202 119,196 120,195 120,142Z M135,44 135,122 157,122 157,102 158,101 181,101 182,100 191,99 201,94 208,86 210,81 210,78 211,77 211,67 207,57 200,50 192,46 185,45 184,44Z M157,62 158,61 178,61 183,63 187,69 187,76 186,78 182,82 178,84 158,84 157,83Z M57,51 50,58 46,64 46,66 43,72 43,76 42,77 42,87 43,88 43,93 50,107 57,114 63,118 76,122 87,132 92,135 94,135 98,137 106,137 107,138 108,137 114,137 115,136 118,136 127,131 130,127 122,118 114,123 105,123 101,120 102,118 104,118 110,115 119,107 122,103 127,91 127,87 128,86 128,77 127,76 127,72 126,71 126,68 120,57 110,48 104,45 102,45 98,43 95,43 94,42 79,42 78,43 74,43 73,44 68,45Z M83,58 87,58 91,60 95,64 96,66 96,73 94,76 100,76 102,77 106,81 107,86 108,87 107,88 106,93 103,96 99,98 94,98 93,97 91,97 87,93 91,102 93,104 92,106 77,106 76,105 80,100 82,94 76,98 71,98 70,97 68,97 64,93 62,89 63,82 68,77 70,76 76,76 74,73 74,66 80,59 82,59Z"/></svg></div><div class="app-brand"><span class="kicker">QPJB · ENTRAÎNEMENT</span><strong>Quizz</strong><small>Programme d’entraînement · SEF</small></div></header>
 <main><section class="stage"><div class="stage-tag">QUIZZ · ENTRAÎNEMENT AUX ENCHÈRES</div><h1>À vous de jouer !</h1><p>Une main, une séquence, une enchère à trouver. Le SEF est notre référence unique. Réponds sans propositions, puis affiche les quatre possibilités si tu hésites ou te trompes.</p><div class="hero-stats"><span id="qpjb-qcm-count">1 061 exercices sélectionnés</span><span>22 rubriques</span><span>5 niveaux de difficulté</span></div></section>
 <section class="parcours-card" id="parcours-card" aria-label="Mon parcours de progression">
 <span class="parcours-label">Apprendre progressivement · Nouveau</span>
 <h2>Mon parcours guidé</h2>
 <p>Des séances courtes qui mêlent nouvelles notions, ouvertures de plus en plus délicates, réponses et interventions. Les révisions s’adaptent à tes résultats.</p>
-<p id="parcours-status" role="status" aria-live="polite">Première séance : découvrir les ouvertures.</p>
+<p id="parcours-status" role="status" aria-live="polite">Première séance : découvrir les ouvertures.</p><p id="parcours-resume-help" class="parcours-resume-help" hidden>Ta séance est sauvegardée sur cet appareil. Choisis « Reprendre » pour retrouver tes réponses validées.</p>
 <button id="parcours-start" class="primary" type="button">Commencer mon parcours →</button>
 <div id="parcours-consolidation-wrap" class="parcours-consolidation-wrap" hidden>
 <button id="parcours-consolidation" type="button" aria-describedby="parcours-consolidation-note">Consolider mes difficultés →</button>
@@ -603,6 +630,7 @@ function parcoursHomeStatus(){
  button.textContent=summary.active?
    (parcoursState.active?.mode==='consolidation'?'Reprendre ma consolidation →':'Reprendre ma séance →'):
    summary.completed?'Séance '+summary.session+' du parcours →':'Commencer mon parcours →';
+ const resumeHelp=$('parcours-resume-help');if(resumeHelp)resumeHelp.hidden=!summary.active;
  const proposal=QPJBParcours.consolidationPlan(parcoursState,DATA.exercises);
  const focusBox=$('parcours-consolidation-wrap');
  if(focusBox){
@@ -638,7 +666,7 @@ function startParcours(mode){
    sessionResults[index]={...value};sessionStages[index]={choicesShown:!!value.assisted,freeWrong:!!value.hadFreeError,firstGuess:null,draft:'',error:''};
  }
  answered=!!sessionResults[position];selection=sessionResults[position]?.choice||null;
- saveParcours();enterSession();render();
+ saveParcours();enterSession();render();focusQuizQuestion();
 }
 let bidKeyboardOpen=false;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -770,13 +798,15 @@ function pressBidKey(key){
 }
 
 function stageAt(index){return sessionStages[index]||(sessionStages[index]={choicesShown:false,freeWrong:false,firstGuess:null,draft:'',error:''})}
+function focusQuizQuestion(){const el=$('question-heading');if(el)el.focus({preventScroll:true})}
+function renderChoicesWithFocus(){render();$('answers')?.querySelector('button')?.focus({preventScroll:true})}
 
 /* Montrer le corrigé vers le bas sans replacer l'exercice en haut. */
 function revealQuizFeedback(){
  requestAnimationFrame(()=>{
   quizReportHeight();
   setTimeout(()=>{
-   const feedback=$('body').querySelector('.feedback');if(!feedback)return;
+   const feedback=$('answer-feedback');if(!feedback)return;feedback.focus({preventScroll:true});
    let page=window,top=feedback.getBoundingClientRect().top;
    try{
     if(quizEmbedded&&window.parent.matchMedia('(min-width: 768px) and (pointer: fine)').matches){
@@ -809,12 +839,12 @@ function submitFreeAnswer(x){
  stage.error='';
  if(bid===x.answer){finalizeAnswer(x,bid,'libre');return}
  stage.firstGuess=bid;stage.freeWrong=true;stage.choicesShown=true;
- if(bidKeyboardOpen&&$('bid-keypad'))setBidKeyboardOpen(false,render);
- else render();
+ if(bidKeyboardOpen&&$('bid-keypad'))setBidKeyboardOpen(false,renderChoicesWithFocus);
+ else renderChoicesWithFocus();
 }
 function showChoices(){if(answered)return;const stage=stageAt(position);stage.choicesShown=true;stage.error='';
- if(bidKeyboardOpen&&$('bid-keypad'))setBidKeyboardOpen(false,render);
- else render();
+ if(bidKeyboardOpen&&$('bid-keypad'))setBidKeyboardOpen(false,renderChoicesWithFocus);
+ else renderChoicesWithFocus();
 }
 function auctionSpeaker(call){
   const label=String(call).split(':',1)[0].trim().toLowerCase();
@@ -988,7 +1018,7 @@ function finishSession(){
    const independent=outcomes.filter(r=>r.result==='correct'&&!r.assisted).length;
    const helped=outcomes.filter(r=>r.result==='correct'&&r.assisted).length;
    const incorrect=outcomes.filter(r=>r.result==='wrong'||r.result==='skipped').length;
-   $('body').innerHTML='<h2>'+(focused?'Consolidation terminée !':'Séance du parcours terminée !')+'</h2><p class="subhead">'+outcomes.length+' situations travaillées : '+independent+' réussite(s) sans aide, '+helped+' avec les propositions, '+incorrect+' erreur(s) ou questions passées. Les notions difficiles reviendront en révision.</p>'+
+   $('body').innerHTML='<section class="session-summary" aria-labelledby="session-summary-title"><h2 id="session-summary-title" tabindex="-1">'+(focused?'Consolidation terminée !':'Séance du parcours terminée !')+'</h2><p class="subhead">'+outcomes.length+' situations travaillées. Les notions difficiles reviendront en révision.</p><dl class="session-summary-stats"><div><dt>Réussies sans aide</dt><dd>'+independent+'</dd></div><div><dt>Avec propositions</dt><dd>'+helped+'</dd></div><div><dt>Erreurs ou questions passées</dt><dd>'+incorrect+'</dd></div></dl></section>'+
      (focused?'<div class="parcours-report">'+consolidationReportHTML(parcoursState.lastConsolidation,'Bilan ciblé')+'</div>':'')+
      (focused?'<div class="nextrow"><button id="done-home">← Accueil</button><button id="repeat" class="primary">Séance suivante →</button></div>':
        '<fieldset class="difficulty-feedback"><legend>Comment as-tu trouvé cette séance ?</legend>'+
@@ -1007,7 +1037,7 @@ function finishSession(){
      };
    });
    $('done-home').onclick=()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()});
-   parcoursHomeStatus();return;
+   parcoursHomeStatus();$('session-summary-title')?.focus({preventScroll:true});quizReportHeight();return;
  }
  const outcomes=Object.values(sessionResults);
  const autonomous=outcomes.filter(r=>r.result==='correct'&&!r.assisted).length;
@@ -1015,10 +1045,11 @@ function finishSession(){
  const wrong=outcomes.filter(r=>r.result==='wrong').length;
  const skipped=outcomes.filter(r=>r.result==='skipped').length;
  const retry=wrong+skipped+helped>0?'<button type="button" class="primary" id="repeat-errors">Revoir sans aide</button>':'';
- $('body').innerHTML=`<h2>Fin de la séance !</h2><p class="subhead">${outcomes.length} exercice(s) traités sur ${deck.length} : ${autonomous} réussi(s) sans propositions, ${helped} réussi(s) avec propositions, ${wrong} erreur(s) définitive(s), ${skipped} passé(s).</p><div class="nextrow"><button id="done-home">← Paramètres</button><button class="primary" id="repeat">Nouvelle séance</button></div>${retry}`;
+ $('body').innerHTML=`<section class="session-summary" aria-labelledby="session-summary-title"><h2 id="session-summary-title" tabindex="-1">Fin de la séance !</h2><p class="subhead">${outcomes.length} exercice(s) traités sur ${deck.length}.</p><dl class="session-summary-stats"><div><dt>Réussis sans propositions</dt><dd>${autonomous}</dd></div><div><dt>Réussis avec propositions</dt><dd>${helped}</dd></div><div><dt>Erreurs définitives</dt><dd>${wrong}</dd></div><div><dt>Questions passées</dt><dd>${skipped}</dd></div></dl></section><div class="nextrow"><button id="done-home">← Paramètres</button><button class="primary" id="repeat">Nouvelle séance</button></div>${retry}`;
  $('repeat').onclick=()=>quizFadeNavigate(start);
  $('done-home').onclick=()=>quizFadeNavigate(()=>{exitSession();renderHomePlaceholder();stats()});
  if(retry)$('repeat-errors').onclick=()=>quizFadeNavigate(()=>{$('selection-mode').value='review';start()});
+ $('session-summary-title')?.focus({preventScroll:true});quizReportHeight();
 }
 function setPosition(newPosition){
  quizFadeNavigate(()=>{
@@ -1028,7 +1059,7 @@ function setPosition(newPosition){
    answered=!!result;
    selection=result?.choice||null;
    render();
-   quizScrollTo(0);
+   quizScrollTo(0);focusQuizQuestion();
  });
 }
 function skipCurrent(){
@@ -1077,7 +1108,7 @@ function start(){
   }
   deck=spaceCloseFamilies(deck);
   position=0;answered=false;selection=null;sessionResults={};sessionChoices={};sessionStages={};bidKeyboardOpen=false;
-  updateLevelCounts();enterSession();render();
+  updateLevelCounts();enterSession();render();focusQuizQuestion();
 }
 function stats(){
   const outcomes=Object.values(sessionResults);
@@ -1125,20 +1156,21 @@ function render(){
    ?'Consolidation ciblée · '+deck.length+' situations adaptées à mes difficultés · entraînement sans validation du niveau'
    :'Mon parcours · séance '+(parcoursState.completed+1)+' · difficulté adaptée à mes résultats';
  $('level-name').textContent='Niveau '+x.difficulty+' · '+['','Très facile','Facile','Intermédiaire','Difficile','Très difficile'][x.difficulty];
+ $('back-home').textContent=sessionType==='parcours'?'← Suspendre ma séance':'← Paramètres de séance';
  const seq=auctionHTML(x.auction);
  const hands=x.hand.map((s,i)=>`<div class="suit"><b>${['♠','♥','♦','♣'][i]}</b><span class="rank">${escapeHTML(s.join(''))}</span></div>`).join('');
  const stage=stageAt(position);
  if(!sessionChoices[x.id])sessionChoices[x.id]=sortedBridgeChoices(x.choices);
  const choices=sessionChoices[x.id],current=sessionResults[position]||null;
  const displayChoices=stage.choicesShown||Boolean(current?.assisted);
- const answers=displayChoices?`<div class="answers" id="answers">${choices.map((o,i)=>`<button type="button" data-choice="${i}" class="${answered?(o===x.answer?'good':o===selection?'bad':''):''}" ${answered?'disabled':''}>${richBid(o)}</button>`).join('')}</div>`:'';
+ const answers=displayChoices?`<div class="answers" id="answers" role="group" aria-label="Quatre propositions de réponse">${choices.map((o,i)=>`<button type="button" data-choice="${i}" aria-label="Proposition ${i+1} : ${escapeHTML(o)}" class="${answered?(o===x.answer?'good':o===selection?'bad':''):''}" ${answered?'disabled':''}>${richBid(o)}</button>`).join('')}</div>`:'';
  const prompt=!answered&&!displayChoices?`<form id="free-form" class="free-answer-form" autocomplete="off"><label for="free-answer">Ton enchère, sans propositions</label><div class="free-entry-row"><input id="free-answer" name="bid" type="text" value="${escapeHTML(stage.draft)}" placeholder="Écris ton enchère" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="${Boolean(stage.error)}"/><span class="bid-entry-display" id="bid-entry-display" aria-hidden="true"></span><button type="submit" class="primary">Valider</button></div>${bidKeypadHTML()}${stage.error?`<p id="bid-free-error" class="free-entry-error" role="alert">${escapeHTML(stage.error)}</p>`:''}<button type="button" id="show-choices" class="free-reveal">Voir les 4 propositions</button></form>`:'';
  const freeError=!answered&&stage.freeWrong?`<p class="free-retry-note" role="status">Ta première enchère (${richBid(stage.firstGuess)}) n’est pas la réponse attendue. À toi de choisir parmi ces quatre propositions.</p>`:'';
  const verdict=current?.result==='skipped'?'Question passée · Bonne réponse : '+richBid(x.answer):
    current?.result==='correct'?(current.assisted?'✓ Bonne réponse avec les propositions !':'✓ Bonne réponse sans aide !'):'Bonne réponse : '+richBid(x.answer);
  const helpNote=current?.assisted?`<p class="assistance-note">${current.hadFreeError?'Ta première réponse libre était différente. ':'Tu as utilisé les propositions. '}Cet exercice reste dans « À retravailler » pour le réussir sans aide.</p>`:'';
- const feedback=answered?`<div class="feedback" role="status"><strong>${verdict}</strong><p>${escapeHTML(x.explain)}</p>${helpNote}</div>`:'';
- $('body').innerHTML=`<h2 class="seat-headline">Vous êtes en Sud</h2>${seq}<div class="hand" role="img" aria-label="Votre main : ${x.hand.map((s,i)=>['Pique','Coeur','Carreau','Trèfle'][i]+' '+s.join(' ')).join(', ')}">${hands}</div><div class="meta">${x.h} points H · ${x.shape.join('-')} (♠-♥-♦-♣)</div>${conventionNote(x)}<div class="question">Quelle enchère convient le mieux ?</div>${prompt}${freeError}${answers}${feedback}<div class="nextrow session-navigation"><button id="previous" ${position===0?'disabled':''}>← Précédent</button><button id="pass" ${answered?'disabled':''}>Passer</button><button id="next" class="primary" ${!answered?'disabled':''}>${position===deck.length-1?'Terminer':'Suivant →'}</button></div>`;
+ const feedback=answered?`<section class="feedback" id="answer-feedback" role="region" tabindex="-1" aria-labelledby="answer-verdict"><strong id="answer-verdict">${verdict}</strong><h3 class="feedback-heading">Explication</h3><p class="feedback-explanation">${escapeHTML(x.explain)}</p>${helpNote}</section>`:'';
+ $('body').innerHTML=`<h2 class="seat-headline">Vous êtes en Sud</h2>${seq}<div class="hand" role="img" tabindex="0" aria-label="Votre main, défilement horizontal possible : ${x.hand.map((s,i)=>['Pique','Coeur','Carreau','Trèfle'][i]+' '+s.join(' ')).join(', ')}">${hands}</div><div class="meta">${x.h} points H · ${x.shape.join('-')} (♠-♥-♦-♣)</div>${conventionNote(x)}<h3 class="question" id="question-heading" tabindex="-1">Quelle enchère convient le mieux ?</h3>${prompt}${freeError}${answers}${feedback}<div class="nextrow session-navigation"><button id="previous" ${position===0?'disabled':''}>← Question précédente</button><button id="pass" ${answered?'disabled':''}>Passer</button><button id="next" class="primary" ${!answered?'disabled':''}>${position===deck.length-1?'Terminer la séance':'Question suivante →'}</button></div>`;
  if(answered){const turnCell=$('body').querySelector('.auc .ask');if(turnCell)turnCell.classList.remove('pulse')}
  if(displayChoices)$('answers').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>choose(x,Number(btn.dataset.choice))));
  if(!answered&&!displayChoices){
