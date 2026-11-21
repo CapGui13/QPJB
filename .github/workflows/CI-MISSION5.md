@@ -40,7 +40,29 @@ Le projet doit conserver **Settings > Pages > Source > GitHub Actions**, conform
 
 ## Mesures après changement
 
-À remplir avec des runs réellement achevés de la nouvelle PR, après vérification des quatre jobs. Ne pas confondre durée reconstituée à partir des logs et délai utilisateur comprenant la queue GitHub.
+Premier run vérifié : [44935166484](https://github.com/CapGui13/QPJB/actions/runs/44935166484) — **276 s (4 min 36 s)**, les quatre jobs en succès. Horodatages du premier au dernier job : 18:22:29.984Z → 18:27:06.033Z.
+
+| Job | Durée |
+| --- | ---: |
+| Audit des données et du code (rapide) | 9 s |
+| Simulations longues du parcours V1 | 221 s |
+| Validation Chromium | 240 s |
+| Validation WebKit | 275 s |
+
+**Réduction constatée sur ce premier run : 56,9 %** relativement à la médiane initiale de 640 s. Il s'agit d'une observation, pas encore d'une médiane après optimisation. Les résultats complémentaires et la médiane finale figurent dans la [PR #249](https://github.com/CapGui13/QPJB/pull/249), pour éviter de modifier le SHA CI à chaque mesure. Mesurer toujours par journaux complets et exclure la file GitHub.
+
+### Autres workflows mesurés (aucune suppression non justifiée)
+
+| Workflow | Run | Durée du premier au dernier job |
+| --- | ---: | ---: |
+| Registre des compétences V1 | 44932278156 | 3 s |
+| Quiz SEF — intégrité | 44893848639 | 4 s |
+| Benchmark longitudinal | 44893848474 | 17 s |
+| Palette NS/EO | 44893848475 | 52 s |
+| Tableau LOT A | 44893848476 | 241 s |
+| Ergonomie et progression | 44893848533 | 314 s |
+
+Ces workflows contiennent des vérifications spécialisées et ne sont pas supprimés : la couverture strictement équivalente n'a pas été démontrée.
 
 ## Retour arrière
 
