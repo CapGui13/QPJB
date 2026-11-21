@@ -6,11 +6,12 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
-const hashGit=(s)=>crypto.createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0'+s).digest('hex');
+const hashQcm=s=>crypto.createHash('sha256').update(s,'utf8').digest('hex');
 const html=read('quizz.html');
-assert.equal(hashGit(html),'9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7','Blob catalogue différent de la base figée');
+// Le HTML peut changer dans M3 ; l'empreinte porte exclusivement sur le JSON QCM.
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert(m,'Catalogue embarqué absent');
+assert.equal(hashQcm(m[1]),'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a','Le JSON QCM embarqué diffère de la base figée');
 const data=JSON.parse(m[1]);
 assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
 assert.equal(new Set(data.exercises.map(x=>x.id)).size,1523);

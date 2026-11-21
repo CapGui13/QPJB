@@ -4,12 +4,14 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'..'),base='audits/wave2/pedagogie/';
 const read=p=>fs.readFileSync(path.join(root,p),'utf8'),json=p=>JSON.parse(read(p));
 const html=read('quizz.html');
-const digest=crypto.createHash('sha1').update('blob '+Buffer.byteLength(html)+'\0'+html).digest('hex');
-assert.equal(digest,'9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7','Blob QCM change');
+// La CI M3 peut modifier le conteneur HTML sans toucher au catalogue JSON.
 const startTag='<script id="training-data" type="application/json">';
 const start=html.indexOf(startTag),end=html.indexOf('</script>',start+startTag.length);
 assert(start>=0&&end>start,'JSON QCM absent');
-const data=JSON.parse(html.slice(start+startTag.length,end));
+const rawQcm=html.slice(start+startTag.length,end);
+const digest=crypto.createHash('sha256').update(rawQcm,'utf8').digest('hex');
+assert.equal(digest,'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a','JSON QCM modifié');
+const data=JSON.parse(rawQcm);
 const d=json(base+'DECISIONS_P20_HOLD.json'),p8=json(base+'PROPOSITIONS_P8_HOLD.json');
 const p10=json(base+'CONTRE_RELECTURE_P10_15_HOLD.json'),p13=json(base+'REVUE_P13_32_HOLD.json');
 const reg=json(base+'ARBITRAGES_P14_HOLD.json');
