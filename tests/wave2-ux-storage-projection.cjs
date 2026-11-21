@@ -8,7 +8,8 @@ function projectStorage(raw){
  const active=parcours?.active||null;
  const answers=Object.entries(active?.answers||{}).map(([index,item])=>({
   index:String(index),result:item?.result??null,
-  choice:item?.choice??null,assisted:Boolean(item?.assisted)
+  choice:item?.choice??null,assisted:Boolean(item?.assisted),
+  hadFreeError:Boolean(item?.hadFreeError)
  })).sort((a,b)=>Number(a.index)-Number(b.index));
  const attempts=Object.entries(records).filter(([,item])=>item&&item.seen).map(([id,item])=>({
   id,lastResult:item.lastResult??null,ok:Boolean(item.ok),
@@ -16,7 +17,12 @@ function projectStorage(raw){
   correct:Number(item.correct||0),wrong:Number(item.wrong||0),
   skipped:Number(item.skipped||0),
   independentCorrect:Number(item.independentCorrect||0),
-  assistedCorrect:Number(item.assistedCorrect||0)
+  assistedCorrect:Number(item.assistedCorrect||0),
+  history:Array.isArray(item.history)?item.history.map(h=>({
+   result:h?.result??null,choice:h?.choice??null,mode:h?.mode??null,
+   assisted:Boolean(h?.assisted),firstGuess:h?.firstGuess??null,
+   hadFreeError:Boolean(h?.hadFreeError)
+  })):[]
  })).sort((a,b)=>a.id.localeCompare(b.id));
  return {activeIds:Array.isArray(active?.ids)?[...active.ids]:[],
   activeIndex:active?.index??null,
@@ -29,6 +35,14 @@ function assertProgressEvidence(projection){
   throw new Error('Une réponse enregistrée attendue avant les captures du corrigé');
  if(!Array.isArray(projection.attempts)||projection.attempts.length<1)
   throw new Error('Historique de tentative absent du stockage');
+ const answer=projection.answers[0],index=Number(answer.index);
+ if(!Number.isInteger(index)||index<0||index>=projection.activeIds.length||
+    !['correct','wrong','skipped'].includes(answer.result))
+  throw new Error('Réponse sauvegardée hors séance ou résultat invalide');
+ const answeredId=projection.activeIds[index];
+ if(typeof answeredId!=='string'||!answeredId||
+    !projection.attempts.some(r=>r.id===answeredId&&r.lastResult===answer.result))
+  throw new Error('Historique sans tentative correspondant à la réponse sauvegardée');
  return true;
 }
 module.exports={projectStorage,assertProgressEvidence};
