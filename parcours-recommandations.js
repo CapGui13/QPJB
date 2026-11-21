@@ -86,7 +86,7 @@
   // agrégées de chacun sont identifiables dans le journal conservé.
   // Une ancienne sauvegarde sans journal ne satisfait jamais ce critère.
   function overlappingAreas(proposals,state){
-    const responses=new Map();
+    const responses=new Map(),autonomousByArea=new Map();
     const firstVersion=new Map(),ambiguous=new Set();
     // Les doublons de journal ne sont acceptables comme preuve que si
     // l'issue, l'aide et les étiquettes de la réponse restent identiques.
@@ -115,20 +115,37 @@
           if(typeof a[kind]!=='string')continue;
           const id=kind+':'+a[kind];
           if(!responses.has(id))responses.set(id,new Set());
-          responses.get(id).add(answerId);
+          if(!responses.get(id).has(answerId)){
+            responses.get(id).add(answerId);
+            if(outcome(a)==='autonomous')
+              autonomousByArea.set(id,(autonomousByArea.get(id)||0)+1);
+          }
         }
       }
+    }
+    const divergent=new Set();
+    for(const item of proposals){
+      const e=item.evidence;
+      if(!e||!['micros','axes'].includes(e.source))continue;
+      const id=(e.source==='micros'?'micro':'axis')+':'+e.key;
+      // Seul un journal COMPLET permet de comparer les indépendances.
+      // Un journal partiel reste incertain, sans contre-preuve inventée.
+      if(responses.get(id)?.size===e.attempts&&
+         (autonomousByArea.get(id)||0)!==e.independent)
+        divergent.add(id);
     }
     const erased=new Set();
     for(const micro of proposals){
       if(micro.evidence?.source!=='micros')continue;
       const a=micro.evidence;
+      if(divergent.has('micro:'+a.key))continue;
       const left=responses.get('micro:'+a.key);
       if(!left||left.size!==a.attempts)continue;
       for(const axis of proposals){
         if(erased.has(axis)||axis.type!==micro.type||axis.evidence?.source!=='axes')continue;
         const b=axis.evidence,right=responses.get('axis:'+b.key);
-        if(!right||right.size!==b.attempts||right.size!==left.size||
+        if(divergent.has('axis:'+b.key)||
+           !right||right.size!==b.attempts||right.size!==left.size||
            a.score!==b.score||a.attempts!==b.attempts||
            a.independent!==b.independent)continue;
         if(![...left].every(id=>right.has(id)))continue;
@@ -138,7 +155,12 @@
         erased.add(axis);
       }
     }
-    return {items:proposals.filter(p=>!erased.has(p)),merged:erased.size,ambiguous:ambiguous.size};
+    return {items:proposals.filter(p=>{
+      if(erased.has(p))return false;
+      const e=p.evidence;
+      return !e||!['micros','axes'].includes(e.source)||
+        !divergent.has((e.source==='micros'?'micro':'axis')+':'+e.key);
+    }),merged:erased.size,ambiguous:ambiguous.size,divergent:divergent.size};
   }
 
   // Une révision disponible est une action réalisable, distincte de la liste
@@ -160,6 +182,11 @@
   // de maîtrise ni indicateur d'apprentissage supplémentaire.
   function explain(item,completed,stats){
     const e=item.evidence;
+    if(item.type==='not_evaluated'&&e?.source==='journalConsistency')return {
+      observed:e.count+' suivi(s) de notion présentent des compteurs indépendants contradictoires avec leur journal détaillé.',
+      caveat:'Ces données ne permettent de conclure ni à une maîtrise ni à une difficulté persistante.',
+      action:'Vérifier la cohérence de la sauvegarde avant d’utiliser ces conseils.'
+    };
     if(item.type==='resume')return {
       observed:e.answered+' réponse(s) enregistrée(s) sur '+e.total+' dans la séance en cours.',
       caveat:'Une séance interrompue n’est pas une validation de ces notions.',
@@ -279,15 +306,28 @@
           'Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
     }
     const grouped=overlappingAreas(proposals,state);
+    if(!grouped.items.length&&grouped.divergent)
+      grouped.items.push({...suggestion('not_evaluated',90,null,
+        'Suivi contradictoire à vérifier',
+        'Les résultats détaillés et les compteurs du parcours ne concordent pas : aucun acquis ni difficulté ne peut être conclu.'),
+        evidence:{source:'journalConsistency',count:grouped.divergent}});
     const visible=visibleRecommendations(grouped.items,limit)
       .map(item=>{
         const explanation=explain(item,state.completed,stats);
+        if(grouped.divergent)
+          explanation.caveat+=' '+grouped.divergent+
+            ' suivi(s) de notion divergent entre compteurs et réponses détaillées : aucun acquis ne doit en être déduit.';
+        if(grouped.ambiguous)
+          explanation.caveat+=' '+grouped.ambiguous+
+            ' réponse(s) du journal contiennent des versions contradictoires.';
         if(stats.sessionsWithoutDetail)
           explanation.caveat+=' '+stats.sessionsWithoutDetail+
             ' séance(s) terminée(s) sans journal détaillé : leurs réponses ne sont pas reconstituées.';
         return {...item,explanation};
       });
     const limitations=[];
+    if(grouped.divergent)
+      limitations.push(`${grouped.divergent} suivi(s) de notion divergent entre compteurs agrégés et réponses détaillées : conseils concernés écartés.`);
     if(grouped.ambiguous)
       limitations.push(`${grouped.ambiguous} réponse(s) du journal avec versions contradictoires : aucun regroupement de conseil fondé sur ces réponses.`);
     if(stats.sessionsWithoutDetail)
