@@ -18,6 +18,21 @@ function modified(variant){
    return patchOnce(source,'?(severeStruggling?-250:-110):0;',
      '?(severeStruggling?-520:-220):0;');
  }
+ if(variant==='overdue'){
+   // Prioriser l'ancienneté parmi les revisions faibles déjà dues.
+   // Deux positions par séance : aucun quota supplémentaire.
+   return patchOnce(source,
+     "        const review=kind==='revision'\n"+
+     "          ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)\n"+
+     "          :0;",
+     "        const old=previous[x.id];\n"+
+     "        const late=kind==='revision'&&old&&\n"+
+     "          (old.result!=='correct'||old.assisted)\n"+
+     "          ?Math.min(240,Math.max(0,s-old.due)*4):0;\n"+
+     "        const review=(kind==='revision'\n"+
+     "          ?(old?.result==='wrong'?40:old?.result==='skipped'?30:old?.assisted?20:0)\n"+
+     "          :0)+late;");
+ }
  if(variant==='recall'){
    let text=patchOnce(source,
      'Math.min(weakDueCandidates.length?2:1,Math.floor(limit/4),due.length)',
@@ -32,7 +47,7 @@ function option(name){
  return i<0?null:process.argv[i+1];
 }
 const variant=option('variant');
-assert(['foundation','recall'].includes(variant),'--variant foundation|recall obligatoire');
+assert(['foundation','recall','overdue'].includes(variant),'--variant foundation|recall|overdue obligatoire');
 const candidateSource=modified(variant);
 const candidateModule={exports:{}};
 new Function('module',candidateSource)(candidateModule);
@@ -49,5 +64,6 @@ assert(data.results.length>=1);
 assert(data.results.every(row=>row.uniqueThemes===22&&row.questions===row.horizon*10));
 process.stdout.write(JSON.stringify({variant,description:
  variant==='foundation'?'Renforcer la penalite des cas difficiles en fragilite averee':
+ variant==='overdue'?'Favoriser les rappels faibles les plus en retard a quota inchange':
  'Tester trois rappels planifies au lieu de deux, sans inventer de preuve',
  catalogue:data.catalogue,results:data.results},null,2)+'\n');
