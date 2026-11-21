@@ -19,3 +19,10 @@ test('P9 garde-fou : module recommandations sans DOM, stockage ni réseau',()=>{
   }
   assert.match(src,/return \{VERSION,OUTCOMES,outcome,buildReport\}/);
 });
+
+test('P13 garde-fou : aucun chargeur CI éphémère ne reste en production',()=>{
+  const src=read('parcours-recommandations.js').toString('utf8');
+  assert.equal(src.includes('GITHUB_HEAD_REF'),false);
+  assert.equal(src.includes('SONDE CI TEMPORAIRE'),false);
+  assert.equal(src.includes("require('./tests/wave2-recos-"),false);
+});
