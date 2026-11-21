@@ -15,10 +15,13 @@ assert.equal(data.exercises.length,1523,'Ne pas modifier les 1 523 QCM');
 assert.equal(data.themes.length,22,'Ne pas modifier les 22 rubriques');
 const qcm=new Map(data.exercises.map(q=>[q.id,q]));
 const original=JSON.stringify(data.exercises);
-assert.equal(doc.status,'PROPOSITIONS_A_VALIDER_NON_ACTIVES');
+assert.equal(doc.status,'APPROUVE_PEDAGOGIQUEMENT_NON_ACTIF');
+assert.equal(doc.pedagogicalApproval.approvedCount,11);
+assert.equal(doc.pedagogicalApproval.publicationApproval,false);
 assert.equal(doc.activationAllowed,false);
 assert.equal(doc.publicationAllowed,false);
 assert.equal(doc.proposals.length,11);
+assert.deepEqual(doc.proposals.filter(q=>q.after.answer!==undefined).map(q=>q.id),['SEF-V44-030'],'Un seul corrigé candidat modifié');
 const ids=new Set();
 const count={D1_MAINS_A_VALIDER:0,D2_ROUDI:0,D3_TEXAS_TREFLE:0,D4_TEXAS_MAJEUR:0};
 const points={A:4,R:3,D:2,V:1};
@@ -36,16 +39,28 @@ for(const p of doc.proposals){
  assert.ok(!ids.has(p.id),'ID répété : '+p.id);ids.add(p.id);
  assert.ok(Object.hasOwn(count,p.group),'Groupe D inconnu');count[p.group]++;
  const base=qcm.get(p.id);assert.ok(base,'ID absent de V1 : '+p.id);
- assert.equal(p.answerUnchanged,base.answer);
+ assert.equal(p.sourceAnswer,base.answer);
  assert.equal(p.sourceCaseFamily,base.caseFamily);
  const wanted=p.group==='D1_MAINS_A_VALIDER'
   ?['hand','h','context','explain','difficultyReason']
-  :p.group==='D3_TEXAS_TREFLE'?['explain','difficultyReason']:['difficultyReason'];
+  :p.group==='D3_TEXAS_TREFLE'?['explain','difficultyReason']
+  :p.id==='SEF-V44-030'?['context','answer','explain','difficultyReason']:['difficultyReason'];
  same(Object.keys(p.before).sort(),wanted.slice().sort());
  same(Object.keys(p.after).sort(),wanted.slice().sort());
  for(const key of wanted)same(base[key],p.before[key]);
  const after={...base,...p.after};
- same(after.answer,base.answer);
+ if(p.id==='SEF-V44-030'){
+  assert.equal(base.answer,'3♥');
+  assert.equal(after.answer,'4♥');
+  assert.ok(base.choices.includes('4♥'),'L’option 4♥ existait déjà');
+  assert.equal(base.h,9);
+  assert.equal(base.hand[1].length,6);
+  assert.deepEqual(base.hand[1],['A','R','V','7','5','3']);
+  assert.equal(base.h+(base.hand[1].length-4),11,'9 H + 2 L = 11 HL');
+  assert.match(after.context,/six beaux Cœurs/);
+  assert.match(after.explain,/11 HL/);
+  assert.match(after.explain,/4♥/);
+ }else same(after.answer,base.answer);
  same(after.choices,base.choices);
  same(after.auction,base.auction);
  same(after.id,base.id);
@@ -85,4 +100,4 @@ const approvedText=preview.proposedPatches.find(q=>q.id==='SEF-L25-007')?.propos
 assert.equal(doc.proposals.find(q=>q.id==='SEF-L25-007').after.explain,approvedText,
  'Conserver mot pour mot la formulation déjà approuvée');
 assert.equal(JSON.stringify(data.exercises),original,'La revue ne modifie jamais le catalogue');
-console.log('PASS LOT D : 11 candidats, 7 mains 5→6 H, 4 corrections de texte, 1523 QCM inchangés ; aucune activation');
+console.log('PASS LOT D : 11 propositions validées, 7 mains 5→6 H, un corrigé 3♥→4♥ (11 HL) ; 1523 QCM publics inchangés, aucune activation');
