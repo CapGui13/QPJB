@@ -803,21 +803,8 @@
         // Éviter de présenter des cas de niveau 4–5 à un élève qui échoue partout.
         const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4
           ?(severeStruggling?-250:-110):0;
-        // VNEXT_LOCAL_FOUNDATION_BEGIN
-        // Une fragilité locale peut exister même quand le taux global
-        // d'erreurs est modéré. Favoriser des situations neuves de cette
-        // rubrique, sans réservation de place ni verrouillage de thèmes.
-        const locallyWeak=!struggling&&kind!=='revision'&&foundationThemes.has(t)&&
-          evidence&&evidence.attempts>=4&&evidence.weak*5>=evidence.attempts*3;
-        const novelContextOrDecision=locallyWeak&&
-          (!seenContexts.has(t+'|'+String(x.auction?.[0]||''))||
-            !seenDecisions.has(t+'|'+String(x.answer||'')));
-        const localNeed=locallyWeak&&recent>=999?
-          Math.min(novelContextOrDecision?70:25,
-            Math.round((novelContextOrDecision?80:30)*evidence.weak/evidence.attempts)):0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
-          newFamily+rareContext+rareAnswer+hardWhileStruggling+localNeed;
-        // VNEXT_LOCAL_FOUNDATION_END
+          newFamily+rareContext+rareAnswer+hardWhileStruggling;
         // LOT_B_SCORE_END
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
