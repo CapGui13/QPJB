@@ -21,7 +21,12 @@ const proposal=`// VNEXT_LOCAL_FOUNDATION_BEGIN
         // rubrique, sans réservation de place ni verrouillage de thèmes.
         const locallyWeak=!struggling&&kind!=='revision'&&foundationThemes.has(t)&&
           evidence&&evidence.attempts>=4&&evidence.weak*5>=evidence.attempts*3;
-        const localNeed=locallyWeak&&recent>=999?Math.min(70,Math.round(80*evidence.weak/evidence.attempts)):0;
+        const novelContextOrDecision=locallyWeak&&
+          (!seenContexts.has(t+'|'+String(x.auction?.[0]||''))||
+            !seenDecisions.has(t+'|'+String(x.answer||'')));
+        const localNeed=locallyWeak&&recent>=999?
+          Math.min(novelContextOrDecision?70:25,
+            Math.round((novelContextOrDecision?80:30)*evidence.weak/evidence.attempts)):0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
           newFamily+rareContext+rareAnswer+hardWhileStruggling+localNeed;
         // VNEXT_LOCAL_FOUNDATION_END`;
