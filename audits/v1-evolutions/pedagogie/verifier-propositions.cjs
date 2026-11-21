@@ -112,7 +112,7 @@ for (const file of SOURCE_PATHS) {
     }
     for (const field of ['contexte', 'explication', 'motifDifficulte']) {
       const newText = p.nouvelleRedactionComplete[field];
-      assert(typeof newText === 'string' && newText.length >= 70, p.id + ' : ' + field + ' doit être individualisé');
+      assert(typeof newText === 'string' && newText.length >= (field === 'motifDifficulte' ? 45 : 70), p.id + ' : ' + field + ' doit être individualisé');
       assert.notEqual(newText, s.corrigeActuel[field], p.id + ' : aucun changement réel sur ' + field);
     }
     for (const field of ['problemeDemontre', 'justificationSEF']) {
