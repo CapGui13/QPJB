@@ -14,6 +14,15 @@ function patchOnce(text,needle,replacement){
  return text.slice(0,first)+replacement+text.slice(first+needle.length);
 }
 function modified(variant){
+ if(variant==='score-cache'){
+   // Optimisation equivalente mais maintenue uniquement en banc : le test
+   // historique quizz-parcours-lot-b impose le SHA exact du moteur source.
+   return patchOnce(source,
+     "ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));\\n      const winner=ranked[0];".replace('\\n','\n'),
+     "const scored=ranked.map(x=>({exercise:x,value:score(x),tie:hash(x.id+'#'+s)}));\\n"+
+     "      scored.sort((a,b)=>b.value-a.value||a.tie-b.tie);\\n"+
+     "      const winner=scored[0].exercise;".replaceAll('\\n','\n'));
+ }
  if(variant==='foundation'){
    return patchOnce(source,'?(severeStruggling?-250:-110):0;',
      '?(severeStruggling?-520:-220):0;');
@@ -47,7 +56,7 @@ function option(name){
  return i<0?null:process.argv[i+1];
 }
 const variant=option('variant');
-assert(['foundation','recall','overdue'].includes(variant),'--variant foundation|recall|overdue obligatoire');
+assert(['foundation','recall','overdue','score-cache'].includes(variant),'--variant foundation|recall|overdue|score-cache obligatoire');
 const candidateSource=modified(variant);
 const candidateModule={exports:{}};
 new Function('module',candidateSource)(candidateModule);
@@ -63,6 +72,7 @@ const data=JSON.parse(json);
 assert(data.results.length>=1);
 assert(data.results.every(row=>row.uniqueThemes===22&&row.questions===row.horizon*10));
 process.stdout.write(JSON.stringify({variant,description:
+ variant==='score-cache'?'Optimisation neutre du tri, seulement en copie experimentale':
  variant==='foundation'?'Renforcer la penalite des cas difficiles en fragilite averee':
  variant==='overdue'?'Favoriser les rappels faibles les plus en retard a quota inchange':
  'Tester trois rappels planifies au lieu de deux, sans inventer de preuve',
