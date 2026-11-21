@@ -12,6 +12,7 @@ const catalog=JSON.parse(html.slice(start+tag.length,end));
 const P=require('../quizz-parcours.js');
 const A=require('../scripts/audit-parcours-v2.cjs');
 const approvedLotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const before=JSON.stringify(catalog.exercises);
 const audit=A.inventory(catalog.exercises,catalog.themes,P);
 assert.ok(A.assertBaseline(audit.summary));
@@ -36,6 +37,13 @@ const snapshot=fs.readFileSync(path.join(root,'Docs','PARCOURS_V2_REVUE_620_2026
 // dans les lignes concernées ; le CSV historique doit rester identique.
 const deltas=new Map(approvedLotD.proposals.map(p=>[p.id,p]));
 const historicQueue=audit.queue.map(row=>{
+ const patchSEF=closure.patches.find(p=>p.id===row.id);
+ if(patchSEF){
+  for(const [field,value] of Object.entries(patchSEF.after)){
+   if(field==='answer'||field==='difficultyReason')assert.equal(row[field],value,'Correction SEF identique : '+row.id+' '+field);
+  }
+  row={...row,answer:patchSEF.before.answer,difficultyReason:patchSEF.before.difficultyReason};
+ }
  const patch=deltas.get(row.id);
  if(!patch)return row;
  assert.equal(row.answer,patch.after.answer??patch.sourceAnswer,
