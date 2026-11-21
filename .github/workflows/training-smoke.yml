@@ -90,6 +90,7 @@ jobs:
           node scripts/split_training_data.cjs --check
           node tests/site-update.cjs
           node tests/ci-training-workflow-guard.cjs
+          node tests/wave2-ci-lot07-static.cjs
       - name: Rapports d'intégrité et d'ambiguïté
         if: always()
         uses: actions/upload-artifact@v4
@@ -164,7 +165,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: training-visual-${{ matrix.browser }}
-          path: artifacts/training-visual/${{ matrix.browser }}/
+          path: |
+            artifacts/training-visual/${{ matrix.browser }}/
+            artifacts/lot07-publication/${{ matrix.browser }}/
           retention-days: 7
           if-no-files-found: warn
 
@@ -206,6 +209,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: training-visual-webkit
-          path: artifacts/training-visual/webkit/
+          path: |
+            artifacts/training-visual/webkit/
+            artifacts/lot07-publication/webkit/
           retention-days: 7
           if-no-files-found: warn
