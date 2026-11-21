@@ -87,12 +87,30 @@
   // Une ancienne sauvegarde sans journal ne satisfait jamais ce critère.
   function overlappingAreas(proposals,state){
     const responses=new Map();
+    const firstVersion=new Map(),ambiguous=new Set();
+    // Les doublons de journal ne sont acceptables comme preuve que si
+    // l'issue, l'aide et les étiquettes de la réponse restent identiques.
+    // Un import contradictoire ne peut jamais établir un chevauchement.
     for(const event of state.journal||[]){
       if(!event||event.mode!=='parcours'||!integer(event.session)||
           event.session<1||event.session>state.completed)continue;
       for(const a of event.answers||[]){
         if(!safeRecord(a)||typeof a.id!=='string')continue;
         const answerId=event.session+'|'+a.id;
+        const signature=JSON.stringify([a.result,a.choice,!!a.assisted,!!a.hadFreeError,
+          typeof a.micro==='string'?a.micro:null,typeof a.axis==='string'?a.axis:null]);
+        if(firstVersion.has(answerId)&&firstVersion.get(answerId)!==signature)
+          ambiguous.add(answerId);
+        else if(!firstVersion.has(answerId))firstVersion.set(answerId,signature);
+      }
+    }
+    for(const event of state.journal||[]){
+      if(!event||event.mode!=='parcours'||!integer(event.session)||
+          event.session<1||event.session>state.completed)continue;
+      for(const a of event.answers||[]){
+        if(!safeRecord(a)||typeof a.id!=='string')continue;
+        const answerId=event.session+'|'+a.id;
+        if(ambiguous.has(answerId))continue;
         for(const kind of ['micro','axis']){
           if(typeof a[kind]!=='string')continue;
           const id=kind+':'+a[kind];
@@ -120,7 +138,7 @@
         erased.add(axis);
       }
     }
-    return {items:proposals.filter(p=>!erased.has(p)),merged:erased.size};
+    return {items:proposals.filter(p=>!erased.has(p)),merged:erased.size,ambiguous:ambiguous.size};
   }
 
   // Une révision disponible est une action réalisable, distincte de la liste
@@ -270,6 +288,8 @@
         return {...item,explanation};
       });
     const limitations=[];
+    if(grouped.ambiguous)
+      limitations.push(`${grouped.ambiguous} réponse(s) du journal avec versions contradictoires : aucun regroupement de conseil fondé sur ces réponses.`);
     if(stats.sessionsWithoutDetail)
       limitations.push(`${stats.sessionsWithoutDetail} séance(s) terminée(s) sans journal détaillé : résultats non reconstitués.`);
     if(!Array.isArray(options.exercises))
