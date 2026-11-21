@@ -92,6 +92,7 @@ jobs:
           node tests/ci-training-workflow-guard.cjs
           node tests/wave2-ci-lot07-static.cjs
           node tests/wave2-ci-performance.cjs
+          node tests/wave2-ci-pages-rollback.cjs
       - name: Rapports d'intégrité et d'ambiguïté
         if: always()
         uses: actions/upload-artifact@v4
