@@ -10,7 +10,9 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
-const source=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
+let source=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
+const temporaryHarness=source.indexOf('\n// VNEXT_BENCHMARK_CI_TEMP_BEGIN');
+if(temporaryHarness>=0)source=source.slice(0,temporaryHarness);
 const anchor=`const lotBPriority=foundationNeed+explorationFloor+discovery+
           newFamily+rareContext+rareAnswer+hardWhileStruggling;`;
 const proposal=`// VNEXT_LOCAL_FOUNDATION_BEGIN
@@ -87,7 +89,7 @@ function simulate(P,name,paired=false){
   const stops={};
   for(let session=1;session<=153;session++){
     const weak=weakEvidence(state);
-    if(paired){
+    if(paired&&weak.size){
       const v1=BEFORE.select(exercises,state,10);
       const vNext=AFTER.select(exercises,state,10);
       if(weak.size){
