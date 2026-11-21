@@ -218,7 +218,7 @@
     };
     if(item.type==='revision_session')return {
       observed:'Le moteur V1 confirme un plan de '+e.count+' situation(s), ciblant '+e.focus.map(f=>f.label).join(' et ')+'.',
-      caveat:'La disponibilité vaut pour le catalogue fourni et l’état actuel ; la révision ne prouve pas une maîtrise.',
+      caveat:'La disponibilité est calculée sur le catalogue fourni et les scores V1. Une question sautée peut abaisser un score sans erreur constatée ; cette séance ne prouve pas la maîtrise.',
       action:'Lancer la séance complémentaire depuis le parcours, après avoir terminé toute séance active.'
     };
     if(item.type==='not_evaluated')return {
@@ -313,8 +313,8 @@
         count:plan.available&&Array.isArray(plan.items)?plan.items.length:0};
       if(revision.available){
         proposals.push({...suggestion('revision_session',30,null,
-          'Séance de révision pertinente',
-          'Une séance complémentaire est proposée par le moteur V1 à partir des difficultés effectivement suivies.'),
+          'Séance complémentaire disponible',
+          'Le moteur V1 propose une séance complémentaire à partir des scores du suivi. Les questions sautées peuvent aussi contribuer à cette proposition.'),
           evidence:{source:'consolidationPlan',focus:revision.focus,count:revision.count}});
       }
     }
