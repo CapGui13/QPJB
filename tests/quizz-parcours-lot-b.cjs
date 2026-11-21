@@ -1,5 +1,5 @@
 'use strict';
-/* LOT B — simulations V1 comparées, catalogue courant approuvé, sans mutation ni publication.
+/* LOT B — simulations V1 historiques avant corrections D, sans mutation ni publication.
  * Run: node tests/quizz-parcours-lot-b.cjs
  * Chaque profil déroule 153 séances; snapshots à 40, 65 et 153.
  * Le moteur d'avant est reconstruit EXACTEMENT en retirant les 3 blocs LOT_B.
@@ -8,14 +8,24 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
-const CURRENT=require('../quizz-parcours.js');
+// Benchmark historique du LOT B : moteur et catalogue antérieurs au LOT D.
+// Le test d'intégration D contrôle séparément le catalogue corrigé et la V1 réelle.
+let CURRENT;
 const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const root=path.join(__dirname,'..');
 const code=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match,'Catalogue SEF embarqué présent');
-const DATA=JSON.parse(match[1]),catalogue=DATA.exercises;
+const DATA=JSON.parse(match[1]);
+const approvalsById=new Map(approvedD11.proposals.map(p=>[p.id,p]));
+const catalogue=DATA.exercises.map(ex=>{
+ const reviewed=approvalsById.get(ex.id);
+ if(!reviewed)return ex;
+ for(const [field,value] of Object.entries(reviewed.after))
+  assert.deepEqual(ex[field],value,'La correction D est celle approuvée : '+ex.id+' '+field);
+ return {...ex,...reviewed.before};
+});
 assert.equal(catalogue.length,1523,'Le catalogue original reste inchangé');
 assert.equal(DATA.themes.length,22,'Les 22 rubriques restent disponibles');
 const beforeCatalogue=JSON.stringify(catalogue);
@@ -51,8 +61,13 @@ const prefix=Buffer.from('blob '+Buffer.byteLength(sourceHistorique,'utf8')+Stri
 const blobSHA=crypto.createHash('sha1').update(prefix).update(sourceHistorique,'utf8').digest('hex');
 assert.equal(blobSHA,'504450f6254e91927c6945ac42dfc15c995fdaf9',
   'La référence AVANT est exactement le quizz-parcours.js de main audité');
+// Deux versions comparées sur le MEME référentiel historique de 1 523 QCM.
+const historicalEngineSource=code.replace(auditCorrige,auditOriginal);
+const afterModule={exports:{}};
+new Function('module','window',historicalEngineSource)(afterModule,null);
+CURRENT=afterModule.exports;
 const oldModule={exports:{}};
-new Function('module','window',previousSource)(oldModule,null);
+new Function('module','window',sourceHistorique)(oldModule,null);
 const BEFORE=oldModule.exports;
 const baseThemes=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
 const hash=str=>{let h=2166136261;for(let i=0;i<str.length;i++){
