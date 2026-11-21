@@ -9,7 +9,7 @@ const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const hashGit=(s)=>crypto.createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0'+s).digest('hex');
 const html=read('quizz.html');
 assert.equal(hashGit(html),'9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7','Blob catalogue différent de la base figée');
-const m=html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert(m,'Catalogue embarqué absent');
 const data=JSON.parse(m[1]);
 assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
