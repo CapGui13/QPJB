@@ -51,3 +51,13 @@ Commits : `824be9af0b14fa576476e14f114bb347413c271d`, puis correction d'échappe
 - **P6** : tests Chromium + WebKit réels, captures comparatives, non-régression catalogue, CI et conservation des données.
 
 **HOLD :** ne pas fusionner ni publier ; ne pas interpréter cette livraison comme une recette complète.
+
+## Reprise P3 — complétion du contrat de navigation / saisie (2026-11-21)
+
+Contre-exemples démontrés dans le code de la PR précédente : lien d'évitement pointant vers `#question-heading` absent au chargement (écran de préparation), et message d'erreur libre qui restait affiché pendant une correction au clavier. De plus, le clavier bridge retirait visuellement l'erreur sans effacer son `aria-describedby`, et le libellé de la main annonçait à tort un défilement horizontal.
+
+Corrections strictement visuelles et ARIA : lien de saut vers préparation → question → bilan selon l'écran (repli vers les paramètres en l'absence de question), suppression du message d'erreur dès une nouvelle saisie, remise à zéro de `aria-invalid` et de `aria-describedby` après saisie ou clavier, libellé de main fidèle. La composition d'enchère, le tirage, la sauvegarde et la notation restent inchangés.
+
+Vérifications réalisées avant commit : **7 remplacements ciblés et univoques**, 5 contrôles statiques en mémoire, bloc `training-data` strictement identique, JSON décodable, **1 523 IDs uniques / 22 rubriques**. `tests/wave2-ux-contract.cjs` étendu de 13 à 19 assertions UI (à exécuter dans un checkout Node). Aucun test navigateur n'est revendiqué comme réussi ici.
+
+**PASSE 3 FINIE au niveau des correctifs ciblés ; recette réelle restant ouverte en P4–P6. MISSION DÉFINITIVEMENT TERMINÉE : NON. PROCHAINE PASSE : P4 reprise et transitions, puis P5/P6 navigateur.**

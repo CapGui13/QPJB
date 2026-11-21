@@ -28,7 +28,7 @@ try{
  console.log('NOTE base Git indisponible : comparaison catalogue contre SHA différée');
 }
 const checks=[
- ['navigation directe',/class="qpjb-quiz-skip" href="#question-heading"/],
+ ['navigation directe',/class="qpjb-quiz-skip" href="#parcours-start"/],
  ['cible question',/id="question-heading" tabindex="-1"/],
  ['annonces séparées',/id="qpjb-quiz-announcement"[^>]*role="status" aria-live="polite"/],
  ['conteneur non live',/<div id="body"><\/div>/],
@@ -40,7 +40,13 @@ const checks=[
  ['largeur mobile 390',/@media\(max-width:390px\)/],
  ['largeur mobile 345',/@media\(max-width:345px\)/],
  ['mouvement réduit',/@media\(prefers-reduced-motion:reduce\)/],
- ['retour visible clavier',/\.qpjb-quiz-skip:focus-visible/]
+ ['retour visible clavier',/\.qpjb-quiz-skip:focus-visible/],
+ ['saut contextuel',/function setQuizSkipTarget\(target,label\)/],
+ ['bilan cible accessible',/setQuizSkipTarget\('session-summary-title','Aller directement au bilan'\)/],
+ ['retour préparation',/setQuizSkipTarget\('parcours-start','Aller directement à la préparation'\)/],
+ ['erreur saisie effacée',/field\.addEventListener\('input',e=>\{stage\.draft=e\.target\.value;if\(stage\.error\)/],
+ ['erreur clavier effacée',/field\.removeAttribute\('aria-describedby'\)/],
+ ['main énoncée fidèlement',/aria-label="Votre main : \$\{x\.hand/]
 ];
 for(const [label,pattern] of checks)assert.match(html,pattern,label);
 console.log('PASS '+checks.length+' garde-fous UI/ARIA et catalogue '+data.exercises.length+'/'+data.themes.length);
