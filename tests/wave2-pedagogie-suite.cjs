@@ -18,7 +18,8 @@ const tests=[
  'wave2-pedagogie-reprise.cjs',
  'wave2-pedagogie-texas-accords.cjs',
  'wave2-pedagogie-couverture-suite.cjs',
- 'wave2-pedagogie-gates-p19.cjs'
+ 'wave2-pedagogie-gates-p19.cjs',
+ 'wave2-pedagogie-decisions-p20.cjs'
 ];
 for(const file of tests){
  const res=spawnSync(process.execPath,[path.join(root,'tests',file)],{cwd:root,encoding:'utf8',timeout:120000});
