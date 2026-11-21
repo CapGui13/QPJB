@@ -809,7 +809,7 @@
         // rubrique, sans réservation de place ni verrouillage de thèmes.
         const locallyWeak=!struggling&&kind!=='revision'&&foundationThemes.has(t)&&
           evidence&&evidence.attempts>=4&&evidence.weak*5>=evidence.attempts*3;
-        const localNeed=locallyWeak?Math.min(100,Math.round(115*evidence.weak/evidence.attempts)):0;
+        const localNeed=locallyWeak&&recent>=999?Math.min(70,Math.round(80*evidence.weak/evidence.attempts)):0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
           newFamily+rareContext+rareAnswer+hardWhileStruggling+localNeed;
         // VNEXT_LOCAL_FOUNDATION_END
