@@ -6,6 +6,7 @@ const {spawnSync} = require('node:child_process');
 const QUICK = [
   {id:'contrat', file:'tests/wave2-adaptatif-suite-selftest.cjs', args:[]},
   {id:'invariants', file:'tests/wave2-adaptatif-invariants.cjs', args:[]},
+  {id:'catalogue-ux-coexistence', file:'tests/wave2-adaptatif-invariants-contract.cjs', args:[]},
   {id:'selection-600', file:'tests/wave2-adaptatif-selection-regression.cjs', args:[]},
   {id:'reprise', file:'tests/wave2-adaptatif-resume.cjs', args:[]}
 ];
