@@ -140,7 +140,7 @@
   // Contrat de lecture destiné à l'intégration future : les champs suivants
   // explicitent une preuve EXISTANTE, sa limite et une action. Aucun calcul
   // de maîtrise ni indicateur d'apprentissage supplémentaire.
-  function explain(item,completed){
+  function explain(item,completed,stats){
     const e=item.evidence;
     if(item.type==='resume')return {
       observed:e.answered+' réponse(s) enregistrée(s) sur '+e.total+' dans la séance en cours.',
@@ -154,10 +154,13 @@
     };
     if(item.type==='not_evaluated')return {
       observed:completed>0?
-        `${completed} séance(s) terminée(s), mais aucune évaluation exploitable de notion n’est conservée.`:
+        `${completed} séance(s) terminée(s), dont ${stats.detailedSessions} avec journal détaillé, sans suivi exploitable de micro-compétence ni d’axe.`:
         'Aucun suivi exploitable de notion évaluée n’est disponible.',
-      caveat:'L’absence de suivi exploitable ne signifie pas que l’élève n’a jamais travaillé ces notions.',
-      action:'Commencer une séance du parcours pour obtenir des observations vérifiables.'
+      caveat:stats.detailedSessions>0?
+        'Des réponses sont conservées, mais aucune classification auditée ne permet d’en déduire la maîtrise d’une notion.':
+        'L’absence de suivi exploitable ne signifie pas que l’élève n’a jamais travaillé ces notions.',
+      action:completed>0?'Poursuivre le parcours pour enrichir le suivi des notions auditées.':
+        'Commencer une séance du parcours pour obtenir des observations vérifiables.'
     };
     const source=e.source==='micros'?'micro-compétence':'axe transversal';
     const when=integer(e.lastSession)&&e.lastSession<completed?
@@ -247,16 +250,20 @@
       }
     }
 
-    if(!active&&!areas.length&&!stats.detailedSessions){
+    if(!active&&!areas.length){
+      const archived=state.completed>0&&!stats.detailedSessions;
+      const unclassified=stats.detailedSessions>0;
       proposals.push(suggestion('not_evaluated',90,null,
-        state.completed>0?'Historique sans évaluation de notion exploitable':'Aucune notion encore évaluée',
-        state.completed>0?'Des séances anciennes existent, mais aucun suivi précis de notion n’est disponible. Poursuis le parcours pour constituer de nouvelles observations.':
+        archived?'Historique sans évaluation de notion exploitable':
+          unclassified?'Séances enregistrées sans classification de notion':'Aucune notion encore évaluée',
+        archived?'Des séances anciennes existent, mais aucun suivi précis de notion n’est disponible. Poursuis le parcours pour constituer de nouvelles observations.':
+          unclassified?'Des réponses sont enregistrées, mais aucune micro-compétence ni axe audité n’est suivi. Poursuis le parcours pour enrichir les observations.':
           'Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
     }
     const grouped=overlappingAreas(proposals,state);
     const visible=visibleRecommendations(grouped.items,limit)
       .map(item=>{
-        const explanation=explain(item,state.completed);
+        const explanation=explain(item,state.completed,stats);
         if(stats.sessionsWithoutDetail)
           explanation.caveat+=' '+stats.sessionsWithoutDetail+
             ' séance(s) terminée(s) sans journal détaillé : leurs réponses ne sont pas reconstituées.';
