@@ -39,13 +39,27 @@ test('P3 journal partiel ne peut pas attester le recouvrement historique',()=>{
   assert.equal(failures(r).length,2);
 });
 
-test('P3 mêmes scores mais cas différents : aucun regroupement',()=>{
+test('P8 scores et essais égaux : deux jeux de réponses restent deux faits',()=>{
   const s=engine.empty();
+  // Deux échecs "fit" (aussi classés micro majeur:1♠), ET deux autres
+  // échecs sur une ouverture "Passe" : les comptes sont identiques mais
+  // seuls le micro majeur et l'axe fit décrivent les mêmes réponses.
   for(let i=0;i<2;i++)one(s,q('SEF-026-3'));
-  for(let i=0;i<2;i++)one(s,q('OTHER-'+i,{difficultyReason:''}));
-  const r=rep(s);
-  assert.equal(failures(r).length,2);
-  assert.equal(r.recommendations.some(x=>x.evidence?.sameAnswersAs),false);
+  for(let i=0;i<2;i++)one(s,{
+    id:'OUV-'+i,theme:'ouv',answer:'Passe',difficulty:1,
+    caseFamily:'OUV-'+i,auction:[],difficultyReason:''
+  });
+  const r=rep(s),items=failures(r);
+  assert.equal(s.micros['majeur:1♠'].score,-2);
+  assert.equal(s.micros['ouv:passe'].score,-2);
+  assert.equal(s.axes.fit.score,-2);
+  assert.equal(items.length,2);
+  const opening=items.find(x=>x.evidence.key==='ouv:passe');
+  const major=items.find(x=>x.evidence.key==='majeur:1♠');
+  assert.ok(opening&&major);
+  assert.equal(opening.evidence.sameAnswersAs,undefined);
+  assert.deepEqual(major.evidence.sameAnswersAs,
+    [{source:'axes',key:'fit',label:engine.AXIS_LABELS.fit}]);
 });
 
 test('P3 un seul emplacement : ne promet pas une action au détriment du diagnostic',()=>{
