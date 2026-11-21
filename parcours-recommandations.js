@@ -143,12 +143,20 @@
         item.title='Notion à réessayer après des questions sautées : '+e.label;
         item.message='Les tentatives détaillées ont toutes été sautées : aucune erreur de réponse n’a été constatée pour cette notion.';
         e.skippedOnly=true;
-      }else if((helpedByArea.get(id)||0)===e.attempts){
-        // Réponses finales correctes avec aide/erreur libre : aucune autonomie.
-        // Préserver le type et la priorité V1 de la recommandation.
+      }else if((assessedByArea.get(id)||0)>0&&
+               (helpedByArea.get(id)||0)===(assessedByArea.get(id)||0)){
+        // Réponses avec aide et/ou questions sautées : aucune mauvaise
+        // réponse finale observée, mais pas de preuve d'autonomie non plus.
         item.title='Autonomie à consolider : '+e.label;
-        item.message='Toutes les réponses sont correctes avec aide ou après première erreur libre ; aucune réussite autonome ne peut être conclue.';
-        e.assistedOnly=true;
+        if((helpedByArea.get(id)||0)===e.attempts){
+          item.message='Toutes les réponses sont correctes avec aide ou après première erreur libre ; aucune réussite autonome ne peut être conclue.';
+          e.assistedOnly=true;
+        }else{
+          item.message='Les tentatives détaillées sont des réponses correctes avec aide ou des questions sautées : aucune erreur finale ni réussite autonome constatée.';
+          e.helpedAndSkipped=true;
+          e.helpedCount=helpedByArea.get(id)||0;
+          e.skippedCount=e.attempts-e.helpedCount;
+        }
       }
     }
     const divergent=new Set();
@@ -249,6 +257,11 @@
       observed,
       caveat:'Ces réussites répétées ne garantissent pas la maîtrise de toute la rubrique ni le maintien à long terme.',
       action:'Continuer le parcours et varier les situations.'
+    };
+    if(e.helpedAndSkipped&&['persistent_difficulty','consolidate'].includes(item.type))return {
+      observed:observed+' Le journal décrit '+e.helpedCount+' réponse(s) aidée(s) et '+e.skippedCount+' saut(s), sans erreur finale.',
+      caveat:'Aucune réussite autonome n’est démontrée, mais aucune réponse finale fausse n’a été constatée. Une question sautée n’est pas un échec prouvé.',
+      action:'Réessayer les questions sautées et répondre à de nouveaux cas sans aide.'
     };
     if(e.assistedOnly&&['persistent_difficulty','consolidate'].includes(item.type))return {
       observed:observed+' Toutes les réponses finales détaillées ont été correctes avec aide ou après première erreur libre.',
