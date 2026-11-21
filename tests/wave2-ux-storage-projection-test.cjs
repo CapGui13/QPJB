@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const {projectStorage,assertProgressEvidence}=require('./wave2-ux-storage-projection.cjs');
 const mk=(choice,at)=>({
  parcours:JSON.stringify({active:{ids:['EX-1','EX-2'],index:0,mode:'normal',
-  startedAt:at,answers:{0:{result:'correct',choice,assisted:true,at}}}}),
+  startedAt:at,answers:{0:{result:'correct',choice,assisted:true,hadFreeError:false,at}}}}),
  records:JSON.stringify({'EX-1':{seen:true,lastResult:'correct',ok:false,assisted:true,
   attempts:1,correct:1,wrong:0,skipped:0,independentCorrect:0,assistedCorrect:1,
   history:[{result:'correct',at}]}})
@@ -28,4 +28,30 @@ assert.equal(old.activeIds.length,2);
 assert.equal(old.attempts.length,1);
 assert.equal(projectStorage({parcours:null,records:null}).attempts.length,0);
 assert.throws(()=>projectStorage({parcours:'{invalid',records:'{}'}),'JSON de sauvegarde corrompu rejeté');
-console.log('PASS M3 stockage projeté : temps neutralisé, choix conservé, JSON corrompu rejeté');
+const freeError=mk('1♣','2026-11-21T00:00:00Z');
+const freeState=JSON.parse(freeError.parcours);
+freeState.active.answers[0].hadFreeError=true;
+freeError.parcours=JSON.stringify(freeState);
+assert.notDeepEqual(old,projectStorage(freeError),
+ 'Une première enchère libre erronée ne doit pas être masquée');
+const guessError=mk('1♣','2026-11-21T00:00:00Z');
+const guessState=JSON.parse(guessError.records);
+guessState['EX-1'].history[0].firstGuess='1♦';
+guessError.records=JSON.stringify(guessState);
+assert.notDeepEqual(old,projectStorage(guessError),
+ 'Une première enchère historique différente ne doit pas être masquée');
+const unrelated=mk('1♣','2026-11-21T00:00:00Z');
+const unrelatedRecords=JSON.parse(unrelated.records);
+unrelatedRecords['EX-X']=unrelatedRecords['EX-1'];delete unrelatedRecords['EX-1'];
+unrelated.records=JSON.stringify(unrelatedRecords);
+assert.throws(()=>assertProgressEvidence(projectStorage(unrelated)),
+ /Historique sans tentative correspondant/,
+ 'Une tentative appartenant à une autre question ne prouve pas la sauvegarde');
+const contrary=mk('1♣','2026-11-21T00:00:00Z');
+const contraryRecords=JSON.parse(contrary.records);
+contraryRecords['EX-1'].lastResult='wrong';
+contrary.records=JSON.stringify(contraryRecords);
+assert.throws(()=>assertProgressEvidence(projectStorage(contrary)),
+ /Historique sans tentative correspondant/,
+ 'Le résultat du quiz et celui du parcours doivent correspondre');
+console.log('PASS M3 stockage projeté : dates ignorées, choix/aides/historique conservés, 4 contre-épreuves nouvelles');
