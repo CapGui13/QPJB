@@ -4,13 +4,17 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
-const session='Séance 2-05 Aix';
+const session='Séance 0-01 Mumu';
 const catalogue=JSON.parse(fs.readFileSync(path.join(root,'catalogue.json'),'utf8'));
 const config=JSON.parse(fs.readFileSync(path.join(root,'config.json'),'utf8'));
 const generator=fs.readFileSync(path.join(root,'scripts/build_catalogue.py'),'utf8');
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const matching=catalogue.seances.filter(s=>s.folder===session);
-assert.equal(matching.length,1,'one session 2-05');
+assert.equal(matching.length,1,'one session 0-01 Mumu');
+assert.ok(!catalogue.seances.some(s=>s.folder==='Séance 2-05 Aix'),'old session not present');
+assert.ok(!fs.existsSync(path.join(root,'Séance 2-05 Aix')),'old directory removed');
+assert.equal(catalogue.seances[0].folder,session,'new series zero is displayed first');
+assert.ok(home.includes('folder.match(/^Séance (\\d+)-(\\d+)(?: .+)?$/i)'), 'home sorter supports non-Aix session names');
 assert.equal(matching[0].fichiers.length,7,'seven published PBNs');
 assert.equal(catalogue.descMap[session],config.descriptions[session],'same description');
 assert.equal(fs.existsSync(path.join(root,session,'.seance-vide')),false,'no empty-session marker once populated');
@@ -60,4 +64,4 @@ for(const [index,item] of expected.entries()){
   assert.ok(/\[Contract\s+"[^"]+"\]/.test(text),'contract present: '+item.name);
   assert.equal(entry.download_url,'./'+encodeURIComponent(session)+'/'+encodeURIComponent(item.name).replace(/[!'()*]/g,c=>'%'+c.charCodeAt(0).toString(16).toUpperCase()),'download path valid: '+item.name);
 }
-console.log('Séance 2-05 Aix : 7 PBN et intégrité SHA-256 OK');
+console.log('Séance 0-01 Mumu : 7 PBN et intégrité SHA-256 OK');
