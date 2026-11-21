@@ -24,10 +24,14 @@ async function run(browser,spec){
  const frame=page.frameLocator('#training-frame');
  await frame.locator('.topic-group .tile').first().waitFor({state:'visible',timeout:30000});
  const child=page.frames().find(f=>f.url().includes('/entrainement/'));
+ check(!!child,'Embedded training app');
+ // Bind assertions to the same frame in which the exact exercise was rendered.
+ // A parent iframe replacement must fail with a useful diagnostic, not a
+ // misleading 30-second visibility timeout in an unrelated replacement frame.
+ const inChild=selector=>child.locator(selector);
  // The embedded app routes asynchronously (fade + postMessage). Do not force
  // a new exercise while an earlier parent navigation can still replace it.
  await child.waitForFunction(()=>view==='topics'&&!trainingPendingNav&&!trainingQueuedNav,null,{timeout:30000});
- check(!!child,'Embedded training app');
  await child.evaluate(async()=>{await ensureTrainingData('play')});
  const counts=await child.evaluate(()=>({b:D.bidding.length,p:D.play.length}));
  check(counts.b===638&&counts.p===188,'826 public exercises loaded');
@@ -42,22 +46,35 @@ async function run(browser,spec){
      throw new Error('Entame not rendered: '+x+' (view='+view+', current='+current()?.id+')');
   },id);
   console.log('LOT07 '+browserName+' '+spec.name+' '+id+' rendered');
-  const hand=frame.locator('.play-free-panel .deal-seat').first();
-  await hand.waitFor({state:'visible',timeout:30000});
-  const got=await frame.locator('.play-free-panel .deal-seat').evaluateAll(a=>a.map(e=>e.getAttribute('data-seat')));
+  const hand=inChild('.play-free-panel .deal-seat').first();
+  try {
+   await hand.waitFor({state:'visible',timeout:8000});
+  } catch(error) {
+   const state=await child.evaluate(()=>({
+    view, id:current()?.id, pending:trainingPendingNav,
+    queued:trainingQueuedNav, seatCount:document.querySelectorAll('.play-free-panel .deal-seat').length
+   })).catch(e=>({inspectionError:e.message}));
+   const out=path.join(root,'artifacts','lot07-publication',browserName);
+   fs.mkdirSync(out,{recursive:true});
+   await page.screenshot({path:path.join(out,spec.name+'-'+id+'-failure.png'),fullPage:true}).catch(()=>{});
+   throw new Error('LOT07 '+browserName+' '+spec.name+' '+id+' hand invisible; frameUrl='+child.url()+
+    '; activeFrames='+page.frames().map(f=>f.url()).join(',')+
+    '; state='+JSON.stringify(state)+'; cause='+error.message);
+  }
+  const got=await inChild('.play-free-panel .deal-seat').evaluateAll(a=>a.map(e=>e.getAttribute('data-seat')));
   check(got.length===1&&got[0]===seat[id],id+' one known hand at correct seat');
-  check(await frame.locator('.play-free-panel .analysis-body').count()===0,id+' correction hidden');
-  check(await frame.locator('.play-free-panel .deal-played').count()===0,id+' no answer on diagram');
-  const prompt=(await frame.locator('.play-free-panel p').first().textContent()).replace(/[\uFE0E\uFE0F]/g,'');
+  check(await inChild('.play-free-panel .analysis-body').count()===0,id+' correction hidden');
+  check(await inChild('.play-free-panel .deal-played').count()===0,id+' no answer on diagram');
+  const prompt=(await inChild('.play-free-panel p').first().textContent()).replace(/[\uFE0E\uFE0F]/g,'');
   check(prompt.startsWith('Accord de la paire'),id+' agreement displayed before reveal');
   if(id!=='JC-BH-091-03')check(!new RegExp(lead[id]+'(?![0-9ARDV])').test(prompt),id+' does not leak answer');
-  await frame.locator('.play-free-panel button').filter({hasText:/Découvrir l’analyse/}).click();
-  await frame.locator('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:10000});
-  const answer=(await frame.locator('.play-free-panel .analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,'');
+  await inChild('.play-free-panel button').filter({hasText:/Découvrir l’analyse/}).click();
+  await inChild('.play-free-panel .analysis-body').waitFor({state:'visible',timeout:10000});
+  const answer=(await inChild('.play-free-panel .analysis-body').textContent()).replace(/[\uFE0E\uFE0F]/g,'');
   check(new RegExp(lead[id]+'(?![0-9ARDV])').test(answer),id+' solution revealed');
   if(id==='JC-BH-091-03')check(answer.includes('♣D'),id+' alternative acceptable');
   if(id==='JC-BH-091-04')check(answer.includes('1SA'),id+' atout versus SA');
-  check(await frame.locator('.play-free-panel .gamecheck').count()===1,id+' remains free self-assessment');
+  check(await inChild('.play-free-panel .gamecheck').count()===1,id+' remains free self-assessment');
   const out=path.join(root,'artifacts','lot07-publication',browserName);fs.mkdirSync(out,{recursive:true});
   await page.screenshot({path:path.join(out,spec.name+'-'+id+'.png'),fullPage:true,animations:'disabled'});
  }
