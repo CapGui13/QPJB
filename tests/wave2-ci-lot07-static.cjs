@@ -5,6 +5,8 @@ const source=fs.readFileSync(path.join(__dirname,'training-lot07-publication-bro
 assert.match(source,/const inChild=selector=>child\.locator\(selector\)/);
 assert.doesNotMatch(source,/frame\.locator\('\.play-free-panel/);
 assert.match(source,/LOT07_DIAGNOSTIC_PROBE/);
+assert.match(source,/sonde-detachement/);
+assert.match(source,/framedetached/);
 assert.match(source,/page\.on\('framedetached'/);
 assert.match(source,/child=await \(await page\.locator\('#training-frame'\)\.elementHandle\(\)\)\.contentFrame\(\)/);
 assert.match(source,/prefix\+'-failure\.json'/);

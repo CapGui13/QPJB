@@ -59,6 +59,12 @@ async function run(browser,spec){
   if(process.env.PW_LOT07_DIAGNOSTIC_PROBE==='1'){
    stage='sonde:'+id;throw new Error('LOT07_DIAGNOSTIC_PROBE '+id);
   }
+  // Simulate the original suspected race: iframe removed after rendering.
+  // The frame-bound locator must reject the now-detached frame.
+  if(process.env.PW_LOT07_DIAGNOSTIC_PROBE==='detach'){
+   stage='sonde-detachement:'+id;
+   await page.locator('#training-frame').evaluate(el=>el.remove());
+  }
   const hand=inChild('.play-free-panel .deal-seat').first();
   await hand.waitFor({state:'visible',timeout:8000});
   stage='assertions:'+id;
@@ -85,7 +91,8 @@ async function run(browser,spec){
  }catch(error){
   const out=path.join(root,'artifacts','lot07-publication',browserName);
   fs.mkdirSync(out,{recursive:true});
-  const prefix=process.env.PW_LOT07_DIAGNOSTIC_PROBE==='1'?'probe-'+spec.name:spec.name;
+  const prefix=process.env.PW_LOT07_DIAGNOSTIC_PROBE==='1'?'probe-'+spec.name:
+   process.env.PW_LOT07_DIAGNOSTIC_PROBE==='detach'?'probe-detach-'+spec.name:spec.name;
   const inspection=child?await child.evaluate(()=>({
    view:typeof view==='undefined'?null:view,
    id:typeof current==='function'?current()?.id:null,
