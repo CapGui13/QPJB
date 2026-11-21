@@ -77,7 +77,7 @@ for(const p of manifest.proposals){
 assert.deepEqual(groups,{D1_MAINS_A_VALIDER:7,D2_ROUDI:1,D3_TEXAS_TREFLE:1,D4_TEXAS_MAJEUR:2});
 assert.equal(altered,11);
 assert.equal(priorAnswers,1);
-const gitBlobSha=s=>createHash('sha1').update('blob '+Buffer.byteLength(s,'utf8')+'\\0','utf8').update(s,'utf8').digest('hex');
+const gitBlobSha=s=>createHash('sha1').update('blob '+Buffer.byteLength(s,'utf8')+String.fromCharCode(0),'utf8').update(s,'utf8').digest('hex');
 assert.equal(gitBlobSha(reconstructed),manifest.source.quizzHtmlBlob,
  'Après annulation des 11 corrections, TOUT le fichier quizz.html doit être IDENTIQUE au blob original de main');
 assert.notEqual(gitBlobSha(html),manifest.source.quizzHtmlBlob,
