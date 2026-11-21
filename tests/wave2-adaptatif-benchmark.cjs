@@ -22,7 +22,7 @@ function answer(profile,session,rand){
  return {result:rand()<p?'wrong':'correct',assisted,hadFreeError:false};
 }
 function simulate(profile,horizon,seed){
- const state=api.empty(),rand=rng(seed);
+ let state=api.empty();const rand=rng(seed);
  const counts={nouveau:0,revision:0,hard:0,weak:0,assisted:0,foundation:0,weakDueAvailable:0,weakDueSelected:0};
  const themes=new Set(),families=new Set(),contexts=new Set(),decisions=new Set(),ids=new Set();
  const foundations=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
@@ -38,6 +38,14 @@ function simulate(profile,horizon,seed){
    chosen.forEach((x,i)=>{
      const a=answer(profile,s,rand);
      assert.equal(api.record(state,x,a.result,i,null,a.assisted,a.hadFreeError),true);
+     // Reprise d'une séance interrompue : avant l'échéance, à mi-parcours et à la fin.
+     if(i===3&&(s===0||s===Math.floor(horizon/2)||s===horizon-1)){
+       const restored=api.load(JSON.stringify(state));
+       assert.deepEqual(restored.active?.ids,chosen.map(q=>q.id));
+       assert.deepEqual(restored.active?.selection,state.active.selection);
+       assert.deepEqual(restored.active?.answers,state.active.answers);
+       state=restored;
+     }
      const selection=state.active.selection[i];
      assert(['nouveau','revision'].includes(selection.kind));
      counts[selection.kind]++;
@@ -75,6 +83,13 @@ function simulate(profile,horizon,seed){
  assert.equal(saved.completed,horizon,'Sauvegarde: nombre de séances perdu');
  assert.equal(Object.keys(saved.entries).length,Object.keys(state.entries).length);
  assert.equal(saved.active,null);
+ const imported=api.importProgress(JSON.stringify(api.exportProgress(state,exercises,{})));
+ assert.equal(imported.completed,horizon);
+ assert.deepEqual(imported.entries,saved.entries);
+ assert.deepEqual(imported.skills,saved.skills);
+ assert.deepEqual(imported.micros,saved.micros);
+ assert.deepEqual(imported.axes,saved.axes);
+ assert.deepEqual(imported.journal,saved.journal);
  return summary;
 }
 function selected(flag,valid){
