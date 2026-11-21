@@ -1311,3 +1311,11 @@
   }
   return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
+// VNEXT_BENCHMARK_CI_TEMP_BEGIN
+// Accroche temporaire de mesure (branche isolée, jamais dans le livrable).
+if(typeof process!=='undefined'&&process.env.GITHUB_ACTIONS==='true'&&
+  process.env.QPJB_VNEXT_BENCH_RUNNING!=='1'){
+  process.env.QPJB_VNEXT_BENCH_RUNNING='1';
+  require('./tests/quizz-adaptatif-vnext-compare.cjs');
+}
+// VNEXT_BENCHMARK_CI_TEMP_END
