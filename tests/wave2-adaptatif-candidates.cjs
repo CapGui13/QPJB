@@ -15,13 +15,12 @@ function patchOnce(text,needle,replacement){
 }
 function modified(variant){
  if(variant==='score-cache'){
-   // Optimisation equivalente mais maintenue uniquement en banc : le test
-   // historique quizz-parcours-lot-b impose le SHA exact du moteur source.
+   // Essai technique uniquement : le SHA du moteur original est un contrat CI.
    return patchOnce(source,
-     "ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));\\n      const winner=ranked[0];".replace('\\n','\n'),
-     "const scored=ranked.map(x=>({exercise:x,value:score(x),tie:hash(x.id+'#'+s)}));\\n"+
-     "      scored.sort((a,b)=>b.value-a.value||a.tie-b.tie);\\n"+
-     "      const winner=scored[0].exercise;".replaceAll('\\n','\n'));
+     "ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));\n      const winner=ranked[0];",
+     "const scored=ranked.map(x=>({exercise:x,value:score(x),tie:hash(x.id+'#'+s)}));\n"+
+     "      scored.sort((a,b)=>b.value-a.value||a.tie-b.tie);\n"+
+     "      const winner=scored[0].exercise;");
  }
  if(variant==='foundation'){
    return patchOnce(source,'?(severeStruggling?-250:-110):0;',
