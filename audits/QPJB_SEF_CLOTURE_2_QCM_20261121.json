@@ -1,0 +1,82 @@
+{
+  "schema": "QPJB_SEF_CLOTURE_2_QCM_V1",
+  "date": "2026-11-21",
+  "source": {
+    "quizzHtmlBlobBefore": "dd6956aa4eba7f8db0ac8e6a54d2e0f4e467fc11",
+    "branch": "fix/sef-closure-v44-008-054-20261121"
+  },
+  "status": "PR_CORRECTIVE_NON_FUSIONNEE",
+  "publicationAllowed": false,
+  "scope": "2 QCM; aucun changement de progression, stockage ou homologation",
+  "patches": [
+    {
+      "id": "SEF-V44-008",
+      "before": {
+        "answer": "3SA",
+        "explain": "Avec 13 H réguliers et aucune majeure quatrième, la force de manche est atteinte : 3SA constitue la conclusion normale.",
+        "context": "Quelle enchère convient à cette situation ?",
+        "difficultyReason": "Priorité entre couleurs ou choix du niveau de réponse"
+      },
+      "after": {
+        "answer": "2♣",
+        "explain": "Avec 13 H et quatre Trèfles (♣RV43), 2♣ sur l'ouverture de 1♦ est un changement de couleur au palier de deux, forcing et auto-forcing. La main n'a aucun arrêt Pique (♠1072) : 3SA direct serait prématuré. 2♣ permet de poursuivre les enchères pour vérifier les arrêts et déterminer la meilleure manche.",
+        "context": "Votre partenaire ouvre de 1♦. Avec 13 H, quatre Trèfles et aucun arrêt à Pique, quelle est votre première réponse selon le SEF ?",
+        "difficultyReason": "Choisir 2♣ forcing avec quatre Trèfles et 13 H plutôt que conclure à 3SA sans arrêt Pique."
+      },
+      "unchangedKeys": [
+        "theme",
+        "shape",
+        "h",
+        "auction",
+        "difficulty",
+        "choices",
+        "id",
+        "hand",
+        "caseFamily",
+        "sourceOriginalExplain20261104V461",
+        "sourceOriginalContext20261104V461",
+        "pedagogicalReview20261104V461"
+      ]
+    },
+    {
+      "id": "SEF-V44-054",
+      "before": {
+        "answer": "3♠",
+        "explain": "Vos 15 H associent cinq Cœurs (♥ADV62) et quatre Piques (♠RV102). Après le fit à Cœur, 3♠ est une enchère d'essai naturelle dans la couleur secondaire ; elle ne déplace pas le fit d'atout déjà établi.",
+        "choices": [
+          "3♠",
+          "3♥",
+          "3SA",
+          "4♥"
+        ],
+        "context": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 15 H et une main 4-5-2-2, quelle est votre redemande ?",
+        "difficultyReason": "Évaluer un essai à la couleur une fois le fit trouvé"
+      },
+      "after": {
+        "answer": "2SA",
+        "explain": "Après 1♥–2♥, vos 15 H permettent une enchère d'essai généralisée à 2SA : elle invite votre partenaire à préciser la qualité de son soutien en vue de 4♥, sans rechercher un contrat à Sans-Atout. L'enchère de 3♠ ne convient pas comme simple essai, car elle dépasse 3♥ et interdit au partenaire de refuser en revenant à 3♥. La manche à 4♥ ne doit pas être imposée automatiquement avec cette force.",
+        "choices": [
+          "2SA",
+          "3♥",
+          "3SA",
+          "4♥"
+        ],
+        "context": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (6–10 HLD environ). Avec 15 H et une main 4-5-2-2, quelle enchère permet de proposer la manche sans l'imposer ?",
+        "difficultyReason": "Après 1♥–2♥, distinguer 2SA essai généralisé de 3♠, qui dépasse le palier du refus à 3♥."
+      },
+      "unchangedKeys": [
+        "theme",
+        "shape",
+        "h",
+        "auction",
+        "difficulty",
+        "id",
+        "hand",
+        "caseFamily",
+        "sourceOriginalContext20261104V469",
+        "sourceOriginalExplain20261104V469",
+        "pedagogicalReview20261104V469"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
 const fixture=require('./quizz-l02-10-approved-additions.json');
 const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz data embedded');
@@ -15,7 +16,14 @@ const fnv=(s)=>{let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.char
 // Conserver l'empreinte originale des 1 253, tout en autorisant exactement
 // les neuf corrections D approuvées situées dans ce bloc (autres cas verrouillés).
 const corrections=new Map(approvedD11.proposals.map(p=>[p.id,p]));
+const closureById=new Map(closure.patches.map(p=>[p.id,p]));
 const archived1253=xs.slice(0,1253).map(q=>{
+ const sef=closureById.get(q.id);
+ if(sef){
+  for(const [field,value] of Object.entries(sef.after))
+   assert.deepEqual(q[field],value,'Clôture SEF : correction exacte '+q.id+' '+field);
+  q={...q,...sef.before};
+ }
  const p=corrections.get(q.id);
  if(!p)return q;
  for(const [field,value] of Object.entries(p.after))
@@ -23,7 +31,7 @@ const archived1253=xs.slice(0,1253).map(q=>{
  return {...q,...p.before};
 });
 assert.equal(fnv(JSON.stringify(archived1253)),fixture.originalPrefixFnv1aUtf16,
- '1 253 historiques identiques après inversion des seules corrections D approuvées');
+ '1 253 historiques identiques après inversion des corrections D et SEF approuvées');
 assert.deepEqual(xs.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly');
 const val={A:4,R:3,D:2,V:1};
 const suit={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};

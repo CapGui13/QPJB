@@ -6,6 +6,7 @@ const path=require('node:path');
 const {createHash}=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const manifest=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const progression=require('../quizz-parcours.js');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const opening='<script id="training-data" type="application/json">';
@@ -93,6 +94,16 @@ assert.deepEqual(
  ])),{fit:22,force:42,palier:41},
  'La répartition des axes ne doit pas changer'
 );
+// Retirer aussi les deux corrections SEF postérieures à D avant le SHA historique.
+for(const p of closure.patches){
+ const question=data.exercises.find(q=>q.id===p.id);
+ assert.ok(question,'QCM de clôture présent : '+p.id);
+ for(const [field,value] of Object.entries(p.after))assert.deepEqual(question[field],value,'Correction SEF exacte : '+p.id+' '+field);
+ const current=JSON.stringify(question);
+ const previous=JSON.stringify({...question,...p.before});
+ assert.equal(reconstructed.split(current).length-1,1,'QCM SEF présent une fois : '+p.id);
+ reconstructed=reconstructed.replace(current,previous);
+}
 const gitBlobSha=s=>createHash('sha1').update('blob '+Buffer.byteLength(s,'utf8')+String.fromCharCode(0),'utf8').update(s,'utf8').digest('hex');
 assert.equal(gitBlobSha(reconstructed),manifest.source.quizzHtmlBlob,
  'Après annulation des 11 corrections, TOUT le fichier quizz.html doit être IDENTIQUE au blob original de main');

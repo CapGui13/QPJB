@@ -12,6 +12,7 @@ const crypto=require('node:crypto');
 // Le test d'intégration D contrôle séparément le catalogue corrigé et la V1 réelle.
 let CURRENT;
 const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const root=path.join(__dirname,'..');
 const code=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
@@ -20,6 +21,12 @@ assert.ok(match,'Catalogue SEF embarqué présent');
 const DATA=JSON.parse(match[1]);
 const approvalsById=new Map(approvedD11.proposals.map(p=>[p.id,p]));
 const catalogue=DATA.exercises.map(ex=>{
+ const correction=closure.patches.find(p=>p.id===ex.id);
+ if(correction){
+  for(const [field,value] of Object.entries(correction.after))
+   assert.deepEqual(ex[field],value,'La correction SEF est exacte : '+ex.id+' '+field);
+  ex={...ex,...correction.before};
+ }
  const reviewed=approvalsById.get(ex.id);
  if(!reviewed)return ex;
  for(const [field,value] of Object.entries(reviewed.after))
