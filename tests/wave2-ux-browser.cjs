@@ -73,6 +73,80 @@ async function scenario(browser,engine,width,base){
   console.log('PASS M3 '+engine+'/'+width+'px : reprise, clavier, main et bilan');
  }finally{await context.close()}
 }
+
+function contrastRatio(a,b){
+ const lum=text=>{
+  const m=String(text).match(/[0-9.]+/g);assert.ok(m?.length>=3,'Couleur RGB disponible '+text);
+  const rgb=m.slice(0,3).map(v=>Number(v)/255).map(x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4));
+  return rgb[0]*0.2126+rgb[1]*0.7152+rgb[2]*0.0722;
+ };
+ const x=lum(a),y=lum(b);return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);
+}
+async function touchScenario(browser,engine,base){
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
+ const page=await context.newPage();
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ try{
+  await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+  await page.locator('#parcours-start').click();
+  await page.locator('#free-answer').waitFor({state:'visible'});
+  assert.equal(await page.locator('#free-answer').getAttribute('readonly'),'','Clavier AZERTY natif désactivé sur tactile');
+  await page.locator('#free-answer').click();
+  await page.locator('#bid-keypad.is-open').waitFor({state:'visible',timeout:6000});
+  assert.equal(await page.locator('#bid-keypad [data-bid-key]').count(),16,'Touches bridge intactes');
+  const sizes=await page.locator('#bid-keypad [data-bid-key]').evaluateAll(elements=>elements.map(el=>el.getBoundingClientRect().height));
+  assert.ok(sizes.every(v=>v>=43.5),'Cibles tactiles du clavier >=44px : '+sizes.join(','));
+  await page.locator('#bid-keypad [data-bid-key="2"]').click();
+  await page.locator('#bid-keypad [data-bid-key="♠"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'2♠','Composition de 2♠');
+  await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'2','Retour arrière conserve le palier');
+  await page.locator('#bid-keypad [data-bid-key="Passe"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'Passe');
+  await page.locator('#bid-keypad [data-bid-key="⌫"]').click();
+  assert.equal(await page.locator('#free-answer').inputValue(),'');
+  await page.locator('#bid-key-close').click();
+  await page.locator('#bid-keypad').waitFor({state:'hidden',timeout:5000});
+  assert.equal(await page.locator('#bid-key-toggle').getAttribute('aria-expanded'),'false','Fermeture ARIA');
+  assert.deepEqual(errors,[],'Aucune exception JS tactile');
+  console.log('PASS M3 '+engine+'/tactile : 16 touches, composition, suppression, ARIA');
+ }finally{await context.close()}
+}
+async function layoutScenario(browser,engine,width,height,base){
+ const context=await browser.newContext({viewport:{width,height},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
+ const page=await context.newPage();const errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ try{
+  await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+  await page.locator('#parcours-start').click();
+  await page.locator('#question-heading').waitFor({state:'visible'});
+  const dims=await page.evaluate(()=>{
+   const hand=document.querySelector('.hand'),entry=document.querySelector('.free-entry-row');
+   const empty=document.querySelector('.auc td.auction-empty'),ask=document.querySelector('.auc td.ask.pulse');
+   return {outer:document.documentElement.scrollWidth,inner:document.documentElement.clientWidth,
+    hand:getComputedStyle(hand).gridTemplateColumns,handDisplay:getComputedStyle(hand).display,
+    entry:getComputedStyle(entry).gridTemplateColumns,
+    empty:empty?{color:getComputedStyle(empty).color,bg:getComputedStyle(empty).backgroundColor,opacity:getComputedStyle(empty).opacity}:null,
+    motion:ask?getComputedStyle(ask).animationName:null};
+  });
+  assert.ok(dims.outer<=dims.inner+2,'Débordement horizontal '+width+'px : '+JSON.stringify(dims));
+  if(width===195){
+   assert.equal(dims.handDisplay,'grid','Zoom 200% : main en grille');
+   assert.equal(dims.hand.trim().split(/\\s+/).length,1,'Zoom 200% : une colonne pour la main');
+   assert.equal(dims.entry.trim().split(/\\s+/).length,1,'Zoom 200% : saisie en une colonne');
+  }
+  if(dims.empty){
+   assert.equal(dims.empty.opacity,'1','Cellule vide sans réduction d’opacité');
+   assert.ok(contrastRatio(dims.empty.color,dims.empty.bg)>=4.5,'Contraste calculé AA : '+contrastRatio(dims.empty.color,dims.empty.bg));
+  }
+  if(dims.motion!==null)assert.equal(dims.motion,'none','Mouvement réduit respecté');
+  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
+  fs.mkdirSync(dir,{recursive:true});
+  await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
+  assert.deepEqual(errors,[],'Aucune erreur JS reflow');
+  console.log('PASS M3 '+engine+'/'+width+'x'+height+' : reflow, contraste, mouvement réduit');
+ }finally{await context.close()}
+}
 (async()=>{
  const requested=process.env.PW_BROWSER;
  const engines=requested?[requested]:['chromium','webkit'];
@@ -81,7 +155,7 @@ async function scenario(browser,engine,width,base){
  try{
   for(const engine of engines){
    const browser=await ({chromium,webkit})[engine].launch({headless:true,args:engine==='chromium'?['--no-sandbox']:[]});
-   try{for(const width of [320,390])await scenario(browser,engine,width,'http://127.0.0.1:'+server.address().port)}
+   try{const base='http://127.0.0.1:'+server.address().port;for(const width of [320,390])await scenario(browser,engine,width,base);await touchScenario(browser,engine,base);for(const [w,h] of [[195,422],[844,390]])await layoutScenario(browser,engine,w,h,base)}
    finally{await browser.close()}
   }
  }finally{await new Promise(ok=>server.close(ok))}
