@@ -1,9 +1,9 @@
-# Validation groupée — QPJB V1, onze propositions éditoriales
+# Arbitrage groupé — QPJB V1, onze corrections éditoriales approuvées
 
-**Statut : PR brouillon de préparation. AUCUNE proposition encore activée, AUCUN QCM public modifié.**  
+**Statut au 21/11/2026 : 11/11 propositions approuvées pédagogiquement dans la conversation, dont une rectification de bonne réponse. PR brouillon : AUCUNE correction appliquée au Quiz public, aucun déploiement autorisé.**  
 Base : [PR #237](https://github.com/CapGui13/QPJB/pull/237) et [PR #234](https://github.com/CapGui13/QPJB/pull/234). Prévisualisation exacte machine : `audits/QPJB_V1_LOT_D_11_CORRECTIONS_CANDIDATES_20261121.json`. Le test dédié prouve que les 11 changements envisagés sont exclusivement ceux annoncés.
 
-## D1 — Sept soutiens simples à réparer : validation requise
+## D1 — Sept soutiens simples : 7/7 validés
 
 Chaque original possède **5 H, trois atouts, aucune courte**, tout en affirmant avoir répondu `2M` à `1M`. Ces propositions ajoutent **un seul Valet** en lieu et place d'une petite carte pour obtenir **6 H et 6 HLD**, sans changer la forme, la séquence, les choix ou la bonne réponse.
 
@@ -17,27 +17,29 @@ Chaque original possède **5 H, trois atouts, aucune courte**, tout en affirmant
 | `SEF-V418-006` | ♠D85 · ♥V74 · ♦V1082 · ♣V92 | ♠DV8 · ♥V74 · ♦V1082 · ♣V92 | 5 → 6 |
 | `SEF-V421-012` | ♠R64 · ♥975 · ♦10863 · ♣D94 | ♠R64 · ♥975 · ♦10863 · ♣DV9 | 5 → 6 |
 
-En plus de la main, la modification technique **obligatoire** concerne le champ `h` (5→6), la consigne, l'explication et le motif de difficulté. **Aucune bonne réponse ne change** (refus de l'essai à `3♥` ou `3♠`). La qualité éditoriale exacte des sept mains proposées doit être validée, elle n'est pas établie par les tests.
+En plus de la main, la modification technique **obligatoire** concerne le champ `h` (5→6), la consigne, l'explication et le motif de difficulté. **Aucune bonne réponse ne change** (refus de l'essai à `3♥` ou `3♠`). La qualité éditoriale exacte des sept mains proposées a été **acceptée par l'utilisatrice** (deux validations individuelles, cinq en bloc) ; les tests contrôlent uniquement leur cohérence technique.
 
-**Décision D1 :** accepter les 7 propositions telles quelles / demander une correction cas par cas / suspendre ces 7 modifications.
+**Décision D1 : VALIDÉ — les sept mains à 6 HLD, les champs h et leurs explications.**
 
 ## D2 — Roudi : un motif incorrect
 
 `SEF-L10-030` : corriger uniquement `difficultyReason`, qui évoque une répétition faible alors que le QCM valide `2♣` Roudi avec six Piques et 11 HL. Main, question et bonne réponse inchangées.
 
-**Décision D2 :** accepter la rectification du motif / conserver en attente.
+**Décision D2 : VALIDÉ — motif Roudi corrigé, réponse 2♣ inchangée.**
 
 ## D3 — Texas Trèfle : cohérence avec la décision existante
 
 `SEF-L25-007` : appliquer l'explication **déjà validée** pour `2SA`, modulation positive avec gros honneur troisième et main non minimum. Corriger également `difficultyReason` pour ne plus indiquer « maximum » comme une nécessité. Aucune nouvelle convention inventée ; le manifeste historique reste marqué HOLD pour la publication V1.
 
-**Décision D3 :** appliquer l'explication approuvée et aligner le motif / maintenir en attente.
+**Décision D3 : VALIDÉ — explication Texas Trèfle et motif « non minimum », réponse 2SA inchangée.**
 
-## D4 — Deux motifs Texas étiquetés Stayman
+## D4 — Deux cas Texas : un motif corrigé, un corrigé de manche rectifié
 
-`SEF-V44-027` et `SEF-V44-030` : remplacer uniquement le motif parlant de Stayman par un motif correspondant au **Texas majeur** des séquences réelles. Conserver les bonnes réponses `2SA` et `3♥`, les rubriques existantes et toutes les cartes.
+`SEF-V44-027` : corriger uniquement le motif Stayman en motif **Texas Pique**. Bonne réponse **2SA** inchangée avec cinq Piques et 9 H (invitation de manche).
 
-**Décision D4 :** accepter les deux libellés / maintenir en attente.
+`SEF-V44-030` : l'utilisatrice a **rejeté l'ancienne proposition conservant 3♥**. Avec six Cœurs ♥ARV753, **9 H + 2 L = 11 HL** et une couleur solide, on **impose la manche à 4♥** face à 1SA 15–17. Il faut modifier les champs `answer` (**3♥ → 4♥**), `context`, `explain` et `difficultyReason`. Les quatre choix existants contiennent déjà 4♥ et restent inchangés. La main, les valeurs H, la séquence, le thème, l'ID et la famille restent inchangés. Comparaison utile : les cinq Piques du QCM 10 sont moins beaux, et ce QCM 10 reste seulement invitationnel.
+
+**Décision D4 : VALIDÉ — QCM 10, motif Texas Pique (2SA conservé) ; QCM 11, correction complète avec bonne réponse 4♥ et 11 HL.**
 
 ## Décision indépendante — Lot C
 
@@ -45,8 +47,8 @@ En plus de la main, la modification technique **obligatoire** concerne le champ 
 
 ## Conditions de mise en ligne
 
-1. Validation explicite de D1, D2, D3, D4 par l'utilisatrice ; arbitrage C distinct.
+1. **D1–D4 validés pédagogiquement (11/11)** par l'utilisatrice ; conserver séparément l'arbitrage du lot C, non actif.
 2. Appliquer uniquement les groupes approuvés à `quizz.html` dans une PR **distincte de publication**, avec contrôle des 1 523 QCM, des 22 rubriques, des mains/points, des bonnes réponses et des sauvegardes.
 3. Tests intégrité, moteur, Chromium, WebKit, puis fusion et publication contrôlées. Ne pas engager d'homologation générale des 620 classifications en attente.
 
-**Aucune de ces propositions n'est une autorisation implicite de fusion ou de publication.**
+**Ces validations éditoriales ne sont PAS une autorisation implicite de fusion ou de publication.**
