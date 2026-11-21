@@ -23,7 +23,8 @@ const tests=[
  'wave2-pedagogie-decisions-p20.cjs',
  'wave2-pedagogie-catalogue-p21.cjs',
  'wave2-pedagogie-payload-p22.cjs',
- 'wave2-pedagogie-runner-p24.cjs'
+ 'wave2-pedagogie-runner-p24.cjs',
+ 'wave2-pedagogie-runner-integration-p25.cjs'
 ];
 for(const file of tests){
  const res=spawnSync(process.execPath,[path.join(root,'tests',file)],{cwd:root,encoding:'utf8',timeout:120000});
