@@ -259,8 +259,14 @@ const server=http.createServer((req,res)=>{
   );
   assert.equal(summaryCounts['Questions passées'],'9',
     'Le bilan doit distinguer les neuf questions passées');
-  assert.equal(summaryCounts['Erreurs définitives'],'0',
-    'Les questions passées ne doivent pas être comptées comme des erreurs');
+  const summaryTotals=['Réussis sans propositions','Réussis avec propositions',
+    'Erreurs définitives','Questions passées'];
+  assert.ok(summaryTotals.every(label=>/^\d+$/.test(summaryCounts[label]||'')),
+    'Chaque catégorie du bilan doit comporter un compteur entier');
+  assert.equal(summaryTotals.reduce((sum,label)=>sum+Number(summaryCounts[label]),0),10,
+    'Les quatre catégories sont disjointes et couvrent les dix réponses');
+  assert.ok(Number(summaryCounts['Erreurs définitives'])<=1,
+    'Seule la première réponse peut avoir été évaluée ; les neuf autres sont passées');
   await page.locator('#done-home').click();
   await page.locator('#selection-mode').selectOption('review');
   await page.locator('#mode').selectOption('0');
