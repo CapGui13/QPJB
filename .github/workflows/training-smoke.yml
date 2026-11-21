@@ -25,11 +25,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Contrôle de structure, exercices et mises à jour
+      - name: Contrôles rapides — structure et régressions Quiz SEF
         run: |
           node tests/training-smoke.cjs
           node tests/quizz-integrity.cjs
           node tests/quizz-v1-lot-d-11-integration.cjs
+          node tests/quizz-ui-vnext-static.cjs
+          node tests/parcours-recommandations-v1.test.js
+          node audits/v1-evolutions/pedagogie/verifier-propositions.cjs
           node tests/quizz-v2-audit.cjs
           node tests/quizz-v2-sa.cjs
           node tests/quizz-l01-regression.cjs
@@ -73,6 +76,8 @@ jobs:
           node tests/quizz-v4101-regression.cjs
           node tests/quizz-v4102-regression.cjs
           node tests/quizz-v4103-regression.cjs
+      - name: Contrôles rapides — Entraînement, catalogue et mises à jour
+        run: |
           node tests/training-card-integrity.cjs
           node tests/training-lot06-activation.cjs
           node tests/training-lot07-publication.cjs
@@ -82,10 +87,9 @@ jobs:
           node tests/training-ambiguity.cjs
           node tests/training-review.cjs
           node tests/training-publication-nine.cjs
-          # Parcours long après les audits QCM rapides : diagnostiquer tôt toute dérive documentaire.
-          node tests/quizz-parcours.cjs
           node scripts/split_training_data.cjs --check
           node tests/site-update.cjs
+          node tests/ci-training-workflow-guard.cjs
       - name: Rapports d'intégrité et d'ambiguïté
         if: always()
         uses: actions/upload-artifact@v4
@@ -104,10 +108,25 @@ jobs:
             artifacts/quizz-content/qualite-*.csv
           retention-days: 14
           if-no-files-found: warn
+  parcours-long:
+    name: Simulations longues du parcours V1
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Independantes des tests rapides et des navigateurs. GitHub ne marque
+    # le workflow comme reussi que si tous ses jobs ont reussi.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recette complete — cinq profils, 65 puis 153 seances
+        run: |
+          node tests/quizz-parcours.cjs
+
   smoke:
     name: Validation ${{ matrix.browser }}
-    needs: integrity
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     # Image officielle Playwright : dependances et Chromium deja presents.
     container:
       image: mcr.microsoft.com/playwright:v1.64.1-noble
@@ -138,6 +157,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Test the guided progression flow (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
+      - name: Vérifier interface V1 et recommandations (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-ui-vnext-browser.cjs
       - name: Retain visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
@@ -149,8 +170,8 @@ jobs:
 
   webkit:
     name: Validation webkit
-    needs: integrity
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     # Image officielle Playwright : WebKit et ses bibliotheques OS sont deja installes.
     # Version du package JS identique a celle de l'image pour les executables.
     container:
@@ -178,6 +199,8 @@ jobs:
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
       - name: Test the guided progression flow (webkit)
         run: PW_BROWSER=webkit node tests/quizz-parcours-browser.cjs
+      - name: Vérifier interface V1 et recommandations (webkit)
+        run: PW_BROWSER=webkit node tests/quizz-ui-vnext-browser.cjs
       - name: Retain WebKit visual screenshots and timings
         if: always()
         uses: actions/upload-artifact@v4
