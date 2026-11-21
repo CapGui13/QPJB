@@ -6,6 +6,7 @@ const path=require('node:path');
 const {createHash}=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const manifest=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const progression=require('../quizz-parcours.js');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const opening='<script id="training-data" type="application/json">';
 const start=html.indexOf(opening),stop=html.indexOf('</script>',start+opening.length);
@@ -77,6 +78,21 @@ for(const p of manifest.proposals){
 assert.deepEqual(groups,{D1_MAINS_A_VALIDER:7,D2_ROUDI:1,D3_TEXAS_TREFLE:1,D4_TEXAS_MAJEUR:2});
 assert.equal(altered,11);
 assert.equal(priorAnswers,1);
+// Ces quatre nouveaux motifs ne doivent pas supprimer les preuves transversales
+// déjà homologuées pour la sélection V1 (et encore moins toucher au score/sauvegarde).
+const migratedAxisIds=['SEF-V4-009-1','SEF-V4-011-1','SEF-V4-021-1','SEF-V4-023-3'];
+for(const id of migratedAxisIds){
+ assert.equal(progression.axisKey(data.exercises.find(q=>q.id===id)),'palier',
+  'Preuve transversale conservée : '+id);
+}
+const axes=data.exercises.filter(q=>progression.axisKey(q));
+assert.equal(axes.length,105,'Les 105 preuves transversales restent actives');
+assert.deepEqual(
+ Object.fromEntries(Object.keys(progression.AXIS_LABELS).map(a=>[
+  a,axes.filter(q=>progression.axisKey(q)===a).length
+ ])),{fit:22,force:42,palier:41},
+ 'La répartition des axes ne doit pas changer'
+);
 const gitBlobSha=s=>createHash('sha1').update('blob '+Buffer.byteLength(s,'utf8')+String.fromCharCode(0),'utf8').update(s,'utf8').digest('hex');
 assert.equal(gitBlobSha(reconstructed),manifest.source.quizzHtmlBlob,
  'Après annulation des 11 corrections, TOUT le fichier quizz.html doit être IDENTIQUE au blob original de main');
