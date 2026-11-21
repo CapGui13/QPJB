@@ -4,11 +4,11 @@
 const assert=require('node:assert/strict');
 const {plan,main}=require('./wave2-adaptatif-suite.cjs');
 const quick=plan('--quick'), full=plan('--full');
-assert.equal(quick.length,4);
-assert.equal(full.length,9);
-assert.deepEqual(full.slice(0,4),quick);
-assert.equal(new Set(full.map(s=>s.id)).size,9);
-assert.deepEqual(full.slice(5).map(s=>s.args[1]),
+assert.equal(quick.length,5);
+assert.equal(full.length,10);
+assert.deepEqual(full.slice(0,5),quick);
+assert.equal(new Set(full.map(s=>s.id)).size,10);
+assert.deepEqual(full.slice(6).map(s=>s.args[1]),
   ['foundation','recall','overdue','score-cache']);
 let listing='';
 assert.equal(main(['--list'],{log:s=>{listing=s;}}),0);
@@ -26,7 +26,7 @@ assert.equal(main(['--quick'],{
   runner:()=>{successes++;return {status:0,signal:null};},
   log:()=>{},error:s=>{throw Error(s);}
 }),0);
-assert.equal(successes,4);
+assert.equal(successes,5);
 assert.equal(main(['--unknown'],{log:()=>{},error:()=>{}}),2);
 assert.equal(main(['--quick','--full'],{log:()=>{},error:()=>{}}),2);
-console.log('PASS: 4 validations rapides, 9 commandes completes, erreur propagee, arguments controles');
+console.log('PASS: 5 validations rapides, 10 commandes completes, erreur propagee, arguments controles');
