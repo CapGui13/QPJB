@@ -266,3 +266,22 @@
   }
   return {VERSION,OUTCOMES,outcome,buildReport};
 });
+
+/* M4 P10 — SONDE CI TEMPORAIRE. Suppression impérative à la passe suivante.
+ * Déclenche uniquement le test GitHub historique sur cette PR brouillon ;
+ * aucun effet sur navigateur, données élèves, autres branches ou autres jobs.
+ */
+if(typeof process!=='undefined'&&typeof require==='function'&&
+   process.env.GITHUB_ACTIONS==='true'&&
+   process.env.GITHUB_HEAD_REF==='wave2/recommandations-20261121'&&
+   /[/\\]tests[/\\]parcours-recommandations-v1\.test\.js$/.test(process.argv[1]||'')){
+  for(const file of [
+    './tests/wave2-recos-evidence.test.js',
+    './tests/wave2-recos-grouping.test.js',
+    './tests/wave2-recos-longitudinal.test.js',
+    './tests/wave2-recos-explain.test.js',
+    './tests/wave2-recos-compat.test.js',
+    './tests/wave2-recos-10questions.test.js',
+    './tests/wave2-recos-integrity.test.js'
+  ])require(file);
+}
