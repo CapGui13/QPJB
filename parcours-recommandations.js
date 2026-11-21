@@ -247,7 +247,7 @@
       }
     }
 
-    if(!areas.length&&!stats.detailedSessions){
+    if(!active&&!areas.length&&!stats.detailedSessions){
       proposals.push(suggestion('not_evaluated',90,null,
         state.completed>0?'Historique sans évaluation de notion exploitable':'Aucune notion encore évaluée',
         state.completed>0?'Des séances anciennes existent, mais aucun suivi précis de notion n’est disponible. Poursuis le parcours pour constituer de nouvelles observations.':
@@ -295,6 +295,7 @@ if(typeof process!=='undefined'&&typeof require==='function'&&
     './tests/wave2-recos-compat.test.js',
     './tests/wave2-recos-10questions.test.js',
     './tests/wave2-recos-integrity.test.js',
-    './tests/wave2-recos-freshness.test.js'
+    './tests/wave2-recos-freshness.test.js',
+    './tests/wave2-recos-resume.test.js'
   ])require(file);
 }
