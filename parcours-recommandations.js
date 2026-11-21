@@ -137,6 +137,46 @@
     return visible;
   }
 
+  // Contrat de lecture destiné à l'intégration future : les champs suivants
+  // explicitent une preuve EXISTANTE, sa limite et une action. Aucun calcul
+  // de maîtrise ni indicateur d'apprentissage supplémentaire.
+  function explain(item){
+    const e=item.evidence;
+    if(item.type==='resume')return {
+      observed:e.answered+' réponse(s) enregistrée(s) sur '+e.total+' dans la séance en cours.',
+      caveat:'Une séance interrompue n’est pas une validation de ces notions.',
+      action:'Reprendre la séance en cours.'
+    };
+    if(item.type==='revision_session')return {
+      observed:'Le moteur V1 confirme un plan de '+e.count+' situation(s), ciblant '+e.focus.map(f=>f.label).join(' et ')+'.',
+      caveat:'La disponibilité vaut pour le catalogue fourni et l’état actuel ; la révision ne prouve pas une maîtrise.',
+      action:'Lancer la séance complémentaire depuis le parcours, après avoir terminé toute séance active.'
+    };
+    if(item.type==='not_evaluated')return {
+      observed:'Aucun suivi exploitable de notion évaluée n’est disponible.',
+      caveat:'Aucune conclusion sur le niveau de l’élève n’est possible.',
+      action:'Commencer une séance du parcours pour obtenir les premières observations.'
+    };
+    const source=e.source==='micros'?'micro-compétence':'axe transversal';
+    const observed='Suivi V1 de '+source+' « '+e.label+' » : '+e.attempts+
+      ' tentative(s), '+e.independent+' indépendante(s), score '+e.score+'.';
+    if(item.type==='repeated_autonomous')return {
+      observed,
+      caveat:'Ces réussites répétées ne garantissent pas la maîtrise de toute la rubrique ni le maintien à long terme.',
+      action:'Continuer le parcours et varier les situations.'
+    };
+    if(item.type==='persistent_difficulty')return {
+      observed,
+      caveat:'Le score est un agrégat V1, pas un diagnostic certain de chaque situation ni une mesure de maîtrise.',
+      action:'Retravailler cette notion sur plusieurs situations distinctes.'
+    };
+    return {
+      observed,
+      caveat:'Une réponse aidée ou erronée ne constitue pas une preuve de réussite autonome.',
+      action:'Consolider avec de nouvelles situations et revoir les explications.'
+    };
+  }
+
   // Ne modifie ni les scores, ni l'état, ni le catalogue. Les étiquettes sont
   // celles de quizz-parcours.js ; aucun thème ou axe nouveau n'est créé.
   function buildReport(rawState,options={}){
@@ -205,7 +245,8 @@
         'Aucune notion encore évaluée','Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
     }
     const grouped=overlappingAreas(proposals,state);
-    const visible=visibleRecommendations(grouped.items,limit);
+    const visible=visibleRecommendations(grouped.items,limit)
+      .map(item=>({...item,explanation:explain(item)}));
     const limitations=[];
     if(stats.sessionsWithoutDetail)
       limitations.push(`${stats.sessionsWithoutDetail} séance(s) terminée(s) sans journal détaillé : résultats non reconstitués.`);
