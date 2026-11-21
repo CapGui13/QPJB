@@ -883,7 +883,7 @@ function pressBidKey(key){
 function stageAt(index){return sessionStages[index]||(sessionStages[index]={choicesShown:false,freeWrong:false,firstGuess:null,draft:'',error:''})}
 function announceQuizChange(message){const status=$('qpjb-quiz-announcement');if(status)status.textContent=message}
 function setQuizSkipTarget(target,label){const link=document.querySelector('.qpjb-quiz-skip');if(link){link.setAttribute('href','#'+target);link.textContent=label}}
-function focusQuizQuestion(){const el=$('question-heading');if(el){setQuizSkipTarget('question-heading','Aller directement à la question');el.focus({preventScroll:true})}else setQuizSkipTarget('back-home','Retour aux paramètres de séance')}
+function focusQuizQuestion(){const el=$('question-heading');if(el){setQuizSkipTarget('question-heading','Aller directement à la question');el.focus({preventScroll:true})}else {setQuizSkipTarget('back-home','Retour aux paramètres de séance');$('back-home')?.focus({preventScroll:true})}}
 function renderChoicesWithFocus(){render();announceQuizChange('Quatre propositions disponibles.');$('answers')?.querySelector('button')?.focus({preventScroll:true})}
 
 /* Montrer le corrigé vers le bas sans replacer l'exercice en haut. */
@@ -1023,7 +1023,7 @@ function exitSession(){
  quizReportView();
  quizReportHeight();
  // Restaurer la position de la liste de réglages après le redimensionnement de l'iframe.
- setTimeout(()=>{quizScrollTo(quizSettingsScroll);(sessionType==='parcours'?$('parcours-start'):$('new'))?.focus()},80);
+ setTimeout(()=>{quizScrollTo(quizSettingsScroll);(sessionType==='parcours'?$('parcours-start'):$('new'))?.focus({preventScroll:true})},80);
 }
 function renderHomePlaceholder(){
  parcoursHomeStatus();

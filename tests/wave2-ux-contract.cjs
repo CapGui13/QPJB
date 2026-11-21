@@ -55,7 +55,9 @@ const checks=[
  ['zoom reflow une colonne',/@media\(max-width:270px\)\{/],
  ['clavier au zoom',/#body \.bid-key-levels\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/],
  ['focus titre',/#body #question-heading:focus,#body #answer-feedback:focus/],
- ['contraste cellule vide',/#body \.auc td\.auction-empty\{color:#c0b2ce;opacity:1\}/]
+ ['contraste cellule vide',/#body \.auc td\.auction-empty\{color:#c0b2ce;opacity:1\}/],
+ ['focus retour sans scroll',/sessionType==='parcours'\?\$\('parcours-start'\):\$\('new'\)\)\?\.focus\(\{preventScroll:true\}\)/],
+ ['sélection vide focus',/else \{setQuizSkipTarget\('back-home','Retour aux paramètres de séance'\);\$\('back-home'\)\?\.focus\(\{preventScroll:true\}\)\}/]
 ];
 for(const [label,pattern] of checks)assert.match(html,pattern,label);
 console.log('PASS '+checks.length+' garde-fous UI/ARIA et catalogue '+data.exercises.length+'/'+data.themes.length);
