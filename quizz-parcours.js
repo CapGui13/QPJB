@@ -811,11 +811,8 @@
           :0;
         return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery+lotBPriority;
       }
-      // Score constant durant un tirage : evaluation une fois par candidat.
-      // Equivalent exact au tri precedent, y compris le departage FNV.
-      const scored=ranked.map(x=>({exercise:x,value:score(x),tie:hash(x.id+'#'+s)}));
-      scored.sort((a,b)=>b.value-a.value||a.tie-b.tie);
-      const winner=scored[0].exercise;picked.add(winner.id);
+      ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
+      const winner=ranked[0];picked.add(winner.id);
       count[winner.theme]=(count[winner.theme]||0)+1;
       contextCount[context(winner)]=(contextCount[context(winner)]||0)+1;
       const mk=microKey(winner);
