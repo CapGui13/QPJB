@@ -9,13 +9,14 @@ const expected=[
 'wave2-pedagogie-coherence.cjs','wave2-pedagogie-revue-restants.cjs',
 'wave2-pedagogie-validations.cjs','wave2-pedagogie-preuves.cjs',
 'wave2-pedagogie-reprise.cjs','wave2-pedagogie-texas-accords.cjs',
-'wave2-pedagogie-couverture-suite.cjs'];
+'wave2-pedagogie-couverture-suite.cjs',
+'wave2-pedagogie-gates-p19.cjs'];
 const launch=fs.readFileSync(path.join(root,'tests','wave2-pedagogie-suite.cjs'),'utf8');
 const match=launch.match(/const tests=\[([\s\S]*?)\];/);
 assert(match,'Tableau du lanceur absent');
 const listed=[...match[1].matchAll(/'([^']+\.cjs)'/g)].map(x=>x[1]);
 assert.deepEqual(listed,expected,'Inventaire du lanceur modifié');
-assert.equal(new Set(listed).size,13);
+assert.equal(new Set(listed).size,14);
 assert(!listed.includes('wave2-pedagogie-suite.cjs'),'Suite récursive interdite');
 for(const filename of listed){
  assert(/^wave2-pedagogie-[a-z-]+\.cjs$/.test(filename));
@@ -28,7 +29,7 @@ assert.equal(checkpoint.status,'MISSION_NON_TERMINEE_HOLD');
 assert.equal(checkpoint.realNodeExecution,false);
 assert.equal(checkpoint.realGitHubCIExecution,false);
 assert.equal(checkpoint.passedScriptNames.length,12);
-assert.deepEqual(checkpoint.nextSuiteScriptNames,expected);
+assert.deepEqual(checkpoint.nextSuiteScriptNames,expected.slice(0,13),'Checkpoint P18 preserve');
 assert.equal(checkpoint.tested.reduce((n,g)=>n+g.passed,0),12);
 assert.equal(checkpoint.failed.length,0);
-console.log('PASS wave2-pedagogie-couverture-suite : 13 scripts déclarés, 12 exécutés en JS isolé, Node/CI non attestés');
+console.log('PASS wave2-pedagogie-couverture-suite : 14 scripts, checkpoint P18 historique intact, Node/CI non attestés');
