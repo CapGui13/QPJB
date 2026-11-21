@@ -633,6 +633,24 @@
         recentOpeningBids[answer]=(recentOpeningBids[answer]||0)+1;
       }
     }
+    // LOT_B_EVIDENCE_BEGIN
+    // Lire huit séances ordinaires récentes, sans ajouter de champ sauvegardé.
+    // Aide ou première erreur libre = fragilité, jamais une réussite autonome.
+    const foundationThemes=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
+    const recentFoundation={};
+    for(const event of (state.journal||[]).filter(e=>e.mode==='parcours').slice(-8))
+      for(const answer of event.answers||[]){
+        if(!foundationThemes.has(answer.theme))continue;
+        const stat=recentFoundation[answer.theme]||{attempts:0,weak:0};
+        stat.attempts++;
+        if(answer.result!=='correct'||answer.assisted||answer.hadFreeError)stat.weak++;
+        recentFoundation[answer.theme]=stat;
+      }
+    const foundationSummary=Object.values(recentFoundation)
+      .reduce((v,r)=>({attempts:v.attempts+r.attempts,weak:v.weak+r.weak}),{attempts:0,weak:0});
+    const struggling=foundationSummary.attempts>=10&&
+      foundationSummary.weak*2>=foundationSummary.attempts;
+    // LOT_B_EVIDENCE_END
     const maxPerTheme=pool.every(x=>x.theme==='ouv')?limit:4;
     const recentFamily={};
     for(const x of exercises){
@@ -640,6 +658,19 @@
       if(r&&(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key]))
         recentFamily[key]=r.lastSession;
     }
+    // LOT_B_DIVERSITY_BEGIN
+    // Favoriser de nouveaux contextes et types de réponses, sans les imposer.
+    const seenContexts=new Set(),seenDecisions=new Set();
+    for(const x of exercises){
+      if(!previous[x.id])continue;
+      seenContexts.add(x.theme+'|'+String(x.auction?.[0]||''));
+      seenDecisions.add(x.theme+'|'+String(x.answer||''));
+    }
+    // Les échecs quasi systématiques exigent une protection plus forte
+    // contre les cas difficiles que les succès fréquents avec assistance.
+    const severeStruggling=struggling&&foundationSummary.weak*4>=
+      foundationSummary.attempts*3;
+    // LOT_B_DIVERSITY_END
     function pick(list,kind,reason){
       let ranked=list.filter(x=>!picked.has(x.id));
       if(!ranked.length)return false;
@@ -674,6 +705,11 @@
         });
         if(exploratory.length)ranked=exploratory;
       }
+      // LOT_B_PICK_BEGIN
+      // Calculer ce quota une fois par place, pas pour chaque QCM candidat.
+      const foundationChosen=selected.reduce(
+        (n,chosen)=>n+Number(foundationThemes.has(chosen.exercise.theme)),0);
+      // LOT_B_PICK_END
       function score(x){
         const t=x.theme,age=s-INTRO[t],already=count[t]||0;
         const skill=targetByTheme[t];
@@ -722,10 +758,35 @@
         const axisNeed=kind==='revision'||!axisRecord?0:
           clamp(-axisRecord.score*11,-33,33);
         const axisVariety=axis?-Math.min(32,(axisCount[axis]||0)*8):0;
+        // LOT_B_SCORE_BEGIN
+        // Repondérer les fondamentaux fragiles. Aucune rubrique n'est exclue.
+        const evidence=recentFoundation[t];
+        const foundationNeed=!struggling||kind==='revision'||!foundationThemes.has(t)||!evidence||
+          evidence.attempts<3||evidence.weak<2?0:
+          Math.round(200*evidence.weak/evidence.attempts);
+        // Ne pas sacrifier toute la découverte : réserver de la place aux autres thèmes.
+        const explorationFloor=struggling&&s>=8&&kind!=='revision'&&foundationChosen>=8
+          ?(foundationThemes.has(t)?-500:250):0;
+        const discovery=struggling&&kind!=='revision'&&s>=8&&
+          !foundationThemes.has(t)&&!Object.hasOwn(latestTheme,t)
+          ?(x.difficulty<=2?260:x.difficulty===3?130:0):0;
+        const newFamily=struggling&&kind!=='revision'&&recent>=999?200:0;
+        // La couverture se mesure aussi par contextes d'ouverture et réponses,
+        // pas seulement par le nombre d'identifiants de QCM distincts.
+        const rareContext=struggling&&kind!=='revision'&&
+          !seenContexts.has(t+'|'+String(x.auction?.[0]||''))?70:0;
+        const rareAnswer=struggling&&kind!=='revision'&&
+          !seenDecisions.has(t+'|'+String(x.answer||''))?30:0;
+        // Éviter de présenter des cas de niveau 4–5 à un élève qui échoue partout.
+        const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4
+          ?(severeStruggling?-250:-110):0;
+        const lotBPriority=foundationNeed+explorationFloor+discovery+
+          newFamily+rareContext+rareAnswer+hardWhileStruggling;
+        // LOT_B_SCORE_END
         const review=kind==='revision'
           ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
           :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery;
+        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery+lotBPriority;
       }
       ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
       const winner=ranked[0];picked.add(winner.id);
