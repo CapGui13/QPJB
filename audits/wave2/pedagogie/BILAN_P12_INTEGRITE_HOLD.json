@@ -1,0 +1,111 @@
+{
+  "schema": "QPJB_WAVE2_M1_P12_CROSS_CHECK_HOLD",
+  "catalogueBlob": "9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7",
+  "roadmapBlob": "d0f06f1c259f7a766f2d1c8c47289374a74138dc",
+  "status": "HOLD_WORK_REMAINS",
+  "checks": [
+    {
+      "id": "P7",
+      "requirement": "3 profils, 92 IDs, 22 thèmes, 36 exclusions",
+      "result": "PASS"
+    },
+    {
+      "id": "P8",
+      "requirement": "3 cas SEF à discuter, 0 choix modifié",
+      "result": "PASS"
+    },
+    {
+      "id": "P9",
+      "requirement": "47 remplacements, 15 priorités",
+      "result": "PASS"
+    },
+    {
+      "id": "P10",
+      "requirement": "15 priorités examinées, 6 accords, 1 éditorial",
+      "result": "PASS"
+    },
+    {
+      "id": "P11",
+      "requirement": "16 cas avancés, 6 accords, 1 éditorial",
+      "result": "PASS"
+    },
+    {
+      "id": "HOLD",
+      "requirement": "aucune décision de publication",
+      "result": "PASS"
+    }
+  ],
+  "metrics": {
+    "catalogue": 1523,
+    "rubriques": 22,
+    "excludedHistoricalProposals": 36,
+    "experimentalManifestIds": 92,
+    "replacementsP9": 47,
+    "reviewedReplacementsP10": 15,
+    "p9NotReviewedInP10": 32,
+    "p8AdditionalEditorialCases": 3,
+    "p10BlackwoodEditorialCases": 1,
+    "unconfirmedAdvancedAgreements": 6,
+    "advancedPhase3and4": 16
+  },
+  "remainingP9CandidatesNotIndividuallyCounterreadP10": [
+    "SEF-L07-028",
+    "SEF-L09-018",
+    "SEF-L09-023",
+    "SEF-L09-028",
+    "SEF-L10-005",
+    "SEF-L10-018",
+    "SEF-L13-010",
+    "SEF-L15-005",
+    "SEF-L15-008",
+    "SEF-L15-009",
+    "SEF-L25-004",
+    "SEF-L28-003",
+    "SEF-V482-001",
+    "SEF-V479-004",
+    "SEF-045-1",
+    "SEF-051-1",
+    "SEF-C-009",
+    "SEF-V3-037-1",
+    "SEF-V4-009-1",
+    "SEF-V4-034-1",
+    "SEF-V4-055-1",
+    "SEF-V419-009",
+    "SEF-007-1",
+    "SEF-009-1",
+    "SEF-020-3",
+    "SEF-034-1",
+    "SEF-C-007",
+    "SEF-C-008",
+    "SEF-V3-078-1",
+    "SEF-V3-103-3",
+    "SEF-V4-031-1",
+    "SEF-V44-005"
+  ],
+  "nextGates": [
+    {
+      "code": "G1",
+      "what": "Soumettre à validation humaine les trois clarifications P8, sans application"
+    },
+    {
+      "code": "G2",
+      "what": "Confirmer les six conventions avancées/variantes identifiées P10"
+    },
+    {
+      "code": "G3",
+      "what": "Arbitrer la clarification Blackwood P10"
+    },
+    {
+      "code": "G4",
+      "what": "Contre-lire individuellement les 32 remplacements de P9 non expertisés lors de P10"
+    },
+    {
+      "code": "G5",
+      "what": "Disposer d'une exécution Node indépendante (puis CI par coordinateur) des sept tests wave2-pedagogie-*"
+    },
+    {
+      "code": "G6",
+      "what": "Confronter l'ordre et les prérequis aux autres missions (#256 à #258), sans toucher à leurs fichiers"
+    }
+  ]
+}
