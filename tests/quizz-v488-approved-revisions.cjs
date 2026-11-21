@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 // Les exceptions nouvellement approuvées sont contrôlées sur leurs champs exacts.
 // Le bloc historique des 993 QCM reste intégralement protégé (relecture inverse avant SHA).
 const approvedLotD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const approvedSEFClosure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const approved=require('./quizz-v488-approved-revisions.json');
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
@@ -25,6 +26,12 @@ function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(original=>{
   const approvedLotD=approvedLotD11.proposals.find(p=>p.id===original.id);
   let source=original;
+  const closure=approvedSEFClosure.patches.find(p=>p.id===original.id);
+  if(closure){
+   for(const [field,approvedAfter] of Object.entries(closure.after))
+    assert.deepStrictEqual(original[field],approvedAfter,'Only exact SEF closure edits allowed for '+original.id+' ('+field+')');
+   source={...source,...closure.before};
+  }
   if(approvedLotD){
    for(const [key,approvedAfter] of Object.entries(approvedLotD.after)){
     assert.deepStrictEqual(original[key],approvedAfter,'Only exact user-approved Lot D changes allowed for '+original.id+' ('+key+')');
