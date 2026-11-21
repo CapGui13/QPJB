@@ -154,6 +154,8 @@ jobs:
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot06-activation-browser.cjs
       - name: Test Lot 07 selected leads (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/training-lot07-publication-browser.cjs
+      - name: Assert Lot 07 failure diagnostics (${{ matrix.browser }})
+        run: PW_BROWSER=${{ matrix.browser }} node tests/wave2-ci-lot07-diagnostic-probe.cjs
       - name: Test the Quizz module and its revision modes (${{ matrix.browser }})
         run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
       - name: Test the guided progression flow (${{ matrix.browser }})
@@ -198,6 +200,8 @@ jobs:
         run: PW_BROWSER=webkit node tests/training-lot06-activation-browser.cjs
       - name: Test Lot 07 selected leads (webkit)
         run: PW_BROWSER=webkit node tests/training-lot07-publication-browser.cjs
+      - name: Assert Lot 07 failure diagnostics (webkit)
+        run: PW_BROWSER=webkit node tests/wave2-ci-lot07-diagnostic-probe.cjs
       - name: Test the Quizz module and its revision modes (webkit)
         run: PW_BROWSER=webkit node tests/quizz-browser.cjs
       - name: Test the guided progression flow (webkit)
