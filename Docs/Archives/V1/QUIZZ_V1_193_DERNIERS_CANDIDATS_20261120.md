@@ -10,17 +10,17 @@ Cette nouvelle livraison n'édite **aucun** fichier du moteur, des tests ergonom
 
 ## Les 193 cas restants sont couverts sans duplication
 
-Les propositions ont été établies **à partir des mains, séquences, choix, corrigés, explications et motifs de difficulté du catalogue V1**, et conservées avec leurs questions intégrales dans sept registres indépendants, reliés à [la carte de leurs 75 groupes candidats](../audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json).
+Les propositions ont été établies **à partir des mains, séquences, choix, corrigés, explications et motifs de difficulté du catalogue V1**, et conservées avec leurs questions intégrales dans sept registres indépendants, reliés à [la carte de leurs 75 groupes candidats](../../audits/QPJB_V1_193_GROUPES_CANDIDATS_20261120.json).
 
 | Rubrique de la source V1 | QCM | Groupes candidats |
 | --- | ---: | ---: |
-| [Ouvertures fortes](../audits/QPJB_V1_FINAL_FORTES_42_PRECLASSIFICATION_20261120.json) | 42 | 18 |
-| [Drury après Passe](../audits/QPJB_V1_FINAL_DRURY_40_PRECLASSIFICATION_20261120.json) | 40 | 13 |
-| [Michaëls précisés](../audits/QPJB_V1_FINAL_MICHAELS_40_PRECLASSIFICATION_20261120.json) | 40 | 13 |
-| [Roudi](../audits/QPJB_V1_FINAL_ROUDI_38_PRECLASSIFICATION_20261120.json) | 38 | 12 |
-| [Multi-Landy](../audits/QPJB_V1_FINAL_MULTILANDY_31_PRECLASSIFICATION_20261120.json) | 31 | 17 |
-| [Ouverture forte isolée](../audits/QPJB_V1_FINAL_OUV_1_PRECLASSIFICATION_20261120.json) | 1 | 1 |
-| [Après Spoutnik isolé](../audits/QPJB_V1_FINAL_APRES_INTER_1_PRECLASSIFICATION_20261120.json) | 1 | 1 |
+| [Ouvertures fortes](../../audits/QPJB_V1_FINAL_FORTES_42_PRECLASSIFICATION_20261120.json) | 42 | 18 |
+| [Drury après Passe](../../audits/QPJB_V1_FINAL_DRURY_40_PRECLASSIFICATION_20261120.json) | 40 | 13 |
+| [Michaëls précisés](../../audits/QPJB_V1_FINAL_MICHAELS_40_PRECLASSIFICATION_20261120.json) | 40 | 13 |
+| [Roudi](../../audits/QPJB_V1_FINAL_ROUDI_38_PRECLASSIFICATION_20261120.json) | 38 | 12 |
+| [Multi-Landy](../../audits/QPJB_V1_FINAL_MULTILANDY_31_PRECLASSIFICATION_20261120.json) | 31 | 17 |
+| [Ouverture forte isolée](../../audits/QPJB_V1_FINAL_OUV_1_PRECLASSIFICATION_20261120.json) | 1 | 1 |
+| [Après Spoutnik isolé](../../audits/QPJB_V1_FINAL_APRES_INTER_1_PRECLASSIFICATION_20261120.json) | 1 | 1 |
 | **Total** | **193** | **75** |
 
 Chaque groupe garde la liste des ID exacts ; chaque fiche conserve les éléments source, sa compétence **proposée** et ses alertes. Une catégorie d'un seul QCM n'est pas une preuve suffisante de maîtrise. Les variations de même famille source sont signalées pour éviter les répétitions artificielles.
