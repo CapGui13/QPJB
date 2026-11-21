@@ -140,7 +140,7 @@
   // Contrat de lecture destiné à l'intégration future : les champs suivants
   // explicitent une preuve EXISTANTE, sa limite et une action. Aucun calcul
   // de maîtrise ni indicateur d'apprentissage supplémentaire.
-  function explain(item){
+  function explain(item,completed){
     const e=item.evidence;
     if(item.type==='resume')return {
       observed:e.answered+' réponse(s) enregistrée(s) sur '+e.total+' dans la séance en cours.',
@@ -153,13 +153,17 @@
       action:'Lancer la séance complémentaire depuis le parcours, après avoir terminé toute séance active.'
     };
     if(item.type==='not_evaluated')return {
-      observed:'Aucun suivi exploitable de notion évaluée n’est disponible.',
-      caveat:'Aucune conclusion sur le niveau de l’élève n’est possible.',
-      action:'Commencer une séance du parcours pour obtenir les premières observations.'
+      observed:completed>0?
+        `${completed} séance(s) terminée(s), mais aucune évaluation exploitable de notion n’est conservée.`:
+        'Aucun suivi exploitable de notion évaluée n’est disponible.',
+      caveat:'L’absence de suivi exploitable ne signifie pas que l’élève n’a jamais travaillé ces notions.',
+      action:'Commencer une séance du parcours pour obtenir des observations vérifiables.'
     };
     const source=e.source==='micros'?'micro-compétence':'axe transversal';
+    const when=integer(e.lastSession)&&e.lastSession<completed?
+      ' Dernière tentative à la séance '+(e.lastSession+1)+' sur '+completed+' séance(s) terminée(s).':'';
     const observed='Suivi V1 de '+source+' « '+e.label+' » : '+e.attempts+
-      ' tentative(s), '+e.independent+' indépendante(s), score '+e.score+'.';
+      ' tentative(s), '+e.independent+' indépendante(s), score '+e.score+'.'+when;
     if(item.type==='repeated_autonomous')return {
       observed,
       caveat:'Ces réussites répétées ne garantissent pas la maîtrise de toute la rubrique ni le maintien à long terme.',
@@ -243,13 +247,21 @@
       }
     }
 
-    if(!areas.length&&!stats.detailedSessions&&Object.keys(state.entries||{}).length===0){
+    if(!areas.length&&!stats.detailedSessions){
       proposals.push(suggestion('not_evaluated',90,null,
-        'Aucune notion encore évaluée','Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
+        state.completed>0?'Historique sans évaluation de notion exploitable':'Aucune notion encore évaluée',
+        state.completed>0?'Des séances anciennes existent, mais aucun suivi précis de notion n’est disponible. Poursuis le parcours pour constituer de nouvelles observations.':
+          'Commence une séance du parcours pour obtenir un bilan fondé sur tes réponses.'));
     }
     const grouped=overlappingAreas(proposals,state);
     const visible=visibleRecommendations(grouped.items,limit)
-      .map(item=>({...item,explanation:explain(item)}));
+      .map(item=>{
+        const explanation=explain(item,state.completed);
+        if(stats.sessionsWithoutDetail)
+          explanation.caveat+=' '+stats.sessionsWithoutDetail+
+            ' séance(s) terminée(s) sans journal détaillé : leurs réponses ne sont pas reconstituées.';
+        return {...item,explanation};
+      });
     const limitations=[];
     if(stats.sessionsWithoutDetail)
       limitations.push(`${stats.sessionsWithoutDetail} séance(s) terminée(s) sans journal détaillé : résultats non reconstitués.`);
@@ -282,6 +294,7 @@ if(typeof process!=='undefined'&&typeof require==='function'&&
     './tests/wave2-recos-explain.test.js',
     './tests/wave2-recos-compat.test.js',
     './tests/wave2-recos-10questions.test.js',
-    './tests/wave2-recos-integrity.test.js'
+    './tests/wave2-recos-integrity.test.js',
+    './tests/wave2-recos-freshness.test.js'
   ])require(file);
 }
