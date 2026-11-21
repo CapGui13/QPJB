@@ -86,7 +86,7 @@
   // agrégées de chacun sont identifiables dans le journal conservé.
   // Une ancienne sauvegarde sans journal ne satisfait jamais ce critère.
   function overlappingAreas(proposals,state){
-    const responses=new Map(),autonomousByArea=new Map(),assessedByArea=new Map();
+    const responses=new Map(),autonomousByArea=new Map(),assessedByArea=new Map(),helpedByArea=new Map();
     const firstVersion=new Map(),ambiguous=new Set();
     // Les doublons de journal ne sont acceptables comme preuve que si
     // l'issue, l'aide et les étiquettes de la réponse restent identiques.
@@ -121,6 +121,8 @@
               autonomousByArea.set(id,(autonomousByArea.get(id)||0)+1);
             if(outcome(a)!=='skipped')
               assessedByArea.set(id,(assessedByArea.get(id)||0)+1);
+            if(outcome(a)==='helped')
+              helpedByArea.set(id,(helpedByArea.get(id)||0)+1);
           }
         }
       }
@@ -133,14 +135,21 @@
       const e=item.evidence;
       if(!e||!['micros','axes'].includes(e.source))continue;
       const id=(e.source==='micros'?'micro':'axis')+':'+e.key;
-      if(responses.get(id)?.size!==e.attempts||(assessedByArea.get(id)||0)!==0)
-        continue;
-      item.type='not_evaluated';
-      item.id='not_evaluated:'+id;
-      item.priority=90;
-      item.title='Notion à réessayer après des questions sautées : '+e.label;
-      item.message='Les tentatives détaillées ont toutes été sautées : aucune erreur de réponse n’a été constatée pour cette notion.';
-      e.skippedOnly=true;
+      if(responses.get(id)?.size!==e.attempts)continue;
+      if((assessedByArea.get(id)||0)===0){
+        item.type='not_evaluated';
+        item.id='not_evaluated:'+id;
+        item.priority=90;
+        item.title='Notion à réessayer après des questions sautées : '+e.label;
+        item.message='Les tentatives détaillées ont toutes été sautées : aucune erreur de réponse n’a été constatée pour cette notion.';
+        e.skippedOnly=true;
+      }else if((helpedByArea.get(id)||0)===e.attempts){
+        // Réponses finales correctes avec aide/erreur libre : aucune autonomie.
+        // Préserver le type et la priorité V1 de la recommandation.
+        item.title='Autonomie à consolider : '+e.label;
+        item.message='Toutes les réponses sont correctes avec aide ou après première erreur libre ; aucune réussite autonome ne peut être conclue.';
+        e.assistedOnly=true;
+      }
     }
     const divergent=new Set();
     for(const item of proposals){
@@ -240,6 +249,11 @@
       observed,
       caveat:'Ces réussites répétées ne garantissent pas la maîtrise de toute la rubrique ni le maintien à long terme.',
       action:'Continuer le parcours et varier les situations.'
+    };
+    if(e.assistedOnly&&['persistent_difficulty','consolidate'].includes(item.type))return {
+      observed:observed+' Toutes les réponses finales détaillées ont été correctes avec aide ou après première erreur libre.',
+      caveat:'Aucune réussite autonome n’est démontrée, mais le journal ne contient aucune réponse finale incorrecte sur cette notion. Le score V1 reste inchangé.',
+      action:'Réessayer plusieurs situations sans aide pour vérifier l’autonomie.'
     };
     if(item.type==='persistent_difficulty')return {
       observed,
