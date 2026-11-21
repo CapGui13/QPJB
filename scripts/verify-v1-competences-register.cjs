@@ -31,7 +31,28 @@ function parseCsv(content){
     return Object.fromEntries(fields.map((key,i)=>[key,vals[i]]));
   });
 }
-const q=embedded('quizz.html','training-data').exercises;
+// Le registre du 20/11 compare des sources historiques et non les QCM récents.
+// Revenir aux 13 champs de correctifs approuvés AVANT de tester ses snapshots.
+// Toute valeur actuelle différente de la valeur approuvée provoque un échec.
+const published=embedded('quizz.html','training-data').exercises;
+const lotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
+const sef=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
+assert.equal(lotD.proposals.length,11,'11 corrections D approuvées');
+assert.equal(sef.patches.length,2,'2 corrections SEF approuvées');
+const patches=[...lotD.proposals,...sef.patches];
+const approvedById=new Map(patches.map(p=>[p.id,p]));
+assert.equal(approvedById.size,13,'13 IDs de correction distincts');
+let normalized=0;
+const q=published.map(item=>{
+  const patch=approvedById.get(item.id);
+  if(!patch)return item;
+  for(const [key,value] of Object.entries(patch.after)){
+    assert.deepEqual(item[key],value,'Correction publiée divergente '+item.id+'/'+key);
+  }
+  normalized++;
+  return {...item,...patch.before};
+});
+assert.equal(normalized,13,'13 QCM corrigés retrouvés sur le site');
 const v2=embedded('preview/v2-eleve/parcours-sef-65-r1.html','ay-payload');
 const original=new Map(q.map(x=>[x.id,x]));
 const revised=new Map(v2.catalog.map(x=>[x.id,x]));
