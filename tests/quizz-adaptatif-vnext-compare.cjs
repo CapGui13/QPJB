@@ -1,9 +1,13 @@
 'use strict';
 /*
- * QPJB mission 2 — V1 adaptatif VNext.
+ * QPJB mission 2 — comparateur expérimental (proposition non retenue).
  * Exécution: node tests/quizz-adaptatif-vnext-compare.cjs
  * Aucune mutation de quizz.html, des QCM, du stockage ou du moteur durant le test.
  * Comparaison des mêmes 1 523 QCM avec le moteur de référence figé.
+ * Le moteur du dépôt est volontairement inchangé. Le comparateur rejoue
+ * en mémoire une variante expérimentale pour conserver les mesures de rejet.
+ * Une sortie VNEXT_PASS valide seulement le fonctionnement du banc de tests,
+ * pas la décision pédagogique de déployer une variante.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -21,12 +25,7 @@ const proposal=`// VNEXT_LOCAL_FOUNDATION_BEGIN
         // rubrique, sans réservation de place ni verrouillage de thèmes.
         const locallyWeak=!struggling&&kind!=='revision'&&foundationThemes.has(t)&&
           evidence&&evidence.attempts>=4&&evidence.weak*5>=evidence.attempts*3;
-        const novelContextOrDecision=locallyWeak&&
-          (!seenContexts.has(t+'|'+String(x.auction?.[0]||''))||
-            !seenDecisions.has(t+'|'+String(x.answer||'')));
-        const localNeed=locallyWeak&&recent>=999?
-          Math.min(novelContextOrDecision?70:25,
-            Math.round((novelContextOrDecision?80:30)*evidence.weak/evidence.attempts)):0;
+        const localNeed=locallyWeak&&recent>=999?Math.min(70,Math.round(80*evidence.weak/evidence.attempts)):0;
         const lotBPriority=foundationNeed+explorationFloor+discovery+
           newFamily+rareContext+rareAnswer+hardWhileStruggling+localNeed;
         // VNEXT_LOCAL_FOUNDATION_END`;
@@ -202,4 +201,4 @@ for(const name of names){
 assert.ok(localGain>0,'Amélioration locale mesurée sur états strictement identiques');
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(data.exercises)).digest('hex'),catalogueChecksum);
 console.log('VNEXT_RESULT '+JSON.stringify({localGain,profiles:names.length,stops:[65,153],catalogue:exercises.length}));
-console.log('VNEXT_PASS — comparaison de 5 profils × 153 séances × 2 versions');
+console.log('VNEXT_EXPLORATION_ONLY — variante non retenue, moteur de référence inchangé');
