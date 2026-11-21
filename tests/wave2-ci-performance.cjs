@@ -14,6 +14,21 @@ function analyse(data){
    assert.deepEqual(Object.keys(sample.jobs).sort(),keys[cohort].slice().sort(),'Unexpected required job set');
    const js=Object.values(sample.jobs);
    assert(js.every(v=>Number.isInteger(v)&&v>0),'Job time invalid');
+   assert.deepEqual(Object.keys(sample.timings||{}).sort(),keys[cohort].slice().sort(),'Missing job timestamp evidence');
+   const stamps=keys[cohort].map(name=>{
+    const t=sample.timings[name];
+    for(const field of ['started','completed']){
+     assert.equal(typeof t[field],'string','Missing '+field+' '+sample.id+'/'+name);
+     assert.match(t[field],/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/);
+    }
+    const start=Date.parse(t.started),end=Date.parse(t.completed);
+    assert(Number.isFinite(start)&&Number.isFinite(end)&&end>start,'Invalid timing '+sample.id+'/'+name);
+    assert.equal((end-start)/1000,sample.jobs[name],'Duration/source mismatch '+sample.id+'/'+name);
+    return {start,end};
+   });
+   assert.equal((Math.max(...stamps.map(x=>x.end))-Math.min(...stamps.map(x=>x.start)))/1000,
+    sample.seconds,'Wall/source mismatch '+sample.id);
+
    assert(sample.seconds>=Math.max(...js),'Wall time shorter than the longest job');
    assert(sample.seconds<=js.reduce((a,b)=>a+b,0)+120,'Wall time wildly exceeds available job time');
   }
@@ -33,11 +48,14 @@ report.staggerByRun=observed.after.map(x=>({
 }));
 
 assert.equal(report.before.count,6);
+assert(report.after.count>=7,'P7/P8 missing from observations');
 // Negative controls: missing WebKit job, duplicated run and impossible time must fail.
 for(const mutate of [
  data=>{delete data.after[0].jobs.webkit},
  data=>{data.after[0].id=data.before[0].id},
- data=>{data.after[0].seconds=1}
+ data=>{data.after[0].seconds=1},
+ data=>{data.after[0].jobs.webkit++},
+ data=>{data.after[0].timings.webkit.completed=data.after[0].timings.webkit.started}
 ]){
  const copy=structuredClone(observed);mutate(copy);assert.throws(()=>analyse(copy));
 }
