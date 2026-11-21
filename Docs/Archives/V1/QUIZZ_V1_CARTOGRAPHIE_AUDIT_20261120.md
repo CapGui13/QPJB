@@ -8,8 +8,8 @@ La **V1 reste l'unique parcours proposé aux élèves**. Cette livraison est int
 
 Deux registres de travail ont été extraits de sources GitHub réelles :
 
-1. [79 propositions](../audits/QPJB_V1_COMPETENCES_79_CANDIDATES_20261120.json) : identifiant, provenance SA/Stayman-Texas, notion proposée, question V1 avec sa **main, sa séquence, ses choix, sa réponse, son explication**, réponse V2, différences éditoriales et réserves.
-2. [541 cas à classer](../audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json) : identifiants de la file d'origine, thème, famille, **main, séquence, énoncé, choix, réponse, explication, difficulté**. Pas de compétence inventée.
+1. [79 propositions](../../audits/QPJB_V1_COMPETENCES_79_CANDIDATES_20261120.json) : identifiant, provenance SA/Stayman-Texas, notion proposée, question V1 avec sa **main, sa séquence, ses choix, sa réponse, son explication**, réponse V2, différences éditoriales et réserves.
+2. [541 cas à classer](../../audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json) : identifiants de la file d'origine, thème, famille, **main, séquence, énoncé, choix, réponse, explication, difficulté**. Pas de compétence inventée.
 
 Le fichier source d'extraction est `quizz.html` (catalogue V1), et le fichier archive V2 `preview/v2-eleve/parcours-sef-65-r1.html` contient les deux lots de propositions. La file initiale de **620** est `Docs/PARCOURS_V2_REVUE_620_20261118.csv`. La procédure `node scripts/verify-v1-competences-register.cjs` contrôle leur cohérence contre les sources à chaque modification.
 

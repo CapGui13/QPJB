@@ -17,9 +17,9 @@ Le périmètre est donc séparé au niveau des fichiers et des règles. Les PR #
 
 - Catalogue V1 de référence : `quizz.html` (1 523 QCM).
 - File d'audit source : `audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json` (541 IDs, sauvegardes et corrigés intacts).
-- [67 réponses aux interventions](../audits/QPJB_V1_REPONSE_INTER_67_PRECLASSIFICATION_20261120.json) : 20 groupes candidats.
-- [54 cas de forcing](../audits/QPJB_V1_FORCING_54_PRECLASSIFICATION_20261120.json) : 21 groupes candidats.
-- [49 Rubensohl](../audits/QPJB_V1_RUBENSOHL_49_PRECLASSIFICATION_20261120.json) : 22 groupes candidats.
+- [67 réponses aux interventions](../../audits/QPJB_V1_REPONSE_INTER_67_PRECLASSIFICATION_20261120.json) : 20 groupes candidats.
+- [54 cas de forcing](../../audits/QPJB_V1_FORCING_54_PRECLASSIFICATION_20261120.json) : 21 groupes candidats.
+- [49 Rubensohl](../../audits/QPJB_V1_RUBENSOHL_49_PRECLASSIFICATION_20261120.json) : 22 groupes candidats.
 - `node scripts/verify-v1-inter-forcing-rubensohl-170.cjs` : chaque ID, main, distribution, points H, séquence, choix, réponse et explication est comparé à la source. Vérifie aussi l'absence de doublon avec les 48 après-fit, 65 barrages et 65 chelems.
 
 **Bilan du lot : 170 QCM, 63 groupes candidats, zéro compétence homologuée.** Les catégories sont des *hypothèses de travail* sans effet sur l'algorithme V1.

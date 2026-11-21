@@ -5,8 +5,8 @@
 
 Les fiches sont tirées de la file exacte de 541 cas `audits/QPJB_V1_COMPETENCES_541_BACKLOG_20261120.json`, liée au catalogue V1 public `quizz.html`, sans réécriture. Chaque fiche conserve : **ID, main, points H, distribution, séquence, énoncé, choix, bonne réponse V1, explication et difficulté source**, plus une catégorie **candidate** et des réserves.
 
-- [65 ouvertures/réponses de barrage](../audits/QPJB_V1_BARRAGE_65_PRECLASSIFICATION_20261120.json) : **17 compétences candidates** ; 65 questions mais **52 familles source**. **26 variantes** partagent des familles déjà représentées : plusieurs réponses à des mains voisines ne doivent pas compter comme des preuves d'acquisition indépendantes.
-- [65 décisions de chelem](../audits/QPJB_V1_CHELEM_65_PRECLASSIFICATION_20261120.json) : **16 compétences candidates** ; 65 familles de source distinctes, mais **16 variations très proches d'un dialogue de contrôles**. La distinction par « caseFamily » ne suffit pas à assurer l'indépendance pédagogique.
+- [65 ouvertures/réponses de barrage](../../audits/QPJB_V1_BARRAGE_65_PRECLASSIFICATION_20261120.json) : **17 compétences candidates** ; 65 questions mais **52 familles source**. **26 variantes** partagent des familles déjà représentées : plusieurs réponses à des mains voisines ne doivent pas compter comme des preuves d'acquisition indépendantes.
+- [65 décisions de chelem](../../audits/QPJB_V1_CHELEM_65_PRECLASSIFICATION_20261120.json) : **16 compétences candidates** ; 65 familles de source distinctes, mais **16 variations très proches d'un dialogue de contrôles**. La distinction par « caseFamily » ne suffit pas à assurer l'indépendance pédagogique.
 - `node scripts/verify-v1-barrages-chelems-130.cjs` : vérifie les 130 IDs et les sources, les 13 cartes, la forme, les points H, l'unicité des choix, la présence exacte de la bonne réponse et l'absence de chevauchement avec les 48 cas après fit.
 
 Le total est désormais **903 repères heuristiques V1 + 79 attributions SA/Stayman/Texas proposées + 48 après-fit proposés + 65 barrages proposés + 65 chelems proposés + 363 sans proposition = 1 523 QCM**.
