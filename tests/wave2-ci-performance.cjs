@@ -25,6 +25,13 @@ function analyse(data){
  return metrics;
 }
 const report=analyse(observed);
+report.staggerByRun=observed.after.map(x=>({
+ id:x.id,
+ wallSeconds:x.seconds,
+ criticalJobSeconds:Math.max(...Object.values(x.jobs)),
+ wallMinusCriticalSeconds:x.seconds-Math.max(...Object.values(x.jobs))
+}));
+
 assert.equal(report.before.count,6);
 // Negative controls: missing WebKit job, duplicated run and impossible time must fail.
 for(const mutate of [
