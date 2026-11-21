@@ -23,10 +23,14 @@ function answer(profile,session,rand){
 }
 function simulate(profile,horizon,seed){
  const state=api.empty(),rand=rng(seed);
- const counts={new:0,revision:0,hard:0,weak:0,assisted:0};
+ const counts={nouveau:0,revision:0,hard:0,weak:0,assisted:0,foundation:0,weakDueAvailable:0,weakDueSelected:0};
  const themes=new Set(),families=new Set(),contexts=new Set(),decisions=new Set(),ids=new Set();
- const perSession=[];
+ const foundations=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
+ const perSession=[],byTheme={};
  for(let s=0;s<horizon;s++){
+   const weakDue=new Set(Object.entries(state.entries).filter(([id,r])=>
+     (r.result!=='correct'||r.assisted)&&r.due<=s&&r.lastSession<s).map(([id])=>id));
+   counts.weakDueAvailable+=weakDue.size;
    const chosen=api.start(state,exercises);
    assert.equal(chosen.length,10,'Séance non remplie : '+s);
    assert.equal(new Set(chosen.map(x=>x.id)).size,10,'Doublon ID');
@@ -35,7 +39,11 @@ function simulate(profile,horizon,seed){
      const a=answer(profile,s,rand);
      assert.equal(api.record(state,x,a.result,i,null,a.assisted,a.hadFreeError),true);
      const selection=state.active.selection[i];
+     assert(['nouveau','revision'].includes(selection.kind));
      counts[selection.kind]++;
+     if(weakDue.has(x.id)&&selection.kind==='revision')counts.weakDueSelected++;
+     if(foundations.has(x.theme))counts.foundation++;
+     byTheme[x.theme]=(byTheme[x.theme]||0)+1;
      if(x.difficulty>=4)counts.hard++;
      if(a.result!=='correct'||a.assisted)counts.weak++;
      if(a.assisted)counts.assisted++;
@@ -47,13 +55,19 @@ function simulate(profile,horizon,seed){
    perSession.push({themes:currentThemes.size,families:currentFamilies.size});
    assert.equal(api.finish(state,exercises),true);
    assert.equal(state.completed,s+1);
+   assert.equal(state.journal.filter(e=>e.mode==='parcours').length,s+1);
  }
+ assert.equal(counts.nouveau+counts.revision,horizon*10);
  const summary={
    profile,horizon,seed,questions:horizon*10,uniqueIds:ids.size,
    uniqueThemes:themes.size,uniqueFamilies:families.size,
    uniqueContexts:contexts.size,uniqueDecisions:decisions.size,
    hardShare:counts.hard/(horizon*10),weakShare:counts.weak/(horizon*10),
    helpedShare:counts.assisted/(horizon*10),reviewShare:counts.revision/(horizon*10),
+   foundationShare:counts.foundation/(horizon*10),
+   weakDueRecallRate:counts.weakDueAvailable?counts.weakDueSelected/counts.weakDueAvailable:null,
+   weakDueAvailable:counts.weakDueAvailable,weakDueSelected:counts.weakDueSelected,
+   themeCounts:byTheme,
    avgThemesPerSession:perSession.reduce((a,x)=>a+x.themes,0)/horizon,
    avgFamiliesPerSession:perSession.reduce((a,x)=>a+x.families,0)/horizon
  };
@@ -63,8 +77,16 @@ function simulate(profile,horizon,seed){
  assert.equal(saved.active,null);
  return summary;
 }
+function selected(flag,valid){
+ const i=process.argv.indexOf('--'+flag);
+ if(i<0)return valid;
+ const value=process.argv[i+1],converted=typeof valid[0]==='number'?Number(value):value;
+ assert(valid.includes(converted),'Invalid --'+flag+': '+value);
+ return [converted];
+}
 const results=[];
-for(const profile of profiles)for(const horizon of horizons)for(const seed of seeds)
- results.push(simulate(profile,horizon,seed));
+for(const profile of selected('profile',profiles))
+ for(const horizon of selected('horizon',horizons))
+  for(const seed of selected('seed',seeds))results.push(simulate(profile,horizon,seed));
 if(process.argv.includes('--json'))process.stdout.write(JSON.stringify({catalogue:exercises.length,results},null,2)+'\n');
 else console.table(results);
