@@ -367,7 +367,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Problème concret :** L'explication source exige une « main maximum » alors que l'utilisatrice a déjà validé l'interprétation de 2SA comme modulation positive avec un gros honneur troisième et une main non minimum, ici 16 H. L'enchère et la consigne sont déjà compatibles.
 
-**Proposition éditoriale complète, non activée** — champs candidats modifiés : `explain`.
+**Proposition éditoriale complète, non activée** — champs candidats modifiés : `explain`, `difficultyReason`.
 
 **Main proposée :** ♠AD82 · ♥A94 · ♦R76 · ♣R103 — **16 H**, distribution 4–3–3–3.
 
@@ -381,7 +381,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 
 **Explication proposée :** « 2SA est une modulation positive du Texas Trèfle. L’ouvreur montre un complément intéressant dans la couleur longue du partenaire, ici ♣R103 (Roi troisième), avec une main non minimum. L’objectif est de signaler ce soutien à Trèfle, et non de promettre obligatoirement une main maximum de 17 H : 16 H avec ce complément conviennent. Sans les conditions de cette modulation positive, la rectification normale est 3♣. »
 
-**Motif de difficulté proposée :** « Texas Trèfle : modulation de l'ouvreur à 2SA avec gros honneur troisième et main maximum. »
+**Motif de difficulté proposé :** « Texas Trèfle : modulation positive de l’ouvreur à 2SA avec gros honneur troisième et main non minimum, sans promettre 17 H. »
 
 **Impact sur la bonne réponse :** aucun changement ; même main, même séquence, mêmes choix et même corrigé. **Niveau de confiance :** Élevé pour la fidélité à la décision explicite du 20/11 ; portée SEF générale à distinguer des variantes de convention.
 
@@ -472,7 +472,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 - **11 IDs uniques** ; chaque original a **13 cartes**, une distribution cohérente avec les 13 cartes, le total H déclaré et une seule bonne réponse parmi quatre choix distincts ; aucun QCM reconstruit artificiellement à partir de V2.
 - Dans les **7 mains candidates modifiées**, exactement **+1 H par Valet**, **6 H = 6 HLD**, répartition originale conservée, 3 atouts sans courte, essai couleur sans honneur utile quand requis ; leur 2M antérieur devient SEF-compatible. La qualité de la carte ajoutée et de la main après retouche reste un **arbitrage éditorial**, non une validation définitive d'enchère.
 - **7/7** bonnes réponses d'essais inchangées (3♥/3♠) ; **4/4** autres bonnes réponses inchangées (`2♣`, `2SA`, `2SA`, `3♥`). **11/11 séquences, 11/11 jeux de choix et 11/11 IDs maintenus**.
-- Les questions **L10-030, V44-027, V44-030** ne demandent que la correction du `difficultyReason`. **L25-007** ne demande que la révision de `explain` **déjà validée**. Seuls les 7 premiers proposent la substitution de cartes et un meilleur libellé de consigne/corrigé explicatif.
+- Les questions **L10-030, V44-027, V44-030** ne demandent que la correction du `difficultyReason`. **L25-007** requiert l'application de l'explication `explain` **déjà validée**, ainsi que l'alignement de `difficultyReason` pour ne plus présenter « maximum » comme obligatoire. Seuls les 7 premiers proposent la substitution de cartes et un meilleur libellé de consigne/corrigé explicatif.
 - **Réserve Texas :** le qualificatif « réponse au Stayman » dans `difficultyReason` est incorrect ; le groupe historique `stayman` peut fonctionner comme rubrique englobante, ce qui n'autorise pas une migration implicite du thème ou de la compétence.
 - **Réserve L25-007 :** conserver la signification approuvée de la modulation 2SA ; en cas de divergence avec une fiche de convention extérieure, expliciter l'accord de la paire plutôt que changer l'explication validée en « maximum absolu ».
 - **Réserve après-fit :** si l'utilisatrice préfère ne pas modifier des mains originelles, l'alternative honnête est **de laisser les sept exercices en attente de correction/homologation**, et non de faire croire que 5 HLD suffisent au soutien simple.
@@ -483,7 +483,7 @@ Références externes de cadrage à interpréter selon la convention effectiveme
 |---|---|---|
 | **D1 — 7 soutiens simples** | `SEF-V4-009-1`, `SEF-V4-011-1`, `SEF-V4-021-1`, `SEF-V4-023-3`, `SEF-V416-006`, `SEF-V418-006`, `SEF-V421-012` | Accepter les sept mains à 6 HLD et les reformulations, demander modifications individuelles, ou maintenir les 7 en attente. |
 | **D2 — Roudi** | `SEF-L10-030` | Accepter seulement le nouveau motif ; `2♣` conservé. |
-| **D3 — Texas Trèfle** | `SEF-L25-007` | Confirmer l'application documentaire **sans nouvelle réinterprétation** de l'explication déjà validée ; `2SA` conservé. |
+| **D3 — Texas Trèfle** | `SEF-L25-007` | Appliquer l'explication **déjà validée** ; aligner aussi le motif de difficulté sur « non minimum » plutôt que « maximum obligatoire » ; `2SA` conservé. |
 | **D4 — Texas majeur** | `SEF-V44-027`, `SEF-V44-030` | Accepter les deux nouveaux motifs Texas ; réponses inchangées. |
 
 **Statut final de LOT D : 11 propositions rédigées ; 0 correction de QCM appliquée ; 0 classification activée ; 0 autorisation de publication ; 0 fusion.** L'unique fichier créé par cette PR doit être ce document `Docs/` ; aucun moteur, catalogue, exercice, historique ou interface ne doit être touché.
