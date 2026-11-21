@@ -19,7 +19,7 @@ assert.deepEqual(listed,expected,'Inventaire du lanceur modifié');
 assert.equal(new Set(listed).size,14);
 assert(!listed.includes('wave2-pedagogie-suite.cjs'),'Suite récursive interdite');
 for(const filename of listed){
- assert(/^wave2-pedagogie-[a-z-]+\.cjs$/.test(filename));
+ assert(/^wave2-pedagogie-[a-z0-9-]+\.cjs$/.test(filename));
  const src=fs.readFileSync(path.join(root,'tests',filename),'utf8');
  assert(src.startsWith("'use strict';"),'Mode strict manquant : '+filename);
  assert(src.includes('PASS'),'Marque PASS absent : '+filename);
