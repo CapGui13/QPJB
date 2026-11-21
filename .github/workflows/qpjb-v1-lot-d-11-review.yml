@@ -1,0 +1,26 @@
+name: QPJB V1 — 11 propositions éditoriales (lecture seule)
+on:
+  pull_request:
+    paths:
+      - 'audits/QPJB_V1_LOT_D_11_CORRECTIONS_CANDIDATES_20261121.json'
+      - 'tests/quizz-v1-lot-d-11-preview.cjs'
+      - '.github/workflows/qpjb-v1-lot-d-11-review.yml'
+      - 'Docs/QUIZZ_V1_LOT_D_ARBITRAGE_GROUPE_20261121.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: Vérifier les 11 candidats sans publier
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tests/quizz-v1-lot-d-11-preview.cjs
+      - run: node tests/quizz-v1-lot-d-11-preview.cjs
+      - run: node tests/quizz-integrity.cjs
