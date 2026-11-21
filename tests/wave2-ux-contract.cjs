@@ -46,7 +46,11 @@ const checks=[
  ['retour préparation',/setQuizSkipTarget\('parcours-start','Aller directement à la préparation'\)/],
  ['erreur saisie effacée',/field\.addEventListener\('input',e=>\{stage\.draft=e\.target\.value;if\(stage\.error\)/],
  ['erreur clavier effacée',/field\.removeAttribute\('aria-describedby'\)/],
- ['main énoncée fidèlement',/aria-label="Votre main : \$\{x\.hand/]
+ ['main énoncée fidèlement',/aria-label="Votre main : \$\{x\.hand/],
+ ['focus retour accueil',/sessionType==='parcours'\?\$\('parcours-start'\):\$\('new'\)/],
+ ['reprise annoncée',/if\(resuming\)announceQuizChange\('Séance reprise/],
+ ['progression descriptive',/\$\('session-progress-label'\)\.textContent=deck\.length\?'Question '/],
+ ['position explicite',/Math\.min\(position\+1,deck\.length\)/]
 ];
 for(const [label,pattern] of checks)assert.match(html,pattern,label);
 console.log('PASS '+checks.length+' garde-fous UI/ARIA et catalogue '+data.exercises.length+'/'+data.themes.length);

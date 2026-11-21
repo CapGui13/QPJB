@@ -716,6 +716,7 @@ function parcoursHomeStatus(){
  parcoursRecommendations();
 }
 function startParcours(mode){
+ const resuming=Boolean(parcoursState.active);
  sessionType='parcours';
  deck=mode==='consolidation'
    ?QPJBParcours.startConsolidation(parcoursState,DATA.exercises)
@@ -728,6 +729,7 @@ function startParcours(mode){
  }
  answered=!!sessionResults[position];selection=sessionResults[position]?.choice||null;
  saveParcours();enterSession();render();focusQuizQuestion();
+ if(resuming)announceQuizChange('Séance reprise. Question '+(position+1)+' sur '+deck.length+'.');
 }
 let bidKeyboardOpen=false;
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1002,7 +1004,7 @@ function exitSession(){
  quizReportView();
  quizReportHeight();
  // Restaurer la position de la liste de réglages après le redimensionnement de l'iframe.
- setTimeout(()=>quizScrollTo(quizSettingsScroll),80);
+ setTimeout(()=>{quizScrollTo(quizSettingsScroll);(sessionType==='parcours'?$('parcours-start'):$('new'))?.focus()},80);
 }
 function renderHomePlaceholder(){
  parcoursHomeStatus();
@@ -1186,7 +1188,7 @@ function stats(){
   $('total').textContent=deck.length;
   $('progresslabel').textContent=deck.length?('Exercice '+Math.min(position+1,deck.length)+' / '+deck.length+' · '+completed+' traités'):'Progression';
   $('progressbar').style.width=(deck.length?100*completed/deck.length:0)+'%';
-  $('session-progress-label').textContent=completed+' / '+deck.length+' traités';
+  $('session-progress-label').textContent=deck.length?'Question '+Math.min(position+1,deck.length)+' / '+deck.length+' · '+completed+' réponse'+(completed===1?'':'s')+' enregistrée'+(completed===1?'':'s'):'Aucune séance en cours';
   $('session-progressbar').style.width=(deck.length?100*completed/deck.length:0)+'%';
 }
 function conventionNote(x){
