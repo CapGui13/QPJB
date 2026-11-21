@@ -24,7 +24,7 @@ test('P15 doublon contradictoire axe : ne pas fusionner des preuves incertaines'
   assert.equal(r.observations.parcours.wrong,2);
   assert.equal(count(r),3);
   assert.ok(!r.recommendations.some(x=>x.evidence?.sameAnswersAs));
-  assert.match(r.limitations.join(' '),/1 réponse\\(s\\) du journal avec versions contradictoires/);
+  assert.match(r.limitations.join(' '),/1 réponse\(s\) du journal avec versions contradictoires/);
   assert.equal(JSON.stringify(s),before);
 });
 
