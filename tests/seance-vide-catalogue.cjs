@@ -1,0 +1,18 @@
+'use strict';
+const fs=require('node:fs');
+const path=require('node:path');
+const assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const session='Séance 2-05 Aix';
+const catalogue=JSON.parse(fs.readFileSync(path.join(root,'catalogue.json'),'utf8'));
+const config=JSON.parse(fs.readFileSync(path.join(root,'config.json'),'utf8'));
+const generator=fs.readFileSync(path.join(root,'scripts/build_catalogue.py'),'utf8');
+const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const matching=catalogue.seances.filter(s=>s.folder===session);
+assert.equal(matching.length,1,'one new session');
+assert.deepEqual(matching[0].fichiers,[],'no fabricated PBN deals');
+assert.equal(catalogue.descMap[session],config.descriptions[session],'same description in both data sources');
+assert.equal(fs.existsSync(path.join(root,session,'.seance-vide')),true,'explicit empty-session marker exists');
+assert.ok(generator.includes('(folder / ".seance-vide").is_file()'),'generator preserves explicitly empty sessions');
+assert.ok(home.includes('Séance en préparation : aucune donne publiée pour le moment.'),'empty view has an explanatory message');
+console.log('Séance 2-05 Aix : 6 contrôles OK');
