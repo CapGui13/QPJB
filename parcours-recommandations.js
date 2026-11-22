@@ -437,7 +437,7 @@ if(typeof process!=='undefined'&&process.env.GITHUB_ACTIONS==='true'&&
   const full=fs.readFileSync(__filename,'utf8');
   const marker='/* M4_P30_NATIVE_107_TEMPORARY_PROBE';
   const index=full.indexOf(marker);
-  if(index<2||full.indexOf(marker,index+1)>=0)throw Error('M4 P30 probe marker invalid');
+  if(index<2)throw Error('M4 P30 probe marker invalid');
   const clean=full.slice(0,index-1);
   const sha=crypto.createHash('sha1').update('blob '+Buffer.byteLength(clean)+'\0'+clean).digest('hex');
   const found=fs.readdirSync(path.join(__dirname,'tests')).filter(
