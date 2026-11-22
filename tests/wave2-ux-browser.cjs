@@ -5,6 +5,7 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
 const {chromium,webkit}=require('playwright');
 const {runScenarioPlan}=require('./wave2-ux-plan.cjs');
 const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
+const {assertHandReflow}=require('./wave2-ux-reflow-check.cjs');
 const {requestPath,serveQPJBFile}=require('./wave2-ux-http.cjs');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{
@@ -24,9 +25,20 @@ async function scenario(browser,engine,width,base){
   await page.locator('#question-heading').waitFor({state:'visible'});
   assert.equal(await skip.getAttribute('href'),'#question-heading');
   assert.equal(await page.evaluate(()=>document.activeElement?.id),'question-heading');
-  const hand=await page.locator('.hand').evaluate(el=>({columns:getComputedStyle(el).gridTemplateColumns,display:getComputedStyle(el).display,font:parseFloat(getComputedStyle(el.querySelector('.suit')).fontSize)}));
+  const hand=await page.locator('.hand').evaluate(el=>({
+   columns:getComputedStyle(el).gridTemplateColumns,display:getComputedStyle(el).display,
+   font:parseFloat(getComputedStyle(el.querySelector('.suit')).fontSize),
+   documentWidth:document.documentElement.scrollWidth,
+   viewportWidth:document.documentElement.clientWidth,
+   handScrollWidth:el.scrollWidth,handClientWidth:el.clientWidth,
+   handRect:(()=>{const {left,right}=el.getBoundingClientRect();return {left,right}})(),
+   rankRects:Array.from(el.querySelectorAll('.suit .rank'),node=>{
+    const {left,right}=node.getBoundingClientRect();return {left,right};
+   })
+  }));
   assert.equal(hand.display,'grid','Main mobile repliée en grille');
   assert.ok(hand.font>=18.5,'Main lisible, '+hand.font+'px');
+  assertHandReflow(hand,engine+'/'+width+'px');
   if(width===390){
    await page.locator('#free-answer').fill('???');
    await page.locator('#free-form button[type="submit"]').click();
@@ -128,11 +140,19 @@ async function layoutScenario(browser,engine,width,height,base){
    return {outer:document.documentElement.scrollWidth,inner:document.documentElement.clientWidth,
     hand:getComputedStyle(hand).gridTemplateColumns,handDisplay:getComputedStyle(hand).display,
     entry:getComputedStyle(entry).gridTemplateColumns,
+    documentWidth:document.documentElement.scrollWidth,
+    viewportWidth:document.documentElement.clientWidth,
+    handScrollWidth:hand.scrollWidth,handClientWidth:hand.clientWidth,
+    handRect:(()=>{const {left,right}=hand.getBoundingClientRect();return {left,right}})(),
+    rankRects:Array.from(hand.querySelectorAll('.suit .rank'),node=>{
+     const {left,right}=node.getBoundingClientRect();return {left,right};
+    }),
     empty:empty?{color:getComputedStyle(empty).color,bg:getComputedStyle(empty).backgroundColor,opacity:getComputedStyle(empty).opacity}:null,
     motion:ask?getComputedStyle(ask).animationName:null};
   });
   assert.ok(dims.outer<=dims.inner+2,'Débordement horizontal '+width+'px : '+JSON.stringify(dims));
   if(width===195){
+   assertHandReflow(dims,engine+'/195px zoom');
    assert.equal(dims.handDisplay,'grid','Zoom 200% : main en grille');
    assert.equal(dims.hand.trim().split(/\s+/).length,1,'Zoom 200% : une colonne pour la main');
    assert.equal(dims.entry.trim().split(/\s+/).length,1,'Zoom 200% : saisie en une colonne');
