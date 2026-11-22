@@ -140,6 +140,10 @@ async function layoutScenario(browser,engine,width,height,base){
    return {outer:document.documentElement.scrollWidth,inner:document.documentElement.clientWidth,
     hand:getComputedStyle(hand).gridTemplateColumns,handDisplay:getComputedStyle(hand).display,
     entry:getComputedStyle(entry).gridTemplateColumns,
+    entryInput:(()=>{const r=entry.querySelector('input').getBoundingClientRect();
+     return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width}})(),
+    entryButton:(()=>{const r=entry.querySelector('button[type="submit"]').getBoundingClientRect();
+     return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width}})(),
     documentWidth:document.documentElement.scrollWidth,
     viewportWidth:document.documentElement.clientWidth,
     handScrollWidth:hand.scrollWidth,handClientWidth:hand.clientWidth,
@@ -150,21 +154,29 @@ async function layoutScenario(browser,engine,width,height,base){
     empty:empty?{color:getComputedStyle(empty).color,bg:getComputedStyle(empty).backgroundColor,opacity:getComputedStyle(empty).opacity}:null,
     motion:ask?getComputedStyle(ask).animationName:null};
   });
+  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
+  fs.mkdirSync(dir,{recursive:true});
+  await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
+  if(width===195)console.log('M3 ZOOM MESURES '+engine+' : '+JSON.stringify(dims));
   assert.ok(dims.outer<=dims.inner+2,'Débordement horizontal '+width+'px : '+JSON.stringify(dims));
   if(width===195){
    assertHandReflow(dims,engine+'/195px zoom');
    assert.equal(dims.handDisplay,'grid','Zoom 200% : main en grille');
    assert.equal(dims.hand.trim().split(/\s+/).length,1,'Zoom 200% : une colonne pour la main');
-   assert.equal(dims.entry.trim().split(/\s+/).length,1,'Zoom 200% : saisie en une colonne');
+   // Les moteurs peuvent afficher une colonne implicite de 0px.
+   // On vérifie la géométrie visible plutôt que le nombre de pistes CSS.
+   const field=dims.entryInput,submit=dims.entryButton;
+   assert.ok(submit.top>=field.bottom-1&&
+    Math.abs(field.left-submit.left)<=2&&Math.abs(field.right-submit.right)<=2&&
+    field.width>=90&&submit.width>=90,
+    'Zoom 200% : saisie et validation empilées, larges et non chevauchantes : '+
+     JSON.stringify({field,submit,grid:dims.entry}));
   }
   if(dims.empty){
    assert.equal(dims.empty.opacity,'1','Cellule vide sans réduction d’opacité');
    assert.ok(contrastRatio(dims.empty.color,dims.empty.bg)>=4.5,'Contraste calculé AA : '+contrastRatio(dims.empty.color,dims.empty.bg));
   }
   if(dims.motion!==null)assert.equal(dims.motion,'none','Mouvement réduit respecté');
-  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
-  fs.mkdirSync(dir,{recursive:true});
-  await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
   assert.deepEqual(errors,[],'Aucune erreur JS reflow');
   assets.assertClean(engine+'/reflow '+width);
   console.log('PASS M3 '+engine+'/'+width+'x'+height+' : reflow, contraste, mouvement réduit');
