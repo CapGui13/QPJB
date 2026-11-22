@@ -438,7 +438,7 @@ if(typeof process!=='undefined'&&process.env.GITHUB_ACTIONS==='true'&&
   const marker='/* M4_P30_NATIVE_107_TEMPORARY_PROBE';
   const index=full.indexOf(marker);
   if(index<2)throw Error('M4 P30 probe marker invalid');
-  const clean=full.slice(0,index-1);
+  const clean=full.slice(0,index-2);
   const sha=crypto.createHash('sha1').update('blob '+Buffer.byteLength(clean)+'\0'+clean).digest('hex');
   const found=fs.readdirSync(path.join(__dirname,'tests')).filter(
     name=>/^wave2-recos-.+\.test\.js$/.test(name)).sort();
