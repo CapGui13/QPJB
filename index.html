@@ -894,7 +894,7 @@ function seanceDisplayName(folder) {
 // Tri par série puis par numéro de séance.
 function compareSeances(a, b) {
   const parse = folder => {
-    const m = folder.match(/^Séance (\d+)-(\d+) Aix$/i);
+    const m = folder.match(/^Séance (\d+)-(\d+)(?: .+)?$/i);
     return m ? [Number(m[1]), Number(m[2])] : [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
   };
   const [serieA, numA] = parse(a.folder);
@@ -1525,6 +1525,9 @@ function showHomeFromSeance() {
   });
 }
 function buildFileListHtml(folderName) {
+  if (!pbnFiles.length) {
+    return '<div class="file-list"><div class="loading" role="status">Séance en préparation : aucune donne publiée pour le moment.</div></div>';
+  }
   const toggleHtml = `<div class="blur-toggle-wrap" style="justify-content:flex-start;padding:0 4px 10px">
     <label class="blur-toggle">
       <input type="checkbox" id="blur-toggle-input" checked onchange="toggleBlur(this.checked)">
