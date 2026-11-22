@@ -1,0 +1,39 @@
+{
+  "schema": "QPJB_WAVE2_M1_P30_NODE_P19_PROJECTION",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "f5a82f58656e4a707023dc5025ec87effea59bc1",
+  "nativeNodeVersion": "22.16.0",
+  "nativeRun": {
+    "script": "tests/wave2-pedagogie-gates-p19.cjs",
+    "gitBlob": "1a268080a074b1280db6483b8f67757b19a30ccf",
+    "exactScriptBytes": true,
+    "inputs": "5 JSON PROJECTIONS OF THE FIELDS CONSUMED BY THE TEST",
+    "result": "PASS 6+11 HOLD 2 internal mutations",
+    "externalMutations": {
+      "falseApproval": "FAIL_EXPECTED",
+      "removedDiamondStopper": "FAIL_EXPECTED",
+      "restored": "PASS"
+    }
+  },
+  "isolatedJS": {
+    "fullGitHubSourceDocs": true,
+    "result": "PASS 6+11 HOLD"
+  },
+  "sourceBlobs": {
+    "ARBITRAGES_P14_HOLD": "b0a91559043988f0695add2b0682bd67f9cfd9f7",
+    "MATRICE_REPRISE_P16_HOLD": "7427c4df1f9280a8599d60d99d29d5ad41a6adfa",
+    "PREUVES_SEF_P15_HOLD": "22b4c95f5f828e62d986fdabd6b60dcfbf9cc893",
+    "TEXAS_CONTRADICTOIRE_P17_HOLD": "53e22641694b93f4217c4b6792f0056831b35bdf",
+    "CHECKPOINT_P18_TESTS_HOLD": "8192684dd3e164f284f407c7737ea2dc9da1cbdf"
+  },
+  "full20Native": "NOT_RUN",
+  "CIpedagogy": "NOT_RUN",
+  "editorialPending": 6,
+  "conventionsPending": 11,
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P31 only with full native/CI path, human validation or material new defect"
+}
