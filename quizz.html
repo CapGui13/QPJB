@@ -328,8 +328,10 @@ body.parcours-session .parcours-session-banner{display:block}
 @media(max-width:270px){
  #body .hand{grid-template-columns:minmax(0,1fr)}
  #body .hand .suit{font-size:19px}
- #body .free-entry-row{grid-template-columns:minmax(0,1fr)}
- #body .free-entry-row button{width:100%;min-width:0}
+ #body .free-entry-row{grid-template-columns:minmax(0,1fr);grid-auto-flow:row}
+ #body .free-entry-row input{grid-column:1;grid-row:1}
+ #body .free-entry-row button{grid-column:1;grid-row:2;width:100%;min-width:0}
+ #body .free-entry-row .bid-entry-display{top:25px}
  #body .bid-key-levels{grid-template-columns:repeat(2,minmax(0,1fr))}
  #body .bid-key-suits{grid-template-columns:repeat(3,minmax(0,1fr))}
  #body .bid-key-calls{grid-template-columns:minmax(0,1fr)}
