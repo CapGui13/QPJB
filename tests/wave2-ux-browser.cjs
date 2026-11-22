@@ -5,16 +5,11 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
 const {chromium,webkit}=require('playwright');
 const {runScenarioPlan}=require('./wave2-ux-plan.cjs');
 const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
+const {requestPath,serveQPJBFile}=require('./wave2-ux-http.cjs');
 const root=path.resolve(__dirname,'..');
-const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml'};
 const server=http.createServer((req,res)=>{
- const url=new URL(req.url,'http://localhost');
- const route=decodeURIComponent(url.pathname);
- if(!route.startsWith('/QPJB/')){res.writeHead(404);res.end();return}
- const file=path.resolve(root,route.slice('/QPJB/'.length));
- if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
- try{const data=fs.readFileSync(file);res.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(data)}
- catch(_){res.writeHead(404);res.end()}
+ const pathname=requestPath(req,res);
+ if(pathname!==null)serveQPJBFile(res,root,pathname);
 });
 async function scenario(browser,engine,width,base){
  const context=await browser.newContext({viewport:{width,height:844},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
