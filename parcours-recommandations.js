@@ -422,33 +422,3 @@
   }
   return {VERSION,OUTCOMES,outcome,buildReport};
 });
-
-
-/* M4_P30_NATIVE_107_TEMPORARY_PROBE: REMOVE FROM BRANCH AFTER LOG CAPTURE.
- * For the CI-only historical entry point, execute the FULL test suite
- * against the exact production module contents without this appendix.
- * Existing integrity checks stay active, unchanged, against that real file.
- */
-if(typeof process!=='undefined'&&process.env.GITHUB_ACTIONS==='true'&&
-   typeof require==='function'&&typeof __filename==='string'&&
-   /[/\\]tests[/\\]parcours-recommandations-v1\.test\.js$/.test(process.argv[1]||'')){
-  const fs=require('node:fs'),path=require('node:path');
-  const cp=require('node:child_process'),crypto=require('node:crypto');
-  const full=fs.readFileSync(__filename,'utf8');
-  const marker='/* M4_P30_NATIVE_107_TEMPORARY_PROBE';
-  const index=full.indexOf(marker);
-  if(index<2)throw Error('M4 P30 probe marker invalid');
-  const clean=full.slice(0,index-2);
-  const sha=crypto.createHash('sha1').update('blob '+Buffer.byteLength(clean)+'\0'+clean).digest('hex');
-  const found=fs.readdirSync(path.join(__dirname,'tests')).filter(
-    name=>/^wave2-recos-.+\.test\.js$/.test(name)).sort();
-  console.log('M4-P30 NODE22 CLEAN-MODULE-BLOB '+sha+' | wave2 suites '+found.length);
-  fs.writeFileSync(__filename,clean,'utf8');
-  try{
-    cp.execFileSync(process.execPath,['--test','tests/parcours-recommandations-v1.test.js',
-      ...found.map(x=>path.join('tests',x))],{cwd:__dirname,stdio:'inherit',timeout:180000});
-    console.log('M4-P30 NATIVE NODE22 CLEAN SOURCE ALL TESTS SUCCEEDED');
-  }finally{
-    fs.writeFileSync(__filename,full,'utf8');
-  }
-}
