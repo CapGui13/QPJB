@@ -60,6 +60,8 @@ Le fichier `tests/wave2-recos-integrity.test.js` du vrai HEAD M4 (blob `dd2f6205
 
 Après restauration, les blobs des vrais HTML M3 et moteur M2 sont **identiques aux sources**. Tous les autres tests M4 historiques et recommandation restent couverts.
 
+**Vérification binaire du patch candidat :** 1 049 octets, Git blob `583d676a197d6b38067a06ffd1590b1c2fc21e73` vérifié par `git hash-object` dans le sandbox et par dépôt du même fichier encodé en base64 sur GitHub. La première sérialisation avait ajouté trois caractères d'échappement ; elle a été remplacée par les **octets strictement identiques à ceux testés**, sans toucher à M4.
+
 **Patch exact disponible** : `audits/wave2/pedagogie/P36_CORRECTIF_M4_INTEGRITE_NON_APPLIQUE.patch`. Il a été généré à partir des octets exacts de la source M4, vérifié avec `git apply --check`, **appliqué avec `git apply` dans la VM**, donnant le code **bit à bit identique à celui des tests 107/107** ; `node --test tests/wave2-recos-integrity.test.js` revient ensuite PASS. **Ne PAS appliquer depuis M1 à une branche tierce sans prise en charge M4/coordinateur**.
 
 ## 4. Raccordement CI et propriétaires

@@ -6,7 +6,7 @@
  test('P9 garde-fou : le gros HTML contenant les 1523 QCM est intact',()=>{
 -  assert.equal(gitBlob(read('quizz.html')),'9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7');
 +  const html=read('quizz.html').toString('utf8');
-+  const marker='<script id=\"training-data\" type=\"application/json\">';
++  const marker='<script id="training-data" type="application/json">';
 +  const start=html.indexOf(marker),end=html.indexOf('</script>',start+marker.length);
 +  assert.ok(start>=0&&end>start,'Charge JSON des QCM absente');
 +  const raw=html.slice(start+marker.length,end);
