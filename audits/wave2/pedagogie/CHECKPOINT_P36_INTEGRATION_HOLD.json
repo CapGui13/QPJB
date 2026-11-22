@@ -1,0 +1,97 @@
+{
+  "schema": "QPJB_WAVE2_M1_P36_FINAL_M3_AND_M4_CROSS_INTEGRATION",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "49c3e27f2904f00c224ef42ccb5d1bea210733e2",
+  "testedCommitHeads": {
+    "M1": "49c3e27f2904f00c224ef42ccb5d1bea210733e2",
+    "M2": "5197f04ef8b530e5a73c5e414f26d8d0ef4f2d15",
+    "M3": "35ebb3c928d4b3f4a1e1c2cf8dab00e9c6d32020",
+    "M4": "8896fc149b14e203f9339d0c9382be99c1f9e1b3",
+    "M5": "65ab1df7df27e02f8e410beac005a3cbf5896f49",
+    "M3M5Integration": "9aac018359dfa0cca51475be47275b7f4507650f"
+  },
+  "blobs": {
+    "M2Engine": "d0f06f1c259f7a766f2d1c8c47289374a74138dc",
+    "M3Html": "94360d58fc45d0516437d158a61f6d306e3bc986",
+    "M4Module": "cebe2b3060cf89926010fd981a0b31bcd5b0c292",
+    "M4OriginalIntegrity": "dd2f62052d4f76d03b67cc6aa018acf52b61878b",
+    "M3PayloadSha256": "22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a",
+    "M3Browser": "585a891175f7ad6a699a8aa47f93835695aa3927",
+    "M3Visual": "e020600aa239b8564760d1ba64623b51eb69a2be",
+    "M3Reflow": "c89900ed5a74785318b890f6344717d54e5e29e1"
+  },
+  "realTests": {
+    "nodeVersion": "v22.23.5",
+    "M1": {
+      "passed": 20,
+      "total": 20,
+      "exitCode": 0
+    },
+    "M2Quick": {
+      "passed": 7,
+      "total": 7,
+      "exitCode": 0,
+      "seconds": 7.4
+    },
+    "M4Original": {
+      "passed": 106,
+      "total": 107,
+      "exitCode": 1,
+      "failedCase": "M4 P9 old whole HTML blob"
+    },
+    "M4PatchCandidate": {
+      "passed": 107,
+      "total": 107,
+      "exitCode": 0,
+      "sourceOnlyTemporary": true,
+      "gitApplyCheck": "PASS",
+      "gitApply": "PASS",
+      "identicalToTestedBytes": true
+    },
+    "negativeCases": {
+      "uiOnlyChange": "5/5 PASS",
+      "qcmIdChanged": "4/5 PASS 1 expected FAIL",
+      "jsonRemoved": "4/5 PASS 1 expected FAIL",
+      "engineChanged": "4/5 PASS 1 expected FAIL",
+      "restoration": "5/5 PASS"
+    }
+  },
+  "githubActions": {
+    "M3RunId": 45003178089,
+    "M3RunConclusion": "success",
+    "M3Steps": "12/12",
+    "M3BrowserScenarios": "14/14",
+    "M3Png": "36/36",
+    "M3Artifact": "m3-chromium-webkit-45003178089-1",
+    "M3ArtifactBytes": 3929950,
+    "M3FourBlobsMatchLiveBranch": true,
+    "M1CompleteSuiteCI": "NOT_RUN"
+  },
+  "notifications": {
+    "M4Issue258": 7079275954,
+    "M4PR262": 7079276403,
+    "M5Issue259": 7079283646,
+    "IntegrationPR269": 7079284176
+  },
+  "pendingHuman": {
+    "editorials": 6,
+    "agreements": 11
+  },
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P37 only after M4 proper fix, actual M1 CI on integrated branch, or human validation",
+  "patchEvidence": {
+    "path": "audits/wave2/pedagogie/P36_CORRECTIF_M4_INTEGRITE_NON_APPLIQUE.patch",
+    "testedPatchBlob": "583d676a197d6b38067a06ffd1590b1c2fc21e73",
+    "testedPatchBytes": 1049,
+    "identicalGitHubBlob": true,
+    "gitApplyCheck": "PASS",
+    "gitApply": "PASS",
+    "testedPatchedCodeIdentical": true,
+    "originalSourceM4Blob": "dd2f62052d4f76d03b67cc6aa018acf52b61878b",
+    "scope": "illustrative patch stored only in M1 audits, M4 unchanged"
+  }
+}

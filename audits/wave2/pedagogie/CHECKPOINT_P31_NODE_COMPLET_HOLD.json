@@ -1,0 +1,36 @@
+{
+  "schema": "QPJB_WAVE2_M1_P31_FULL_NATIVE_NODE",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "sourceCommit": "0030dc15c27542ea92ace3979f2df64dc02dbc36",
+  "execution": {
+    "environment": "ephemeral networked Linux sandbox, real public Git clone",
+    "nodeVersion": "v22.23.5",
+    "cwd": "/vercel/QPJB",
+    "command": "node tests/wave2-pedagogie-suite.cjs",
+    "result": "PASS",
+    "exitCode": 0,
+    "numberOfRealScriptExecutions": 20,
+    "passLinesIncludingRunner": 21,
+    "runDurationMs": 1247,
+    "gitStatusTrackedAndUntrackedChanges": 0,
+    "noMockOrProjectionForMainExecution": true
+  },
+  "negative": {
+    "mutation": "One ID in JSON: SEF-L25-004 => SEF-L25-0X4",
+    "exitCode": 1,
+    "firstFailedTest": "wave2-pedagogie-progressions.cjs",
+    "observedCause": "SHA256 JSON mismatched",
+    "gitWorktreeAfterRestoreClean": true
+  },
+  "ciGithubActionsPedagogicalSuite": "NOT_RUN",
+  "waitingForHumanApproval": {
+    "editorial": 6,
+    "agreements": 11
+  },
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P32 actual M3 HTML cross-branch full native suite"
+}

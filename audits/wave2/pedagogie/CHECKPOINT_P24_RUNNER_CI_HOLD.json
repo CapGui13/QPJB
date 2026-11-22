@@ -1,0 +1,34 @@
+{
+  "schema": "QPJB_WAVE2_M1_P24_RUNNER_CI_HOLD",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "baf694b9acb376fa9a53a454ac31d66605af35de",
+  "oldPredicate": "res.stdout.includes('PASS')",
+  "newPredicate": "hasPassMarker(file,res.stdout)",
+  "nativeNode": {
+    "version": "22.16.0",
+    "test": "tests/wave2-pedagogie-runner-p24.cjs",
+    "passedValidMarkers": 5,
+    "rejectedFakeMarkers": 7,
+    "syntaxCheck": "PASS",
+    "fullSuiteRun": false
+  },
+  "CI": {
+    "workflow": ".github/workflows/training-smoke.yml",
+    "run": 44956315997,
+    "observedIntegrityJob": "success",
+    "suiteIntegratedInM1Workflow": false,
+    "suiteIntegratedInM5Workflow": false,
+    "suiteRunInGitHubActions": false
+  },
+  "suiteScripts": 18,
+  "humanDecisionsPending": {
+    "editorial": 6,
+    "agreements": 11
+  },
+  "merge": "FORBIDDEN",
+  "publication": "FORBIDDEN",
+  "nextPass": "P25 only with native suite or human decisions"
+}

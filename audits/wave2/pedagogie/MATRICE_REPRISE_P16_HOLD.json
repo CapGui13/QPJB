@@ -1,0 +1,201 @@
+{
+  "schema": "QPJB_WAVE2_M1_P16_REPRISE_HOLD",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "checkpointParentSha": "f829c940e0b3efb3e73d4890e9580b53bbf435ba",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "prDraftVerified": true,
+  "scope": {
+    "allowedPrefixes": [
+      "audits/wave2/pedagogie/",
+      "tests/wave2-pedagogie-"
+    ],
+    "changedPathsBeforeP16": [
+      "audits/wave2/pedagogie/ARBITRAGES_P14_HOLD.json",
+      "audits/wave2/pedagogie/BILAN_P12_INTEGRITE_HOLD.json",
+      "audits/wave2/pedagogie/CONTRAT_PREREQUIS_P11_HOLD.json",
+      "audits/wave2/pedagogie/CONTRE_RELECTURE_P10_15_HOLD.json",
+      "audits/wave2/pedagogie/FILE_REVUE_P9_47_HOLD.json",
+      "audits/wave2/pedagogie/PASSE10_CONTRE_LECTURE_AVANCEE.md",
+      "audits/wave2/pedagogie/PASSE11_CONTRAT_PREREQUIS.md",
+      "audits/wave2/pedagogie/PASSE12_INTEGRITE_TRANSVERSALE.md",
+      "audits/wave2/pedagogie/PASSE13_REVUE_32_CAS.md",
+      "audits/wave2/pedagogie/PASSE14_REGISTRE_ARBITRAGES.md",
+      "audits/wave2/pedagogie/PASSE15_PREUVES_CONVENTIONS.md",
+      "audits/wave2/pedagogie/PASSE1_COUVERTURE_20261121.md",
+      "audits/wave2/pedagogie/PASSE2_PREALABLES_ET_CONTEXTES.md",
+      "audits/wave2/pedagogie/PASSE3_PARCOURS_REFERENCE.md",
+      "audits/wave2/pedagogie/PASSE4_CONTRE_EPREUVE_PARCOURS.md",
+      "audits/wave2/pedagogie/PASSE5_AUDIT_CIBLE_HUIT_CAS.md",
+      "audits/wave2/pedagogie/PASSE6_CONTRE_EXPERTISE_HOLD.md",
+      "audits/wave2/pedagogie/PASSE7_PROGRESSIONS_ET_VALIDATION.md",
+      "audits/wave2/pedagogie/PASSE8_CONTRE_EXPERTISE_3_CAS.md",
+      "audits/wave2/pedagogie/PASSE9_STRESS_ET_REVUE_47.md",
+      "audits/wave2/pedagogie/PREUVES_SEF_P15_HOLD.json",
+      "audits/wave2/pedagogie/PROGRESSION_P7_HOLD.json",
+      "audits/wave2/pedagogie/PROPOSITIONS_P8_HOLD.json",
+      "audits/wave2/pedagogie/REVUE_P13_32_HOLD.json",
+      "tests/wave2-pedagogie-cas-sef.cjs",
+      "tests/wave2-pedagogie-coherence.cjs",
+      "tests/wave2-pedagogie-contre-expertise-avancee.cjs",
+      "tests/wave2-pedagogie-parcours.cjs",
+      "tests/wave2-pedagogie-prerequis.cjs",
+      "tests/wave2-pedagogie-preuves.cjs",
+      "tests/wave2-pedagogie-progressions.cjs",
+      "tests/wave2-pedagogie-revue-restants.cjs",
+      "tests/wave2-pedagogie-stress.cjs",
+      "tests/wave2-pedagogie-suite.cjs",
+      "tests/wave2-pedagogie-validations.cjs"
+    ]
+  },
+  "invariants": {
+    "qcm": 1523,
+    "sections": 22,
+    "proposalsHistoricalNotApplied": 36,
+    "selected": 92,
+    "replacements": 47,
+    "reviewedP10": 15,
+    "reviewedP13": 32,
+    "editorialNewPending": 6,
+    "agreementCases": 11
+  },
+  "evidenceTiers": {
+    "SOURCE_EXPLICITE_CADRE": 6,
+    "ACCORD_LOCAL_NON_UNIVERSEL": 2,
+    "SOURCE_PARTIELLE_CONVENTION": 2,
+    "SOURCE_NON_CONCORDANTE_A_ARBITRER": 1
+  },
+  "humanDecisions": {
+    "editorial": [
+      {
+        "id": "SEF-N051-2",
+        "origin": "P8",
+        "fields": [
+          "context"
+        ],
+        "approved": false
+      },
+      {
+        "id": "SEF-N056-1",
+        "origin": "P8",
+        "fields": [
+          "context"
+        ],
+        "approved": false
+      },
+      {
+        "id": "SEF-N067-1",
+        "origin": "P8",
+        "fields": [
+          "explain"
+        ],
+        "approved": false
+      },
+      {
+        "id": "SEF-L02-E-17",
+        "origin": "P10",
+        "fields": [
+          "explain"
+        ],
+        "approved": false
+      },
+      {
+        "id": "SEF-V3-103-3",
+        "origin": "P13",
+        "fields": [
+          "context"
+        ],
+        "approved": false
+      },
+      {
+        "id": "SEF-V44-005",
+        "origin": "P13",
+        "fields": [
+          "context"
+        ],
+        "approved": false
+      }
+    ],
+    "agreements": [
+      {
+        "id": "SEF-L13-012",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L14-002",
+        "tier": "ACCORD_LOCAL_NON_UNIVERSEL",
+        "confirmedByHuman": false,
+        "action": "APPROBATION_ACCORD_LOCAL"
+      },
+      {
+        "id": "SEF-L20-002",
+        "tier": "SOURCE_PARTIELLE_CONVENTION",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L27-006",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L01-C-04",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L13-017",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L10-005",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L13-010",
+        "tier": "SOURCE_PARTIELLE_CONVENTION",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      },
+      {
+        "id": "SEF-L25-004",
+        "tier": "SOURCE_NON_CONCORDANTE_A_ARBITRER",
+        "confirmedByHuman": false,
+        "action": "ARBITRAGE_TEXAS_DABORD"
+      },
+      {
+        "id": "SEF-V479-004",
+        "tier": "ACCORD_LOCAL_NON_UNIVERSEL",
+        "confirmedByHuman": false,
+        "action": "APPROBATION_ACCORD_LOCAL"
+      },
+      {
+        "id": "SEF-C-008",
+        "tier": "SOURCE_EXPLICITE_CADRE",
+        "confirmedByHuman": false,
+        "action": "VALIDER_SOURCE_ET_SENS_EXACT"
+      }
+    ]
+  },
+  "openWork": [
+    "Valider ou rejeter explicitement les six clarifications, sans les appliquer au catalogue dans M1.",
+    "Arbitrer d'abord SEF-L25-004 (Texas contré : main avec ♦AD84) selon l'accord de paire retenu.",
+    "Valider les deux conventions locales et préciser les huit autres dossiers normatifs/conventionnels.",
+    "Exécuter effectivement sous Node le lanceur des onze tests puis demander l'intégration CI via une mission autorisée.",
+    "Tester l'impact d'enseignement réel des parcours, sans inférer de maîtrise à partir de la seule exposition.",
+    "Coordonner l'intégration uniquement après décisions écrites : ne pas fusionner ou publier la PR #261."
+  ],
+  "nextPass": "P17 : arbitrages des écarts SEF à partir des sources et éventuels cas concrets de contre-exemples, pas de validation automatique",
+  "release": "NONE",
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN"
+}
