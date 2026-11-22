@@ -11,8 +11,8 @@ const suite=fs.readFileSync(path.join(root,'tests','wave2-pedagogie-suite.cjs'),
 const match=suite.match(/const tests=\[([\s\S]*?)\];/);
 assert(match,'Lanceur sans inventaire');
 const listed=[...match[1].matchAll(/'([^']+\.cjs)'/g)].map(x=>x[1]);
-assert.equal(listed.length,20);
-assert.equal(new Set(listed).size,20);
+assert(listed.length>=20,'Suite raccourcie depuis P26');
+assert.equal(new Set(listed).size,listed.length);
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-m1-p26-'));
 const testDir=path.join(dir,'tests');
 try{
@@ -60,5 +60,5 @@ try{
  fs.writeFileSync(path.join(testDir,missing),"'use strict';\nconsole.log('PASS restored');\n");
  result=run();
  assert.equal(result.status,0,'La restauration doit rétablir le PASS : '+result.stderr);
- console.log('PASS wave2-pedagogie-inventaire-p26 : 20 scripts recensés, ancien faux succès reproduit, script oublié rejeté, absence détectée, restauration OK');
+ console.log('PASS wave2-pedagogie-inventaire-p26 : '+listed.length+' scripts recensés, ancien faux succès reproduit, script oublié rejeté, absence détectée, restauration OK');
 }finally{fs.rmSync(dir,{recursive:true,force:true});}

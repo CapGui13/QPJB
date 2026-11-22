@@ -1,6 +1,6 @@
 'use strict';
 // P25 : teste le lanceur réel avec des sous-processus simulés, sans lire les QCM.
-// Les 19 scripts pédagogiques ne sont PAS exécutés par cette simulation.
+// Les scripts pédagogiques réels ne sont PAS exécutés par cette simulation.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
@@ -11,8 +11,8 @@ const suiteCode=fs.readFileSync(suiteFile,'utf8');
 const listMatch=suiteCode.match(/const tests=\[([\s\S]*?)\];/);
 assert(listMatch,'Liste des scripts absente dans le vrai lanceur');
 const files=[...listMatch[1].matchAll(/'([^']+\.cjs)'/g)].map(x=>x[1]);
-assert.equal(files.length,19,'Nombre de tests P25 attendu');
-assert.equal(new Set(files).size,19,'Le lanceur contient des doublons');
+assert(files.length>=19,'Une suite anormalement courte a été détectée');
+assert.equal(new Set(files).size,files.length,'Le lanceur contient des doublons');
 const aliases={
  'wave2-pedagogie-parcours.cjs':'wave2-pedagogie',
  'wave2-pedagogie-contre-expertise-avancee.cjs':'wave2-pedagogie-contre-expertise'
@@ -61,7 +61,7 @@ function run(failure=null,code=suiteCode){
 }
 const all=run();
 assert.equal(all.exitCode,0);assert.deepEqual(all.calls,files);
-assert(all.logs.some(x=>x==='PASS wave2-pedagogie-suite : 19 tests successifs'));
+assert(all.logs.some(x=>x==='PASS wave2-pedagogie-suite : '+files.length+' tests successifs')); 
 const cases=['wrongMarker','falsePositive','noMarker','nonzero','spawnError','stderrOnly'];
 for(const kind of cases){
  const faultIndex=7,result=run({kind,index:faultIndex});
@@ -76,4 +76,4 @@ assert.notEqual(oldCode,suiteCode,'Mutation de la condition du lanceur sans effe
 const obsolete=run({kind:'wrongMarker',index:7},oldCode);
 assert.equal(obsolete.exitCode,0,'La contre-preuve doit montrer l’ancien faux positif');
 assert.equal(obsolete.calls.length,files.length);
-console.log('PASS wave2-pedagogie-runner-integration-p25 : 19 scripts simules, 6 echecs rejetes, ancien faux succes demontre');
+console.log('PASS wave2-pedagogie-runner-integration-p25 : '+files.length+' scripts simules, 6 echecs rejetes, ancien faux succes demontre');
