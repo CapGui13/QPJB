@@ -10,6 +10,7 @@ const crypto=require('node:crypto');
 const {execFileSync}=require('node:child_process');
 const {chromium,webkit}=require('playwright');
 const {projectStorage,assertProgressEvidence}=require('./wave2-ux-storage-projection.cjs');
+const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
 const root=path.resolve(__dirname,'..');
 const BASE='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 const artifactDir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
@@ -45,14 +46,9 @@ async function capture(browser,engine,width,height,version,url){
  const context=await browser.newContext({viewport:{width,height},locale:'fr-FR',
   reducedMotion:'reduce',serviceWorkers:'block'});
  await context.addInitScript(()=>{Math.random=()=>0.42});
- const page=await context.newPage(),errors=[],assetErrors=[];
+ const page=await context.newPage(),errors=[];
+ const assets=watchLocalAssets(page,url);
  page.on('pageerror',e=>errors.push(e.message));
- page.on('response',response=>{
-  const kind=response.request().resourceType();
-  if(['script','stylesheet'].includes(kind)&&response.url().startsWith(url)&&
-     response.status()>=400)
-   assetErrors.push(kind+' HTTP '+response.status()+' : '+response.url());
- });
  const images=[];
  try{
   await page.goto(url+(version==='avant'?'avant-m3.html':'quizz.html'),{waitUntil:'domcontentloaded'});
@@ -84,7 +80,7 @@ async function capture(browser,engine,width,height,version,url){
     sha256:crypto.createHash('sha256').update(bytes).digest('hex')});
   }
   assert.deepEqual(errors,[],'Aucune exception JavaScript pour '+engine+'/'+version);
-  assert.deepEqual(assetErrors,[],'Aucune dépendance JS/CSS locale manquante pour '+engine+'/'+version);
+  assets.assertClean(engine+'/'+version+'/'+width+'px');
   const storageRaw=await page.evaluate(()=>({
    parcours:localStorage.getItem('qpjb-sef-parcours-01'),
    records:localStorage.getItem('qpjb-sef-entrainement-01')
