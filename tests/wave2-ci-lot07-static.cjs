@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path');
+const source=fs.readFileSync(path.join(__dirname,'training-lot07-publication-browser.cjs'),'utf8');
+assert.match(source,/const inChild=selector=>child\.locator\(selector\)/);
+assert.doesNotMatch(source,/frame\.locator\('\.play-free-panel/);
+assert.match(source,/LOT07_DIAGNOSTIC_PROBE/);
+assert.match(source,/sonde-detachement/);
+assert.match(source,/framedetached/);
+assert.match(source,/page\.on\('framedetached'/);
+assert.match(source,/child=await \(await page\.locator\('#training-frame'\)\.elementHandle\(\)\)\.contentFrame\(\)/);
+assert.match(source,/prefix\+'-failure\.json'/);
+assert.match(source,/seatCount:document.querySelectorAll/);
+assert.match(source,/await page.screenshot/);
+assert.match(source,/counts\.b===638&&counts\.p===188/);
+assert.match(source,/JC-BH-079-03/);
+assert.match(source,/JC-BH-091-04/);
+console.log('WAVE2 CI LOT07 STATIC PASS: frame-bound assertions, failure artifacts and catalogue checks');

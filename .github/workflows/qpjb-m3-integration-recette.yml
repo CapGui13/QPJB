@@ -1,0 +1,63 @@
+# Recette d'intégration M3+M5 uniquement ; pas de publication ni de fusion.
+name: QPJB M3 - Recette UX Chromium et WebKit
+
+on:
+  pull_request:
+    paths:
+      - 'quizz.html'
+      - 'quizz-parcours.js'
+      - 'parcours-recommandations.js'
+      - 'tests/wave2-ux-*'
+      - '.github/workflows/qpjb-m3-integration-recette.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ux-m3:
+    name: M3 - 12 étapes, Chromium et WebKit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    steps:
+      - name: Checkout intégral pour le comparatif historique
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Vérifier la présence du commit de référence et des fichiers M3
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f tests/wave2-ux-runner.cjs
+          git cat-file -e '2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a:quizz.html'
+          echo "SHA exécuté : $(git rev-parse HEAD)"
+          echo "SHA référence : 2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a"
+
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installer Playwright correspondant aux navigateurs du conteneur
+        shell: bash
+        run: npm install --no-save --package-lock=false playwright@1.64.1
+
+      - name: Exécuter toute la recette M3 (deux moteurs)
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/wave2-ux
+          node tests/wave2-ux-runner.cjs 2>&1 | tee artifacts/wave2-ux/runner.log
+
+      - name: Conserver les captures et rapports, même si la recette échoue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-chromium-webkit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/wave2-ux/**
+          if-no-files-found: warn
+          retention-days: 14
