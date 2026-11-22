@@ -20,6 +20,7 @@ const steps=[
  {name:'Projection de sauvegarde avant/après',file:'tests/wave2-ux-storage-projection-test.cjs'},
  {name:'Serveur HTTP de recette, erreurs explicites',file:'tests/wave2-ux-http-test.cjs'},
  {name:'Ressources JavaScript/CSS du navigateur',file:'tests/wave2-ux-asset-watch-test.cjs'},
+ {name:'Main mobile sans contenu rogné',file:'tests/wave2-ux-reflow-check-test.cjs'},
  ...engines.map(engine=>({name:'Navigation navigateur '+engine,
    file:'tests/wave2-ux-browser.cjs',engine})),
  ...engines.map(engine=>({name:'Comparaison visuelle avant/après '+engine,
