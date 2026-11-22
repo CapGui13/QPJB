@@ -11,6 +11,7 @@ const {execFileSync}=require('node:child_process');
 const {chromium,webkit}=require('playwright');
 const {projectStorage,assertProgressEvidence}=require('./wave2-ux-storage-projection.cjs');
 const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
+const {assertHandReflow}=require('./wave2-ux-reflow-check.cjs');
 const root=path.resolve(__dirname,'..');
 const BASE='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 const artifactDir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
@@ -63,7 +64,12 @@ async function capture(browser,engine,width,height,version,url){
     handText:hand.textContent.replace(/\s+/g,' ').trim(),
     auctionText:document.querySelector('#body .auc')?.textContent.replace(/\s+/g,' ').trim()||'',
     documentWidth:document.documentElement.scrollWidth,
-    viewportWidth:document.documentElement.clientWidth};
+    viewportWidth:document.documentElement.clientWidth,
+    handScrollWidth:hand.scrollWidth,handClientWidth:hand.clientWidth,
+    handRect:(()=>{const {left,right}=hand.getBoundingClientRect();return {left,right}})(),
+    rankRects:Array.from(hand.querySelectorAll('.suit .rank'),node=>{
+     const {left,right}=node.getBoundingClientRect();return {left,right};
+    })};
   });
   for(const [stage,action,selector] of [
    ['question',null,'.hand'],
@@ -111,6 +117,7 @@ async function capture(browser,engine,width,height,version,url){
    assert.ok(second.documentWidth<=second.viewportWidth+2,
     'Débordement dans la version M3 '+width+' : '+second.documentWidth+'/'+second.viewportWidth);
    if(width<=390){
+    assertHandReflow(second,engine+'/'+width+'px comparaison');
     assert.equal(second.display,'grid','Main en grille sur mobile');
     assert.ok(second.suitFontPx>=18.5,'Police mobile M3 à 19px');
     assert.ok(second.suitFontPx>first.suitFontPx,
