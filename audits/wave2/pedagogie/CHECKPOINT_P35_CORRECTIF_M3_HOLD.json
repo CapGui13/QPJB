@@ -1,0 +1,78 @@
+{
+  "schema": "QPJB_WAVE2_M1_P35_M3_REAL_BROWSERS_PATCH_CANDIDATE",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "pr": 261,
+  "issue": 255,
+  "parentSha": "1404136a44700269b0f3d78cb26ae6766163e6a1",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "M3": {
+    "sourceCommit": "3ec39601260b9b4169c6bf4ec319798856abef1b",
+    "htmlGitBlob": "354234e94c7b59d2409ecfdeda2e5c7d0b6bfed3",
+    "node": "v22.23.5",
+    "playwright": "1.64.1",
+    "realBrowsers": [
+      "chromium",
+      "webkit"
+    ],
+    "sourceQcm": 1523
+  },
+  "preFixReference": {
+    "run": "P34",
+    "stepsPassed": 8,
+    "stepsTotal": 12,
+    "visualMobilePx": {
+      "w320": {
+        "before": 19,
+        "after": 19
+      },
+      "w390": {
+        "before": 21.06,
+        "after": 19
+      }
+    }
+  },
+  "patch": "TEMPORARY_TWO_CSS_RULES_ONLY_NO_GITHUB_COMMIT",
+  "fontRule": "clamp(20px,6vw,24px)",
+  "zoomRule": "@media(max-width:270px){#body .free-entry-row{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-auto-flow:row!important}#body .free-entry-row input,#body .free-entry-row button{grid-column:1!important;width:100%!important;min-width:0!important}}",
+  "negativeMinimalZoomPatch": "FAIL Chrome 6/7 without important",
+  "nativeFullRunner": {
+    "command": "node tests/wave2-ux-runner.cjs",
+    "exitCode": 0,
+    "stepsPassed": 12,
+    "stepsTotal": 12,
+    "staticNodeSteps": 8,
+    "chromiumNavigation": 7,
+    "webkitNavigation": 7,
+    "chromiumVisualFormats": 3,
+    "webkitVisualFormats": 3,
+    "chromiumPng": 18,
+    "webkitPng": 18,
+    "originalM3TestScriptsUnchanged": true
+  },
+  "qcmIntegrity": {
+    "identicalRawJson": true,
+    "rawSha256": "22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a",
+    "sourceHtmlBytes": 1907011,
+    "patchedHtmlBytes": 1907297
+  },
+  "limitations": {
+    "patchCommittedToM3": false,
+    "githubActionsRun": false,
+    "pngPersisted": false,
+    "manualImageReview": false,
+    "M1FullOnPatchedM3": "INCONCLUSIVE_SANDBOX_EXPIRED"
+  },
+  "notified": {
+    "M3Issue257": 7076559954,
+    "M3PR265": 7076560291
+  },
+  "M1": {
+    "native20RealPreviously": "PASS P31-P33",
+    "CIGitHub": "NOT_RUN",
+    "editorialPending": 6,
+    "agreementsPending": 11
+  },
+  "merge": "FORBIDDEN",
+  "publication": "FORBIDDEN",
+  "next": "P36 after actual M3/M4 fix, M5 CI integration, or human review"
+}
