@@ -67,7 +67,7 @@ Ce sont **des simulations**, jamais des résultats réels d'élèves. La dette d
 | `foundation` | `modere/153/29` | Familles **1 097 → 1 087** ; difficiles **25,88 → 25,10 %** | **Rejeté** : perte de diversité |
 | `recall` | `modere/153/11` | Familles **1 108 → 974** ; difficiles **27,84 → 31,31 %** | **Rejeté** : forte perte de diversité et difficulté accrue |
 | `overdue` | `modere/153/11` | Familles **1 108 → 1 109** ; difficiles **27,84 → 30,72 %** | **Rejeté** : difficulté accrue |
-| `score-cache` | 30 scénarios comparables | **30/30** projections identiques aux références, mêmes QCM sélectionnés selon métriques suivies | **Non déployé** : optimisation technique neutre, bloquée par contrat SHA du test LOT B |
+| `score-cache` | 30 scénarios comparables | **30/30** projections agrégées identiques aux références ; le contrôle séparé de **600 sélections** vérifie leur ordre | **Non déployé** : optimisation technique neutre, bloquée par contrat SHA du test LOT B |
 
 Ces contre-exemples suffisent à réfuter une domination pédagogique universelle des trois politiques. **Aucune mutation pédagogique n'est justifiée dans `quizz-parcours.js`.** Aucun gain d'apprentissage réel n'est revendiqué.
 
