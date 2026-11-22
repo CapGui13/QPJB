@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http');
 const {chromium,webkit}=require('playwright');
 const {runScenarioPlan}=require('./wave2-ux-plan.cjs');
+const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
 const root=path.resolve(__dirname,'..');
 const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml'};
 const server=http.createServer((req,res)=>{
@@ -18,6 +19,7 @@ const server=http.createServer((req,res)=>{
 async function scenario(browser,engine,width,base){
  const context=await browser.newContext({viewport:{width,height:844},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
  const page=await context.newPage(),errors=[];
+ const assets=watchLocalAssets(page,base);
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
@@ -71,6 +73,7 @@ async function scenario(browser,engine,width,base){
   await page.locator('#done-home').click();
   await page.waitForFunction(()=>document.activeElement?.id==='parcours-start');
   assert.deepEqual(errors,[]);
+  assets.assertClean(engine+'/'+width+'px reprise');
   console.log('PASS M3 '+engine+'/'+width+'px : reprise, clavier, main et bilan');
  }finally{await context.close()}
 }
@@ -87,6 +90,7 @@ async function touchScenario(browser,engine,base){
  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
  const page=await context.newPage();
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const assets=watchLocalAssets(page,base);
  try{
   await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
   await page.locator('#parcours-start').click();
@@ -110,12 +114,14 @@ async function touchScenario(browser,engine,base){
   await page.locator('#bid-keypad').waitFor({state:'hidden',timeout:5000});
   assert.equal(await page.locator('#bid-key-toggle').getAttribute('aria-expanded'),'false','Fermeture ARIA');
   assert.deepEqual(errors,[],'Aucune exception JS tactile');
+  assets.assertClean(engine+'/tactile');
   console.log('PASS M3 '+engine+'/tactile : 16 touches, composition, suppression, ARIA');
  }finally{await context.close()}
 }
 async function layoutScenario(browser,engine,width,height,base){
  const context=await browser.newContext({viewport:{width,height},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
  const page=await context.newPage();const errors=[];
+ const assets=watchLocalAssets(page,base);
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
@@ -145,12 +151,15 @@ async function layoutScenario(browser,engine,width,height,base){
   fs.mkdirSync(dir,{recursive:true});
   await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
   assert.deepEqual(errors,[],'Aucune erreur JS reflow');
+  assets.assertClean(engine+'/reflow '+width);
   console.log('PASS M3 '+engine+'/'+width+'x'+height+' : reflow, contraste, mouvement réduit');
  }finally{await context.close()}
 }
 async function emptySelectionScenario(browser,engine,base){
  const context=await browser.newContext({viewport:{width:360,height:760},locale:'fr-FR',reducedMotion:'reduce'});
- const page=await context.newPage();
+ const page=await context.newPage(),errors=[];
+ const assets=watchLocalAssets(page,base);
+ page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
   await page.locator('#selection-mode').selectOption('review');
@@ -162,12 +171,15 @@ async function emptySelectionScenario(browser,engine,base){
   await page.locator('#back-home').click();
   await page.waitForFunction(()=>document.activeElement?.id==='new');
   assert.equal(await page.locator('.qpjb-quiz-skip').getAttribute('href'),'#parcours-start');
+  assert.deepEqual(errors,[],'Aucune exception JS sélection vide');
+  assets.assertClean(engine+'/selection vide');
   console.log('PASS M3 '+engine+'/selection-vide : retour clavier accessible');
  }finally{await context.close()}
 }
 async function keyboardScenario(browser,engine,base){
  const context=await browser.newContext({viewport:{width:1280,height:900},locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
  const page=await context.newPage();const errors=[];
+ const assets=watchLocalAssets(page,base);
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto(base+'/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
@@ -188,6 +200,7 @@ async function keyboardScenario(browser,engine,base){
   await page.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
   assert.equal(await page.evaluate(()=>document.activeElement?.id),'question-heading','Retour du focus sur la nouvelle question');
   assert.deepEqual(errors,[],'Aucune exception JS en navigation clavier');
+  assets.assertClean(engine+'/clavier');
   console.log('PASS M3 '+engine+'/clavier : lancement, QCM, correction, question suivante');
  }finally{await context.close()}
 }
