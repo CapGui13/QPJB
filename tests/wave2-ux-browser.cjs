@@ -150,6 +150,10 @@ async function layoutScenario(browser,engine,width,height,base){
     empty:empty?{color:getComputedStyle(empty).color,bg:getComputedStyle(empty).backgroundColor,opacity:getComputedStyle(empty).opacity}:null,
     motion:ask?getComputedStyle(ask).animationName:null};
   });
+  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
+  fs.mkdirSync(dir,{recursive:true});
+  await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
+  if(width===195)console.log('M3 ZOOM MESURES '+engine+' : '+JSON.stringify(dims));
   assert.ok(dims.outer<=dims.inner+2,'Débordement horizontal '+width+'px : '+JSON.stringify(dims));
   if(width===195){
    assertHandReflow(dims,engine+'/195px zoom');
@@ -162,9 +166,6 @@ async function layoutScenario(browser,engine,width,height,base){
    assert.ok(contrastRatio(dims.empty.color,dims.empty.bg)>=4.5,'Contraste calculé AA : '+contrastRatio(dims.empty.color,dims.empty.bg));
   }
   if(dims.motion!==null)assert.equal(dims.motion,'none','Mouvement réduit respecté');
-  const dir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
-  fs.mkdirSync(dir,{recursive:true});
-  await page.screenshot({path:path.join(dir,engine+'-'+width+'x'+height+'-P6.png'),fullPage:true});
   assert.deepEqual(errors,[],'Aucune erreur JS reflow');
   assets.assertClean(engine+'/reflow '+width);
   console.log('PASS M3 '+engine+'/'+width+'x'+height+' : reflow, contraste, mouvement réduit');

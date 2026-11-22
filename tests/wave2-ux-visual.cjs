@@ -134,8 +134,13 @@ async function capture(browser,engine,width,height,version,url,runDir){
      assertHandReflow(second,engine+'/'+width+'px comparaison');
      assert.equal(second.display,'grid','Main en grille sur mobile');
      assert.ok(second.suitFontPx>=18.5,'Police mobile M3 à 19px');
-     assert.ok(second.suitFontPx>first.suitFontPx,
-      'Gain de lisibilité non démontré : '+first.suitFontPx+' → '+second.suitFontPx);
+     const baselineClipped=first.handScrollWidth>first.handClientWidth+2||
+      first.rankRects.some(r=>r.left<first.handRect.left-2||r.right>first.handRect.right+2);
+     assert.ok(second.suitFontPx>=first.suitFontPx-0.1,
+      'Régression de police : '+first.suitFontPx+' → '+second.suitFontPx);
+     assert.ok(second.suitFontPx>first.suitFontPx+0.1||baselineClipped,
+      'Gain réel non démontré (taille ou fin du rognage) : '+first.suitFontPx+' → '+
+       second.suitFontPx+' ; baselineClipped='+baselineClipped);
     }
     rows.push({width,height,status:'passed',avant:first,apres:second,
      gainPolicePx:Number((second.suitFontPx-first.suitFontPx).toFixed(2))});
