@@ -47,8 +47,14 @@
       for(const a of event.answers||[]){
         const result=outcome(a);
         if(!result||typeof a.id!=='string')continue;
-        // Un journal réimporté avec la même réponse dupliquée ne prouve rien de plus.
-        const fingerprint=event.mode+'|'+event.session+'|'+a.id;
+        // Deux consolidations réelles peuvent partager (session,id) : le V1
+        // n'incrémente pas completed pour ce mode. L'horodatage conservé
+        // distingue les séances réelles, mais pas deux copies du même événement.
+        // Sans horodatage, ne pas inventer une séparation entre les sessions.
+        const sessionKey=event.mode==='consolidation'&&
+          typeof event.recordedAt==='string'&&event.recordedAt.length>0
+          ?event.session+'|'+event.recordedAt:event.session;
+        const fingerprint=event.mode+'|'+sessionKey+'|'+a.id;
         if(seen.has(fingerprint))continue;
         seen.add(fingerprint);
         byMode[event.mode][result]++;
