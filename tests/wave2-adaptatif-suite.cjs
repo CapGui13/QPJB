@@ -7,11 +7,12 @@ const QUICK = [
   {id:'contrat', file:'tests/wave2-adaptatif-suite-selftest.cjs', args:[]},
   {id:'invariants', file:'tests/wave2-adaptatif-invariants.cjs', args:[]},
   {id:'catalogue-ux-coexistence', file:'tests/wave2-adaptatif-invariants-contract.cjs', args:[]},
+  {id:'golden-selftest', file:'tests/wave2-adaptatif-golden.cjs', args:['--selftest']},
   {id:'selection-600', file:'tests/wave2-adaptatif-selection-regression.cjs', args:[]},
   {id:'reprise', file:'tests/wave2-adaptatif-resume.cjs', args:[]}
 ];
 const RESEARCH = [
-  {id:'baseline-30', file:'tests/wave2-adaptatif-benchmark.cjs', args:[]},
+  {id:'baseline-30', file:'tests/wave2-adaptatif-golden.cjs', args:[]},
   {id:'fondamentaux-modere153-g29', file:'tests/wave2-adaptatif-candidates.cjs',
     args:['--variant','foundation','--profile','modere','--horizon','153','--seed','29']},
   {id:'rappels-modere153-g11', file:'tests/wave2-adaptatif-candidates.cjs',
