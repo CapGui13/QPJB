@@ -1,0 +1,105 @@
+{
+  "schema": "QPJB_WAVE2_M1_P34_M3_REAL_BROWSERS",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "2c43261772b09be1826fe75c7a3baafb96680721",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "source": {
+    "M3TestedCommit": "d85608d95f4af093c1117f161332069010a0fbf8",
+    "M3LaterHead": "3ec39601260b9b4169c6bf4ec319798856abef1b",
+    "htmlBlob": "354234e94c7b59d2409ecfdeda2e5c7d0b6bfed3",
+    "browserTestBlob": "c565383ae527a73731f5a5384a39537ea66a3bb9",
+    "visualTestBlob": "872f6433e8129f21ee1ed223df397b39be0c4fef"
+  },
+  "env": {
+    "node": "v22.23.5",
+    "playwright": "1.64.1",
+    "chromium": true,
+    "webkit": true,
+    "realBrowserEngines": true
+  },
+  "native": {
+    "runnerCommand": "node tests/wave2-ux-runner.cjs",
+    "exit": 1,
+    "totalSteps": 12,
+    "passedSteps": 8,
+    "failedSteps": 4,
+    "nodeStepsPassed": 8,
+    "chromeNavigation": {
+      "passed": 6,
+      "total": 7
+    },
+    "webkitNavigation": {
+      "passed": 6,
+      "total": 7
+    },
+    "visual": {
+      "chromium": {
+        "formatsPassed": 1,
+        "totalFormats": 3,
+        "pngs": 18,
+        "status": "failed"
+      },
+      "webkit": {
+        "formatsPassed": 1,
+        "totalFormats": 3,
+        "pngs": 18,
+        "status": "failed"
+      }
+    },
+    "mobileFontPx": {
+      "w320": {
+        "before": 19,
+        "after": 19
+      },
+      "w390": {
+        "before": 21.06,
+        "after": 19
+      },
+      "w844": {
+        "before": 24,
+        "after": 24
+      }
+    },
+    "zoom195": {
+      "matched270": true,
+      "gridTracks": "32px 82px",
+      "actualInputButtonSameY": true
+    }
+  },
+  "experimentalCss": {
+    "pushedToGitHub": false,
+    "fontRule": "clamp(20px,6vw,24px)",
+    "stepsPassed": 10,
+    "total": 12,
+    "chromiumVisual": "3/3 PASS",
+    "webkitVisual": "3/3 PASS",
+    "fontAt320": 20,
+    "fontAt390": 23.4,
+    "reflowIssueStill": "FAIL",
+    "actualReviewRequired": true
+  },
+  "evidence": {
+    "screenshotsProduced": 36,
+    "extraLayoutScreenshots": 2,
+    "persisted": false,
+    "visuallyInspected": false,
+    "originalTestsUnmodifiedGitHub": true
+  },
+  "M1": {
+    "realNative20": "PASS_AT_P31_P33",
+    "ciM1": "NOT_RUN",
+    "editorialsPending": 6,
+    "agreementsPending": 11
+  },
+  "ownership": {
+    "M3": "issue257 PR265 notified",
+    "M1": "documentation only",
+    "M4": "previous integration bug still pending",
+    "M5": "CI hookup pending"
+  },
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P35 only after actionable external change"
+}
