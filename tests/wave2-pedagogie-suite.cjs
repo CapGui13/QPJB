@@ -32,6 +32,6 @@ for(const file of tests){
  if(res.stdout)process.stdout.write(res.stdout);
  if(res.stderr)process.stderr.write(res.stderr);
  if(res.error||res.status!==0){console.error('FAIL '+file+(res.error?' : '+res.error.message:''));process.exit(1);}
- if(!hasPassMarker(file,res.stdout)){console.error('FAIL '+file+' : marqueur PASS correspondant au fichier absent');process.exit(1);}
+ if(!hasPassMarker(file,res.stdout,res.stderr)){console.error('FAIL '+file+' : marqueur PASS absent/invalide ou diagnostic FAIL/ERROR détecté');process.exit(1);}
 }
 console.log('PASS wave2-pedagogie-suite : '+tests.length+' tests successifs');

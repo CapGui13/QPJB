@@ -43,6 +43,10 @@ function run(failure=null,code=suiteCode){
     case 'stderrOnly': r.stderr=marker(file);r.stdout='';break;
     case 'afterFail': r.stdout=marker(file)+'\nFAIL '+file+' : erreur tardive\n';break;
     case 'afterOtherPass': r.stdout=marker(file)+'\n'+marker(files[(i+1)%files.length])+'\n';break;
+    case 'beforeFail': r.stdout='FAIL '+file+' : échec antérieur\n'+marker(file)+'\n';break;
+    case 'beforeError': r.stdout='ERROR: échec antérieur\n'+marker(file)+'\n';break;
+    case 'stderrFail': r.stderr='FAIL '+file+' : échec en stderr\n';break;
+    case 'stderrError': r.stderr='ERROR: échec en stderr\n';break;
     default: throw Error('Cas de test inconnu');
    }
   }
@@ -64,7 +68,7 @@ function run(failure=null,code=suiteCode){
 const all=run();
 assert.equal(all.exitCode,0);assert.deepEqual(all.calls,files);
 assert(all.logs.some(x=>x==='PASS wave2-pedagogie-suite : '+files.length+' tests successifs')); 
-const cases=['wrongMarker','falsePositive','noMarker','nonzero','spawnError','stderrOnly','afterFail','afterOtherPass'];
+const cases=['wrongMarker','falsePositive','noMarker','nonzero','spawnError','stderrOnly','afterFail','afterOtherPass','beforeFail','beforeError','stderrFail','stderrError'];
 for(const kind of cases){
  const faultIndex=7,result=run({kind,index:faultIndex});
  assert.equal(result.exitCode,1,'Échec '+kind+' non propagé');
@@ -73,9 +77,9 @@ for(const kind of cases){
  assert(!result.logs.some(x=>x.startsWith('PASS wave2-pedagogie-suite')));
 }
 // Contre-preuve : l'ancienne condition accepte un marqueur PASS quelconque.
-const oldCode=suiteCode.replace('if(!hasPassMarker(file,res.stdout))',"if(!res.stdout.includes('PASS'))");
+const oldCode=suiteCode.replace('if(!hasPassMarker(file,res.stdout,res.stderr))',"if(!res.stdout.includes('PASS'))");
 assert.notEqual(oldCode,suiteCode,'Mutation de la condition du lanceur sans effet');
 const obsolete=run({kind:'wrongMarker',index:7},oldCode);
 assert.equal(obsolete.exitCode,0,'La contre-preuve doit montrer l’ancien faux positif');
 assert.equal(obsolete.calls.length,files.length);
-console.log('PASS wave2-pedagogie-runner-integration-p25 : '+files.length+' scripts simules, 8 echecs rejetes, ancien faux succes demontre');
+console.log('PASS wave2-pedagogie-runner-integration-p25 : '+files.length+' scripts simules, 12 echecs rejetes, ancien faux succes demontre');
