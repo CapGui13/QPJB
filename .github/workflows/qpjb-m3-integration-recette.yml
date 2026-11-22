@@ -32,6 +32,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Le checkout a l'UID de l'hôte, le conteneur Playwright un UID distinct.
+          # Déclarer uniquement le dépôt de cette exécution comme sûr.
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           test -f tests/wave2-ux-runner.cjs
           git cat-file -e '2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a:quizz.html'
           echo "SHA exécuté : $(git rev-parse HEAD)"
