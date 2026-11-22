@@ -9,8 +9,14 @@ function gitBlob(bytes){
 test('P9 garde-fou : moteur V1 conservé bit à bit depuis la base',()=>{
   assert.equal(gitBlob(read('quizz-parcours.js')),'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
 });
-test('P9 garde-fou : le gros HTML contenant les 1523 QCM est intact',()=>{
-  assert.equal(gitBlob(read('quizz.html')),'9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7');
+test('P9 garde-fou : le JSON des 1523 QCM est intact malgré l’UI M3',()=>{
+  const html=read('quizz.html').toString('utf8');
+  const marker='<script id="training-data" type="application/json">';
+  const start=html.indexOf(marker),end=html.indexOf('</script>',start+marker.length);
+  assert.ok(start>=0&&end>start,'Charge JSON des QCM absente');
+  const raw=html.slice(start+marker.length,end);
+  assert.equal(crypto.createHash('sha256').update(raw,'utf8').digest('hex'),'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a');
+  assert.equal(JSON.parse(raw).exercises.length,1523);
 });
 test('P9 garde-fou : module recommandations sans DOM, stockage ni réseau',()=>{
   const src=read('parcours-recommandations.js').toString('utf8');
