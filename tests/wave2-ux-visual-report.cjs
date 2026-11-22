@@ -22,10 +22,16 @@ function writeVisualReport({file,engine,baseline,rows,runDir,fatal=null,expected
   }):[];
  const passed=rows.filter(row=>row.status==='passed').length;
  const failed=rows.filter(row=>row.status==='failed').length;
- const status=fatal||failed?'failed':rows.length===expected&&passed===expected?'passed':'incomplete';
+ // Chaque format requiert AVANT/APRÈS x question/propositions/corrigé.
+ // Trois lignes "passed" ne prouvent rien sans les 18 captures réelles.
+ const expectedImages=expected*6;
+ const status=fatal||failed?'failed':
+  rows.length===expected&&passed===expected&&images.length===expectedImages?
+   'passed':'incomplete';
  const report={schemaVersion:2,baseline,engine,status,
   generatedAt:new Date().toISOString(),expectedFormats:expected,
   formats:{passed,failed,observed:rows.length},
+  captures:{expected:expectedImages,observed:images.length},
   fatal:fatal?String(fatal):null,rows,images};
  fs.mkdirSync(path.dirname(file),{recursive:true});
  const temporary=file+'.'+process.pid+'.tmp';
