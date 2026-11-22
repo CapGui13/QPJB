@@ -17,7 +17,7 @@ try{
  assert.equal(failed.status,'failed');
  assert.deepEqual(failed.formats,{passed:1,failed:1,observed:2});
  assert.equal(failed.images.length,1,'Capture partielle conservée');
- assert.equal(failed.images[0].bytes,20);
+ assert.equal(failed.images[0].bytes,Buffer.byteLength('image réelle de test'));
  assert.equal(failed.images[0].sha256.length,64);
  assert.match(fs.readFileSync(file,'utf8'),/erreur volontaire/);
  assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
