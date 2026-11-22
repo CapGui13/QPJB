@@ -26,10 +26,27 @@ try{
  assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
   rows:[],runDir:dir,fatal:'WebKit non disponible'}).status,'failed',
   'Un échec précoce doit aussi produire un manifeste exploitable');
+ const complete=[...partial.slice(0,1),{width:390,status:'passed'},{width:844,status:'passed'}];
  assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
-  rows:[...partial.slice(0,1),{width:390,status:'passed'},{width:844,status:'passed'}],
-  runDir:dir}).status,'passed','Trois formats réussis restent acceptés');
+  rows:complete,runDir:dir}).status,'incomplete',
+  'Trois formats marqués OK ne suffisent pas si les captures manquent');
+ for(const size of ['320x844','390x844','844x390']){
+  for(const version of ['avant','apres']){
+   for(const stage of ['question','propositions','correction']){
+    fs.writeFileSync(path.join(dir,'chromium-'+size+'-'+version+'-'+stage+'.png'),
+     Buffer.from(size+'-'+version+'-'+stage));
+   }
+  }
+ }
+ const success=writeVisualReport({file,engine:'chromium',baseline:'base',
+  rows:complete,runDir:dir});
+ assert.equal(success.status,'passed','Trois formats et 18 captures validés');
+ assert.deepEqual(success.captures,{expected:18,observed:18});
+ fs.rmSync(path.join(dir,'chromium-390x844-avant-correction.png'));
+ assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
+  rows:complete,runDir:dir}).status,'incomplete',
+  'Une seule image manquante interdit un succès trompeur');
  assert.throws(()=>writeVisualReport({file,engine:'chromium',baseline:'base',
   rows:[{status:'unknown'}],runDir:dir}),/non classé/);
- console.log('PASS M3 visuel : échec partiel, PNG + SHA conservés, absence de preuve rejetée, succès complet reconnu');
+ console.log('PASS M3 visuel : échec partiel, PNG + SHA conservés, 18 PNG exigés, absence de preuve rejetée');
 }finally{fs.rmSync(root,{recursive:true,force:true})}
