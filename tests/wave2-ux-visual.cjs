@@ -31,26 +31,28 @@ function qcmJSON(html){
  assert.ok(match,'JSON QCM absent');return match[1];
 }
 assert.equal(qcmJSON(before),qcmJSON(after),'Catalogue inchangé entre les deux versions');
-const types={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8',
- '.css':'text/css; charset=utf-8','.svg':'image/svg+xml'};
+const {requestPath,serveQPJBFile}=require('./wave2-ux-http.cjs');
 const server=http.createServer((req,res)=>{
- const pathname=decodeURIComponent(new URL(req.url,'http://127.0.0.1').pathname);
+ const pathname=requestPath(req,res);
+ if(pathname===null)return;
  if(pathname==='/QPJB/avant-m3.html'){
-  res.writeHead(200,{'content-type':types['.html'],'cache-control':'no-store'});res.end(before);return}
- if(!pathname.startsWith('/QPJB/')){res.writeHead(404);res.end();return}
- const file=path.resolve(root,pathname.slice('/QPJB/'.length));
- if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
- try{
-  res.writeHead(200,{'content-type':types[path.extname(file)]||'application/octet-stream','cache-control':'no-store'});
-  fs.createReadStream(file).pipe(res);
- }catch(_){res.writeHead(404);res.end()}
+  res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});
+  res.end(before);return;
+ }
+ serveQPJBFile(res,root,pathname);
 });
 async function capture(browser,engine,width,height,version,url){
  const context=await browser.newContext({viewport:{width,height},locale:'fr-FR',
   reducedMotion:'reduce',serviceWorkers:'block'});
  await context.addInitScript(()=>{Math.random=()=>0.42});
- const page=await context.newPage(),errors=[];
+ const page=await context.newPage(),errors=[],assetErrors=[];
  page.on('pageerror',e=>errors.push(e.message));
+ page.on('response',response=>{
+  const kind=response.request().resourceType();
+  if(['script','stylesheet'].includes(kind)&&response.url().startsWith(url)&&
+     response.status()>=400)
+   assetErrors.push(kind+' HTTP '+response.status()+' : '+response.url());
+ });
  const images=[];
  try{
   await page.goto(url+(version==='avant'?'avant-m3.html':'quizz.html'),{waitUntil:'domcontentloaded'});
@@ -82,6 +84,7 @@ async function capture(browser,engine,width,height,version,url){
     sha256:crypto.createHash('sha256').update(bytes).digest('hex')});
   }
   assert.deepEqual(errors,[],'Aucune exception JavaScript pour '+engine+'/'+version);
+  assert.deepEqual(assetErrors,[],'Aucune dépendance JS/CSS locale manquante pour '+engine+'/'+version);
   const storageRaw=await page.evaluate(()=>({
    parcours:localStorage.getItem('qpjb-sef-parcours-01'),
    records:localStorage.getItem('qpjb-sef-entrainement-01')
