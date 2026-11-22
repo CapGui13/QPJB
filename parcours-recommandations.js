@@ -163,6 +163,20 @@
           e.helpedCount=helpedByArea.get(id)||0;
           e.skippedCount=e.attempts-e.helpedCount;
         }
+      }else{
+        const autonomous=autonomousByArea.get(id)||0;
+        const helped=helpedByArea.get(id)||0;
+        const assessed=assessedByArea.get(id)||0;
+        if(autonomous>0&&assessed===autonomous+helped){
+          // Le journal complet contient une ou plusieurs réussites autonomes
+          // et AUCUNE réponse finale fausse. Ne pas inventer un échec.
+          item.title='Autonomie à consolider : '+e.label;
+          item.message='Le score V1 demande encore consolidation, mais les réponses finales conservées sont correctes ou sautées : aucune réponse finale fausse.';
+          e.noFinalWrong=true;
+          e.autonomousCount=autonomous;
+          e.helpedCount=helped;
+          e.skippedCount=e.attempts-assessed;
+        }
       }
     }
     const divergent=new Set();
@@ -263,6 +277,12 @@
       observed,
       caveat:'Ces réussites répétées ne garantissent pas la maîtrise de toute la rubrique ni le maintien à long terme.',
       action:'Continuer le parcours et varier les situations.'
+    };
+    if(e.noFinalWrong&&['persistent_difficulty','consolidate'].includes(item.type))return {
+      observed:observed+' Journal complet : '+e.autonomousCount+' réussite(s) autonomes, '+
+        e.helpedCount+' aidée(s), '+e.skippedCount+' saut(s), aucune réponse finale incorrecte.',
+      caveat:'Le score V1 ne suffit pas à conclure à une difficulté sur des réponses finales fausses ; les réussites constatées ne prouvent pas une maîtrise générale.',
+      action:'Continuer avec des situations variées, en privilégiant des réponses sans aide.'
     };
     if(e.helpedAndSkipped&&['persistent_difficulty','consolidate'].includes(item.type))return {
       observed:observed+' Le journal décrit '+e.helpedCount+' réponse(s) aidée(s) et '+e.skippedCount+' saut(s), sans erreur finale.',
