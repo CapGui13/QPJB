@@ -140,6 +140,10 @@ async function layoutScenario(browser,engine,width,height,base){
    return {outer:document.documentElement.scrollWidth,inner:document.documentElement.clientWidth,
     hand:getComputedStyle(hand).gridTemplateColumns,handDisplay:getComputedStyle(hand).display,
     entry:getComputedStyle(entry).gridTemplateColumns,
+    entryInput:(()=>{const r=entry.querySelector('input').getBoundingClientRect();
+     return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width}})(),
+    entryButton:(()=>{const r=entry.querySelector('button[type="submit"]').getBoundingClientRect();
+     return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width}})(),
     documentWidth:document.documentElement.scrollWidth,
     viewportWidth:document.documentElement.clientWidth,
     handScrollWidth:hand.scrollWidth,handClientWidth:hand.clientWidth,
@@ -159,7 +163,14 @@ async function layoutScenario(browser,engine,width,height,base){
    assertHandReflow(dims,engine+'/195px zoom');
    assert.equal(dims.handDisplay,'grid','Zoom 200% : main en grille');
    assert.equal(dims.hand.trim().split(/\s+/).length,1,'Zoom 200% : une colonne pour la main');
-   assert.equal(dims.entry.trim().split(/\s+/).length,1,'Zoom 200% : saisie en une colonne');
+   // Les moteurs peuvent afficher une colonne implicite de 0px.
+   // On vérifie la géométrie visible plutôt que le nombre de pistes CSS.
+   const field=dims.entryInput,submit=dims.entryButton;
+   assert.ok(submit.top>=field.bottom-1&&
+    Math.abs(field.left-submit.left)<=2&&Math.abs(field.right-submit.right)<=2&&
+    field.width>=90&&submit.width>=90,
+    'Zoom 200% : saisie et validation empilées, larges et non chevauchantes : '+
+     JSON.stringify({field,submit,grid:dims.entry}));
   }
   if(dims.empty){
    assert.equal(dims.empty.opacity,'1','Cellule vide sans réduction d’opacité');
