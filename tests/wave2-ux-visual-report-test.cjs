@@ -60,6 +60,15 @@ try{
  assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
   rows:complete,runDir:dir}).status,'failed','Un seul faux PNG doit être rejeté');
  fs.writeFileSync(path.join(dir,'chromium-390x844-avant-question.png'),png(390,844));
+ const corrupted=Buffer.from(png(390,844));corrupted[20]^=1;
+ fs.writeFileSync(path.join(dir,'chromium-390x844-avant-question.png'),corrupted);
+ const broken=writeVisualReport({file,engine:'chromium',baseline:'base',rows:complete,runDir:dir});
+ assert.equal(broken.status,'failed','CRC PNG invalide rejeté');
+ assert.match(broken.images.find(x=>x.file.includes('390x844-avant-question')).issue,/CRC PNG/);
+ fs.writeFileSync(path.join(dir,'chromium-390x844-avant-question.png'),png(320,844));
+ assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
+  rows:complete,runDir:dir}).status,'failed','Fausse largeur de capture rejetée');
+ fs.writeFileSync(path.join(dir,'chromium-390x844-avant-question.png'),png(390,844));
  fs.rmSync(path.join(dir,'chromium-390x844-avant-correction.png'));
  assert.equal(writeVisualReport({file,engine:'chromium',baseline:'base',
   rows:complete,runDir:dir}).status,'incomplete',
