@@ -41,6 +41,8 @@ function run(failure=null,code=suiteCode){
     case 'nonzero': r.status=9;break;
     case 'spawnError': r.error=new Error('ETIMEDOUT');r.status=null;break;
     case 'stderrOnly': r.stderr=marker(file);r.stdout='';break;
+    case 'afterFail': r.stdout=marker(file)+'\nFAIL '+file+' : erreur tardive\n';break;
+    case 'afterOtherPass': r.stdout=marker(file)+'\n'+marker(files[(i+1)%files.length])+'\n';break;
     default: throw Error('Cas de test inconnu');
    }
   }
@@ -62,7 +64,7 @@ function run(failure=null,code=suiteCode){
 const all=run();
 assert.equal(all.exitCode,0);assert.deepEqual(all.calls,files);
 assert(all.logs.some(x=>x==='PASS wave2-pedagogie-suite : '+files.length+' tests successifs')); 
-const cases=['wrongMarker','falsePositive','noMarker','nonzero','spawnError','stderrOnly'];
+const cases=['wrongMarker','falsePositive','noMarker','nonzero','spawnError','stderrOnly','afterFail','afterOtherPass'];
 for(const kind of cases){
  const faultIndex=7,result=run({kind,index:faultIndex});
  assert.equal(result.exitCode,1,'Échec '+kind+' non propagé');
@@ -76,4 +78,4 @@ assert.notEqual(oldCode,suiteCode,'Mutation de la condition du lanceur sans effe
 const obsolete=run({kind:'wrongMarker',index:7},oldCode);
 assert.equal(obsolete.exitCode,0,'La contre-preuve doit montrer l’ancien faux positif');
 assert.equal(obsolete.calls.length,files.length);
-console.log('PASS wave2-pedagogie-runner-integration-p25 : '+files.length+' scripts simules, 6 echecs rejetes, ancien faux succes demontre');
+console.log('PASS wave2-pedagogie-runner-integration-p25 : '+files.length+' scripts simules, 8 echecs rejetes, ancien faux succes demontre');

@@ -8,10 +8,10 @@ const aliases={
 function hasPassMarker(file,stdout){
   const expected=aliases[file]||file.replace(/\.cjs$/,'');
   if(!/^wave2-pedagogie-[a-z0-9-]+\.cjs$/.test(file))return false;
-  return String(stdout||'').split(/\r?\n/).some(line=>{
-    const match=/^PASS (wave2-pedagogie(?:-[a-z0-9]+)*)\s*:\s*/.exec(line);
-    return !!match&&match[1]===expected;
-  });
+  const lines=String(stdout||'').split(/\r?\n/).filter(line=>line.trim().length>0);
+  const last=lines.length?lines[lines.length-1]:'';
+  const match=/^PASS (wave2-pedagogie(?:-[a-z0-9]+)*)\s*:\s*/.exec(last);
+  return !!match&&match[1]===expected;
 }
 module.exports={hasPassMarker};
 if(require.main===module){
@@ -30,8 +30,10 @@ if(require.main===module){
     ['wave2-pedagogie-progressions.cjs','PASS wave2-pedagogie-progressions'],
     ['wave2-pedagogie-progressions.cjs','\nPASS other-test : OK\n'],
     ['wave2-pedagogie-progressions.cjs',''],
-    ['training-smoke.cjs','PASS training-smoke : OK']
+    ['training-smoke.cjs','PASS training-smoke : OK'],
+    ['wave2-pedagogie-progressions.cjs','PASS wave2-pedagogie-progressions : OK\nFAIL wave2-pedagogie-progressions : erreur tardive'],
+    ['wave2-pedagogie-progressions.cjs','PASS wave2-pedagogie-progressions : OK\nPASS wave2-pedagogie-stress : autre test']
   ];
   for(const [file,output] of invalid)assert.equal(hasPassMarker(file,output),false,'Fausse acceptation '+file+' : '+output);
-  console.log('PASS wave2-pedagogie-runner-p24 : 5 vrais marqueurs acceptes, 7 faux succes rejetes');
+  console.log('PASS wave2-pedagogie-runner-p24 : 5 vrais marqueurs acceptes, 9 faux succes rejetes');
 }
