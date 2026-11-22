@@ -15,14 +15,19 @@ const expected=[
 'wave2-pedagogie-catalogue-p21.cjs',
 'wave2-pedagogie-payload-p22.cjs',
 'wave2-pedagogie-runner-p24.cjs',
-'wave2-pedagogie-runner-integration-p25.cjs'];
+'wave2-pedagogie-runner-integration-p25.cjs',
+'wave2-pedagogie-inventaire-p26.cjs'];
 const launch=fs.readFileSync(path.join(root,'tests','wave2-pedagogie-suite.cjs'),'utf8');
 const match=launch.match(/const tests=\[([\s\S]*?)\];/);
 assert(match,'Tableau du lanceur absent');
 const listed=[...match[1].matchAll(/'([^']+\.cjs)'/g)].map(x=>x[1]);
 assert.deepEqual(listed,expected,'Inventaire du lanceur modifié');
-assert.equal(new Set(listed).size,19);
+assert.equal(new Set(listed).size,20);
 assert(!listed.includes('wave2-pedagogie-suite.cjs'),'Suite récursive interdite');
+const filesOnDisk=fs.readdirSync(path.join(root,'tests'))
+ .filter(name=>/^wave2-pedagogie-[a-z0-9-]+\.cjs$/.test(name)&&name!=='wave2-pedagogie-suite.cjs')
+ .sort();
+assert.deepEqual(filesOnDisk,[...expected].sort(),'Script pédagogique non référencé ou absent du lanceur');
 for(const filename of listed){
  assert(/^wave2-pedagogie-[a-z0-9-]+\.cjs$/.test(filename));
  const src=fs.readFileSync(path.join(root,'tests',filename),'utf8');
@@ -37,4 +42,4 @@ assert.equal(checkpoint.passedScriptNames.length,12);
 assert.deepEqual(checkpoint.nextSuiteScriptNames,expected.slice(0,13),'Checkpoint P18 preserve');
 assert.equal(checkpoint.tested.reduce((n,g)=>n+g.passed,0),12);
 assert.equal(checkpoint.failed.length,0);
-console.log('PASS wave2-pedagogie-couverture-suite : 19 scripts, checkpoint P18 historique intact, Node/CI non attestés');
+console.log('PASS wave2-pedagogie-couverture-suite : 20 scripts, inventaire disque/lanceur exact, checkpoint P18 intact');
