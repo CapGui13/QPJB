@@ -1,0 +1,79 @@
+{
+  "schema": "QPJB_WAVE2_M1_P33_CROSS_BRANCH_NATIVE",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "cd8b7b097e955a7639515a028ae377f5eea40fb4",
+  "testedHeads": {
+    "M1": "cd8b7b097e955a7639515a028ae377f5eea40fb4",
+    "M2": "9a1c3373f67eea7908c46c7ecf41a23c46d6d6bc",
+    "M3": "c5e3ed8f150bb257e3aa20c1d7ba5793fa69aff1",
+    "M4": "8896fc149b14e203f9339d0c9382be99c1f9e1b3"
+  },
+  "shaBlobs": {
+    "M2Engine": "d0f06f1c259f7a766f2d1c8c47289374a74138dc",
+    "M3Html": "354234e94c7b59d2409ecfdeda2e5c7d0b6bfed3",
+    "M4Recommendations": "cebe2b3060cf89926010fd981a0b31bcd5b0c292",
+    "baselineHtml": "9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7",
+    "QcmRawSha256": "22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a"
+  },
+  "actualNode": {
+    "version": "22.23.5",
+    "M1": {
+      "scripts": 20,
+      "passed": 20,
+      "exit": 0
+    },
+    "M2Quick": {
+      "steps": 7,
+      "passed": 7,
+      "exit": 0
+    },
+    "M2Full": {
+      "result": "INCONCLUSIVE_SANDBOX_EXPIRED",
+      "completed": false
+    },
+    "M4WithM3Html": {
+      "tests": 94,
+      "pass": 93,
+      "fail": 1,
+      "exit": 1,
+      "failedCase": "tests/wave2-recos-integrity.test.js P9 whole HTML SHA"
+    },
+    "M4WithBaselineHtml": {
+      "tests": 94,
+      "pass": 94,
+      "fail": 0,
+      "exit": 0
+    },
+    "M4WithM3HtmlAndTemporaryCandidateFix": {
+      "tests": 94,
+      "pass": 94,
+      "fail": 0,
+      "exit": 0
+    },
+    "negativeQcmMutationCandidate": {
+      "integrityTests": 5,
+      "pass": 4,
+      "fail": 1,
+      "exit": 1
+    }
+  },
+  "proposedFixOwner": "M4/Coordinator",
+  "M4Written": false,
+  "M3Written": false,
+  "workspaceRestored": true,
+  "notified": {
+    "M4Issue": 258,
+    "M4PR": 262
+  },
+  "pending": {
+    "editorial": 6,
+    "agreements": 11,
+    "githubActionsM1": "NOT_RUN"
+  },
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P34 only after M4 integration fix / M5 CI / human decision"
+}
