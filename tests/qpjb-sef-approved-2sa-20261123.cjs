@@ -20,16 +20,23 @@ function payload(html){
  return html.slice(start+MARK.length,end);
 }
 function restoreDraftProposals(raw){
- assert.equal(candidateLot26.status,'DRAFT_PREVIEW_NOT_MERGE_AUTHORIZED');
+ assert.equal(candidateLot26.status,'DRAFT_PREVIEW_26_WITH_AXIS_PROOFS_PRESERVED');
  assert.equal(candidateLot26.items.length,26);
- assert.equal(candidateLot26.textFields,78);
+ assert.equal(candidateLot26.textFields,71);
+ assert.equal(candidateLot26.deferredAxisProofReasons,7);
  let data=JSON.parse(raw);
  assert.equal(data.exercises.length,1523);
  const byId=new Map(data.exercises.map(q=>[q.id,q]));
  for(const e of candidateLot26.items){
   const q=byId.get(e.id);
   assert(q,'QCM candidat absent : '+e.id);
-  assert.deepEqual(e.fields,['context','explain','difficultyReason']);
+  assert(e.fields.length===2||e.fields.length===3,'Deux ou trois champs édités par QCM');
+  assert.deepEqual(e.fields.slice(0,2),['context','explain']);
+  if(e.fields.length===3)assert.equal(e.fields[2],'difficultyReason');
+  if(e.reasonPreservedForAxisProof){
+   assert.equal(e.fields.length,2);
+   assert.equal(q.difficultyReason,e.before.difficultyReason,'Preuve transversale préservée : '+e.id);
+  }
   for(const field of e.fields){
    assert.equal(q[field],e.after[field],'Proposition non appliquée exactement : '+e.id+'#'+field);
    q[field]=e.before[field];
