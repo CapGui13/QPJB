@@ -9,6 +9,7 @@ const root=path.resolve(__dirname,'..');
 const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json');
 const supplement=require('../audits/pedagogie/validations-lot-a-complement-20261123.json');
 // Restauration stricte des 26 textes approuvés le 24/11, avec les 7 motifs d'axes préservés.
+const {restoreGlobal}=require('./qpjb-sef-global29-normalization.cjs');
 const candidateLot26=require('../audits/pedagogie/proposition-26-textes-revue-20261123.json');
 const approved=[...approval.approved,...supplement.approved];
 const MARK='<script id="training-data" type="application/json">';
@@ -24,7 +25,7 @@ function restoreDraftProposals(raw){
  assert.equal(candidateLot26.items.length,26);
  assert.equal(candidateLot26.textFields,71);
  assert.equal(candidateLot26.deferredAxisProofReasons,7);
- let data=JSON.parse(raw);
+ let data=JSON.parse(restoreGlobal(raw));
  assert.equal(data.exercises.length,1523);
  const byId=new Map(data.exercises.map(q=>[q.id,q]));
  for(const e of candidateLot26.items){
@@ -82,7 +83,7 @@ function validateApproved(raw){
  const historical=restoreApprovedContexts(raw);
  assert.equal(sha256(historical),approval.sourceCatalogueSha256Raw,
   'Modification QCM autre que les cinq champs approuvés');
- const data=JSON.parse(raw);
+ const data=JSON.parse(restoreGlobal(raw));
  assert.equal(data.exercises.length,1523);
  assert.equal(data.themes.length,22);
  assert.equal(new Set(data.exercises.map(x=>x.id)).size,1523);

@@ -13,7 +13,7 @@ const rawQcm=html.slice(start+startTag.length,end);
 validateApproved(rawQcm);
 const digest=crypto.createHash('sha256').update(restoreApprovedContexts(rawQcm),'utf8').digest('hex');
 assert.equal(digest,'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a','JSON QCM modifié');
-const data=JSON.parse(rawQcm);
+const data=validateApproved(rawQcm).data;
 const d=json(base+'DECISIONS_P20_HOLD.json'),p8=json(base+'PROPOSITIONS_P8_HOLD.json');
 const p10=json(base+'CONTRE_RELECTURE_P10_15_HOLD.json'),p13=json(base+'REVUE_P13_32_HOLD.json');
 const reg=json(base+'ARBITRAGES_P14_HOLD.json');
