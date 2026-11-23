@@ -232,6 +232,15 @@ body.session-mode .layout{margin-top:6px}
 .parcours-recommendations li strong{display:block;color:#fff;font-weight:700}
 .parcours-recommendations li span{display:block;color:#d6c7e3}
 .parcours-recommendations p{margin:9px 0 0;font:500 11px/1.45 var(--qpjb-font-ui);color:#c7b7d8}
+.parcours-recommendations li p{font:500 12px/1.5 var(--qpjb-font-ui);margin:5px 0 0;color:#e3d6ed}
+.parcours-recommendations li .parcours-advice-caveat{color:#e9d5f7}
+.parcours-recommendations li .parcours-advice-action{font-weight:600}
+.parcours-recommendations-limits{border-top:1px solid #574466;margin-top:11px;padding-top:8px}
+.parcours-recommendations-limits[hidden]{display:none}
+.parcours-recommendations-limits summary{cursor:pointer;min-height:34px;font:700 12px/1.4 var(--qpjb-font-ui);color:#e9d5f7}
+.parcours-recommendations-limits summary:focus-visible{outline:2px solid #e9d5f7;outline-offset:2px}
+.parcours-recommendations-limits ul{margin:6px 0 0;padding-left:18px}
+.parcours-recommendations-limits li{margin:4px 0;font:500 11px/1.5 var(--qpjb-font-ui);color:#d4c4e4}
 .parcours-dashboard{margin-top:12px;border:1px solid #755b8f;border-radius:10px;background:#261e34}
 .parcours-dashboard>summary{padding:13px 12px;list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;color:#f3e8ff;font-size:14px;min-height:46px}
 .parcours-dashboard summary::-webkit-details-marker{display:none}
@@ -359,6 +368,7 @@ body.parcours-session .parcours-session-banner{display:block}
 <section id="parcours-recommendations" class="parcours-recommendations" aria-labelledby="parcours-recommendations-title" hidden>
 <h3 id="parcours-recommendations-title">Mes prochaines priorités</h3>
 <ol id="parcours-recommendations-list"></ol>
+<details id="parcours-recommendations-limits" class="parcours-recommendations-limits" hidden><summary>Limites de l’historique</summary><ul></ul></details>
 <p>Conseils fondés sur les réponses enregistrées : une réussite avec aide n'est pas une preuve de maîtrise.</p>
 </section>
 <div class="parcours-export">
@@ -675,6 +685,7 @@ function consolidationReportHTML(report,title='Dernière consolidation'){
    '<p class="parcours-report-note">Ce bilan décrit cette séance uniquement. Il ne confirme pas, à lui seul, la maîtrise de ces notions.</p>';
 }
 // Lecture seule : aucun score, tirage, QCM ou stockage n'est modifié.
+// Lecture seule : le panneau reflète les preuves et les limites déjà calculées par M4.
 function parcoursRecommendations(){
  const panel=$('parcours-recommendations');
  if(!panel||!window.QPJBParcoursRecommandations)return;
@@ -700,7 +711,37 @@ function parcoursRecommendations(){
    heading.textContent=item.title;
    detail.textContent=item.message;
    li.append(heading,detail);
+   // Ne jamais convertir les constats, réserves ou actions en HTML.
+   for(const [className,label,key] of [
+     ['parcours-advice-observed','Constat','observed'],
+     ['parcours-advice-caveat','Réserve','caveat'],
+     ['parcours-advice-action','Pour avancer','action']
+   ]){
+     const value=item.explanation?.[key];
+     if(typeof value!=='string'||!value.trim())continue;
+     const line=document.createElement('p');
+     const prefix=document.createElement('b');
+     line.className=className;
+     prefix.textContent=label+' : ';
+     line.append(prefix,document.createTextNode(value));
+     li.appendChild(line);
+   }
    list.appendChild(li);
+ }
+ const limitsHost=$('parcours-recommendations-limits');
+ if(limitsHost){
+   const notes=Array.isArray(report.limitations)
+     ?report.limitations.filter(value=>typeof value==='string'&&value.trim()):[];
+   const items=limitsHost.querySelector('ul');
+   if(items){
+     items.replaceChildren();
+     for(const value of notes){
+       const li=document.createElement('li');
+       li.textContent=value;
+       items.appendChild(li);
+     }
+   }
+   limitsHost.hidden=!notes.length;
  }
  panel.hidden=false;
 }
