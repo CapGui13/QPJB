@@ -1,5 +1,5 @@
 'use strict';
-// Validation du diff candidat en DRAFT : 26 QCM × 3 champs de texte et rien d'autre.
+// Validation du lot de 26 QCM approuvé : 71 champs autorisés et rien d'autre.
 // Ces changements ne valent pas décision pédagogique ni autorisation de publication.
 const fs=require('node:fs');
 const path=require('node:path');
@@ -10,8 +10,11 @@ const {data}=validateApproved(raw);
 const restored=restoreDraftProposals(raw);
 const pristine=JSON.parse(restored);
 const manifest=candidateLot26;
-assert.equal(manifest.status,'DRAFT_PREVIEW_26_WITH_AXIS_PROOFS_PRESERVED');
-assert.equal(manifest.mergeAuthorized,false);
+assert.equal(manifest.status,'APPROVED_26_TEXTS_ONLY_20261124');
+assert.equal(manifest.mergeAuthorized,true);
+assert.equal(manifest.approval.date,'2026-11-24');
+assert.equal(manifest.approval.otherCasesStillHold,22);
+assert.equal(manifest.approval.noAnswerChoiceHandOrLevelEdits,true);
 assert.equal(manifest.keepOther10InHold,true);
 assert.equal(manifest.keepOther12InHold,true);
 assert.equal(data.exercises.length,1523);
@@ -48,4 +51,4 @@ assert.throws(()=>validateApproved(JSON.stringify(changedAnswers)),/Modification
 const external=JSON.parse(raw);
 external.exercises.find(x=>x.id==='SEF-V44-005').context='CHANGEMENT INTERDIT';
 assert.throws(()=>validateApproved(JSON.stringify(external)),/Modification QCM autre/,'Le HOLD A doit rester inchangé');
-console.log('PASS PREVIEW_26 : 26 QCM, 71 champs réversibles, 7 motifs historiques préservés, 1523 exercices/22 rubriques, 48 décisions non publiées.');
+console.log('PASS LOT_APPROUVE_26 : 26 QCM, 71 champs réversibles, 7 motifs historiques préservés, 1523 exercices/22 rubriques, 22 autres dossiers en HOLD.');
