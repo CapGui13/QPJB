@@ -3,6 +3,7 @@
 // M2 P14 : figer le contenu pedagogique JSON, sans bloquer la future UX M3.
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 function blob(file){
  const bytes=fs.readFileSync(file);
  return crypto.createHash('sha1')
@@ -26,9 +27,11 @@ function verify(){
  assert.equal(blob(engine),'d0f06f1c259f7a766f2d1c8c47289374a74138dc',
    'Le moteur doit rester identique au contrat historique LOT B');
  const json=extractCatalogueJson(html);
+ validateApproved(json);
+ const historicalJson=restoreApprovedContexts(json);
  // Empreinte du JSON de la base figee, independamment du HTML (cf. quizz-ui-vnext-static.cjs).
- assert.equal(json.length,1741625,'Longueur du catalogue JSON pedagogique modifiee');
- assert.equal(fingerprint(json),'5eba3d0a','Contenu du catalogue JSON pedagogique modifie');
+ assert.equal(historicalJson.length,1741625,'Longueur du catalogue JSON pedagogique modifiee');
+ assert.equal(fingerprint(historicalJson),'5eba3d0a','Contenu du catalogue JSON pedagogique modifie');
  const catalogue=JSON.parse(json);
  assert.equal(catalogue.exercises.length,1523);
  assert.equal(new Set(catalogue.exercises.map(x=>x.id)).size,1523);

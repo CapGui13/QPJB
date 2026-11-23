@@ -9,6 +9,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '../../..');
+const {restoreApprovedContexts,validateApproved}=require('../../../tests/qpjb-sef-approved-2sa-20261123.cjs');
 const BASE = '1736c99561dd83b0d9e279747066f32274ec8771';
 const BLOB = '9497e948792b22249e1eb8db2864972dc38efbab';
 const SOURCE_PATHS = [
@@ -50,9 +51,11 @@ assert(start >= 0, 'Source training-data introuvable');
 const stop = html.indexOf('</script>', start);
 assert(stop > start, 'Fin training-data introuvable');
 const json = html.slice(start + marker.length, stop);
+validateApproved(json);
+const historicalJson=restoreApprovedContexts(json);
 const actualQcmBlob = crypto.createHash('sha1')
-  .update('blob ' + Buffer.byteLength(json) + '\0')
-  .update(json)
+  .update('blob ' + Buffer.byteLength(historicalJson) + '\0')
+  .update(historicalJson)
   .digest('hex');
 assert.equal(actualQcmBlob, '75e359c7d91d32212d79a84993f9e55fd514b7dd',
   'Catalogue des 1523 QCM modifié : revoir et valider les propositions avant application.');

@@ -4,9 +4,12 @@ const fs=require('node:fs'),path=require('node:path');
 const fixture=require('./quizz-l02-10-approved-additions.json');
 const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
+const {validateApproved,restoreApprovedContexts}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const m=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(m,'Quiz data embedded');
+validateApproved(m[1]);
+const historicalData=JSON.parse(restoreApprovedContexts(m[1]));
 const data=JSON.parse(m[1]); const xs=data.exercises;
 assert.ok(xs.length>=1263,'Au moins 1 253 historiques + 10 L02');
 assert.equal(new Set(xs.map(x=>x.id)).size,xs.length,'unique identifiers');
@@ -17,7 +20,7 @@ const fnv=(s)=>{let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.char
 // les neuf corrections D approuvées situées dans ce bloc (autres cas verrouillés).
 const corrections=new Map(approvedD11.proposals.map(p=>[p.id,p]));
 const closureById=new Map(closure.patches.map(p=>[p.id,p]));
-const archived1253=xs.slice(0,1253).map(q=>{
+const archived1253=historicalData.exercises.slice(0,1253).map(q=>{
  const sef=closureById.get(q.id);
  if(sef){
   for(const [field,value] of Object.entries(sef.after))
@@ -32,7 +35,7 @@ const archived1253=xs.slice(0,1253).map(q=>{
 });
 assert.equal(fnv(JSON.stringify(archived1253)),fixture.originalPrefixFnv1aUtf16,
  '1 253 historiques identiques après inversion des corrections D et SEF approuvées');
-assert.deepEqual(xs.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly');
+assert.deepEqual(historicalData.exercises.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly after reversing only approved wording');
 const val={A:4,R:3,D:2,V:1};
 const suit={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
 const rank=x=>x==='Passe'?-3:x==='Contre'?-2:x==='Surcontre'?-1:(()=>{const m=x.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+suit[m[2]]:null})();

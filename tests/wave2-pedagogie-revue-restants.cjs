@@ -2,7 +2,11 @@
 // node tests/wave2-pedagogie-revue-restants.cjs : ne modifie pas le catalogue.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const parse=JSON.parse(read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const raw=read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
+validateApproved(raw);
+// Les 32 avis historiques sont comparés aux QCM d'origine, après inversion contrôlée des cinq champs approuvés.
+const parse=JSON.parse(restoreApprovedContexts(raw));
 assert.equal(parse.exercises.length,1523);
 const by=new Map(parse.exercises.map(x=>[x.id,x]));
 const incomplete=JSON.parse(read('audits/wave2/pedagogie/BILAN_P12_INTEGRITE_HOLD.json')).remainingP9CandidatesNotIndividuallyCounterreadP10;

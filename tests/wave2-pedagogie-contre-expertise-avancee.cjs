@@ -3,8 +3,13 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const payload=read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
-assert(payload,'Catalogue embarqué absent');const data=JSON.parse(payload[1]);assert.equal(data.exercises.length,1523);
-const byId=new Map(data.exercises.map(x=>[x.id,x]));
+assert(payload,'Catalogue embarqué absent');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
+validateApproved(payload[1]);
+const data=JSON.parse(payload[1]);assert.equal(data.exercises.length,1523);
+// Les instantanés historiques sont comparés à la charge restaurée, après inversion cryptographique des cinq seuls champs approuvés.
+const historical=JSON.parse(restoreApprovedContexts(payload[1]));
+const byId=new Map(historical.exercises.map(x=>[x.id,x]));
 const queue=JSON.parse(read('audits/wave2/pedagogie/FILE_REVUE_P9_47_HOLD.json'));
 const pack=JSON.parse(read('audits/wave2/pedagogie/CONTRE_RELECTURE_P10_15_HOLD.json'));
 const priorities=queue.candidates.filter(x=>x.priority==='P1_HIGH_NO_MARKER');
@@ -40,6 +45,8 @@ assert.equal(black.hand.filter(s=>s.includes('A')).length,4,'Four Aces in demand
 assert(black.hand[0].includes('D'),'Trump Queen in asker hand');
 assert(!black.hand[0].includes('R'),'Trump King absent from asker');
 assert.equal(proposal.oldExplain,black.explain);
+const updated=data.exercises.find(x=>x.id==='SEF-L02-E-17');
+assert.equal(updated.explain,require('../audits/pedagogie/validations-lot-a-complement-20261123.json').approved.find(x=>x.id==='SEF-L02-E-17').after,'Texte Blackwood exact après visa');
 assert.equal(proposal.unchanged.answer,black.answer);
 assert.deepEqual(proposal.unchanged.choices,black.choices);
 assert(proposal.proposedExplain.includes('quatre As'));

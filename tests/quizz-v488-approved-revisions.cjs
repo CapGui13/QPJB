@@ -5,6 +5,9 @@ const assert=require('node:assert/strict');
 const approvedLotD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const approvedSEFClosure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const approved=require('./quizz-v488-approved-revisions.json');
+const editorial2SA=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved;
+const editorialLotA=require('../audits/pedagogie/validations-lot-a-complement-20261123.json').approved;
+const editorialAuthorise=[...editorial2SA,...editorialLotA];
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
 const arbitration=require('./quizz-v491-approved-revisions.json');
@@ -23,7 +26,16 @@ const currentV4103=require('./quizz-v4103-approved-revisions.json');
 const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
- return exercises.slice(0,count).map(original=>{
+ return exercises.slice(0,count).map(raw=>{
+  // Seulement les cinq champs éditoriaux explicitement approuvés : deux contextes 2SA
+  // et trois retouches du lot A. Les valeurs exactes sont validées avant l'inversion
+  // nécessaire aux empreintes historiques, sans neutraliser leurs garde-fous.
+  const allowed=editorialAuthorise.find(p=>p.id===raw.id);
+  if(allowed){
+   assert(['context','explain'].includes(allowed.field),'Champ SEF non autorisé '+raw.id);
+   assert([allowed.after,allowed.before].includes(raw[allowed.field]),'Texte hors validation SEF '+raw.id);
+  }
+  const original=allowed?{...raw,[allowed.field]:allowed.before}:raw;
   const approvedLotD=approvedLotD11.proposals.find(p=>p.id===original.id);
   let source=original;
   const closure=approvedSEFClosure.patches.find(p=>p.id===original.id);

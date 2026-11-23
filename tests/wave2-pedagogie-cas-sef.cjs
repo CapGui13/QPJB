@@ -1,11 +1,14 @@
 'use strict';
 // Test autonome documentaire : node tests/wave2-pedagogie-cas-sef.cjs
 const fs=require('node:fs'),assert=require('node:assert/strict'),path=require('node:path');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('quizz.html');
 const found=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert(found,'Catalogue QCM absent');
-const data=JSON.parse(found[1]);
+validateApproved(found[1]);
+// Comparer les anciens dossiers à leur catalogue historique, pas à la rédaction approuvée.
+const data=JSON.parse(restoreApprovedContexts(found[1]));
 assert.equal(data.exercises.length,1523);
 const pack=JSON.parse(read('audits/wave2/pedagogie/PROPOSITIONS_P8_HOLD.json'));
 assert.equal(pack.status,'A_DISCUSS_NON_APPROVED_DO_NOT_APPLY');

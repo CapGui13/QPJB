@@ -12,6 +12,7 @@ const {projectStorage,assertProgressEvidence}=require('./wave2-ux-storage-projec
 const {watchLocalAssets}=require('./wave2-ux-asset-watch.cjs');
 const {assertHandReflow}=require('./wave2-ux-reflow-check.cjs');
 const {writeVisualReport}=require('./wave2-ux-visual-report.cjs');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..');
 const BASE='2d0ac8489ecf97c3232e9e5132060bbe8cdbd71a';
 const artifactDir=process.env.PW_ARTIFACT_DIR||path.join(root,'artifacts','wave2-ux');
@@ -111,7 +112,8 @@ async function capture(browser,engine,width,height,version,url,runDir){
   // même un prérequis manquant produit un rapport JSON "failed".
   before=baselineHTML();
   after=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
-  assert.equal(qcmJSON(before),qcmJSON(after),'Catalogue inchangé entre les deux versions');
+  validateApproved(qcmJSON(after));
+  assert.equal(qcmJSON(before),restoreApprovedContexts(qcmJSON(after)),'Catalogue inchangé hors les deux contextes approuvés');
   const browsers=require('playwright');
   await new Promise((ok,fail)=>{
    server.once('error',fail);server.listen(0,'127.0.0.1',ok);
