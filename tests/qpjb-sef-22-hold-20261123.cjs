@@ -40,7 +40,7 @@ for(const r of manifest.items){
   const baseline=decisions.agreements.find(x=>x.id===r.id);
   assert.equal(r.question,baseline.reviewQuestion,'Question de convention changée '+r.id);
   assert.equal(r.caveat,baseline.caveat,'Réserve changée '+r.id);
-  assert.equal(baseline.decision,'PENDING','L'archive P20 reste une proposition');
+  assert.equal(baseline.decision,'PENDING',"L'archive P20 reste une proposition");
  }else if(r.lot==='C'){
   const p=expectedC.get(r.id);
   assert(p,'Dossier C hors des dix autres '+r.id);
