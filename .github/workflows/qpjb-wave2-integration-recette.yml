@@ -30,6 +30,8 @@ jobs:
         run: node tests/wave2-adaptatif-suite.cjs --quick
       - name: M4 - recommandations et contrôles de non-régression
         run: node --test tests/parcours-recommandations-v1.test.js tests/wave2-recos-*.test.js
+      - name: M4 - contrat d'affichage des preuves et intégrité des QCM
+        run: node tests/wave2-recos-ui-contract.cjs
 
   adaptatif-30-trajectoires:
     name: M2 - suite complète 5 profils, 65 et 153 séances
