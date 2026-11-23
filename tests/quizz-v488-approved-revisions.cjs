@@ -6,6 +6,8 @@ const approvedLotD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.js
 const approvedSEFClosure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const approved=require('./quizz-v488-approved-revisions.json');
 const editorial2SA=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved;
+const editorialLotA=require('../audits/pedagogie/validations-lot-a-complement-20261123.json').approved;
+const editorialAuthorise=[...editorial2SA,...editorialLotA];
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
 const arbitration=require('./quizz-v491-approved-revisions.json');
@@ -25,14 +27,15 @@ const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
  return exercises.slice(0,count).map(raw=>{
-  // Les deux seuls contextes autorisés après la baseline historique.
-  // On rétablit leur valeur d'origine avant de vérifier tous les SHA historiques.
-  const allowed=editorial2SA.find(p=>p.id===raw.id);
+  // Seulement les cinq champs éditoriaux explicitement approuvés : deux contextes 2SA
+  // et trois retouches du lot A. Les valeurs exactes sont validées avant l'inversion
+  // nécessaire aux empreintes historiques, sans neutraliser leurs garde-fous.
+  const allowed=editorialAuthorise.find(p=>p.id===raw.id);
   if(allowed){
-   assert.equal(allowed.field,'context');
-   assert([allowed.after,allowed.before].includes(raw.context),'Contexte hors validation SEF '+raw.id);
+   assert(['context','explain'].includes(allowed.field),'Champ SEF non autorisé '+raw.id);
+   assert([allowed.after,allowed.before].includes(raw[allowed.field]),'Texte hors validation SEF '+raw.id);
   }
-  const original=allowed?{...raw,context:allowed.before}:raw;
+  const original=allowed?{...raw,[allowed.field]:allowed.before}:raw;
   const approvedLotD=approvedLotD11.proposals.find(p=>p.id===original.id);
   let source=original;
   const closure=approvedSEFClosure.patches.find(p=>p.id===original.id);
