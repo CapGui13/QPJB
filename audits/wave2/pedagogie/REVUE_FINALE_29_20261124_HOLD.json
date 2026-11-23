@@ -12,7 +12,8 @@
     "editorial": 17,
     "decisions": 12,
     "fields": 37,
-    "axisMigrations": 8
+    "axisMigrations": 8,
+    "additionalConditionalTextFields": 9
   },
   "editorial": [
     {
@@ -1070,7 +1071,54 @@
       "historicalDecision": null,
       "originalQuestion": "La main de 11 H réguliers et Dxx dans chaque majeure autorise-t-elle 2SA selon l'exigence d'arrêt du cours ?",
       "originalEvidence": null,
-      "originalCaveat": null
+      "originalCaveat": null,
+      "current": {
+        "context": "Quelle enchère convient à cette situation ?",
+        "explain": "Sans majeure quatrième, avec 11 H et une main régulière, 2SA propose la manche à Sans-Atout.",
+        "difficultyReason": "Priorité entre couleurs ou choix du niveau de réponse",
+        "theme": "mineur",
+        "answer": "2SA",
+        "choices": [
+          "2SA",
+          "1SA",
+          "3SA",
+          "2♣"
+        ],
+        "hand": [
+          [
+            "D",
+            "5",
+            "4"
+          ],
+          [
+            "D",
+            "5",
+            "3"
+          ],
+          [
+            "A",
+            "7",
+            "2"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "5"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 1♣"
+        ],
+        "h": 11,
+        "difficulty": 2
+      },
+      "currentAxis": null,
+      "textProposal": {
+        "context": "Votre partenaire ouvre de 1♣ sans intervention adverse. Vous détenez 11 H, une main régulière et aucune majeure quatrième. Quelle réponse choisissez-vous ?",
+        "explain": "Avec 11 H, une distribution régulière et aucune majeure quatrième, 2SA est la réponse naturelle qui invite à jouer la manche. Les Dames troisièmes dans les deux majeures constituent des honneurs, sans garantir des arrêts sûrs. Cette réponse suppose que le référentiel n’exige pas deux arrêts assurés."
+      },
+      "textProposalStatus": "PENDING_SEPARATE_VISA_NOT_IN_37_FIELD_SIMULATION"
     },
     {
       "id": "SEF-L13-012",
@@ -1084,7 +1132,56 @@
       "historicalDecision": null,
       "originalQuestion": "La paire enseignera-t-elle le cue-bid 3♥ comme ♠+♣ précisément après soutien adverse 1♥–Passe–2♥ ?",
       "originalEvidence": "Après soutien adverse 1♥–Passe–2♥, cue-bid 3♥ : autre majeure (♠) et ♣, 2SA pour les deux mineures.",
-      "originalCaveat": "La convention a pour précondition le soutien adverse exact ; ne pas généraliser à d'autres séquences."
+      "originalCaveat": "La convention a pour précondition le soutien adverse exact ; ne pas généraliser à d'autres séquences.",
+      "current": {
+        "context": "L’adversaire de gauche a ouvert de 1♥, votre partenaire et l’adversaire de droite ont respectivement passé et soutenu à 2♥. Vous êtes en réveil, avec cinq Piques et cinq Trèfles. Quelle enchère conventionnelle SEF 2024 décrit d’un seul coup ces deux longues ?",
+        "explain": "Après (1♥)–Passe–(2♥), le cue-bid de réveil à 3♥ montre en SEF 2024 l’autre majeure (Pique) au moins cinquième et des Trèfles au moins cinquièmes. 2SA montre plutôt les deux mineures.",
+        "difficultyReason": "Nouveau sens en 2024 du cue-bid après soutien adverse en majeure.",
+        "theme": "michaels",
+        "answer": "3♥",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♣",
+          "3♥"
+        ],
+        "hand": [
+          [
+            "R",
+            "D",
+            "10",
+            "8",
+            "7"
+          ],
+          [
+            "6"
+          ],
+          [
+            "A",
+            "5"
+          ],
+          [
+            "D",
+            "V",
+            "9",
+            "7",
+            "4"
+          ]
+        ],
+        "auction": [
+          "Adversaire : 1♥",
+          "Partenaire : Passe",
+          "Adversaire : 2♥"
+        ],
+        "h": 12,
+        "difficulty": 5
+      },
+      "currentAxis": null,
+      "textProposal": {
+        "context": "L’adversaire de gauche ouvre 1♥, votre partenaire passe et l’adversaire de droite soutient à 2♥. Vous êtes en quatrième position, avec cinq Piques et cinq Trèfles. Quelle intervention conventionnelle décrit vos deux longues ?",
+        "explain": "Après (1♥)–Passe–(2♥), le cue-bid à 3♥ en quatrième position décrit ici l’autre majeure et les Trèfles, au moins cinquièmes. 2SA montrerait les deux mineures."
+      },
+      "textProposalStatus": "PENDING_SEPARATE_VISA_NOT_IN_37_FIELD_SIMULATION"
     },
     {
       "id": "SEF-L14-002",
@@ -1098,7 +1195,55 @@
       "historicalDecision": null,
       "originalQuestion": "Le relais 2SA Multi-Landy, avec réponse mini/maxi décrite, est-il adopté comme accord local ?",
       "originalEvidence": "Multi-Landy : le contexte définit son propre relais 2SA positif, les 3♣/3♦ mini et les 3♥/3♠ maxi.",
-      "originalCaveat": "La règle précise du relais doit être approuvée comme accord pédagogique local, sans attribution universelle au SEF."
+      "originalCaveat": "La règle précise du relais doit être approuvée comme accord pédagogique local, sans attribution universelle au SEF.",
+      "current": {
+        "context": "Vous avez montré cinq Cœurs et au moins quatre cartes dans une mineure. Votre partenaire utilise le relais positif 2SA, qui demande votre mineure et votre force. Accord Multi-Landy : les réponses à 3♣/3♦ sont minimales, celles à 3♥/3♠ maximales et montrent respectivement Trèfle/Carreau. Que répondez-vous ?",
+        "explain": "Votre mineure est Trèfle et votre jeu est supérieur au minimum. Dans la structure de réponses indiquée, 3♥ est la réponse maximale qui montre les Trèfles ; 3♠ montrerait Carreau.",
+        "difficultyReason": "Multi-Landy : distinguer la mineure et la zone haute sur le relais à 2SA.",
+        "theme": "multilandy",
+        "answer": "3♥",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♥",
+          "3♠"
+        ],
+        "hand": [
+          [
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "6"
+          ],
+          [
+            "R",
+            "V",
+            "10",
+            "8"
+          ]
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)",
+          "Vous : 2♥ (Multi-Landy, Cœurs et une mineure)",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (relais positif)",
+          "Adversaire : Passe"
+        ],
+        "h": 17,
+        "difficulty": 5
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-L20-002",
@@ -1113,7 +1258,56 @@
       "historicalDecision": null,
       "originalQuestion": "Le Splinter 3♠ est-il effectivement convenu sur cette séquence exacte après 2♣ FI, au-delà de la source partielle ?",
       "originalEvidence": "Support FFB : Splinter après 2♣ FI, 2♦, redemande majeure : singleton/chicane, au moins quatre atouts, au maximum un contrôle d'honneur. La main remplit ces trois critères.",
-      "originalCaveat": "L'extrait montre 4♣(4♦,4♥) mais ne certifie pas à lui seul l'enchère exacte 3♠ dans cette séquence. Faire arbitrer cette position précise."
+      "originalCaveat": "L'extrait montre 4♣(4♦,4♥) mais ne certifie pas à lui seul l'enchère exacte 3♠ dans cette séquence. Faire arbitrer cette position précise.",
+      "current": {
+        "context": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez quatre atouts Cœur, un singleton Pique et pour unique contrôle d'honneur extérieur le Roi de Carreau. Quelle enchère à saut est le Splinter du SEF 2024 ?",
+        "explain": "3♠ est un saut dans une nouvelle couleur après la redemande 2♥ : c'est un Splinter montrant la courte à Pique et au moins quatre Cœurs. Le SEF 2024 accepte au maximum un contrôle d'honneur, y compris à l'atout ; le Roi de Carreau ne l'exclut pas.",
+        "difficultyReason": "Splinter après 2♣ fort indéterminé et relais, avec courte et contrôle extérieur limité.",
+        "theme": "fortes",
+        "answer": "3♠",
+        "choices": [
+          "2♠",
+          "3♥",
+          "3♠",
+          "4♥"
+        ],
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "D",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "9",
+            "6",
+            "4"
+          ],
+          [
+            "10",
+            "7",
+            "5",
+            "2"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais obligatoire)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur forte)",
+          "Adversaire : Passe"
+        ],
+        "h": 5,
+        "difficulty": 5
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-L27-006",
@@ -1128,14 +1322,62 @@
       "historicalDecision": null,
       "originalQuestion": "La version de Rubensohl enseignant 3♠ comme demande d'arrêt est-elle retenue ?",
       "originalEvidence": "Rubensohl documenté : 3♠ demande l'arrêt pour 3SA quelle que soit la couleur adverse.",
-      "originalCaveat": "Cette attribution doit être présentée comme celle du Rubensohl retenu."
+      "originalCaveat": "Cette attribution doit être présentée comme celle du Rubensohl retenu.",
+      "current": {
+        "context": "Après le 1SA du partenaire, Est intervient naturellement à 2♥. Avec 10 H, sans majeure quatrième, sans couleur cinquième et sans arrêt Cœur, vous souhaitez jouer 3SA si l'ouvreur tient les Cœurs. En Rubensohl, quelle enchère vérifie directement cette tenue, sans montrer une longue à Pique ?",
+        "explain": "En Rubensohl, après une intervention naturelle au palier de 2, 3♠ demande à l'ouvreur un arrêt dans la couleur adverse pour jouer 3SA, même si cette couleur est Cœur. Cette annonce n'est pas naturelle à Pique ; 2♠ serait naturel faible et 3♥ un Texas pour les Piques.",
+        "difficultyReason": "3♠ demande de tenue après 1SA-(2♥) Rubensohl : distinguer cette enchère de la couleur naturellement nommée.",
+        "theme": "rubensohl",
+        "answer": "3♠",
+        "choices": [
+          "Contre",
+          "2♠",
+          "3♥",
+          "3♠"
+        ],
+        "hand": [
+          [
+            "A",
+            "D",
+            "8"
+          ],
+          [
+            "9",
+            "3"
+          ],
+          [
+            "R",
+            "10",
+            "5",
+            "4"
+          ],
+          [
+            "V",
+            "9",
+            "6",
+            "4"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♥ (intervention naturelle)"
+        ],
+        "h": 10,
+        "difficulty": 5
+      },
+      "currentAxis": null,
+      "textProposal": {
+        "context": "Votre partenaire ouvre 1SA et Est intervient naturellement à 2♥. Vous jouez le Rubensohl où 3♠ sert de demande d’arrêt, quelle que soit la couleur adverse. Avec 10 H, sans majeure quatrième, sans couleur cinquième ni arrêt Cœur, quelle enchère choisissez-vous ?",
+        "explain": "Dans cette variante du Rubensohl, 3♠ interroge l’ouvreur sur l’arrêt dans la couleur adverse pour jouer 3SA. Ici, il s’agit des Cœurs. 3♥ serait un Texas pour les Piques, et non une demande de tenue."
+      },
+      "textProposalStatus": "PENDING_SEPARATE_VISA_NOT_IN_37_FIELD_SIMULATION"
     },
     {
       "id": "SEF-L01-C-04",
       "lot": "B",
       "group": "RUBENSOHL",
       "decision": "PENDING",
-      "proposal": "Conserver Contre avec 8 H ; recommander le seuil de 8 H et plus si le parcours se réfère à cette variante, ou 6 H si l’accord Alençon est explicitement choisi. Ne pas mélanger les seuils ; aucun changement de réponse.",
+      "proposal": "Pour une famille cohérente avec 3♠ demande d’arrêt (L27-006), recommander la variante Alençon complète : Contre d’appel dès 6 H. Les variantes à 8 H existent aussi ; si le seuil 8 H est préféré, le documenter comme choix local et harmoniser les deux textes. La réponse Contre reste identique.",
       "sources": [
         "https://alenconbridge.club.ffbridge.fr/en-savoir-plus/roudi-rubenshol-112038",
         "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl"
@@ -1143,7 +1385,56 @@
       "historicalDecision": null,
       "originalQuestion": "L'accord Rubensohl de contre d'appel après 1SA–(2♠) et son seuil sont-ils explicitement enseignés ?",
       "originalEvidence": "Rubensohl documenté : contre d'appel à partir de 6 H ; le QCM comporte 8 H et une majeure quatrième.",
-      "originalCaveat": "Les réponses au contre sont soumises au cadre Rubensohl et aux accords de paire."
+      "originalCaveat": "Les réponses au contre sont soumises au cadre Rubensohl et aux accords de paire.",
+      "current": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H), Est intervient naturellement à 2♠. Convention étudiée : Rubensohl. Vous détenez quatre Cœurs, un doubleton Pique et 8 H. Quelle est votre décision ?",
+        "explain": "Contre est d'appel dans ce Rubensohl : avec 8 H et quatre cartes à Cœur, il permet à l'ouvreur de chercher un meilleur contrat et éventuellement un fit majeur, sans promettre une manche.",
+        "difficultyReason": "Seuil exact à la limite 7 H/8 H et rôle non punitif du Contre après 2♠ ; nécessite clarification du cadre pédagogique.",
+        "theme": "rubensohl",
+        "answer": "Contre",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2SA",
+          "3♦"
+        ],
+        "hand": [
+          [
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "10",
+            "9",
+            "5"
+          ],
+          [
+            "V",
+            "7",
+            "4",
+            "3"
+          ],
+          [
+            "R",
+            "6",
+            "2"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)"
+        ],
+        "h": 8,
+        "difficulty": 4
+      },
+      "currentAxis": null,
+      "textProposal": {
+        "context": "Votre partenaire ouvre 1SA (15–17 H) et Est intervient naturellement à 2♠. Vous jouez le Rubensohl avec un contre d’appel à partir de 6 H. Vous détenez quatre Cœurs, deux Piques et 8 H. Quelle est votre décision ?",
+        "explain": "Dans la variante retenue, le contre d’appel est disponible dès 6 H. Avec 8 H et quatre Cœurs, il laisse à l’ouvreur la possibilité de rechercher un meilleur contrat, notamment un fit à Cœur ; il ne promet pas la manche.",
+        "difficultyReason": "Reconnaître le contre d’appel en Rubensohl après 2♠ et appliquer le seuil de la variante enseignée."
+      },
+      "textProposalStatus": "PENDING_SEPARATE_VISA_NOT_IN_37_FIELD_SIMULATION"
     },
     {
       "id": "SEF-L13-017",
@@ -1157,7 +1448,56 @@
       "historicalDecision": null,
       "originalQuestion": "Le seuil des cinq Trèfles corrects et de 7 H pour 3♣ après 2♣ FI est-il retenu pour la séquence ?",
       "originalEvidence": "Support FFB/Université du Bridge : après 2♣–2♦–2♥(♠), une nouvelle couleur au niveau 3 demande cinq cartes correctes et 7 H. La main a 5♣ et 8H.",
-      "originalCaveat": "Le support confirme le seuil et la distribution, sous la séquence écrite."
+      "originalCaveat": "Le support confirme le seuil et la distribution, sous la séquence écrite.",
+      "current": {
+        "context": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez une vraie couleur cinquième à Trèfle et suffisamment de points H pour un changement de couleur naturel au palier de 3. Quel est ce changement de couleur ?",
+        "explain": "Après 2♣ fort indéterminé – 2♦ – 2♥, la nouvelle couleur naturelle au palier de 3 est possible à partir de 7 H dans le SEF 2024. Avec cinq Trèfles et les valeurs requises, 3♣ décrit votre couleur.",
+        "difficultyReason": "Seuil 7 H pour couleur naturelle au palier de trois après 2♣ FI.",
+        "theme": "fortes",
+        "answer": "3♣",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3♥"
+        ],
+        "hand": [
+          [
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "9",
+            "5"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "A",
+            "V",
+            "10",
+            "8",
+            "7"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 2♣ (fort indéterminé)",
+          "Adversaire : Passe",
+          "Vous : 2♦ (relais)",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (couleur naturelle forte)",
+          "Adversaire : Passe"
+        ],
+        "h": 8,
+        "difficulty": 4
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-L10-005",
@@ -1171,7 +1511,53 @@
       "historicalDecision": null,
       "originalQuestion": "Le cadre 2SA naturel si le n°3 passe, distinct du mixed raise quand il parle, est-il validé ?",
       "originalEvidence": "Une documentation de réponse à l'intervention au palier 1 donne 2SA naturel 13–14 HL avec arrêt ; le QCM affiche cette zone et le Passe du n°3.",
-      "originalCaveat": "La nuance sur mixed raise quand n°3 parle doit rester explicitement enseignée."
+      "originalCaveat": "La nuance sur mixed raise quand n°3 parle doit rester explicitement enseignée.",
+      "current": {
+        "context": "Vous êtes Sud, donneur Ouest. Ouest ouvre 1♣, Nord intervient à 1♥ et Est passe. Vous n’avez que deux Cœurs, 13 H réguliers et un arrêt ♣ solide. Quelle enchère privilégiez-vous, sachant que le numéro 3 a passé ?",
+        "explain": "Si le numéro 3 a passé, 2SA à saut sur l’intervention demeure naturel et montre 13–14 HL, avec arrêt dans la couleur d’ouverture. Le mixed raise à quatre atouts ne s’applique qu’après une enchère du numéro 3.",
+        "difficultyReason": "Distinguer les conventions et variantes selon l’ordre des annonces",
+        "theme": "reponse_inter",
+        "answer": "2SA",
+        "choices": [
+          "1SA",
+          "2♣",
+          "2♥",
+          "2SA"
+        ],
+        "hand": [
+          [
+            "R",
+            "8",
+            "6"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "5"
+          ]
+        ],
+        "auction": [
+          "Adversaire : 1♣",
+          "Partenaire : 1♥",
+          "Adversaire : Passe"
+        ],
+        "h": 13,
+        "difficulty": 3
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-L13-010",
@@ -1185,7 +1571,52 @@
       "historicalDecision": null,
       "originalQuestion": "Quelle source confirme exactement le seuil de 7 HL pour 1♠ après 1♦–(Contre) ?",
       "originalEvidence": "Les réponses à un contre d'appel sont forcing à la couleur au palier 1 dans le support ; le QCM énonce une exigence de 7 HL.",
-      "originalCaveat": "Le minimum exact 7 HL doit encore être confirmé sur le passage normatif précis, pas déduit d'un exemple général."
+      "originalCaveat": "Le minimum exact 7 HL doit encore être confirmé sur le passage normatif précis, pas déduit d'un exemple général.",
+      "current": {
+        "context": "Votre partenaire ouvre de 1♦, l’adversaire contre d’appel. Vous avez quatre Piques et exactement 7 H, sans fit Carreau établi. Dans le SEF 2024, quelle réponse naturelle au palier de 1 est autorisée dès 7 HL après un Contre ?",
+        "explain": "Après 1♦–(Contre), un changement de couleur 1 sur 1 reste forcing et se pratique dès 7 HL dans le SEF 2024. Avec quatre Piques et 7 H, 1♠ convient sans saut.",
+        "difficultyReason": "Seuil 7 HL (au lieu de 6) pour 1 sur 1 après contre adverse.",
+        "theme": "apres_inter",
+        "answer": "1♠",
+        "choices": [
+          "Passe",
+          "1♠",
+          "1SA",
+          "2♠"
+        ],
+        "hand": [
+          [
+            "A",
+            "V",
+            "8",
+            "6"
+          ],
+          [
+            "D",
+            "10",
+            "7"
+          ],
+          [
+            "9",
+            "4",
+            "3"
+          ],
+          [
+            "8",
+            "5",
+            "2"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Contre"
+        ],
+        "h": 7,
+        "difficulty": 3
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-L25-004",
@@ -1199,7 +1630,54 @@
       "historicalDecision": "20/11/2026 : maintien Passe et corrigé existant approuvé ; seule la convention reste à préciser",
       "originalQuestion": "Après Texas Cœur contré, avec ♥R8 et arrêt ♦AD84, l'accord retenu impose-t-il Passe pour absence de fit ou une autre action ?",
       "originalEvidence": "Une variante détaillée réserve Passe après Texas contré à une main non fittée sans arrêt dans la couleur contrée. La main QCM est non fittée mais possède ♦AD84 (arrêt Carreau solide).",
-      "originalCaveat": "Ne pas conclure que la réponse Passe est fausse : d'autres conventions emploient Passe dès l'absence de fit. L'exemple cité NE suffit pas à certifier ce corrigé précis. Faire trancher l'accord et le statut SEF avant enseignement."
+      "originalCaveat": "Ne pas conclure que la réponse Passe est fausse : d'autres conventions emploient Passe dès l'absence de fit. L'exemple cité NE suffit pas à certifier ce corrigé précis. Faire trancher l'accord et le statut SEF avant enseignement.",
+      "current": {
+        "context": "Vous ouvrez de 1SA avec 16 H. Le partenaire utilise le Texas Cœur à 2♦, contré à votre droite pour indiquer l'entame Carreau. Avec seulement deux Cœurs (♥R8), vous n'avez pas le fit troisième. Quelle action vous permet de ne plus rectifier automatiquement le Texas ?",
+        "explain": "Le Contre d'entame du Texas libère l'ouvreur de l'obligation de rectifier. Avec seulement deux Cœurs, on passe sur 2♦ contré pour nier le fit de trois cartes. Une autre action, notamment 2♥ ou Surcontre, promettrait le fit à Cœur.",
+        "difficultyReason": "Contre du Texas majeur : Passe sans fit, plutôt que rectification systématique.",
+        "theme": "stayman",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "Surcontre",
+          "2♥",
+          "2SA"
+        ],
+        "hand": [
+          [
+            "A",
+            "9",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "10",
+            "7"
+          ]
+        ],
+        "auction": [
+          "Vous : 1SA (15–17 H)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (Texas pour les Cœurs)",
+          "Adversaire : Contre (d'entame, indiquant des Carreaux)"
+        ],
+        "h": 16,
+        "difficulty": 3
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-V479-004",
@@ -1213,7 +1691,53 @@
       "historicalDecision": "05/11/2026 : 2SA positif sur Landy arbitré comme accord de paire",
       "originalQuestion": "Le 2SA positif sur Landy 2♣ avec deux majeures quatrièmes est-il adopté comme accord de paire non universel ?",
       "originalEvidence": "Landy 2♣ : le contexte stipule un 2SA positif exploratoire et avertit explicitement qu'il s'agit d'un accord de paire.",
-      "originalCaveat": "Conserver cet avertissement ; vérifier que le parcours a présenté ce traitement avant le QCM."
+      "originalCaveat": "Conserver cet avertissement ; vérifier que le parcours a présenté ce traitement avant le QCM.",
+      "current": {
+        "context": "Après l'ouverture adverse de 1SA (15–17 H), votre partenaire intervient par 2♣ Landy : il annonce un bicolore majeur au moins 5–4. Le joueur suivant passe. Avec 10 H et quatre cartes dans chacune des majeures, vous souhaitez explorer une manche. Pour cette question, vous jouez les développements conventionnels constructifs du Landy convenus avec le partenaire (ce traitement n'est pas une obligation du SEF). Quelle est votre enchère ?",
+        "explain": "Votre partenaire a annoncé les deux majeures par 2♣ Landy. Avec 10 H, quatre Piques menés par l'As et quatre Cœurs avec le Roi, vous détenez des valeurs utiles et du soutien quelle que soit sa majeure longue. Dans les développements conventionnels retenus pour cet exercice, 2SA est un relais positif : il invite l'intervenant à préciser la force de son jeu et la majeure la plus longue pour décider de la manche. Cette utilisation de 2SA doit être convenue entre partenaires ; ce n'est pas une réponse imposée universellement par le SEF, et le Landy 2♣ ne doit pas être confondu avec l'ensemble du Multi-Landy.",
+        "difficultyReason": "Landy : distinguer l'intervention SEF à 2♣ de son relais constructif à 2SA, conventionnel et soumis à l'accord de paire.",
+        "theme": "multilandy",
+        "answer": "2SA",
+        "choices": [
+          "2♦",
+          "2♥",
+          "2♠",
+          "2SA"
+        ],
+        "hand": [
+          [
+            "A",
+            "10",
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "7",
+            "5"
+          ],
+          [
+            "D",
+            "8",
+            "2"
+          ],
+          [
+            "V",
+            "3"
+          ]
+        ],
+        "auction": [
+          "Adversaire : 1SA (15-17 H)",
+          "Partenaire : 2♣ (Landy)",
+          "Adversaire : Passe"
+        ],
+        "h": 10,
+        "difficulty": 4
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     },
     {
       "id": "SEF-C-008",
@@ -1227,7 +1751,56 @@
       "historicalDecision": null,
       "originalQuestion": "Le questionnaire doit-il conserver 1SA non forcing dans le cadre SEF, sans appliquer la variante de paire 1M–1SA forcing ?",
       "originalEvidence": "La réponse de 1SA sur ouverture majeure est non forcing en SEF. Des systèmes de paire jouent cependant 1M–1SA forcing.",
-      "originalCaveat": "Pour cet exercice SEF, ne pas imposer le fonctionnement d'une autre paire."
+      "originalCaveat": "Pour cet exercice SEF, ne pas imposer le fonctionnement d'une autre paire.",
+      "current": {
+        "context": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+        "explain": "Vous avez seulement deux Piques, quatre Cœurs et 6 H. En SEF, la réponse de 1SA sur 1♠ est non forcing et décrit cette main limitée sans fit.",
+        "difficultyReason": "Réponse de base sur 1♠ : avec 6 H, seulement deux Piques et quatre Cœurs, appliquer 1SA sans fit majeur.",
+        "theme": "majeur",
+        "answer": "1SA",
+        "choices": [
+          "1SA",
+          "2♥",
+          "2♦",
+          "Passe"
+        ],
+        "hand": [
+          [
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "9",
+            "7",
+            "5"
+          ],
+          [
+            "D",
+            "8",
+            "5",
+            "2"
+          ],
+          [
+            "V",
+            "10",
+            "6"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 1♠"
+        ],
+        "h": 6,
+        "difficulty": 2
+      },
+      "currentAxis": null,
+      "textProposal": null,
+      "textProposalStatus": "KEEP_CURRENT_PENDING_DOCTRINAL_VISA"
     }
+  ],
+  "notes": [
+    "Les 37 champs de la simulation correspondent uniquement aux 17 rédactions historiques.",
+    "Les 9 champs conditionnels des 4 autres dossiers sont des propositions séparées : ne pas intégrer sans visa spécifique.",
+    "Les 12 mains/points/réponses de la famille A/B ont été vérifiés sur le blob actuel."
   ]
 }
