@@ -8,7 +8,7 @@ const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json');
 const supplement=require('../audits/pedagogie/validations-lot-a-complement-20261123.json');
-// Prévisualisation réversible des 26 textes ; pas une approbation ni une publication.
+// Restauration stricte des 26 textes approuvés le 24/11, avec les 7 motifs d'axes préservés.
 const candidateLot26=require('../audits/pedagogie/proposition-26-textes-revue-20261123.json');
 const approved=[...approval.approved,...supplement.approved];
 const MARK='<script id="training-data" type="application/json">';
@@ -20,7 +20,7 @@ function payload(html){
  return html.slice(start+MARK.length,end);
 }
 function restoreDraftProposals(raw){
- assert.equal(candidateLot26.status,'DRAFT_PREVIEW_26_WITH_AXIS_PROOFS_PRESERVED');
+ assert.equal(candidateLot26.status,'APPROVED_26_TEXTS_ONLY_20261124');
  assert.equal(candidateLot26.items.length,26);
  assert.equal(candidateLot26.textFields,71);
  assert.equal(candidateLot26.deferredAxisProofReasons,7);
@@ -49,7 +49,7 @@ function restoreDraftProposals(raw){
  return JSON.stringify(data);
 }
 function restoreApprovedContexts(raw){
- // D'abord inverser les 26 textes de prévisualisation, puis les cinq visas antérieurs.
+ // Inverser les 26 textes du lot approuvé, puis les cinq visas antérieurs, pour prouver le SHA historique.
  raw=restoreDraftProposals(raw);
  assert.equal(approval.approved.length,2,'Les deux premiers contextes 2SA doivent rester inchangés');
  assert.equal(approval.scope,'TWO_CONTEXT_FIELDS_ONLY');
