@@ -10,7 +10,7 @@ const {data}=validateApproved(raw);
 const restored=restoreDraftProposals(raw);
 const pristine=JSON.parse(restored);
 const manifest=candidateLot26;
-assert.equal(manifest.status,'DRAFT_PREVIEW_NOT_MERGE_AUTHORIZED');
+assert.equal(manifest.status,'DRAFT_PREVIEW_26_WITH_AXIS_PROOFS_PRESERVED');
 assert.equal(manifest.mergeAuthorized,false);
 assert.equal(manifest.keepOther10InHold,true);
 assert.equal(manifest.keepOther12InHold,true);
@@ -32,7 +32,8 @@ for(let i=0;i<data.exercises.length;i++){
  }else assert.deepEqual(live,before,'QCM hors des 26 modifié : '+live.id);
 }
 assert.equal(edited,26,'Exactement vingt-six QCM candidat');
-assert.equal(manifest.items.reduce((sum,item)=>sum+item.fields.length,0),78);
+assert.equal(manifest.items.reduce((sum,item)=>sum+item.fields.length,0),71);
+assert.equal(manifest.deferredAxisProofReasons,7);
 const hold=manifest.items.filter(x=>x.id==='SEF-V44-005');
 assert.equal(hold.length,0,'Le 2SA sous HOLD ne fait pas partie du lot');
 for(const e of manifest.items){
@@ -47,4 +48,4 @@ assert.throws(()=>validateApproved(JSON.stringify(changedAnswers)),/Modification
 const external=JSON.parse(raw);
 external.exercises.find(x=>x.id==='SEF-V44-005').context='CHANGEMENT INTERDIT';
 assert.throws(()=>validateApproved(JSON.stringify(external)),/Modification QCM autre/,'Le HOLD A doit rester inchangé');
-console.log('PASS PREVIEW_26 : 26 QCM × 3 champs exacts, 78 textes réversibles, 1523 exercices/22 rubriques ; 0 autre champ modifié ; 48 décisions non publiées.');
+console.log('PASS PREVIEW_26 : 26 QCM, 71 champs réversibles, 7 motifs historiques préservés, 1523 exercices/22 rubriques, 48 décisions non publiées.');
