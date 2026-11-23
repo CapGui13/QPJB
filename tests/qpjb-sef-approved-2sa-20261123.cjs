@@ -8,6 +8,8 @@ const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json');
 const supplement=require('../audits/pedagogie/validations-lot-a-complement-20261123.json');
+// Prévisualisation réversible des 26 textes ; pas une approbation ni une publication.
+const candidateLot26=require('../audits/pedagogie/proposition-26-textes-revue-20261123.json');
 const approved=[...approval.approved,...supplement.approved];
 const MARK='<script id="training-data" type="application/json">';
 function sha256(s){return crypto.createHash('sha256').update(s,'utf8').digest('hex');}
@@ -17,7 +19,31 @@ function payload(html){
  assert(start>=0&&end>start,'JSON QCM training-data absent');
  return html.slice(start+MARK.length,end);
 }
+function restoreDraftProposals(raw){
+ assert.equal(candidateLot26.status,'DRAFT_PREVIEW_NOT_MERGE_AUTHORIZED');
+ assert.equal(candidateLot26.items.length,26);
+ assert.equal(candidateLot26.textFields,78);
+ let data=JSON.parse(raw);
+ assert.equal(data.exercises.length,1523);
+ const byId=new Map(data.exercises.map(q=>[q.id,q]));
+ for(const e of candidateLot26.items){
+  const q=byId.get(e.id);
+  assert(q,'QCM candidat absent : '+e.id);
+  assert.deepEqual(e.fields,['context','explain','difficultyReason']);
+  for(const field of e.fields){
+   assert.equal(q[field],e.after[field],'Proposition non appliquée exactement : '+e.id+'#'+field);
+   q[field]=e.before[field];
+  }
+  assert.equal(q.answer,e.answerMustStay,'Réponse candidat conservée : '+e.id);
+  assert.deepEqual(q.choices,e.choicesMustStay,'Choix candidat conservés : '+e.id);
+  assert.deepEqual(q.hand,e.handMustStay,'Main candidat conservée : '+e.id);
+  assert.equal(q.difficulty,e.difficultyMustStay,'Niveau candidat conservé : '+e.id);
+ }
+ return JSON.stringify(data);
+}
 function restoreApprovedContexts(raw){
+ // D'abord inverser les 26 textes de prévisualisation, puis les cinq visas antérieurs.
+ raw=restoreDraftProposals(raw);
  assert.equal(approval.approved.length,2,'Les deux premiers contextes 2SA doivent rester inchangés');
  assert.equal(approval.scope,'TWO_CONTEXT_FIELDS_ONLY');
  assert.equal(supplement.approved.length,3,'Exactement trois approbations complémentaires');
@@ -82,4 +108,4 @@ function test(){
  console.log('PASS SEF lot A : 2 contextes 2SA + 3 champs complémentaires = 5 ; 1523 QCM / 22 rubriques ; SHA historique + contre-épreuves');
 }
 if(require.main===module)test();
-module.exports={approval,supplement,approved,payload,restoreApprovedContexts,validateApproved,sha256};
+module.exports={approval,supplement,approved,candidateLot26,payload,restoreDraftProposals,restoreApprovedContexts,validateApproved,sha256};
