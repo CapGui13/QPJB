@@ -3,17 +3,20 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const html=fs.readFileSync(path.resolve(__dirname,'..','quizz.html'),'utf8');
 const embedded=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(embedded,'Catalogue embarqué présent');
 const json=embedded[1],data=JSON.parse(json);
+validateApproved(json);
+const historicalJson=restoreApprovedContexts(json);
 function fingerprint(s){
  let hash=0x811c9dc5;
  for(let i=0;i<s.length;i++)hash=Math.imul(hash^s.charCodeAt(i),0x01000193)>>>0;
  return hash.toString(16).padStart(8,'0');
 }
-assert.equal(json.length,1741625,'Catalogue de référence : longueur identique');
-assert.equal(fingerprint(json),'5eba3d0a','Empreinte du catalogue identique au commit source');
+assert.equal(historicalJson.length,1741625,'Catalogue de référence : longueur identique');
+assert.equal(fingerprint(historicalJson),'5eba3d0a','Empreinte du catalogue identique au commit source');
 assert.equal(data.exercises.length,1523,'Les 1 523 QCM restent présents');
 assert.equal(data.themes.length,22,'Les rubriques restent inchangées');
 assert.match(html,/id="quizz-ui-vnext"/,'Styles UX dédiés');

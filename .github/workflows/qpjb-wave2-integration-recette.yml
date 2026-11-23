@@ -26,6 +26,8 @@ jobs:
           node-version: '22'
       - name: M1 - suite pédagogique et protection du catalogue
         run: node tests/wave2-pedagogie-suite.cjs
+      - name: Vérifier les deux SEF 2SA approuvés et rejeter toute autre mutation
+        run: node tests/qpjb-sef-approved-2sa-20261123.cjs
       - name: M2 - sélection, invariants, sauvegardes et profils rapides
         run: node tests/wave2-adaptatif-suite.cjs --quick
       - name: M4 - recommandations et contrôles de non-régression
