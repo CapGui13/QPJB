@@ -8,11 +8,14 @@ const root=path.resolve(__dirname,'..');
 const manifest=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const progression=require('../quizz-parcours.js');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const opening='<script id="training-data" type="application/json">';
 const start=html.indexOf(opening),stop=html.indexOf('</script>',start+opening.length);
 assert.ok(start>=0 && stop>start,'JSON QCM embarqué');
-const data=JSON.parse(html.slice(start+opening.length,stop));
+const liveRaw=html.slice(start+opening.length,stop);
+validateApproved(liveRaw);
+const data=JSON.parse(liveRaw);
 assert.equal(data.exercises.length,1523,'1523 QCM conservés');
 assert.equal(data.themes.length,22,'22 rubriques conservées');
 assert.equal(manifest.status,'APPLIQUE_EN_BRANCHE_PR_NON_PUBLIE');
@@ -28,7 +31,7 @@ const idSet=new Set();
 // Le périmètre immuable est le JSON embarqué des 1523 QCM, pas la page entière.
  // Une amélioration de lisibilité du Quiz doit rester autorisée sans affaiblir
  // le contrôle bit à bit de toutes les questions et des 13 patchs approuvés.
-let reconstructed=html.slice(start+opening.length,stop), altered=0, priorAnswers=0;
+let reconstructed=restoreApprovedContexts(liveRaw), altered=0, priorAnswers=0;
 const groups={D1_MAINS_A_VALIDER:0,D2_ROUDI:0,D3_TEXAS_TREFLE:0,D4_TEXAS_MAJEUR:0};
 for(const p of manifest.proposals){
  assert.ok(!idSet.has(p.id),'QCM dupliqué : '+p.id);idSet.add(p.id);
