@@ -1,0 +1,74 @@
+{
+  "schema": "QPJB_WAVE2_M1_P18_TEST_RUN_CHECKPOINT_HOLD",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "parentSha": "8705069cc82ce2652e6cd5e4afb927b9d17071d0",
+  "sources": {
+    "catalogueBlob": "9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7",
+    "branch": "wave2/pedagogie-sef-20261121",
+    "issue": 255,
+    "PR": 261,
+    "draftVerified": true
+  },
+  "observedTestMethod": "EXECUTED_JAVASCRIPT_FUNCTIONS_WITH_GITHUB_SOURCE_CONTENTS_AND_NODE_MODULE_SHIMS",
+  "realNodeExecution": false,
+  "realGitHubCIExecution": false,
+  "executionBlocker": "Container Node exists (v22.16.0), but container cannot resolve raw.githubusercontent.com, therefore repo checkout and native suite could not be obtained. No CI workflow modified due strict branch perimeter.",
+  "helperLimitations": [
+    "Node modules fs/path/assert emulated in isolated JS runtime using exact fetched GitHub contents.",
+    "P7 Git SHA-1 digest emulated to known blob SHA; remote Git object SHA verified separately, not a cryptographic computation by this harness.",
+    "All 12 actual test source bodies evaluated, including negative mutation assertions; direct node:child_process launcher not run."
+  ],
+  "tested": [
+    {
+      "group": "P5_P7_P8_P9_P10_P11",
+      "count": 6,
+      "passed": 6
+    },
+    {
+      "group": "P12_P13_P14",
+      "count": 3,
+      "passed": 3
+    },
+    {
+      "group": "P15_P16_P17",
+      "count": 3,
+      "passed": 3
+    }
+  ],
+  "passedScriptNames": [
+    "wave2-pedagogie-parcours.cjs",
+    "wave2-pedagogie-progressions.cjs",
+    "wave2-pedagogie-cas-sef.cjs",
+    "wave2-pedagogie-stress.cjs",
+    "wave2-pedagogie-contre-expertise-avancee.cjs",
+    "wave2-pedagogie-prerequis.cjs",
+    "wave2-pedagogie-coherence.cjs",
+    "wave2-pedagogie-revue-restants.cjs",
+    "wave2-pedagogie-validations.cjs",
+    "wave2-pedagogie-preuves.cjs",
+    "wave2-pedagogie-reprise.cjs",
+    "wave2-pedagogie-texas-accords.cjs"
+  ],
+  "failed": [],
+  "nextSuiteScriptNames": [
+    "wave2-pedagogie-parcours.cjs",
+    "wave2-pedagogie-progressions.cjs",
+    "wave2-pedagogie-cas-sef.cjs",
+    "wave2-pedagogie-stress.cjs",
+    "wave2-pedagogie-contre-expertise-avancee.cjs",
+    "wave2-pedagogie-prerequis.cjs",
+    "wave2-pedagogie-coherence.cjs",
+    "wave2-pedagogie-revue-restants.cjs",
+    "wave2-pedagogie-validations.cjs",
+    "wave2-pedagogie-preuves.cjs",
+    "wave2-pedagogie-reprise.cjs",
+    "wave2-pedagogie-texas-accords.cjs",
+    "wave2-pedagogie-couverture-suite.cjs"
+  ],
+  "totalAddedSuiteEntryCount": 1,
+  "humanDecisionsOutstanding": {
+    "editorial": 6,
+    "conventions": 11
+  },
+  "nextPass": "P19 — test de non-régression sur l'inventaire + clarification d'un accord Texas concrètement retenu par le coordinateur, ou constitution de la reprise sans levée de HOLD"
+}

@@ -1,0 +1,51 @@
+# Validation de synthèse V2 uniquement. Ne déclenche jamais de publication Pages.
+name: QPJB V2 - Recette transversale sans publication
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  node-transversal:
+    name: M1 pédagogie, M2 rapide et M4 conseils (Node 22)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout complet pour les tests référencés
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Installer Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: M1 - suite pédagogique et protection du catalogue
+        run: node tests/wave2-pedagogie-suite.cjs
+      - name: M2 - sélection, invariants, sauvegardes et profils rapides
+        run: node tests/wave2-adaptatif-suite.cjs --quick
+      - name: M4 - recommandations et contrôles de non-régression
+        run: node --test tests/parcours-recommandations-v1.test.js tests/wave2-recos-*.test.js
+      - name: M4 - contrat d'affichage des preuves et intégrité des QCM
+        run: node tests/wave2-recos-ui-contract.cjs
+
+  adaptatif-30-trajectoires:
+    name: M2 - suite complète 5 profils, 65 et 153 séances
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout complet
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Installer Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Vérifier 30 trajectoires et variantes sans modifier le moteur
+        run: node tests/wave2-adaptatif-suite.cjs --full

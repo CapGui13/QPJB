@@ -1,0 +1,42 @@
+{
+  "schema": "QPJB_WAVE2_M1_P27_HARDCODED_COUNT_FIXED",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "parentSha": "d2eeeebe3e99ef37c93d1bd85f6e4186a4d48565",
+  "fixed": [
+    "tests/wave2-pedagogie-runner-integration-p25.cjs",
+    "tests/wave2-pedagogie-inventaire-p26.cjs"
+  ],
+  "newBlobs": {
+    "p25": "f2a7a3bdb96b046d9161a614a59f5fdd43fe2f1b",
+    "p26": "fbdb775c5bf17dd5d20a2c0351477a24f78c7b4c"
+  },
+  "actualNodeVersion": "22.16.0",
+  "preFix": {
+    "p25With20Scripts": "FAIL 20 != 19",
+    "p26With21Scripts": "FAIL hardcoded 20"
+  },
+  "postFix": {
+    "p24": "PASS",
+    "p25": "PASS native, 20 simulated child processes, 6 negative scenarios",
+    "p26": "PASS native, missing/unlisted tests rejected",
+    "nodeSyntaxChecks": "2/2 PASS"
+  },
+  "future21": {
+    "p25": "PASS",
+    "p26": "PASS",
+    "oldP25": "FAIL",
+    "oldP26": "FAIL"
+  },
+  "truePedagogicalTestsNative": "NOT_ALL_EXECUTED",
+  "githubActionsPedagogicalSuite": "NOT_RUN",
+  "pending": {
+    "editorial": 6,
+    "conventions": 11
+  },
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P28 subset of actual documentary tests with GitHub exact data or CI/human decisions"
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "QPJB_WAVE2_M1_P17_CONVENTIONS_TEXAS_HOLD",
+  "status": "HOLD_NEEDS_CONVENTION_CHOICE",
+  "sourceP15": "PREUVES_SEF_P15_HOLD.json",
+  "affectedQcm": "SEF-L25-004",
+  "catalogBlob": "9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7",
+  "case": {
+    "hand": [
+      [
+        "A",
+        "9",
+        "6",
+        "3"
+      ],
+      [
+        "R",
+        "8"
+      ],
+      [
+        "A",
+        "D",
+        "8",
+        "4"
+      ],
+      [
+        "R",
+        "10",
+        "7"
+      ]
+    ],
+    "h": 16,
+    "shape": [
+      4,
+      2,
+      4,
+      3
+    ],
+    "auction": [
+      "Vous : 1SA (15–17 H)",
+      "Adversaire : Passe",
+      "Partenaire : 2♦ (Texas pour les Cœurs)",
+      "Adversaire : Contre (d'entame, indiquant des Carreaux)"
+    ],
+    "context": "Vous ouvrez de 1SA avec 16 H. Le partenaire utilise le Texas Cœur à 2♦, contré à votre droite pour indiquer l'entame Carreau. Avec seulement deux Cœurs (♥R8), vous n'avez pas le fit troisième. Quelle action vous permet de ne plus rectifier automatiquement le Texas ?",
+    "choices": [
+      "Passe",
+      "Surcontre",
+      "2♥",
+      "2SA"
+    ],
+    "answer": "Passe",
+    "explain": "Le Contre d'entame du Texas libère l'ouvreur de l'obligation de rectifier. Avec seulement deux Cœurs, on passe sur 2♦ contré pour nier le fit de trois cartes. Une autre action, notamment 2♥ ou Surcontre, promettrait le fit à Cœur.",
+    "fitThirdHeart": false,
+    "diamondStopper": true,
+    "diamondRanks": "AD84"
+  },
+  "documents": [
+    {
+      "source": "iBridge SEF-FR — L'ouvreur de 1SA après le contre du Texas",
+      "url": "https://dev.ibridge-club.fr/public/fichedetails/622",
+      "evidence": "Passe décrit une main non fittée SANS arrêt de la couleur du Texas contrée; rectification promet fit et tenue; surcontre fit sans tenue.",
+      "bearing": "NON_COUVERT_DANS_LA_VARIANTE",
+      "reason": "QCM n'a que deux ♥ mais possède ♦AD84, arrêt solide. La condition sans arrêt ne s'applique pas."
+    },
+    {
+      "source": "Bridge Saint-Cloud — La couleur utilisée pour le Texas est contrée",
+      "url": "https://www.bridgesaintcloud.fr/espoir1_5.html",
+      "evidence": "Exemple réel 1SA–2♦–X : 2♥ avec trois ♥ et arrêt ♦; SANS FIT, l'ouvreur devrait PASSER (sans imposer de condition sur l'arrêt dans cette phrase).",
+      "bearing": "REND_PASSE_PLAUSIBLE_SOUS_ACCORD",
+      "reason": "Le QCM possède deux ♥ seulement ; même avec ♦AD84, le texte de cet exemple lie Passe à l'absence de fit."
+    },
+    {
+      "source": "Synthèse Bessis / Lévy recueillie par club FFB Sarzeau",
+      "url": "https://bridgesarzeau.club.ffbridge.fr/document-download/6a15fbf3174f1_contrestayman.pdf",
+      "evidence": "1SA–2♦–X : annonce libre de 2♥ = trois ♥ et arrêt ♦; saut à 3♥ = quatre ♥ et arrêt ♦; XX = trois ♥ sans arrêt ♦. Passe n'est pas explicitement défini dans cette liste.",
+      "bearing": "EXCLUT_CERTAINES_ALTERNATIVES_SANS_DEFINIR_PASSE",
+      "reason": "Avec deux ♥, le QCM ne remplit les conditions d'aucune rectification libre ni de surcontre du tableau ; la source ne définit pas directement Passe."
+    }
+  ],
+  "simulatedAgreementPolicies": [
+    {
+      "name": "ABSENCE_FIT_PRIORITAIRE",
+      "passIf": "fitHeartCards<3",
+      "whenQcm": "Passe",
+      "note": "Compatible avec l'exemple Bridge Saint-Cloud"
+    },
+    {
+      "name": "ABSENCE_FIT_ET_ABSENCE_ARRET",
+      "passIf": "fitHeartCards<3 && !diamondStopper",
+      "whenQcm": "NON_DEFINI_DANS_LES_TROIS_CHOIX",
+      "note": "Compatible avec la condition stricte publiée par iBridge ; demander l'accord exact, ne pas inventer une réponse."
+    }
+  ],
+  "decision": "Ne pas invalider la bonne réponse sans preuve SEF univoque. Exiger la convention explicitée avant enseignement; proposer au référent une précision de contexte SANS l'appliquer ni compter une correction validée.",
+  "releaseStatus": "HOLD",
+  "catalogueModified": false,
+  "followingWork": [
+    "Arbitrage du sens de Passe pour le Texas contré avec arrêt dans la couleur contrée",
+    "Vérification que le contexte du QCM exprime l'accord retenu",
+    "Exécution directe Node de la suite et intégration CI par la mission autorisée"
+  ]
+}

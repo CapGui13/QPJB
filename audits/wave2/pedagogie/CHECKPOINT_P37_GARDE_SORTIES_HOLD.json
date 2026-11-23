@@ -1,0 +1,77 @@
+{
+  "schema": "QPJB_WAVE2_M1_P37_EARLY_FAILURE_GUARD_HOLD",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "repo": "CapGui13/QPJB",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "sourceCommit": "df0a89276e12a47d180a39de13e7df6af608cd10",
+  "node": {
+    "version": "22.23.5",
+    "source": "real public Git clone of M1",
+    "nativeFullSuite": {
+      "scripts": 20,
+      "passed": 20,
+      "exitCode": 0,
+      "passLinesIncludingRunner": 21
+    },
+    "nativeWithM3FinalHtml": {
+      "scripts": 20,
+      "passed": 20,
+      "exitCode": 0,
+      "m3HtmlBlob": "94360d58fc45d0516437d158a61f6d306e3bc986"
+    },
+    "baselineFalseAccept": [
+      "stdout FAIL then PASS",
+      "stdout ERROR then PASS"
+    ],
+    "testsBeforeFix": {
+      "p24": "FAIL as expected",
+      "p25": "FAIL as expected"
+    },
+    "testsAfterFix": {
+      "syntax": "3/3 PASS",
+      "p24": {
+        "valid": 6,
+        "rejected": 13
+      },
+      "p25": {
+        "simulatedScripts": 20,
+        "rejectedFailureKinds": 12
+      },
+      "p26": "PASS"
+    },
+    "actualChildProcessMutations": {
+      "stdoutEarlyFail": "suite exit 1",
+      "stderrEarlyError": "suite exit 1",
+      "restore": "suite exit 0 and clean apart from 3 intended files"
+    }
+  },
+  "changed": [
+    "tests/wave2-pedagogie-runner-p24.cjs",
+    "tests/wave2-pedagogie-runner-integration-p25.cjs",
+    "tests/wave2-pedagogie-suite.cjs"
+  ],
+  "verifiedGitBlobs": {
+    "tests/wave2-pedagogie-runner-p24.cjs": "570787012dc8bb8e4cec1eb89c2d0e4dc1642ce3",
+    "tests/wave2-pedagogie-runner-integration-p25.cjs": "c8fc6331b96a96529c04764811319c7340990aab",
+    "tests/wave2-pedagogie-suite.cjs": "18a4d5bbd281764b96446d6f66b7cb3705789544"
+  },
+  "gitHubActions": {
+    "historicTrainingSmoke": {
+      "runId": 45023845205,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "M1PedagogicalSuite": "NOT_RUN"
+  },
+  "blocked": {
+    "editorial": 6,
+    "agreements": 11,
+    "M4Integration": true,
+    "CIWorkflowIntegration": true
+  },
+  "merge": "FORBIDDEN",
+  "publication": "FORBIDDEN",
+  "next": "P38 only with true CI, real M4 integration, human decision or demonstrated new failure"
+}

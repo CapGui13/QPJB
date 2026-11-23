@@ -1,0 +1,39 @@
+{
+  "schema": "QPJB_WAVE2_M1_P23_M3_REGRESSION_HOLD",
+  "status": "MISSION_NON_TERMINEE_HOLD",
+  "branch": "wave2/pedagogie-sef-20261121",
+  "issue": 255,
+  "pr": 261,
+  "sourceP22Head": "bbc0292e1a678a95d4fe6fd4a454250a44598d65",
+  "m3Branch": "wave2/experience-eleve-20261121",
+  "m3HtmlBlob": "354234e94c7b59d2409ecfdeda2e5c7d0b6bfed3",
+  "m1HtmlBlob": "9d6c305fbeb130c17410a6fc5c36f3ba0bb116c7",
+  "jsonPayloadSha256": "22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a",
+  "sameJsonPayload": true,
+  "checks": [
+    {
+      "test": "wave2-pedagogie-progressions.cjs",
+      "result": "PASS",
+      "environment": "ISOLATED_JAVASCRIPT_M3_HTML",
+      "sha256": "SHIM_VERIFIED_SEPARATELY"
+    },
+    {
+      "test": "wave2-pedagogie-catalogue-p21.cjs",
+      "result": "PASS",
+      "environment": "ISOLATED_JAVASCRIPT_M3_HTML",
+      "snapshots": 17,
+      "checkedFields": 190,
+      "negativeMutations": 3,
+      "sha256": "SHIM_VERIFIED_SEPARATELY"
+    }
+  ],
+  "runnerScripts": 17,
+  "nativeNodeSuiteRun": false,
+  "githubActionsRun": false,
+  "editorialPending": 6,
+  "agreementsPending": 11,
+  "changesToOtherBranches": false,
+  "merge": "FORBIDDEN",
+  "publish": "FORBIDDEN",
+  "nextPass": "P24 only if Node/CI result, explicit human approvals or catalogue change"
+}
