@@ -35,7 +35,7 @@ const archived1253=historicalData.exercises.slice(0,1253).map(q=>{
 });
 assert.equal(fnv(JSON.stringify(archived1253)),fixture.originalPrefixFnv1aUtf16,
  '1 253 historiques identiques après inversion des corrections D et SEF approuvées');
-assert.deepEqual(xs.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly');
+assert.deepEqual(historicalData.exercises.slice(1253,1263),fixture.additions,'the original 10 L02 reviewed exercises preserved exactly after reversing only approved wording');
 const val={A:4,R:3,D:2,V:1};
 const suit={'♣':0,'♦':1,'♥':2,'♠':3,SA:4};
 const rank=x=>x==='Passe'?-3:x==='Contre'?-2:x==='Surcontre'?-1:(()=>{const m=x.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(+m[1]-1)*5+suit[m[2]]:null})();
