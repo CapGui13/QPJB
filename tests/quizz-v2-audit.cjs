@@ -54,8 +54,18 @@ const historicQueue=audit.queue.map(row=>{
  return {...row,answer:patch.sourceAnswer,
   difficultyReason:patch.before.difficultyReason??row.difficultyReason};
 });
-assert.equal(snapshot,A.asCSV(historicQueue),
- 'Le CSV historique V2 doit être exactement préservé hors des corrections V1 approuvées');
+// Le CSV archive date d'avant les corrections éditoriales candidates :
+// reconstituer exactement les motifs anciens pour les seuls IDs autorisés.
+const preview26=new Map(require('../audits/pedagogie/proposition-26-textes-revue-20261123.json').items.map(x=>[x.id,x]));
+const archivalQueue=historicQueue.map(row=>{
+ const edit=preview26.get(row.id);
+ if(!edit)return row;
+ assert.equal(row.difficultyReason,edit.after.difficultyReason,
+  'Motif candidat conforme au manifeste : '+row.id);
+ return {...row,difficultyReason:edit.before.difficultyReason};
+});
+assert.equal(snapshot,A.asCSV(archivalQueue),
+ 'Le CSV historique V2 doit rester strictement identique après restauration des seuls motifs candidats');
 const changedQueue=audit.queue.filter(row=>deltas.has(row.id));
 assert.ok(changedQueue.length>=4,'La revue V2 doit détecter les métadonnées V1 corrigées');
 assert.notEqual(snapshot,csv,'Le CSV historique ne doit pas être présenté comme l état V1 actuel');
