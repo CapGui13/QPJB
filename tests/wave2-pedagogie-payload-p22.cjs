@@ -1,6 +1,7 @@
 'use strict';
 // M1 P22: une evolution UI ne peut pas invalider un catalogue QCM identique.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const contract=JSON.parse(fs.readFileSync(path.join(root,'audits/wave2/pedagogie/CATALOGUE_EMPREINTE_P22_HOLD.json'),'utf8'));
@@ -15,15 +16,16 @@ function payload(text){
 }
 const digest=text=>crypto.createHash('sha256').update(text,'utf8').digest('hex');
 const raw=payload(html);
-assert.equal(digest(raw),expected,'Charge QCM modifiee');
+validateApproved(raw);
+assert.equal(digest(restoreApprovedContexts(raw)),expected,'Charge QCM modifiee hors deux contextes');
 const data=JSON.parse(raw);
 assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
 const uiOnly='<!---- UI P22 : styles, barre de navigation, aides mobiles ---->';
-assert.equal(digest(payload(uiOnly+html)),expected,'Modification UI externe a corrompu le QCM');
-assert.equal(digest(payload(html+uiOnly)),expected,'Modification UI apres le QCM a corrompu le QCM');
+assert.equal(digest(restoreApprovedContexts(payload(uiOnly+html))),expected,'Modification UI externe a corrompu le QCM');
+assert.equal(digest(restoreApprovedContexts(payload(html+uiOnly))),expected,'Modification UI apres le QCM a corrompu le QCM');
 const corrupted=raw.replace('"exercises"', '"exercisEs"');
 assert.notEqual(corrupted,raw,'Mutateur JSON sans effet');
-assert.notEqual(digest(corrupted),expected,'Une mutation du catalogue serait ignoree');
+assert.throws(()=>validateApproved(corrupted),'Une mutation du catalogue doit être rejetée');
 const two=['wave2-pedagogie-progressions.cjs','wave2-pedagogie-catalogue-p21.cjs'];
 for(const name of two){
  const code=fs.readFileSync(path.join(root,'tests',name),'utf8');

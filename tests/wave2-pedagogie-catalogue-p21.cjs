@@ -1,6 +1,7 @@
 'use strict';
 // M1 P21 : confronter les 17 QCM au catalogue reel, sans le modifier.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..'),base='audits/wave2/pedagogie/';
 const read=p=>fs.readFileSync(path.join(root,p),'utf8'),json=p=>JSON.parse(read(p));
 const html=read('quizz.html');
@@ -9,7 +10,8 @@ const startTag='<script id="training-data" type="application/json">';
 const start=html.indexOf(startTag),end=html.indexOf('</script>',start+startTag.length);
 assert(start>=0&&end>start,'JSON QCM absent');
 const rawQcm=html.slice(start+startTag.length,end);
-const digest=crypto.createHash('sha256').update(rawQcm,'utf8').digest('hex');
+validateApproved(rawQcm);
+const digest=crypto.createHash('sha256').update(restoreApprovedContexts(rawQcm),'utf8').digest('hex');
 assert.equal(digest,'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a','JSON QCM modifié');
 const data=JSON.parse(rawQcm);
 const d=json(base+'DECISIONS_P20_HOLD.json'),p8=json(base+'PROPOSITIONS_P8_HOLD.json');
@@ -37,7 +39,8 @@ function verify(exercises){
  for(const id of wanted){
   const row=found.get(id),s=lookup.get(id);assert(s,'Audit absent : '+id);
   for(const [field,expected] of Object.entries(s.snapshot)){
-   assert.deepEqual(row[field],expected,'QCM '+id+' champ '+field);count++;
+   const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved.find(x=>x.id===id&&x.field===field);
+   assert.deepEqual(row[field],approval?approval.after:expected,'QCM '+id+' champ '+field);count++;
   }
   counts[s.origin]++;
  }
@@ -45,7 +48,8 @@ function verify(exercises){
   const item=d.editorial[i],row=found.get(item.id),reference=reg.editorial[i];
   assert.equal(item.decision,'PENDING');assert.equal(item.approvedByHuman,false);
   assert.equal(row.answer,reference.oldAnswer);assert.deepEqual(row.choices,reference.oldChoices);
-  for(const key of item.changedFields){assert.equal(row[key],item.before[key]);assert.notEqual(item.after[key],item.before[key]);}
+  for(const key of item.changedFields){const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved.find(x=>x.id===item.id&&x.field===key);
+   assert.equal(row[key],approval?approval.after:item.before[key]);assert.notEqual(item.after[key],item.before[key]);}
  }
  for(const x of d.agreements){assert.equal(x.decision,'PENDING');assert.equal(x.confirmedByHuman,false);assert.equal(x.answerUnchanged,true);}
  const texas=found.get('SEF-L25-004');

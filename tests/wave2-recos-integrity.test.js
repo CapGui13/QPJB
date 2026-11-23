@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name));
 function gitBlob(bytes){
@@ -15,7 +16,8 @@ test('P9 garde-fou : le JSON des 1523 QCM est intact malgré l’UI M3',()=>{
   const start=html.indexOf(marker),end=html.indexOf('</script>',start+marker.length);
   assert.ok(start>=0&&end>start,'Charge JSON des QCM absente');
   const raw=html.slice(start+marker.length,end);
-  assert.equal(crypto.createHash('sha256').update(raw,'utf8').digest('hex'),'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a');
+  validateApproved(raw);
+  assert.equal(crypto.createHash('sha256').update(restoreApprovedContexts(raw),'utf8').digest('hex'),'22ddda0e121684be446439914852637513d691258cc0c564aeffa7fc09f5a54a');
   assert.equal(JSON.parse(raw).exercises.length,1523);
 });
 test('P9 garde-fou : module recommandations sans DOM, stockage ni réseau',()=>{
