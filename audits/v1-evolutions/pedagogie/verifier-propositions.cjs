@@ -61,7 +61,10 @@ assert.equal(actualQcmBlob, '75e359c7d91d32212d79a84993f9e55fd514b7dd',
   'Catalogue des 1523 QCM modifié : revoir et valider les propositions avant application.');
 const data = JSON.parse(json);
 assert.equal(data.exercises.length, 1523, 'Attendu : 1523 QCM au commit imposé');
-const liveById = new Map(data.exercises.map(q => [q.id, q]));
+// Les snapshots V1 doivent être comparés au catalogue historique reconstruit.
+// validateApproved() vérifie séparément chaque changement de texte candidat.
+const historicalData=JSON.parse(historicalJson);
+const liveById = new Map(historicalData.exercises.map(q => [q.id, q]));
 assert.equal(liveById.size, data.exercises.length, 'Doublons IDs dans le catalogue de référence');
 
 const approved = loadRootJson('Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json');

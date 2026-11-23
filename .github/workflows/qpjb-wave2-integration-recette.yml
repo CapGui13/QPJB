@@ -30,6 +30,8 @@ jobs:
         run: node tests/qpjb-sef-approved-2sa-20261123.cjs
       - name: Vérification exhaustive du lot A (5 corrections, 48 HOLD)
         run: node tests/qpjb-sef-approved-lot-a-complement-20261123.cjs
+      - name: Vérifier les 26 reformulations proposées sans altérer les 1523 QCM
+        run: node tests/qpjb-sef-candidats-26-20261123.cjs
       - name: M2 - sélection, invariants, sauvegardes et profils rapides
         run: node tests/wave2-adaptatif-suite.cjs --quick
       - name: M4 - recommandations et contrôles de non-régression

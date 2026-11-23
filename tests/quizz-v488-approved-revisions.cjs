@@ -7,6 +7,7 @@ const approvedSEFClosure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json
 const approved=require('./quizz-v488-approved-revisions.json');
 const editorial2SA=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved;
 const editorialLotA=require('../audits/pedagogie/validations-lot-a-complement-20261123.json').approved;
+const preview26=require('../audits/pedagogie/proposition-26-textes-revue-20261123.json').items;
 const editorialAuthorise=[...editorial2SA,...editorialLotA];
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
@@ -26,7 +27,16 @@ const currentV4103=require('./quizz-v4103-approved-revisions.json');
 const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
- return exercises.slice(0,count).map(raw=>{
+ return exercises.slice(0,count).map(sourceRaw=>{
+  // Prévisualisation des 26 corrections de texte : retour exact aux snapshots avant
+  // toute autre normalisation historique. Le dossier demeure DRAFT, non fusionnable.
+  const proposal=preview26.find(x=>x.id===sourceRaw.id);
+  if(proposal){
+   for(const field of proposal.fields)
+    assert([proposal.before[field],proposal.after[field]].includes(sourceRaw[field]),
+     'Champ de prévisualisation hors manifeste : '+sourceRaw.id+'#'+field);
+  }
+  const raw=proposal?{...sourceRaw,...proposal.before}:sourceRaw;
   // Seulement les cinq champs éditoriaux explicitement approuvés : deux contextes 2SA
   // et trois retouches du lot A. Les valeurs exactes sont validées avant l'inversion
   // nécessaire aux empreintes historiques, sans neutraliser leurs garde-fous.
