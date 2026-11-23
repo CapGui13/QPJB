@@ -98,6 +98,17 @@ assert.equal(fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8'),code);
 console.log('PASS structure : 29 dossiers, 37 champs hypothétiques, 105 -> 97 -> 105 axes, 1523 micro-compétences/axes comparés, aucun fichier modifié.');
 const profiles=['autonome','echecs','modere','aides','progression'];
 function rng(seed){let s=seed>>>0;return ()=>((s=(Math.imul(1664525,s)+1013904223)>>>0)/4294967296)}
+// Les journaux utilisent l'horloge réelle : comparer toutes les données sauf
+// la milliseconde d'exécution, en validant chaque horodatage séparément.
+function normalizedClock(state){
+ const copy=clone(state);
+ for(const entry of copy.journal){
+   assert.equal(typeof entry.recordedAt,'string');
+   assert.equal(new Date(entry.recordedAt).toISOString(),entry.recordedAt);
+   entry.recordedAt='CLOCK';
+ }
+ return copy;
+}
 function runPair(profile,horizon,seed){
  const a=baseline.empty(),b=migrated.empty(),rand=rng(seed);
  for(let s=0;s<horizon;s++){
@@ -113,10 +124,10 @@ function runPair(profile,horizon,seed){
   }
   assert.equal(baseline.finish(a,data.exercises),true);
   assert.equal(migrated.finish(b,candidate.exercises),true);
-  assert.deepEqual(a,b,profile+' séance '+(s+1)+' état');
+  assert.deepEqual(normalizedClock(a),normalizedClock(b),profile+' séance '+(s+1)+' état hors horloge');
  }
  assert.deepEqual(baseline.dashboard(a,data.exercises),migrated.dashboard(b,candidate.exercises));
- assert.deepEqual(baseline.load(JSON.stringify(a)),migrated.load(JSON.stringify(b)));
+ assert.deepEqual(normalizedClock(baseline.load(JSON.stringify(a))),normalizedClock(migrated.load(JSON.stringify(b))));
  return horizon*10;
 }
 const mode=process.argv[2]||'--quick';
