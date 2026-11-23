@@ -1,12 +1,12 @@
 {
   "schema": "QPJB_PEDAGOGIE_26_PREVIEW_ONLY_20261123_V1",
-  "status": "DRAFT_PREVIEW_NOT_MERGE_AUTHORIZED",
+  "status": "DRAFT_PREVIEW_26_WITH_AXIS_PROOFS_PRESERVED",
   "sourceManifest": "audits/wave2/pedagogie/PACK_VISA_36_PROPOSITIONS_20261123_HOLD.json",
   "sourceBranch": "pedagogie/pack-visa-36-redactions-20261123",
   "sourceManifestBlob": "fc5d28b3e93a6a7d67f348a369785305f11fd6cb",
   "sourceCatalogueBlob": "031f914ab5698e75c504a525f30eec6a73a2c24e",
   "count": 26,
-  "textFields": 78,
+  "textFields": 71,
   "proposedAnswerChanges": 0,
   "proposedHandChanges": 0,
   "proposedChoicesChanges": 0,
@@ -130,8 +130,7 @@
       "theme": "mineur",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
@@ -141,7 +140,7 @@
       "after": {
         "context": "Votre partenaire ouvre de 1♣. Votre main comporte cinq Trèfles et un singleton Cœur : que répondez-vous avec 7 H ?",
         "explain": "Les cinq Trèfles ♣DV984, le singleton ♥5 et 7 H décrivent un soutien mineur faible et irrégulier : 2♣. 1SA décrirait mal la courte et la forme; 3♣ surévaluerait l'annonce. Le soutien simple n'est pas une invitation de manche.",
-        "difficultyReason": "Choisir le soutien mineur faible à 2♣ avec une courte."
+        "difficultyReason": "Soutien mineur : différence entre main régulière et main avec singleton."
       },
       "answerMustStay": "2♣",
       "choicesMustStay": [
@@ -178,7 +177,9 @@
       ],
       "difficultyMustStay": 2,
       "pointsH": 7,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Choisir le soutien mineur faible à 2♣ avec une courte.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-021-2",
@@ -350,8 +351,7 @@
       "theme": "mineur",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
@@ -361,7 +361,7 @@
       "after": {
         "context": "Votre partenaire ouvre de 1♣. Vous détenez ♣A10952 et un singleton Pique avec 7 H. Choisissez le niveau de soutien.",
         "explain": "Le singleton ♠8 rend la main irrégulière, et les cinq Trèfles soutiennent la couleur ouverte. Avec 7 H, 2♣ est le soutien simple de première zone. 1SA décrirait mal la courte; 3♣ promettrait plus que ce qu'autorise la main.",
-        "difficultyReason": "Soutien mineur simple : intégrer le singleton et le seuil de force."
+        "difficultyReason": "Soutien mineur : différence entre main régulière et main avec singleton."
       },
       "answerMustStay": "2♣",
       "choicesMustStay": [
@@ -398,7 +398,9 @@
       ],
       "difficultyMustStay": 2,
       "pointsH": 7,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Soutien mineur simple : intégrer le singleton et le seuil de force.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-N031-1",
@@ -570,8 +572,7 @@
       "theme": "apres_fit",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Vous avez ouvert 1♥ et votre partenaire vous a soutenu à 2♥ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 3-6-3-1, quelle est votre redemande ?",
@@ -581,7 +582,7 @@
       "after": {
         "context": "Vous avez ouvert 1♥, puis reçu le soutien 2♥. Avec six Cœurs, un singleton Trèfle et seulement 11 H, cherchez-vous la manche ou gênez-vous les adversaires ?",
         "explain": "Les six Cœurs ♥ADV1092 associés au singleton ♣7 portent à neuf les atouts présumés du camp après 1♥–2♥. Avec 11 H, 3♥ a ici une portée préventive : occuper de l'espace, sans solliciter la manche. 2SA serait un essai généralisé plus constructif; 4♥ dépasserait l'objectif de cette main.",
-        "difficultyReason": "Distinguer 3♥ préventif de 2SA essai après un fit majeur."
+        "difficultyReason": "Distinguer le barrage d’une proposition de manche"
       },
       "answerMustStay": "3♥",
       "choicesMustStay": [
@@ -619,15 +620,16 @@
       ],
       "difficultyMustStay": 4,
       "pointsH": 11,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Distinguer 3♥ préventif de 2SA essai après un fit majeur.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-V4-017-2",
       "theme": "apres_fit",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Vous avez ouvert 1♠ et votre partenaire vous a soutenu à 2♠ (soutien simple : environ 6–10 HLD). Avec 11 H et une main 6-3-3-1, quelle est votre redemande ?",
@@ -637,7 +639,7 @@
       "after": {
         "context": "Vous ouvrez 1♠ puis recevez 2♠. Votre main a six Piques, un singleton Trèfle et 11 H : quelle redemande correspond au plan préventif ?",
         "explain": "Avec ♠ARV1073 sixièmes et ♣4 singleton, le soutien 2♠ indique au moins neuf atouts dans la ligne. 3♠ exploite cette longueur de manière préventive. Dans le système enseigné, 2SA inviterait à la manche et 4♠ conclurait au-delà de la force disponible. 3♠ n'est pas un essai.",
-        "difficultyReason": "Reconnaître le barrage à 3♠ après 1♠–2♠, distinct d'un essai."
+        "difficultyReason": "Distinguer le barrage d’une proposition de manche"
       },
       "answerMustStay": "3♠",
       "choicesMustStay": [
@@ -675,15 +677,16 @@
       ],
       "difficultyMustStay": 4,
       "pointsH": 11,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Reconnaître le barrage à 3♠ après 1♠–2♠, distinct d'un essai.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-V4-010-1",
       "theme": "apres_fit",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
@@ -693,7 +696,7 @@
       "after": {
         "context": "Séquence 1♥–2♥–2SA : vous êtes le répondant et 2SA est un essai généralisé de manche, pas une proposition de contrat à Sans-Atout. Avec 9 H et trois Cœurs, que répondez-vous ?",
         "explain": "Le 2SA de l'ouvreur après 1♥–2♥ interroge sur l'acceptation de la manche en Cœur. Vos 9 H, ♥A62 et ♠A72 constituent un soutien maximum : 4♥ accepte l'essai. Passe sur 2SA est exclu puisque l'essai appelle une réponse; 3♥ signifierait le refus.",
-        "difficultyReason": "Accepter 2SA essai généralisé avec un soutien majeur maximum."
+        "difficultyReason": "Déterminer le bon niveau après découverte du fit"
       },
       "answerMustStay": "4♥",
       "choicesMustStay": [
@@ -732,15 +735,16 @@
       ],
       "difficultyMustStay": 3,
       "pointsH": 9,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Accepter 2SA essai généralisé avec un soutien majeur maximum.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-V4-022-3",
       "theme": "apres_fit",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Le partenaire fait une enchère d’essai à 2SA après ton soutien simple. Que réponds-tu ?",
@@ -750,7 +754,7 @@
       "after": {
         "context": "Après 1♠–2♠, l'ouvreur annonce 2SA, essai généralisé. Vous détenez trois Piques et 9 H, dont ♦RD94 : acceptez-vous l'essai ?",
         "explain": "La séquence 1♠–2♠–2SA propose la manche à Pique et appelle une réponse. Avec 9 H, trois Piques et ♦RD94, le soutien se situe en haut de la zone : annoncez 4♠. 3♠ refuserait malgré les valeurs disponibles et 3SA ignorerait le fit majeur.",
-        "difficultyReason": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠."
+        "difficultyReason": "Déterminer le bon niveau après découverte du fit"
       },
       "answerMustStay": "4♠",
       "choicesMustStay": [
@@ -789,7 +793,9 @@
       ],
       "difficultyMustStay": 3,
       "pointsH": 9,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-V44-050",
@@ -1193,8 +1199,7 @@
       "theme": "roudi",
       "fields": [
         "context",
-        "explain",
-        "difficultyReason"
+        "explain"
       ],
       "before": {
         "context": "Tu connais les enchères du partenaire. Quelle est ta prochaine enchère ?",
@@ -1204,7 +1209,7 @@
       "after": {
         "context": "Après 1♣–1♠–1SA, vous détenez cinq Piques et 11 H. Quelle enchère permet de vérifier un fit de trois Piques chez l'ouvreur ?",
         "explain": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit.",
-        "difficultyReason": "Déclencher le Roudi à 2♣ avec cinq Piques et une force invitante."
+        "difficultyReason": "Déclencher le Roudi pour rechercher un fit 5-3"
       },
       "answerMustStay": "2♣",
       "choicesMustStay": [
@@ -1243,7 +1248,9 @@
       ],
       "difficultyMustStay": 3,
       "pointsH": 11,
-      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
+      "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise.",
+      "deferredDifficultyReason": "Déclencher le Roudi à 2♣ avec cinq Piques et une force invitante.",
+      "reasonPreservedForAxisProof": true
     },
     {
       "id": "SEF-V4-081-3",
@@ -1476,5 +1483,16 @@
       "pointsH": 14,
       "note": "Retouche rédactionnelle uniquement ; validation humaine du texte final requise."
     }
-  ]
+  ],
+  "deferredAxisProofReasons": 7,
+  "deferredAxisProofIds": [
+    "SEF-020-1",
+    "SEF-N031-2",
+    "SEF-V4-005-2",
+    "SEF-V4-017-2",
+    "SEF-V4-010-1",
+    "SEF-V4-022-3",
+    "SEF-V4-079-3"
+  ],
+  "reason": "Seven historically audited transversal competency proofs depend on exact difficultyReason. Keep original 7 reasons to retain 105/105 proofs and adaptive selections. Re-evaluate proposed reasons in separate educational-engine audit."
 }
