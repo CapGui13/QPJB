@@ -5,6 +5,7 @@ const assert=require('node:assert/strict');
 const approvedLotD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const approvedSEFClosure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const approved=require('./quizz-v488-approved-revisions.json');
+const editorial2SA=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved;
 const editorial=require('./quizz-v489-approved-revisions.json');
 const additional=require('./quizz-v490-approved-revisions.json');
 const arbitration=require('./quizz-v491-approved-revisions.json');
@@ -23,7 +24,15 @@ const currentV4103=require('./quizz-v4103-approved-revisions.json');
 const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
 function normalizedPrefix(exercises,count){
- return exercises.slice(0,count).map(original=>{
+ return exercises.slice(0,count).map(raw=>{
+  // Les deux seuls contextes autorisés après la baseline historique.
+  // On rétablit leur valeur d'origine avant de vérifier tous les SHA historiques.
+  const allowed=editorial2SA.find(p=>p.id===raw.id);
+  if(allowed){
+   assert.equal(allowed.field,'context');
+   assert([allowed.after,allowed.before].includes(raw.context),'Contexte hors validation SEF '+raw.id);
+  }
+  const original=allowed?{...raw,context:allowed.before}:raw;
   const approvedLotD=approvedLotD11.proposals.find(p=>p.id===original.id);
   let source=original;
   const closure=approvedSEFClosure.patches.find(p=>p.id===original.id);
