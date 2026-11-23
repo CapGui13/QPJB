@@ -17,6 +17,8 @@ const data=JSON.parse(rawQcm);
 const d=json(base+'DECISIONS_P20_HOLD.json'),p8=json(base+'PROPOSITIONS_P8_HOLD.json');
 const p10=json(base+'CONTRE_RELECTURE_P10_15_HOLD.json'),p13=json(base+'REVUE_P13_32_HOLD.json');
 const reg=json(base+'ARBITRAGES_P14_HOLD.json');
+const approvedEditorial=[...require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved,
+ ...require('../audits/pedagogie/validations-lot-a-complement-20261123.json').approved];
 const old1=json('audits/v1-evolutions/pedagogie/propositions-mineures-fit-20.json');
 const old2=json('audits/v1-evolutions/pedagogie/propositions-roudi-conventions-16.json');
 assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
@@ -39,7 +41,7 @@ function verify(exercises){
  for(const id of wanted){
   const row=found.get(id),s=lookup.get(id);assert(s,'Audit absent : '+id);
   for(const [field,expected] of Object.entries(s.snapshot)){
-   const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved.find(x=>x.id===id&&x.field===field);
+   const approval=approvedEditorial.find(x=>x.id===id&&x.field===field);
    assert.deepEqual(row[field],approval?approval.after:expected,'QCM '+id+' champ '+field);count++;
   }
   counts[s.origin]++;
@@ -48,7 +50,7 @@ function verify(exercises){
   const item=d.editorial[i],row=found.get(item.id),reference=reg.editorial[i];
   assert.equal(item.decision,'PENDING');assert.equal(item.approvedByHuman,false);
   assert.equal(row.answer,reference.oldAnswer);assert.deepEqual(row.choices,reference.oldChoices);
-  for(const key of item.changedFields){const approval=require('../audits/pedagogie/validations-2sa-fitte-20261123.json').approved.find(x=>x.id===item.id&&x.field===key);
+  for(const key of item.changedFields){const approval=approvedEditorial.find(x=>x.id===item.id&&x.field===key);
    assert.equal(row[key],approval?approval.after:item.before[key]);assert.notEqual(item.after[key],item.before[key]);}
  }
  for(const x of d.agreements){assert.equal(x.decision,'PENDING');assert.equal(x.confirmedByHuman,false);assert.equal(x.answerUnchanged,true);}
