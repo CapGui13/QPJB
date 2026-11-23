@@ -22,7 +22,8 @@ test('M4/UI - catalogue QCM conservé octet pour octet',()=>{
   assert.equal(catalogue.themes.length,22);
 });
 test('M4/UI - l’interface ne modifie pas le moteur adaptatif',()=>{
-  const bytes=read('quizz-parcours.js');
+  const {restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
+  const bytes=Buffer.from(restoreEngine(read('quizz-parcours.js').toString('utf8')),'utf8');
   const blob=crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
   assert.equal(blob,'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
 });

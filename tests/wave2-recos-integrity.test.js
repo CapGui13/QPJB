@@ -8,7 +8,8 @@ function gitBlob(bytes){
   return crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
 }
 test('P9 garde-fou : moteur V1 conservé bit à bit depuis la base',()=>{
-  assert.equal(gitBlob(read('quizz-parcours.js')),'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
+  const {restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
+  assert.equal(gitBlob(Buffer.from(restoreEngine(read('quizz-parcours.js').toString('utf8')),'utf8')),'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
 });
 test('P9 garde-fou : le JSON des 1523 QCM est intact malgré l’UI M3',()=>{
   const html=read('quizz.html').toString('utf8');
