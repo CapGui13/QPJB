@@ -8,6 +8,7 @@ on:
       - 'quizz-parcours.js'
       - 'parcours-recommandations.js'
       - 'tests/wave2-ux-*'
+      - 'tests/wave2-recos-ui-*'
       - '.github/workflows/qpjb-m3-integration-recette.yml'
   workflow_dispatch:
 
@@ -55,6 +56,12 @@ jobs:
           set -o pipefail
           mkdir -p artifacts/wave2-ux
           node tests/wave2-ux-runner.cjs 2>&1 | tee artifacts/wave2-ux/runner.log
+
+      - name: M4 - tester les conseils visibles et les sauvegardes sur les deux navigateurs
+        shell: bash
+        run: |
+          set -o pipefail
+          node tests/wave2-recos-ui-browser.cjs 2>&1 | tee artifacts/wave2-ux/m4-browser.log
 
       - name: Conserver les captures et rapports, même si la recette échoue
         if: always()
