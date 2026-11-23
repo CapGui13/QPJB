@@ -1,11 +1,12 @@
 'use strict';
 // Contrôle croisé des artefacts de M1. node tests/wave2-pedagogie-coherence.cjs
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {restoreApprovedContexts,validateApproved}=require('./qpjb-sef-approved-2sa-20261123.cjs');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const p=n=>JSON.parse(read('audits/wave2/pedagogie/'+n));
 const m7=p('PROGRESSION_P7_HOLD.json'),m8=p('PROPOSITIONS_P8_HOLD.json'),m9=p('FILE_REVUE_P9_47_HOLD.json'),m10=p('CONTRE_RELECTURE_P10_15_HOLD.json'),m11=p('CONTRAT_PREREQUIS_P11_HOLD.json'),m12=p('BILAN_P12_INTEGRITE_HOLD.json');
 const found=read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
-assert(found,'Missing embedded QCM');const data=JSON.parse(found[1]);assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
+assert(found,'Missing embedded QCM');validateApproved(found[1]);const data=JSON.parse(restoreApprovedContexts(found[1]));assert.equal(data.exercises.length,1523);assert.equal(data.themes.length,22);
 const dict=new Map(data.exercises.map(x=>[x.id,x]));
 const excluded=new Set([
  ...JSON.parse(read('audits/v1-evolutions/pedagogie/propositions-mineures-fit-20.json')).proposals,
