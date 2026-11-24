@@ -155,6 +155,26 @@ function compare(before,after){
  return {problems,notes};
 }
 function compatibility(candidate){
+ // No fallback can admit an advanced real case with unmet prerequisites.
+ const gated=advanced.map(id=>byId.get(id));
+ assert(gated.every(Boolean),'Named regression cases absent');
+ const empty=candidate.empty();
+ for(const q of gated)assert.equal(candidate.eligibility(q,empty,exercises).eligible,false,'Premature advanced case '+q.id);
+ const pool=gated;
+ try{
+  const chosen=candidate.select(pool,empty,10);
+  assert.equal(chosen.length,0,'Fallback admitted advanced real QCM');
+ }catch(err){
+  // Only explicit eligibility/pool errors may stand for an empty deck.
+  assert(!('actual' in err),'Fallback admitted advanced real QCM');
+  assert.match(String(err.message),/pr[eé]requis|[ée]ligib|catalog|pool|disponib|admissib/i);
+ }
+ // A real-looking unknown ID must not silently receive fabricated eligibility.
+ const unknown={...gated[0],id:'SEF-M3-UNKNOWN-PRODUCTION-ID'};
+ let diagnostic;
+ try{diagnostic=candidate.eligibility(unknown,empty,[...exercises,unknown])}
+ catch(err){assert.match(String(err.message),/metadata|m[ée]tadonn[ée]e|pr[eé]requis|catalog|unknown|missing|inconnu|absent/i)}
+ if(diagnostic!==undefined)assert.equal(diagnostic.eligible,false,'Unknown real ID admitted');
  const legacy=base.empty(),deck=base.start(legacy,exercises);
  assert(base.record(legacy,deck[0],'wrong',0,null,false,false));legacy.active.index=1;
  const loaded=candidate.load(JSON.stringify(legacy));
@@ -208,6 +228,7 @@ function main(){
    const comparison=after?compare(before,after):null;
    results.push({profile,horizon,seed,before,after,comparison});
    console.log('M3 '+profile+'/'+horizon+'/'+seed+' baseline '+before.summary.uniqueFamilies+' families; '+(after?'candidate '+after.summary.uniqueFamilies+' families; '+comparison.problems.length+' failures, '+comparison.notes.length+' notes':'candidate not run'));
+   console.log('M3_BASELINE '+JSON.stringify({profile,horizon,seed,passes:before.detail.first20.slice(0,3).map(x=>x.passes),firstBids:before.detail.first20[0].bids,adj:before.detail.responseAdjacencies,triples:before.detail.themeTriples,sa:before.detail.firstTheme.sa??null,foundations:Object.fromEntries(foundations.map(t=>[t,before.detail.maxGap[t]??null])),families:before.summary.uniqueFamilies,themes:before.summary.uniqueThemes}));
   }
  }
  if(baselineRows.length)G.verify(baselineRows,G.golden.filter(row=>selected.includes(row[0])));

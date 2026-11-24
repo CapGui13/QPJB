@@ -50,11 +50,18 @@ jobs:
       - run: |
           npm install --no-save playwright
           npx playwright install --with-deps chromium webkit
+      - name: Build public site for integrated offline acceptance
+        run: |
+          if test -f quizz-prerequis.js; then
+            python3 scripts/build_catalogue.py
+            python3 scripts/build_public_site.py --output _public_site
+          fi
       - name: Historic and integrated browsers
         run: |
           for browser in chromium webkit; do
             PW_BROWSER="$browser" QPJB_HISTORICAL_BROWSER=1 node tests/quizz-parcours-browser.cjs
             if test -f quizz-prerequis.js; then
               PW_BROWSER="$browser" node tests/quizz-parcours-browser.cjs
+              PW_BROWSER="$browser" node tests/progression-guidee-offline.cjs _public_site
             fi
           done

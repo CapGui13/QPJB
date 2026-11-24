@@ -8,3 +8,5 @@ Référence immuable : 96c0f7962c14e74429fa12871d687efa0e8a94bd, deux blobs exac
 - Une exposition = une question présentée dans une séance antérieure ; le compteur indépendant ne prétend pas établir la maîtrise. Les anciennes preuves sont vérifiées par les tests historiques et les tests de sauvegarde/consolidation.
 - Les goldens historiques et leurs empreintes ne sont pas réécrits.
 - L'archive reconstruit l'inventaire à la même révision, compare SHA-256 de chaque fichier, sept alias, ZIP REST et tar runtime. Aucun verrou production modifié.
+
+- Recette hors ligne intégrée : construire `_public_site` par le builder puis lancer `PW_BROWSER=chromium node tests/progression-guidee-offline.cjs _public_site` et WebKit. La première visite du Quiz se fait hors ligne, après préchauffage depuis l'accueil ; aucune publication.
