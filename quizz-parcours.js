@@ -707,7 +707,10 @@
     const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
     function choose(target){
       let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
-      options=options.filter(x=>!openingPass(x)||(bids['ouv|Passe']||0)<(passWeakness(state,e)?2:1));
+      // Le plafond des Passes concerne les séances ordinaires ; une séance
+      // explicitement ciblée sur cette faiblesse confirmée garde son rôle.
+      if(!(target.kind==='micro'&&target.key==='ouv:passe'))
+        options=options.filter(x=>!openingPass(x)||(bids['ouv|Passe']||0)<(passWeakness(state,e)?2:1));
       if(!options.length)return false;
       // Même en consolidation, ne pas aligner trois fois la même décision.
       const diverse=options.filter(x=>(bids[x.theme+'|'+bid(x)]||0)<2);
