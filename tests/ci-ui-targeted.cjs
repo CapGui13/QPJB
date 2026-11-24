@@ -99,7 +99,13 @@ async function scenario(browser,base,mobile){
   await q.locator('#parcours-start').click();
   await qframe.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
   resources();
-  await page.goto(base,{waitUntil:'domcontentloaded'});
+  // Embedded Quiz creates a same-URL history entry; navigating to the
+  // same URL can restore that entry rather than return to the home view.
+  // Use the user's real browser Back action and assert the home is visible.
+  await page.goBack({waitUntil:'domcontentloaded'});
+  await home.waitFor({state:'visible'});
+  await noOverflow(page,'return home '+label);
+  console.log('UI_QUIZ_PASS',engine,label,Date.now()-start,'ms');
   await page.locator('.training-button[data-training-mode="bidding"]').click();
   const t=page.frameLocator('#training-frame');
   await t.locator('.topic-group .tile').filter({hasText:'Répondre et poursuivre après 2SA'}).first().click();
