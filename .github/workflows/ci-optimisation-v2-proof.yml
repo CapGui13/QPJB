@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install Pillow
-      - run: node --test tests/ci-classify.test.cjs tests/ci-classify-real.cjs
+      - run: node --test tests/ci-classify.test.cjs tests/ci-classify-real.cjs tests/ci-transversal-scope.test.cjs
       - run: node scripts/v2-integration-guard.cjs
       - run: python3 tests/ci-quick-proof.py
   browser:
