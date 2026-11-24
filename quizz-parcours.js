@@ -485,7 +485,9 @@
       const families=new Set(proof.map(p=>p.family));
       const sessions=new Set(proof.map(p=>p.session));
       const exposed=keys.some(key=>lower(key).some(v=>e.seen.get(key)?.has(v.id)));
-      if(!available.size||!exposed)reasons.push('difficulty-foundation');
+      const ownBasics=(e.byConcept.get(m.concept)||[]).filter(v=>v.difficulty<=3&&metadata(v).stage<=1);
+      if(!available.size||!exposed||(ownBasics.length&&!ownBasics.some(v=>e.seen.get(m.concept)?.has(v.id))))
+        reasons.push('difficulty-foundation');
       // Plusieurs bonnes réponses d'une même séance ne suffisent pas.
       // Si une seule famille élémentaire existe, des séances indépendantes
       // successives permettent néanmoins de progresser.
@@ -503,9 +505,9 @@
     return exercises.filter(q=>evaluate(q,state,e).eligible);
   }
   function passWeakness(state,e){
-    const recent=e.recent.filter(({q,s})=>openingPass(q)&&state.completed-s<=3);
-    if(recent.length)return recent.some(({a})=>weakAnswer(a));
-    return (state.micros?.['ouv:passe']?.score||0)<0;
+    if((state.micros?.['ouv:passe']?.score||0)<0)return true;
+    return e.recent.some(({q,s})=>openingPass(q)&&state.completed-s<=3&&
+      state.entries?.[q.id]&&weakAnswer(state.entries[q.id]));
   }
   // Sélection et ordre indépendants. Recherche bornée des permutations :
   // les contraintes du premier cours sont dures, les autres coûts sont souples.
@@ -561,6 +563,10 @@
     const profile=rate>=.5?'weak':rate>=.2?'middle':'strong';
     const quotas=profile==='weak'?[2,3,4,1]:profile==='middle'?[4,3,2,1]:[5,3,1,1];
     const buckets={discovery:0,maintenance:0,weakness:0,transfer:0};
+    // Le rappel par une autre main est un vrai rappel. Réserver les reprises
+    // exactes à une fraction de la séance ; ne pas sacrifier la couverture.
+    let repeatedFamilies=0;
+    const repeatBudget=profile==='weak'?2:profile==='middle'?1:0;
     const passCount=()=>selected.filter(v=>openingPass(v.exercise)).length;
     const mOf=q=>metadata(q);
     const fresh=q=>!previous[q.id];
@@ -570,8 +576,11 @@
     const oldTheme=q=>s-(e.lastTheme[q.theme]??(INTRO[q.theme]-1));
     const oldFamily=q=>s-(e.lastFamily[family(q)]??-999);
     const oldConcept=q=>s-(e.lastConcept[mOf(q).concept]??-999);
+    const novelFamily=q=>!Object.hasOwn(e.lastFamily,family(q));
+    const dueMaintenanceConcepts=new Set(pool.filter(q=>due(q)&&!bad(q)).map(q=>mOf(q).concept));
     const maintenance=q=>due(q)&&!bad(q)||
-      (e.seen.has(mOf(q).concept)&&(oldTheme(q)>=5||oldConcept(q)>=5));
+      (e.seen.has(mOf(q).concept)&&(oldTheme(q)>=5||oldConcept(q)>=5||
+        (oldConcept(q)>=3&&dueMaintenanceConcepts.has(mOf(q).concept))));
     const transfer=q=>fresh(q)&&!!e.weakContext[context(q)]&&!e.weakConcept[mOf(q).concept];
     function classify(q){
       if(weak(q))return 'weakness';
@@ -586,6 +595,7 @@
         -24*(answers[bid(q)]||0)-22*(contexts[context(q)]||0)-25*(concepts[m.concept]||0)
         +Math.min(70,oldTheme(q)*9)+Math.min(35,oldConcept(q)*3);
       if(!r)value+=55;
+      if(novelFamily(q))value+=250;
       if(oldFamily(q)<=2)value-=170;
       else if(oldFamily(q)<=5)value-=85;
       else if(oldFamily(q)<=8)value-=30;
@@ -602,20 +612,28 @@
       if(category==='transfer')value+=Math.min(60,(e.weakContext[context(q)]||0)*8);
       return value;
     }
-    function choose(list,category,forcedReason){
-      let candidates=list.filter(q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap));
+    function choose(list,category,forcedReason,priority=false){
+      const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap);
+      const distinct=q=>available(q)&&!families.has(family(q));
+      let candidates=list.filter(available);
       if(!candidates.length)return false;
-      const distinct=candidates.filter(q=>!families.has(family(q)));
-      if(distinct.length)candidates=distinct;
-      else if(pool.some(q=>!ids.has(q.id)&&!families.has(family(q))&&(!openingPass(q)||passCount()<passCap)))return false;
+      const unique=candidates.filter(distinct);
+      if(unique.length)candidates=unique;
+      else if(pool.some(distinct))return false;
+      const unseen=candidates.filter(novelFamily);
+      const explicitRecall=forcedReason==='rappel_erreur_aide';
+      if(unseen.length&&!explicitRecall)candidates=unseen;
+      else if(!unseen.length&&!priority&&!explicitRecall&&repeatedFamilies>=repeatBudget&&
+        pool.some(q=>distinct(q)&&novelFamily(q)))return false;
       const balanced=candidates.filter(q=>(themes[q.theme]||0)<(s===0?limit:4));
       if(balanced.length)candidates=balanced;
-      else if(s>0&&pool.some(q=>!ids.has(q.id)&&!families.has(family(q))&&
-        (!openingPass(q)||passCount()<passCap)&&(themes[q.theme]||0)<4))return false;
+      else if(s>0&&!priority&&pool.some(q=>distinct(q)&&
+        (unseen.length?novelFamily(q):true)&&(themes[q.theme]||0)<4))return false;
       const ranked=candidates.map(q=>({q,v:score(q,category)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
+      if(!novelFamily(q))repeatedFamilies++;
       answers[bid(q)]=(answers[bid(q)]||0)+1;contexts[context(q)]=(contexts[context(q)]||0)+1;
       concepts[m.concept]=(concepts[m.concept]||0)+1;buckets[cat]++;
       const kind=cat==='maintenance'||!fresh(q)?'revision':'nouveau';
@@ -626,7 +644,7 @@
     }
     function opening(answer,simple=false){
       const options=pool.filter(q=>q.theme==='ouv'&&bid(q)===answer&&(!simple||simplePass(q)));
-      return choose(options,'discovery','equilibre_ouvertures');
+      return choose(options,'discovery','equilibre_ouvertures',true);
     }
     // Reprise des contraintes #291, mais aucun ordre de réponses imposé.
     if(s===0&&limit>=8){
@@ -639,7 +657,7 @@
       opening('1♣');opening('1♦');
       const passes=pool.filter(openingPass);
       if(!choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide'))
-        choose(passes,'maintenance','equilibre_ouvertures');
+        choose(passes,'maintenance','equilibre_ouvertures',true);
       for(const [t,lead] of [['mineur','1♣'],['mineur','1♦'],['majeur','1♥'],['majeur','1♠']])
         choose(pool.filter(q=>q.theme===t&&opener(q)===lead),'discovery');
       for(let i=0;i<2;i++)choose(pool.filter(q=>q.theme==='mineur'||q.theme==='majeur'),'discovery');
@@ -656,12 +674,17 @@
         const known=Object.hasOwn(e.lastTheme,t);
         const options=pool.filter(q=>q.theme===t&&(known||mOf(q).stage<=1));
         if(known){
-          if(!choose(options.filter(q=>e.seen.has(mOf(q).concept)),'maintenance'))choose(options,null);
-        }else choose(options,'discovery');
+          if(!choose(options.filter(q=>e.seen.has(mOf(q).concept)&&novelFamily(q)),'maintenance',null,true))
+            if(!choose(options.filter(novelFamily),null,null,true))
+              choose(options,null,null,true);
+        }else choose(options,'discovery',null,true);
       }
       // Une erreur récente mérite une réponse ciblée sans prendre toute la séance.
-      if(selected.length<limit&&buckets.weakness<quotas[2])
-        choose(pool.filter(q=>due(q)&&bad(q)),'weakness');
+      if(selected.length<limit&&buckets.weakness<quotas[2]){
+        const recallLimit=profile==='weak'?2:1;
+        for(let i=0;i<recallLimit&&selected.length<limit&&repeatedFamilies<Math.max(1,repeatBudget);i++)
+          if(!choose(pool.filter(q=>due(q)&&bad(q)),'weakness','rappel_erreur_aide'))break;
+      }
     }
     const order=['discovery','maintenance','weakness','transfer'];
     while(selected.length<limit){
