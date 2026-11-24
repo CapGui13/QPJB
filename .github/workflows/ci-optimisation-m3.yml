@@ -1,0 +1,25 @@
+name: QPJB M3 — preuves isolées
+on:
+  push:
+    branches: [ci-optimisation/m3-publication]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/ci-orchestration-*'
+      - 'scripts/ci-publication-*'
+      - 'tests/ci-orchestration*'
+      - 'tests/ci-publication*'
+      - '.github/workflows/ci-optimisation-m3.yml'
+permissions:
+  contents: read
+jobs:
+  proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/ci-orchestration-core.cjs
