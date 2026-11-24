@@ -31,11 +31,16 @@ assert.deepEqual(Array.from(sorted),[
  'Séance 0-01 Mumu','SDE Nov 26'
 ],'Saison 1, Saison 2, puis séances spéciales');
 vm.runInContext('renderSeanceGrid(sessions)',sandbox);
-const headings=[...grid.innerHTML.matchAll(/class="seance-separator" role="heading" aria-level="3">([^<]+)/g)].map(m=>m[1]);
-assert.deepEqual(headings,['Saison 1','Saison 2','Séances spéciales']);
+const tokens=[...grid.innerHTML.matchAll(/<div class="seance-separator" role="separator"><\/div>|data-folder="([^"]+)"/g)].map(m=>m[1]||'separator');
+assert.deepEqual(tokens,Array.from(sorted).flatMap((folder,i,a)=>{
+ const group=s=>/^Séance 1-/.test(s)?1:/^Séance 2-/.test(s)?2:3;
+ return i>0&&group(folder)!==group(a[i-1])?['separator',folder]:[folder];
+}));
+assert.equal(tokens.filter(s=>s==='separator').length,2);
+assert.ok(!/Saison 1|Saison 2|Séances spéciales/.test(grid.innerHTML),'no visible section labels');
 assert.deepEqual([...grid.innerHTML.matchAll(/data-folder="([^"]+)"/g)].map(m=>m[1]),Array.from(sorted));
 assert.equal(count.textContent,'('+catalogue.seances.length+')');
-assert.ok(grid.innerHTML.indexOf('Séances spéciales')<grid.innerHTML.indexOf('data-folder="Séance 0-01 Mumu"'));
+assert.equal(tokens[tokens.indexOf('Séance 0-01 Mumu')-1],'separator');
 
 assert.equal(matching[0].fichiers.length,7,'seven published PBNs');
 assert.equal(catalogue.descMap[session],config.descriptions[session],'same description');
