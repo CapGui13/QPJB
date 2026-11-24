@@ -56,7 +56,14 @@ jobs:
         env:
           BASE: ${{ needs.plan.outputs.base }}
           HEAD: ${{ needs.plan.outputs.head }}
-        run: python3 scripts/ci-quick-check.py --base "$BASE" --head "$HEAD"
+        run: |
+          if node scripts/ci-routine.cjs --eligible "$BASE" "$HEAD"; then
+            node scripts/ci-routine.cjs --check "$BASE" "$HEAD"
+            python3 scripts/build_catalogue.py
+            python3 tests/repository-layout.py
+          else
+            python3 scripts/ci-quick-check.py --base "$BASE" --head "$HEAD"
+          fi
   ui-chromium:
     name: QPJB UI chromium
     needs: plan
@@ -174,6 +181,7 @@ jobs:
           node tests/wave2-ci-pages-conditions.cjs
           node tests/wave2-ci-coverage.cjs
           node tests/ci-orchestration-core.cjs
+          node tests/ci-routine.cjs
           node tests/ci-publication-state.cjs
           python3 tests/ci-publication-archive.py
       - name: Vérifier le contenu exact de l'archive publique

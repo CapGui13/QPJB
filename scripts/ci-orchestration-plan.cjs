@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {execFileSync}=require('node:child_process');
 const {LEVELS,validSha,validatePlan}=require('./ci-orchestration-core.cjs');
+const {routineRange}=require('./ci-routine.cjs');
 const {git,ancestor,checkpoint,effectiveBase}=require('./ci-publication-state.cjs');
 function classify(base,head) {
  const raw=execFileSync(process.execPath,['scripts/ci-classify.cjs','--base',base,'--head',head],
@@ -14,6 +15,8 @@ function maxLevel(a,b) {return LEVELS[Math.max(LEVELS.indexOf(a),LEVELS.indexOf(
 // A base outside the first-parent lineage conservatively forces FULL.
 function cumulative(base,head,run=classify) {
  assert(validSha(base)&&validSha(head)&&ancestor(base,head),'Invalid cumulative range');
+ // Only explicitly scoped, linear routine ranges bypass the historical classifier.
+ if(run===classify&&routineRange(base,head))return 'QUICK';
  const lineage=git(['rev-list','--first-parent','--reverse',base+'..'+head]).trim().split('\n').filter(Boolean);
  if(lineage.length && git(['rev-parse',lineage[0]+'^1']).trim()!==base)return 'FULL';
  const commits=git(['rev-list','--topo-order','--reverse','--parents',base+'..'+head]).trim().split('\n').filter(Boolean);
@@ -31,6 +34,7 @@ function choose({head,event,prBase,prHead},deps={checkpoint,effectiveBase,classi
  assert(validSha(head),'Invalid checked SHA');
  assert(['push','workflow_dispatch','pull_request'].includes(event),'Unknown event');
  const full=reason=>({head,base:'none',level:'FULL',reason});
+ if(event==='workflow_dispatch')return full('Manual complete recipe');
  const cp=deps.checkpoint();
  if(!cp)return full('No attested deployment');
  const base=deps.effectiveBase(cp.sha,head);
