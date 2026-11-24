@@ -14,11 +14,12 @@ let CURRENT;
 const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const root=path.join(__dirname,'..');
-const code=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');
+const {restoreGlobal,restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
+const code=restoreEngine(fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8'));
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match,'Catalogue SEF embarqué présent');
-const DATA=JSON.parse(match[1]);
+const DATA=JSON.parse(restoreGlobal(match[1]));
 const approvalsById=new Map(approvedD11.proposals.map(p=>[p.id,p]));
 const catalogue=DATA.exercises.map(ex=>{
  const correction=closure.patches.find(p=>p.id===ex.id);

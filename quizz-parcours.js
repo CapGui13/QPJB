@@ -125,246 +125,34 @@
     palier:'Choix du palier'
   };
   const AXIS_AUDIT=[
-    [
-      "fit",
-      "majeur",
-      "Soutien simple sur ouverture majeure",
-      [
-        "SEF-026-3",
-        "SEF-026-1",
-        "SEF-027-2",
-        "SEF-027-1",
-        "SEF-N049-1",
-        "SEF-N049-3",
-        "SEF-N050-2",
-        "SEF-N050-1",
-        "SEF-N054-1",
-        "SEF-N055-2",
-        "SEF-N055-1"
-      ]
-    ],
-    [
-      "fit",
-      "mineur",
-      "Soutien mineur : différence entre main régulière et main avec singleton.",
-      [
-        "SEF-020-1",
-        "SEF-N031-2",
-        "SEF-V412-014",
-        "SEF-V412-015"
-      ]
-    ],
-    [
-      "fit",
-      "roudi",
-      "Déclencher le Roudi pour rechercher un fit 5-3",
-      [
-        "SEF-V4-073-1",
-        "SEF-V4-079-3",
-        "SEF-V4-085-3",
-        "SEF-V4-091-3"
-      ]
-    ],
-    [
-      "fit",
-      "drury",
-      "Employer le Drury après un Passe d’entrée et un fit",
-      [
-        "SEF-V4-098-1",
-        "SEF-V4-104-1"
-      ]
-    ],
-    [
-      "fit",
-      "reponse_inter",
-      "Reconnaître le fit 5-3 après l’intervention du partenaire.",
-      [
-        "SEF-V49-032"
-      ]
-    ],
-    [
-      "force",
-      "sa",
-      "Calcul élémentaire de la zone de manche face à Sans-Atout",
-      [
-        "SEF-031-2",
-        "SEF-031-1",
-        "SEF-032-1",
-        "SEF-033-1",
-        "SEF-033-2",
-        "SEF-041-2",
-        "SEF-041-1",
-        "SEF-N088-3",
-        "SEF-N088-1",
-        "SEF-N089-2",
-        "SEF-N089-1",
-        "SEF-N090-1",
-        "SEF-N091-3",
-        "SEF-N091-1",
-        "SEF-N092-1",
-        "SEF-N092-2",
-        "SEF-N093-1",
-        "SEF-N093-3",
-        "SEF-N097-3",
-        "SEF-N097-1",
-        "SEF-N098-1",
-        "SEF-N098-2",
-        "SEF-N099-2",
-        "SEF-N099-1",
-        "SEF-N100-3",
-        "SEF-N100-2"
-      ]
-    ],
-    [
-      "force",
-      "apres_fit",
-      "Refuser tout espoir de manche avec l’ouverture minimale",
-      [
-        "SEF-V4-001-1",
-        "SEF-V4-003-3",
-        "SEF-V4-013-3",
-        "SEF-V4-015-3"
-      ]
-    ],
-    [
-      "force",
-      "apres_fit",
-      "Apprécier une main non minimale pour proposer la manche",
-      [
-        "SEF-V4-002-1",
-        "SEF-V4-004-1",
-        "SEF-V4-014-1",
-        "SEF-V4-016-2"
-      ]
-    ],
-    [
-      "force",
-      "apres_fit",
-      "Réévaluer la force avec une courte et un fit établi",
-      [
-        "SEF-V4-007-1",
-        "SEF-V4-007-2",
-        "SEF-V4-008-1",
-        "SEF-V4-019-1",
-        "SEF-V4-020-1",
-        "SEF-V4-020-3"
-      ]
-    ],
-    [
-      "force",
-      "drury",
-      "Reconnaître le seuil exact du Drury : 10 HLD ne suffisent pas",
-      [
-        "SEF-V4-097-1",
-        "SEF-V4-103-1"
-      ]
-    ],
-    [
-      "palier",
-      "second",
-      "Choix du contrat partiel après la redemande de l’ouvreur",
-      [
-        "SEF-052-3",
-        "SEF-052-1",
-        "SEF-053-2",
-        "SEF-053-3",
-        "SEF-054-1",
-        "SEF-054-2",
-        "SEF-055-3",
-        "SEF-055-2",
-        "SEF-N134-1",
-        "SEF-N134-3",
-        "SEF-N135-3",
-        "SEF-N136-1",
-        "SEF-N137-1",
-        "SEF-N138-1",
-        "SEF-N138-2",
-        "SEF-N141-2",
-        "SEF-N142-1",
-        "SEF-N142-3",
-        "SEF-V44-025"
-      ]
-    ],
-    [
-      "palier",
-      "apres_fit",
-      "Déterminer le bon niveau après découverte du fit",
-      [
-        "SEF-V4-010-1",
-        "SEF-V4-012-1",
-        "SEF-V4-022-3",
-        "SEF-V4-024-2"
-      ]
-    ],
-    [
-      "palier",
-      "apres_fit",
-      "Distinguer le barrage d’une proposition de manche",
-      [
-        "SEF-V4-005-2",
-        "SEF-V4-006-2",
-        "SEF-V4-017-2",
-        "SEF-V4-018-1"
-      ]
-    ],
-    // Lot D validé : 4 justifications individuelles remplacent l'ancien
-    // libellé générique. Axe "palier" et 105 preuves conservés ; filtre exact inchangé.
-    [
-      "palier",
-      "apres_fit",
-      "Après 1♥–2♥–2SA, refuser l'essai généralisé avec un soutien minimum de 6 HLD.",
-      [
-        "SEF-V4-009-1"
-      ]
-    ],
-    [
-      "palier",
-      "apres_fit",
-      "Distinguer soutien minimum et acceptation de manche après 1♥–2♥–2SA.",
-      [
-        "SEF-V4-011-1"
-      ]
-    ],
-    [
-      "palier",
-      "apres_fit",
-      "Refuser un essai généralisé de manche avec un fit Pique minimum de 6 HLD.",
-      [
-        "SEF-V4-021-1"
-      ]
-    ],
-    [
-      "palier",
-      "apres_fit",
-      "Ne pas confondre honneurs épars et soutien suffisant pour accepter la manche après 2SA d'essai.",
-      [
-        "SEF-V4-023-3"
-      ]
-    ],
-    [
-      "palier",
-      "reveil",
-      "Distinguer un réveil à saut ou au palier de deux",
-      [
-        "SEF-V4-053-4",
-        "SEF-V4-054-2",
-        "SEF-V4-070-2",
-        "SEF-V4-071-2",
-        "SEF-V4-072-3"
-      ]
-    ],
-    [
-      "palier",
-      "barrage",
-      "Évaluer la longueur et la qualité d’un barrage au palier de 3",
-      [
-        "SEF-V3-099-3",
-        "SEF-V3-099-1",
-        "SEF-V3-100-4",
-        "SEF-V44-046",
-        "SEF-V44-047"
-      ]
-    ]
+    // Visa global 24/11 : huit motifs individualisés, 105 associations inchangées.
+    ["fit","majeur","Soutien simple sur ouverture majeure",["SEF-026-3","SEF-026-1","SEF-027-2","SEF-027-1","SEF-N049-1","SEF-N049-3","SEF-N050-2","SEF-N050-1","SEF-N054-1","SEF-N055-2","SEF-N055-1"]],
+    ["fit","mineur","Soutien mineur : différence entre main régulière et main avec singleton.",["SEF-V412-014","SEF-V412-015"]],
+    ["fit","mineur","Choisir le soutien mineur faible à 2♣ avec une courte.",["SEF-020-1"]],
+    ["fit","mineur","Soutien mineur simple : intégrer le singleton et le seuil de force.",["SEF-N031-2"]],
+    ["fit","roudi","Déclencher le Roudi pour rechercher un fit 5-3",["SEF-V4-073-1","SEF-V4-085-3","SEF-V4-091-3"]],
+    ["fit","roudi","Déclencher le Roudi à 2♣ avec cinq Piques et une force invitante.",["SEF-V4-079-3"]],
+    ["fit","drury","Employer le Drury après un Passe d’entrée et un fit",["SEF-V4-104-1"]],
+    ["fit","drury","Déclencher le Drury après Passe d'entrée avec quatre atouts et une force constructive.",["SEF-V4-098-1"]],
+    ["fit","reponse_inter","Reconnaître le fit 5-3 après l’intervention du partenaire.",["SEF-V49-032"]],
+    ["force","sa","Calcul élémentaire de la zone de manche face à Sans-Atout",["SEF-031-2","SEF-031-1","SEF-032-1","SEF-033-1","SEF-033-2","SEF-041-2","SEF-041-1","SEF-N088-3","SEF-N088-1","SEF-N089-2","SEF-N089-1","SEF-N090-1","SEF-N091-3","SEF-N091-1","SEF-N092-1","SEF-N092-2","SEF-N093-1","SEF-N093-3","SEF-N097-3","SEF-N097-1","SEF-N098-1","SEF-N098-2","SEF-N099-2","SEF-N099-1","SEF-N100-3","SEF-N100-2"]],
+    ["force","apres_fit","Refuser tout espoir de manche avec l’ouverture minimale",["SEF-V4-001-1","SEF-V4-003-3","SEF-V4-013-3","SEF-V4-015-3"]],
+    ["force","apres_fit","Apprécier une main non minimale pour proposer la manche",["SEF-V4-002-1","SEF-V4-004-1","SEF-V4-014-1","SEF-V4-016-2"]],
+    ["force","apres_fit","Réévaluer la force avec une courte et un fit établi",["SEF-V4-007-1","SEF-V4-007-2","SEF-V4-008-1","SEF-V4-019-1","SEF-V4-020-1","SEF-V4-020-3"]],
+    ["force","drury","Reconnaître le seuil exact du Drury : 10 HLD ne suffisent pas",["SEF-V4-097-1","SEF-V4-103-1"]],
+    ["palier","second","Choix du contrat partiel après la redemande de l’ouvreur",["SEF-052-3","SEF-052-1","SEF-053-2","SEF-053-3","SEF-054-1","SEF-054-2","SEF-055-3","SEF-055-2","SEF-N134-1","SEF-N134-3","SEF-N135-3","SEF-N136-1","SEF-N137-1","SEF-N138-1","SEF-N138-2","SEF-N141-2","SEF-N142-1","SEF-N142-3","SEF-V44-025"]],
+    ["palier","apres_fit","Déterminer le bon niveau après découverte du fit",["SEF-V4-012-1","SEF-V4-024-2"]],
+    ["palier","apres_fit","Accepter 2SA essai généralisé avec un soutien majeur maximum.",["SEF-V4-010-1"]],
+    ["palier","apres_fit","Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠.",["SEF-V4-022-3"]],
+    ["palier","apres_fit","Distinguer le barrage d’une proposition de manche",["SEF-V4-006-2","SEF-V4-018-1"]],
+    ["palier","apres_fit","Distinguer 3♥ préventif de 2SA essai après un fit majeur.",["SEF-V4-005-2"]],
+    ["palier","apres_fit","Reconnaître le barrage à 3♠ après 1♠–2♠, distinct d'un essai.",["SEF-V4-017-2"]],
+    ["palier","apres_fit","Après 1♥–2♥–2SA, refuser l'essai généralisé avec un soutien minimum de 6 HLD.",["SEF-V4-009-1"]],
+    ["palier","apres_fit","Distinguer soutien minimum et acceptation de manche après 1♥–2♥–2SA.",["SEF-V4-011-1"]],
+    ["palier","apres_fit","Refuser un essai généralisé de manche avec un fit Pique minimum de 6 HLD.",["SEF-V4-021-1"]],
+    ["palier","apres_fit","Ne pas confondre honneurs épars et soutien suffisant pour accepter la manche après 2SA d'essai.",["SEF-V4-023-3"]],
+    ["palier","reveil","Distinguer un réveil à saut ou au palier de deux",["SEF-V4-053-4","SEF-V4-054-2","SEF-V4-070-2","SEF-V4-071-2","SEF-V4-072-3"]],
+    ["palier","barrage","Évaluer la longueur et la qualité d’un barrage au palier de 3",["SEF-V3-099-3","SEF-V3-099-1","SEF-V3-100-4","SEF-V44-046","SEF-V44-047"]]
   ];
   const AXIS_BY_ID=Object.create(null);
   for(const [axis,theme,reason,ids] of AXIS_AUDIT){

@@ -1,0 +1,36 @@
+name: QPJB SEF - Revue 29 HOLD, simulation sans publication
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audits/wave2/pedagogie/REVUE_FINALE_29_20261124_HOLD.json'
+      - 'tests/qpjb-sef-revue-finale-29-20261124.cjs'
+      - '.github/workflows/qpjb-sef-revue-finale-29.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  structure:
+    name: Intégrité et simulation rapide des 29 dossiers
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/qpjb-sef-revue-finale-29-20261124.cjs --quick
+  trajectories:
+    name: 30 trajectoires appariées 65/153 séances
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/qpjb-sef-revue-finale-29-20261124.cjs --full

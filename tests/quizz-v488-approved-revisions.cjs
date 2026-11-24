@@ -26,8 +26,10 @@ const currentV4102=require('./quizz-v4102-approved-revisions.json');
 const currentV4103=require('./quizz-v4103-approved-revisions.json');
 const revisionRecenteV4112=require('./quizz-v4112-approved-revisions.cjs');
 const revisionRecentes=require('./quizz-v4108-normalization.cjs');
+const {normalizeRow}=require('./qpjb-sef-global29-normalization.cjs');
 function normalizedPrefix(exercises,count){
- return exercises.slice(0,count).map(sourceRaw=>{
+ return exercises.slice(0,count).map(live=>{
+  const sourceRaw=normalizeRow(live,true);
   // Prévisualisation des 26 corrections de texte : retour exact aux snapshots avant
   // toute autre normalisation historique. Le dossier demeure DRAFT, non fusionnable.
   const proposal=preview26.find(x=>x.id===sourceRaw.id);

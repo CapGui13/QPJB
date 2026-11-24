@@ -36,7 +36,13 @@ const snapshot=fs.readFileSync(path.join(root,'Docs','PARCOURS_V2_REVUE_620_2026
 // Reconstituer l'ancien export en inversant UNIQUEMENT les champs modifiés
 // dans les lignes concernées ; le CSV historique doit rester identique.
 const deltas=new Map(approvedLotD.proposals.map(p=>[p.id,p]));
+const global29=new Map(require('../audits/pedagogie/validation-globale-29-20261124.json').items.map(e=>[e.id,e]));
 const historicQueue=audit.queue.map(row=>{
+ const g=global29.get(row.id);
+ if(g&&g.fields.includes('difficultyReason')){
+  assert.equal(row.difficultyReason,g.after.difficultyReason,'Motif exact visa global : '+row.id);
+  row={...row,difficultyReason:g.before.difficultyReason};
+ }
  const patchSEF=closure.patches.find(p=>p.id===row.id);
  if(patchSEF){
   for(const [field,value] of Object.entries(patchSEF.after)){
