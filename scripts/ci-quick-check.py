@@ -12,7 +12,7 @@ from PIL import Image
 
 RASTER = {".png": "PNG", ".jpg": "JPEG", ".jpeg": "JPEG", ".gif": "GIF", ".webp": "WEBP"}
 CSS = {"qpjb-bridge-ui.css", "qpjb-design-tokens.css"}
-SESSION = re.compile(r"Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)")
+SESSION = re.compile(r"(?:Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)|SDE (?:Jan|Feb|Fév|Mar|Apr|Avr|May|Mai|Jun|Juin|Jul|Juil|Aug|Aoû|Sep|Sept|Oct|Nov|Dec|Déc) [0-9]{2})")
 SHA = re.compile(r"[0-9a-f]{40}")
 RANKS = "AKQJT98765432"
 
@@ -30,6 +30,10 @@ def kind(path):
             and not any(ord(c) < 32 or ord(c) == 127 for c in path), f"unsafe path: {path!r}")
     if path in CSS:
         return "css"
+    if path == "index.html":
+        return "home"
+    if path == "config.json":
+        return "config"
     if len(p.parts) == 2 and p.parts[0] == "Docs" and not p.name.startswith(".") and p.suffix.lower() in RASTER:
         return "image"
     if len(p.parts) == 2 and SESSION.fullmatch(p.parts[0]):
@@ -54,7 +58,7 @@ def changes(root, base, head):
         require((old, new) == {"A": ("000000", "100644"), "M": ("100644", "100644"),
                                "D": ("100644", "000000")}[status], f"unsafe file mode: {path}")
         category = kind(path)
-        require(category != "css" or status == "M", f"required CSS removed/added: {path}")
+        require(category not in {"css", "home", "config"} or status == "M", f"required file removed/added: {path}")
         result.append((status, path, category))
     return result
 
@@ -114,6 +118,36 @@ def check_image(path):
                 image.load()
                 require(image.width > 0 and image.height > 0, "invalid image dimensions")
 
+def home_presentation(text):
+    def style(match):
+        require("<" not in match[1] and "\0" not in match[1], "unsafe inline style")
+        return "<style>__QPJB_STYLE__</style>"
+    text, styles = re.subn(r"<style>(.*?)</style>", style, text, flags=re.S)
+    text, titles = re.subn(r"<title>[^<>&\r\n]+</title>", "<title>__QPJB_TITLE__</title>", text)
+    require(styles == 2 and titles == 1, "unexpected home structure")
+    return text
+
+
+def check_config(path):
+    import unicodedata
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, "duplicate config key: " + key)
+            result[key] = value
+        return result
+    cfg = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique)
+    require(isinstance(cfg, dict) and set(cfg) == {"descriptions", "links"}, "unexpected config schema")
+    require(all(isinstance(cfg[k], dict) for k in cfg), "invalid config maps")
+    for key, value in cfg["descriptions"].items():
+        require(SESSION.fullmatch(key) and isinstance(value, str) and len(value) <= 500
+                and not any(c in "<>" or unicodedata.category(c) in {"Cc", "Cf"} for c in value), "invalid description: " + key)
+    for key, value in cfg["links"].items():
+        folder, sep, board = key.rpartition("/")
+        require(sep and SESSION.fullmatch(folder) and re.fullmatch(r"B[0-9]+", board), "invalid link key: " + key)
+        require(isinstance(value, str) and re.fullmatch(r"https://bridge-training\.com/player/index\.php\?dds=[A-Za-z0-9]+", value), "invalid Bridge Training link: " + key)
+
+
 def verify_catalogue(root, head):
     catalogue = json.loads((root / "catalogue.json").read_text(encoding="utf-8"))
     require(json.loads((root / "site-version.json").read_text()) == {"revision": head}, "wrong generated revision")
@@ -159,6 +193,13 @@ def run(root, base, head):
                     require(path.stat().st_size == 0, "nonempty session marker")
                 elif category == "css":
                     require(path.stat().st_size and "\0" not in path.read_text(encoding="utf-8"), "invalid CSS")
+                elif category == "home":
+                    old = git(root, "show", base + ":index.html").decode("utf-8")
+                    new = path.read_bytes().decode("utf-8")
+                    require(home_presentation(old) == home_presentation(new), "home structure or code changed")
+                    subprocess.run(["node", "scripts/v2-integration-guard.cjs"], cwd=work, check=True)
+                elif category == "config":
+                    check_config(path)
             except Exception as exc:
                 raise ValueError(f"{name}: {exc}") from exc
         subprocess.run([sys.executable, "scripts/build_catalogue.py"], cwd=work, check=True)

@@ -10,7 +10,29 @@ permissions:
   contents: read
 
 jobs:
+  scope:
+    name: Vérifier si une recette pédagogique est nécessaire
+    runs-on: ubuntu-latest
+    outputs:
+      full: ${{ steps.scope.outputs.full }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Classer le diff réel de la PR
+        id: scope
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci-transversal-scope.cjs
+
   node-transversal:
+    needs: scope
+    if: ${{ needs.scope.outputs.full == 'true' }}
     name: M1 pédagogie, M2 rapide et M4 conseils (Node 22)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -40,6 +62,8 @@ jobs:
         run: node tests/wave2-recos-ui-contract.cjs
 
   adaptatif-30-trajectoires:
+    needs: scope
+    if: ${{ needs.scope.outputs.full == 'true' }}
     name: M2 - suite complète 5 profils, 65 et 153 séances
     runs-on: ubuntu-24.04
     timeout-minutes: 45

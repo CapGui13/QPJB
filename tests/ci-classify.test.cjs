@@ -126,3 +126,24 @@ scenario('report and CSS union escalates for M2','FULL',()=>{write(report);write
 test('case collision at parent folder even with distinct filenames',()=>{reset();write('docs/other.txt');const b=commit();write(img);expect(b,commit(),'FULL',one('M',img));});
 test('Unicode collision at parent folder',()=>{reset();write('Se\u0301ance 1-01 Aix/other.txt');const b=commit();write(pbn);expect(b,commit(),'FULL',one('M',pbn));});
 test('raw JSON contract strips internal modes and oids',()=>{reset();write(img);const h=commit();const p=expect(base,h,'QUICK',one('M',img));assert.deepEqual(Object.keys(p.changes[0]).sort(),['path','status']);});
+
+// CI v2: positive presentation/content cases and adversarial boundaries.
+const homeV2='<html><style>body{color:red}</style><title>QPJB</title><style>.card{color:white}</style><script>safe()</script></html>';
+const cfgV2={descriptions:{'SDE Nov 26':'Séance spéciale'},links:{'SDE Nov 26/B1':'https://bridge-training.com/player/index.php?dds=abc123'}};
+for(const [name,level,change] of [
+ ['home color','UI',s=>s.replace('color:red','color:blue')],
+ ['home title','UI',s=>s.replace('<title>QPJB','<title>Le Quai')],
+ ['home JS','FULL',s=>s.replace('safe()','evil()')],
+ ['home event injection','FULL',s=>s.replace('<html>','<html onload="evil()">')],
+ ['home style breakout','FULL',s=>s.replace('color:red','color:red}</style><script>evil()</script><style>body{color:red')],
+ ['home markup','FULL',s=>s.replace('<script>','<a href="bad">x</a><script>')]
+])test('v2 '+name,()=>{reset();write('index.html',homeV2);const b=commit();write('index.html',change(homeV2));expect(b,commit(),level);});
+for(const [name,level,change] of [
+ ['description','QUICK',x=>{x.descriptions['SDE Nov 26']='Nouvelle description';}],
+ ['link','QUICK',x=>{x.links['SDE Nov 26/B1']='https://bridge-training.com/player/index.php?dds=xyz';}],
+ ['unknown key','FULL',x=>{x.script='evil';}],
+ ['unsafe URL','FULL',x=>{x.links['SDE Nov 26/B1']='javascript:alert(1)';}],
+ ['unsafe description','FULL',x=>{x.descriptions['SDE Nov 26']='<script>'; }]
+])test('v2 config '+name,()=>{reset();write('config.json',JSON.stringify(cfgV2));const b=commit();const x=JSON.parse(JSON.stringify(cfgV2));change(x);write('config.json',JSON.stringify(x));expect(b,commit(),level);});
+scenario('v2 SDE PBN','QUICK',()=>write('SDE Nov 26/B1 - donne.pbn'));
+scenario('v2 fake SDE folder','FULL',()=>write('SDE garbage 26/B1.pbn'));

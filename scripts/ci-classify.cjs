@@ -5,7 +5,7 @@ const {TextDecoder}=require('node:util');
 const SCHEMA='QPJB_CI_PLAN_V1';
 const LEVELS=['DOC_ONLY','QUICK','UI','FULL'];
 const SHA=/^[0-9a-f]{40}$/;
-const SESSION=/^Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)$/;
+const SESSION=/^(?:Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)|SDE (?:Jan|Feb|Fév|Mar|Apr|Avr|May|Mai|Jun|Juin|Jul|Juil|Aug|Aoû|Sep|Sept|Oct|Nov|Dec|Déc) [0-9]{2})$/;
 const CSS=new Set(['qpjb-bridge-ui.css','qpjb-design-tokens.css']);
 const EMPTY_BLOB='e69de29bb2d1d6434b8b29ae775ad8c2e48c5391';
 function marker(p){const a=p.split('/');return a.length===2&&SESSION.test(a[0])&&a[1]==='.seance-vide';}
@@ -71,9 +71,40 @@ function reportRefs(ref,report){
   const r=git(['grep','--full-name','-I','-i','-F','-l','-z','-e',stem,ref,'--','.',...([report,...SELF].map(p=>':(exclude)'+p))],[0,1]);
   return nul(r.stdout);
 }
+// Only non-executable home presentation can use UI. The rest of the
+// HTML (including every script, attribute and navigation target) is immutable.
+function homePresentation(text){
+  let styles=0,titles=0;
+  const normalized=text.replace(/<style>([\s\S]*?)<\/style>/g,(all,body)=>{
+    if(/[<\u0000]/.test(body))throw Error('unsafe inline style');
+    styles++;return '<style>__QPJB_STYLE__</style>';
+  }).replace(/<title>([^<>&\r\n]+)<\/title>/g,()=>{titles++;return '<title>__QPJB_TITLE__</title>';});
+  if(styles!==2||titles!==1)throw Error('unexpected home structure');
+  return normalized;
+}
+function isHomePresentation(before,after){
+  try{return before!==after&&homePresentation(before)===homePresentation(after);}catch{return false;}
+}
+function isSessionConfig(text){
+  try{
+    const c=JSON.parse(text),map=x=>x&&typeof x==='object'&&!Array.isArray(x);
+    const plain=s=>typeof s==='string'&&s.length<=500&&!/[<>\p{Cc}\p{Cf}]/u.test(s);
+    return map(c)&&Object.keys(c).sort().join(',')==='descriptions,links'&&map(c.descriptions)&&map(c.links)&&
+      Object.entries(c.descriptions).every(([k,v])=>SESSION.test(k)&&plain(v))&&
+      Object.entries(c.links).every(([k,v])=>{const i=k.lastIndexOf('/');return i>0&&SESSION.test(k.slice(0,i))&&/^B[0-9]+$/.test(k.slice(i+1))&&typeof v==='string'&&/^https:\/\/bridge-training\.com\/player\/index\.php\?dds=[A-Za-z0-9]+$/.test(v);});
+  }catch{return false;}
+}
 function changeLevel(c,from,to){
   if(!['000000','100644'].includes(c.oldMode)||!['000000','100644'].includes(c.newMode)||c.status==='T')
     return ['FULL','non-ordinary file or mode'];
+  if(c.status==='M'&&!c.oldPath&&c.path==='index.html'){
+    const before=decode(git(['cat-file','blob',c.oldOid]).stdout),after=decode(git(['cat-file','blob',c.newOid]).stdout);
+    return isHomePresentation(before,after)?['UI','home title/inline styles only']:['FULL','home structure or code changed'];
+  }
+  if(c.status==='M'&&!c.oldPath&&c.path==='config.json'){
+    const before=decode(git(['cat-file','blob',c.oldOid]).stdout),after=decode(git(['cat-file','blob',c.newOid]).stdout);
+    return isSessionConfig(before)&&isSessionConfig(after)?['QUICK','session descriptions/Bridge Training links']:['FULL','unrecognized config schema or values'];
+  }
   // M2 accepts shared CSS modifications only, never additions/removals.
   // A copy out of an unchanged CSS is also deliberately classified FULL.
   if([c.path,c.oldPath].some(p=>CSS.has(p))&&c.status!=='M')
@@ -167,4 +198,4 @@ function main(argv){
 if(require.main===module){
   try{main(process.argv.slice(2));}catch(e){console.error('CI_CLASSIFY_ERROR: '+e.message);process.exitCode=1;}
 }
-module.exports={classify,parseRaw,pathLevel};
+module.exports={classify,parseRaw,pathLevel,isHomePresentation,isSessionConfig};
