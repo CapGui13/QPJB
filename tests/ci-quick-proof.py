@@ -100,7 +100,28 @@ def main():
         scenario("unexpected-file", lambda: write(root/"unknown.txt",b"not allowed"), False, "outside QUICK/UI scope")
         scenario("symlink", lambda: image.symlink_to(original), False, "unsafe file mode")
         scenario("nonempty-marker", lambda: write(root/"Séance 9-99 Aix"/".seance-vide",b"x"), False, "nonempty session marker")
-        print("QUICK_PROOF_PASS 14 cases", flush=True)
+        def config_change(value=None, orphan=False):
+            p = root / "config.json"
+            cfg = json.loads(p.read_text(encoding="utf-8"))
+            if value is not None:
+                cfg["links"][linked_key] = value
+            elif orphan:
+                cfg["links"]["SDE Nov 26/B999"] = "https://bridge-training.com/player/index.php?dds=abc"
+            else:
+                cfg["descriptions"][mumu["folder"]] = "Description modifiée"
+            p.write_text(json.dumps(cfg, ensure_ascii=False), encoding="utf-8")
+        scenario("valid-config-description", config_change, True)
+        scenario("invalid-config-link", lambda: config_change("javascript:alert(1)"), False, "invalid Bridge Training link")
+        scenario("config-orphan-link", lambda: config_change(orphan=True), False, "orphan play link")
+        scenario("special-session-pbn", lambda: write(root / "SDE Nov 26" / "B901 - fixture.pbn", data), True)
+        def home_change(unsafe=False):
+            p = root / "index.html"
+            text = p.read_text(encoding="utf-8")
+            text = text.replace("<title>", '<title>Test ') if not unsafe else text.replace('<title>', '<script>alert(1)</script><title>')
+            p.write_text(text, encoding="utf-8")
+        scenario("valid-home-title", home_change, True)
+        scenario("unsafe-home-script", lambda: home_change(True), False, "home structure or code changed")
+        print("QUICK_PROOF_PASS 20 cases", flush=True)
 
 if __name__ == "__main__":
     main()
