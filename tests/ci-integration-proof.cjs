@@ -74,10 +74,11 @@ try {
   fs.appendFileSync(report,'\nIntegration fixture note.\n');const doc=plan(commit('internal note'),'DOC_ONLY');verdict(doc,true);
   fs.copyFileSync(original,pbn);plan(commit('public and internal cumulative'),'FULL');
   reset();fs.copyFileSync(original,pbn);const head=commit('valid PBN without trusted base');plan(head,'FULL',{...dep,checkpoint:()=>null});
+  reset();fs.appendFileSync(css,'\n/* disposable integration UI change */\n');const ui=plan(commit('valid CSS'),'UI');quick(ui);
   console.log('INTEGRATION_SCENARIOS_PASS 7 scenarios, exact SHA, real QUICK pass/fail, verdict fail-closed');
  }else if(mode==='chromium'||mode==='webkit'){
   fs.appendFileSync(css,'\n/* disposable integration UI change */\n');
-  const p=plan(commit('valid CSS'),'UI');quick(p);
+  const p=plan(commit('valid CSS'),'UI');
   const t=run(process.execPath,['tests/ci-ui-targeted.cjs'],{PW_BROWSER:mode,NODE_PATH:path.join(root,'node_modules')});
   assert(t.out.includes('UI_PASS '+mode+' '+p.head));verdict(p,true);
   console.log('INTEGRATION_UI_SECONDS',mode,t.seconds);
