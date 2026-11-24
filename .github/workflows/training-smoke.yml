@@ -95,6 +95,10 @@ jobs:
           node tests/wave2-ci-pages-rollback.cjs
           node tests/wave2-ci-pages-conditions.cjs
           node tests/wave2-ci-coverage.cjs
+      - name: Vérifier le contenu exact de l'archive publique
+        run: |
+          python3 scripts/build_catalogue.py
+          python3 tests/repository-layout.py
       - name: Rapports d'intégrité et d'ambiguïté
         if: always()
         uses: actions/upload-artifact@v4

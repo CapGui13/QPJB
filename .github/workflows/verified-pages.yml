@@ -82,13 +82,13 @@ jobs:
       - name: Générer le catalogue et la version à partir du commit testé
         run: |
           python3 scripts/build_catalogue.py
-          touch .nojekyll
+          python3 scripts/build_public_site.py --output _public_site
       - uses: actions/configure-pages@v5
       # À chaque nouvelle tentative d'un même workflow_run, utiliser un nom propre.
       # Sinon upload-pages-artifact conserve plusieurs « github-pages » et deploy-pages échoue.
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _public_site
           name: github-pages-${{ github.run_attempt }}
       # L'API des artifacts peut être en retard juste après l'upload.
       # Attendre la visibilité de la nouvelle archive évite un échec artificiel de deploy-pages.

@@ -11,8 +11,7 @@ assert.ok(start>=0&&end>start,'Embedded Quiz catalogue');
 const data=JSON.parse(html.slice(start+tag.length,end));
 const P=require('../quizz-parcours.js');
 const approvedLotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
-const proposed=JSON.parse(fs.readFileSync(path.join(root,'Docs',
-  'PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json'),'utf8'));
+const proposed=JSON.parse(fs.readFileSync(path.join(root,'audits/references/v2/PARCOURS_V2_SA_14_PRECLASSIFICATION_20261118.json'),'utf8'));
 assert.equal(proposed.status,'NON_ACTIVE_DANS_LE_PARCOURS');
 assert.equal(proposed.totalExercices,14);
 assert.equal(proposed.totalCompetencesCandidates,8);

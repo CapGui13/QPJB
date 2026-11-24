@@ -30,7 +30,7 @@ assert.ok(audit.queue.every(x=>catalog.exercises.some(y=>y.id===x.id&&
   y.difficultyReason===x.difficultyReason&&
   y.answer===x.answer&&String(y.caseFamily||y.id)===x.family)));
 const csv=A.asCSV(audit.queue);
-const snapshot=fs.readFileSync(path.join(root,'Docs','PARCOURS_V2_REVUE_620_20261118.csv'),'utf8');
+const snapshot=fs.readFileSync(path.join(root,'audits/references/v2/PARCOURS_V2_REVUE_620_20261118.csv'),'utf8');
 // Le CSV V2 du 18/11 est une ARCHIVE, non un catalogue vivant. Les 11
 // corrections V1 validées le 21/11 ne doivent ni le réécrire ni activer V2.
 // Reconstituer l'ancien export en inversant UNIQUEMENT les champs modifiés
@@ -76,7 +76,7 @@ const changedQueue=audit.queue.filter(row=>deltas.has(row.id));
 assert.ok(changedQueue.length>=4,'La revue V2 doit détecter les métadonnées V1 corrigées');
 assert.notEqual(snapshot,csv,'Le CSV historique ne doit pas être présenté comme l état V1 actuel');
 const graph=JSON.parse(fs.readFileSync(
-  path.join(root,'Docs','PARCOURS_V2_PRE-REQUIS_PROPOSITIONS_20261118.json'),'utf8'));
+  path.join(root,'audits/references/v2/PARCOURS_V2_PRE-REQUIS_PROPOSITIONS_20261118.json'),'utf8'));
 assert.equal(graph.status,'NON_ACTIVE_DANS_LE_MOTEUR','Candidate graph must not be labelled as active');
 assert.equal(graph.nodes.length,P.ROADMAP.length);
 const roadmap=new Map(P.ROADMAP),table=new Map(graph.nodes.map(x=>[x.theme,x]));

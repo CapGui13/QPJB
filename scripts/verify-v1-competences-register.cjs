@@ -34,7 +34,10 @@ function parseCsv(content){
 // Le registre du 20/11 compare des sources historiques et non les QCM récents.
 // Revenir aux 13 champs de correctifs approuvés AVANT de tester ses snapshots.
 // Toute valeur actuelle différente de la valeur approuvée provoque un échec.
-const published=embedded('quizz.html','training-data').exercises;
+const {payload,validateApproved}=require('../tests/qpjb-sef-approved-2sa-20261123.cjs');
+// Reconstituer exactement la charge antérieure aux visas éditoriaux des 23–24/11.
+// validateApproved vérifie chaque valeur approuvée et l'empreinte historique.
+const published=JSON.parse(validateApproved(payload(read('quizz.html'))).historical).exercises;
 const lotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const sef=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 assert.equal(lotD.proposals.length,11,'11 corrections D approuvées');
@@ -68,7 +71,7 @@ const st=v2.docs['PARCOURS_V2_STAYMAN_65_MICRO_OBJECTIFS_CANDIDATS_20261118.json
 assert.equal(sa.assignments.length,14);assert.equal(st.assignments.length,65);
 const candidate=new Map([...sa.assignments,...st.assignments].map(a=>[a.id,a]));
 assert.equal(candidate.size,79);
-const reference= parseCsv(read('Docs/PARCOURS_V2_REVUE_620_20261118.csv'));
+const reference= parseCsv(read('audits/references/v2/PARCOURS_V2_REVUE_620_20261118.csv'));
 assert.equal(reference.length,620);assert.equal(new Set(reference.map(x=>x.id)).size,620);
 const inReference=new Set(reference.map(x=>x.id));
 const selected=new Set();

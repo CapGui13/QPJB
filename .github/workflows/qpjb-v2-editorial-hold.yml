@@ -3,8 +3,8 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'Docs/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json'
-      - 'Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'
+      - 'audits/references/v2/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json'
+      - 'audits/references/v2/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'
       - 'scripts/v2-editorial-dry-run.cjs'
       - 'scripts/v2-editorial-hold-sandbox.cjs'
       - 'scripts/v2-candidate-r1.cjs'
@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -70,6 +71,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

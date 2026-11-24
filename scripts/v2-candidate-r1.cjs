@@ -6,7 +6,7 @@ const outputDir=path.join(root,'artifacts/v2-pedagogy-candidate-private');
 const filename='QPJB_V2_65_SEANCES_CANDIDAT_PEDAGOGIQUE.html';
 const version='QPJB-V2-65-19A-20261120-R1',key='qpjb-v2-eleve-65-pedago-r1';
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
-const approved=JSON.parse(fs.readFileSync(path.join(root,'Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json')));
+const approved=JSON.parse(fs.readFileSync(path.join(root,'audits/references/v2/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json')));
 assert.equal(approved.caseDecisions.length,19);
 assert.equal(new Set(approved.caseDecisions.map(x=>x.id)).size,19);
 assert.ok(approved.caseDecisions.every(x=>x.approval==='APPROVED_BY_USER'));
