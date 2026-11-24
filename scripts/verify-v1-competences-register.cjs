@@ -34,7 +34,10 @@ function parseCsv(content){
 // Le registre du 20/11 compare des sources historiques et non les QCM récents.
 // Revenir aux 13 champs de correctifs approuvés AVANT de tester ses snapshots.
 // Toute valeur actuelle différente de la valeur approuvée provoque un échec.
-const published=embedded('quizz.html','training-data').exercises;
+const {payload,validateApproved}=require('../tests/qpjb-sef-approved-2sa-20261123.cjs');
+// Reconstituer exactement la charge antérieure aux visas éditoriaux des 23–24/11.
+// validateApproved vérifie chaque valeur approuvée et l'empreinte historique.
+const published=JSON.parse(validateApproved(payload(read('quizz.html'))).historical).exercises;
 const lotD=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
 const sef=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 assert.equal(lotD.proposals.length,11,'11 corrections D approuvées');

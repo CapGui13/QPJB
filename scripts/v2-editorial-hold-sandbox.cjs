@@ -30,7 +30,8 @@ const single=(s,search,replace)=>{
  return s.replace(search,replace);
 };
 function build(){
- const publicHtml=fs.readFileSync(path.join(root,'quizz.html'));
+ // Rejouer exclusivement l'expérience historique sur la source épinglée.
+ const publicHtml=require('node:child_process').execFileSync('git',['show','a0ffaed6e49ab7259de800773a4ee384be755339:quizz.html'],{cwd:root,maxBuffer:8*1024*1024});
  const actualBlob=crypto.createHash('sha1').update('blob '+publicHtml.length+'\0')
    .update(publicHtml).digest('hex');
  assert.equal(actualBlob,publicBlob,'Le Quiz SEF public épinglé a changé');

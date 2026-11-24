@@ -6,7 +6,6 @@ const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
 const patchPath = path.join(root, 'audits/references/v2/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json');
-const quizPath = path.join(root, 'quizz.html');
 const expectedBlob = 'dfd1f21dfc3c2256b066b36b777c437d2973e895';
 const expectedMain = 'a0ffaed6e49ab7259de800773a4ee384be755339';
 const expectedModified = ['SEF-V416-008','SEF-V416-009','SEF-L25-007'].sort();
@@ -109,9 +108,11 @@ function main(){
   const args=process.argv.slice(2);
   let items;
   if(args.length===0){
-    const bytes=fs.readFileSync(quizPath);
+    // Expérience historique HOLD : lire le commit immuable, pas la V1 actuelle.
+    // Le SHA du blob original reste contrôlé ci-dessous.
+    const bytes=require('node:child_process').execFileSync('git',['show',expectedMain+':quizz.html'],{cwd:root,maxBuffer:8*1024*1024});
     const sha=crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
-    assert.equal(sha,expectedBlob,'quizz.html diffère du commit public épinglé');
+    assert.equal(sha,expectedBlob,'Le blob historique diffère du commit public épinglé');
     items=catalogue(bytes.toString('utf8'),'<script id="training-data" type="application/json">','exercises');
   }else if(args.length===2 && args[0]==='--fixture-eleve'){
     const bytes=fs.readFileSync(args[1]);

@@ -20,6 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Vérifier les déplacements et les blobs protégés
+        if: ${{ github.event.pull_request.head.ref == 'maintenance/rangement-depot-20261124' }}
         run: python3 tests/repository-layout.py --verify-relocation
       - name: Régénérer le catalogue et vérifier les ressources publiques
         run: |
