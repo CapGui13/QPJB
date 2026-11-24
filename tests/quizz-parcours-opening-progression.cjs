@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const P=require('../quizz-parcours.js');
 const root=path.join(__dirname,'..');
-const raw=fs.readFileSync(path.join(root,'quizz.html'),'utf8').match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/);
+const raw=fs.readFileSync(path.join(root,'quizz.html'),'utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 const ex=JSON.parse(raw[1]).exercises;
 const isPass=q=>q.theme==='ouv'&&q.answer==='Passe';
 const profiles=['autonome','erreurs','passeRate','mixte','aides'];
