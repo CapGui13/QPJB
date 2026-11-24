@@ -1,0 +1,122 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {execFileSync,spawnSync}=require('node:child_process');
+const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const {validSha,verifyRun}=require('./ci-orchestration-core.cjs');
+function git(args,cwd=process.cwd(),encoding='utf8') {
+ return execFileSync('git',args,{cwd,encoding,stdio:['ignore','pipe','pipe'],maxBuffer:32*1024*1024});
+}
+function api(endpoint) {
+ const repo=process.env.GITHUB_REPOSITORY;
+ assert(/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo||''),'Missing repository');
+ return JSON.parse(execFileSync('gh',['api','repos/'+repo+'/'+endpoint],{encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:16*1024*1024}));
+}
+function ancestor(base,head) {
+ if(!validSha(base)||!validSha(head))return false;
+ return spawnSync('git',['merge-base','--is-ancestor',base,head],{stdio:'ignore'}).status===0;
+}
+function mainSha(read=api) {
+ const r=read('git/ref/heads/main');
+ assert(r.ref==='refs/heads/main' && r.object?.type==='commit' && validSha(r.object.sha),'Invalid main ref');
+ return r.object.sha;
+}
+function exactMain(head,read=api) {
+ assert(validSha(head),'Invalid tested head');
+ assert.equal(mainSha(read),head,'Main moved: refuse stale publication');
+}
+function jobsFor(run,read=api) {
+ assert(Number.isSafeInteger(run.id)&&Number.isSafeInteger(run.run_attempt),'Invalid run identity');
+ const page=read('actions/runs/'+run.id+'/attempts/'+run.run_attempt+'/jobs?per_page=100');
+ assert(Array.isArray(page.jobs)&&page.total_count===page.jobs.length&&page.total_count<100,'Incomplete jobs response');
+ return page.jobs;
+}
+function successfulPublication(run,jobs,head,repoId) {
+ assert(run.path==='.github/workflows/verified-pages.yml' && run.event==='workflow_run' &&
+  run.head_branch==='main' && run.head_sha===head && run.repository?.id===repoId &&
+  run.head_repository?.id===repoId && run.status==='completed' && run.conclusion==='success','Not a trusted publication run');
+ const named=jobs.filter(j=>j.name==='QPJB publication V1 '+head);
+ assert.equal(named.length,1,'Missing publication job');
+ const j=named[0];
+ assert(j.run_id===run.id && j.run_attempt===run.run_attempt && j.status==='completed' && j.conclusion==='success','Publication job not successful');
+ const steps=j.steps?.filter(s=>s.name==='Déployer QPJB')||[];
+ assert(steps.length===1 && steps[0].status==='completed' && steps[0].conclusion==='success','Deployment step not successful');
+ return j;
+}
+// Latest environment deployment, never last successful validation. A newer failed,
+// pending or external deployment, an expired/ambiguous API response, or old
+// workflows lacking the V1 marker deliberately provide no reduced-mode base.
+function checkpoint(read=api,repoId=Number(process.env.GITHUB_REPOSITORY_ID)) {
+ try {
+  assert(Number.isSafeInteger(repoId)&&repoId>0,'Invalid repository ID');
+  const deployments=read('deployments?environment=github-pages&per_page=1');
+  assert(Array.isArray(deployments)&&deployments.length===1,'Missing environment deployment');
+  const d=deployments[0];
+  assert(Number.isSafeInteger(d.id)&&validSha(d.sha)&&d.environment==='github-pages','Invalid deployment');
+  const statuses=read('deployments/'+d.id+'/statuses?per_page=1');
+  assert(Array.isArray(statuses)&&statuses.length===1&&statuses[0].state==='success','Latest deployment not successful');
+  const s=statuses[0];
+  // GitHub status must link the exact Actions run/job. Do not infer trust from
+  // author name, commit SHA alone, Pages visibility, or timing proximity.
+  const prefix='https://github.com/'+process.env.GITHUB_REPOSITORY+'/actions/runs/';
+  assert(typeof s.log_url==='string'&&s.log_url.toLowerCase().startsWith(prefix.toLowerCase()),'Missing deployment run link');
+  const match=/^(\d+)(?:\/(?:job|jobs)\/(\d+))?\/?$/.exec(s.log_url.slice(prefix.length));
+  assert(match,'Unrecognized deployment run link');
+  const run=read('actions/runs/'+match[1]);
+  assert.equal(run.id,Number(match[1]));
+  const j=successfulPublication(run,jobsFor(run,read),d.sha,repoId);
+  if(match[2])assert.equal(j.id,Number(match[2]),'Deployment linked to a different job');
+  return {sha:d.sha,deploymentId:d.id,runId:run.id,attempt:run.run_attempt};
+ }catch(e){console.error('No attested Pages base: '+e.message);return null;}
+}
+// Automatic generation must be caused by the exact attested publication, not
+// by a successful-but-skipped Pages run (including PR-triggered workflows).
+function catalogueSource(cp,head,current,event,id,attempt) {
+ if(!cp || !validSha(head) || cp.sha!==head || current!==head)return false;
+ if(event==='workflow_dispatch')return true;
+ return event==='workflow_run' && Number.isSafeInteger(id) && id>0 &&
+  Number.isSafeInteger(attempt) && attempt>0 && cp.runId===id && cp.attempt===attempt;
+}
+function verifiedSourceRun(id,attempt,head,read=api,repoId=Number(process.env.GITHUB_REPOSITORY_ID)) {
+ assert(Number.isSafeInteger(id)&&id>0&&Number.isSafeInteger(attempt)&&attempt>0&&validSha(head),'Invalid source identity');
+ const run=read('actions/runs/'+id);
+ return verifyRun(run,jobsFor(run,read),{id,attempt,repoId,head});
+}
+// Normalize at most the immediate bot child of the deployed commit. Signed
+// GitHub API commits, exact single parent, allowed regular file changes,
+// regenerated byte-for-byte. Unrecognized commits are never ignored.
+function verifiedBot(parent,child,read=api) {
+ try {
+  assert(validSha(parent)&&validSha(child));
+  const c=read('commits/'+child);
+  assert(c.sha===child && c.parents?.length===1 && c.parents[0].sha===parent,'Wrong bot parent');
+  assert(c.author?.login==='github-actions[bot]' && c.committer?.login==='web-flow' &&
+   c.commit?.verification?.verified===true && c.commit.verification.reason==='valid' &&
+   c.commit.message==='Actualiser automatiquement le catalogue QPJB','Unattested catalogue commit');
+  const diff=git(['diff','--raw','--no-abbrev','--no-renames','-z',parent,child]).split('\0');
+  assert.equal(diff.pop(),'');
+  assert(diff.length>0&&diff.length%2===0&&diff.length<=4,'Unexpected bot diff');
+  for(let i=0;i<diff.length;i+=2) {
+   assert(/^:100644 100644 [0-9a-f]{40} [0-9a-f]{40} M$/.test(diff[i]),'Unexpected bot mode/status');
+   assert(['catalogue.json','site-version.json'].includes(diff[i+1]),'Unexpected bot path');
+  }
+  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-bot-proof-'));
+  const work=path.join(temp,'work');
+  try {
+   git(['worktree','add','--detach',work,parent]);
+   execFileSync('python3',['scripts/build_catalogue.py'],{cwd:work,stdio:'pipe',timeout:60000});
+   for(const file of ['catalogue.json','site-version.json']) {
+    assert(fs.readFileSync(path.join(work,file)).equals(git(['show',child+':'+file],process.cwd(),null)),'Generated bytes mismatch: '+file);
+   }
+  }finally{
+   try{git(['worktree','remove','--force',work]);}finally{fs.rmSync(temp,{recursive:true,force:true});}
+  }
+  return true;
+ }catch(e){console.error('Catalogue prefix not certified: '+e.message);return false;}
+}
+function effectiveBase(deployed,head,bot=verifiedBot) {
+ if(!ancestor(deployed,head))return null;
+ const commits=git(['rev-list','--first-parent','--reverse',deployed+'..'+head]).trim().split('\n').filter(Boolean);
+ if(commits.length && bot(deployed,commits[0]))return commits[0];
+ return deployed;
+}
+module.exports={api,git,ancestor,mainSha,exactMain,jobsFor,successfulPublication,checkpoint,catalogueSource,verifiedSourceRun,verifiedBot,effectiveBase};

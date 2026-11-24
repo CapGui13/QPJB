@@ -1,0 +1,25 @@
+name: CI optimisation M1 proof
+on:
+  push:
+    branches: [ci-optimisation/m1-classification]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native Git adversarial tests
+        run: node --test tests/ci-classify.test.cjs tests/ci-classify-real.cjs
+      - name: Exact real repository classification
+        run: |
+          node scripts/ci-classify.cjs --base cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3 --head "$GITHUB_SHA" > "$RUNNER_TEMP/m1-plan.json"
+          node -e 'const p=require(process.env.RUNNER_TEMP+"/m1-plan.json"); if(p.schema!=="QPJB_CI_PLAN_V1"||p.level!=="FULL"||!p.publish||p.headSha!==process.env.GITHUB_SHA||p.changes.length<3) process.exit(1); console.log(JSON.stringify(p,null,2));'

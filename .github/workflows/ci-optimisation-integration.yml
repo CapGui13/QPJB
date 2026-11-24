@@ -1,0 +1,53 @@
+name: QPJB — preuve intégrée des niveaux de CI
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/ci-*'
+      - 'tests/ci-*'
+      - '.github/workflows/ci-optimisation-integration.yml'
+      - '.github/workflows/training-smoke.yml'
+      - '.github/workflows/verified-pages.yml'
+permissions:
+  contents: read
+jobs:
+  native:
+    name: Classification et QUICK intégrés
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install Pillow==12.0.0
+      - run: node --test tests/ci-classify.test.cjs tests/ci-classify-real.cjs
+      - run: python3 tests/ci-quick-proof.py
+      - run: node tests/ci-integration-proof.cjs quick
+  ui:
+    name: UI intégrée (${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: node tests/ci-integration-proof.cjs ${{ matrix.browser }}
