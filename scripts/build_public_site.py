@@ -22,7 +22,7 @@ LEGACY={
     "icon-512.png": "archives/visuels/icon-512.png",
 }
 CORE={
-    "index.html","quizz.html","quizz-parcours.js","parcours-recommandations.js",
+    "index.html","quizz.html","quizz-parcours.js","quizz-prerequis.js","parcours-recommandations.js",
     "service-worker.js","site-update.js","qpjb-design-tokens.css","qpjb-bridge-ui.css",
     "manifest.json","catalogue.json","config.json","site-version.json",
     "QPJB App.png","apple-touch-icon-qpjb.png","qpjb-logo-fixed.svg",

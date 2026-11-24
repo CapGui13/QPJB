@@ -23,9 +23,14 @@ test('M4/UI - catalogue QCM conservé octet pour octet',()=>{
 });
 test('M4/UI - l’interface ne modifie pas le moteur adaptatif',()=>{
   const {restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
-  const bytes=Buffer.from(restoreEngine(read('quizz-parcours.js').toString('utf8')),'utf8');
+  const historical=require('./progression-guidee-historical.cjs');
+  const bytes=Buffer.from(restoreEngine(historical.source()),'utf8');
   const blob=crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
   assert.equal(blob,'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
+  // #293 : changement volontaire du sélecteur, pas de mutation par M4/UI.
+  const candidate=read('quizz-parcours.js');
+  assert.equal(crypto.createHash('sha1').update('blob '+candidate.length+'\0').update(candidate).digest('hex'),
+    'fd2e478f4836808928e8e94f442684b06045695c','Moteur candidat hors version autorisée #301');
 });
 test('M4/UI - panneau relié à l’API de lecture seule',()=>{
   assert.match(html,/id="parcours-recommendations"/);

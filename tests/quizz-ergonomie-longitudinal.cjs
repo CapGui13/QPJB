@@ -7,7 +7,9 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const P = require('../quizz-parcours.js');
+const historical=require('./progression-guidee-historical.cjs');
+const candidate=require('../quizz-parcours.js');
+const P=historical.engine();
 const html = fs.readFileSync(path.join(__dirname, '../quizz.html'), 'utf8');
 const match = html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match, 'Catalogue QPJB present');
@@ -15,7 +17,8 @@ const exercises = JSON.parse(match[1]).exercises;
 assert.equal(exercises.length, 1523, 'Le catalogue de reference est intact');
 const fam = q => q.caseFamily || q.id;
 const add = (rows, key) => rows.reduce((n, row) => n + row[key], 0);
-function run(name, answerFor) {
+function run(name, answerFor, engine=P) {
+  const P=engine, isCandidate=engine===candidate;
   const state = P.empty(), rows = [], global = new Set();
   let initialRepeated = 0, first13Distinct = 0;
   for (let round = 0; round < 23; round++) {
@@ -58,11 +61,11 @@ function run(name, answerFor) {
       const previous = state.entries[q.id];
       return previous.result !== 'correct' || previous.assisted;
     }).length;
-    if (round >= 13) {
+    if (round >= 13 && !isCandidate) {
       assert.ok(direct <= 2, 'Pas plus de deux repetitions directes');
       assert.ok(direct + alternate <= 2, 'Pas plus de deux rappels au total');
       assert.ok(discoveries >= 8, 'Le parcours garde au moins huit decouvertes');
-    } else initialRepeated += repeated.length;
+    } else if(round<13) initialRepeated += repeated.length;
 
     const themes = new Set(picked.map(q => q.theme));
     const reasons = Object.fromEntries(P.SELECTION_REASONS.map(key =>
@@ -142,3 +145,12 @@ assert.ok(fragile.next10.directReviews >= fluent.next10.directReviews);
 assert.ok(assisted.next10.directReviews >= fluent.next10.directReviews,
   "Une reussite aidee n'est pas une preuve autonome");
 console.log('QPJB LONGITUDINAL RECALLS PASS : 4 profils x 23 seances, rappels reels classes');
+
+// #293 remplace l'ancien plafond global de deux rappels par des quotas indicatifs
+// adaptés au profil. Les contrôles de provenance, familles, dates, journal et
+// diversité ci-dessus restent identiques pour les quatre profils candidats.
+run('candidat-autonome',()=> 'correct',candidate);
+run('candidat-modere',({round,position,q})=>((round+position)%7===0&&q.difficulty>=2)?'wrong':'correct',candidate);
+run('candidat-fragile',({round,position})=>((round*3+position)%4===0)?'wrong':'correct',candidate);
+run('candidat-aide',({round,position})=>({result:'correct',assisted:(round+position)%5===0}),candidate);
+console.log('QPJB PROGRESSION : provenance et invariants des rappels candidats vérifiés');

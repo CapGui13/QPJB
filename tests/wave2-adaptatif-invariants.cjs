@@ -25,9 +25,10 @@ function verify(){
  const engine=path.join(root,'quizz-parcours.js');
  const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
  const {restoreEngine,gitBlob}=require('./qpjb-sef-global29-normalization.cjs');
- assert.equal(gitBlob(restoreEngine(fs.readFileSync(engine,'utf8'))),'d0f06f1c259f7a766f2d1c8c47289374a74138dc',
+ assert.equal(gitBlob(restoreEngine(require('./progression-guidee-historical.cjs').source())),'d0f06f1c259f7a766f2d1c8c47289374a74138dc',
    'Le moteur doit rester identique au contrat historique LOT B');
  const json=extractCatalogueJson(html);
+ require('./progression-guidee-historical.cjs').catalogue();
  validateApproved(json);
  const historicalJson=restoreApprovedContexts(json);
  // Empreinte du JSON de la base figee, independamment du HTML (cf. quizz-ui-vnext-static.cjs).

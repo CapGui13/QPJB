@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const core=require('../quizz-parcours.js'),rec=require('../parcours-recommandations.js');
+const fixtureReport=require('./progression-guidee-reco-fixtures.cjs').report;
 const q=(id,answer='Passe')=>({id,theme:'ouv',answer,difficulty:1,
   caseFamily:id,auction:[],difficultyReason:''});
 function one(s,x,result='wrong',opts={}){
@@ -8,7 +9,7 @@ function one(s,x,result='wrong',opts={}){
   assert.equal(core.record(s,x,result,0,null,!!opts.assisted,!!opts.hadFreeError),true);
   assert.equal(core.finish(s,[x]),true);
 }
-const report=(s,o={})=>rec.buildReport(s,{maxRecommendations:10,...o});
+const report=(s,o={})=>fixtureReport(s,{maxRecommendations:10,...o});
 const only=(r,type)=>r.recommendations.find(x=>x.type===type);
 const pool=Array.from({length:7},(_,i)=>q('POOL-'+i));
 

@@ -1,13 +1,14 @@
 'use strict';
 const test=require('node:test'), assert=require('node:assert/strict');
 const engine=require('../quizz-parcours.js'), rec=require('../parcours-recommandations.js');
+const fixtureReport=require('./progression-guidee-reco-fixtures.cjs').report;
 const x=(id,answer='Passe',more={})=>({id,theme:'ouv',answer,difficulty:1,caseFamily:id,auction:[],difficultyReason:'',...more});
 function one(s,q,result='wrong',opts={}){
   s.active={ids:[q.id],index:0,answers:{},createdAt:s.completed,...(opts.mode==='consolidation'?{mode:'consolidation'}:{})};
   assert.equal(engine.record(s,q,result,0,null,!!opts.assisted,!!opts.hadFreeError),true);
   assert.equal(engine.finish(s,[q]),true);
 }
-const build=(s,o={})=>rec.buildReport(s,{maxRecommendations:10,...o});
+const build=(s,o={})=>fixtureReport(s,{maxRecommendations:10,...o});
 const types=r=>r.recommendations.map(x=>x.type);
 test('P2 assistance, erreur libre et saut ne prouvent pas une maîtrise',()=>{
   const s=engine.empty();
@@ -36,7 +37,7 @@ test('P2 visibilité top 3 : la révision disponible est visible après P3',()=>
   const full=build(s,{exercises:pool});
   assert.equal(full.revision.available,true);
   assert.ok(types(full).includes('revision_session'));
-  const short=rec.buildReport(s,{exercises:pool,maxRecommendations:3});
+  const short=fixtureReport(s,{exercises:pool,maxRecommendations:3});
   assert.deepEqual(types(short),['persistent_difficulty','persistent_difficulty','revision_session']);
 });
 test('P2 reprise active prioritaire, aucune nouvelle révision disponible',()=>{
@@ -75,6 +76,6 @@ test('P2 pureté : aucun état ni catalogue modifié',()=>{
   const s=engine.empty();one(s,x('W1'));one(s,x('W2'));
   const pool=Array.from({length:8},(_,i)=>x('P'+i));
   const before=JSON.stringify(s),beforePool=JSON.stringify(pool);
-  for(let i=0;i<3;i++)rec.buildReport(s,{exercises:pool,maxRecommendations:3});
+  for(let i=0;i<3;i++)fixtureReport(s,{exercises:pool,maxRecommendations:3});
   assert.equal(JSON.stringify(s),before);assert.equal(JSON.stringify(pool),beforePool);
 });

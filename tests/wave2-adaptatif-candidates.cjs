@@ -4,9 +4,8 @@
 // Ne modifie ni le moteur de production, ni les QCM, ni les sauvegardes.
 // Utilisation : node tests/wave2-adaptatif-candidates.cjs --variant foundation --json [--horizon 65] [--seed 11]
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const source=fs.readFileSync(path.join(__dirname,'../quizz-parcours.js'),'utf8');
-const benchmark=fs.readFileSync(path.join(__dirname,'wave2-adaptatif-benchmark.cjs'),'utf8')
-  .replace(/^#![^\n]*\n/,'');
+const source=require('./progression-guidee-historical.cjs').source();
+const {simulate,profiles,horizons,seeds,exercises}=require('./wave2-adaptatif-benchmark.cjs');
 function patchOnce(text,needle,replacement){
  const first=text.indexOf(needle);
  assert(first>=0,'Point de patch introuvable: '+needle);
@@ -59,15 +58,12 @@ assert(['foundation','recall','overdue','score-cache'].includes(variant),'--vari
 const candidateSource=modified(variant);
 const candidateModule={exports:{}};
 new Function('module',candidateSource)(candidateModule);
-const forwarded=process.argv.filter((part,i,args)=>
- part!=='--variant' && !(i>0&&args[i-1]==='--variant'));
-if(!forwarded.includes('--json'))forwarded.push('--json');
-let json='';
-const candidateRequire=name=>name==='../quizz-parcours.js'
-  ?candidateModule.exports:require(name);
-new Function('require','process','__dirname',benchmark)(
- candidateRequire,{argv:forwarded,stdout:{write:s=>{json+=s}}},__dirname);
-const data=JSON.parse(json);
+const results=[];
+for(const profile of profiles.filter(x=>!option('profile')||x===option('profile')))
+ for(const horizon of horizons.filter(x=>!option('horizon')||x===Number(option('horizon'))))
+  for(const seed of seeds.filter(x=>!option('seed')||x===Number(option('seed'))))
+   results.push(simulate(profile,horizon,seed,candidateModule.exports));
+const data={catalogue:exercises.length,results};
 assert(data.results.length>=1);
 assert(data.results.every(row=>row.uniqueThemes===22&&row.questions===row.horizon*10));
 process.stdout.write(JSON.stringify({variant,description:

@@ -1,0 +1,83 @@
+name: QPJB progression — recette M3
+on:
+  pull_request:
+    branches: [progression-guidee/integration, main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Baseline only or explicit integrated candidate recipe
+        type: choice
+        options: [baseline, candidate]
+        default: baseline
+permissions:
+  contents: read
+env:
+  RECIPE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.head_ref == 'progression-guidee/integration' && 'candidate' || 'baseline') }}
+jobs:
+  baseline:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.head_ref == 'progression-guidee/m3-recette' || github.head_ref == 'progression-guidee/integration' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, echecs, modere, aides, progression, faiblesse_passe]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/progression-guidee-recette.cjs --selftest
+      - name: Exact reference and optional integrated comparison
+        run: |
+          node tests/progression-guidee-recette.cjs "--$RECIPE_MODE" --profile '${{ matrix.profile }}' --out "artifacts/progression-guidee/${{ matrix.profile }}.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: progression-${{ matrix.profile }}
+          path: artifacts/progression-guidee/
+          if-no-files-found: error
+  guards:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.head_ref == 'progression-guidee/m3-recette' || github.head_ref == 'progression-guidee/integration' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check tests/progression-guidee-offline.cjs
+          node tests/quizz-parcours.cjs
+          node tests/wave2-adaptatif-suite.cjs --quick
+          node tests/qpjb-sef-revue-finale-29-20261124.cjs --quick
+      - name: Validate integrated M1 and M2 native deliverables
+        if: env.RECIPE_MODE == 'candidate'
+        run: |
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-progression-selection.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/quizz-progression-selection-real.cjs
+      - run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium webkit
+      - name: Build public site for integrated offline acceptance
+        run: |
+          if test "$RECIPE_MODE" = candidate; then
+            python3 scripts/build_catalogue.py
+            python3 scripts/build_public_site.py --output _public_site
+          fi
+      - name: Historic and integrated browsers
+        run: |
+          for browser in chromium webkit; do
+            PW_BROWSER="$browser" QPJB_HISTORICAL_BROWSER=1 node tests/quizz-parcours-browser.cjs
+            if test "$RECIPE_MODE" = candidate; then
+              PW_BROWSER="$browser" node tests/quizz-parcours-browser.cjs
+              PW_BROWSER="$browser" node tests/progression-guidee-offline.cjs _public_site
+            fi
+          done

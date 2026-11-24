@@ -3,11 +3,12 @@
 // QPJB V2 M2 — reproductible deterministic longitudinal benchmark.
 // Run: node tests/wave2-adaptatif-benchmark.cjs [--json]
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const api=require('../quizz-parcours.js');
+const historical=require('./progression-guidee-historical.cjs');
+const api=historical.engine();
 const html=fs.readFileSync(path.join(__dirname,'../quizz.html'),'utf8');
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert(match,'Catalogue embarqué absent');
-const data=JSON.parse(match[1]),exercises=data.exercises;
+const data=historical.catalogue(),exercises=data.exercises;
 assert.equal(exercises.length,1523);
 assert.equal(new Set(exercises.map(x=>x.id)).size,1523);
 assert.equal(data.themes.length,22);
@@ -21,7 +22,8 @@ function answer(profile,session,rand){
  const assisted=profile==='aides'&&rand()<.72;
  return {result:rand()<p?'wrong':'correct',assisted,hadFreeError:false};
 }
-function simulate(profile,horizon,seed){
+function simulate(profile,horizon,seed,engine=api,observer=null){
+ const api=engine;
  let state=api.empty();const rand=rng(seed);
  const counts={nouveau:0,revision:0,hard:0,weak:0,assisted:0,foundation:0,weakDueAvailable:0,weakDueSelected:0};
  const themes=new Set(),families=new Set(),contexts=new Set(),decisions=new Set(),ids=new Set();
@@ -35,13 +37,16 @@ function simulate(profile,horizon,seed){
    counts.weakDueAvailable+=weakDue.size;
    weakDueBacklog.push(weakDue.size);
    for(const id of weakDue)weakEverDue.add(id);
+   const before=observer?JSON.parse(JSON.stringify(state)):null;
    const chosen=api.start(state,exercises);
+   if(observer)observer({phase:'deck',s,state:before,chosen,selection:state.active.selection,api});
    assert.equal(chosen.length,10,'Séance non remplie : '+s);
    assert.equal(new Set(chosen.map(x=>x.id)).size,10,'Doublon ID');
    const currentThemes=new Set(),currentFamilies=new Set();
    chosen.forEach((x,i)=>{
-     const a=answer(profile,s,rand);
+     const a=profile==='faiblesse_passe'?{result:x.theme==='ouv'&&x.answer==='Passe'?'wrong':'correct',assisted:false,hadFreeError:false}:answer(profile,s,rand);
      assert.equal(api.record(state,x,a.result,i,null,a.assisted,a.hadFreeError),true);
+     if(observer)observer({phase:'answer',s,q:x,a});
      // Reprise d'une séance interrompue : avant l'échéance, à mi-parcours et à la fin.
      if(i===3&&(s===0||s===Math.floor(horizon/2)||s===horizon-1)){
        const restored=api.load(JSON.stringify(state));
@@ -119,9 +124,13 @@ function selected(flag,valid){
  assert(valid.includes(converted),'Invalid --'+flag+': '+value);
  return [converted];
 }
+if(require.main===module){
 const results=[];
 for(const profile of selected('profile',profiles))
  for(const horizon of selected('horizon',horizons))
   for(const seed of selected('seed',seeds))results.push(simulate(profile,horizon,seed));
 if(process.argv.includes('--json'))process.stdout.write(JSON.stringify({catalogue:exercises.length,results},null,2)+'\n');
 else console.table(results);
+
+}
+module.exports={simulate,profiles,horizons,seeds,exercises};
