@@ -48,6 +48,13 @@ async function capture(browser,engine,width,height,version,url,runDir){
   reducedMotion:'reduce',serviceWorkers:'block'});
  await context.addInitScript(()=>{Math.random=()=>0.42});
  const page=await context.newPage(),errors=[];
+ // Le comparatif ergonomique historique exige exactement la même main et
+ // les mêmes preuves. Isoler le changement d'interface du nouveau sélecteur.
+ // La recette progression-guidee-offline.cjs teste séparément le moteur candidat.
+ await page.route(/\/quizz-parcours\.js(?:\?.*)?$/,route=>route.fulfill({
+  status:200,contentType:'application/javascript; charset=utf-8',
+  body:require('./progression-guidee-historical.cjs').source()
+ }));
  const assets=watchLocalAssets(page,url);
  page.on('pageerror',e=>errors.push(e.message));
  const images=[];

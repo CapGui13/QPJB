@@ -656,9 +656,13 @@
       if(q.difficulty>=4)hardChosen++;
       answers[bid(q)]=(answers[bid(q)]||0)+1;contexts[context(q)]=(contexts[context(q)]||0)+1;
       concepts[m.concept]=(concepts[m.concept]||0)+1;buckets[cat]++;
-      const kind=cat==='maintenance'||!fresh(q)?'revision':'nouveau';
-      const reason=forcedReason||(cat==='weakness'?(due(q)&&bad(q)?'rappel_erreur_aide':'renforcement_lacune'):
-        cat==='maintenance'?(fresh(q)?'rappel_nouvelle_situation':'rappel_question'):
+      const isFresh=fresh(q),isAlternate=isFresh&&cat==='maintenance'&&e.seen.has(m.concept);
+      const kind=!isFresh||isAlternate?'revision':'nouveau';
+      // La provenance de rappel prime sur le motif de quota/équilibre.
+      // Une main inconnue d'une notion jamais exposée reste une découverte.
+      const reason=isAlternate?'rappel_nouvelle_situation':!isFresh?
+        (due(q)&&bad(q)?'rappel_erreur_aide':'rappel_question'):
+        forcedReason||(cat==='weakness'?'renforcement_lacune':
         cat==='transfer'?'transfert_contexte':'nouveau_qcm');
       selected.push({exercise:q,kind,reason});return true;
     }
