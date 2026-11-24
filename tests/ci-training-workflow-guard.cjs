@@ -25,7 +25,8 @@ const webkit = job('webkit');
 assert.match(long, /node tests\/quizz-parcours\.cjs/);
 assert.doesNotMatch(quick, /node tests\/quizz-parcours\.cjs/);
 for (const [name, body] of [['parcours-long', long], ['smoke', chromium], ['webkit', webkit]]) {
-  assert.doesNotMatch(body, /^    needs:/m, 'Parallel job incorrectly waits: ' + name);
+  assert.match(body, /^    needs: plan$/m, 'Parallel job must wait only for plan: ' + name);
+  assert.match(body, /needs\.plan\.outputs\.level == 'FULL'/);
 }
 const commands = ci.split(/\r?\n/).map(line => line.trim());
 assert(baseline.requiredCommands.length >= 50, 'Incomplete historical baseline');
@@ -48,9 +49,17 @@ assert.match(pages, /workflow_run\.head_branch == 'main'/);
 assert.match(pages, /workflow_run\.event != 'pull_request'/);
 assert(pages.includes('ref: ${{ github.event.workflow_run.head_sha }}'),
   'Pages must checkout the exact tested commit');
-assert(pages.includes('git merge-base --is-ancestor'),
-  'Pages ancestry check missing');
-assert(pages.includes('git diff --name-only "$VERIFIED" origin/main'),
-  'Pages must reject unvalidated content changes');
+assert(pages.includes('node scripts/ci-publication-guard.cjs verify'),'Explicit source verdict gate missing');
+assert(pages.includes('git/ref/heads/main'),'Exact current main recheck missing');
+assert.match(job('integrity'), /needs\.plan\.outputs\.level == 'FULL'/);
+assert.match(job('quick'), /python3 scripts\/ci-quick-check\.py --base "\$BASE" --head "\$HEAD"/);
+for(const browser of ['chromium','webkit']) {
+  assert.match(job('ui-'+browser), /node tests\/ci-ui-targeted\.cjs/);
+  assert.match(job('ui-'+browser), /needs\.plan\.outputs\.level == 'UI'/);
+}
+assert.match(job('verdict'), /if: always\(\)/);
+assert.match(job('verdict'), /needs: \[plan, quick, ui-chromium, ui-webkit, integrity, parcours-long, smoke, webkit\]/);
+assert.match(job('verdict'), /node scripts\/ci-orchestration-verdict\.cjs/);
+assert.match(pages, /needs\.pages-source\.outputs\.publish == 'true'/);
 console.log('PASS: ' + baseline.requiredCommands.length +
   ' historical CLI tests, 7 browser scripts per engine, independent jobs, guarded Pages.');
