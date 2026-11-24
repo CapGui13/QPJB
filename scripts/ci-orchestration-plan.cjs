@@ -9,18 +9,21 @@ function classify(base,head) {
  return validatePlan(JSON.parse(raw),base,head);
 }
 function maxLevel(a,b) {return LEVELS[Math.max(LEVELS.indexOf(a),LEVELS.indexOf(b))];}
-// Classify the net diff AND every first-parent transition. A sensitive change
-// followed by a revert cannot be hidden by the final tree; merges not on the
-// deployed first-parent lineage conservatively force FULL.
+// Classify the net diff AND every newly reachable commit (including merged
+// side branches). A sensitive change followed by a revert must not disappear.
+// A base outside the first-parent lineage conservatively forces FULL.
 function cumulative(base,head,run=classify) {
  assert(validSha(base)&&validSha(head)&&ancestor(base,head),'Invalid cumulative range');
- const commits=git(['rev-list','--first-parent','--reverse',base+'..'+head]).trim().split('\n').filter(Boolean);
+ const lineage=git(['rev-list','--first-parent','--reverse',base+'..'+head]).trim().split('\n').filter(Boolean);
+ if(lineage.length && git(['rev-parse',lineage[0]+'^1']).trim()!==base)return 'FULL';
+ const commits=git(['rev-list','--topo-order','--reverse','--parents',base+'..'+head]).trim().split('\n').filter(Boolean);
  if(commits.length>128)return 'FULL';
- let level=run(base,head),prev=base;
- for(const c of commits){
-  if(git(['rev-parse',c+'^1']).trim()!==prev)return 'FULL';
-  level=maxLevel(level,run(prev,c));prev=c;
+ let level=run(base,head);
+ for(const row of commits){
   if(level==='FULL')break;
+  const [c,parent]=row.split(' ');
+  if(!validSha(c)||!validSha(parent))return 'FULL';
+  level=maxLevel(level,run(parent,c));
  }
  return level;
 }

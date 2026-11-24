@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
-const {checkpoint,exactMain,effectiveBase,verifiedBot,ancestor}=require('../scripts/ci-publication-state.cjs');
+const {checkpoint,exactMain,effectiveBase,verifiedBot,ancestor,catalogueSource}=require('../scripts/ci-publication-state.cjs');
 const {guard}=require('../scripts/ci-publication-guard.cjs');
 const {cumulative,choose}=require('../scripts/ci-orchestration-plan.cjs');
 const repo='CapGui13/QPJB',head='a'.repeat(40),base='b'.repeat(40),repoId=99;
@@ -18,6 +18,18 @@ const responses={
 const reader=r=>key=>{assert(key in r,'Unexpected API: '+key);return r[key]};
 assert.deepEqual(checkpoint(reader(responses),repoId),{sha:base,deploymentId:14,runId:12,attempt:2});
 let cases=1;
+const attested={sha:head,runId:12,attempt:2};
+for(const [cp,h,m,event,id,attempt,expected] of [
+ [attested,head,head,'workflow_run',12,2,true],
+ [attested,head,head,'workflow_run',13,2,false],
+ [attested,head,head,'workflow_run',12,1,false],
+ [attested,head,head,'workflow_run',NaN,2,false],
+ [attested,head,base,'workflow_run',12,2,false],
+ [attested,base,base,'workflow_run',12,2,false],
+ [null,head,head,'workflow_run',12,2,false],
+ [attested,head,head,'pull_request',12,2,false],
+ [attested,head,head,'workflow_dispatch',NaN,NaN,true]
+]){assert.equal(catalogueSource(cp,h,m,event,id,attempt),expected);cases++;}
 for(const [key,mutate] of [
  ['deployments?environment=github-pages&per_page=1',a=>a.splice(0)],
  ['deployments?environment=github-pages&per_page=1',a=>a[0].sha=head],
@@ -82,6 +94,21 @@ try{
  assert.equal(cumulative(bot,reverted,classifier),'FULL');cases+=2;
  assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>null}).level,'FULL');cases++;
  assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>({sha:deployed,deploymentId:14}),effectiveBase:()=>bot,cumulative,classify:classifier}).level,'FULL');cases++;
+ git('checkout','-b','clean-main',bot);
+ put('Docs/main.png','main');const cleanMain=commit('main image');
+ git('checkout','-b','side',bot);
+ put('quizz.html','hidden sensitive');commit('side sensitive');
+ put('quizz.html','original');put('Docs/side.png','side');commit('side revert and image');
+ git('checkout','clean-main');git('merge','--no-ff','side','-m','merge side');
+ const merged=git('rev-parse','HEAD');
+ assert.equal(classifier(bot,merged),'QUICK');
+ assert.equal(cumulative(bot,merged,classifier),'FULL');cases+=2;
+ git('checkout','-b','quick-side',cleanMain);
+ put('Docs/quick.png','quick');commit('only image');
+ git('checkout','-b','quick-main',cleanMain);
+ put('Docs/another.png','another');commit('another image');
+ git('merge','--no-ff','quick-side','-m','merge quick side');
+ assert.equal(cumulative(cleanMain,git('rev-parse','HEAD'),classifier),'QUICK');cases++;
  git('checkout','--orphan','rollback');git('rm','-rf','.');put('quizz.html','other history');const rollback=commit('unrelated');
  assert(!ancestor(deployed,rollback));assert.equal(effectiveBase(deployed,rollback),null);cases+=2;
 }finally{process.chdir(original);fs.rmSync(temp,{recursive:true,force:true});}

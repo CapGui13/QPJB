@@ -26,3 +26,9 @@ Lire les logs du workflow M3 exact, corriger toute anomalie. Prouver les métado
 - Builder : 178 fichiers, 21 115 338 octets, 7 alias. Archive 14903893800 téléversée à 08:56:26.452Z ; téléchargement runtime immédiat à 08:56:26.923Z : Artifact not found. Reproduction réelle de la fragilité, sans déployer. Le job global a échoué ; le test REST/byte proof n'a pas tourné.
 - Correctif : preuve inter-jobs (même structure que publication) et deux délais 10/20 s, échec définitif après trois tentatives. Les tentatives d'acquisition ne sont pas des verdicts CI ; le contrôle final de digest, octets et SHA reste obligatoire sans continue-on-error. Ne pas prétendre la fragilité résolue sans preuve.
 - Comparaison Git depuis cffac8d : 17 chemins, tous autorisés, 89 occurrences historiques CLI/PW/npm/Python conservées, aucune manquante. La suite FULL intégrée dépend toujours de M1/M2 et du pilote.
+
+### 2026-11-24 — preuve réelle de récupération inter-jobs
+
+Run [45360683812](https://github.com/CapGui13/QPJB/actions/runs/45360683812), SHA `65ae22fb7918b163f1674c4865d89de47f2bddcd`, attempt 1 : success, durée murale 90 s. Jobs 138329668088 et 138330161413 success. Artefact 14904531614, SHA256 `12813f67a6197cc6382974c83b2bd73ccf57089fce83d1ed633625e7b820cb91`. Téléchargement runtime dès la première tentative, ZIP REST de même digest, tar identique, 178 ressources, 7 alias et site-version au SHA exact. Aucun deploy. Le retry n'a pas été nécessaire dans ce run; l'échec immédiat précédent est réel (45360280036).
+
+Dernier durcissement : inclure tous les commits nouvellement accessibles (branches fusionnées incluses) dans le cumul; l'écriture automatique du catalogue exige l'identité run/attempt du dernier déploiement attesté, pas un workflow_run Pages simplement terminé avec succès et job de publication ignoré. Contre-épreuves natives ajoutées. Nouvelle CI nécessaire sur le dernier SHA.

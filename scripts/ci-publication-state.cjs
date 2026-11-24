@@ -68,6 +68,14 @@ function checkpoint(read=api,repoId=Number(process.env.GITHUB_REPOSITORY_ID)) {
   return {sha:d.sha,deploymentId:d.id,runId:run.id,attempt:run.run_attempt};
  }catch(e){console.error('No attested Pages base: '+e.message);return null;}
 }
+// Automatic generation must be caused by the exact attested publication, not
+// by a successful-but-skipped Pages run (including PR-triggered workflows).
+function catalogueSource(cp,head,current,event,id,attempt) {
+ if(!cp || !validSha(head) || cp.sha!==head || current!==head)return false;
+ if(event==='workflow_dispatch')return true;
+ return event==='workflow_run' && Number.isSafeInteger(id) && id>0 &&
+  Number.isSafeInteger(attempt) && attempt>0 && cp.runId===id && cp.attempt===attempt;
+}
 function verifiedSourceRun(id,attempt,head,read=api,repoId=Number(process.env.GITHUB_REPOSITORY_ID)) {
  assert(Number.isSafeInteger(id)&&id>0&&Number.isSafeInteger(attempt)&&attempt>0&&validSha(head),'Invalid source identity');
  const run=read('actions/runs/'+id);
@@ -111,4 +119,4 @@ function effectiveBase(deployed,head,bot=verifiedBot) {
  if(commits.length && bot(deployed,commits[0]))return commits[0];
  return deployed;
 }
-module.exports={api,git,ancestor,mainSha,exactMain,jobsFor,successfulPublication,checkpoint,verifiedSourceRun,verifiedBot,effectiveBase};
+module.exports={api,git,ancestor,mainSha,exactMain,jobsFor,successfulPublication,checkpoint,catalogueSource,verifiedSourceRun,verifiedBot,effectiveBase};

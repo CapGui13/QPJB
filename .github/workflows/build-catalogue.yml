@@ -40,10 +40,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           node - <<'JS'
-          const {checkpoint,mainSha}=require('./scripts/ci-publication-state.cjs');
+          const {checkpoint,mainSha,catalogueSource}=require('./scripts/ci-publication-state.cjs');
           const fs=require('node:fs');
           const cp=checkpoint();
-          if(cp && cp.sha===process.env.GITHUB_SHA && cp.sha===mainSha())
+          const event=JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
+          if(catalogueSource(cp,process.env.GITHUB_SHA,mainSha(),process.env.GITHUB_EVENT_NAME,
+            event.workflow_run?.id,event.workflow_run?.run_attempt))
             fs.appendFileSync(process.env.GITHUB_OUTPUT,'sha='+cp.sha+'\n');
           else console.log('No exact attested deployment at current main; no generated commit.');
           JS
