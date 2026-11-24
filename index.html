@@ -435,9 +435,7 @@ header{
 
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
-.seance-separator{display:flex;flex:none;align-items:center;gap:10px;margin:12px 0 3px;color:#cbb2e7;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
-.seance-separator:first-child{margin-top:0}
-.seance-separator::before,.seance-separator::after{content:"";flex:1;min-width:12px;height:1px;background:rgba(171,130,214,.45)}
+.seance-separator{display:block;flex:none;width:33.333%;height:1px;align-self:center;margin:8px 0;border-radius:999px;background:#9871bd;opacity:.65}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(171,130,214,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
 .seance-card.is-pressing{transform:scale(.95)}
 .seance-desc{font-size:11px;color:rgba(171,130,214,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
@@ -925,9 +923,8 @@ function renderSeanceGrid(seances) {
   const doRender = () => {
     document.getElementById('seance-grid').innerHTML = sorted.map((s, index) => {
       const group = seanceGroup(s.folder).group;
-      const labels = {1:'Saison 1',2:'Saison 2',3:'Séances spéciales'};
-      const separator = index === 0 || seanceGroup(sorted[index-1].folder).group !== group
-        ? `<div class="seance-separator" role="heading" aria-level="3">${labels[group]}</div>`
+      const separator = index > 0 && seanceGroup(sorted[index-1].folder).group !== group
+        ? '<div class="seance-separator" role="separator"></div>'
         : '';
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `${separator}
