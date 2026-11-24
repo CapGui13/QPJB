@@ -12,7 +12,7 @@ for(const level of LEVELS){
    assert.throws(()=>validatePlan({...plan,...bad},base,head));count++;
  }
  const job=(name,conclusion='success')=>({name,conclusion,status:'completed',run_id:123,run_attempt:2});
- const jobs=[job('QPJB plan V1'),job(verdictName(level,head,base)),...Object.values(JOBS).flat().map(n=>job(n,JOBS[level].includes(n)?'success':'skipped'))];
+ const jobs=[job('QPJB plan V1'),job(verdictName(level,head,base)),...[...new Set(Object.values(JOBS).flat())].map(n=>job(n,JOBS[level].includes(n)?'success':'skipped'))];
  assert.deepEqual(verifyRun(run,jobs,expected),{level,head,base});count++;
  for(const bad of [{event:'pull_request'},{event:'repository_dispatch'},{head_branch:'feature'},{head_sha:base},{run_attempt:1},{conclusion:'cancelled'},{repository:{id:1}},{head_repository:{id:1}},{path:'.github/workflows/fake.yml'}]){
    assert.throws(()=>verifyRun({...run,...bad},jobs,expected));count++;
@@ -26,7 +26,7 @@ for(const level of LEVELS){
    assert.throws(()=>verifyRun(run,[...jobs,jobs.find(j=>j.name===name)],expected));count++;
  }
  assert.throws(()=>verifyRun(run,jobs.map(j=>({...j,run_attempt:1})),expected));count++;
- const statuses={plan:'success',...Object.fromEntries(Object.values(JOBS).flat().map(n=>[n,JOBS[level].includes(n)?'success':'skipped']))};
+ const statuses={plan:'success',...Object.fromEntries([...new Set(Object.values(JOBS).flat())].map(n=>[n,JOBS[level].includes(n)?'success':'skipped']))};
  aggregate(level,statuses);count++;
  for(const n of JOBS[level]){assert.throws(()=>aggregate(level,{...statuses,[n]:'skipped'}));count++;}
 }
