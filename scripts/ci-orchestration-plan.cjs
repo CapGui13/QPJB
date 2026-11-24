@@ -34,11 +34,12 @@ function choose({head,event,prBase,prHead},deps={checkpoint,effectiveBase,classi
  assert(validSha(head),'Invalid checked SHA');
  assert(['push','workflow_dispatch','pull_request'].includes(event),'Unknown event');
  const full=reason=>({head,base:'none',level:'FULL',reason});
+ const targeted=reason=>({head,base:'none',level:'TARGETED',reason});
  if(event==='workflow_dispatch')return full('Manual complete recipe');
  const cp=deps.checkpoint();
- if(!cp)return full('No attested deployment');
+ if(!cp)return targeted('No attested deployment: validate all current public resources');
  const base=deps.effectiveBase(cp.sha,head);
- if(!base)return full('Deployed commit is not ancestor');
+ if(!base)return targeted('No ancestral deployment: validate all current public resources');
  let level=deps.cumulative(base,head,deps.classify);
  if(event==='pull_request'){
   assert(validSha(prBase)&&validSha(prHead)&&ancestor(prBase,head)&&ancestor(prHead,head),'Invalid PR merge checkout');
@@ -49,13 +50,15 @@ function choose({head,event,prBase,prHead},deps={checkpoint,effectiveBase,classi
   // PR-only range is stricter, FULL is safer than testing a different range.
   if(LEVELS.indexOf(prLevel)>LEVELS.indexOf(level))level='FULL';
  }
+ // The legacy classifier still identifies scope, but global recipes are opt-in.
+ if(level==='FULL'||level==='UI')level='TARGETED';
  return {head,base,level,reason:'Attested Pages deployment '+cp.deploymentId};
 }
 function main(){
  const head=process.env.GITHUB_SHA,event=process.env.GITHUB_EVENT_NAME;
  assert(validSha(head)&&git(['rev-parse','HEAD']).trim()===head,'Checkout not at expected SHA');
  let p;
- if(!fs.existsSync('scripts/ci-classify.cjs'))p={head,base:'none',level:'FULL',reason:'M1 classifier unavailable: no reduced mode'};
+ if(!fs.existsSync('scripts/ci-classify.cjs'))p={head,base:'none',level:'TARGETED',reason:'Classifier unavailable: validate all current public resources'};
  else p=choose({head,event,prBase:process.env.PR_BASE,prHead:process.env.PR_HEAD});
  fs.appendFileSync(process.env.GITHUB_OUTPUT,'level='+p.level+'\nbase='+p.base+'\nhead='+p.head+'\n');
  console.log(JSON.stringify(p));

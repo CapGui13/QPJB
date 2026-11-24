@@ -40,7 +40,7 @@ jobs:
   quick:
     name: QPJB quick
     needs: plan
-    if: ${{ needs.plan.outputs.level == 'QUICK' || needs.plan.outputs.level == 'UI' }}
+    if: ${{ needs.plan.outputs.level == 'QUICK' || needs.plan.outputs.level == 'UI' || needs.plan.outputs.level == 'TARGETED' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,8 +56,11 @@ jobs:
         env:
           BASE: ${{ needs.plan.outputs.base }}
           HEAD: ${{ needs.plan.outputs.head }}
+          LEVEL: ${{ needs.plan.outputs.level }}
         run: |
-          if node scripts/ci-routine.cjs --eligible "$BASE" "$HEAD"; then
+          if [[ "$LEVEL" == TARGETED ]]; then
+            python3 scripts/ci-targeted.py --base "$BASE" --head "$HEAD"
+          elif node scripts/ci-routine.cjs --eligible "$BASE" "$HEAD"; then
             node scripts/ci-routine.cjs --check "$BASE" "$HEAD"
             if node scripts/ci-routine.cjs --qcm "$BASE" "$HEAD"; then
               python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1523

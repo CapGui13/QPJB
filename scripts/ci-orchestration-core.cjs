@@ -3,11 +3,12 @@
 // calls to the repository, never from an artifact or a pull-request input.
 const assert = require('node:assert/strict');
 const SHA = /^[0-9a-f]{40}$/;
-const LEVELS = ['DOC_ONLY','QUICK','UI','FULL'];
+const LEVELS = ['DOC_ONLY','QUICK','UI','TARGETED','FULL'];
 const JOBS = {
   DOC_ONLY: [],
   QUICK: ['QPJB quick'],
   UI: ['QPJB quick','QPJB UI chromium','QPJB UI webkit'],
+  TARGETED: ['QPJB quick'],
   FULL: ['Audit des données et du code','Simulations longues du parcours V1',
     'Validation chromium','Validation webkit']
 };
@@ -36,11 +37,11 @@ function aggregate(level, results) {
 }
 function verdictName(level,head,base) {
   requireLevel(level); assert(validSha(head),'Invalid head');
-  assert(validSha(base) || (base==='none' && level==='FULL'),'Invalid base');
+  assert(validSha(base) || (base==='none' && ['FULL','TARGETED'].includes(level)),'Invalid base');
   return ['QPJB verdict V1',level,head,base].join(' ');
 }
 function parseVerdict(name) {
-  const m=/^QPJB verdict V1 (DOC_ONLY|QUICK|UI|FULL) ([0-9a-f]{40}) ([0-9a-f]{40}|none)$/.exec(name);
+  const m=/^QPJB verdict V1 (DOC_ONLY|QUICK|UI|TARGETED|FULL) ([0-9a-f]{40}) ([0-9a-f]{40}|none)$/.exec(name);
   assert(m,'Malformed verdict');
   const [,level,head,base]=m;
   assert.equal(name,verdictName(level,head,base));

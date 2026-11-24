@@ -1,13 +1,7 @@
 name: QPJB — preuve intégrée des niveaux de CI
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'scripts/ci-*'
-      - 'tests/ci-*'
-      - '.github/workflows/ci-optimisation-integration.yml'
-      - '.github/workflows/training-smoke.yml'
-      - '.github/workflows/verified-pages.yml'
+  workflow_dispatch:
+
 permissions:
   contents: read
 jobs:

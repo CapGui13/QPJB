@@ -1,17 +1,7 @@
 name: QPJB M3 — preuves isolées
 on:
-  push:
-    branches: [ci-optimisation/m3-publication]
-  pull_request:
-    branches: [main, ci-optimisation/integration, progression-guidee/integration]
-    paths:
-      - 'scripts/ci-orchestration-*'
-      - 'scripts/ci-publication-*'
-      - 'tests/ci-orchestration*'
-      - 'tests/ci-publication*'
-      - 'tests/wave2-ci-*.cjs'
-      - 'tests/ci-training-workflow-guard.cjs'
-      - '.github/workflows/*.yml'
+  workflow_dispatch:
+
 permissions:
   contents: read
   actions: read

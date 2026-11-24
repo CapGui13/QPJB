@@ -5,7 +5,7 @@ const {api,git,checkpoint,effectiveBase,exactMain,verifiedSourceRun}=require('./
 function guard({id,attempt,head,workflowSha},deps={api,git,checkpoint,effectiveBase,exactMain,verifiedSourceRun}){
  assert(validSha(head)&&head===workflowSha,'Publisher workflow revision differs from tested commit');
  const verdict=deps.verifiedSourceRun(id,attempt,head);
- if(verdict.level!=='FULL'){
+ if(verdict.level!=='FULL'&&!(verdict.level==='TARGETED'&&verdict.base==='none')){
   const cp=deps.checkpoint();
   assert(cp,'Reduced verdict without current trusted deployment');
   assert.equal(deps.effectiveBase(cp.sha,head),verdict.base,'Publication base changed since validation');

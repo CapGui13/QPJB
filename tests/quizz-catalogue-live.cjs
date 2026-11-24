@@ -100,6 +100,7 @@ function simulate(data,api,horizon=65){
 if(require.main===module){
  const data=validate(readLive(),require('../quizz-prerequis.js'));
  console.log('LIVE_CATALOGUE_PASS '+data.exercises.length+' QCM, stable IDs and exact prerequisites');
+ if(process.argv.includes('--early'))verifyEarlyProfiles(data,require('../quizz-parcours.js'));
  if(process.argv.includes('--simulate')){
   const api=require('../quizz-parcours.js');verifyEarlyProfiles(data,api);simulate(data,api);
  }

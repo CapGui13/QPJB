@@ -59,6 +59,8 @@ for(const bad of [
 ]){assert.throws(()=>guard(source,bad));cases++;}
 assert.throws(()=>guard({...source,workflowSha:base},deps));cases++;
 assert.equal(guard(source,{...deps,checkpoint:()=>null,verifiedSourceRun:()=>({level:'FULL',base:'none',head})}).level,'FULL');cases++;
+assert.equal(guard(source,{...deps,checkpoint:()=>null,verifiedSourceRun:()=>({level:'TARGETED',base:'none',head})}).level,'TARGETED');cases++;
+assert.throws(()=>guard(source,{...deps,checkpoint:()=>null,verifiedSourceRun:()=>({level:'TARGETED',base,head})}));cases++;
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-m3-git-')),original=process.cwd();
 try{
  process.chdir(temp);
@@ -92,8 +94,8 @@ try{
  put('quizz.html','original');const reverted=commit('revert sensitive');
  assert.equal(classifier(bot,reverted),'QUICK');
  assert.equal(cumulative(bot,reverted,classifier),'FULL');cases+=2;
- assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>null}).level,'FULL');cases++;
- assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>({sha:deployed,deploymentId:14}),effectiveBase:()=>bot,cumulative,classify:classifier}).level,'FULL');cases++;
+ assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>null}).level,'TARGETED');cases++;
+ assert.equal(choose({head:reverted,event:'push'},{checkpoint:()=>({sha:deployed,deploymentId:14}),effectiveBase:()=>bot,cumulative,classify:classifier}).level,'TARGETED');cases++;
  git('checkout','-b','clean-main',bot);
  put('Docs/main.png','main');const cleanMain=commit('main image');
  git('checkout','-b','side',bot);

@@ -35,6 +35,8 @@ assert.match(quick,/python3 scripts\/verify_quiz_sef\.py --html quizz\.html --mi
 assert.match(quick,/node tests\/quizz-catalogue-live\.cjs/);
 assert.match(long,/node tests\/quizz-catalogue-live\.cjs --simulate/);
 assert.match(job('quick'),/node scripts\/ci-routine\.cjs --qcm/);
+assert.match(job('quick'),/python3 scripts\/ci-targeted\.py --base/);
+assert.match(job('quick'),/needs\.plan\.outputs\.level == 'TARGETED'/);
 assert.match(job('quick'),/node tests\/quizz-catalogue-live\.cjs/);
 // QUICK and FULL are mutually exclusive; count each legacy command once in FULL or the manual archive.
 const commands = (ci.replace(job('quick'),'')+'\n'+archive).split(/\r?\n/).map(line => line.trim());
