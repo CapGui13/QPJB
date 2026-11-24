@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '22'
       - name: Native Git adversarial tests
-        run: node --test tests/ci-classify.test.cjs
+        run: node --test tests/ci-classify.test.cjs tests/ci-classify-real.cjs
       - name: Exact real repository classification
         run: |
           node scripts/ci-classify.cjs --base cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3 --head "$GITHUB_SHA" > "$RUNNER_TEMP/m1-plan.json"

@@ -84,3 +84,25 @@ test('outside git blocks',()=>{const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'q
 test('shallow history cannot quick',()=>{reset();write(img);const h=commit();const temp=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-shallow-'));try{const r=spawnSync('git',['clone','-q','--depth=2','file://'+repo,temp],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);expect(base,h,'FULL',one('M',img),temp);}finally{fs.rmSync(temp,{recursive:true,force:true});}});
 test('malformed raw output blocks',()=>{for(const b of [Buffer.from('no NUL'),Buffer.from('bogus\0'),Buffer.from([0xff,0]),Buffer.from(':100644 100644 '+base+' '+base+' R100\0only-one\0')])assert.throws(()=>parseRaw(b));});
 test('non UTF-8 git pathname blocks',()=>{reset();const f=Buffer.concat([Buffer.from(repo+'/Docs/'),Buffer.from([0xff]),Buffer.from('.png')]);fs.writeFileSync(f,'x');const h=commit();const r=run(base,h);assert.notEqual(r.status,0);assert.equal(r.stdout,'');fs.unlinkSync(f);});
+
+test('unchanged tracked reference prevents report-only shortcut',()=>{reset();write('scripts/ref.js',report);const b=commit();write(report);expect(b,commit(),'FULL',one('M',report));});
+scenario('report and image union','QUICK',()=>{write(report);write(img);},[['M',report,null],['M',img,null]]);
+test('submodule ignore configuration cannot mask gitlink',()=>{
+  reset();git('config','diff.ignoreSubmodules','all');
+  try{
+    git('update-index','--add','--cacheinfo','160000,'+base+',Docs/sub.png');git('commit','-qm','gitlink');
+    const b=git('rev-parse','HEAD');
+    git('update-index','--cacheinfo','160000,'+b+',Docs/sub.png');git('commit','-qm','update gitlink');
+    expect(b,git('rev-parse','HEAD'),'FULL',one('M','Docs/sub.png'));
+  }finally{git('config','--unset','diff.ignoreSubmodules');}
+});
+test('classifier reads commits, ignores worktree changes and does not mutate index',()=>{
+  reset();write(img);const h=commit();write('index.html');git('add','index.html');write(pbn);
+  const before=git('status','--porcelain=v1');expect(base,h,'QUICK',one('M',img));assert.equal(git('status','--porcelain=v1'),before);assert.equal(git('rev-parse','HEAD'),h);
+});
+test('rename report to another markdown never doc only',()=>{reset();rename(report,'audits/relabelled.md');expect(base,commit(),'FULL',one('R100','audits/relabelled.md',report));});
+test('new commit with merge side branch sensitive and reverted remains FULL',()=>{
+  reset();const original=fs.readFileSync(path.join(repo,'index.html'));write('index.html');commit();write('index.html',original);const side=commit();
+  reset();write(img);commit();git('merge','--no-ff','-qm','merge side',side);
+  expect(base,git('rev-parse','HEAD'),'FULL',one('M',img));
+});

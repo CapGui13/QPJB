@@ -6,8 +6,8 @@ const SCHEMA='QPJB_CI_PLAN_V1';
 const LEVELS=['DOC_ONLY','QUICK','UI','FULL'];
 const SHA=/^[0-9a-f]{40}$/;
 const REPORT='audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md';
-const SELF=['scripts/ci-classify.cjs','tests/ci-classify.test.cjs','audits/ci-optimisation/M1/README.md'];
-const env={...process.env,GIT_NO_REPLACE_OBJECTS:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0',LC_ALL:'C'};
+const SELF=['scripts/ci-classify.cjs','tests/ci-classify.test.cjs','tests/ci-classify-real.cjs','audits/ci-optimisation/M1/README.md'];
+const env={...process.env,GIT_NO_REPLACE_OBJECTS:'1',GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0',LC_ALL:'C'};
 let cwd=process.cwd();
 function git(args, allowed=[0]){
   const r=spawnSync('git',args,{cwd,env,maxBuffer:64*1024*1024,timeout:120000});
@@ -40,7 +40,7 @@ function parseRaw(b){
   return result;
 }
 function diff(base,head){
-  return parseRaw(git(['-c','diff.renames=true','diff','--raw','-z','--no-abbrev','--no-ext-diff','--no-textconv','--no-relative','--find-renames','--find-copies','--find-copies-harder','-l0',base,head,'--']).stdout);
+  return parseRaw(git(['-c','diff.renames=true','diff','--raw','-z','--no-abbrev','--no-ext-diff','--no-textconv','--no-relative','--ignore-submodules=none','--find-renames','--find-copies','--find-copies-harder','-l0',base,head,'--']).stdout);
 }
 function safePath(p){
   return p===p.normalize('NFC')&&!/[\p{Cc}\p{Cf}\\]/u.test(p)&&p.split('/').every(s=>s&&s!=='.'&&s!=='..'&&!s.startsWith('.')&&s.trim()===s&&!s.endsWith('.'));

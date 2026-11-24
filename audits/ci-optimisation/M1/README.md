@@ -12,3 +12,9 @@ Exemple de forme (SHA fictifs, pas une preuve) :
 ```
 
 Preuves à exécuter : node --test tests/ci-classify.test.cjs ; workflow isolé M1 sur la branche assignée (checkout complet, aucune publication). Le rapport final consignera les résultats observés et non des PASS supposés.
+
+## Preuve initiale et seconde passe
+
+Run réel [45359201644](https://github.com/CapGui13/QPJB/actions/runs/45359201644), job 138324609373, SHA 4ce1c63c5b009d1e5dd1253005a21f5d2d5a7900 : **81 tests / 81 passés, 0 échec, 0 ignoré**, durée native 4958,114541 ms ; run terminé success (08:47:28–08:47:47 UTC). Plan réel FULL sur les 4 fichiers M1, headSha exact. PR brouillon [#286](https://github.com/CapGui13/QPJB/pull/286).
+
+Seconde passe : forcer --ignore-submodules=none (une configuration locale ne doit pas masquer un gitlink), bloquer le lazy fetch, tests supplémentaires sur références historiques préexistantes, mélange de niveaux, gitlink modifié avec ignore=all, absence de mutation du checkout/index, renommage et merge d'une branche ayant annulé un changement sensible. Vérifier en plus les 100 chemins de cours réels et six plans sur des commits synthétiques dans un clone jetable du dépôt réel, sans push ni modification des sources. Les résultats de cette passe seront consignés dans #282 à son SHA exact.
