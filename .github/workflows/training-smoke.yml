@@ -2,22 +2,100 @@ name: QPJB Training smoke
 on:
   push:
     branches: [main]
-    # Les fichiers générés seuls ne déclenchent pas un nouveau cycle de tests.
-    paths-ignore:
-      - catalogue.json
-      - site-version.json
   pull_request:
     branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
+  deployments: read
 concurrency:
   # Un ancien WebKit bloqué ne doit pas empêcher les tests du commit suivant.
   # Sur main, la concurrence reste groupée par branche ; sur PR, par commit.
   group: qpjb-training-${{ github.ref }}-${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'branch' }}
   cancel-in-progress: true
 jobs:
+  plan:
+    name: QPJB plan V1
+    runs-on: ubuntu-latest
+    outputs:
+      level: ${{ steps.plan.outputs.level }}
+      base: ${{ steps.plan.outputs.base }}
+      head: ${{ steps.plan.outputs.head }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Choisir le niveau depuis une publication attestée
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci-orchestration-plan.cjs
+  quick:
+    name: QPJB quick
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'QUICK' || needs.plan.outputs.level == 'UI' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer le validateur raster (contrat M2)
+        run: python3 -m pip install Pillow==12.0.0
+      - name: Contrôler ressources et catalogue régénéré
+        env:
+          BASE: ${{ needs.plan.outputs.base }}
+          HEAD: ${{ needs.plan.outputs.head }}
+        run: python3 scripts/ci-quick-check.py --base "$BASE" --head "$HEAD"
+  ui-chromium:
+    name: QPJB UI chromium
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'UI' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: PW_BROWSER=chromium node tests/ci-ui-targeted.cjs
+  ui-webkit:
+    name: QPJB UI webkit
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'UI' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: PW_BROWSER=webkit node tests/ci-ui-targeted.cjs
   integrity:
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'FULL' }}
     name: Audit des données et du code
     runs-on: ubuntu-latest
     steps:
@@ -95,6 +173,9 @@ jobs:
           node tests/wave2-ci-pages-rollback.cjs
           node tests/wave2-ci-pages-conditions.cjs
           node tests/wave2-ci-coverage.cjs
+          node tests/ci-orchestration-core.cjs
+          node tests/ci-publication-state.cjs
+          python3 tests/ci-publication-archive.py
       - name: Vérifier le contenu exact de l'archive publique
         run: |
           python3 scripts/build_catalogue.py
@@ -118,6 +199,8 @@ jobs:
           retention-days: 14
           if-no-files-found: warn
   parcours-long:
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'FULL' }}
     name: Simulations longues du parcours V1
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -133,6 +216,8 @@ jobs:
           node tests/quizz-parcours.cjs
 
   smoke:
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'FULL' }}
     name: Validation ${{ matrix.browser }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -182,6 +267,8 @@ jobs:
           if-no-files-found: warn
 
   webkit:
+    needs: plan
+    if: ${{ needs.plan.outputs.level == 'FULL' }}
     name: Validation webkit
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -226,3 +313,20 @@ jobs:
             artifacts/lot07-publication/webkit/
           retention-days: 7
           if-no-files-found: warn
+
+  verdict:
+    name: QPJB verdict V1 ${{ needs.plan.outputs.level }} ${{ github.sha }} ${{ needs.plan.outputs.base }}
+    needs: [plan, quick, ui-chromium, ui-webkit, integrity, parcours-long, smoke, webkit]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verdict fail-closed du commit exact
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: node scripts/ci-orchestration-verdict.cjs
