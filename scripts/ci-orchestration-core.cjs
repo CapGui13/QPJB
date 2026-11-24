@@ -30,7 +30,7 @@ function aggregate(level, results) {
   const needed=requiredJobs(level);
   assert.equal(results.plan,'success','Plan did not succeed');
   for(const name of needed) assert.equal(results[name],'success','Mandatory job did not succeed: '+name);
-  for(const name of Object.values(JOBS).flat()) {
+  for(const name of [...new Set(Object.values(JOBS).flat())]) {
     if(!needed.includes(name)) assert.equal(results[name],'skipped','Unexpected job result: '+name);
   }
 }
@@ -69,7 +69,7 @@ function verifyRun(run,jobs,expected) {
   assert.equal(v.head,expected.head,'Verdict for wrong SHA');
   assert.equal(exactJob(jobs,matches[0].name).conclusion,'success','Verdict unsuccessful');
   const statuses={plan:exactJob(jobs,'QPJB plan V1').conclusion};
-  for(const name of Object.values(JOBS).flat()) {
+  for(const name of [...new Set(Object.values(JOBS).flat())]) {
     const found=jobs.filter(j=>j.name===name);
     // A skipped matrix job can have its unevaluated matrix name. No missing
     // mandatory job is accepted; non-required jobs are irrelevant to proof.
