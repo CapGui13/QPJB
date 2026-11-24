@@ -3,15 +3,22 @@ on:
   push:
     branches: [ci-optimisation/m3-publication]
   pull_request:
-    branches: [main]
+    branches: [main, ci-optimisation/integration]
     paths:
       - 'scripts/ci-orchestration-*'
       - 'scripts/ci-publication-*'
       - 'tests/ci-orchestration*'
       - 'tests/ci-publication*'
-      - '.github/workflows/ci-optimisation-m3.yml'
+      - 'tests/wave2-ci-*.cjs'
+      - 'tests/ci-training-workflow-guard.cjs'
+      - '.github/workflows/*.yml'
 permissions:
   contents: read
+  actions: read
+  deployments: read
+concurrency:
+  group: qpjb-m3-proof-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   proofs:
     runs-on: ubuntu-latest
@@ -19,7 +26,77 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/ci-orchestration-core.cjs
+      - run: |
+          node tests/ci-orchestration-core.cjs
+          node tests/ci-publication-state.cjs
+          node tests/ci-training-workflow-guard.cjs
+          node tests/wave2-ci-pages-rollback.cjs
+          node tests/wave2-ci-pages-conditions.cjs
+          node tests/wave2-ci-coverage.cjs
+          node tests/wave2-ci-performance.cjs
+      - name: Probe actual read-only API shape (no deploy)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node - <<'JS'
+          const {api,checkpoint,jobsFor}=require('./scripts/ci-publication-state.cjs');
+          const deployments=api('deployments?environment=github-pages&per_page=1');
+          if(deployments.length) {
+            const d=deployments[0];
+            const statuses=api('deployments/'+d.id+'/statuses?per_page=1');
+            console.log('Environment deployment:',JSON.stringify({id:d.id,sha:d.sha,status:statuses[0]?.state,log_url:statuses[0]?.log_url}));
+          }
+          const r=api('actions/runs/45357396379');
+          const j=jobsFor(r);
+          console.log('Historical run:',JSON.stringify({id:r.id,path:r.path,attempt:r.run_attempt,head:r.head_sha,event:r.event,repository:r.repository?.id,headRepository:r.head_repository?.id,jobs:j.map(x=>({id:x.id,attempt:x.run_attempt,run:x.run_id,name:x.name,status:x.conclusion}))}));
+          console.log('Existing checkpoint (V1 marker required):',checkpoint());
+          JS
+      - name: Build exact public archive without publication
+        run: |
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _public_site
+          name: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/pages-runtime
+      - name: Verify actual archive retrieval and SHA, no deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARCHIVE_NAME: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          node - <<'JS' > "$RUNNER_TEMP/proof-artifact.json"
+          const {api}=require('./scripts/ci-publication-state.cjs');
+          const assert=require('node:assert/strict');
+          const p=api('actions/runs/'+process.env.GITHUB_RUN_ID+'/artifacts?per_page=100');
+          const a=p.artifacts.filter(x=>x.name===process.env.ARCHIVE_NAME);
+          assert.equal(a.length,1);assert.equal(a[0].expired,false);
+          assert.match(a[0].digest,/^sha256:[0-9a-f]{64}$/);
+          console.log(JSON.stringify(a[0]));
+          JS
+          ARTIFACT_ID=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["id"])' "$RUNNER_TEMP/proof-artifact.json")
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}/zip" > "$RUNNER_TEMP/pages-rest.zip"
+          python3 - <<'PY'
+          import pathlib,os,json,hashlib,tarfile,zipfile
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])
+          meta=json.loads((root/"proof-artifact.json").read_text())
+          raw=root/"pages-rest.zip"
+          assert "sha256:"+hashlib.sha256(raw.read_bytes()).hexdigest()==meta["digest"]
+          tar=root/"pages-runtime"/"artifact.tar"
+          with zipfile.ZipFile(raw) as z:
+              assert z.namelist()==["artifact.tar"]
+              assert hashlib.sha256(z.read("artifact.tar")).digest()==hashlib.sha256(tar.read_bytes()).digest()
+          with tarfile.open(tar) as t:
+              files={str(pathlib.PurePosixPath(m.name)):m for m in t.getmembers() if m.isfile()}
+              assert len(files)==178, len(files)
+              assert json.load(t.extractfile(files["site-version.json"]))=={"revision":os.environ["GITHUB_SHA"]}
+              assert {"Docs/QPJB_V2_REVUE_PEDAGOGIQUE_INTERACTIVE_19_CAS_HOLD_20261120.html","index A.html","apple-touch-icon.png","favicon-32.png","favicon.svg","icon-192.png","icon-512.png"}.issubset(files)
+          print("M3 ARCHIVE PASS: 178 resources, 7 aliases, REST SHA256 == runtime tar, exact revision, no deploy.")
+          PY
