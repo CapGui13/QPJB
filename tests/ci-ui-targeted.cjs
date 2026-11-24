@@ -71,6 +71,13 @@ async function scenario(browser,base,mobile){
   const home=page.locator('.training-button[data-training-mode="quizz"]');
   await home.waitFor({state:'visible'});
   await noOverflow(page,'home '+label);
+  const catalogue=JSON.parse(fs.readFileSync(path.join(site,'catalogue.json'),'utf8'));
+  const cards=page.locator('#seance-grid .seance-card');
+  await cards.first().waitFor({state:'visible'});
+  assert.equal(await cards.count(),catalogue.seances.length,'Every session rendered');
+  const actual=await cards.evaluateAll(nodes=>nodes.map(n=>n.dataset.folder));
+  assert.deepEqual([...actual].sort(),catalogue.seances.map(s=>s.folder).sort(),'No missing/duplicate session');
+  for(const card of await cards.all())assert.ok(await card.isVisible(),'Session card visible');
   await home.click();
   const q=page.frameLocator('#quizz-frame');
   await q.locator('#parcours-start').waitFor({state:'visible'});
