@@ -1,0 +1,14 @@
+# M1 — Classification conservatrice (#282)
+
+Base d'inventaire : cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3. Arbre Git récursif non tronqué : 900 entrées, 93 PBN directement dans 15 répertoires de séance, 7 images directement dans Docs ; deux CSS partagés autorisés. Sources lues : scripts/build_catalogue.py et scripts/build_public_site.py. Le constructeur public accepte les PBN suivis, images catalogue et alias explicites (7), ressources CORE/TRAINING, images launch et entrainement/assets ; ces dernières restent FULL. Les dossiers de séance observés sont Séance 0-01 Mumu, Séance 1-01 à 1-10 Aix, Séance 2-01 à 2-04 Aix. La convention stricte autorise de futures séances Aix/Mumu sans accepter des dossiers génériques. Aucun SVG, marqueur .seance-vide ou JSON généré en QUICK ; M2/M3 doivent prouver toute extension.
+
+DOC_ONLY : un seul rapport historique explicitement relu, audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md, modification uniquement, aucun autre fichier ni référence textuelle suivie au nom du rapport (hors fichiers M1 exacts). Il n'est pas dans la liste publique ni un alias ; si une référence est trouvée, FULL. Aucun registre, README, rapport nouveau ou renommage admis. UI : uniquement qpjb-bridge-ui.css et qpjb-design-tokens.css. QUICK : images raster et PBN directs, modes 100644 seulement, deux chemins en cas de renommage/copie. La lisibilité réelle du contenu est à vérifier par M2 ; le niveau n'est pas une autorisation de publication.
+
+Commande : node scripts/ci-classify.cjs --base SHA --head SHA. JSON stdout, erreurs stderr + code non nul sans plan. Schéma QPJB_CI_PLAN_V1 (champ schema), baseSha/headSha complets, level, publish, changes (status Git brut, ex R100 avec path destination et oldPath source), reasons. Diff net exact, inspection supplémentaire des commits nouveaux pour ne pas sous-classer un changement sensible ensuite annulé. Base non ancêtre, dépôt shallow, collision casse/Unicode, diff vide ou plus de 256 commits : FULL. SHA absent, objet non commit, échec Git ou UTF-8 invalide : erreur bloquante. M3 reste responsable de l'attestation de la base et des jobs exacts.
+
+Exemple de forme (SHA fictifs, pas une preuve) :
+```json
+{"schema":"QPJB_CI_PLAN_V1","baseSha":"1111111111111111111111111111111111111111","headSha":"2222222222222222222222222222222222222222","level":"QUICK","publish":true,"changes":[{"status":"A","path":"Docs/Nouveau cours.png"}],"reasons":["A Docs/Nouveau cours.png: allowed QUICK path"]}
+```
+
+Preuves à exécuter : node --test tests/ci-classify.test.cjs ; workflow isolé M1 sur la branche assignée (checkout complet, aucune publication). Le rapport final consignera les résultats observés et non des PASS supposés.
