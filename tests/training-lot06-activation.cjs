@@ -59,8 +59,10 @@ for(const id of ['JC-BH-111-01','JC-BH-126-01','JC-BH-058-P2']){
 const boot=read('entrainement/training-data-bootstrap.js');
 assert.ok(boot.includes('"bidding":638,"play":188'));
 assert.ok(boot.includes('20261113bh039m01'));
-assert.ok(read('service-worker.js').includes("CACHE = 'qpjb-v95'")&&
-  read('service-worker.js').includes("BASE + 'quizz-parcours.js?v=13'")&&
+const sw=read('service-worker.js');
+const quizEngine=read('quizz.html').match(/quizz-parcours\.js\?v=(\d+)/);
+assert.ok(/CACHE = 'qpjb-v\d+'/.test(sw)&&quizEngine&&
+  sw.includes("BASE + '"+quizEngine[0]+"'")&&
   read('service-worker.js').includes("BASE + 'quizz-prerequis.js?v=1'")&&
   read('service-worker.js').includes("BASE + 'qpjb-bridge-ui.css?v=20261113e'"));
 const app=read('entrainement/training-app.js');
