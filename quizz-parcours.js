@@ -1,6 +1,11 @@
 /* QPJB — parcours algorithmique V1.10 : preuves de maîtrise séparées des entraînements, sans IA ni API. */
 (function(root,factory){
-  const api=factory();
+  let prerequis=root?.QPJBPrerequis;
+  if(typeof module!=='undefined'&&module.exports){
+    try{prerequis=require('./quizz-prerequis.js')}
+    catch(err){if(err.code!=='MODULE_NOT_FOUND'||!String(err.message).includes("'./quizz-prerequis.js'"))throw err;}
+  }
+  const api=factory(prerequis);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   if(root){
     root.QPJBParcours=api;
@@ -55,14 +60,14 @@
       else setupImport();
     }
   }
-})(typeof window!=='undefined'?window:null,function(){
+})(typeof window!=='undefined'?window:null,function factory(prerequis){
   'use strict';
   const VERSION=1;
   // Métadonnées de sélection purement descriptives : aucun changement des
   // poids, de l'éligibilité, de la notation ou des corrigés.
   const SELECTION_REASONS=[
     'equilibre_ouvertures','nouveau_qcm','rappel_erreur_aide',
-    'rappel_nouvelle_situation','rappel_question','complement_catalogue'
+    'rappel_nouvelle_situation','rappel_question','complement_catalogue','renforcement_lacune','transfert_contexte'
   ];
   const validSelection=(item,id)=>item&&item.id===id&&
     ['nouveau','revision'].includes(item.kind)&&SELECTION_REASONS.includes(item.reason);
@@ -385,269 +390,269 @@
     return Math.max(themeFloor(exercises,theme),state.skills[theme]?.level||1);
   }
   function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+
+  // Une seule porte d'entrée pédagogique, partagée par parcours et consolidation.
+  const FOUNDATIONS=['ouv','majeur','mineur','sa','red','second','stayman'];
+  const openingPass=q=>q.theme==='ouv'&&bid(q)==='Passe';
+  const simplePass=q=>openingPass(q)&&q.difficulty===1&&Number.isInteger(q.h)&&q.h<12;
+  const weakAnswer=a=>a.result!=='correct'||a.assisted||a.hadFreeError;
+  function metadata(q){
+    const m=prerequis?.schema==='QPJB_PREREQUIS_V1'&&prerequis.byId?.[q.id];
+    if(!m||typeof m.concept!=='string'||!m.concept||!Number.isInteger(m.stage)||m.stage<0||m.stage>3||
+       !Number.isInteger(m.minSession)||m.minSession<0||!Array.isArray(m.requires)||
+       m.requires.some(r=>!r||typeof r.concept!=='string'||!Number.isInteger(r.minExposure)||r.minExposure<1))
+      return null;
+    return m;
+  }
+  function evidence(state,exercises){
+    const byId=new Map(exercises.map(q=>[q.id,q]));
+    const seen=new Map(),basic=new Map(),clean=new Map(),lastTheme={},lastFamily={},lastConcept={};
+    const weakConcept={},weakContext={};
+    const recent=[];
+    function add(map,key,value){if(!map.has(key))map.set(key,new Set());map.get(key).add(value)}
+    function observe(q,a,s){
+      const m=metadata(q);if(!m)return;
+      add(seen,m.concept,q.id);
+      if(m.stage<=1&&q.difficulty<=3){
+        add(basic,m.concept,family(q));
+        if(!weakAnswer(a))add(clean,m.concept,family(q));
+      }
+      lastTheme[q.theme]=Math.max(lastTheme[q.theme]??-1,s);
+      lastConcept[m.concept]=Math.max(lastConcept[m.concept]??-1,s);
+    }
+    for(const event of state.journal||[]){
+      if(event.mode!=='parcours'||event.session>state.completed)continue;
+      for(const a of event.answers||[]){
+        const q=byId.get(a.id);if(!q)continue;
+        observe(q,a,event.session-1);
+        if(event.session>state.completed-5)recent.push({q,a,s:event.session-1});
+      }
+    }
+    // Les sauvegardes anciennes sans journal ne prouvent pas de maîtrise fine.
+    // Une entrée ordinaire explicitement évaluée constitue une exposition unique,
+    // sans extrapoler son nombre de répétitions ni un succès indépendant.
+    for(const q of exercises){
+      const r=state.entries?.[q.id];if(!r)continue;
+      lastFamily[family(q)]=Math.max(lastFamily[family(q)]??-1,r.lastSession);
+      lastTheme[q.theme]=Math.max(lastTheme[q.theme]??-1,r.lastSession);
+      const m=metadata(q);
+      if(m&&r.assessment&&r.assessment.lastSession<state.completed){
+        add(seen,m.concept,q.id);
+        if(m.stage<=1&&q.difficulty<=3)add(basic,m.concept,family(q));
+        lastConcept[m.concept]=Math.max(lastConcept[m.concept]??-1,r.assessment.lastSession);
+      }
+    }
+    for(const {q,a,s} of recent){
+      if(!weakAnswer(a))continue;
+      const m=metadata(q),w=6-(state.completed-s);
+      if(m)weakConcept[m.concept]=(weakConcept[m.concept]||0)+w;
+      weakContext[context(q)]=(weakContext[context(q)]||0)+w;
+    }
+    const easier=new Map();
+    for(const q of exercises){
+      const m=metadata(q);
+      if(m&&m.stage<=1&&q.difficulty<=3)add(easier,m.concept,family(q));
+    }
+    return {seen,basic,clean,easier,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent};
+  }
+  function evaluate(q,state,e){
+    const s=state.completed,m=metadata(q),reasons=[];
+    if(!Object.hasOwn(INTRO,q.theme)||!Number.isInteger(q.difficulty)||q.difficulty<1||q.difficulty>5)
+      reasons.push('catalogue-invalid');
+    if(!m)return {eligible:false,reasons:[...reasons,'prerequisite-metadata-missing']};
+    if(s<INTRO[q.theme]||s<m.minSession)reasons.push('calendar');
+    if(q.theme==='ouv'&&bid(q)==='2♣'&&s<INTRO.fortes)reasons.push('strong-opening');
+    if(s===0&&q.theme!=='ouv')reasons.push('first-openings-only');
+    if(s===0&&q.theme==='ouv'&&(!['1♣','1♦','1♥','1♠','1SA','Passe'].includes(bid(q))||
+      q.difficulty!==1||(openingPass(q)&&!simplePass(q))))reasons.push('first-basic-opening');
+    for(const r of m.requires){
+      if((e.seen.get(r.concept)?.size||0)<r.minExposure)
+        reasons.push('exposure:'+r.concept+':'+r.minExposure);
+    }
+    const fundamentals=e.basic.get(m.concept)?.size||0, independent=e.clean.get(m.concept)?.size||0;
+    if(q.difficulty>=4){
+      const floor=q.difficulty===5?Math.max(18,(INTRO[q.theme]||0)+5):Math.max(8,(INTRO[q.theme]||0)+3);
+      if(s<floor)reasons.push('difficulty-calendar');
+      if(fundamentals<1)reasons.push('difficulty-foundation');
+      if(independent<(q.difficulty===5?3:2))reasons.push('difficulty-independent');
+    }else if(q.difficulty===3&&m.stage>=1&&e.easier.has(m.concept)&&!fundamentals)
+      reasons.push('difficulty-foundation');
+    return {eligible:reasons.length===0,reasons};
+  }
+  function eligibility(q,state,exercises){return evaluate(q,state,evidence(state,exercises))}
+  function eligiblePool(exercises,state,e=evidence(state,exercises)){
+    // Une erreur d'intégration ne doit jamais devenir un accès par défaut.
+    if(exercises.some(q=>!metadata(q)))throw Error('QPJB: prérequis manquants ou invalides (catalogue incomplet)');
+    return exercises.filter(q=>evaluate(q,state,e).eligible);
+  }
+  function passWeakness(state,e){
+    const recent=e.recent.filter(({q,s})=>openingPass(q)&&state.completed-s<=3);
+    if(recent.length)return recent.some(({a})=>weakAnswer(a));
+    return (state.micros?.['ouv:passe']?.score||0)<0;
+  }
+  // Sélection et ordre indépendants. Recherche bornée des permutations :
+  // les contraintes du premier cours sont dures, les autres coûts sont souples.
+  function logicalOrder(items,state,exerciseOf=x=>x.exercise){
+    if(items.length<2)return items.slice();
+    const s=state.completed;
+    const salt=s+'|'+items.map(x=>exerciseOf(x).id).sort().join('|')+'|'+
+      (state.journal||[]).slice(-2).map(ev=>(ev.answers||[]).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
+    const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
+    let beam=[{seq:[],mask:0,cost:0,tie:0}];
+    // Les sessions normales ont dix questions ; limite explicite pour API n<=20.
+    for(let pos=0;pos<items.length;pos++){
+      const next=[];
+      for(const node of beam){
+        const last=node.seq.length?exerciseOf(items[node.seq.at(-1)]):null,prev=node.seq.length>1?exerciseOf(items[node.seq.at(-2)]):null;
+        const usedPass=node.seq.filter(i=>openingPass(exerciseOf(items[i]))).length;
+        for(let i=0;i<items.length;i++){
+          if(node.mask&(1<<i))continue;
+          const q=exerciseOf(items[i]),pass=openingPass(q);
+          if(s===0&&totalPass&&items.length>=totalPass*2-1){
+            if(pos===2&&!usedPass&&!pass)continue;
+            if(pass&&last&&openingPass(last))continue;
+            if(totalPass-usedPass-Number(pass)>Math.ceil((items.length-pos-1-Number(pass))/2))continue;
+          }
+          let c=0;
+          if(last){
+            if(bid(q)===bid(last))c+=100;
+            if(s>0&&q.theme===last.theme)c+=3;
+            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=100;
+            if(q.h===last.h&&Number.isInteger(q.h))c+=8;
+            if(Array.isArray(q.shape)&&Array.isArray(last.shape)&&q.shape.join(',')===last.shape.join(','))c+=7;
+            if(context(q)===context(last)&&opener(q))c+=5;
+            if(s===0&&prev&&openingPass(prev)&&!openingPass(last)&&pass)c+=4;
+          }
+          next.push({seq:[...node.seq,i],mask:node.mask|(1<<i),cost:node.cost+c,
+            tie:hash(salt+'|'+node.seq.join(',')+'|'+q.id)});
+        }
+      }
+      if(!next.length)return items.slice(); // uniquement contraintes irréalisables petit catalogue
+      next.sort((a,b)=>a.cost-b.cost||a.tie-b.tie);
+      beam=next.slice(0,48);
+    }
+    return beam[0].seq.map(i=>items[i]);
+  }
   function select(exercises,state,n=10){
-    const s=state.completed,limit=clamp(int(n,10),1,20);
-    const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
-    const previous=state.entries||{};
-    // Les micro-categories (ex. sa:1SA) regroupent plusieurs conventions.
-    // Une reussite en Texas ne doit pas repousser le rappel d'un Stayman.
-    // Pour rapprocher deux cas, exiger la meme ouverture visible et la meme
-    // enchere attendue, sans pretendre avoir homologue une competence fine.
-    const concept=x=>'situation:'+situation(x);
-    const latestIndependent={};
-    for(const x of pool){
-      const r=previous[x.id];
-      if(r&&r.result==='correct'&&!r.assisted)
-        latestIndependent[concept(x)]=Math.max(latestIndependent[concept(x)]??-1,r.lastSession);
+    const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
+    const pool=eligiblePool(exercises,state,e),previous=state.entries||{};
+    const passCap=s===0?3:passWeakness(state,e)?2:1;
+    const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
+    const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
+    const totalRecent=e.recent.length,weakRecent=e.recent.filter(({a})=>weakAnswer(a)).length;
+    const rate=totalRecent?weakRecent/totalRecent:0;
+    const profile=rate>=.5?'weak':rate>=.2?'middle':'strong';
+    const quotas=profile==='weak'?[2,3,4,1]:profile==='middle'?[4,3,2,1]:[5,3,1,1];
+    const buckets={discovery:0,maintenance:0,weakness:0,transfer:0};
+    const passCount=()=>selected.filter(v=>openingPass(v.exercise)).length;
+    const mOf=q=>metadata(q);
+    const fresh=q=>!previous[q.id];
+    const due=q=>previous[q.id]&&previous[q.id].due<=s&&previous[q.id].lastSession<s;
+    const bad=q=>previous[q.id]&&weakAnswer(previous[q.id]);
+    const weak=q=>bad(q)&&due(q)||!!e.weakConcept[mOf(q).concept];
+    const oldTheme=q=>s-(e.lastTheme[q.theme]??(INTRO[q.theme]-1));
+    const oldFamily=q=>s-(e.lastFamily[family(q)]??-999);
+    const oldConcept=q=>s-(e.lastConcept[mOf(q).concept]??-999);
+    const maintenance=q=>due(q)&&!bad(q)||oldTheme(q)>=5||
+      (e.seen.has(mOf(q).concept)&&oldConcept(q)>=5);
+    const transfer=q=>fresh(q)&&!!e.weakContext[context(q)]&&!e.weakConcept[mOf(q).concept];
+    function classify(q){
+      if(weak(q))return 'weakness';
+      if(maintenance(q))return 'maintenance';
+      if(transfer(q))return 'transfer';
+      return fresh(q)?'discovery':'maintenance';
     }
-    // Pré-calcul : ne jamais rescanner les 1 523 QCM lors de chaque comparaison.
-    const targetByTheme=Object.fromEntries(ROADMAP.map(([theme])=>[theme,levelFor(state,exercises,theme)]));
-    const due=pool.filter(x=>{
-      const r=previous[x.id];if(!r||r.due>s||r.lastSession>=s)return false;
-      // Les succès autonomes attendent au minimum 5/11/19 séances.
-      // Seule une bonne reponse du meme contexte ET de la meme enchere
-      // repousse le rappel. Une simple micro-categorie commune ne suffit pas.
-      if(r.result==='correct'&&!r.assisted)
-        return s-Math.max(r.lastSession,latestIndependent[concept(x)]??-1)>=
-          (r.streak>=3?19:r.streak===2?11:5);
-      return true;
-    });
-    const fresh=pool.filter(x=>!previous[x.id]);
-    const selected=[],picked=new Set(),count={},bidCount={},contextCount={},microCount={},axisCount={};
-    // Erreur récente -> priorité modérée aux nouveaux cas similaires.
-    // Ne touche ni à la montée en difficulté ni aux révisions classiques.
-    const needBySituation={},needByContext={};
-    for(const x of exercises){
-      const r=previous[x.id];if(!r)continue;
-      const age=s-r.lastSession;
-      if(age<1||age>8)continue;
-      const weight=r.result==='wrong'?34:r.result==='skipped'?22:r.assisted?17:0;
-      if(!weight)continue;
-      const key=situation(x);
-      needBySituation[key]=Math.max(needBySituation[key]||0,Math.max(0,weight-Math.max(0,age-2)*4));
-      // Transfert d'apprentissage : la même ouverture peut appeler une
-      // réponse différente. Favoriser aussi ce contexte, pas un seul libellé.
-      if(opener(x)){
-        const ctx=context(x);
-        needByContext[ctx]=Math.max(needByContext[ctx]||0,
-          Math.max(0,Math.min(28,weight)-Math.max(0,age-2)*4));
+    function score(q,category){
+      const m=mOf(q),t=q.theme,age=s-INTRO[t],r=previous[q.id];
+      const target=clamp((targetByTheme[t]||1)+(state.difficultyAdjustment||0),1,5);
+      let value= -28*Math.abs(q.difficulty-target)-32*(themes[t]||0)
+        -24*(answers[bid(q)]||0)-22*(contexts[context(q)]||0)-25*(concepts[m.concept]||0)
+        +Math.min(70,oldTheme(q)*9)+Math.min(35,oldConcept(q)*3);
+      if(!r)value+=55;
+      if(oldFamily(q)<=2)value-=170;
+      else if(oldFamily(q)<=5)value-=85;
+      else if(oldFamily(q)<=8)value-=30;
+      if(!Object.hasOwn(e.lastTheme,t))value+=age>=3?150:85;
+      if(!e.seen.has(m.concept))value+=m.stage<=1?60:15;
+      if(FOUNDATIONS.includes(t)&&oldTheme(q)>=5)value+=100;
+      if(age<=2&&m.stage<=1)value+=35;
+      if(profile==='weak'&&q.difficulty>=3)value-=q.difficulty>=4?170:35;
+      if(category==='weakness'){
+        value+=Math.min(75,(e.weakConcept[m.concept]||0)*8);
+        if(bad(q)&&due(q))value+=180;
       }
+      if(category==='maintenance'&&due(q)&&!bad(q))value+=40;
+      if(category==='transfer')value+=Math.min(60,(e.weakContext[context(q)]||0)*8);
+      return value;
     }
-    const recentOpeningBids={};
-    const latestTheme={};
-    for(const x of exercises){
-      const rec=previous[x.id];
-      if(rec&&(!Object.hasOwn(latestTheme,x.theme)||rec.lastSession>latestTheme[x.theme]))
-        latestTheme[x.theme]=rec.lastSession;
-      if(x.theme==='ouv'&&rec&&s-rec.lastSession<=3){
-        const answer=bid(x);
-        recentOpeningBids[answer]=(recentOpeningBids[answer]||0)+1;
-      }
+    function choose(list,category,forcedReason){
+      let candidates=list.filter(q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap));
+      if(!candidates.length)return false;
+      const distinct=candidates.filter(q=>!families.has(family(q)));
+      if(distinct.length)candidates=distinct;
+      else if(pool.some(q=>!ids.has(q.id)&&!families.has(family(q))&&(!openingPass(q)||passCount()<passCap)))return false;
+      const balanced=candidates.filter(q=>(themes[q.theme]||0)<(s===0?limit:4));
+      if(balanced.length)candidates=balanced;
+      const ranked=candidates.map(q=>({q,v:score(q,category)}));
+      ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
+      const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
+      ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
+      answers[bid(q)]=(answers[bid(q)]||0)+1;contexts[context(q)]=(contexts[context(q)]||0)+1;
+      concepts[m.concept]=(concepts[m.concept]||0)+1;buckets[cat]++;
+      const kind=cat==='maintenance'||!fresh(q)?'revision':'nouveau';
+      const reason=forcedReason||(cat==='weakness'?(due(q)&&bad(q)?'rappel_erreur_aide':'renforcement_lacune'):
+        cat==='maintenance'?(fresh(q)?'rappel_nouvelle_situation':'rappel_question'):
+        cat==='transfer'?'transfert_contexte':'nouveau_qcm');
+      selected.push({exercise:q,kind,reason});return true;
     }
-    // LOT_B_EVIDENCE_BEGIN
-    // Lire huit séances ordinaires récentes, sans ajouter de champ sauvegardé.
-    // Aide ou première erreur libre = fragilité, jamais une réussite autonome.
-    const foundationThemes=new Set(['ouv','majeur','mineur','sa','red','second','stayman']);
-    const recentFoundation={};
-    for(const event of (state.journal||[]).filter(e=>e.mode==='parcours').slice(-8))
-      for(const answer of event.answers||[]){
-        if(!foundationThemes.has(answer.theme))continue;
-        const stat=recentFoundation[answer.theme]||{attempts:0,weak:0};
-        stat.attempts++;
-        if(answer.result!=='correct'||answer.assisted||answer.hadFreeError)stat.weak++;
-        recentFoundation[answer.theme]=stat;
-      }
-    const foundationSummary=Object.values(recentFoundation)
-      .reduce((v,r)=>({attempts:v.attempts+r.attempts,weak:v.weak+r.weak}),{attempts:0,weak:0});
-    const struggling=foundationSummary.attempts>=10&&
-      foundationSummary.weak*2>=foundationSummary.attempts;
-    // LOT_B_EVIDENCE_END
-    const maxPerTheme=pool.every(x=>x.theme==='ouv')?limit:4;
-    const recentFamily={};
-    for(const x of exercises){
-      const r=previous[x.id],key=family(x);
-      if(r&&(!Object.hasOwn(recentFamily,key)||r.lastSession>recentFamily[key]))
-        recentFamily[key]=r.lastSession;
+    function opening(answer,simple=false){
+      const options=pool.filter(q=>q.theme==='ouv'&&bid(q)===answer&&(!simple||simplePass(q)));
+      return choose(options,'discovery','equilibre_ouvertures');
     }
-    // LOT_B_DIVERSITY_BEGIN
-    // Favoriser de nouveaux contextes et types de réponses, sans les imposer.
-    const seenContexts=new Set(),seenDecisions=new Set();
-    for(const x of exercises){
-      if(!previous[x.id])continue;
-      seenContexts.add(x.theme+'|'+String(x.auction?.[0]||''));
-      seenDecisions.add(x.theme+'|'+String(x.answer||''));
-    }
-    // Les échecs quasi systématiques exigent une protection plus forte
-    // contre les cas difficiles que les succès fréquents avec assistance.
-    const severeStruggling=struggling&&foundationSummary.weak*4>=
-      foundationSummary.attempts*3;
-    // LOT_B_DIVERSITY_END
-    function pick(list,kind,reason){
-      let ranked=list.filter(x=>!picked.has(x.id));
-      if(!ranked.length)return false;
-      const famUsed=new Set(selected.map(x=>family(x.exercise)));
-      const noSameFamily=ranked.filter(x=>!famUsed.has(family(x)));
-      if(noSameFamily.length)ranked=noSameFamily;
-      const withinCap=ranked.filter(x=>(count[x.theme]||0)<maxPerTheme);
-      if(withinCap.length)ranked=withinCap;
-      else if(kind==='revision'&&fresh.some(x=>!picked.has(x.id)&&(count[x.theme]||0)<maxPerTheme))
-        return false; // Une révision ne doit pas faire dépasser le plafond d'un thème.
-      // À l'ouverture, deux décisions identiques maximum par séance si le
-      // catalogue comporte assez d'alternatives réellement distinctes.
-      const distinctBids=ranked.filter(x=>x.theme!=='ouv'||
-        (bidCount['ouv|'+bid(x)]||0)<2);
-      if(distinctBids.length)ranked=distinctBids;
-      // Ne pas confondre les réponses à 1♣ et à 1♦, ni à 1♥ et 1♠.
-      const otherContexts=ranked.filter(x=>
-        (x.theme!=='mineur'&&x.theme!=='majeur')||!opener(x)||
-        (contextCount[context(x)]||0)<2);
-      if(otherContexts.length)ranked=otherContexts;
-      // Jamais trois occurrences d'une micro-compétence dans une même séance
-      // si le catalogue offre d'autres notions éligibles.
-      if(s>=4){
-        const otherMicros=ranked.filter(x=>!microKey(x)||(microCount[microKey(x)]||0)<2);
-        if(otherMicros.length)ranked=otherMicros;
-      }
-      // Écarter les micro-compétences confirmées récemment, sauf véritable rappel.
-      if(kind!=='revision'){
-        const exploratory=ranked.filter(x=>{
-          const key=microKey(x),m=key&&(state.micros||{})[key];
-          return !m||m.score<2||m.independent<2||s-m.lastSession>=4;
-        });
-        if(exploratory.length)ranked=exploratory;
-      }
-      // LOT_B_PICK_BEGIN
-      // Calculer ce quota une fois par place, pas pour chaque QCM candidat.
-      const foundationChosen=selected.reduce(
-        (n,chosen)=>n+Number(foundationThemes.has(chosen.exercise.theme)),0);
-      // LOT_B_PICK_END
-      function score(x){
-        const t=x.theme,age=s-INTRO[t],already=count[t]||0;
-        const skill=targetByTheme[t];
-        const recent=Object.hasOwn(recentFamily,family(x))?s-recentFamily[family(x)]:999;
-        const variety=recent<=2?-145:recent<=5?-85:recent<=8?-35:0;
-        const focus=age<=1?95:age<=3?55:age<=7?20:0;
-        const last=Object.hasOwn(latestTheme,t)?s-latestTheme[t]:Math.min(9,age+1);
-        const balance=-31*already;
-        // Le ressenti règle la difficulté des prochaines questions, sans modifier
-        // les preuves indépendantes ni les niveaux de maîtrise calculés.
-        const target=clamp(skill+state.difficultyAdjustment,1,5);
-        const fit=-28*Math.abs(x.difficulty-target);
-        const need=state.skills[t]?.errors?12*state.skills[t].errors:0;
-        const answer=bid(x),sameAnswer=bidCount[t+'|'+answer]||0;
-        // Couvrir d'abord plusieurs types d'ouvertures : 1♣ et 1♦ doivent
-        // apparaître tôt, même quand un tirage simple favoriserait 1SA/Passe.
-        // En dehors des ouvertures, varier aussi la réponse attendue à l'intérieur
-        // d'une rubrique pour réduire la mémorisation superficielle.
-        const bidVariety=t==='ouv'
-          ?(sameAnswer===0?60:sameAnswer===1?7:-105*(sameAnswer-1))+
-            ((answer==='1♣'||answer==='1♦')&&sameAnswer<2?34:0)-
-            Math.min(36,(recentOpeningBids[answer]||0)*9)
-          :-Math.min(80,sameAnswer*27);
-        const lead=opener(x);
-        const contextVariety=(t==='mineur'||t==='majeur'||t==='sa')&&lead
-          ?-Math.min(90,(contextCount[context(x)]||0)*36):0;
-        const contextualNeed=kind==='revision'?0:
-          (Math.round((needBySituation[situation(x)]||0)*0.6)+
-           Math.round((needByContext[context(x)]||0)*0.6));
-        // Distinguer une lacune locale d'un échec sur toute la rubrique :
-        // un score faible oriente vers de nouveaux cas du même sous-thème.
-        const micro=microKey(x),microRecord=micro?(state.micros||{})[micro]:null;
-        const microNeed=kind==='revision'||!microRecord?0:
-          clamp(-microRecord.score*13,-39,39);
-        const microVariety=micro?-Math.min(60,(microCount[micro]||0)*20):0;
-        const masteryCooldown=kind==='revision'||!microRecord?0:
-          microRecord.score>=2&&microRecord.independent>=2
-            ?(s-microRecord.lastSession<4?-145:
-              s-microRecord.lastSession<8?-80:
-              s-microRecord.lastSession<12?-30:0):0;
-        const microDiscovery=kind==='revision'||!micro?0:
-          !microRecord?42:microRecord.score<=-2?42:0;
-        // Bonus léger sur un axe transversal fragile. N'affecte que les
-        // exercices explicitement audités, sans modifier la difficulté.
-        const axis=axisKey(x),axisRecord=axis?(state.axes||{})[axis]:null;
-        const axisNeed=kind==='revision'||!axisRecord?0:
-          clamp(-axisRecord.score*11,-33,33);
-        const axisVariety=axis?-Math.min(32,(axisCount[axis]||0)*8):0;
-        // LOT_B_SCORE_BEGIN
-        // Repondérer les fondamentaux fragiles. Aucune rubrique n'est exclue.
-        const evidence=recentFoundation[t];
-        const foundationNeed=!struggling||kind==='revision'||!foundationThemes.has(t)||!evidence||
-          evidence.attempts<3||evidence.weak<2?0:
-          Math.round(200*evidence.weak/evidence.attempts);
-        // Ne pas sacrifier toute la découverte : réserver de la place aux autres thèmes.
-        const explorationFloor=struggling&&s>=8&&kind!=='revision'&&foundationChosen>=8
-          ?(foundationThemes.has(t)?-500:250):0;
-        const discovery=struggling&&kind!=='revision'&&s>=8&&
-          !foundationThemes.has(t)&&!Object.hasOwn(latestTheme,t)
-          ?(x.difficulty<=2?260:x.difficulty===3?130:0):0;
-        const newFamily=struggling&&kind!=='revision'&&recent>=999?200:0;
-        // La couverture se mesure aussi par contextes d'ouverture et réponses,
-        // pas seulement par le nombre d'identifiants de QCM distincts.
-        const rareContext=struggling&&kind!=='revision'&&
-          !seenContexts.has(t+'|'+String(x.auction?.[0]||''))?70:0;
-        const rareAnswer=struggling&&kind!=='revision'&&
-          !seenDecisions.has(t+'|'+String(x.answer||''))?30:0;
-        // Éviter de présenter des cas de niveau 4–5 à un élève qui échoue partout.
-        const hardWhileStruggling=struggling&&kind!=='revision'&&x.difficulty>=4
-          ?(severeStruggling?-250:-110):0;
-        const lotBPriority=foundationNeed+explorationFloor+discovery+
-          newFamily+rareContext+rareAnswer+hardWhileStruggling;
-        // LOT_B_SCORE_END
-        const review=kind==='revision'
-          ?(previous[x.id]?.result==='wrong'?40:previous[x.id]?.result==='skipped'?30:previous[x.id]?.assisted?20:0)
-          :0;
-        return (kind==='revision'?0:focus)+Math.min(36,last*4)+balance+fit+need+variety+review+bidVariety+contextVariety+contextualNeed+microNeed+microVariety+axisNeed+axisVariety+masteryCooldown+microDiscovery+lotBPriority;
-      }
-      ranked.sort((a,b)=>score(b)-score(a)||hash(a.id+'#'+s)-hash(b.id+'#'+s));
-      const winner=ranked[0];picked.add(winner.id);
-      count[winner.theme]=(count[winner.theme]||0)+1;
-      contextCount[context(winner)]=(contextCount[context(winner)]||0)+1;
-      const mk=microKey(winner);
-      if(mk)microCount[mk]=(microCount[mk]||0)+1;
-      const ak=axisKey(winner);
-      if(ak)axisCount[ak]=(axisCount[ak]||0)+1;
-      const chosenAnswer=winner.theme+'|'+bid(winner);
-      bidCount[chosenAnswer]=(bidCount[chosenAnswer]||0)+1;
-      selected.push({exercise:winner,kind,reason});
-      return true;
-    }
-    // Dès la toute première séance : cinq couleurs/contrats distincts,
-    // deux mineures de chaque type et Passe, si le catalogue les permet.
-    // Le score général remplit les dernières places sans doublon de famille.
+    // Reprise des contraintes #291, mais aucun ordre de réponses imposé.
     if(s===0&&limit>=8){
-      for(const target of ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']){
-        const candidates=fresh.filter(x=>x.theme==='ouv'&&bid(x)===target&&
-          !selected.some(chosen=>family(chosen.exercise)===family(x)));
-        if(candidates.length)pick(candidates,'nouveau','equilibre_ouvertures');
+      const targets=limit===8?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']:
+        limit===9?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe']:
+        ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe','Passe'];
+      for(const answer of targets)opening(answer,answer==='Passe');
+    }
+    if(s===1&&limit>=10){
+      opening('1♣');opening('1♦');
+      const passes=pool.filter(openingPass);
+      if(!choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide'))
+        choose(passes,'maintenance','equilibre_ouvertures');
+      for(const [t,lead] of [['mineur','1♣'],['mineur','1♦'],['majeur','1♥'],['majeur','1♠']])
+        choose(pool.filter(q=>q.theme===t&&opener(q)===lead),'discovery');
+      for(let i=0;i<2;i++)choose(pool.filter(q=>q.theme==='mineur'||q.theme==='majeur'),'discovery');
+      if(passCap===2&&selected.length<limit)choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide');
+    }
+    // Garantie de découverte et d'entretien, avant les quotas indicatifs.
+    if(s>=2){
+      const priorities=ROADMAP.filter(([t,intro])=>s>=intro&&
+        ((!Object.hasOwn(e.lastTheme,t)&&s-intro>=2)||
+        (FOUNDATIONS.includes(t)&&Object.hasOwn(e.lastTheme,t)&&s-e.lastTheme[t]>=6)))
+        .sort(([a,ia],[b,ib])=>(s-(e.lastTheme[b]??ib-1))-(s-(e.lastTheme[a]??ia-1)));
+      for(const [t] of priorities){
+        if(selected.length>=limit||themes[t])continue;
+        const known=Object.hasOwn(e.lastTheme,t);
+        choose(pool.filter(q=>q.theme===t&&(known||mOf(q).stage<=1)),known?'maintenance':'discovery');
       }
+      // Une erreur récente mérite une réponse ciblée sans prendre toute la séance.
+      if(selected.length<limit&&buckets.weakness<quotas[2])
+        choose(pool.filter(q=>due(q)&&bad(q)),'weakness');
     }
-    // Revisions : erreur/aide = revoir le cas du ; reussite autonome =
-    // proposer une autre main avec ouverture et reponse identiques, si possible.
-    const weakDueCandidates=due.filter(x=>
-      previous[x.id].result!=='correct'||previous[x.id].assisted);
-    const strongConcepts=new Set(due.filter(x=>
-      previous[x.id].result==='correct'&&!previous[x.id].assisted).map(concept));
-    const alternateReviews=fresh.filter(x=>strongConcepts.has(concept(x)));
-    const reviewQuota=Math.min(weakDueCandidates.length?2:1,Math.floor(limit/4),due.length);
-    const plan=[];
-    for(let i=0;i<limit;i++)plan.push(i===3||i===7?'revision':'nouveau');
-    let plannedReviews=0;
-    for(let i=selected.length;i<limit;i++){
-      let kind=plan[i];
-      if(kind==='revision'&&plannedReviews>=reviewQuota)kind='nouveau';
-      if(kind==='revision'&&
-        (pick(weakDueCandidates,'revision','rappel_erreur_aide')||
-         pick(alternateReviews,'revision','rappel_nouvelle_situation')||
-         pick(due,'revision','rappel_question'))){plannedReviews++;continue}
-      if(pick(fresh,'nouveau','nouveau_qcm'))continue;
-      if(pick(due,'revision','rappel_question'))continue;
-      if(pick(pool,'revision','complement_catalogue'))continue;
-      break;
+    const order=['discovery','maintenance','weakness','transfer'];
+    while(selected.length<limit){
+      const cats=order.slice().sort((a,b)=>(quotas[order.indexOf(b)]-buckets[b])-(quotas[order.indexOf(a)]-buckets[a]));
+      let ok=false;
+      if(s===1)ok=choose(pool.filter(q=>q.theme==='majeur'||q.theme==='mineur'),'discovery');
+      if(!ok)for(const cat of cats){
+        if(choose(pool.filter(q=>classify(q)===cat),cat)){ok=true;break;}
+      }
+      if(!ok)ok=choose(pool,null,'complement_catalogue');
+      if(!ok)break;
     }
-    // La même famille ne doit pas se suivre ; les candidats alternatifs
-    // ne sont disponibles qu'en cas d'épuisement du catalogue.
-    return selected.map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
+    return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
   }
 
   // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture
@@ -660,7 +665,7 @@
     if(state.lastConsolidatedAt===state.completed)return {available:false,reason:'already-consolidated',focus:[],items:[]};
     const limit=clamp(int(n,10),1,10),minFamilies=Math.min(4,limit),s=state.completed;
     let hasEvidence=false;
-    const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
+    const e=evidence(state,exercises),pool=eligiblePool(exercises,state,e);
     const targets=[];
     function collect(records,labels,kind,identify){
       for(const [key,r] of Object.entries(records||{})){
@@ -680,6 +685,7 @@
     const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
     function choose(target){
       let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
+      options=options.filter(x=>!openingPass(x)||(bids['ouv|Passe']||0)<(passWeakness(state,e)?2:1));
       if(!options.length)return false;
       // Même en consolidation, ne pas aligner trois fois la même décision.
       const diverse=options.filter(x=>(bids[x.theme+'|'+bid(x)]||0)<2);
@@ -711,7 +717,7 @@
     const available=items.length>=minFamilies;
     return {available,reason:available?null:'pool-insufficient',
       focus:focus.map(t=>({kind:t.kind,key:t.key,label:t.label,score:t.score})),
-      items:available?items:[]};
+      items:available?logicalOrder(items,state,x=>pool.find(q=>q.id===x.id)):[]};
   }
 
   // Bilan borné : un résultat de séance, pas une déclaration de maîtrise.
@@ -1089,5 +1095,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
+  return {eligibility,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
