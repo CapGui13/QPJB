@@ -8,7 +8,7 @@ const {spawnSync}=require('node:child_process');
 const cli=path.resolve(__dirname,'../scripts/ci-classify.cjs');
 const {parseRaw}=require(cli);
 const repo=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-ci-m1-'));
-const report='audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md';
+const report='audits/wave2/ux/PASSE_14_COMPARAISON_VISUELLE.md';
 const pbn='Séance 1-01 Aix/B1 - première.pbn';
 const img='Docs/01 - Table de décision.png';
 function git(...args){
@@ -106,3 +106,5 @@ test('new commit with merge side branch sensitive and reverted remains FULL',()=
   reset();write(img);commit();git('merge','--no-ff','-qm','merge side',side);
   expect(base,git('rev-parse','HEAD'),'FULL',one('M',img));
 });
+
+scenario('pedagogical historical review excluded after real reference discovery','FULL',()=>write('audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md'),one('A','audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md'));

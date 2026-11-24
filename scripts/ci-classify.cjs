@@ -5,7 +5,7 @@ const {TextDecoder}=require('node:util');
 const SCHEMA='QPJB_CI_PLAN_V1';
 const LEVELS=['DOC_ONLY','QUICK','UI','FULL'];
 const SHA=/^[0-9a-f]{40}$/;
-const REPORT='audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md';
+const REPORTS=new Set(["audits/wave2/ux/PASSE_14_COMPARAISON_VISUELLE.md","audits/wave2/recommandations/PASSE25_RETRAIT_LANCEUR_NODE22_20261121.md","audits/wave2/ci/PASSE_9_PREUVES_HORODATEES.md"]);
 const SELF=['scripts/ci-classify.cjs','tests/ci-classify.test.cjs','tests/ci-classify-real.cjs','audits/ci-optimisation/M1/README.md'];
 const env={...process.env,GIT_NO_REPLACE_OBJECTS:'1',GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0',LC_ALL:'C'};
 let cwd=process.cwd();
@@ -48,7 +48,7 @@ function safePath(p){
 function pathLevel(p){
   if(!safePath(p))return 'FULL';
   if(p==='qpjb-bridge-ui.css'||p==='qpjb-design-tokens.css')return 'UI';
-  if(p===REPORT)return 'DOC_ONLY';
+  if(REPORTS.has(p))return 'DOC_ONLY';
   const a=p.split('/');
   if(a.length!==2)return 'FULL';
   const [folder,name]=a;
@@ -61,10 +61,10 @@ function pathLevel(p){
   return 'FULL';
 }
 function rank(a,b){return LEVELS[Math.max(LEVELS.indexOf(a),LEVELS.indexOf(b))];}
-function reportUnreferenced(ref){
-  const basename=REPORT.split('/').pop();
-  const r=git(['grep','--full-name','-I','-F','-l','-e',basename,ref,'--','.',...([REPORT,...SELF].map(p=>':(exclude)'+p))],[0,1]);
-  return r.status===1;
+function reportRefs(ref,report){
+  const stem=report.split('/').pop().slice(0,-3);
+  const r=git(['grep','--full-name','-I','-i','-F','-l','-z','-e',stem,ref,'--','.',...([report,...SELF].map(p=>':(exclude)'+p))],[0,1]);
+  return nul(r.stdout);
 }
 function changeLevel(c,from,to){
   if(!['000000','100644'].includes(c.oldMode)||!['000000','100644'].includes(c.newMode)||c.status==='T')
@@ -73,10 +73,13 @@ function changeLevel(c,from,to){
   if(c.oldPath)level=rank(level,pathLevel(c.oldPath));
   // DOC_ONLY requires an existing, exact historical report; never a new,
   // renamed, copied or deleted report. Any tracked reference is conservative FULL.
-  if(level==='DOC_ONLY'&&(c.status!=='M'||!reportUnreferenced(from)||!reportUnreferenced(to)))
-    return ['FULL','historical report not proven isolated'];
-  // If a report is mixed with another class, still enforce its isolation.
-  if(level!=='DOC_ONLY'&&[c.path,c.oldPath].includes(REPORT))
+  if(level==='DOC_ONLY'){
+    if(c.status!=='M')return ['FULL','historical report moved, copied, added or deleted'];
+    const refs=[...reportRefs(from,c.path),...reportRefs(to,c.path)];
+    if(refs.length)return ['FULL','historical report referenced: '+refs.slice(0,4).join(', ')];
+  }
+  // If a report is moved/copied across classes, never use a fast path.
+  if(level!=='DOC_ONLY'&&[c.path,c.oldPath].some(p=>REPORTS.has(p)))
     return ['FULL','historical report moved/copied'];
   return [level,level==='FULL'?'unrecognised or sensitive path':'allowed '+level+' path'];
 }

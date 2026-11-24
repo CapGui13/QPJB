@@ -10,7 +10,8 @@ const root=path.resolve(__dirname,'..');
 const cli=path.join(root,'scripts/ci-classify.cjs');
 const {pathLevel}=require(cli);
 const base='cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3';
-const report='audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md';
+const reports=["audits/wave2/ux/PASSE_14_COMPARAISON_VISUELLE.md","audits/wave2/recommandations/PASSE25_RETRAIT_LANCEUR_NODE22_20261121.md","audits/wave2/ci/PASSE_9_PREUVES_HORODATEES.md"];
+const excluded='audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md';
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'qpjb-real-m1-'));
 const clone=path.join(tmp,'repo');
 function git(cwd,args,input){
@@ -47,9 +48,17 @@ test('immutable real inventory: all 100 existing course paths recognized',()=>{
   assert.equal(new Set(pbns.map(p=>p.split('/')[0])).size,15);
   for(const p of [...docs,...pbns])assert.equal(pathLevel(p),'QUICK',p);
   for(const p of ['qpjb-bridge-ui.css','qpjb-design-tokens.css'])assert.ok(names.includes(p)&&pathLevel(p)==='UI');
-  assert.ok(names.includes(report));
+  for(const report of [...reports,excluded])assert.ok(names.includes(report));
 });
-fixture('real report-only edit','DOC_ONLY',()=>edit(report),[['M',report,null]]);
+// Each reviewed candidate is expected to be isolated; any reference is
+// a failed inventory assumption, never a reason to bypass the guard.
+for(const report of reports)fixture('real historical report '+report,'DOC_ONLY',()=>edit(report),[['M',report,null]]);
+fixture('real referenced pedagogical review stays full','FULL',()=>{
+  const r=spawnSync('git',['grep','--full-name','-I','-i','-F','-l','-e',excluded.split('/').pop().slice(0,-3),base,'--','.',':(exclude)'+excluded],{cwd:clone,encoding:'utf8'});
+  assert.equal(r.status,0,r.stderr);
+  console.log('M1_EXCLUDED_REPORT_REFERENCES '+JSON.stringify(r.stdout.trim().split('\n')));
+  edit(excluded);
+},[['M',excluded,null]]);
 fixture('real existing course image copy','QUICK',()=>{
   const p=docs[0],oid=g('rev-parse',base+':'+p);
   g('update-index','--add','--cacheinfo','100644,'+oid+',Docs/M1 copie réelle.jpg');
