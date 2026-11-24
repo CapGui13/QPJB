@@ -1,7 +1,12 @@
 name: CI optimisation M2 proofs
 on:
-  push:
-    branches: [ci-optimisation/m2-validations]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/ci-quick-*.py'
+      - 'tests/ci-quick*'
+      - 'tests/ci-ui*'
+      - '.github/workflows/ci-optimisation-m2.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -10,11 +15,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   quick:
+    if: github.event_name == 'workflow_dispatch' || github.head_ref == 'ci-optimisation/m2-validations'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -25,6 +32,7 @@ jobs:
       - name: Real native Git mutations and timings
         run: time python3 tests/ci-quick-proof.py
   ui:
+    if: github.event_name == 'workflow_dispatch' || github.head_ref == 'ci-optimisation/m2-validations'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     container:
@@ -39,6 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
