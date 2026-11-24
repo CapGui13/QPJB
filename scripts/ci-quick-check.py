@@ -75,7 +75,7 @@ def decode_pbn(data):
         return data.decode("cp1252")
 
 def check_pbn(path):
-    text = decode_pbn(path.read_bytes())
+    text = decode_pbn(path.read_bytes()).replace("\r\n", "\n").replace("\r", "\n")
     # Escape lines and PBN comments may themselves contain tag-like text.
     text = re.sub(r"(?m)^[ \t]*%[^\r\n]*", "", text)
     text = re.sub(r'\{[^}]*\}|;[^\r\n]*', "", text)
