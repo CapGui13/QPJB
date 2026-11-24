@@ -69,6 +69,40 @@ s.journal=[{mode:'parcours',session:25,answers:base.map(q=>({id:q.id,result:'wro
 assert.equal(at(stayman,s).eligible,true);
 assert.equal(at(advanced,s).eligible,false);
 s.journal=[{mode:'parcours',session:25,answers:base.map(q=>({id:q.id,result:'correct'}))}];
+assert.equal(at(advanced,s).eligible,false,'One session is not independent progression');
+s.journal=base.map((q,i)=>({mode:'parcours',session:25+i,answers:[{id:q.id,result:'correct'}]}));
 assert.equal(at(advanced,s).eligible,true);
 assert.deepEqual(E.select(qs,s),E.select(qs,s));
-console.log('M2: ouverture, profils, prérequis, difficulté, déterminisme, reprise : OK');
+// Une reprise existante n'est ni reclassée ni mélangée, même si M1 est absent.
+const old=E.empty();
+old.active={ids:qs.slice(0,3).map(q=>q.id),index:1,answers:{0:{result:'correct',choice:'1♣',assisted:false,hadFreeError:false}},createdAt:0};
+const restored=E.load(JSON.stringify(old));
+assert.deepEqual(P.start(restored,qs).map(q=>q.id),old.active.ids);
+assert.equal(restored.active.index,1);
+assert.deepEqual(restored.active.answers,old.active.answers);
+// Un catalogue synthétique épuisé ne peut pas ouvrir un cas non éligible.
+const blocked=[...qs.filter(q=>q.difficulty===5)];
+assert.deepEqual(E.select(blocked,E.empty()),[]);
+// Les séances complémentaires ne doivent pas contournent la porte commune.
+const con=E.empty();con.completed=4;
+con.micros['ouv:passe']={score:-3,attempts:4};
+assert.equal(E.consolidationPlan(con,qs).available,false,'Pas de série de dix Passes pour contourner la progression');
+con.micros={'ouv:mineure':{score:-3,attempts:4}};
+const plan=E.consolidationPlan(con,qs);
+assert.ok(plan.available);
+assert.ok(plan.items.every(v=>at(qs.find(q=>q.id===v.id),con).eligible));
+assert.equal(new Set(plan.items.map(v=>v.id)).size,plan.items.length);
+assert.equal(E.startConsolidation(con,qs).length,plan.items.length);
+assert.deepEqual(E.load(JSON.stringify(con)).active.targets,plan.items.map(v=>v.target));
+// Pré-requis de découverte sans maîtrise, même avec une notion de niveau 3
+// dont aucune variante de difficulté 1/2 n'existe.
+const q3={id:'fixture-only-3',theme:'sa',answer:'3SA',difficulty:3,h:13,caseFamily:'only-3'};
+const q4={id:'fixture-advanced',theme:'sa',answer:'4SA',difficulty:4,h:15,caseFamily:'adv'};
+const local=E.createForTests({schema:'QPJB_PREREQUIS_V1',byId:{
+ ...byId,[q3.id]:{concept:'only-3',stage:1,minSession:3,requires:[]},
+ [q4.id]:{concept:'advanced-new',stage:3,minSession:8,requires:[{concept:'sa-basic',minExposure:2}]}
+}});
+assert.equal(local.eligibility(q3,s,[...qs,q3,q4]).eligible,true);
+assert.equal(local.eligibility(q4,s,[...qs,q3,q4]).eligible,true);
+assert.equal(local.eligibility(q4,E.empty(),[...qs,q3,q4]).eligible,false);
+console.log('M2: ouverture, profils, prérequis, difficulté, déterminisme, reprise, consolidation : OK');
