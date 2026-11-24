@@ -35,7 +35,7 @@ function metrics(profile,horizon,meta=null){
   const passes=chosen.flatMap((q,i)=>pass(q)?[i]:[]);
   check(chosen.length===10&&new Set(chosen.map(q=>q.id)).size===10&&new Set(chosen.map(family)).size===10,'distinct-ten',s,chosen.map(q=>q.id));
   check(Array.isArray(selection)&&selection.length===chosen.length&&selection.every((v,i)=>v.id===chosen[i].id),'reason-alignment',s,selection);
-  const weakPass=Object.entries(state.entries||{}).some(([id,v])=>byId.has(id)&&pass(byId.get(id))&&(v.result!=='correct'||v.assisted));
+  const weakPass=(state.micros?.['ouv:passe']?.score||0)<0||Object.entries(state.entries||{}).some(([id,v])=>byId.has(id)&&pass(byId.get(id))&&v.lastSession>=s-3&&(v.result!=='correct'||v.assisted));
   if(s===0){
    check(chosen.every(q=>q.theme==='ouv'),'opening-only',s,chosen.map(q=>q.id));
    check(passes.length===3&&passes[0]<3&&passes.every((v,i)=>!i||v-passes[i-1]>1),'S1-passes',s,passes);
@@ -51,11 +51,12 @@ function metrics(profile,horizon,meta=null){
   const eligible=q=>{const m=meta?.[q.id];return !!m&&s>=m.minSession&&m.requires.every(r=>(exposure.get(r.concept)||0)>=r.minExposure)};
   if(meta)for(const theme of themes){
    if(d.firstTheme[theme]!==undefined||d.eligibleThemeSince[theme]!==undefined)continue;
-   if(exercises.some(q=>q.theme===theme&&meta[q.id].stage<=1&&eligible(q)))d.eligibleThemeSince[theme]=s+1;
+   if(exercises.some(q=>q.theme===theme&&meta[q.id].stage<=1&&eligible(q)&&api.eligibility(q,state,exercises).eligible))d.eligibleThemeSince[theme]=s+1;
   }
   const recent=(state.journal||[]).slice(-8).filter(x=>x.mode==='parcours').flatMap(x=>x.answers||[]).filter(a=>foundations.includes(a.theme));
   const weak=recent.length>=10&&recent.filter(a=>a.result!=='correct'||a.assisted||a.hadFreeError).length*2>=recent.length;
   let adj=0,triples=0;
+  const reasonCounts={};
   for(let i=0;i<chosen.length;i++){
    const q=chosen[i],m=meta?.[q.id],sel=selection?.[i];
    counts[q.theme]=(counts[q.theme]||0)+1;
@@ -68,6 +69,7 @@ function metrics(profile,horizon,meta=null){
    seenFamilies.add(family(q));
    if(sel){
     d.selectionReasons[sel.reason]=(d.selectionReasons[sel.reason]||0)+1;
+    reasonCounts[sel.reason]=(reasonCounts[sel.reason]||0)+1;
     if(sel.kind==='revision'&&!lastSeen.has(q.id))d.recallAlternate++;
     if(sel.kind==='revision'&&pending.has(q.id))d.recallDirect++;
    }
@@ -94,7 +96,7 @@ function metrics(profile,horizon,meta=null){
   }
   if(s<20){
    d.responseAdjacencies+=adj;if(s>0)d.themeTriples+=triples;
-   d.first20.push({session:s+1,ids:chosen.map(q=>q.id),bids:chosen.map(bid),passes:passes.length,counts,adj,triples,maxDifficulty:max(chosen.map(q=>q.difficulty))});
+   d.first20.push({session:s+1,ids:chosen.map(q=>q.id),bids:chosen.map(bid),passes:passes.length,counts,reasonCounts,adj,triples,maxDifficulty:max(chosen.map(q=>q.difficulty))});
   }
   // Only exposures from completed earlier sessions can unlock a subsequent deck.
   if(meta)for(const q of chosen){
@@ -154,7 +156,33 @@ function compare(before,after){
  note(d.errorDelay.p90===null||before.detail.errorDelay.p90===null||d.errorDelay.p90<=before.detail.errorDelay.p90+2,'error-return-delay',{before:before.detail.errorDelay,after:d.errorDelay});
  return {problems,notes};
 }
+// Use the exact historical decks as a controlled fixture to exercise the
+// candidate's state machinery without constraining its new selection algorithm.
+function stateSemantics(candidate){
+ const historic=base.empty();
+ const project=state=>{
+  const x=clone(state);
+  for(const entry of x.journal||[]){
+   assert.equal(new Date(entry.recordedAt).toISOString(),entry.recordedAt);
+   entry.recordedAt='CLOCK';
+  }
+  return Object.fromEntries(['version','completed','entries','skills','micros','axes','journal','active'].map(k=>[k,x[k]]));
+ };
+ for(let s=0;s<6;s++){
+  const deck=base.start(historic,exercises),tested=candidate.load(JSON.stringify(historic));
+  assert.deepEqual(tested.active,historic.active);
+  for(let i=0;i<deck.length;i++){
+   const result=s<3?'correct':s===3?'wrong':i%3===0?'skipped':'correct';
+   const assisted=s>=4&&i%3===1,freeError=s===5&&i%3===2;
+   assert(base.record(historic,deck[i],result,i,null,assisted,freeError));
+   assert(candidate.record(tested,deck[i],result,i,null,assisted,freeError));
+  }
+  assert(base.finish(historic,exercises));assert(candidate.finish(tested,exercises));
+  assert.deepEqual(project(tested),project(historic),'Record/finish state semantics, historical fixture '+(s+1));
+ }
+}
 function compatibility(candidate){
+ stateSemantics(candidate);
  // No fallback can admit an advanced real case with unmet prerequisites.
  const gated=advanced.map(id=>byId.get(id));
  assert(gated.every(Boolean),'Named regression cases absent');
@@ -207,6 +235,14 @@ function selftest(){
  const fake={summary:{uniqueFamilies:100,horizon:20,profile:'autonome',uniqueContexts:20,uniqueDecisions:20,weakDueDistinctEverRecalledShare:null},detail:{violations:[],maxGap:{},errorDelay:{p90:null}}};
  assert(compare(fake,{...fake,summary:{...fake.summary,uniqueFamilies:94}}).problems.some(v=>v.code==='family-retention'));
  assert(!compare(fake,{...fake,summary:{...fake.summary,uniqueFamilies:95}}).problems.length);
+ // Sensitivity: a diagnostic erroneously saying yes cannot mask independent
+ // unmet metadata prerequisites; a diagnostic saying no also fails the test.
+ const md=Object.fromEntries(exercises.map(q=>[q.id,{concept:q.id,stage:0,minSession:0,requires:[]}]));
+ md[chosen[0].id].requires=[{concept:'not-seen-fixture',minExposure:1}];
+ const guarded=metrics('modere',20,md);
+ guarded.observe({phase:'deck',s:0,state:base.empty(),chosen,selection:chosen.map(q=>({id:q.id,kind:'nouveau',reason:'nouveau_qcm'})),api:{eligibility:q=>({eligible:q.id!==chosen[1].id,reasons:[]})}});
+ const codes=guarded.finish().violations.map(x=>x.code);
+ assert(codes.includes('independent-prerequisite'));assert(codes.includes('engine-eligibility'));
  assert.throws(()=>H.payload('<html/>'));
  console.log('PASS M3 harness: negative opening/family/corrupt payload, 95% boundary');
 }

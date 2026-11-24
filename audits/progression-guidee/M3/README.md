@@ -10,3 +10,6 @@ Référence immuable : 96c0f7962c14e74429fa12871d687efa0e8a94bd, deux blobs exac
 - L'archive reconstruit l'inventaire à la même révision, compare SHA-256 de chaque fichier, sept alias, ZIP REST et tar runtime. Aucun verrou production modifié.
 
 - Recette hors ligne intégrée : construire `_public_site` par le builder puis lancer `PW_BROWSER=chromium node tests/progression-guidee-offline.cjs _public_site` et WebKit. La première visite du Quiz se fait hors ligne, après préchauffage depuis l'accueil ; aucune publication.
+
+- La PR M3 exécute uniquement la baseline ; les PR M1/M2 ne déclenchent pas la recette globale. Le pilote déclenche `--candidate` sur la branche intégrée ou via la PR finale de `progression-guidee/integration` vers `main`. L’absence du module ou du diagnostic est alors une erreur, pas un passage silencieux en baseline.
+- Les six séances contrôlées de sémantique de stockage comparent les mêmes anciens decks : promotions, erreurs, aides, saisies libres et journal, hors horloge. Les contre-épreuves du banc détectent également une éligibilité faussement positive et un prérequis manquant.
