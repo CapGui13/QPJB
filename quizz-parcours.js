@@ -397,7 +397,7 @@
   const simplePass=q=>openingPass(q)&&q.difficulty===1&&Number.isInteger(q.h)&&q.h<12;
   const weakAnswer=a=>a.result!=='correct'||a.assisted||a.hadFreeError;
   function metadata(q){
-    const m=prerequis?.schema==='QPJB_PREREQUIS_V1'&&prerequis.byId?.[q.id];
+    const m=prerequis?.schema==='QPJB_PREREQUIS_V1'&&prerequis.byId&&Object.hasOwn(prerequis.byId,q.id)&&prerequis.byId[q.id];
     if(!m||typeof m.concept!=='string'||!m.concept||!Number.isInteger(m.stage)||m.stage<0||m.stage>3||
        !Number.isInteger(m.minSession)||m.minSession<0||!Array.isArray(m.requires)||
        m.requires.some(r=>!r||typeof r.concept!=='string'||!Number.isInteger(r.minExposure)||r.minExposure<1))
@@ -406,16 +406,17 @@
   }
   function evidence(state,exercises){
     const byId=new Map(exercises.map(q=>[q.id,q]));
-    const seen=new Map(),basic=new Map(),clean=new Map(),lastTheme={},lastFamily={},lastConcept={};
+    const seen=new Map(),basic=new Map(),proofs=new Map(),lastTheme={},lastFamily={},lastConcept={};
     const weakConcept={},weakContext={};
     const recent=[];
     function add(map,key,value){if(!map.has(key))map.set(key,new Set());map.get(key).add(value)}
     function observe(q,a,s){
       const m=metadata(q);if(!m)return;
       add(seen,m.concept,q.id);
-      if(m.stage<=1&&q.difficulty<=3){
-        add(basic,m.concept,family(q));
-        if(!weakAnswer(a))add(clean,m.concept,family(q));
+      if(q.difficulty<=3)add(basic,m.concept,family(q));
+      if(!weakAnswer(a)){
+        if(!proofs.has(m.concept))proofs.set(m.concept,[]);
+        proofs.get(m.concept).push({family:family(q),difficulty:q.difficulty,session:s});
       }
       lastTheme[q.theme]=Math.max(lastTheme[q.theme]??-1,s);
       lastConcept[m.concept]=Math.max(lastConcept[m.concept]??-1,s);
@@ -438,7 +439,7 @@
       const m=metadata(q);
       if(m&&r.assessment&&r.assessment.lastSession<state.completed){
         add(seen,m.concept,q.id);
-        if(m.stage<=1&&q.difficulty<=3)add(basic,m.concept,family(q));
+        if(q.difficulty<=3)add(basic,m.concept,family(q));
         lastConcept[m.concept]=Math.max(lastConcept[m.concept]??-1,r.assessment.lastSession);
       }
     }
@@ -448,12 +449,14 @@
       if(m)weakConcept[m.concept]=(weakConcept[m.concept]||0)+w;
       weakContext[context(q)]=(weakContext[context(q)]||0)+w;
     }
-    const easier=new Map();
+    const byConcept=new Map();
     for(const q of exercises){
       const m=metadata(q);
-      if(m&&m.stage<=1&&q.difficulty<=3)add(easier,m.concept,family(q));
+      if(!m)continue;
+      if(!byConcept.has(m.concept))byConcept.set(m.concept,[]);
+      byConcept.get(m.concept).push(q);
     }
-    return {seen,basic,clean,easier,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent};
+    return {seen,basic,proofs,byConcept,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent};
   }
   function evaluate(q,state,e){
     const s=state.completed,m=metadata(q),reasons=[];
@@ -469,13 +472,27 @@
       if((e.seen.get(r.concept)?.size||0)<r.minExposure)
         reasons.push('exposure:'+r.concept+':'+r.minExposure);
     }
-    const fundamentals=e.basic.get(m.concept)?.size||0, independent=e.clean.get(m.concept)?.size||0;
+    const lower=key=>(e.byConcept.get(key)||[]).filter(v=>v.difficulty<q.difficulty);
     if(q.difficulty>=4){
+      const threshold=q.difficulty===5?3:2;
       const floor=q.difficulty===5?Math.max(18,(INTRO[q.theme]||0)+5):Math.max(8,(INTRO[q.theme]||0)+3);
       if(s<floor)reasons.push('difficulty-calendar');
-      if(fundamentals<1)reasons.push('difficulty-foundation');
-      if(independent<(q.difficulty===5?3:2))reasons.push('difficulty-independent');
-    }else if(q.difficulty===3&&m.stage>=1&&e.easier.has(m.concept)&&!fundamentals)
+      // La notion peut être nouvelle mais avancée : seules les dépendances
+      // explicites de M1 peuvent alors fournir les fondamentaux.
+      const keys=lower(m.concept).length?[m.concept]:[...new Set(m.requires.map(r=>r.concept))];
+      const available=new Set(keys.flatMap(key=>lower(key).map(family)));
+      const proof=keys.flatMap(key=>(e.proofs.get(key)||[]).filter(p=>p.difficulty<q.difficulty));
+      const families=new Set(proof.map(p=>p.family));
+      const sessions=new Set(proof.map(p=>p.session));
+      const exposed=keys.some(key=>lower(key).some(v=>e.seen.get(key)?.has(v.id)));
+      if(!available.size||!exposed)reasons.push('difficulty-foundation');
+      // Plusieurs bonnes réponses d'une même séance ne suffisent pas.
+      // Si une seule famille élémentaire existe, des séances indépendantes
+      // successives permettent néanmoins de progresser.
+      if(!available.size||families.size<Math.min(threshold,available.size)||sessions.size<threshold)
+        reasons.push('difficulty-independent');
+    }else if(q.difficulty===3&&m.stage>=1&&lower(m.concept).length&&
+      !lower(m.concept).some(v=>e.seen.get(m.concept)?.has(v.id)))
       reasons.push('difficulty-foundation');
     return {eligible:reasons.length===0,reasons};
   }
@@ -553,8 +570,8 @@
     const oldTheme=q=>s-(e.lastTheme[q.theme]??(INTRO[q.theme]-1));
     const oldFamily=q=>s-(e.lastFamily[family(q)]??-999);
     const oldConcept=q=>s-(e.lastConcept[mOf(q).concept]??-999);
-    const maintenance=q=>due(q)&&!bad(q)||oldTheme(q)>=5||
-      (e.seen.has(mOf(q).concept)&&oldConcept(q)>=5);
+    const maintenance=q=>due(q)&&!bad(q)||
+      (e.seen.has(mOf(q).concept)&&(oldTheme(q)>=5||oldConcept(q)>=5));
     const transfer=q=>fresh(q)&&!!e.weakContext[context(q)]&&!e.weakConcept[mOf(q).concept];
     function classify(q){
       if(weak(q))return 'weakness';
@@ -593,6 +610,8 @@
       else if(pool.some(q=>!ids.has(q.id)&&!families.has(family(q))&&(!openingPass(q)||passCount()<passCap)))return false;
       const balanced=candidates.filter(q=>(themes[q.theme]||0)<(s===0?limit:4));
       if(balanced.length)candidates=balanced;
+      else if(s>0&&pool.some(q=>!ids.has(q.id)&&!families.has(family(q))&&
+        (!openingPass(q)||passCount()<passCap)&&(themes[q.theme]||0)<4))return false;
       const ranked=candidates.map(q=>({q,v:score(q,category)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
@@ -635,7 +654,10 @@
       for(const [t] of priorities){
         if(selected.length>=limit||themes[t])continue;
         const known=Object.hasOwn(e.lastTheme,t);
-        choose(pool.filter(q=>q.theme===t&&(known||mOf(q).stage<=1)),known?'maintenance':'discovery');
+        const options=pool.filter(q=>q.theme===t&&(known||mOf(q).stage<=1));
+        if(known){
+          if(!choose(options.filter(q=>e.seen.has(mOf(q).concept)),'maintenance'))choose(options,null);
+        }else choose(options,'discovery');
       }
       // Une erreur récente mérite une réponse ciblée sans prendre toute la séance.
       if(selected.length<limit&&buckets.weakness<quotas[2])
