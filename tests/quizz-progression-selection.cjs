@@ -83,10 +83,12 @@ assert.deepEqual(restored.active.answers,old.active.answers);
 // Un catalogue synthétique épuisé ne peut pas ouvrir un cas non éligible.
 const blocked=[...qs.filter(q=>q.difficulty===5)];
 assert.deepEqual(E.select(blocked,E.empty()),[]);
-// Les séances complémentaires ne doivent pas contournent la porte commune.
+// Les séances complémentaires ne doivent pas contourner la porte commune.
 const con=E.empty();con.completed=4;
 con.micros['ouv:passe']={score:-3,attempts:4};
-assert.equal(E.consolidationPlan(con,qs).available,false,'Pas de série de dix Passes pour contourner la progression');
+const passPlan=E.consolidationPlan(con,qs);
+assert.ok(passPlan.available,'Une consolidation ciblée Passe garde son rôle spécifique');
+assert.ok(passPlan.items.every(v=>at(qs.find(q=>q.id===v.id),con).eligible));
 con.micros={'ouv:mineure':{score:-3,attempts:4}};
 const plan=E.consolidationPlan(con,qs);
 assert.ok(plan.available);
