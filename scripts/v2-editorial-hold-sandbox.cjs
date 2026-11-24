@@ -13,7 +13,7 @@ const sourceHash='c478dd2d24c13e2e706cbdc168b7a822258f9fe1c09c65cf44cb75516c29d8
 const publicBlob='dfd1f21dfc3c2256b066b36b777c437d2973e895';
 const oldKey='qpjb-preview-v2-eleve-01';
 const newKey='qpjb-preview-v2-eleve-02-hold';
-const holdFile='Docs/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json';
+const holdFile='audits/references/v2/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json';
 const block='<script id="ay-payload" type="application/json">';
 const quizBlock='<script id="training-data" type="application/json">';
 const sha256=s=>crypto.createHash('sha256').update(s).digest('hex');

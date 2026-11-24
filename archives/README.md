@@ -1,0 +1,3 @@
+# Archives QPJB
+
+Les documents clôturés et anciennes versions sont conservés sans modification de leurs octets. Ils ne sont pas des instructions pour l’application actuelle. Les chemins historiques cités dans ces documents sont ceux de leur époque ; leur [instantané original](https://github.com/CapGui13/QPJB/tree/1c86ec38cf7ea0af016e7b8e02068bfe8e63bcf5) reste disponible avec ses liens d’origine. La correspondance de chaque ancien et nouveau chemin, ainsi que son SHA Git, se trouve dans [le registre de déplacement](../audits/references/repository-layout-20261124.json). Les références actives des scripts et tests ont été adaptées ; les données du Quiz et les donnes PBN ne sont pas retouchées.

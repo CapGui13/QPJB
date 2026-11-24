@@ -19,5 +19,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Vérifier les déplacements et les blobs protégés
+        run: python3 tests/repository-layout.py --verify-relocation
+      - name: Régénérer le catalogue et vérifier les ressources publiques
+        run: |
+          python3 scripts/build_catalogue.py
+          python3 tests/repository-layout.py
       - name: Inventaire des dépendances du dépôt
         run: python3 scripts/audit_repository_layout.py

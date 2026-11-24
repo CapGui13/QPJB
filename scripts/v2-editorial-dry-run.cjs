@@ -5,7 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
-const patchPath = path.join(root, 'Docs/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json');
+const patchPath = path.join(root, 'audits/references/v2/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json');
 const quizPath = path.join(root, 'quizz.html');
 const expectedBlob = 'dfd1f21dfc3c2256b066b36b777c437d2973e895';
 const expectedMain = 'a0ffaed6e49ab7259de800773a4ee384be755339';
@@ -38,7 +38,7 @@ function review(items, patch) {
   assert.equal(items.length,1523);
   const byId=new Map(items.map(q=>[q.id,q]));
   const ledger=JSON.parse(fs.readFileSync(path.join(root,
-    'Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'),'utf8'));
+    'audits/references/v2/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'),'utf8'));
   assert.equal(ledger.caseDecisions.length,19,'La validation de 19 QCM est requise');
   assert.equal(ledger.pedagogicalApproval.status,'APPROVED_BY_USER');
   assert.equal(ledger.approvedForPublication,false);

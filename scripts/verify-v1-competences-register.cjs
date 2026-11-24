@@ -68,7 +68,7 @@ const st=v2.docs['PARCOURS_V2_STAYMAN_65_MICRO_OBJECTIFS_CANDIDATS_20261118.json
 assert.equal(sa.assignments.length,14);assert.equal(st.assignments.length,65);
 const candidate=new Map([...sa.assignments,...st.assignments].map(a=>[a.id,a]));
 assert.equal(candidate.size,79);
-const reference= parseCsv(read('Docs/PARCOURS_V2_REVUE_620_20261118.csv'));
+const reference= parseCsv(read('audits/references/v2/PARCOURS_V2_REVUE_620_20261118.csv'));
 assert.equal(reference.length,620);assert.equal(new Set(reference.map(x=>x.id)).size,620);
 const inReference=new Set(reference.map(x=>x.id));
 const selected=new Set();

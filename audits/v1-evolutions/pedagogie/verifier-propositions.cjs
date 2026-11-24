@@ -67,7 +67,7 @@ const historicalData=JSON.parse(historicalJson);
 const liveById = new Map(historicalData.exercises.map(q => [q.id, q]));
 assert.equal(liveById.size, data.exercises.length, 'Doublons IDs dans le catalogue de référence');
 
-const approved = loadRootJson('Docs/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json');
+const approved = loadRootJson('audits/references/v2/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json');
 const approvedIds = new Set(approved.caseDecisions.map(d => d.id));
 assert.equal(approvedIds.size, 19, 'Registre des 19 décisions attendues');
 const lotD = loadRootJson('audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json');
