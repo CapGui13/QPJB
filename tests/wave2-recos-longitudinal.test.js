@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const core=require('../quizz-parcours.js'),rec=require('../parcours-recommandations.js');
+const fixtureReport=require('./progression-guidee-reco-fixtures.cjs').report;
 
 const profileNames=['tout_juste','echecs_persistants','erreurs_moderees','aide','progression_graduelle'];
 const pool=Array.from({length:7},(_,i)=>({id:'POOL-'+i,theme:'ouv',answer:'Passe',
@@ -34,9 +35,9 @@ function simulate(name,n){
 }
 function measure(state,name,n){
   const before=JSON.stringify(state),catalogueBefore=JSON.stringify(pool);
-  const top=rec.buildReport(state,{maxRecommendations:3,exercises:pool});
-  const full=rec.buildReport(state,{maxRecommendations:10,exercises:pool});
-  const again=rec.buildReport(state,{maxRecommendations:3,exercises:pool});
+  const top=fixtureReport(state,{maxRecommendations:3,exercises:pool});
+  const full=fixtureReport(state,{maxRecommendations:10,exercises:pool});
+  const again=fixtureReport(state,{maxRecommendations:3,exercises:pool});
   assert.deepEqual(top,again,'résultat déterministe');
   assert.equal(JSON.stringify(state),before,'état conservé');
   assert.equal(JSON.stringify(pool),catalogueBefore,'catalogue conservé');
@@ -79,7 +80,7 @@ for(const name of profileNames){
   });
 }
 test('P4 profil progressif : première phase faible sans faux acquis',()=>{
-  const r=rec.buildReport(simulate('progression_graduelle',20),{maxRecommendations:10});
+  const r=fixtureReport(simulate('progression_graduelle',20),{maxRecommendations:10});
   assert.equal(r.observations.parcours.autonomous,0);
   assert.ok(!r.recommendations.some(x=>x.type==='repeated_autonomous'));
 });

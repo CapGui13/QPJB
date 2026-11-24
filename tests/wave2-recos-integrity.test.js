@@ -9,7 +9,10 @@ function gitBlob(bytes){
 }
 test('P9 garde-fou : moteur V1 conservé bit à bit depuis la base',()=>{
   const {restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
-  assert.equal(gitBlob(Buffer.from(restoreEngine(read('quizz-parcours.js').toString('utf8')),'utf8')),'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
+  const historical=require('./progression-guidee-historical.cjs');
+  assert.equal(gitBlob(Buffer.from(restoreEngine(historical.source()),'utf8')),'d0f06f1c259f7a766f2d1c8c47289374a74138dc');
+  // #293 : seule la version candidate livrée par M2 est autorisée ici.
+  assert.equal(gitBlob(read('quizz-parcours.js')),'0c2743f963bdfae589ed901eb6ffb1a6414fda0d','Moteur candidat différent du livrable M2 intégré');
 });
 test('P9 garde-fou : le JSON des 1523 QCM est intact malgré l’UI M3',()=>{
   const html=read('quizz.html').toString('utf8');

@@ -10,6 +10,9 @@ function exercise(i){
     difficultyReason:'',auction:[],caseFamily:'TEN-FAM-'+i};
 }
 const ten=Array.from({length:10},(_,i)=>exercise(i));
+// La sonde d'axe SEF conserve son ID réel. Le plan de révision utilise le vrai catalogue,
+// et non des métadonnées inventées pour cet ID de production.
+const realCatalogue=require('./progression-guidee-historical.cjs').catalogue().exercises;
 function doSession(state,mode='wrong'){
   state.active={ids:ten.map(x=>x.id),index:0,answers:{},createdAt:state.completed};
   for(let i=0;i<10;i++){
@@ -31,7 +34,7 @@ for(const n of [65,153]){
     const s=many(n,'helped'),before=JSON.stringify(s);
     assert.equal(s.journal.length,n);
     assert.ok(s.journal.every(e=>e.answers.length===10));
-    const r=reco.buildReport(s,{maxRecommendations:3,exercises:ten});
+    const r=reco.buildReport(s,{maxRecommendations:3,exercises:realCatalogue});
     assert.equal(r.observations.detailedSessions,n);
     assert.equal(r.observations.sessionsWithoutDetail,0);
     assert.equal(counts(r).helped,n*10);
