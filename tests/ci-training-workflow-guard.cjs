@@ -28,7 +28,15 @@ for (const [name, body] of [['parcours-long', long], ['smoke', chromium], ['webk
   assert.match(body, /^    needs: plan$/m, 'Parallel job must wait only for plan: ' + name);
   assert.match(body, /needs\.plan\.outputs\.level == 'FULL'/);
 }
-const commands = ci.split(/\r?\n/).map(line => line.trim());
+const archive = read('.github/workflows/quiz-sef-integrite.yml');
+assert.match(archive,/if: github\.event_name == 'workflow_dispatch'/);
+assert.match(archive,/ref: 287bc05fd77d40fcfb98c5927152093e0555c97c/);
+assert.match(quick,/python3 scripts\/verify_quiz_sef\.py --html quizz\.html --min-count 1523/);
+assert.match(quick,/node tests\/quizz-catalogue-live\.cjs/);
+assert.match(long,/node tests\/quizz-catalogue-live\.cjs --simulate/);
+assert.match(job('quick'),/node scripts\/ci-routine\.cjs --qcm/);
+assert.match(job('quick'),/node tests\/quizz-catalogue-live\.cjs/);
+const commands = (ci+'\n'+archive).split(/\r?\n/).map(line => line.trim());
 assert(baseline.requiredCommands.length >= 50, 'Incomplete historical baseline');
 for (const command of baseline.requiredCommands) {
   assert.equal(commands.filter(line => line === command).length, 1,
@@ -62,4 +70,4 @@ assert.match(job('verdict'), /needs: \[plan, quick, ui-chromium, ui-webkit, inte
 assert.match(job('verdict'), /node scripts\/ci-orchestration-verdict\.cjs/);
 assert.match(pages, /needs\.pages-source\.outputs\.publish == 'true'/);
 console.log('PASS: ' + baseline.requiredCommands.length +
-  ' historical CLI tests, 7 browser scripts per engine, independent jobs, guarded Pages.');
+  ' CLI tests preserved (current or manual historical edition), 7 browser scripts per engine, guarded Pages.');

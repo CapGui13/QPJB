@@ -6,7 +6,7 @@ const path=require('node:path');
 // Historical behavior guards run against exact historical engine. Candidate acceptance: progression-guidee-recette.cjs.
 const P=require('./progression-guidee-historical.cjs').engine();
 require('./progression-guidee-historical.cjs').catalogue();
-const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
+const html=require('./progression-guidee-historical.cjs').html();
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match,'Embedded Quiz SEF catalog');
 const DATA=JSON.parse(match[1]);

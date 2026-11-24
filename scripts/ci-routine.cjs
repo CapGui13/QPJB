@@ -31,7 +31,9 @@ function changedQcm(before,after){
   assert.equal(q.id,p.id,'stable IDs/order');assert(!ids.has(q.id),'duplicate ID');ids.add(q.id);
   if(JSON.stringify(p)===JSON.stringify(q))continue;
   count++;
-  const allowed=new Set(['context','explain','answer','choices']);
+  const allowed=new Set(['context','explain','choices']);
+  // A changed correct answer may invalidate saved mastery and prerequisite mappings.
+  assert.equal(q.answer,p.answer,'changed correct answer requires explicit progress review and FULL');
   for(const key of new Set([...Object.keys(p),...Object.keys(q)])){
    if(!allowed.has(key))assert.deepEqual(q[key],p[key],'protected QCM field '+key);
   }
@@ -65,7 +67,7 @@ function inspectCommit(parent,head,cwd){
  }
  return {scope:m[1],files};
 }
-function routineRange(base,head,cwd=process.cwd(),{allowQcm=false}={}){
+function routineRange(base,head,cwd=process.cwd()){
  try{
   assert(SHA.test(base)&&SHA.test(head)&&base!==head);
   git(['merge-base','--is-ancestor',base,head],cwd);
@@ -76,7 +78,6 @@ function routineRange(base,head,cwd=process.cwd(),{allowQcm=false}={}){
    const [commit,parent,...extra]=row.split(' ');
    assert(SHA.test(commit)&&parent===prev&&!extra.length,'routine range must be linear');
    const result=inspectCommit(parent,commit,cwd);
-   assert(allowQcm||result.scope!=='qcm','catalogue legacy approval registry still locked');
    results.push(result);prev=commit;
   }
   assert.equal(prev,head);
@@ -104,6 +105,7 @@ if(require.main===module){
  const [mode,base,head]=process.argv.slice(2);
  if(mode==='--eligible')process.exitCode=routineRange(base,head)?0:1;
  else if(mode==='--check')check(base,head);
- else throw Error('Expected --eligible or --check BASE HEAD');
+ else if(mode==='--qcm'){const r=routineRange(base,head);assert(r,'routine range required');process.exitCode=r.some(x=>x.scope==='qcm')?0:1;}
+ else throw Error('Expected --eligible, --check or --qcm BASE HEAD');
 }
 module.exports={routineRange,changedQcm,syntax,check};
