@@ -36,7 +36,8 @@ assert.match(quick,/node tests\/quizz-catalogue-live\.cjs/);
 assert.match(long,/node tests\/quizz-catalogue-live\.cjs --simulate/);
 assert.match(job('quick'),/node scripts\/ci-routine\.cjs --qcm/);
 assert.match(job('quick'),/node tests\/quizz-catalogue-live\.cjs/);
-const commands = (ci+'\n'+archive).split(/\r?\n/).map(line => line.trim());
+// QUICK and FULL are mutually exclusive; count each legacy command once in FULL or the manual archive.
+const commands = (ci.replace(job('quick'),'')+'\n'+archive).split(/\r?\n/).map(line => line.trim());
 assert(baseline.requiredCommands.length >= 50, 'Incomplete historical baseline');
 for (const command of baseline.requiredCommands) {
   assert.equal(commands.filter(line => line === command).length, 1,
