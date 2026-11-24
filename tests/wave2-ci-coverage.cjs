@@ -41,7 +41,8 @@ function verify(workflow,publication){
   assert.ok(body.includes('artifacts/lot07-publication/'),'Loss of forensic artifacts '+engine);
   assert.ok(body.includes('if: always()'),'Screenshot uploader must run on test failure '+engine);
   assert.doesNotMatch(body,/^\s*continue-on-error:\s*true\s*$/m,'Browser failures must never be ignored');
-  assert.doesNotMatch(body,/^\s*needs:/m,'Browser jobs must remain independent');
+  assert.match(body,/^    needs: plan$/m,'Browser jobs may depend only on the classification plan');
+  assert.match(body,/needs\.plan\.outputs\.level == 'FULL'/,'Historical browser jobs must run in FULL');
  }
  assert.ok(publication.includes("workflow_run.conclusion == 'success'"),'Pages success gate removed');
  assert.ok(publication.includes("workflow_run.head_branch == 'main'"),'Pages main branch gate removed');
