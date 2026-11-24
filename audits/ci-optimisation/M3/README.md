@@ -19,3 +19,10 @@ Base commune cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3.
 
 ## Dépendances et clôture
 Lire les logs du workflow M3 exact, corriger toute anomalie. Prouver les métadonnées réelles Pages et les deux voies de récupération. Le pilote assemble M1/M2/M3 ; effectuer FULL sur la PR d'intégration, démontrer QUICK/UI avec les vraies interfaces sur scénarios jetables (pas main), relever le comportement GraphQL/checkpoint sur la première publication autorisée. Pas de clôture tant que ces preuves manquent.
+
+## Passe 3 — résultats réels sur 8aeae71628011d5b38262a9ab61ebb5bbdf5c10e
+- Run #45360280036 job 138328295936 : 229 assertions politique, 38 assertions état/Git, 19 Python sur blocs YAML réels, 58 commandes CLI historiques, 7/8 scripts navigateur historiques, 48 issues de gate / 8 mutations, 4 mutations couverture et audit performance : tous PASS. Tests locaux Python également 19/19, blobs vérifiés exactement (workflow 06319be7faea4c1d20219d358433d370b84071f5, test 3716bb32b845139d8e847e9ae188200a7097b131).
+- API Actions réelle : deployment 8022809088, SHA cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3, state success, log_url https://github.com/CapGui13/QPJB/actions/runs/45357396379/job/138321708944. Champs run.path, head_repository.id, run_attempt et job.run_attempt conformes. Ancien run refusé car marqueur V1 absent (FULL attendu).
+- Builder : 178 fichiers, 21 115 338 octets, 7 alias. Archive 14903893800 téléversée à 08:56:26.452Z ; téléchargement runtime immédiat à 08:56:26.923Z : Artifact not found. Reproduction réelle de la fragilité, sans déployer. Le job global a échoué ; le test REST/byte proof n'a pas tourné.
+- Correctif : preuve inter-jobs (même structure que publication) et deux délais 10/20 s, échec définitif après trois tentatives. Les tentatives d'acquisition ne sont pas des verdicts CI ; le contrôle final de digest, octets et SHA reste obligatoire sans continue-on-error. Ne pas prétendre la fragilité résolue sans preuve.
+- Comparaison Git depuis cffac8d : 17 chemins, tous autorisés, 89 occurrences historiques CLI/PW/npm/Python conservées, aucune manquante. La suite FULL intégrée dépend toujours de M1/M2 et du pilote.

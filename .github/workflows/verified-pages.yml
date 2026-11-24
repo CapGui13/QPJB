@@ -152,8 +152,19 @@ jobs:
       - name: Laisser le service Actions rattraper son index
         if: steps.runtime-download.outcome != 'success'
         run: sleep 10
-      - name: Nouvelle lecture obligatoire si la première a échoué
+      - name: Deuxième lecture si la première a échoué
+        id: runtime-download-2
         if: steps.runtime-download.outcome != 'success'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: ${{ runner.temp }}/pages-runtime
+      - name: Dernier délai d'indexation
+        if: steps.runtime-download.outcome != 'success' && steps.runtime-download-2.outcome != 'success'
+        run: sleep 20
+      - name: Dernière lecture obligatoire si les deux précédentes ont échoué
+        if: steps.runtime-download.outcome != 'success' && steps.runtime-download-2.outcome != 'success'
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARCHIVE_NAME }}

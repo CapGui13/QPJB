@@ -64,14 +64,47 @@ jobs:
         with:
           path: _public_site
           name: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
-      - uses: actions/download-artifact@v4
+
+  retrieve:
+    name: Récupération inter-jobs sans déploiement
+    needs: proofs
+    runs-on: ubuntu-latest
+    env:
+      ARCHIVE_NAME: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
         with:
-          name: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          persist-credentials: false
+      - name: Première lecture par le service Actions
+        id: runtime-download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: ${{ runner.temp }}/pages-runtime
+      - name: Laisser le service Actions rattraper son index
+        if: steps.runtime-download.outcome != 'success'
+        run: sleep 10
+      - name: Deuxième lecture si la première a échoué
+        id: runtime-download-2
+        if: steps.runtime-download.outcome != 'success'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: ${{ runner.temp }}/pages-runtime
+      - name: Dernier délai d'indexation
+        if: steps.runtime-download.outcome != 'success' && steps.runtime-download-2.outcome != 'success'
+        run: sleep 20
+      - name: Dernière lecture obligatoire si les deux précédentes ont échoué
+        if: steps.runtime-download.outcome != 'success' && steps.runtime-download-2.outcome != 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
           path: ${{ runner.temp }}/pages-runtime
       - name: Verify actual archive retrieval and SHA, no deployment
         env:
           GH_TOKEN: ${{ github.token }}
-          ARCHIVE_NAME: m3-proof-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           node - <<'JS' > "$RUNNER_TEMP/proof-artifact.json"
           const {api}=require('./scripts/ci-publication-state.cjs');
@@ -80,6 +113,8 @@ jobs:
           const a=p.artifacts.filter(x=>x.name===process.env.ARCHIVE_NAME);
           assert.equal(a.length,1);assert.equal(a[0].expired,false);
           assert.match(a[0].digest,/^sha256:[0-9a-f]{64}$/);
+          assert.equal(a[0].workflow_run.id,Number(process.env.GITHUB_RUN_ID));
+          if(process.env.GITHUB_EVENT_NAME==='push')assert.equal(a[0].workflow_run.head_sha,process.env.GITHUB_SHA);
           console.log(JSON.stringify(a[0]));
           JS
           ARTIFACT_ID=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["id"])' "$RUNNER_TEMP/proof-artifact.json")
