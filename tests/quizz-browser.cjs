@@ -470,6 +470,7 @@ const server=http.createServer((req,res)=>{
     assert.equal(new URL(app.url()).pathname,'/QPJB/','The Quizz opens inside the parent app URL');
     assert.equal(await app.locator('#main-header').isVisible(),true,'Quizz settings share the normal QPJB header');
     assert.equal(await embedded.locator('.app-top').isVisible(),false,'No duplicate header in embedded Quizz');
+    assert.equal(await embedded.locator('html.quizz-parent-scroll').count(),0,'Mobile retains its native internal scroll');
     await app.evaluate(()=>{
       document.getElementById('quizz-frame').dataset.persistenceProbe='same-iframe';
       window.__quizzInternalFadeSeen=false;
@@ -507,6 +508,55 @@ const server=http.createServer((req,res)=>{
     await app.waitForFunction(()=>document.getElementById('vquizz').style.display==='none',null,{timeout:12000});
     await app.close();
   }finally{await integratedContext.close()}
+
+  // PC : vraie molette au-dessus de l'iframe, pas un scrollTo de substitution.
+  // La page des paramètres est suffisamment haute à 600px pour vérifier les deux sens.
+  const desktopContext=await browser.newContext({viewport:{width:1280,height:600},
+    locale:'fr-FR',reducedMotion:'reduce',serviceWorkers:'block'});
+  try{
+    const app=await desktopContext.newPage();
+    app.on('pageerror',e=>errors.push(e.message));
+    await app.goto('http://127.0.0.1:8766/QPJB/',{waitUntil:'domcontentloaded'});
+    await app.addStyleTag({content:'#splash{opacity:0!important;visibility:hidden!important;pointer-events:none!important}'});
+    await app.locator('.training-button-quizz').click();
+    const embedded=app.frameLocator('#quizz-frame');
+    await embedded.locator('html.quizz-parent-scroll').waitFor({state:'attached'});
+    await app.waitForFunction(()=>{
+      const f=document.getElementById('quizz-frame'),d=f.contentDocument;
+      return document.getElementById('quizz-loading').hidden&&
+        d?.documentElement.scrollHeight<=f.clientHeight+2&&
+        document.documentElement.scrollHeight>innerHeight+250;
+    });
+    const child=app.frames().find(f=>f.url().includes('/quizz.html'));
+    assert.ok(child);
+    await app.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+    await app.mouse.move(640,350);
+    await app.mouse.wheel(0,240);
+    await app.waitForFunction(()=>scrollY>100);
+    assert.equal(await child.evaluate(()=>scrollY),0,'PC: the iframe does not scroll independently');
+    await app.mouse.wheel(0,-240);
+    await app.waitForFunction(()=>scrollY<20);
+    assert.equal(await child.evaluate(()=>scrollY),0);
+    const settingsHeight=await app.locator('#quizz-frame').evaluate(el=>el.clientHeight);
+    await embedded.locator('#parcours-start').click();
+    await embedded.locator('body.parcours-session').waitFor({state:'visible'});
+    await app.waitForFunction(old=>{
+      const f=document.getElementById('quizz-frame'),shell=f.contentDocument.querySelector('.app-shell');
+      return f.clientHeight<old&&Math.abs(f.clientHeight-Math.max(innerHeight,Math.ceil(shell.getBoundingClientRect().bottom)+2))<=4;
+    },settingsHeight);
+    await embedded.locator('#show-choices').click();
+    await embedded.locator('#answers button').first().click();
+    await embedded.locator('#answer-feedback').waitFor({state:'visible'});
+    await app.waitForFunction(()=>document.documentElement.scrollHeight>innerHeight+80);
+    await app.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+    await app.mouse.move(640,350);
+    await app.mouse.wheel(0,180);
+    await app.waitForFunction(()=>scrollY>40);
+    assert.equal(await child.evaluate(()=>scrollY),0,'PC: scroll through the answered question stays on the parent');
+    await app.goto('http://127.0.0.1:8766/QPJB/quizz.html',{waitUntil:'domcontentloaded'});
+    assert.equal(await app.locator('html.quizz-parent-scroll').count(),0,'Standalone desktop retains native scroll');
+    console.log('QUIZZ EMBEDDED PC WHEEL PASS '+engine);
+  }finally{await desktopContext.close()}
 
   // Animation du clavier Bridge — ouverture, repli et corrigé, avec mouvements autorisés.
   // Les autres parcours de ce fichier restent en reducedMotion='reduce' pour leur stabilité.

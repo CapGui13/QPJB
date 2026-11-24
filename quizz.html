@@ -149,6 +149,10 @@ body{--seat-line:#594a67}
 /* Quizz V4.31 — même shell et mêmes transitions de vue que QPJB. */
 body.session-mode .app-top{display:none}
 html.quizz-embedded .app-top{display:none!important}
+/* PC intégré : une seule zone de défilement verticale, la page QPJB.
+   Les vues autonomes et tactiles gardent leur scroll natif. */
+html.quizz-parent-scroll{overflow:hidden!important;min-height:0!important;scrollbar-gutter:auto!important}
+html.quizz-parent-scroll body,html.quizz-parent-scroll .app-shell{min-height:0!important}
 body.session-mode .qpjb-quiz-nav{padding-bottom:4px}
 body.session-mode .layout{margin-top:6px}
 .qpjb-quiz-nav{padding-top:calc(12px + env(safe-area-inset-top,0px))}
@@ -403,6 +407,30 @@ body.parcours-session .parcours-session-banner{display:block}
 /* Navigation Quizz — fondu commandé par la page mère, identique aux autres écrans. */
 const quizEmbedded=window.parent!==window&&new URLSearchParams(location.search).get('embedded')==='1';
 if(quizEmbedded)document.documentElement.classList.add('quizz-embedded');
+let quizParentMedia=null,quizParentScroll=false;
+try{if(quizEmbedded)quizParentMedia=window.parent.matchMedia('(min-width: 768px) and (pointer: fine)')}catch(_){}
+function syncQuizScrollMode(){
+ quizParentScroll=!!quizParentMedia?.matches;
+ document.documentElement.classList.toggle('quizz-parent-scroll',quizParentScroll);
+ if(quizParentScroll&&window.scrollY!==0)window.scrollTo({top:0,behavior:'instant'});
+}
+syncQuizScrollMode();
+// Le navigateur ne transmet pas toujours la molette de l'iframe à son parent.
+// Conserver le zoom, le geste horizontal et les vrais contrôles scrollables.
+if(quizEmbedded)window.addEventListener('wheel',event=>{
+ if(!quizParentScroll||event.defaultPrevented||!event.cancelable||event.ctrlKey||
+    event.shiftKey||!event.deltaY||Math.abs(event.deltaX)>Math.abs(event.deltaY))return;
+ for(const el of event.composedPath()){
+   if(!(el instanceof Element)||el===document.body||el===document.documentElement)continue;
+   if(el.tagName==='SELECT'&&document.activeElement===el)return;
+   if(!/^(auto|scroll|overlay)$/.test(getComputedStyle(el).overflowY))continue;
+   if(event.deltaY<0&&el.scrollTop>0)return;
+   if(event.deltaY>0&&el.scrollTop+el.clientHeight<el.scrollHeight-1)return;
+ }
+ const scale=event.deltaMode===1?16:event.deltaMode===2?window.parent.innerHeight:1;
+ event.preventDefault();
+ window.parent.scrollBy({top:event.deltaY*scale,behavior:'instant'});
+},{passive:false});
 function quizReportView(){
  if(quizEmbedded)window.parent.postMessage({type:'qpjb-quizz-view',session:document.body.classList.contains('session-mode')},location.origin);
 }
@@ -470,10 +498,18 @@ window.addEventListener('message',e=>{
  }
  window.parent.postMessage({type:'qpjb-quizz-nav-done',seq},location.origin);
 });
+let quizHeightScheduled=false;
 function quizReportHeight(){
- if(!quizEmbedded)return;
+ if(!quizEmbedded||quizHeightScheduled)return;
+ quizHeightScheduled=true;
  requestAnimationFrame(()=>{
-   const height=Math.ceil(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.body.getBoundingClientRect().bottom));
+   quizHeightScheduled=false;
+   // scrollHeight et min-height:100dvh sont au moins la hauteur actuelle de
+   // l'iframe : ils empêchaient son rétrécissement après une longue question.
+   const shell=document.querySelector('.app-shell');
+   const height=quizParentScroll&&shell?
+     Math.max(200,Math.ceil(shell.getBoundingClientRect().bottom+window.scrollY)+2):
+     Math.ceil(Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.body.getBoundingClientRect().bottom));
    window.parent.postMessage({type:'qpjb-quizz-height',height},location.origin);
  });
 }
@@ -1344,6 +1380,7 @@ if(quizEmbedded){
  });
  if('ResizeObserver' in window)new ResizeObserver(quizReportHeight).observe(document.body);
  window.addEventListener('resize',quizReportHeight);
+ quizParentMedia?.addEventListener('change',()=>{syncQuizScrollMode();quizReportHeight()});
  quizReportView();
  quizReportHeight();
  window.parent.postMessage({type:'qpjb-quizz-ready'},location.origin);
