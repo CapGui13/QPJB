@@ -39,9 +39,10 @@ const server=http.createServer((req,res)=>{
   assert.deepEqual(warm,{type:'QPJB_OFFLINE_READY',ok:true});
   const cached=await page.evaluate(async()=>{
    const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();
-   return keys.some(x=>new URL(x).pathname==='/QPJB/quizz-prerequis.js');
+   return ['/QPJB/quizz-prerequis.js?v=1','/QPJB/qpjb-bridge-ui.css?v=20261113e']
+    .every(required=>keys.some(x=>new URL(x).pathname+new URL(x).search===required));
   });
-  assert(cached,'Prerequisite module was not warmed by the service worker');
+  assert(cached,'Prerequisite module or Quiz CSS was not warmed by the service worker');
   // Server is also forced to refuse network, for browsers whose offline
   // emulation is incomplete. Cached worker responses must be sufficient.
   offline=true;await context.setOffline(true);

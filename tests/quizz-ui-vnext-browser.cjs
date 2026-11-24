@@ -31,6 +31,13 @@ try{
   throw new Error('Capture AVANT impossible : récupérer le commit '+BASE+' dans ce checkout', {cause:err});
  }
 }
+// Le HTML historique doit être exécuté avec SON moteur : le moteur candidat
+// exige un script de prérequis absent de cette page ancienne. Le scénario
+// "after" continue à exercer le vrai moteur candidat, sans interception.
+const baselineEngine=execFileSync('git',['show',BASE+':quizz-parcours.js'],{
+ cwd:root,encoding:'utf8',maxBuffer:8*1024*1024,stdio:['ignore','pipe','pipe']
+});
+assert.ok(baselineEngine.includes('QPJBParcours'),'Moteur AVANT absent');
 const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8',
  '.css':'text/css; charset=utf-8','.png':'image/png','.svg':'image/svg+xml',
  '.json':'application/json; charset=utf-8'};
@@ -64,6 +71,9 @@ async function scenario(browser,engine,device,version,url){
  // Stabilise le tirage aléatoire : captures comparables sur la même séance.
  await context.addInitScript(()=>{Math.random=()=>0.42});
  const page=await context.newPage();
+ if(version==='before')await page.route(/\/quizz-parcours\.js(?:\?.*)?$/,route=>route.fulfill({
+  status:200,contentType:'application/javascript; charset=utf-8',body:baselineEngine
+ }));
  page.on('pageerror',e=>errors.push(version+'/'+engine+'/'+device+': '+e.message));
  try{
   await page.goto(url+(version==='before'?'quizz-before.html':'quizz.html'),{

@@ -32,7 +32,7 @@ const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
 // L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
 // ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
 const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
-const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'quizz-prerequis.js?v=1', BASE + 'quizz-parcours.js?v=13', BASE + 'parcours-recommandations.js?v=1'];
+const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'qpjb-bridge-ui.css?v=20261113e', BASE + 'quizz-prerequis.js?v=1', BASE + 'quizz-parcours.js?v=13', BASE + 'parcours-recommandations.js?v=1'];
 let warmPromise = null;
 async function cacheOfflineResources() {
   const cache = await caches.open(CACHE);

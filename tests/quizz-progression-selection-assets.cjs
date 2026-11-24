@@ -36,7 +36,7 @@ async function warm(){
  assert.equal(await warm(),false,'Missing prerequisites must not report offline ready');
  fail=false;
  assert.equal(await warm(),true);
- for(const url of ['/QPJB/quizz.html','/QPJB/quizz-prerequis.js?v=1','/QPJB/quizz-parcours.js?v=13','/QPJB/parcours-recommandations.js?v=1'])
+ for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=1','/QPJB/quizz-parcours.js?v=13','/QPJB/parcours-recommandations.js?v=1'])
   assert.ok(cached.has(url),'Offline resource '+url);
  const before=requests.length;
  assert.equal(await warm(),true);
