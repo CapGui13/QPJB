@@ -1,0 +1,23 @@
+name: QPJB — inventaire et isolation des fichiers publics
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/audit_repository_layout.py'
+      - 'scripts/build_public_site.py'
+      - 'tests/repository-layout*'
+      - 'archives/**'
+      - 'Docs/**'
+      - '.github/workflows/qpjb-repository-layout.yml'
+      - '.github/workflows/verified-pages.yml'
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Inventaire des dépendances du dépôt
+        run: python3 scripts/audit_repository_layout.py
