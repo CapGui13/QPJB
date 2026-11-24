@@ -1,17 +1,7 @@
 name: QPJB V2 — observatoire de compétences (HOLD)
 on:
-  push:
-    branches:
-      - feature/v2-65-observatoire-competences-20261120
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'preview/v2-eleve/parcours-sef-65-r1.html'
-      - 'scripts/v2-competences-audit.cjs'
-      - 'tests/v2-competences-observatoire*.cjs'
-      - '.github/workflows/qpjb-v2-observatoire-competences.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 jobs:

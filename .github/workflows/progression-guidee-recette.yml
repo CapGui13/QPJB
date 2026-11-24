@@ -1,7 +1,5 @@
 name: QPJB progression — recette M3
 on:
-  pull_request:
-    branches: [progression-guidee/integration, main]
   workflow_dispatch:
     inputs:
       mode:
@@ -9,6 +7,7 @@ on:
         type: choice
         options: [baseline, candidate]
         default: baseline
+
 permissions:
   contents: read
 env:

@@ -1,18 +1,7 @@
 name: QPJB — ergonomie, benchmark longitudinal
 on:
-  push:
-    branches:
-      - 'test/qpjb-ergonomie-longitudinal-20261120'
-    paths:
-      - 'quizz-parcours.js'
-      - 'tests/quizz-ergonomie-longitudinal.cjs'
-      - '.github/workflows/qpjb-ergonomie-longitudinal.yml'
-  pull_request:
-    paths:
-      - 'quizz-parcours.js'
-      - 'tests/quizz-ergonomie-longitudinal.cjs'
-      - '.github/workflows/qpjb-ergonomie-longitudinal.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 jobs:

@@ -35,7 +35,8 @@ try {
  function reset(){git('reset','--hard',base);git('clean','-fd');}
  function plan(head,expected,deps=dep){
   const p=planner.choose({head,event:'push'},deps);
-  assert.equal(p.level,expected);assert.equal(p.head,head);
+  const diagnostic=JSON.parse(execFileSync(process.execPath,['scripts/ci-classify.cjs','--base',base,'--head',head],{encoding:'utf8'}));
+  assert.equal(p.level,expected,JSON.stringify({plan:p,diagnostic}));assert.equal(p.head,head);
   assert.equal(p.base,deps===dep?base:'none');
   const result=JSON.parse(execFileSync(process.execPath,['scripts/ci-classify.cjs','--base',base,'--head',head],{encoding:'utf8'}));
   const actual=core.validatePlan(result,base,head);
@@ -63,19 +64,50 @@ try {
  }
  if(mode==='quick'){
   // Copy real valid image and PBN, then exercise the exact M1→M3→M2 interfaces.
-  fs.copyFileSync(original,pbn);
-  const sample=cat.images.find(x=>x.name.endsWith('.png'));
-  fs.copyFileSync(path.join('Docs',sample.name),newImage);
+  // Create independent valid course resources: exact copies can resolve to
+  // archived/non-course source paths under Git's copy detection.
+  function freshPbn(){
+   const raw=fs.readFileSync(original);
+   fs.writeFileSync(pbn,Buffer.concat([raw,Buffer.from('\n% '+('unique integration fixture comment '.repeat(Math.ceil(raw.length/25)))+'\n')]));
+  }
+  freshPbn();
+  run('python3',['-c','from PIL import Image; Image.new("RGB",(19,13),(13,71,163)).save("Docs/Integration fixture.png")']);
   const good=plan(commit('valid course resources'),'QUICK');quick(good);verdict(good,true);verdict(good,false);
   reset();fs.writeFileSync(pbn,Buffer.from([0,1,2]));const broken=plan(commit('invalid PBN'),'QUICK');quick(broken,false);verdict(broken,false);
-  reset();fs.appendFileSync('quizz-parcours.js','\n// disposable sensitive change\n');commit('sensitive');fs.copyFileSync(original,pbn);plan(commit('image/PBN after sensitive'),'FULL');
-  reset();fs.appendFileSync('quizz-parcours.js','\n// disposable reverted change\n');commit('sensitive');fs.writeFileSync('quizz-parcours.js',gitRaw(base,'quizz-parcours.js'));commit('revert');fs.copyFileSync(original,pbn);plan(commit('PBN after revert'),'FULL');
+  reset();fs.appendFileSync('quizz-parcours.js','\n// disposable sensitive change\n');commit('sensitive');freshPbn();plan(commit('image/PBN after sensitive'),'FULL');
+  reset();fs.appendFileSync('quizz-parcours.js','\n// disposable reverted change\n');commit('sensitive');fs.writeFileSync('quizz-parcours.js',gitRaw(base,'quizz-parcours.js'));commit('revert');freshPbn();plan(commit('PBN after revert'),'FULL');
   reset();const report=git('ls-files','audits/wave2/ux').split('\n').find(s=>s.includes('PASSE_14_')&&s.endsWith('.md'));assert(report);
   fs.appendFileSync(report,'\nIntegration fixture note.\n');const doc=plan(commit('internal note'),'DOC_ONLY');verdict(doc,true);
-  fs.copyFileSync(original,pbn);plan(commit('public and internal cumulative'),'FULL');
-  reset();fs.copyFileSync(original,pbn);const head=commit('valid PBN without trusted base');plan(head,'FULL',{...dep,checkpoint:()=>null});
+  freshPbn();plan(commit('public and internal cumulative'),'FULL');
+  reset();freshPbn();const head=commit('valid PBN without trusted base');plan(head,'FULL',{...dep,checkpoint:()=>null});
   reset();fs.appendFileSync(css,'\n/* disposable integration UI change */\n');const ui=plan(commit('valid CSS'),'UI');quick(ui);
-  console.log('INTEGRATION_SCENARIOS_PASS 7 scenarios, exact SHA, real QUICK pass/fail, verdict fail-closed');
+  reset();
+  fs.appendFileSync(css,'\n/* routine UI fixture */\n');
+  const routineHead=commit('routine(ui): CSS local');
+  const routinePlan=planner.choose({head:routineHead,event:'push'},dep);
+  assert.equal(routinePlan.level,'QUICK');
+  assert.equal(routinePlan.base,base);
+  const checked=run(process.execPath,['scripts/ci-routine.cjs','--check',base,routineHead]);
+  assert(checked.out.includes('ROUTINE_PASS'));
+  run('python3',['scripts/build_catalogue.py']);
+  run('python3',['tests/repository-layout.py']);
+  verdict(routinePlan,true);
+  reset();
+  const quiz=fs.readFileSync('quizz.html','utf8');
+  const old='html.quizz-embedded .app-top{display:none!important}';
+  assert(quiz.includes(old));
+  fs.writeFileSync('quizz.html',quiz.replace(old,old+'\n/* routine quiz UI */\n'));
+  const uiHead=commit('routine(ui): Quiz local');
+  const uiPlan=planner.choose({head:uiHead,event:'push'},dep);
+  assert.equal(uiPlan.level,'QUICK');
+  run(process.execPath,['scripts/ci-routine.cjs','--check',base,uiHead]);
+  verdict(uiPlan,true);
+  reset();
+  fs.appendFileSync('quizz-parcours.js','\n// sensitive fixture\n');
+  const sensitive=commit('routine(ui): wrong scope');
+  assert.equal(planner.choose({head:sensitive,event:'push'},dep).level,'FULL');
+  assert.equal(planner.choose({head:sensitive,event:'workflow_dispatch'},dep).level,'FULL');
+  console.log('INTEGRATION_SCENARIOS_PASS: existing scenarios plus real routine CSS/Quiz, archive and sensitive fallback');
  }else if(mode==='chromium'||mode==='webkit'){
   fs.appendFileSync(css,'\n/* disposable integration UI change */\n');
   const p=plan(commit('valid CSS'),'UI');
