@@ -1,17 +1,7 @@
 name: QPJB V2 - controle correctif editorial HOLD
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'audits/references/v2/PARCOURS_V2_CORRECTIONS_4_QCM_HOLD_20261120.json'
-      - 'audits/references/v2/PARCOURS_V2_DECISIONS_PEDAGOGIQUES_UTILISATRICE_20261120.json'
-      - 'scripts/v2-editorial-dry-run.cjs'
-      - 'scripts/v2-editorial-hold-sandbox.cjs'
-      - 'scripts/v2-candidate-r1.cjs'
-      - 'tests/v2-candidate-r1-browser.cjs'
-      - 'tests/v2-editorial-hold-browser.cjs'
-      - '.github/workflows/qpjb-v2-editorial-hold.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 jobs:

@@ -1,22 +1,7 @@
 name: QPJB V2 — ergonomie des 65 séances (HOLD)
 on:
-  push:
-    branches:
-      - fix/v2-65-ergonomie-20261120
-    paths:
-      - 'preview/v2-eleve/parcours-sef-65-r1.html'
-      - 'tests/v2-ergonomie-65-browser.cjs'
-      - 'tests/v2-ergonomie-65-structure.cjs'
-      - '.github/workflows/qpjb-v2-ergonomie-65-review.yml'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'preview/v2-eleve/parcours-sef-65-r1.html'
-      - 'tests/v2-ergonomie-65-browser.cjs'
-      - 'tests/v2-ergonomie-65-structure.cjs'
-      - '.github/workflows/qpjb-v2-ergonomie-65-review.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 jobs:
