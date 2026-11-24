@@ -13,8 +13,30 @@ const matching=catalogue.seances.filter(s=>s.folder===session);
 assert.equal(matching.length,1,'one session 0-01 Mumu');
 assert.ok(!catalogue.seances.some(s=>s.folder==='Séance 2-05 Aix'),'old session not present');
 assert.ok(!fs.existsSync(path.join(root,'Séance 2-05 Aix')),'old directory removed');
-assert.equal(catalogue.seances[0].folder,session,'new series zero is displayed first');
-assert.ok(home.includes('folder.match(/^Séance (\\d+)-(\\d+)(?: .+)?$/i)'), 'home sorter supports non-Aix session names');
+// Exécute les véritables fonctions d'accueil avec le catalogue public.
+const vm=require('node:vm');
+const grid={innerHTML:'',addEventListener(){}}, count={textContent:''};
+const sandbox={document:{getElementById:id=>id==='seance-grid'?grid:count},descMap:catalogue.descMap,esc:s=>String(s)};
+vm.createContext(sandbox);
+const start=home.indexOf('function seanceDisplayName(');
+const end=home.indexOf('function renderSeanceGrid(',start);
+const next=home.indexOf('\nfunction ',end+1);
+assert.ok(start>=0&&end>start&&next>end,'home grouping functions present');
+vm.runInContext(home.slice(start,next),sandbox);
+sandbox.sessions=catalogue.seances;
+const sorted=vm.runInContext('sessions.slice().sort(compareSeances).map(s=>s.folder)',sandbox);
+assert.deepEqual(Array.from(sorted),[
+ ...catalogue.seances.filter(s=>/^Séance 1-/.test(s.folder)).map(s=>s.folder).sort((a,b)=>a.localeCompare(b,'fr',{numeric:true})),
+ ...catalogue.seances.filter(s=>/^Séance 2-/.test(s.folder)).map(s=>s.folder).sort((a,b)=>a.localeCompare(b,'fr',{numeric:true})),
+ 'Séance 0-01 Mumu','SDE Nov 26'
+],'Saison 1, Saison 2, puis séances spéciales');
+vm.runInContext('renderSeanceGrid(sessions)',sandbox);
+const headings=[...grid.innerHTML.matchAll(/class="seance-separator" role="heading" aria-level="3">([^<]+)/g)].map(m=>m[1]);
+assert.deepEqual(headings,['Saison 1','Saison 2','Séances spéciales']);
+assert.deepEqual([...grid.innerHTML.matchAll(/data-folder="([^"]+)"/g)].map(m=>m[1]),Array.from(sorted));
+assert.equal(count.textContent,'('+catalogue.seances.length+')');
+assert.ok(grid.innerHTML.indexOf('Séances spéciales')<grid.innerHTML.indexOf('data-folder="Séance 0-01 Mumu"'));
+
 assert.equal(matching[0].fichiers.length,7,'seven published PBNs');
 assert.equal(catalogue.descMap[session],config.descriptions[session],'same description');
 assert.equal(fs.existsSync(path.join(root,session,'.seance-vide')),false,'no empty-session marker once populated');

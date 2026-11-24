@@ -435,7 +435,9 @@ header{
 
 /* ── SÉANCE GRID ── */
 .seance-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
-.seance-separator{display:block;flex:none;width:33.333%;height:1px;align-self:center;margin:3px 0 4px;border-radius:999px;background:#9871bd;opacity:.55}
+.seance-separator{display:flex;flex:none;align-items:center;gap:10px;margin:12px 0 3px;color:#cbb2e7;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.seance-separator:first-child{margin-top:0}
+.seance-separator::before,.seance-separator::after{content:"";flex:1;min-width:12px;height:1px;background:rgba(171,130,214,.45)}
 .seance-card{background:rgba(0,0,0,.3);border:1px solid rgba(171,130,214,.22);border-radius:12px;padding:13px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:border-color .15s,transform .1s;min-height:52px}
 .seance-card.is-pressing{transform:scale(.95)}
 .seance-desc{font-size:11px;color:rgba(171,130,214,.75);font-style:italic;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
@@ -891,16 +893,20 @@ function seanceDisplayName(folder) {
   return folder;
 }
 
-// Tri par série puis par numéro de séance.
-function compareSeances(a, b) {
-  const parse = folder => {
-    const m = folder.match(/^Séance (\d+)-(\d+)(?: .+)?$/i);
-    return m ? [Number(m[1]), Number(m[2])] : [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
+// Même classement pour l'accueil et les flèches de navigation.
+function seanceGroup(folder) {
+  const m = folder.match(/^Séance (\d+)-(\d+)(?: .+)?$/i);
+  const serie = m ? Number(m[1]) : 0;
+  return {
+    group: serie === 1 ? 1 : serie === 2 ? 2 : 3,
+    number: m ? Number(m[2]) : Number.MAX_SAFE_INTEGER
   };
-  const [serieA, numA] = parse(a.folder);
-  const [serieB, numB] = parse(b.folder);
-  if (serieA !== serieB) return serieA - serieB;
-  if (numA !== numB) return numA - numB;
+}
+
+function compareSeances(a, b) {
+  const A = seanceGroup(a.folder), B = seanceGroup(b.folder);
+  if (A.group !== B.group) return A.group - B.group;
+  if (A.number !== B.number) return A.number - B.number;
   return a.folder.localeCompare(b.folder, 'fr', { numeric: true });
 }
 
@@ -918,9 +924,10 @@ function renderSeanceGrid(seances) {
   if (sc) sc.textContent = '(' + seances.length + ')';
   const doRender = () => {
     document.getElementById('seance-grid').innerHTML = sorted.map((s, index) => {
-      // Séparation unique entre les deux séries, sans dépendre du nom précédent.
-      const separator = /^Séance 2-01 Aix$/i.test(s.folder)
-        ? '<div class="seance-separator" role="separator" aria-label="Série 2"></div>'
+      const group = seanceGroup(s.folder).group;
+      const labels = {1:'Saison 1',2:'Saison 2',3:'Séances spéciales'};
+      const separator = index === 0 || seanceGroup(sorted[index-1].folder).group !== group
+        ? `<div class="seance-separator" role="heading" aria-level="3">${labels[group]}</div>`
         : '';
       const desc = descMap[s.folder] ? `<span class="seance-desc">— ${esc(descMap[s.folder])}</span>` : '';
       return `${separator}
