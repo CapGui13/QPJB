@@ -509,14 +509,30 @@
     return e.recent.some(({q,s})=>openingPass(q)&&state.completed-s<=3&&
       state.entries?.[q.id]&&weakAnswer(state.entries[q.id]));
   }
-  // Sélection et ordre indépendants. Recherche bornée des permutations :
-  // les contraintes du premier cours sont dures, les autres coûts sont souples.
+  // Les Passes sont une alternative de base, pas des questions de fin de séance.
+  // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
+  function passDeadlines(s,count,length){
+    if(!count||s>2||length!==10)return [];
+    return (s===0?[2,5,7]:[4,7]).slice(0,count);
+  }
+  function passOrderOK(deck,s){
+    if(s>2||deck.length!==10)return true;
+    const positions=deck.flatMap((q,i)=>openingPass(q)?[i+1]:[]);
+    if(s===0&&(positions.length!==3||deck.some(q=>openingPass(q)&&!simplePass(q))))return false;
+    if(s===1&&(!positions.length||positions.length>2))return false;
+    if(s===2&&positions.length>1)return false;
+    const deadlines=passDeadlines(s,positions.length,deck.length);
+    return positions.every((pos,i)=>pos<=deadlines[i]&&(!i||pos-positions[i-1]>=2));
+  }
+  // Sélection et ordre indépendants. Les bornes de Passe sont dures ;
+  // les autres critères d'alternance restent des coûts souples.
   function logicalOrder(items,state,exerciseOf=x=>x.exercise){
     if(items.length<2)return items.slice();
     const s=state.completed;
     const salt=s+'|'+items.map(x=>exerciseOf(x).id).sort().join('|')+'|'+
       (state.journal||[]).slice(-2).map(ev=>(ev.answers||[]).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
+    const deadlines=passDeadlines(s,totalPass,items.length);
     let beam=[{seq:[],mask:0,cost:0,tie:0}];
     // Les sessions normales ont dix questions ; limite explicite pour API n<=20.
     for(let pos=0;pos<items.length;pos++){
@@ -527,7 +543,15 @@
         for(let i=0;i<items.length;i++){
           if(node.mask&(1<<i))continue;
           const q=exerciseOf(items[i]),pass=openingPass(q);
-          if(s===0&&totalPass&&items.length>=totalPass*2-1){
+          if(deadlines.length){
+            if(pass&&last&&openingPass(last))continue;
+            const used=usedPass+Number(pass);
+            // Un choix n'est admissible que si chaque Passe restant peut
+            // encore respecter sa borne et la séparation entre deux Passes.
+            const remainingFeasible=deadlines.slice(used).every((deadline,k)=>
+              pos+2+Number(pass)+2*k<=deadline);
+            if(!remainingFeasible||used<deadlines.filter(d=>d<=pos+1).length)continue;
+          }else if(s===0&&totalPass&&items.length>=totalPass*2-1){
             if(pos===2&&!usedPass&&!pass)continue;
             if(pass&&last&&openingPass(last))continue;
             if(totalPass-usedPass-Number(pass)>Math.ceil((items.length-pos-1-Number(pass))/2))continue;
@@ -546,7 +570,10 @@
             tie:hash(salt+'|'+node.seq.join(',')+'|'+q.id)});
         }
       }
-      if(!next.length)return items.slice(); // uniquement contraintes irréalisables petit catalogue
+      if(!next.length){
+        if(deadlines.length)throw Error('QPJB: ordre des Passes impossible');
+        return items.slice();
+      }
       next.sort((a,b)=>a.cost-b.cost||a.tie-b.tie);
       beam=next.slice(0,48);
     }
@@ -556,7 +583,7 @@
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
     let pool=eligiblePool(exercises,state,e);
     const previous=state.entries||{};
-    const passCap=s===0?3:passWeakness(state,e)?2:1;
+    const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
     const totalRecent=e.recent.length,weakRecent=e.recent.filter(({a})=>weakAnswer(a)).length;
@@ -848,7 +875,14 @@
   function start(state,exercises){
     const byId=new Map(exercises.map(x=>[x.id,x]));
     if(state.active){
-      if(state.active.ids.every(id=>byId.has(id)))return state.active.ids.map(id=>byId.get(id));
+      if(state.active.ids.every(id=>byId.has(id))){
+        const deck=state.active.ids.map(id=>byId.get(id));
+        // Une ancienne séance jamais entamée peut être recalculée.
+        // Une séance commencée conserve exactement ses réponses et son ordre.
+        const untouched=state.active.mode!=='consolidation'&&state.active.index===0&&
+          Object.keys(state.active.answers||{}).length===0;
+        if(!untouched||passOrderOK(deck,state.completed))return deck;
+      }
       state.active=null;
     }
     const chosen=select(exercises,state,10);

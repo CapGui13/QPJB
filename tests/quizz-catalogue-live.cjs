@@ -25,6 +25,57 @@ function validate(data,meta,reference=H.catalogue()){
  }
  return data;
 }
+function openingPassPositions(deck){
+ return deck.flatMap((q,i)=>q.theme==='ouv'&&q.answer==='Passe'?[i+1]:[]);
+}
+function checkEarlyPasses(deck,s){
+ if(s>2)return;
+ const p=openingPassPositions(deck);
+ if(s===0){
+  assert.equal(p.length,3,'S1 three opening Passes');
+  assert(p[0]<=2&&p[1]<=5&&p[2]<=7,'S1 opening Pass deadlines 2/5/7: '+p);
+  assert(deck.filter(q=>q.theme==='ouv'&&q.answer==='Passe').every(q=>q.h<12&&q.difficulty===1),'S1 elementary Passes');
+ }else if(s===1){
+  assert(p.length>=1&&p.length<=2,'S2 one or two opening Passes');
+  assert(p[0]<=4&&(p.length===1||p[1]<=7),'S2 early opening Passes: '+p);
+ }else{
+  assert(p.length<=1,'S3 at most one opening Pass');
+  assert(!p.length||p[0]<=4,'S3 early opening Pass: '+p);
+ }
+ assert(p.every((pos,i)=>!i||pos-p[i-1]>=2),'separated opening Passes');
+}
+function verifyEarlyProfiles(data,api){
+ const xs=data.exercises;
+ for(const profile of ['correct','wrong','mixed','assisted','passwrong','skipped']){
+  const state=api.empty();
+  for(let s=0;s<3;s++){
+   const deck=api.start(state,xs);
+   assert.equal(deck.length,10);
+   checkEarlyPasses(deck,s);
+   console.log('EARLY_PASSES '+profile+' S'+(s+1)+' '+openingPassPositions(deck).join(','));
+   deck.forEach((q,i)=>{
+    const correct=profile==='correct'||profile==='assisted'||profile==='mixed'&&i%3!==0||profile==='passwrong'&&q.answer!=='Passe';
+    assert(api.record(state,q,profile==='skipped'?'skipped':correct?'correct':'wrong',i,null,profile==='assisted',false));
+   });
+   assert(api.finish(state,xs));
+  }
+ }
+ // Simulate a saved old order with Passes at the end, never played.
+ const pending=api.empty(),deck=api.start(pending,xs);
+ const late=[...deck.filter(q=>q.answer!=='Passe'),...deck.filter(q=>q.answer==='Passe')];
+ const byId=new Map(pending.active.selection.map(x=>[x.id,x]));
+ pending.active.ids=late.map(q=>q.id);
+ pending.active.selection=pending.active.ids.map(id=>byId.get(id));
+ const untouched=api.load(JSON.stringify(pending));
+ checkEarlyPasses(api.start(untouched,xs),0);
+ // The same old order, after an answer, cannot be rearranged.
+ assert(api.record(pending,late[0],'correct',0,null,false,false));
+ api.move(pending,1);
+ const played=api.load(JSON.stringify(pending)),original=JSON.stringify(played.active);
+ assert.deepEqual(api.start(played,xs).map(q=>q.id),late.map(q=>q.id));
+ assert.equal(JSON.stringify(played.active),original,'answered old session unchanged');
+ console.log('EARLY_PASSES_RESUME_PASS');
+}
 function simulate(data,api,horizon=65){
  const xs=data.exercises,known=new Set(xs.map(q=>q.id)),state=api.empty();
  for(let s=0;s<horizon;s++){
@@ -32,6 +83,7 @@ function simulate(data,api,horizon=65){
   assert.equal(deck.length,10,'complete live session '+s);
   assert.equal(new Set(deck.map(q=>q.id)).size,10,'distinct live IDs');
   assert(deck.every(q=>known.has(q.id)),'live catalogue IDs only');
+  checkEarlyPasses(deck,s);
   if(s===0){
    const counts=Object.fromEntries([...new Set(deck.map(q=>q.answer))].map(a=>[a,deck.filter(q=>q.answer===a).length]));
    assert.equal(counts.Passe,3,'opening Pass balance');
@@ -48,6 +100,8 @@ function simulate(data,api,horizon=65){
 if(require.main===module){
  const data=validate(readLive(),require('../quizz-prerequis.js'));
  console.log('LIVE_CATALOGUE_PASS '+data.exercises.length+' QCM, stable IDs and exact prerequisites');
- if(process.argv.includes('--simulate'))simulate(data,require('../quizz-parcours.js'));
+ if(process.argv.includes('--simulate')){
+  const api=require('../quizz-parcours.js');verifyEarlyProfiles(data,api);simulate(data,api);
+ }
 }
-module.exports={readLive,validate,simulate};
+module.exports={readLive,validate,simulate,verifyEarlyProfiles};

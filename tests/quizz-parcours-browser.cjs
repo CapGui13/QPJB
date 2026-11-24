@@ -70,7 +70,7 @@ const server=http.createServer((req,res)=>{
    if(!useHistorical){
      assert.equal(bidCount.Passe,3);
      const passIndices=openingBids.flatMap((b,i)=>b==='Passe'?[i]:[]);
-     assert.ok(passIndices[0]<3&&passIndices.every((i,j)=>j===0||i-passIndices[j-1]>1),'Early separated Passes');
+     assert.ok(passIndices[0]<=1&&passIndices[1]<=4&&passIndices[2]<=6&&passIndices.every((i,j)=>j===0||i-passIndices[j-1]>1),'Early separated Passes by questions 2/5/7: '+passIndices.map(i=>i+1));
      assert.ok(await page.evaluate(()=>window.QPJBPrerequis?.schema==='QPJB_PREREQUIS_V1'),'Prerequisite script loaded');
    }
    assert.ok(await page.locator('#restart-session').isHidden(),'Classic restart must not reset a guided deck');
@@ -91,6 +91,14 @@ const server=http.createServer((req,res)=>{
    await page.waitForFunction(()=>document.body.classList.contains('parcours-session')&&
      document.querySelector('#step')?.textContent.includes('1 / 10'));
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+   if(!useHistorical){
+     const passes=await page.evaluate(ids=>{
+       const all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+       const byId=new Map(all.map(x=>[x.id,x]));
+       return ids.flatMap((id,i)=>byId.get(id).theme==='ouv'&&byId.get(id).answer==='Passe'?[i+1]:[]);
+     },state.active.ids);
+     assert.ok(passes.length>=1&&passes.length<=2&&passes[0]<=4&&(passes.length===1||passes[1]<=7),'S2 early opening Passes: '+passes);
+   }
    const secondTopics=state.active.ids.map(id=>themeMap[id]);
    assert.ok(secondTopics.includes('majeur')&&secondTopics.includes('mineur'),
      'Second session mixes opening responses: '+secondTopics.join(','));
