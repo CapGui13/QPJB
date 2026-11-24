@@ -3,7 +3,7 @@ on:
   push:
     branches: [ci-optimisation/m3-publication]
   pull_request:
-    branches: [main, ci-optimisation/integration]
+    branches: [main, ci-optimisation/integration, progression-guidee/integration]
     paths:
       - 'scripts/ci-orchestration-*'
       - 'scripts/ci-publication-*'
@@ -102,6 +102,10 @@ jobs:
         with:
           name: ${{ env.ARCHIVE_NAME }}
           path: ${{ runner.temp }}/pages-runtime
+      - name: Rebuild exact inventory from the checked-out revision
+        run: |
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output "$RUNNER_TEMP/expected-public"
       - name: Verify actual archive retrieval and SHA, no deployment
         env:
           GH_TOKEN: ${{ github.token }}
@@ -130,9 +134,29 @@ jobs:
               assert z.namelist()==["artifact.tar"]
               assert hashlib.sha256(z.read("artifact.tar")).digest()==hashlib.sha256(tar.read_bytes()).digest()
           with tarfile.open(tar) as t:
-              files={str(pathlib.PurePosixPath(m.name)):m for m in t.getmembers() if m.isfile()}
-              assert len(files)==178, len(files)
+              import sys
+              sys.path.insert(0,"scripts")
+              from build_public_site import mapping, LEGACY
+              checkout=pathlib.Path.cwd()
+              expected=root/"expected-public"
+              sources=mapping(checkout)
+              expected_names=set(sources)|{".nojekyll"}
+              rebuilt={p.relative_to(expected).as_posix() for p in expected.rglob("*") if p.is_file()}
+              assert rebuilt==expected_names, (rebuilt^expected_names)
+              files={}
+              for m in t.getmembers():
+                  name=str(pathlib.PurePosixPath(m.name))
+                  assert not pathlib.PurePosixPath(m.name).is_absolute() and ".." not in pathlib.PurePosixPath(m.name).parts, m.name
+                  if m.isdir(): continue
+                  assert m.isfile() and name not in files, m.name
+                  files[name]=m
+              assert set(files)==expected_names, set(files)^expected_names
+              for name,m in files.items():
+                  actual=t.extractfile(m).read()
+                  assert hashlib.sha256(actual).digest()==hashlib.sha256((expected/name).read_bytes()).digest(), name
+                  if name in LEGACY:
+                      assert actual==(checkout/LEGACY[name]).read_bytes(), name
               assert json.load(t.extractfile(files["site-version.json"]))=={"revision":os.environ["GITHUB_SHA"]}
-              assert {"Docs/QPJB_V2_REVUE_PEDAGOGIQUE_INTERACTIVE_19_CAS_HOLD_20261120.html","index A.html","apple-touch-icon.png","favicon-32.png","favicon.svg","icon-192.png","icon-512.png"}.issubset(files)
-          print("M3 ARCHIVE PASS: 178 resources, 7 aliases, REST SHA256 == runtime tar, exact revision, no deploy.")
+              assert len(LEGACY)==7
+          print(f"M3 ARCHIVE PASS: {len(files)} exact resources, {len(LEGACY)} aliases, REST SHA256 == runtime tar, exact revision, no deploy.")
           PY

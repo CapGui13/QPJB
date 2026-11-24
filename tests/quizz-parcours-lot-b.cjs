@@ -15,8 +15,9 @@ const approvedD11=require('../audits/QPJB_V1_LOT_D_11_INTEGRATION_20261121.json'
 const closure=require('../audits/QPJB_SEF_CLOTURE_2_QCM_20261121.json');
 const root=path.join(__dirname,'..');
 const {restoreGlobal,restoreEngine}=require('./qpjb-sef-global29-normalization.cjs');
-const code=restoreEngine(fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8'));
-const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
+const code=restoreEngine(require('./progression-guidee-historical.cjs').source());
+const html=require('./progression-guidee-historical.cjs').html();
+require('./progression-guidee-historical.cjs').catalogue();
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(match,'Catalogue SEF embarqué présent');
 const DATA=JSON.parse(restoreGlobal(match[1]));

@@ -8,12 +8,16 @@ const {chromium,webkit,devices}=require('playwright');
 const root=path.resolve(__dirname,'..'),engine=process.env.PW_BROWSER||'chromium';
 const mime={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8',
   '.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png'};
+const historical=require('./progression-guidee-historical.cjs');
+const useHistorical=process.env.QPJB_HISTORICAL_BROWSER==='1'||!fs.existsSync(path.join(root,'quizz-prerequis.js'));
 const server=http.createServer((req,res)=>{
   const p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
   if(!p.startsWith('/QPJB/')){res.writeHead(404);res.end();return}
   let file=path.resolve(root,p.slice('/QPJB/'.length));
   if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
   try{
+    if(useHistorical&&p==='/QPJB/quizz.html'){res.writeHead(200,{'content-type':mime['.html']});return res.end(historical.html())}
+    if(useHistorical&&p==='/QPJB/quizz-parcours.js'){res.writeHead(200,{'content-type':mime['.js']});return res.end(historical.source())}
     if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');
     res.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream'});
     fs.createReadStream(file).pipe(res);
@@ -61,8 +65,14 @@ const server=http.createServer((req,res)=>{
    const bidCount=openingBids.reduce((acc,bid)=>(acc[bid]=(acc[bid]||0)+1,acc),{});
    assert.ok((bidCount['1♣']||0)>=2&&(bidCount['1♦']||0)>=2,
      'Minor openings expected in first session: '+JSON.stringify(bidCount));
-   assert.ok(Object.values(bidCount).every(n=>n<=2),
-     'No repeated Passe / 1SA openings: '+JSON.stringify(bidCount));
+   assert.ok(Object.entries(bidCount).every(([bid,n])=>n<=(bid==='Passe'&&!useHistorical?3:2)),
+     'No excessive repeated openings: '+JSON.stringify(bidCount));
+   if(!useHistorical){
+     assert.equal(bidCount.Passe,3);
+     const passIndices=openingBids.flatMap((b,i)=>b==='Passe'?[i]:[]);
+     assert.ok(passIndices[0]<3&&passIndices.every((i,j)=>j===0||i-passIndices[j-1]>1),'Early separated Passes');
+     assert.ok(await page.evaluate(()=>window.QPJBPrerequis?.schema==='QPJB_PREREQUIS_V1'),'Prerequisite script loaded');
+   }
    assert.ok(await page.locator('#restart-session').isHidden(),'Classic restart must not reset a guided deck');
    for(let i=0;i<10;i++){
      await page.locator('#pass').click();
@@ -113,6 +123,21 @@ const server=http.createServer((req,res)=>{
       !document.body.classList.contains('parcours-session'));
    state=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
    assert.deepEqual(state.active.ids,pending.active.ids,'Classic Quiz does not erase guided progress');
+   if(!useHistorical){
+     // Resume an actually generated pre-change save, not a fabricated selection.
+     const old=historical.engine(),all=historical.catalogue().exercises,legacy=old.empty();
+     const deck=old.start(legacy,all);
+     old.record(legacy,deck[0],'wrong',0,null,false,false);legacy.active.index=1;
+     await page.evaluate(s=>localStorage.setItem('qpjb-sef-parcours-01',JSON.stringify(s)),legacy);
+     await page.reload({waitUntil:'domcontentloaded'});
+     await page.locator('#parcours-start').click();
+     await page.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
+     const resumed=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));
+     for(const key of ['ids','index','answers','selection'])assert.deepEqual(resumed.active[key],legacy.active[key],'Legacy active '+key);
+     assert.deepEqual(errors,[],'No browser JS errors');
+     console.log('PROGRESSION CANDIDATE BROWSER '+engine+' PASS: opening distribution, resume, classic quiz, exact legacy deck');
+     await context.close();return;
+   }
    // Le profil transverse est chargé sans affecter la séance interrompue.
    await page.evaluate(()=>{
      const key='qpjb-sef-parcours-01',progress=JSON.parse(localStorage.getItem(key));
