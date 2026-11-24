@@ -33,6 +33,7 @@ jobs:
       - run: |
           node tests/ci-orchestration-core.cjs
           node tests/ci-publication-state.cjs
+          python3 tests/ci-publication-archive.py
           node tests/ci-training-workflow-guard.cjs
           node tests/wave2-ci-pages-rollback.cjs
           node tests/wave2-ci-pages-conditions.cjs

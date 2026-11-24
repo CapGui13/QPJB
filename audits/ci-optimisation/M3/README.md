@@ -1,0 +1,21 @@
+# M3 — orchestration et publication (WIP)
+Contrat #281, mission #284, PR brouillon #285 vers ci-optimisation/integration.
+Base commune cffac8d53ce5fc5bdb2d08f0b0b028253cb11ae3.
+
+## Preuves déjà constatées
+- Actions #45359192750, job 138324579676 : échec réel du premier noyau (QUICK commun à QUICK et UI compté deux fois).
+- Actions #45359317714, job 138325007195 : correction, Node 22, 229 assertions positives/négatives, succès. HEAD af21ad7dec11346815d20a37542c31b8d2d4324f.
+- Pages #45357396379 tentative 1, job 138318576947 : archive 14902203246 créée à 08:35:26.438Z, REST visible 08:35:26.883Z, deploy-pages à 08:35:27.589Z : Found 0 artifact(s). Tentative 2 job 138321708944, archive 14903068186, Found 2 artifact(s), création avec l'ID correct, déploiement success 08:41:53Z. Aucun problème de contenu établi ; divergence temporaire entre visibilité REST et service runtime constatée, cause profonde non prouvée.
+- Historique mesuré (audits/wave2/ci/observed-performance.json, 7 runs après optimisation précédente) : médiane murale FULL 391 s, médiane somme des jobs 832 s ; ancienne cohorte 6 runs : 579,5 s et 812,5 s. M2 rapporte baseline #45297470897 intégrité 10,77 s, simulations 282,66 s, Chromium 250,01 s, WebKit 322,03 s. Ne pas extrapoler la latence de QUICK/UI avant intégration.
+
+## Décisions
+- Les quatre jobs et commandes FULL historiques restent intacts, après classification ; QUICK appelle M2 avec Pillow 12.0.0 ; UI ajoute les deux moteurs. Verdict explicite lié au SHA, base et niveau, tous les jobs obligatoires doivent réussir.
+- Le verrou privilégié interroge le run source authentifié et son attempt, refuse PR, mauvais dépôt/SHA, statut non success, verdict absent ou job manquant. Construit seulement le SHA exact en job read-only. Le job de déploiement ne checkout ni n'exécute l'archive. Main doit encore être exactement ce SHA ; concurrence sérialisée.
+- Base réduite uniquement si dernier déploiement github-pages réussi, lié au run/job de publication V1 par log_url. Sinon FULL. Premier déploiement après intégration sera donc FULL. Vérifier la disponibilité réelle de log_url avec la sonde. Si absence : aucun mode réduit, à traiter avant activation.
+- Diff cumulatif + toutes transitions first-parent (max 128, sinon FULL). PR : diff cible, merge-base et base déployée. Toute preuve absente/ancêtre invalide => FULL ; erreur réelle classificateur => blocage.
+- Catalogue : plus de rebase de JSON périmés. Génération publique dans l'archive ; commit des deux JSON après publication attestée seulement, GraphQL expectedHeadOid signé. Reconnaissance du seul enfant bot immédiat, signature valide, auteur github-actions[bot], committer web-flow, modes réguliers, reconstruction byte-for-byte. Si API ou signature non conformes : aucun raccourci. La signature réelle de l'API sous GITHUB_TOKEN devra être constatée lors de la consolidation, aucune écriture expérimentale.
+- Archive : nom run_id + attempt, vérification unique/expiry/SHA/digest REST, vraie récupération Actions avec un retry borné, comparaison octets du tar REST/runtime, 7 alias et site-version exact ; recheck main juste avant deploy-pages. Une tentative partielle de publication avec archive d'un autre attempt est refusée : relancer tous les jobs et, si la base réduite a changé, relancer la validation main. Pas de contournement manuel. GitHub ne fournit pas de verrou atomique sur un push concurrent pendant l'appel deploy-pages : la publication reste celle d'un SHA déjà vérifié ; nouvelle validation pour tout SHA suivant.
+- Les preuves isolées sont en file d'attente ; ne pas confondre tests écrits avec résultats. Aucune publication expérimentale, aucun merge, aucun changement applicatif ou pédagogique.
+
+## Dépendances et clôture
+Lire les logs du workflow M3 exact, corriger toute anomalie. Prouver les métadonnées réelles Pages et les deux voies de récupération. Le pilote assemble M1/M2/M3 ; effectuer FULL sur la PR d'intégration, démontrer QUICK/UI avec les vraies interfaces sur scénarios jetables (pas main), relever le comportement GraphQL/checkpoint sur la première publication autorisée. Pas de clôture tant que ces preuves manquent.

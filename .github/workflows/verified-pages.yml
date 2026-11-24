@@ -142,7 +142,19 @@ jobs:
           exit 1
       # REST indexing alone did not prove runtime artifact retrieval in run
       # 45357396379. Exercise the Actions artifact service before deploying.
-      - uses: actions/download-artifact@v4
+      - name: Première lecture par le service Actions
+        id: runtime-download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: ${{ runner.temp }}/pages-runtime
+      - name: Laisser le service Actions rattraper son index
+        if: steps.runtime-download.outcome != 'success'
+        run: sleep 10
+      - name: Nouvelle lecture obligatoire si la première a échoué
+        if: steps.runtime-download.outcome != 'success'
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARCHIVE_NAME }}
           path: ${{ runner.temp }}/pages-runtime

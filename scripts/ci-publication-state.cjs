@@ -81,7 +81,8 @@ function verifiedBot(parent,child,read=api) {
   assert(validSha(parent)&&validSha(child));
   const c=read('commits/'+child);
   assert(c.sha===child && c.parents?.length===1 && c.parents[0].sha===parent,'Wrong bot parent');
-  assert(c.author?.login==='github-actions[bot]' && c.commit?.verification?.verified===true &&
+  assert(c.author?.login==='github-actions[bot]' && c.committer?.login==='web-flow' &&
+   c.commit?.verification?.verified===true && c.commit.verification.reason==='valid' &&
    c.commit.message==='Actualiser automatiquement le catalogue QPJB','Unattested catalogue commit');
   const diff=git(['diff','--raw','--no-abbrev','--no-renames','-z',parent,child]).split('\0');
   assert.equal(diff.pop(),'');

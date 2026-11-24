@@ -61,11 +61,12 @@ try{
  // worktree and Python regeneration execute against this disposable repo.
  put('catalogue.json','generated');put('site-version.json',JSON.stringify({revision:deployed}).replace(':',': '));
  const bot=commit('Actualiser automatiquement le catalogue QPJB');
- const metadata={sha:bot,parents:[{sha:deployed}],author:{login:'github-actions[bot]'},commit:{message:'Actualiser automatiquement le catalogue QPJB',verification:{verified:true}}};
+ const metadata={sha:bot,parents:[{sha:deployed}],author:{login:'github-actions[bot]'},committer:{login:'web-flow'},commit:{message:'Actualiser automatiquement le catalogue QPJB',verification:{verified:true,reason:'valid'}}};
  const fake=()=>metadata;
  assert(verifiedBot(deployed,bot,fake));cases++;
  assert.equal(effectiveBase(deployed,bot,(p,c)=>verifiedBot(p,c,fake)),bot);cases++;
  assert(!verifiedBot(deployed,bot,()=>({...metadata,author:{login:'human'}})));cases++;
+ assert(!verifiedBot(deployed,bot,()=>({...metadata,committer:{login:'human'}})));cases++;
  assert(!verifiedBot(deployed,bot,()=>({...metadata,commit:{...metadata.commit,verification:{verified:false}}})));cases++;
  put('quizz.html','sensitive');const sensitive=commit('unpublished failure');
  put('Docs/image.png','new');const image=commit('only latest commit looks quick');
