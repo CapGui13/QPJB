@@ -103,6 +103,27 @@ try {
   run(process.execPath,['scripts/ci-routine.cjs','--check',base,uiHead]);
   verdict(uiPlan,true);
   reset();
+  const raw=fs.readFileSync('quizz.html','utf8');
+  const m=raw.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
+  assert(m);
+  const data=JSON.parse(m[1]),q=data.exercises[0];
+  q.explain=q.explain+' '; // fixture only: deliberate text change, never published
+  fs.writeFileSync('quizz.html',raw.replace(m[0],()=>'<script id="training-data" type="application/json">'+JSON.stringify(data)+'</script>'));
+  const qcmHead=commit('routine(qcm): correction editoriale fixture');
+  const qcmPlan=planner.choose({head:qcmHead,event:'push'},dep);
+  assert.equal(qcmPlan.level,'QUICK');
+  run(process.execPath,['scripts/ci-routine.cjs','--check',base,qcmHead]);
+  run(process.execPath,['scripts/ci-routine.cjs','--qcm',base,qcmHead]);
+  run('python3',['scripts/verify_quiz_sef.py','--html','quizz.html','--min-count','1523']);
+  run(process.execPath,['tests/quizz-catalogue-live.cjs']);
+  run(process.execPath,['tests/quizz-ui-vnext-static.cjs']);
+  run(process.execPath,['tests/quizz-distractors.cjs']);
+  run(process.execPath,['tests/quizz-quality.cjs']);
+  run(process.execPath,['tests/quizz-content-audit.cjs']);
+  run(process.execPath,['-e',"const L=require('./tests/quizz-catalogue-live.cjs');L.simulate(L.readLive(),require('./quizz-parcours.js'),3)"]);
+  verdict(qcmPlan,true);
+  console.log('ROUTINE_QCM_INTEGRATION_PASS');
+  reset();
   fs.appendFileSync('quizz-parcours.js','\n// sensitive fixture\n');
   const sensitive=commit('routine(ui): wrong scope');
   assert.equal(planner.choose({head:sensitive,event:'push'},dep).level,'FULL');

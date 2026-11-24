@@ -30,3 +30,62 @@ jobs:
         run: python -m unittest discover -s tests -p "test_quiz_auction_legality.py"
       - name: Diagnostic des enchères (informatif, non homologuant)
         run: python scripts/audit_quiz_auction_legality.py --html quizz.html
+
+  historique:
+    # Les anciennes preuves portent sur une édition figée, pas sur les QCM vivants.
+    # Le commit de référence contient exactement les données et les tests approuvés.
+    if: github.event_name == 'workflow_dispatch'
+    name: Recette historique — édition du 24 novembre 2026
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 287bc05fd77d40fcfb98c5927152093e0555c97c
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rejouer les preuves historiques sans verrouiller le catalogue vivant
+        run: |
+          node tests/quizz-integrity.cjs
+          node tests/quizz-v1-lot-d-11-integration.cjs
+          node audits/v1-evolutions/pedagogie/verifier-propositions.cjs
+          node tests/quizz-v2-audit.cjs
+          node tests/quizz-v2-sa.cjs
+          node tests/quizz-l01-regression.cjs
+          node tests/quizz-l02-10-regression.cjs
+          node tests/quizz-v4112-regression.cjs
+          node tests/quizz-v470-regression.cjs
+          node tests/quizz-v471-regression.cjs
+          node tests/quizz-v472-regression.cjs
+          node tests/quizz-v473-regression.cjs
+          node tests/quizz-v474-regression.cjs
+          node tests/quizz-v475-regression.cjs
+          node tests/quizz-v476-regression.cjs
+          node tests/quizz-v477-regression.cjs
+          node tests/quizz-v478-regression.cjs
+          node tests/quizz-v479-regression.cjs
+          node tests/quizz-v480-regression.cjs
+          node tests/quizz-v481-regression.cjs
+          node tests/quizz-v482-regression.cjs
+          node tests/quizz-v483-regression.cjs
+          node tests/quizz-v484-regression.cjs
+          node tests/quizz-v485-regression.cjs
+          node tests/quizz-v486-regression.cjs
+          node tests/quizz-v487-regression.cjs
+          node tests/quizz-v488-regression.cjs
+          node tests/quizz-v489-regression.cjs
+          node tests/quizz-v490-regression.cjs
+          node tests/quizz-v491-regression.cjs
+          node tests/quizz-v492-regression.cjs
+          node tests/quizz-v493-regression.cjs
+          node tests/quizz-v494-regression.cjs
+          node tests/quizz-v495-regression.cjs
+          node tests/quizz-v496-regression.cjs
+          node tests/quizz-v497-regression.cjs
+          node tests/quizz-v498-regression.cjs
+          node tests/quizz-v499-regression.cjs
+          node tests/quizz-v4100-regression.cjs
+          node tests/quizz-v4101-regression.cjs
+          node tests/quizz-v4102-regression.cjs
+          node tests/quizz-v4103-regression.cjs

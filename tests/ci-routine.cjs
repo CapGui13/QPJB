@@ -13,9 +13,8 @@ try{
  git('add','.');git('commit','-qm','base');const base=git('rev-parse','HEAD');
  function scenario(label,message,edit,ok,valid=ok){
   git('reset','--hard',base);git('clean','-fd');edit();git('add','-A');git('commit','-qm',message);const head=git('rev-parse','HEAD');
-  assert.equal(!!routineRange(base,head,dir,{allowQcm:true}),ok,label);
-  if(message.startsWith('routine(qcm):'))assert.equal(routineRange(base,head,dir),null,'QCM fast publication locked');
-  if(ok&&!message.startsWith('routine(qcm):')){if(valid)check(base,head,dir);else assert.throws(()=>check(base,head,dir));}
+  assert.equal(!!routineRange(base,head,dir),ok,label);
+  if(ok){if(valid)check(base,head,dir);else assert.throws(()=>check(base,head,dir));}
   console.log('ROUTINE_CASE '+label);
  }
  scenario('simple UI','routine(ui): scroll',()=>write('quizz.html',html(q,'const scroll=2;')),true);
@@ -27,13 +26,16 @@ try{
  scenario('mixed data and UI rejected','routine(ui): data',()=>write('quizz.html',html({...q,explain:'better'},'const scroll=2;')),false);
  scenario('storage change rejected','routine(ui): save',()=>write('index.html','<script>localStorage.clear();</script>'),false);
  scenario('changed hand rejected','routine(qcm): hand',()=>write('quizz.html',html({...q,hand:[[],[],[],['A']]})),false);
+ scenario('changed correct answer requires FULL','routine(qcm): answer',()=>write('quizz.html',html({...q,answer:'1SA'})),false);
  scenario('bad answer rejected','routine(qcm): answer',()=>write('quizz.html',html({...q,answer:'2SA'})),false);
+ scenario('correct answer preserved, distractor edit','routine(qcm): choices',()=>write('quizz.html',html({...q,choices:['Passe','1SA','1♠','2♥']})),true);
+ scenario('duplicate choice rejected','routine(qcm): choices',()=>write('quizz.html',html({...q,choices:['Passe','1SA','1♠','1♠']})),false);
+ scenario('ID change rejected','routine(qcm): ID',()=>write('quizz.html',html({...q,id:'SEF-2'})),false);
  scenario('unlisted file rejected','routine(ui): extra',()=>{write('quizz.html',html(q,'const scroll=3;'));write('new.js','x')},false);
  git('reset','--hard',base);
  write('qpjb-bridge-ui.css','body { color:blue }');git('add','.');git('commit','-qm','routine(ui): color');
  write('quizz.html',html({...q,explain:'better'}));git('add','.');git('commit','-qm','routine(qcm): correction');
- assert.equal(routineRange(base,git('rev-parse','HEAD'),dir,{allowQcm:true}).length,2);
- assert.equal(routineRange(base,git('rev-parse','HEAD'),dir),null);
+ assert.equal(routineRange(base,git('rev-parse','HEAD'),dir).length,2);
  write('quizz-parcours.js','const engine=3;');git('add','.');git('commit','-qm','fix: engine');
  assert.equal(routineRange(base,git('rev-parse','HEAD'),dir),null);
  console.log('ROUTINE_POLICY_PASS');

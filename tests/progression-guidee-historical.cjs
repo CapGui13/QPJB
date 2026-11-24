@@ -8,6 +8,6 @@ function exact(file,sha){const bytes=fs.readFileSync(path.join(dir,file));assert
 function source(){return exact('quizz-parcours.js',engineBlob)}
 function html(){return exact('quizz.html',quizBlob)}
 function payload(text){const m=[...text.matchAll(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/g)];assert.equal(m.length,1,'Exact single catalogue');return m[0][1]}
-function catalogue(){const raw=payload(fs.readFileSync(path.join(root,'quizz.html'),'utf8'));assert.equal(raw,payload(html()),'Embedded catalogue byte-for-byte unchanged');const data=JSON.parse(raw);assert.equal(data.exercises.length,1523);assert.equal(new Set(data.exercises.map(q=>q.id)).size,1523);assert.equal(data.themes.length,22);return data}
+function catalogue(){const raw=payload(html());const data=JSON.parse(raw);assert.equal(data.exercises.length,1523);assert.equal(new Set(data.exercises.map(q=>q.id)).size,1523);assert.equal(data.themes.length,22);return data}
 function engine(){source();return require(path.join(dir,'quizz-parcours.js'))}
 module.exports={base,engineBlob,quizBlob,blob,source,html,payload,catalogue,engine,dir};

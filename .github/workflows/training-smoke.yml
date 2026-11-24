@@ -59,6 +59,12 @@ jobs:
         run: |
           if node scripts/ci-routine.cjs --eligible "$BASE" "$HEAD"; then
             node scripts/ci-routine.cjs --check "$BASE" "$HEAD"
+            if node scripts/ci-routine.cjs --qcm "$BASE" "$HEAD"; then
+              python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1523
+              node tests/quizz-catalogue-live.cjs
+              node tests/quizz-distractors.cjs
+              node tests/quizz-quality.cjs
+            fi
             python3 scripts/build_catalogue.py
             python3 tests/repository-layout.py
           else
@@ -113,54 +119,14 @@ jobs:
       - name: Contrôles rapides — structure et régressions Quiz SEF
         run: |
           node tests/training-smoke.cjs
-          node tests/quizz-integrity.cjs
-          node tests/quizz-v1-lot-d-11-integration.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1523
+          node tests/quizz-catalogue-live.cjs
           node tests/quizz-ui-vnext-static.cjs
           node tests/parcours-recommandations-v1.test.js
-          node audits/v1-evolutions/pedagogie/verifier-propositions.cjs
-          node tests/quizz-v2-audit.cjs
-          node tests/quizz-v2-sa.cjs
-          node tests/quizz-l01-regression.cjs
-          node tests/quizz-l02-10-regression.cjs
-          node tests/quizz-v4112-regression.cjs
           node tests/quizz-content-audit.cjs
           node tests/quizz-distractors.cjs
           node tests/quizz-quality.cjs
           node tests/quizz-free-input.cjs
-          node tests/quizz-v470-regression.cjs
-          node tests/quizz-v471-regression.cjs
-          node tests/quizz-v472-regression.cjs
-          node tests/quizz-v473-regression.cjs
-          node tests/quizz-v474-regression.cjs
-          node tests/quizz-v475-regression.cjs
-          node tests/quizz-v476-regression.cjs
-          node tests/quizz-v477-regression.cjs
-          node tests/quizz-v478-regression.cjs
-          node tests/quizz-v479-regression.cjs
-          node tests/quizz-v480-regression.cjs
-          node tests/quizz-v481-regression.cjs
-          node tests/quizz-v482-regression.cjs
-          node tests/quizz-v483-regression.cjs
-          node tests/quizz-v484-regression.cjs
-          node tests/quizz-v485-regression.cjs
-          node tests/quizz-v486-regression.cjs
-          node tests/quizz-v487-regression.cjs
-          node tests/quizz-v488-regression.cjs
-          node tests/quizz-v489-regression.cjs
-          node tests/quizz-v490-regression.cjs
-          node tests/quizz-v491-regression.cjs
-          node tests/quizz-v492-regression.cjs
-          node tests/quizz-v493-regression.cjs
-          node tests/quizz-v494-regression.cjs
-          node tests/quizz-v495-regression.cjs
-          node tests/quizz-v496-regression.cjs
-          node tests/quizz-v497-regression.cjs
-          node tests/quizz-v498-regression.cjs
-          node tests/quizz-v499-regression.cjs
-          node tests/quizz-v4100-regression.cjs
-          node tests/quizz-v4101-regression.cjs
-          node tests/quizz-v4102-regression.cjs
-          node tests/quizz-v4103-regression.cjs
       - name: Contrôles rapides — Entraînement, catalogue et mises à jour
         run: |
           node tests/training-card-integrity.cjs
@@ -222,6 +188,7 @@ jobs:
       - name: Recette complete — cinq profils, 65 puis 153 seances
         run: |
           node tests/quizz-parcours.cjs
+          node tests/quizz-catalogue-live.cjs --simulate
 
   smoke:
     needs: plan
