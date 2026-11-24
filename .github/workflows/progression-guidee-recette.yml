@@ -56,6 +56,13 @@ jobs:
           node tests/quizz-parcours.cjs
           node tests/wave2-adaptatif-suite.cjs --quick
           node tests/qpjb-sef-revue-finale-29-20261124.cjs --quick
+      - name: Validate integrated M1 and M2 native deliverables
+        if: env.RECIPE_MODE == 'candidate'
+        run: |
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-progression-selection.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/quizz-progression-selection-real.cjs
       - run: |
           npm install --no-save playwright
           npx playwright install --with-deps chromium webkit
