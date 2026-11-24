@@ -20,7 +20,9 @@ assert.match(index,/id="quizz-frame"/,'Iframe du quiz preservee');
 const original=index;
 const ob=Buffer.from(original);
 const baseline=crypto.createHash('sha1').update('blob '+ob.length+'\0').update(ob).digest('hex');
-assert.equal(baseline,'a7bdd7f9f3eb67d4d1f42d5b065e548a97a20065','Accueil modifié hors opt-in');
+// Référence approuvée : réorganisation des séances en trois groupes (PR #292).
+// Les contrôles de navigation V1 et d'intégrité de l'archive V2 restent identiques.
+assert.equal(baseline,'e469c5a1c9e06acba06af0dcdf29866d7a77dca4','Accueil modifié hors opt-in');
 const file=bytes.toString('utf8');
 assert.match(file,/<meta name="robots" content="noindex,nofollow">/);
 assert.ok(!file.includes('qpjb-preview-v2-eleve-01')&&!file.includes('qpjb-preview-v2-eleve-02-hold'));
