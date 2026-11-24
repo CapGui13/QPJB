@@ -9,6 +9,8 @@ const build=function build(exercises){
   let c=t+'.base',f=roadmap[t],p=0,rs=[],parent=null;
   const use=(concept,floor,phase,requires=[],support=null)=>{c=concept;f=Math.max(roadmap[t],floor);p=phase;rs=requires;parent=support};
   const major=/^[1-7][♥♠]$/,minor=/^[1-7][♣♦]$/;
+  const rank=bid=>'♣♦♥♠'.indexOf(bid?.slice(-1));
+  const reverse=(op,response,rebid)=>/^[1-7][♣♦♥♠]$/.test(rebid||'')&&rebid[0]==='2'&&rank(rebid)>rank(op)&&rank(rebid)!==rank(response);
   switch(t){
    case 'ouv':
     if(b==='2♣'||b==='2♦')use('fortes.ouverture',26,0,['ouv.sa2','ouv.majeure']);
@@ -36,21 +38,22 @@ const build=function build(exercises){
      const start=[basic,...(sa===2?[st?'sa1.stayman.reponse':te?'sa1.texas.suite':'sa1.texas_mineur.reponse']:[]),...(mi?['sa1.texas.suite']:[])];
      if(a.length===1)use(root,gate,0,start);
      else if(enemy.length)use(root+'.contre',14,3,[root,...(st?[root+'.reponse']:[]),'contre.base'],root);
-     else if(a.length===2)use(root+'.reponse',Math.max(gate+2,sa===1?7:10),1,[root],root);
+     else if(a.length===2)use(root+'.reponse',Math.max(gate+2,sa===1?7:10),1,[root,...(sa===2&&mi?['sa2.seuil','sa1.texas_mineur.reponse','sa2.texas']:[])],root);
      else {use(root+'.suite',Math.max(gate+3,sa===1?9:12),2,[root,...((st||mi||sa===2)?[root+'.reponse']:[])],root);if(a.length>3||/chassé.croisé|transfert de manche|relais 3♣|chelem/i.test(reason)){p=3;f=Math.max(f,sa===2?18:15);}}
     }else use(basic,sa===1?3:6,1,br);
     break;
    }
    case 'red':
     if(enemy.length)use('red.competitif',14,2,['red.base','apres_inter.base'],'red.base');
-    else if(/bicolore/i.test(reason)||(a.length===2&&/^[1-3][♣♦♥♠]$/.test(b)&&b.slice(-1)!==first?.slice(-1)&&b.slice(-1)!==second?.slice(-1)))use('red.bicolore',5,0,['mineur.base','majeur.base'],'red.base');
+    else if(a.length===2&&reverse(first,second,b))use('red.bicolore_cher',9,2,['red.bicolore'],'red.bicolore');
+    else if((a.length===2&&/^[1-3][♣♦♥♠]$/.test(b)&&b.slice(-1)!==first?.slice(-1)&&b.slice(-1)!==second?.slice(-1))||id==='SEF-V413-013')use('red.bicolore',5,0,['mineur.base','majeur.base'],'red.base');
     else use('red.base',4,0,['mineur.base','majeur.base']);break;
    case 'second':
     if(/troisième couleur forcing|3e couleur forcing/i.test(tags))use('forcing.troisieme.suite',28,2,['forcing.troisieme','second.base'],'forcing.base');
-    else if(/bicolore cher|modérateur/i.test(tags))use('second.bicolore_cher',12,2,['red.bicolore','second.base'],'second.base');
+    else if(/bicolore cher|modérateur/i.test(tags)||reverse(first,second,third))use('second.bicolore_cher',12,2,['red.bicolore_cher','second.base'],'second.base');
     else use('second.base',6,0,['red.base']);break;
    case 'apres_fit':
-    if(/fitté/i.test(tags)&&a.includes('2SA'))use('fit.2sa.suite',10,2,['fit.2sa','apres_fit.base'],'apres_fit.base');
+    if(/fitté/i.test(tags)&&a.includes('2SA'))use('fit.2sa.suite',10,2,['fit.2sa','apres_fit.base',...(enemy.length?['competitif.2sa_fitte']:[])],'apres_fit.base');
     else if(a.length>=3)use('apres_fit.essai.suite',10,2,['apres_fit.essai'],'apres_fit.base');
     else if(b==='2SA'||(major.test(b)&&b.startsWith('3')&&d>=3))use('apres_fit.essai',8,1,['apres_fit.base'],'apres_fit.base');
     else use('apres_fit.base',8,0,['majeur.soutien']);break;
@@ -64,7 +67,8 @@ const build=function build(exercises){
     if(ns[0]?.bid==='1SA')use('intervenir.sa.suite',17,2,['reponse_inter.base','sa1.stayman','sa1.texas'],'reponse_inter.base');
     else use('reponse_inter.base',13,0,['intervenir.base']);break;
    case 'apres_inter':
-    if(enemy.some(x=>x.bid==='Contre')&&/Truscott|Surcontre|rencontre/i.test(reason))use('competitif.truscott',16,1,['apres_inter.base','majeur.soutien'],'apres_inter.base');
+    if(enemy.some(x=>x.bid==='1SA'))use('competitif.sa_adverse',16,1,['apres_inter.base','sa1.seuil'],'apres_inter.base');
+    else if(enemy.some(x=>x.bid==='Contre')&&(/Truscott|Surcontre|rencontre/i.test(reason)||b==='2SA'||(b==='3SA'&&major.test(first))))use('competitif.truscott',16,1,['apres_inter.base','majeur.soutien'],'apres_inter.base');
     else if(b==='Contre'||/Spoutnik/i.test(tags))use('competitif.spoutnik',14,0,['apres_inter.base'],'apres_inter.base');
     else if(b==='2SA'&&/fitté/i.test(reason)&&!/naturel sur/i.test(reason))use('competitif.2sa_fitte',15,1,['apres_inter.base','fit.2sa'],'apres_inter.base');
     else use('apres_inter.base',14,0,['intervenir.base','majeur.soutien']);break;
@@ -72,14 +76,16 @@ const build=function build(exercises){
     if(!a.length)use('barrage.ouverture',17,0,['ouv.majeure','ouv.passe']);
     else if(a.length===1)use('barrage.reponse',18,1,['barrage.ouverture'],'barrage.ouverture');
     else use('barrage.suite',20,2,['barrage.reponse'],'barrage.reponse');break;
-   case 'reveil':use('reveil.base',19,0,['intervenir.base']);break;
+   case 'reveil':
+    if(/^2[♥♠]$/.test(first||''))use('reveil.deux_faible',20,1,['reveil.base','barrage.ouverture'],'reveil.base');
+    else use('reveil.base',19,0,['intervenir.base']);break;
    case 'roudi':
-    if(ns.length<=3)use('roudi.init',22,0,['second.base']);
+    if(ns.length<=3)use(b==='2♣'?'roudi.init':'roudi.choix',22,0,['second.base']);
     else if(ns.length===4)use('roudi.reponse',24,1,['roudi.init'],'roudi.init');
     else use('roudi.suite',26,2,['roudi.reponse'],'roudi.init');break;
    case 'drury':
-    if(!ns.some(x=>x.bid==='2♣'))use('drury.init',24,0,['majeur.soutien','ouv.position']);
-    else use(ns.length<=2?'drury.reponse':'drury.suite',26,ns.length<=2?1:2,['drury.init'],'drury.init');break;
+    if(!ns.some(x=>x.bid==='2♣'))use(b==='2♣'?'drury.init':'drury.choix',24,0,['majeur.soutien','ouv.position']);
+    else use(ns.length<=2?'drury.reponse':'drury.suite',26,ns.length<=2?1:2,['drury.init',...(ns.length>2?['drury.reponse']:[])],'drury.init');break;
    case 'fortes':
     if(!a.length)use('fortes.ouverture',26,0,['ouv.sa2','ouv.majeure']);
     else if(a.length===1)use('fortes.relais',27,1,['fortes.ouverture'],'fortes.ouverture');
@@ -95,14 +101,14 @@ const build=function build(exercises){
     else use('forcing.'+kind,28,ns.length===3?1:0,['forcing.base'],'forcing.base');break;
    }
    case 'multilandy':
-    if(ns.length===0)use('multilandy.intervention',32,0,['intervenir.base','sa1.seuil']);
+    if(ns.length===0)use(b==='Passe'?'multilandy.choix':'multilandy.intervention',32,0,['intervenir.base','sa1.seuil']);
     else if(ns.length===1)use('multilandy.reponse',34,1,['multilandy.intervention'],'multilandy.intervention');
     else use('multilandy.suite',36,2,['multilandy.reponse'],'multilandy.reponse');break;
    case 'rubensohl':
-    if(ns.length<=1)use('rubensohl.init',34,0,['apres_inter.base','sa1.texas','sa1.stayman']);
-    else use(ns.length===2?'rubensohl.reponse':'rubensohl.suite',36,ns.length===2?1:2,['rubensohl.init'],'rubensohl.init');break;
+    if(ns.length<=1)use((b==='Passe'||b==='Contre'||b==='Surcontre'||/^2[♣♦♥♠]$/.test(b)||b==='3SA')?'rubensohl.naturel':'rubensohl.init',34,0,['apres_inter.base','sa1.texas','sa1.stayman']);
+    else use(ns.length===2?'rubensohl.reponse':'rubensohl.suite',36,ns.length===2?1:2,['rubensohl.init',...(ns.length>2?['rubensohl.reponse']:[])],'rubensohl.init');break;
    case 'michaels':
-    if(!ns.length)use('michaels.intervention',36,0,['intervenir.base']);
+    if(!ns.length)use((b==='Passe'||/^1[♣♦♥♠]$/.test(b))?'michaels.choix':'michaels.intervention',36,0,['intervenir.base']);
     else use(ns.length===1?'michaels.reponse':'michaels.suite',38,ns.length===1?1:2,['michaels.intervention'],'michaels.intervention');break;
    case 'chelem':
     if(first==='1SA'||first==='2SA')use(a.includes('4SA')?'chelem.quantitatif.suite':'chelem.quantitatif',39,a.includes('4SA')?2:0,[first==='1SA'?'sa1.seuil':'sa2.seuil',...(a.includes('4SA')?['chelem.quantitatif']:[])],first==='1SA'?'sa1.seuil':'sa2.seuil');
@@ -113,11 +119,15 @@ const build=function build(exercises){
    default:throw Error('unknown theme '+t);
   }
   if(!['michaels','multilandy','rubensohl'].includes(t)&&enemy.some(x=>/Micha[ëe]l|bicolore.*(?:5.5|♣.*♦|♦.*♣|Carreau.*Cœur)/i.test(x.raw)))use('michaels.defense',38,2,['michaels.intervention','apres_inter.base'],'michaels.intervention');
-  if(t==='reveil'&&((a.length===2&&major.test(first)&&second?.slice(-1)===first.slice(-1)&&['2SA','4♣','3♥','3♠'].includes(b)&&/bicolore|cue.bid/i.test(reason)&&b!=='3'+(first==='1♥'?'♠':'♥'))||id==='SEF-L38-003'))use('michaels.reveil',38,2,['michaels.intervention','reveil.base'],'michaels.intervention');
-  if(['SEF-L13-008','SEF-L22-006','SEF-L23-002','SEF-L29-004','SEF-L30-004','SEF-L37-002','SEF-L13-004','SEF-L20-002','SEF-L28-004'].includes(id)){const old=c;use('chelem.splinter.variante',40,3,['chelem.splinter',old],'chelem.controles');}
+  if(t==='reveil'&&((a.length===2&&major.test(first)&&second?.slice(-1)===first.slice(-1)&&['2SA','4♣','3♥','3♠'].includes(b)&&(/bicolore|cue.bid/i.test(reason)||b==='2SA')&&b!=='3'+(first==='1♥'?'♠':'♥'))||id==='SEF-L38-003'))use('michaels.reveil',38,2,['michaels.intervention','reveil.base'],'michaels.intervention');
+  if(['SEF-L13-008','SEF-L19-005','SEF-L22-006','SEF-L23-002','SEF-L29-004','SEF-L30-004','SEF-L37-002','SEF-L13-004','SEF-L20-002','SEF-L28-004'].includes(id)){const old=c;use('chelem.splinter.variante',40,3,['chelem.splinter',old],'chelem.controles');}
   if(['SEF-L22-007','SEF-L27-005','SEF-V487-003'].includes(id)){const old=c;use('chelem.quantitatif.suite',41,2,['chelem.quantitatif',old],'chelem.quantitatif');}
   if(['SEF-L36-002','SEF-L36-001'].includes(id)){rs.push('competitif.spoutnik');f=Math.max(f,16);}
   if(id==='SEF-L24-006'){rs.push('apres_inter.base');f=Math.max(f,14);}
+  if(id==='SEF-L39-005')rs.push('competitif.2sa_fitte','barrage.ouverture');
+  if(id==='SEF-L19-004')rs.push('competitif.2sa_fitte');
+  if(id==='SEF-L38-004'||id==='SEF-L38-005')rs.push('sa1.texas.suite','sa1.stayman.reponse');
+  if(t==='reponse_inter'&&b==='2SA'&&/fitté|mixed raise/i.test(reason)){rs.push('fit.2sa');f=Math.max(f,15);}
   return {id,t,d,family:q.caseFamily||id,c,f,p,rs,parent};
  });
  const groups=new Map();for(const r of rows){if(!groups.has(r.c))groups.set(r.c,[]);groups.get(r.c).push(r);}
@@ -137,6 +147,8 @@ const build=function build(exercises){
    const foundation=candidates.find(c=>low(c)>0);
    if(!foundation)throw Error('advanced without low foundation '+r.id+' '+JSON.stringify(candidates));
    add(foundation,Math.min(r.d===5?3:2,low(foundation)));minSession=Math.max(minSession,r.f+(r.d===5?8:4));
+  }else if(r.d===2&&r.p===0&&r.t!=='ouv'&&groups.get(r.c).some(x=>x.d===1)){
+   stage=1;add(r.c,1); // N1 avant N2, sans déplacer les ouvertures S1
   }else if(r.d===3){
    if(r.p===0&&groups.get(r.c).some(x=>x.d<=2)){add(r.c,1);minSession=Math.max(minSession,r.f+1);}
    else if(r.p===0)stage=0;

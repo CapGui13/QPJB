@@ -6,7 +6,7 @@ Base 96c0f7962c14e74429fa12871d687efa0e8a94bd, blob quizz.html 2b89070d82ae45fc7
 ```json
 {
   "ids": 1523,
-  "concepts": 91,
+  "concepts": 99,
   "reachable": 1523,
   "maxEarliest": 49,
   "firstByTheme": {
@@ -34,8 +34,8 @@ Base 96c0f7962c14e74429fa12871d687efa0e8a94bd, blob quizz.html 2b89070d82ae45fc7
     "chelem": 39
   },
   "stages": [
-    586,
-    401,
+    479,
+    508,
     97,
     439
   ],
@@ -44,3 +44,7 @@ Base 96c0f7962c14e74429fa12871d687efa0e8a94bd, blob quizz.html 2b89070d82ae45fc7
 ```
 
 Test Node fourni : `node tests/quizz-prerequis.cjs` : couverture, schéma, roadmap, graphe, exceptions, UMD navigateur et égalité avec générateur. Exécution Node native non attestée dans cette passe. Catalogue inchangé par M1.
+
+## Recette complémentaire
+
+Séparation initiation Roudi/Drury et choix naturel, défense sur 1SA adverse versus Spoutnik, bicolore cher versus économique, réveil sur deux faible et sur soutien adverse. Les 16 exigences P11 historiques ont leurs IDs d'exemples et leur plancher conservés. Vérifiés en V8 : chargement du module réel en CommonJS et window, trois contre-épreuves (ID absent, Michaël trop tôt, Texas mineur sans préalable) et huit assertions ciblées supplémentaires. Le fichier quizz.html et le moteur conservent leurs blobs de base. Le test Node natif reste à lancer par la recette intégrée.
