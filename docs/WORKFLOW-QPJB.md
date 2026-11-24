@@ -7,9 +7,9 @@ Regrouper les corrections liées dans un commit et conserver le retour arrière 
 
 ## Voie rapide
 - Texte, couleurs, dimensions, ergonomie et code de présentation local : commit `routine(ui): description`.
-- Correction ponctuelle (1 à 20 QCM existants) : `routine(qcm): description`. Vérifier le fond SEF et les choix avant le commit ; seuls contexte, explication, réponse et choix sont admissibles. Ne pas modifier les IDs, mains, ordre, thèmes, difficulté ou prérequis.
+- Correction ponctuelle de QCM : contrôle pédagogique ciblé. Le contrôle structurel `routine(qcm)` est préparé, mais la publication rapide de ces modifications reste désactivée tant que les anciens registres d'approbation figent le catalogue complet. Ne pas contourner ces registres. Le prochain vrai correctif de contenu devra rendre ses validations compatibles ; pas de modification fictive du catalogue pour ce chantier.
 - Documents et séances : conserver la validation QUICK existante pour les chemins reconnus.
-- La voie routine contrôle le périmètre du diff et la syntaxe, puis régénère le catalogue et vérifie l'archive publique. Pas de simulations longues ni de navigateur automatique systématique. Tester le comportement ciblé si nécessaire avant de publier ; l'essai réel utilisateur reste important.
+- La voie routine UI contrôle le périmètre du diff et la syntaxe, puis régénère le catalogue et vérifie l'archive publique. Pas de simulations longues ni de navigateur automatique systématique. Tester le comportement ciblé si nécessaire avant de publier ; l'essai réel utilisateur reste important.
 - Le marqueur est une déclaration de portée, pas une preuve de sécurité sémantique. Ne jamais l'utiliser pour un changement de stockage, moteur, données structurelles, sécurité, cache, infrastructure, ou une modification dont on ne comprend pas les conséquences. En cas de doute : FULL. Une anomalie doit être corrigée, pas contournée par un marqueur.
 
 ## Gros changements

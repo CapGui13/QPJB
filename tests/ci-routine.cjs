@@ -13,8 +13,9 @@ try{
  git('add','.');git('commit','-qm','base');const base=git('rev-parse','HEAD');
  function scenario(label,message,edit,ok,valid=ok){
   git('reset','--hard',base);git('clean','-fd');edit();git('add','-A');git('commit','-qm',message);const head=git('rev-parse','HEAD');
-  assert.equal(!!routineRange(base,head,dir),ok,label);
-  if(ok){if(valid)check(base,head,dir);else assert.throws(()=>check(base,head,dir));}
+  assert.equal(!!routineRange(base,head,dir,{allowQcm:true}),ok,label);
+  if(message.startsWith('routine(qcm):'))assert.equal(routineRange(base,head,dir),null,'QCM fast publication locked');
+  if(ok&&!message.startsWith('routine(qcm):')){if(valid)check(base,head,dir);else assert.throws(()=>check(base,head,dir));}
   console.log('ROUTINE_CASE '+label);
  }
  scenario('simple UI','routine(ui): scroll',()=>write('quizz.html',html(q,'const scroll=2;')),true);
@@ -31,7 +32,8 @@ try{
  git('reset','--hard',base);
  write('qpjb-bridge-ui.css','body { color:blue }');git('add','.');git('commit','-qm','routine(ui): color');
  write('quizz.html',html({...q,explain:'better'}));git('add','.');git('commit','-qm','routine(qcm): correction');
- assert.equal(routineRange(base,git('rev-parse','HEAD'),dir).length,2);
+ assert.equal(routineRange(base,git('rev-parse','HEAD'),dir,{allowQcm:true}).length,2);
+ assert.equal(routineRange(base,git('rev-parse','HEAD'),dir),null);
  write('quizz-parcours.js','const engine=3;');git('add','.');git('commit','-qm','fix: engine');
  assert.equal(routineRange(base,git('rev-parse','HEAD'),dir),null);
  console.log('ROUTINE_POLICY_PASS');

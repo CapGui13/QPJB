@@ -65,7 +65,7 @@ function inspectCommit(parent,head,cwd){
  }
  return {scope:m[1],files};
 }
-function routineRange(base,head,cwd=process.cwd()){
+function routineRange(base,head,cwd=process.cwd(),{allowQcm=false}={}){
  try{
   assert(SHA.test(base)&&SHA.test(head)&&base!==head);
   git(['merge-base','--is-ancestor',base,head],cwd);
@@ -75,7 +75,9 @@ function routineRange(base,head,cwd=process.cwd()){
   for(const row of rows){
    const [commit,parent,...extra]=row.split(' ');
    assert(SHA.test(commit)&&parent===prev&&!extra.length,'routine range must be linear');
-   results.push(inspectCommit(parent,commit,cwd));prev=commit;
+   const result=inspectCommit(parent,commit,cwd);
+   assert(allowQcm||result.scope!=='qcm','catalogue legacy approval registry still locked');
+   results.push(result);prev=commit;
   }
   assert.equal(prev,head);
   return results;
