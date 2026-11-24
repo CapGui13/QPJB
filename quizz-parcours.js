@@ -554,13 +554,22 @@
   }
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
-    const pool=eligiblePool(exercises,state,e),previous=state.entries||{};
+    let pool=eligiblePool(exercises,state,e);
+    const previous=state.entries||{};
     const passCap=s===0?3:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
     const totalRecent=e.recent.length,weakRecent=e.recent.filter(({a})=>weakAnswer(a)).length;
     const rate=totalRecent?weakRecent/totalRecent:0;
     const profile=rate>=.5?'weak':rate>=.2?'middle':'strong';
+    // Les niveaux avancés éligibles ne deviennent pas obligatoires quand
+    // l'élève échoue encore souvent. Préférer les variantes élémentaires.
+    // Après la phase de découverte, une variante avancée locale peut être
+    // rencontrée si ses propres preuves existent et si elle apporte de la nouveauté.
+    if(profile==='weak'&&s<65){
+      const easy=pool.filter(q=>q.difficulty<=3);
+      if(new Set(easy.map(family)).size>=limit)pool=easy;
+    }
     const quotas=profile==='weak'?[2,3,4,1]:profile==='middle'?[4,3,2,1]:[5,3,1,1];
     const buckets={discovery:0,maintenance:0,weakness:0,transfer:0};
     // Le rappel par une autre main est un vrai rappel. Réserver les reprises
@@ -613,7 +622,9 @@
       return value;
     }
     function choose(list,category,forcedReason,priority=false){
-      const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap);
+      const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
+        (profile!=='weak'||q.difficulty<=3||selected.filter(v=>v.exercise.difficulty>=4).length<1||
+          !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap)));
       const distinct=q=>available(q)&&!families.has(family(q));
       let candidates=list.filter(available);
       if(!candidates.length)return false;
