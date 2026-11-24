@@ -67,3 +67,6 @@ fixture('real PBN edit','QUICK',()=>edit(pbns[0]),[['M',pbns[0],null]]);
 fixture('real shared CSS edit','UI',()=>edit('qpjb-bridge-ui.css'),[['M','qpjb-bridge-ui.css',null]]);
 fixture('real generated catalogue remains full','FULL',()=>edit('catalogue.json'),[['M','catalogue.json',null]]);
 fixture('real public alias source remains full','FULL',()=>edit('archives/site/index A.html'),[['M','archives/site/index A.html',null]]);
+
+fixture('real CSS deletion remains full','FULL',()=>g('update-index','--force-remove','qpjb-bridge-ui.css'),[['D','qpjb-bridge-ui.css',null]]);
+fixture('real mixed historical report plus public image escalates','FULL',()=>{edit(reports[0]);edit(docs[0]);},[['M',docs[0],null],['M',reports[0],null]]);

@@ -5,6 +5,10 @@ const {TextDecoder}=require('node:util');
 const SCHEMA='QPJB_CI_PLAN_V1';
 const LEVELS=['DOC_ONLY','QUICK','UI','FULL'];
 const SHA=/^[0-9a-f]{40}$/;
+const SESSION=/^Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)$/;
+const CSS=new Set(['qpjb-bridge-ui.css','qpjb-design-tokens.css']);
+const EMPTY_BLOB='e69de29bb2d1d6434b8b29ae775ad8c2e48c5391';
+function marker(p){const a=p.split('/');return a.length===2&&SESSION.test(a[0])&&a[1]==='.seance-vide';}
 const REPORTS=new Set(["audits/wave2/ux/PASSE_14_COMPARAISON_VISUELLE.md","audits/wave2/recommandations/PASSE25_RETRAIT_LANCEUR_NODE22_20261121.md","audits/wave2/ci/PASSE_9_PREUVES_HORODATEES.md"]);
 const SELF=['scripts/ci-classify.cjs','tests/ci-classify.test.cjs','tests/ci-classify-real.cjs','audits/ci-optimisation/M1/README.md'];
 const env={...process.env,GIT_NO_REPLACE_OBJECTS:'1',GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0',LC_ALL:'C'};
@@ -35,7 +39,7 @@ function parseRaw(b){
     if((oldMode==='000000')!==(oldOid===zero)||(newMode==='000000')!==(newOid===zero)||
        (kind==='A')!==(oldMode==='000000')||(kind==='D')!==(newMode==='000000'))
       throw new Error('inconsistent diff mode/object');
-    result.push({status,path,...(pair?{oldPath:first}:{}),oldMode,newMode});
+    result.push({status,path,...(pair?{oldPath:first}:{}),oldMode,newMode,oldOid,newOid});
   }
   return result;
 }
@@ -46,8 +50,9 @@ function safePath(p){
   return p===p.normalize('NFC')&&!/[\p{Cc}\p{Cf}\\]/u.test(p)&&p.split('/').every(s=>s&&s!=='.'&&s!=='..'&&!s.startsWith('.')&&s.trim()===s&&!s.endsWith('.'));
 }
 function pathLevel(p){
+  if(marker(p))return 'QUICK';
   if(!safePath(p))return 'FULL';
-  if(p==='qpjb-bridge-ui.css'||p==='qpjb-design-tokens.css')return 'UI';
+  if(CSS.has(p))return 'UI';
   if(REPORTS.has(p))return 'DOC_ONLY';
   const a=p.split('/');
   if(a.length!==2)return 'FULL';
@@ -57,7 +62,7 @@ function pathLevel(p){
   if(folder==='Docs'&&/\.(?:jpe?g|png|gif|webp)$/i.test(name))return 'QUICK';
   // The builder discovers root folders with PBNs. Only the observed QPJB
   // naming convention is eligible for fast validation, including future sessions.
-  if(/^Séance [0-9]+-[0-9]{2} (?:Aix|Mumu)$/.test(folder)&&/\.pbn$/i.test(name))return 'QUICK';
+  if(SESSION.test(folder)&&/\.pbn$/i.test(name))return 'QUICK';
   return 'FULL';
 }
 function rank(a,b){return LEVELS[Math.max(LEVELS.indexOf(a),LEVELS.indexOf(b))];}
@@ -69,6 +74,15 @@ function reportRefs(ref,report){
 function changeLevel(c,from,to){
   if(!['000000','100644'].includes(c.oldMode)||!['000000','100644'].includes(c.newMode)||c.status==='T')
     return ['FULL','non-ordinary file or mode'];
+  // M2 accepts shared CSS modifications only, never additions/removals.
+  // A copy out of an unchanged CSS is also deliberately classified FULL.
+  if([c.path,c.oldPath].some(p=>CSS.has(p))&&c.status!=='M')
+    return ['FULL','required shared CSS addition/removal/rename/copy'];
+  // M2 proved the marker only for an empty regular blob in a session folder.
+  const source=c.oldPath||c.path;
+  if((marker(source)&&c.oldMode!=='000000'&&c.oldOid!==EMPTY_BLOB)||
+     (marker(c.path)&&c.newMode!=='000000'&&c.newOid!==EMPTY_BLOB))
+    return ['FULL','nonempty session marker'];
   let level=pathLevel(c.path);
   if(c.oldPath)level=rank(level,pathLevel(c.oldPath));
   // DOC_ONLY requires an existing, exact historical report; never a new,
@@ -84,14 +98,17 @@ function changeLevel(c,from,to){
   return [level,level==='FULL'?'unrecognised or sensitive path':'allowed '+level+' path'];
 }
 function collisions(ref,paths){
-  const seen=new Set(),dupes=new Set();
+  const seen=new Map(),dupes=new Set();
   const fold=p=>p.normalize('NFC').toLowerCase();
+  const prefixes=p=>{const a=p.split('/');return a.map((_,i)=>a.slice(0,i+1).join('/'));};
   for(const p of nul(git(['ls-tree','-r','-z','--name-only',ref]).stdout)){
-    const k=fold(p);
-    if(seen.has(k))dupes.add(k);
-    seen.add(k);
+    for(const prefix of prefixes(p)){
+      const k=fold(prefix);
+      if(seen.has(k)&&seen.get(k)!==prefix)dupes.add(k);
+      seen.set(k,prefix);
+    }
   }
-  return paths.some(p=>dupes.has(fold(p)));
+  return paths.some(p=>prefixes(p).some(k=>dupes.has(fold(k))));
 }
 function classify(base,head){
   if(!SHA.test(base||'')||!SHA.test(head||''))throw new Error('expected two complete lowercase SHA-1 commit IDs');
@@ -118,6 +135,12 @@ function classify(base,head){
   }
   inspect(changes,base,head,'');
   if(!changes.length)raise('FULL','empty net diff; no publication shortcut');
+  // M2 consumes the entire raw net diff, not a filtered path list. A mixed
+  // report+public plan cannot pass its documented scope guard. Escalate
+  // rather than change the base or hide any paths from the verifier.
+  if(changes.some(c=>REPORTS.has(c.path)||REPORTS.has(c.oldPath))&&
+     changes.some(c=>!REPORTS.has(c.path)))
+    raise('FULL','mixed historical report and public/other paths: M2 cannot validate the whole net diff');
   // Inspect each new commit against its first parent as well as the net diff.
   // This preserves the highest level even if sensitive changes were reverted.
   // Net changes remain the exact base/head diff for M2.
@@ -135,7 +158,7 @@ function classify(base,head){
     }
   }
   return {schema:SCHEMA,baseSha:base,headSha:head,level,publish:level!=='DOC_ONLY',
-    changes:changes.map(({oldMode,newMode,...c})=>c),reasons:[...new Set(reasons)]};
+    changes:changes.map(({oldMode,newMode,oldOid,newOid,...c})=>c),reasons:[...new Set(reasons)]};
 }
 function main(argv){
   if(argv.length!==4||argv[0]!=='--base'||argv[2]!=='--head')throw new Error('usage: node scripts/ci-classify.cjs --base SHA --head SHA');

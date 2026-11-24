@@ -86,7 +86,7 @@ test('malformed raw output blocks',()=>{for(const b of [Buffer.from('no NUL'),Bu
 test('non UTF-8 git pathname blocks',()=>{reset();const f=Buffer.concat([Buffer.from(repo+'/Docs/'),Buffer.from([0xff]),Buffer.from('.png')]);fs.writeFileSync(f,'x');const h=commit();const r=run(base,h);assert.notEqual(r.status,0);assert.equal(r.stdout,'');fs.unlinkSync(f);});
 
 test('unchanged tracked reference prevents report-only shortcut',()=>{reset();write('scripts/ref.js',report);const b=commit();write(report);expect(b,commit(),'FULL',one('M',report));});
-scenario('report and image union','QUICK',()=>{write(report);write(img);},[['M',report,null],['M',img,null]]);
+scenario('report and image union escalates for M2 complete diff','FULL',()=>{write(report);write(img);},[['M',report,null],['M',img,null]]);
 test('submodule ignore configuration cannot mask gitlink',()=>{
   reset();git('config','diff.ignoreSubmodules','all');
   try{
@@ -108,3 +108,21 @@ test('new commit with merge side branch sensitive and reverted remains FULL',()=
 });
 
 scenario('pedagogical historical review excluded after real reference discovery','FULL',()=>write('audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md'),one('A','audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md'));
+
+const mark='Séance 2-05 Aix/.seance-vide';
+scenario('new empty session marker','QUICK',()=>write(mark,''),one('A',mark));
+scenario('nonempty marker remains full','FULL',()=>write(mark,'not empty'),one('A',mark));
+scenario('empty marker outside session','FULL',()=>write('Docs/.seance-vide',''),one('A','Docs/.seance-vide'));
+scenario('empty marker nested','FULL',()=>write('Séance 2-05 Aix/sub/.seance-vide',''),one('A','Séance 2-05 Aix/sub/.seance-vide'));
+test('empty marker deletion',()=>{reset();write(mark,'');const b=commit();remove(mark);expect(b,commit(),'QUICK',one('D',mark));});
+test('nonempty historical marker deletion remains full',()=>{reset();write(mark,'bad');const b=commit();remove(mark);expect(b,commit(),'FULL',one('D',mark));});
+test('nonempty marker modification remains full',()=>{reset();write(mark,'');const b=commit();write(mark,'bad');expect(b,commit(),'FULL',one('M',mark));});
+scenario('session marker symlink','FULL',()=>{fs.mkdirSync(path.dirname(path.join(repo,mark)),{recursive:true});fs.symlinkSync('../index.html',path.join(repo,mark));},one('A',mark));
+scenario('CSS deletion full','FULL',()=>remove('qpjb-bridge-ui.css'),one('D','qpjb-bridge-ui.css'));
+test('CSS addition full',()=>{reset();const css='qpjb-design-tokens.css';remove(css);const b=commit();write(css);expect(b,commit(),'FULL',one('A',css));});
+scenario('CSS rename full','FULL',()=>rename('qpjb-bridge-ui.css','Docs/from-css.png'),one('R100','Docs/from-css.png','qpjb-bridge-ui.css'));
+scenario('CSS copy full','FULL',()=>write('Docs/from-css.png',fs.readFileSync(path.join(repo,'qpjb-bridge-ui.css'))),one('C100','Docs/from-css.png','qpjb-bridge-ui.css'));
+scenario('report and CSS union escalates for M2','FULL',()=>{write(report);write('qpjb-bridge-ui.css');});
+test('case collision at parent folder even with distinct filenames',()=>{reset();write('docs/other.txt');const b=commit();write(img);expect(b,commit(),'FULL',one('M',img));});
+test('Unicode collision at parent folder',()=>{reset();write('Se\u0301ance 1-01 Aix/other.txt');const b=commit();write(pbn);expect(b,commit(),'FULL',one('M',pbn));});
+test('raw JSON contract strips internal modes and oids',()=>{reset();write(img);const h=commit();const p=expect(base,h,'QUICK',one('M',img));assert.deepEqual(Object.keys(p.changes[0]).sort(),['path','status']);});
