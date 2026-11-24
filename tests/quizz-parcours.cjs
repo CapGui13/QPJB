@@ -25,7 +25,9 @@ assert.ok((openingDistribution['1♦']||0)>=2,'At least two 1♦ openings in fir
 for(const bid of ['1♣','1♦','1♥','1♠','1SA'])
   assert.ok((openingDistribution[bid]||0)>=1,'First lesson must cover '+bid);
 assert.ok(Object.keys(openingDistribution).length>=6,'At least six distinct opening bids');
-assert.ok(Object.values(openingDistribution).every(n=>n<=2),
+assert.equal(openingDistribution.Passe,3,'Three early opening passes');
+assert.ok(first.findIndex(x=>x.answer==='Passe')<=2,'First pass in first three questions');
+assert.ok(Object.entries(openingDistribution).every(([b,n])=>n<=(b==='Passe'?3:2)),
   'No three identical opening answers: '+JSON.stringify(openingDistribution));
 assert.equal(P.finish(state),false,'Cannot complete unanswered session');
 assert.equal(P.record(state,first[0],'skipped',0,null,false,false),true);
@@ -525,7 +527,7 @@ for(let session=0;session<65;session++){
   const groupedOpenings=deck.filter(x=>x.theme==='ouv');
   if(groupedOpenings.length){
     const countByBid=groupedOpenings.reduce((acc,x)=>(acc[x.answer]=(acc[x.answer]||0)+1,acc),{});
-    assert.ok(Object.values(countByBid).every(n=>n<=2),
+    assert.ok(Object.entries(countByBid).every(([b,n])=>n<=(session===0&&b==='Passe'?3:2)),
       'Identical openings repeatedly selected in simulated session '+(session+1));
   }
   for(let i=0;i<deck.length;i++){

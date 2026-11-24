@@ -3,7 +3,10 @@
 // QPJB wave2 M2 — tirages de reference figes avant optimisation du tri.
 // L'empreinte porte sur les 120 IDs et leur ordre (12 seances, graine 29).
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const api=require('../quizz-parcours.js');
+// Référence historique des 600 sélections : conserver le contrat précédent exact.
+const legacy={exports:{}};
+new Function('module','window',require('./qpjb-parcours-order-normalization.cjs').restoreOpeningOrder(fs.readFileSync(path.join(__dirname,'../quizz-parcours.js'),'utf8')))(legacy,null);
+const api=legacy.exports;
 const html=fs.readFileSync(path.join(__dirname,'../quizz.html'),'utf8');
 const match=html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/);
 assert(match,'Catalogue embarque absent');

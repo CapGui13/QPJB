@@ -387,7 +387,8 @@
   function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20);
-    const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty));
+    const pool=exercises.filter(x=>Object.hasOwn(INTRO,x.theme)&&s>=INTRO[x.theme]&&Number.isInteger(x.difficulty)&&
+      (x.theme!=='ouv'||bid(x)!=='2♣'||s>=INTRO.fortes));
     const previous=state.entries||{};
     // Les micro-categories (ex. sa:1SA) regroupent plusieurs conventions.
     // Une reussite en Texas ne doit pas repousser le rappel d'un Stayman.
@@ -482,6 +483,10 @@
     const severeStruggling=struggling&&foundationSummary.weak*4>=
       foundationSummary.attempts*3;
     // LOT_B_DIVERSITY_END
+    const isOpeningPass=x=>x.theme==='ouv'&&bid(x)==='Passe';
+    const weakPassDue=due.some(x=>isOpeningPass(x)&&s-previous[x.id].lastSession<=3&&
+      (previous[x.id].result!=='correct'||previous[x.id].assisted));
+    const passWeak=weakPassDue||((state.micros||{})['ouv:passe']?.score||0)<0;
     function pick(list,kind,reason){
       let ranked=list.filter(x=>!picked.has(x.id));
       if(!ranked.length)return false;
@@ -494,6 +499,13 @@
         return false; // Une révision ne doit pas faire dépasser le plafond d'un thème.
       // À l'ouverture, deux décisions identiques maximum par séance si le
       // catalogue comporte assez d'alternatives réellement distinctes.
+      // Au-delà du premier cours : un Passe d'entrée en rappel ordinaire,
+      // deux en cas de fragilité, sans bloquer un catalogue réduit.
+      if(s>0){
+        const allowed=ranked.filter(x=>!isOpeningPass(x)||(bidCount['ouv|Passe']||0)<(passWeak?2:1));
+        if(allowed.length)ranked=allowed;
+        else if(pool.some(x=>!picked.has(x.id)&&!isOpeningPass(x)))return false;
+      }
       const distinctBids=ranked.filter(x=>x.theme!=='ouv'||
         (bidCount['ouv|'+bid(x)]||0)<2);
       if(distinctBids.length)ranked=distinctBids;
@@ -612,15 +624,33 @@
       selected.push({exercise:winner,kind,reason});
       return true;
     }
-    // Dès la toute première séance : cinq couleurs/contrats distincts,
-    // deux mineures de chaque type et Passe, si le catalogue les permet.
-    // Le score général remplit les dernières places sans doublon de famille.
+    // Ouvrir ou ne pas ouvrir : contraste dès la deuxième main et
+    // trois Passes simples espacés sur dix questions.
+    function openingCandidates(answer,list=fresh){
+      return list.filter(x=>x.theme==='ouv'&&bid(x)===answer&&
+        !selected.some(chosen=>family(chosen.exercise)===family(x)));
+    }
     if(s===0&&limit>=8){
-      for(const target of ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']){
-        const candidates=fresh.filter(x=>x.theme==='ouv'&&bid(x)===target&&
-          !selected.some(chosen=>family(chosen.exercise)===family(x)));
-        if(candidates.length)pick(candidates,'nouveau','equilibre_ouvertures');
+      const targets=limit===8?['1♣','Passe','1♥','1♦','1SA','1♠','1♣','1♦']:
+        limit===9?['1♣','Passe','1♥','1♦','Passe','1SA','1♠','1♣','1♦']:
+        ['1♣','Passe','1♥','1♦','Passe','1SA','1♠','1♣','Passe','1♦'];
+      for(const target of targets){
+        const candidates=openingCandidates(target);
+        const simple=target==='Passe'?candidates.filter(x=>x.difficulty===1&&Number.isInteger(x.h)&&x.h<12):[];
+        if(candidates.length)pick(simple.length?simple:candidates,'nouveau','equilibre_ouvertures');
       }
+    }
+    // Deuxième séance : rappeler le seuil et les deux mineures, tout en
+    // réservant les autres places aux réponses. Priorité à un Passe raté.
+    if(s===1&&limit>=10&&pool.some(x=>x.theme==='mineur')&&pool.some(x=>x.theme==='majeur')){
+      for(const target of ['1♣','1♦']){
+        const options=openingCandidates(target);
+        if(options.length)pick(options,'nouveau','equilibre_ouvertures');
+      }
+      const review=openingCandidates('Passe',due.filter(x=>previous[x.id].result!=='correct'||previous[x.id].assisted));
+      const options=openingCandidates('Passe');
+      if(!pick(review,'revision','rappel_erreur_aide')&&options.length)
+        pick(options,'nouveau','equilibre_ouvertures');
     }
     // Revisions : erreur/aide = revoir le cas du ; reussite autonome =
     // proposer une autre main avec ouverture et reponse identiques, si possible.
@@ -632,7 +662,7 @@
     const reviewQuota=Math.min(weakDueCandidates.length?2:1,Math.floor(limit/4),due.length);
     const plan=[];
     for(let i=0;i<limit;i++)plan.push(i===3||i===7?'revision':'nouveau');
-    let plannedReviews=0;
+    let plannedReviews=selected.filter(x=>x.kind==='revision').length;
     for(let i=selected.length;i<limit;i++){
       let kind=plan[i];
       if(kind==='revision'&&plannedReviews>=reviewQuota)kind='nouveau';
@@ -645,9 +675,28 @@
       if(pick(pool,'revision','complement_catalogue'))continue;
       break;
     }
-    // La même famille ne doit pas se suivre ; les candidats alternatifs
-    // ne sont disponibles qu'en cas d'épuisement du catalogue.
-    return selected.map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
+    // Mélange logique déterministe : casser les répétitions de réponse ou
+    // de thème si possible, sans modifier les QCM retenus ni leurs motifs.
+    // Une séance active reste inchangée (start).
+    const ordered=[],remaining=selected.slice();
+    while(remaining.length){
+      const last=ordered.at(-1)?.exercise,before=ordered.at(-2)?.exercise;
+      let index=0;
+      if(last){
+        const sameBid=x=>bid(x.exercise)===bid(last);
+        const sameBlock=x=>before&&before.theme===last.theme&&x.exercise.theme===last.theme;
+        if(sameBid(remaining[0])||sameBlock(remaining[0])){
+          const alternative=remaining.findIndex(x=>!sameBid(x)&&!sameBlock(x));
+          if(alternative>=0)index=alternative;
+          else if(sameBid(remaining[0])){
+            const other=remaining.findIndex(x=>!sameBid(x));
+            if(other>=0)index=other;
+          }
+        }
+      }
+      ordered.push(remaining.splice(index,1)[0]);
+    }
+    return ordered.map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
   }
 
   // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture

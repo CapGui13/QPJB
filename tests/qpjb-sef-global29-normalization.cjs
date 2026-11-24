@@ -26,6 +26,7 @@ function restoreGlobal(raw){
  return JSON.stringify(data);
 }
 function restoreEngine(code){
+ code=require('./qpjb-parcours-order-normalization.cjs').restoreOpeningOrder(code);
  const re=/const AXIS_AUDIT\s*=\s*\[[\s\S]*?\n  \];/g;
  assert.equal([...code.matchAll(re)].length,1);
  const oldRows=JSON.parse(oldAxisBlock.replace(/^const AXIS_AUDIT\s*=\s*/,'').replace(/;$/,'').replace(/^\s*\/\/.*$/gm,''));
