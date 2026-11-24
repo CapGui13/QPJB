@@ -566,17 +566,23 @@
     // l'élève échoue encore souvent. Préférer les variantes élémentaires.
     // Après la phase de découverte, une variante avancée locale peut être
     // rencontrée si ses propres preuves existent et si elle apporte de la nouveauté.
-    if(profile==='weak'&&s<65){
+    if(profile==='weak'){
       const easy=pool.filter(q=>q.difficulty<=3);
-      if(new Set(easy.map(family)).size>=limit)pool=easy;
+      const easyFamilies=new Set(easy.map(family));
+      const novelEasy=[...easyFamilies].filter(key=>!Object.hasOwn(e.lastFamily,key)).length;
+      // Avant l'introduction de toutes les rubriques, ou tant que le
+      // réservoir de variantes élémentaires est ample, ne pas accélérer.
+      // Les éligibilités avancées restent fondées sur leurs propres preuves.
+      if(easyFamilies.size>=limit&&(s<INTRO.chelem||
+        novelEasy>Math.max(2*limit,easyFamilies.size/4)))pool=easy;
     }
     const quotas=profile==='weak'?[2,3,4,1]:profile==='middle'?[4,3,2,1]:[5,3,1,1];
     const buckets={discovery:0,maintenance:0,weakness:0,transfer:0};
     // Le rappel par une autre main est un vrai rappel. Réserver les reprises
     // exactes à une fraction de la séance ; ne pas sacrifier la couverture.
-    let repeatedFamilies=0;
+    let repeatedFamilies=0,passChosen=0,hardChosen=0;
     const repeatBudget=profile==='weak'?2:profile==='middle'?1:0;
-    const passCount=()=>selected.filter(v=>openingPass(v.exercise)).length;
+    const passCount=()=>passChosen;
     const mOf=q=>metadata(q);
     const fresh=q=>!previous[q.id];
     const due=q=>previous[q.id]&&previous[q.id].due<=s&&previous[q.id].lastSession<s;
@@ -622,9 +628,10 @@
       return value;
     }
     function choose(list,category,forcedReason,priority=false){
+      const moreHard=profile!=='weak'||hardChosen<2||
+        !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap));
       const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
-        (profile!=='weak'||q.difficulty<=3||selected.filter(v=>v.exercise.difficulty>=4).length<1||
-          !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap)));
+        (q.difficulty<=3||moreHard);
       const distinct=q=>available(q)&&!families.has(family(q));
       let candidates=list.filter(available);
       if(!candidates.length)return false;
@@ -645,6 +652,8 @@
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
+      if(openingPass(q))passChosen++;
+      if(q.difficulty>=4)hardChosen++;
       answers[bid(q)]=(answers[bid(q)]||0)+1;contexts[context(q)]=(contexts[context(q)]||0)+1;
       concepts[m.concept]=(concepts[m.concept]||0)+1;buckets[cat]++;
       const kind=cat==='maintenance'||!fresh(q)?'revision':'nouveau';
