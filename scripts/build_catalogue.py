@@ -14,7 +14,7 @@ def pbn_sort_key(path: Path):
     return (1, 0, path.name.casefold())
 
 seances = []
-for folder in sorted(root.iterdir(), key=lambda p: p.name.casefold()):
+for folder in sorted(root.iterdir(), key=lambda p: (not p.name.casefold().startswith("séance "), p.name.casefold())):
     if not folder.is_dir() or folder.name.startswith(".") or folder.name in {"Docs", "scripts"}:
         continue
     fichiers = [
