@@ -124,7 +124,7 @@ function metrics(profile,horizon,meta=null){
 }
 function metadataFor(candidate){
  const m=require(path.join(root,'quizz-prerequis.js'));
- assert.equal(m.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(m.byId).length,1523);
+ assert.equal(m.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(m.byId).length,exercises.length);
  assert.equal(typeof candidate.eligibility,'function','Missing M2 diagnostic');
  for(const q of exercises){
   const x=m.byId[q.id];assert(x&&typeof x.concept==='string'&&x.concept.length&&[0,1,2,3].includes(x.stage)&&Number.isInteger(x.minSession)&&x.minSession>=0&&Array.isArray(x.requires),'Metadata '+q.id);
