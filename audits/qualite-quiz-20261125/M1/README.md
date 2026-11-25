@@ -1,0 +1,10 @@
+# Qualité quiz M1 — ouvertures et premières réponses
+
+Base `4bb2df19929f921aff81468be22830445d4f87b0` ; catalogue `55633e60ad6e8583616ad11b1da3acf1da013844` ; prérequis `9071d5ab03115c9967fb3c54ee819f91a1cec84e`.
+
+253 QCM examinés : mains, séquences, choix, réponses, explications et groupes de contexte/motifs. 58 corrigés, 185 conservés, 10 en arbitrage sans correction ; 14 réserves au total, dont quelques corrections rédactionnelles. 16 nouveaux QCM pour 6 lacunes. Aucun ID ancien supprimé ni réponse/main/choix modifiés. Une séquence de Passe complétée. Le pilote alloue les IDs définitifs, applique old/new et reprend les prérequis explicitement fournis. Les nouveaux IDs sont provisoires. Aucune modification du catalogue, du moteur ni de la CI.
+
+Sources : #271 (visas et HOLD préservés), #293 (planchers et Passes précoces), référentiel local meilleure mineure sans Walsh, seuil d'ouverture 12 H/13 HL ; https://www.clairebridge.com/doc_pedagogiques/sef_2024_vincent.pdf p.1 (SEF p.11), https://dev.ibridge-club.fr/public/fichedetails/605, https://stph.scenari-community.org/bridge/002-4/co/005-005.html, https://abc-du-bridge.scenari-community.org/003-01/co/003-01-Synthese.html. Sources pédagogiques secondaires ; livre SEF intégral non consulté. Frontières H/HL et tenues à SA : arbitrages groupés dans plan.json ; pas de changement de convention silencieux. La mention 15–17 HL de 1SA dans une source SEF 2024 ne modifie pas ici la zone locale 15–17 H.
+
+## Validation ciblée exécutée
+253 IDs uniques ; couverture exacte du lot et des quantités du plan. 16 nouveaux IDs ; mains de 13 cartes sans répétition, H recalculés et vérifiés contre valeurs attendues, choix distincts, réponse présente, aucun doublon exact main+auction sur 1523 anciens + nouveaux, prérequis présents repris d'un cas analogue, comparaison old contre base. Pas de test global redondant : recette du catalogue assemblé au pilote. Les motifs changés des soutiens simples ne modifient pas difficulty ; vérifier effet éventuel sur preuves transversales lors de la recette. Aucune modification de motif HOLD #271.
