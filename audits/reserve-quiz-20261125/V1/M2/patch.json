@@ -1,0 +1,191 @@
+{
+  "additions": [
+    {
+      "id": "V1-M2-001",
+      "qcm": {
+        "id": "V1-M2-001",
+        "theme": "sa",
+        "hand": [
+          [
+            "A",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7",
+            "3"
+          ],
+          [
+            "9",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "auction": [
+          "Partenaire : 3SA (gambling, mineure septième maîtresse)",
+          "Adversaire : Passe"
+        ],
+        "context": "Nord ouvre de 3SA gambling en première position, avec une mineure septième maîtresse et sans As ni Roi extérieur. Vous êtes Sud et la parole vous revient. Quelle enchère choisissez-vous ?",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "4♣",
+          "4♦",
+          "4SA"
+        ],
+        "explain": "Votre As de Trèfle exclut que la mineure maîtresse du partenaire soit Trèfle : il a les Carreaux. Vous comptez sept levées à Carreau et trois As extérieurs, soit dix levées potentielles, avec deux petits Carreaux pour rejoindre sa longue. Passe conserve la manche à 3SA. 4♣ sert à se replier dans la mineure quand 3SA paraît dangereux ; ici ce repli est inutile. Le chelem n'est pas justifié par ces dix levées.",
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          2,
+          5
+        ],
+        "difficulty": 3,
+        "difficultyReason": "Déduire la mineure longue à partir d’un As et compter les levées disponibles pour décider de conserver 3SA.",
+        "caseFamily": "V1-M2-GAMBLING-REpondant-CONSERVER-3SA",
+        "editorialSource": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015, SEF-L06-029, SEF-L27-004 (principe gambling et passe/corrige) ; décompte des levées, pas de nouvel accord."
+      },
+      "prerequis": {
+        "concept": "sa.gambling",
+        "stage": 3,
+        "minSession": 27,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Décision de conservation de la manche, distincte du repli du répondant et du passe/corrige de l'ouvreur.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015, SEF-L06-029, SEF-L27-004 (principe gambling et passe/corrige) ; décompte des levées, pas de nouvel accord."
+    },
+    {
+      "id": "V1-M2-002",
+      "qcm": {
+        "id": "V1-M2-002",
+        "theme": "sa",
+        "hand": [
+          [
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "8"
+          ],
+          [
+            "A",
+            "R",
+            "5"
+          ],
+          [
+            "R",
+            "9",
+            "6",
+            "3"
+          ]
+        ],
+        "auction": [
+          "Vous : 2SA (20–21 H)",
+          "Adversaire : Passe",
+          "Partenaire : 4♦",
+          "Adversaire : Passe"
+        ],
+        "context": "Dans le traitement QPJB retenu, 4♦ direct sur 2SA montre au moins cinq cartes dans chacune des majeures et demande à l’ouvreur de choisir la manche majeure. Votre partenaire vient de faire cette enchère. Que choisissez-vous ?",
+        "answer": "4♥",
+        "choices": [
+          "4♥",
+          "4♠",
+          "4SA",
+          "5♦"
+        ],
+        "explain": "Vous avez quatre Cœurs contre deux Piques. Face au double cinq majeur annoncé, le fit Cœur est au moins neuvième, contre au moins sept Piques. Choisissez 4♥ : vous répondez à la demande de choix de manche. 4♦ n’annonce pas des Carreaux naturels ; 4SA n’est pas nécessaire pour choisir la couleur de manche.",
+        "h": 20,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "difficulty": 3,
+        "difficultyReason": "Interpréter le 4♦ de choix de manche dans l’accord nommé, puis comparer les longueurs de soutien de l’ouvreur.",
+        "caseFamily": "V1-M2-SA2-BICOLORE-OUVREUR-CHOIX-MANCHE",
+        "editorialSource": "Catalogue QPJB figé e9103075 : SEF-L38-002, SEF-Q26-M2-010/011 (accord QPJB de 4♦ direct : choix de manche majeure)."
+      },
+      "prerequis": {
+        "concept": "sa2.bicolore",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa2.stayman.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Changer de rôle : décision de l’ouvreur après 4♦, absente des trois anciens cas de départ.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L38-002, SEF-Q26-M2-010/011 (accord QPJB de 4♦ direct : choix de manche majeure)."
+    }
+  ],
+  "patches": [],
+  "reserves": [
+    {
+      "id": "V1-M2-R001",
+      "question": "Le troisième cas accessible de gambling doit-il être recherché au niveau du parent, ou le cas de repli SEF-L27-004 déjà N3 peut-il être rattaché ultérieurement sans déplacer les autres prérequis ?",
+      "options": [
+        "Conserver le rattachement actuel et l'exception",
+        "Lors de l'intégration, étudier un rattachement non redondant après arbitrage"
+      ],
+      "source": "SEF-L27-004, SEF-Q26-M2-015 ; #320"
+    },
+    {
+      "id": "V1-M2-R002",
+      "question": "Quels traitements du bicolore majeur autres que le 5–5 de manche sont explicitement documentés dans QPJB (5–4, 6–5, égalité de soutien, ambitions de chelem) ?",
+      "options": [
+        "Maintenir uniquement le choix de manche documenté",
+        "Documenter les séquences exactes avant production supplémentaire"
+      ],
+      "source": "SEF-L38-002 ; SEF-Q26-M2-010/011"
+    },
+    {
+      "id": "V1-M2-R003",
+      "question": "Le traitement fitté du Texas ♣ après 2SA admet-il trois petites cartes, ou un gros honneur doubleton ? Aucun seuil précis n'est déduit des trois cas historiques.",
+      "options": [
+        "Conserver les cas N4 actuels et la fondation parent",
+        "Arbitrer un seuil explicite avant un nouveau cas distinct"
+      ],
+      "source": "SEF-L41-004 ; SEF-Q26-M2-012/013"
+    },
+    {
+      "id": "V1-M2-R004",
+      "question": "Confirmer les limites du 2SA positif sur Texas ♣ après 1SA (force minimum avec bon complément, quatre petites cartes, gros doubleton).",
+      "options": [
+        "Maintenir les cas documentés sans extension",
+        "Arbitrer la règle complète et traiter ensuite les frontières"
+      ],
+      "source": "SEF-L25-007/008 ; SEF-L37-004"
+    }
+  ]
+}
