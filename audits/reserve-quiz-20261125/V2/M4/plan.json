@@ -1,0 +1,297 @@
+{
+  "schema": "QPJB_RESERVE_V2_PLAN",
+  "mission": "V2-M4",
+  "base": "0c3da298c3a1973665f709a92d643284fcf59ccd",
+  "contracts": [
+    320,
+    327,
+    331
+  ],
+  "productionCount": 1595,
+  "virtualCount": 1628,
+  "scopeCount": 268,
+  "scope": [
+    "intervenir",
+    "contre",
+    "reponse_inter",
+    "reveil"
+  ],
+  "excluded": [
+    "michaels.reveil",
+    "michaels.defense"
+  ],
+  "target": {
+    "qcm": 40,
+    "groups": 20
+  },
+  "mapping": [
+    {
+      "concept": "intervenir.base",
+      "qcm": 62,
+      "families": 44,
+      "plannedNewGroups": 6,
+      "newQcm": 10
+    },
+    {
+      "concept": "contre.base",
+      "qcm": 49,
+      "families": 41,
+      "plannedNewGroups": 4,
+      "newQcm": 8
+    },
+    {
+      "concept": "reponse_inter.base",
+      "qcm": 65,
+      "families": 54,
+      "plannedNewGroups": 3,
+      "newQcm": 6
+    },
+    {
+      "concept": "reveil.base",
+      "qcm": 51,
+      "families": 37,
+      "plannedNewGroups": 2,
+      "newQcm": 2
+    },
+    {
+      "concept": "intervenir.deux_faible",
+      "qcm": 5,
+      "families": 5,
+      "plannedNewGroups": 1,
+      "newQcm": 2
+    },
+    {
+      "concept": "contre.deux_faible",
+      "qcm": 15,
+      "families": 15,
+      "plannedNewGroups": 2,
+      "newQcm": 4
+    },
+    {
+      "concept": "michaels.reveil",
+      "qcm": 10,
+      "families": 10,
+      "plannedNewGroups": 0,
+      "newQcm": 0
+    },
+    {
+      "concept": "reveil.deux_faible",
+      "qcm": 4,
+      "families": 4,
+      "plannedNewGroups": 3,
+      "newQcm": 6
+    },
+    {
+      "concept": "intervenir.sa.suite",
+      "qcm": 7,
+      "families": 7,
+      "plannedNewGroups": 1,
+      "newQcm": 2
+    }
+  ],
+  "groups": [
+    {
+      "key": "reserve-v2-m4-01",
+      "name": "Réveil sur deux faible : seuil du contre",
+      "criterion": "Force à distribution tricolore constante",
+      "why": "Les quatre familles existantes ne proposent pas le contraste contre/passe.",
+      "target": 2,
+      "concepts": [
+        "reveil.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-02",
+      "name": "Réveil sur deux faible : limite basse du 2SA",
+      "criterion": "Force régulière avec arrêt, sans fit alternatif",
+      "why": "Le 2SA est documenté mais le refus sous la zone n'est pas testé.",
+      "target": 2,
+      "concepts": [
+        "reveil.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-03",
+      "name": "Réveil sur deux faible : couleur disponible ou déjà annoncée",
+      "criterion": "Couleur d'ouverture adverse par rapport à la longue personnelle",
+      "why": "Un réveil naturel n'est possible que si la longue est libre.",
+      "target": 2,
+      "concepts": [
+        "reveil.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-04",
+      "name": "Intervention ou réveil : sans-atout faible",
+      "criterion": "Position seule, main identique",
+      "why": "Distinguer le 1SA direct 16–18 HL du réveil 10–13 H.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base",
+        "reveil.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-05",
+      "name": "Sur deux faible : contre ou majeure naturelle",
+      "criterion": "Cinquième autonome contre quatre cartes dans les trois couleurs libres",
+      "why": "Ne pas confondre une intervention naturelle au palier de deux et un contre de distribution.",
+      "target": 2,
+      "concepts": [
+        "intervenir.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-06",
+      "name": "Intervention à 1SA : arrêt effectif",
+      "criterion": "Localisation d'un As, à force et forme identiques",
+      "why": "Tester le refus d'annoncer SA malgré 16 H lorsque les honneurs sont mal répartis.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-07",
+      "name": "Intervention au palier de un : majeure cinquième ou appel aux deux majeures",
+      "criterion": "Une petite carte déplacée de Cœur vers Pique",
+      "why": "La présence d'une cinquième naturelle change le mode de recherche du fit.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-08",
+      "name": "Intervention marginale : hauteur imposée par l'ouverture",
+      "criterion": "Palier accessible, même main et vulnérabilité",
+      "why": "Distinguer 8 HL au palier de un d'un engagement au palier de deux.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-09",
+      "name": "Intervention au palier de deux : qualité de la sixième",
+      "criterion": "Concentration des honneurs dans la longue, à force égale",
+      "why": "La qualité de la couleur et la vulnérabilité défavorable évitent une décision fondée uniquement sur HL.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-10",
+      "name": "Unicolore constructif ou fort : position",
+      "criterion": "Intervention directe contre réveil avec 17 HL",
+      "why": "Le plafond naturel varie selon la position, même avec une couleur identique.",
+      "target": 2,
+      "concepts": [
+        "intervenir.base",
+        "reveil.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-11",
+      "name": "Réponse au contre : obligation ou liberté",
+      "criterion": "Passe ou soutien du troisième joueur, main identique",
+      "why": "La même réponse minimale cesse d'être obligatoire si l'adversaire reparle.",
+      "target": 2,
+      "concepts": [
+        "contre.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-12",
+      "name": "Réponse moyenne au contre sur mineure : recherche des deux majeures",
+      "criterion": "Deux majeures quatrièmes ou une seule, à 9 H",
+      "why": "Le cue-bid constructif n'est pas systématiquement une annonce de force de manche.",
+      "target": 2,
+      "concepts": [
+        "contre.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-13",
+      "name": "Réponse moyenne au contre : saut simple ou double",
+      "criterion": "Quatre ou cinq cartes en majeure, force identique",
+      "why": "Le niveau du saut décrit aussi la longueur, pas seulement les points.",
+      "target": 2,
+      "concepts": [
+        "contre.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-14",
+      "name": "Réponses naturelles à SA après contre d'appel",
+      "criterion": "Force de réponse, même forme et arrêt",
+      "why": "Comparer la réponse modérée à l'invitation naturelle sans majeure quatrième.",
+      "target": 2,
+      "concepts": [
+        "contre.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-15",
+      "name": "Contre sur deux faible : réponse minimale ou mini-cue-bid",
+      "criterion": "Passage de la zone faible à la zone intermédiaire",
+      "why": "Le palier trois peut être minimal et 2SA n'est pas naturel dans ce dialogue.",
+      "target": 2,
+      "concepts": [
+        "contre.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-16",
+      "name": "Contre sur deux faible : manche SA ou cue-bid fort",
+      "criterion": "Tenue adverse à force de manche identique",
+      "why": "Le cue-bid sert à résoudre la tenue manquante et ne se confond pas avec le mini-cue-bid.",
+      "target": 2,
+      "concepts": [
+        "contre.deux_faible"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-17",
+      "name": "Soutien fort après nouvelle couleur du troisième joueur",
+      "criterion": "Trois ou quatre atouts, force identique",
+      "why": "Le cue-bid simple et à saut distinguent la taille du fit fort.",
+      "target": 2,
+      "concepts": [
+        "reponse_inter.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-18",
+      "name": "Réponse à l'intervention mineure : Piques au palier de un",
+      "criterion": "Quatre ou cinq Piques après 1♥ du troisième joueur",
+      "why": "L'exception documentée distingue une annonce forcing et le contre.",
+      "target": 2,
+      "concepts": [
+        "reponse_inter.base"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-19",
+      "name": "Suite après intervention à 1SA sur 1♥ : quatre ou cinq Piques",
+      "criterion": "Longueur de la majeure recherchée, même force",
+      "why": "Le Texas impossible et le Texas véritable se distinguent par la recherche de fit 4–4 ou la cinquième.",
+      "target": 2,
+      "concepts": [
+        "intervenir.sa.suite"
+      ]
+    },
+    {
+      "key": "reserve-v2-m4-20",
+      "name": "Réponse après intervention sur deux faible : couleur libre ou silence",
+      "criterion": "Force pour introduire une nouvelle couleur au palier trois",
+      "why": "Une nouvelle couleur n'est pas forcing dans ce cas particulier ; elle demande néanmoins une force suffisante.",
+      "target": 2,
+      "concepts": [
+        "reponse_inter.base"
+      ]
+    }
+  ],
+  "approach": "Cartographie unique par concept, familles caseFamily ou ID, puis contrastes par critère discriminant ; pas de nouvel audit global."
+}
