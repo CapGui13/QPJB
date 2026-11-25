@@ -1,0 +1,789 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-V3-028-1",
+      "old": {
+        "explain": "Sur 1♣, 14 H et 5 cartes à Cœur (♥DV975), soit 15 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable."
+      },
+      "new": {
+        "explain": "Vos 14 H et cinq Cœurs DV975 valent 15 HL : 1♥ décrit la cinquième au palier de un. Même avec un arrêt Trèfle (RD9), 1SA d'intervention serait trop fort à annoncer : il demande 16–18 HL. Le Contre d'appel ne serait pas aussi descriptif de votre majeure et, avec deux Piques, pourrait orienter le partenaire vers un mauvais fit."
+      },
+      "reason": "Distinguer l'arrêt présent de la force insuffisante pour 1SA ; le doubleton Pique rend le contre moins descriptif.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-043-3, SEF-V3-047-4 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-029-4",
+      "old": {
+        "explain": "Sur 1♦, 14 H et 5 cartes à Cœur (♥ARD82), soit 15 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable."
+      },
+      "new": {
+        "explain": "Vous avez 14 H, cinq Cœurs ARD82, soit 15 HL, et deux petits Carreaux. La qualité de la majeure permet 1♥ naturel. 1SA d'intervention demanderait 16–18 HL et un arrêt Carreau : les deux conditions manquent ici. Contre rechercherait un fit plus largement alors que les Cœurs sont votre couleur prioritaire."
+      },
+      "reason": "Écarter le distracteur 1SA par ses deux conditions indépendantes, en s'appuyant sur la couleur adverse réelle.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-044-1, SEF-V3-029-1 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-036-1",
+      "old": {
+        "explain": "Sur 1♥, 12 H et 5 cartes à Pique (♠RD965), soit 13 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable."
+      },
+      "new": {
+        "explain": "Votre singleton Cœur et vos trois Trèfles pourraient faire envisager un Contre d'appel, mais vos cinq Piques RD965 et 12 H (13 HL) donnent une intervention naturelle précise à 1♠. Elle garantit au partenaire une cinquième Pique, alors que le Contre ne la montrerait pas. Réservez le Contre toute distribution aux mains plus fortes dans ce système."
+      },
+      "reason": "Le singleton rend le contre plausible : expliquer pourquoi la cinquième naturelle prime même avec une forme d'appel.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L13-011, SEF-V418-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-038-4",
+      "old": {
+        "explain": "Sur 1♠, 15 H et 6 cartes à Cœur (♥RDV1053), soit 17 HL, justifient 2♥ naturel. Au palier de deux, la longueur et la qualité de la couleur comptent davantage ; le Contre d’appel ne décrirait pas aussi précisément cette longue."
+      },
+      "new": {
+        "explain": "Avec 15 H et six Cœurs RDV1053, vous avez 17 HL, dans la zone d'intervention naturelle. Malgré la force compatible avec 1SA, vos six Cœurs et ♠D6, arrêt non assuré, désignent 2♥. La couleur liée rend le palier de deux acceptable ; Contre ne montrerait pas cette longue et le Contre toute distribution commence à 19 HL."
+      },
+      "reason": "Distinguer zone numérique de SA, tenue et distribution ; expliquer le choix au palier de deux.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-046-3, SEF-L13-011 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-040-4",
+      "old": {
+        "explain": "Sur 1♠, 15 H et 6 cartes à Carreau (♦R108753), soit 17 HL, justifient 2♦ naturel. Au palier de deux, la longueur et la qualité de la couleur comptent davantage ; le Contre d’appel ne décrirait pas aussi précisément cette longue."
+      },
+      "new": {
+        "explain": "Vos six Carreaux R108753 et 15 H valent 17 HL. L'As de Pique arrête certes l'ouverture adverse de 1♠, mais la distribution 2-2-6-3 n'est pas celle d'une intervention régulière à 1SA. 2♦ décrit la source de levées naturelle ; le Contre ne garantirait ni les six Carreaux ni une main propice aux autres couleurs."
+      },
+      "reason": "Cas où force et arrêt existent, mais la distribution décide entre 1SA et la longue.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-046-3, SEF-V3-039-1 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-041-2",
+      "old": {
+        "explain": "Sur 1♥, 15 H et 6 cartes à Trèfle (♣ARV1052), soit 17 HL, justifient 2♣ naturel. Au palier de deux, la longueur et la qualité de la couleur comptent davantage ; le Contre d’appel ne décrirait pas aussi précisément cette longue."
+      },
+      "new": {
+        "explain": "Vous avez 15 H et six Trèfles ARV1052, soit 17 HL. ♥R72 constitue une tenue, mais la sixième mineure rend la main irrégulière : il faut la décrire par 2♣ plutôt que par 1SA. Au palier de deux, la solidité de cette couleur est précieuse, car les adversaires ont déjà parlé et le partenaire peut être faible."
+      },
+      "reason": "Le distracteur 1SA est plausible avec 17 HL et arrêt ; distinguer forme et risque du palier.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-045-2, SEF-V3-041-3 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-042-3",
+      "old": {
+        "explain": "Sur 1♠, 15 H et 6 cartes à Trèfle (♣AV8764), soit 17 HL, justifient 2♣ naturel. Au palier de deux, la longueur et la qualité de la couleur comptent davantage ; le Contre d’appel ne décrirait pas aussi précisément cette longue."
+      },
+      "new": {
+        "explain": "15 H et six Trèfles AV8764 valent 17 HL. Cette main 2-3-2-6 est irrégulière et ♠85 n'arrête pas la couleur adverse : 1SA n'est pas une solution, malgré la force. 2♣ donne la longue et reste dans la zone de l'intervention simple ; un Contre d'appel pourrait orienter le partenaire vers les Carreaux, où vous n'avez que deux cartes, sans décrire vos six Trèfles."
+      },
+      "reason": "Préciser pourquoi 1SA est exclu et pourquoi le contre ne décrit pas la distribution.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-042-1, SEF-L13-011 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-075-3",
+      "old": {
+        "explain": "Après 1♥ du partenaire et 1♠ adverse, vous détenez 9 H, trois atouts ♥1052 et la forme 1-3-5-4. L'évaluation au fit donne 9 H + 1 L (cinquième Carreau) + 2 D (singleton Pique) = 12 HLD. Le 2SA fitté du SEF 2024 montre normalement trois atouts et 11–15 HLD après une intervention naturelle : 2SA exprime donc la zone constructive."
+      },
+      "new": {
+        "explain": "Après 1♥–(1♠), le fit de trois Cœurs est établi. Vos 9 H deviennent 12 HLD grâce au cinquième Carreau (+1) et au singleton Pique (+2). C'est la force réévaluée, et non les seuls 9 H, qui fait franchir la limite de 10 HLD du soutien simple. 2SA fitté (11–15 HLD, normalement trois atouts) invite le partenaire à juger la manche ; ce n'est pas un contrat naturel à Sans-Atout."
+      },
+      "reason": "Rendre explicite le passage de la zone simple à la zone fittée grâce à la courte et à la longueur.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V3-075-2, SEF-L13-009 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-081-3",
+      "old": {
+        "explain": "Après 1♥ du partenaire et 1♠ adverse, vous détenez 11 H, trois atouts ♥R84 et la forme 1-3-5-4. L'évaluation au fit donne 14 HLD (11 H + 1 point de longueur + 2 points de courte). Le 2SA fitté du SEF 2024 montre normalement trois atouts et 11–15 HLD après une intervention naturelle : 2SA exprime donc la zone constructive."
+      },
+      "new": {
+        "explain": "Avec trois atouts, vous comptez 11 H + 1 pour le cinquième Carreau + 2 pour le singleton Pique = 14 HLD. Après 1♥–(1♠), 2SA est fitté, dans la zone 11–15 HLD ; 3♥ direct correspondrait à un autre type de soutien. Votre singleton Pique est un avantage à l'atout, pas un arrêt pour proposer 3SA. L'ouvreur peut préciser sa force avant la décision finale."
+      },
+      "reason": "Expliquer le rôle opposé de la courte à l'atout et à Sans-Atout ; rejeter 3SA sur la main réelle.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L13-009, SEF-V3-075-3 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-082-1",
+      "old": {
+        "explain": "Après 1♥ du partenaire et 2♣ adverse, vous détenez 11 H, trois atouts ♥RDV et la forme 2-3-4-4. L'évaluation au fit donne 12 HLD (11 H + 1 point de courte). Le 2SA fitté du SEF 2024 montre normalement trois atouts et 11–15 HLD après une intervention naturelle : 2SA exprime donc la zone constructive."
+      },
+      "new": {
+        "explain": "Trois Cœurs RDV établissent le fit ; les 11 H et le doubleton Pique donnent 12 HLD. Sur 1♥–(2♣), 2SA fitté décrit normalement trois atouts et 11–15 HLD. Même si vos Trèfles R1076 procurent une tenue, 3SA ne montrerait pas ce fit et conclurait sans connaître le jeu de l'ouvreur. 3♥ direct correspond à un soutien de quatre atouts dans la zone limite lorsque 2♥ est disponible."
+      },
+      "reason": "L'arrêt adverse ne doit pas faire oublier la priorité du fit ; contraste entre 2SA et 3♥.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L06-007, SEF-L16-006 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V3-084-3",
+      "old": {
+        "explain": "Après 1♠ du partenaire et 2♦ adverse, vous détenez 11 H, trois atouts ♠R43 et la forme 3-2-4-4. L'évaluation au fit donne 12 HLD (11 H + 1 point de courte). Le 2SA fitté du SEF 2024 montre normalement trois atouts et 11–15 HLD après une intervention naturelle : 2SA exprime donc la zone constructive."
+      },
+      "new": {
+        "explain": "Vos trois Piques R43, 11 H et le doubleton Cœur donnent 12 HLD. 2SA est fitté après 1♠–(2♦), même si ♦R875 peut arrêter la couleur adverse : ce n'est pas une invitation naturelle à Sans-Atout. 3♠ correspondrait normalement à quatre atouts dans la zone 11–12 HLD ; 3SA conclurait sans décrire votre soutien."
+      },
+      "reason": "Séparer le nombre d'atouts de la tenue et de la force pour un distracteur SA plausible.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L16-006, SEF-L13-009 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V4-026-4",
+      "old": {
+        "explain": "Face à l'intervention de votre partenaire à 1♥ après 1♣ adverse, vous possédez 5 H et quatre atouts ♥V543 avec un singleton dans la couleur adverse (♣6). À vulnérabilité favorable, 3♥ est un soutien à saut de barrage : les neuf atouts présumés et la courte rendent utile la surenchère, sans promettre une main forte."
+      },
+      "new": {
+        "explain": "Vous n'avez que 5 H, mais quatre Cœurs face à la cinquième promise par le partenaire et le singleton ♣6 : neuf atouts et une capacité de coupe. Non vulnérable contre vulnérable, 3♥ prend un palier supplémentaire à l'ouvreur adverse. Ce saut est un barrage, pas une invitation ; il accepte le risque de chute. Avec quatre atouts mais une main plate, le soutien simple serait plus prudent."
+      },
+      "reason": "Comparer au cas plat de la même famille et expliciter l'objectif tactique, sans garantir le contrat.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V4-026-3, SEF-L10-013 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V4-026-3",
+      "old": {
+        "explain": "Après l'ouverture de 1♣ et l'intervention à 1♥ de votre partenaire, vous détenez 7 H et quatre atouts ♥V973, dans une main régulière 3-4-3-3 sans courte. Le soutien simple de 2♥ exprime le fit économiquement : le saut à 3♥ serait trop ambitieux sans distribution de barrage."
+      },
+      "new": {
+        "explain": "Avec quatre Cœurs et 7 H, le fit de neuf cartes est connu, mais la forme 3-4-3-3 n'offre aucune coupe immédiate et peu de potentiel offensif supplémentaire. Le soutien simple de 2♥ est préférable dans les conditions de ce cas. Le saut à 3♥ serait un barrage, et non une proposition de manche ; quatre atouts seuls ne suffisent pas à justifier ce risque."
+      },
+      "reason": "Compléter le contraste de distribution et distinguer barrage et invitation.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V4-026-4, SEF-V4-034-1 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V4-045-1",
+      "old": {
+        "explain": "Après l'ouverture adverse de 1♠, le partenaire intervient naturellement à 2♥. Avec quatre Cœurs et 6 H, vous possédez un fit d'au moins neuf cartes, puisque l'intervention promet normalement au moins cinq Cœurs. Le soutien compétitif à 3♥ est justifié sans prétendre à un fit dixième : six Cœurs chez le partenaire ne sont pas garantis."
+      },
+      "new": {
+        "explain": "Après l'intervention naturelle à 2♥, les quatre Cœurs D1085 assurent au moins neuf atouts dans le camp (cinq Cœurs au moins chez le partenaire, pas six garantis). Avec 6 H, 3♥ soutient au palier disponible sans inviter à la manche. ♠104 n'arrête pas la couleur adverse : ni 2SA ni 3SA ne décriraient ce fit. Le partenaire conserve la possibilité d'évaluer une surenchère."
+      },
+      "reason": "Expliquer le rejet des deux distracteurs à SA et distinguer le soutien simple au palier imposé.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V4-047-1, SEF-V4-046-1 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V4-047-1",
+      "old": {
+        "explain": "En face d’une intervention à 2♥ promettant normalement cinq Cœurs, le soutien ♥RDV8 et 14 H permettent de jouer 4♥. L’enchère à 3♥ ne décrirait pas assez nettement la force de manche."
+      },
+      "new": {
+        "explain": "Vos 14 H, quatre Cœurs RDV8 et le doubleton Pique donnent une main de soutien très constructive face à l'intervention à 2♥, soit au moins neuf atouts connus. 4♥ atteint la manche ; 3♥ serait un soutien compétitif non forcing, sur lequel le partenaire pourrait passer. Malgré ♠R2, choisir Sans-Atout masquerait le fit majeur et dépendrait d'une tenue fragile."
+      },
+      "reason": "Mettre en évidence la conséquence de s'arrêter au soutien 3♥ et la priorité du fit.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V4-045-1, SEF-V421-010 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V44-042",
+      "old": {
+        "explain": "Avec 12 H et cinq Cœurs (ADV83), 2♥ décrit votre majeure après 1♦–(1♠). Le Contre Spoutnik serait utile avec quatre Cœurs ou une force insuffisante pour 2♥ ; 1SA demanderait un arrêt à Pique. 2♥ est naturel et forcing pour un tour, mais non auto-forcing : il n’impose pas à lui seul la manche."
+      },
+      "new": {
+        "explain": "Après 1♦–(1♠), vos cinq Cœurs ADV83 et 12 H valent 13 HL, assez pour 2♥ naturel. Le Contre Spoutnik est utile lorsque quatre Cœurs, ou une cinquième avec une force plus limitée, ne permettent pas de nommer 2♥. 1SA demanderait un arrêt Pique, absent. L'ouvreur doit reparler sur 2♥, mais vous ne vous engagez pas à reparler obligatoirement : le 2 sur 1 après intervention n'est pas auto-forcing."
+      },
+      "reason": "Traduire forcing/non auto-forcing en obligations effectives et comparer au Spoutnik d'une cinquième faible.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V412-018, SEF-L30-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V44-055",
+      "old": {
+        "explain": "Après 1♣ adverse et l'intervention à 1♥ de votre partenaire, votre main de 12 H compte trois cartes à ♥ (♥R94) et des valeurs de manche. 2♣ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité."
+      },
+      "new": {
+        "explain": "Avec 12 H et trois Cœurs R94 face à l'intervention à 1♥, vous avez un fit huitième et une perspective de manche. 2♣ est le cue-bid forcing de la couleur ouverte par l'adversaire : le partenaire doit préciser son jeu. Même avec ♣AR6, l'enchère ne demande pas de jouer à Trèfle et n'est pas simplement une recherche d'arrêt. 2♥ serait un soutien limité qui permettrait au partenaire de passer."
+      },
+      "reason": "Clarifier que la tenue réelle n'est pas ce qui donne son sens au cue-bid ; conséquence du soutien limité.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V44-056, SEF-V49-032 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V44-056",
+      "old": {
+        "explain": "Après 1♦ adverse et l'intervention à 1♠ de votre partenaire, votre main de 12 H compte trois cartes à ♠ (♠AR10) et des valeurs de manche. 2♦ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité."
+      },
+      "new": {
+        "explain": "Vos 12 H et trois Piques AR10 établissent un fit huitième avec intérêt pour la manche. Sur (1♦)–1♠–(Passe), 2♦ est le cue-bid forcing de la couleur d'ouverture ; il permet de demander à l'intervenant de préciser ses valeurs. ♦V754 n'est pas un arrêt sûr, mais le cue-bid n'en exige pas. 2♠ serait un soutien limité, et 1SA masquerait les Piques."
+      },
+      "reason": "Contraste avec un cue-bid tenu : ni présence ni absence d'arrêt ne décide de cette réponse fittée.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V44-055, SEF-V44-057 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V44-057",
+      "old": {
+        "explain": "Après 1♥ adverse et l'intervention à 1♠ de votre partenaire, votre main de 12 H compte trois cartes à ♠ (♠RV6) et des valeurs de manche. 2♥ est le cue-bid de la couleur adverse : une enchère forcing demandant à l'intervenant de préciser sa force ou sa distribution, plutôt qu'un simple soutien limité."
+      },
+      "new": {
+        "explain": "Vos trois Piques RV6 et 12 H justifient une enchère plus constructive que 2♠. 2♥ reprend la couleur ouverte par l'adversaire : c'est un cue-bid forcing pour explorer la manche, pas l'annonce naturelle de vos trois petits Cœurs. L'intervenant doit décrire son jeu ; 1SA supposerait notamment une tenue Cœur que ♥943 ne donne pas."
+      },
+      "reason": "Écarter deux confusions : nomination naturelle de la couleur adverse et réponse SA sans arrêt.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V44-055, SEF-V44-056 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V410-027",
+      "old": {
+        "explain": "Après 1♦–(2♣), vous avez 9 H et quatre cartes dans chacune des majeures. Le Contre Spoutnik permet de montrer l'intérêt pour les majeures sans choisir immédiatement 2♥ ou 2♠ : il recherche notamment un fit majeur chez l'ouvreur, en tenant compte de l'intervention adverse à 2♣."
+      },
+      "new": {
+        "explain": "Après 1♦–(2♣), vous avez 9 H et deux majeures quatrièmes, ♠ADV8 et ♥10854. Le Spoutnik recherche les deux fits sans inventer une cinquième majeure : le partenaire peut annoncer celle qu'il possède. Dire 2♠ parce que les Piques sont plus beaux cacherait les Cœurs et décrirait une couleur naturelle plus longue avec une force supérieure. Contre garde les deux possibilités."
+      },
+      "reason": "Faire comprendre que la qualité relative des quatre cartes n'autorise pas une réponse naturelle au palier de deux.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L34-005, SEF-V417-010 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V411-012",
+      "old": {
+        "explain": "Vos 12 H et cinq beaux Cœurs AR973 justifient 2♥ après 1♣–(1♠). Le Contre Spoutnik conviendrait avec une force plus limitée ; la Dame seconde à Pique ne justifie pas de préférer 1SA à cette majeure. 2♥ est naturel et forcing pour un tour, mais non auto-forcing."
+      },
+      "new": {
+        "explain": "Vos cinq Cœurs AR973 et 12 H valent 13 HL : 2♥ décrit naturellement la majeure après 1♣–(1♠). Avec une force inférieure, même cinq Cœurs peuvent conduire au Contre Spoutnik. Ici, 2♥ oblige l'ouvreur à reparler une fois, mais ne vous oblige pas à continuer après une redemande minimum. 1SA ne convient ni à votre distribution ni à ♠D7, arrêt incertain."
+      },
+      "reason": "Comparer au cas 9 H et expliciter la conséquence du non-auto-forcing.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V412-018, SEF-L30-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V412-018",
+      "old": {
+        "explain": "Après 1♣ – (1♠), vous avez 9 H, cinq Cœurs ♥RD965, seulement deux Piques et une couleur Cœur non suffisamment puissante pour imposer 2♥. Le Contre Spoutnik permet de montrer les Cœurs dès environ 8 H ; 2♥ exigerait une force constructive plus élevée."
+      },
+      "new": {
+        "explain": "Vos cinq Cœurs RD965 sont bien réels, mais les 9 H ne donnent que 10 HL. Sur 1♣–(1♠), ce n'est pas la longueur qui empêche 2♥ : c'est la force insuffisante pour un 2 sur 1 naturel. Contre Spoutnik permet de rechercher les Cœurs avec cette main constructive limitée. ♠A5 procure un arrêt, mais 1SA laisserait de côté la majeure."
+      },
+      "reason": "Corriger le critère trompeur de puissance de couleur : isoler la force, puisque la cinquième est présente.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V411-012, SEF-L09-015 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V413-009",
+      "old": {
+        "explain": "Sur 1♣ adverse et 1♥ d'intervention du partenaire, vous avez 10 H, quatre Piques (♠AV107) et seulement deux Cœurs (♥86). L'enchère naturelle de 1♠ reste disponible au palier de un : elle recherche un éventuel fit 4–4 et est forcing pour un tour dans le cadre du SEF."
+      },
+      "new": {
+        "explain": "Sur (1♣)–1♥–(Passe), vous avez 10 H, quatre Piques AV107 et seulement deux Cœurs. Le n°3 a passé : 1♠ est un changement de couleur naturel forcing pour un tour, qui permet au partenaire de montrer quatre Piques. 1SA masquerait cette recherche et 2♥ inventerait un fit. Ne transposez pas ici l'exception de (1♣)–1♦–(1♥), où le n°4 doit distinguer quatre et cinq Piques."
+      },
+      "reason": "Contraste de position : une réponse du n°4 après Passe n'a pas la même règle de longueur que la séquence spéciale après une annonce du n°3.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V486-014, V2-M4-035, V2-M4-036 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V418-007",
+      "old": {
+        "explain": "Après 1♦ adverse puis intervention du partenaire à 1♠, 12 H et trois Piques donnent une main encourageante : le cue-bid de 2♦ demande un complément d’information et recherche la manche. Le soutien direct à 2♠ sous-décrirait la force."
+      },
+      "new": {
+        "explain": "Après (1♦)–1♠–(Passe), vos 12 H et trois Piques A95 donnent un fit encourageant, sans connaître la force exacte de l'intervention. 2♦, cue-bid de la couleur ouverte par l'adversaire, maintient le dialogue forcing. 2♠ est limité et non forcing ; 3♠ ne traduit pas une invitation de même type. ♠A95 est un soutien, tandis que ♦D3 ne constitue pas un arrêt sûr pour 3SA."
+      },
+      "reason": "Sur le contexte réparé en V1, préciser le cue-bid forcing et la tenue insuffisante du distracteur 3SA.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V44-056, SEF-V4-034-4 ; contrats #342/#349/#353.",
+      "dependencyV1": "Les valeurs old intègrent le patch V1 de cet ID ; aucune réversion."
+    },
+    {
+      "id": "SEF-V419-007",
+      "old": {
+        "explain": "Avec quatre Cœurs face à l'ouverture de 1♥, 8 H, le doubleton Pique et le neuvième atout conduisent à environ 11 HLD. Après l'intervention à 2♠, 3♥ est le soutien compétitif le plus économique ; 4♥ serait prématuré."
+      },
+      "new": {
+        "explain": "Vous avez quatre Cœurs, 8 H + 1 pour le doubleton Pique + 2 pour le neuvième atout = 11 HLD. Sur 1♥–(2♠), 2♥ est indisponible : 3♥ est le soutien naturel le plus économique. Ne le confondez pas avec un soutien à saut, dont la signification peut être différente quand 2♥ reste libre. 4♥ serait une conclusion prématurée avec cette force."
+      },
+      "reason": "Expliquer la différence entre le niveau de l'enchère et le fait qu'elle soit ou non à saut.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V420-011, SEF-V473-006 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V420-009",
+      "old": {
+        "explain": "Après 1♣–(1♦), le SEF 2024 privilégie une réponse naturelle de 1♥ avec quatre Cœurs, même lorsque le répondant possède aussi quatre Piques. Le contre Spoutnik dénie ici une majeure quatrième ; 1♥ permet de rechercher un fit et laisse la place à 1♠."
+      },
+      "new": {
+        "explain": "Après 1♣–(1♦), vous avez 8 H et deux majeures quatrièmes. Dans le SEF retenu, 1♥ est naturel : annoncer la majeure la plus économique laisse encore 1♠ à l'ouvreur s'il a quatre Piques. Commencer par 1♠ au motif que la couleur est plus belle pourrait perdre le fit Cœur. Le Contre dénie ici une majeure quatrième ; 1SA ne les montrerait pas."
+      },
+      "reason": "Mettre en avant la conservation de l'espace et non la qualité d'une couleur.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V418-005, SEF-V410-025 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V421-010",
+      "old": {
+        "explain": "Après l'ouverture adverse de 1♠ et l'intervention à 2♥ du partenaire, votre main comporte 12 H et quatre Cœurs (♥RD83). Le cue-bid 2♠ utilise la couleur de l'ouvreur pour faire une demande forcing : 3♥ serait un soutien compétitif trop faible pour décrire votre potentiel de manche."
+      },
+      "new": {
+        "explain": "Face à l'intervention à 2♥, vos quatre Cœurs RD83 et 12 H donnent au moins neuf atouts. 2♠ est le cue-bid forcing de la couleur d'ouverture : il fait préciser le jeu de l'intervenant avant de conclure éventuellement à 4♥. 3♥ pourrait être passé. Même avec ♠A106, 2SA ne montrerait pas le fit et 4♥ direct fermerait cette exploration."
+      },
+      "reason": "Montrer le rôle du cue-bid au palier de deux et expliquer les trois alternatives proposées.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V4-047-1, SEF-V44-055 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V424-007",
+      "old": {
+        "explain": "Après le Contre d’appel sur l’ouverture du partenaire, vos 11 H justifient le Surcontre positif (au moins 10 H). Avec trois Carreaux, vous n’avez pas le soutien requis pour une enchère fittée constructive. 1SA limiterait inutilement votre force ; le Surcontre laisse ouvertes les possibilités de contrat ou de pénalité."
+      },
+      "new": {
+        "explain": "Avec 11 H réguliers, aucune majeure quatrième et seulement trois Carreaux, Surcontre exprime le jeu positif (au moins 10 H) après 1♦–(Contre). Trois Carreaux ne garantissent pas le fit et ne satisfont surtout pas les cinq atouts du Truscott mineur. 1SA serait trop limité ; 3♣ inventerait une longue. Le Surcontre laisse la possibilité de défendre contré ou de rechercher un contrat de votre camp."
+      },
+      "reason": "Distinguer la connaissance du fit de la condition spécifique des cinq atouts en Truscott mineur.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L09-003, SEF-V472-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V425-006",
+      "old": {
+        "explain": "Avec 12 H, une main régulière et un solide arrêt à Cœur, 2SA est une proposition de manche naturelle. Trois Carreaux ne suffisent pas à justifier un soutien prioritaire de la mineure."
+      },
+      "new": {
+        "explain": "Après 1♦–(1♥), vos 12 H, la forme 3-4-3-3 et ♥AD97 conviennent à 2SA naturel, proposition de manche. L'ouverture est mineure : le sens fitté de 2SA après ouverture majeure et intervention naturelle ne se transpose pas ici. 1SA serait limité à 8–10 HL ; Contre ne recherche aucune majeure quatrième libre dans votre main et 2♦ ne décrit pas votre force."
+      },
+      "reason": "Expliciter la bascule mineure/majeure et la zone inférieure de 1SA.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L33-002, SEF-L26-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V470-004",
+      "old": {
+        "explain": "Avec six Cœurs, 6 H et seulement deux Piques, 2♥ offre un contrat partiel dans une longue naturelle. Après le Contre sur 1♠, ce changement au palier de 2 est non forcing : il ne promet pas une force de manche."
+      },
+      "new": {
+        "explain": "Avec six Cœurs R109764, 6 H et seulement deux Piques, 2♥ est naturel sur 1♠–(Contre) : vous proposez une partielle dans votre longue. Ce changement de couleur au palier de deux est non forcing ; l'ouvreur peut passer. Il ne faut pas lui appliquer le régime d'un 2 sur 1 après intervention adverse à la couleur, qui oblige l'ouvreur à reparler une fois."
+      },
+      "reason": "Contraster le contre adverse avec une intervention à la couleur ; le même niveau ne donne pas le même caractère forcing.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V44-042, SEF-V485-008 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V470-005",
+      "old": {
+        "explain": "Les quatre Cœurs et le doubleton Trèfle font passer cette main de 9 H à environ 12 HLD : 2SA Truscott est une réponse conventionnelle forcing, avec au moins quatre atouts et 11–12 HLD. Après Contre, le soutien direct à 3♥ serait un barrage, et Surcontre ne décrit pas aussi directement le fit quatrième."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs R1094, 9 H, le neuvième atout (+2) et le doubleton Trèfle (+1) donnent 12 HLD. Après 1♥–(Contre), 2SA Truscott montre précisément ce soutien de quatre atouts et 11–12 HLD, forcing. 3♥ direct serait un barrage, non une invitation ; après une intervention naturelle à la couleur, le 2SA fitté aurait normalement un autre nombre d'atouts."
+      },
+      "reason": "Décomposer la réévaluation et distinguer deux sens du 2SA fitté selon la nature de l'intervention.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L42-001, SEF-V473-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V470-006",
+      "old": {
+        "explain": "11 H montrent des valeurs constructives après le Contre adverse. Avec seulement trois Cœurs, 2SA Truscott (quatre atouts) ne convient pas ; Surcontre permet d'exprimer la force avant de retrouver éventuellement le fit au tour suivant."
+      },
+      "new": {
+        "explain": "Vos 11 H et trois Cœurs R82 donnent 11 HLD, mais 2SA Truscott exige quatre atouts après 1♥–(Contre). 2♥ serait limité et 3♥ un barrage, alors que votre main est positive. Surcontre exprime d'abord les valeurs d'au moins 10 H ; vous pourrez montrer le soutien ensuite. Ne confondez pas cette séquence avec une intervention naturelle à la couleur, où trois atouts conviennent normalement à 2SA fitté."
+      },
+      "reason": "Pourquoi Surcontre malgré le fit ; contraste entre Truscott et 2SA fitté après couleur.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V470-005, SEF-L26-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V470-009",
+      "old": {
+        "explain": "Cette main régulière de 16 H possède deux levées d'arrêt certaines à Cœur (As et Roi). Après l'ouverture adverse de 2♥ faible, 2SA est une intervention naturelle décrivant une main forte et bien arrêtée dans la couleur adverse."
+      },
+      "new": {
+        "explain": "Vous avez 16 H, une distribution régulière 3-3-3-4 et ♥AR9 qui fournit deux arrêts dans la couleur du barrage. 2SA naturel décrit à la fois la force et cette tenue sur 2♥ faible. Le Contre d'appel rechercherait les couleurs libres, alors que vos Piques et vos Carreaux ne sont que troisièmes ; 3SA serait une conclusion sans avoir entendu le partenaire."
+      },
+      "reason": "Écarter le contre et le saut à 3SA en reliant l'arrêt et la distribution à la décision.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V470-008, SEF-V470-009 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V470-010",
+      "old": {
+        "explain": "Vous disposez de six beaux Piques (As-Dame-Valet-dix) et 12 H. Le changement de couleur naturel à 2♠ après l'ouverture adverse de 2♥ faible décrit une couleur autonome : plus précis qu'un Contre d'appel."
+      },
+      "new": {
+        "explain": "Après 2♥ faible, vos six Piques ADV1086 et 12 H (14 HL) permettent d'annoncer naturellement 2♠. Le singleton Cœur pourrait faire penser au Contre d'appel, mais votre couleur sixième donne une description bien plus précise. 3♠ prendrait un palier supplémentaire sans nécessité : 2♠ suffit à montrer la longue et laisse au partenaire de la place."
+      },
+      "reason": "Expliquer la préférence sur le contre malgré la courte adverse et le rejet du saut inutile.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V470-008, V2-M4-009 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V472-001",
+      "old": {
+        "explain": "Après l'ouverture de 1♦ et un Contre d'appel adverse, 2SA est le Truscott en mineure : il décrit au moins cinq Carreaux et une main constructive à partir de 9 H. Avec vos cinq Carreaux et 9 H, vous montrez directement un soutien fort, et non un désir de jouer 2SA."
+      },
+      "new": {
+        "explain": "Après 1♦–(Contre), vos cinq Carreaux D10863 et 9 H atteignent le seuil du Truscott mineur retenu ici : cinq atouts au moins et 9 H ou plus. 2SA montre ce soutien constructif, même avec seulement deux Piques ; ce n'est pas une réponse naturelle. 2♦ serait limité, 3♦ un barrage. Le seuil est exprimé ici en H, non dans la zone 11–12 HLD du Truscott majeur."
+      },
+      "reason": "Séparer les seuils mineur/majeur et expliciter la différence avec les soutiens directs.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V472-003, SEF-V470-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V472-003",
+      "old": {
+        "explain": "Avec 8 H et cinq Trèfles, votre soutien simple à 2♣ montre le fit sans afficher une force de proposition de manche. Le Truscott à 2SA après un Contre sur une mineure exige une main plus constructive, à partir de 9 H et cinq atouts. Il vaut donc mieux soutenir simplement."
+      },
+      "new": {
+        "explain": "Vos cinq Trèfles A9763 et 8 H permettent 2♣, soutien simple après 1♣–(Contre). Il manque un point H pour le Truscott mineur : le doubleton Carreau ne permet pas de remplacer le seuil de 9 H par un calcul HLD de majeure. 3♣ serait un barrage ; avec cette main, soutenir économiquement décrit mieux les ressources."
+      },
+      "reason": "Faire du contraste 8/9 H le critère discriminant, sans importer le barème majeur.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V472-001, SEF-V485-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-001",
+      "old": {
+        "explain": "Après 1♦ – 1♠ – 2♦, 2SA est un « mixed raise » : cette enchère conventionnelle montre quatre atouts à Pique et 7 à 9 H. Avec quatre Piques et 8 H, vous distinguez votre soutien constructif du soutien simple, du cue-bid plus fort et du saut de barrage à 3♠.",
+        "context": "L'adversaire de gauche ouvre de 1♦ ; votre partenaire intervient à 1♠ et l'adversaire de droite soutient à 2♦. Vous avez quatre Piques et 8 H. Quelle enchère permet d'exprimer un soutien intermédiaire selon le SEF 2024 ?"
+      },
+      "new": {
+        "explain": "Après (1♦)–1♠–(2♦), vos quatre Piques RV87 et 8 H relèvent du mixed raise : 2SA montre quatre atouts et 7–9 H dans cette séquence. L'adversaire a déjà soutenu les Carreaux ; les enchères de fit répartissent alors la force : 3♠ est un barrage, 3♦ un cue-bid plus fort, 2♠ le soutien économique. Le 2SA n'est pas naturel, même si l'on possède des valeurs annexes.",
+        "context": "L'adversaire de gauche ouvre de 1♦ ; votre partenaire intervient à 1♠ et l'adversaire de droite soutient à 2♦. Vous êtes le quatrième joueur. Quelle réponse choisissez-vous dans le SEF 2024 ?"
+      },
+      "reason": "Organiser les trois distracteurs en échelle de soutien selon la force et le rôle du n°3.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-002, SEF-V473-003 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-003",
+      "old": {
+        "explain": "Après 1♦ – 1♠ – 2♦, le cue-bid à 3♦ montre un soutien d'au moins quatre Piques et au moins 10 H. Avec quatre atouts et 10 H, vous donnez au partenaire une information de force que 2SA, limité à 7-9 H, ne transmettrait pas.",
+        "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient à 1♠ ; le répondant soutient à 2♦. Vous avez quatre Piques et 10 H. Comment exprimez-vous ce soutien plus fort qu'un mixed raise ?"
+      },
+      "new": {
+        "explain": "Avec quatre Piques A1087 et 10 H, vous avez franchi la borne de 9 H du mixed raise après (1♦)–1♠–(2♦). 3♦ reprend la couleur adverse pour montrer un soutien fort d'au moins quatre Piques (au moins 10 H). 3♠ est un barrage ; 4♠ conclurait sans connaître la force de l'intervenant. Le cue-bid conserve une possibilité d'évaluation commune.",
+        "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient à 1♠ ; le répondant adverse soutient à 2♦. Quelle réponse choisissez-vous avec cette main selon le SEF 2024 ?"
+      },
+      "reason": "Faire ressortir le seuil 9/10 H et l'intérêt de ne pas conclure prématurément.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-001, SEF-V473-002 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-004",
+      "old": {
+        "explain": "Le saut à 3♥ est ici une enchère de rencontre : il décrit quatre atouts pour le Pique du partenaire et au moins cinq belles cartes à Cœur. Votre excellente couleur secondaire rend cette information beaucoup plus utile qu'un soutien qui ne préciserait que la force du fit.",
+        "context": "Après 1♦ adverse, intervention de votre partenaire à 1♠ et soutien adverse à 2♦, vous possédez quatre Piques et cinq beaux Cœurs commandés par As-Roi-Valet-Dix. Quelle enchère montre simultanément les deux couleurs ?"
+      },
+      "new": {
+        "explain": "Dans (1♦)–1♠–(2♦), 2♥ serait disponible : 3♥ est donc un saut dans une couleur nouvelle. Vous avez quatre Piques D1085 et cinq beaux Cœurs ARV107. L'enchère de rencontre montre les deux couleurs à la fois, alors que 3♦ cue-bid ne décrirait que le soutien fort et 2SA mixed raise ne promettrait pas la longue Cœur. C'est la qualité de cette deuxième couleur, avec le fit, qui justifie le saut.",
+        "context": "Après 1♦ adverse, intervention naturelle du partenaire à 1♠ et soutien adverse à 2♦, vous êtes le quatrième joueur. Quelle réponse décrit au mieux votre main ?"
+      },
+      "reason": "Identifier le saut relativement au palier disponible et l'information additionnelle de la rencontre.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-003, SEF-L14-016 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-005",
+      "old": {
+        "explain": "Après une ouverture majeure suivie d'une intervention naturelle, 2SA est un soutien fitté de trois cartes et de 11 à 15 HLD. Vos 13 H et le doubleton Carreau justifient cette enchère conventionnelle. Ici, 2SA ne promet pas de jouer Sans-Atout ni nécessairement un arrêt à Cœur."
+      },
+      "new": {
+        "explain": "Vos 13 H, le cinquième Trèfle (+1) et le doubleton Carreau (+1) donnent 15 HLD. Vous avez exactement trois Piques : 2SA fitté couvre 11–15 HLD après 1♠–(2♥). 3♠ correspond à un soutien limite de quatre atouts et 3♥ est un cue-bid de fit fort de quatre atouts. La borne supérieure de 15 HLD est atteinte, mais non dépassée ; 2SA n'est pas naturel."
+      },
+      "reason": "Réévaluation complète à la borne haute (la longueur Trèfle était omise).",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L16-007, SEF-V473-006 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-006",
+      "old": {
+        "explain": "Le soutien à 3♠ après 1♠ – (2♥) décrit quatre atouts et 11-12 HLD, donc une proposition de manche. Vos 9 H, le quatrième atout et le doubleton Cœur placent votre main dans cette zone. Cette enchère se distingue du 2SA fitté à trois atouts et du saut à 4♠ qui serait un barrage faible."
+      },
+      "new": {
+        "explain": "Les quatre Piques D1085 assurent le neuvième atout : 9 H + 2 pour cet atout + 1 pour le doubleton Cœur = 12 HLD. Après 1♠–(2♥), 2♠ reste disponible ; 3♠ est donc un soutien à saut constructif de 11–12 HLD avec quatre atouts, non un barrage dans ce contexte. 2SA décrit normalement trois atouts ; 3♥ impose la manche et 4♠ direct a ici un autre rôle."
+      },
+      "reason": "Préciser calcul et sens du saut en contraste avec le 3♠ de barrage après Contre.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-007, V2-M5-002 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-009",
+      "old": {
+        "explain": "Sur l'intervention à 2SA bicolore mineur, le SEF 2024 utilise les deux cue-bids : le premier disponible, 3♣, montre un soutien à Pique forcing de manche. Vos quatre Piques et vos 12 H répondent à cette description. Le second cue-bid est réservé à une longue dans la quatrième couleur, ici Cœur."
+      },
+      "new": {
+        "explain": "Vos quatre Piques et 12 H, réévalués à 14 HLD par le neuvième atout, justifient un fit forcing de manche. L'adversaire a montré les Trèfles et les Carreaux : classez les deux cue-bids disponibles par ordre d'enchère, 3♣ puis 3♦. Le premier, 3♣, indique le fit Pique ; le second décrit une longue Cœur avec une force de manche. Ni l'un ni l'autre n'est une couleur naturelle à jouer."
+      },
+      "reason": "Expliciter le calcul et la procédure transférable pour identifier le premier et le second cue-bid.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-010, SEF-L22-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V473-010",
+      "old": {
+        "explain": "Face au 2SA bicolore mineur, le SEF 2024 attribue au second cue-bid, 3♦, la description d'une longue dans la quatrième couleur, ici Cœur, avec une force de manche. Avec six Cœurs commandés par As-Roi-Dame et 14 H, vous montrez ainsi votre longue sans laisser croire au soutien de Pique décrit par 3♣."
+      },
+      "new": {
+        "explain": "Sur 1♠–(2SA mineurs), vous ne possédez que deux Piques mais six Cœurs ARD1097 et 14 H (16 HL). Les cue-bids disponibles sont 3♣ puis 3♦ : le second, 3♦, annonce la quatrième couleur, Cœur, en situation forcing de manche. 3♣ montrerait un fit Pique que vous n'avez pas ; 3♥ naturel ne transmettrait pas la même force de façon conventionnelle."
+      },
+      "reason": "Appliquer la méthode des deux cue-bids à la main non fittée et distinguer de l'annonce naturelle.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-009, SEF-L40-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V485-008",
+      "old": {
+        "explain": "Vous possédez six Trèfles convenables et seulement 5 H, avec deux petits Carreaux face à l’ouverture de 1♦. Le changement de couleur à 2♣ après le Contre est naturel et non forcing ; il permet de proposer un contrat dans votre longue mineure."
+      },
+      "new": {
+        "explain": "Avec six Trèfles AV10985 et 5 H, sans fit Carreau, vous pouvez proposer 2♣ naturel après 1♦–(Contre). Le contre adverse change le caractère de cette nouvelle couleur au palier de deux : elle est non forcing, donc l'ouvreur est autorisé à passer. 2SA serait au contraire Truscott mineur, montrant un fort soutien à Carreau ; 1SA ne décrit pas votre longue."
+      },
+      "reason": "Le même 2♣ n'a pas le statut d'un 2 sur 1 après intervention à la couleur ; rejeter le Truscott.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V470-004, SEF-V472-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V486-011",
+      "old": {
+        "explain": "Avec quatre Cœurs et 9 H, 2SA est le mixed raise du SEF 2024 : lorsque le n°3 a nommé une couleur, cette enchère, même à saut, montre 7–9 H et quatre atouts face à l’intervention du partenaire."
+      },
+      "new": {
+        "explain": "Après (1♦)–1♥–(1♠), le n°3 a nommé une couleur. Vous avez quatre Cœurs R975 et 9 H : 2SA, ici à saut par rapport à 1SA, montre un mixed raise de 7–9 H et quatre atouts. Le palier de saut ne change pas cette signification. 3♥ serait un barrage ; 3♦, cue-bid de la couleur d'ouverture, exprimerait davantage de force."
+      },
+      "reason": "Faire comprendre pourquoi le saut à 2SA conserve son sens et relier aux autres soutiens.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V486-012, SEF-V487-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V486-012",
+      "old": {
+        "explain": "Après 1♦–(1♥)–2♣, 2SA reste le mixed raise, même sans saut. Les quatre Cœurs et 8 H se situent dans la zone 7–9 H : l’intervention à 1♥ promet normalement au moins cinq Cœurs, donc neuf atouts dans le camp."
+      },
+      "new": {
+        "explain": "Après (1♦)–1♥–(2♣), le n°3 a parlé. Vous avez quatre Cœurs R964 et 8 H : 2SA est un mixed raise, 7–9 H et quatre atouts, même si c'est la première enchère possible à Sans-Atout et non un saut. Le singleton Trèfle est utile à l'atout mais ne constitue pas un arrêt pour proposer SA. Le critère de convention est la prise de parole du n°3."
+      },
+      "reason": "Comparer expressément l'absence de saut avec SEF-V486-011 ; isoler la position et non le palier.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V486-011, SEF-V473-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V487-001",
+      "old": {
+        "explain": "Vous possédez quatre atouts Cœur et 12 H, bien au-delà de la zone 7–9 H du mixed raise à 2SA. Le cue-bid à saut à 3♣, couleur ouverte par l’adversaire, montre un soutien fort de quatre atouts à Cœur. Il préserve le dialogue constructif avec votre partenaire.",
+        "context": "L’adversaire de gauche a ouvert de 1♣, votre partenaire est intervenu naturellement à 1♥ et le répondant adverse a déclaré 1♠. Vous êtes le quatrième joueur. Vous n’avez pas passé d’entrée. Dans cette compétition, 2SA serait un mixed raise réservé au soutien de quatre Cœurs et 7–9 H ; le cue-bid à saut de la couleur d’ouverture montre, lui, un soutien nettement plus fort. Quelle est votre enchère ?"
+      },
+      "new": {
+        "explain": "Après (1♣)–1♥–(1♠), la couleur d'ouverture peut être cue-biddée à 2♣ ou à 3♣. Avec quatre Cœurs A863 et 12 H, 3♣ à saut exprime le soutien fort de quatre cartes. 2♣ simple décrirait le soutien fort de trois cartes ; 2SA serait un mixed raise limité à 7–9 H et 3♥ un barrage. C'est la combinaison du nombre d'atouts et de la force qui désigne le saut.",
+        "context": "L’adversaire de gauche ouvre de 1♣, votre partenaire intervient naturellement à 1♥ et le répondant adverse annonce 1♠. Vous êtes le quatrième joueur et vous n’avez pas passé d’entrée. Quelle réponse choisissez-vous selon le SEF 2024 ?"
+      },
+      "reason": "Le contexte donnait la signification de la bonne enchère ; transférer cette information au corrigé et expliciter l'échelle.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V487-002, V2-M4-034 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-V487-002",
+      "old": {
+        "explain": "Le cue-bid simple à 2♣ montre ici un jeu constructif fort avec exactement trois atouts Cœur. Votre main de 14 H n’est pas le mixed raise à 2SA, qui demanderait quatre atouts et 7–9 H. Le cue-bid simple permet d’exprimer votre force et de poursuivre la recherche du meilleur contrat.",
+        "context": "L’adversaire de gauche ouvre de 1♣, votre partenaire intervient naturellement à 1♥ et le répondant adverse annonce 1♠. Vous êtes le quatrième joueur et détenez trois cartes à Cœur, avec suffisamment de points pour faire une enchère constructive. Le SEF 2024 distingue le cue-bid simple, le cue-bid à saut et le mixed raise à 2SA selon la force et le nombre d’atouts. Quelle est votre enchère ?"
+      },
+      "new": {
+        "explain": "Après (1♣)–1♥–(1♠), vous avez 14 H et trois Cœurs RD7. 2♣, cue-bid simple de la couleur d'ouverture, montre le soutien fort de trois atouts. Le cue-bid à saut à 3♣, disponible dans la même séquence, décrirait quatre atouts ; 2SA montre quatre atouts et seulement 7–9 H. 2♥ simple sous-évaluerait la force. La tenue Trèfle n'est pas le critère du cue-bid.",
+        "context": "L’adversaire de gauche ouvre de 1♣, votre partenaire intervient naturellement à 1♥ et le répondant adverse annonce 1♠. Vous êtes le quatrième joueur. Quelle réponse choisissez-vous selon le SEF 2024 ?"
+      },
+      "reason": "Compléter le contraste avec le cue-bid à saut et éviter que la consigne fournisse le classement.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V487-001, V2-M4-033 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L06-007",
+      "old": {
+        "explain": "Après 1♥–(2♣), 3♣ est le cue-bid de la couleur adverse : fit ♥ d’au moins quatre cartes, forcing de manche. 2SA fitté après intervention à la couleur montre normalement trois atouts et la zone 11–15 HLD (une rare exception avec quatre atouts très réguliers est possible) ; 3♥ direct avec quatre atouts correspond à une zone limite 11–12 HLD ; Contre Spoutnik ne fixe pas un fit majeur quatrième forcing manche. Le doubleton ♣ ne transforme pas le cue-bid sans saut en Splinter : ce serait le cue-bid à saut."
+      },
+      "new": {
+        "explain": "Sur 1♥–(2♣), vos quatre Cœurs AD107, 12 H, le neuvième atout (+2) et le doubleton Trèfle (+1) donnent 15 HLD. Le cue-bid non sauté 3♣ impose la manche au fit d'au moins quatre Cœurs. 3♥ serait limité à 11–12 HLD. 2SA fitté montre normalement trois atouts dans la zone 11–15 HLD, avec une rare exception pour quatre atouts très réguliers ; votre doubleton et le fit fort désignent ici le cue-bid. Un Splinter en Trèfle demanderait le cue-bid à saut, non 3♣."
+      },
+      "reason": "Calcul complet, comparaison de la force et du fit ; préserver explicitement l'exception documentée.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L13-009, V2-M5-004, #349 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L13-007",
+      "old": {
+        "explain": "Après 1♥–(Contre), le saut à 2♠ dans l’autre majeure est le mixed raise (quatre atouts et environ 7–9 H), et non une description naturelle des Piques.",
+        "context": "Votre partenaire ouvre de 1♥, l’adversaire de droite contre d’appel. Vous avez quatre atouts Cœur et une main de soutien intermédiaire. La paire joue les développements du SEF 2024 avec « mixed raise » après Contre. Quelle enchère de saut en majeure non ouverte transmet cette information ?"
+      },
+      "new": {
+        "explain": "Sur 1♥–(Contre), 2♠ est un saut dans l'autre majeure, car 1♠ reste disponible. Dans le traitement mixed raise retenu, ce saut indique quatre Cœurs et 7–9 H, exactement vos quatre Cœurs R1086 et 7 H. 3♥ serait un barrage ; 2SA Truscott serait le soutien limite de 11–12 HLD. 2♠ n'annonce pas des Piques naturels.",
+        "context": "Votre partenaire ouvre de 1♥ et l’adversaire de droite contre d’appel. La paire joue les développements du SEF 2024 avec mixed raise après Contre. Quelle réponse décrit le mieux votre main ?"
+      },
+      "reason": "Identifier le saut et situer la réponse dans l'échelle de soutiens après Contre, plutôt que révéler la convention dans la question.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L14-015, SEF-L42-001 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L13-011",
+      "old": {
+        "explain": "En SEF 2024, l’intervention simple à la couleur ne dépasse pas 18 HL et l’intervention à 1SA est plus limitée. À partir de 19 HL, le Contre peut être employé avec toute distribution, même sans forme typique de Contre d’appel."
+      },
+      "new": {
+        "explain": "Avec 19 H et la forme 3-3-3-4, vous avez 19 HL. Après 1♦ adverse, ♦D106 est une tenue possible, mais la force dépasse 16–18 HL de l'intervention à 1SA. Il n'y a aucune cinquième naturelle à annoncer ni une courte pour un Contre d'appel de distribution ordinaire. À partir de 19 HL, Contre toute distribution est admis : le partenaire répond d'abord, puis vous précisez votre main forte selon sa réponse."
+      },
+      "reason": "Distinguer le contre toute distribution du contre classique et expliquer la suite, non une promesse de forme.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L27-001, SEF-Q26-M4-006 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L14-015",
+      "old": {
+        "explain": "Sur 1♠–(Contre), le saut à 3♥ est le mixed raise dans la convention indiquée. Il montre quatre Piques et 7–9 H : plus constructif qu’un barrage à 3♠, moins fort qu’un Truscott à 2SA.",
+        "context": "Votre partenaire ouvre de 1♠, et l’adversaire de droite contre d’appel. Vous avez quatre Piques et 7 H. Dans le traitement mixed raise présenté avec le SEF 2024, le saut dans l’autre majeure est un « mixed raise » de quatre atouts, 7–9 H. Quelle enchère exprime exactement cette force ?"
+      },
+      "new": {
+        "explain": "Après 1♠–(Contre), 2♥ serait une nouvelle couleur naturelle au palier de deux. 3♥ est le saut dans l'autre majeure : le mixed raise du traitement retenu, quatre Piques et 7–9 H. Vous avez quatre Piques R976 et 7 H, mais seulement trois Cœurs : 3♥ ne propose donc pas de jouer à Cœur. 3♠ est un barrage, 2SA Truscott demande 11–12 HLD.",
+        "context": "Votre partenaire ouvre de 1♠ et l’adversaire de droite contre d’appel. La paire joue le traitement mixed raise présenté avec le SEF 2024. Quelle enchère choisissez-vous ?"
+      },
+      "reason": "Expliquer l'opposition entre 2♥ naturel non forcing et le saut conventionnel ; retirer la réponse donnée par le contexte.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V470-004, SEF-L13-007 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L16-006",
+      "old": {
+        "explain": "3♠ montre quatre atouts avec 11–12 HLD. Le 2SA fitté après intervention décrit normalement trois atouts avec 11–15 HLD ; ce n'est pas votre main."
+      },
+      "new": {
+        "explain": "Vos quatre Piques RV96, 9 H, le neuvième atout (+2) et le doubleton Carreau (+1) donnent 12 HLD. 3♠ est un soutien constructif à saut (2♠ reste disponible) : quatre atouts et 11–12 HLD après intervention naturelle. Le 2SA fitté indique normalement trois atouts et 11–15 HLD. Sur 1♠ contré, le même soutien de 3♠ aurait une autre signification, de barrage."
+      },
+      "reason": "Décomposer le calcul et relier la signification du saut à la nature de l'intervention.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : V2-M5-002, SEF-V473-006 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L16-007",
+      "old": {
+        "explain": "Avec trois atouts et au moins 16 HLD, le SEF 2024 préconise de commencer par Contre, puis d'exprimer le fit. 2SA fitté n'exprime que 11–15 HLD.",
+        "context": "Votre partenaire ouvre de 1♥ et l'adversaire intervient à 2♣. Vous avez trois Cœurs et 17 H : votre soutien est trop fort pour le 2SA fitté limité à 11–15 HLD. Quelle première réponse forte privilégier ?"
+      },
+      "new": {
+        "explain": "Vous détenez trois Cœurs A96 et 17 H réguliers, soit 17 HLD. Sur 1♥–(2♣), 2SA fitté s'arrête à 15 HLD : votre main dépasse cette zone. Contre Spoutnik généralisé permet de commencer par montrer un jeu fort, puis de préciser les trois atouts au tour suivant. 4♥ conclurait immédiatement sans permettre cette exploration ; 3♥ ne décrit pas un soutien de trois cartes aussi fort.",
+        "context": "Votre partenaire ouvre de 1♥ et l’adversaire intervient naturellement à 2♣. Avec cette main, quelle première réponse privilégiez-vous selon le SEF 2024 ?"
+      },
+      "reason": "Expliquer la stratégie en deux temps, pas seulement le seuil dépassé.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L33-004, SEF-L19-008 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L16-008",
+      "old": {
+        "explain": "Après soutien adverse de l'ouvreur, 2SA montre quatre cartes dans la majeure d'intervention du partenaire et 7–9 H. Ce n'est pas une enchère naturelle à Sans-Atout."
+      },
+      "new": {
+        "explain": "Après (1♥)–1♠–(2♥), le n°3 a soutenu la couleur de l'ouvreur. Vos quatre Piques R1086 et 8 H entrent dans le mixed raise à 2SA (quatre atouts, 7–9 H). 2♠ est un soutien économique, 3♠ un barrage et 3♥ un cue-bid de force supérieure. 2SA renseigne donc sur le fit, pas sur un arrêt Cœur, que ♥942 ne fournit pas."
+      },
+      "reason": "Expliciter la position et les alternatives ; écarter l'interprétation naturelle de SA.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V473-001, SEF-V473-003 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L16-009",
+      "old": {
+        "explain": "Dans cette séquence du SEF, 2SA est un cue-bid fitté de l'intervention à 1SA : quatre atouts et au moins 11 HLD. Il ne s'agit pas de proposer 2SA naturel."
+      },
+      "new": {
+        "explain": "Sur 1♠–(1SA naturel), vos quatre Piques A1086 et 12 H donnent 14 HLD grâce au neuvième atout. 2SA reprend la dénomination de l'intervention adverse : c'est le cue-bid fitté de quatre atouts et d'au moins 11 HLD. Ne le confondez ni avec le Truscott de 11–12 HLD après Contre, ni avec le 2SA fitté normalement de trois atouts après intervention à la couleur. 3SA masquerait le fit majeur."
+      },
+      "reason": "Comparer trois interprétations du même palier selon l'intervention ; calcul de la force.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-Q26-M5-003, SEF-L42-001, SEF-L26-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L19-004",
+      "old": {
+        "explain": "Derrière un bicolore adverse, le SEF 2024 réserve 2SA, quand il est disponible, au soutien de trois atouts dans la zone limite de 11–12 HLD. 2♠ est ici un cue-bid de fit forcing de manche ; 3♣ indique au moins cinq Carreaux et une force de manche."
+      },
+      "new": {
+        "explain": "Vos trois Cœurs D108 et 12 H dans la forme 3-3-4-3 donnent 12 HLD. Derrière le Michaël 2♥ qui montre Piques et Trèfles, 2SA disponible montre ici un soutien limite de trois cartes (11–12 HLD). Cette zone est plus étroite que les 11–15 HLD du 2SA fitté après intervention naturelle simple. 2♠, premier cue-bid, impose la manche au fit ; 3♣, second cue-bid, décrirait cinq Carreaux ou plus et une force de manche."
+      },
+      "reason": "Faire ressortir la différence de zone derrière un bicolore et la décision de ne pas imposer la manche.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : V2-M5-037, SEF-L26-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L20-004",
+      "old": {
+        "explain": "Après une intervention naturelle sur une ouverture de 2 faible, une nouvelle couleur au palier de 3 promet au moins cinq cartes et 11 H mais n'est pas forcing. Ici 3♣ exprime les Trèfles sans garantir une nouvelle enchère du partenaire ; 3♠ fabriquerait un soutien avec deux cartes."
+      },
+      "new": {
+        "explain": "Après 2♥ faible–(2♠ d'intervention)–(Passe), vos cinq Trèfles RV1098 et 11 H atteignent le minimum de 11 H du changement naturel au palier de trois. 3♣ est non forcing dans ce traitement sur ouverture faible : le partenaire peut passer malgré votre force constructive. Ne transposez pas le régime d'une nouvelle couleur après intervention sur ouverture de un, même lorsque le n°3 a passé. Deux Piques ne garantissent pas le fit pour 3♠."
+      },
+      "reason": "Mettre en évidence l'exception sur deux faible malgré le Passe du n°3.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L30-003, V2-M4-039 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L24-002",
+      "old": {
+        "explain": "Après 1♥–(Contre), 3SA est le Truscott fort : un fit d'au moins quatre Cœurs et une main régulière ou semi-régulière à partir de 13 HLD, sans singleton. À la différence de 3SA naturel dans d'autres séquences, ici c'est une enchère conventionnelle de soutien. 2SA Truscott correspond au soutien de 11–12 HLD.",
+        "context": "Votre partenaire ouvre de 1♥, l'adversaire contre d'appel. Vous avez quatre Cœurs et une main régulière 3-4-3-3 de 13 H, sans singleton. Avec cette main de soutien forte, supérieure au Truscott de 2SA limité à 11–12 HLD, quelle enchère conventionnelle décrit au mieux votre fit ?"
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs R1096 et 13 H réguliers valent 15 HLD grâce au neuvième atout. Après 1♥–(Contre), 3SA est le Truscott fort : quatre atouts et main régulière ou semi-régulière sans singleton à partir de 13 HLD. 2SA Truscott s'arrête à 12 HLD. 3♥ serait un barrage et Surcontre ne transmettrait pas aussi précisément ce fit fort et régulier.",
+        "context": "Votre partenaire ouvre de 1♥ et l’adversaire contre d’appel. Quelle réponse décrit au mieux votre main dans les développements du SEF 2024 ?"
+      },
+      "reason": "Quantifier le passage de la zone 2SA à la zone 3SA et retirer la conclusion de la consigne.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L42-001, SEF-L44-003 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L26-004",
+      "old": {
+        "explain": "Après intervention naturelle à la couleur, 2SA est fitté : trois cartes dans la majeure et 11–15 HLD (SEF 2024). Ici ♥AD9 et 13 H conviennent. 3♦ cue-bid serait forcing de manche avec au moins quatre Cœurs."
+      },
+      "new": {
+        "explain": "Votre forme 3-3-3-4 et vos 13 H donnent 13 HLD avec trois Cœurs AD9. Sur 1♥–(2♦), 2SA décrit précisément le fit de trois cartes dans la zone 11–15 HLD. ♦763 n'arrête pas la couleur adverse, mais 2SA est conventionnellement fitté et n'exige pas de tenue Carreau. 3♥ indiquerait normalement quatre atouts en zone limite, et 3♦ cue-bid un fit fort d'au moins quatre atouts."
+      },
+      "reason": "Montrer pourquoi l'absence d'arrêt n'empêche pas cette enchère de Sans-Atout conventionnelle.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L13-009, SEF-L26-005 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L30-003",
+      "old": {
+        "explain": "Lorsque le numéro 3 passe après l'intervention naturelle du partenaire, un changement de couleur est forcing pour un tour, y compris au palier de 2. Avec ♦ARV108, 13 H et seulement deux Trèfles, 2♦ décrit une vraie couleur et impose une nouvelle parole à l'intervenant. Le régime non forcing des nouvelles couleurs s'appliquerait si le numéro 3 avait parlé.",
+        "context": "Après l'ouverture adverse de 1♠, le partenaire intervient naturellement à 2♣ et le numéro 3 passe. Vous avez cinq beaux Carreaux, 13 H et aucune perspective de fit Trèfle ; sans intervention du numéro 3, quelle nouvelle couleur naturelle à 2♦ conserve son caractère forcing ?"
+      },
+      "new": {
+        "explain": "Après (1♠)–2♣–(Passe), vous avez cinq Carreaux ARV108 et 13 H, soit 14 HL, sans fit Trèfle assuré. 2♦ naturel est forcing pour un tour dans cette séquence : le partenaire doit reparler. Un saut à 3♦ n'est pas nécessaire pour créer cette obligation. Si le n°3 avait annoncé une couleur, le changement de couleur sans saut au palier de deux serait normalement non forcing ; sur une ouverture de deux faible, il existe également un régime différent.",
+        "context": "Après l'ouverture adverse de 1♠, le partenaire intervient naturellement à 2♣ et le numéro 3 passe. Vous êtes le quatrième joueur. Quelle réponse choisissez-vous selon le SEF 2024 ?"
+      },
+      "reason": "Retirer l'indication de la bonne réponse de la consigne et préciser pourquoi le saut n'est pas nécessaire.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L26-003, SEF-L20-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L33-002",
+      "old": {
+        "explain": "Après ouverture mineure et intervention naturelle, 2SA conserve un sens naturel : une main régulière d'environ 11–12 H avec une tenue dans la couleur adverse et sans recherche de fit majeur. Votre main de 12 H, sans majeure quatrième, répond à ces conditions. 1SA serait une zone plus faible, aujourd'hui 8–10 HL sur intervention à la couleur ; 2♦ se limiterait à un soutien mineur ; 3♥ serait un cue-bid qui engagerait davantage le camp.",
+        "context": "Le partenaire ouvre 1♦ et l'adversaire de droite intervient à 1♥. Votre main régulière comporte 12 H, un bon arrêt Cœur (♥RD8), aucune majeure quatrième et seulement trois Carreaux. Contrairement au soutien 2SA fitté après ouverture majeure, quelle réponse à Sans-Atout est ici naturelle et décrit une main constructive ?"
+      },
+      "new": {
+        "explain": "Vos 12 H, la forme 3-3-3-4 et ♥RD8 permettent de proposer 3SA par 2SA naturel. Sur 1♦–(1♥), l'ouverture est mineure : aucun soutien majeur n'est établi et le 2SA fitté après ouverture majeure ne s'applique pas. 1SA serait la zone inférieure de 8–10 HL ; 2♦ minimiserait la force et ne garantirait pas la manche. L'ouvreur peut accepter l'invitation selon son jeu.",
+        "context": "Le partenaire ouvre 1♦ et l'adversaire de droite intervient naturellement à 1♥. Quelle réponse choisissez-vous avec cette main dans le SEF 2024 ?"
+      },
+      "reason": "Identifier les conditions cumulatives d'un 2SA naturel et la conséquence de l'invitation.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-V425-006, SEF-L26-004 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L37-002",
+      "old": {
+        "explain": "Dans la séquence 1♥–(Contre), 3♠ est un Splinter : un double saut dans l'autre majeure montrant au moins quatre atouts Cœur et un singleton ou une chicane à Pique, dans une main constructive. Le 2SA Truscott indique plutôt un soutien de quatre atouts de 11–12 HLD sans décrire cette courte ; 4♥ serait ici une enchère de barrage, non descriptive de l'ambition de manche."
+      },
+      "new": {
+        "explain": "Après 1♥–(Contre), 1♠ serait la première enchère disponible à Pique, 2♠ un saut simple (mixed raise), et 3♠ un double saut (Splinter). Vos quatre Cœurs RD108 et le singleton ♠5 donnent 11 H + 2 pour le neuvième atout + 2 pour la courte = 15 HLD. 3♠ exprime simultanément le fit fort et la courte. 2SA Truscott serait limité à 11–12 HLD et 4♥ ne préciserait pas la distribution."
+      },
+      "reason": "Faire calculer le saut relativement au palier disponible ; distinguer précisément le mixed raise du Splinter.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L13-007, SEF-L13-008 ; contrats #342/#349/#353."
+    },
+    {
+      "id": "SEF-L42-001",
+      "old": {
+        "explain": "2SA Truscott montre quatre atouts et 11–12 HLD après 1♠–(Contre). Le mixed raise à 3♥ est moins fort (7–9 H). Le soutien à 2♠ ne traduirait pas toute la force."
+      },
+      "new": {
+        "explain": "Vos quatre Piques R1095 et 10 H réguliers donnent 12 HLD grâce au neuvième atout. Sur 1♠–(Contre), 2SA Truscott exprime le soutien de quatre cartes et 11–12 HLD. 3♥ mixed raise est limité à 7–9 H ; 3♠ est un barrage. Ne transposez pas le soutien à saut de 3♠ après une intervention naturelle à la couleur, qui aurait ici pu être constructif."
+      },
+      "reason": "Comparer la même main selon le type d'intervention, avec le soutien direct à saut.",
+      "source": "Catalogue virtuel V1 (base 4678fcba, projection 04b57eab), ancres : SEF-L16-006, V2-M5-002 ; contrats #342/#349/#353."
+    }
+  ],
+  "reserves": [],
+  "reservesV1": [
+    {
+      "id": "SEF-L10-005",
+      "question": "Le 2SA naturel lorsque le n°3 passe reste en HOLD ; ne pas modifier la convention avant décision.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider explicitement la convention locale"
+      ],
+      "source": "#271, HOLD SEF-L10-005"
+    },
+    {
+      "id": "SEF-L13-010",
+      "question": "Le seuil 7 HL après contre d'appel reste en HOLD.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider le seuil avec une source précise"
+      ],
+      "source": "#271, HOLD SEF-L13-010"
+    },
+    {
+      "id": "SEF-L28-007",
+      "question": "Cas dépendant du même seuil de réponse après contre d'appel ; ne pas arbitrer implicitement par un exercice voisin.",
+      "options": [
+        "Conserver sous réserve du seuil",
+        "Revoir avec SEF-L13-010"
+      ],
+      "source": "#271 ; SEF-L13-010"
+    },
+    {
+      "id": "V2-M5-001",
+      "question": "La main 4-3-3-3 de 12 HLD relève du soutien limite, mais l'exception à quatre atouts très réguliers du 2SA fitté peut rendre le distracteur discutable.",
+      "options": [
+        "Confirmer le caractère préférentiel de 3♠ dans ce cas",
+        "Préciser la limite de l'exception avant de modifier la main ou le choix"
+      ],
+      "source": "SEF-L06-007 ; V2-M5-002"
+    },
+    {
+      "id": "SEF-L30-005",
+      "question": "La réponse Passe illustre l'absence d'auto-forcing, mais 11 H et six Carreaux rendent une invitation plausible ; distinguer enchère autorisée et meilleure décision.",
+      "options": [
+        "Conserver comme illustration du droit de passer",
+        "Préciser le minimum de la redemande ou recomposer la main"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-009 et V2-M5-010"
+    },
+    {
+      "id": "V2-M5-009",
+      "question": "La main de 11 H avec longueur et fit huitième peut susciter une proposition de manche ; le caractère non auto-forcing n'impose pas Passe.",
+      "options": [
+        "Préciser la force réelle de l'ouvreur",
+        "Réviser la main avec le cas contrasté V2-M5-010 si nécessaire"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-010"
+    }
+  ]
+}

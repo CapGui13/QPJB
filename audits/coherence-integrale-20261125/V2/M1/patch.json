@@ -1,0 +1,868 @@
+{
+  "base": "4678fcba3a45333c968d3c8c04c50e88446d4532",
+  "virtualBase": "04b57eab66605e55f71101c5d0e19321d85d64dd",
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-003-2",
+      "old": {
+        "explain": "Avec 15 H et cinq Carreaux dans une distribution 5-3-3-2, la main est considérée régulière : l’ouverture de 1SA prime sur 1♦."
+      },
+      "new": {
+        "explain": "Avec 15 H, cinq Carreaux et un seul doubleton Cœur, la forme 5–3–3–2 reste régulière. Une mineure cinquième n'empêche pas 1SA : l'annonce précise la zone 15–17 H, que 1♦ laisserait ouverte."
+      },
+      "reason": "Distinguer mineure cinquième et irrégularité.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-003-2 et famille cas-003 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-008-2",
+      "old": {
+        "explain": "Avec 12 H et deux majeures cinquièmes (♠ et ♥), ouvrir de la plus chère, 1♠, permet de décrire ensuite les Cœurs selon la suite des enchères."
+      },
+      "new": {
+        "explain": "Vos 12 H permettent d'ouvrir et vous avez deux majeures cinquièmes. À longueur égale, commencez par la plus chère, 1♠ : vous pourrez annoncer les Cœurs ensuite à un palier économique. Commencer par 1♥ risquerait de rendre la redemande à Pique trop ambitieuse."
+      },
+      "reason": "Expliquer l'économie de la redemande.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-008-2 et famille cas-008 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-011-2",
+      "old": {
+        "explain": "Sans majeure cinquième ni 15–17 H réguliers, la mineure la plus longue détermine l’ouverture : trois Carreaux contre deux Trèfles, donc 1♦."
+      },
+      "new": {
+        "explain": "Avec 12 H et deux majeures quatrièmes, aucune ouverture majeure n'est disponible. La meilleure mineure est la plus longue, même sans honneur : trois Carreaux contre deux Trèfles (As en Trèfle). Ouvrez 1♦, et non 1♣ malgré la qualité de vos Trèfles."
+      },
+      "reason": "Opposer longueur et qualité des mineures.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-011-2 et famille cas-011 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-012-1",
+      "old": {
+        "explain": "Avec 12 H et trois cartes dans chaque mineure, le SEF choisit l’ouverture de 1♣. Les quatre Piques ne permettent pas une ouverture de 1♠."
+      },
+      "new": {
+        "explain": "Les 12 H suffisent pour ouvrir mais vos Piques ne sont que quatrièmes. Avec trois Carreaux et trois Trèfles, l'égalité 3–3 se tranche par 1♣, contrairement à l'égalité 4–4 qui conduit à 1♦."
+      },
+      "reason": "Contraster les deux égalités de longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-012-1 et famille cas-012 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-014-1",
+      "old": {
+        "explain": "Avec seulement 6 H, les cinq Piques ne suffisent pas pour ouvrir de 1♠. L’ouverture de barrage à 2♠ nécessite une couleur sixième et une main adaptée : Passe."
+      },
+      "new": {
+        "explain": "Vos 6 H et cinq Piques donnent seulement 7 HL. Il manque la force pour une ouverture constructive de 1♠ (12 H ou 13 HL) et une sixième carte pour un barrage à 2♠. Passe : une belle longueur ne suffit pas à elle seule."
+      },
+      "reason": "Distinguer les conditions d'une ouverture normale et faible.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-014-1 et famille cas-014 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N004-3",
+      "old": {
+        "explain": "Vos 13 H justifient l'ouverture et ♦R9843 est votre meilleure mineure dans la main 2-3-5-3, sans majeure cinquième. Ouvrez de 1♦."
+      },
+      "new": {
+        "explain": "Avec 13 H, vous avez assez de jeu pour ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, comparez les longueurs mineures : cinq Carreaux contre trois Trèfles. Ouvrez 1♦, même avec des honneurs à Trèfle."
+      },
+      "reason": "Rendre explicite l'ordre des critères d'ouverture.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N004-3 et famille cas-060 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N007-1",
+      "old": {
+        "explain": "Vos deux mineures sont quatrièmes, ♦A842 et ♣A765. Avec 12 H et sans majeure cinquième, l'égalité 4–4 se résout en SEF par l'ouverture de 1♦."
+      },
+      "new": {
+        "explain": "Les deux mineures ont quatre cartes et chacune est commandée par l'As. Avec 12 H, sans majeure cinquième, l'égalité 4–4 se résout par 1♦ ; cette règle dépend des longueurs, pas du nombre d'honneurs. À 3–3, on ouvrirait 1♣."
+      },
+      "reason": "Contraster égalité 4–4 et 3–3.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N007-1 et famille cas-063 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N008-1",
+      "old": {
+        "explain": "Vos deux mineures sont quatrièmes, ♦D765 et ♣ARV8. Avec 13 H et sans majeure cinquième, l'égalité 4–4 se résout en SEF par l'ouverture de 1♦."
+      },
+      "new": {
+        "explain": "Malgré ♣ARV8, plus riches en honneurs que ♦D765, les deux mineures sont quatrièmes. Avec 13 H et aucune majeure cinquième, appliquez la règle de longueur à égalité 4–4 : 1♦, et non la couleur la plus forte en honneurs."
+      },
+      "reason": "Isoler le faux critère de qualité.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N008-1 et famille cas-064 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N015-2",
+      "old": {
+        "explain": "Vous possédez 12 H, cinq Cœurs (♥RV652) et quatre Piques (♠RV109). Ouvrez de 1♥ : la majeure cinquième prime sur la quatrième."
+      },
+      "new": {
+        "explain": "Vous avez 12 H, cinq Cœurs et quatre Piques. 1♥ décrit la seule majeure cinquième ; ouvrir 1♠ annoncerait une cinquième carte que vous n'avez pas. La priorité à la couleur la plus chère vaut ici seulement à longueur égale."
+      },
+      "reason": "Distinguer priorité de longueur et ordre à égalité.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N015-2 et famille cas-071 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N016-1",
+      "old": {
+        "explain": "Vous possédez 12 H, cinq Piques (♠AD952) et quatre Cœurs (♥A974). Ouvrez de 1♠ : la majeure cinquième prime sur la quatrième."
+      },
+      "new": {
+        "explain": "Avec 12 H et cinq Piques contre quatre Cœurs, ouvrez 1♠. Ce n'est pas parce que les Piques sont plus chers, mais d'abord parce qu'ils sont cinquièmes : 1♥ promettrait une carte supplémentaire."
+      },
+      "reason": "Expliciter le critère, symétrique du cas Cœur cinquième.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N016-1 et famille cas-072 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N022-2",
+      "old": {
+        "explain": "La main 3-3-4-3 ne vaut que 4 H ; sa plus longue couleur, ♦V983, ne compense pas ce déficit de force. Passe en première position."
+      },
+      "new": {
+        "explain": "Vous n'avez que 4 H et aucune couleur de cinq cartes : aucun point de longueur ne vous rapproche du seuil d'ouverture (12 H ou 13 HL). Passe en première position ; quatre Carreaux ne justifient pas 1♦ sans la force d'ouverture."
+      },
+      "reason": "Relier le calcul HL au seuil.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N022-2 et famille cas-078 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N023-1",
+      "old": {
+        "explain": "Malgré les cinq Cœurs (♥RDV64), votre main 2-5-4-2 ne compte que 6 H : trop peu pour ouvrir de 1♥ et sans sixième pour un 2♥ faible. Passe évite de surévaluer la longueur."
+      },
+      "new": {
+        "explain": "Malgré ♥RDV64, la main ne vaut que 6 H + 1 point de longueur = 7 HL. 1♥ serait trop fort et 2♥ faible exigerait six Cœurs. Passe : la concentration des honneurs dans la majeure ne remplace ni le seuil ni la sixième carte."
+      },
+      "reason": "Distinguer qualité, force et longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N023-1 et famille cas-079 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V44-001",
+      "old": {
+        "explain": "La distribution 3-3-4-3 est régulière, mais vos 18 H sont hors des plages 1SA (15–17) et 2SA (20–21). Sans majeure cinquième et avec ♦A932 contre ♣D52, ouvrez de 1♦."
+      },
+      "new": {
+        "explain": "Vos 18 H et la forme régulière 3–3–4–3 sont entre les zones de 1SA (15–17 H) et de 2SA (20–21 H). Ouvrez 1♦, votre mineure la plus longue, puis précisez vos 18–19 H réguliers à la redemande selon la réponse du partenaire."
+      },
+      "reason": "Expliquer comment résoudre le trou entre les zones SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V44-001 et famille v44-cas-001 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-002",
+      "old": {
+        "explain": "La couleur ♣RDV1096 compte six cartes et votre main 15 H : ouvrez naturellement de 1♣ pour conserver l'espace d'enchères. Une ouverture de barrage ne convient pas à cette force."
+      },
+      "new": {
+        "explain": "Avec 15 H et six Trèfles, vous avez 17 HL et une forme 2–2–3–6, qui ne relève pas de l'ouverture régulière de 1SA. Ouvrez 1♣ pour garder l'espace nécessaire aux développements ; 3♣ serait un barrage, et non une description de cette force constructive."
+      },
+      "reason": "Opposer forme irrégulière et force d'ouverture à SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-002 et famille v49-002 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V416-001",
+      "old": {
+        "explain": "Avec 12 H et six Carreaux (♦AR10864), vous disposez d'une véritable ouverture constructive : 1♦ décrit d'abord cette couleur longue. Un barrage à 3♦ correspondrait à une force nettement inférieure."
+      },
+      "new": {
+        "explain": "Vos 12 H et six Carreaux donnent 14 HL : vous avez une ouverture constructive. La forme 2–2–6–3 et la force ne conviennent pas à 1SA ; 3♦ serait un barrage trop faible en force annoncée. Ouvrez 1♦, puis décrivez la longueur selon la suite."
+      },
+      "reason": "Quantifier et écarter les deux distracteurs.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V416-001 et famille v416-cas-001 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-L01-E-02",
+      "old": {
+        "explain": "Avec 9 H et des Piques cinquièmes peu solides (♠D9873), cette main n'a pas le potentiel requis pour prendre le risque de rouvrir les enchères en quatrième position. Passe est prudent."
+      },
+      "new": {
+        "explain": "Après trois Passe, la règle indicative des 15 donne 9 H + 5 Piques = 14. Avec ♠D9873 et les deux camps vulnérables, cette main limite ne justifie pas de rouvrir les enchères : les adversaires pourraient trouver leur contrat. Passe plutôt que 1♠ ; cinq Piques ne permettent pas non plus un 2♠ faible."
+      },
+      "reason": "Appliquer le calcul de quatrième position et la vulnérabilité.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-L01-E-02 et famille l01-e-ouv4-passe-cinq-piques-faibles ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-L01-E-04",
+      "old": {
+        "explain": "Avec 11 H, six très beaux Piques et un singleton, l'ouverture naturelle de 1♠ est justifiée en quatrième position. La règle indicative des 15 donne 17 ; surtout, votre couleur longue est très solide."
+      },
+      "new": {
+        "explain": "Vos 11 H et six Piques valent déjà 13 HL : une véritable ouverture naturelle. Après trois Passe, le total indicatif de quatrième position est aussi favorable (11 H + 6 Piques = 17). Ouvrez 1♠, la majeure sixième ; les quatre Cœurs ne permettent pas 1♥."
+      },
+      "reason": "Distinguer seuil constructif et règle tactique.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-L01-E-04 et famille l01-e-ouv4-un-pique-bicolore-seuil-15 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-L28-001",
+      "old": {
+        "explain": "Avec cinq Piques et cinq Trèfles, le SEF 2024 prévoit l'ouverture de 1♣ quand la main compte au maximum cinq perdantes. C'est une exception à la priorité usuelle de la majeure cinquième ; l'ouverture de 1♣ préserve la description du bicolore fort."
+      },
+      "new": {
+        "explain": "Les cinq Piques et cinq Trèfles donnent cinq perdantes (1 à Pique, 1 à Trèfle, 1 à Cœur, 2 à Carreau). Vous remplissez les deux conditions de l'exception 5–5 forte du SEF 2024 : ouvrez 1♣ pour décrire ensuite les Piques. À six perdantes, le traitement normal reprendrait (1♠)."
+      },
+      "reason": "Expliciter les conditions cumulatives et le contraste à six perdantes.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-L28-001 et famille LOT28-2026-11-14-001 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "V2-M1-003",
+      "old": {
+        "explain": "20 H et 4–4–3–2 : aucun singleton ni majeure cinquième. 2SA donne la zone exacte."
+      },
+      "new": {
+        "explain": "Avec 20 H, deux majeures quatrièmes et une forme 4–4–3–2 régulière, ouvrez de 2SA. 1SA s'arrête à 17 H et 1♠ exige cinq cartes. Le doubleton Trèfle ne rend pas cette main irrégulière, contrairement à un singleton."
+      },
+      "reason": "Contraster le singleton du cas V2-M1-004.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; V2-M1-003 et famille reserve-20261125-v2-m1-sa2-singleton ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "V2-M1-007",
+      "old": {
+        "explain": "17 H réguliers : vous êtes au plafond de 1SA. Les deux majeures quatrièmes ne justifient pas une ouverture majeure."
+      },
+      "new": {
+        "explain": "17 H réguliers et deux majeures quatrièmes : ouvrez 1SA, au plafond de la zone 15–17 H. À 18 H, il faudrait passer par une ouverture mineure puis préciser la force à la redemande ; 2SA direct ne commence qu'à 20 H."
+      },
+      "reason": "Expliciter la frontière de force du cas V2-M1-008.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; V2-M1-007 et famille reserve-20261125-v2-m1-sa1-seuil-haut ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-015-1",
+      "old": {
+        "explain": "Après 1♣, vos quatre Cœurs et vos 8 H autorisent la réponse naturelle de 1♥, illimitée en force, afin de rechercher un fit majeur."
+      },
+      "new": {
+        "explain": "Vos 8 H suffisent pour répondre et vos quatre Cœurs permettent 1♥, même sans cinquième carte. Cette réponse naturelle est forcing un tour pour un répondant non passé, sans plafond de force ; 1SA masquerait une possibilité de fit majeur."
+      },
+      "reason": "Distinguer ouverture cinq cartes et réponse quatre cartes.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-015-1 et famille cas-015 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-016-1",
+      "old": {
+        "explain": "Avec quatre Piques et 9 H face à 1♦, vous privilégiez 1♠ au palier de un pour rechercher le fit majeur."
+      },
+      "new": {
+        "explain": "Avec 9 H, quatre Piques et trois Carreaux, recherchez le fit majeur par 1♠. Quatre cartes suffisent en réponse au palier de un ; 2♦ serait un soutien mineur qui négligerait ce fit possible, et 1SA masquerait les Piques."
+      },
+      "reason": "Opposer recherche de majeure aux réponses de soutien ou SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-016-1 et famille cas-016 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-019-1",
+      "old": {
+        "explain": "Avec cinq Piques et 8 H face à 1♣, 1♠ permet de nommer naturellement votre longue majeure à un palier économique."
+      },
+      "new": {
+        "explain": "Vos cinq Piques et 8 H (9 HL) se décrivent naturellement par 1♠ sur 1♣. L'annonce est forcing un tour pour un répondant non passé : inutile de choisir 1SA pour limiter la force avant d'avoir recherché le fit majeur."
+      },
+      "reason": "Expliquer le rôle du forcing à bas palier.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-019-1 et famille cas-019 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-021-1",
+      "old": {
+        "explain": "Avec cinq Carreaux, 7 H et une distribution 3-3-5-2 régulière, 1SA décrit une main limitée après l'ouverture de 1♦, sans majeure quatrième."
+      },
+      "new": {
+        "explain": "Avec 7 H, cinq Carreaux et une forme régulière 3–3–5–2, vous n'avez pas de majeure quatrième. 1SA décrit mieux la force limitée et la forme que 2♦ : une mineure cinquième ne rend pas à elle seule le soutien prioritaire. 3♦ surévaluerait le jeu."
+      },
+      "reason": "Contraster soutien mineur irrégulier et SA régulier.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-021-1 et famille cas-021 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-022-1",
+      "old": {
+        "explain": "Avec 9 H réguliers, quatre Trèfles et aucune majeure quatrième après 1♣, 1SA indique une main limitée plutôt qu'un soutien mineur."
+      },
+      "new": {
+        "explain": "9 H et une distribution 3–3–3–4 : aucune majeure quatrième ni quatre Carreaux à annoncer sur 1♣. 1SA décrit la main limitée ; quatre Trèfles et une forme régulière ne suffisent pas pour préférer 2♣."
+      },
+      "reason": "Rendre explicites les couleurs disponibles avant SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-022-1 et famille cas-022 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-023-3",
+      "old": {
+        "explain": "Vous avez 7 H, une main régulière 3-3-3-4 et aucune majeure quatrième après 1♦ : 1SA est la réponse au plus bas palier."
+      },
+      "new": {
+        "explain": "Avec 7 H, quatre Trèfles et seulement trois cartes dans chaque autre couleur, aucune majeure quatrième n'est annonçable. 2♣ sur 1♦ est un changement de couleur trop fort (11 H ou 12 HL requis), tandis que 2♦ ne décrit pas le jeu : 1SA est la réponse de recours."
+      },
+      "reason": "Distinguer la force nécessaire au 2 sur 1.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-023-3 et famille cas-023 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-023-1",
+      "old": {
+        "explain": "Avec 9 H, quatre Trèfles et aucune majeure quatrième après 1♦, 1SA décrit la force limitée sans prétendre à un changement de couleur au palier de deux."
+      },
+      "new": {
+        "explain": "Vos quatre Trèfles sont annonçables naturellement à 2♣ sur 1♦ en longueur, mais pas en force : 9 H ne suffisent pas au seuil de 11 H ou 12 HL. Sans majeure quatrième, répondez 1SA ; trois Carreaux ne justifient pas un soutien direct."
+      },
+      "reason": "Éviter de confondre quatre cartes et force insuffisante.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-023-1 et famille cas-023 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-025-1",
+      "old": {
+        "explain": "Avec seulement 3 H et une distribution 3-3-4-3, vous êtes trop faible pour répondre à l'ouverture de 1♣ : Passe."
+      },
+      "new": {
+        "explain": "Avec 3 H et quatre Carreaux, vous êtes sous le seuil d'une réponse naturelle de 1♦, même si la longueur convient. Aucun point de longueur supplémentaire ni soutien Trèfle ne compense ce manque de force : Passe."
+      },
+      "reason": "Distinguer longueur annonçable et force de réponse.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-025-1 et famille cas-025 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N026-1",
+      "old": {
+        "explain": "Avec cinq Cœurs et 8 H, répondez naturellement 1♥ après l'ouverture de 1♣ : votre majeure cinquième doit être annoncée."
+      },
+      "new": {
+        "explain": "Avec 8 H et cinq Cœurs, répondez 1♥ sur 1♣. Le Valet seul dans la couleur n'empêche pas de la nommer : une réponse naturelle cherche le fit en montrant d'abord la longueur. 1SA masquerait cette majeure."
+      },
+      "reason": "Écarter le faux critère de qualité des honneurs.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N026-1 et famille cas-082 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N027-1",
+      "old": {
+        "explain": "Avec cinq Piques et 10 H face à 1♣, l'annonce de 1♠ décrit la couleur longue sans exagérer votre force."
+      },
+      "new": {
+        "explain": "10 H et cinq Piques donnent 11 HL. Répondez 1♠ : ce changement naturel est forcing un tour si vous n'avez pas passé et n'a pas de plafond de force. 1SA limiterait votre jeu tout en cachant les Piques."
+      },
+      "reason": "Expliquer pourquoi la force ne commande pas SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N027-1 et famille cas-083 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N028-2",
+      "old": {
+        "explain": "Avec quatre Cœurs et quatre Piques, et 10 H, commencez par 1♥ sur l'ouverture de 1♣ pour permettre la description des deux majeures."
+      },
+      "new": {
+        "explain": "Vos Cœurs et Piques sont tous deux quatrièmes. Avec 10 H, répondez 1♥, la moins chère : si l'ouvreur a quatre Piques sans fit Cœur, il peut encore dire 1♠. Si vos Piques étaient cinquièmes, le critère de longueur primerait."
+      },
+      "reason": "Montrer l'espace conservé et le contraste 5–4.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N028-2 et famille cas-084 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N029-1",
+      "old": {
+        "explain": "Face à 1♣, vos cinq Piques et quatre Cœurs, avec 10 H, conduisent à 1♠, la plus longue des majeures."
+      },
+      "new": {
+        "explain": "Les cinq Piques ♠RDV107 sont plus longs que vos quatre Cœurs. Commencez par 1♠ ; la priorité à 1♥ ne vaut pas pour ce 5–4, mais pour deux majeures quatrièmes. Avec 10 H, 1♠ reste forcing un tour si vous n'avez pas passé."
+      },
+      "reason": "Discriminer ordre économique et longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N029-1 et famille cas-085 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N030-2",
+      "old": {
+        "explain": "Vos cinq Carreaux bien commandés et 9 H permettent de répondre 1♦ à l'ouverture de 1♣ pour annoncer la mineure longue."
+      },
+      "new": {
+        "explain": "Sur 1♣, cinq Carreaux et 9 H (10 HL) autorisent 1♦, naturel et forcing un tour si vous n'avez pas passé. Sans majeure quatrième, montrez cette couleur à bas palier plutôt que 1SA ; vos deux Trèfles ne constituent pas le soutien recherché."
+      },
+      "reason": "Préciser le statut et le choix entre couleur et SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N030-2 et famille cas-086 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N032-1",
+      "old": {
+        "explain": "Vous possédez quatre Carreaux, aucune majeure quatrième et 7 H après 1♣. La réponse naturelle de 1♦ décrit votre mineure quatrième."
+      },
+      "new": {
+        "explain": "Quatre Carreaux suffisent pour répondre 1♦ à 1♣. Avec 7 H, aucune majeure quatrième et un répondant non passé, cette enchère naturelle est forcing un tour : 1SA masquerait une couleur encore annonçable économiquement."
+      },
+      "reason": "Montrer que cinq cartes ne sont pas exigées.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N032-1 et famille cas-088 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N035-2",
+      "old": {
+        "explain": "Vos quatre Piques et vos 6 H suffisent pour répondre 1♠ à l'ouverture de 1♦ afin de rechercher un fit majeur."
+      },
+      "new": {
+        "explain": "Avec 6 H et quatre Piques, vous avez la force et la longueur pour répondre 1♠ sur 1♦. Le Valet seul à Pique n'est pas un obstacle : la longueur permet de rechercher le fit, et 1SA le masquerait."
+      },
+      "reason": "Distinguer qualité et longueur au palier de un.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N035-2 et famille cas-091 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N038-1",
+      "old": {
+        "explain": "Vous possédez quatre Cœurs, quatre Piques et 8 H face à 1♦. Annoncez 1♥ en premier, la moins chère des majeures quatrièmes."
+      },
+      "new": {
+        "explain": "Vous détenez deux majeures quatrièmes avec 8 H. Répondez 1♥, la moins chère, pour permettre à l'ouvreur de montrer 1♠ s'il a quatre Piques sans fit Cœur. 1♠ d'abord rendrait la recherche des Cœurs moins économique."
+      },
+      "reason": "Expliquer l'ordre par la redemande possible.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N038-1 et famille cas-094 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N039-2",
+      "old": {
+        "explain": "Avec cinq Piques, quatre Cœurs et 8 H, répondez 1♠ sur l'ouverture de 1♦ : la majeure cinquième est nommée avant la quatrième."
+      },
+      "new": {
+        "explain": "Les Piques sont cinquièmes, les Cœurs seulement quatrièmes. Avec 8 H, annoncez la plus longue, 1♠ ; l'ordre Cœur avant Pique s'applique aux deux majeures quatrièmes, pas à cette main 5–4."
+      },
+      "reason": "Rendre le contraste explicite.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N039-2 et famille cas-095 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N040-2",
+      "old": {
+        "explain": "Face à 1♦, vos cinq Carreaux et vos 9 H dans une distribution régulière 3-3-5-2 permettent de répondre 1SA plutôt que de soutenir directement."
+      },
+      "new": {
+        "explain": "Avec 9 H, cinq Carreaux et une forme régulière 3–3–5–2, aucune majeure quatrième n'est disponible. 1SA limite la main ; 2♦ privilégierait le fit mineur alors qu'aucune courte n'incite à jouer à l'atout, et 3♦ serait trop ambitieux."
+      },
+      "reason": "Expliquer le choix de contrat sans courte.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N040-2 et famille cas-096 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N042-2",
+      "old": {
+        "explain": "Avec quatre Carreaux, 9 H et trois cartes dans chaque autre couleur, vous pouvez répondre 1SA sur 1♦ pour décrire votre force limitée."
+      },
+      "new": {
+        "explain": "Les 9 H et la forme 3–3–4–3 sont adaptés à 1SA, sans majeure quatrième. Quatre Carreaux ne suffisent pas à préférer un soutien mineur dans cette main régulière ; 2♣ serait inexact avec trois cartes."
+      },
+      "reason": "Écarter les distracteurs selon la forme et la longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N042-2 et famille cas-098 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N043-1",
+      "old": {
+        "explain": "Vous avez 9 H, quatre Trèfles et aucune majeure quatrième face à 1♦. La réponse de 1SA montre la zone faible, sans soutien mineur construit."
+      },
+      "new": {
+        "explain": "Sur 1♦, les 9 H restent dans la zone limitée de 1SA. Vous n'avez ni majeure quatrième ni soutien mineur construit, et vos quatre Trèfles ne permettent pas un 2 sur 1 à cette force. 2SA proposerait à tort la manche."
+      },
+      "reason": "Distinguer la première zone de l'invitation.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N043-1 et famille cas-099 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N045-1",
+      "old": {
+        "explain": "Avec ♣R7652 cinquièmes et 12 H, 2♣ annonce naturellement une nouvelle mineure au palier de deux et constitue une réponse forcing dans ce cadre. 1SA limiterait excessivement la force; 2♦ serait un soutien plutôt que la description de vos Trèfles."
+      },
+      "new": {
+        "explain": "Vos cinq Trèfles et 12 H donnent 13 HL : vous dépassez le seuil de 11 H ou 12 HL d'un 2 sur 1. Sans majeure quatrième ni soutien Carreau, 2♣ est naturel, forcing et auto-forcing : après une redemande économique non fittée, vous devrez reparler. 1SA sous-évaluerait votre jeu."
+      },
+      "reason": "Préciser l'engagement du répondant plutôt qu'un forcing vague.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N045-1 et famille cas-101 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N046-1",
+      "old": {
+        "explain": "Vous détenez cinq Carreaux, 7 H et aucune majeure quatrième face à 1♣. La réponse 1♦ nomme la couleur longue au palier de un."
+      },
+      "new": {
+        "explain": "Avec 7 H et cinq Carreaux, vous avez 8 HL. Sans majeure quatrième, répondez 1♦ sur 1♣, même si la couleur ne comporte que Dame-Valet : ce changement naturel décrit la longueur et conserve l'espace. 1SA la cacherait."
+      },
+      "reason": "Relier les cartes effectives au choix.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N046-1 et famille cas-102 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N047-1",
+      "old": {
+        "explain": "Vos cinq Carreaux et vos 8 H sont répartis en 3-3-5-2, sans majeure quatrième. Sur 1♦, 1SA décrit naturellement cette main régulière."
+      },
+      "new": {
+        "explain": "La forme 3–3–5–2 est régulière malgré les cinq Carreaux. Avec 8 H, aucune majeure quatrième et seulement deux Trèfles, 1SA décrit mieux le jeu que 2♦ : le soutien mineur est moins utile en l'absence de courte."
+      },
+      "reason": "Expliquer pourquoi le fit ne prime pas automatiquement.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N047-1 et famille cas-103 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-004",
+      "old": {
+        "explain": "Avec cinq Carreaux, 7 H et aucune majeure quatrième, la réponse naturelle 1♦ sur l'ouverture de 1♣ décrit votre mineure longue."
+      },
+      "new": {
+        "explain": "Sur 1♣, 7 H et cinq Carreaux donnent 8 HL. Sans majeure quatrième, la réponse naturelle 1♦ montre cette couleur au palier le plus bas ; 2♦ à saut n'est pas nécessaire pour montrer cinq cartes."
+      },
+      "reason": "Écarter le saut et expliciter le seuil de longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-004 et famille v49-004 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-007",
+      "old": {
+        "explain": "Avec quatre Cœurs et quatre Piques, vous répondez 1♥ après 1♦ : la moins chère des majeures quatrièmes est annoncée en premier."
+      },
+      "new": {
+        "explain": "Vous avez quatre Cœurs et quatre Piques. Même si les Piques sont sans honneur, les deux majeures ont la même longueur : commencez par 1♥, ce qui laisse à l'ouvreur 1♠ pour montrer quatre Piques sans fit Cœur. Soutenir 2♦ avec deux cartes serait inexact."
+      },
+      "reason": "Montrer pourquoi longueur et espace comptent.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-007 et famille v49-007 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-035",
+      "old": {
+        "explain": "Avec 14 H, une main régulière sans majeure quatrième et des tenues ♠ (Roi-Dame) et ♥ (Roi), vous pouvez conclure à 3SA après 1♣."
+      },
+      "new": {
+        "explain": "Avec 14 H et une forme régulière sans majeure quatrième, vous avez la force de conclure à la manche après l'ouverture de 1♣. ♠RD2 et ♥R105 apportent les tenues majeures ; 2SA ne serait qu'une invitation et 3♣ orienterait vers le soutien mineur au lieu de la manche à SA."
+      },
+      "reason": "Distinguer invitation et conclusion.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-035 et famille v49-035 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "V2-M1-021",
+      "old": {
+        "explain": "13 H et un point de longueur = 14 HL. Avec cinq Carreaux et quatre Cœurs, la priorité à la majeure quatrième jusqu'à 12 HL ne s'applique plus. Commencez par 1♦."
+      },
+      "new": {
+        "explain": "13 H + 1 point de longueur = 14 HL : vous dépassez le plafond de 12 HL de la priorité QPJB à la majeure quatrième sur 1♣. Commencez par 1♦ avec cinq Carreaux ; la réponse naturelle au palier de un permet de montrer les quatre Cœurs ensuite. Avec une majeure cinquième à la place, le critère de longueur changerait le choix."
+      },
+      "reason": "Expliquer le contraste avec V2-M1-022 sans changer la convention.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; V2-M1-021 et famille reserve-20261125-v2-m1-reponse-longueur-forte ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-026-3",
+      "old": {
+        "explain": "Avec quatre Cœurs et 6 H dans une main régulière, vous disposez de la valeur minimale d'un soutien simple. Après l'ouverture de 1♥, annoncez 2♥ pour montrer le fit sans exagérer la force."
+      },
+      "new": {
+        "explain": "Quatre Cœurs en face des cinq promis par 1♥ garantissent neuf atouts. 6 H + 2 points D pour le neuvième atout = 8 HLD, dans la zone de soutien simple 6–10 HLD. 2♥ montre immédiatement ce fit ; 1SA le masquerait."
+      },
+      "reason": "Faire le calcul HLD, absent du corrigé initial.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-026-3 et famille cas-026 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-027-2",
+      "old": {
+        "explain": "Vous possédez quatre Piques face aux cinq cartes promises par l'ouverture de 1♠, avec 6 H. Le soutien simple à 2♠ décrit ce fit et une main modeste."
+      },
+      "new": {
+        "explain": "Vos quatre Piques garantissent neuf atouts ; 6 H + 2 points D pour le neuvième atout + 1 pour le doubleton Trèfle = 9 HLD. 2♠ montre la première zone de soutien ; 3♠ serait invitant et surévaluerait cette main."
+      },
+      "reason": "Quantifier le fit et la courte, distinguer 2 et 3.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-027-2 et famille cas-027 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N049-1",
+      "old": {
+        "explain": "Vos quatre Cœurs et vos 6 H permettent un soutien immédiat de 1♥ à 2♥. Le quatrième atout renforce la valeur du fit, sans transformer cette main en invitation de manche."
+      },
+      "new": {
+        "explain": "Avec quatre Cœurs, le fit est au moins neuvième. Vos 6 H se réévaluent à 9 HLD (2 points pour le neuvième atout, 1 pour le doubleton Pique). 2♥ montre la première zone ; le 2SA fitté invitant ne correspond ni à la valeur ni à la longueur d'atout."
+      },
+      "reason": "Calculer la valeur du soutien et écarter 2SA.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N049-1 et famille cas-105 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N050-2",
+      "old": {
+        "explain": "Vous possédez quatre Cœurs et 6 H. Le soutien direct à 2♥ décrit naturellement ce fit, sans promettre la force nécessaire à une invitation."
+      },
+      "new": {
+        "explain": "Vous avez 6 H et quatre Cœurs : le neuvième atout apporte 2 points D, sans courte dans cette forme 3–4–3–3. Avec 8 HLD, soutenez à 2♥, pas à 2SA qui inviterait avec un fit troisième."
+      },
+      "reason": "Rendre explicite la réévaluation sans courte.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N050-2 et famille cas-106 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N055-2",
+      "old": {
+        "explain": "Avec quatre Piques et 7 H dans une main 4-3-3-3, vous possédez un fit majeur et une force de soutien simple : 2♠."
+      },
+      "new": {
+        "explain": "Les quatre Piques face aux cinq promis par 1♠ garantissent neuf atouts. 7 H + 2 points pour le neuvième atout = 9 HLD (aucune courte). 2♠ suffit ; 2SA fitté exprimerait une invitation de 11–12 HLD avec trois atouts."
+      },
+      "reason": "Calculer HLD et distinguer 2SA fitté.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N055-2 et famille cas-111 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N048-3",
+      "old": {
+        "explain": "Vous avez trois Cœurs et 6 H, notamment l'As de Carreau et la Dame de Pique. Face à l'ouverture de 1♥, le soutien direct à 2♥ est adapté."
+      },
+      "new": {
+        "explain": "Trois Cœurs en face de cinq donnent huit atouts. Avec 6 H et une forme régulière sans courte ni longueur supplémentaire, vous avez 6 HLD, juste au seuil du soutien simple. Répondez 2♥ ; 2SA fitté demanderait une valeur invitante."
+      },
+      "reason": "Montrer le seuil exact de soutien avec trois atouts.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N048-3 et famille cas-104 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N053-1",
+      "old": {
+        "explain": "Avec trois Piques et 7 H dans une main régulière, répondez 2♠ pour montrer le soutien simple après l'ouverture de 1♠."
+      },
+      "new": {
+        "explain": "Vos trois Piques garantissent le fit huitième ; avec 7 H et une main 3–3–4–3, aucun supplément de distribution : 7 HLD. 2♠ décrit la première zone, tandis que 2SA fitté promettrait une invitation."
+      },
+      "reason": "Relier la forme régulière à l'absence de points D.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N053-1 et famille cas-109 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N059-2",
+      "old": {
+        "explain": "Vous avez cinq Piques, deux Cœurs et 9 H. Répondez 1♠ à l'ouverture de 1♥ afin de décrire la majeure cinquième sans élever les enchères."
+      },
+      "new": {
+        "explain": "Vos cinq Piques sont annonçables à 1♠ et deux Cœurs ne suffisent pas à soutenir 1♥. Avec 9 H (10 HL), répondez 1♠, naturel et forcing un tour pour un répondant non passé ; 1SA masquerait la majeure."
+      },
+      "reason": "Distinguer absence de fit et majeure disponible.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N059-2 et famille cas-115 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N060-1",
+      "old": {
+        "explain": "Avec quatre Piques, seulement deux Cœurs et 11 H, vous annoncez prioritairement 1♠ sur 1♥. Cette réponse au palier de un permet à l'ouvreur de préciser son jeu."
+      },
+      "new": {
+        "explain": "Avec quatre Piques et deux Cœurs, vous n'avez pas de fit connu. Vos 11 H permettraient un changement de couleur à 2♣, mais 1♠ reste prioritaire pour rechercher le fit majeur au palier de un. C'est une enchère forcing un tour et illimitée pour un répondant non passé."
+      },
+      "reason": "Discriminer 1♠ et 2♣ avec force suffisante pour les deux.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N060-1 et famille cas-116 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N061-2",
+      "old": {
+        "explain": "Vous avez seulement deux Cœurs et 7 H avec cinq Carreaux. Dans le SEF, la réponse de 1SA non forcing couvre cette zone faible sans imposer un changement de couleur au palier de deux."
+      },
+      "new": {
+        "explain": "Avec 7 H et cinq Carreaux, vous avez 8 HL, sous les 11 H ou 12 HL du 2 sur 1. Deux Cœurs ne permettent pas de soutenir et trois Piques ne permettent pas 1♠. Reste 1SA, non forcing en SEF, même si les Carreaux restent cachés."
+      },
+      "reason": "Expliciter l'élimination successive des alternatives.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N061-2 et famille cas-117 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N061-3",
+      "old": {
+        "explain": "Vos cinq Carreaux ne suffisent pas à annoncer 2♦ avec seulement 9 H. Avec deux Cœurs et une main limitée, 1SA non forcing est la réponse économique à 1♥."
+      },
+      "new": {
+        "explain": "9 H + 1 point de longueur = 10 HL : vos cinq Carreaux ne suffisent pas en force pour 2♦ (11 H ou 12 HL). Deux Cœurs excluent le soutien ; sans quatre Piques, 1SA est la réponse de recours, non forcing."
+      },
+      "reason": "Donner le calcul et le caractère de recours.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N061-3 et famille cas-117 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N062-3",
+      "old": {
+        "explain": "Vous comptez cinq Trèfles, deux Cœurs et 9 H. La réponse de 1SA non forcing conserve un palier bas avec cette force limitée."
+      },
+      "new": {
+        "explain": "Avec 9 H et cinq Trèfles, vous totalisez 10 HL, insuffisants pour 2♣. Vous n'avez que deux Cœurs et trois Piques : ni soutien ni nouvelle majeure au palier de un. Choisissez 1SA, non forcing en SEF, même avec une mineure longue."
+      },
+      "reason": "Expliquer les trois exclusions.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N062-3 et famille cas-118 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N071-1",
+      "old": {
+        "explain": "Avec cinq Cœurs, deux Piques et 9 H, vous répondez 1SA non forcing à 1♠. Cette force reste dans la zone limitée du répondant."
+      },
+      "new": {
+        "explain": "Cinq Cœurs et 9 H donnent 10 HL : la longueur requise pour 2♥ sur 1♠ est présente, mais pas la force de 11 H ou 12 HL. Sans fit Pique, 1SA est la réponse non forcing de recours ; l'ouvreur peut passer."
+      },
+      "reason": "Distinguer les deux conditions cumulatives de 2♥.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N071-1 et famille cas-127 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N072-2",
+      "old": {
+        "explain": "Vos cinq Carreaux et vos 7 H n'autorisent pas le changement de couleur au niveau de deux. Après 1♠, répondez 1SA non forcing avec seulement deux Piques."
+      },
+      "new": {
+        "explain": "7 H et cinq Carreaux donnent 8 HL, loin du seuil de 11 H ou 12 HL du 2 sur 1. Avec deux Piques, vous ne pouvez pas soutenir. 1SA non forcing est le seul moyen de répondre à bas palier parmi ces choix."
+      },
+      "reason": "Quantifier le déficit de force.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N072-2 et famille cas-128 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-N073-3",
+      "old": {
+        "explain": "La main compte cinq Trèfles, deux Piques et 7 H. À cette force, répondez 1SA non forcing à l'ouverture de 1♠."
+      },
+      "new": {
+        "explain": "Avec cinq Trèfles et 7 H, vous avez 8 HL : trop peu pour 2♣. Deux Piques ne constituent pas un fit connu ; répondez 1SA, non forcing. L'ouvreur peut passer, même si votre longue Trèfle n'a pas été annoncée."
+      },
+      "reason": "Expliquer l'effet non forcing en pratique.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-N073-3 et famille cas-129 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-011",
+      "old": {
+        "explain": "Avec seulement deux Piques et 8 H malgré six Carreaux, vous répondez 1SA non forcing à l'ouverture de 1♠. Cette annonce économique décrit une main limitée sans fit."
+      },
+      "new": {
+        "explain": "Six Carreaux apportent deux points de longueur : vos 8 H donnent 10 HL, encore insuffisants pour 2♦ (11 H ou 12 HL). Deux Piques excluent le soutien. Répondez 1SA non forcing ; six cartes ne compensent pas à elles seules le manque de force."
+      },
+      "reason": "Contraster avec le sixième à 10 H de SEF-L06-017.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-011 et famille v49-011 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-V49-014",
+      "old": {
+        "explain": "Un singleton Pique et seulement 4 H ne permettent pas de répondre à l'ouverture de 1♠. Malgré vos cinq Trèfles, il faut passer."
+      },
+      "new": {
+        "explain": "Avec 4 H et cinq Trèfles, vous avez 5 HL. Un singleton Pique n'est pas valorisable comme courte de soutien puisque vous n'avez pas le fit. 2♣ serait très au-dessus de votre force et la réponse de recours 1SA demande davantage de jeu : Passe."
+      },
+      "reason": "Distinguer réévaluation de longueur et de fit.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-V49-014 et famille v49-014 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-L06-017",
+      "old": {
+        "explain": "Avec 10 H (12 HL) et 6 Carreaux, sans fit majeur, répondez 2♦ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu."
+      },
+      "new": {
+        "explain": "Vos six Carreaux donnent deux points de longueur : 10 H + 2 = 12 HL. Vous atteignez ainsi le seuil du 2 sur 1 même sans 11 H. Deux Cœurs excluent le soutien ; 2♦ naturel est forcing et auto-forcing, sans être à lui seul forcing de manche. 1SA sous-évaluerait cette longue."
+      },
+      "reason": "Mettre en évidence le OU entre les deux seuils et le statut.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-L06-017 et famille MAJ-2 ; audits/qualite-quiz-20261125/M1/README.md"
+    },
+    {
+      "id": "SEF-L06-018",
+      "old": {
+        "explain": "Avec 11 H (11 HL) et 4 Carreaux, sans fit majeur, répondez 2♦ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 2♥ demanderait cinq Cœurs."
+      },
+      "new": {
+        "explain": "Avec 11 H et quatre Carreaux, vous atteignez le seuil en H du 2 sur 1, même sans point de longueur. 2♥ exigerait cinq Cœurs, et deux Piques ne permettent pas un soutien fitté. 2♦ naturel est forcing et auto-forcing ; vous devrez reparler après une redemande économique non fittée."
+      },
+      "reason": "Mettre en évidence le seuil alternatif en H et la condition de longueur.",
+      "source": "#342 ; #349 ; #350 ; projection V1 04b57eab66605e55f71101c5d0e19321d85d64dd ; SEF-L06-018 et famille MAJ-2 ; audits/qualite-quiz-20261125/M1/README.md"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-020-3",
+      "question": "Arbitrage déjà ouvert : 6 H, cinq ♣ et forme 3-2-3-5 régulière. Confirmer la distinction du soutien faible de 2♣ et la priorité à 1SA, sans généraliser à tous les jeux réguliers.",
+      "options": [
+        "Maintenir 2♣ et documenter l'exception basse sur 1♣",
+        "Arbitrer 1SA ou recomposer la main après visa"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; archives/audits/quiz-sef/REVUE_SEF_26_SOUTIENS_2026-11-02.md",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N031-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N041-2",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N072-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N073-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V44-005",
+      "question": "HOLD #271 : 2SA naturel à 11 H avec deux Dames troisièmes, arrêts majeurs non assurés. Ne pas rouvrir le visa ni modifier la main en V1.",
+      "options": [
+        "Maintenir HOLD historique",
+        "Arbitrage explicite des conditions de tenue au pilote"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V44-006",
+      "question": "Frontière 12 H, 2SA naturel sur 1♦. L'énoncé impose 11–12 H : réponse cohérente sous cette convention, mais le plan antérieur signale la borne et les tenues majeures.",
+      "options": [
+        "Maintenir la zone explicite 11–12 H",
+        "Arbitrer uniquement si le pilote documente une autre zone"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; SEF-V44-006",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V49-006",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V426-002",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-C-008",
+      "question": "HOLD #271 : 1SA non forcing dans le quiz SEF contre éventuelle variante de paire 1SA forcing. Ne pas transposer cette variante au catalogue.",
+      "options": [
+        "Maintenir le traitement SEF non forcing",
+        "Réserver toute nouvelle convention à un visa explicite"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "V2-M1-031",
+      "question": "La main 1-3-4-5 de 7 H permet 1♦ naturel et 2♣. La priorité locale retenue pour le soutien direct est explicitée, mais les ancres SEF-020-1/N031-2 ne proposent pas 1♦. Ne pas déduire une règle universelle de ce contraste.",
+      "options": [
+        "Maintenir le traitement local de la fiche intégrée",
+        "Documenter le critère de priorité exact 1♦/2♣ avant toute généralisation"
+      ],
+      "source": "audits/reserve-quiz-20261125/V3/M1/README.md ; SEF-020-1/N031-2 ; V2-M1-031/032",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-L33-005",
+      "question": "Avec huit Cœurs quasi maîtres et 13 H, l'ouverture naturelle 1♥ est l'ancre existante ; vérifier la formulation exacte de la condition de défense/force des ouvertures fortes, notamment l'assertion de deux levées de défense en dehors de la longue. Ne pas transformer le chiffre indicatif 15–16 H en règle réglementaire universelle.",
+      "options": [
+        "Conserver 1♥ et l'ancre en attente de la source exacte",
+        "Préciser la règle pédagogique forte avec source intégrale validée"
+      ],
+      "source": "SEF-L33-005 ; #342 ; audit qualité M1 (concept fortes.ouverture transversal)",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    }
+  ],
+  "newReserves": []
+}

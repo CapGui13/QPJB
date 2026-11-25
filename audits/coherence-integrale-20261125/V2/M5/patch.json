@@ -1,0 +1,712 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-L01-F-03",
+      "old": {
+        "explain": "2♠ est une nouvelle couleur naturelle qui décrit vos quatre Piques et votre bicolore cher 5♥-4♠. Après Drury, une nouvelle couleur garantit une véritable valeur d'ouverture ; 18 H / 19 HL suffisent nettement ici."
+      },
+      "new": {
+        "explain": "Vous avez 18 H, cinq Cœurs et quatre Piques : 2♠ décrit le bicolore cher naturel et garantit une vraie ouverture, contrairement à 2♥ qui signalerait une ouverture tactique faible. Le fit Cœur est déjà connu par le Drury : cette nouvelle couleur renseigne sur les compléments utiles pour la manche ou le chelem, elle ne demande pas de rechercher un fit Pique en priorité."
+      },
+      "reason": "Distinguer la description de la seconde couleur de la recherche d'un nouveau fit.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V4-102-1 ; SEF-L01-F-06"
+    },
+    {
+      "id": "SEF-L01-F-06",
+      "old": {
+        "explain": "Avec cinq Piques et cinq Carreaux dans une main possédant la valeur d’une ouverture solide, la redemande naturelle à 3♦ décrit immédiatement le bicolore constructif après le Drury."
+      },
+      "new": {
+        "explain": "Avec ♠AR974 et ♦RD1086, vos deux couleurs sont cinquièmes et vos 16 H constituent une solide ouverture. 3♦ est naturel : il montre cette deuxième source de levées et permet au partenaire, déjà fitté Pique, d'apprécier ses compléments à Carreau. 2♦ serait le relais d'attente du Drury, et non une description naturelle des Carreaux."
+      },
+      "reason": "Opposer 2♦ artificiel à 3♦ naturel.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V4-108-1 ; SEF-L01-F-03"
+    },
+    {
+      "id": "SEF-V484-005",
+      "old": {
+        "explain": "Le 2SA après Passe a annoncé quatre Cœurs et un singleton ; sur le relais 3♣, 3♥ est le retour conventionnel dans la couleur d’atout qui indique un singleton Trèfle, sans annoncer une courte à Cœur."
+      },
+      "new": {
+        "explain": "Votre 2SA a déjà établi les quatre Cœurs et l'existence d'un singleton. Comme le relais 3♣ occupe l'enchère de Trèfle, le singleton ♣3 se code par 3♥, retour dans l'atout agréé. Ce retour n'est donc ni un refus de manche ni une courte Cœur ; il permet à l'ouvreur de réévaluer ses honneurs à Trèfle."
+      },
+      "reason": "Expliquer pourquoi le code indirect est nécessaire et à quoi sert l'information.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V484-006/007/008"
+    },
+    {
+      "id": "SEF-V484-006",
+      "old": {
+        "explain": "Après votre 2SA conventionnel promettant un fit Cœur de quatre cartes et une courte, le relais 3♣ demande cette courte. Vous nommez 3♦, couleur de votre singleton Carreau."
+      },
+      "new": {
+        "explain": "Le relais 3♣ ne demande plus ni la force ni le nombre d'atouts : votre 2SA a déjà décrit le soutien quatrième avec une courte. Votre singleton ♦3 est nommable à 3♦ ; cette enchère ne montre pas une longueur Carreau. Le partenaire pourra apprécier ses honneurs à Carreau face à cette courte."
+      },
+      "reason": "Séparer information déjà connue et nouvelle information.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V484-005/007"
+    },
+    {
+      "id": "SEF-V484-008",
+      "old": {
+        "explain": "La répétition conventionnelle à 3♠ après le relais 3♣ signifie que le singleton est à Trèfle. Elle ne peut pas annoncer une courte Pique puisque vous avez déjà montré quatre atouts Pique par 2SA."
+      },
+      "new": {
+        "explain": "Votre 2SA a fixé le fit Pique quatrième et annoncé une courte. Le relais 3♣ empêche de nommer directement le singleton ♣3 : le retour à 3♠ le code. Il ne montre donc ni une courte Pique ni un refus de manche. L'ouvreur sait désormais dans quelle couleur réévaluer ses honneurs."
+      },
+      "reason": "Donner le mécanisme de codage et sa fonction.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V484-005/009/010"
+    },
+    {
+      "id": "SEF-L01-F-01",
+      "old": {
+        "explain": "Vous possédez exactement trois atouts Cœur. Après le 2♦ d’attente de l’ouvreur, le SEF prévoit de revenir à 2♥ avec trois atouts, même avec une main agréable et un singleton."
+      },
+      "new": {
+        "explain": "Le Drury a déjà annoncé un soutien constructif. Après 2♦ d'attente, le nombre d'atouts devient le critère : vous n'avez que trois Cœurs (♥RV2), malgré votre singleton Trèfle. Revenez à 2♥ pour montrer ce soutien troisième ; 3♥ indiquerait quatre atouts dans ce développement. La courte ne transforme pas trois atouts en quatre."
+      },
+      "reason": "Rendre explicite le contraste nombre d'atouts/valeur distributionnelle.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V484-001/002 ; SEF-L01-F-02"
+    },
+    {
+      "id": "SEF-L01-F-02",
+      "old": {
+        "explain": "Avec cinq atouts Cœur, vous disposez d’un fit d’au moins dix cartes. Après le 2♦ constructif de l’ouvreur, la sécurité distributionnelle permet de demander 4♥."
+      },
+      "new": {
+        "explain": "Votre partenaire a montré un espoir de manche par 2♦ après le Drury. Avec cinq Cœurs, vous connaissez au moins dix atouts communs : le fit est encore plus favorable qu'avec le soutien quatrième décrit à 3♥. Vos 9 H et les possibilités de coupe du camp justifient 4♥ dans cette situation ; ce n'est pas une manche fondée sur les seuls points H."
+      },
+      "reason": "Expliquer le passage de la précision du fit à la décision de manche.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V484-002 ; SEF-L01-F-01"
+    },
+    {
+      "id": "SEF-V45-008",
+      "old": {
+        "explain": "Vous avez 19 H et six beaux Cœurs ♥ARDV74 : après 2♣–2♦, 2♥ décrit l'unicolore fort. La main n'est pas régulière et 2SA ne conviendrait pas ; sauter à 3♥ modifierait la description. Le partenaire appréciera ensuite ses compléments."
+      },
+      "new": {
+        "explain": "Après le relais obligatoire, comptez la longueur et la force de jeu : six Cœurs ♥ARDV74 et 19 H forment un unicolore fort, pas une main régulière de 22–23 H. 2♥ décrit ce type de main ; 3♥ demanderait la très belle majeure septième et huit levées de jeu prévues par le développement. Le répondant décidera selon ses compléments."
+      },
+      "reason": "Remplacer le vague « modifierait la description » par le seuil discriminant.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; V2-M6-019/020 ; V1-M5-004"
+    },
+    {
+      "id": "SEF-V475-002",
+      "old": {
+        "explain": "Le SEF autorise exceptionnellement la réponse de 2SA à 2♦ forcing de manche avec deux Rois, même si la main ne compte que 6 H. Ces deux cartes apportent une valeur qui justifie de quitter la réponse sans As faible de 2♥. Vous indiquez donc 2SA, sans prétendre posséder un As."
+      },
+      "new": {
+        "explain": "Sans As, comparez les réponses 2♥ et 2SA : le seuil ordinaire de la positive est 8 H, mais deux Rois constituent l'exception enseignée. Vos ♠R et ♥R donnent deux Rois avec seulement 6 H ; choisissez donc 2SA. Trois Dames de même valeur en points H ne rempliraient pas cette condition. La manche reste imposée par 2♦."
+      },
+      "reason": "Contraste à force égale et statut forcing.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; V2-M6-015/016"
+    },
+    {
+      "id": "SEF-V475-006",
+      "old": {
+        "explain": "Après 2♣ fort indéterminé – 2♦ relais, la redemande conventionnelle de 3SA montre un très puissant bicolore majeur 5–5, évalué à environ trois perdantes. Ici vous détenez bien cinq Piques et cinq Cœurs très solides ; 3SA ne propose pas un contrat naturel à Sans-Atout."
+      },
+      "new": {
+        "explain": "La redemande de 3SA après 2♣–2♦ est ici le code du puissant bicolore majeur 5–5, évalué à environ trois perdantes. Vous avez ♠ARV109 et ♥ARDV8, avec 21 H : le partenaire doit choisir entre les deux majeures, non évaluer un contrat naturel de 3SA. Une redemande à 2♠ ne dévoilerait pas d'emblée les cinq Cœurs."
+      },
+      "reason": "Préciser l'information perdue par une annonce naturelle et la décision suivante.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V475-008 ; SEF-L30-001"
+    },
+    {
+      "id": "SEF-V486-025",
+      "old": {
+        "explain": "Face aux 22–23 H réguliers promis par 2SA, vos 4 H suffisent à envisager la manche. Avec quatre Piques, 3♣ Stayman recherche d’abord un fit majeur 4–4."
+      },
+      "new": {
+        "explain": "Les 22–23 H annoncés par 2SA, ajoutés à votre As de Pique, donnent 26–27 H au camp : la manche est acquise. Vos quatre Piques rendent possible un fit 4–4, que 3♣ Stayman cherche avant de choisir entre 4♠ et 3SA. 3♥ serait un Texas Pique, inadapté à quatre cartes seulement."
+      },
+      "reason": "Expliciter la force totale et le choix Stayman/Texas.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V486-024 ; SEF-L14-013"
+    },
+    {
+      "id": "SEF-L29-005",
+      "old": {
+        "explain": "La redemande à 3SA sans saut après 2♦ forcing de manche est forcing seulement sur une réponse à 2SA ; après une réponse au palier de 3, comme ici 3♣, elle est naturelle et non forcing. Elle convient à cette main régulière de 24 H sans couleur longue."
+      },
+      "new": {
+        "explain": "3♣ du répondant a montré l'As de Trèfle, pas une longueur. Avec 24 H réguliers et aucune couleur longue, 3SA décrit et propose le contrat de manche, que le partenaire peut accepter en passant. Le caractère forcing de manche de l'ouverture 2♦ n'oblige pas à reparler une fois la manche atteinte : dans le développement enseigné, 3SA sans saut sur 2SA constitue le cas différent, encore forcing."
+      },
+      "reason": "Distinguer forcing jusqu'à la manche et obligation de poursuivre au-delà.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; V1-M5-003 ; SEF-V45-011"
+    },
+    {
+      "id": "SEF-L43-004",
+      "old": {
+        "explain": "Après 2♣ fort indéterminé–2♦–2♥, une nouvelle couleur naturelle au palier de 3 montre au moins cinq cartes correctes et 7 H minimum. Avec cinq Carreaux et 10 H, répondez 3♦."
+      },
+      "new": {
+        "explain": "Avec ♦AD1085 et 10 H, vous réunissez cinq Carreaux convenables et le minimum de 7 H requis par ce changement de couleur naturel au palier de 3. Vos deux Cœurs ne garantissent pas un soutien troisième. 3♦ décrit la longue et laisse le partenaire apprécier un fit ou Sans-Atout ; 2SA cacherait cette source de levées."
+      },
+      "reason": "Ancrer la décision dans la qualité de couleur et l'absence de fit.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L24-003 ; SEF-L31-005"
+    },
+    {
+      "id": "SEF-L44-004",
+      "old": {
+        "explain": "4♥ est le Splinter documenté dans cette séquence : il montre le singleton Cœur, au moins quatre atouts Pique et au plus un contrôle d'honneur. 3♥ serait une annonce naturelle avec cinq Cœurs convenables ; 4♠ ne décrit pas la courte."
+      },
+      "new": {
+        "explain": "Vos quatre Piques fixent le fit et ♥7 est le singleton à montrer. Le seul contrôle d'honneur est ♠R : il est compté dans le maximum d'un contrôle d'honneur autorisé par le Splinter de cette séquence. 4♥ est donc artificiel, contrairement à 3♥ qui serait naturel avec une vraie longue. Le partenaire pourra juger ses honneurs à Cœur face à la courte."
+      },
+      "reason": "Expliquer que le Roi d'atout compte dans la condition, sans inventer de contrôle.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L28-004 ; SEF-L44-005"
+    },
+    {
+      "id": "SEF-V45-017",
+      "old": {
+        "explain": "Après 1♣–1♦–1♥, 1♠ est la quatrième couleur disponible au palier de 1. Vos 13 H, cinq Carreaux et seulement ♠DV3 justifient de poursuivre les recherches par 1♠, qui ne garantit pas quatre Piques dans cette séquence. 1SA ou 2♦ limiteraient trop le dialogue."
+      },
+      "new": {
+        "explain": "Après 1♣–1♦–1♥, 1♠ est la quatrième couleur au palier de 1 : elle permet de poursuivre le dialogue sans garantir quatre Piques. Avec 13 H et ♠DV3 seulement, utilisez-la pour obtenir des précisions plutôt que limiter la main par 1SA ou 2♦. Le seuil particulier de cette quatrième couleur est 8 HL dans le cadre enseigné ; il ne faut pas l'assimiler automatiquement à une quatrième couleur chère."
+      },
+      "reason": "Distinguer la quatrième au palier de 1 du forcing cher.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L24-001 ; SEF-L05-024"
+    },
+    {
+      "id": "SEF-V480-004",
+      "old": {
+        "explain": "Vous n'avez ni trois Piques, ni arrêt à Carreau, ni bicolore Cœur-Trèfle de dix cartes. Après la quatrième couleur forcing 2♦, la répétition économique de vos Cœurs à 2♥ sert d'enchère d'attente : elle ne promet pas nécessairement six Cœurs."
+      },
+      "new": {
+        "explain": "Examinez les réponses descriptives avant de vous rabattre sur une attente : deux Piques excluent le soutien troisième, ♦85 ne permet pas 2SA, et quatre Trèfles n'autorisent pas 3♣ qui préciserait le bicolore 5–5. 2♥ est alors le repli économique. Ici la répétition ne promet pas un sixième Cœur, car le partenaire a exigé une redemande par 2♦."
+      },
+      "reason": "Hiérarchiser les réponses et expliquer l'exception de longueur.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V480-001/003/005"
+    },
+    {
+      "id": "SEF-V480-010",
+      "old": {
+        "explain": "Vous n'avez ni trois Cœurs, ni arrêt à Trèfle, ni cinq Carreaux à répéter. Dans cette séquence où l'ouvreur a annoncé sa seconde couleur à 1♠, 2♠ peut servir d'enchère d'attente après la quatrième forcing : elle ne garantit pas cinq Piques."
+      },
+      "new": {
+        "explain": "Après 1♦–1♥–1♠–2♣, vos deux Cœurs excluent 2♥, ♣974 ne fournit pas d'arrêt, et vos Carreaux ne sont que quatrièmes. 2♠ sert de repli dans la seconde couleur déjà annoncée : ici, elle ne promet pas un cinquième Pique. Avec cinq vrais Carreaux, la répétition naturelle de 2♦ aurait été préférable."
+      },
+      "reason": "Contraste repli artificiel/répétition vraie selon la distribution.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V480-009/011"
+    },
+    {
+      "id": "SEF-V480-011",
+      "old": {
+        "explain": "Vos cinq Carreaux sont une longueur véritablement répétable, tandis que vous n'avez que deux Cœurs et aucun arrêt à Trèfle. Sur la quatrième couleur forcing 2♣, 2♦ décrit cette longueur, contrairement à une préférence Cœur ou à 2SA qui présumerait l'arrêt."
+      },
+      "new": {
+        "explain": "Sur 2♣ quatrième forcing, vos deux Cœurs et ♣83 excluent les réponses prioritaires de soutien ou d'arrêt. Vous avez en revanche cinq Carreaux ♦RV1065 : 2♦ montre cette longueur réelle. 2♠ serait le repli si vous n'aviez que quatre Carreaux ; ici il masquerait une information disponible."
+      },
+      "reason": "Expliquer la différence avec le repli de la famille.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V480-010/012"
+    },
+    {
+      "id": "SEF-V486-028",
+      "old": {
+        "explain": "Le relais 2♣ a permis de vérifier l’absence de fit à Cœur. Même si l’ouvreur n’a pas annoncé d’arrêt Trèfle, le répondant possède lui-même l’As de Trèfle ; ses 14 H suffisent pour imposer la manche à 3SA."
+      },
+      "new": {
+        "explain": "L'ouvreur a choisi le repli à 2♠ plutôt que le soutien troisième à Cœur ou l'annonce d'un arrêt Trèfle. Vos cinq Cœurs ne donnent donc pas de fit établi ; mais ♣A92 fournit vous-même l'arrêt recherché. Avec 14 H, concluez à 3SA : il n'est pas nécessaire que l'arrêt soit détenu par l'ouvreur."
+      },
+      "reason": "Distinguer le déni d'information chez l'ouvreur de l'arrêt du camp.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V486-029 ; V2-M6-029/030"
+    },
+    {
+      "id": "SEF-L13-004",
+      "old": {
+        "explain": "Depuis le SEF 2024, après 1♣–1♥–1♠, 4♣ est un Splinter fittant Pique avec une courte à Trèfle, y compris lorsque la courte est dans la mineure d’ouverture."
+      },
+      "new": {
+        "explain": "Après 1♣–1♥–1♠, vos quatre Piques assurent le fit 4–4 et ♣3 est un singleton. Avec 14 H et cette distribution favorable, 4♣ est le Splinter qui montre à la fois le soutien fort Pique et la courte, même dans la mineure d'ouverture du partenaire dans le traitement enseigné. 3♠ ne révélerait pas la courte, décisive pour évaluer les honneurs à Trèfle."
+      },
+      "reason": "Passer de la règle au bilan main et au rôle de la courte.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-Q26-M6-009 ; V1-M6-001"
+    },
+    {
+      "id": "SEF-L13-005",
+      "old": {
+        "explain": "Après le bicolore économique 1♠–2♣–2♥, la répétition des Trèfles à 3♣ décrit la couleur longue et n’est pas forcing dans le SEF 2024."
+      },
+      "new": {
+        "explain": "Avec ♣RDV1094 et 10 H, vous avez une vraie longue mais aucun fit dans les deux majeures annoncées. Après le bicolore économique 1♠–2♣–2♥, 3♣ répète naturellement les Trèfles et reste non forcing dans le traitement SEF 2024 du catalogue. Le premier 2♣ a fait parler l'ouvreur ; il ne suffit pas à rendre cette répétition forcing de manche."
+      },
+      "reason": "Clarifier l'effet limité du 2 sur 1 et l'absence de fit.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V45-022 ; SEF-L17-010"
+    },
+    {
+      "id": "SEF-L13-006",
+      "old": {
+        "explain": "Sur 1♣–1♠–2♣, 2♥ montre au moins cinq Piques et quatre Cœurs et est forcing. À la différence de 2♦, cette troisième couleur décrit bien les Cœurs que vous possédez."
+      },
+      "new": {
+        "explain": "Après 1♣–1♠–2♣, les enchères 2♦ et 2♥ n'ont pas le même sens : 2♦ est la troisième couleur artificielle d'investigation, tandis que 2♥ décrit réellement au moins cinq Piques et quatre Cœurs et est forcing dans ce développement. Votre 5–4 majeur et 11 H répondent à cette seconde description ; 2♠ cacherait les Cœurs."
+      },
+      "reason": "Distinguer deux troisième couleurs de sens différent.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L17-005 ; SEF-V45-014"
+    },
+    {
+      "id": "SEF-L17-005",
+      "old": {
+        "explain": "2♥ est ici une nouvelle couleur naturelle forcing et montre au moins quatre Cœurs. Vous soutenez à 3♥ avec vos quatre atouts ; 2♠ indiquerait faussement un fit Pique troisième."
+      },
+      "new": {
+        "explain": "Le 2♥ du répondant est naturel et promet quatre Cœurs au moins en plus de cinq Piques. Vos ♥RV96 établissent donc un vrai fit d'au moins huit cartes à Cœur : soutenez à 3♥. Le mécanisme n'est pas celui du 2♦ artificiel où l'on recherche d'abord trois cartes dans la majeure initiale ; vos deux Piques excluent de toute façon 2♠."
+      },
+      "reason": "Distinguer le soutien réel de la réponse à une interrogation artificielle.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L13-006 ; SEF-L17-001"
+    },
+    {
+      "id": "SEF-L17-010",
+      "old": {
+        "explain": "2♥ serait la quatrième couleur artificielle. Le saut à 3♥, lui, décrit naturellement un 5-5 majeur fort et forcing de manche. Le partenaire peut choisir ensuite la bonne majeure ou Sans-Atout."
+      },
+      "new": {
+        "explain": "Vos cinq Piques ♠AR1085 et cinq Cœurs ♥RD1094, associés à 13 H et deux points L, justifient une description de manche. 2♥ serait la quatrième couleur artificielle et ne garantirait pas les Cœurs ; le saut à 3♥ décrit le vrai 5–5 majeur fort. Le partenaire peut choisir une majeure en connaissance de cause."
+      },
+      "reason": "Mettre en évidence le changement de sens entre enchère économique et saut.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-Q26-M6-002 ; SEF-L05-024"
+    },
+    {
+      "id": "SEF-L17-002",
+      "old": {
+        "explain": "Sans soutien troisième à Pique, l'arrêt Cœur permet de dire 2SA. Le 2♦ artificiel ne promet pas de Carreaux. 2♠ prétendrait un fit troisième inexistant."
+      },
+      "new": {
+        "explain": "Après 1♣–1♠–2♣–2♦ artificiel, vos deux Piques excluent le soutien troisième. ♥A96 couvre la couleur encore non annoncée ; ♦A5 fournit également une tenue dans la couleur artificielle. 2SA est donc une description naturelle des arrêts disponibles, non une préférence à Trèfle. 3♣ omettrait ces renseignements."
+      },
+      "reason": "Montrer les deux couleurs et ne pas supposer un arrêt dans la couleur artificielle chez le répondant.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L17-003 ; SEF-Q26-M6-003"
+    },
+    {
+      "id": "SEF-V479-001",
+      "old": {
+        "explain": "Le 2♣ Landy de votre partenaire promet les deux majeures, au moins cinq cartes dans l'une et quatre dans l'autre. Avec quatre Cœurs et seulement deux Piques, 2♥ donne la préférence naturelle à Cœur sans recherche de manche."
+      },
+      "new": {
+        "explain": "Le Landy 2♣ garantit au moins quatre cartes dans chaque majeure. Vos quatre Cœurs assurent donc huit atouts ou plus, tandis que vos deux Piques n'en garantissent que six. Avec 4 H, choisissez 2♥, préférence faible et non forcing : 2♦ demanderait inutilement de départager les longueurs du partenaire."
+      },
+      "reason": "Quantifier le minimum garanti et expliquer pourquoi ne pas relayer.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-002/003"
+    },
+    {
+      "id": "SEF-V479-002",
+      "old": {
+        "explain": "Après le Landy 2♣ du partenaire, vos quatre Piques offrent un bien meilleur fit que vos deux Cœurs. 2♠ est une préférence naturelle faible et non forcing qui cherche à jouer le contrat partiel dans la majeure commune."
+      },
+      "new": {
+        "explain": "Avec quatre Piques et deux Cœurs face au Landy, vous garantissez au moins huit atouts à Pique, contre six seulement à Cœur. Votre force de 3 H ne justifie ni saut ni invitation. 2♠ est une préférence naturelle non forcing ; le relais 2♦ sert surtout lorsque votre soutien ne permet pas de trancher."
+      },
+      "reason": "Opposer préférence directe et relais par le minimum de fit.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-001/003"
+    },
+    {
+      "id": "SEF-V479-005",
+      "old": {
+        "explain": "Après votre 2♣ Landy puis le relais 2♦ du partenaire, vous devez préciser la majeure la plus longue. Vos cinq Cœurs dépassent vos quatre Piques : 2♥ est la redemande descriptive et économique."
+      },
+      "new": {
+        "explain": "Le 2♦ de votre partenaire n'annonce pas les Carreaux : il vous demande de choisir la majeure la plus longue. Vous avez cinq Cœurs et quatre Piques, donc 2♥, sans saut. La préférence du partenaire n'étant pas encore fixée, montrer la cinquième carte est plus utile que reparler de votre force."
+      },
+      "reason": "Préciser le caractère artificiel et la décision transmise.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-003/006"
+    },
+    {
+      "id": "SEF-V479-006",
+      "old": {
+        "explain": "Le relais 2♦ du partenaire demande de préciser la majeure dominante après votre Landy. Vous possédez cinq Piques contre quatre Cœurs : 2♠ décrit cette distribution, sans saut ni engagement automatique vers la manche."
+      },
+      "new": {
+        "explain": "Le 2♦ après Landy est une interrogation sur vos majeures. Vos cinq Piques, contre quatre Cœurs, imposent la réponse descriptive de 2♠ dans ce développement. Il ne s'agit ni d'une invitation de manche ni d'une annonce de Carreau ; le partenaire dispose de la longueur qui lui manquait pour choisir la partielle."
+      },
+      "reason": "Expliciter le rôle du relais par opposition au saut.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-003/005"
+    },
+    {
+      "id": "SEF-V479-007",
+      "old": {
+        "explain": "Sur le 2♦ Multi-Landy, 2♥ est le relais faible « passe ou corrige ». Votre partenaire passera avec les Cœurs sixièmes et dira 2♠ avec les Piques sixièmes. Vous évitez le relais à 2♠ qui accepterait de jouer 3♥."
+      },
+      "new": {
+        "explain": "Vous n'avez qu'un Cœur, mais quatre Piques : ne prenez pas 2♥ pour une préférence naturelle. C'est le passe-ou-corrige le moins cher après le 2♦ Multi : le partenaire passe avec six Cœurs, ou corrige à 2♠ avec six Piques. Répondre directement 2♠ l'obligerait à 3♥ avec un unicolore Cœur, palier que votre singleton ne permet pas d'accepter."
+      },
+      "reason": "Expliquer la réponse dans une couleur où le répondant est court.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-008/010/011/012"
+    },
+    {
+      "id": "SEF-V479-015",
+      "old": {
+        "explain": "Votre seconde couleur est Carreau, pas Trèfle. La réponse de 3♣ étant « passe ou corrige », vous rectifiez naturellement à 3♦ pour désigner votre mineure, tout en restant dans une partielle."
+      },
+      "new": {
+        "explain": "Votre 2♥ Multi-Landy promet Cœur et une mineure. Le 3♣ faible est un passe-ou-corrige : il ne garantit pas une longue à Trèfle chez le partenaire. Avec ♦D10965 et un singleton ♣7, rectifiez à 3♦, votre mineure véritable. Répéter 3♥ ignorerait sa demande de jouer la mineure."
+      },
+      "reason": "Distinguer préférence conventionnelle d'une annonce naturelle et rappeler le contrat recherché.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V479-014 ; SEF-L14-001"
+    },
+    {
+      "id": "SEF-L14-003",
+      "old": {
+        "explain": "Vous possédez six Cœurs et au moins 12 H. Selon les réponses conventionnelles énoncées, 3♠ décrit une majeure Cœur avec jeu maximal. 3♥ montrerait Pique maximum."
+      },
+      "new": {
+        "explain": "Le relais positif 2SA demande deux informations, la majeure et la zone de force. Avec ♥ARD1086 et 14 H, vous êtes dans la zone maximale de l'accord explicitement donné (12 H ou plus). 3♠ code Cœur maximum ; 3♥ coderait Pique maximum. La réponse ne nomme donc pas votre propre couleur : il faut lire la grille, non choisir l'enchère naturelle."
+      },
+      "reason": "Rendre explicite l'inversion du code dans la zone maximale.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L14-004 ; grille explicitement fournie dans l'énoncé"
+    },
+    {
+      "id": "SEF-L14-004",
+      "old": {
+        "explain": "Avec six Piques et 9 H, votre main est en zone minimale. La réponse 3♦ décrit précisément les Piques minimums dans la grille convenue. 3♥ montrerait au contraire les Piques maximums."
+      },
+      "new": {
+        "explain": "Le 2SA positif interroge sur la majeure et la force : ♠RD10974 et 9 H vous placent dans la zone minimale 9–11 H de la grille annoncée. 3♦ code Pique minimum ; 3♣ coderait Cœur minimum et 3♥ Pique maximum. Ce n'est pas une annonce naturelle de Carreau."
+      },
+      "reason": "Contraste sur les deux dimensions du code.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L14-003 ; grille explicitement fournie dans l'énoncé"
+    },
+    {
+      "id": "SEF-V477-004",
+      "old": {
+        "explain": "Avec neuf points H, quatre atouts Cœur en face d'au moins cinq et un singleton Trèfle, la main vaut environ quatorze HLD. Le saut à 3♥ est un effort de manche constructif, sans engager directement le camp à 4♥."
+      },
+      "new": {
+        "explain": "Le Michaël garantit au moins cinq Cœurs et cinq Piques. Vos quatre Cœurs donnent au moins neuf atouts ; vos 9 H, le singleton Trèfle et les honneurs dans les deux longues du partenaire rendent la main très constructive (environ 14 HLD). 3♥ est un effort de manche dans cette situation sans la déclarer d'emblée : 2♥ serait la préférence faible."
+      },
+      "reason": "Montrer les compléments et opposer invitation à préférence faible.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V477-001/003"
+    },
+    {
+      "id": "SEF-V477-005",
+      "old": {
+        "explain": "Sur l'ouverture adverse de 1♥, le cue-bid de votre partenaire à 2♥ montre au moins cinq Piques et cinq Trèfles. Avec quatre Piques, la réponse à 2♠ confirme un fit d'au moins neuf cartes au palier le plus bas."
+      },
+      "new": {
+        "explain": "Sur 1♥, le cue-bid de 2♥ promet Pique–Trèfle. Vos quatre Piques garantissent au moins neuf atouts, contre huit à Trèfle avec vos trois cartes. Avec 4 H, choisissez 2♠, la partielle la plus économique dans le fit majeur le mieux assuré ; 3♠ constituerait un saut inutile."
+      },
+      "reason": "Quantifier les deux fits disponibles et le coût du palier.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V477-006"
+    },
+    {
+      "id": "SEF-V477-007",
+      "old": {
+        "explain": "Sur l'ouverture adverse de 1♠, le cue-bid à 2♠ du partenaire promet au moins cinq Cœurs et cinq Trèfles. Vos quatre Cœurs permettent de choisir 3♥, un fit d'au moins neuf cartes, sans saut supplémentaire vers la manche."
+      },
+      "new": {
+        "explain": "Le cue-bid 2♠ promet Cœur–Trèfle. Vos quatre Cœurs garantissent neuf atouts au moins, vos deux Trèfles seulement sept. Le premier palier disponible à Cœur est 3♥ : malgré son niveau, c'est une préférence simple, pas une invitation à 4♥. Avec 5 H, il n'y a pas lieu de sauter."
+      },
+      "reason": "Distinguer une préférence forcée par le palier d'un saut constructif.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V477-005/008"
+    },
+    {
+      "id": "SEF-V477-011",
+      "old": {
+        "explain": "Sur l'ouverture adverse de 1♥, le Michaels précisé à 3♣ indique cinq Piques et cinq Carreaux au minimum, et non une longue à Trèfle. Vos cinq Carreaux garantissent un fit d'au moins dix cartes ; 3♦ est la préférence naturelle."
+      },
+      "new": {
+        "explain": "Le 3♣ Michaël sur 1♥ ne promet aucun Trèfle : il décrit Pique–Carreau au moins 5–5. Vos cinq Carreaux donnent au moins dix atouts, contre sept à Pique. Avec 5 H, 3♦ est la préférence simple ; 3♥ ne désigne pas une couleur promise par votre partenaire et 4♦ monterait sans nécessité."
+      },
+      "reason": "Identifier les couleurs disponibles et la préférence sans compétition.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V477-012/013"
+    },
+    {
+      "id": "SEF-V478-001",
+      "old": {
+        "explain": "Vos quatre Piques face aux cinq promis garantissent au moins neuf atouts. Non vulnérable, 3♠ exploite ce fit au palier de trois ; 4♠ monterait inutilement et 4♣ choisirait une couleur moins longue."
+      },
+      "new": {
+        "explain": "Après 3♥ adverse, vous pouvez passer : la réponse au Michaël n'est plus obligatoire. Mais vos quatre Piques ajoutés aux cinq promis garantissent au moins neuf atouts, et vous pouvez encore jouer 3♠. Non vulnérable, cette surenchère compétitive reste défendable avec 3 H ; 4♠ dépasserait le palier indiqué par les atouts connus."
+      },
+      "reason": "Mettre en relation liberté de passer, vulnérabilité et palier accessible.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V478-003/008"
+    },
+    {
+      "id": "V2-M5-035",
+      "old": {
+        "explain": "Le Michaël précisé 2♥ promet Pique–Trèfle au moins 5–5. Avec seulement quatre Trèfles, 1♠ naturel décrit la majeure sans inventer une cinquième carte."
+      },
+      "new": {
+        "explain": "Avec ♠ARD87 et quatre Trèfles, vous avez une majeure cinquième assez solide pour une intervention naturelle, mais pas les deux couleurs cinquièmes requises par le Michaël précisé. 1♠ est donc exact même à vulnérabilité favorable ; celle-ci autorise davantage de compétition, pas de promettre une cinquième carte absente. 2♥ serait approprié avec un vrai Pique–Trèfle 5–5."
+      },
+      "reason": "Séparer admissibilité distributionnelle et risque compétitif.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; V2-M5-036 ; SEF-C2-008"
+    },
+    {
+      "id": "SEF-V45-050",
+      "old": {
+        "explain": "Avec zéro clé (aucun As et pas de Roi de Pique), la réponse 5♣ indique 0 ou 3 clés dans le 30-41."
+      },
+      "new": {
+        "explain": "À l'atout Pique, comptez exclusivement les quatre As et le Roi de Pique. Vous n'avez aucun As ni ♠R : zéro clé, malgré vos 8 H et la Dame d'atout. 5♣ code zéro ou trois clés en 30–41 ; la Dame n'est jamais une sixième clé et n'est pas indiquée par cette réponse."
+      },
+      "reason": "Distinguer force H, clés et Dame d'atout.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V45-054/055 ; SEF-C2-009"
+    },
+    {
+      "id": "SEF-C2-009",
+      "old": {
+        "explain": "L’As de Pique et le Roi de Cœur fournissent deux clés, mais sans Dame d’atout : la réponse conventionnelle est 5♥ (Blackwood 30–41)."
+      },
+      "new": {
+        "explain": "L'atout est Cœur : ♠A et ♥R constituent vos deux clés, tandis que ♦D n'en est pas une. Vous ne détenez pas ♥D. Dans le 30–41, 5♥ décrit deux clés sans la Dame d'atout et 5♠ deux clés avec elle. Ces réponses restent codées, quel que soit l'atout."
+      },
+      "reason": "Expliciter que le nom de l'enchère n'identifie pas l'atout.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-C2-010 ; SEF-V45-052/053"
+    },
+    {
+      "id": "SEF-V474-001",
+      "old": {
+        "explain": "Vous détenez trois clés, la réponse 5♦ en montre donc une seule chez le partenaire : le camp en possède quatre. À l'atout Pique, l'enchère immédiatement supérieure à 5♦, soit 5♥, interroge sur la Dame de Pique. Si le partenaire ne l'a pas, il répondra 5♠, ce qui permet de s'arrêter avant le chelem."
+      },
+      "new": {
+        "explain": "Vous avez trois clés : ♠A, ♠R et ♥A. Sur 5♦, quatre clés en face seraient impossibles puisqu'il n'en reste que deux ; le partenaire en a donc une, soit quatre au camp. 5♥ demande la Dame de Pique : l'atout à 5♠ reste disponible pour un refus. 5♠ direct arrêterait le dialogue et 5SA serait prématuré."
+      },
+      "reason": "Montrer la résolution de l'ambiguïté 1/4 et le palier de sécurité.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-002 ; SEF-L02-E-10"
+    },
+    {
+      "id": "SEF-V474-003",
+      "old": {
+        "explain": "Vos quatre clés et l'unique clé indiquée par 5♦ assurent les cinq clés du camp. À l'atout Cœur, 5♥ serait un arrêt, et la question à la Dame s'effectue par 5♠, la première couleur disponible au-dessus de l'atout. Cette question engage au moins au petit chelem : elle convient ici parce que toutes les clés sont présentes et que le grand chelem peut être envisagé."
+      },
+      "new": {
+        "explain": "Vos quatre clés personnelles ne laissent qu'une clé disponible chez le partenaire, que 5♦ confirme : les cinq sont réunies. Avec l'atout Cœur, 5♥ serait un arrêt ; la question à la Dame est 5♠. Un refus reviendrait à 6♥, si bien que vous devez accepter le petit chelem avant de poser cette question. Vous cherchez ici le complément nécessaire à l'exploration du grand."
+      },
+      "reason": "Distinguer coût de l'interrogation et possession des cinq clés.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-002/010 ; SEF-L02-E-09"
+    },
+    {
+      "id": "SEF-V474-004",
+      "old": {
+        "explain": "Vous n'avez pas la Dame de Pique. À la question 5♥, revenir à 5♠ est la réponse négative et la plus économique : elle permet au partenaire d'arrêter le contrat au palier de cinq. Toute autre réponse affirmerait la présence de la Dame d'atout dans ce dialogue."
+      },
+      "new": {
+        "explain": "Le 5♦ initial a renseigné sur les clés, pas sur la Dame. Le partenaire interroge maintenant par 5♥. Vous n'avez pas ♠D : revenez à 5♠, le premier palier possible dans l'atout, afin qu'il puisse s'arrêter. Il ne faut pas annoncer 6♠ pour la seule présence du Roi d'atout : celui-ci a déjà été compté."
+      },
+      "reason": "Distinguer deux étapes et éviter de recompter le Roi.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-005 ; V1-M6-006"
+    },
+    {
+      "id": "SEF-V474-005",
+      "old": {
+        "explain": "Vous détenez la Dame de Pique. Après 5♥ interrogatif, revenir à 5♠ la nierait ; sans Roi annexe utile à annoncer, vous confirmez sa présence en sautant à 6♠. Ce contraste avec la réponse négative 5♠ est une convention du Blackwood à cinq clés."
+      },
+      "new": {
+        "explain": "Le Roi de Pique a déjà été compté dans votre réponse initiale ; c'est maintenant ♠D qui est demandée. Vous la détenez, mais sans Roi annexe à nommer. 5♠ serait le retour négatif ; dans ce dialogue où 5♠ reste disponible, 6♠ confirme la Dame sans Roi annexe. Le partenaire décidera s'il poursuit."
+      },
+      "reason": "Préciser la portée locale du retour positif et le rôle du partenaire.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-004/007 ; V1-M6-006"
+    },
+    {
+      "id": "SEF-V474-008",
+      "old": {
+        "explain": "Après la réponse 5♣, le 5♦ du partenaire est la question à la Dame de Cœur. Sans cette Dame, la réponse négative consiste à revenir à 5♥, la couleur d'atout au palier le plus bas. Cette réponse permet encore de ne pas jouer le chelem."
+      },
+      "new": {
+        "explain": "Votre réponse 5♣ donnait le nombre de clés sans préciser la Dame. Sur 5♦ interrogatif, vous n'avez pas ♥D : 5♥, premier palier encore libre dans l'atout, constitue la négation. Le partenaire conserve ainsi la possibilité de s'arrêter avant le chelem ; monter à 6♥ ne serait pas une réponse négative dans cette séquence."
+      },
+      "reason": "Expliquer pourquoi le palier disponible décide du code, sans trancher le cas réservé.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-009 ; réserve V1 SEF-V474-010 maintenue"
+    },
+    {
+      "id": "SEF-V474-009",
+      "old": {
+        "explain": "Vous détenez la Dame de Cœur. Après la question à 5♦, le retour à 5♥ la nierait. Sans Roi annexe à signaler, annoncer 6♥ est une réponse positive à la question à la Dame, autorisant le partenaire à poursuivre s'il envisage le grand chelem."
+      },
+      "new": {
+        "explain": "Vous avez ♥D et aucun Roi annexe ; ♥R a déjà été compté parmi les clés. Après la question 5♦, 5♥ est encore disponible et serait négatif. Le retour à 6♥ confirme donc la Dame dans ce dialogue précis. Ne généralisez pas ce saut aux séquences où 5♥ est déjà dépassé."
+      },
+      "reason": "Limiter explicitement le code au palier non contraint.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-008 ; réserve V1 SEF-V474-010 maintenue"
+    },
+    {
+      "id": "SEF-V483-004",
+      "old": {
+        "explain": "La chicane Carreau est un contrôle de premier tour : vous ne perdez aucune levée à l'entame dans cette couleur, sous réserve des atouts. Après 4♣ de l'ouvreur, vous montrez ce contrôle par 4♦."
+      },
+      "new": {
+        "explain": "À l'atout Pique, l'absence totale de Carreau est un contrôle de premier tour par la coupe, et non un défaut de contrôle. Après 4♣, nommez 4♦, premier contrôle disponible. Le contrôle ne constitue pas une promesse absolue de levée : la coupe suppose des atouts utilisables et l'absence de surcoupe."
+      },
+      "reason": "Corriger la promesse excessive de ne perdre aucune levée et expliquer le contrôle par la coupe.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V483-003/010"
+    },
+    {
+      "id": "SEF-V483-005",
+      "old": {
+        "explain": "Avec seulement la Dame à Carreau, vous ne contrôlez pas cette couleur. En revanche, l'As de Cœur est un contrôle de premier tour. Dire 4♥ montre votre contrôle Cœur et saute 4♦ parce que vous ne contrôlez pas les Carreaux."
+      },
+      "new": {
+        "explain": "♦D105 ne protège pas le camp contre deux levées de tête à Carreau. Votre ♥A contrôle en revanche le premier tour à Cœur : 4♥ montre ce contrôle et informe le partenaire que vous avez sauté 4♦. Il ne pourra poursuivre en sécurité que s'il couvre lui-même le Carreau ; 4SA immédiat ne renseignerait pas sur cette lacune."
+      },
+      "reason": "Transformer l'ordre des contrôles en information exploitable pour le partenaire.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V483-006/007 ; V2-M6-037/038"
+    },
+    {
+      "id": "SEF-V483-008",
+      "old": {
+        "explain": "Ni les Carreaux (Dame seule), ni les Cœurs (Dame-Valet) ne sont contrôlés dans cette main. Après le contrôle Trèfle de l'ouvreur, revenir à 4♠ freine la recherche de chelem. 4SA serait prématuré sans contrôles sûrs."
+      },
+      "new": {
+        "explain": "Vos 10 H comprennent des honneurs intermédiaires à Carreau et à Cœur, mais aucun contrôle dans ces deux couleurs : ni As, ni Roi, ni courte. Le contrôle Trèfle du partenaire ne suffit pas à les couvrir. Revenez à 4♠ : vous freinez l'exploration et laissez le partenaire juger s'il possède les contrôles manquants ; 4SA ne permettrait pas de savoir dans quelle couleur deux levées peuvent manquer."
+      },
+      "reason": "Distinguer honneurs, contrôles et fonction du coup de frein.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V483-009 ; SEF-L02-E-06"
+    },
+    {
+      "id": "SEF-L02-E-09",
+      "old": {
+        "explain": "5♥, enchère collante après 5♦ à l’atout Pique, interroge sur la Dame d’atout. Les cinq clés sont présentes, ce qui permet d’envisager le grand chelem."
+      },
+      "new": {
+        "explain": "Vous détenez quatre clés : ♠A, ♠R, ♥A et ♦A. 5♦ ne peut donc désigner que l'unique clé restante, ♣A. Les cinq clés sont réunies, mais ♠D demeure inconnue. 5♥, l'enchère disponible autre que l'atout après 5♦, interroge sur cette Dame ; 5SA demanderait les Rois avant de l'avoir établie."
+      },
+      "reason": "Décomposer l'information 30–41 puis la question à la Dame.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-001 ; V1-M6-005"
+    },
+    {
+      "id": "SEF-L02-E-10",
+      "old": {
+        "explain": "5♠ est l’arrêt au plus bas dans l’atout Pique. Avec trois clés au total, deux manquent : il ne faut pas poser la question à la Dame ni déclarer le petit chelem."
+      },
+      "new": {
+        "explain": "Vos deux As (♠A et ♦A) donnent deux clés ; ♥R n'est pas le Roi d'atout. Le partenaire ne peut avoir quatre clés puisqu'il n'en reste que trois : 5♦ signifie une seule clé. Avec trois clés au camp, deux manquent. 5♠ est l'arrêt : ni la Dame d'atout ni des Rois annexes ne compensent ces deux clés absentes."
+      },
+      "reason": "Rendre contrôlable le calcul et le choix d'arrêt.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-V474-001/002 ; V1-M6-003"
+    },
+    {
+      "id": "SEF-L02-E-16",
+      "old": {
+        "explain": "5♠ arrête la recherche au palier de cinq : avec seulement quatre clés et sans Dame de Pique connue, les conditions nécessaires au petit chelem ne sont pas établies."
+      },
+      "new": {
+        "explain": "Vous détenez deux clés, ♠A et ♥A ; le partenaire en annonce deux sans Dame de Pique par 5♥. Le camp a donc quatre clés, mais vous ne possédez pas non plus ♠D. 5♠ est l'arrêt prudent dans cette donne. 5SA interrogerait sur les Rois pour le grand chelem alors qu'une clé manque déjà."
+      },
+      "reason": "Expliciter les quatre clés et le déni de Dame des deux côtés sans règle absolue de chelem.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; V1-M6-004 ; SEF-L02-E-18"
+    },
+    {
+      "id": "SEF-L42-005",
+      "old": {
+        "explain": "Après 5SA, on nomme d'abord le Roi annexe le plus économique. Parmi les deux Rois extérieurs ♥R et ♦R, le Carreau est moins cher : 6♦ est la bonne réponse."
+      },
+      "new": {
+        "explain": "Après la réponse au Blackwood, le 5SA de l'interrogateur demande les Rois annexes, pas un nouveau compte de clés. Vos deux Rois sont ♦R et ♥R. Nommez le plus économique, 6♦, afin de laisser de la place à la suite du dialogue ; 6♥ sauterait une information disponible. Le Roi d'atout est déjà compté parmi les clés."
+      },
+      "reason": "Préciser le sens du 5SA et le bénéfice de l'ordre économique.",
+      "source": "Catalogue virtuel V1 04b57eab ; #342/#349/#354 ; SEF-L41-005 ; SEF-L02-E-17"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-V474-010",
+      "question": "Après 4SA–5♦–5♠ à l'atout Cœur, le retour à 6♥ est la négation documentée. Quelle réponse positive exacte est prévue avec la Dame de Cœur mais aucun Roi annexe lorsque le retour économique 5♥ est dépassé ? Ne pas appliquer mécaniquement le saut à 6♥ positif du cas V474-009.",
+      "options": [
+        "Maintenir 6♥ négatif et les réponses historiques, documenter explicitement le codage positif au palier contraint après validation.",
+        "Si le code positif est déjà défini dans un accord QPJB, le citer et isoler le cas contrasté ; ne pas créer une convention par inférence."
+      ],
+      "source": "SEF-V474-003/008/009/010 ; réserve V1-M6-EX04 du manifeste #341 (aucun développement au palier contraint non validé).",
+      "inherited": true,
+      "origin": "V1-M5"
+    },
+    {
+      "id": "SEF-V4-098-1",
+      "question": "Revalorisation Drury et texte historique non visés.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V4-102-1",
+      "question": "Formulation du mécanisme du Drury et circonstances d'emploi.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V4-106-1",
+      "question": "Rédaction historique sans fit après Passe.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V45-025",
+      "question": "Rédaction historique du Multi artificiel.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V45-027",
+      "question": "Rédaction historique de la distinction majeure-mineure.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L14-002",
+      "question": "Grille mini/maxi du relais 2SA sur Multi-Landy, accord local à valider.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L20-002",
+      "question": "Splinter 3♠ après 2♣ FI : accord exact non visé.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L13-017",
+      "question": "Seuil exact de 7 H et cinq Trèfles après 2♣ FI.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V479-004",
+      "question": "Relais positif 2SA après Landy, accord non universel à valider.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L13-012",
+      "question": "Michaël précisé 3♥ en quatrième position après soutien adverse.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    }
+  ]
+}
