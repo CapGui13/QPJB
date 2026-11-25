@@ -1,0 +1,132 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "V2-M2-034",
+      "old": {
+        "explain": "Avec 12 H, six Carreaux et un singleton Pique, vous avez les valeurs nécessaires pour poursuivre après 3♦. La longue Carreau est déjà connue ; 3♠ montre la courte, pas une deuxième couleur naturelle. L'ouvreur pourra évaluer sa tenue Pique pour choisir entre 3SA et une manche en mineure, voire explorer davantage si les valeurs s'accordent. 3SA direct masquerait la courte."
+      },
+      "new": {
+        "explain": "Avec 12 H, six Carreaux et un singleton Pique, vous avez les valeurs nécessaires pour poursuivre après 3♦. La longue Carreau est déjà connue ; 3♠ montre la courte à Pique, pas une deuxième couleur naturelle. L'ouvreur pourra évaluer sa tenue Pique pour choisir entre 3SA et une manche en mineure, voire explorer davantage. Dans cette séquence, 3SA annoncerait conventionnellement une courte à Trèfle, inexistante dans votre main : ce n'est pas une conclusion naturelle."
+      },
+      "reason": "Contradiction technique du distracteur 3SA après Texas mineur rectifié : il indique la courte dans l'autre mineure et non une conclusion qui masquerait la distribution.",
+      "source": "CONTRE_EXPERTISE_V482_TEXAS_MINEURS_SEF2024_2026-11-05.md ; SEF-V482-009/010 ; SEF-L42-003."
+    },
+    {
+      "id": "SEF-L01-D-04",
+      "old": {
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)",
+          "Vous : 3♦ (Texas Cœur)",
+          "Partenaire : 3♠ (pas de fit Cœur et pas d’arrêt Pique)"
+        ],
+        "context": "Après l’ouverture de 1SA (15–17 H) du partenaire, l’adversaire intervient naturellement à 2♠. Vous avez montré cinq Cœurs par 3♦, Texas dans le Rubensohl étudié. L’ouvreur répond 3♠ : ce développement précise qu’il n’a pas de fit Cœur et qu’il ne tient pas les Piques. Vous possédez ♠AR7 et 11 H. Les autres adversaires ont passé. Quelle est votre suite ?",
+        "explain": "Le Texas 3♦ a montré vos cinq Cœurs. La réponse conventionnelle de 3♠ du partenaire écarte le fit Cœur et indique qu’il ne tient pas les Piques. Avec ♠AR7, vous apportez vous-même l’arrêt manquant ; vos 11 H en face de 15–17 H assurent les valeurs de manche. Annoncez donc 3SA."
+      },
+      "new": {
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)",
+          "Vous : 3♦ (Texas Cœur)",
+          "Partenaire : 3♠ (pas de soutien troisième Cœur et pas d’arrêt Pique)"
+        ],
+        "context": "Après l’ouverture de 1SA (15–17 H) du partenaire, l’adversaire intervient naturellement à 2♠. Vous avez montré cinq Cœurs par 3♦, Texas dans le Rubensohl étudié. L’ouvreur répond 3♠ : ce développement indique deux Cœurs et l’absence d’arrêt Pique. Vous possédez ♠AR7 et 11 H. Les autres adversaires ont passé. Quelle est votre suite ?",
+        "explain": "Le Texas 3♦ a montré au moins cinq Cœurs. La réponse conventionnelle 3♠ indique seulement deux Cœurs chez l’ouvreur et aucun arrêt Pique. Avec exactement cinq Cœurs, vous n'avez ici que sept atouts communs ; avec ♠AR7, vous apportez vous-même l’arrêt manquant. Vos 11 H face à 15–17 H donnent les valeurs de manche : annoncez 3SA."
+      },
+      "reason": "Le déni de soutien troisième n'exclut pas un fit huitième face à six Cœurs. Correction du codage pour maintenir la cohérence avec le cas à six cartes.",
+      "source": "SEF-Q26-M2-002 (six Cœurs, même développement) ; SEF-L01-D-04 (accord historique)."
+    },
+    {
+      "id": "SEF-L18-006",
+      "old": {
+        "explain": "Après 1SA–2♣–2SA (deux majeures quatrièmes), 3♣ est le relais invitant à Cœur. L'ouvreur rectifie à 3♥ et peut apprécier l'invitation selon sa force. 4♣ serait un transfert pour jouer directement 4♥."
+      },
+      "new": {
+        "explain": "Après 1SA–2♣–2SA (deux majeures quatrièmes), 3♣ est le relais invitant à Cœur. L'ouvreur peut refuser la manche en annonçant 3♥, ou l'accepter à 4♥ selon son évaluation. 4♣ serait le transfert pour imposer directement 4♥."
+      },
+      "reason": "Éliminer l'ambiguïté d'une rectification à 3♥ suivie d'une décision ultérieure : le choix de manche doit être exprimé lorsque l'ouvreur répond au relais invitant.",
+      "source": "SEF-Q26-M2-018 ; V2-M2-025/026 ; audits/qualite-quiz-20261125/M2/README.md (relais invitants)."
+    },
+    {
+      "id": "SEF-L25-008",
+      "old": {
+        "explain": "La modulation à 2SA sur le Texas Trèfle est réservée à un gros honneur troisième dans la couleur, généralement avec une main maximum. Avec ♣V86, le Valet ne suffit pas : on annonce 3♣, la rectification normale du Texas, sans promettre de soutien particulier."
+      },
+      "new": {
+        "explain": "Avec ♣V86 et 15 H, vous n'avez pas le complément favorable montré par la modulation positive à 2SA : le Valet troisième ne suffit pas dans ce cas. Annoncez 3♣, la rectification normale, sans promettre de soutien particulier. Le cas de ♣R103 avec 16 H illustre au contraire la modulation positive ; les limites précises pour d'autres formes de soutien ne sont pas déduites de ces deux exemples."
+      },
+      "reason": "Le texte ancien présentait le gros honneur exactement troisième comme condition générale exclusive alors que les frontières du soutien n'ont pas été arbitrées ; limiter le corrigé aux cas attestés.",
+      "source": "SEF-L25-007 ; V2-M2-035 ; manifest #341 décision V1-M2-R004 (maintien des cas documentés sans extension)."
+    },
+    {
+      "id": "SEF-V482-001",
+      "old": {
+        "explain": "Vos six Trèfles et 4 H justifient la recherche d’une partielle. Sur 1SA sans intervention, 2♠ est le Texas Trèfle. L’ouvreur rectifie normalement à 3♣ (ou module positivement selon son soutien) ; vous cherchez ensuite à vous arrêter à 3♣. 2♣ serait un Stayman."
+      },
+      "new": {
+        "explain": "Vos six Trèfles et 4 H justifient la recherche d’une partielle. Sur 1SA sans intervention, 2♠ est le Texas Trèfle. Si l’ouvreur rectifie à 3♣, passez ; s'il module positivement à 2SA, annoncez 3♣ pour jouer dans votre longue. 2SA de l'ouvreur dans cette séquence n'est pas une proposition naturelle de jouer à Sans-Atout. 2♣ serait un Stayman."
+      },
+      "reason": "La suite faible doit rester cohérente même en cas de modulation positive explicitement évoquée : la rectification n'est pas toujours 3♣.",
+      "source": "SEF-L25-007/008 ; V2-M2-032."
+    },
+    {
+      "id": "SEF-Q26-M2-005",
+      "old": {
+        "explain": "Avec sept Trèfles et 4 H, vous recherchez une partielle dans cette longue. 2♠ est le Texas Trèfle ; le partenaire pourra annoncer 3♣, où vous vous arrêterez. 3♣ direct serait un Texas Carreau et Passe laisserait jouer 1SA."
+      },
+      "new": {
+        "explain": "Avec sept Trèfles et 4 H, vous recherchez une partielle dans cette longue. 2♠ est le Texas Trèfle : passez si l’ouvreur dit 3♣ ; s'il module positivement à 2SA, revenez à 3♣. 3♣ direct sur 1SA serait un Texas Carreau et Passe laisserait jouer 1SA."
+      },
+      "reason": "Expliciter le traitement du repli faible dans les deux branches du Texas Trèfle ; ne pas laisser croire que seule une rectification directe existe.",
+      "source": "SEF-L25-007/008 ; V2-M2-032 ; SEF-V482-001."
+    },
+    {
+      "id": "SEF-L19-007",
+      "old": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire intervient à 2♣ Landy, montrant les deux majeures. Vous avez 11 H avec des valeurs défensives dans les deux majeures ; plutôt que de rechercher une partielle, vous souhaitez pénaliser le camp adverse. Quelle enchère manifeste cette volonté punitive dans les réponses SEF 2024 au Landy ?",
+        "explain": "Votre main de 11 H avec ♠RV94 et ♥A108 offre des valeurs défensives dans les deux majeures annoncées par le Landy adverse. Contre exprime une intention punitive, non une recherche de fit. 2♥ serait un cue-bid montrant l’arrêt Cœur et des valeurs de manche ; 2SA transfère vers les Trèfles."
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire intervient à 2♣ Landy, montrant les deux majeures. Vous avez 11 H avec des valeurs défensives dans les deux majeures ; plutôt que de rechercher votre propre manche, vous souhaitez pénaliser le camp adverse. Quelle enchère manifeste cette volonté punitive dans le traitement étudié ?",
+        "explain": "Votre main de 11 H avec ♠RV94 et ♥A108 offre des valeurs défensives dans les deux majeures annoncées par le Landy adverse. Contre exprime une intention punitive, non une recherche de fit. 2♥ serait un cue-bid montrant l’arrêt Cœur et un espoir de manche (pas nécessairement une force suffisante pour l'imposer) ; 2SA transfère vers les Trèfles."
+      },
+      "reason": "Avec 11 H face à 15–17, l'alternative constructive est la recherche de manche, pas une simple partielle. Le cue-bid de 2♥ existe dès les valeurs invitantes attestées par le cas à 9 H.",
+      "source": "SEF-V486-020 (9 H, 2♥ cue-bid) ; SEF-L21-004 ; #271 accords conservés."
+    },
+    {
+      "id": "SEF-L23-003",
+      "old": {
+        "context": "Votre partenaire ouvre de 1SA et l'adversaire contre artificiellement pour montrer un bicolore mineure–majeure. Avec 12 H répartis et des valeurs défensives, vous souhaitez manifester l'intention de pénaliser le camp adverse plutôt que de rechercher immédiatement un contrat partiel. Quelle enchère exprime cette volonté dans le SEF 2024 ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA et l'adversaire contre artificiellement pour montrer un bicolore mineure–majeure. Avec 12 H répartis et des valeurs défensives, vous souhaitez manifester l'intention de pénaliser le camp adverse plutôt que de rechercher votre propre manche. Quelle enchère exprime cette volonté dans le traitement étudié ?"
+      },
+      "reason": "Opposer le surcontre punitif à une recherche de manche (27–29 H cumulés), et non à une recherche de partielle avec cette force.",
+      "source": "SEF-L23-004 (10 H, conclusion 3SA) ; SEF-V486-017/018 (sens ordinaire des réponses)."
+    },
+    {
+      "id": "SEF-V481-005",
+      "old": {
+        "explain": "Le Texas impossible demande si vous avez quatre Piques et un arrêt Cœur. Vous n'avez ni l'un ni l'autre. Le cue-bid 3♥ sert ici de réponse d'attente sans quatre Piques et sans tenue Cœur ; 3SA affirmerait une tenue inexistante."
+      },
+      "new": {
+        "explain": "Le Texas impossible recherche en priorité quatre Piques ; à défaut, il faut préciser la tenue Cœur. Vous n'avez ni quatre Piques ni arrêt Cœur. Le cue-bid 3♥ sert ici de réponse d'attente signalant cette double absence ; 3SA affirmerait une tenue inexistante."
+      },
+      "reason": "Le dispositif ne demande pas de posséder simultanément une majeure et un arrêt : la majeure quatrième est prioritaire même avec un arrêt. Rendre la hiérarchie exacte.",
+      "source": "SEF-V481-001/002/003 ; audit CONTRE_EXPERTISE_V481_RUBENSOHL_REDEMANDES_2026-11-05.md."
+    },
+    {
+      "id": "SEF-V481-006",
+      "old": {
+        "explain": "Après 1SA–(2♥)–3♦ artificiel, le partenaire recherche une majeure quatrième et une tenue Cœur. Avec seulement deux Piques et trois petits Cœurs, vous ne pouvez montrer ni quatre Piques ni un arrêt Cœur. Le cue-bid conventionnel 3♥ indique cette double absence et permet de poursuivre vers une autre manche."
+      },
+      "new": {
+        "explain": "Après 1SA–(2♥)–3♦ artificiel, le partenaire recherche d'abord quatre Piques. En leur absence, la tenue Cœur décide entre 3SA et le cue-bid d'attente. Avec deux Piques et trois petits Cœurs, vous ne pouvez montrer ni quatre Piques ni arrêt Cœur : 3♥ indique cette double absence et permet de poursuivre vers une autre manche."
+      },
+      "reason": "Préciser l'ordre de priorité majeur/arrêt au lieu de les présenter comme deux conditions simultanées.",
+      "source": "SEF-V481-001/002/003 ; audit CONTRE_EXPERTISE_V481_RUBENSOHL_REDEMANDES_2026-11-05.md."
+    }
+  ],
+  "reserves": []
+}
