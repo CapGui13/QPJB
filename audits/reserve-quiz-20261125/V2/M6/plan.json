@@ -1,0 +1,316 @@
+{
+  "mission": "V2-M6",
+  "base": "0c3da298c3a1973665f709a92d643284fcf59ccd",
+  "production": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "contracts": [
+    320,
+    327,
+    333
+  ],
+  "virtualCount": 1628,
+  "scope": [
+    "roudi",
+    "drury",
+    "fortes",
+    "forcing",
+    "chelem"
+  ],
+  "target": 44,
+  "targetGroups": 22,
+  "allocation": {
+    "roudi": 6,
+    "drury": 6,
+    "fortes": 10,
+    "forcing": 10,
+    "chelem": 12
+  },
+  "method": "Cartographie unique du catalogue virtuel et des ancres déjà validées ; priorité aux suites troisième forcing, checkback et quantitatif, puis contrastes distincts sur les cinq rubriques. Aucune révision historique.",
+  "observed": {
+    "roudi.init": {
+      "questions": 6,
+      "families": 6
+    },
+    "roudi.choix": {
+      "questions": 11,
+      "families": 8
+    },
+    "roudi.reponse": {
+      "questions": 14,
+      "families": 14
+    },
+    "drury.choix": {
+      "questions": 20,
+      "families": 16
+    },
+    "drury.init": {
+      "questions": 4,
+      "families": 4
+    },
+    "drury.reponse": {
+      "questions": 11,
+      "families": 11
+    },
+    "roudi.suite": {
+      "questions": 9,
+      "families": 9
+    },
+    "fortes.ouverture": {
+      "questions": 7,
+      "families": 7
+    },
+    "fortes.relais": {
+      "questions": 11,
+      "families": 11
+    },
+    "fortes.redemande": {
+      "questions": 8,
+      "families": 8
+    },
+    "forcing.troisieme": {
+      "questions": 11,
+      "families": 11
+    },
+    "forcing.quatrieme": {
+      "questions": 29,
+      "families": 29
+    },
+    "forcing.base": {
+      "questions": 5,
+      "families": 5
+    },
+    "chelem.cles": {
+      "questions": 9,
+      "families": 9
+    },
+    "chelem.splinter": {
+      "questions": 6,
+      "families": 6
+    },
+    "chelem.blackwood.suite": {
+      "questions": 12,
+      "families": 12
+    },
+    "chelem.blackwood.dame_rois": {
+      "questions": 10,
+      "families": 10
+    },
+    "fortes.suite": {
+      "questions": 14,
+      "families": 14
+    },
+    "chelem.controles": {
+      "questions": 20,
+      "families": 20
+    },
+    "drury.suite": {
+      "questions": 7,
+      "families": 7
+    },
+    "forcing.quatrieme.suite": {
+      "questions": 10,
+      "families": 10
+    },
+    "chelem.quantitatif.suite": {
+      "questions": 5,
+      "families": 5
+    },
+    "chelem.blackwood.declenchement": {
+      "questions": 12,
+      "families": 12
+    },
+    "forcing.checkback": {
+      "questions": 4,
+      "families": 4
+    },
+    "chelem.splinter.variante": {
+      "questions": 5,
+      "families": 5
+    },
+    "chelem.quantitatif": {
+      "questions": 1,
+      "families": 1
+    },
+    "forcing.troisieme.suite": {
+      "questions": 1,
+      "families": 1
+    }
+  },
+  "groups": [
+    {
+      "family": "reserve-v2-m6-init-ou-invitation-sa",
+      "theme": "roudi",
+      "concept": "roudi.init",
+      "criterion": "Cinquième carte majeure : rechercher le fit 5–3 ou inviter naturellement à SA.",
+      "planned": 2,
+      "source": "SEF-V4-079-3 ; SEF-N144-1"
+    },
+    {
+      "family": "reserve-v2-m6-suite-bicolore-zone",
+      "theme": "roudi",
+      "concept": "roudi.suite",
+      "criterion": "Après refus du soutien Pique, distinguer le bicolore économique non forcing du saut forcing de manche.",
+      "planned": 2,
+      "source": "SEF-L14-007 ; SEF-L21-003"
+    },
+    {
+      "family": "reserve-v2-m6-suite-zone-ouvreur",
+      "theme": "roudi",
+      "concept": "roudi.suite",
+      "criterion": "Même main et même fit : la zone minimum ou maximum annoncée par l'ouvreur change invitation et conclusion.",
+      "planned": 2,
+      "source": "SEF-V44-064/065/066"
+    },
+    {
+      "family": "reserve-v2-m6-fit-ou-trefles-passe",
+      "theme": "drury",
+      "concept": "drury.init",
+      "criterion": "Trois atouts réels contre deux : Drury fitté ou 1SA, malgré la longue à Trèfle.",
+      "planned": 2,
+      "source": "SEF-L13-001 ; SEF-V4-104-1 ; SEF-Q26-M6-007"
+    },
+    {
+      "family": "reserve-v2-m6-quatre-atouts-courte",
+      "theme": "drury",
+      "concept": "drury.choix",
+      "criterion": "Avec quatre atouts et force constructive, la présence d'un singleton déclenche le 2SA fitté plutôt que le Drury.",
+      "planned": 2,
+      "source": "SEF-V44-067/068 ; SEF-Q26-M6-007"
+    },
+    {
+      "family": "reserve-v2-m6-quatrieme-position-attente-ou-manche",
+      "theme": "drury",
+      "concept": "drury.reponse",
+      "criterion": "En quatrième position, ouverture ordinaire versus ouverture revalorisée par le singleton et le fit annoncé.",
+      "planned": 2,
+      "source": "SEF-V4-102-1 ; SEF-V484-013 ; SEF-Q26-M6-007"
+    },
+    {
+      "family": "reserve-v2-m6-ouverture-reguliere-23-24",
+      "theme": "fortes",
+      "concept": "fortes.ouverture",
+      "criterion": "Frontière exacte entre 2♣ fort indéterminé et 2♦ forcing de manche pour une main régulière.",
+      "planned": 2,
+      "source": "SEF-V45-001/002 ; V1-M5-003"
+    },
+    {
+      "family": "reserve-v2-m6-relais-deux-rois",
+      "theme": "fortes",
+      "concept": "fortes.relais",
+      "criterion": "À force H égale et sans As, l'exception des deux Rois modifie le code positif.",
+      "planned": 2,
+      "source": "SEF-V45-009 ; SEF-V475-001/002"
+    },
+    {
+      "family": "reserve-v2-m6-relais-deux-as-noirs-mineurs",
+      "theme": "fortes",
+      "concept": "fortes.relais",
+      "criterion": "À nombre d'As égal, distinguer même couleur (noire) et même rang (mineur).",
+      "planned": 2,
+      "source": "SEF-V475-003/004/005"
+    },
+    {
+      "family": "reserve-v2-m6-redemande-six-sept-levées",
+      "theme": "fortes",
+      "concept": "fortes.redemande",
+      "criterion": "La septième carte maîtresse apporte la huitième levée sûre et autorise le saut descriptif.",
+      "planned": 2,
+      "source": "SEF-V45-008 ; V1-M5-004"
+    },
+    {
+      "family": "reserve-v2-m6-suite-fit-manche-ou-chelem",
+      "theme": "fortes",
+      "concept": "fortes.suite",
+      "criterion": "Force et qualité des compléments en face du fort unicolore : manche directe ou fit économique de chelem.",
+      "planned": 2,
+      "source": "SEF-V475-010 ; SEF-V487-004"
+    },
+    {
+      "family": "reserve-v2-m6-troisieme-arret-ou-repetition",
+      "theme": "forcing",
+      "concept": "forcing.troisieme",
+      "criterion": "Après troisième couleur artificielle et sans soutien troisième, la présence d'un arrêt dans la couleur artificielle rend SA possible.",
+      "planned": 2,
+      "source": "SEF-L17-002/003/012"
+    },
+    {
+      "family": "reserve-v2-m6-troisieme-suite-vrai-fit",
+      "theme": "forcing",
+      "concept": "forcing.troisieme.suite",
+      "criterion": "Après le soutien troisième obtenu, quatre ou cinq cartes du répondant changent le choix de manche.",
+      "planned": 2,
+      "source": "SEF-L17-001 ; SEF-Q26-M6-003 ; V1-M5-005 (principe du fit huitième)"
+    },
+    {
+      "family": "reserve-v2-m6-troisieme-suite-mineure-ou-sa",
+      "theme": "forcing",
+      "concept": "forcing.troisieme.suite",
+      "criterion": "Après répétition mineure sans arrêt, présence ou absence d'un arrêt personnel décide de la manche SA ou mineure.",
+      "planned": 2,
+      "source": "SEF-L17-003 ; SEF-Q26-M6-003 ; V1-M6-002"
+    },
+    {
+      "family": "reserve-v2-m6-quatrieme-suite-invite-ou-conclut",
+      "theme": "forcing",
+      "concept": "forcing.quatrieme.suite",
+      "criterion": "Après redescription des Piques et sans fit Cœur, le bilan H avec arrêt personnel sépare invitation et conclusion à SA.",
+      "planned": 2,
+      "source": "SEF-V486-028/030"
+    },
+    {
+      "family": "reserve-v2-m6-checkback-autre-mineure-longueur",
+      "theme": "forcing",
+      "concept": "forcing.checkback",
+      "criterion": "La cinquième carte de Cœur rend le relais de l'autre mineure utile ; quatre Cœurs ne suffisent pas à rechercher le fit 5–3.",
+      "planned": 2,
+      "source": "SEF-L13-003 ; SEF-Q26-M6-005/006 ; V1-M5-006"
+    },
+    {
+      "family": "reserve-v2-m6-quantitatif-petit-frontiere",
+      "theme": "chelem",
+      "concept": "chelem.quantitatif",
+      "criterion": "Face à 20–21 H, 12 H invitent au petit chelem, 13 H l'imposent si aucune majeure n'est à rechercher.",
+      "planned": 2,
+      "source": "SEF-L40-002 ; SEF-V44-013 ; SEF-L13-018"
+    },
+    {
+      "family": "reserve-v2-m6-quantitatif-grand-frontiere",
+      "theme": "chelem",
+      "concept": "chelem.quantitatif",
+      "criterion": "Face à 20–21 H, 16 H proposent le grand chelem en garantissant le petit ; 17 H atteignent le seuil même au minimum.",
+      "planned": 2,
+      "source": "SEF-L13-018 ; SEF-Q26-M6-011/012"
+    },
+    {
+      "family": "reserve-v2-m6-controle-saute-personnel",
+      "theme": "chelem",
+      "concept": "chelem.controles",
+      "criterion": "Le contrôle Trèfle sauté par le partenaire doit être possédé personnellement pour poursuivre le dialogue des contrôles.",
+      "planned": 2,
+      "source": "SEF-L02-E-06/08 ; SEF-V483-011/014"
+    },
+    {
+      "family": "reserve-v2-m6-rkcb-quatre-ou-cinq-cles",
+      "theme": "chelem",
+      "concept": "chelem.blackwood.suite",
+      "criterion": "Quatre clés et Dame autorisent le petit ; cinq clés et Dame permettent d'interroger les Rois en vue du grand.",
+      "planned": 2,
+      "source": "SEF-L02-E-17 ; V1-M6-004"
+    },
+    {
+      "family": "reserve-v2-m6-rkcb-chicane-utile-ou-singleton",
+      "theme": "chelem",
+      "concept": "chelem.cles",
+      "criterion": "Deux clés sans Dame : la chicane reconnue utile autorise 5SA, un singleton impose la réponse ordinaire.",
+      "planned": 2,
+      "source": "SEF-L32-005 ; SEF-V45-052"
+    },
+    {
+      "family": "reserve-v2-m6-splinter-intervention-ou-cuebid",
+      "theme": "chelem",
+      "concept": "chelem.splinter.variante",
+      "criterion": "Après intervention naturelle, une courte dans la couleur adverse distingue le double saut Splinter du cue-bid forcing de manche.",
+      "planned": 2,
+      "source": "SEF-L22-006 ; SEF-L30-004"
+    }
+  ]
+}
