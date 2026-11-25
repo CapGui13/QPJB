@@ -1,0 +1,428 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "V2-M4-007",
+      "old": {
+        "explain": "Vous avez 13 H réguliers et une tenue Trèfle RV64. En intervention immédiate, 1SA exige 16–18 HL : cette main est trop faible. Les trois couleurs libres ne sont que troisièmes, ce qui écarte le Contre d'appel. 2♣ serait un cue-bid conventionnel, pas une intervention naturelle à Trèfle. Passe."
+      },
+      "new": {
+        "explain": "Vous avez 13 H réguliers et une tenue Trèfle RV64. En intervention immédiate, 1SA exige 16–18 HL : cette main est trop faible. Les trois couleurs libres ne sont que troisièmes, ce qui écarte le Contre d'appel. 2♣ serait naturel dans cette position, mais quatre Trèfles ne suffisent pas : cette intervention demande une couleur sixième. Passe."
+      },
+      "reason": "Confusion entre intervention immédiate sur 1♣ et traitement conventionnel dans une autre position. Passe reste correct.",
+      "source": "https://abc-du-bridge.scenari-community.org/005-01/co/005-01-01-01.html ; séquence (1♣)–2♣"
+    },
+    {
+      "id": "SEF-L26-003",
+      "old": {
+        "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient à 1♠ ; son répondant soutient à 2♦. Vous n'avez que deux Piques, mais six beaux Cœurs et 10 H, soit 11 HL. Quelle enchère naturelle convient ?",
+        "explain": "Lorsque le troisième joueur a parlé après l'intervention du partenaire, une nouvelle couleur naturelle au palier de 2 est non forcing. Six beaux Cœurs et 11 HL permettent 2♥. 2SA serait un soutien compétitif avec quatre Piques."
+      },
+      "new": {
+        "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient à 1♠ ; son répondant soutient à 2♦. Vous n'avez que deux Piques, mais six beaux Cœurs et 10 H, soit 12 HL. Quelle enchère naturelle convient ?",
+        "explain": "Lorsque le troisième joueur a parlé après l'intervention du partenaire, une nouvelle couleur naturelle au palier de 2 est non forcing. Six beaux Cœurs et 12 HL permettent 2♥. 2SA serait un soutien compétitif avec quatre Piques."
+      },
+      "reason": "10 H + deux points de longueur pour six Cœurs = 12 HL, pas 11.",
+      "source": "Calcul direct de la main ; SEF-L30-002, SEF-L35-003"
+    },
+    {
+      "id": "SEF-L28-002",
+      "old": {
+        "hand": [
+          [
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "5"
+          ],
+          [
+            "A",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 17,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "context": "Vous avez ouvert de 1♦ ; l'adversaire intervient à 1♠ et votre partenaire contre Spoutnik, recherchant les Cœurs. Vous avez quatre Cœurs, 17 H et un doubleton Pique, soit environ 18 HLD avec le fit. Quelle redemande montre directement le soutien fort du SEF 2024 ?",
+        "explain": "Dans la séquence 1♦–(1♠)–Contre Spoutnik–(Passe), la redemande directe à 4♥ indique le fit Cœur dans la zone 18–19 HLD. Avec 17 H et un doubleton, l'ouvreur atteint environ 18 HLD. 2♥ ou 3♥ montreraient une force inférieure."
+      },
+      "new": {
+        "hand": [
+          [
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "5"
+          ],
+          [
+            "A",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "V",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "context": "Vous avez ouvert de 1♦ ; l'adversaire intervient à 1♠ et votre partenaire contre Spoutnik, recherchant les Cœurs. Vous avez quatre Cœurs, 16 H et un singleton Pique, soit 18 HLD avec le fit. Quelle redemande montre directement le soutien fort du SEF 2024 ?",
+        "explain": "Dans la séquence 1♦–(1♠)–Contre Spoutnik–(Passe), la redemande à 4♥ indique le fit Cœur dans la zone 18–19 HLD. Vos 16 H et le singleton Pique donnent 18 HLD. La distribution 4-4-4-1 exclut l'ouverture de 1SA ; 2♥ et 3♥ montreraient une force inférieure."
+      },
+      "reason": "La main initiale régulière de 17 H relève de l'ouverture de 1SA. Recomposition tricolore, ouverture de 1♦ justifiée et zone de soutien conservée.",
+      "source": "SEF-001-1, SEF-001-2, SEF-002-1 ; zone de soutien de SEF-L28-002 et V2-M5-008"
+    },
+    {
+      "id": "V2-M5-007",
+      "old": {
+        "hand": [
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "V",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "context": "Avec quatre Cœurs, choisissez la redemande correspondant à une ouverture intermédiaire.",
+        "explain": "15 H et un doubleton donnent 16 HLD. Le saut à 3♥ décrit une ouverture intermédiaire avec quatre Cœurs ; 2♥ serait minimum et 4♥ montrerait environ 18–19 HLD."
+      },
+      "new": {
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "context": "Vous avez ouvert de 1♦. Après 1♠ adverse et le Contre Spoutnik du partenaire, vous avez quatre Cœurs. Quel soutien décrit votre ouverture intermédiaire ?",
+        "explain": "14 H et le singleton Pique donnent 16 HLD avec le fit Cœur. La distribution 4-4-4-1 justifie l'ouverture de 1♦ plutôt que 1SA. Le saut à 3♥ décrit une ouverture intermédiaire ; 2♥ serait minimum et 4♥ montrerait 18–19 HLD."
+      },
+      "reason": "La main régulière initiale de 15 H aurait ouvert de 1SA. Recomposition coordonnée avec V2-M5-008, même forme, zones de soutien distinctes.",
+      "source": "SEF-001-1, SEF-001-2 ; V2-M5-008 ; SEF-L28-002"
+    },
+    {
+      "id": "V2-M5-008",
+      "old": {
+        "hand": [
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "D",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 17,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "explain": "Avec 17 H et un doubleton Pique, votre main vaut environ 18 HLD ; les quatre Cœurs du partenaire et vos quatre Cœurs assurent le fit. 4♥ montre directement la zone 18–19 HLD dans cette séquence. 3♥ est le soutien intermédiaire et sous-évaluerait cette ouverture."
+      },
+      "new": {
+        "hand": [
+          [
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "D",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "explain": "Avec 16 H et un singleton Pique, votre main vaut 18 HLD ; les quatre Cœurs du partenaire et vos quatre Cœurs assurent le fit. La distribution 4-4-4-1 justifie l'ouverture de 1♦. 4♥ montre directement la zone 18–19 HLD ; 3♥ sous-évaluerait cette ouverture."
+      },
+      "reason": "Même incohérence d'ouverture de 1SA (17 H réguliers). Recomposition parallèle à V2-M5-007 : la seule variation déterminante est la force.",
+      "source": "SEF-001-1, SEF-001-2 ; V2-M5-007 ; SEF-L28-002"
+    },
+    {
+      "id": "SEF-L36-003",
+      "old": {
+        "context": "Votre partenaire ouvre de 1♠ et l'adversaire intervient naturellement à 2♥. Vous possédez quatre atouts Pique, cinq beaux Carreaux ♦AD1095, un singleton Cœur et 10 H (main réévaluée dans la zone 13–15 HLD). Quelle enchère de rencontre à double saut décrit ces deux couleurs en SEF 2024 ?",
+        "explain": "Après une intervention naturelle sur une ouverture majeure, une nouvelle couleur à double saut est une rencontre : 13–15 HLD, au moins quatre atouts dans la majeure et cinq belles cartes dans la couleur annoncée. Ici 4♦ décrit les quatre Piques et les cinq beaux Carreaux, alors que 3♦ ne transmettrait pas simultanément le fit et la force."
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1♠ et l'adversaire intervient naturellement à 2♥. Vous possédez quatre atouts Pique, cinq beaux Carreaux ♦AD1095, un singleton Cœur et 10 H (main réévaluée dans la zone 13–15 HLD). Quelle enchère de rencontre à saut au palier de 4 décrit ces deux couleurs en SEF 2024 ?",
+        "explain": "Dans cette séquence précise, le traitement de rencontre retenu par le QPJB attribue à 4♦ un fit Pique d'au moins quatre cartes, cinq beaux Carreaux et 13–15 HLD. 4♦ est un saut par rapport à 3♦, première enchère disponible à Carreau, et non un double saut. 3♦ ne transmettrait pas simultanément le fit et la force."
+      },
+      "reason": "3♦ est disponible sur 2♥ : 4♦ est un saut simple. Ne pas généraliser la terminologie à d'autres séquences ; convention locale et réponse conservées.",
+      "source": "Enchères disponibles 1♠–(2♥) ; V2-M5-011 ; SEF-L22-005"
+    },
+    {
+      "id": "SEF-L13-009",
+      "old": {
+        "explain": "Sur 1♠–(2♦), le SEF 2024 donne à 2SA un sens fitté : au moins trois Piques et une zone constructive 11–15 HLD, plutôt qu’un 2SA naturel sans fit."
+      },
+      "new": {
+        "explain": "Sur 1♠–(2♦), le SEF 2024 donne à 2SA un sens fitté : normalement trois Piques (exception rare à quatre atouts très réguliers) et une zone constructive 11–15 HLD. Ici, 13 H, un point de longueur à Trèfle et un point de distribution donnent 15 HLD, plutôt qu’un 2SA naturel sans fit."
+      },
+      "reason": "Le libellé « au moins trois » assimile à tort les soutiens plus longs au 2SA fitté ; préciser l'exception documentée et la borne haute.",
+      "source": "SEF-L06-007 ; SEF-L16-006 ; calcul HLD"
+    },
+    {
+      "id": "V2-M5-004",
+      "old": {
+        "hand": [
+          [
+            "R",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "10",
+            "8"
+          ]
+        ],
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "explain": "Vos quatre Piques assurent au moins neuf atouts : 11 H + 2 pour le neuvième atout = 13 HLD. Le cue-bid 3♦ agrée les Piques et impose la manche. 3♠ serait seulement limite (11–12 HLD) et 2SA est réservé à un fit de trois atouts dans cette séquence."
+      },
+      "new": {
+        "hand": [
+          [
+            "R",
+            "8",
+            "4",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "9"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "6"
+          ]
+        ],
+        "shape": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "explain": "Vos quatre Piques assurent au moins neuf atouts : 11 H + 2 pour le neuvième atout + 1 pour le doubleton = 14 HLD. Le cue-bid 3♦ agrée les Piques et impose la manche. 3♠ serait seulement limite (11–12 HLD) ; 2SA décrit normalement trois atouts et l'exception à quatre atouts très réguliers n'est pas recherchée ici."
+      },
+      "reason": "L'ancienne main 4-3-3-3 pouvait évoquer l'exception à quatre atouts du 2SA fitté, contredisant l'explication catégorique. La variante reste contrastée avec V2-M5-003 (un petit Carreau déplacé vers Pique).",
+      "source": "SEF-L06-007 ; V2-M5-003"
+    },
+    {
+      "id": "SEF-V486-015",
+      "old": {
+        "explain": "Les six Carreaux menés par A-D-V-10 et les 10 H permettent de proposer 2♦ naturellement. Après la nouvelle couleur du n°3, le changement de couleur du n°4 au palier de 2 n’est pas forcing : il demande une bonne couleur au moins cinquième ou une sixième, et environ 10–11 HL."
+      },
+      "new": {
+        "explain": "Les six Carreaux menés par A-D-V-10 et les 10 H permettent de proposer 2♦ naturellement. Après la nouvelle couleur du n°3, le changement de couleur du n°4 au palier de 2 n’est pas forcing : il demande une bonne couleur au moins cinquième ou une sixième, et un minimum de l'ordre de 10–11 HL ; vos six Carreaux portent les 10 H à 12 HL."
+      },
+      "reason": "Clarifier qu'il s'agit du minimum, pas d'une zone maximale qui exclurait la main présentée.",
+      "source": "SEF-L30-002 ; SEF-L26-003 ; calcul de longueur"
+    },
+    {
+      "id": "SEF-V418-007",
+      "old": {
+        "context": "Le partenaire est intervenu naturellement à 1♠, puis les adversaires ont passé."
+      },
+      "new": {
+        "context": "L'adversaire de gauche ouvre de 1♦, votre partenaire intervient naturellement à 1♠ et le joueur de droite passe. Quelle réponse choisissez-vous ?"
+      },
+      "reason": "La formulation initiale indiquait à tort que les adversaires avaient passé après l'intervention. L'ouverture adverse et la position du n°3 déterminent le traitement.",
+      "source": "Séquence du QCM ; SEF-L30-002"
+    },
+    {
+      "id": "SEF-V4-046-1",
+      "old": {
+        "explain": "Face à une intervention à 2♥ du partenaire, 5 H et deux atouts ne donnent aucune perspective suffisante : 3♥ serait un faux soutien et 3♦ une enchère trop ambitieuse. Passe."
+      },
+      "new": {
+        "explain": "Face à une intervention à 2♥ du partenaire, 5 H et deux atouts ne donnent aucune perspective suffisante : 3♥ engagerait le camp au palier de trois sans fit huitième garanti ni valeurs suffisantes et 3♦ une enchère trop ambitieuse. Passe."
+      },
+      "reason": "Deux Cœurs face à une intervention à 2♥ peuvent constituer un fit huitième si le partenaire en a six ; ce qui justifie Passe est l'absence de fit garanti et la faiblesse.",
+      "source": "SEF-V4-045-1 ; séquence et longueur du partenaire"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-L10-005",
+      "question": "Le 2SA naturel lorsque le n°3 passe reste en HOLD ; ne pas modifier la convention avant décision.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider explicitement la convention locale"
+      ],
+      "source": "#271, HOLD SEF-L10-005"
+    },
+    {
+      "id": "SEF-L13-010",
+      "question": "Le seuil 7 HL après contre d'appel reste en HOLD.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider le seuil avec une source précise"
+      ],
+      "source": "#271, HOLD SEF-L13-010"
+    },
+    {
+      "id": "SEF-L28-007",
+      "question": "Cas dépendant du même seuil de réponse après contre d'appel ; ne pas arbitrer implicitement par un exercice voisin.",
+      "options": [
+        "Conserver sous réserve du seuil",
+        "Revoir avec SEF-L13-010"
+      ],
+      "source": "#271 ; SEF-L13-010"
+    },
+    {
+      "id": "V2-M5-001",
+      "question": "La main 4-3-3-3 de 12 HLD relève du soutien limite, mais l'exception à quatre atouts très réguliers du 2SA fitté peut rendre le distracteur discutable.",
+      "options": [
+        "Confirmer le caractère préférentiel de 3♠ dans ce cas",
+        "Préciser la limite de l'exception avant de modifier la main ou le choix"
+      ],
+      "source": "SEF-L06-007 ; V2-M5-002"
+    },
+    {
+      "id": "SEF-L30-005",
+      "question": "La réponse Passe illustre l'absence d'auto-forcing, mais 11 H et six Carreaux rendent une invitation plausible ; distinguer enchère autorisée et meilleure décision.",
+      "options": [
+        "Conserver comme illustration du droit de passer",
+        "Préciser le minimum de la redemande ou recomposer la main"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-009 et V2-M5-010"
+    },
+    {
+      "id": "V2-M5-009",
+      "question": "La main de 11 H avec longueur et fit huitième peut susciter une proposition de manche ; le caractère non auto-forcing n'impose pas Passe.",
+      "options": [
+        "Préciser la force réelle de l'ouvreur",
+        "Réviser la main avec le cas contrasté V2-M5-010 si nécessaire"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-010"
+    }
+  ]
+}
