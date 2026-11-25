@@ -1,0 +1,590 @@
+{
+  "mission": "V2-M2",
+  "base": "0c3da298c3a1973665f709a92d643284fcf59ccd",
+  "observedFamilies": {
+    "sa1.seuil": 14,
+    "sa1.stayman": 7,
+    "sa1.texas": 9,
+    "sa2.seuil": 8,
+    "sa2.stayman": 3,
+    "sa2.texas": 3,
+    "sa1.stayman.suite": 21,
+    "sa1.stayman.reponse": 7,
+    "sa1.texas.suite": 12,
+    "sa2.stayman.suite": 7,
+    "sa2.texas.suite": 6,
+    "chelem.quantitatif": 3,
+    "sa1.texas_mineur": 4,
+    "sa1.texas_mineur.suite": 11,
+    "sa.gambling": 4,
+    "sa2.texas.reponse": 4,
+    "sa1.stayman.contre": 4,
+    "sa1.texas.contre": 3,
+    "sa1.texas_mineur.reponse": 3,
+    "sa2.stayman.reponse": 4,
+    "sa2.bicolore": 4,
+    "chelem.quantitatif.suite": 3,
+    "sa2.texas_mineur.reponse": 3
+  },
+  "groups": [
+    {
+      "family": "V2-M2-sa2-stayman-seuil",
+      "criterion": "Quatre Cœurs sur 2SA : force de manche ou insuffisante",
+      "ids": [
+        "V2-M2-001",
+        "V2-M2-002"
+      ],
+      "decisions": [
+        "Passe",
+        "3♣"
+      ],
+      "concepts": [
+        "sa2.seuil",
+        "sa2.stayman"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-texas-faible",
+      "criterion": "Cinq Cœurs sur 2SA : risque de refus du Texas sans force de manche",
+      "ids": [
+        "V2-M2-003",
+        "V2-M2-004"
+      ],
+      "decisions": [
+        "Passe",
+        "3♦"
+      ],
+      "concepts": [
+        "sa2.seuil",
+        "sa2.texas"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-4-ou-5",
+      "criterion": "Une majeure quatrième ou cinquième à force de manche",
+      "ids": [
+        "V2-M2-005",
+        "V2-M2-006"
+      ],
+      "decisions": [
+        "3♣",
+        "3♥"
+      ],
+      "concepts": [
+        "sa2.stayman",
+        "sa2.texas"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-reponse-stayman",
+      "criterion": "Une ou deux majeures quatrièmes chez l'ouvreur",
+      "ids": [
+        "V2-M2-007",
+        "V2-M2-008"
+      ],
+      "decisions": [
+        "3♥",
+        "3SA"
+      ],
+      "concepts": [
+        "sa2.stayman.reponse"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-texas-fit",
+      "criterion": "Texas Cœur sur 2SA : trois atouts ou deux à force égale",
+      "ids": [
+        "V2-M2-009",
+        "V2-M2-010"
+      ],
+      "decisions": [
+        "3♥",
+        "3SA"
+      ],
+      "concepts": [
+        "sa2.texas.reponse"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-texas-apres-refus",
+      "criterion": "Refus du Texas Cœur : cinq ou six cartes, fit garanti ou non",
+      "ids": [
+        "V2-M2-011",
+        "V2-M2-012"
+      ],
+      "decisions": [
+        "Passe",
+        "4♦"
+      ],
+      "concepts": [
+        "sa2.texas.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-5-5-choix",
+      "criterion": "Double cinq majeur : choix selon le soutien inégal",
+      "ids": [
+        "V2-M2-013",
+        "V2-M2-014"
+      ],
+      "decisions": [
+        "4♠",
+        "4♥"
+      ],
+      "concepts": [
+        "sa2.bicolore"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-mineur-soutien",
+      "criterion": "Texas Trèfle sur 2SA : soutien quatrième solide ou doubleton",
+      "ids": [
+        "V2-M2-015",
+        "V2-M2-016"
+      ],
+      "decisions": [
+        "4♣",
+        "3SA"
+      ],
+      "concepts": [
+        "sa2.texas_mineur.reponse"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-stayman-texas-5-4",
+      "criterion": "Force de manche : cinq Piques avec ou sans quatre Cœurs",
+      "ids": [
+        "V2-M2-017",
+        "V2-M2-018"
+      ],
+      "decisions": [
+        "2♣",
+        "2♥"
+      ],
+      "concepts": [
+        "sa1.stayman.suite",
+        "sa1.texas"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-chasse-croise",
+      "criterion": "Après Stayman négatif, inversion du chassé-croisé",
+      "ids": [
+        "V2-M2-019",
+        "V2-M2-020"
+      ],
+      "decisions": [
+        "3♥",
+        "3♠"
+      ],
+      "concepts": [
+        "sa1.stayman.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-invitation-fit",
+      "criterion": "Invitation après Stayman : fit trouvé ou non",
+      "ids": [
+        "V2-M2-021",
+        "V2-M2-022"
+      ],
+      "decisions": [
+        "3♥",
+        "2SA"
+      ],
+      "concepts": [
+        "sa1.stayman.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa2-stayman-fit",
+      "criterion": "Fit Cœur trouvé ou non après Stayman sur 2SA",
+      "ids": [
+        "V2-M2-023",
+        "V2-M2-024"
+      ],
+      "decisions": [
+        "4♥",
+        "3SA"
+      ],
+      "concepts": [
+        "sa2.stayman.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-relais-force",
+      "criterion": "Deux majeures quatrièmes : relais invitant ou transfert de manche",
+      "ids": [
+        "V2-M2-025",
+        "V2-M2-026"
+      ],
+      "decisions": [
+        "3♦",
+        "4♦"
+      ],
+      "concepts": [
+        "sa1.stayman.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-texas-invitation-ouvreur",
+      "criterion": "Maximum après invitation à 2SA : trois Cœurs ou deux",
+      "ids": [
+        "V2-M2-027",
+        "V2-M2-028"
+      ],
+      "decisions": [
+        "4♥",
+        "3SA"
+      ],
+      "concepts": [
+        "sa1.texas.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-texas-faible-longueur",
+      "criterion": "Main faible : quatre ou cinq Cœurs",
+      "ids": [
+        "V2-M2-029",
+        "V2-M2-030"
+      ],
+      "decisions": [
+        "Passe",
+        "2♦"
+      ],
+      "concepts": [
+        "sa1.seuil",
+        "sa1.texas"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-mineur-faible-longueur",
+      "criterion": "Cinq ou six Trèfles faibles : longueur du repli mineur",
+      "ids": [
+        "V2-M2-031",
+        "V2-M2-032"
+      ],
+      "decisions": [
+        "Passe",
+        "2♠"
+      ],
+      "concepts": [
+        "sa1.seuil",
+        "sa1.texas_mineur"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-mineur-suite-force",
+      "criterion": "Texas Carreau rectifié, singleton Pique : partielle ou recherche de manche",
+      "ids": [
+        "V2-M2-033",
+        "V2-M2-034"
+      ],
+      "decisions": [
+        "Passe",
+        "3♠"
+      ],
+      "concepts": [
+        "sa1.texas_mineur.suite"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-texas-mineur-asymetrie",
+      "criterion": "Même ouverture, modulation Trèfle ou rectification Carreau obligatoire",
+      "ids": [
+        "V2-M2-035",
+        "V2-M2-036"
+      ],
+      "decisions": [
+        "2SA",
+        "3♦"
+      ],
+      "concepts": [
+        "sa1.texas_mineur.reponse"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-stayman-contre-tenue",
+      "criterion": "Stayman contré : même majeure quatrième, tenue Trèfle ou non",
+      "ids": [
+        "V2-M2-037",
+        "V2-M2-038"
+      ],
+      "decisions": [
+        "2♥",
+        "Passe"
+      ],
+      "concepts": [
+        "sa1.stayman.contre"
+      ]
+    },
+    {
+      "family": "V2-M2-sa1-texas-contre-tenue",
+      "criterion": "Texas Cœur contré : fit troisième constant, tenue Carreau ou non",
+      "ids": [
+        "V2-M2-039",
+        "V2-M2-040"
+      ],
+      "decisions": [
+        "2♥",
+        "Surcontre"
+      ],
+      "concepts": [
+        "sa1.texas.contre"
+      ]
+    },
+    {
+      "family": "V2-M2-gambling-tenue",
+      "criterion": "Gambling : neuf levées maîtresses mais tenue latérale décisive",
+      "ids": [
+        "V2-M2-041",
+        "V2-M2-042"
+      ],
+      "decisions": [
+        "Passe",
+        "4♣"
+      ],
+      "concepts": [
+        "sa.gambling"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "concept": "sa1.seuil",
+      "familiesObserved": 14,
+      "familiesAdded": [
+        "V2-M2-sa1-texas-faible-longueur",
+        "V2-M2-sa1-mineur-faible-longueur"
+      ],
+      "manquesCibles": [
+        "Main faible : quatre ou cinq Cœurs",
+        "Cinq ou six Trèfles faibles : longueur du repli mineur"
+      ]
+    },
+    {
+      "concept": "sa1.stayman",
+      "familiesObserved": 7,
+      "familiesAdded": [],
+      "manquesCibles": []
+    },
+    {
+      "concept": "sa1.texas",
+      "familiesObserved": 9,
+      "familiesAdded": [
+        "V2-M2-sa1-stayman-texas-5-4",
+        "V2-M2-sa1-texas-faible-longueur"
+      ],
+      "manquesCibles": [
+        "Force de manche : cinq Piques avec ou sans quatre Cœurs",
+        "Main faible : quatre ou cinq Cœurs"
+      ]
+    },
+    {
+      "concept": "sa2.seuil",
+      "familiesObserved": 8,
+      "familiesAdded": [
+        "V2-M2-sa2-stayman-seuil",
+        "V2-M2-sa2-texas-faible"
+      ],
+      "manquesCibles": [
+        "Quatre Cœurs sur 2SA : force de manche ou insuffisante",
+        "Cinq Cœurs sur 2SA : risque de refus du Texas sans force de manche"
+      ]
+    },
+    {
+      "concept": "sa2.stayman",
+      "familiesObserved": 3,
+      "familiesAdded": [
+        "V2-M2-sa2-stayman-seuil",
+        "V2-M2-sa2-4-ou-5"
+      ],
+      "manquesCibles": [
+        "Quatre Cœurs sur 2SA : force de manche ou insuffisante",
+        "Une majeure quatrième ou cinquième à force de manche"
+      ]
+    },
+    {
+      "concept": "sa2.texas",
+      "familiesObserved": 3,
+      "familiesAdded": [
+        "V2-M2-sa2-texas-faible",
+        "V2-M2-sa2-4-ou-5"
+      ],
+      "manquesCibles": [
+        "Cinq Cœurs sur 2SA : risque de refus du Texas sans force de manche",
+        "Une majeure quatrième ou cinquième à force de manche"
+      ]
+    },
+    {
+      "concept": "sa1.stayman.suite",
+      "familiesObserved": 21,
+      "familiesAdded": [
+        "V2-M2-sa1-stayman-texas-5-4",
+        "V2-M2-sa1-chasse-croise",
+        "V2-M2-sa1-invitation-fit",
+        "V2-M2-sa1-relais-force"
+      ],
+      "manquesCibles": [
+        "Force de manche : cinq Piques avec ou sans quatre Cœurs",
+        "Après Stayman négatif, inversion du chassé-croisé",
+        "Invitation après Stayman : fit trouvé ou non",
+        "Deux majeures quatrièmes : relais invitant ou transfert de manche"
+      ]
+    },
+    {
+      "concept": "sa1.stayman.reponse",
+      "familiesObserved": 7,
+      "familiesAdded": [],
+      "manquesCibles": []
+    },
+    {
+      "concept": "sa1.texas.suite",
+      "familiesObserved": 12,
+      "familiesAdded": [
+        "V2-M2-sa1-texas-invitation-ouvreur"
+      ],
+      "manquesCibles": [
+        "Maximum après invitation à 2SA : trois Cœurs ou deux"
+      ]
+    },
+    {
+      "concept": "sa2.stayman.suite",
+      "familiesObserved": 7,
+      "familiesAdded": [
+        "V2-M2-sa2-stayman-fit"
+      ],
+      "manquesCibles": [
+        "Fit Cœur trouvé ou non après Stayman sur 2SA"
+      ]
+    },
+    {
+      "concept": "sa2.texas.suite",
+      "familiesObserved": 6,
+      "familiesAdded": [
+        "V2-M2-sa2-texas-apres-refus"
+      ],
+      "manquesCibles": [
+        "Refus du Texas Cœur : cinq ou six cartes, fit garanti ou non"
+      ]
+    },
+    {
+      "concept": "sa1.texas_mineur",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-sa1-mineur-faible-longueur"
+      ],
+      "manquesCibles": [
+        "Cinq ou six Trèfles faibles : longueur du repli mineur"
+      ]
+    },
+    {
+      "concept": "sa1.texas_mineur.suite",
+      "familiesObserved": 11,
+      "familiesAdded": [
+        "V2-M2-sa1-mineur-suite-force"
+      ],
+      "manquesCibles": [
+        "Texas Carreau rectifié, singleton Pique : partielle ou recherche de manche"
+      ]
+    },
+    {
+      "concept": "sa.gambling",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-gambling-tenue"
+      ],
+      "manquesCibles": [
+        "Gambling : neuf levées maîtresses mais tenue latérale décisive"
+      ]
+    },
+    {
+      "concept": "sa2.texas.reponse",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-sa2-texas-fit"
+      ],
+      "manquesCibles": [
+        "Texas Cœur sur 2SA : trois atouts ou deux à force égale"
+      ]
+    },
+    {
+      "concept": "sa1.stayman.contre",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-sa1-stayman-contre-tenue"
+      ],
+      "manquesCibles": [
+        "Stayman contré : même majeure quatrième, tenue Trèfle ou non"
+      ]
+    },
+    {
+      "concept": "sa1.texas.contre",
+      "familiesObserved": 3,
+      "familiesAdded": [
+        "V2-M2-sa1-texas-contre-tenue"
+      ],
+      "manquesCibles": [
+        "Texas Cœur contré : fit troisième constant, tenue Carreau ou non"
+      ]
+    },
+    {
+      "concept": "sa1.texas_mineur.reponse",
+      "familiesObserved": 3,
+      "familiesAdded": [
+        "V2-M2-sa1-texas-mineur-asymetrie"
+      ],
+      "manquesCibles": [
+        "Même ouverture, modulation Trèfle ou rectification Carreau obligatoire"
+      ]
+    },
+    {
+      "concept": "sa2.stayman.reponse",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-sa2-reponse-stayman"
+      ],
+      "manquesCibles": [
+        "Une ou deux majeures quatrièmes chez l'ouvreur"
+      ]
+    },
+    {
+      "concept": "sa2.bicolore",
+      "familiesObserved": 4,
+      "familiesAdded": [
+        "V2-M2-sa2-5-5-choix"
+      ],
+      "manquesCibles": [
+        "Double cinq majeur : choix selon le soutien inégal"
+      ]
+    },
+    {
+      "concept": "sa2.texas_mineur.reponse",
+      "familiesObserved": 3,
+      "familiesAdded": [
+        "V2-M2-sa2-mineur-soutien"
+      ],
+      "manquesCibles": [
+        "Texas Trèfle sur 2SA : soutien quatrième solide ou doubleton"
+      ]
+    }
+  ],
+  "newContrastFamilies": 21,
+  "additions": 42,
+  "exceptions": [
+    "Les limites non documentées du Texas mineur (V1-M2-R003/R004) restent en réserve : pas de nouveau seuil de soutien.",
+    "Le 5–5 majeur reste limité au choix de manche documenté, sans étendre aux 5–4, 6–5 ni égalités.",
+    "Les développements Stayman/Texas contrés HOLD V1 et #271 ne sont pas réouverts ; seuls les contrastes de tenue déjà documentés sont traités.",
+    "Le quantitatif de chelem appartient à M6.",
+    "Les groupes de choix 5–5, rectification fittée et Texas mineur contiennent des décisions déjà illustrées séparément ; leur valeur ajoutée est la comparaison à force comparable, pas une nouvelle convention.",
+    "Le re-Texas Cœur est une transposition symétrique du cas Pique SEF-L31-001, à vérifier à l'arbitrage final."
+  ],
+  "checks": {
+    "virtual": 1628,
+    "scopeVirtual": 172,
+    "structuralErrors": [],
+    "uniqueIds": 42,
+    "exactMainAuctionCollisions": 0,
+    "manualDecisionReview": "Critères de contraste, forces, longueurs, réponses et accords comparés aux ancres ; aucun test global."
+  }
+}
