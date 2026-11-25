@@ -1,0 +1,64 @@
+{
+  "schema": "QPJB_RESERVE_PLAN_V1",
+  "mission": 325,
+  "contract": 320,
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "branch": "reserve-quiz/v1-m5-forcing",
+  "scope": [
+    "roudi.suite",
+    "fortes.redemande",
+    "forcing.troisieme",
+    "forcing.quatrieme.suite",
+    "forcing.checkback"
+  ],
+  "baseline": {
+    "catalogue": 1595,
+    "concepts": 99,
+    "rawDeficit": 8
+  },
+  "target": {
+    "concepts": 5,
+    "additions": 6,
+    "exceptions": 2,
+    "patches": 0
+  },
+  "concepts": [
+    {
+      "concept": "roudi.suite",
+      "accessible": 0,
+      "deficit": 3,
+      "planned": 2,
+      "exceptions": 1
+    },
+    {
+      "concept": "fortes.redemande",
+      "accessible": 1,
+      "deficit": 2,
+      "planned": 2,
+      "exceptions": 0
+    },
+    {
+      "concept": "forcing.troisieme",
+      "accessible": 2,
+      "deficit": 1,
+      "planned": 0,
+      "exceptions": 1
+    },
+    {
+      "concept": "forcing.quatrieme.suite",
+      "accessible": 2,
+      "deficit": 1,
+      "planned": 1,
+      "exceptions": 0
+    },
+    {
+      "concept": "forcing.checkback",
+      "accessible": 2,
+      "deficit": 1,
+      "planned": 1,
+      "exceptions": 0
+    }
+  ],
+  "strategy": "Cartographie unique sur table explicite, préclassifications, audits forts/Roudi/forcing, patch M6 et manifeste #319. N3 pour décisions isolées, sans abaisser stage, minSession ou dépendances. Familles supplémentaires, pas de reclassement des anciens cas.",
+  "limitation": "quizz.html blob exact confirmé mais contenu vide via fetch_file, raw refusé pour taille ; cartographie reconstituée depuis les sources nominatives, une fiche SEF-V411-007 non retrouvée dans préclassification forcing ; dédoublonnage exhaustif global non revendiqué."
+}
