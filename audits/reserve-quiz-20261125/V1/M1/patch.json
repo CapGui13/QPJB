@@ -1,0 +1,300 @@
+{
+  "additions": [
+    {
+      "id": "V1-M1-001",
+      "qcm": {
+        "id": "V1-M1-001",
+        "theme": "red",
+        "hand": [
+          [
+            "8",
+            "5"
+          ],
+          [
+            "R",
+            "V",
+            "9",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "8",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          2,
+          4,
+          1,
+          6
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire répond 1♠ à votre ouverture de 1♣. Avec cette main irrégulière, quelle redemande décrit correctement votre force et votre longueur ?",
+        "answer": "2♣",
+        "choices": [
+          "2♥",
+          "1SA",
+          "2♣",
+          "3♣"
+        ],
+        "explain": "Vos 13 H et six Trèfles donnent 15 HL. Annoncer 2♥ serait un bicolore cher : le partenaire devrait monter à 3♣ pour préférer votre première couleur, et votre force est insuffisante (le référentiel demande environ 18 HL). Répétez naturellement vos six Trèfles à 2♣. 3♣ à saut surévaluerait la main ; 1SA masquerait le singleton et la longue.",
+        "difficulty": 3,
+        "difficultyReason": "Refus d'un bicolore cher : reconnaître le seuil et choisir une répétition sixième évidente, sans calcul de zone limite.",
+        "caseFamily": "reserve-20261125-v1-m1-001"
+      },
+      "prerequis": {
+        "concept": "red.bicolore_cher",
+        "stage": 3,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Refuser le reverse avec une couleur d'ouverture sixième et une seconde quatrième, sous le seuil de force. Les neuf cas N4 couvrent déjà les reverse positifs, et deux bicolores à saut (distincts du reverse). Pas de transpositions positives ni de reclassement N4.",
+      "source": "Catalogue figé : SEF-V410-006 (reverse 1♣–1♠–2♥, seuil 18 HL), SEF-V413-013 (refus de reverse après 2/1), SEF-N132-2 (répétition sixième simple). Application à une situation 1/1 distincte ; aucun nouveau visa SEF."
+    },
+    {
+      "id": "V1-M1-002",
+      "qcm": {
+        "id": "V1-M1-002",
+        "theme": "second",
+        "hand": [
+          [
+            "A",
+            "D",
+            "10",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (bicolore cher, au moins 18 HL)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous découvrez un fit Cœur après le bicolore cher du partenaire. Avec cette main forte, quelle enchère exprime le fit tout en laissant de la place pour rechercher un chelem ?",
+        "answer": "3♥",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♥",
+          "4♥"
+        ],
+        "explain": "Vos quatre Cœurs complètent les quatre cartes promises par l'ouvreur. Avec 14 H face à sa forte redemande, ne fermez pas les enchères à 4♥ : 3♥ est le soutien direct forcing de manche dans cette séquence, qui laisse de l'espace pour les contrôles. 2SA modérateur ne décrit pas ce jeu fort fitté ; 2♠ privilégierait la recherche d'un fit encore incertain alors que le fit Cœur est connu.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître un soutien direct forcing en majeure avec une force nettement suffisante ; ne demande ni Blackwood ni enchère de contrôle.",
+        "caseFamily": "reserve-20261125-v1-m1-002"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Soutenir directement la seconde majeure à 3 pour garder la recherche de chelem ouverte, distinct du 4 direct et du soutien faible via 2SA. Les autres choix (2SA modérateur, répétition, SA, soutien mineur, arrêt) sont déjà représentés ; ne pas banaliser leur maîtrise.",
+      "source": "Catalogue figé : SEF-L34-002 (3♥ direct forcing de manche vs soutien faible différé), SEF-L15-002 (conclusion directe à 4♥ avec 9 H). Application au soutien exploratoire, sans nouvelle convention."
+    },
+    {
+      "id": "V1-M1-003",
+      "qcm": {
+        "id": "V1-M1-003",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8",
+            "5"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "4"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          4,
+          2,
+          2,
+          5
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : 1♥",
+          "Partenaire : 1♠",
+          "Adversaire : Passe"
+        ],
+        "context": "L'adversaire de gauche intervient à 1♥, votre partenaire répond naturellement 1♠ et le quatrième joueur passe. Quelle redemande choisissez-vous ?",
+        "answer": "2♠",
+        "choices": [
+          "Passe",
+          "1SA",
+          "2♣",
+          "2♠"
+        ],
+        "explain": "Avec 13 H et quatre Piques, vous soutenez naturellement à 2♠ : votre partenaire a annoncé au moins quatre cartes, le fit huitième est assuré. Son changement de couleur est forcing un tour ici ; Passe est interdit. 1SA ou 2♣ ne transmettraient pas le fit majeur. La présence de l'intervention n'efface pas la priorité au soutien.",
+        "difficulty": 3,
+        "difficultyReason": "Redemande forcée avec fit quatrième explicite ; choisir le soutien minimal sans gérer la convention du contre de soutien.",
+        "caseFamily": "reserve-20261125-v1-m1-003"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux décisions absentes des familles accessibles : soutien naturel en redemande obligée après intervention du n°2, puis annonce économique d'une deuxième couleur en redemande libre après intervention du n°4. Conserver distinctes les familles historiques de choix libre, contre/surcontre de soutien et redemande forcée à SA.",
+      "source": "Catalogue figé : SEF-V471-006 (1♠ naturel forcing après intervention au n°2), SEF-V471-003 (soutien de quatre cartes en compétition). Nouvelle décision : soutien en redemande obligée."
+    },
+    {
+      "id": "V1-M1-004",
+      "qcm": {
+        "id": "V1-M1-004",
+        "theme": "red",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "5"
+          ],
+          [
+            "D",
+            "7"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          2,
+          5,
+          4,
+          2
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : 2♣"
+        ],
+        "context": "Après votre ouverture de 1♥ et la réponse de 1♠, le quatrième joueur intervient à 2♣. Votre main permet-elle de poursuivre naturellement sans promettre un fit Pique ?",
+        "answer": "2♦",
+        "choices": [
+          "Passe",
+          "2♥",
+          "2♦",
+          "2♠"
+        ],
+        "explain": "Avec 15 H, cinq Cœurs et quatre beaux Carreaux, annoncez librement 2♦. Ce bicolore reste économique : le partenaire peut préférer vos Cœurs à 2♥ sans dépasser le palier de deux. Votre force permet de parler malgré le droit de passer. 2♥ cacherait les quatre Carreaux et 2♠ inventerait un fit. L'intervention ne transforme pas 2♦ en bicolore cher.",
+        "difficulty": 3,
+        "difficultyReason": "Redemande libre et descriptive : une seconde couleur économique disponible, force non minimale, aucun fit majeur connu.",
+        "caseFamily": "reserve-20261125-v1-m1-004"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux décisions absentes des familles accessibles : soutien naturel en redemande obligée après intervention du n°2, puis annonce économique d'une deuxième couleur en redemande libre après intervention du n°4. Conserver distinctes les familles historiques de choix libre, contre/surcontre de soutien et redemande forcée à SA.",
+      "source": "Catalogue figé : SEF-051-1 (1♥–1♠–2♦, bicolore économique), SEF-V471-001 et SEF-V471-004 (liberté de parler ou passer après intervention du n°4). Transposition explicite en compétition naturelle, sans accord artificiel."
+    }
+  ],
+  "patches": [],
+  "reserves": []
+}

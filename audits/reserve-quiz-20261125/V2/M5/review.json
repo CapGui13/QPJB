@@ -1,0 +1,472 @@
+{
+  "mission": "V2-M5",
+  "base": "0c3da298c3a1973665f709a92d643284fcf59ccd",
+  "observed": {
+    "apres_inter.base": {
+      "questions": 87,
+      "families": 78
+    },
+    "competitif.2sa_fitte": {
+      "questions": 8,
+      "families": 8
+    },
+    "barrage.ouverture": {
+      "questions": 28,
+      "families": 18
+    },
+    "barrage.reponse": {
+      "questions": 28,
+      "families": 25
+    },
+    "multilandy.intervention": {
+      "questions": 9,
+      "families": 9
+    },
+    "multilandy.choix": {
+      "questions": 3,
+      "families": 3
+    },
+    "rubensohl.naturel": {
+      "questions": 15,
+      "families": 15
+    },
+    "rubensohl.init": {
+      "questions": 17,
+      "families": 17
+    },
+    "michaels.intervention": {
+      "questions": 10,
+      "families": 10
+    },
+    "michaels.choix": {
+      "questions": 4,
+      "families": 4
+    },
+    "competitif.spoutnik": {
+      "questions": 10,
+      "families": 10
+    },
+    "competitif.truscott": {
+      "questions": 18,
+      "families": 18
+    },
+    "barrage.suite": {
+      "questions": 12,
+      "families": 12
+    },
+    "michaels.defense": {
+      "questions": 19,
+      "families": 19
+    },
+    "michaels.reponse": {
+      "questions": 30,
+      "families": 30
+    },
+    "multilandy.reponse": {
+      "questions": 10,
+      "families": 10
+    },
+    "multilandy.suite": {
+      "questions": 11,
+      "families": 11
+    },
+    "rubensohl.reponse": {
+      "questions": 16,
+      "families": 16
+    },
+    "rubensohl.suite": {
+      "questions": 6,
+      "families": 6
+    },
+    "competitif.sa_adverse": {
+      "questions": 7,
+      "families": 7
+    },
+    "chelem.splinter.variante": {
+      "questions": 6,
+      "families": 6
+    }
+  },
+  "groups": [
+    {
+      "key": "V2-M5-G01",
+      "theme": "apres_inter",
+      "label": "Soutien limite : intervention naturelle ou Contre",
+      "discriminant": "nature de l'intervention, à main constante",
+      "ids": [
+        "V2-M5-001",
+        "V2-M5-002"
+      ],
+      "decisions": [
+        "3♠",
+        "2SA"
+      ],
+      "anchors": [
+        "SEF-V473-006",
+        "SEF-L42-001"
+      ]
+    },
+    {
+      "key": "V2-M5-G02",
+      "theme": "apres_inter",
+      "label": "Fit forcing ou soutien trois cartes",
+      "discriminant": "nombre d'atouts et valorisation du neuvième",
+      "ids": [
+        "V2-M5-003",
+        "V2-M5-004"
+      ],
+      "decisions": [
+        "2SA",
+        "3♦"
+      ],
+      "anchors": [
+        "SEF-L26-004",
+        "SEF-L22-004"
+      ]
+    },
+    {
+      "key": "V2-M5-G03",
+      "theme": "apres_inter",
+      "label": "2SA naturel exceptionnel ou Contre généralisé",
+      "discriminant": "intervention à saut faible ou intervention au palier de un",
+      "ids": [
+        "V2-M5-005",
+        "V2-M5-006"
+      ],
+      "decisions": [
+        "2SA",
+        "Contre"
+      ],
+      "anchors": [
+        "SEF-L39-005",
+        "SEF-L19-008"
+      ]
+    },
+    {
+      "key": "V2-M5-G04",
+      "theme": "apres_inter",
+      "label": "Redemande de l'ouvreur après Spoutnik",
+      "discriminant": "zone de force au fit, même distribution",
+      "ids": [
+        "V2-M5-007",
+        "V2-M5-008"
+      ],
+      "decisions": [
+        "3♥",
+        "4♥"
+      ],
+      "anchors": [
+        "SEF-L28-002",
+        "SEF-L28-002"
+      ]
+    },
+    {
+      "key": "V2-M5-G05",
+      "theme": "apres_inter",
+      "label": "Deux sur un compétitif : arrêt ou manche",
+      "discriminant": "force restante du répondant après la redemande minimale",
+      "ids": [
+        "V2-M5-009",
+        "V2-M5-010"
+      ],
+      "decisions": [
+        "Passe",
+        "4♠"
+      ],
+      "anchors": [
+        "SEF-L30-005",
+        "SEF-L30-005"
+      ]
+    },
+    {
+      "key": "V2-M5-G06",
+      "theme": "apres_inter",
+      "label": "Rencontre ou cue-bid de fit",
+      "discriminant": "qualité et longueur de la couleur secondaire",
+      "ids": [
+        "V2-M5-011",
+        "V2-M5-012"
+      ],
+      "decisions": [
+        "4♦",
+        "3♥"
+      ],
+      "anchors": [
+        "SEF-L36-003",
+        "SEF-V473-007"
+      ]
+    },
+    {
+      "key": "V2-M5-G07",
+      "theme": "barrage",
+      "label": "Barrage mineur : effet de la quatrième position",
+      "discriminant": "trois Passe antérieurs, à main et vulnérabilité constantes",
+      "ids": [
+        "V2-M5-013",
+        "V2-M5-014"
+      ],
+      "decisions": [
+        "3♦",
+        "Passe"
+      ],
+      "anchors": [
+        "SEF-V44-047",
+        "SEF-L09-019"
+      ]
+    },
+    {
+      "key": "V2-M5-G08",
+      "theme": "barrage",
+      "label": "Deux faible ou barrage au palier trois",
+      "discriminant": "sixième ou septième carte dans la majeure, même force",
+      "ids": [
+        "V2-M5-015",
+        "V2-M5-016"
+      ],
+      "decisions": [
+        "2♠",
+        "3♠"
+      ],
+      "anchors": [
+        "SEF-V3-095-1",
+        "SEF-V3-100-4"
+      ]
+    },
+    {
+      "key": "V2-M5-G09",
+      "theme": "barrage",
+      "label": "Deux faible : relais interrogatif, minimum ou force annexe",
+      "discriminant": "force de l'ouverture, Roi extérieur maintenu",
+      "ids": [
+        "V2-M5-017",
+        "V2-M5-018"
+      ],
+      "decisions": [
+        "3♥",
+        "3♦"
+      ],
+      "anchors": [
+        "SEF-V486-001",
+        "SEF-V486-004"
+      ]
+    },
+    {
+      "key": "V2-M5-G10",
+      "theme": "barrage",
+      "label": "Prolonger le barrage ou interroger",
+      "discriminant": "force du répondant avec un fit neuvième constant",
+      "ids": [
+        "V2-M5-019",
+        "V2-M5-020"
+      ],
+      "decisions": [
+        "3♠",
+        "2SA"
+      ],
+      "anchors": [
+        "SEF-Q26-M5-007",
+        "SEF-V426-003"
+      ]
+    },
+    {
+      "key": "V2-M5-G11",
+      "theme": "multilandy",
+      "label": "Landy : deux majeures 4–4 ou 5–4",
+      "discriminant": "une cinquième carte majeure à force égale",
+      "ids": [
+        "V2-M5-021",
+        "V2-M5-022"
+      ],
+      "decisions": [
+        "Passe",
+        "2♣"
+      ],
+      "anchors": [
+        "SEF-C2-003",
+        "SEF-V45-030"
+      ]
+    },
+    {
+      "key": "V2-M5-G12",
+      "theme": "multilandy",
+      "label": "Bicolore mineur ou absence d'intervention",
+      "discriminant": "seconde mineure cinquième ou quatrième, même force",
+      "ids": [
+        "V2-M5-023",
+        "V2-M5-024"
+      ],
+      "decisions": [
+        "Passe",
+        "2SA"
+      ],
+      "anchors": [
+        "SEF-V45-029",
+        "SEF-V45-029"
+      ]
+    },
+    {
+      "key": "V2-M5-G13",
+      "theme": "multilandy",
+      "label": "Unicolore majeur ou majeure-mineure",
+      "discriminant": "six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles",
+      "ids": [
+        "V2-M5-025",
+        "V2-M5-026"
+      ],
+      "decisions": [
+        "2♦",
+        "2♠"
+      ],
+      "anchors": [
+        "SEF-C2-001",
+        "SEF-C2-002"
+      ]
+    },
+    {
+      "key": "V2-M5-G14",
+      "theme": "rubensohl",
+      "label": "Annonce naturelle faible ou Texas constructif",
+      "discriminant": "force de manche avec cinq Cœurs inchangés",
+      "ids": [
+        "V2-M5-027",
+        "V2-M5-028"
+      ],
+      "decisions": [
+        "2♥",
+        "3♦"
+      ],
+      "anchors": [
+        "SEF-V45-038",
+        "SEF-V45-040"
+      ]
+    },
+    {
+      "key": "V2-M5-G15",
+      "theme": "rubensohl",
+      "label": "Après Texas Carreau : arrêt ou proposition de 3SA",
+      "discriminant": "force et arrêt de la couleur adverse après la rectification",
+      "ids": [
+        "V2-M5-029",
+        "V2-M5-030"
+      ],
+      "decisions": [
+        "Passe",
+        "3SA"
+      ],
+      "anchors": [
+        "SEF-Q26-M2-001",
+        "SEF-L01-D-04"
+      ]
+    },
+    {
+      "key": "V2-M5-G16",
+      "theme": "rubensohl",
+      "label": "Après Texas impossible à Carreau : manche majeure ou SA",
+      "discriminant": "réponse de l'ouvreur au Stayman : fit Cœur ou 3SA sans majeure quatrième",
+      "ids": [
+        "V2-M5-031",
+        "V2-M5-032"
+      ],
+      "decisions": [
+        "4♥",
+        "Passe"
+      ],
+      "anchors": [
+        "SEF-L01-D-04",
+        "SEF-L01-D-04"
+      ]
+    },
+    {
+      "key": "V2-M5-G17",
+      "theme": "rubensohl",
+      "label": "Carreaux faibles : naturel disponible ou Texas nécessaire",
+      "discriminant": "palier atteint par l'intervention adverse, à main constante",
+      "ids": [
+        "V2-M5-033",
+        "V2-M5-034"
+      ],
+      "decisions": [
+        "2♦",
+        "3♣"
+      ],
+      "anchors": [
+        "SEF-V486-019",
+        "SEF-C2-006"
+      ]
+    },
+    {
+      "key": "V2-M5-G18",
+      "theme": "michaels",
+      "label": "Michaël ou intervention naturelle : seuil de la seconde couleur",
+      "discriminant": "cinquième Trèfle ou seulement quatre, à Pique cinquième constant",
+      "ids": [
+        "V2-M5-035",
+        "V2-M5-036"
+      ],
+      "decisions": [
+        "1♠",
+        "2♥"
+      ],
+      "anchors": [
+        "SEF-C2-008",
+        "SEF-V45-043"
+      ]
+    },
+    {
+      "key": "V2-M5-G19",
+      "theme": "apres_inter",
+      "label": "Défense contre bicolore : soutien limite ou fit forcing",
+      "discriminant": "trois ou quatre atouts après Michaël Cœur adverse",
+      "ids": [
+        "V2-M5-037",
+        "V2-M5-038"
+      ],
+      "decisions": [
+        "2SA",
+        "2♠"
+      ],
+      "anchors": [
+        "SEF-L19-004",
+        "SEF-L33-001"
+      ]
+    },
+    {
+      "key": "V2-M5-G20",
+      "theme": "michaels",
+      "label": "Concurrence après 3♠ : neuf ou dix atouts",
+      "discriminant": "neuvième ou dixième atout, à vulnérabilité favorable et avec une couvrante",
+      "ids": [
+        "V2-M5-039",
+        "V2-M5-040"
+      ],
+      "decisions": [
+        "Passe",
+        "4♥"
+      ],
+      "anchors": [
+        "SEF-V478-005",
+        "SEF-V478-005"
+      ]
+    }
+  ],
+  "newFamilyCount": 20,
+  "additions": 40,
+  "exceptions": [
+    "Les familles de contraste regroupent deux décisions ; les ancres attestent des conventions mais certains membres isolés prolongent une décision historique. Pas de revendication de 40 familles indépendantes.",
+    "Le réveil Michaël des V1-M4-006/007/008 est hors rubrique ; pas de nouveau cas.",
+    "Pas de réouverture des réserves V1 ni des arbitrages #271/#319.",
+    "Les décisions compétitives de jugement (barrage, vulnérabilité) ne sont pas garanties de réalisation."
+  ],
+  "checks": {
+    "virtualCount": 1628,
+    "priorAdditions": 33,
+    "handCount": 40,
+    "uniqueIds": 40,
+    "distinctGroups": 20,
+    "exactDuplicateHandsAuction": 0,
+    "choiceCount": 4,
+    "metadataFromAnchors": true,
+    "productionTouched": false,
+    "globalTests": false
+  }
+}

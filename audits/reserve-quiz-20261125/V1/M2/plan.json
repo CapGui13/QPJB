@@ -1,0 +1,84 @@
+{
+  "schema": "QPJB_RESERVE_QUIZ_V1_M2",
+  "contract": "#320",
+  "mission": "#322",
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "baseQuizBlob": "53c78fae3e6845ff9f66e2260dcc80b2c05deb09",
+  "basePrerequisBlob": "e9f5d28921aafd9fad5fb532964418f6871778bb",
+  "scope": [
+    "sa.gambling",
+    "sa2.bicolore",
+    "sa2.texas.reponse",
+    "sa2.texas_mineur.reponse",
+    "sa1.texas_mineur.reponse"
+  ],
+  "method": "Cartographie locale des 16 QCM mappés dans la table figée, y compris 8 ajouts du cycle #319 ; lecture ciblée du plan antérieur M2 et registre #271. Famille = décision pédagogique indépendante, non identifiant seul. Les décisions déjà présentes à N4 ne sont pas recréées à N3. Contrôle transversal des séquences ciblées sans audit global.",
+  "target": {
+    "concepts": 5,
+    "rawDeficit": 10,
+    "additions": 2,
+    "exceptionsToRawDeficit": 8,
+    "patches": 0
+  },
+  "byConcept": [
+    {
+      "concept": "sa.gambling",
+      "existingAccessible": 1,
+      "rawDeficit": 2,
+      "newFamilies": 1,
+      "remainingException": 1,
+      "plannedIds": [
+        "V1-M2-001"
+      ],
+      "exceptions": [
+        "Le repli 4♣ existe déjà, y compris à N3 dans SEF-L27-004 hors concept ; pas de copie. La correction 4♦ est déjà présente à N4, miroir du passe à 4♣ ; pas de variante dégradée. L'interrogation de courte est déjà traitée par SEF-L23-005 et SEF-L13-014/L18-001 à 003."
+      ]
+    },
+    {
+      "concept": "sa2.bicolore",
+      "existingAccessible": 0,
+      "rawDeficit": 3,
+      "newFamilies": 1,
+      "remainingException": 2,
+      "plannedIds": [
+        "V1-M2-002"
+      ],
+      "exceptions": [
+        "Le départ à 4♦ est déjà trois fois couvert à N4 ; une autre main 5–5 serait un doublon décisionnel. Le choix symétrique de l'autre majeure ne constitue pas une nouvelle famille indépendante. Aucun nouvel accord 5–4, 6–5, chelem ou égalité de longueur n'est introduit sans source spécifique."
+      ]
+    },
+    {
+      "concept": "sa2.texas.reponse",
+      "existingAccessible": 2,
+      "rawDeficit": 1,
+      "newFamilies": 0,
+      "remainingException": 1,
+      "plannedIds": [],
+      "exceptions": [
+        "Les deux décisions sont accessibles, déjà illustrées dans les deux majeures et avec trois/quatre atouts. Une autre main ou une majeure permutée n'ajoute pas une troisième décision ; la suite du répondant relève de sa2.texas.suite. Ne pas inventer une super-rectification."
+      ]
+    },
+    {
+      "concept": "sa2.texas_mineur.reponse",
+      "existingAccessible": 0,
+      "rawDeficit": 3,
+      "newFamilies": 0,
+      "remainingException": 3,
+      "plannedIds": [],
+      "exceptions": [
+        "Trois exercices existent, tous N4 et stage 3 ; réécrire avec les mêmes mains-types à N3 serait un abaissement artificiel. Le critère exact avec trois petites cartes et/ou gros doubleton n'est pas établi par les cas existants. La fondation parent sa1.texas_mineur possède SEF-V482-001/002 et SEF-Q26-M2-005/006 à N2–3 ; conserver les prérequis et ne pas ajouter hors périmètre."
+      ]
+    },
+    {
+      "concept": "sa1.texas_mineur.reponse",
+      "existingAccessible": 2,
+      "rawDeficit": 1,
+      "newFamilies": 0,
+      "remainingException": 1,
+      "plannedIds": [],
+      "exceptions": [
+        "La troisième décision est déjà présente à N4 avec stage 3 et auto-prérequis renforcé. Pas de clone positif à niveau abaissé ; les seuils précis d'acceptation avec gros doubleton ou quatre petites cartes ne sont pas établis. Le parent sa1.texas_mineur couvre déjà le départ dans les deux mineures."
+      ]
+    }
+  ]
+}

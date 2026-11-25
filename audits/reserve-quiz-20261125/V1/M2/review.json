@@ -1,0 +1,317 @@
+{
+  "schema": "QPJB_RESERVE_QUIZ_V1_M2_REVIEW",
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "concepts": [
+    {
+      "concept": "sa.gambling",
+      "baseAccessible": 1,
+      "ids": [
+        "SEF-L06-029",
+        "SEF-Q26-M2-014",
+        "SEF-Q26-M2-015"
+      ],
+      "families": [
+        {
+          "decision": "Ouvreur : correction à 4♦ avec longue ♦",
+          "ids": [
+            "SEF-L06-029"
+          ],
+          "difficulty": [
+            4
+          ]
+        },
+        {
+          "decision": "Ouvreur : passe avec longue ♣",
+          "ids": [
+            "SEF-Q26-M2-014"
+          ],
+          "difficulty": [
+            3
+          ]
+        },
+        {
+          "decision": "Répondant : repli 4♣ passe/corrige",
+          "ids": [
+            "SEF-Q26-M2-015"
+          ],
+          "difficulty": [
+            4
+          ],
+          "crossConcept": "SEF-L27-004 traite déjà ce repli N3 ailleurs"
+        }
+      ],
+      "target": 1,
+      "cases": [
+        "V1-M2-001"
+      ],
+      "exceptions": [
+        "Le repli 4♣ existe déjà, y compris à N3 dans SEF-L27-004 hors concept ; pas de copie. La correction 4♦ est déjà présente à N4, miroir du passe à 4♣ ; pas de variante dégradée. L'interrogation de courte est déjà traitée par SEF-L23-005 et SEF-L13-014/L18-001 à 003."
+      ],
+      "manquesCibles": 2,
+      "accessibleAfter": 2,
+      "remainingException": 1,
+      "decisionKeys": [
+        "Ouvreur : correction à 4♦ avec longue ♦",
+        "Ouvreur : passe avec longue ♣",
+        "Répondant : repli 4♣ passe/corrige"
+      ]
+    },
+    {
+      "concept": "sa2.bicolore",
+      "baseAccessible": 0,
+      "ids": [
+        "SEF-L38-002",
+        "SEF-Q26-M2-010",
+        "SEF-Q26-M2-011"
+      ],
+      "families": [
+        {
+          "decision": "Répondant : 4♦ avec 5–5 majeur pour choix de manche",
+          "ids": [
+            "SEF-L38-002",
+            "SEF-Q26-M2-010",
+            "SEF-Q26-M2-011"
+          ],
+          "difficulty": [
+            4,
+            4,
+            4
+          ]
+        }
+      ],
+      "target": 1,
+      "cases": [
+        "V1-M2-002"
+      ],
+      "exceptions": [
+        "Le départ à 4♦ est déjà trois fois couvert à N4 ; une autre main 5–5 serait un doublon décisionnel. Le choix symétrique de l'autre majeure ne constitue pas une nouvelle famille indépendante. Aucun nouvel accord 5–4, 6–5, chelem ou égalité de longueur n'est introduit sans source spécifique."
+      ],
+      "manquesCibles": 3,
+      "accessibleAfter": 1,
+      "remainingException": 2,
+      "decisionKeys": [
+        "Répondant : 4♦ avec 5–5 majeur pour choix de manche"
+      ]
+    },
+    {
+      "concept": "sa2.texas.reponse",
+      "baseAccessible": 2,
+      "ids": [
+        "SEF-L23-006",
+        "SEF-L39-001",
+        "SEF-Q26-M2-008",
+        "SEF-Q26-M2-009"
+      ],
+      "families": [
+        {
+          "decision": "Rectifier avec au moins trois atouts",
+          "ids": [
+            "SEF-L39-001",
+            "SEF-Q26-M2-008"
+          ],
+          "difficulty": [
+            4,
+            3
+          ]
+        },
+        {
+          "decision": "Refuser à 3SA avec deux atouts",
+          "ids": [
+            "SEF-L23-006",
+            "SEF-Q26-M2-009"
+          ],
+          "difficulty": [
+            4,
+            3
+          ]
+        }
+      ],
+      "target": 0,
+      "cases": [],
+      "exceptions": [
+        "Les deux décisions sont accessibles, déjà illustrées dans les deux majeures et avec trois/quatre atouts. Une autre main ou une majeure permutée n'ajoute pas une troisième décision ; la suite du répondant relève de sa2.texas.suite. Ne pas inventer une super-rectification."
+      ],
+      "manquesCibles": 1,
+      "accessibleAfter": 2,
+      "remainingException": 1,
+      "decisionKeys": [
+        "Rectifier avec au moins trois atouts",
+        "Refuser à 3SA avec deux atouts"
+      ]
+    },
+    {
+      "concept": "sa2.texas_mineur.reponse",
+      "baseAccessible": 0,
+      "ids": [
+        "SEF-L41-004",
+        "SEF-Q26-M2-012",
+        "SEF-Q26-M2-013"
+      ],
+      "families": [
+        {
+          "decision": "Refus à 3SA avec doubleton ♣",
+          "ids": [
+            "SEF-L41-004"
+          ],
+          "difficulty": [
+            4
+          ]
+        },
+        {
+          "decision": "Acceptation 4♣ avec soutien approprié (Roi troisième ou RV quatrième)",
+          "ids": [
+            "SEF-Q26-M2-012",
+            "SEF-Q26-M2-013"
+          ],
+          "difficulty": [
+            4,
+            4
+          ]
+        }
+      ],
+      "target": 0,
+      "cases": [],
+      "exceptions": [
+        "Trois exercices existent, tous N4 et stage 3 ; réécrire avec les mêmes mains-types à N3 serait un abaissement artificiel. Le critère exact avec trois petites cartes et/ou gros doubleton n'est pas établi par les cas existants. La fondation parent sa1.texas_mineur possède SEF-V482-001/002 et SEF-Q26-M2-005/006 à N2–3 ; conserver les prérequis et ne pas ajouter hors périmètre."
+      ],
+      "manquesCibles": 3,
+      "accessibleAfter": 0,
+      "remainingException": 3,
+      "decisionKeys": [
+        "Refus à 3SA avec doubleton ♣",
+        "Acceptation 4♣ avec soutien approprié (Roi troisième ou RV quatrième)"
+      ]
+    },
+    {
+      "concept": "sa1.texas_mineur.reponse",
+      "baseAccessible": 2,
+      "ids": [
+        "SEF-L25-007",
+        "SEF-L25-008",
+        "SEF-L37-004"
+      ],
+      "families": [
+        {
+          "decision": "Modulation positive Texas ♣ (16 H, R troisième)",
+          "ids": [
+            "SEF-L25-007"
+          ],
+          "difficulty": [
+            4
+          ]
+        },
+        {
+          "decision": "Rectification normale ♣ (V troisième)",
+          "ids": [
+            "SEF-L25-008"
+          ],
+          "difficulty": [
+            3
+          ]
+        },
+        {
+          "decision": "Rectification obligatoire ♦ même doubleton",
+          "ids": [
+            "SEF-L37-004"
+          ],
+          "difficulty": [
+            3
+          ]
+        }
+      ],
+      "target": 0,
+      "cases": [],
+      "exceptions": [
+        "La troisième décision est déjà présente à N4 avec stage 3 et auto-prérequis renforcé. Pas de clone positif à niveau abaissé ; les seuils précis d'acceptation avec gros doubleton ou quatre petites cartes ne sont pas établis. Le parent sa1.texas_mineur couvre déjà le départ dans les deux mineures."
+      ],
+      "manquesCibles": 1,
+      "accessibleAfter": 2,
+      "remainingException": 1,
+      "decisionKeys": [
+        "Modulation positive Texas ♣ (16 H, R troisième)",
+        "Rectification normale ♣ (V troisième)",
+        "Rectification obligatoire ♦ même doubleton"
+      ]
+    }
+  ],
+  "totals": {
+    "concepts": 5,
+    "existingQcm": 16,
+    "rawDeficit": 10,
+    "additions": 2,
+    "exceptions": 8,
+    "patches": 0,
+    "reserves": 4
+  },
+  "historicalSignals": [
+    {
+      "ids": [
+        "SEF-L25-007",
+        "SEF-L25-008"
+      ],
+      "signal": "La modulation 2SA n’exige pas 17 H dans le premier ; le second dit généralement maximum. Ne pas transformer ce vocabulaire en seuil absolu."
+    },
+    {
+      "ids": [
+        "SEF-L38-002",
+        "SEF-Q26-M2-010",
+        "SEF-Q26-M2-011"
+      ],
+      "signal": "Trois IDs/familles déclarées, même décision de départ à 4♦. Ne compter qu'une famille indépendante."
+    },
+    {
+      "ids": [
+        "SEF-Q26-M2-015",
+        "SEF-L27-004"
+      ],
+      "signal": "Repli 4♣ déjà traité dans un autre concept à N3. Ne pas dupliquer ni déplacer en V1."
+    }
+  ],
+  "checks": {
+    "executed": [
+      {
+        "id": "V1-M2-001",
+        "cards": 13,
+        "H": 12,
+        "shape": [
+          3,
+          3,
+          2,
+          5
+        ],
+        "validRanks": true,
+        "fourDistinctChoices": true,
+        "exactPrerequis": true,
+        "idAbsent": true,
+        "handAbsent": true,
+        "distinctFamily": true,
+        "difficultyValid": true,
+        "scopeValid": true,
+        "textPresent": true
+      },
+      {
+        "id": "V1-M2-002",
+        "cards": 13,
+        "H": 20,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "validRanks": true,
+        "fourDistinctChoices": true,
+        "exactPrerequis": true,
+        "idAbsent": true,
+        "handAbsent": true,
+        "distinctFamily": true,
+        "difficultyValid": true,
+        "scopeValid": true,
+        "textPresent": true
+      }
+    ],
+    "manualDecisionComparison": "Lecture des 16 cas mappés et recherche ciblée des séquences gambling/4♦/Texas mineurs dans le blob figé : les nouveaux rôles/décisions ne recouvrent pas les cas lus. Comparaison du catalogue par main exacte ; contrôle des quatre choix, H, distribution, rangs distincts par couleur, ID, famille et prérequis exacts.",
+    "globalTests": false,
+    "limitations": "Pas de validation externe du système ; sources internes figées et accords explicitement annoncés. Pas de test de moteur ni de recette globale."
+  }
+}

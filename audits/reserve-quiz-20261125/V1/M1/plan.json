@@ -1,0 +1,84 @@
+{
+  "schema": "QPJB_RESERVE_QUIZ_V1",
+  "mission": 321,
+  "contract": 320,
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "quizBlob": "53c78fae3e6845ff9f66e2260dcc80b2c05deb09",
+  "prerequisBlob": "e9f5d28921aafd9fad5fb532964418f6871778bb",
+  "scope": [
+    "ouv.bicolore.exception",
+    "red.bicolore_cher",
+    "second.bicolore_cher",
+    "red.competitif"
+  ],
+  "inventory": [
+    {
+      "concept": "ouv.bicolore.exception",
+      "count": 3,
+      "families": 3,
+      "accessibleFamilies": 0
+    },
+    {
+      "concept": "red.bicolore_cher",
+      "count": 9,
+      "families": 9,
+      "accessibleFamilies": 0
+    },
+    {
+      "concept": "second.bicolore_cher",
+      "count": 10,
+      "families": 10,
+      "accessibleFamilies": 0
+    },
+    {
+      "concept": "red.competitif",
+      "count": 15,
+      "families": 11,
+      "accessibleFamilies": 1
+    }
+  ],
+  "objective": {
+    "concepts": 4,
+    "rawDeficit": 11,
+    "additions": 4,
+    "documentedExceptions": 7,
+    "patches": 0
+  },
+  "gaps": [
+    {
+      "concept": "ouv.bicolore.exception",
+      "target": 0,
+      "exception": 3,
+      "reason": "Exception 5♠–5♣ et comptage des perdantes : les trois cas historiques, dont les deux ajouts #319, couvrent déjà le seuil de cinq et le refus à six. Ajouter trois permutations ou abaisser N5 serait artificiel. Fondations existantes ouv.majeure, ouv.mineure, red.bicolore ; ne pas les dupliquer hors périmètre."
+    },
+    {
+      "concept": "red.bicolore_cher",
+      "target": 1,
+      "exception": 2,
+      "ids": [
+        "V1-M1-001"
+      ],
+      "reason": "Refuser le reverse avec une couleur d'ouverture sixième et une seconde quatrième, sous le seuil de force. Les neuf cas N4 couvrent déjà les reverse positifs, et deux bicolores à saut (distincts du reverse). Pas de transpositions positives ni de reclassement N4."
+    },
+    {
+      "concept": "second.bicolore_cher",
+      "target": 1,
+      "exception": 2,
+      "ids": [
+        "V1-M1-002"
+      ],
+      "reason": "Soutenir directement la seconde majeure à 3 pour garder la recherche de chelem ouverte, distinct du 4 direct et du soutien faible via 2SA. Les autres choix (2SA modérateur, répétition, SA, soutien mineur, arrêt) sont déjà représentés ; ne pas banaliser leur maîtrise."
+    },
+    {
+      "concept": "red.competitif",
+      "target": 2,
+      "exception": 0,
+      "ids": [
+        "V1-M1-003",
+        "V1-M1-004"
+      ],
+      "reason": "Deux décisions absentes des familles accessibles : soutien naturel en redemande obligée après intervention du n°2, puis annonce économique d'une deuxième couleur en redemande libre après intervention du n°4. Conserver distinctes les familles historiques de choix libre, contre/surcontre de soutien et redemande forcée à SA."
+    }
+  ],
+  "policy": "Plan arrêté après cartographie unique sur base figée (inclut #319) ; difficulté distincte du stage. Aucun abaissement de plancher ni correction historique. #271 et V44-007 préservés."
+}

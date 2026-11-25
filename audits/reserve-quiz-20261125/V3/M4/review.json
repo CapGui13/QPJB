@@ -1,0 +1,1609 @@
+{
+  "mission": "V3-M4",
+  "base": "55d733bdb6409badb81b7a7d8113fdf05bd533fa",
+  "synthese": {
+    "examines": 48,
+    "conserves": 19,
+    "corrections": 29,
+    "reserves": 0,
+    "changementsReponse": 0,
+    "changementsPrerequis": 0,
+    "groupesContrastes": 20,
+    "controles": {
+      "ids": true,
+      "mainsHShape": true,
+      "choixDisponibles": true,
+      "oldExact": true,
+      "prerequisCorrespondanceCatalogue": true,
+      "groupesDeuxMembres": true,
+      "erreurs": []
+    }
+  },
+  "items": [
+    {
+      "id": "V1-M3-002",
+      "theme": "reponse_inter",
+      "concept": "intervenir.sa.suite",
+      "family": "V1-M3-002",
+      "statut": "conserver",
+      "motif": "Le Stayman sur ouverture mineure et les alternatives sont explicites ; quatre Cœurs, 10 H, source iBridge 140.",
+      "ancre": "SEF-L38-004/005, SEF-Q26-M4-001/002 (#319) ; https://www.ibridge.fr/public/fichedetails/140",
+      "prerequis": {
+        "concept": "intervenir.sa.suite",
+        "stage": 3,
+        "minSession": 21,
+        "requires": [
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♣"
+    },
+    {
+      "id": "V1-M3-003",
+      "theme": "reponse_inter",
+      "concept": "intervenir.sa.suite",
+      "family": "V1-M3-003",
+      "statut": "conserver",
+      "motif": "3 H réguliers sans cinquième ni majeure libre quatrième : Passe et le sens des Texas sont clairement expliqués.",
+      "ancre": "SEF-L38-004/005, SEF-Q26-M4-001/002 (#319) ; https://www.ibridge.fr/public/fichedetails/140",
+      "prerequis": {
+        "concept": "intervenir.sa.suite",
+        "stage": 3,
+        "minSession": 21,
+        "requires": [
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V1-M3-004",
+      "theme": "reponse_inter",
+      "concept": "intervenir.sa.suite",
+      "family": "V1-M3-004",
+      "statut": "corriger",
+      "motif": "Relie les valeurs de manche, la tenue promise et l'absence de recherche majeure.",
+      "ancre": "SEF-L38-004/005, SEF-Q26-M4-001/002 (#319) ; https://www.ibridge.fr/public/fichedetails/140 ; iBridge 140 ; SEF-L38-005",
+      "prerequis": {
+        "concept": "intervenir.sa.suite",
+        "stage": 3,
+        "minSession": 21,
+        "requires": [
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "3SA"
+    },
+    {
+      "id": "V1-M4-006",
+      "theme": "reveil",
+      "concept": "michaels.reveil",
+      "family": "reserve-v1-m4-reveil-soutien-mineur-cuebid-majeures",
+      "statut": "conserver",
+      "motif": "Deux majeures 5–5, cue-bid sur soutien mineur et différence avec 2SA justifiés par iBridge 292.",
+      "ancre": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique).",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "3♦"
+    },
+    {
+      "id": "V1-M4-007",
+      "theme": "reveil",
+      "concept": "michaels.reveil",
+      "family": "reserve-v1-m4-reveil-soutien-mineur-2sa-mineure-majeure",
+      "statut": "conserver",
+      "motif": "Cœur–Trèfle 5–5, 2SA conventionnel des couleurs libres les moins chères, alternatives exactes.",
+      "ancre": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique).",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2SA"
+    },
+    {
+      "id": "V1-M4-008",
+      "theme": "reveil",
+      "concept": "michaels.reveil",
+      "family": "reserve-v1-m4-reveil-soutien-majeur-refus-bicolore-tricolore",
+      "statut": "conserver",
+      "motif": "4–4–4 hors couleur adverse : Contre et les trois bicolores concurrents correctement distingués.",
+      "ancre": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique).",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-001",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-01",
+      "statut": "conserver",
+      "motif": "12 H et tricolore court à Cœur : justification du Contre, refus du réveil systématique et des autres appels.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-004 (métadonnées et règle de référence) ; Force à distribution tricolore constante; #320/#327/#331. ; SEF-V470-008 (distribution en intervention directe, pas seuil du réveil)",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 1,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-002",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-01",
+      "statut": "corriger",
+      "motif": "Distingue forme favorable et ressources insuffisantes, sans transformer la forme en obligation de réveil.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-004 (métadonnées et règle de référence) ; Force à distribution tricolore constante; #320/#327/#331. ; SEF-V470-008 (forme)",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 1,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-003",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-02",
+      "statut": "conserver",
+      "motif": "14 H et arrêt RD84 ; zone de 2SA de réveil conforme à SEF-Q26-M4-003.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-003 (métadonnées et règle de référence) ; Force régulière avec arrêt, sans fit alternatif; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 3,
+        "minSession": 24,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.deux_faible",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2SA"
+    },
+    {
+      "id": "V2-M4-004",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-02",
+      "statut": "conserver",
+      "motif": "12 H malgré la tenue ; absence de couleur libre quatrième et force insuffisante pour 2SA.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-003 (métadonnées et règle de référence) ; Force régulière avec arrêt, sans fit alternatif; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 3,
+        "minSession": 24,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.deux_faible",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-005",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-03",
+      "statut": "conserver",
+      "motif": "12 H et cinq Piques ARD107, palier disponible, pas d'arrêt Cœur : raison du réveil naturel claire.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-004 (métadonnées et règle de référence) ; Couleur d'ouverture adverse par rapport à la longue personnelle; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 1,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♠"
+    },
+    {
+      "id": "V2-M4-006",
+      "theme": "reveil",
+      "concept": "reveil.deux_faible",
+      "family": "reserve-v2-m4-03",
+      "statut": "corriger",
+      "motif": "Supprime le renvoi à la paire et explicite le refus de 2SA malgré une tenue excellente.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-Q26-M4-004 (métadonnées et règle de référence) ; Couleur d'ouverture adverse par rapport à la longue personnelle; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reveil.deux_faible",
+        "stage": 1,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-007",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-04",
+      "statut": "corriger",
+      "motif": "Supprime le repère géographique ambigu et oppose la zone directe à celle du réveil sans référence implicite à une autre fiche.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V3-043-3 (métadonnées et règle de référence) ; Position seule, main identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-008",
+      "theme": "reveil",
+      "concept": "reveil.base",
+      "family": "reserve-v2-m4-04",
+      "statut": "corriger",
+      "motif": "Précise la différence de position, la zone et les deux alternatives.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V4-057-2 (métadonnées et règle de référence) ; Position seule, main identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reveil.base",
+        "stage": 3,
+        "minSession": 23,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "1SA"
+    },
+    {
+      "id": "V2-M4-009",
+      "theme": "intervenir",
+      "concept": "intervenir.deux_faible",
+      "family": "reserve-v2-m4-05",
+      "statut": "conserver",
+      "motif": "Longue Pique cinquième autonome sur 2♥ faible, forme et force compatibles, Contre moins précis.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V470-010 (métadonnées et règle de référence) ; Cinquième autonome contre quatre cartes dans les trois couleurs libres; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.deux_faible",
+        "stage": 1,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♠"
+    },
+    {
+      "id": "V2-M4-010",
+      "theme": "intervenir",
+      "concept": "intervenir.deux_faible",
+      "family": "reserve-v2-m4-05",
+      "statut": "corriger",
+      "motif": "Rend le cas autonome et distingue clairement qualité et longueur.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V470-008 (métadonnées et règle de référence) ; Cinquième autonome contre quatre cartes dans les trois couleurs libres; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.deux_faible",
+        "stage": 1,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-011",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-06",
+      "statut": "conserver",
+      "motif": "16 H réguliers avec arrêt Pique sûr ; 1SA direct dans la zone attestée et autres actions moins adaptées.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L27-001 (métadonnées et règle de référence) ; Localisation d'un As, à force et forme identiques; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1SA"
+    },
+    {
+      "id": "V2-M4-012",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-06",
+      "statut": "corriger",
+      "motif": "Supprime la référence comparative et explique le passage malgré la force.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L27-001 (métadonnées et règle de référence) ; Localisation d'un As, à force et forme identiques; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-013",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-07",
+      "statut": "conserver",
+      "motif": "Cinq Cœurs et 13 H, pas de tenue Carreau ; 1♥ naturel expliqué contre Contre et 1SA.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V418-004 (métadonnées et règle de référence) ; Une petite carte déplacée de Cœur vers Pique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♥"
+    },
+    {
+      "id": "V2-M4-014",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-07",
+      "statut": "corriger",
+      "motif": "Autonomie de lecture et explicitation de l'arrêt manquant.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V418-004 (métadonnées et règle de référence) ; Une petite carte déplacée de Cœur vers Pique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-015",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-08",
+      "statut": "conserver",
+      "motif": "8 HL et cinquième liée en vulnérabilité favorable ; SEF-L13-013, caractère facultatif bien marqué.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L13-013 (métadonnées et règle de référence) ; Palier accessible, même main et vulnérabilité; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♥"
+    },
+    {
+      "id": "V2-M4-016",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-08",
+      "statut": "corriger",
+      "motif": "Rend explicite le coût du palier sans supposer que l'élève a vu l'autre question.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L13-013 (métadonnées et règle de référence) ; Palier accessible, même main et vulnérabilité; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-017",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-09",
+      "statut": "corriger",
+      "motif": "Explique la qualité de la longue et évite de généraliser une intervention limite.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V3-041-3 (métadonnées et règle de référence) ; Concentration des honneurs dans la longue, à force égale; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♣"
+    },
+    {
+      "id": "V2-M4-018",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-09",
+      "statut": "corriger",
+      "motif": "Distingue valeurs offensives/défensives et les deux alternatives sans allusion à la paire.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V3-041-3 (métadonnées et règle de référence) ; Concentration des honneurs dans la longue, à force égale; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 1,
+        "minSession": 11,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-019",
+      "theme": "intervenir",
+      "concept": "intervenir.base",
+      "family": "reserve-v2-m4-10",
+      "statut": "conserver",
+      "motif": "17 HL et belle sixième sous le plafond de 18 HL : intervention simple directe motivée.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L27-002 (métadonnées et règle de référence) ; Intervention directe contre réveil avec 17 HL; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.base",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♠"
+    },
+    {
+      "id": "V2-M4-020",
+      "theme": "reveil",
+      "concept": "reveil.base",
+      "family": "reserve-v2-m4-10",
+      "statut": "corriger",
+      "motif": "Justifie la différence avec intervention immédiate et explicite le saut constructif (SEF-L10-020).",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V4-053-3 (métadonnées et règle de référence) ; Intervention directe contre réveil avec 17 HL; #320/#327/#331. ; SEF-L10-020",
+      "prerequis": {
+        "concept": "reveil.base",
+        "stage": 3,
+        "minSession": 23,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-021",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-11",
+      "statut": "corriger",
+      "motif": "Corrige le commentaire trompeur d'un saut absent des choix : 2♣ est au plus bas palier dans sa couleur.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V419-008 (métadonnées et règle de référence) ; Passe ou soutien du troisième joueur, main identique; #320/#327/#331. ; SEF-V49-030",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 0,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♥"
+    },
+    {
+      "id": "V2-M4-022",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-11",
+      "statut": "conserver",
+      "motif": "Le soutien du troisième joueur libère la réponse ; 3 H et quatre Cœurs insuffisants pour une enchère libre.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V419-008 (métadonnées et règle de référence) ; Passe ou soutien du troisième joueur, main identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 0,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "V2-M4-023",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-12",
+      "statut": "corriger",
+      "motif": "Explicite l'exception de force du cue-bid et le choix laissé au contreur.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L08-020 (métadonnées et règle de référence) ; Deux majeures quatrièmes ou une seule, à 9 H; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♣"
+    },
+    {
+      "id": "V2-M4-024",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-12",
+      "statut": "corriger",
+      "motif": "Supprime le renvoi au membre précédent et justifie le saut par force et distribution.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L08-020 (métadonnées et règle de référence) ; Deux majeures quatrièmes ou une seule, à 9 H; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♠"
+    },
+    {
+      "id": "V2-M4-025",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-13",
+      "statut": "conserver",
+      "motif": "10 H et quatre Cœurs sur 1♦ : saut simple opposé au double saut avec cinq, explication autonome.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L08-023 (métadonnées et règle de référence) ; Quatre ou cinq cartes en majeure, force identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♥"
+    },
+    {
+      "id": "V2-M4-026",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-13",
+      "statut": "corriger",
+      "motif": "Rend le contraste autonome et fournit le repère de calcul du double saut.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L08-023 (métadonnées et règle de référence) ; Quatre ou cinq cartes en majeure, force identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "3♥"
+    },
+    {
+      "id": "V2-M4-027",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-14",
+      "statut": "corriger",
+      "motif": "Explique le distracteur Passe dans la séquence d'appel et la valeur de l'arrêt.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V420-012 (métadonnées et règle de référence) ; Force de réponse, même forme et arrêt; #320/#327/#331. ; SEF-V420-012 (comparaison 2SA)",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 1,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1SA"
+    },
+    {
+      "id": "V2-M4-028",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "reserve-v2-m4-14",
+      "statut": "corriger",
+      "motif": "Rend la réponse autonome et clarifie l'invitation non conclusive.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V420-012 (métadonnées et règle de référence) ; Force de réponse, même forme et arrêt; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 1,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2SA"
+    },
+    {
+      "id": "V2-M4-029",
+      "theme": "contre",
+      "concept": "contre.deux_faible",
+      "family": "reserve-v2-m4-15",
+      "statut": "corriger",
+      "motif": "Explique pourquoi le palier trois ne signifie pas un saut ni une force intermédiaire.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V476-009 (métadonnées et règle de référence) ; Passage de la zone faible à la zone intermédiaire; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.deux_faible",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "3♥"
+    },
+    {
+      "id": "V2-M4-030",
+      "theme": "contre",
+      "concept": "contre.deux_faible",
+      "family": "reserve-v2-m4-15",
+      "statut": "corriger",
+      "motif": "Précise ce que le mini-cue-bid ne promet pas et le rôle du relais.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V476-009 (métadonnées et règle de référence) ; Passage de la zone faible à la zone intermédiaire; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.deux_faible",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "2SA"
+    },
+    {
+      "id": "V2-M4-031",
+      "theme": "contre",
+      "concept": "contre.deux_faible",
+      "family": "reserve-v2-m4-16",
+      "statut": "conserver",
+      "motif": "13 H réguliers et arrêt AD84, pas de majeure libre quatrième : manche naturelle et mini-cue-bid exclu.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V476-011 (métadonnées et règle de référence) ; Tenue adverse à force de manche identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.deux_faible",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "3SA"
+    },
+    {
+      "id": "V2-M4-032",
+      "theme": "contre",
+      "concept": "contre.deux_faible",
+      "family": "reserve-v2-m4-16",
+      "statut": "corriger",
+      "motif": "Supprime le renvoi à la paire et relie absence de tenue, de majeure libre et de longue au cue-bid.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V476-010 (métadonnées et règle de référence) ; Tenue adverse à force de manche identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "contre.deux_faible",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "3♠"
+    },
+    {
+      "id": "V2-M4-033",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-17",
+      "statut": "corriger",
+      "motif": "Identifie explicitement la couleur cue-biddée parmi les deux couleurs adverses et le soutien direct.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V487-002 (métadonnées et règle de référence) ; Trois ou quatre atouts, force identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 3,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "2♣"
+    },
+    {
+      "id": "V2-M4-034",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-17",
+      "statut": "conserver",
+      "motif": "Quatre Cœurs et 13 H, distinction cue-bid simple/à saut et mixed raise exacte d'après V487.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V487-001 (métadonnées et règle de référence) ; Trois ou quatre atouts, force identique; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 3,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "3♣"
+    },
+    {
+      "id": "V2-M4-035",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-18",
+      "statut": "conserver",
+      "motif": "Quatre Piques et 8 H : Contre exact dans (1♣)–1♦–(1♥), pas de soutien artificiel Carreau.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V486-014 (métadonnées et règle de référence) ; Quatre ou cinq Piques après 1♥ du troisième joueur; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "Contre"
+    },
+    {
+      "id": "V2-M4-036",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-18",
+      "statut": "corriger",
+      "motif": "Supprime le repère temporel qui suppose l'autre cas, circonscrit l'exception.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-V486-014 (métadonnées et règle de référence) ; Quatre ou cinq Piques après 1♥ du troisième joueur; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♠"
+    },
+    {
+      "id": "V2-M4-037",
+      "theme": "reponse_inter",
+      "concept": "intervenir.sa.suite",
+      "family": "reserve-v2-m4-19",
+      "statut": "corriger",
+      "motif": "Explique la logique du Texas impossible dans la séquence et non par mémorisation de l'enchère.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L38-005 (métadonnées et règle de référence) ; Longueur de la majeure recherchée, même force; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.sa.suite",
+        "stage": 3,
+        "minSession": 21,
+        "requires": [
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♦"
+    },
+    {
+      "id": "V2-M4-038",
+      "theme": "reponse_inter",
+      "concept": "intervenir.sa.suite",
+      "family": "reserve-v2-m4-19",
+      "statut": "corriger",
+      "motif": "Relie la longueur, le transfert et la poursuite du dialogue avec des valeurs de manche.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L38-004 (métadonnées et règle de référence) ; Longueur de la majeure recherchée, même force; #320/#327/#331.",
+      "prerequis": {
+        "concept": "intervenir.sa.suite",
+        "stage": 3,
+        "minSession": 21,
+        "requires": [
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "2♥"
+    },
+    {
+      "id": "V2-M4-039",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-20",
+      "statut": "corriger",
+      "motif": "Remplace « environ 11 H » par le seuil attesté SEF-L20-004 et précise la conséquence non forcing.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L20-004 (métadonnées et règle de référence) ; Force pour introduire une nouvelle couleur au palier trois; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 3,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "3♣"
+    },
+    {
+      "id": "V2-M4-040",
+      "theme": "reponse_inter",
+      "concept": "reponse_inter.base",
+      "family": "reserve-v2-m4-20",
+      "statut": "corriger",
+      "motif": "Rend le cas autonome et aligne le seuil sur l'ancre exacte.",
+      "ancre": "Catalogue QPJB figé e910307 ; SEF-L20-004 (métadonnées et règle de référence) ; Force pour introduire une nouvelle couleur au palier trois; #320/#327/#331.",
+      "prerequis": {
+        "concept": "reponse_inter.base",
+        "stage": 3,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "decision": "Passe"
+    },
+    {
+      "id": "SEF-V49-030",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "v49-030",
+      "statut": "corriger",
+      "motif": "Remplace le contexte générique, explique la priorité majeure et évite de changer la réponse historique approuvée.",
+      "ancre": "SEF-V49-030 ; catalogue figé e910307 ; #334/#338",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 0,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "1♥"
+    },
+    {
+      "id": "SEF-V49-031",
+      "theme": "contre",
+      "concept": "contre.base",
+      "family": "v49-031",
+      "statut": "corriger",
+      "motif": "Corrige l'ambiguïté de la notion de saut et contextualise l'exception historique sans changer la réponse.",
+      "ancre": "SEF-V49-031 ; catalogue figé e910307 ; #334/#338 ; SEF-L08-023",
+      "prerequis": {
+        "concept": "contre.base",
+        "stage": 1,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "decision": "3♥"
+    }
+  ],
+  "groupesContrastes": [
+    {
+      "family": "reserve-v2-m4-01",
+      "ids": [
+        "V2-M4-001",
+        "V2-M4-002"
+      ],
+      "decisions": [
+        "Contre",
+        "Passe"
+      ],
+      "critere": "Force : tricolore 4–1–4–4 en réveil sur 2♥ faible, 12 H contre 6 H ; Contre/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-02",
+      "ids": [
+        "V2-M4-003",
+        "V2-M4-004"
+      ],
+      "decisions": [
+        "2SA",
+        "Passe"
+      ],
+      "critere": "Force : même tenue Pique et forme régulière, 14 contre 12 H ; 2SA/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-03",
+      "ids": [
+        "V2-M4-005",
+        "V2-M4-006"
+      ],
+      "decisions": [
+        "2♠",
+        "Passe"
+      ],
+      "critere": "Couleur adverse : même main et vulnérabilité, Piques libres ou couleur du barrage ; 2♠/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-04",
+      "ids": [
+        "V2-M4-007",
+        "V2-M4-008"
+      ],
+      "decisions": [
+        "Passe",
+        "1SA"
+      ],
+      "critere": "Position : même main, intervention immédiate ou réveil sur 1♣ ; Passe/1SA.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-05",
+      "ids": [
+        "V2-M4-009",
+        "V2-M4-010"
+      ],
+      "decisions": [
+        "2♠",
+        "Contre"
+      ],
+      "critere": "Distribution : cinquième Pique contre trois couleurs libres quatrièmes ; 2♠/Contre.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-06",
+      "ids": [
+        "V2-M4-011",
+        "V2-M4-012"
+      ],
+      "decisions": [
+        "1SA",
+        "Passe"
+      ],
+      "critere": "Arrêt : même force de 16 H et même distribution, arrêt Pique présent ou absent ; 1SA/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-07",
+      "ids": [
+        "V2-M4-013",
+        "V2-M4-014"
+      ],
+      "decisions": [
+        "1♥",
+        "Contre"
+      ],
+      "critere": "Distribution : cinquième Cœur ou deux majeures quatrièmes, 13 H ; 1♥/Contre.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-08",
+      "ids": [
+        "V2-M4-015",
+        "V2-M4-016"
+      ],
+      "decisions": [
+        "1♥",
+        "Passe"
+      ],
+      "critere": "Palier : même main 8 HL, 1♦ ou 1♠ adverse ; 1♥/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-09",
+      "ids": [
+        "V2-M4-017",
+        "V2-M4-018"
+      ],
+      "decisions": [
+        "2♣",
+        "Passe"
+      ],
+      "critere": "Qualité offensive : même force 12 HL et forme, honneurs concentrés à Trèfle ou à Pique, vulnérabilité défavorable ; 2♣/Passe. Choix de jugement, non automatisme.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-10",
+      "ids": [
+        "V2-M4-019",
+        "V2-M4-020"
+      ],
+      "decisions": [
+        "1♠",
+        "Contre"
+      ],
+      "critere": "Position : même unicolore de 17 HL en direct ou réveil ; 1♠/Contre.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-11",
+      "ids": [
+        "V2-M4-021",
+        "V2-M4-022"
+      ],
+      "decisions": [
+        "1♥",
+        "Passe"
+      ],
+      "critere": "Parole du n°3 : réponse obligatoire après Passe ou libre après soutien ; 1♥/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-12",
+      "ids": [
+        "V2-M4-023",
+        "V2-M4-024"
+      ],
+      "decisions": [
+        "2♣",
+        "2♠"
+      ],
+      "critere": "Distribution : deux majeures quatrièmes ou une seule à 9 H ; cue-bid 2♣/2♠.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-13",
+      "ids": [
+        "V2-M4-025",
+        "V2-M4-026"
+      ],
+      "decisions": [
+        "2♥",
+        "3♥"
+      ],
+      "critere": "Longueur : quatre ou cinq Cœurs à 10 H sur 1♦–Contre ; 2♥/3♥.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-14",
+      "ids": [
+        "V2-M4-027",
+        "V2-M4-028"
+      ],
+      "decisions": [
+        "1SA",
+        "2SA"
+      ],
+      "critere": "Force : régulière avec arrêt et sans majeure libre quatrième, 8/11 H ; 1SA/2SA.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-15",
+      "ids": [
+        "V2-M4-029",
+        "V2-M4-030"
+      ],
+      "decisions": [
+        "3♥",
+        "2SA"
+      ],
+      "critere": "Force : 7/9 H, quatre Cœurs après Contre sur 2♠ faible ; 3♥/2SA mini-cue-bid.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-16",
+      "ids": [
+        "V2-M4-031",
+        "V2-M4-032"
+      ],
+      "decisions": [
+        "3SA",
+        "3♠"
+      ],
+      "critere": "Arrêt : force de manche, tenue Pique ou non ; 3SA/3♠ cue-bid.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-17",
+      "ids": [
+        "V2-M4-033",
+        "V2-M4-034"
+      ],
+      "decisions": [
+        "2♣",
+        "3♣"
+      ],
+      "critere": "Fit : trois/quatre Cœurs et 13 H, après intervention et nouvelle couleur adverse ; 2♣/3♣.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-18",
+      "ids": [
+        "V2-M4-035",
+        "V2-M4-036"
+      ],
+      "decisions": [
+        "Contre",
+        "1♠"
+      ],
+      "critere": "Longueur : quatre/cinq Piques après (1♣)–1♦–(1♥) ; Contre/1♠.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-19",
+      "ids": [
+        "V2-M4-037",
+        "V2-M4-038"
+      ],
+      "decisions": [
+        "2♦",
+        "2♥"
+      ],
+      "critere": "Longueur : quatre/cinq Piques après 1♥–1SA–Passe ; Texas impossible 2♦/Texas 2♥.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    },
+    {
+      "family": "reserve-v2-m4-20",
+      "ids": [
+        "V2-M4-039",
+        "V2-M4-040"
+      ],
+      "decisions": [
+        "3♣",
+        "Passe"
+      ],
+      "critere": "Force : cinq Trèfles, 12/6 H après intervention sur 2♥ faible ; 3♣/Passe.",
+      "statut": "contraste justifié ; aucune modification de réponse"
+    }
+  ],
+  "reservesExistantes": [
+    "V1-M3-R01",
+    "V1-M3-R02",
+    "V1-M3-R03",
+    "V1-M3-R04"
+  ],
+  "notes": [
+    "Paires toutes internes au lot (y compris deux paires réparties entre rubriques intervenir et reveil).",
+    "Les cas de jugement (qualité de couleur, vulnérabilité) restent présentés comme décisions préférables et non seuils absolus.",
+    "Aucun changement de réponse ou de prérequis ; les règles locales restent celles documentées."
+  ]
+}

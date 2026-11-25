@@ -1,0 +1,2904 @@
+{
+  "additions": [
+    {
+      "id": "V2-M5-001",
+      "qcm": {
+        "id": "V2-M5-001",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G01",
+        "hand": [
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "D",
+            "6",
+            "2"
+          ],
+          [
+            "V",
+            "9",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♥ (naturel)"
+        ],
+        "context": "Vous avez quatre atouts, une main régulière de soutien limite. Quelle enchère décrit le fit après l'intervention naturelle ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♠",
+          "3♥"
+        ],
+        "answer": "3♠",
+        "explain": "Les 10 H et le neuvième atout donnent 12 HLD. Après 2♥ naturel, 3♠ est une proposition de manche avec quatre atouts. 2SA fitté décrit normalement trois atouts ; 3♥ impose la manche.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nature de l'intervention, à main constante."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Soutien limite : intervention naturelle ou Contre — nature de l'intervention, à main constante.",
+      "source": "Catalogue figé SEF-V473-006 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-002",
+      "qcm": {
+        "id": "V2-M5-002",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G01",
+        "hand": [
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "D",
+            "6",
+            "2"
+          ],
+          [
+            "V",
+            "9",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Contre (d'appel)"
+        ],
+        "context": "Même force de soutien limite, mais l'adversaire a contré l'ouverture. Quel soutien choisissez-vous ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♠",
+          "3♥"
+        ],
+        "answer": "2SA",
+        "explain": "Après Contre, le 2SA Truscott montre quatre atouts et 11–12 HLD. Les 10 H et le neuvième Pique placent la main dans cette zone. 3♠ est un barrage dans cette séquence ; 3♥ mixed raise est plus faible.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nature de l'intervention, à main constante."
+      },
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Soutien limite : intervention naturelle ou Contre — nature de l'intervention, à main constante.",
+      "source": "Catalogue figé SEF-L42-001 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-003",
+      "qcm": {
+        "id": "V2-M5-003",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G02",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "6"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♦ (naturel)"
+        ],
+        "context": "Quelle enchère de soutien constructif décrit précisément les trois Piques ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♠",
+          "3♦"
+        ],
+        "answer": "2SA",
+        "explain": "Avec 11 H et trois Piques, le 2SA fitté décrit la zone 11–15 HLD. 3♦ cue-bid de manche requiert normalement quatre atouts, et 3♠ le soutien limite à quatre atouts.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nombre d'atouts et valorisation du neuvième."
+      },
+      "prerequis": {
+        "concept": "competitif.2sa_fitte",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Fit forcing ou soutien trois cartes — nombre d'atouts et valorisation du neuvième.",
+      "source": "Catalogue figé SEF-L26-004 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-004",
+      "qcm": {
+        "id": "V2-M5-004",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G02",
+        "hand": [
+          [
+            "R",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "10",
+            "8"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♦ (naturel)"
+        ],
+        "context": "Une quatrième carte à Pique remplace un petit Trèfle. Quelle enchère convient à cette force de soutien ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♠",
+          "3♦"
+        ],
+        "answer": "3♦",
+        "explain": "Les 11 H et les deux points du neuvième atout donnent 13 HLD. Le cue-bid 3♦ agréé les Piques et impose la manche. 2SA ne décrit pas ce quatrième atout ; 3♠ limite la force à 11–12 HLD.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nombre d'atouts et valorisation du neuvième."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Fit forcing ou soutien trois cartes — nombre d'atouts et valorisation du neuvième.",
+      "source": "Catalogue figé SEF-L22-004 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-005",
+      "qcm": {
+        "id": "V2-M5-005",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G03",
+        "hand": [
+          [
+            "A",
+            "D",
+            "8"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "V",
+            "9",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : 2♠ (faible à saut)"
+        ],
+        "context": "Vous n'avez que deux Cœurs, un arrêt Pique et une main d'invitation. Que choisissez-vous ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2SA",
+          "3SA"
+        ],
+        "answer": "2SA",
+        "explain": "Avec 11 H et ♠AD8, le 2SA naturel est exceptionnellement disponible après le saut faible à 2♠. Il propose 3SA et ne promet pas trois Cœurs.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : intervention à saut faible ou intervention au palier de un."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "2SA naturel exceptionnel ou Contre généralisé — intervention à saut faible ou intervention au palier de un.",
+      "source": "Catalogue figé SEF-L39-005 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-006",
+      "qcm": {
+        "id": "V2-M5-006",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G03",
+        "hand": [
+          [
+            "A",
+            "D",
+            "8"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "V",
+            "9",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : 1♠ (naturel)"
+        ],
+        "context": "Cette fois, l'intervention à Pique n'est pas sautée. Comment exprimer vos valeurs sans prétendre avoir le fit ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2SA",
+          "3SA"
+        ],
+        "answer": "Contre",
+        "explain": "Sur l'intervention naturelle non sautée, 2SA est fitté dans le système étudié. Avec deux Cœurs, commencez par Contre généralisé, puis envisagez SA. 3SA serait trop fort et Passe sous-évaluerait les 11 H.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : intervention à saut faible ou intervention au palier de un."
+      },
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "2SA naturel exceptionnel ou Contre généralisé — intervention à saut faible ou intervention au palier de un.",
+      "source": "Catalogue figé SEF-L19-008 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-007",
+      "qcm": {
+        "id": "V2-M5-007",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G04",
+        "hand": [
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "V",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : 1♠",
+          "Partenaire : Contre (Spoutnik, au moins quatre Cœurs)",
+          "Adversaire : Passe"
+        ],
+        "context": "Avec quatre Cœurs, choisissez la redemande correspondant à une ouverture intermédiaire.",
+        "choices": [
+          "2♥",
+          "3♥",
+          "4♥",
+          "2SA"
+        ],
+        "answer": "3♥",
+        "explain": "15 H et un doubleton donnent 16 HLD. Le saut à 3♥ décrit une ouverture intermédiaire avec quatre Cœurs ; 2♥ serait minimum et 4♥ montrerait environ 18–19 HLD.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : zone de force au fit, même distribution."
+      },
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Redemande de l'ouvreur après Spoutnik — zone de force au fit, même distribution.",
+      "source": "Catalogue figé SEF-L28-002 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-008",
+      "qcm": {
+        "id": "V2-M5-008",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G04",
+        "hand": [
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "D",
+            "8",
+            "3"
+          ]
+        ],
+        "h": 17,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : 1♠",
+          "Partenaire : Contre (Spoutnik, au moins quatre Cœurs)",
+          "Adversaire : Passe"
+        ],
+        "context": "Avec le même fit, votre force est maintenant celle d'une ouverture forte. Quelle redemande ?",
+        "choices": [
+          "2♥",
+          "3♥",
+          "4♥",
+          "2SA"
+        ],
+        "answer": "4♥",
+        "explain": "17 H et le doubleton donnent 18 HLD. Le soutien direct à 4♥ décrit la zone 18–19 HLD après le Spoutnik. 3♥ sous-évaluerait le jeu.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : zone de force au fit, même distribution."
+      },
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Redemande de l'ouvreur après Spoutnik — zone de force au fit, même distribution.",
+      "source": "Catalogue figé SEF-L28-002 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-009",
+      "qcm": {
+        "id": "V2-M5-009",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G05",
+        "hand": [
+          [
+            "D",
+            "8"
+          ],
+          [
+            "R",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "10",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          2,
+          3,
+          5,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♣",
+          "Vous : 2♦ (naturel, forcing un tour)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (six Piques au moins, minimum)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez répondu 2♦ avec 12 HL ; le partenaire a satisfait le forcing. Quelle est la décision avec le fit huitième mais sans valeurs de manche ?",
+        "choices": [
+          "Passe",
+          "3♦",
+          "3♠",
+          "4♠"
+        ],
+        "answer": "Passe",
+        "explain": "Les 11 H et la cinquième carte à Carreau donnent 12 HL. Le 2 sur 1 après intervention n'est pas auto-forcing : le partenaire a redemandé. Avec deux Piques et une ouverture minimale en face, une manche n'est pas acquise. Passe est possible.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force restante du répondant après la redemande minimale."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux sur un compétitif : arrêt ou manche — force restante du répondant après la redemande minimale.",
+      "source": "Catalogue figé SEF-L30-005 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-010",
+      "qcm": {
+        "id": "V2-M5-010",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G05",
+        "hand": [
+          [
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "10",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          2,
+          3,
+          5,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♣",
+          "Vous : 2♦ (naturel, forcing un tour)",
+          "Adversaire : Passe",
+          "Partenaire : 2♠ (six Piques au moins, minimum)",
+          "Adversaire : Passe"
+        ],
+        "context": "Même séquence, mais vous avez maintenant des valeurs de manche. Choisissez le contrat avec le fit huitième garanti.",
+        "choices": [
+          "Passe",
+          "3♦",
+          "3♠",
+          "4♠"
+        ],
+        "answer": "4♠",
+        "explain": "14 H et une cinquième carte à Carreau donnent 15 HL. Les six Piques du partenaire et vos deux Piques établissent le fit. 4♠ exploite la force de manche ; Passe ou 3♠ la sous-évalueraient.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force restante du répondant après la redemande minimale."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux sur un compétitif : arrêt ou manche — force restante du répondant après la redemande minimale.",
+      "source": "Catalogue figé SEF-L30-005 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-011",
+      "qcm": {
+        "id": "V2-M5-011",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G06",
+        "hand": [
+          [
+            "R",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "9",
+            "5"
+          ],
+          [
+            "8",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          1,
+          5,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♥ (naturel)"
+        ],
+        "context": "Votre fit Pique est de manche et votre belle mineure est cinquième. Comment montrer les deux informations ?",
+        "choices": [
+          "2SA",
+          "3♠",
+          "3♥",
+          "4♦"
+        ],
+        "answer": "4♦",
+        "explain": "Avec quatre Piques, cinq beaux Carreaux, 10 H, la cinquième carte, le singleton et le neuvième atout donnent environ 15 HLD. 4♦ est la rencontre. Le cue-bid 3♥ agréerait les Piques sans décrire la longue.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : qualité et longueur de la couleur secondaire."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Rencontre ou cue-bid de fit — qualité et longueur de la couleur secondaire.",
+      "source": "Catalogue figé SEF-L36-003 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-012",
+      "qcm": {
+        "id": "V2-M5-012",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G06",
+        "hand": [
+          [
+            "R",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "9"
+          ],
+          [
+            "8",
+            "6",
+            "5",
+            "3"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          1,
+          4,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : 2♥ (naturel)"
+        ],
+        "context": "Vous avez perdu le cinquième Carreau, mais conservez la force de manche au fit. Quelle enchère de fit est exacte ?",
+        "choices": [
+          "2SA",
+          "3♠",
+          "3♥",
+          "4♦"
+        ],
+        "answer": "3♥",
+        "explain": "10 H, le singleton et le neuvième atout donnent 14 HLD. Quatre Carreaux ne suffisent pas à la rencontre. 3♥ est le cue-bid forcing de manche avec quatre Piques ; il ne promet pas une longue secondaire.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : qualité et longueur de la couleur secondaire."
+      },
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Rencontre ou cue-bid de fit — qualité et longueur de la couleur secondaire.",
+      "source": "Catalogue figé SEF-V473-007 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-013",
+      "qcm": {
+        "id": "V2-M5-013",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G07",
+        "hand": [
+          [
+            "8",
+            "4"
+          ],
+          [
+            "7",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          2,
+          7,
+          2
+        ],
+        "auction": [],
+        "context": "Donneur, non vulnérable contre vulnérable, vous avez une longue mineure faible. Quelle ouverture ?",
+        "choices": [
+          "Passe",
+          "1♦",
+          "2♦",
+          "3♦"
+        ],
+        "answer": "3♦",
+        "explain": "Sept Carreaux commandés par RDV et une main faible conviennent au barrage de 3♦ à vulnérabilité favorable. L'ouverture de 1♦ serait trop forte ; 2♦ n'est pas le barrage naturel étudié.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : trois Passe antérieurs, à main et vulnérabilité constantes."
+      },
+      "prerequis": {
+        "concept": "barrage.ouverture",
+        "stage": 1,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Barrage mineur : effet de la quatrième position — trois Passe antérieurs, à main et vulnérabilité constantes.",
+      "source": "Catalogue figé SEF-V44-047 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-014",
+      "qcm": {
+        "id": "V2-M5-014",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G07",
+        "hand": [
+          [
+            "8",
+            "4"
+          ],
+          [
+            "7",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          2,
+          7,
+          2
+        ],
+        "auction": [
+          "Adversaire : Passe",
+          "Partenaire : Passe",
+          "Adversaire : Passe"
+        ],
+        "context": "Même main et vulnérabilité, mais vous êtes en quatrième position. Quelle décision ?",
+        "choices": [
+          "Passe",
+          "1♦",
+          "2♦",
+          "3♦"
+        ],
+        "answer": "Passe",
+        "explain": "Trois Passe ont déjà été prononcés. Avec 6 H et aucun espoir constructif évident, le barrage ne gênerait plus une ouverture adverse. Passe clôt la donne sans risque.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : trois Passe antérieurs, à main et vulnérabilité constantes."
+      },
+      "prerequis": {
+        "concept": "barrage.ouverture",
+        "stage": 1,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Barrage mineur : effet de la quatrième position — trois Passe antérieurs, à main et vulnérabilité constantes.",
+      "source": "Catalogue figé SEF-L09-019 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-015",
+      "qcm": {
+        "id": "V2-M5-015",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G08",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "2"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [],
+        "context": "Première position, vulnérabilité favorable, six beaux Piques sans autre majeure quatrième. Quelle ouverture ?",
+        "choices": [
+          "Passe",
+          "1♠",
+          "2♠",
+          "3♠"
+        ],
+        "answer": "2♠",
+        "explain": "Les 6 H sont concentrés dans six Piques commandés par RDV. 2♠ faible est descriptif ; 3♠ promet normalement sept cartes et 1♠ une vraie ouverture.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : sixième ou septième carte dans la majeure, même force."
+      },
+      "prerequis": {
+        "concept": "barrage.ouverture",
+        "stage": 0,
+        "minSession": 17,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux faible ou barrage au palier trois — sixième ou septième carte dans la majeure, même force.",
+      "source": "Catalogue figé SEF-V3-095-1 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-016",
+      "qcm": {
+        "id": "V2-M5-016",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G08",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          7,
+          2,
+          2,
+          2
+        ],
+        "auction": [],
+        "context": "Première position, vulnérabilité favorable. La main possède maintenant sept Piques sans autre couleur longue. Quelle ouverture ?",
+        "choices": [
+          "Passe",
+          "1♠",
+          "2♠",
+          "3♠"
+        ],
+        "answer": "3♠",
+        "explain": "La septième carte rend le barrage au palier de trois naturel dans ce contexte favorable. 2♠ faible annoncerait normalement six cartes. La force en points n'a pas augmenté.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : sixième ou septième carte dans la majeure, même force."
+      },
+      "prerequis": {
+        "concept": "barrage.ouverture",
+        "stage": 1,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux faible ou barrage au palier trois — sixième ou septième carte dans la majeure, même force.",
+      "source": "Catalogue figé SEF-V3-100-4 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-017",
+      "qcm": {
+        "id": "V2-M5-017",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G09",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "V",
+            "10",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "7",
+            "2"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 7,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 2♥ (faible)",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (relais interrogatif)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes minimum du deux faible malgré un Roi extérieur. Quelle redemande ?",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "3♥",
+        "explain": "Avec 7 H et six Cœurs liés, vous êtes minimum. 3♥ signale cette zone ; le Roi extérieur ne suffit pas à transformer la main en maximum.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force de l'ouverture, Roi extérieur maintenu."
+      },
+      "prerequis": {
+        "concept": "barrage.suite",
+        "stage": 2,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Deux faible : relais interrogatif, minimum ou force annexe — force de l'ouverture, Roi extérieur maintenu.",
+      "source": "Catalogue figé SEF-V486-001 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-018",
+      "qcm": {
+        "id": "V2-M5-018",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G09",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "7",
+            "2"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 2♥ (faible)",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (relais interrogatif)",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre deux faible est maintenant maximum, avec un Roi extérieur. Quelle redemande décrit la force annexe ?",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♥",
+          "3SA"
+        ],
+        "answer": "3♦",
+        "explain": "Avec 10 H et six beaux Cœurs, vous êtes maximum. Le Roi de Carreau constitue la force annexe à montrer à 3♦. La répétition à 3♥ signifierait minimum.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force de l'ouverture, Roi extérieur maintenu."
+      },
+      "prerequis": {
+        "concept": "barrage.suite",
+        "stage": 3,
+        "minSession": 24,
+        "requires": [
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "barrage.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Deux faible : relais interrogatif, minimum ou force annexe — force de l'ouverture, Roi extérieur maintenu.",
+      "source": "Catalogue figé SEF-V486-004 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-019",
+      "qcm": {
+        "id": "V2-M5-019",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G10",
+        "hand": [
+          [
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "9",
+            "3"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "2"
+          ],
+          [
+            "9",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 5,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♠ (faible, six Piques)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vulnérabilité favorable, vous avez trois Piques et une main faible. Quelle enchère prolonge le barrage au niveau raisonnable ?",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♠",
+          "4♠"
+        ],
+        "answer": "3♠",
+        "explain": "Trois Piques face à six donnent neuf atouts. Avec 5 H, 3♠ prolonge le barrage ; 2SA annoncerait une ambition de manche inexistante. Neuf atouts ne garantissent pas neuf levées.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : force du répondant avec un fit neuvième constant."
+      },
+      "prerequis": {
+        "concept": "barrage.reponse",
+        "stage": 1,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Prolonger le barrage ou interroger — force du répondant avec un fit neuvième constant.",
+      "source": "Catalogue figé SEF-Q26-M5-007 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-020",
+      "qcm": {
+        "id": "V2-M5-020",
+        "theme": "barrage",
+        "caseFamily": "V2-M5-G10",
+        "hand": [
+          [
+            "R",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "3"
+          ],
+          [
+            "R",
+            "V",
+            "6",
+            "2"
+          ],
+          [
+            "D",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 2♠ (faible, six Piques)",
+          "Adversaire : Passe"
+        ],
+        "context": "Avec toujours trois Piques mais 15 H, la manche est envisageable sans être certaine. Quelle enchère permet d'évaluer l'ouverture ?",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♠",
+          "4♠"
+        ],
+        "answer": "2SA",
+        "explain": "Les 15 H et le fit neuvième invitent à explorer la manche. Le relais 2SA demande à l'ouvreur de préciser sa force et ses valeurs annexes. 3♠ serait un simple prolongement du barrage.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : force du répondant avec un fit neuvième constant."
+      },
+      "prerequis": {
+        "concept": "barrage.reponse",
+        "stage": 1,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Prolonger le barrage ou interroger — force du répondant avec un fit neuvième constant.",
+      "source": "Catalogue figé SEF-V426-003 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-021",
+      "qcm": {
+        "id": "V2-M5-021",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G11",
+        "hand": [
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "2"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Directement derrière 1SA, accord Multi-Landy QPJB (Landy exige 5–4). Non vulnérable. Quelle intervention décrit la main sans inventer de longueur ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2♥"
+        ],
+        "answer": "Passe",
+        "explain": "Les 10 H ne compensent pas les deux majeures seulement quatrièmes. 2♣ exige au moins 5–4 ; aucune autre intervention proposée ne décrit la main.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : une cinquième carte majeure à force égale."
+      },
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 1,
+        "minSession": 33,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.choix",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Landy : deux majeures 4–4 ou 5–4 — une cinquième carte majeure à force égale.",
+      "source": "Catalogue figé SEF-C2-003 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-022",
+      "qcm": {
+        "id": "V2-M5-022",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G11",
+        "hand": [
+          [
+            "R",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "9",
+            "7",
+            "6",
+            "5"
+          ],
+          [
+            "A",
+            "8"
+          ],
+          [
+            "9",
+            "2"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Même accord, vulnérabilité favorable : vous avez maintenant cinq Cœurs et quatre Piques. Quelle intervention ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2♥"
+        ],
+        "answer": "2♣",
+        "explain": "La cinquième carte Cœur fait atteindre le minimum 5–4 exigé par le Landy 2♣. Le partenaire pourra choisir une majeure ; 2♦ montrerait une majeure sixième.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : une cinquième carte majeure à force égale."
+      },
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Landy : deux majeures 4–4 ou 5–4 — une cinquième carte majeure à force égale.",
+      "source": "Catalogue figé SEF-V45-030 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-023",
+      "qcm": {
+        "id": "V2-M5-023",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G12",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "6"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          2,
+          5,
+          4
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Dans la variante Multi-Landy QPJB où 2SA indique les deux mineures au moins cinquièmes, vous êtes non vulnérable. Que faites-vous ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "Passe",
+        "explain": "Cinq Carreaux et quatre Trèfles ne satisfont pas le 5–5 requis par le 2SA de cette variante. Les autres enchères proposées exigent des majeures longues. Passe, malgré les 10 H.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : seconde mineure cinquième ou quatrième, même force."
+      },
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Bicolore mineur ou absence d'intervention — seconde mineure cinquième ou quatrième, même force.",
+      "source": "Catalogue figé SEF-V45-029 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-024",
+      "qcm": {
+        "id": "V2-M5-024",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G12",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "6"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          1,
+          5,
+          5
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Même accord, même force, mais les Trèfles sont maintenant cinquièmes. Quelle intervention décrit les deux couleurs ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "answer": "2SA",
+        "explain": "Les deux mineures sont cinquièmes. Dans cette variante locale, 2SA les annonce conventionnellement ; ce n'est pas une proposition naturelle de contrat à SA.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : seconde mineure cinquième ou quatrième, même force."
+      },
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Bicolore mineur ou absence d'intervention — seconde mineure cinquième ou quatrième, même force.",
+      "source": "Catalogue figé SEF-V45-029 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-025",
+      "qcm": {
+        "id": "V2-M5-025",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G13",
+        "hand": [
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "8",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Non vulnérable, accord Multi-Landy QPJB. Quelle intervention montre une seule majeure sixième ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2♠"
+        ],
+        "answer": "2♦",
+        "explain": "Les six Piques et l'absence de mineure quatrième correspondent au 2♦ Multi-Landy, majeure sixième indéterminée. 2♠ promettrait une mineure quatrième.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles."
+      },
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Unicolore majeur ou majeure-mineure — six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles.",
+      "source": "Catalogue figé SEF-C2-001 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-026",
+      "qcm": {
+        "id": "V2-M5-026",
+        "theme": "multilandy",
+        "caseFamily": "V2-M5-G13",
+        "hand": [
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "7"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "8",
+            "6",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          5,
+          2,
+          2,
+          4
+        ],
+        "auction": [
+          "Adversaire : 1SA (15–17 H)"
+        ],
+        "context": "Même force, mais vous avez cinq Piques et quatre Trèfles. Quelle intervention exprime ce bicolore ?",
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2♠"
+        ],
+        "answer": "2♠",
+        "explain": "2♠ montre au moins cinq Piques et une mineure au moins quatrième dans le Multi-Landy retenu. 2♦ annoncerait une majeure sixième, inexistante ici.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles."
+      },
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Unicolore majeur ou majeure-mineure — six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles.",
+      "source": "Catalogue figé SEF-C2-002 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-027",
+      "qcm": {
+        "id": "V2-M5-027",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G14",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "V",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "R",
+            "7",
+            "5"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♦ (naturel)"
+        ],
+        "context": "Rubensohl QPJB : vous souhaitez jouer une partielle dans votre majeure accessible au palier deux. Quelle enchère ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2♥",
+          "3♦"
+        ],
+        "answer": "2♥",
+        "explain": "Avec 6 H et cinq Cœurs, 2♥ naturel non forcing suffit. 3♦ transfère vers les Cœurs au palier supérieur et serait inutile pour cette simple partielle.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : force de manche avec cinq Cœurs inchangés."
+      },
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Annonce naturelle faible ou Texas constructif — force de manche avec cinq Cœurs inchangés.",
+      "source": "Catalogue figé SEF-V45-038 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-028",
+      "qcm": {
+        "id": "V2-M5-028",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G14",
+        "hand": [
+          [
+            "A",
+            "3"
+          ],
+          [
+            "D",
+            "V",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "R",
+            "7",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♦ (naturel)"
+        ],
+        "context": "Même longueur Cœur, mais vous avez maintenant des valeurs de manche (10 H, 11 HL). Vous voulez poursuivre la recherche de manche. Quelle enchère ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2♥",
+          "3♦"
+        ],
+        "answer": "3♦",
+        "explain": "Le 3♦ Texas Cœur permet de décrire la majeure et de poursuivre après la rectification. 2♥ est faible et non forcing : il pourrait clore les enchères prématurément.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : force de manche avec cinq Cœurs inchangés."
+      },
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Annonce naturelle faible ou Texas constructif — force de manche avec cinq Cœurs inchangés.",
+      "source": "Catalogue figé SEF-V45-040 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-029",
+      "qcm": {
+        "id": "V2-M5-029",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G15",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          2,
+          6,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)",
+          "Vous : 3♣ (Texas Carreau)",
+          "Adversaire : Passe",
+          "Partenaire : 3♦ (rectification)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez demandé la rectification pour jouer une partielle. Quelle conclusion ?",
+        "choices": [
+          "Passe",
+          "3♥",
+          "3SA",
+          "5♦"
+        ],
+        "answer": "Passe",
+        "explain": "Six Carreaux et 6 H ont justifié le Texas de dégagement. La rectification à 3♦ a atteint l'objectif ; poursuivre sans arrêt Pique et sans force de manche serait injustifié.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force et arrêt de la couleur adverse après la rectification."
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Après Texas Carreau : arrêt ou proposition de 3SA — force et arrêt de la couleur adverse après la rectification.",
+      "source": "Catalogue figé SEF-Q26-M2-001 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-030",
+      "qcm": {
+        "id": "V2-M5-030",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G15",
+        "hand": [
+          [
+            "A",
+            "3"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          2,
+          2,
+          6,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)",
+          "Vous : 3♣ (Texas Carreau)",
+          "Adversaire : Passe",
+          "Partenaire : 3♦ (rectification)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez cette fois les valeurs de manche et l'arrêt Pique. Quel contrat proposez-vous avant de choisir éventuellement la manche mineure ?",
+        "choices": [
+          "Passe",
+          "3♥",
+          "3SA",
+          "5♦"
+        ],
+        "answer": "3SA",
+        "explain": "13 H, six Carreaux et l'As de Pique justifient la proposition de 3SA. Le Texas a décrit la longue qui peut fournir des levées ; 5♦ réclame deux levées supplémentaires. Passe manquerait les valeurs de manche.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : force et arrêt de la couleur adverse après la rectification."
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Après Texas Carreau : arrêt ou proposition de 3SA — force et arrêt de la couleur adverse après la rectification.",
+      "source": "Catalogue figé SEF-L01-D-04 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-031",
+      "qcm": {
+        "id": "V2-M5-031",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G16",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "7"
+          ],
+          [
+            "R",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♦ (naturel)",
+          "Vous : 3♣ (Texas impossible : Stayman forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 3♥ (quatre Cœurs)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le partenaire a annoncé quatre Cœurs. Avec votre fit huitième et des valeurs de manche, que choisissez-vous ?",
+        "choices": [
+          "3♠",
+          "3SA",
+          "4♥",
+          "4SA"
+        ],
+        "answer": "4♥",
+        "explain": "Vos quatre Cœurs et les quatre du partenaire établissent un fit huitième. Avec les valeurs de manche, 4♥ conclut. L'arrêt Carreau ne supprime pas la priorité au fit majeur.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : la majeure quatrième cherchée est ou n'est pas celle annoncée."
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Texas impossible : fit réellement trouvé ou non — la majeure quatrième cherchée est ou n'est pas celle annoncée.",
+      "source": "Catalogue figé SEF-L01-D-04 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-032",
+      "qcm": {
+        "id": "V2-M5-032",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G16",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "9",
+            "7"
+          ],
+          [
+            "R",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♦ (naturel)",
+          "Vous : 3♣ (Texas impossible : Stayman forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 3SA (arrêt Carreau, aucune majeure quatrième)",
+          "Adversaire : Passe"
+        ],
+        "context": "Même main, mais le partenaire répond 3SA : arrêt Carreau et aucune majeure quatrième. Quelle décision ?",
+        "choices": [
+          "Passe",
+          "4♥",
+          "4SA",
+          "5♦"
+        ],
+        "answer": "Passe",
+        "explain": "Le partenaire nie une majeure quatrième et annonce l'arrêt Carreau. Vos quatre Cœurs ne trouvent donc pas le fit huitième recherché ; 3SA est la manche choisie. Passe clôt les enchères.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : la majeure quatrième cherchée est ou n'est pas celle annoncée."
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Texas impossible : fit réellement trouvé ou non — la majeure quatrième cherchée est ou n'est pas celle annoncée.",
+      "source": "Catalogue figé SEF-L01-D-04 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-033",
+      "qcm": {
+        "id": "V2-M5-033",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G17",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "10",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "D",
+            "8",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          2,
+          6,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♣ (Landy : les deux majeures)"
+        ],
+        "context": "Rubensohl QPJB après Landy adverse. Avec votre longue Carreau et une main faible, quel contrat partiel recherchez-vous au niveau le plus bas ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2♦",
+          "3♣"
+        ],
+        "answer": "2♦",
+        "explain": "Sur 2♣ Landy, 2♦ reste naturel non forcing. Avec six Carreaux et 6 H, le contrat de 2♦ est accessible ; inutile de transférer au palier trois.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nature de l'intervention adverse, longueur et force constantes."
+      },
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 0,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Landy adverse ou intervention naturelle à 2♣ : sens de 2♦ — nature de l'intervention adverse, longueur et force constantes.",
+      "source": "Catalogue figé SEF-V486-019 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-034",
+      "qcm": {
+        "id": "V2-M5-034",
+        "theme": "rubensohl",
+        "caseFamily": "V2-M5-G17",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "10",
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "D",
+            "8",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          2,
+          6,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♠ (naturel)"
+        ],
+        "context": "Même main, mais l'intervention est maintenant 2♠ naturel. Quel moyen conventionnel permet de jouer à Carreau ?",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♣",
+          "3♦"
+        ],
+        "answer": "3♣",
+        "explain": "Le palier de deux est dépassé : 2♦ n'est plus disponible. Le 3♣ Rubensohl transfère vers les Carreaux ; il permet de faire jouer 3♦ par l'ouvreur.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : nature de l'intervention adverse, longueur et force constantes."
+      },
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Landy adverse ou intervention naturelle à 2♣ : sens de 2♦ — nature de l'intervention adverse, longueur et force constantes.",
+      "source": "Catalogue figé SEF-C2-006 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-035",
+      "qcm": {
+        "id": "V2-M5-035",
+        "theme": "michaels",
+        "caseFamily": "V2-M5-G18",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "8",
+            "7"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "V",
+            "9",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          5,
+          2,
+          2,
+          4
+        ],
+        "auction": [
+          "Adversaire : 1♥"
+        ],
+        "context": "En deuxième position, vulnérabilité favorable, vous détenez cinq Piques et quatre Trèfles. Quelle intervention exacte ?",
+        "choices": [
+          "1♠",
+          "2♥",
+          "2SA",
+          "3♣"
+        ],
+        "answer": "1♠",
+        "explain": "Le Michaël précisé 2♥ promet Pique–Trèfle au moins 5–5. Avec seulement quatre Trèfles, 1♠ naturel décrit la majeure sans inventer une cinquième carte.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : cinquième Trèfle ou seulement quatre, à Pique cinquième constant."
+      },
+      "prerequis": {
+        "concept": "michaels.choix",
+        "stage": 1,
+        "minSession": 37,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.choix",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Michaël ou intervention naturelle : seuil de la seconde couleur — cinquième Trèfle ou seulement quatre, à Pique cinquième constant.",
+      "source": "Catalogue figé SEF-C2-008 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-036",
+      "qcm": {
+        "id": "V2-M5-036",
+        "theme": "michaels",
+        "caseFamily": "V2-M5-G18",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "8",
+            "7"
+          ],
+          [
+            "8"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "V",
+            "9",
+            "6",
+            "4",
+            "3"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          5,
+          1,
+          2,
+          5
+        ],
+        "auction": [
+          "Adversaire : 1♥"
+        ],
+        "context": "Même force, mais le cinquième Trèfle complète le bicolore. Accord Michaël précisé QPJB, vulnérabilité favorable. Quelle intervention ?",
+        "choices": [
+          "1♠",
+          "2♥",
+          "2SA",
+          "3♣"
+        ],
+        "answer": "2♥",
+        "explain": "Cinq Piques et cinq Trèfles satisfont l'exigence 5–5. Le cue-bid 2♥ décrit les deux couleurs ; 3♣ montrerait Pique–Carreau et 2SA les mineures.",
+        "difficulty": 3,
+        "difficultyReason": "Comparer les décisions : cinquième Trèfle ou seulement quatre, à Pique cinquième constant."
+      },
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Michaël ou intervention naturelle : seuil de la seconde couleur — cinquième Trèfle ou seulement quatre, à Pique cinquième constant.",
+      "source": "Catalogue figé SEF-V45-043 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-037",
+      "qcm": {
+        "id": "V2-M5-037",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G19",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : 2♥ (Michaël précisé : Piques et Trèfles)"
+        ],
+        "context": "Le partenaire a ouvert à Cœur. Vous avez trois Cœurs et 11 H. Quelle enchère fittée décrit le soutien limite après le bicolore adverse ?",
+        "choices": [
+          "Contre",
+          "2♠",
+          "2SA",
+          "3♥"
+        ],
+        "answer": "2SA",
+        "explain": "2SA, lorsqu'il est disponible dans cette défense, montre trois atouts et 11–12 HLD. Les 11 H et les trois Cœurs correspondent à cette zone. Le premier cue-bid 2♠ impose la manche avec fit.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : trois ou quatre atouts après Michaël Cœur adverse."
+      },
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Défense contre bicolore : soutien limite ou fit forcing — trois ou quatre atouts après Michaël Cœur adverse.",
+      "source": "Catalogue figé SEF-L19-004 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-038",
+      "qcm": {
+        "id": "V2-M5-038",
+        "theme": "apres_inter",
+        "caseFamily": "V2-M5-G19",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "2"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : 2♥ (Michaël précisé : Piques et Trèfles)"
+        ],
+        "context": "Une quatrième carte Cœur remplace un Trèfle. Quelle enchère montre votre force de manche au fit ?",
+        "choices": [
+          "Contre",
+          "2♠",
+          "2SA",
+          "3♥"
+        ],
+        "answer": "2♠",
+        "explain": "Les 11 H, le neuvième atout et le doubleton donnent 14 HLD. Le premier cue-bid adverse disponible, 2♠, est le soutien forcing de manche. 2SA ne montre pas ce quatrième atout.",
+        "difficulty": 4,
+        "difficultyReason": "Comparer les décisions : trois ou quatre atouts après Michaël Cœur adverse."
+      },
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Défense contre bicolore : soutien limite ou fit forcing — trois ou quatre atouts après Michaël Cœur adverse.",
+      "source": "Catalogue figé SEF-L33-001 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-039",
+      "qcm": {
+        "id": "V2-M5-039",
+        "theme": "michaels",
+        "caseFamily": "V2-M5-G20",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "8",
+            "6",
+            "5",
+            "2"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 4,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Adversaire : 1♠",
+          "Partenaire : 2♠ (Michaël précisé : Cœurs et Trèfles)",
+          "Adversaire : 3♠ (soutien naturel)"
+        ],
+        "context": "Votre camp est non vulnérable contre vulnérable. Vous avez quatre Cœurs et un As d'atout, mais une main sans singleton. Faut-il monter au palier de quatre ?",
+        "choices": [
+          "Passe",
+          "4♣",
+          "4♥",
+          "4SA"
+        ],
+        "answer": "Passe",
+        "explain": "Les quatre Cœurs garantissent neuf atouts, mais la surenchère à 4♥ demanderait dix levées. Avec seulement 4 H et une main sans singleton, Passe est prudent, même à vulnérabilité favorable. 4♣ ne valorise que trois Trèfles ; 4SA ne convient pas.",
+        "difficulty": 4,
+        "difficultyReason": "Évaluer le palier compétitif selon le nombre d'atouts et le potentiel offensif."
+      },
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Concurrence après 3♠ : neuf ou dix atouts — neuvième ou dixième atout, à vulnérabilité favorable et avec une couvrante",
+      "source": "Catalogue figé SEF-V478-005 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    },
+    {
+      "id": "V2-M5-040",
+      "qcm": {
+        "id": "V2-M5-040",
+        "theme": "michaels",
+        "caseFamily": "V2-M5-G20",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "9",
+            "7",
+            "4",
+            "2"
+          ],
+          [
+            "8",
+            "6",
+            "5"
+          ],
+          [
+            "8",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 4,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "auction": [
+          "Adversaire : 1♠",
+          "Partenaire : 2♠ (Michaël précisé : Cœurs et Trèfles)",
+          "Adversaire : 3♠ (soutien naturel)"
+        ],
+        "context": "Même vulnérabilité favorable et même As, mais un cinquième Cœur remplace un Carreau. Quelle action compétitive choisissez-vous ?",
+        "choices": [
+          "Passe",
+          "4♣",
+          "4♥",
+          "4SA"
+        ],
+        "answer": "4♥",
+        "explain": "Cinq Cœurs face à au moins cinq donnent dix atouts. La cinquième carte et la vulnérabilité favorable rendent 4♥ défendable avec cet As d'atout, sans garantir dix levées. 4♣ ne décrit pas le meilleur fit.",
+        "difficulty": 4,
+        "difficultyReason": "Évaluer le palier compétitif selon le nombre d'atouts et le potentiel offensif."
+      },
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Concurrence après 3♠ : neuf ou dix atouts — neuvième ou dixième atout, à vulnérabilité favorable et avec une couvrante",
+      "source": "Catalogue figé SEF-V478-005 ; contrat #320/#327/#332 ; contraste original, sans nouvel accord."
+    }
+  ],
+  "patches": [],
+  "reserves": []
+}

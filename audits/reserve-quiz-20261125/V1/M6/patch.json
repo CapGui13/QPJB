@@ -1,0 +1,477 @@
+{
+  "additions": [
+    {
+      "id": "V1-M6-001",
+      "qcm": {
+        "id": "V1-M6-001",
+        "theme": "chelem",
+        "hand": [
+          [
+            "R",
+            "V",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7",
+            "3"
+          ],
+          [
+            "R",
+            "V",
+            "6"
+          ],
+          [
+            "8",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Partenaire : 4♦ (Splinter)"
+        ],
+        "context": "Les adversaires passent. Le partenaire a annoncé un fit d'au moins quatre Piques, une courte à Carreau et une force de manche. Vous avez une ouverture minimum ; les honneurs Carreau sont mal placés en face de la courte et vous ne souhaitez pas explorer le chelem. Quelle enchère conclut à la manche ?",
+        "answer": "4♠",
+        "choices": [
+          "4♥",
+          "4♠",
+          "4SA",
+          "5♠"
+        ],
+        "explain": "4♠ conclut à la manche. Les 12 H comprennent ♦RV6, dont une partie de la valeur est redondante face à la courte annoncée. L'intérêt du Splinter est aussi d'aider l'ouvreur à réévaluer sa main, et pas de déclencher automatiquement les contrôles ou le Blackwood. Ici la main minimum ne justifie pas de poursuivre.",
+        "difficulty": 3,
+        "difficultyReason": "Exploiter la courte annoncée par le répondant : décision unique de frein après un Splinter direct.",
+        "caseFamily": "v1-m6-splinter-direct-ouvreur-frein-honneurs-courte"
+      },
+      "prerequis": {
+        "concept": "chelem.splinter",
+        "stage": 3,
+        "minSession": 43,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Ouvreur minimum : dévaloriser les honneurs dans la courte annoncée, conclure à la manche.",
+      "source": "Catalogue figé e9103075 : SEF-Q26-M6-009/010, SEF-V45-056/057/058 ; audit CONTRE_EXPERTISE_V483_CONTROLES_CHELEM_2026-11-05.md (courtes et contrôles)."
+    },
+    {
+      "id": "V1-M6-002",
+      "qcm": {
+        "id": "V1-M6-002",
+        "theme": "chelem",
+        "hand": [
+          [
+            "9",
+            "7",
+            "3"
+          ],
+          [
+            "R",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "V",
+            "10",
+            "9",
+            "5"
+          ],
+          [
+            "D",
+            "6"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          5,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♦",
+          "Partenaire : 3♠ (Splinter)"
+        ],
+        "context": "Sans intervention, le partenaire a redemandé 3♠, Splinter fitté Carreau qui impose la manche et montre une courte Pique. Vous avez cinq Carreaux et aucun arrêt Pique ; aucun arrêt Pique n'a été établi dans le camp. Le bilan de force exclut ici le chelem. Parmi ces contrats, lequel conclut raisonnablement ?",
+        "answer": "5♦",
+        "choices": [
+          "3SA",
+          "4SA",
+          "5♦",
+          "6♦"
+        ],
+        "explain": "5♦ choisit la manche dans le fit Carreau, au moins neuvième. Le 3♠ du partenaire montre la courte Pique et le soutien Carreau, pas une couleur Pique naturelle. Avec ♠973 en face d'une courte et sans arrêt établi, 3SA n'est pas le contrat à privilégier. Le bilan annoncé exclut 6♦ et ne justifie pas 4SA.",
+        "difficulty": 3,
+        "difficultyReason": "Le sens du Splinter de redemande est donné ; application à un seul choix de manche, sans enseigner la convention plus tôt.",
+        "caseFamily": "v1-m6-splinter-variante-mineure-choix-manche"
+      },
+      "prerequis": {
+        "concept": "chelem.splinter.variante",
+        "stage": 3,
+        "minSession": 48,
+        "requires": [
+          {
+            "concept": "chelem.controles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.splinter",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Répondant après Splinter de redemande en mineure : choisir la manche à l'atout plutôt que 3SA sans arrêt.",
+      "source": "Catalogue figé : SEF-L29-004 (Splinter de redemande 1♣–1♦–3♠, SEF 2024 cité dans la fiche). Application originale à la décision du répondant, pas nouvelle convention."
+    },
+    {
+      "id": "V1-M6-003",
+      "qcm": {
+        "id": "V1-M6-003",
+        "theme": "chelem",
+        "hand": [
+          [
+            "A",
+            "R",
+            "10",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "D",
+            "7"
+          ],
+          [
+            "9",
+            "5"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 4SA (Blackwood cinq clés 30–41, atout Pique)",
+          "Partenaire : 5♣ (zéro ou trois clés)"
+        ],
+        "context": "Le fit Pique est agréé, les contrôles extérieurs sont vérifiés et les adversaires passent. Vous détenez trois clés : ♠A, ♠R et ♥A. Le partenaire répond 5♣. Quelle enchère faut-il choisir ?",
+        "answer": "5♠",
+        "choices": [
+          "5♦",
+          "5♥",
+          "5♠",
+          "6♠"
+        ],
+        "explain": "Vous détenez déjà trois des cinq clés. Le partenaire ne peut donc pas en détenir trois : sa réponse 5♣ signifie zéro. Deux clés manquent au camp ; 5♠ est l'arrêt économique. Il est inutile de chercher la Dame d'atout à 5♦ quand deux clés manquent.",
+        "difficulty": 3,
+        "difficultyReason": "Désambiguïsation de 0/3 par un comptage explicite, puis arrêt sans autre calcul.",
+        "caseFamily": "v1-m6-rkcb-suite-03-zero-force-par-trois"
+      },
+      "prerequis": {
+        "concept": "chelem.blackwood.suite",
+        "stage": 3,
+        "minSession": 47,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Réponse 0/3 : trois clés personnelles excluent trois en face, arrêt.",
+      "source": "Audit archives/audits/quiz-sef/CONTRE_EXPERTISE_V474_DAME_ATOUT_2026-11-04.md ; catalogue figé SEF-V474-001/002/003 et SEF-L02-E-10/16/17/18/19 ; accord QPJB Blackwood cinq clés 30–41."
+    },
+    {
+      "id": "V1-M6-004",
+      "qcm": {
+        "id": "V1-M6-004",
+        "theme": "chelem",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "6"
+          ],
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "8"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 4SA (Blackwood cinq clés 30–41, atout Pique)",
+          "Partenaire : 5♥ (deux clés sans Dame de Pique)"
+        ],
+        "context": "L'atout Pique est fixé, les contrôles vérifiés, et les adversaires passent. Votre bilan antérieur de levées justifie le petit chelem si quatre clés et la Dame de Pique sont réunies. Vous avez deux clés et la Dame d'atout dans votre main. Après 5♥, quelle enchère réalise ce plan ?",
+        "answer": "6♠",
+        "choices": [
+          "5♠",
+          "5SA",
+          "6♠",
+          "7♠"
+        ],
+        "explain": "Le partenaire a deux clés et vous en avez deux (♠R et ♥A) : quatre au total. Le 5♥ nie la Dame chez le partenaire, mais ♠D est dans votre propre main. Le critère fixé pour cette donne est donc rempli ; 6♠ conclut. Une clé manque, ce qui exclut la recherche du grand chelem par 5SA ou 7♠.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer Dame absente chez le partenaire et Dame absente dans le camp ; le bilan de levées est déjà posé.",
+        "caseFamily": "v1-m6-rkcb-suite-dame-personnelle-apres-5coeur"
+      },
+      "prerequis": {
+        "concept": "chelem.blackwood.suite",
+        "stage": 3,
+        "minSession": 47,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Réponse deux clés sans Dame : Dame personnelle connue, petit chelem justifié par bilan.",
+      "source": "Audit archives/audits/quiz-sef/CONTRE_EXPERTISE_V474_DAME_ATOUT_2026-11-04.md ; catalogue figé SEF-V474-001/002/003 et SEF-L02-E-10/16/17/18/19 ; accord QPJB Blackwood cinq clés 30–41."
+    },
+    {
+      "id": "V1-M6-005",
+      "qcm": {
+        "id": "V1-M6-005",
+        "theme": "chelem",
+        "hand": [
+          [
+            "A",
+            "V",
+            "10",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "6"
+          ],
+          [
+            "R",
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "8"
+          ]
+        ],
+        "h": 20,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 4SA (Blackwood cinq clés 30–41, atout Pique)",
+          "Partenaire : 5♣ (zéro ou trois clés)"
+        ],
+        "context": "Atout Pique fixé, contrôles extérieurs vérifiés, adversaires silencieux. Vous possédez deux clés (♠A et ♥A). Les enchères précédentes ont établi que le partenaire possède au moins une clé. Il répond 5♣ ; vous envisagez le grand chelem et ne connaissez pas la Dame de Pique. Quelle enchère interroge sur cette Dame ?",
+        "answer": "5♦",
+        "choices": [
+          "5♦",
+          "5♥",
+          "5♠",
+          "5SA"
+        ],
+        "explain": "La réponse 5♣ ne peut pas signifier zéro puisque le partenaire possède au moins une clé : il en a trois. Les cinq sont donc réunies. À l'atout Pique, la première enchère disponible autre que l'atout après 5♣ est 5♦, question à la Dame. 5SA demanderait les Rois sans avoir établi la Dame.",
+        "difficulty": 3,
+        "difficultyReason": "Lever 0/3 grâce à une information antérieure explicitement acquise, puis appliquer l'interrogation collante.",
+        "caseFamily": "v1-m6-rkcb-suite-03-trois-question-dame"
+      },
+      "prerequis": {
+        "concept": "chelem.blackwood.suite",
+        "stage": 3,
+        "minSession": 47,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Réponse 0/3 : une clé adverse déjà exclue de zéro, question à la Dame au palier économique.",
+      "source": "Audit archives/audits/quiz-sef/CONTRE_EXPERTISE_V474_DAME_ATOUT_2026-11-04.md ; catalogue figé SEF-V474-001/002/003 et SEF-L02-E-10/16/17/18/19 ; accord QPJB Blackwood cinq clés 30–41."
+    },
+    {
+      "id": "V1-M6-006",
+      "qcm": {
+        "id": "V1-M6-006",
+        "theme": "chelem",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "9",
+            "6"
+          ],
+          [
+            "A",
+            "8",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 4SA (Blackwood cinq clés 30–41, atout Pique)",
+          "Vous : 5♣ (trois clés)",
+          "Partenaire : 5♦ (question à la Dame de Pique)"
+        ],
+        "context": "L'atout Pique est agréé, les adversaires passent. Vous avez répondu 5♣ avec trois clés. Le partenaire demande maintenant la Dame de Pique. Votre main contient cette Dame et le seul Roi annexe, le Roi de Cœur. Dans le dialogue QPJB, quelle enchère montre à la fois la Dame d'atout et ce Roi annexe ?",
+        "answer": "5♥",
+        "choices": [
+          "5♥",
+          "5♠",
+          "6♣",
+          "6♠"
+        ],
+        "explain": "5♥ indique la Dame de Pique et le Roi de Cœur : la couleur du Roi annexe est disponible au-dessus de 5♦. Le retour économique à 5♠ nierait la Dame. 6♣ signalerait un Roi de Trèfle absent ; le saut à 6♠ est réservé à une réponse positive sans Roi annexe à montrer dans les cas de référence.",
+        "difficulty": 3,
+        "difficultyReason": "Le rôle, la question et le Roi annexe sont donnés ; une seule réponse conventionnelle à identifier, sans calcul de grand chelem.",
+        "caseFamily": "v1-m6-rkcb-dame-reponse-positive-roi-coeur"
+      },
+      "prerequis": {
+        "concept": "chelem.blackwood.dame_rois",
+        "stage": 3,
+        "minSession": 47,
+        "requires": [
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Répondre à la question Dame en nommant simultanément le Roi annexe accessible.",
+      "source": "Audit archives/audits/quiz-sef/CONTRE_EXPERTISE_V474_DAME_ATOUT_2026-11-04.md, contrôle du distracteur 5♥ de V474-007 (Dame et Roi annexe) ; accord QPJB 30–41."
+    }
+  ],
+  "patches": [],
+  "reserves": [
+    {
+      "id": "V1-M6-EX01",
+      "question": "Nouvelle famille accessible de Splinter après 2♣ fort indéterminé : le plafond de contrôles d'honneur et la séquence forte doivent-ils être maîtrisés avant de demander le choix ?",
+      "options": [
+        "Conserver stage 3 et N4–5 sur cette variante (retenu).",
+        "Créer une préparation séparée dans fortes.suite, hors périmètre M6, si le pilote constate une lacune."
+      ],
+      "source": "SEF-L20-002, SEF-L28-004, SEF-L44-004 ; #320/#326."
+    },
+    {
+      "id": "V1-M6-EX02",
+      "question": "Splinter en compétitives après Contre ou Michaël : faut-il fabriquer un troisième cas N3 qui neutralise la distinction rencontre/cue-bid/Truscott ?",
+      "options": [
+        "Conserver N4–5 : la distinction fait partie de la décision (retenu).",
+        "Si nécessaire, renforcer le parent compétitif.truscott ou michaels.defense dans une autre mission."
+      ],
+      "source": "SEF-L13-008, L19-005, L22-006, L30-004, L37-002, L42-002 ; #320/#326."
+    },
+    {
+      "id": "V1-M6-EX03",
+      "question": "Réponse à la Dame sans Roi annexe : faut-il refaire un cas positif/négatif en donnant toutes les informations pour le classer N3 ?",
+      "options": [
+        "Ne pas dupliquer les familles déjà présentes ; maintenir les N4–5 (retenu).",
+        "Réexaminer la difficulté et les explications en V3 si la progression réelle le justifie."
+      ],
+      "source": "SEF-V474-004 à 010 ; audit V474 ; #320."
+    },
+    {
+      "id": "V1-M6-EX04",
+      "question": "Suite aux Rois annexes : réponse 5SA sans Roi ou avec plusieurs Rois, y compris cas de palier contraint, à simplifier ?",
+      "options": [
+        "Conserver les développements N5 attestés ; pas de nouvel accord non vérifié sur les cas non documentés (retenu).",
+        "Réserver un développement précis à une future consolidation après validation de l'accord local."
+      ],
+      "source": "SEF-L41-005, L42-005 ; audit V474 ; #320."
+    }
+  ]
+}
