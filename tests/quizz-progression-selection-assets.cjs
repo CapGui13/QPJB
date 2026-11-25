@@ -10,7 +10,7 @@ const prereq='<script src="./quizz-prerequis.js?v=1"></script>';
 const engine='<script src="./quizz-parcours.js?v=14"></script>';
 assert.ok(html.includes(prereq+engine),'Prerequisites loaded before the engine');
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
-assert.equal(data.exercises.length,1595);
+assert.equal(data.exercises.length,1879);
 assert.equal(data.themes.length,22);
 assert.ok(read('scripts/build_public_site.py').includes('"quizz-parcours.js","quizz-prerequis.js"'));
 const cached=new Set(),listeners={},requests=[];

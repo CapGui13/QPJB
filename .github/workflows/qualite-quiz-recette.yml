@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   progression:
-    if: github.head_ref == 'qualite-quiz/integration'
+    if: github.head_ref == 'qualite-quiz/integration' || github.head_ref == 'reserve-quiz/integration'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -29,7 +29,7 @@ jobs:
           name: qualite-quiz-${{ matrix.profile }}
           path: artifacts/qualite-quiz/
   catalogue-et-navigateurs:
-    if: github.head_ref == 'qualite-quiz/integration'
+    if: github.head_ref == 'qualite-quiz/integration' || github.head_ref == 'reserve-quiz/integration'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
