@@ -1,0 +1,802 @@
+{
+  "mission": "V3-M3",
+  "base": "4678fcba3a45333c968d3c8c04c50e88446d4532",
+  "virtualBase": "bd0e644f8987c3448d47a92746ad33a7a89d333e",
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-V44-050",
+      "old": {},
+      "new": {},
+      "reason": "La réponse est un essai de manche à la couleur, pas une décision naturelle de base après fit. Même fonction et niveau que l'ancre ; aligner le concept et ses dépendances sur les essais, sans modifier le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V44-054 ; SEF-V416-005/006 ; V2-M3-037/038",
+      "prerequis": {
+        "old": {
+          "concept": "apres_fit.base",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "apres_fit.essai",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "apres_fit.essai",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V44-051",
+      "old": {},
+      "new": {},
+      "reason": "La réponse est un essai de manche à la couleur, pas une décision naturelle de base après fit. Même fonction et niveau que l'ancre ; aligner le concept et ses dépendances sur les essais, sans modifier le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V44-054 ; SEF-V416-005/006 ; V2-M3-037/038",
+      "prerequis": {
+        "old": {
+          "concept": "apres_fit.base",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "apres_fit.essai",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "apres_fit.essai",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V44-052",
+      "old": {
+        "difficultyReason": "Déterminer le bon niveau après découverte du fit"
+      },
+      "new": {
+        "difficultyReason": "Identifier l'essai de manche ciblé à 3♣ après soutien simple à Pique, distinct d'un barrage ou d'une conclusion."
+      },
+      "reason": "La réponse est un essai de manche à la couleur, pas une décision naturelle de base après fit. Même fonction et niveau que l'ancre ; aligner le concept et ses dépendances sur les essais, sans modifier le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V423-001 ; SEF-V416-005/006 ; V2-M3-037/038",
+      "prerequis": {
+        "old": {
+          "concept": "apres_fit.base",
+          "stage": 1,
+          "minSession": 9,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "apres_fit.essai",
+          "stage": 1,
+          "minSession": 8,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V44-053",
+      "old": {},
+      "new": {},
+      "reason": "La réponse est un essai de manche à la couleur, pas une décision naturelle de base après fit. Même fonction et niveau que l'ancre ; aligner le concept et ses dépendances sur les essais, sans modifier le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V44-054 ; SEF-V416-005/006 ; V2-M3-037/038",
+      "prerequis": {
+        "old": {
+          "concept": "apres_fit.base",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "apres_fit.essai",
+          "stage": 3,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "apres_fit.essai",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L21-001",
+      "old": {},
+      "new": {},
+      "reason": "Le choix entre relais interrogatif dans l'autre mineure et soutien forcing de la mineure ouverte relève du développement checkback après redemande forte à 2SA, pas d'une seconde enchère naturelle. Aligner le plancher de séance et les prérequis sur le relais enseigné en thème forcing, en conservant le niveau numérique et le thème propriétaire.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L13-003 ; SEF-Q26-M6-005/006 ; V2-M6-031/032 ; autre cas de SEF-L21-001/002",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 3,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.checkback",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L21-002",
+      "old": {},
+      "new": {},
+      "reason": "Le choix entre relais interrogatif dans l'autre mineure et soutien forcing de la mineure ouverte relève du développement checkback après redemande forte à 2SA, pas d'une seconde enchère naturelle. Aligner le plancher de séance et les prérequis sur le relais enseigné en thème forcing, en conservant le niveau numérique et le thème propriétaire.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L13-003 ; SEF-Q26-M6-005/006 ; V2-M6-031/032 ; autre cas de SEF-L21-001/002",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 3,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 3
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.checkback",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V425-003",
+      "old": {},
+      "new": {},
+      "reason": "Même séquence 1♣–1♠–2♣, même décision 2♥ naturelle et forcing avec cinq Piques et quatre Cœurs, et même distinction avec troisième couleur artificielle. Le classement second.base avance cette décision à la séance 10 alors que le cas de référence forcing la situe à 32. Conserver la distinction et le thème, aligner le concept et les dépendances.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L13-006 ; SEF-V411-007",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 3,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.base",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V413-013",
+      "old": {
+        "difficultyReason": "Bicolore Carreau–Cœur après réponse de 2♣"
+      },
+      "new": {
+        "difficultyReason": "Écarter le bicolore cher 2♥ avec 13 H et cinq Carreaux, puis répéter économiquement dans la séquence 2 sur 1 auto-forcing."
+      },
+      "reason": "La décision évalue le seuil du bicolore cher, y compris lorsqu'il faut le refuser. Le corrigé oppose explicitement la force minimale à la redemande chère ; la branche faible doit connaître le même seuil que la branche forte, pas être exposée avant celui-ci. Niveau 3 maintenu.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; V2-M3-001/002 ; V1-M1-001 ; SEF-V424-002/004",
+      "prerequis": {
+        "old": {
+          "concept": "red.bicolore",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.bicolore",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M3-001",
+      "old": {},
+      "new": {},
+      "reason": "La décision évalue le seuil du bicolore cher, y compris lorsqu'il faut le refuser. Le corrigé oppose explicitement la force minimale à la redemande chère ; la branche faible doit connaître le même seuil que la branche forte, pas être exposée avant celui-ci. Niveau 3 maintenu.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; V2-M3-001/002 ; V1-M1-001 ; SEF-V424-002/004",
+      "prerequis": {
+        "old": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L07-013",
+      "old": {
+        "difficultyReason": "Contraste de force, longueur, place et niveau ; l’élève doit distinguer une enchère séduisante mais moins descriptive. Séquence et distracteurs contrôlés individuellement."
+      },
+      "new": {
+        "difficultyReason": "Bicolore économique à saut avec 20 HL, forcing de manche ; distinguer du bicolore économique sans saut."
+      },
+      "reason": "Un saut volontaire alors qu'une redemande économique est disponible n'est pas un bicolore cher sans saut. Le catalogue ne possède pas de concept spécifique au saut : utiliser le concept bicolore général avancé, avec exposition préalable au bicolore cher pour distinguer les mécanismes. Ni nouveau concept ni changement du niveau numérique.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L07-013 ; SEF-Q26-M3-002 ; V2-M3-003/004 ; SEF-V410-006 ; V2-M3-002",
+      "prerequis": {
+        "old": {
+          "concept": "red.bicolore",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.bicolore",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "red.bicolore",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            },
+            {
+              "concept": "red.bicolore_cher",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M3-002",
+      "old": {
+        "difficultyReason": "Différencier bicolore à saut forcing de manche et redemande économique au palier de 1."
+      },
+      "new": {
+        "difficultyReason": "Bicolore à saut forcing de manche à 20 HL ; distinguer du bicolore cher sans saut et de la redemande économique."
+      },
+      "reason": "Un saut volontaire alors qu'une redemande économique est disponible n'est pas un bicolore cher sans saut. Le catalogue ne possède pas de concept spécifique au saut : utiliser le concept bicolore général avancé, avec exposition préalable au bicolore cher pour distinguer les mécanismes. Ni nouveau concept ni changement du niveau numérique.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L07-013 ; SEF-Q26-M3-002 ; V2-M3-003/004 ; SEF-V410-006 ; V2-M3-002",
+      "prerequis": {
+        "old": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "red.bicolore",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            },
+            {
+              "concept": "red.bicolore_cher",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M3-004",
+      "old": {
+        "difficultyReason": "Contraste : Force à distribution 6–4 constante. Application à une décision naturelle ou à un seuil documenté."
+      },
+      "new": {
+        "difficultyReason": "Contraste de force à distribution 6–4 constante : bicolore à saut forcing de manche, distinct du bicolore cher sans saut."
+      },
+      "reason": "Un saut volontaire alors qu'une redemande économique est disponible n'est pas un bicolore cher sans saut. Le catalogue ne possède pas de concept spécifique au saut : utiliser le concept bicolore général avancé, avec exposition préalable au bicolore cher pour distinguer les mécanismes. Ni nouveau concept ni changement du niveau numérique.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L07-013 ; SEF-Q26-M3-002 ; V2-M3-003/004 ; SEF-V410-006 ; V2-M3-002",
+      "prerequis": {
+        "old": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "red.bicolore",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            },
+            {
+              "concept": "red.bicolore_cher",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-N110-1",
+      "old": {
+        "caseFamily": "cas-162"
+      },
+      "new": {
+        "caseFamily": "cas-042"
+      },
+      "reason": "Même séquence, même forme 4–3–3–3, même zone de force pertinente (13 H / 13 H) et même réponse 1♠ que SEF-042-2. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-042-2 ; famille cas-042"
+    },
+    {
+      "id": "SEF-N111-1",
+      "old": {
+        "caseFamily": "cas-163"
+      },
+      "new": {
+        "caseFamily": "cas-043"
+      },
+      "reason": "Même séquence, même forme 4–3–4–2, même zone de force pertinente (14 H / 14 H) et même réponse 1♠ que SEF-043-3. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-043-3 ; famille cas-043"
+    },
+    {
+      "id": "SEF-N115-1",
+      "old": {
+        "caseFamily": "cas-167"
+      },
+      "new": {
+        "caseFamily": "cas-044"
+      },
+      "reason": "Même séquence, même forme 3–3–3–4, même zone de force pertinente (12 H / 12 H) et même réponse 1SA que SEF-044-1. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-044-1 ; famille cas-044"
+    },
+    {
+      "id": "SEF-N112-2",
+      "old": {
+        "caseFamily": "cas-164"
+      },
+      "new": {
+        "caseFamily": "cas-047"
+      },
+      "reason": "Même séquence, même forme 3–4–3–3, même zone de force pertinente (13 H / 12 H) et même réponse 1♥ que SEF-047-1. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-047-1 ; famille cas-047"
+    },
+    {
+      "id": "SEF-N130-1",
+      "old": {
+        "caseFamily": "cas-182"
+      },
+      "new": {
+        "caseFamily": "cas-180"
+      },
+      "reason": "Même séquence, même forme 5–2–4–2, même zone de force pertinente (12 H / 12 H) et même réponse 2♦ que SEF-N128-2. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-N128-2 ; famille cas-180"
+    },
+    {
+      "id": "SEF-N134-1",
+      "old": {
+        "caseFamily": "cas-186"
+      },
+      "new": {
+        "caseFamily": "cas-052"
+      },
+      "reason": "Même séquence, même forme 3–5–3–2, même zone de force pertinente (6 H / 6 H) et même réponse 2♥ que SEF-052-3. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-052-3 ; famille cas-052"
+    },
+    {
+      "id": "SEF-N134-3",
+      "old": {
+        "caseFamily": "cas-186"
+      },
+      "new": {
+        "caseFamily": "cas-052"
+      },
+      "reason": "Même séquence, même forme 3–5–3–2, même zone de force pertinente (8 H / 8 H) et même réponse 2♥ que SEF-052-1. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-052-1 ; famille cas-052"
+    },
+    {
+      "id": "SEF-N139-2",
+      "old": {
+        "caseFamily": "cas-191"
+      },
+      "new": {
+        "caseFamily": "cas-054"
+      },
+      "reason": "Même séquence, même forme 3–4–3–3, même zone de force pertinente (7 H / 6 H) et même réponse Passe que SEF-054-1. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-054-1 ; famille cas-054"
+    },
+    {
+      "id": "SEF-N142-1",
+      "old": {
+        "caseFamily": "cas-194"
+      },
+      "new": {
+        "caseFamily": "cas-055"
+      },
+      "reason": "Même séquence, même forme 4–3–3–3, même zone de force pertinente (7 H / 6 H) et même réponse Passe que SEF-055-3. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-055-3 ; famille cas-055"
+    },
+    {
+      "id": "SEF-N142-3",
+      "old": {
+        "caseFamily": "cas-194"
+      },
+      "new": {
+        "caseFamily": "cas-055"
+      },
+      "reason": "Même séquence, même forme 4–3–3–3, même zone de force pertinente (9 H / 8 H) et même réponse Passe que SEF-055-2. Les honneurs ou distracteurs varient mais ne modifient pas la règle testée ; l'ancienne famille séparée permettait de compter deux expositions d'une même décision. Conserver tous les IDs et les variantes de difficulté lorsqu'elles existent.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-055-2 ; famille cas-055"
+    },
+    {
+      "id": "SEF-V49-040",
+      "old": {
+        "difficulty": 2,
+        "difficultyReason": "Décision courante : répondant proposition 2sa."
+      },
+      "new": {
+        "difficulty": 3,
+        "difficultyReason": "Calculer la zone totale 23–25 H avec quatre Cœurs et choisir l'invitation naturelle à 2SA."
+      },
+      "reason": "La décision est une évaluation de la zone cumulée de force et de l'absence de fit, comme les cas voisins classés niveau 3 à la séance 7. Le niveau 2 et le plancher 6 ne reflétaient pas le même critère. Conserver le corrigé et le choix.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-N143-2 ; SEF-N143-2/144-1/145-1/146-2",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 7,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V410-019",
+      "old": {
+        "difficulty": 2,
+        "difficultyReason": "Proposer 3SA après 1♥-1♠-1SA"
+      },
+      "new": {
+        "difficulty": 3,
+        "difficultyReason": "Combiner la zone de redemande 12–14 H et les 11 H du répondant pour inviter sans fit majeur établi."
+      },
+      "reason": "La décision est une évaluation de la zone cumulée de force et de l'absence de fit, comme les cas voisins classés niveau 3 à la séance 7. Le niveau 2 et le plancher 6 ne reflétaient pas le même critère. Conserver le corrigé et le choix.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-N144-1 ; SEF-N143-2/144-1/145-1/146-2",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 7,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V410-020",
+      "old": {
+        "difficulty": 2,
+        "difficultyReason": "Conclure à 3SA après 1♥-1♠-1SA"
+      },
+      "new": {
+        "difficulty": 3,
+        "difficultyReason": "Additionner les zones 12–14 H et 13 H, écarter le fit majeur non démontré puis conclure à 3SA."
+      },
+      "reason": "La décision est une évaluation de la zone cumulée de force et de l'absence de fit, comme les cas voisins classés niveau 3 à la séance 7. Le niveau 2 et le plancher 6 ne reflétaient pas le même critère. Conserver le corrigé et le choix.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-N145-1 ; SEF-N143-2/144-1/145-1/146-2",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 7,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M3-026",
+      "old": {},
+      "new": {},
+      "reason": "Les deux variantes d'une même famille opposent préférence faible à 2♠ et passe sur 2♦ uniquement par la longueur à Carreau. Même niveau 3, concept et dépendances ; le plancher de séance doit être commun pour ne pas présenter un seul versant du contraste avant l'autre.",
+      "source": "#342 ; #349 ; #356 ; #359 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; V2-M3-025/026",
+      "prerequis": {
+        "old": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 7,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-V44-017",
+      "question": "L'ouverture de 1♣ supposée dans la séquence est-elle volontairement imposée malgré 17 H et une main régulière 3–4–2–4 sans majeure cinquième ?",
+      "options": [
+        "Conserver la situation conditionnelle en explicitant que l'ouverture est imposée et atypique.",
+        "Remplacer la main par une main de deuxième zone irrégulière ou par une main régulière compatible avec l'ouverture mineure, en conservant le sens de la décision et en contrôlant H/forme."
+      ],
+      "source": "V1/M5/review.json transversalSignals ; SEF-001-1/2 et redemandes SEF-N118-1/SEF-N119-2 ; #342/#349",
+      "kind": "inheritedV2",
+      "reason": "Contradiction entre ouverture de 1SA 15–17 H réguliers enseignée et ouverture mineure de départ ; réponse conditionnelle de soutien à saut non modifiée en V2. Réserve maintenue sans arbitrage en V3.",
+      "origin": "V2/M3"
+    },
+    {
+      "id": "SEF-V44-018",
+      "question": "L'ouverture de 1♦ supposée dans la séquence est-elle volontairement imposée malgré 17 H et une main régulière 4–3–4–2 sans majeure cinquième ?",
+      "options": [
+        "Conserver la situation conditionnelle en explicitant que l'ouverture est imposée et atypique.",
+        "Remplacer la main par une main de deuxième zone irrégulière ou par une main régulière compatible avec l'ouverture mineure, en conservant le sens de la décision et en contrôlant H/forme."
+      ],
+      "source": "V1/M5/review.json transversalSignals ; SEF-001-1/2 et redemandes SEF-N118-1/SEF-N119-2 ; #342/#349",
+      "kind": "inheritedV2",
+      "reason": "Contradiction entre ouverture de 1SA 15–17 H réguliers enseignée et ouverture mineure de départ ; réponse conditionnelle de soutien à saut non modifiée en V2. Réserve maintenue sans arbitrage en V3.",
+      "origin": "V2/M3"
+    }
+  ]
+}

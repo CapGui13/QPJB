@@ -1,0 +1,1125 @@
+{
+  "base": "4678fcba3a45333c968d3c8c04c50e88446d4532",
+  "virtualBase": "bd0e644f8987c3448d47a92746ad33a7a89d333e",
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-V484-005",
+      "old": {
+        "difficultyReason": "Drury SEF 2024 : singleton Trèfle indiqué par retour Cœur"
+      },
+      "new": {
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : courte Trèfle codée par le retour à l'atout."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-008 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V484-006",
+      "old": {
+        "difficultyReason": "Drury SEF 2024 : singleton Carreau nommé naturellement"
+      },
+      "new": {
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : singleton Carreau nommé naturellement."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-009 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V484-007",
+      "old": {
+        "difficultyReason": "Drury SEF 2024 : singleton Pique après fit Cœur"
+      },
+      "new": {
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : singleton dans l'autre majeure nommé naturellement."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-010 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V484-008",
+      "old": {
+        "caseFamily": "v484-singS-008",
+        "difficultyReason": "Drury SEF 2024 : singleton Trèfle indiqué par retour Pique"
+      },
+      "new": {
+        "caseFamily": "v484-singH-005",
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : courte Trèfle codée par le retour à l'atout."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-005 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V484-009",
+      "old": {
+        "caseFamily": "v484-singS-009",
+        "difficultyReason": "Drury SEF 2024 : singleton Carreau après fit Pique"
+      },
+      "new": {
+        "caseFamily": "v484-singH-006",
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : singleton Carreau nommé naturellement."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-006 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V484-010",
+      "old": {
+        "caseFamily": "v484-singS-010",
+        "difficultyReason": "Drury SEF 2024 : singleton Cœur après fit Pique"
+      },
+      "new": {
+        "caseFamily": "v484-singH-007",
+        "difficultyReason": "Après 2SA fitté sur Passe et le relais 3♣, identifier la courte : singleton dans l'autre majeure nommé naturellement."
+      },
+      "reason": "La décision n'est plus le choix de 2SA/Drury : 2SA et le relais ont déjà été nommés. Classer comme développement, avec exposition au choix initial ; les deux permutations Cœur/Pique de ce même codage ne doivent pas compter deux fois comme exposition. Conserver le niveau 4, la réponse et le corrigé.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V484-007 ; SEF-V44-067/068 ; V2-M6-009/010 ; SEF-V484-001/004",
+      "prerequis": {
+        "old": {
+          "concept": "drury.choix",
+          "stage": 3,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "drury.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M6-002",
+      "old": {},
+      "new": {},
+      "reason": "La décision est l'emploi initial de la quatrième couleur artificielle (2♥), et non un choix générique forcing/non forcing. Ce cas direct constitue une première exposition au concept avant les réponses de l'ouvreur.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V45-019 ; SEF-L35-004 ; SEF-Q26-M6-001",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.base",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-001",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-003",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-006",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-009",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-011",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-013",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V480-014",
+      "old": {},
+      "new": {},
+      "reason": "L'ouvreur répond à une quatrième couleur déjà employée : même difficulté 3, mais application après une première exposition au relais. L'introduction est portée par SEF-Q26-M6-002 ; ne pas confondre acquisition et redescription. La réponse et le texte restent inchangés.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-Q26-M6-002 ; SEF-V480-002/004/005/007/008/010/012/015",
+      "prerequis": {
+        "old": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V483-011",
+      "old": {
+        "difficulty": 3,
+        "difficultyReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+      },
+      "new": {
+        "difficulty": 4,
+        "difficultyReason": "Vérifier le contrôle Trèfle sauté par le partenaire puis identifier le contrôle Cœur autorisant 4♥."
+      },
+      "reason": "Depuis V1, la main couvre le contrôle Trèfle sauté et permet de nommer le contrôle Cœur ; la décision combine deux vérifications, comme les freins voisins et la paire contrastée de V2. Le niveau et les prérequis initiaux ne reflétaient plus ce raisonnement.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V483-014/016 ; V2-M6-037/038 ; V1-M5 correction de la série V483",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.controles",
+          "stage": 0,
+          "minSession": 39,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.controles",
+          "stage": 3,
+          "minSession": 43,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V483-012",
+      "old": {
+        "difficulty": 3,
+        "difficultyReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+      },
+      "new": {
+        "difficulty": 4,
+        "difficultyReason": "Vérifier le contrôle Trèfle sauté par le partenaire puis identifier le contrôle Cœur autorisant 4♥."
+      },
+      "reason": "Depuis V1, la main couvre le contrôle Trèfle sauté et permet de nommer le contrôle Cœur ; la décision combine deux vérifications, comme les freins voisins et la paire contrastée de V2. Le niveau et les prérequis initiaux ne reflétaient plus ce raisonnement.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V483-014/016 ; V2-M6-037/038 ; V1-M5 correction de la série V483",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.controles",
+          "stage": 0,
+          "minSession": 39,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.controles",
+          "stage": 3,
+          "minSession": 43,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V483-013",
+      "old": {
+        "difficulty": 3,
+        "difficultyReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+      },
+      "new": {
+        "difficulty": 4,
+        "difficultyReason": "Vérifier le contrôle Trèfle sauté par le partenaire puis identifier le contrôle Cœur autorisant 4♥."
+      },
+      "reason": "Depuis V1, la main couvre le contrôle Trèfle sauté et permet de nommer le contrôle Cœur ; la décision combine deux vérifications, comme les freins voisins et la paire contrastée de V2. Le niveau et les prérequis initiaux ne reflétaient plus ce raisonnement.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V483-014/016 ; V2-M6-037/038 ; V1-M5 correction de la série V483",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.controles",
+          "stage": 0,
+          "minSession": 39,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.controles",
+          "stage": 3,
+          "minSession": 43,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V483-015",
+      "old": {
+        "difficulty": 3,
+        "difficultyReason": "Contrôles avant Blackwood, après soutien majeur et départ en contrôle de l'ouvreur : rang, courte, ordre et coup de frein."
+      },
+      "new": {
+        "difficulty": 4,
+        "difficultyReason": "Vérifier le contrôle Trèfle sauté par le partenaire puis identifier le contrôle Cœur autorisant 4♥."
+      },
+      "reason": "Depuis V1, la main couvre le contrôle Trèfle sauté et permet de nommer le contrôle Cœur ; la décision combine deux vérifications, comme les freins voisins et la paire contrastée de V2. Le niveau et les prérequis initiaux ne reflétaient plus ce raisonnement.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V483-014/016 ; V2-M6-037/038 ; V1-M5 correction de la série V483",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.controles",
+          "stage": 0,
+          "minSession": 39,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.controles",
+          "stage": 3,
+          "minSession": 43,
+          "requires": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-C2-007",
+      "old": {
+        "difficulty": 4,
+        "caseFamily": "audit-c02-SEF-C2-007"
+      },
+      "new": {
+        "difficulty": 3,
+        "caseFamily": "v45-cas-042"
+      },
+      "reason": "Même ouverture adverse 1♦, même vulnérabilité favorable, même bicolore majeur 5–5 et même réponse 2♦ que SEF-V45-042. Aucune difficulté supplémentaire démontrée ; une exposition commune à cette décision.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V45-042 ; SEF-V45-041",
+      "prerequis": {
+        "old": {
+          "concept": "michaels.intervention",
+          "stage": 3,
+          "minSession": 40,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "michaels.intervention",
+          "stage": 0,
+          "minSession": 36,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V45-029",
+      "old": {
+        "difficulty": 5,
+        "difficultyReason": "Reconnaître une défense Multi-Landy moins directe (deux mineures)"
+      },
+      "new": {
+        "difficulty": 4,
+        "difficultyReason": "Identifier le bicolore mineur 5–5 et le 2SA conventionnel dans la variante Multi-Landy explicitée."
+      },
+      "reason": "La variante et son seuil sont donnés ; le choix direct à 2SA ne requiert pas une combinaison de niveau 5, et les prérequis avancés existants sont déjà identiques au contraste V2 de niveau 4.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; V2-M5-023/024"
+    },
+    {
+      "id": "SEF-L31-005",
+      "old": {
+        "difficulty": 5
+      },
+      "new": {
+        "difficulty": 4
+      },
+      "reason": "Même séquence 2♣–2♦–2♠, même seuil exact de 7 H, cinq cartes et deux Piques que L24-003. Changer de couleur à 3♥ plutôt que 3♦ n'ajoute pas une étape ; aligner le niveau et les dépendances, sans modifier l'accord.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L24-003 ; SEF-L43-004 ; SEF-L44-005",
+      "prerequis": {
+        "old": {
+          "concept": "fortes.suite",
+          "stage": 3,
+          "minSession": 39,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 3
+            }
+          ]
+        },
+        "new": {
+          "concept": "fortes.suite",
+          "stage": 3,
+          "minSession": 35,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L44-004",
+      "old": {
+        "difficultyReason": "Développement SEF 2024 avec choix d'enchère justifié."
+      },
+      "new": {
+        "difficultyReason": "Identifier le Splinter après 2♣ FI–2♦–2♠ : quatre atouts, singleton Cœur et un seul contrôle d'honneur à l'atout."
+      },
+      "reason": "Même développement spécifique et même plafond d'un contrôle d'honneur que L28-004, y compris à l'atout. Alignement sur la variante avancée existante ; conserver la difficulté 5 et la réponse.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L28-004 ; SEF-L20-002 (HOLD, non modifié)",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.splinter.variante",
+          "stage": 3,
+          "minSession": 44,
+          "requires": [
+            {
+              "concept": "chelem.splinter",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.splinter.variante",
+          "stage": 3,
+          "minSession": 48,
+          "requires": [
+            {
+              "concept": "chelem.controles",
+              "minExposure": 3
+            },
+            {
+              "concept": "chelem.splinter",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M5-021",
+      "old": {},
+      "new": {},
+      "reason": "Les deux membres de la même famille contrastée testent la présence d'une cinquième majeure à force égale. L'exemple Passe ne doit pas être débloqué après un stade supplémentaire par rapport à 2♣ : le contraste doit être disponible au même stade.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; V2-M5-022 ; SEF-C2-003",
+      "prerequis": {
+        "old": {
+          "concept": "multilandy.choix",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.choix",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "multilandy.choix",
+          "stage": 0,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L01-B-03",
+      "old": {},
+      "new": {},
+      "reason": "Le Blackwood est déclenché grâce à un contrôle établi par le Splinter ; la décision suppose de savoir que cette courte vaut contrôle et fixe le fit, en plus du dialogue économique. Ajouter la dépendance ciblée, sans changer le concept principal.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-V45-056/057/058 ; SEF-L01-B-01/02",
+      "prerequis": {
+        "old": {
+          "concept": "chelem.blackwood.declenchement",
+          "stage": 3,
+          "minSession": 44,
+          "requires": [
+            {
+              "concept": "chelem.blackwood.declenchement",
+              "minExposure": 2
+            },
+            {
+              "concept": "chelem.cles",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "chelem.blackwood.declenchement",
+          "stage": 3,
+          "minSession": 44,
+          "requires": [
+            {
+              "concept": "chelem.blackwood.declenchement",
+              "minExposure": 2
+            },
+            {
+              "concept": "chelem.cles",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.splinter",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L02-E-08",
+      "old": {
+        "difficultyReason": "Décision de chelem exigeant l’interprétation d’un retour ou d’une réponse 30–41."
+      },
+      "new": {
+        "difficultyReason": "Interpréter le retour à 4♥ comme absence de contrôle Carreau, vérifier le contrôle personnel puis relancer par le Blackwood."
+      },
+      "reason": "Le cas intervient avant la réponse au Blackwood : il n'exige aucune interprétation d'une réponse 30–41. La justification de niveau doit refléter la réactivation après frein.",
+      "source": "#342 ; #349 ; #356 ; #361 ; projection V1/V2 bd0e644f8987c3448d47a92746ad33a7a89d333e ; SEF-L02-E-06 ; SEF-L01-A-01/03"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-V474-010",
+      "question": "Après 4SA–5♦–5♠ à l'atout Cœur, le retour à 6♥ est la négation documentée. Quelle réponse positive exacte est prévue avec la Dame de Cœur mais aucun Roi annexe lorsque le retour économique 5♥ est dépassé ? Ne pas appliquer mécaniquement le saut à 6♥ positif du cas V474-009.",
+      "options": [
+        "Maintenir 6♥ négatif et les réponses historiques, documenter explicitement le codage positif au palier contraint après validation.",
+        "Si le code positif est déjà défini dans un accord QPJB, le citer et isoler le cas contrasté ; ne pas créer une convention par inférence."
+      ],
+      "source": "SEF-V474-003/008/009/010 ; réserve V1-M6-EX04 du manifeste #341 (aucun développement au palier contraint non validé).",
+      "inherited": true,
+      "origin": "V1-M5"
+    },
+    {
+      "id": "SEF-V4-098-1",
+      "question": "Revalorisation Drury et texte historique non visés.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V4-102-1",
+      "question": "Formulation du mécanisme du Drury et circonstances d'emploi.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V4-106-1",
+      "question": "Rédaction historique sans fit après Passe.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V45-025",
+      "question": "Rédaction historique du Multi artificiel.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V45-027",
+      "question": "Rédaction historique de la distinction majeure-mineure.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L14-002",
+      "question": "Grille mini/maxi du relais 2SA sur Multi-Landy, accord local à valider.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L20-002",
+      "question": "Splinter 3♠ après 2♣ FI : accord exact non visé.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L13-017",
+      "question": "Seuil exact de 7 H et cinq Trèfles après 2♣ FI.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-V479-004",
+      "question": "Relais positif 2SA après Landy, accord non universel à valider.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    },
+    {
+      "id": "SEF-L13-012",
+      "question": "Michaël précisé 3♥ en quatrième position après soutien adverse.",
+      "options": [
+        "Conserver sans modification jusqu'au visa explicite du dossier historique."
+      ],
+      "source": "Issue #271, lots B/C, registre HOLD ; https://github.com/CapGui13/QPJB/issues/271",
+      "inherited": true,
+      "origin": "#271"
+    }
+  ]
+}

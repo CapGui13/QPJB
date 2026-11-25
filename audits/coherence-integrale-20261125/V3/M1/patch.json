@@ -1,0 +1,1166 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-V44-009",
+      "old": {
+        "caseFamily": "v44-cas-009",
+        "difficulty": 4,
+        "difficultyReason": "Soutien conventionnel ou forcing après ouverture majeure"
+      },
+      "new": {
+        "caseFamily": "v44-cas-010",
+        "difficulty": 3,
+        "difficultyReason": "Calculer les HLD d'un soutien naturel quatrième et distinguer le soutien invitant de la première zone."
+      },
+      "reason": "Miroir exact à la couleur près de V44-010 : 9 H, quatre atouts, un doubleton, 12 HLD, mêmes quatre alternatives. Ce n'est ni une séquence conventionnelle avancée ni forcing ; une famille et un niveau communs évitent deux expositions artificielles.",
+      "source": "SEF-V44-010 ; V2-M1-042 ; #356",
+      "category": "famille_niveau",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.soutien",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V44-012",
+      "old": {
+        "caseFamily": "v44-cas-012"
+      },
+      "new": {
+        "caseFamily": "v44-cas-011"
+      },
+      "reason": "Même décision de barrage à la manche, 6 H, cinq atouts, singleton, même vulnérabilité et alternatives fonctionnelles ; le changement Cœur/Pique ne constitue pas une nouvelle famille.",
+      "source": "SEF-V44-011 ; V2-M1-045 ; #356",
+      "category": "famille"
+    },
+    {
+      "id": "SEF-V44-004",
+      "old": {
+        "caseFamily": "v44-cas-004"
+      },
+      "new": {
+        "caseFamily": "v44-cas-003"
+      },
+      "reason": "Deux ouvertures miroir à 11 H et six cartes majeures, donc 13 HL ; même arbitrage 1M contre 2M faible et Passe. Regrouper l'exposition au seuil sans supprimer les variantes.",
+      "source": "SEF-V44-003 ; #356",
+      "category": "famille"
+    },
+    {
+      "id": "SEF-Q26-M1-007",
+      "old": {
+        "caseFamily": "QUALITE-20261125-M1-007"
+      },
+      "new": {
+        "caseFamily": "QUALITE-20261125-M1-006"
+      },
+      "reason": "Deux mains 5♠–5♣ de forme identique ; la frontière cinq/six perdantes est précisément le facteur de contraste à conserver dans une famille commune.",
+      "source": "SEF-Q26-M1-006 ; SEF-L28-001 ; #356",
+      "category": "famille"
+    },
+    {
+      "id": "SEF-Q26-M1-008",
+      "old": {},
+      "new": {},
+      "reason": "La borne inclusive à 12 HL et son dépassement à 13 HL constituent une seule comparaison ; rendre les deux cas disponibles au même plancher sans avancer le second ni toucher à la règle QPJB.",
+      "source": "SEF-Q26-M1-009 ; #271 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 1,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M1-009",
+      "old": {
+        "caseFamily": "QUALITE-20261125-M1-009"
+      },
+      "new": {
+        "caseFamily": "QUALITE-20261125-M1-008"
+      },
+      "reason": "Borne 12/13 HL du traitement QPJB sur 1♣ : le changement de majeure n'est pas une nouvelle règle. La famille commune conserve le contraste de force.",
+      "source": "SEF-Q26-M1-008 ; #271 ; #356",
+      "category": "famille"
+    },
+    {
+      "id": "SEF-Q26-M1-011",
+      "old": {
+        "caseFamily": "QUALITE-20261125-M1-011"
+      },
+      "new": {
+        "caseFamily": "QUALITE-20261125-M1-010"
+      },
+      "reason": "Même ouverture 1♦ et forme 3–1–5–4, réponse simple à 7 H contre invitation à 10 H avec courte. Deux décisions contrastées d'une seule famille, niveaux distincts conservés.",
+      "source": "SEF-Q26-M1-010 ; SEF-V412-014 ; #356",
+      "category": "famille"
+    },
+    {
+      "id": "SEF-Q26-M1-012",
+      "old": {},
+      "new": {},
+      "reason": "Le seuil 12 HL est calculé en une étape, puis choix naturel 2♣ ; difficulté 3 déjà cohérente, mais stage 3 et deux expositions disproportionnés pour une première réponse naturelle. Stage 1 après une exposition de base, sans modifier la réponse.",
+      "source": "SEF-V49-012 ; V2-M1-037/038 ; SEF-Q26-M1-013 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M1-013",
+      "old": {
+        "caseFamily": "QUALITE-20261125-M1-013"
+      },
+      "new": {
+        "caseFamily": "QUALITE-20261125-M1-012"
+      },
+      "reason": "Même main que Q26-M1-012 hormis le Roi/Valet de Carreau, même ouverture et six Trèfles ; 10/12 HL décide du 1SA ou 2♣. Une seule famille et même accès stage 1, sans trancher le HOLD 1M–1SA.",
+      "source": "SEF-Q26-M1-012 ; #271 ; V2-M1-037/038 ; #356",
+      "category": "famille_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L06-004",
+      "old": {
+        "difficulty": 4
+      },
+      "new": {
+        "difficulty": 3
+      },
+      "reason": "Première réponse naturelle sans intervention : reconnaître deux majeures cinquièmes et appliquer la règle d'ordre opposée aux deux majeures quatrièmes. Aucun développement conventionnel ; difficulté 3 avec exposition préalable à la base.",
+      "source": "SEF-N028-1 ; SEF-N039-1 ; SEF-V49-001 (ordre à l'ouverture) ; #356",
+      "category": "niveau_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L06-017",
+      "old": {
+        "difficulty": 4
+      },
+      "new": {
+        "difficulty": 3
+      },
+      "reason": "Une première réponse naturelle fondée sur 10 H + 2 L, sans séquence ultérieure à résoudre ; même opération que Q26-M1-012, pas une difficulté conventionnelle 4. Conserver le niveau intermédiaire et une exposition préalable.",
+      "source": "SEF-Q26-M1-012 ; SEF-V49-012 ; #356",
+      "category": "niveau_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L06-018",
+      "old": {
+        "difficulty": 4
+      },
+      "new": {
+        "difficulty": 3
+      },
+      "reason": "Seuil H atteint et quatre Cœurs insuffisants pour 2♥ : arbitrage naturel en un tour, analogue à Q26-M1-014. Niveau 3 justifié par deux critères, pas niveau 4 conventionnel.",
+      "source": "SEF-Q26-M1-014 ; V2-M1-035/036 ; #356",
+      "category": "niveau_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L06-026",
+      "old": {
+        "difficulty": 4
+      },
+      "new": {
+        "difficulty": 3
+      },
+      "reason": "La priorité de 1♠ sur 2♣ est une première réponse naturelle ; la longueur mineure et le seuil 2/1 donnent un contraste intermédiaire, sans séquence compétitive ni convention avancée.",
+      "source": "SEF-N060-1/2 ; V2-M1-033/034 ; #356",
+      "category": "niveau_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M1-014",
+      "old": {},
+      "new": {},
+      "reason": "Même discrimination 2♥ cinq cartes / mineure naturelle quatrième que L06-018 ; difficulté 3 appropriée, mais stage 3 n'est pas nécessaire pour la première réponse. Aligner sur les cas intermédiaires.",
+      "source": "SEF-L06-018 ; V2-M1-035/036 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M1-036",
+      "old": {},
+      "new": {},
+      "reason": "Les deux membres de la famille V2-M1-035/036 ont difficulté 2, le même énoncé et le même critère quatre/cinq Cœurs ; stage 3 pour la seule réponse 2♣ sépare artificiellement le contraste. Même accès que 035.",
+      "source": "V2-M1-035 ; SEF-N076-2 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M1-044",
+      "old": {},
+      "new": {},
+      "reason": "Le contexte fournit explicitement le sens du 2SA fitté, et le choix est une première réponse naturelle après exclusion du fit. Stage 1 suffit ; plancher 8 et exposition au soutien maintenus pour rester dans la famille 043/044.",
+      "source": "V2-M1-043 ; V2-M1-039/042 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 3,
+          "minSession": 8,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.base",
+          "stage": 1,
+          "minSession": 8,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L18-004",
+      "old": {},
+      "new": {},
+      "reason": "Enchère de rencontre après Passe : distinguer la position du répondant et le fit mineur, et pas seulement la réponse naturelle. Même convention, mêmes longueurs et zone de force pour les trois variantes de couleur ; regrouper l'exposition. Stage 3 et séance 5 maintenus.",
+      "source": "SEF-L18-004/005 ; SEF-L35-001 ; SEF-L23-001 ; #356",
+      "category": "famille_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L18-005",
+      "old": {
+        "caseFamily": "LOT18-2026-11-13-005"
+      },
+      "new": {
+        "caseFamily": "LOT18-2026-11-13-004"
+      },
+      "reason": "Enchère de rencontre après Passe : distinguer la position du répondant et le fit mineur, et pas seulement la réponse naturelle. Même convention, mêmes longueurs et zone de force pour les trois variantes de couleur ; regrouper l'exposition. Stage 3 et séance 5 maintenus.",
+      "source": "SEF-L18-004/005 ; SEF-L35-001 ; SEF-L23-001 ; #356",
+      "category": "famille_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L35-001",
+      "old": {
+        "caseFamily": "LOT35-2026-11-14-001"
+      },
+      "new": {
+        "caseFamily": "LOT18-2026-11-13-004"
+      },
+      "reason": "Enchère de rencontre après Passe : distinguer la position du répondant et le fit mineur, et pas seulement la réponse naturelle. Même convention, mêmes longueurs et zone de force pour les trois variantes de couleur ; regrouper l'exposition. Stage 3 et séance 5 maintenus.",
+      "source": "SEF-L18-004/005 ; SEF-L35-001 ; SEF-L23-001 ; #356",
+      "category": "famille_prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 3,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L23-001",
+      "old": {},
+      "new": {},
+      "reason": "Le choix sans saut non forcing est explicitement opposé à la rencontre après Passe. La position n'est enseignée qu'à partir de 4 et le soutien mineur est nécessaire pour comprendre l'absence de rencontre ; placer ce cas après ces fondations, sans en faire un cas avancé.",
+      "source": "SEF-L18-004/005 ; SEF-L35-001 ; ouv.position séance 4 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "mineur.base",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "mineur.base",
+          "stage": 1,
+          "minSession": 5,
+          "requires": [
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L05-013",
+      "old": {},
+      "new": {},
+      "reason": "L'élève doit écarter 1SA malgré 16 H à cause de la distribution semi-régulière et des doubletons majeurs non tenus. La seule exposition à l'ouverture mineure ne prépare pas le contraste de zone 15–17 H.",
+      "source": "SEF-001-1 ; V2-M1-007/008 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "ouv.mineure",
+          "stage": 1,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "ouv.mineure",
+          "stage": 1,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa1",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-Q26-M1-005",
+      "old": {},
+      "new": {},
+      "reason": "Même décision de force régulière à 19 H que V2-M1-001. Il faut connaître les deux zones d'ouverture SA pour écarter 1SA et 2SA, et non la seule meilleure mineure. Conserver difficulté 2 et aligner le plancher.",
+      "source": "V2-M1-001/002 ; SEF-Q26-M1-005 ; #356",
+      "category": "prerequis",
+      "prerequis": {
+        "old": {
+          "concept": "ouv.mineure",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "new": {
+          "concept": "ouv.mineure",
+          "stage": 1,
+          "minSession": 2,
+          "requires": [
+            {
+              "concept": "ouv.sa1",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-029-2",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-029-1",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-030-3",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-030-1",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-N052-1",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-N057-1",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-N057-2",
+      "old": {},
+      "new": {},
+      "reason": "Passe malgré un fit majeur connu : le corrigé teste la borne inférieure du soutien et, avec quatre atouts, la réévaluation HLD. C'est une exposition négative au soutien, et non l'absence de couleur annonçable de majeur.base. Préserver niveau, stage 0 et famille.",
+      "source": "SEF-026-3/1 ; SEF-028-2/1 ; SEF-N048-3 ; SEF-N057-1/2 ; #356",
+      "category": "concept",
+      "prerequis": {
+        "old": {
+          "concept": "majeur.base",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-020-3",
+      "question": "Arbitrage déjà ouvert : 6 H, cinq ♣ et forme 3-2-3-5 régulière. Confirmer la distinction du soutien faible de 2♣ et la priorité à 1SA, sans généraliser à tous les jeux réguliers.",
+      "options": [
+        "Maintenir 2♣ et documenter l'exception basse sur 1♣",
+        "Arbitrer 1SA ou recomposer la main après visa"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; archives/audits/quiz-sef/REVUE_SEF_26_SOUTIENS_2026-11-02.md",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N031-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N041-2",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N072-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-N073-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V44-005",
+      "question": "HOLD #271 : 2SA naturel à 11 H avec deux Dames troisièmes, arrêts majeurs non assurés. Ne pas rouvrir le visa ni modifier la main en V1.",
+      "options": [
+        "Maintenir HOLD historique",
+        "Arbitrage explicite des conditions de tenue au pilote"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V44-006",
+      "question": "Frontière 12 H, 2SA naturel sur 1♦. L'énoncé impose 11–12 H : réponse cohérente sous cette convention, mais le plan antérieur signale la borne et les tenues majeures.",
+      "options": [
+        "Maintenir la zone explicite 11–12 H",
+        "Arbitrer uniquement si le pilote documente une autre zone"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; SEF-V44-006",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V49-006",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-V426-002",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-C-008",
+      "question": "HOLD #271 : 1SA non forcing dans le quiz SEF contre éventuelle variante de paire 1SA forcing. Ne pas transposer cette variante au catalogue.",
+      "options": [
+        "Maintenir le traitement SEF non forcing",
+        "Réserver toute nouvelle convention à un visa explicite"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "V2-M1-031",
+      "question": "La main 1-3-4-5 de 7 H permet 1♦ naturel et 2♣. La priorité locale retenue pour le soutien direct est explicitée, mais les ancres SEF-020-1/N031-2 ne proposent pas 1♦. Ne pas déduire une règle universelle de ce contraste.",
+      "options": [
+        "Maintenir le traitement local de la fiche intégrée",
+        "Documenter le critère de priorité exact 1♦/2♣ avant toute généralisation"
+      ],
+      "source": "audits/reserve-quiz-20261125/V3/M1/README.md ; SEF-020-1/N031-2 ; V2-M1-031/032",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    },
+    {
+      "id": "SEF-L33-005",
+      "question": "Avec huit Cœurs quasi maîtres et 13 H, l'ouverture naturelle 1♥ est l'ancre existante ; vérifier la formulation exacte de la condition de défense/force des ouvertures fortes, notamment l'assertion de deux levées de défense en dehors de la longue. Ne pas transformer le chiffre indicatif 15–16 H en règle réglementaire universelle.",
+      "options": [
+        "Conserver 1♥ et l'ancre en attente de la source exacte",
+        "Préciser la règle pédagogique forte avec source intégrale validée"
+      ],
+      "source": "SEF-L33-005 ; #342 ; audit qualité M1 (concept fortes.ouverture transversal)",
+      "origin": "V1",
+      "status": "inherited_unarbitrated"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
-  "schema": "QPJB_COHERENCE_CUMULATIVE_V2",
+  "schema": "QPJB_COHERENCE_CUMULATIVE_V3",
   "base": "4678fcba3a45333c968d3c8c04c50e88446d4532",
   "catalogueBlob": "099d0bc64268f987689e1b24cc7b0d7017717636",
   "prerequisBlob": "7fcb9f0794fea929323188ca3e77fff7938238ff",
   "contract": 342,
-  "wave": 2,
+  "wave": 3,
   "reviewed": 1879,
   "patches": 124,
   "reserves": 20,
@@ -108,7 +108,7 @@
     "oldFieldMismatch": 0,
     "additions": 0
   },
-  "pending": "Appliquer virtuellement V1 puis V2 dans cet ordre (old exact, y compris 2 métadonnées V1) ; aucune proposition n'est arbitrée ou appliquée à main. Réserves V1 et V2 et HOLD historiques préservés, y compris réserves héritées figurant seulement dans les revues.",
+  "pending": "Réserve complète sans application à la production. Maintenir les HOLD et les réserves non arbitrées ; une intégration candidate et une recette avant publication.",
   "signals": [
     "2 réponses Roudi et prérequis proposés par M3 à vérifier en V3",
     "SEF-V44-017/018 signalés par M5 à M3",
@@ -229,11 +229,117 @@
     }
   },
   "cumulative": {
-    "patches": 493,
-    "distinctPatchedIds": 480,
-    "overlap": 13,
-    "reserveIds": 32,
+    "patches": 649,
+    "distinctPatchedIds": 598,
+    "prerequisIds": 124,
+    "reserveIds": 37,
     "newV2Reserves": 2,
-    "additionalHistoricalHolds": 10
+    "additionalHistoricalHolds": 15
+  },
+  "v2Archive": "bd0e644f8987c3448d47a92746ad33a7a89d333e",
+  "v3": {
+    "contract": 356,
+    "reviewed": 1879,
+    "patches": 156,
+    "missions": [
+      {
+        "mission": "V3-M1",
+        "issue": 357,
+        "sha": "4f3c43963b3989b826da562134c1ec4848dc5bd9",
+        "reviewed": 315,
+        "patches": 29,
+        "reserveStatuses": 12,
+        "ok": 274,
+        "files": {
+          "plan.json": "e0d9441754cd33ac5dacafe998c204de44e58772",
+          "patch.json": "db05a0e652d52c004e948dddedd1c821224bfe70",
+          "review.json": "380bed001e0a403c7d0a4b320adc6307721a65f9",
+          "README.md": "f9920e5c6f585bb77ce345155a75136030abcdfd"
+        }
+      },
+      {
+        "mission": "V3-M2",
+        "issue": 358,
+        "sha": "e7c7693002cfeb2080944644759ddf62efd825eb",
+        "reviewed": 275,
+        "patches": 28,
+        "reserveStatuses": 5,
+        "ok": 242,
+        "files": {
+          "plan.json": "b7ef89c512f1494ee60c81dc2c00a0d37ceabe99",
+          "patch.json": "d7553a4b0c9eb383483677ece2159ccb665dc1be",
+          "review.json": "7d6c6ccb83fa4a17a5d32d1305d2171a533be87f",
+          "README.md": "45501d3b86c50333989f4a12d3c282f5ab7ff7ff"
+        }
+      },
+      {
+        "mission": "V3-M3",
+        "issue": 359,
+        "sha": "4d8a0e4a63de04502096f8aecee6f45d9caaf17d",
+        "reviewed": 389,
+        "patches": 26,
+        "reserveStatuses": 2,
+        "ok": 361,
+        "files": {
+          "plan.json": "8b40f26d51f81eed13f749142f4c1a9075148d6b",
+          "patch.json": "b4bf8c11b8e59b6853b8ec38f01e79b4f019f5b7",
+          "review.json": "3618e6c5dfd10a8a43efe68cf1e59351f902ca47",
+          "README.md": "1b40608ff68286c206b49077af78a3fd2a987097"
+        }
+      },
+      {
+        "mission": "V3-M4",
+        "issue": 360,
+        "sha": "f887edb7247b7b73235daf0d85c86723ca905522",
+        "reviewed": 328,
+        "patches": 24,
+        "reserveStatuses": 6,
+        "ok": 298,
+        "files": {
+          "plan.json": "ba8765e3fa1afb9d85b5c4b666d161f149fbefcb",
+          "patch.json": "7dbcabfb22d5e47bed7081cba99200a2b3f67678",
+          "review.json": "295250959a610883fbd01f7082d60edbe5cc5571",
+          "README.md": "885f4cb648cd668995b7b4172dbbd1d3939de504"
+        }
+      },
+      {
+        "mission": "V3-M5",
+        "issue": 361,
+        "sha": "80a90684b6c11d0b6b2594d4ffd67e65905920ef",
+        "reviewed": 347,
+        "patches": 25,
+        "reserveStatuses": 11,
+        "ok": 311,
+        "files": {
+          "plan.json": "da67d3771b14a17d07a832398037f4a4076f5ac3",
+          "patch.json": "a2e1f0862984fc80b835afa5fe988a1186cc03df",
+          "review.json": "de3745421c6d82db0d1cbda2ef80dbb42be63469",
+          "README.md": "efe382558b532136b5df1c7e071bda71f0bced6d"
+        }
+      },
+      {
+        "mission": "V3-M6",
+        "issue": 362,
+        "sha": "dd0e01a94e649aa8dbd00340cd2b7c4463867fe0",
+        "reviewed": 225,
+        "patches": 24,
+        "reserveStatuses": 1,
+        "ok": 200,
+        "files": {
+          "plan.json": "569bd8f05de2f87191850d93482b12eec8315e97",
+          "patch.json": "6be157886fb67d333518a2f973f6e44e1e9f19b1",
+          "review.json": "e1abd0ac6319f70cd6bbf6ae18a1fc288eb86c18",
+          "README.md": "202b32bba02e8289d89a0a04f5f4fcddc1eb308b"
+        }
+      }
+    ],
+    "checks": {
+      "uniqueReviewIds": 1879,
+      "scopeMismatch": 0,
+      "oldFieldMismatch": 0,
+      "metadataOldMismatch": 0,
+      "reachable": 1879,
+      "last": 49
+    }
   }
 }
