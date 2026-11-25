@@ -1,0 +1,3086 @@
+{
+  "additions": [
+    {
+      "id": "V2-M3-001",
+      "qcm": {
+        "id": "V2-M3-001",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "10",
+            "8",
+            "6"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          4,
+          6,
+          2,
+          1
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire a répondu 2♣ naturellement, auto-forcing. Décrivez votre main sans annoncer une force excessive.",
+        "answer": "2♥",
+        "choices": [
+          "2♥",
+          "2♠",
+          "3♥",
+          "2SA"
+        ],
+        "explain": "13 H et six Cœurs : la répétition à 2♥ est économique. Vos quatre Piques ne justifient pas 2♠, qui serait un bicolore cher. 3♥ promettrait davantage ; 2SA masquerait le singleton.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force suffisante ou non pour une redemande chère. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g01"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Cher après 2 sur 1, même bicolore 6–4 — Force suffisante ou non pour une redemande chère; contraste avec l'autre membre de reserve-v2-m3-g01.",
+      "source": "Catalogue QPJB figé SEF-V417-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-002",
+      "qcm": {
+        "id": "V2-M3-002",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "10",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 17,
+        "shape": [
+          4,
+          6,
+          2,
+          1
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire a répondu 2♣ naturellement, auto-forcing. Décrivez maintenant vos deux couleurs.",
+        "answer": "2♠",
+        "choices": [
+          "2♥",
+          "2♠",
+          "3♥",
+          "2SA"
+        ],
+        "explain": "17 H et deux points de longueur donnent 19 HL. 2♠ annonce les quatre Piques et les Cœurs longs : le seuil du bicolore cher est dépassé. Répéter 2♥ cacherait cette seconde couleur dans une main forte.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force suffisante ou non pour une redemande chère. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g01"
+      },
+      "prerequis": {
+        "concept": "red.bicolore_cher",
+        "stage": 3,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Cher après 2 sur 1, même bicolore 6–4 — Force suffisante ou non pour une redemande chère; contraste avec l'autre membre de reserve-v2-m3-g01.",
+      "source": "Catalogue QPJB figé SEF-V425-005 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-003",
+      "qcm": {
+        "id": "V2-M3-003",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "D",
+            "9",
+            "8"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "10",
+            "8",
+            "6"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          4,
+          2,
+          1,
+          6
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : Passe"
+        ],
+        "context": "La seconde couleur Pique est disponible au palier de un. Quel palier choisissez-vous ?",
+        "answer": "1♠",
+        "choices": [
+          "1♠",
+          "2♠",
+          "2♣",
+          "3♣"
+        ],
+        "explain": "13 H et quatre Piques : 1♠ décrit économiquement la seconde couleur sans promettre la manche. 2♠ à saut serait excessif ; la répétition des Trèfles masquerait la majeure quatrième.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Force à distribution 6–4 constante. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g02"
+      },
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 0,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Saut dans une majeure encore nommable — Force à distribution 6–4 constante; contraste avec l'autre membre de reserve-v2-m3-g02.",
+      "source": "Catalogue QPJB figé SEF-042-2 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-004",
+      "qcm": {
+        "id": "V2-M3-004",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "8"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "V",
+            "10",
+            "8",
+            "6"
+          ]
+        ],
+        "h": 19,
+        "shape": [
+          4,
+          2,
+          1,
+          6
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : Passe"
+        ],
+        "context": "Même distribution, mais davantage de levées et d'honneurs. Quel palier décrit la force ?",
+        "answer": "2♠",
+        "choices": [
+          "1♠",
+          "2♠",
+          "2♣",
+          "3♣"
+        ],
+        "explain": "19 H et six Trèfles donnent 21 HL. 2♠ à saut impose la manche et décrit le bicolore ; 1♠ pourrait provenir d'une ouverture minimale. 3♣ ne transmettrait pas les quatre Piques.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force à distribution 6–4 constante. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g02"
+      },
+      "prerequis": {
+        "concept": "red.bicolore_cher",
+        "stage": 3,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Saut dans une majeure encore nommable — Force à distribution 6–4 constante; contraste avec l'autre membre de reserve-v2-m3-g02.",
+      "source": "Catalogue QPJB figé SEF-Q26-M3-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-005",
+      "qcm": {
+        "id": "V2-M3-005",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "7",
+            "6"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          5,
+          2,
+          4,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Après le 2♣ naturel auto-forcing, annoncez votre distribution.",
+        "answer": "2♦",
+        "choices": [
+          "2♦",
+          "2♠",
+          "3♠",
+          "2SA"
+        ],
+        "explain": "13 H, cinq Piques et quatre Carreaux : 2♦ montre le bicolore économique. Le répondant pourra revenir à 2♠ au même palier. Répéter cinq Piques ne décrit pas les Carreaux.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Quatrième Carreau ou sixième Pique à force identique. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g03"
+      },
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Économie après changement de couleur au palier de deux — Quatrième Carreau ou sixième Pique à force identique; contraste avec l'autre membre de reserve-v2-m3-g03.",
+      "source": "Catalogue QPJB figé SEF-V411-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-006",
+      "qcm": {
+        "id": "V2-M3-006",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "8"
+          ],
+          [
+            "7",
+            "6"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Après le 2♣ naturel auto-forcing, annoncez votre distribution.",
+        "answer": "2♠",
+        "choices": [
+          "2♦",
+          "2♠",
+          "3♠",
+          "2SA"
+        ],
+        "explain": "13 H et six Piques, seulement trois Carreaux : 2♠ décrit la longue. 2♦ promettrait une seconde couleur inexistante ; 3♠ surévaluerait le jeu.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Quatrième Carreau ou sixième Pique à force identique. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g03"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Économie après changement de couleur au palier de deux — Quatrième Carreau ou sixième Pique à force identique; contraste avec l'autre membre de reserve-v2-m3-g03.",
+      "source": "Catalogue QPJB figé SEF-V411-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-007",
+      "qcm": {
+        "id": "V2-M3-007",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "9",
+            "8",
+            "5"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire répond naturellement 2♣. Vous jouez la redemande 2SA mini-maxi du QPJB.",
+        "answer": "2SA",
+        "choices": [
+          "2SA",
+          "2♦",
+          "3♣",
+          "3SA"
+        ],
+        "explain": "13 H réguliers et des tenues majeures : 2SA montre ici la variante minimale 12–14 H. Trois Trèfles ne permettent pas de décrire le soutien quatrième ; 3SA a un sens distributionnel spécifique dans cette séquence.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatre Trèfles au lieu de trois, et main bicolore. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g04"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Mini-maxi ou soutien de la mineure — Quatre Trèfles au lieu de trois, et main bicolore; contraste avec l'autre membre de reserve-v2-m3-g04.",
+      "source": "Catalogue QPJB figé SEF-V412-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-008",
+      "qcm": {
+        "id": "V2-M3-008",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "8"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "A",
+            "D",
+            "9",
+            "6",
+            "4"
+          ],
+          [
+            "9",
+            "8",
+            "5",
+            "3"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          2,
+          2,
+          5,
+          4
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire répond naturellement 2♣. Vous jouez la redemande 2SA mini-maxi du QPJB.",
+        "answer": "3♣",
+        "choices": [
+          "2SA",
+          "2♦",
+          "3♣",
+          "3SA"
+        ],
+        "explain": "13 H, cinq Carreaux et quatre Trèfles : soutenez la couleur du partenaire à 3♣. Le fit mineur est plus informatif que 2SA qui décrirait une main régulière. 2♦ masquerait le soutien.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatre Trèfles au lieu de trois, et main bicolore. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g04"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Mini-maxi ou soutien de la mineure — Quatre Trèfles au lieu de trois, et main bicolore; contraste avec l'autre membre de reserve-v2-m3-g04.",
+      "source": "Catalogue QPJB figé SEF-V420-003 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-009",
+      "qcm": {
+        "id": "V2-M3-009",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "D",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "9",
+            "6"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          4,
+          4,
+          4,
+          1
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Dans le traitement SEF 2024 du QPJB, quelle redemande décrit spécifiquement votre forme ?",
+        "answer": "3SA",
+        "choices": [
+          "2♦",
+          "2SA",
+          "3SA",
+          "3♦"
+        ],
+        "explain": "16 H et 4–4–4–1 avec singleton Trèfle : 3SA est la redemande conventionnelle propre à cette séquence. Elle n'est pas une conclusion naturelle à Sans-Atout. 2SA mini-maxi ne correspond pas à cette forme.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Forme 4–4–4–1 contre unicolore sixième à force identique. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g05"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 3,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Tricolore court dans la mineure du répondant — Forme 4–4–4–1 contre unicolore sixième à force identique; contraste avec l'autre membre de reserve-v2-m3-g05.",
+      "source": "Catalogue QPJB figé SEF-L20-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-010",
+      "qcm": {
+        "id": "V2-M3-010",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "D",
+            "9",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "9",
+            "6",
+            "4",
+            "3"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          3,
+          3,
+          6,
+          1
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 2♣",
+          "Adversaire : Passe"
+        ],
+        "context": "Dans le traitement SEF 2024 du QPJB, quelle redemande décrit votre longue et votre deuxième zone ?",
+        "answer": "3♦",
+        "choices": [
+          "2♦",
+          "2SA",
+          "3SA",
+          "3♦"
+        ],
+        "explain": "16 H et six solides Carreaux (AR9643) : 3♦ à saut montre une longue et une force supplémentaire. 3SA promettrait précisément le tricolore 4–4–4–1, absent ici. 2SA masquerait le singleton.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Forme 4–4–4–1 contre unicolore sixième à force identique. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g05"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Tricolore court dans la mineure du répondant — Forme 4–4–4–1 contre unicolore sixième à force identique; contraste avec l'autre membre de reserve-v2-m3-g05.",
+      "source": "Catalogue QPJB figé SEF-V411-003 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-011",
+      "qcm": {
+        "id": "V2-M3-011",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "5"
+          ]
+        ],
+        "h": 18,
+        "shape": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : Passe"
+        ],
+        "context": "Les adversaires passent. Vous avez quatre Cœurs en face de la réponse naturelle de 1♥.",
+        "answer": "3SA",
+        "choices": [
+          "2♥",
+          "3♥",
+          "2SA",
+          "3SA"
+        ],
+        "explain": "18 H réguliers et quatre Cœurs : dans le silence adverse, 3SA est le soutien artificiel fort, 18–19 H et quatre atouts. 2SA nierait le fit ; 3♥ indiquerait une force moindre.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatrième Cœur chez l'ouvreur. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g06"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Zone forte régulière : soutien artificiel ou sans-atout naturel — Quatrième Cœur chez l'ouvreur; contraste avec l'autre membre de reserve-v2-m3-g06.",
+      "source": "Catalogue QPJB figé SEF-Q26-M3-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-012",
+      "qcm": {
+        "id": "V2-M3-012",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "9",
+            "6"
+          ],
+          [
+            "8",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 18,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Vous : 1♦",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : Passe"
+        ],
+        "context": "Les adversaires passent. Votre partenaire a répondu naturellement 1♥.",
+        "answer": "2SA",
+        "choices": [
+          "2♥",
+          "3♥",
+          "2SA",
+          "3SA"
+        ],
+        "explain": "18 H réguliers, seulement trois Cœurs : 2SA à saut montre la troisième zone sans fit quatrième. 3SA dans cette séquence annoncerait à tort quatre Cœurs.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatrième Cœur chez l'ouvreur. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g06"
+      },
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Zone forte régulière : soutien artificiel ou sans-atout naturel — Quatrième Cœur chez l'ouvreur; contraste avec l'autre membre de reserve-v2-m3-g06.",
+      "source": "Catalogue QPJB figé SEF-N118-1 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-013",
+      "qcm": {
+        "id": "V2-M3-013",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "8",
+            "7"
+          ],
+          [
+            "D",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "9",
+            "8",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : 1♦",
+          "Partenaire : 1♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Votre partenaire non passé a changé de couleur au palier de un après l'intervention à gauche. Quelle redemande ?",
+        "answer": "1SA",
+        "choices": [
+          "Passe",
+          "1SA",
+          "2♣",
+          "2♠"
+        ],
+        "explain": "12 H réguliers et trois Piques : le changement de couleur 1♠ est forcing un tour. 1SA est la redemande naturelle de première zone, avec R76 à Carreau. Passe n'est pas permis dans cette séquence.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Position de l'intervention : avant ou après la réponse. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g07"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Intervention et caractère libre de la redemande — Position de l'intervention : avant ou après la réponse; contraste avec l'autre membre de reserve-v2-m3-g07.",
+      "source": "Catalogue QPJB figé SEF-V471-006 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-014",
+      "qcm": {
+        "id": "V2-M3-014",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "8",
+            "7"
+          ],
+          [
+            "D",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "9",
+            "8",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : 2♦"
+        ],
+        "context": "Cette fois le quatrième joueur intervient à 2♦ après la réponse. Quelle redemande ?",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♣",
+          "2♠"
+        ],
+        "explain": "La redemande est maintenant libre et le minimum régulier sans fit ne justifie pas de parler au palier de deux. Passe est possible ; 2♠ inventerait quatre atouts, 2♣ et 1SA sont devenus insuffisants.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Position de l'intervention : avant ou après la réponse. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g07"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Intervention et caractère libre de la redemande — Position de l'intervention : avant ou après la réponse; contraste avec l'autre membre de reserve-v2-m3-g07.",
+      "source": "Catalogue QPJB figé SEF-V471-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-015",
+      "qcm": {
+        "id": "V2-M3-015",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "8",
+            "7"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "7",
+            "6"
+          ],
+          [
+            "8",
+            "5"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Contre"
+        ],
+        "context": "Le quatrième joueur contre la réponse de 1♠. Le traitement QPJB prévoit le Surcontre de soutien.",
+        "answer": "Surcontre",
+        "choices": [
+          "Passe",
+          "Surcontre",
+          "2♠",
+          "2♥"
+        ],
+        "explain": "13 H, exactement trois Piques et une bonne ouverture : Surcontre montre ce soutien troisième. 2♠ promettrait quatre cartes ; 2♥ cacherait l'information sur la longueur Pique.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Trois ou quatre Piques face à la réponse contrée. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g08"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Surcontre de soutien ou soutien direct — Trois ou quatre Piques face à la réponse contrée; contraste avec l'autre membre de reserve-v2-m3-g08.",
+      "source": "Catalogue QPJB figé SEF-V472-006 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-016",
+      "qcm": {
+        "id": "V2-M3-016",
+        "theme": "red",
+        "hand": [
+          [
+            "R",
+            "8",
+            "7",
+            "5"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "8",
+            "5"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Contre"
+        ],
+        "context": "Le quatrième joueur contre la réponse de 1♠. Le traitement QPJB prévoit le Surcontre de soutien.",
+        "answer": "2♠",
+        "choices": [
+          "Passe",
+          "Surcontre",
+          "2♠",
+          "2♥"
+        ],
+        "explain": "Avec quatre Piques, le fit est assuré. Le soutien direct 2♠ est naturel avec cette ouverture de première zone ; Surcontre montrerait précisément trois Piques, pas quatre.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Trois ou quatre Piques face à la réponse contrée. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g08"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Surcontre de soutien ou soutien direct — Trois ou quatre Piques face à la réponse contrée; contraste avec l'autre membre de reserve-v2-m3-g08.",
+      "source": "Catalogue QPJB figé SEF-V472-006 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-017",
+      "qcm": {
+        "id": "V2-M3-017",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "D"
+          ],
+          [
+            "D",
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "8",
+            "5",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          2,
+          3,
+          5
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : 1♠"
+        ],
+        "context": "Le quatrième joueur intervient à 1♠. Vous n'avez pas de fit Cœur mais détenez un arrêt Pique.",
+        "answer": "1SA",
+        "choices": [
+          "Passe",
+          "1SA",
+          "2♥",
+          "2♣"
+        ],
+        "explain": "14 H réguliers, A87 à Pique et deux Cœurs : 1SA est une redemande libre et naturelle. 2♥ inventerait un fit, 2♣ décrirait mal la main régulière.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Fit Cœur versus main régulière avec arrêt Pique. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g09"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Redemande libre : tenue ou fit établi — Fit Cœur versus main régulière avec arrêt Pique; contraste avec l'autre membre de reserve-v2-m3-g09.",
+      "source": "Catalogue QPJB figé SEF-V471-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-018",
+      "qcm": {
+        "id": "V2-M3-018",
+        "theme": "red",
+        "hand": [
+          [
+            "A",
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "8",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          4,
+          2,
+          4
+        ],
+        "auction": [
+          "Vous : 1♣",
+          "Adversaire : Passe",
+          "Partenaire : 1♥",
+          "Adversaire : 1♠"
+        ],
+        "context": "Le quatrième joueur intervient à 1♠. Vous avez aussi un arrêt Pique, mais regardez votre soutien Cœur.",
+        "answer": "2♥",
+        "choices": [
+          "Passe",
+          "1SA",
+          "2♥",
+          "2♣"
+        ],
+        "explain": "14 H et quatre Cœurs : le fit est connu et prime sur la tenue Pique. 2♥ transmet le soutien, tandis que 1SA le masquerait.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Fit Cœur versus main régulière avec arrêt Pique. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g09"
+      },
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Redemande libre : tenue ou fit établi — Fit Cœur versus main régulière avec arrêt Pique; contraste avec l'autre membre de reserve-v2-m3-g09.",
+      "source": "Catalogue QPJB figé SEF-V471-003 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-019",
+      "qcm": {
+        "id": "V2-M3-019",
+        "theme": "second",
+        "hand": [
+          [
+            "D",
+            "V",
+            "9",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "9",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          6,
+          2,
+          2,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le partenaire a fait un bicolore cher. Votre Pique est sixième, mais votre force est limitée.",
+        "answer": "2♠",
+        "choices": [
+          "2♠",
+          "3♠",
+          "2SA",
+          "3SA"
+        ],
+        "explain": "6 H et six Piques : 2♠ décrit la longueur sans imposer la manche. Cette répétition est forcing un tour sur le bicolore cher ; 3♠ promettrait un jeu beaucoup plus fort.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force à longueur sixième et absence de fit dans la seconde couleur constantes. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g10"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Répétition du répondant après bicolore cher — Force à longueur sixième et absence de fit dans la seconde couleur constantes; contraste avec l'autre membre de reserve-v2-m3-g10.",
+      "source": "Catalogue QPJB figé SEF-L15-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-020",
+      "qcm": {
+        "id": "V2-M3-020",
+        "theme": "second",
+        "hand": [
+          [
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "A",
+            "3"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "V",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          6,
+          2,
+          2,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le partenaire a fait un bicolore cher. Votre Pique sixième est solide et votre force est suffisante pour la manche.",
+        "answer": "3♠",
+        "choices": [
+          "2♠",
+          "3♠",
+          "2SA",
+          "3SA"
+        ],
+        "explain": "11 H et une sixième Pique solide : 3♠ impose la manche et montre la longueur. 2♠ ne garantirait que cinq Piques et pourrait provenir d'un répondant faible.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force à longueur sixième et absence de fit dans la seconde couleur constantes. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g10"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Répétition du répondant après bicolore cher — Force à longueur sixième et absence de fit dans la seconde couleur constantes; contraste avec l'autre membre de reserve-v2-m3-g10.",
+      "source": "Catalogue QPJB figé SEF-L16-004 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-021",
+      "qcm": {
+        "id": "V2-M3-021",
+        "theme": "second",
+        "hand": [
+          [
+            "V",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "D",
+            "7",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez quatre Piques et une tenue Cœur modeste. Le partenaire vient de faire un bicolore cher.",
+        "answer": "2SA",
+        "choices": [
+          "2SA",
+          "3SA",
+          "2♠",
+          "3♣"
+        ],
+        "explain": "6 H : 2SA modérateur freine la séquence. La tenue Cœur ne suffit pas à rendre la manche certaine. 2♠ promettrait cinq Piques ; 3SA annoncerait une force nettement supérieure.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force du répondant, tenue dans la couleur non nommée conservée. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g11"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Sans-atout direct ou modérateur sur bicolore cher — Force du répondant, tenue dans la couleur non nommée conservée; contraste avec l'autre membre de reserve-v2-m3-g11.",
+      "source": "Catalogue QPJB figé SEF-L16-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-022",
+      "qcm": {
+        "id": "V2-M3-022",
+        "theme": "second",
+        "hand": [
+          [
+            "D",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "6"
+          ],
+          [
+            "V",
+            "7",
+            "4"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez quatre Piques et une bonne tenue Cœur. Le partenaire vient de faire un bicolore cher.",
+        "answer": "3SA",
+        "choices": [
+          "2SA",
+          "3SA",
+          "2♠",
+          "3♣"
+        ],
+        "explain": "10 H réguliers face au bicolore cher fort, sans fit majeur et avec AR3 dans la seule couleur non annoncée : 3SA est naturel. 2SA modérateur sous-décrirait la force ; 2♠ inventerait une cinquième.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force du répondant, tenue dans la couleur non nommée conservée. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g11"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 16,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Sans-atout direct ou modérateur sur bicolore cher — Force du répondant, tenue dans la couleur non nommée conservée; contraste avec l'autre membre de reserve-v2-m3-g11.",
+      "source": "Catalogue QPJB figé SEF-L34-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-023",
+      "qcm": {
+        "id": "V2-M3-023",
+        "theme": "second",
+        "hand": [
+          [
+            "V",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "9",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          4,
+          4,
+          2,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez un vrai fit Cœur, mais une main faible. Quelle enchère prépare un soutien non forcing ?",
+        "answer": "2SA",
+        "choices": [
+          "2SA",
+          "3♥",
+          "4♥",
+          "2♠"
+        ],
+        "explain": "6 H et quatre Cœurs : passez d'abord par 2SA modérateur. Si l'ouvreur revient au minimum à 3♦, vous pourrez dire 3♥ non forcing. Le soutien immédiat 3♥ imposerait la manche.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Force suffisante pour rendre le fit Cœur forcing de manche. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g12"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Soutien direct de la seconde couleur chère ou chemin modérateur — Force suffisante pour rendre le fit Cœur forcing de manche; contraste avec l'autre membre de reserve-v2-m3-g12.",
+      "source": "Catalogue QPJB figé SEF-L34-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-024",
+      "qcm": {
+        "id": "V2-M3-024",
+        "theme": "second",
+        "hand": [
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "V",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          4,
+          4,
+          2,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♥ (bicolore cher)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez un vrai fit Cœur et une main forte. Quelle enchère établit le fit sans fermer prématurément le dialogue ?",
+        "answer": "3♥",
+        "choices": [
+          "2SA",
+          "3♥",
+          "4♥",
+          "2♠"
+        ],
+        "explain": "15 H et quatre Cœurs face à un bicolore cher : 3♥ direct établit le fit et impose la manche tout en conservant de l'espace. 2SA serait modérateur, 4♥ fermerait trop vite le dialogue.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Force suffisante pour rendre le fit Cœur forcing de manche. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g12"
+      },
+      "prerequis": {
+        "concept": "second.bicolore_cher",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Soutien direct de la seconde couleur chère ou chemin modérateur — Force suffisante pour rendre le fit Cœur forcing de manche; contraste avec l'autre membre de reserve-v2-m3-g12.",
+      "source": "Catalogue QPJB figé SEF-L34-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-025",
+      "qcm": {
+        "id": "V2-M3-025",
+        "theme": "second",
+        "hand": [
+          [
+            "R",
+            "8"
+          ],
+          [
+            "V",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "D",
+            "9",
+            "6",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          4,
+          2,
+          5
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Passe",
+          "Vous : 1SA (naturel non forcing)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez répondu 1SA naturellement. Le partenaire montre cinq Piques et au moins quatre Carreaux. Préférez-vous sa première ou sa seconde couleur ?",
+        "answer": "2♠",
+        "choices": [
+          "Passe",
+          "2♠",
+          "2SA",
+          "3♦"
+        ],
+        "explain": "6 H, deux Piques et seulement deux Carreaux : 2♠ revient économiquement à la première couleur, qui est au moins cinquième. C'est une préférence faible, pas la promesse de trois atouts.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Nombre de Carreaux, à force faible et deux Piques constants. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g13"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Bicolore économique après 1SA : préférence ou laisser jouer — Nombre de Carreaux, à force faible et deux Piques constants; contraste avec l'autre membre de reserve-v2-m3-g13.",
+      "source": "Catalogue QPJB figé SEF-V412-006 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-026",
+      "qcm": {
+        "id": "V2-M3-026",
+        "theme": "second",
+        "hand": [
+          [
+            "R",
+            "8"
+          ],
+          [
+            "V",
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "9",
+            "8",
+            "7",
+            "2"
+          ],
+          [
+            "D",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Passe",
+          "Vous : 1SA (naturel non forcing)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez répondu 1SA naturellement. Le partenaire montre cinq Piques et au moins quatre Carreaux. Quelle partielle choisissez-vous ?",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "2♠",
+          "2SA",
+          "3♦"
+        ],
+        "explain": "6 H et quatre Carreaux : le fit huitième est assuré dans la seconde couleur. Passe conserve 2♦, non forcing ; 2♠ reviendrait à une couleur moins bien fittée.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Nombre de Carreaux, à force faible et deux Piques constants. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g13"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Bicolore économique après 1SA : préférence ou laisser jouer — Nombre de Carreaux, à force faible et deux Piques constants; contraste avec l'autre membre de reserve-v2-m3-g13.",
+      "source": "Catalogue QPJB figé SEF-V413-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-027",
+      "qcm": {
+        "id": "V2-M3-027",
+        "theme": "second",
+        "hand": [
+          [
+            "D",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "V",
+            "7"
+          ],
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 3♥ (six Cœurs, saut fort)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le saut à 3♥ annonce six Cœurs et une deuxième zone. Vous avez deux Cœurs et une réponse minimale.",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "4♥",
+          "3SA",
+          "4♠"
+        ],
+        "explain": "6 H et deux Cœurs : le fit est assuré mais la force totale reste insuffisante pour imposer la manche. Passe sur la répétition invitante est permis. 4♠ inventerait un fit Pique.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force à fit huitième Cœur constant. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g14"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Après répétition forte de l'ouvreur : arrêt ou manche — Force à fit huitième Cœur constant; contraste avec l'autre membre de reserve-v2-m3-g14.",
+      "source": "Catalogue QPJB figé SEF-L15-005 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-028",
+      "qcm": {
+        "id": "V2-M3-028",
+        "theme": "second",
+        "hand": [
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 3♥ (six Cœurs, saut fort)",
+          "Adversaire : Passe"
+        ],
+        "context": "Le saut à 3♥ annonce six Cœurs et une deuxième zone. Vous avez deux Cœurs et une réponse non minimale.",
+        "answer": "4♥",
+        "choices": [
+          "Passe",
+          "4♥",
+          "3SA",
+          "4♠"
+        ],
+        "explain": "12 H face à une redemande forte et six Cœurs : le fit huitième et la force de manche sont acquis. 4♥ conclut ; 3SA délaisserait le fit majeur.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force à fit huitième Cœur constant. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g14"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Après répétition forte de l'ouvreur : arrêt ou manche — Force à fit huitième Cœur constant; contraste avec l'autre membre de reserve-v2-m3-g14.",
+      "source": "Catalogue QPJB figé SEF-L15-005 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-029",
+      "qcm": {
+        "id": "V2-M3-029",
+        "theme": "second",
+        "hand": [
+          [
+            "D",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "7",
+            "4",
+            "2"
+          ],
+          [
+            "V",
+            "6"
+          ]
+        ],
+        "h": 6,
+        "shape": [
+          4,
+          2,
+          5,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♦",
+          "Adversaire : Passe"
+        ],
+        "context": "L'ouvreur a annoncé naturellement cinq Cœurs et quatre Carreaux. Vous détenez cinq Carreaux et une réponse faible.",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "2♥",
+          "3♦",
+          "2SA"
+        ],
+        "explain": "6 H et cinq Carreaux face à quatre au moins : le fit est assuré. Passe laisse jouer 2♦ ; 3♦ annoncerait une main invitante, 2♥ délaisserait le meilleur fit.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Force du répondant avec cinq Carreaux. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g15"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Fit dans la seconde couleur économique : partielle ou invitation — Force du répondant avec cinq Carreaux; contraste avec l'autre membre de reserve-v2-m3-g15.",
+      "source": "Catalogue QPJB figé SEF-V413-002 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-030",
+      "qcm": {
+        "id": "V2-M3-030",
+        "theme": "second",
+        "hand": [
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "V",
+            "9",
+            "4",
+            "2"
+          ],
+          [
+            "7",
+            "6"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          4,
+          2,
+          5,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♥",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♦",
+          "Adversaire : Passe"
+        ],
+        "context": "L'ouvreur a annoncé naturellement cinq Cœurs et quatre Carreaux. Vous détenez cinq Carreaux et davantage de force.",
+        "answer": "3♦",
+        "choices": [
+          "Passe",
+          "2♥",
+          "3♦",
+          "2SA"
+        ],
+        "explain": "10 H, cinq Carreaux et deux doubletons : le soutien à 3♦ est encourageant, non forcing de manche. Passe sous-évaluerait le potentiel ; 2SA ne valoriserait pas le fit.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Force du répondant avec cinq Carreaux. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g15"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Fit dans la seconde couleur économique : partielle ou invitation — Force du répondant avec cinq Carreaux; contraste avec l'autre membre de reserve-v2-m3-g15.",
+      "source": "Catalogue QPJB figé SEF-V416-004 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-031",
+      "qcm": {
+        "id": "V2-M3-031",
+        "theme": "second",
+        "hand": [
+          [
+            "R",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          4,
+          4,
+          1,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Passe"
+        ],
+        "context": "L'ouvreur a nommé quatre Piques. Vous détenez quatre Cœurs et une réponse faible.",
+        "answer": "2♠",
+        "choices": [
+          "1SA",
+          "2♥",
+          "2♠",
+          "2♣"
+        ],
+        "explain": "8 H et quatre Piques : le fit majeur 4–4 est acquis. 2♠ est le soutien simple ; 2♣ délaisserait ce fit, 2♥ promettrait davantage de Cœurs.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Quatre Piques ou cinq Trèfles avec quatre Cœurs et force constante. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g16"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Seconde majeure de l'ouvreur ou préférence mineure — Quatre Piques ou cinq Trèfles avec quatre Cœurs et force constante; contraste avec l'autre membre de reserve-v2-m3-g16.",
+      "source": "Catalogue QPJB figé SEF-V410-011 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-032",
+      "qcm": {
+        "id": "V2-M3-032",
+        "theme": "second",
+        "hand": [
+          [
+            "R",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "6",
+            "3",
+            "2"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          4,
+          1,
+          5
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 1♠",
+          "Adversaire : Passe"
+        ],
+        "context": "L'ouvreur a nommé quatre Piques. Vous détenez quatre Cœurs et une réponse faible.",
+        "answer": "2♣",
+        "choices": [
+          "1SA",
+          "2♥",
+          "2♠",
+          "2♣"
+        ],
+        "explain": "8 H, seulement trois Piques et cinq Trèfles : le retour à 2♣ est une préférence naturelle non forcing. 2♠ prétendrait un quatrième atout absent et 2♥ une longueur inexistante.",
+        "difficulty": 2,
+        "difficultyReason": "Contraste : Quatre Piques ou cinq Trèfles avec quatre Cœurs et force constante. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g16"
+      },
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Seconde majeure de l'ouvreur ou préférence mineure — Quatre Piques ou cinq Trèfles avec quatre Cœurs et force constante; contraste avec l'autre membre de reserve-v2-m3-g16.",
+      "source": "Catalogue QPJB figé SEF-V412-010 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-033",
+      "qcm": {
+        "id": "V2-M3-033",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "8"
+          ],
+          [
+            "9",
+            "7",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Passe",
+          "Vous : 2♠",
+          "Adversaire : Passe",
+          "Partenaire : 3♦ (essai de manche)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez soutenu à 2♠ et l'ouvreur fait un essai à 3♦. Évaluez spécifiquement les compléments demandés.",
+        "answer": "4♠",
+        "choices": [
+          "3♠",
+          "4♠",
+          "3SA",
+          "Passe"
+        ],
+        "explain": "8 H, Roi de Pique et Roi-Dame de Carreau : les honneurs dans la couleur d'essai complètent précisément les valeurs recherchées. Acceptez à 4♠. Il ne s'agit pas de jouer à Carreau.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Mêmes H et distribution, Roi-Dame dans la couleur d'essai ou ailleurs. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g17"
+      },
+      "prerequis": {
+        "concept": "apres_fit.essai.suite",
+        "stage": 2,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Essai à la couleur : emplacement des honneurs — Mêmes H et distribution, Roi-Dame dans la couleur d'essai ou ailleurs; contraste avec l'autre membre de reserve-v2-m3-g17.",
+      "source": "Catalogue QPJB figé SEF-V421-011 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-034",
+      "qcm": {
+        "id": "V2-M3-034",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "R",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "D",
+            "4"
+          ],
+          [
+            "9",
+            "8",
+            "3"
+          ],
+          [
+            "9",
+            "7",
+            "5",
+            "4"
+          ]
+        ],
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Passe",
+          "Vous : 2♠",
+          "Adversaire : Passe",
+          "Partenaire : 3♦ (essai de manche)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez soutenu à 2♠ et l'ouvreur fait un essai à 3♦. Évaluez spécifiquement les compléments demandés.",
+        "answer": "3♠",
+        "choices": [
+          "3♠",
+          "4♠",
+          "3SA",
+          "Passe"
+        ],
+        "explain": "8 H mais trois petits Carreaux : les honneurs Cœur ne répondent pas au besoin ciblé. Avec ce soutien intermédiaire, refusez à 3♠ plutôt que de compter mécaniquement les mêmes H.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Mêmes H et distribution, Roi-Dame dans la couleur d'essai ou ailleurs. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g17"
+      },
+      "prerequis": {
+        "concept": "apres_fit.essai.suite",
+        "stage": 2,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Essai à la couleur : emplacement des honneurs — Mêmes H et distribution, Roi-Dame dans la couleur d'essai ou ailleurs; contraste avec l'autre membre de reserve-v2-m3-g17.",
+      "source": "Catalogue QPJB figé SEF-V416-006 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-035",
+      "qcm": {
+        "id": "V2-M3-035",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "A",
+            "V",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "7",
+            "4",
+            "3"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "V",
+            "8"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez ouvert en première position avec la règle des 20. Non vulnérable contre vulnérable, sans ambition de manche, faut-il occuper un palier supplémentaire ?",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♠",
+          "4♠"
+        ],
+        "explain": "11 H et cinq Piques : le fit est seulement huitième au minimum. Sans perspective de manche et sans neuvième atout connu, Passe conserve 2♠. 2SA serait un essai, non le but recherché.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Neuvième atout présumé avec force minimale et vulnérabilité favorable. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g18"
+      },
+      "prerequis": {
+        "concept": "apres_fit.base",
+        "stage": 0,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Après fit simple : barrage ou rester au palier de deux — Neuvième atout présumé avec force minimale et vulnérabilité favorable; contraste avec l'autre membre de reserve-v2-m3-g18.",
+      "source": "Catalogue QPJB figé SEF-V4-013-3 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-036",
+      "qcm": {
+        "id": "V2-M3-036",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "A",
+            "V",
+            "10",
+            "9",
+            "8",
+            "3"
+          ],
+          [
+            "R",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "V",
+            "8"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez ouvert avec une longue. Non vulnérable contre vulnérable, sans ambition de manche, faut-il occuper un palier supplémentaire ?",
+        "answer": "3♠",
+        "choices": [
+          "Passe",
+          "2SA",
+          "3♠",
+          "4♠"
+        ],
+        "explain": "11 H mais six Piques, donc au moins neuf atouts en ligne. À vulnérabilité favorable, 3♠ a une valeur préventive et ne propose pas la manche. 2SA serait un essai généralisé.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Neuvième atout présumé avec force minimale et vulnérabilité favorable. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g18"
+      },
+      "prerequis": {
+        "concept": "apres_fit.essai",
+        "stage": 3,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Après fit simple : barrage ou rester au palier de deux — Neuvième atout présumé avec force minimale et vulnérabilité favorable; contraste avec l'autre membre de reserve-v2-m3-g18.",
+      "source": "Catalogue QPJB figé SEF-V4-017-2 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-037",
+      "qcm": {
+        "id": "V2-M3-037",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "V",
+            "7",
+            "4"
+          ],
+          [
+            "D",
+            "6"
+          ],
+          [
+            "7",
+            "5"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes dans une zone d'essai. Le partenaire a soutenu à 2♠. Quelle enchère cible la couleur où des honneurs seraient utiles ?",
+        "answer": "3♥",
+        "choices": [
+          "2SA",
+          "3♥",
+          "3♠",
+          "4♠"
+        ],
+        "explain": "15 H et quatre Cœurs commandés par RV : 3♥ est l'essai à la couleur. Le fit Pique est fixé ; 3♥ n'est pas une recherche de contrat à Cœur. 3♠ serait préventif.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Existence d'une seconde couleur quatrième significative. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g19"
+      },
+      "prerequis": {
+        "concept": "apres_fit.essai",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Essai généralisé ou essai ciblé dans la seconde majeure — Existence d'une seconde couleur quatrième significative; contraste avec l'autre membre de reserve-v2-m3-g19.",
+      "source": "Catalogue QPJB figé SEF-V423-001 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-038",
+      "qcm": {
+        "id": "V2-M3-038",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "V",
+            "7"
+          ],
+          [
+            "D",
+            "6",
+            "4"
+          ],
+          [
+            "7",
+            "5"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2♠",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes dans une zone d'essai. Le partenaire a soutenu à 2♠. Vous n'avez aucune seconde couleur quatrième.",
+        "answer": "2SA",
+        "choices": [
+          "2SA",
+          "3♥",
+          "3♠",
+          "4♠"
+        ],
+        "explain": "15 H et une distribution 5–3–3–2 : 2SA est l'essai généralisé. Il invite le répondant à évaluer globalement son soutien. 3♥ ne décrirait pas une seconde couleur quatrième ; 3♠ serait préventif.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Existence d'une seconde couleur quatrième significative. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g19"
+      },
+      "prerequis": {
+        "concept": "apres_fit.essai",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Essai généralisé ou essai ciblé dans la seconde majeure — Existence d'une seconde couleur quatrième significative; contraste avec l'autre membre de reserve-v2-m3-g19.",
+      "source": "Catalogue QPJB figé SEF-V4-014-1 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-039",
+      "qcm": {
+        "id": "V2-M3-039",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "V",
+            "9",
+            "8",
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "6"
+          ],
+          [
+            "R",
+            "D"
+          ],
+          [
+            "R",
+            "8",
+            "5"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          5,
+          3,
+          2,
+          3
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (fitté, 3 Piques et 11–12 HLD)",
+          "Adversaire : Passe"
+        ],
+        "context": "La manche est acquise après le 2SA fitté. Vous êtes régulier et vos atouts sont médiocres. Quel contrat alternatif proposez-vous ?",
+        "answer": "3SA",
+        "choices": [
+          "3♠",
+          "3SA",
+          "4♠",
+          "4SA"
+        ],
+        "explain": "16 H réguliers, des Piques faibles et des arrêts dans les trois couleurs latérales : 3SA est une proposition naturelle non forcing. Le répondant peut préférer 4♠ selon sa distribution. 3♠ déclinerait la manche.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Qualité des atouts et concentration des tenues extérieures. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g20"
+      },
+      "prerequis": {
+        "concept": "fit.2sa.suite",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "2SA fitté : alternative à Sans-Atout ou manche majeure — Qualité des atouts et concentration des tenues extérieures; contraste avec l'autre membre de reserve-v2-m3-g20.",
+      "source": "Catalogue QPJB figé SEF-V486-010 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-040",
+      "qcm": {
+        "id": "V2-M3-040",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "7",
+            "6"
+          ],
+          [
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "8",
+            "5"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          5,
+          3,
+          2,
+          3
+        ],
+        "auction": [
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (fitté, 3 Piques et 11–12 HLD)",
+          "Adversaire : Passe"
+        ],
+        "context": "La manche est acquise après le 2SA fitté. Vos atouts sont solides et vous n'avez pas de tenue sûre à Carreau.",
+        "answer": "4♠",
+        "choices": [
+          "3♠",
+          "3SA",
+          "4♠",
+          "4SA"
+        ],
+        "explain": "16 H, cinq Piques solides et huit atouts connus : 4♠ conclut. La Dame seconde de Carreau n'est pas un arrêt autonome ; les arguments pour proposer 3SA ne sont donc pas réunis.",
+        "difficulty": 4,
+        "difficultyReason": "Contraste : Qualité des atouts et concentration des tenues extérieures. Lecture d'un accord spécifique ou arbitrage entre deux descriptions.",
+        "caseFamily": "reserve-v2-m3-g20"
+      },
+      "prerequis": {
+        "concept": "fit.2sa.suite",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "2SA fitté : alternative à Sans-Atout ou manche majeure — Qualité des atouts et concentration des tenues extérieures; contraste avec l'autre membre de reserve-v2-m3-g20.",
+      "source": "Catalogue QPJB figé SEF-V486-010 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-041",
+      "qcm": {
+        "id": "V2-M3-041",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "7",
+            "6"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          4,
+          5,
+          3,
+          1
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (fitté, 3 Cœurs et 11–12 HLD)",
+          "Adversaire : Passe"
+        ],
+        "context": "La force de manche est réunie et le 2SA fitté ne nie pas quatre Piques chez le répondant.",
+        "answer": "3♠",
+        "choices": [
+          "3♥",
+          "3♠",
+          "3SA",
+          "4♥"
+        ],
+        "explain": "15 H et quatre Piques : 3♠ montre la seconde majeure pour rechercher le fit 4–4 éventuel. Le fit Cœur 5–3 reste disponible si le partenaire n'a pas quatre Piques.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatrième Pique chez l'ouvreur. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g21"
+      },
+      "prerequis": {
+        "concept": "fit.2sa.suite",
+        "stage": 2,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "2SA fitté Cœur : rechercher un second fit ou conclure — Quatrième Pique chez l'ouvreur; contraste avec l'autre membre de reserve-v2-m3-g21.",
+      "source": "Catalogue QPJB figé SEF-V486-009 ; #320, #327, #330."
+    },
+    {
+      "id": "V2-M3-042",
+      "qcm": {
+        "id": "V2-M3-042",
+        "theme": "apres_fit",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8"
+          ],
+          [
+            "A",
+            "R",
+            "V",
+            "9",
+            "8"
+          ],
+          [
+            "D",
+            "7",
+            "6",
+            "4"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 15,
+        "shape": [
+          3,
+          5,
+          4,
+          1
+        ],
+        "auction": [
+          "Vous : 1♥",
+          "Adversaire : Passe",
+          "Partenaire : 2SA (fitté, 3 Cœurs et 11–12 HLD)",
+          "Adversaire : Passe"
+        ],
+        "context": "La force de manche est réunie après le 2SA fitté. Vous n'avez que trois Piques.",
+        "answer": "4♥",
+        "choices": [
+          "3♥",
+          "3♠",
+          "3SA",
+          "4♥"
+        ],
+        "explain": "15 H, cinq Cœurs, singleton Trèfle et fit huitième connu : 4♥ conclut. 3♠ promettrait quatre Piques et 3♥ déclinerait à tort la manche.",
+        "difficulty": 3,
+        "difficultyReason": "Contraste : Quatrième Pique chez l'ouvreur. Application à une décision naturelle ou à un seuil documenté.",
+        "caseFamily": "reserve-v2-m3-g21"
+      },
+      "prerequis": {
+        "concept": "fit.2sa.suite",
+        "stage": 2,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "2SA fitté Cœur : rechercher un second fit ou conclure — Quatrième Pique chez l'ouvreur; contraste avec l'autre membre de reserve-v2-m3-g21.",
+      "source": "Catalogue QPJB figé SEF-V486-008 ; #320, #327, #330."
+    }
+  ],
+  "patches": [],
+  "reserves": []
+}

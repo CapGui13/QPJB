@@ -1,0 +1,923 @@
+{
+  "mission": "V2-M1",
+  "base": "0c3da298c3a1973665f709a92d643284fcf59ccd",
+  "observed": {
+    "ouv.sa1": {
+      "qcm": 12,
+      "families": 6,
+      "familiesN1to3": 6
+    },
+    "ouv.sa2": {
+      "qcm": 6,
+      "families": 4,
+      "familiesN1to3": 4
+    },
+    "ouv.majeure": {
+      "qcm": 18,
+      "families": 11,
+      "familiesN1to3": 10
+    },
+    "ouv.mineure": {
+      "qcm": 29,
+      "families": 20,
+      "familiesN1to3": 20
+    },
+    "ouv.passe": {
+      "qcm": 14,
+      "families": 9,
+      "familiesN1to3": 9
+    },
+    "mineur.base": {
+      "qcm": 81,
+      "families": 57,
+      "familiesN1to3": 53
+    },
+    "mineur.soutien": {
+      "qcm": 7,
+      "families": 6,
+      "familiesN1to3": 6
+    },
+    "majeur.soutien": {
+      "qcm": 24,
+      "families": 16,
+      "familiesN1to3": 14
+    },
+    "majeur.base": {
+      "qcm": 62,
+      "families": 42,
+      "familiesN1to3": 40
+    },
+    "fit.2sa": {
+      "qcm": 4,
+      "families": 4,
+      "familiesN1to3": 4
+    },
+    "fortes.ouverture": {
+      "qcm": 1,
+      "families": 1,
+      "familiesN1to3": 1
+    },
+    "ouv.position": {
+      "qcm": 8,
+      "families": 8,
+      "familiesN1to3": 8
+    },
+    "ouv.bicolore.exception": {
+      "qcm": 3,
+      "families": 3,
+      "familiesN1to3": 0
+    }
+  },
+  "scopeCount": 269,
+  "v1Read": {
+    "additions": 33,
+    "inScope": 0,
+    "reserves": 14
+  },
+  "groups": [
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa2-mineure-longue",
+      "criterion": "Seuil 19/20 H avec mineure cinquième",
+      "ids": [
+        "V2-M1-001",
+        "V2-M1-002"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-001",
+          "concept": "ouv.mineure",
+          "answer": "1♣",
+          "h": 19,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "anchor": "SEF-Q26-M1-005"
+        },
+        {
+          "id": "V2-M1-002",
+          "concept": "ouv.sa2",
+          "answer": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "anchor": "SEF-N021-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa2-singleton",
+      "criterion": "Régularité indispensable à 20 H",
+      "ids": [
+        "V2-M1-003",
+        "V2-M1-004"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-003",
+          "concept": "ouv.sa2",
+          "answer": "2SA",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "anchor": "SEF-N020-1"
+        },
+        {
+          "id": "V2-M1-004",
+          "concept": "ouv.mineure",
+          "answer": "1♦",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            4,
+            1
+          ],
+          "anchor": "SEF-Q26-M1-005"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa1-seuil-bas",
+      "criterion": "Seuil inférieur de 1SA avec cinq Trèfles",
+      "ids": [
+        "V2-M1-005",
+        "V2-M1-006"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-005",
+          "concept": "ouv.mineure",
+          "answer": "1♣",
+          "h": 14,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "anchor": "SEF-N005-1"
+        },
+        {
+          "id": "V2-M1-006",
+          "concept": "ouv.sa1",
+          "answer": "1SA",
+          "h": 15,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "anchor": "SEF-N019-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa1-seuil-haut",
+      "criterion": "Plafond de 1SA et redemande forte",
+      "ids": [
+        "V2-M1-007",
+        "V2-M1-008"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "answer": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "anchor": "SEF-N018-2"
+        },
+        {
+          "id": "V2-M1-008",
+          "concept": "ouv.mineure",
+          "answer": "1♦",
+          "h": 18,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "anchor": "SEF-Q26-M1-005"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa1-majeure",
+      "criterion": "Cinquième carte majeure dans la zone de 1SA",
+      "ids": [
+        "V2-M1-009",
+        "V2-M1-010"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "answer": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "anchor": "SEF-002-1"
+        },
+        {
+          "id": "V2-M1-010",
+          "concept": "ouv.majeure",
+          "answer": "1♠",
+          "h": 15,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ],
+          "anchor": "SEF-N003-1"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-mineures-egalite",
+      "criterion": "Égalité 4–4 ou Trèfle cinquième",
+      "ids": [
+        "V2-M1-011",
+        "V2-M1-012"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-011",
+          "concept": "ouv.mineure",
+          "answer": "1♦",
+          "h": 12,
+          "shape": [
+            3,
+            2,
+            4,
+            4
+          ],
+          "anchor": "SEF-N007-1"
+        },
+        {
+          "id": "V2-M1-012",
+          "concept": "ouv.mineure",
+          "answer": "1♣",
+          "h": 12,
+          "shape": [
+            2,
+            2,
+            4,
+            5
+          ],
+          "anchor": "SEF-N005-1"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-exception-longueur",
+      "criterion": "Condition 5–5 de l'exception Pique–Trèfle",
+      "ids": [
+        "V2-M1-013",
+        "V2-M1-014"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-013",
+          "concept": "ouv.bicolore.exception",
+          "answer": "1♣",
+          "h": 16,
+          "shape": [
+            5,
+            2,
+            1,
+            5
+          ],
+          "anchor": "SEF-L28-001"
+        },
+        {
+          "id": "V2-M1-014",
+          "concept": "ouv.bicolore.exception",
+          "answer": "1♠",
+          "h": 16,
+          "shape": [
+            5,
+            2,
+            2,
+            4
+          ],
+          "anchor": "SEF-Q26-M1-007"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-position-tactique",
+      "criterion": "Même jeu limite en deuxième ou troisième position",
+      "ids": [
+        "V2-M1-015",
+        "V2-M1-016"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-015",
+          "concept": "ouv.position",
+          "answer": "Passe",
+          "h": 11,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ],
+          "anchor": "SEF-Q26-M1-004"
+        },
+        {
+          "id": "V2-M1-016",
+          "concept": "ouv.position",
+          "answer": "1♠",
+          "h": 11,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ],
+          "anchor": "SEF-V419-001"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-position-quatrieme",
+      "criterion": "Règle indicative des 15 et cinquième Pique",
+      "ids": [
+        "V2-M1-017",
+        "V2-M1-018"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-017",
+          "concept": "ouv.position",
+          "answer": "1♠",
+          "h": 10,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ],
+          "anchor": "SEF-V422-001"
+        },
+        {
+          "id": "V2-M1-018",
+          "concept": "ouv.position",
+          "answer": "Passe",
+          "h": 10,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "anchor": "SEF-V422-002"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-reponse-carreau-longueur",
+      "criterion": "Quatrième Carreau annonçable ou 1SA de recours",
+      "ids": [
+        "V2-M1-019",
+        "V2-M1-020"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-019",
+          "concept": "mineur.base",
+          "answer": "1♦",
+          "h": 8,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "anchor": "SEF-N032-1"
+        },
+        {
+          "id": "V2-M1-020",
+          "concept": "mineur.base",
+          "answer": "1SA",
+          "h": 8,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-N033-1"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-reponse-longueur-forte",
+      "criterion": "Longueur réelle au-dessus de 12 HL sans Walsh",
+      "ids": [
+        "V2-M1-021",
+        "V2-M1-022"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-021",
+          "concept": "mineur.base",
+          "answer": "1♦",
+          "h": 13,
+          "shape": [
+            2,
+            4,
+            5,
+            2
+          ],
+          "anchor": "SEF-V49-006"
+        },
+        {
+          "id": "V2-M1-022",
+          "concept": "mineur.base",
+          "answer": "1♥",
+          "h": 13,
+          "shape": [
+            2,
+            5,
+            4,
+            2
+          ],
+          "anchor": "SEF-Q26-M1-009"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-reponse-deux-un-mineur",
+      "criterion": "Majeure quatrième au palier de un contre 2♣",
+      "ids": [
+        "V2-M1-023",
+        "V2-M1-024"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-023",
+          "concept": "mineur.base",
+          "answer": "2♣",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "anchor": "SEF-N045-1"
+        },
+        {
+          "id": "V2-M1-024",
+          "concept": "mineur.base",
+          "answer": "1♥",
+          "h": 11,
+          "shape": [
+            3,
+            4,
+            2,
+            4
+          ],
+          "anchor": "SEF-018-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa-naturel-invitation",
+      "criterion": "Réponse limitée ou invitation naturelle",
+      "ids": [
+        "V2-M1-025",
+        "V2-M1-026"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-025",
+          "concept": "mineur.base",
+          "answer": "1SA",
+          "h": 9,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-N033-1"
+        },
+        {
+          "id": "V2-M1-026",
+          "concept": "mineur.base",
+          "answer": "2SA",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-V44-005"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-sa-naturel-manche",
+      "criterion": "Invitation ou manche naturelle avec les tenues",
+      "ids": [
+        "V2-M1-027",
+        "V2-M1-028"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-027",
+          "concept": "mineur.base",
+          "answer": "2SA",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-V44-005"
+        },
+        {
+          "id": "V2-M1-028",
+          "concept": "mineur.base",
+          "answer": "3SA",
+          "h": 14,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-V49-035"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-soutien-mineur-forme",
+      "criterion": "Main régulière ou courte avec cinq Carreaux",
+      "ids": [
+        "V2-M1-029",
+        "V2-M1-030"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-029",
+          "concept": "mineur.base",
+          "answer": "1SA",
+          "h": 7,
+          "shape": [
+            3,
+            3,
+            5,
+            2
+          ],
+          "anchor": "SEF-N040-1"
+        },
+        {
+          "id": "V2-M1-030",
+          "concept": "mineur.soutien",
+          "answer": "2♦",
+          "h": 7,
+          "shape": [
+            1,
+            3,
+            5,
+            4
+          ],
+          "anchor": "SEF-Q26-M1-010"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-soutien-mineur-priorite",
+      "criterion": "Fit mineur ou recherche de majeure quatrième",
+      "ids": [
+        "V2-M1-031",
+        "V2-M1-032"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-031",
+          "concept": "mineur.soutien",
+          "answer": "2♣",
+          "h": 7,
+          "shape": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "anchor": "SEF-N031-2"
+        },
+        {
+          "id": "V2-M1-032",
+          "concept": "mineur.base",
+          "answer": "1♥",
+          "h": 7,
+          "shape": [
+            1,
+            4,
+            3,
+            5
+          ],
+          "anchor": "SEF-018-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-majeure-reponse-pique",
+      "criterion": "Quatrième Pique disponible ou changement de mineure",
+      "ids": [
+        "V2-M1-033",
+        "V2-M1-034"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-033",
+          "concept": "majeur.base",
+          "answer": "1♠",
+          "h": 13,
+          "shape": [
+            4,
+            2,
+            3,
+            4
+          ],
+          "anchor": "SEF-Q26-M1-016"
+        },
+        {
+          "id": "V2-M1-034",
+          "concept": "majeur.base",
+          "answer": "2♣",
+          "h": 13,
+          "shape": [
+            3,
+            2,
+            3,
+            5
+          ],
+          "anchor": "SEF-N065-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-majeure-reponse-coeur",
+      "criterion": "Cinq Cœurs nécessaires à 2♥ sur 1♠",
+      "ids": [
+        "V2-M1-035",
+        "V2-M1-036"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-035",
+          "concept": "majeur.base",
+          "answer": "2♥",
+          "h": 14,
+          "shape": [
+            2,
+            5,
+            2,
+            4
+          ],
+          "anchor": "SEF-N074-1"
+        },
+        {
+          "id": "V2-M1-036",
+          "concept": "majeur.base",
+          "answer": "2♣",
+          "h": 14,
+          "shape": [
+            2,
+            4,
+            2,
+            5
+          ],
+          "anchor": "SEF-Q26-M1-014"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-majeure-seuil-deux-un",
+      "criterion": "Seuil du changement de couleur avec cinq Carreaux",
+      "ids": [
+        "V2-M1-037",
+        "V2-M1-038"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-037",
+          "concept": "majeur.base",
+          "answer": "1SA",
+          "h": 10,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "anchor": "SEF-V49-011"
+        },
+        {
+          "id": "V2-M1-038",
+          "concept": "majeur.base",
+          "answer": "2♦",
+          "h": 11,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "anchor": "SEF-N064-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-fit-2sa-force",
+      "criterion": "Soutien troisième : première zone ou invitation",
+      "ids": [
+        "V2-M1-039",
+        "V2-M1-040"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-039",
+          "concept": "majeur.soutien",
+          "answer": "2♥",
+          "h": 10,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "anchor": "SEF-N048-1"
+        },
+        {
+          "id": "V2-M1-040",
+          "concept": "fit.2sa",
+          "answer": "2SA",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "anchor": "SEF-N051-2"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-fit-2sa-nombre",
+      "criterion": "Nombre d'atouts à valeur invitante constante",
+      "ids": [
+        "V2-M1-041",
+        "V2-M1-042"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-041",
+          "concept": "fit.2sa",
+          "answer": "2SA",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-N056-1"
+        },
+        {
+          "id": "V2-M1-042",
+          "concept": "majeur.soutien",
+          "answer": "3♠",
+          "h": 9,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "anchor": "SEF-V44-010"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-fit-2sa-absence",
+      "criterion": "Fit troisième ou couleur naturelle forcing",
+      "ids": [
+        "V2-M1-043",
+        "V2-M1-044"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-043",
+          "concept": "fit.2sa",
+          "answer": "2SA",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "anchor": "SEF-V410-024"
+        },
+        {
+          "id": "V2-M1-044",
+          "concept": "majeur.base",
+          "answer": "2♣",
+          "h": 11,
+          "shape": [
+            2,
+            3,
+            3,
+            5
+          ],
+          "anchor": "SEF-Q26-M1-014"
+        }
+      ]
+    },
+    {
+      "caseFamily": "reserve-20261125-v2-m1-soutien-barrage",
+      "criterion": "Dix atouts et courte ou soutien simple",
+      "ids": [
+        "V2-M1-045",
+        "V2-M1-046"
+      ],
+      "decisions": [
+        {
+          "id": "V2-M1-045",
+          "concept": "majeur.soutien",
+          "answer": "4♠",
+          "h": 6,
+          "shape": [
+            5,
+            4,
+            3,
+            1
+          ],
+          "anchor": "SEF-V44-012"
+        },
+        {
+          "id": "V2-M1-046",
+          "concept": "majeur.soutien",
+          "answer": "2♠",
+          "h": 6,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "anchor": "SEF-N054-1"
+        }
+      ]
+    }
+  ],
+  "newDistinctFamilies": 23,
+  "additions": 46,
+  "exceptions": [
+    "Familles contrastées partagées entre concepts : ne pas compter deux fois globalement.",
+    "fortes.ouverture hors périmètre.",
+    "Les seuils de force déjà illustrés isolément sont ici mis en opposition avec une décision alternative ; pas de prétention à l'inédit de la règle elle-même.",
+    "3SA naturel ancré V49-035 ; aucun réexamen de V44-007."
+  ],
+  "checks": {
+    "hand": "13 cartes, rangs valides, aucun doublon intra-couleur, H recalculés",
+    "choices": "4 choix distincts, réponse présente, réponses opposées par groupe",
+    "duplicates": "Clé main + séquence confrontée aux 1628 QCM et au lot",
+    "metadata": "Ancrages existants et planchers conservés ou relevés pour contrastes",
+    "legality": "Revue manuelle des premières enchères et contextes",
+    "globalTests": "non exécutés"
+  }
+}
