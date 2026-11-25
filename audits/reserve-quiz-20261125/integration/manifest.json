@@ -2202,5 +2202,247 @@
       "source": "V2/M3/patch.json V2-M3-010 ; SEF-V411-003, SEF-V417-005, SEF-L20-001 ; #334/#337."
     }
   ],
-  "note": "Candidat non publié ; les extensions facultatives ne sont pas adoptées. Les 3 QCM écartés restent archivés."
+  "note": "Candidat non publié ; les extensions facultatives ne sont pas adoptées. Les 3 QCM écartés restent archivés.",
+  "ciPrerequisiteCorrection": {
+    "reason": "Recette finale #45592530352 : niveaux 4 classés en stages 1/2 ; harmonisation sur stage 3 et exposition préalable à deux familles, selon la logique historique.",
+    "changes": [
+      {
+        "id": "V2-M5-017",
+        "old": {
+          "concept": "barrage.suite",
+          "stage": 2,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "barrage.suite",
+          "stage": 3,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "barrage.suite",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M5-039",
+        "old": {
+          "concept": "michaels.reponse",
+          "stage": 1,
+          "minSession": 38,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "michaels.reponse",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.reponse",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M5-040",
+        "old": {
+          "concept": "michaels.reponse",
+          "stage": 1,
+          "minSession": 38,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "michaels.reponse",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.reponse",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M6-025",
+        "old": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M6-026",
+        "old": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M6-027",
+        "old": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "V2-M6-028",
+        "old": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    ],
+    "reachable": 1879,
+    "last": 49
+  }
 }
