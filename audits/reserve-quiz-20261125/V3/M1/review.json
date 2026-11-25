@@ -1,0 +1,1769 @@
+{
+  "base": "55d733bdb6409badb81b7a7d8113fdf05bd533fa",
+  "mission": "#335",
+  "stats": {
+    "examines": 57,
+    "corriges": 36,
+    "conserves": 19,
+    "reserves": 2,
+    "changementsBonneReponse": 0,
+    "changementsMetadonnees": 0,
+    "ajouts": 0
+  },
+  "items": [
+    {
+      "id": "V2-M1-001",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-sa2-mineure-longue",
+      "status": "conserver",
+      "motif": "19 H réguliers : la redemande à 2SA est conditionnelle et le seuil d'ouverture 2SA est exact.",
+      "ancre": "SEF-Q26-M1-005",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-002",
+      "theme": "ouv",
+      "concept": "ouv.sa2",
+      "family": "reserve-20261125-v2-m1-sa2-mineure-longue",
+      "status": "conserver",
+      "motif": "20 H, mineure cinquième compatible avec la forme régulière ; explication suffisante.",
+      "ancre": "SEF-N021-2",
+      "prerequis": {
+        "concept": "ouv.sa2",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-003",
+      "theme": "ouv",
+      "concept": "ouv.sa2",
+      "family": "reserve-20261125-v2-m1-sa2-singleton",
+      "status": "conserver",
+      "motif": "20 H et 4–4–3–2 réguliers, absence de majeure cinquième correctement indiquée.",
+      "ancre": "SEF-N020-1",
+      "prerequis": {
+        "concept": "ouv.sa2",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-004",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-sa2-singleton",
+      "status": "corriger",
+      "motif": "Sépare la zone de force de la condition de forme et justifie le choix de la mineure.",
+      "ancre": "SEF-Q26-M1-005",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-005",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-sa1-seuil-bas",
+      "status": "corriger",
+      "motif": "Rend explicite le piège H/HL au seuil de 1SA.",
+      "ancre": "SEF-N005-1",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-006",
+      "theme": "ouv",
+      "concept": "ouv.sa1",
+      "family": "reserve-20261125-v2-m1-sa1-seuil-bas",
+      "status": "corriger",
+      "motif": "Donne les deux unités et la priorité de SA sans dépendre de la lecture de l'autre membre.",
+      "ancre": "SEF-N019-2",
+      "prerequis": {
+        "concept": "ouv.sa1",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-007",
+      "theme": "ouv",
+      "concept": "ouv.sa1",
+      "family": "reserve-20261125-v2-m1-sa1-seuil-haut",
+      "status": "conserver",
+      "motif": "17 H plafond de 1SA, les deux majeures seulement quatrièmes sont explicitement distinguées.",
+      "ancre": "SEF-N018-2",
+      "prerequis": {
+        "concept": "ouv.sa1",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-008",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-sa1-seuil-haut",
+      "status": "conserver",
+      "motif": "18 H hors des deux zones SA, mineure la plus longue et redemande forte expliquées.",
+      "ancre": "SEF-Q26-M1-005",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-009",
+      "theme": "ouv",
+      "concept": "ouv.sa1",
+      "family": "reserve-20261125-v2-m1-sa1-majeure",
+      "status": "conserver",
+      "motif": "Quatre Piques insuffisants à l'ouverture majeure et 15 H réguliers : discrimination explicite.",
+      "ancre": "SEF-002-1",
+      "prerequis": {
+        "concept": "ouv.sa1",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-010",
+      "theme": "ouv",
+      "concept": "ouv.majeure",
+      "family": "reserve-20261125-v2-m1-sa1-majeure",
+      "status": "corriger",
+      "motif": "Explique la priorité conventionnelle locale, plutôt qu'une simple référence à la carte supplémentaire.",
+      "ancre": "SEF-N003-1",
+      "prerequis": {
+        "concept": "ouv.majeure",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-011",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-mineures-egalite",
+      "status": "conserver",
+      "motif": "Égalité 4–4 résolue par 1♦ indépendamment des honneurs.",
+      "ancre": "SEF-N007-1",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-012",
+      "theme": "ouv",
+      "concept": "ouv.mineure",
+      "family": "reserve-20261125-v2-m1-mineures-egalite",
+      "status": "conserver",
+      "motif": "Trèfle cinquième contre Carreau quatrième : règle de longueur bien expliquée.",
+      "ancre": "SEF-N005-1",
+      "prerequis": {
+        "concept": "ouv.mineure",
+        "stage": 0,
+        "minSession": 0,
+        "requires": []
+      },
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-013",
+      "theme": "ouv",
+      "concept": "ouv.bicolore.exception",
+      "family": "reserve-20261125-v2-m1-exception-longueur",
+      "status": "corriger",
+      "motif": "Décompose le comptage des perdantes et les deux conditions cumulatives.",
+      "ancre": "SEF-L28-001",
+      "prerequis": {
+        "concept": "ouv.bicolore.exception",
+        "stage": 3,
+        "minSession": 30,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 3
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-014",
+      "theme": "ouv",
+      "concept": "ouv.bicolore.exception",
+      "family": "reserve-20261125-v2-m1-exception-longueur",
+      "status": "corriger",
+      "motif": "Élimine la formulation équivoque « plus un Carreau » et explicite les cinq perdantes.",
+      "ancre": "SEF-Q26-M1-007",
+      "prerequis": {
+        "concept": "ouv.bicolore.exception",
+        "stage": 3,
+        "minSession": 30,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 3
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-015",
+      "theme": "ouv",
+      "concept": "ouv.position",
+      "family": "reserve-20261125-v2-m1-position-tactique",
+      "status": "corriger",
+      "motif": "Évite de présenter un jugement de main limite comme une interdiction générale.",
+      "ancre": "SEF-Q26-M1-004",
+      "prerequis": {
+        "concept": "ouv.position",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M1-016",
+      "theme": "ouv",
+      "concept": "ouv.position",
+      "family": "reserve-20261125-v2-m1-position-tactique",
+      "status": "corriger",
+      "motif": "Explique pourquoi l'information de position modifie l'évaluation tactique.",
+      "ancre": "SEF-V419-001",
+      "prerequis": {
+        "concept": "ouv.position",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-017",
+      "theme": "ouv",
+      "concept": "ouv.position",
+      "family": "reserve-20261125-v2-m1-position-quatrieme",
+      "status": "corriger",
+      "motif": "Nomme la règle des 15 et son caractère indicatif.",
+      "ancre": "SEF-V422-001",
+      "prerequis": {
+        "concept": "ouv.position",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-018",
+      "theme": "ouv",
+      "concept": "ouv.position",
+      "family": "reserve-20261125-v2-m1-position-quatrieme",
+      "status": "corriger",
+      "motif": "Nomme la même règle et motive la décision de ne pas rouvrir.",
+      "ancre": "SEF-V422-002",
+      "prerequis": {
+        "concept": "ouv.position",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M1-019",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-carreau-longueur",
+      "status": "corriger",
+      "motif": "Remplace la vague faible force par un raisonnement sur le seuil et le caractère forcing.",
+      "ancre": "SEF-N032-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-020",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-carreau-longueur",
+      "status": "corriger",
+      "motif": "Justifie également le rejet du soutien mineur.",
+      "ancre": "SEF-N033-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-021",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-longueur-forte",
+      "status": "conserver",
+      "motif": "14 HL et cinq Carreaux contre quatre Cœurs ; seuil QPJB sans Walsh explicite.",
+      "ancre": "SEF-V49-006",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-022",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-longueur-forte",
+      "status": "corriger",
+      "motif": "Supprime la référence à une règle précédente, rend le corrigé autonome.",
+      "ancre": "SEF-Q26-M1-009",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♥"
+    },
+    {
+      "id": "V2-M1-023",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-deux-un-mineur",
+      "status": "corriger",
+      "motif": "Explicite le seuil et la raison de ne pas choisir 1SA.",
+      "ancre": "SEF-N045-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M1-024",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-reponse-deux-un-mineur",
+      "status": "corriger",
+      "motif": "Distingue force suffisante et priorité de la majeure, sans confondre 1/1 et 2/1.",
+      "ancre": "SEF-018-2",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♥"
+    },
+    {
+      "id": "V2-M1-025",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-sa-naturel-invitation",
+      "status": "conserver",
+      "motif": "9 H réguliers, aucune couleur disponible, invitation excessive : suffisant.",
+      "ancre": "SEF-N033-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-026",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-sa-naturel-invitation",
+      "status": "conserver",
+      "motif": "11 H et absence de majeure quatrième/Carreau quatrième ; nature invitante et 1SA rejeté.",
+      "ancre": "SEF-V44-005",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-027",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-sa-naturel-manche",
+      "status": "conserver",
+      "motif": "11 H avec tenues latérales : force et invitation correctement distinguées.",
+      "ancre": "SEF-V44-005",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-028",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-sa-naturel-manche",
+      "status": "conserver",
+      "motif": "14 H avec les tenues latérales, 3SA plutôt que 2SA ; contraste de force expliqué.",
+      "ancre": "SEF-V49-035",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M1-029",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-soutien-mineur-forme",
+      "status": "corriger",
+      "motif": "Précise l'évaluation HL et le rôle de la distribution.",
+      "ancre": "SEF-N040-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-030",
+      "theme": "mineur",
+      "concept": "mineur.soutien",
+      "family": "reserve-20261125-v2-m1-soutien-mineur-forme",
+      "status": "corriger",
+      "motif": "Rattache la décision à l'absence de majeure quatrième et à la courte réelle.",
+      "ancre": "SEF-Q26-M1-010",
+      "prerequis": {
+        "concept": "mineur.soutien",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♦"
+    },
+    {
+      "id": "V2-M1-031",
+      "theme": "mineur",
+      "concept": "mineur.soutien",
+      "family": "reserve-20261125-v2-m1-soutien-mineur-priorite",
+      "status": "corriger",
+      "motif": "Traite le distracteur 1♦ réellement plausible, sur l'ancre locale de même forme.",
+      "ancre": "SEF-N031-2",
+      "prerequis": {
+        "concept": "mineur.soutien",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M1-032",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "reserve-20261125-v2-m1-soutien-mineur-priorite",
+      "status": "corriger",
+      "motif": "Explique pourquoi la priorité majeure diffère du soutien immédiat.",
+      "ancre": "SEF-018-2",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♥"
+    },
+    {
+      "id": "V2-M1-033",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-reponse-pique",
+      "status": "conserver",
+      "motif": "Quatre Piques, 1♠ forcing un tour et illimité, priorité au palier de un explicitée.",
+      "ancre": "SEF-Q26-M1-016",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-034",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-reponse-pique",
+      "status": "corriger",
+      "motif": "Explicite le seuil et élimine les autres choix de longueur/force.",
+      "ancre": "SEF-N065-2",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M1-035",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-reponse-coeur",
+      "status": "corriger",
+      "motif": "Donne les deux conditions et le calcul.",
+      "ancre": "SEF-N074-1",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "V2-M1-036",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-reponse-coeur",
+      "status": "corriger",
+      "motif": "Explique la contrainte de longueur indépendamment de la force et le statut du 2/1.",
+      "ancre": "SEF-Q26-M1-014",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 3,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M1-037",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-seuil-deux-un",
+      "status": "conserver",
+      "motif": "10 H + 1 L = 11 HL ; seuil du 2/1 et 1SA non forcing du quiz corrects (ne pas transposer une convention personnelle).",
+      "ancre": "SEF-V49-011",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "V2-M1-038",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-majeure-seuil-deux-un",
+      "status": "conserver",
+      "motif": "11 H + 1 L = 12 HL ; seuil et statut forcing/auto-forcing explicités.",
+      "ancre": "SEF-N064-2",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♦"
+    },
+    {
+      "id": "V2-M1-039",
+      "theme": "majeur",
+      "concept": "majeur.soutien",
+      "family": "reserve-20261125-v2-m1-fit-2sa-force",
+      "status": "corriger",
+      "motif": "Calcule HLD au lieu d'inférer la zone seulement depuis l'absence de courte.",
+      "ancre": "SEF-N048-1",
+      "prerequis": {
+        "concept": "majeur.soutien",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "V2-M1-040",
+      "theme": "majeur",
+      "concept": "fit.2sa",
+      "family": "reserve-20261125-v2-m1-fit-2sa-force",
+      "status": "conserver",
+      "motif": "11 HLD et trois atouts ; distingue précisément 2SA fitté du soutien à saut.",
+      "ancre": "SEF-N051-2",
+      "prerequis": {
+        "concept": "fit.2sa",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-041",
+      "theme": "majeur",
+      "concept": "fit.2sa",
+      "family": "reserve-20261125-v2-m1-fit-2sa-nombre",
+      "status": "corriger",
+      "motif": "Explique l'évaluation et le choix entre deux invitations.",
+      "ancre": "SEF-N056-1",
+      "prerequis": {
+        "concept": "fit.2sa",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-042",
+      "theme": "majeur",
+      "concept": "majeur.soutien",
+      "family": "reserve-20261125-v2-m1-fit-2sa-nombre",
+      "status": "conserver",
+      "motif": "9 H + 2 D du neuvième atout = 11 HLD ; distingue correctement 3♠ et 2SA.",
+      "ancre": "SEF-V44-010",
+      "prerequis": {
+        "concept": "majeur.soutien",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♠"
+    },
+    {
+      "id": "V2-M1-043",
+      "theme": "majeur",
+      "concept": "fit.2sa",
+      "family": "reserve-20261125-v2-m1-fit-2sa-absence",
+      "status": "corriger",
+      "motif": "Explique le calcul et le rejet du changement de couleur plausible.",
+      "ancre": "SEF-V410-024",
+      "prerequis": {
+        "concept": "fit.2sa",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-044",
+      "theme": "majeur",
+      "concept": "majeur.base",
+      "family": "reserve-20261125-v2-m1-fit-2sa-absence",
+      "status": "corriger",
+      "motif": "Relie absence de fit et seuil du changement de couleur.",
+      "ancre": "SEF-Q26-M1-014",
+      "prerequis": {
+        "concept": "majeur.base",
+        "stage": 3,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M1-045",
+      "theme": "majeur",
+      "concept": "majeur.soutien",
+      "family": "reserve-20261125-v2-m1-soutien-barrage",
+      "status": "conserver",
+      "motif": "Dix atouts minimum, singleton et vulnérabilité favorable ; barrage et non manche de force bien distingués.",
+      "ancre": "SEF-V44-012",
+      "prerequis": {
+        "concept": "majeur.soutien",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♠"
+    },
+    {
+      "id": "V2-M1-046",
+      "theme": "majeur",
+      "concept": "majeur.soutien",
+      "family": "reserve-20261125-v2-m1-soutien-barrage",
+      "status": "corriger",
+      "motif": "Corrige l'affirmation que la courte a disparu : le doubleton subsiste, seul le singleton disparaît.",
+      "ancre": "SEF-N054-1",
+      "prerequis": {
+        "concept": "majeur.soutien",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♠"
+    },
+    {
+      "id": "SEF-N025-2",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-081",
+      "status": "corriger",
+      "motif": "Distingue ouverture et réponse majeure, explique le distracteur 1SA.",
+      "ancre": "SEF-N025-2",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N026-2",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-082",
+      "status": "corriger",
+      "motif": "Explique la priorité majeure et le rejet des deux alternatives.",
+      "ancre": "SEF-N026-2",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N027-2",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-083",
+      "status": "corriger",
+      "motif": "Explicite seuil et alternatives plutôt que répéter uniquement la réponse.",
+      "ancre": "SEF-N027-2",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N030-1",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-086",
+      "status": "corriger",
+      "motif": "Montre le calcul de longueur et l'utilité du 1/1.",
+      "ancre": "SEF-N030-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-N036-1",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-092",
+      "status": "corriger",
+      "motif": "Traite la majeure sans honneur et le raisonnement sur la longueur.",
+      "ancre": "SEF-N036-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N037-1",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-093",
+      "status": "corriger",
+      "motif": "Justifie le rejet des enchères concurrentes.",
+      "ancre": "SEF-N037-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N039-1",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-095",
+      "status": "corriger",
+      "motif": "Explique le choix entre deux majeures disponibles et la suite.",
+      "ancre": "SEF-N039-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N042-1",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-098",
+      "status": "corriger",
+      "motif": "Explique pourquoi le soutien possible n'est pas le choix prioritaire.",
+      "ancre": "SEF-N042-1",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1SA"
+    },
+    {
+      "id": "SEF-N046-3",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "cas-102",
+      "status": "corriger",
+      "motif": "Explicite évaluation, priorité de couleur et alternatives.",
+      "ancre": "SEF-N046-3",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 0,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-V44-007",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "v44-cas-007",
+      "status": "réserve",
+      "motif": "Réserve historique explicite #319/#335 : 14 H réguliers mais quatre Carreaux et aucun arrêt Pique. 1♦ manque dans les choix ; ne pas trancher les conditions de 3SA naturel.",
+      "ancre": "SEF-V44-007",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA",
+      "reserveId": "SEF-V44-007"
+    },
+    {
+      "id": "SEF-V49-033",
+      "theme": "mineur",
+      "concept": "mineur.base",
+      "family": "v49-033",
+      "status": "réserve",
+      "motif": "11 H réguliers mais quatre Carreaux ; 1♦ naturel manque dans les choix, et 2SA direct ne peut être comparé à cette alternative. La priorité de 1♦ versus 2SA dans cette situation doit être arbitrée avant de modifier une réponse historique.",
+      "ancre": "SEF-V49-033",
+      "prerequis": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA",
+      "reserveId": "V3-M1-R01"
+    }
+  ],
+  "groupesContrastes": [
+    {
+      "family": "reserve-20261125-v2-m1-sa2-mineure-longue",
+      "ids": [
+        "V2-M1-001",
+        "V2-M1-002"
+      ],
+      "critere": "19/20 H avec cinq Trèfles",
+      "decisions": [
+        "1♣",
+        "2SA"
+      ],
+      "ancrages": [
+        "SEF-Q26-M1-005",
+        "SEF-N021-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa2-singleton",
+      "ids": [
+        "V2-M1-003",
+        "V2-M1-004"
+      ],
+      "critere": "régularité ou singleton à 20 H",
+      "decisions": [
+        "2SA",
+        "1♦"
+      ],
+      "ancrages": [
+        "SEF-N020-1",
+        "SEF-Q26-M1-005"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa1-seuil-bas",
+      "ids": [
+        "V2-M1-005",
+        "V2-M1-006"
+      ],
+      "critere": "14/15 H avec mineure cinquième",
+      "decisions": [
+        "1♣",
+        "1SA"
+      ],
+      "ancrages": [
+        "SEF-N005-1",
+        "SEF-N019-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa1-seuil-haut",
+      "ids": [
+        "V2-M1-007",
+        "V2-M1-008"
+      ],
+      "critere": "17/18 H réguliers",
+      "decisions": [
+        "1SA",
+        "1♦"
+      ],
+      "ancrages": [
+        "SEF-N018-2",
+        "SEF-Q26-M1-005"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa1-majeure",
+      "ids": [
+        "V2-M1-009",
+        "V2-M1-010"
+      ],
+      "critere": "quatre/cinq Piques avec 15 H",
+      "decisions": [
+        "1SA",
+        "1♠"
+      ],
+      "ancrages": [
+        "SEF-002-1",
+        "SEF-N003-1"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-mineures-egalite",
+      "ids": [
+        "V2-M1-011",
+        "V2-M1-012"
+      ],
+      "critere": "égalité mineure 4–4 / longueur Trèfle 5–4",
+      "decisions": [
+        "1♦",
+        "1♣"
+      ],
+      "ancrages": [
+        "SEF-N007-1",
+        "SEF-N005-1"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-exception-longueur",
+      "ids": [
+        "V2-M1-013",
+        "V2-M1-014"
+      ],
+      "critere": "5–5 versus 5–4 et compte de perdantes",
+      "decisions": [
+        "1♣",
+        "1♠"
+      ],
+      "ancrages": [
+        "SEF-L28-001",
+        "SEF-Q26-M1-007"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Deux conditions cumulatives ; les deux jeux restent au maximum de cinq perdantes."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-position-tactique",
+      "ids": [
+        "V2-M1-015",
+        "V2-M1-016"
+      ],
+      "critere": "deuxième / troisième position après passe partenaire",
+      "decisions": [
+        "Passe",
+        "1♠"
+      ],
+      "ancrages": [
+        "SEF-Q26-M1-004",
+        "SEF-V419-001"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Décision tactique indicative, non obligation universelle."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-position-quatrieme",
+      "ids": [
+        "V2-M1-017",
+        "V2-M1-018"
+      ],
+      "critere": "règle des 15 en quatrième position",
+      "decisions": [
+        "1♠",
+        "Passe"
+      ],
+      "ancrages": [
+        "SEF-V422-001",
+        "SEF-V422-002"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Décision tactique indicative, non obligation universelle."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-reponse-carreau-longueur",
+      "ids": [
+        "V2-M1-019",
+        "V2-M1-020"
+      ],
+      "critere": "quatre / trois Carreaux sur 1♣",
+      "decisions": [
+        "1♦",
+        "1SA"
+      ],
+      "ancrages": [
+        "SEF-N032-1",
+        "SEF-N033-1"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-reponse-longueur-forte",
+      "ids": [
+        "V2-M1-021",
+        "V2-M1-022"
+      ],
+      "critere": "couleur la plus longue au-dessus de 12 HL",
+      "decisions": [
+        "1♦",
+        "1♥"
+      ],
+      "ancrages": [
+        "SEF-V49-006",
+        "SEF-Q26-M1-009"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-reponse-deux-un-mineur",
+      "ids": [
+        "V2-M1-023",
+        "V2-M1-024"
+      ],
+      "critere": "majeure quatrième disponible ou 2♣ naturel",
+      "decisions": [
+        "2♣",
+        "1♥"
+      ],
+      "ancrages": [
+        "SEF-N045-1",
+        "SEF-018-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa-naturel-invitation",
+      "ids": [
+        "V2-M1-025",
+        "V2-M1-026"
+      ],
+      "critere": "9/11 H : SA limité ou invitant",
+      "decisions": [
+        "1SA",
+        "2SA"
+      ],
+      "ancrages": [
+        "SEF-N033-1",
+        "SEF-V44-005"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Mains sans quatre Carreaux, aucune conclusion sur les cas historiques ambigus."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-sa-naturel-manche",
+      "ids": [
+        "V2-M1-027",
+        "V2-M1-028"
+      ],
+      "critere": "11/14 H : invitation ou manche",
+      "decisions": [
+        "2SA",
+        "3SA"
+      ],
+      "ancrages": [
+        "SEF-V44-005",
+        "SEF-V49-035"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Mains sans quatre Carreaux, aucune conclusion sur les cas historiques ambigus."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-soutien-mineur-forme",
+      "ids": [
+        "V2-M1-029",
+        "V2-M1-030"
+      ],
+      "critere": "régulier / singleton avec fit Carreau",
+      "decisions": [
+        "1SA",
+        "2♦"
+      ],
+      "ancrages": [
+        "SEF-N040-1",
+        "SEF-Q26-M1-010"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Le singleton Roi peut être dévalué : le soutien direct reste une première zone, sans chiffrage HLD imposé."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-soutien-mineur-priorite",
+      "ids": [
+        "V2-M1-031",
+        "V2-M1-032"
+      ],
+      "critere": "absence / présence de majeure quatrième avec fit Trèfle",
+      "decisions": [
+        "2♣",
+        "1♥"
+      ],
+      "ancrages": [
+        "SEF-N031-2",
+        "SEF-018-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "L'ancre du soutien direct présente une forme identique, mais n'offre pas 1♦ ; le traitement local privilégie ici la courte et le fit."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-majeure-reponse-pique",
+      "ids": [
+        "V2-M1-033",
+        "V2-M1-034"
+      ],
+      "critere": "quatre / trois Piques sur 1♥",
+      "decisions": [
+        "1♠",
+        "2♣"
+      ],
+      "ancrages": [
+        "SEF-Q26-M1-016",
+        "SEF-N065-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-majeure-reponse-coeur",
+      "ids": [
+        "V2-M1-035",
+        "V2-M1-036"
+      ],
+      "critere": "cinq / quatre Cœurs sur 1♠",
+      "decisions": [
+        "2♥",
+        "2♣"
+      ],
+      "ancrages": [
+        "SEF-N074-1",
+        "SEF-Q26-M1-014"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-majeure-seuil-deux-un",
+      "ids": [
+        "V2-M1-037",
+        "V2-M1-038"
+      ],
+      "critere": "11/12 HL au seuil du 2 sur 1",
+      "decisions": [
+        "1SA",
+        "2♦"
+      ],
+      "ancrages": [
+        "SEF-V49-011",
+        "SEF-N064-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-fit-2sa-force",
+      "ids": [
+        "V2-M1-039",
+        "V2-M1-040"
+      ],
+      "critere": "10/11 HLD et trois atouts",
+      "decisions": [
+        "2♥",
+        "2SA"
+      ],
+      "ancrages": [
+        "SEF-N048-1",
+        "SEF-N051-2"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-fit-2sa-nombre",
+      "ids": [
+        "V2-M1-041",
+        "V2-M1-042"
+      ],
+      "critere": "trois / quatre atouts à 11 HLD",
+      "decisions": [
+        "2SA",
+        "3♠"
+      ],
+      "ancrages": [
+        "SEF-N056-1",
+        "SEF-V44-010"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les honneurs compensent le bonus du neuvième atout afin de conserver 11 HLD."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-fit-2sa-absence",
+      "ids": [
+        "V2-M1-043",
+        "V2-M1-044"
+      ],
+      "critere": "fit troisième / deux atouts avec 11 H",
+      "decisions": [
+        "2SA",
+        "2♣"
+      ],
+      "ancrages": [
+        "SEF-V410-024",
+        "SEF-Q26-M1-014"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Les deux réponses changent avec le critère indiqué."
+    },
+    {
+      "family": "reserve-20261125-v2-m1-soutien-barrage",
+      "ids": [
+        "V2-M1-045",
+        "V2-M1-046"
+      ],
+      "critere": "cinq / quatre atouts, singleton / doubleton",
+      "decisions": [
+        "4♠",
+        "2♠"
+      ],
+      "ancrages": [
+        "SEF-V44-012",
+        "SEF-N054-1"
+      ],
+      "statut": "cohérent dans le référentiel QPJB",
+      "note": "Deux critères distributionnels liés : le nombre d'atouts garantis et la courte."
+    }
+  ],
+  "notesTransversales": [
+    "SEF-V44-007 réservé selon #319 ; V44-005 ne tranche pas les conditions universelles d'arrêt. V49-033 nécessite arbitrage de 1♦ vs 2SA.",
+    "Les 14 réserves V1 restent hors lot ; #271 acquis, pas de réouverture.",
+    "1SA non forcing sur 1M dans le catalogue, distinct d'une variante de paire.",
+    "Les niveaux et prérequis réservés sont conservés ; les membres de certains contrastes ont des stages différents issus des ancres, ne pas abaisser les planchers pour aligner artificiellement les paires."
+  ],
+  "controle": {
+    "ids": 57,
+    "groupes": 23,
+    "ancresExistantes": true,
+    "mains13Cartes": true,
+    "hEtShape": true,
+    "choix4Distincts": true,
+    "reponsesDansChoix": true,
+    "oldExact": true,
+    "aucuneModificationReponse": true,
+    "aucuneModificationPrerequis": true,
+    "aucuneCollisionPerimetre": true
+  }
+}

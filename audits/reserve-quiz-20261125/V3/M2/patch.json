@@ -1,0 +1,509 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "V1-M2-001",
+      "old": {
+        "hand": [
+          [
+            "A",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7",
+            "3"
+          ],
+          [
+            "9",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "explain": "Votre As de Trèfle exclut que la mineure maîtresse du partenaire soit Trèfle : il a les Carreaux. Vous comptez sept levées à Carreau et trois As extérieurs, soit dix levées potentielles, avec deux petits Carreaux pour rejoindre sa longue. Passe conserve la manche à 3SA. 4♣ sert à se replier dans la mineure quand 3SA paraît dangereux ; ici ce repli est inutile. Le chelem n'est pas justifié par ces dix levées."
+      },
+      "new": {
+        "hand": [
+          [
+            "A",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7",
+            "3"
+          ],
+          [
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "8",
+            "6",
+            "4"
+          ]
+        ],
+        "explain": "Votre As de Trèfle exclut les Trèfles comme mineure maîtresse : le partenaire possède les Carreaux. Vous avez trois As extérieurs et deux petits Carreaux pour accéder à ses sept levées maîtresses, soit dix levées de tête si les communications sont préservées. Chaque couleur extérieure est arrêtée : Passe conserve la manche. 4♣ est le repli passe ou corrige ; 4♦ direct est une interrogation de courte, pas une simple préférence Carreau (SEF-L27-004). Rien ne justifie le chelem."
+      },
+      "reason": "Remplacer le ♦9 par le ♦7, sans changer H ni distribution, pour rendre possible une septième réellement maîtresse (♦ARDV1098) chez le partenaire ; préciser les arrêts, les communications et le sens du distracteur 4♦.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015, SEF-L06-029, SEF-L27-004 (principe gambling et passe/corrige) ; décompte des levées, pas de nouvel accord. ; SEF-L27-004"
+    },
+    {
+      "id": "V1-M3-001",
+      "old": {
+        "explain": "2♦ est naturel dans cette méthode, avec au moins cinq Carreaux et sans majeure quatrième. Ce n'est pas le simple déni du Stayman non contré. Vos cinq Carreaux ADV94 conviennent ; Surcontre proposerait de jouer à Trèfle et 2♥ inventerait quatre Cœurs."
+      },
+      "new": {
+        "explain": "Dans la méthode iBridge nommée, 2♦ décrit au moins cinq Carreaux sans majeure quatrième ; la tenue Trèfle n'est pas exigée pour cette enchère (vous avez ici l'As). Votre couleur ♦ADV94 convient. Après le Contre, 2♦ n'est donc plus le simple déni du Stayman ordinaire. Surcontre viserait à jouer 2♣ surcontré avec une vraie longue à Trèfle, et 2♥ inventerait quatre Cœurs."
+      },
+      "reason": "La fiche iBridge 626 précise que 2♦ naturel est possible avec ou sans arrêt Trèfle : éviter de faire de l'As une condition.",
+      "source": "SEF-L25-001 à 003 ; https://www.ibridge.fr/public/fichedetails/626 (méthode explicitement nommée, non norme universelle)."
+    },
+    {
+      "id": "V2-M2-001",
+      "old": {
+        "explain": "3 H : même avec 21 H en face, le total ne dépasse pas 24 H. Quatre Cœurs ne garantissent pas le fit ; le Stayman engagerait la manche sans force suffisante."
+      },
+      "new": {
+        "explain": "Avec 3 H réguliers et quatre Cœurs, le camp n'a que 23–24 H sur 2SA (20–21 H). Le fit 4–4 reste hypothétique et le Stayman à 3♣ engage trop haut dans cette situation. Passe conserve la partielle à 2SA ; 3♦ serait un Texas promettant cinq Cœurs."
+      },
+      "reason": "Expliciter le coût du Stayman au palier de trois et le distracteur Texas.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-N102-2; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-003",
+      "old": {
+        "explain": "3 H et cinq Cœurs : si l'ouvreur refuse le Texas fitté, 3SA serait trop élevé. Le fit n'est pas garanti ; passez."
+      },
+      "new": {
+        "explain": "Vous n'avez que 3 H et cinq Cœurs. Dans le traitement SEF 2024, sur 3♦ Texas Cœur, l'ouvreur ne dit 3♥ qu'avec au moins trois atouts ; avec deux, il annonce 3SA. Vos 23–24 H combinés ne permettent pas d'assumer ce refus. Passe conserve 2SA, faute d'une sixième carte qui garantirait le fit."
+      },
+      "reason": "Expliquer le mécanisme précis du refus et son contraste avec le Texas faible sur 1SA.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-C-005; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-004",
+      "old": {
+        "explain": "6 H permettent la manche. 3♦ est le Texas Cœur ; 3♥ montrera le fit, 3SA son absence."
+      },
+      "new": {
+        "explain": "Avec 6 H et cinq Cœurs, le camp possède 26–27 H : vous pouvez assumer la manche même sans fit. 3♦ est le Texas Cœur ; 3♥ de l'ouvreur garantit au moins trois atouts et 3SA en montre seulement deux. Vous choisirez ensuite la manche majeure si le fit est confirmé, sinon 3SA."
+      },
+      "reason": "Relier le seuil de force au choix de manche après la réponse fittée.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-N104-1; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-006",
+      "old": {
+        "explain": "Cinq Piques et 6 H : le Texas 3♥ recherche le fit 5–3. Le Stayman serait mal adapté à cette seule majeure cinquième."
+      },
+      "new": {
+        "explain": "Vos 6 H donnent la force de manche sur 20–21 H. Avec cinq Piques et seulement trois Cœurs, recherchez le soutien troisième à Pique par 3♥ Texas. L'ouvreur rectifiera à 3♠ s'il est fitté ou dira 3SA avec deux Piques. Le Stayman vise ici surtout le fit 4–4, et 3SA direct pourrait manquer le fit 5–3."
+      },
+      "reason": "Préciser les deux réponses et le risque de conclure trop tôt à SA.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-N105-1; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-008",
+      "old": {
+        "explain": "Quatre cartes dans chaque majeure : 3SA est la quatrième réponse conventionnelle, non une conclusion naturelle."
+      },
+      "new": {
+        "explain": "Vous avez quatre Piques et quatre Cœurs. Dans le Stayman à quatre réponses sur 2SA, 3SA montre les deux majeures quatrièmes : ce n'est pas une proposition de jouer nécessairement à Sans-Atout. Dire 3♥ ou 3♠ ne décrirait qu'une seule majeure ; le répondant doit connaître les deux pour choisir."
+      },
+      "reason": "Expliquer pourquoi une réponse naturelle dans une seule majeure serait trompeuse.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L38-001; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-010",
+      "old": {
+        "explain": "Deux Cœurs seulement : le fit n'est pas établi. 3SA refuse la rectification dans le traitement fitté."
+      },
+      "new": {
+        "explain": "Avec deux Cœurs, vous ne pouvez pas garantir huit atouts face aux cinq annoncés par le Texas. Dans le traitement fitté sur 2SA, 3SA décrit ce refus : 3♥ promettrait au moins trois Cœurs. Vos quatre Piques ne justifient pas 3♠ puisque le partenaire a annoncé les Cœurs."
+      },
+      "reason": "Distinguer fit non établi et absence absolue de fit ; traiter le distracteur 3♠.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L23-006; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-011",
+      "old": {
+        "explain": "Cinq Cœurs et deux chez le partenaire donnent sept atouts. Avec 6 H, acceptez 3SA plutôt que d'imposer une manche sans fit."
+      },
+      "new": {
+        "explain": "Vous avez exactement cinq Cœurs et le 3SA de l'ouvreur en montre deux : seulement sept atouts. Vos 6 H assurent la force de manche à SA, pas un fit majeur. Passe sur 3SA ; un re-Texas à 4♦ imposerait une manche majeure sans huit atouts garantis."
+      },
+      "reason": "Nommer le re-Texas comme distracteur de longueur et justifier le contrat.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-022; #320/#327/#329. Transposition symétrique du re-Texas Pique SEF-L31-001."
+    },
+    {
+      "id": "V2-M2-012",
+      "old": {
+        "explain": "Six Cœurs plus deux garantissent huit atouts. Répétez le Texas à 4♦ pour faire déclarer 4♥ par la main forte, symétriquement au re-Texas Pique documenté."
+      },
+      "new": {
+        "explain": "Vos six Cœurs et les deux révélés par le refus à 3SA garantissent huit atouts. Avec les valeurs de manche, répétez le Texas par 4♦ : l'ouvreur dit 4♥ et reste déclarant. 4♥ direct ferait jouer la main faible ; Passe abandonnerait le fit connu. C'est la transposition Cœur du re-Texas Pique documenté."
+      },
+      "reason": "Montrer pourquoi 4♦ plutôt que 4♥ direct, en nommant la transposition.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L31-001; #320/#327/#329. Transposition symétrique du re-Texas Pique SEF-L31-001."
+    },
+    {
+      "id": "V2-M2-015",
+      "old": {
+        "context": "Sud est à la parole. Les adversaires passent sauf indication contraire. Quelle enchère choisissez-vous ?",
+        "explain": "Quatre Trèfles avec Roi-Valet constituent un bon complément. 4♣ accepte le Texas fitté, même au minimum."
+      },
+      "new": {
+        "context": "Vous avez ouvert de 2SA (20–21 H). Le partenaire annonce 3♠, Texas Trèfle. Dans le traitement QPJB où la rectification est fittée, quelle redemande décrit votre main ?",
+        "explain": "Vos quatre Trèfles commandés par Roi-Valet forment un complément solide à la longue annoncée. Même avec 20 H minimum, 4♣ accepte le Texas dans l'accord QPJB. 3SA montrerait un soutien insuffisant ; le nombre de points seul ne décide pas. Il ne s'agit pas d'un seuil universel pour tous les Texas mineurs."
+      },
+      "reason": "Nommer le traitement local et expliciter pourquoi un minimum peut accepter sans inventer un seuil général.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-013; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-016",
+      "old": {
+        "context": "Sud est à la parole. Les adversaires passent sauf indication contraire. Quelle enchère choisissez-vous ?",
+        "explain": "Deux Trèfles seulement : le soutien manque. 3SA refuse le Texas ; les points ne compensent pas cette absence de longueur."
+      },
+      "new": {
+        "context": "Vous avez ouvert de 2SA (20–21 H). Le partenaire annonce 3♠, Texas Trèfle. Dans le traitement QPJB où la rectification est fittée, quelle redemande décrit votre main ?",
+        "explain": "Votre doubleton ♣V8 n'apporte ni longueur suffisante ni gros honneur. 3SA est le refus du Texas fitté dans cet accord ; 4♣ accepterait le soutien, ce que cette main ne permet pas. Les 20 H et les beaux Carreaux ne remplacent pas le complément à Trèfle."
+      },
+      "reason": "Décrire le doubleton concret et éviter d'ériger le cas en règle non arbitrée sur tous les doubletons.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L41-004; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-017",
+      "old": {
+        "explain": "12 H et cinq Piques avec quatre Cœurs : recherchez d'abord le fit 4–4 par Stayman ; sur 2♦, le chassé-croisé recherchera le 5–3 à Pique."
+      },
+      "new": {
+        "explain": "Avec 12 H, cinq Piques et quatre Cœurs, la manche est certaine en force. 2♣ Stayman recherche d'abord un fit 4–4, notamment à Cœur, que le Texas Pique seul pourrait masquer. Sur 2♦, qui nie les majeures quatrièmes, le chassé-croisé à 3♥ recherchera les trois Piques de l'ouvreur."
+      },
+      "reason": "Expliquer la priorité au fit 4–4 et nommer la suite exacte.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-018",
+      "old": {
+        "explain": "12 H, cinq Piques et seulement trois Cœurs : le Texas Pique est adapté, faute de seconde majeure quatrième."
+      },
+      "new": {
+        "explain": "Avec 12 H, cinq Piques et seulement trois Cœurs, vous cherchez la manche mais n'avez pas de seconde majeure quatrième. 2♥ est le Texas Pique, non une enchère naturelle à Cœur. Après la rectification, poursuivez la recherche de manche ; 3SA direct pourrait manquer un fit 5–3."
+      },
+      "reason": "Distinguer la signification artificielle du Texas et l'objectif de la suite sans présumer du fit.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-040-2; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-019",
+      "old": {
+        "explain": "3♥ chassé-croisé montre cinq Piques et quatre Cœurs. L'ouvreur peut choisir 4♠ avec trois Piques, ou 3SA sans fit."
+      },
+      "new": {
+        "explain": "Le 2♦ de l'ouvreur nie quatre cartes dans chaque majeure, mais pas trois Piques. Avec 12 H et un 5♠–4♥, 3♥ est le chassé-croisé forcing de manche : il nomme la majeure quatrième et promet la cinquième à Pique. L'ouvreur pourra jouer 4♠ avec trois Piques ou choisir 3SA sans fit ; 3♠ décrirait l'autre bicolore."
+      },
+      "reason": "Expliquer l'inversion, la force et la différence entre négation de quatre et de trois cartes.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-020",
+      "old": {
+        "explain": "3♠ chassé-croisé montre cinq Cœurs et quatre Piques. L'ouvreur peut retrouver le fit 5–3 à Cœur."
+      },
+      "new": {
+        "explain": "Le Stayman a exclu le fit 4–4, pas le fit 5–3. Vos cinq Cœurs, quatre Piques et 12 H appellent le chassé-croisé forcing de manche : 3♠ nomme votre majeure quatrième et promet cinq Cœurs. Avec trois Cœurs, l'ouvreur peut conclure à 4♥ ; sinon, 3SA reste disponible. 3♥ décrirait cinq Piques."
+      },
+      "reason": "Rendre la règle du chassé-croisé symétrique et autonome dans les deux cas.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-022",
+      "old": {
+        "explain": "8 H, quatre Piques et trois Cœurs : la réponse exclut le fit 4–4. 2SA invite sans imposer la manche."
+      },
+      "new": {
+        "explain": "Vos 8 H permettent une invitation, pas une manche certaine (23–25 H). L'ouvreur montre quatre Cœurs et nie quatre Piques ; vos trois Cœurs ne donnent que sept atouts, et vos quatre Piques ne sont pas fittés. 2SA invite à 3SA ; 3♥ promettrait un fit que vous n'avez pas."
+      },
+      "reason": "Justifier force, absence de fit dans chacune des majeures et rejet du soutien.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V3-005-1; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-024",
+      "old": {
+        "explain": "6 H, quatre Piques et trois Cœurs : aucun fit majeur 4–4. 3SA est la manche naturelle."
+      },
+      "new": {
+        "explain": "Vos 6 H donnent 26–27 H au camp. Le 3♥ de l'ouvreur montre quatre Cœurs et nie quatre Piques ; vous n'avez que trois Cœurs et vos quatre Piques ne trouvent pas de fit. 3SA conclut à la manche naturelle, alors que 4♥ reposerait sur sept atouts."
+      },
+      "reason": "Expliquer la négation des Piques et comparer les deux contrats de manche.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L07-002; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-025",
+      "old": {
+        "explain": "8 H et quatre Piques : 3♦ relaie vers 3♠ et invite. 4♦ imposerait la manche."
+      },
+      "new": {
+        "explain": "Vous avez 8 H et le fit 4–4 à Pique est acquis grâce aux deux majeures quatrièmes annoncées. 3♦ est le relais invitant vers 3♠ : l'ouvreur peut rester en partielle ou accepter la manche selon son évaluation. 4♦ imposerait 4♠ ; 3♠ naturel dans ce traitement est orienté chelem."
+      },
+      "reason": "Clarifier les trois niveaux d'intention après la réponse conventionnelle de 2SA.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-018; #320/#327/#329.  ; SEF-Q26-M2-018 ; SEF-V416-009"
+    },
+    {
+      "id": "V2-M2-026",
+      "old": {
+        "explain": "11 H et fit Pique connu : 4♦ transfère à 4♠ et fait jouer l'ouvreur. 3♦ ne ferait qu'inviter."
+      },
+      "new": {
+        "explain": "Avec 11 H et un fit Pique 4–4 déjà connu, vous pouvez imposer la manche. Après 1SA–2♣–2SA, 4♦ transfère vers 4♠ pour faire déclarer la main forte. 3♦ n'est qu'une invitation ; 3♠ naturel exprime une ambition de chelem dans cet accord. 4♠ direct ferait jouer la main du répondant."
+      },
+      "reason": "Expliquer le choix du transfert plutôt que la manche directe et l'opposition avec le relais invitant.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V416-009; #320/#327/#329.  ; SEF-Q26-M2-018 ; SEF-V416-009"
+    },
+    {
+      "id": "V2-M2-027",
+      "old": {
+        "explain": "17 H et trois Cœurs : acceptez l'invitation et choisissez le fit huitième à 4♥."
+      },
+      "new": {
+        "explain": "Le 2SA du répondant invite à la manche avec exactement cinq Cœurs. Vos 17 H maximum justifient l'acceptation. Vos trois Cœurs établissent un fit 5–3 : concluez à 4♥. La rectification initiale ne promettait pas ce soutien ; c'est votre main qui permet maintenant de choisir la majeure plutôt que 3SA."
+      },
+      "reason": "Séparer les deux décisions, accepter l'invitation puis choisir le contrat.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-026; #320/#327/#329.  ; SEF-V44-026 ; règle 1SA Texas non fitté"
+    },
+    {
+      "id": "V2-M2-028",
+      "old": {
+        "explain": "17 H permettent d'accepter la manche, mais deux Cœurs ne donnent que sept atouts. Choisissez 3SA."
+      },
+      "new": {
+        "explain": "Vos 17 H maximum justifient d'accepter l'invitation à 2SA. Mais avec seulement deux Cœurs face à exactement cinq, le camp n'a que sept atouts dans la majeure. La rectification initiale sur 1SA était obligatoire hors modulation ; elle n'avait pas promis le fit. 3SA accepte la manche sans inventer un soutien."
+      },
+      "reason": "Contraster acceptation de manche et choix d'atout ; éviter de confondre rectification et fit.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-026; #320/#327/#329.  ; SEF-V44-026 ; règle 1SA Texas non fitté"
+    },
+    {
+      "id": "V2-M2-029",
+      "old": {
+        "explain": "3 H et quatre Cœurs : pas de Stayman constructif ni de Texas. Passe conserve 1SA."
+      },
+      "new": {
+        "explain": "Avec 3 H face à 15–17 H, le camp totalise seulement 18–20 H. Vos quatre Cœurs ne suffisent ni pour un Texas qui en exige cinq, ni pour un Stayman constructif dans cette main faible. Passe conserve 1SA sans risquer de monter inutilement."
+      },
+      "reason": "Mettre en regard les deux conventions et leurs conditions.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L06-027; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-030",
+      "old": {
+        "explain": "Cinq Cœurs et 3 H : 2♦ Texas permet de jouer 2♥ sans imposer la manche."
+      },
+      "new": {
+        "explain": "Vos cinq Cœurs permettent le Texas 2♦ même avec seulement 3 H : sur 1SA, l'ouvreur rectifie normalement à 2♥ sans promettre le fit. Passez ensuite pour jouer la partielle. Contrairement au Texas fitté sur 2SA, vous n'avez pas besoin ici d'assumer une manche à SA."
+      },
+      "reason": "Expliciter la suite et la différence essentielle entre les deux ouvertures à SA.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-037-1; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-031",
+      "old": {
+        "explain": "3 H et cinq Trèfles seulement : le Texas mineur au palier de trois demande une longue plus sûre. Passe."
+      },
+      "new": {
+        "explain": "Vous avez seulement cinq Trèfles et 3 H. Dans cette main faible, la longue n'est pas assez sûre pour monter volontairement au palier de trois : le repli par 2♠ Texas Trèfle vise normalement une mineure sixième. Passe conserve 1SA ; 2♣ serait un Stayman, pas une annonce naturelle de Trèfles."
+      },
+      "reason": "Relier le niveau du contrat à la longueur et éliminer le faux 2♣ naturel.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V482-001; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-032",
+      "old": {
+        "explain": "Six Trèfles et une courte, 3 H : 2♠ Texas Trèfle permet de se replier à 3♣."
+      },
+      "new": {
+        "explain": "Avec six Trèfles, 3 H et un singleton Carreau, la longue offre une meilleure perspective de partielle. 2♠ est le Texas Trèfle : sur 3♣ vous passez, et sur la modulation positive 2SA vous concluez à 3♣. Vous ne cherchez pas la manche, même si l'ouvreur montre un bon complément."
+      },
+      "reason": "Rendre explicite la conduite après les deux réponses possibles, sans trancher les seuils de modulation en réserve.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V482-001; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-034",
+      "old": {
+        "explain": "12 H et six Carreaux : 3♠ indique la courte Pique, non une couleur naturelle. L'ouvreur jugera la tenue Pique avant de choisir la manche."
+      },
+      "new": {
+        "explain": "Avec 12 H, six Carreaux et un singleton Pique, vous avez les valeurs nécessaires pour poursuivre après 3♦. La longue Carreau est déjà connue ; 3♠ montre la courte, pas une deuxième couleur naturelle. L'ouvreur pourra évaluer sa tenue Pique pour choisir entre 3SA et une manche en mineure, voire explorer davantage si les valeurs s'accordent. 3SA direct masquerait la courte."
+      },
+      "reason": "Préciser l'information utile à la décision de contrat et éviter de borner artificiellement les ambitions.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V482-009; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-035",
+      "old": {
+        "explain": "16 H et Roi troisième à Trèfle : 2SA positif dans l'accord QPJB. La rectification à 3♣ ne montre pas ce complément."
+      },
+      "new": {
+        "explain": "Vos 16 H non minimum et ♣RV3 constituent un complément intéressant dans la longue du partenaire. Dans l'accord QPJB, 2SA est la modulation positive du Texas Trèfle ; elle ne promet pas nécessairement 17 H. 3♣ serait la rectification normale, sans ce message favorable. On ne déduit pas ici de règle pour les doubletons ou les mains minimum."
+      },
+      "reason": "Ancrer la modulation dans le cas prouvé et laisser les limites V1 non arbitrées.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L25-007; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-036",
+      "old": {
+        "explain": "Le Texas Carreau se rectifie obligatoirement à 3♦ dans cet accord, même avec un bon complément. La modulation du Texas Trèfle n'a pas d'équivalent ici."
+      },
+      "new": {
+        "explain": "Sur 1SA–3♣ Texas Carreau, l'accord étudié impose 3♦, quel que soit le soutien. Vos ♦R74 ne changent donc pas la réponse. Le répondant passera avec une main faible ou poursuivra avec des valeurs. Il ne faut pas transposer la modulation positive du Texas Trèfle à cette séquence."
+      },
+      "reason": "Rendre concrète l'asymétrie avec la même main et les conséquences pour le répondant.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L37-004; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-037",
+      "old": {
+        "explain": "Quatre Cœurs et l'As de Trèfle : 2♥ protège l'entame annoncée en faisant déclarer l'ouvreur."
+      },
+      "new": {
+        "explain": "Vous détenez quatre Cœurs et l'As de Trèfle. Dans la méthode retenue après Stayman contré, vous pouvez annoncer 2♥ et être déclarant face à l'entame Trèfle. Passe retarderait inutilement la description ; Surcontre viserait à jouer 2♣ surcontré avec une vraie longue, non à montrer un fit Cœur."
+      },
+      "reason": "Comparer les actions légales et distinguer le Surcontre du Stayman de celui du Texas ; iBridge 626.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L25-003; #320/#327/#329.  ; SEF-L25-002 ; https://www.ibridge.fr/public/fichedetails/626"
+    },
+    {
+      "id": "V2-M2-038",
+      "old": {
+        "explain": "Quatre Cœurs mais aucune tenue Trèfle : Passe permet au répondant de poursuivre sans exposer l'ouvreur à l'entame. Ce Passe ne nie pas les Cœurs."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs ne suffisent pas pour répondre directement à 2♥ dans ce traitement : ♣963 ne fournit aucun arrêt Trèfle. Passe laisse le partenaire poursuivre la recherche du fit et, si possible, orienter le contrat du bon côté. Ce Passe ne nie pas les quatre Cœurs ; le Surcontre ne serait pas un relais majeur."
+      },
+      "reason": "Préciser pourquoi passer ne perd pas nécessairement le fit et pourquoi Surcontre ne le montre pas.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L25-001; #320/#327/#329.  ; SEF-L25-002 ; https://www.ibridge.fr/public/fichedetails/626"
+    },
+    {
+      "id": "V2-M2-039",
+      "old": {
+        "explain": "Trois Cœurs et As de Carreau : rectifiez à 2♥ pour faire déclarer l'ouvreur et protéger sa tenue."
+      },
+      "new": {
+        "explain": "Avec trois Cœurs, le fit troisième est établi ; votre As de Carreau permet de recevoir l'entame demandée par le Contre. Dans l'accord QPJB illustré par SEF-L25-006, 2♥ rectifie et fait de l'ouvreur le déclarant. Surcontre montrerait le fit sans tenue Carreau ; il ne sert pas ici à proposer 2♦ surcontré."
+      },
+      "reason": "Expliciter les deux critères et le sens contextuel du Surcontre sans rouvrir le cas sans fit.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L25-006; #320/#327/#329.  ; SEF-L25-005/006 ; #271 HOLD sur SEF-L25-004"
+    },
+    {
+      "id": "V2-M2-040",
+      "old": {
+        "explain": "Trois Cœurs sans tenue Carreau : le Surcontre montre le fit sans tenue et permet au répondant de devenir déclarant. Il n'est pas punitif."
+      },
+      "new": {
+        "explain": "Vos trois Cœurs établissent le fit mais ♦972 ne fournit aucune tenue. Dans l'accord QPJB illustré par SEF-L25-005, Surcontre signale ce fit sans arrêt et permet au répondant de nommer les Cœurs, pour protéger ses éventuelles valeurs à Carreau. 2♥ ferait déclarer l'ouvreur ; ce Surcontre n'est pas punitif, contrairement au Surcontre de l'ouvreur après Stayman contré."
+      },
+      "reason": "Expliquer l'orientation du déclarant et distinguer explicitement les deux Surcontres ; ne pas arbitrer SEF-L25-004.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L25-005; #320/#327/#329.  ; SEF-L25-005/006 ; #271 HOLD sur SEF-L25-004"
+    },
+    {
+      "id": "V2-M2-041",
+      "old": {
+        "explain": "L'As de Trèfle identifie les Carreaux du partenaire. Sept Carreaux et deux As donnent neuf levées ; le Roi troisième de Cœur protège l'entame. Passe conserve 3SA."
+      },
+      "new": {
+        "explain": "Votre As de Trèfle exclut une longue Trèfle maîtresse chez l'ouvreur : il a les Carreaux. Ses sept levées et vos deux As fournissent neuf levées de tête ; les deux petits Carreaux donnent accès à sa longue. Le Roi troisième de Cœur offre une tenue supplémentaire. Vous pouvez conserver 3SA ; ce n'est pas une garantie de réussite quelle que soit la distribution."
+      },
+      "reason": "Relier levées, arrêts et communications ; éviter la promesse de réussite.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015; #320/#327/#329. "
+    },
+    {
+      "id": "V2-M2-042",
+      "old": {
+        "explain": "L'As de Trèfle identifie les Carreaux, mais les Cœurs sont ouverts : les adversaires peuvent encaisser cinq levées avant les vôtres. 4♣ passe ou corrige permet le repli à 4♦."
+      },
+      "new": {
+        "explain": "L'As de Trèfle identifie la longue Carreau du partenaire. Vous comptez au moins neuf levées potentielles, mais ♥974 ne contient aucun arrêt à Cœur et l'ouvreur n'a annoncé aucun As ni Roi extérieur. Les adversaires risquent d'encaisser cinq Cœurs avant que vous puissiez exploiter les Carreaux. 4♣ est passe ou corrige : l'ouvreur dira 4♦ avec sa longue. 4♦ direct serait une demande de courte, pas un repli naturel."
+      },
+      "reason": "Distinguer levées potentielles et vitesse d'encaissement ; corriger l'interprétation de 4♦ direct d'après SEF-L27-004.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015; #320/#327/#329.  ; SEF-L27-004"
+    },
+    {
+      "id": "SEF-V44-013",
+      "old": {
+        "context": "Quelle enchère convient à cette situation ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H), les adversaires passent. Quelle réponse choisissez-vous avec cette main régulière ?"
+      },
+      "reason": "Remplacer le contexte générique par la zone d'ouverture et la situation ; corrigé quantitatif historique intact.",
+      "source": "SEF-V44-013 (catalogue figé e9103075)"
+    },
+    {
+      "id": "SEF-V44-014",
+      "old": {
+        "context": "Quelle enchère convient à cette situation ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 2SA (20–21 H), les adversaires passent. Quelle réponse choisissez-vous avec cette main régulière ?"
+      },
+      "reason": "Rendre explicite la zone 20–21 H sans réviser la réponse historiquement corrigée à 3SA.",
+      "source": "SEF-V44-014 (catalogue figé e9103075)"
+    },
+    {
+      "id": "SEF-V44-015",
+      "old": {
+        "context": "Quelle enchère convient à cette situation ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H) sans intervention adverse. Quelle est votre première réponse ?"
+      },
+      "reason": "Situer explicitement le Texas faible sur 1SA, et non sur 2SA ; réponse et corrigé historiques conservés.",
+      "source": "SEF-V44-015 (catalogue figé e9103075)"
+    },
+    {
+      "id": "SEF-V44-016",
+      "old": {
+        "context": "Quelle enchère convient à cette situation ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H) sans intervention adverse. Quelle est votre première réponse ?"
+      },
+      "reason": "Expliciter la zone d'ouverture pour le cas Texas Pique faible ; ne pas changer l'accord.",
+      "source": "SEF-V44-016 (catalogue figé e9103075)"
+    },
+    {
+      "id": "SEF-V49-017",
+      "old": {
+        "context": "Quelle enchère convient dans cette séquence, selon le SEF ?",
+        "explain": "Vos six Piques et 3 H appellent un contrat partiel dans la longue. Sur 1SA, 2♥ est le Texas Pique, qui fait annoncer 2♠ par l’ouvreur. Un saut à 3♠ ne traduit pas l’objectif d’une main aussi faible."
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1SA (15–17 H) sans intervention adverse. Quelle est votre première réponse ?",
+        "explain": "Avec six Piques et 3 H, vous recherchez une partielle dans la longue, pas la manche. 2♥ est le Texas Pique sur 1SA : après la rectification normale à 2♠, passez. 2♦ serait un Texas Cœur ; 3♠ direct ne convient pas à ce projet de partielle faible."
+      },
+      "reason": "Expliciter la séquence jusqu'au Passe et distinguer les deux Texas ; garder la famille historique partagée.",
+      "source": "SEF-V49-017 (catalogue figé e9103075)"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "V3-M2-R01",
+      "question": "V1-M2-002 et V2-M2-014 testent la même décision (4♦ choix de manche après 2SA, quatre Cœurs et deux Piques), avec des familles différentes. Le premier est-il utile comme fondation indépendante ou le rapproche-t-on de la famille V2 ?",
+      "options": [
+        "Conserver les deux en rattachant la famille V1 à V2-M2-sa2-5-5-choix après arbitrage",
+        "Conserver V2-M2-013/014 et retirer V1-M2-002 de la réserve lors de la consolidation",
+        "Justifier un maintien distinct si objectif pédagogique démontré"
+      ],
+      "source": "V1-M2-002 ; V2-M2-013/014 ; SEF-L38-002 ; #334 (ne pas modifier les familles ni supprimer en V3)."
+    }
+  ]
+}
