@@ -1,0 +1,269 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-N044-1",
+      "old": {
+        "explain": "Sur 1♦, les 2 H et les trois Carreaux ne justifient ni 1SA, ni un soutien au palier de 2. Les quatre Trèfles sont insuffisants pour une réponse naturelle de 2♣. Passe."
+      },
+      "new": {
+        "explain": "Sur 1♦, vos 2 H ne permettent ni 1SA ni un soutien à 2♦. Les quatre Trèfles sont une longueur possible pour un changement de couleur naturel à 2♣, mais vous êtes très loin du seuil de 11 H ou 12 HL retenu pour ce 2 sur 1. Passe."
+      },
+      "reason": "Erreur technique explicite : quatre Trèfles ne sont pas en eux-mêmes insuffisants pour 2♣ sur 1♦ ; c'est la force qui manque.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; SEF-V44-008 (clôture #271), SEF-V419-003 et V2-M1-024 (catalogue lu)"
+    },
+    {
+      "id": "SEF-N044-2",
+      "old": {
+        "explain": "Sur 1♦, avec seulement 1 H et trois Carreaux, ni 1SA ni le soutien à 2♦ ne sont justifiés. Le changement de couleur 2♣ réclame une force et une longueur supérieures. Passe évite de surévaluer cette main."
+      },
+      "new": {
+        "explain": "Sur 1♦, avec seulement 1 H et trois Carreaux, ni 1SA ni le soutien à 2♦ ne sont justifiés. Vos quatre Trèfles pourraient être annoncés à 2♣ avec une force suffisante (11 H ou 12 HL dans le quiz), mais cette main ne l'a pas. Passe."
+      },
+      "reason": "Même confusion longueur/force : quatre Trèfles sont compatibles avec 2♣ naturel sur 1♦.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; SEF-V44-008 (clôture #271), SEF-V419-003 et V2-M1-024 (catalogue lu)"
+    },
+    {
+      "id": "SEF-L05-013",
+      "old": {
+        "explain": "Cette main 5♦–4♣–2♠–2♥ de 16 H (17 HL) n’est pas adaptée à 1SA : ses deux doubletons majeurs ne sont pas tenus et les honneurs sont concentrés dans les mineures. Ouvrez naturellement de 1♦, la plus longue mineure."
+      },
+      "new": {
+        "explain": "Avec 16 H (17 HL), la force entre dans la zone de 1SA, mais la répartition 2–2–5–4 est semi-régulière, et les deux doubletons majeurs ♠76 et ♥85 sont dépourvus d'honneur. Les honneurs se concentrent dans les mineures : ici, ouvrez naturellement de 1♦, la plus longue mineure. La zone de force seule ne suffit pas à justifier 1SA."
+      },
+      "reason": "Précision technique : distingue 5-4-2-2 des distributions régulières et la force de la condition distributionnelle ; les doubletons ne sont pas seuls une interdiction universelle.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; SEF-003-1, V2-M1-005/006, SEF-L05-013"
+    },
+    {
+      "id": "SEF-V49-005",
+      "old": {
+        "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Vous avez cinq Carreaux et quatre Cœurs. Quelle est votre première réponse selon le SEF ?"
+      },
+      "new": {
+        "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Vous avez cinq Carreaux et quatre Cœurs. Quelle est votre première réponse dans le référentiel QPJB sans Walsh ?"
+      },
+      "reason": "La règle locale actuelle jusqu'à 12 HL est explicitement celle du QPJB, non une affirmation universelle du SEF ; conserve la décision plus récente intégrée et ne réintroduit pas l'ancien arbitrage du 05/11.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; SEF-Q26-M1-008/009 ; #271 ; archives/Docs/Archives/Quiz-SEF/QUIZ_SEF_ARBITRAGES_VALIDES_2026-11-05.md (historique antérieur)"
+    },
+    {
+      "id": "SEF-029-1",
+      "old": {
+        "explain": "Vous avez quatre Cœurs, mais seulement 3 H sans courte valorisable : la main reste sous le seuil de 6 HLD du soutien simple. Après 1♥, passez."
+      },
+      "new": {
+        "explain": "Vous avez quatre Cœurs face à l'ouverture de 1♥ : neuf atouts au moins, soit 2 points D supplémentaires. Avec 3 H, aucune courte et aucune longueur supplémentaire, cela donne 5 HLD, juste sous les 6 HLD du soutien simple. Passe."
+      },
+      "reason": "Le calcul du fit à neuf atouts est décisif à un point de la borne ; ne pas laisser croire que l'absence de courte supprime tout point D.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-029-2",
+      "old": {
+        "explain": "Malgré quatre Cœurs, cette main régulière ne compte qu'un point H et n'atteint pas le minimum de 6 HLD pour répondre à 1♥. Vous passez."
+      },
+      "new": {
+        "explain": "Vous avez quatre Cœurs en face des cinq promis par 1♥ : au moins neuf atouts, soit 2 points D. Mais avec 1 H, aucune courte et aucune longueur supplémentaire, la main ne vaut que 3 HLD, sous les 6 HLD du soutien simple. Passe."
+      },
+      "reason": "Même règle du neuvième atout dans la famille contrastée, explicitement appliquée à cette main.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-026-1",
+      "old": {
+        "explain": "Vos quatre Cœurs et vos 8 H placent la main dans la zone du soutien simple de 6 à 10 HLD. Répondez 2♥ à l'ouverture de 1♥."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs face à l'ouverture du partenaire garantissent neuf atouts au moins. 8 H + 2 points D pour le neuvième atout (pas de courte valorisable) donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♥ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-N050-1",
+      "old": {
+        "explain": "Avec quatre Cœurs et 8 H, vous appartenez à la zone 6–10 HLD du soutien simple. Répondez 2♥ à l'ouverture de votre partenaire."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs face à l'ouverture du partenaire garantissent neuf atouts au moins. 8 H + 2 points D pour le neuvième atout (pas de courte valorisable) donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♥ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-N055-1",
+      "old": {
+        "explain": "Quatre Piques et 8 H sans courte valorisable vous placent dans la zone de soutien simple. Après 1♠, annoncez 2♠."
+      },
+      "new": {
+        "explain": "Vos quatre Piques face à l'ouverture du partenaire garantissent neuf atouts au moins. 8 H + 2 points D pour le neuvième atout (pas de courte valorisable) donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♠ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-027-1",
+      "old": {
+        "explain": "Quatre Piques et 7 H suffisent pour soutenir immédiatement l'ouverture de 1♠. Le palier de 2 exprime un soutien simple, sans invitation de manche."
+      },
+      "new": {
+        "explain": "Vos quatre Piques face à l'ouverture du partenaire garantissent neuf atouts au moins. 7 H + 2 points D pour le neuvième atout + 1 pour le doubleton Trèfle donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♠ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-N049-3",
+      "old": {
+        "explain": "Quatre Cœurs et 7 H donnent un fit et une force de soutien simple. Après 1♥, annoncez 2♥ afin de décrire la première zone de soutien."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs face à l'ouverture du partenaire garantissent neuf atouts au moins. 7 H + 2 points D pour le neuvième atout + 1 pour le doubleton Pique donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♥ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-N054-1",
+      "old": {
+        "explain": "Vos quatre Piques garantissent un fit au moins neuvième face à 1♠. Avec 7 H et un doubleton Cœur, le soutien simple à 2♠ décrit une main de première zone."
+      },
+      "new": {
+        "explain": "Vos quatre Piques face à l'ouverture du partenaire garantissent neuf atouts au moins. 7 H + 2 points D pour le neuvième atout + 1 pour le doubleton Cœur donnent 10 HLD, le maximum de la zone du soutien simple. Répondez 2♠ ; avec quatre atouts, le soutien invitant au palier de trois commence à 11 HLD dans ce traitement."
+      },
+      "reason": "Frontière technique : le soutien est au plafond de 10 HLD, et non en milieu de zone d'après les seuls H ; raccord exact avec les contrastes à 11 HLD.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-V410-023",
+      "old": {
+        "explain": "Avec exactement trois Cœurs et 11 H dans une main régulière, la réponse de 2SA fitté à 1♥ est celle du SEF : un soutien troisième dans la zone invitante de 11–12 HLD."
+      },
+      "new": {
+        "explain": "Vous avez exactement trois Cœurs : le fit est au moins huitième. Vos 11 H et le doubleton Pique donnent 12 HLD, au maximum de la zone invitante de 11–12 HLD. Répondez 2SA fitté, qui montre le soutien troisième dans le traitement SEF du quiz."
+      },
+      "reason": "Le doubleton Pique est valorisable une fois le fit établi ; le cas est au plafond de la zone, non au seuil en H seuls.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    },
+    {
+      "id": "SEF-V410-024",
+      "old": {
+        "explain": "Vos trois Piques, vos 11 H et votre répartition 3-2-4-4 avec un doubleton Cœur permettent une proposition de manche. Le 2SA fitté à 1♠ montre précisément le soutien troisième et la zone invitante."
+      },
+      "new": {
+        "explain": "Vous avez exactement trois Piques et un doubleton Cœur. Vos 11 H deviennent 12 HLD (11 H + 1 point D pour le doubleton), au maximum de la zone invitante. 2SA fitté montre précisément le soutien troisième de 11–12 HLD."
+      },
+      "reason": "Même précision de calcul au plafond de la zone 2SA fitté, sur la seconde majeure.",
+      "source": "#342/#343 ; catalogue figé 4678fcba ; audits/qualite-quiz-20261125/M1/plan.json ; audits/qualite-quiz-20261125/M1/README.md ; ancres SEF-L06-021, SEF-V44-009/010, V2-M1-039/040/041/042/046 (catalogue lu)"
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-020-3",
+      "question": "Arbitrage déjà ouvert : 6 H, cinq ♣ et forme 3-2-3-5 régulière. Confirmer la distinction du soutien faible de 2♣ et la priorité à 1SA, sans généraliser à tous les jeux réguliers.",
+      "options": [
+        "Maintenir 2♣ et documenter l'exception basse sur 1♣",
+        "Arbitrer 1SA ou recomposer la main après visa"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; archives/audits/quiz-sef/REVUE_SEF_26_SOUTIENS_2026-11-02.md"
+    },
+    {
+      "id": "SEF-N031-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038"
+    },
+    {
+      "id": "SEF-N041-2",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038"
+    },
+    {
+      "id": "SEF-N072-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038"
+    },
+    {
+      "id": "SEF-N073-1",
+      "question": "Frontière déjà identifiée : 10 H + une longueur = 11 HL ; la réponse 1SA reste cohérente avec 1SA limité en H et 2/1 à 11 H ou 12 HL, mais confirmer la notation officielle de la zone avant de généraliser.",
+      "options": [
+        "Conserver la réponse et expliciter que la limite de 1SA est en H",
+        "Harmoniser le référentiel uniquement si une autre règle est expressément validée"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; #306 ; SEF-Q26-M1-012/013 ; V2-M1-037/038"
+    },
+    {
+      "id": "SEF-V44-005",
+      "question": "HOLD #271 : 2SA naturel à 11 H avec deux Dames troisièmes, arrêts majeurs non assurés. Ne pas rouvrir le visa ni modifier la main en V1.",
+      "options": [
+        "Maintenir HOLD historique",
+        "Arbitrage explicite des conditions de tenue au pilote"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json"
+    },
+    {
+      "id": "SEF-V44-006",
+      "question": "Frontière 12 H, 2SA naturel sur 1♦. L'énoncé impose 11–12 H : réponse cohérente sous cette convention, mais le plan antérieur signale la borne et les tenues majeures.",
+      "options": [
+        "Maintenir la zone explicite 11–12 H",
+        "Arbitrer uniquement si le pilote documente une autre zone"
+      ],
+      "source": "audits/qualite-quiz-20261125/M1/plan.json ; SEF-V44-006"
+    },
+    {
+      "id": "SEF-V49-006",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009"
+    },
+    {
+      "id": "SEF-V426-002",
+      "question": "HOLD rédactionnel #271 : attribution de la règle sans Walsh et frontière au-delà de 12 HL. La réponse actuelle 1♦ concorde avec le traitement local ; ne pas modifier les textes sans visa.",
+      "options": [
+        "Conserver le HOLD et la réponse",
+        "Faire arbitrer uniquement la formulation historique"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json ; SEF-Q26-M1-008/009"
+    },
+    {
+      "id": "SEF-C-008",
+      "question": "HOLD #271 : 1SA non forcing dans le quiz SEF contre éventuelle variante de paire 1SA forcing. Ne pas transposer cette variante au catalogue.",
+      "options": [
+        "Maintenir le traitement SEF non forcing",
+        "Réserver toute nouvelle convention à un visa explicite"
+      ],
+      "source": "#271 ; audits/qualite-quiz-20261125/M1/plan.json"
+    },
+    {
+      "id": "V2-M1-031",
+      "question": "La main 1-3-4-5 de 7 H permet 1♦ naturel et 2♣. La priorité locale retenue pour le soutien direct est explicitée, mais les ancres SEF-020-1/N031-2 ne proposent pas 1♦. Ne pas déduire une règle universelle de ce contraste.",
+      "options": [
+        "Maintenir le traitement local de la fiche intégrée",
+        "Documenter le critère de priorité exact 1♦/2♣ avant toute généralisation"
+      ],
+      "source": "audits/reserve-quiz-20261125/V3/M1/README.md ; SEF-020-1/N031-2 ; V2-M1-031/032"
+    },
+    {
+      "id": "SEF-L33-005",
+      "question": "Avec huit Cœurs quasi maîtres et 13 H, l'ouverture naturelle 1♥ est l'ancre existante ; vérifier la formulation exacte de la condition de défense/force des ouvertures fortes, notamment l'assertion de deux levées de défense en dehors de la longue. Ne pas transformer le chiffre indicatif 15–16 H en règle réglementaire universelle.",
+      "options": [
+        "Conserver 1♥ et l'ancre en attente de la source exacte",
+        "Préciser la règle pédagogique forte avec source intégrale validée"
+      ],
+      "source": "SEF-L33-005 ; #342 ; audit qualité M1 (concept fortes.ouverture transversal)"
+    }
+  ]
+}
