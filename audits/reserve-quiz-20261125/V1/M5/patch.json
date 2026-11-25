@@ -1,0 +1,459 @@
+{
+  "additions": [
+    {
+      "id": "V1-M5-001",
+      "qcm": {
+        "id": "V1-M5-001",
+        "theme": "roudi",
+        "caseFamily": "reserve-v1-m5-roudi-retour-six-atouts-negatif",
+        "hand": [
+          [
+            "R",
+            "D",
+            "10",
+            "9",
+            "8",
+            "4"
+          ],
+          [
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "7"
+          ],
+          [
+            "8",
+            "5"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "context": "Les adversaires passent. Après la réponse au Roudi, quelle enchère décrit votre jeu de proposition de manche sans imposer celle-ci ?",
+        "choices": [
+          "2SA",
+          "3♠",
+          "2♠",
+          "3SA"
+        ],
+        "answer": "2♠",
+        "explain": "Vos six Piques font huit atouts avec les deux annoncés par l'ouvreur. Avec 10 H et deux points de longueur, vous avez 12 HL, pas de manche certaine. 2♠ est naturel et non forcing après 2♦ ; l'ouvreur maximum pourra poursuivre. 2SA ne valoriserait pas le fit connu, 3SA imposerait la manche.",
+        "difficulty": 3,
+        "difficultyReason": "Une seule décision : la sixième carte change le refus de soutien troisième en fit certain."
+      },
+      "prerequis": {
+        "concept": "roudi.suite",
+        "stage": 3,
+        "minSession": 30,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "roudi.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Une seule décision : la sixième carte change le refus de soutien troisième en fit certain.",
+      "source": "https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi.html ; archives/audits/quiz-sef/REVUE_SEF_ROUDI_33_2026-11-02.md ; Roudi QPJB à trois réponses."
+    },
+    {
+      "id": "V1-M5-002",
+      "qcm": {
+        "id": "V1-M5-002",
+        "theme": "roudi",
+        "caseFamily": "reserve-v1-m5-roudi-arret-partiel-fit-code-minimum",
+        "hand": [
+          [
+            "D",
+            "V",
+            "9",
+            "8",
+            "6"
+          ],
+          [
+            "R",
+            "8",
+            "2"
+          ],
+          [
+            "D",
+            "6",
+            "4"
+          ],
+          [
+            "D",
+            "7"
+          ]
+        ],
+        "h": 10,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Piques, minimum)"
+        ],
+        "context": "Les adversaires passent. Votre partenaire a répondu au Roudi. Avec cette main sans valeur de manche certaine, quelle enchère permet de jouer votre partielle dans la majeure fittée ?",
+        "choices": [
+          "Passe",
+          "2♠",
+          "3♠",
+          "4♠"
+        ],
+        "answer": "2♠",
+        "explain": "2♥ est ici une réponse codée, non un contrat à Cœur : l'ouvreur possède trois Piques et est minimum. Vos 10 H et cinq Piques donnent 11 HL, avec des honneurs modestes et un seul doubleton. Revenez à 2♠, non forcing ; Passe laisserait jouer la mauvaise majeure et 3♠ ou 4♠ surévaluerait la main.",
+        "difficulty": 3,
+        "difficultyReason": "Identifier le contrat partiel réel après la réponse artificielle minimum, sans nouvelle convention."
+      },
+      "prerequis": {
+        "concept": "roudi.suite",
+        "stage": 3,
+        "minSession": 30,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "roudi.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Identifier le contrat partiel réel après la réponse artificielle minimum, sans nouvelle convention.",
+      "source": "https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi.html ; archives/audits/quiz-sef/REVUE_SEF_ROUDI_33_2026-11-02.md ; Roudi QPJB à trois réponses."
+    },
+    {
+      "id": "V1-M5-003",
+      "qcm": {
+        "id": "V1-M5-003",
+        "theme": "fortes",
+        "caseFamily": "reserve-v1-m5-fortes-2k-regulier-sur-reponse-negative",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D"
+          ],
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "R",
+            "D",
+            "7"
+          ],
+          [
+            "R",
+            "9",
+            "4",
+            "3"
+          ]
+        ],
+        "h": 24,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "auction": [
+          "Vous : 2♦ (forcing de manche)",
+          "Partenaire : 2♥ (réponse négative, sans As)"
+        ],
+        "context": "Les adversaires passent. Quelle redemande économique décrit la forme de votre main tout en laissant au partenaire la possibilité de préciser la sienne ?",
+        "choices": [
+          "2♠",
+          "2SA",
+          "3♦",
+          "3SA"
+        ],
+        "answer": "2SA",
+        "explain": "Vous avez 24 H et une distribution 3-3-3-4 : la redemande naturelle de 2SA décrit le jeu régulier très fort après 2♦ forcing de manche. 2♠ ou 3♦ inventeraient une couleur longue ; 3SA supprimerait inutilement l'espace disponible pour les développements. La manche reste obligatoire.",
+        "difficulty": 3,
+        "difficultyReason": "Décrire une main régulière de 24 H après 2♦, distinct de la zone 22–23 H après 2♣."
+      },
+      "prerequis": {
+        "concept": "fortes.redemande",
+        "stage": 2,
+        "minSession": 29,
+        "requires": [
+          {
+            "concept": "fortes.relais",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Décrire une main régulière de 24 H après 2♦, distinct de la zone 22–23 H après 2♣.",
+      "source": "archives/audits/quiz-sef/CONTRE_EXPERTISE_V475_OUVERTURES_FORTES_2026-11-04.md ; https://dev.ibridge-club.fr/public/fichedetails/28 ; redemande naturelle à SA et zone 24 H ou plus."
+    },
+    {
+      "id": "V1-M5-004",
+      "qcm": {
+        "id": "V1-M5-004",
+        "theme": "fortes",
+        "caseFamily": "reserve-v1-m5-fortes-2t-majeure-septieme-huit-levees",
+        "hand": [
+          [
+            "A",
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "D",
+            "V",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "R",
+            "7"
+          ],
+          [
+            "8"
+          ]
+        ],
+        "h": 17,
+        "shape": [
+          3,
+          7,
+          2,
+          1
+        ],
+        "auction": [
+          "Vous : 2♣ (fort indéterminé)",
+          "Partenaire : 2♦ (relais)"
+        ],
+        "context": "Les adversaires passent. Vous disposez de sept Cœurs maîtres et d'une levée sûre extérieure. Quelle redemande précise votre unicolore ?",
+        "choices": [
+          "2♥",
+          "3♥",
+          "3SA",
+          "4♥"
+        ],
+        "answer": "3♥",
+        "explain": "Les sept Cœurs maîtres et l'As de Pique donnent huit levées immédiates ; le Roi de Carreau n'est pas compté comme levée certaine. 3♥ décrit la très belle majeure septième et huit levées de jeu après le relais. 2♥ est moins précis, 3SA montrerait le bicolore majeur fort et 4♥ supprimerait le palier descriptif.",
+        "difficulty": 3,
+        "difficultyReason": "Appliquer le seuil de huit levées de jeu en majeure septième, distinct des neuf levées en mineure."
+      },
+      "prerequis": {
+        "concept": "fortes.redemande",
+        "stage": 3,
+        "minSession": 33,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.relais",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Appliquer le seuil de huit levées de jeu en majeure septième, distinct des neuf levées en mineure.",
+      "source": "archives/audits/quiz-sef/CONTRE_EXPERTISE_V475_OUVERTURES_FORTES_2026-11-04.md ; https://www.ibridge.fr/public/fichedetails/778 ; SEF 2024, septième majeure et huit levées."
+    },
+    {
+      "id": "V1-M5-005",
+      "qcm": {
+        "id": "V1-M5-005",
+        "theme": "forcing",
+        "caseFamily": "reserve-v1-m5-quatrieme-suite-soutien-troisieme-sept-atouts-arret-personnel",
+        "hand": [
+          [
+            "R",
+            "8",
+            "6"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "7"
+          ],
+          [
+            "D",
+            "8",
+            "2"
+          ],
+          [
+            "A",
+            "9",
+            "3"
+          ]
+        ],
+        "h": 16,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1♠",
+          "Vous : 2♣ (quatrième couleur forcing)",
+          "Partenaire : 2♥ (trois Cœurs)"
+        ],
+        "context": "Les adversaires passent. Vous avez interrogé l'ouvreur pour préciser le contrat. Sa dernière réponse montre exactement trois Cœurs. Quelle manche choisissez-vous ?",
+        "choices": [
+          "3♣",
+          "3♥",
+          "4♥",
+          "3SA"
+        ],
+        "answer": "3SA",
+        "explain": "Vos quatre Cœurs et les trois du partenaire ne font que sept atouts. Votre As de Trèfle assure l'arrêt dans la quatrième couleur, et 16 H suffisent pour la manche face à l'ouverture. 3SA est naturel ; 4♥ imposerait un fit insuffisant, 3♣ redemanderait un arrêt déjà détenu et 3♥ n'ajouterait aucun atout.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer un soutien de trois cartes d'un véritable fit lorsque le répondant n'en détient que quatre et tient lui-même la quatrième couleur."
+      },
+      "prerequis": {
+        "concept": "forcing.quatrieme.suite",
+        "stage": 3,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme.suite",
+            "minExposure": 2
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Distinguer un soutien de trois cartes d'un véritable fit lorsque le répondant n'en détient que quatre et tient lui-même la quatrième couleur.",
+      "source": "audits/QPJB_V1_FORCING_54_PRECLASSIFICATION_20261120.json ; SEF-V486-028 et SEF-V487-006 ; archives/audits/quiz-sef/CONTRE_EXPERTISE_V480_REDEMANDES_QUATRIEME_FORCING_2026-11-05.md."
+    },
+    {
+      "id": "V1-M5-006",
+      "qcm": {
+        "id": "V1-M5-006",
+        "theme": "forcing",
+        "caseFamily": "reserve-v1-m5-checkback-non-recours-majeure-seulement-quatrieme",
+        "hand": [
+          [
+            "D",
+            "V",
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "9",
+            "3"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ],
+          [
+            "V",
+            "8",
+            "6"
+          ]
+        ],
+        "h": 9,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 2SA (18–19 H réguliers)"
+        ],
+        "context": "Les adversaires passent. Votre partenaire a sauté à 2SA. Quelle enchère choisissez-vous avec cette main sans perspective de chelem ?",
+        "choices": [
+          "3♣",
+          "3♦",
+          "3♠",
+          "3SA"
+        ],
+        "answer": "3SA",
+        "explain": "Vous avez 9 H et seulement quatre Piques, trois Cœurs et aucune longue mineure. Le partenaire a décrit 18–19 H réguliers sans soutien de quatre Piques. La manche à 3SA est acquise. Le checkback à 3♣ rechercherait un fit majeur qui n'est pas justifié par cette distribution ; 3♠ allongerait à tort votre majeure.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître le cas où le checkback n'est pas nécessaire, au lieu de répéter les deux relais déjà intégrés."
+      },
+      "prerequis": {
+        "concept": "forcing.checkback",
+        "stage": 1,
+        "minSession": 33,
+        "requires": [
+          {
+            "concept": "forcing.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "roudi.init",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Reconnaître le cas où le checkback n'est pas nécessaire, au lieu de répéter les deux relais déjà intégrés.",
+      "source": "https://dev.ibridge-club.fr/public/fichedetails/743 ; https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ ; convention QPJB de l'autre mineure confirmée par #319, SEF-Q26-M6-005/006."
+    }
+  ],
+  "patches": [],
+  "reserves": [
+    {
+      "id": "V1-M5-R01",
+      "question": "roudi.suite — troisième famille N≤3 non imposée : faut-il enrichir la proposition d'un contrat alternatif à SA après fit confirmé avec majeure pauvre, ou conserver au niveau 4 les suites combinant choix de contrat et zone ?",
+      "options": [
+        "Conserver le niveau 4 des suites historiques et accepter le déficit résiduel",
+        "Étudier en V2 une famille de contrat alternatif à SA si accord de paire et source explicites"
+      ],
+      "source": "https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi.html ; archives/audits/quiz-sef/REVUE_SEF_ROUDI_33_2026-11-02.md ; Roudi QPJB à trois réponses. ; l'audit du 02/11 maintient N4 pour les cinq conclusions historiques."
+    },
+    {
+      "id": "V1-M5-R02",
+      "question": "forcing.troisieme — troisième famille accessible : les autres décisions (SA avec tenue, repli mineur, troisième couleur naturelle ou déclenchement artificiel) sont déjà couvertes aux niveaux 4–5 ; ne pas dupliquer les soutiens de trois cartes.",
+      "options": [
+        "Accepter le déficit et utiliser forcing.base comme fondation parent déjà requise",
+        "En V2 construire un contraste nouveau sur tenue/repli sans modifier les niveaux historiques"
+      ],
+      "source": "audits/QPJB_V1_FORCING_54_PRECLASSIFICATION_20261120.json ; SEF-L17-001/002/003/004/005/012 ; #319."
+    }
+  ]
+}

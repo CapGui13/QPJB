@@ -1,0 +1,216 @@
+{
+  "schema": "QPJB_RESERVE_REVIEW_V1",
+  "mission": 325,
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "concepts": [
+    {
+      "concept": "roudi.suite",
+      "observedFamilies": [
+        [
+          "SEF-V44-062",
+          "invitation SA après négatif"
+        ],
+        [
+          "SEF-V44-063",
+          "manche SA après négatif"
+        ],
+        [
+          "SEF-V44-064",
+          "invitation majeure minimum"
+        ],
+        [
+          "SEF-V44-065",
+          "manche majeure maximum"
+        ],
+        [
+          "SEF-V44-066",
+          "manche majeure minimum"
+        ],
+        [
+          "SEF-L14-007",
+          "autre majeure économique"
+        ],
+        [
+          "SEF-L21-003",
+          "bicolore cher forcing"
+        ]
+      ],
+      "accessibleBefore": 0,
+      "targetedGaps": [
+        "six cartes + deux cartes annoncées",
+        "arrêt partiel dans la vraie majeure après réponse codée minimum"
+      ],
+      "produced": [
+        "V1-M5-001",
+        "V1-M5-002"
+      ],
+      "exceptions": [
+        "V1-M5-R01"
+      ],
+      "accessibleProjected": 2
+    },
+    {
+      "concept": "fortes.redemande",
+      "observedFamilies": [
+        [
+          "SEF-V45-007",
+          "2SA 22–23 H N3"
+        ],
+        [
+          "SEF-V45-008",
+          "sixième majeure N4"
+        ],
+        [
+          "SEF-V475-006",
+          "bicolore majeur N5"
+        ],
+        [
+          "SEF-V475-007",
+          "mineure septième neuf levées N4"
+        ],
+        [
+          "SEF-L20-003",
+          "redemande couleur sur réponse à 2SA N5"
+        ],
+        [
+          "SEF-L29-005",
+          "3SA non forcing sur réponse au palier de 3 N5"
+        ]
+      ],
+      "accessibleBefore": 1,
+      "targetedGaps": [
+        "régulier 24+ après ouverture FM",
+        "septième majeure huit levées"
+      ],
+      "produced": [
+        "V1-M5-003",
+        "V1-M5-004"
+      ],
+      "exceptions": [],
+      "accessibleProjected": 3
+    },
+    {
+      "concept": "forcing.troisieme",
+      "observedFamilies": [
+        [
+          "SEF-L17-001",
+          "soutien Pique N3"
+        ],
+        [
+          "SEF-L17-004",
+          "soutien Cœur N3"
+        ],
+        [
+          "SEF-V45-013/014/015",
+          "déclenchement artificiel N4"
+        ],
+        [
+          "SEF-L03-021/024",
+          "relais N4–5"
+        ],
+        [
+          "SEF-L17-002",
+          "SA N4"
+        ],
+        [
+          "SEF-L17-003/012",
+          "repli mineur N4"
+        ],
+        [
+          "SEF-L17-005",
+          "soutien troisième naturelle N4"
+        ],
+        [
+          "SEF-V411-007",
+          "métadonnées retrouvées, contenu exact non retrouvé"
+        ]
+      ],
+      "accessibleBefore": 2,
+      "targetedGaps": [
+        "décision distincte de soutien simple"
+      ],
+      "produced": [],
+      "exceptions": [
+        "V1-M5-R02"
+      ],
+      "accessibleProjected": 2
+    },
+    {
+      "concept": "forcing.quatrieme.suite",
+      "observedFamilies": [
+        [
+          "SEF-V486-026",
+          "3SA arrêt partenaire N3"
+        ],
+        [
+          "SEF-V486-027",
+          "manche majeure fit N3"
+        ],
+        [
+          "SEF-V486-028",
+          "3SA arrêt personnel après absence de soutien N4"
+        ],
+        [
+          "SEF-V486-029/030",
+          "partielle/invitation N4"
+        ],
+        [
+          "SEF-V487-006",
+          "réinterroger arrêt avec sept atouts N5"
+        ],
+        [
+          "SEF-V487-007",
+          "chelem N5"
+        ],
+        [
+          "SEF-L04-003/004",
+          "arrêt personnel/soutien mineur N4"
+        ]
+      ],
+      "accessibleBefore": 2,
+      "targetedGaps": [
+        "soutien troisième mais sept atouts et arrêt personnel"
+      ],
+      "produced": [
+        "V1-M5-005"
+      ],
+      "exceptions": [],
+      "accessibleProjected": 3
+    },
+    {
+      "concept": "forcing.checkback",
+      "observedFamilies": [
+        [
+          "SEF-L13-003",
+          "relai 3♣ après 1♦ N4"
+        ],
+        [
+          "SEF-Q26-M6-005",
+          "relai 3♦ après 1♣ N3"
+        ],
+        [
+          "SEF-Q26-M6-006",
+          "relai 3♣ après 1♦ N3"
+        ]
+      ],
+      "accessibleBefore": 2,
+      "targetedGaps": [
+        "non-recours au relais sans cinquième majeure ni seconde majeure quatrième"
+      ],
+      "produced": [
+        "V1-M5-006"
+      ],
+      "exceptions": [],
+      "accessibleProjected": 3
+    }
+  ],
+  "checks": {
+    "structuralErrors": [],
+    "localAdditions": 6,
+    "localUnique": true,
+    "productionDuplicateCheck": "partial, historical audited corpus; full HTML not accessible"
+  },
+  "signals": [
+    "SEF-L17-012 : vérifier précision des arrêts en V3 ; aucun changement."
+  ]
+}

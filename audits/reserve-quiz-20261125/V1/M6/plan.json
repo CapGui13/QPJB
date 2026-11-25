@@ -1,0 +1,56 @@
+{
+  "mission": "V1-M6",
+  "contract": 320,
+  "issue": 326,
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "baseCatalogBlob": "53c78fae3e6845ff9f66e2260dcc80b2c05deb09",
+  "prerequisBlob": "e9f5d28921aafd9fad5fb532964418f6871778bb",
+  "method": "Cartographie locale unique : jointure des IDs de la table de prérequis avec le blob du catalogue figé ; lecture des 36 fiches, y compris les ajouts #319 et les audits V474/V483. N<=3 est la difficulté de la décision isolée, non un déplacement de séance : stage 3 et prérequis historiques conservés.",
+  "rawDeficit": 10,
+  "targetAdditions": 6,
+  "targetExceptions": 4,
+  "targetConcepts": 4,
+  "targetHistoricalPatches": 0,
+  "concepts": [
+    {
+      "concept": "chelem.splinter",
+      "observedAccessible": 2,
+      "targetAdditions": 1,
+      "targetAccessible": 3,
+      "decisions": [
+        "Ouvreur minimum : dévaloriser les honneurs dans la courte annoncée, conclure à la manche."
+      ]
+    },
+    {
+      "concept": "chelem.splinter.variante",
+      "observedAccessible": 0,
+      "targetAdditions": 1,
+      "targetAccessible": 1,
+      "decisions": [
+        "Répondant après Splinter de redemande en mineure : choisir la manche à l'atout plutôt que 3SA sans arrêt."
+      ],
+      "exceptions": 2
+    },
+    {
+      "concept": "chelem.blackwood.suite",
+      "observedAccessible": 0,
+      "targetAdditions": 3,
+      "targetAccessible": 3,
+      "decisions": [
+        "Réponse 0/3 : trois clés personnelles excluent trois en face, arrêt.",
+        "Réponse deux clés sans Dame : Dame personnelle connue, petit chelem justifié par bilan.",
+        "Réponse 0/3 : une clé adverse déjà exclue de zéro, question à la Dame au palier économique."
+      ]
+    },
+    {
+      "concept": "chelem.blackwood.dame_rois",
+      "observedAccessible": 0,
+      "targetAdditions": 1,
+      "targetAccessible": 1,
+      "decisions": [
+        "Répondre à la question Dame en nommant simultanément le Roi annexe accessible."
+      ],
+      "exceptions": 2
+    }
+  ]
+}
