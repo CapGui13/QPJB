@@ -1,0 +1,891 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "SEF-L13-009",
+      "old": {
+        "theme": "reponse_inter"
+      },
+      "new": {
+        "theme": "apres_inter"
+      },
+      "reason": "Le partenaire est ouvreur (1♠–(2♦)), non intervenant. Même décision que le 2SA fitté après intervention naturelle : réaffecter le concept et les prérequis, sans modifier la réponse ni le corrigé. Propriété de revue conservée au thème de base.",
+      "source": "#356 ; SEF-V473-005 ; SEF-L26-004",
+      "prerequis": {
+        "old": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.2sa_fitte",
+          "stage": 3,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.2sa_fitte",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L24-002",
+      "old": {
+        "explain": "Vos quatre Cœurs R1096 et 13 H réguliers valent 15 HLD grâce au neuvième atout. Après 1♥–(Contre), 3SA est le Truscott fort : quatre atouts et main régulière ou semi-régulière sans singleton à partir de 13 HLD. 2SA Truscott s'arrête à 12 HLD. 3♥ serait un barrage et Surcontre ne transmettrait pas aussi précisément ce fit fort et régulier."
+      },
+      "new": {
+        "explain": "Vos quatre Cœurs R1096 et 13 H réguliers valent 15 HLD grâce au neuvième atout. Après 1♥–(Contre), 3SA est le Truscott fort : quatre atouts et main régulière ou semi-régulière sans singleton de 13 à 15 HLD. 2SA Truscott s'arrête à 12 HLD. 3♥ serait un barrage et Surcontre ne transmettrait pas aussi précisément ce fit fort et régulier."
+      },
+      "reason": "La formulation ouverte contredit le cas symétrique à Pique. La fiche 1♥–X adaptée au SEF 2024 confirme la zone bornée ; 15 HLD reste valide. Seul le seuil change.",
+      "source": "SEF-L44-003 ; https://www.bridge-chailley.fr/wp-content/uploads/2024/10/C-1C-X-Q-corr-4.pdf (p.1, 3SA, consultée) ; #356"
+    },
+    {
+      "id": "SEF-L39-005",
+      "old": {
+        "difficulty": 5,
+        "caseFamily": "LOT39-2026-11-16-005",
+        "difficultyReason": "Exception au 2SA fitté après ouverture majeure : 2SA naturel sur une intervention faible à saut au palier de 2."
+      },
+      "new": {
+        "difficulty": 4,
+        "caseFamily": "V2-M5-G03",
+        "difficultyReason": "Identifier l'exception du 2SA naturel après un saut faible, en contraste avec le 2SA fitté sur intervention non sautée."
+      },
+      "reason": "Même séquence, arrêt ♠AD8, 11 H et forme 3-2-4-4 que V2-M5-005 ; seules les cartes mineures changent sans modifier la décision. Rattacher à la famille contrastée existante et harmoniser au niveau 4 : alternative conventionnelle, non développement en plusieurs tours.",
+      "source": "V2-M5-005/006 ; #327 ; #356"
+    },
+    {
+      "id": "V2-M5-005",
+      "old": {
+        "difficulty": 3
+      },
+      "new": {
+        "difficulty": 4
+      },
+      "reason": "L'exception est déjà en stage 3 avec prérequis du 2SA fitté et du barrage ; le critère exige une alternative conventionnelle réelle. Niveau 4 cohérent avec le partenaire de contraste.",
+      "source": "SEF-L39-005 ; V2-M5-006"
+    },
+    {
+      "id": "V2-M5-006",
+      "old": {
+        "difficulty": 3
+      },
+      "new": {
+        "difficulty": 4
+      },
+      "reason": "Contre Spoutnik choisi parce que 2SA fitté est indisponible avec deux atouts. Aligner la difficulté sur V2-M5-005 et rendre ce prérequis explicite.",
+      "source": "V2-M5-005 ; SEF-L19-008",
+      "prerequis": {
+        "old": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 2
+            },
+            {
+              "concept": "competitif.2sa_fitte",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L16-007",
+      "old": {},
+      "new": {},
+      "reason": "Le Contre Spoutnik généralisé dépend du 2SA fitté (force au-dessus de sa borne ou absence de trois atouts). Une exposition à ce dernier est nécessaire en plus du Spoutnik.",
+      "source": "SEF-L13-009 ; SEF-L26-004 ; V2-M5-006",
+      "prerequis": {
+        "old": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 3
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 3
+            },
+            {
+              "concept": "competitif.2sa_fitte",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L19-008",
+      "old": {},
+      "new": {},
+      "reason": "Le Contre Spoutnik généralisé dépend du 2SA fitté (force au-dessus de sa borne ou absence de trois atouts). Une exposition à ce dernier est nécessaire en plus du Spoutnik.",
+      "source": "SEF-L13-009 ; SEF-L26-004 ; V2-M5-006",
+      "prerequis": {
+        "old": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.spoutnik",
+          "stage": 3,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.spoutnik",
+              "minExposure": 2
+            },
+            {
+              "concept": "competitif.2sa_fitte",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L28-002",
+      "old": {
+        "caseFamily": "LOT28-2026-11-14-002"
+      },
+      "new": {
+        "caseFamily": "V2-M5-G04"
+      },
+      "reason": "Variante de la même redemande à 4♥ : 16 H, 4-4-4-1, singleton Pique, 18 HLD, même séquence et même zone. Mutualiser l'exposition avec le contraste 3♥/4♥.",
+      "source": "V2-M5-007/008 ; #327"
+    },
+    {
+      "id": "SEF-L36-003",
+      "old": {
+        "caseFamily": "LOT36-2026-11-15-003",
+        "difficultyReason": "Rencontre à double saut après intervention à la couleur, distincte d'un Splinter."
+      },
+      "new": {
+        "caseFamily": "V2-M5-G06",
+        "difficultyReason": "Rencontre à simple saut au palier de 4 après 1♠–(2♥) : cinq beaux Carreaux et fit quatrième, distincte du cue-bid et du Splinter."
+      },
+      "reason": "Le corrigé V1/V2 dit correctement simple saut : 3♦ est la première enchère disponible. L'ancien motif disait double saut. Main 4-1-5-3, 10 H et 15 HLD comme V2-M5-011 : rattachement à son contraste avec quatre Carreaux.",
+      "source": "V2-M5-011/012 ; explication virtuelle SEF-L36-003"
+    },
+    {
+      "id": "SEF-V473-007",
+      "old": {
+        "caseFamily": "v473-cuebid-manche"
+      },
+      "new": {
+        "caseFamily": "V2-M5-G06"
+      },
+      "reason": "Même décision que le second membre de V2-M5-G06 : 1♠–(2♥), quatre Piques, singleton Cœur, 10 H, 14 HLD et deux mineures quatrièmes. La variation des honneurs ne change pas le critère.",
+      "source": "V2-M5-011/012 ; #327"
+    },
+    {
+      "id": "SEF-L13-007",
+      "old": {},
+      "new": {},
+      "reason": "Le système des soutiens conventionnels après Contre (mixed raise ou rencontre face au Truscott) est déjà classé competitif.truscott pour les cas analogues. Aligner concept, stage, prérequis et séance au niveau 4 ; maintien de l'accord mixed raise local.",
+      "source": "SEF-L14-016 ; SEF-L22-003 ; SEF-L34-003 ; SEF-L42-001",
+      "prerequis": {
+        "old": {
+          "concept": "apres_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.truscott",
+          "stage": 3,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L14-015",
+      "old": {},
+      "new": {},
+      "reason": "Le système des soutiens conventionnels après Contre (mixed raise ou rencontre face au Truscott) est déjà classé competitif.truscott pour les cas analogues. Aligner concept, stage, prérequis et séance au niveau 4 ; maintien de l'accord mixed raise local.",
+      "source": "SEF-L14-016 ; SEF-L22-003 ; SEF-L34-003 ; SEF-L42-001",
+      "prerequis": {
+        "old": {
+          "concept": "apres_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.truscott",
+          "stage": 3,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-L43-001",
+      "old": {},
+      "new": {},
+      "reason": "Le système des soutiens conventionnels après Contre (mixed raise ou rencontre face au Truscott) est déjà classé competitif.truscott pour les cas analogues. Aligner concept, stage, prérequis et séance au niveau 4 ; maintien de l'accord mixed raise local.",
+      "source": "SEF-L14-016 ; SEF-L22-003 ; SEF-L34-003 ; SEF-L42-001",
+      "prerequis": {
+        "old": {
+          "concept": "apres_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.truscott",
+          "stage": 3,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V44-045",
+      "old": {
+        "difficulty": 4,
+        "difficultyReason": "Action conventionnelle face à une intervention adverse"
+      },
+      "new": {
+        "difficulty": 3,
+        "difficultyReason": "Surcontre positif avec 11 H sans fit après Contre d'appel ; écarter le soutien et le 1SA limité."
+      },
+      "reason": "Cas symétrique du Surcontre positif sans fit de SEF-V421-007 : 11 H, deux atouts, décision directe. Même concept compétitif et niveau 3, pas de combinaison avancée.",
+      "source": "SEF-V421-007 ; SEF-V424-007",
+      "prerequis": {
+        "old": {
+          "concept": "apres_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "competitif.truscott",
+          "stage": 1,
+          "minSession": 16,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V417-010",
+      "old": {
+        "difficultyReason": "Décrire force, fit et séquence de deux tours"
+      },
+      "new": {
+        "difficultyReason": "Reconnaître le Contre Spoutnik avec quatre Cœurs et 8 H après 1♦–(1♠), plutôt qu'un 2♥ naturel."
+      },
+      "reason": "Le motif parlait de fit et deux tours, mais seule la première réponse est testée. Décrire le discriminant réellement évalué.",
+      "source": "SEF-V410-026 ; SEF-V412-018"
+    },
+    {
+      "id": "SEF-V417-011",
+      "old": {
+        "difficultyReason": "Décrire force, fit et séquence de deux tours"
+      },
+      "new": {
+        "difficultyReason": "Choisir un changement de couleur naturel 2♦ forcing un tour avec cinq Carreaux et 12 H après 1♣–(1♥)."
+      },
+      "reason": "Le motif parlait de fit et deux tours, mais la décision est l'annonce d'une longue au premier tour. Motif aligné sur le forcing un tour.",
+      "source": "SEF-V412-019 ; SEF-V423-004"
+    },
+    {
+      "id": "SEF-Q26-M4-006",
+      "old": {
+        "difficulty": 3
+      },
+      "new": {
+        "difficulty": 4
+      },
+      "reason": "Le franchissement 18/19 HL déclenche le Contre toute distribution et une redescription ultérieure. Les ancres de niveau 4 ont les mêmes métadonnées de stage 3.",
+      "source": "SEF-L13-011 ; SEF-L27-002"
+    },
+    {
+      "id": "SEF-L20-004",
+      "old": {},
+      "new": {},
+      "reason": "Le seuil de 11 H et le régime non forcing au palier de 3 sont spécifiques à l'intervention sur ouverture de deux faible. Apprendre d'abord la défense du deux faible ; une exposition et plancher 18 (concept parent dès 17).",
+      "source": "SEF-V470-008/009/010/011 ; V2-M4-039/040 ; SEF-L20-004",
+      "prerequis": {
+        "old": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.deux_faible",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M4-039",
+      "old": {},
+      "new": {},
+      "reason": "Le seuil de 11 H et le régime non forcing au palier de 3 sont spécifiques à l'intervention sur ouverture de deux faible. Apprendre d'abord la défense du deux faible ; une exposition et plancher 18 (concept parent dès 17).",
+      "source": "SEF-V470-008/009/010/011 ; V2-M4-039/040 ; SEF-L20-004",
+      "prerequis": {
+        "old": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.deux_faible",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V2-M4-040",
+      "old": {},
+      "new": {},
+      "reason": "Le seuil de 11 H et le régime non forcing au palier de 3 sont spécifiques à l'intervention sur ouverture de deux faible. Apprendre d'abord la défense du deux faible ; une exposition et plancher 18 (concept parent dès 17).",
+      "source": "SEF-V470-008/009/010/011 ; V2-M4-039/040 ; SEF-L20-004",
+      "prerequis": {
+        "old": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ]
+        },
+        "new": {
+          "concept": "reponse_inter.base",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "intervenir.deux_faible",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEF-V4-047-1",
+      "old": {
+        "difficulty": 2,
+        "difficultyReason": "Soutenir ou répondre simplement à l’intervention du partenaire"
+      },
+      "new": {
+        "difficulty": 3,
+        "difficultyReason": "Évaluer la manche au fit neuvième après intervention au palier de deux, plutôt qu'un soutien compétitif à 3♥ ou 3SA."
+      },
+      "reason": "La décision implique force de manche et palier d'intervention ; les conclusions analogues sur intervention au palier de un sont niveau 3. Même prérequis d'exposition aux réponses à l'intervention.",
+      "source": "SEF-V411-014 ; SEF-V411-015",
+      "prerequis": {
+        "old": {
+          "concept": "reponse_inter.base",
+          "stage": 0,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "reponse_inter.base",
+          "stage": 1,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V1-M3-002",
+      "old": {},
+      "new": {},
+      "reason": "Seule la première réponse après 1SA d'intervention est testée (Stayman, Passe ou manche). Les réponses au Stayman et les suites après Texas ne sont pas nécessaires ; maintenir notions de base et calendrier, avec le seuil naturel explicite pour Passe/manche.",
+      "source": "V1-M3-002/003/004 ; #356",
+      "prerequis": {
+        "old": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.suite",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V1-M3-003",
+      "old": {},
+      "new": {},
+      "reason": "Seule la première réponse après 1SA d'intervention est testée (Stayman, Passe ou manche). Les réponses au Stayman et les suites après Texas ne sont pas nécessaires ; maintenir notions de base et calendrier, avec le seuil naturel explicite pour Passe/manche.",
+      "source": "V1-M3-002/003/004 ; #356",
+      "prerequis": {
+        "old": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.suite",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "V1-M3-004",
+      "old": {},
+      "new": {},
+      "reason": "Seule la première réponse après 1SA d'intervention est testée (Stayman, Passe ou manche). Les réponses au Stayman et les suites après Texas ne sont pas nécessaires ; maintenir notions de base et calendrier, avec le seuil naturel explicite pour Passe/manche.",
+      "source": "V1-M3-002/003/004 ; #356",
+      "prerequis": {
+        "old": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.suite",
+              "minExposure": 1
+            }
+          ]
+        },
+        "new": {
+          "concept": "intervenir.sa.suite",
+          "stage": 3,
+          "minSession": 21,
+          "requires": [
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "reserves": [
+    {
+      "id": "SEF-L10-005",
+      "question": "Le 2SA naturel lorsque le n°3 passe reste en HOLD ; ne pas modifier la convention avant décision.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider explicitement la convention locale"
+      ],
+      "source": "#271, HOLD SEF-L10-005"
+    },
+    {
+      "id": "SEF-L13-010",
+      "question": "Le seuil 7 HL après contre d'appel reste en HOLD.",
+      "options": [
+        "Conserver en attente de l'arbitrage #271",
+        "Valider le seuil avec une source précise"
+      ],
+      "source": "#271, HOLD SEF-L13-010"
+    },
+    {
+      "id": "SEF-L28-007",
+      "question": "Cas dépendant du même seuil de réponse après contre d'appel ; ne pas arbitrer implicitement par un exercice voisin.",
+      "options": [
+        "Conserver sous réserve du seuil",
+        "Revoir avec SEF-L13-010"
+      ],
+      "source": "#271 ; SEF-L13-010"
+    },
+    {
+      "id": "V2-M5-001",
+      "question": "La main 4-3-3-3 de 12 HLD relève du soutien limite, mais l'exception à quatre atouts très réguliers du 2SA fitté peut rendre le distracteur discutable.",
+      "options": [
+        "Confirmer le caractère préférentiel de 3♠ dans ce cas",
+        "Préciser la limite de l'exception avant de modifier la main ou le choix"
+      ],
+      "source": "SEF-L06-007 ; V2-M5-002"
+    },
+    {
+      "id": "SEF-L30-005",
+      "question": "La réponse Passe illustre l'absence d'auto-forcing, mais 11 H et six Carreaux rendent une invitation plausible ; distinguer enchère autorisée et meilleure décision.",
+      "options": [
+        "Conserver comme illustration du droit de passer",
+        "Préciser le minimum de la redemande ou recomposer la main"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-009 et V2-M5-010"
+    },
+    {
+      "id": "V2-M5-009",
+      "question": "La main de 11 H avec longueur et fit huitième peut susciter une proposition de manche ; le caractère non auto-forcing n'impose pas Passe.",
+      "options": [
+        "Préciser la force réelle de l'ouvreur",
+        "Réviser la main avec le cas contrasté V2-M5-010 si nécessaire"
+      ],
+      "source": "SEF-L30-005 ; V2-M5-010"
+    }
+  ]
+}
