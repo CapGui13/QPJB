@@ -1,0 +1,236 @@
+{
+  "mission": "V1-M6",
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "concepts": [
+    {
+      "concept": "chelem.splinter",
+      "families": [
+        "SEF-V45-056",
+        "SEF-V45-057",
+        "SEF-V45-058",
+        "SEF-Q26-M6-009",
+        "SEF-Q26-M6-010"
+      ],
+      "accessible": 2,
+      "observations": "5 fiches, 2 N3 (#319), 3 N4 ; toutes en position de répondant, nouveau rôle de l'ouvreur.",
+      "manquesCibles": [
+        "Ouvreur minimum : dévaloriser les honneurs dans la courte annoncée, conclure à la manche."
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M6-001",
+          "family": "v1-m6-splinter-direct-ouvreur-frein-honneurs-courte",
+          "answer": "4♠",
+          "h": 12,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        }
+      ],
+      "exceptions": [],
+      "accessibleApres": 3
+    },
+    {
+      "concept": "chelem.splinter.variante",
+      "families": [
+        "SEF-L13-004",
+        "SEF-L13-008",
+        "SEF-L19-005",
+        "SEF-L20-002",
+        "SEF-L22-006",
+        "SEF-L23-002",
+        "SEF-L28-004",
+        "SEF-L29-004",
+        "SEF-L30-004",
+        "SEF-L37-002",
+        "SEF-L42-002",
+        "SEF-L44-004",
+        "SEF-Q26-M3-007"
+      ],
+      "accessible": 0,
+      "observations": "13 fiches N4–5 ; plusieurs familles proches (1♣–1♥–1♠, après Contre, 2♣ fort, intervention, Michaël, redemande fittant mineure). Nouvelle décision de choix de manche, non nomination de courte.",
+      "manquesCibles": [
+        "Répondant après Splinter de redemande en mineure : choisir la manche à l'atout plutôt que 3SA sans arrêt."
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M6-002",
+          "family": "v1-m6-splinter-variante-mineure-choix-manche",
+          "answer": "5♦",
+          "h": 8,
+          "shape": [
+            3,
+            3,
+            5,
+            2
+          ]
+        }
+      ],
+      "exceptions": [
+        {
+          "id": "V1-M6-EX01",
+          "concept": "chelem.splinter.variante",
+          "question": "Nouvelle famille accessible de Splinter après 2♣ fort indéterminé : le plafond de contrôles d'honneur et la séquence forte doivent-ils être maîtrisés avant de demander le choix ?",
+          "options": [
+            "Conserver stage 3 et N4–5 sur cette variante (retenu).",
+            "Créer une préparation séparée dans fortes.suite, hors périmètre M6, si le pilote constate une lacune."
+          ],
+          "source": "SEF-L20-002, SEF-L28-004, SEF-L44-004 ; #320/#326."
+        },
+        {
+          "id": "V1-M6-EX02",
+          "concept": "chelem.splinter.variante",
+          "question": "Splinter en compétitives après Contre ou Michaël : faut-il fabriquer un troisième cas N3 qui neutralise la distinction rencontre/cue-bid/Truscott ?",
+          "options": [
+            "Conserver N4–5 : la distinction fait partie de la décision (retenu).",
+            "Si nécessaire, renforcer le parent compétitif.truscott ou michaels.defense dans une autre mission."
+          ],
+          "source": "SEF-L13-008, L19-005, L22-006, L30-004, L37-002, L42-002 ; #320/#326."
+        }
+      ],
+      "accessibleApres": 1
+    },
+    {
+      "concept": "chelem.blackwood.suite",
+      "families": [
+        "SEF-V474-001",
+        "SEF-V474-002",
+        "SEF-V474-003",
+        "SEF-L02-E-09",
+        "SEF-L02-E-10",
+        "SEF-L02-E-16",
+        "SEF-L02-E-17",
+        "SEF-L02-E-18",
+        "SEF-L02-E-19"
+      ],
+      "accessible": 0,
+      "observations": "9 fiches N4–5, questions après 5♦, arrêts et conclusion avec toutes les clés. Trois nouveaux chemins de raisonnement (0/3 déduit dans deux sens, Dame dans sa propre main).",
+      "manquesCibles": [
+        "Réponse 0/3 : trois clés personnelles excluent trois en face, arrêt.",
+        "Réponse deux clés sans Dame : Dame personnelle connue, petit chelem justifié par bilan.",
+        "Réponse 0/3 : une clé adverse déjà exclue de zéro, question à la Dame au palier économique."
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M6-003",
+          "family": "v1-m6-rkcb-suite-03-zero-force-par-trois",
+          "answer": "5♠",
+          "h": 16,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        },
+        {
+          "id": "V1-M6-004",
+          "family": "v1-m6-rkcb-suite-dame-personnelle-apres-5coeur",
+          "answer": "6♠",
+          "h": 15,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        },
+        {
+          "id": "V1-M6-005",
+          "family": "v1-m6-rkcb-suite-03-trois-question-dame",
+          "answer": "5♦",
+          "h": 20,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        }
+      ],
+      "exceptions": [],
+      "accessibleApres": 3
+    },
+    {
+      "concept": "chelem.blackwood.dame_rois",
+      "families": [
+        "SEF-V474-004",
+        "SEF-V474-005",
+        "SEF-V474-006",
+        "SEF-V474-007",
+        "SEF-V474-008",
+        "SEF-V474-009",
+        "SEF-V474-010",
+        "SEF-L41-005",
+        "SEF-L42-005"
+      ],
+      "accessible": 0,
+      "observations": "9 fiches N4–5, oui/non à la Dame, question chère et Rois après 5SA. Nouvelle réponse positive à la Dame nommant un Roi annexe.",
+      "manquesCibles": [
+        "Répondre à la question Dame en nommant simultanément le Roi annexe accessible."
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M6-006",
+          "family": "v1-m6-rkcb-dame-reponse-positive-roi-coeur",
+          "answer": "5♥",
+          "h": 16,
+          "shape": [
+            4,
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "exceptions": [
+        {
+          "id": "V1-M6-EX03",
+          "concept": "chelem.blackwood.dame_rois",
+          "question": "Réponse à la Dame sans Roi annexe : faut-il refaire un cas positif/négatif en donnant toutes les informations pour le classer N3 ?",
+          "options": [
+            "Ne pas dupliquer les familles déjà présentes ; maintenir les N4–5 (retenu).",
+            "Réexaminer la difficulté et les explications en V3 si la progression réelle le justifie."
+          ],
+          "source": "SEF-V474-004 à 010 ; audit V474 ; #320."
+        },
+        {
+          "id": "V1-M6-EX04",
+          "concept": "chelem.blackwood.dame_rois",
+          "question": "Suite aux Rois annexes : réponse 5SA sans Roi ou avec plusieurs Rois, y compris cas de palier contraint, à simplifier ?",
+          "options": [
+            "Conserver les développements N5 attestés ; pas de nouvel accord non vérifié sur les cas non documentés (retenu).",
+            "Réserver un développement précis à une future consolidation après validation de l'accord local."
+          ],
+          "source": "SEF-L41-005, L42-005 ; audit V474 ; #320."
+        }
+      ],
+      "accessibleApres": 1
+    }
+  ],
+  "checks": {
+    "catalogue": "36 fiches rattachées à la table, incluant 3 ajouts #319 dans ce périmètre",
+    "newIds": 6,
+    "uniqueFamilies": 6,
+    "handCards": 13,
+    "validRanks": true,
+    "pointsAndShape": "calculés à partir des cartes",
+    "fourDistinctChoices": true,
+    "allChoicesAboveLastBid": true,
+    "exactHistoricalPrerequis": true,
+    "noIdenticalHandInCatalog": true,
+    "noIdenticalNewHandAuction": true,
+    "errors": [],
+    "pedagogical": "Relecture des décisions par rapport aux familles historiques. Les décisions simples sont isolées à N3 ; stage et session restent ceux des fiches avancées homologues."
+  },
+  "limits": [
+    "Pas de revalidation indépendante des documents externes SEF : références héritées des audits et fiches validés, pas de nouvelle prétention de visa SEF.",
+    "Comparaison sémantique manuelle des 36 fiches ; pas de test global."
+  ],
+  "historicalSignals": [
+    "Les réponses oui/non à la Dame (V474-004 à 010) sont déjà nombreuses ; ne pas multiplier des variantes de couleur uniquement pour faire baisser leur difficulté. Aucun ancien QCM modifié."
+  ]
+}
