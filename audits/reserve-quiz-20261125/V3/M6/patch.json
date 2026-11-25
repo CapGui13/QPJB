@@ -1,0 +1,377 @@
+{
+  "additions": [],
+  "patches": [
+    {
+      "id": "V1-M5-001",
+      "old": {
+        "context": "Les adversaires passent. Après la réponse au Roudi, quelle enchère décrit votre jeu de proposition de manche sans imposer celle-ci ?",
+        "explain": "Vos six Piques font huit atouts avec les deux annoncés par l'ouvreur. Avec 10 H et deux points de longueur, vous avez 12 HL, pas de manche certaine. 2♠ est naturel et non forcing après 2♦ ; l'ouvreur maximum pourra poursuivre. 2SA ne valoriserait pas le fit connu, 3SA imposerait la manche."
+      },
+      "new": {
+        "context": "Les adversaires passent. Le partenaire a répondu au Roudi par 2♦. Avec cette main, dans quel contrat pouvez-vous vous arrêter si le partenaire est minimum ?",
+        "explain": "Le 2♦ codé indique deux Piques, sans préciser la zone 12–14 H. Vos six Piques assurent donc huit atouts. Avec 10 H et deux points de longueur, vous n'avez pas de manche certaine. 2♠ est naturel et non forcing : ce n'est pas une nouvelle invitation formelle. L'ouvreur pourra poursuivre avec des compléments utiles. 3♠ serait plus engageant et 3SA sacrifierait le fit."
+      },
+      "reason": "Distinguer l'arrêt naturel non forcing d'une nouvelle invitation formelle.",
+      "source": "https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi.html ; archives/audits/quiz-sef/REVUE_SEF_ROUDI_33_2026-11-02.md ; Roudi QPJB à trois réponses."
+    },
+    {
+      "id": "V1-M5-003",
+      "old": {
+        "explain": "Vous avez 24 H et une distribution 3-3-3-4 : la redemande naturelle de 2SA décrit le jeu régulier très fort après 2♦ forcing de manche. 2♠ ou 3♦ inventeraient une couleur longue ; 3SA supprimerait inutilement l'espace disponible pour les développements. La manche reste obligatoire."
+      },
+      "new": {
+        "explain": "Vos 24 H et la distribution 3-3-3-4 correspondent à la redemande naturelle de 2SA après 2♦ forcing de manche. Le 2♥ du partenaire est négatif, pas une couleur naturelle ; la manche reste obligatoire malgré sa faiblesse. 2♠ ou 3♦ inventeraient une longue et 3SA supprimerait les recherches de fit."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "archives/audits/quiz-sef/CONTRE_EXPERTISE_V475_OUVERTURES_FORTES_2026-11-04.md ; https://dev.ibridge-club.fr/public/fichedetails/28 ; redemande naturelle à SA et zone 24 H ou plus."
+    },
+    {
+      "id": "V1-M5-005",
+      "old": {
+        "explain": "Vos quatre Cœurs et les trois du partenaire ne font que sept atouts. Votre As de Trèfle assure l'arrêt dans la quatrième couleur, et 16 H suffisent pour la manche face à l'ouverture. 3SA est naturel ; 4♥ imposerait un fit insuffisant, 3♣ redemanderait un arrêt déjà détenu et 3♥ n'ajouterait aucun atout."
+      },
+      "new": {
+        "explain": "Le 2♥ de l'ouvreur montre trois cartes, mais vous n'en possédez que quatre : sept atouts ne font pas le fit recherché. Votre As de Trèfle couvre la quatrième couleur, artificielle, et vos 16 H face à une ouverture justifient 3SA. 4♥ imposerait une manche à sept atouts ; réinterroger à 3♣ pour obtenir un arrêt déjà détenu est inutile."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "audits/QPJB_V1_FORCING_54_PRECLASSIFICATION_20261120.json ; SEF-V486-028 et SEF-V487-006 ; archives/audits/quiz-sef/CONTRE_EXPERTISE_V480_REDEMANDES_QUATRIEME_FORCING_2026-11-05.md."
+    },
+    {
+      "id": "V1-M6-001",
+      "old": {
+        "context": "Les adversaires passent. Le partenaire a annoncé un fit d'au moins quatre Piques, une courte à Carreau et une force de manche. Vous avez une ouverture minimum ; les honneurs Carreau sont mal placés en face de la courte et vous ne souhaitez pas explorer le chelem. Quelle enchère conclut à la manche ?",
+        "explain": "4♠ conclut à la manche. Les 12 H comprennent ♦RV6, dont une partie de la valeur est redondante face à la courte annoncée. L'intérêt du Splinter est aussi d'aider l'ouvreur à réévaluer sa main, et pas de déclencher automatiquement les contrôles ou le Blackwood. Ici la main minimum ne justifie pas de poursuivre."
+      },
+      "new": {
+        "context": "Les adversaires passent. Le 4♦ du partenaire est un Splinter : fit d'au moins quatre Piques, courte à Carreau et force de manche. Comment réévaluez-vous votre ouverture pour choisir la suite ?",
+        "explain": "Vous avez 12 H, dont ♦RV en face de la courte annoncée. Ces honneurs risquent de faire double emploi avec les valeurs de coupe du partenaire. Le Splinter sert précisément à réévaluer les compléments : malgré l'As de Cœur, cette ouverture minimum ne justifie pas de lancer les contrôles à 4♥. 4♠ conclut à la manche ; 4SA serait prématuré."
+      },
+      "reason": "Retirer la réponse induite par le contexte et expliciter la réévaluation des honneurs en face de la courte.",
+      "source": "Catalogue figé e9103075 : SEF-Q26-M6-009/010, SEF-V45-056/057/058 ; audit CONTRE_EXPERTISE_V483_CONTROLES_CHELEM_2026-11-05.md (courtes et contrôles)."
+    },
+    {
+      "id": "V1-M6-002",
+      "old": {
+        "context": "Sans intervention, le partenaire a redemandé 3♠, Splinter fitté Carreau qui impose la manche et montre une courte Pique. Vous avez cinq Carreaux et aucun arrêt Pique ; aucun arrêt Pique n'a été établi dans le camp. Le bilan de force exclut ici le chelem. Parmi ces contrats, lequel conclut raisonnablement ?",
+        "explain": "5♦ choisit la manche dans le fit Carreau, au moins neuvième. Le 3♠ du partenaire montre la courte Pique et le soutien Carreau, pas une couleur Pique naturelle. Avec ♠973 en face d'une courte et sans arrêt établi, 3SA n'est pas le contrat à privilégier. Le bilan annoncé exclut 6♦ et ne justifie pas 4SA."
+      },
+      "new": {
+        "context": "Sans intervention, le partenaire a redemandé 3♠, Splinter fitté Carreau qui impose la manche et montre une courte Pique. Aucun arrêt Pique n'a été établi dans le camp ; le bilan de force exclut le chelem. Parmi ces contrats, lequel choisissez-vous ?",
+        "explain": "Le Splinter promet au moins quatre Carreaux : avec vos cinq cartes, vous avez au moins neuf atouts. Vos ♠973 ne constituent aucun arrêt, et la courte du partenaire ne garantit pas une tenue à SA. 5♦ est donc la manche à privilégier. 3SA serait risqué, même si son palier est inférieur ; le bilan exclut 6♦ et ne justifie pas le Blackwood."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue figé : SEF-L29-004 (Splinter de redemande 1♣–1♦–3♠, SEF 2024 cité dans la fiche). Application originale à la décision du répondant, pas nouvelle convention."
+    },
+    {
+      "id": "V1-M6-006",
+      "old": {
+        "context": "L'atout Pique est agréé, les adversaires passent. Vous avez répondu 5♣ avec trois clés. Le partenaire demande maintenant la Dame de Pique. Votre main contient cette Dame et le seul Roi annexe, le Roi de Cœur. Dans le dialogue QPJB, quelle enchère montre à la fois la Dame d'atout et ce Roi annexe ?",
+        "explain": "5♥ indique la Dame de Pique et le Roi de Cœur : la couleur du Roi annexe est disponible au-dessus de 5♦. Le retour économique à 5♠ nierait la Dame. 6♣ signalerait un Roi de Trèfle absent ; le saut à 6♠ est réservé à une réponse positive sans Roi annexe à montrer dans les cas de référence."
+      },
+      "new": {
+        "context": "L'atout Pique est agréé et les adversaires passent. Vous avez répondu 5♣ avec trois clés ; le partenaire interroge maintenant sur la Dame d'atout. Quelle réponse décrit précisément vos compléments dans le dialogue QPJB ?",
+        "explain": "Vos trois clés sont ♠R, ♦A et ♣A. La Dame de Pique est présente et votre seul Roi annexe est ♥R. Après la question 5♦, 5♥ montre à la fois la Dame et ce Roi. Le retour économique à 5♠ nierait la Dame ; 6♣ montrerait un Roi absent et 6♠ serait la réponse positive sans Roi annexe à signaler dans ce dialogue."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Audit archives/audits/quiz-sef/CONTRE_EXPERTISE_V474_DAME_ATOUT_2026-11-04.md, contrôle du distracteur 5♥ de V474-007 (Dame et Roi annexe) ; accord QPJB 30–41."
+    },
+    {
+      "id": "V2-M6-003",
+      "old": {
+        "explain": "Vos 11 H et cinq Piques ne garantissent pas la manche face au minimum. 2♥ montre les quatre Cœurs et reste non forcing ; 3♥ serait forcing de manche. 2SA ne rechercherait pas le fit Cœur possible."
+      },
+      "new": {
+        "explain": "Le 2♦ du Roudi indique deux Piques, pas la force de l'ouvreur. Vos cinq Piques ne donnent donc que sept atouts ; un fit 4–4 à Cœur reste possible. Avec 11 H (12 HL), 2♥ montre vos quatre Cœurs et peut être passé. 3♥ imposerait la manche alors que le minimum de l'ouvreur ne la justifie pas."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L14-007 ; SEF-L21-003 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-004",
+      "old": {
+        "explain": "Avec 15 H, la manche est acquise. 3♥ montre les quatre Cœurs en imposant la manche après le Roudi négatif ; 2♥ pourrait être passé. 3SA risquerait de manquer le fit 4–4 à Cœur."
+      },
+      "new": {
+        "explain": "Le 2♦ du Roudi ne donne que deux Piques à l'ouvreur. Avec 15 H et quatre Cœurs commandés par As-Roi, la manche est à rechercher sans pouvoir s'arrêter en partielle. 3♥ montre les quatre Cœurs et impose la manche dans ce développement ; 2♥ pourrait être passé, et 3SA ne vérifierait pas le fit 4–4."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L14-007 ; SEF-L21-003 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-005",
+      "old": {
+        "explain": "11 H avec le fit huitième constituent une invitation. L'ouvreur a annoncé le minimum : 3♥ laisse la décision de manche au partenaire sans abandonner les Cœurs."
+      },
+      "new": {
+        "explain": "Le 2♥ du Roudi est codé : trois cartes dans votre majeure et minimum de l'ouverture. Vos cinq Cœurs assurent huit atouts ; les 11 H et le doubleton Trèfle donnent une main constructive, pas une manche à imposer face au minimum. 3♥ invite à 4♥ en conservant le fit ; 4♥ serait plus engagé."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-064/065/066 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-006",
+      "old": {
+        "explain": "Cette fois l'ouvreur a annoncé trois Cœurs et le maximum. Vos 11 H, le fit et le doubleton permettent de conclure à 4♥ ; 3♥ serait trop prudent."
+      },
+      "new": {
+        "explain": "Le 2♠ est une réponse artificielle du Roudi à trois réponses : il confirme trois Cœurs et le maximum, et ne montre pas des Piques. Vos cinq Cœurs, 11 H et le doubleton Trèfle permettent alors de conclure à 4♥. 3♥ ne serait qu'une invitation, devenue inutile après l'annonce du maximum."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-064/065/066 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-007",
+      "old": {
+        "explain": "Avec trois Piques, 10 H, cinq Trèfles et un doubleton, votre jeu fitté atteint la zone constructive du Drury. 2♣ vérifie la qualité de l'ouverture ; il ne décrit pas votre longue à Trèfle."
+      },
+      "new": {
+        "explain": "Vos trois Piques établissent le fit huitième, et vos 10 H, cinq Trèfles et le doubleton Carreau donnent des valeurs constructives. Après Passe, 2♣ Drury interroge sur la qualité de l'ouverture de troisième position ; il n'annonce pas cinq Trèfles. 2♠ serait un soutien plus faible et 1SA ne montrerait pas le fit."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L13-001 ; SEF-V4-104-1 ; SEF-Q26-M6-007 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-009",
+      "old": {
+        "explain": "Avec 10 H, quatre Piques et deux doubletons mais aucun singleton, utilisez le Drury. 2SA promettrait une courte absente ; 2♠ sous-évaluerait la force fittée."
+      },
+      "new": {
+        "explain": "Votre main 4-3-4-2 contient quatre Piques, 10 H et un seul doubleton, à Trèfle : aucun singleton ni chicane. Elle justifie un soutien constructif par 2♣ Drury. 2SA promettrait une courte (singleton ou chicane), absente de cette main ; 2♠ sous-évaluerait le fit."
+      },
+      "reason": "Correction factuelle : 4-3-4-2 ne comporte qu'un doubleton ; préciser l'exigence de singleton/chicane.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-067/068 ; SEF-Q26-M6-007 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-010",
+      "old": {
+        "explain": "Le singleton Trèfle et les quatre Piques satisfont le 2SA fitté constructif. Cette enchère décrit mieux la distribution que le Drury général à 2♣. Le partenaire peut interroger sur la courte."
+      },
+      "new": {
+        "explain": "Vos quatre Piques, 10 H et le singleton Trèfle placent la main au-dessus du seuil de 11 HLD. Le 2SA fitté après Passe décrit précisément ce fit quatrième et cette courte ; le Drury à 2♣ serait moins descriptif. Le partenaire pourra préciser la courte par une interrogation."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V44-067/068 ; SEF-Q26-M6-007 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-012",
+      "old": {
+        "explain": "Malgré seulement 12 H, les quatre Carreaux commandés par As-Dame et le singleton Trèfle donnent de bonnes valeurs de coupe et de levées face au fit constructif. 4♥ impose la manche sans ambition de chelem ; 3♥ annoncerait précisément cette ambition."
+      },
+      "new": {
+        "explain": "Face à un Drury constructif, vos 12 H ne doivent pas être évalués comme ceux d'une main régulière : singleton Trèfle, quatre Carreaux commandés par As-Dame et fit Cœur connu apportent des levées potentielles. 4♥ conclut à la manche sans ambition particulière de chelem. 2♦ laisserait le partenaire décider malgré cette réévaluation ; 3♥ est ici une invitation au chelem."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V4-102-1 ; SEF-V484-013 ; SEF-Q26-M6-007 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-015",
+      "old": {
+        "explain": "Vous n'avez que 6 H, mais ils sont constitués de deux Rois. L'exception documentée permet la réponse positive sans As à 2SA. 2♥ serait la réponse négative ordinaire."
+      },
+      "new": {
+        "explain": "Vous avez une main régulière sans As, avec seulement 6 H mais deux Rois. Le barème QPJB prévoit précisément cette exception au seuil ordinaire de 8 H pour la réponse positive sans As à 2SA. 2♥ serait la réponse négative ; 2SA ne constitue pas une proposition de s'arrêter à ce contrat, puisque 2♦ impose la manche."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V45-009 ; SEF-V475-001/002 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-016",
+      "old": {
+        "explain": "Vos 6 H sont trois Dames, sans As ni deux Rois. Vous restez sous le seuil ordinaire de 8 H : 2♥ est la réponse négative codée, et non une annonce naturelle de Cœur."
+      },
+      "new": {
+        "explain": "Les 6 H sont trois Dames : ni As ni deux Rois. La main ne satisfait donc ni le seuil ordinaire de 8 H ni l'exception des deux Rois pour 2SA. 2♥ est la réponse négative conventionnelle, pas une couleur naturelle ; elle ne met pas fin au caractère forcing de manche de l'ouverture."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V45-009 ; SEF-V475-001/002 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-019",
+      "old": {
+        "explain": "Six Cœurs maîtres et l'As extérieur procurent sept levées immédiates. La redemande naturelle à 2♥ décrit l'unicolore fort ; 3♥ promettrait la très belle septième et huit levées de jeu."
+      },
+      "new": {
+        "explain": "Comptez les levées sûres : six Cœurs maîtres et l'As de Pique, soit sept, sans compter le Roi de Carreau comme levée immédiate. Après le relais obligatoire 2♦, 2♥ décrit l'unicolore fort. 3♥ demanderait une majeure septième de grande qualité et huit levées de jeu ; 2SA ne convient pas à cette forme."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V45-008 ; V1-M5-004 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-020",
+      "old": {
+        "explain": "Sept Cœurs maîtres et l'As de Pique apportent huit levées sûres. Le saut descriptif à 3♥ est justifié. 3SA est réservé au bicolore majeur fort dans ce développement."
+      },
+      "new": {
+        "explain": "Les sept Cœurs maîtres et l'As de Pique donnent huit levées immédiates : la septième carte permet ici le saut descriptif à 3♥ après le relais. 2♥ ne préciserait pas ce seuil de longueur et de levées. 3SA est artificiel, réservé au bicolore majeur fort, que vous ne possédez pas."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V45-008 ; V1-M5-004 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-021",
+      "old": {
+        "explain": "Vos 8 H et trois Piques complètent la forte majeure de l'ouvreur pour la manche, sans indiquer un réel projet de chelem. 4♠ conclut ; 3♠ serait réservé au soutien avec ambition supplémentaire."
+      },
+      "new": {
+        "explain": "Trois Piques dont le Roi complètent l'unicolore fort du partenaire. Vos 8 H justifient la manche dans le fit, mais les Dames et le Valet extérieurs ne suffisent pas à engager une recherche de chelem. 4♠ conclut ; le soutien économique à 3♠ conserverait un dialogue de chelem qui n'est pas justifié par cette main."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V475-010 ; SEF-V487-004 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-022",
+      "old": {
+        "explain": "Vos 12 H incluent Roi-Dame d'atout et As extérieur : ces compléments rendent plausible le chelem. 3♠ fixe le fit en conservant les paliers de contrôle ; 4♠ fermerait prématurément le dialogue."
+      },
+      "new": {
+        "explain": "Vos 12 H comportent surtout deux gros honneurs d'atout (Roi-Dame) et un As extérieur, compléments particulièrement utiles face à l'unicolore fort. 3♠ fixe le fit avec un intérêt de chelem et laisse les paliers de contrôle disponibles. 4♠ fermerait le dialogue ; 3SA délaisserait le fit."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V475-010 ; SEF-V487-004 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-023",
+      "old": {
+        "explain": "Avec deux Piques, vous ne pouvez montrer un soutien troisième. Le Roi de Cœur et le Roi de Trèfle apportent les arrêts des couleurs non établies ; 2SA décrit cette tenue sans inventer de fit."
+      },
+      "new": {
+        "explain": "La troisième couleur 2♥ est artificielle. Avec seulement deux Piques, vous ne pouvez annoncer le soutien troisième. ♥R7 fournit une tenue et ♣R83 couvre l'autre couleur non établie : 2SA est la redemande naturelle économique. 3♦ décrirait la longue mais omettrait la tenue recherchée ; 3SA surévaluerait les 13 H."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L17-002/003/012 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-025",
+      "old": {
+        "explain": "Vous n'avez que quatre Piques : trois en face ne font que sept atouts. Le Roi de Cœur et l'As de Carreau couvrent les deux autres couleurs. 3SA est préférable à 4♠, faute de fit huitième."
+      },
+      "new": {
+        "explain": "Le soutien différé à 2♠ garantit trois Piques, mais vos quatre cartes n'en font que sept. Les Trèfles de l'ouvreur sont sa longue ; votre ♥R et votre ♦A couvrent les autres couleurs, dont le Carreau artificiellement annoncé à 2♦. 3SA valorise cette main de manche sans imposer un fit Pique inexistant."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L17-001 ; SEF-Q26-M6-003 ; V1-M5-005 (principe du fit huitième) ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-027",
+      "old": {
+        "explain": "Vous apportez l'As de Cœur et le Roi de Carreau ; les longs Trèfles fournissent une source de levées. Sans fit Pique, 3SA est la manche économique lorsque les arrêts sont réunis."
+      },
+      "new": {
+        "explain": "Vous avez au moins dix Trèfles dans le camp (six en face et quatre chez vous), mais aussi l'As de Cœur, précisément la tenue que le partenaire n'a pas pu annoncer, et le Roi de Carreau. 3SA est la manche économique lorsque les arrêts et une source de levées sont réunis ; 5♣ demanderait deux levées de plus."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L17-003 ; SEF-Q26-M6-003 ; V1-M6-002 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-028",
+      "old": {
+        "explain": "La tenue Cœur manque toujours au camp, tandis que les quatre Trèfles de votre main assurent au moins dix atouts. Dans ce choix de manche, 5♣ valorise le fit plutôt que de risquer 3SA avec deux petits Cœurs."
+      },
+      "new": {
+        "explain": "Malgré 13 H et les arrêts à Carreau, ♥98 ne couvre pas la couleur que le partenaire a explicitement déclarée non tenue. Le camp possède au moins dix Trèfles : 5♣ exploite ce fit. 3SA risquerait une entame Cœur décisive ; 4♠ ne repose sur aucun fit connu."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L17-003 ; SEF-Q26-M6-003 ; V1-M6-002 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-029",
+      "old": {
+        "explain": "Avec 11 H et l'As de Trèfle, 2SA est une invitation naturelle non forcing. La répétition des Piques ne montre pas trois Cœurs : imposer 4♥ ou 3SA serait prématuré."
+      },
+      "new": {
+        "explain": "La répétition à 2♠ n'a pas révélé trois Cœurs. Vous détenez vous-même l'arrêt Trèfle grâce à l'As. Avec 11 H, 2SA est une proposition naturelle non forcing dans cette séquence de quatrième couleur économique. Celle-ci obligeait l'ouvreur à reparler, mais n'impose pas à elle seule la manche ; 3SA serait prématuré."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V486-028/030 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-030",
+      "old": {
+        "explain": "Vos 14 H et l'arrêt Trèfle rendent la manche certaine face à l'ouverture. 3SA conclut sans imposer la majeure non fittée ; 2SA sous-évaluerait ce jeu."
+      },
+      "new": {
+        "explain": "La répétition de Pique ne confirme pas un fit Cœur, mais vous détenez l'arrêt de la quatrième couleur grâce à l'As de Trèfle. Avec 14 H face à l'ouverture, 3SA est la manche à privilégier. 2SA ne serait qu'une proposition et 4♥ supposerait un huitième atout non établi."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-V486-028/030 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-033",
+      "old": {
+        "explain": "Vos 12 H donnent 32–33 H au camp. 4SA est quantitatif : l'ouvreur minimum refuse, le maximum accepte à 6SA. Aucun atout agréé ne permet d'y voir un Blackwood."
+      },
+      "new": {
+        "explain": "Vos 12 H réguliers face à 20–21 H donnent 32–33 H au camp. 4SA invite au petit chelem selon le repère de 33 H : l'ouvreur minimum peut passer, le maximum peut accepter par 6SA. Sans atout agréé, 4SA est quantitatif, pas un Blackwood."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L40-002 ; SEF-V44-013 ; SEF-L13-018 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-036",
+      "old": {
+        "explain": "Vos 17 H donnent 37–38 H même face au minimum. Dans le repère quantitatif enseigné et sans fit à rechercher, 7SA conclut ; 5SA laisserait inutilement le partenaire choisir 6SA."
+      },
+      "new": {
+        "explain": "Vos 17 H réguliers donnent 37–38 H au camp : même le minimum atteint le repère quantitatif de grand chelem enseigné. Sans majeure quatrième ni fit à rechercher, 7SA conclut. 5SA laisserait le partenaire refuser à 6SA. Le total de points est un repère de décision, pas une garantie de treize levées."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L13-018 ; SEF-Q26-M6-011/012 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-037",
+      "old": {
+        "explain": "Le Roi de Trèfle assure le contrôle que le partenaire a sauté. Vous pouvez poursuivre à 4♥, qui annonce le contrôle Cœur sans brûler les paliers ; le partenaire sait alors que vous ne butez pas sur les Trèfles."
+      },
+      "new": {
+        "explain": "Le saut de 4♣ nie le contrôle Trèfle chez le partenaire, pas nécessairement dans le camp. Votre ♣R8 contrôle le deuxième tour ; vous pouvez donc nommer économiquement le contrôle Cœur à 4♥ (♥A). Poursuivre indique que le contrôle sauté n'est pas un obstacle pour vous ; 4♠ freinerait inutilement et 4SA brûlerait ce palier de dialogue."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L02-E-06/08 ; SEF-V483-011/014 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-038",
+      "old": {
+        "explain": "Deux petits Trèfles ne constituent pas un contrôle, et le partenaire vient de nier le sien. Le risque de perdre les deux premières levées à Trèfle commande 4♠. 4♥ ou 4SA prolongerait une exploration sans contrôle indispensable."
+      },
+      "new": {
+        "explain": "Le partenaire a nié le contrôle Trèfle en sautant 4♣, et vos ♣98 ne comportent ni As, ni Roi, ni courte. Malgré le contrôle Cœur, le camp risque de perdre immédiatement deux levées à Trèfle. 4♠ est le coup de frein ; 4♥ donnerait à tort l'impression que vous pouvez couvrir la couleur sautée. Le Blackwood ne résoudrait pas cette absence de contrôle."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L02-E-06/08 ; SEF-V483-011/014 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-041",
+      "old": {
+        "explain": "Vos deux clés sont le Roi d'atout et l'As de Cœur. La chicane Carreau est reconnue utile : 5SA en réponse directe au Blackwood indique ici deux clés et cette chicane. Ce n'est pas la question aux Rois d'un interrogateur."
+      },
+      "new": {
+        "explain": "Vos deux clés sont ♥A et ♠R. La chicane Carreau a été établie comme utile ; le code exceptionnel QPJB prévoit 5SA en réponse directe au Blackwood avec une chicane utile et deux ou quatre clés. 5♥ cacherait cette chicane. Le 5SA du répondant ne doit pas être confondu avec le 5SA ultérieur de l'interrogateur, qui demande les Rois annexes."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L32-005 ; SEF-V45-052 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-042",
+      "old": {
+        "explain": "Vous détenez toujours deux clés et pas la Dame de Pique, mais ♦7 est un singleton, non une chicane. La réponse ordinaire 5♥ s'impose. 5SA annoncerait une chicane utile inexistante."
+      },
+      "new": {
+        "explain": "Vous détenez ♥A et ♠R, soit deux clés, sans Dame de Pique. Le ♦7 est un singleton : même s'il peut servir de contrôle du deuxième tour, ce n'est pas une chicane. Appliquez donc le code ordinaire 5♥ (deux clés sans la Dame). 5SA serait réservé à une véritable chicane reconnue utile avec deux ou quatre clés."
+      },
+      "reason": "Expliciter la décision depuis la main, le critère discriminant et le distracteur pertinent sans modifier la règle.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L32-005 ; SEF-V45-052 ; contraste V2, sans nouvel accord."
+    },
+    {
+      "id": "V2-M6-043",
+      "old": {
+        "explain": "Avec quatre Piques et un singleton Carreau, le double saut à 4♦ est le Splinter fitté. Le cue-bid à 3♦ montrerait le fit forcing de manche sans préciser la courte ; 4♠ la cacherait."
+      },
+      "new": {
+        "explain": "Quatre Piques et le singleton ♦7 constituent le fit et la courte requis par le Splinter. Sur l'intervention naturelle à 2♦, le cue-bid sauté à 4♦ décrit ces deux caractéristiques dans le traitement QPJB. 3♦, cue-bid non sauté, montrerait seulement le fit forcing de manche ; 4♠ tairait la courte."
+      },
+      "reason": "Nommer précisément le cue-bid sauté après intervention et le distinguer du cue-bid simple.",
+      "source": "Catalogue QPJB figé e9103075 : SEF-L22-006 ; SEF-L30-004 ; contraste V2, sans nouvel accord."
+    }
+  ],
+  "reserves": []
+}
