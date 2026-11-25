@@ -1,0 +1,2125 @@
+{
+  "mission": "V3-M2",
+  "base": "55d733bdb6409badb81b7a7d8113fdf05bd533fa",
+  "counts": {
+    "corriger": 40,
+    "réserve": 1,
+    "conserver": 10
+  },
+  "reviewed": [
+    {
+      "id": "V1-M2-001",
+      "theme": "sa",
+      "concept": "sa.gambling",
+      "caseFamily": "V1-M2-GAMBLING-REpondant-CONSERVER-3SA",
+      "family": "V1-M2-GAMBLING-REpondant-CONSERVER-3SA",
+      "status": "corriger",
+      "motif": "Remplacer le ♦9 par le ♦7, sans changer H ni distribution, pour rendre possible une septième réellement maîtresse (♦ARDV1098) chez le partenaire ; préciser les arrêts, les communications et le sens du distracteur 4♦.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015, SEF-L06-029, SEF-L27-004 (principe gambling et passe/corrige) ; décompte des levées, pas de nouvel accord.",
+      "prerequis": {
+        "concept": "sa.gambling",
+        "stage": 3,
+        "minSession": 27,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V1-M2-002",
+      "theme": "sa",
+      "concept": "sa2.bicolore",
+      "caseFamily": "V1-M2-SA2-BICOLORE-OUVREUR-CHOIX-MANCHE",
+      "family": "V1-M2-SA2-BICOLORE-OUVREUR-CHOIX-MANCHE",
+      "status": "réserve",
+      "motif": "Réponse 4♥ et explication correctes, mais redondance de décision avec V2-M2-014 et famille indépendante ; V3-M2-R01. Aucun changement.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L38-002, SEF-Q26-M2-010/011 (accord QPJB de 4♦ direct : choix de manche majeure).",
+      "prerequis": {
+        "concept": "sa2.bicolore",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa2.stayman.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♥"
+    },
+    {
+      "id": "V1-M3-001",
+      "theme": "stayman",
+      "concept": "sa1.stayman.contre",
+      "caseFamily": "V1-M3-001",
+      "family": "V1-M3-001",
+      "status": "corriger",
+      "motif": "La fiche iBridge 626 précise que 2♦ naturel est possible avec ou sans arrêt Trèfle : éviter de faire de l'As une condition.",
+      "anchor": "SEF-L25-001 à 003 ; https://www.ibridge.fr/public/fichedetails/626 (méthode explicitement nommée, non norme universelle).",
+      "prerequis": {
+        "concept": "sa1.stayman.contre",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♦"
+    },
+    {
+      "id": "V2-M2-001",
+      "theme": "sa",
+      "concept": "sa2.seuil",
+      "caseFamily": "V2-M2-sa2-stayman-seuil",
+      "family": "V2-M2-sa2-stayman-seuil",
+      "status": "corriger",
+      "motif": "Expliciter le coût du Stayman au palier de trois et le distracteur Texas.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-N102-2; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.seuil",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-002",
+      "theme": "sa",
+      "concept": "sa2.stayman",
+      "caseFamily": "V2-M2-sa2-stayman-seuil",
+      "family": "V2-M2-sa2-stayman-seuil",
+      "status": "conserver",
+      "motif": "6 H, total 26–27 H, recherche du fit 4–4 et choix de manche déjà correctement expliqués.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-N102-2; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman",
+        "stage": 0,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♣"
+    },
+    {
+      "id": "V2-M2-003",
+      "theme": "sa",
+      "concept": "sa2.seuil",
+      "caseFamily": "V2-M2-sa2-texas-faible",
+      "family": "V2-M2-sa2-texas-faible",
+      "status": "corriger",
+      "motif": "Expliquer le mécanisme précis du refus et son contraste avec le Texas faible sur 1SA.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-C-005; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.seuil",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-004",
+      "theme": "sa",
+      "concept": "sa2.texas",
+      "caseFamily": "V2-M2-sa2-texas-faible",
+      "family": "V2-M2-sa2-texas-faible",
+      "status": "corriger",
+      "motif": "Relier le seuil de force au choix de manche après la réponse fittée.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-N104-1; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas",
+        "stage": 0,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♦"
+    },
+    {
+      "id": "V2-M2-005",
+      "theme": "sa",
+      "concept": "sa2.stayman",
+      "caseFamily": "V2-M2-sa2-4-ou-5",
+      "family": "V2-M2-sa2-4-ou-5",
+      "status": "conserver",
+      "motif": "Quatre Piques contre cinq exigées par le Texas : contraste explicite et suffisant.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-N101-3; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman",
+        "stage": 0,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♣"
+    },
+    {
+      "id": "V2-M2-006",
+      "theme": "sa",
+      "concept": "sa2.texas",
+      "caseFamily": "V2-M2-sa2-4-ou-5",
+      "family": "V2-M2-sa2-4-ou-5",
+      "status": "corriger",
+      "motif": "Préciser les deux réponses et le risque de conclure trop tôt à SA.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-N105-1; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas",
+        "stage": 0,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♥"
+    },
+    {
+      "id": "V2-M2-007",
+      "theme": "sa",
+      "concept": "sa2.stayman.reponse",
+      "caseFamily": "V2-M2-sa2-reponse-stayman",
+      "family": "V2-M2-sa2-reponse-stayman",
+      "status": "conserver",
+      "motif": "Quatre Cœurs seulement ; 3♥ et 3SA différenciés sans ambiguïté.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L41-001; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman.reponse",
+        "stage": 1,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♥"
+    },
+    {
+      "id": "V2-M2-008",
+      "theme": "sa",
+      "concept": "sa2.stayman.reponse",
+      "caseFamily": "V2-M2-sa2-reponse-stayman",
+      "family": "V2-M2-sa2-reponse-stayman",
+      "status": "corriger",
+      "motif": "Expliquer pourquoi une réponse naturelle dans une seule majeure serait trompeuse.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L38-001; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman.reponse",
+        "stage": 1,
+        "minSession": 10,
+        "requires": [
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M2-009",
+      "theme": "sa",
+      "concept": "sa2.texas.reponse",
+      "caseFamily": "V2-M2-sa2-texas-fit",
+      "family": "V2-M2-sa2-texas-fit",
+      "status": "conserver",
+      "motif": "Trois Cœurs et cinq promis : huit atouts, rectification fittée déjà expliquée.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-008; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas.reponse",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "3♥"
+    },
+    {
+      "id": "V2-M2-010",
+      "theme": "sa",
+      "concept": "sa2.texas.reponse",
+      "caseFamily": "V2-M2-sa2-texas-fit",
+      "family": "V2-M2-sa2-texas-fit",
+      "status": "corriger",
+      "motif": "Distinguer fit non établi et absence absolue de fit ; traiter le distracteur 3♠.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L23-006; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas.reponse",
+        "stage": 3,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M2-011",
+      "theme": "sa",
+      "concept": "sa2.texas.suite",
+      "caseFamily": "V2-M2-sa2-texas-apres-refus",
+      "family": "V2-M2-sa2-texas-apres-refus",
+      "status": "corriger",
+      "motif": "Nommer le re-Texas comme distracteur de longueur et justifier le contrat.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-022; #320/#327/#329. Transposition symétrique du re-Texas Pique SEF-L31-001.",
+      "prerequis": {
+        "concept": "sa2.texas.suite",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 3
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-012",
+      "theme": "sa",
+      "concept": "sa2.texas.suite",
+      "caseFamily": "V2-M2-sa2-texas-apres-refus",
+      "family": "V2-M2-sa2-texas-apres-refus",
+      "status": "corriger",
+      "motif": "Montrer pourquoi 4♦ plutôt que 4♥ direct, en nommant la transposition.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L31-001; #320/#327/#329. Transposition symétrique du re-Texas Pique SEF-L31-001.",
+      "prerequis": {
+        "concept": "sa2.texas.suite",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 3
+          }
+        ]
+      },
+      "answer": "4♦"
+    },
+    {
+      "id": "V2-M2-013",
+      "theme": "sa",
+      "concept": "sa2.bicolore",
+      "caseFamily": "V2-M2-sa2-5-5-choix",
+      "family": "V2-M2-sa2-5-5-choix",
+      "status": "conserver",
+      "motif": "Quatre Piques contre deux Cœurs et choix de manche : justification suffisante.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L38-002; #320/#327/#329. Complément du V1-M2-002, contraste des soutiens.",
+      "prerequis": {
+        "concept": "sa2.bicolore",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa2.stayman.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♠"
+    },
+    {
+      "id": "V2-M2-014",
+      "theme": "sa",
+      "concept": "sa2.bicolore",
+      "caseFamily": "V2-M2-sa2-5-5-choix",
+      "family": "V2-M2-sa2-5-5-choix",
+      "status": "conserver",
+      "motif": "Quatre Cœurs contre deux Piques et sens artificiel de 4♦ : justification suffisante ; conserver comme membre de la paire V2.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L38-002; #320/#327/#329. Complément du V1-M2-002, contraste des soutiens.",
+      "prerequis": {
+        "concept": "sa2.bicolore",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa2.stayman.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa2.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♥"
+    },
+    {
+      "id": "V2-M2-015",
+      "theme": "sa",
+      "concept": "sa2.texas_mineur.reponse",
+      "caseFamily": "V2-M2-sa2-mineur-soutien",
+      "family": "V2-M2-sa2-mineur-soutien",
+      "status": "corriger",
+      "motif": "Nommer le traitement local et expliciter pourquoi un minimum peut accepter sans inventer un seuil général.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-013; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas_mineur.reponse",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♣"
+    },
+    {
+      "id": "V2-M2-016",
+      "theme": "sa",
+      "concept": "sa2.texas_mineur.reponse",
+      "caseFamily": "V2-M2-sa2-mineur-soutien",
+      "family": "V2-M2-sa2-mineur-soutien",
+      "status": "corriger",
+      "motif": "Décrire le doubleton concret et éviter d'ériger le cas en règle non arbitrée sur tous les doubletons.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L41-004; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.texas_mineur.reponse",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M2-017",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-stayman-texas-5-4",
+      "family": "V2-M2-sa1-stayman-texas-5-4",
+      "status": "corriger",
+      "motif": "Expliquer la priorité au fit 4–4 et nommer la suite exacte.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "2♣"
+    },
+    {
+      "id": "V2-M2-018",
+      "theme": "sa",
+      "concept": "sa1.texas",
+      "caseFamily": "V2-M2-sa1-stayman-texas-5-4",
+      "family": "V2-M2-sa1-stayman-texas-5-4",
+      "status": "corriger",
+      "motif": "Distinguer la signification artificielle du Texas et l'objectif de la suite sans présumer du fit.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-040-2; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "V2-M2-019",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-chasse-croise",
+      "family": "V2-M2-sa1-chasse-croise",
+      "status": "corriger",
+      "motif": "Expliquer l'inversion, la force et la différence entre négation de quatre et de trois cartes.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "3♥"
+    },
+    {
+      "id": "V2-M2-020",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-chasse-croise",
+      "family": "V2-M2-sa1-chasse-croise",
+      "status": "corriger",
+      "motif": "Rendre la règle du chassé-croisé symétrique et autonome dans les deux cas.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L37-005; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "3♠"
+    },
+    {
+      "id": "V2-M2-021",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-invitation-fit",
+      "family": "V2-M2-sa1-invitation-fit",
+      "status": "conserver",
+      "motif": "Fit 4–4, 8 H et invitation, sans imposer la manche : suffisant.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V3-001-1; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 2,
+        "minSession": 9,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♥"
+    },
+    {
+      "id": "V2-M2-022",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-invitation-fit",
+      "family": "V2-M2-sa1-invitation-fit",
+      "status": "corriger",
+      "motif": "Justifier force, absence de fit dans chacune des majeures et rejet du soutien.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V3-005-1; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 2,
+        "minSession": 9,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M2-023",
+      "theme": "stayman",
+      "concept": "sa2.stayman.suite",
+      "caseFamily": "V2-M2-sa2-stayman-fit",
+      "family": "V2-M2-sa2-stayman-fit",
+      "status": "conserver",
+      "motif": "6 H et fit 4–4 certain : conclusion à 4♥ explicitée.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V3-023-2; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman.suite",
+        "stage": 2,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♥"
+    },
+    {
+      "id": "V2-M2-024",
+      "theme": "sa",
+      "concept": "sa2.stayman.suite",
+      "caseFamily": "V2-M2-sa2-stayman-fit",
+      "family": "V2-M2-sa2-stayman-fit",
+      "status": "corriger",
+      "motif": "Expliquer la négation des Piques et comparer les deux contrats de manche.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L07-002; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa2.stayman.suite",
+        "stage": 2,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M2-025",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-relais-force",
+      "family": "V2-M2-sa1-relais-force",
+      "status": "corriger",
+      "motif": "Clarifier les trois niveaux d'intention après la réponse conventionnelle de 2SA.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-018; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "3♦"
+    },
+    {
+      "id": "V2-M2-026",
+      "theme": "stayman",
+      "concept": "sa1.stayman.suite",
+      "caseFamily": "V2-M2-sa1-relais-force",
+      "family": "V2-M2-sa1-relais-force",
+      "status": "corriger",
+      "motif": "Expliquer le choix du transfert plutôt que la manche directe et l'opposition avec le relais invitant.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V416-009; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.suite",
+        "stage": 2,
+        "minSession": 9,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♦"
+    },
+    {
+      "id": "V2-M2-027",
+      "theme": "stayman",
+      "concept": "sa1.texas.suite",
+      "caseFamily": "V2-M2-sa1-texas-invitation-ouvreur",
+      "family": "V2-M2-sa1-texas-invitation-ouvreur",
+      "status": "corriger",
+      "motif": "Séparer les deux décisions, accepter l'invitation puis choisir le contrat.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V44-026; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas.suite",
+        "stage": 2,
+        "minSession": 9,
+        "requires": [
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♥"
+    },
+    {
+      "id": "V2-M2-028",
+      "theme": "stayman",
+      "concept": "sa1.texas.suite",
+      "caseFamily": "V2-M2-sa1-texas-invitation-ouvreur",
+      "family": "V2-M2-sa1-texas-invitation-ouvreur",
+      "status": "corriger",
+      "motif": "Contraster acceptation de manche et choix d'atout ; éviter de confondre rectification et fit.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V44-026; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas.suite",
+        "stage": 2,
+        "minSession": 9,
+        "requires": [
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "V2-M2-029",
+      "theme": "sa",
+      "concept": "sa1.seuil",
+      "caseFamily": "V2-M2-sa1-texas-faible-longueur",
+      "family": "V2-M2-sa1-texas-faible-longueur",
+      "status": "corriger",
+      "motif": "Mettre en regard les deux conventions et leurs conditions.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L06-027; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.seuil",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-030",
+      "theme": "sa",
+      "concept": "sa1.texas",
+      "caseFamily": "V2-M2-sa1-texas-faible-longueur",
+      "family": "V2-M2-sa1-texas-faible-longueur",
+      "status": "corriger",
+      "motif": "Expliciter la suite et la différence essentielle entre les deux ouvertures à SA.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-037-1; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♦"
+    },
+    {
+      "id": "V2-M2-031",
+      "theme": "sa",
+      "concept": "sa1.seuil",
+      "caseFamily": "V2-M2-sa1-mineur-faible-longueur",
+      "family": "V2-M2-sa1-mineur-faible-longueur",
+      "status": "corriger",
+      "motif": "Relier le niveau du contrat à la longueur et éliminer le faux 2♣ naturel.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V482-001; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.seuil",
+        "stage": 1,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-032",
+      "theme": "sa",
+      "concept": "sa1.texas_mineur",
+      "caseFamily": "V2-M2-sa1-mineur-faible-longueur",
+      "family": "V2-M2-sa1-mineur-faible-longueur",
+      "status": "corriger",
+      "motif": "Rendre explicite la conduite après les deux réponses possibles, sans trancher les seuils de modulation en réserve.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V482-001; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas_mineur",
+        "stage": 0,
+        "minSession": 12,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♠"
+    },
+    {
+      "id": "V2-M2-033",
+      "theme": "stayman",
+      "concept": "sa1.texas_mineur.suite",
+      "caseFamily": "V2-M2-sa1-mineur-suite-force",
+      "family": "V2-M2-sa1-mineur-suite-force",
+      "status": "conserver",
+      "motif": "Le contraste faible/fort et le refus de décrire la courte sans force sont déjà expliqués.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V482-004; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas_mineur.suite",
+        "stage": 2,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-034",
+      "theme": "stayman",
+      "concept": "sa1.texas_mineur.suite",
+      "caseFamily": "V2-M2-sa1-mineur-suite-force",
+      "family": "V2-M2-sa1-mineur-suite-force",
+      "status": "corriger",
+      "motif": "Préciser l'information utile à la décision de contrat et éviter de borner artificiellement les ambitions.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-V482-009; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas_mineur.suite",
+        "stage": 2,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♠"
+    },
+    {
+      "id": "V2-M2-035",
+      "theme": "sa",
+      "concept": "sa1.texas_mineur.reponse",
+      "caseFamily": "V2-M2-sa1-texas-mineur-asymetrie",
+      "family": "V2-M2-sa1-texas-mineur-asymetrie",
+      "status": "corriger",
+      "motif": "Ancrer la modulation dans le cas prouvé et laisser les limites V1 non arbitrées.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L25-007; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas_mineur.reponse",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M2-036",
+      "theme": "sa",
+      "concept": "sa1.texas_mineur.reponse",
+      "caseFamily": "V2-M2-sa1-texas-mineur-asymetrie",
+      "family": "V2-M2-sa1-texas-mineur-asymetrie",
+      "status": "corriger",
+      "motif": "Rendre concrète l'asymétrie avec la même main et les conséquences pour le répondant.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L37-004; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas_mineur.reponse",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3♦"
+    },
+    {
+      "id": "V2-M2-037",
+      "theme": "stayman",
+      "concept": "sa1.stayman.contre",
+      "caseFamily": "V2-M2-sa1-stayman-contre-tenue",
+      "family": "V2-M2-sa1-stayman-contre-tenue",
+      "status": "corriger",
+      "motif": "Comparer les actions légales et distinguer le Surcontre du Stayman de celui du Texas ; iBridge 626.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L25-003; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.contre",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "V2-M2-038",
+      "theme": "stayman",
+      "concept": "sa1.stayman.contre",
+      "caseFamily": "V2-M2-sa1-stayman-contre-tenue",
+      "family": "V2-M2-sa1-stayman-contre-tenue",
+      "status": "corriger",
+      "motif": "Préciser pourquoi passer ne perd pas nécessairement le fit et pourquoi Surcontre ne le montre pas.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L25-001; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.stayman.contre",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-039",
+      "theme": "stayman",
+      "concept": "sa1.texas.contre",
+      "caseFamily": "V2-M2-sa1-texas-contre-tenue",
+      "family": "V2-M2-sa1-texas-contre-tenue",
+      "status": "corriger",
+      "motif": "Expliciter les deux critères et le sens contextuel du Surcontre sans rouvrir le cas sans fit.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L25-006; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas.contre",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.contre",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "V2-M2-040",
+      "theme": "stayman",
+      "concept": "sa1.texas.contre",
+      "caseFamily": "V2-M2-sa1-texas-contre-tenue",
+      "family": "V2-M2-sa1-texas-contre-tenue",
+      "status": "corriger",
+      "motif": "Expliquer l'orientation du déclarant et distinguer explicitement les deux Surcontres ; ne pas arbitrer SEF-L25-004.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-L25-005; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa1.texas.contre",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas.contre",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Surcontre"
+    },
+    {
+      "id": "V2-M2-041",
+      "theme": "sa",
+      "concept": "sa.gambling",
+      "caseFamily": "V2-M2-gambling-tenue",
+      "family": "V2-M2-gambling-tenue",
+      "status": "corriger",
+      "motif": "Relier levées, arrêts et communications ; éviter la promesse de réussite.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa.gambling",
+        "stage": 3,
+        "minSession": 27,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "Passe"
+    },
+    {
+      "id": "V2-M2-042",
+      "theme": "sa",
+      "concept": "sa.gambling",
+      "caseFamily": "V2-M2-gambling-tenue",
+      "family": "V2-M2-gambling-tenue",
+      "status": "corriger",
+      "motif": "Distinguer levées potentielles et vitesse d'encaissement ; corriger l'interprétation de 4♦ direct d'après SEF-L27-004.",
+      "anchor": "Catalogue QPJB figé e9103075 : SEF-Q26-M2-015; #320/#327/#329. ",
+      "prerequis": {
+        "concept": "sa.gambling",
+        "stage": 3,
+        "minSession": 27,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4♣"
+    },
+    {
+      "id": "SEF-C-002",
+      "theme": "sa",
+      "concept": "sa1.seuil",
+      "caseFamily": "audit-c01-sef-c-002",
+      "family": "audit-c01-sef-c-002",
+      "status": "conserver",
+      "motif": "Corrigé court mais complet : 10 H + 15 minimum, pas de majeure quatrième, manche à 3SA ; contexte explicite.",
+      "anchor": "SEF-C-002 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "sa1.seuil",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "SEF-V44-013",
+      "theme": "sa",
+      "concept": "chelem.quantitatif",
+      "caseFamily": "v44-cas-013",
+      "family": "v44-cas-013",
+      "status": "corriger",
+      "motif": "Remplacer le contexte générique par la zone d'ouverture et la situation ; corrigé quantitatif historique intact.",
+      "anchor": "SEF-V44-013 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "chelem.quantitatif",
+        "stage": 0,
+        "minSession": 39,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "4SA"
+    },
+    {
+      "id": "SEF-V44-014",
+      "theme": "sa",
+      "concept": "sa2.seuil",
+      "caseFamily": "v44-cas-014",
+      "family": "v44-cas-014",
+      "status": "corriger",
+      "motif": "Rendre explicite la zone 20–21 H sans réviser la réponse historiquement corrigée à 3SA.",
+      "anchor": "SEF-V44-014 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "sa2.seuil",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "3SA"
+    },
+    {
+      "id": "SEF-V44-015",
+      "theme": "sa",
+      "concept": "sa1.texas",
+      "caseFamily": "v44-cas-015",
+      "family": "v44-cas-015",
+      "status": "corriger",
+      "motif": "Situer explicitement le Texas faible sur 1SA, et non sur 2SA ; réponse et corrigé historiques conservés.",
+      "anchor": "SEF-V44-015 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "sa1.texas",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-V44-016",
+      "theme": "sa",
+      "concept": "sa1.texas",
+      "caseFamily": "v44-cas-016",
+      "family": "v44-cas-016",
+      "status": "corriger",
+      "motif": "Expliciter la zone d'ouverture pour le cas Texas Pique faible ; ne pas changer l'accord.",
+      "anchor": "SEF-V44-016 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "sa1.texas",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-V49-017",
+      "theme": "sa",
+      "concept": "sa1.texas",
+      "caseFamily": "v44-cas-016",
+      "family": "v44-cas-016",
+      "status": "corriger",
+      "motif": "Expliciter la séquence jusqu'au Passe et distinguer les deux Texas ; garder la famille historique partagée.",
+      "anchor": "SEF-V49-017 (catalogue figé e9103075)",
+      "prerequis": {
+        "concept": "sa1.texas",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "answer": "2♥"
+    }
+  ],
+  "groups": [
+    {
+      "family": "V2-M2-sa2-stayman-seuil",
+      "theme": "seuil Stayman 2SA",
+      "criterion": "force 3 H contre 6 H",
+      "members": [
+        {
+          "id": "V2-M2-001",
+          "answer": "Passe",
+          "h": 3,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-002",
+          "answer": "3♣",
+          "h": 6,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-texas-faible",
+      "theme": "Texas 2SA faible",
+      "criterion": "force 3 H contre 6 H et risque de refus",
+      "members": [
+        {
+          "id": "V2-M2-003",
+          "answer": "Passe",
+          "h": 3,
+          "shape": [
+            3,
+            5,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-004",
+          "answer": "3♦",
+          "h": 6,
+          "shape": [
+            3,
+            5,
+            2,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-4-ou-5",
+      "theme": "Stayman ou Texas sur 2SA",
+      "criterion": "quatre ou cinq Piques",
+      "members": [
+        {
+          "id": "V2-M2-005",
+          "answer": "3♣",
+          "h": 6,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-006",
+          "answer": "3♥",
+          "h": 6,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-reponse-stayman",
+      "theme": "Réponse au Stayman 2SA",
+      "criterion": "une ou deux majeures quatrièmes",
+      "members": [
+        {
+          "id": "V2-M2-007",
+          "answer": "3♥",
+          "h": 20,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-008",
+          "answer": "3SA",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-texas-fit",
+      "theme": "Rectification Texas 2SA",
+      "criterion": "trois Cœurs ou deux",
+      "members": [
+        {
+          "id": "V2-M2-009",
+          "answer": "3♥",
+          "h": 20,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-010",
+          "answer": "3SA",
+          "h": 20,
+          "shape": [
+            4,
+            2,
+            4,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-texas-apres-refus",
+      "theme": "Refus Texas 2SA",
+      "criterion": "cinq Cœurs ou six",
+      "members": [
+        {
+          "id": "V2-M2-011",
+          "answer": "Passe",
+          "h": 6,
+          "shape": [
+            3,
+            5,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-012",
+          "answer": "4♦",
+          "h": 6,
+          "shape": [
+            3,
+            6,
+            2,
+            2
+          ]
+        }
+      ],
+      "verdict": "Contraste valide, transposition Cœur explicitée à partir de SEF-L31-001."
+    },
+    {
+      "family": "V2-M2-sa2-5-5-choix",
+      "theme": "Double cinq majeur",
+      "criterion": "soutien Pique ou Cœur",
+      "members": [
+        {
+          "id": "V2-M2-013",
+          "answer": "4♠",
+          "h": 20,
+          "shape": [
+            4,
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-014",
+          "answer": "4♥",
+          "h": 20,
+          "shape": [
+            2,
+            4,
+            4,
+            3
+          ]
+        }
+      ],
+      "verdict": "Contraste valide ; redondance externe V3-M2-R01 à arbitrer."
+    },
+    {
+      "family": "V2-M2-sa2-mineur-soutien",
+      "theme": "Texas mineur sur 2SA",
+      "criterion": "quatre Trèfles solides ou doubleton Valet",
+      "members": [
+        {
+          "id": "V2-M2-015",
+          "answer": "4♣",
+          "h": 20,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "V2-M2-016",
+          "answer": "3SA",
+          "h": 20,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-stayman-texas-5-4",
+      "theme": "Stayman ou Texas sur 1SA",
+      "criterion": "seconde majeure quatrième ou non",
+      "members": [
+        {
+          "id": "V2-M2-017",
+          "answer": "2♣",
+          "h": 12,
+          "shape": [
+            5,
+            4,
+            2,
+            2
+          ]
+        },
+        {
+          "id": "V2-M2-018",
+          "answer": "2♥",
+          "h": 12,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-chasse-croise",
+      "theme": "Chassé-croisé",
+      "criterion": "majeure cinquième Pique ou Cœur",
+      "members": [
+        {
+          "id": "V2-M2-019",
+          "answer": "3♥",
+          "h": 12,
+          "shape": [
+            5,
+            4,
+            2,
+            2
+          ]
+        },
+        {
+          "id": "V2-M2-020",
+          "answer": "3♠",
+          "h": 12,
+          "shape": [
+            4,
+            5,
+            2,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-invitation-fit",
+      "theme": "Invitation après Stayman",
+      "criterion": "fit Cœur ou pas de fit",
+      "members": [
+        {
+          "id": "V2-M2-021",
+          "answer": "3♥",
+          "h": 8,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-022",
+          "answer": "2SA",
+          "h": 8,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa2-stayman-fit",
+      "theme": "Manche après Stayman 2SA",
+      "criterion": "fit Cœur ou absence de fit",
+      "members": [
+        {
+          "id": "V2-M2-023",
+          "answer": "4♥",
+          "h": 6,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-024",
+          "answer": "3SA",
+          "h": 6,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-relais-force",
+      "theme": "Deux majeures annoncées",
+      "criterion": "invitation ou force de manche",
+      "members": [
+        {
+          "id": "V2-M2-025",
+          "answer": "3♦",
+          "h": 8,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-026",
+          "answer": "4♦",
+          "h": 11,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-texas-invitation-ouvreur",
+      "theme": "Acceptation invitation Texas",
+      "criterion": "maximum fitté ou non fitté",
+      "members": [
+        {
+          "id": "V2-M2-027",
+          "answer": "4♥",
+          "h": 17,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-028",
+          "answer": "3SA",
+          "h": 17,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-texas-faible-longueur",
+      "theme": "Texas faible sur 1SA",
+      "criterion": "quatre ou cinq Cœurs",
+      "members": [
+        {
+          "id": "V2-M2-029",
+          "answer": "Passe",
+          "h": 3,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-030",
+          "answer": "2♦",
+          "h": 3,
+          "shape": [
+            3,
+            5,
+            3,
+            2
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-mineur-faible-longueur",
+      "theme": "Texas mineur faible sur 1SA",
+      "criterion": "cinq ou six Trèfles",
+      "members": [
+        {
+          "id": "V2-M2-031",
+          "answer": "Passe",
+          "h": 3,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ]
+        },
+        {
+          "id": "V2-M2-032",
+          "answer": "2♠",
+          "h": 3,
+          "shape": [
+            3,
+            3,
+            1,
+            6
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-mineur-suite-force",
+      "theme": "Suite Texas mineur",
+      "criterion": "force faible ou de manche avec courte identique",
+      "members": [
+        {
+          "id": "V2-M2-033",
+          "answer": "Passe",
+          "h": 3,
+          "shape": [
+            1,
+            3,
+            6,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-034",
+          "answer": "3♠",
+          "h": 12,
+          "shape": [
+            1,
+            3,
+            6,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-texas-mineur-asymetrie",
+      "theme": "Asymétrie Texas mineurs",
+      "criterion": "Trèfle positif ou Carreau obligatoire, main identique",
+      "members": [
+        {
+          "id": "V2-M2-035",
+          "answer": "2SA",
+          "h": 16,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-036",
+          "answer": "3♦",
+          "h": 16,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-stayman-contre-tenue",
+      "theme": "Stayman contré",
+      "criterion": "arrêt Trèfle ou non, quatre Cœurs",
+      "members": [
+        {
+          "id": "V2-M2-037",
+          "answer": "2♥",
+          "h": 17,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "id": "V2-M2-038",
+          "answer": "Passe",
+          "h": 17,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-sa1-texas-contre-tenue",
+      "theme": "Texas contré",
+      "criterion": "arrêt Carreau ou non, trois Cœurs",
+      "members": [
+        {
+          "id": "V2-M2-039",
+          "answer": "2♥",
+          "h": 16,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "V2-M2-040",
+          "answer": "Surcontre",
+          "h": 16,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    },
+    {
+      "family": "V2-M2-gambling-tenue",
+      "theme": "Gambling",
+      "criterion": "arrêt Cœur ou non, neuf levées potentielles",
+      "members": [
+        {
+          "id": "V2-M2-041",
+          "answer": "Passe",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ]
+        },
+        {
+          "id": "V2-M2-042",
+          "answer": "4♣",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ]
+        }
+      ],
+      "verdict": "Les deux décisions diffèrent par le critère indiqué ; cohérence vérifiée contre les ancres."
+    }
+  ],
+  "existingReserves": [
+    {
+      "wave": "V1",
+      "mission": 2,
+      "id": "V1-M2-R001",
+      "question": "Le troisième cas accessible de gambling doit-il être recherché au niveau du parent, ou le cas de repli SEF-L27-004 déjà N3 peut-il être rattaché ultérieurement sans déplacer les autres prérequis ?",
+      "options": [
+        "Conserver le rattachement actuel et l'exception",
+        "Lors de l'intégration, étudier un rattachement non redondant après arbitrage"
+      ],
+      "source": "SEF-L27-004, SEF-Q26-M2-015 ; #320",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 2,
+      "id": "V1-M2-R002",
+      "question": "Quels traitements du bicolore majeur autres que le 5–5 de manche sont explicitement documentés dans QPJB (5–4, 6–5, égalité de soutien, ambitions de chelem) ?",
+      "options": [
+        "Maintenir uniquement le choix de manche documenté",
+        "Documenter les séquences exactes avant production supplémentaire"
+      ],
+      "source": "SEF-L38-002 ; SEF-Q26-M2-010/011",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 2,
+      "id": "V1-M2-R003",
+      "question": "Le traitement fitté du Texas ♣ après 2SA admet-il trois petites cartes, ou un gros honneur doubleton ? Aucun seuil précis n'est déduit des trois cas historiques.",
+      "options": [
+        "Conserver les cas N4 actuels et la fondation parent",
+        "Arbitrer un seuil explicite avant un nouveau cas distinct"
+      ],
+      "source": "SEF-L41-004 ; SEF-Q26-M2-012/013",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 2,
+      "id": "V1-M2-R004",
+      "question": "Confirmer les limites du 2SA positif sur Texas ♣ après 1SA (force minimum avec bon complément, quatre petites cartes, gros doubleton).",
+      "options": [
+        "Maintenir les cas documentés sans extension",
+        "Arbitrer la règle complète et traiter ensuite les frontières"
+      ],
+      "source": "SEF-L25-007/008 ; SEF-L37-004",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 3,
+      "id": "V1-M3-R01",
+      "question": "Stayman contré : adopter le cue-bid 3♣ minimum / 4♣ maximum avec les deux majeures quatrièmes de la fiche iBridge 626 ?",
+      "options": [
+        "Adopter explicitement au niveau avancé",
+        "Ne pas étendre le traitement existant",
+        "Différer"
+      ],
+      "source": "SEF-L25-001 à 003 ; https://www.ibridge.fr/public/fichedetails/626 (méthode explicitement nommée, non norme universelle).",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 3,
+      "id": "V1-M3-R02",
+      "question": "Texas Cœur contré, quatre atouts et main méritant un saut : adopter 3♥ avec tenue Carreau ?",
+      "options": [
+        "Adopter au niveau avancé",
+        "Ne pas enseigner ce saut",
+        "Différer"
+      ],
+      "source": "SEF-L25-004 à 006 ; #271 HOLD ; https://scjc-bridge.fr/attitude-de-louvreur-de-1-sa-apres-un-contre-du-texas-de-son-partenaire",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 3,
+      "id": "V1-M3-R03",
+      "question": "Texas Cœur contré, quatre atouts et main méritant un saut : adopter le cue-bid 3♦ sans tenue pour laisser déclarer le répondant ?",
+      "options": [
+        "Adopter avec R02 au niveau avancé",
+        "Ne pas enseigner ce cue-bid",
+        "Différer"
+      ],
+      "source": "SEF-L25-004 à 006 ; #271 HOLD ; https://scjc-bridge.fr/attitude-de-louvreur-de-1-sa-apres-un-contre-du-texas-de-son-partenaire",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    },
+    {
+      "wave": "V1",
+      "mission": 3,
+      "id": "V1-M3-R04",
+      "question": "Maintenir Passe historique de SEF-L25-004 et HOLD #271 ; éventuel contraste V2 entre les deux sens du Surcontre après Stayman et Texas ?",
+      "options": [
+        "Maintenir sans nouveau visa et examiner le contraste V2",
+        "Différer"
+      ],
+      "source": "SEF-L25-004 à 006 ; #271 HOLD ; https://scjc-bridge.fr/attitude-de-louvreur-de-1-sa-apres-un-contre-du-texas-de-son-partenaire",
+      "disposition": "Maintien ; transmettre au pilote, sans arbitrer."
+    }
+  ],
+  "newReserveIds": [
+    "V3-M2-R01"
+  ],
+  "crossCutting": [
+    "V1-M2-002/V2-M2-014 : redondance de décision ; pas de modification de famille.",
+    "SEF-V44-016/SEF-V49-017 partagent déjà leur famille historique ; ne pas compter comme deux décisions indépendantes.",
+    "SEF-L25-004 reste HOLD #271 ; les cas fittés L25-005/006 ne règlent pas le cas sans fit.",
+    "Aucune extension du traitement 5–5 ni du seuil de soutien mineur (réserves V1)."
+  ],
+  "checks": [
+    "51 IDs uniques",
+    "45 ajouts conformes à INDEX par rubrique",
+    "Statut motivé, ancre et famille pour chaque fiche",
+    "21 paires à deux décisions distinctes",
+    "Patches uniques et concordants",
+    "Pas de nouveau QCM, ni changement de réponse, choix, niveau, famille ou métadonnées",
+    "51 mains de 13 cartes, H, formes, 4 choix distincts, bonne réponse incluse",
+    "Séquences présentes et contrôlées pédagogiquement",
+    "Métadonnées présentes pour les 51 fiches, conservées selon ancres",
+    "patch.old exact sur base virtuelle V2",
+    "Pas de doublon exact main/séquence dans le périmètre",
+    "Main corrigée non dupliquée exactement dans les 1595 historiques"
+  ]
+}
