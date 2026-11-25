@@ -1,0 +1,1207 @@
+{
+  "schema": "QPJB_RESERVE_QUIZ_REVIEW_V1",
+  "wave": "V1",
+  "mission": "M4",
+  "base": "e910307511f8a98dba6876df9d6677f9fc74e2b2",
+  "scope": [
+    {
+      "concept": "rubensohl.suite",
+      "historicalCount": 4,
+      "historicalAccessibleFamilies": 1,
+      "famillesObservees": [
+        {
+          "decision": "Arrêt fourni par le répondant après déni de fit et d’arrêt",
+          "ids": [
+            "SEF-L01-D-04"
+          ]
+        },
+        {
+          "decision": "Passe faible après rectification mineure",
+          "ids": [
+            "SEF-Q26-M2-001"
+          ]
+        },
+        {
+          "decision": "Manche majeure avec six cartes et absence d’arrêt adverse",
+          "ids": [
+            "SEF-Q26-M2-002"
+          ]
+        },
+        {
+          "decision": "Proposition 3SA après rectification d’un Texas majeur",
+          "ids": [
+            "SEF-Q26-M2-003"
+          ]
+        }
+      ],
+      "historicalRows": [
+        {
+          "id": "SEF-L01-D-04",
+          "caseFamily": "l01-d04-rub-2s-heart-transfer-no-fit-no-stopper-second-round-3nt",
+          "difficulty": 4,
+          "auction": [
+            "Partenaire : 1SA (15–17 H)",
+            "Adversaire : 2♠ (naturel)",
+            "Vous : 3♦ (Texas Cœur)",
+            "Partenaire : 3♠ (pas de fit Cœur et pas d’arrêt Pique)"
+          ],
+          "answer": "3SA",
+          "prerequis": {
+            "concept": "rubensohl.suite",
+            "stage": 3,
+            "minSession": 40,
+            "requires": [
+              {
+                "concept": "rubensohl.init",
+                "minExposure": 2
+              },
+              {
+                "concept": "rubensohl.reponse",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-Q26-M2-001",
+          "caseFamily": "QUAL-M2-001",
+          "difficulty": 3,
+          "auction": [
+            "Partenaire : 1SA (15–17 H)",
+            "Adversaire : 2♥ (naturel)",
+            "Vous : 2SA (Texas Trèfle)",
+            "Partenaire : 3♣ (rectification)"
+          ],
+          "answer": "Passe",
+          "prerequis": {
+            "concept": "rubensohl.suite",
+            "stage": 3,
+            "minSession": 40,
+            "requires": [
+              {
+                "concept": "rubensohl.init",
+                "minExposure": 2
+              },
+              {
+                "concept": "rubensohl.reponse",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-Q26-M2-002",
+          "caseFamily": "QUAL-M2-002",
+          "difficulty": 4,
+          "auction": [
+            "Partenaire : 1SA (15–17 H)",
+            "Adversaire : 2♠ (naturel)",
+            "Vous : 3♦ (Texas Cœur)",
+            "Partenaire : 3♠ (pas de fit troisième Cœur, pas d’arrêt Pique)"
+          ],
+          "answer": "4♥",
+          "prerequis": {
+            "concept": "rubensohl.suite",
+            "stage": 3,
+            "minSession": 40,
+            "requires": [
+              {
+                "concept": "rubensohl.init",
+                "minExposure": 2
+              },
+              {
+                "concept": "rubensohl.reponse",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-Q26-M2-003",
+          "caseFamily": "QUAL-M2-003",
+          "difficulty": 4,
+          "auction": [
+            "Partenaire : 1SA (15–17 H)",
+            "Adversaire : 2♥ (naturel)",
+            "Vous : 3♥ (Texas Pique)",
+            "Partenaire : 3♠ (rectification)"
+          ],
+          "answer": "3SA",
+          "prerequis": {
+            "concept": "rubensohl.suite",
+            "stage": 3,
+            "minSession": 40,
+            "requires": [
+              {
+                "concept": "rubensohl.init",
+                "minExposure": 2
+              },
+              {
+                "concept": "rubensohl.reponse",
+                "minExposure": 1
+              }
+            ]
+          }
+        }
+      ],
+      "manquesCibles": [
+        "Conclure à la manche majeure sur fit 4–4 découvert par Texas impossible",
+        "Accepter 3SA déjà proposé après Texas impossible sans fit"
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M4-001",
+          "family": "reserve-v1-m4-rub-impossible-fit-4-4-manche",
+          "decision": "Nouvelle suite du répondant : choisir la manche majeure après le Texas impossible, distincte du Texas naturel et de l’arrêt adverse.",
+          "difficultyJustification": "Reconnaître le fit 4–4 déjà confirmé, puis conclure à la manche sans calcul complexe."
+        },
+        {
+          "id": "V1-M4-002",
+          "family": "reserve-v1-m4-rub-impossible-accepter-manche-sa",
+          "decision": "Passe de conclusion à la manche après recherche de fit infructueuse, distinct du Passe faible après rectification d’un Texas mineur.",
+          "difficultyJustification": "Identifier une manche déjà atteinte, sans fit majeur ni ambition de chelem."
+        }
+      ],
+      "exceptions": [],
+      "accessibleFamiliesAfterVirtualAddition": 3
+    },
+    {
+      "concept": "michaels.defense",
+      "historicalCount": 17,
+      "historicalAccessibleFamilies": 0,
+      "famillesObservees": [
+        {
+          "decision": "Cue-bid économique : fit forcing de manche",
+          "ids": [
+            "SEF-V473-009",
+            "SEF-L09-029",
+            "SEF-L19-001",
+            "SEF-L22-001",
+            "SEF-L33-001",
+            "SEF-L43-002"
+          ]
+        },
+        {
+          "decision": "Second cue-bid : quatrième couleur forcing de manche",
+          "ids": [
+            "SEF-V473-010",
+            "SEF-L19-002",
+            "SEF-L19-003",
+            "SEF-L22-002",
+            "SEF-L40-005"
+          ]
+        },
+        {
+          "decision": "2SA fitté limite",
+          "ids": [
+            "SEF-L19-004"
+          ]
+        },
+        {
+          "decision": "Rencontre",
+          "ids": [
+            "SEF-L19-006",
+            "SEF-L31-003"
+          ]
+        },
+        {
+          "decision": "Dernière couleur naturelle non forcing",
+          "ids": [
+            "SEF-L36-004",
+            "SEF-L37-003"
+          ]
+        },
+        {
+          "decision": "Soutien simple mineur",
+          "ids": [
+            "SEF-L37-001"
+          ]
+        }
+      ],
+      "historicalRows": [
+        {
+          "id": "SEF-V473-009",
+          "caseFamily": "v473-1er-cuebid-bicolore",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠",
+            "Adversaire : 2SA (bicolore mineur ♣ et ♦)"
+          ],
+          "answer": "3♣",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-V473-010",
+          "caseFamily": "v473-2nd-cuebid-bicolore",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠",
+            "Adversaire : 2SA (bicolore mineur ♣ et ♦)"
+          ],
+          "answer": "3♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L09-029",
+          "caseFamily": "V18-CORRECTION-CRITIQUE-SEF-L09-029",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♥",
+            "Adversaire : 2♥ (Michaël précisé : ♠ + ♣)"
+          ],
+          "answer": "2♠",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L19-001",
+          "caseFamily": "LOT19-2026-11-13-001",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♦ (ouverture)",
+            "Adversaire : 2♦ (Michaël précisé : cinq Cœurs et cinq Piques au moins)"
+          ],
+          "answer": "2♥",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L19-002",
+          "caseFamily": "LOT19-2026-11-13-002",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♦ (ouverture)",
+            "Adversaire : 2♦ (Michaël précisé : cinq Cœurs et cinq Piques au moins)"
+          ],
+          "answer": "2♠",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L19-003",
+          "caseFamily": "LOT19-2026-11-13-003",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♥ (ouverture)",
+            "Adversaire : 2♥ (Michaël précisé : cinq Piques et cinq Trèfles au moins)"
+          ],
+          "answer": "3♣",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L19-004",
+          "caseFamily": "LOT19-2026-11-13-004",
+          "difficulty": 4,
+          "auction": [
+            "Partenaire : 1♥ (ouverture)",
+            "Adversaire : 2♥ (Michaël précisé : cinq Piques et cinq Trèfles au moins)"
+          ],
+          "answer": "2SA",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 42,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "competitif.2sa_fitte",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 2
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L19-006",
+          "caseFamily": "LOT19-2026-11-13-006",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠ (ouverture)",
+            "Adversaire : 2♠ (Michaël précisé : cinq Cœurs et cinq Trèfles au moins)"
+          ],
+          "answer": "4♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L22-001",
+          "caseFamily": "LOT22-2026-11-13-001",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♣ (ouverture)",
+            "Adversaire : 2SA (bicolore Carreau–Cœur, au moins 5–5)"
+          ],
+          "answer": "3♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L22-002",
+          "caseFamily": "LOT22-2026-11-13-002",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♣ (ouverture)",
+            "Adversaire : 2SA (bicolore Carreau–Cœur, au moins 5–5)"
+          ],
+          "answer": "3♥",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L31-003",
+          "caseFamily": "LOT31-2026-11-14-003",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♥ (ouverture)",
+            "Adversaire : 2♥ (Michaël précisé : au moins cinq Piques et cinq Trèfles)"
+          ],
+          "answer": "4♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L33-001",
+          "caseFamily": "LOT33-2026-11-14-001",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♥ (ouverture)",
+            "Adversaire : 2♥ (Michaël précisé : cinq Piques et cinq Trèfles au moins)"
+          ],
+          "answer": "2♠",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L36-004",
+          "caseFamily": "LOT36-2026-11-15-004",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♦ (ouverture)",
+            "Adversaire : 2♦ (Michaël précisé, au moins cinq Cœurs et cinq Piques)"
+          ],
+          "answer": "3♣",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L37-001",
+          "caseFamily": "LOT37-2026-11-16-001",
+          "difficulty": 4,
+          "auction": [
+            "Partenaire : 1♦ (ouverture)",
+            "Adversaire : 2♦ (Michaël précisé : au moins cinq Cœurs et cinq Piques)"
+          ],
+          "answer": "3♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 42,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 2
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L37-003",
+          "caseFamily": "LOT37-2026-11-16-003",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠ (ouverture)",
+            "Adversaire : 2♠ (Michaël précisé : au moins cinq Cœurs et cinq Trèfles)"
+          ],
+          "answer": "3♦",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L40-005",
+          "caseFamily": "LOT40-2026-11-16-005",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠ (ouverture)",
+            "Adversaire : 2♠ (Michaël précisé : au moins cinq Cœurs et cinq Trèfles)"
+          ],
+          "answer": "3♥",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L43-002",
+          "caseFamily": "LOT43-2026-11-17-002",
+          "difficulty": 5,
+          "auction": [
+            "Partenaire : 1♠ (ouverture)",
+            "Adversaire : 2♠ (Michaël précisé : au moins cinq Cœurs et cinq Trèfles)"
+          ],
+          "answer": "3♣",
+          "prerequis": {
+            "concept": "michaels.defense",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "apres_inter.base",
+                "minExposure": 1
+              },
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              }
+            ]
+          }
+        }
+      ],
+      "manquesCibles": [
+        "3SA naturel avec force et arrêts dans les deux couleurs adverses",
+        "Passe faute de force et de fit",
+        "Contre d’appel sans fit ni longue annonçable ni arrêts fiables"
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M4-003",
+          "family": "reserve-v1-m4-def-bicolore-deux-arrets-3sa",
+          "decision": "Décision naturelle à Sans-Atout derrière deux couleurs adverses connues ; absente du concept.",
+          "difficultyJustification": "Reconnaître les deux arrêts explicites et une force de manche dans une main régulière."
+        },
+        {
+          "id": "V1-M4-004",
+          "family": "reserve-v1-m4-def-bicolore-passe-faiblesse",
+          "decision": "Décision d’abstention faible face au bicolore adverse, sans fit ; aucune assimilation au Passe punitif différé.",
+          "difficultyJustification": "Écarter les enchères compétitives lorsque force, fit et couleur suffisamment longue font tous défaut."
+        },
+        {
+          "id": "V1-M4-005",
+          "family": "reserve-v1-m4-def-bicolore-contre-appel",
+          "decision": "Contre d’appel immédiat absent des familles recensées ; seuil non généralisé (11 H indiscutables).",
+          "difficultyJustification": "Choisir l’appel avec du jeu et aucune enchère descriptive directe ; force et longue nettement hors des frontières."
+        }
+      ],
+      "exceptions": [],
+      "accessibleFamiliesAfterVirtualAddition": 3
+    },
+    {
+      "concept": "michaels.reveil",
+      "historicalCount": 7,
+      "historicalAccessibleFamilies": 0,
+      "famillesObservees": [
+        {
+          "decision": "2SA bicolore mineur derrière soutien majeur",
+          "ids": [
+            "SEF-L04-028",
+            "SEF-L26-002"
+          ]
+        },
+        {
+          "decision": "4♣ autre majeure–Carreau derrière soutien majeur",
+          "ids": [
+            "SEF-L20-006",
+            "SEF-L26-001",
+            "SEF-L34-004"
+          ]
+        },
+        {
+          "decision": "Cue-bid autre majeure–Trèfle derrière soutien majeur",
+          "ids": [
+            "SEF-L24-004"
+          ]
+        },
+        {
+          "decision": "Cue-bid en réveil direct sur majeure après deux Passe",
+          "ids": [
+            "SEF-L38-003"
+          ]
+        }
+      ],
+      "historicalRows": [
+        {
+          "id": "SEF-L04-028",
+          "caseFamily": "V17-RECONSTRUCTION-SEF-L04-028",
+          "difficulty": 4,
+          "auction": [
+            "Adversaire : 1♠",
+            "Partenaire : Passe",
+            "Adversaire : 2♠"
+          ],
+          "answer": "2SA",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 42,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 2
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L20-006",
+          "caseFamily": "LOT20-2026-11-13-006",
+          "difficulty": 5,
+          "auction": [
+            "Adversaire : 1♠ (ouverture)",
+            "Partenaire : Passe",
+            "Adversaire : 2♠ (soutien simple)"
+          ],
+          "answer": "4♣",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L24-004",
+          "caseFamily": "LOT24-2026-11-13-004",
+          "difficulty": 5,
+          "auction": [
+            "Adversaire : 1♠ (ouverture)",
+            "Partenaire : Passe",
+            "Adversaire : 2♠ (soutien simple)"
+          ],
+          "answer": "3♠",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L26-001",
+          "caseFamily": "LOT26-2026-11-13-001",
+          "difficulty": 5,
+          "auction": [
+            "Adversaire : 1♥ (ouverture)",
+            "Partenaire : Passe",
+            "Adversaire : 2♥ (soutien simple)"
+          ],
+          "answer": "4♣",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L26-002",
+          "caseFamily": "LOT26-2026-11-13-002",
+          "difficulty": 4,
+          "auction": [
+            "Adversaire : 1♥ (ouverture)",
+            "Partenaire : Passe",
+            "Adversaire : 2♥ (soutien simple)"
+          ],
+          "answer": "2SA",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 42,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 2
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L34-004",
+          "caseFamily": "LOT34-2026-11-14-004",
+          "difficulty": 5,
+          "auction": [
+            "Adversaire : 1♠ (ouverture)",
+            "Partenaire : Passe",
+            "Adversaire : 2♠ (soutien simple)"
+          ],
+          "answer": "4♣",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 46,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 3
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "SEF-L38-003",
+          "caseFamily": "LOT38-2026-11-16-003",
+          "difficulty": 4,
+          "auction": [
+            "Adversaire : 1♥ (ouverture à gauche)",
+            "Partenaire : Passe",
+            "Adversaire : Passe (à droite)"
+          ],
+          "answer": "2♥",
+          "prerequis": {
+            "concept": "michaels.reveil",
+            "stage": 3,
+            "minSession": 42,
+            "requires": [
+              {
+                "concept": "michaels.intervention",
+                "minExposure": 2
+              },
+              {
+                "concept": "reveil.base",
+                "minExposure": 1
+              }
+            ]
+          }
+        }
+      ],
+      "manquesCibles": [
+        "Cue-bid des deux majeures derrière soutien mineur",
+        "2SA bicolore des deux couleurs les moins chères derrière soutien mineur",
+        "Refuser les trois bicolores artificiels avec une main tricolore d’appel derrière soutien majeur"
+      ],
+      "casProduits": [
+        {
+          "id": "V1-M4-006",
+          "family": "reserve-v1-m4-reveil-soutien-mineur-cuebid-majeures",
+          "decision": "Nouvelle branche d’enchères après soutien mineur : cue-bid au palier de trois, distinct du réveil sur deux Passe et du soutien majeur.",
+          "difficultyJustification": "Identifier les deux majeures franches et le cue-bid disponible après soutien mineur, sans frontière de force."
+        },
+        {
+          "id": "V1-M4-007",
+          "family": "reserve-v1-m4-reveil-soutien-mineur-2sa-mineure-majeure",
+          "decision": "Bicolore mixte par 2SA après soutien mineur ; différent de 2SA bicolore mineur derrière soutien majeur et du 2SA naturel en réveil direct.",
+          "difficultyJustification": "Reconnaître les deux couleurs libres les moins chères derrière soutien mineur avec un bicolore net."
+        },
+        {
+          "id": "V1-M4-008",
+          "family": "reserve-v1-m4-reveil-soutien-majeur-refus-bicolore-tricolore",
+          "decision": "Cas négatif interne au concept : savoir quand ne pas employer un Michaël derrière soutien majeur ; ne remplace pas le contre de réveil direct.",
+          "difficultyJustification": "Distinguer un tricolore d’appel des trois bicolores conventionnels derrière soutien majeur."
+        }
+      ],
+      "exceptions": [],
+      "accessibleFamiliesAfterVirtualAddition": 3
+    }
+  ],
+  "signals": [
+    {
+      "ids": [
+        "SEF-L13-012",
+        "SEF-L29-006",
+        "SEF-L42-004",
+        "SEF-L10-016",
+        "SEF-V44-060"
+      ],
+      "note": "Cas voisins classés michaels.intervention/reveil.base ; ne pas reclasser ni recopier. Le cue-bid direct après deux Passe n’est pas le cue-bid derrière soutien mineur."
+    },
+    {
+      "id": "SEF-Q26-M2-003",
+      "note": "Rectification Texas majeur ne garantit pas trois atouts dans le cadre simplifié ; ne pas transformer la règle en acceptation universelle."
+    }
+  ],
+  "checks": {
+    "baseCount": 1595,
+    "scopeCount": 28,
+    "structure": "PASS",
+    "allHands13": true,
+    "distinctChoices": true,
+    "answerInChoices": true,
+    "legalBidsAboveLastContract": true,
+    "idsAndFamiliesUnique": true,
+    "exactHandsAndHandSequenceAbsentFromBase": true,
+    "prerequisCopiedFromSameConcept": true,
+    "semanticReview": "Lecture ciblée des décisions et des concepts voisins ; aucune reclassification, aucun test navigateur/CI global.",
+    "details": [
+      {
+        "id": "V1-M4-001",
+        "h": 12,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "lastBid": "3♠",
+        "answer": "4♠",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "rubensohl.suite",
+          "stage": 3,
+          "minSession": 40,
+          "requires": [
+            {
+              "concept": "rubensohl.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "rubensohl.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-002",
+        "h": 12,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "lastBid": "3SA",
+        "answer": "Passe",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "rubensohl.suite",
+          "stage": 3,
+          "minSession": 40,
+          "requires": [
+            {
+              "concept": "rubensohl.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "rubensohl.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-003",
+        "h": 13,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "lastBid": "2♦",
+        "answer": "3SA",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.defense",
+          "stage": 3,
+          "minSession": 46,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 3
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-004",
+        "h": 1,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "lastBid": "2SA",
+        "answer": "Passe",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.defense",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.2sa_fitte",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 2
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-005",
+        "h": 11,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "lastBid": "2SA",
+        "answer": "Contre",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.defense",
+          "stage": 3,
+          "minSession": 46,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 3
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-006",
+        "h": 12,
+        "shape": [
+          5,
+          5,
+          1,
+          2
+        ],
+        "lastBid": "2♦",
+        "answer": "3♦",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.reveil",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 2
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-007",
+        "h": 12,
+        "shape": [
+          2,
+          5,
+          1,
+          5
+        ],
+        "lastBid": "2♦",
+        "answer": "2SA",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.reveil",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 2
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      },
+      {
+        "id": "V1-M4-008",
+        "h": 13,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "lastBid": "2♠",
+        "answer": "Contre",
+        "difficulty": 3,
+        "prerequis": {
+          "concept": "michaels.reveil",
+          "stage": 3,
+          "minSession": 42,
+          "requires": [
+            {
+              "concept": "michaels.intervention",
+              "minExposure": 2
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "exactHandAbsentFromBase": true,
+        "exactHandSequenceAbsent": true
+      }
+    ]
+  },
+  "limitations": [
+    "Fiches iBridge et BridgeSEF utilisées comme sources pédagogiques secondaires, non comme texte officiel SEF. Pas de nouveau seuil de force inventé.",
+    "Le cas de contre derrière soutien majeur est une situation négative ciblant les limites du bicolore ; son rattachement au concept michaels.reveil conserve le stage 3. Le pilote peut vérifier cette classification lors de l’intégration finale.",
+    "Les niveaux 3 sont proposés pour des situations nettes, avec rappels de contexte et prérequis conservés ; ils ne constituent pas une validation empirique de difficulté."
+  ],
+  "status": "complete"
+}

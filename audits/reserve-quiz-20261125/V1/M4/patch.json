@@ -1,0 +1,581 @@
+{
+  "additions": [
+    {
+      "id": "V1-M4-001",
+      "qcm": {
+        "id": "V1-M4-001",
+        "theme": "rubensohl",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "V",
+            "9"
+          ],
+          [
+            "D",
+            "7",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♥ (naturel)",
+          "Vous : 3♦ (Texas impossible : Stayman forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 3♠ (quatre Piques)",
+          "Adversaire : Passe"
+        ],
+        "context": "Dans le Rubensohl simplifié étudié au QPJB, votre Texas impossible a recherché une majeure quatrième. Votre partenaire répond 3♠. Vous détenez quatre Piques et une force de manche, sans ambition de chelem. Quelle est votre enchère ?",
+        "choices": [
+          "Passe",
+          "3SA",
+          "4♣",
+          "4♠"
+        ],
+        "answer": "4♠",
+        "explain": "Vos quatre Piques et les quatre du partenaire assurent un fit huitième. Avec 12 H face à 15–17 H, la manche est acquise, mais le chelem n’est pas en vue. Concluez à 4♠ : 3SA abandonnerait le fit majeur et Passe arrêterait les enchères avant la manche que le Texas impossible imposait.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître le fit 4–4 déjà confirmé, puis conclure à la manche sans calcul complexe.",
+        "caseFamily": "reserve-v1-m4-rub-impossible-fit-4-4-manche"
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Nouvelle suite du répondant : choisir la manche majeure après le Texas impossible, distincte du Texas naturel et de l’arrêt adverse.",
+      "source": "Catalogue SEF-V481-001/003 et SEF-Q26-M2-001/003 ; archives/audits/quiz-sef/CONTRE_EXPERTISE_V481_RUBENSOHL_REDEMANDES_2026-11-05.md ; accord pédagogique Rubensohl QPJB validé #271 (Texas impossible = Stayman forcing de manche)."
+    },
+    {
+      "id": "V1-M4-002",
+      "qcm": {
+        "id": "V1-M4-002",
+        "theme": "rubensohl",
+        "hand": [
+          [
+            "D",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "7",
+            "4"
+          ],
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "D",
+            "9",
+            "6",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1SA (15–17 H)",
+          "Adversaire : 2♥ (naturel)",
+          "Vous : 3♦ (Texas impossible : Stayman forcing de manche)",
+          "Adversaire : Passe",
+          "Partenaire : 3SA (arrêt Cœur, pas quatre Piques)",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous avez employé le Texas impossible du Rubensohl QPJB pour rechercher quatre Piques. Le partenaire répond 3SA, indiquant une tenue Cœur et l’absence de quatre Piques. La manche est atteinte. Que faites-vous ?",
+        "choices": [
+          "Passe",
+          "4♣",
+          "4♦",
+          "4♠"
+        ],
+        "answer": "Passe",
+        "explain": "Avec 12 H et quatre Piques, vous avez recherché un fit 4–4, mais la réponse 3SA l’exclut et fournit la tenue Cœur qui vous manque. La force de manche est réunie (27–29 H) sans ambition de chelem. Passe accepte le contrat de 3SA ; 4♠ inventerait un fit et une mineure au palier de quatre dépasserait inutilement la manche à Sans-Atout.",
+        "difficulty": 3,
+        "difficultyReason": "Identifier une manche déjà atteinte, sans fit majeur ni ambition de chelem.",
+        "caseFamily": "reserve-v1-m4-rub-impossible-accepter-manche-sa"
+      },
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Passe de conclusion à la manche après recherche de fit infructueuse, distinct du Passe faible après rectification d’un Texas mineur.",
+      "source": "Catalogue SEF-V481-001/003 et SEF-Q26-M2-001/003 ; archives/audits/quiz-sef/CONTRE_EXPERTISE_V481_RUBENSOHL_REDEMANDES_2026-11-05.md ; accord pédagogique Rubensohl QPJB validé #271 (Texas impossible = Stayman forcing de manche)."
+    },
+    {
+      "id": "V1-M4-003",
+      "qcm": {
+        "id": "V1-M4-003",
+        "theme": "apres_inter",
+        "hand": [
+          [
+            "A",
+            "R",
+            "8"
+          ],
+          [
+            "A",
+            "9",
+            "7"
+          ],
+          [
+            "D",
+            "8",
+            "6",
+            "4"
+          ],
+          [
+            "8",
+            "5",
+            "2"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♣ (ouverture)",
+          "Adversaire : 2♦ (Michaël précisé : au moins cinq Cœurs et cinq Piques)"
+        ],
+        "context": "Votre partenaire ouvre de 1♣. Le 2♦ adverse montre les deux majeures. Votre jeu est régulier, avec 13 H et un arrêt dans chacune des deux couleurs adverses. Quel contrat proposez-vous ?",
+        "choices": [
+          "2SA",
+          "3♣",
+          "3♦",
+          "3SA"
+        ],
+        "answer": "3SA",
+        "explain": "L’As-Roi de Pique et l’As de Cœur fournissent les deux arrêts adverses. Vos 13 H face à une ouverture justifient la recherche de la manche ; vous n’avez ni longue cinquième à Carreau ni fit majeur à rechercher. 3SA est naturel sur cette ouverture mineure, contrairement aux cue-bids des majeures adverses. 2SA ne ferait qu’inviter.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître les deux arrêts explicites et une force de manche dans une main régulière.",
+        "caseFamily": "reserve-v1-m4-def-bicolore-deux-arrets-3sa"
+      },
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Décision naturelle à Sans-Atout derrière deux couleurs adverses connues ; absente du concept.",
+      "source": "Catalogue SEF-L37-001, SEF-L36-004, SEF-V473-009/010 ; fiche pédagogique BridgeSEF, 12/07/2025, p.3 https://bridgesef.fr/wp-content/uploads/2025/07/SEF-convention-4-defense-intervention-landy-landik-bicolore-bw-drury-stayman-texas.pdf (réponses derrière bicolore, non source officielle FFB)."
+    },
+    {
+      "id": "V1-M4-004",
+      "qcm": {
+        "id": "V1-M4-004",
+        "theme": "apres_inter",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "V",
+            "8",
+            "7",
+            "2"
+          ],
+          [
+            "9",
+            "6",
+            "5"
+          ],
+          [
+            "10",
+            "8",
+            "4",
+            "2"
+          ]
+        ],
+        "h": 1,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "auction": [
+          "Partenaire : 1♠ (ouverture)",
+          "Adversaire : 2SA (bicolore mineur ♣ et ♦, au moins 5–5)"
+        ],
+        "context": "Votre partenaire a ouvert de 1♠. L’adversaire annonce 2SA bicolore mineur. Les deux camps sont non vulnérables. Vous avez deux Piques et une main très faible. Quelle est votre enchère ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "3♥",
+          "3♠"
+        ],
+        "answer": "Passe",
+        "explain": "Votre seul honneur est le Valet de Cœur (1 H). Deux Piques ne donnent pas le fit et quatre Cœurs ne permettent pas une annonce naturelle compétitive de cette couleur au palier de trois. Passe est la seule décision raisonnable : ni le Contre ni un soutien ne décriraient cette main.",
+        "difficulty": 3,
+        "difficultyReason": "Écarter les enchères compétitives lorsque force, fit et couleur suffisamment longue font tous défaut.",
+        "caseFamily": "reserve-v1-m4-def-bicolore-passe-faiblesse"
+      },
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "reason": "Décision d’abstention faible face au bicolore adverse, sans fit ; aucune assimilation au Passe punitif différé.",
+      "source": "Catalogue SEF-L37-001, SEF-L36-004, SEF-V473-009/010 ; fiche pédagogique BridgeSEF, 12/07/2025, p.3 https://bridgesef.fr/wp-content/uploads/2025/07/SEF-convention-4-defense-intervention-landy-landik-bicolore-bw-drury-stayman-texas.pdf (réponses derrière bicolore, non source officielle FFB)."
+    },
+    {
+      "id": "V1-M4-005",
+      "qcm": {
+        "id": "V1-M4-005",
+        "theme": "apres_inter",
+        "hand": [
+          [
+            "7",
+            "2"
+          ],
+          [
+            "A",
+            "R",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "9",
+            "3",
+            "2"
+          ],
+          [
+            "D",
+            "8",
+            "6"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠ (ouverture)",
+          "Adversaire : 2SA (bicolore mineur ♣ et ♦, au moins 5–5)"
+        ],
+        "context": "Le partenaire ouvre de 1♠ et l’adversaire montre les deux mineures par 2SA. Vous avez 11 H, seulement deux Piques, quatre Cœurs et pas de tenue sûre dans les deux mineures. Dans le système étudié, comment maintenir les enchères ouvertes ?",
+        "choices": [
+          "Passe",
+          "Contre",
+          "3♦",
+          "3SA"
+        ],
+        "answer": "Contre",
+        "explain": "Avec 11 H, vous avez trop de jeu pour renoncer, mais seulement deux Piques et quatre Cœurs : ni soutien ni annonce de longue à Cœur ne convient. Vos Dames mineures ne garantissent pas la tenue des deux couleurs adverses. Le Contre d’appel laisse le partenaire décrire son jeu ; 3♦ serait le cue-bid fort de la quatrième couleur, Cœur, et promettrait au moins cinq Cœurs. Ce Contre ne demande pas de jouer 2SA contré pour la pénalité.",
+        "difficulty": 3,
+        "difficultyReason": "Choisir l’appel avec du jeu et aucune enchère descriptive directe ; force et longue nettement hors des frontières.",
+        "caseFamily": "reserve-v1-m4-def-bicolore-contre-appel"
+      },
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "reason": "Contre d’appel immédiat absent des familles recensées ; seuil non généralisé (11 H indiscutables).",
+      "source": "Catalogue SEF-L37-001, SEF-L36-004, SEF-V473-009/010 ; fiche pédagogique BridgeSEF, 12/07/2025, p.3 https://bridgesef.fr/wp-content/uploads/2025/07/SEF-convention-4-defense-intervention-landy-landik-bicolore-bw-drury-stayman-texas.pdf (réponses derrière bicolore, non source officielle FFB)."
+    },
+    {
+      "id": "V1-M4-006",
+      "qcm": {
+        "id": "V1-M4-006",
+        "theme": "reveil",
+        "hand": [
+          [
+            "A",
+            "R",
+            "10",
+            "9",
+            "4"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "8",
+            "3"
+          ],
+          [
+            "7"
+          ],
+          [
+            "6",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          5,
+          5,
+          1,
+          2
+        ],
+        "auction": [
+          "Adversaire : 1♦ (ouverture)",
+          "Partenaire : Passe",
+          "Adversaire : 2♦ (soutien simple naturel)"
+        ],
+        "context": "Vous êtes le quatrième joueur derrière un soutien naturel adverse à Carreau. Vulnérabilité favorable. Dans les bicolores conventionnels étudiés après soutien mineur, vous cherchez à annoncer vos deux majeures cinquièmes. Quelle enchère convient ?",
+        "choices": [
+          "2♥",
+          "2♠",
+          "2SA",
+          "3♦"
+        ],
+        "answer": "3♦",
+        "explain": "Vous détenez cinq Piques et cinq Cœurs bien honorés, avec 12 H. Derrière le soutien mineur adverse, le cue-bid de la mineure d’ouverture à 3♦ montre les deux majeures au moins cinquièmes. 2SA désignerait les deux couleurs libres les moins chères (Trèfle et Cœur) ; une majeure naturelle ne montrerait qu’une moitié de votre bicolore.",
+        "difficulty": 3,
+        "difficultyReason": "Identifier les deux majeures franches et le cue-bid disponible après soutien mineur, sans frontière de force.",
+        "caseFamily": "reserve-v1-m4-reveil-soutien-mineur-cuebid-majeures"
+      },
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Nouvelle branche d’enchères après soutien mineur : cue-bid au palier de trois, distinct du réveil sur deux Passe et du soutien majeur.",
+      "source": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique)."
+    },
+    {
+      "id": "V1-M4-007",
+      "qcm": {
+        "id": "V1-M4-007",
+        "theme": "reveil",
+        "hand": [
+          [
+            "8",
+            "3"
+          ],
+          [
+            "A",
+            "R",
+            "10",
+            "9",
+            "4"
+          ],
+          [
+            "7"
+          ],
+          [
+            "R",
+            "D",
+            "10",
+            "8",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          2,
+          5,
+          1,
+          5
+        ],
+        "auction": [
+          "Adversaire : 1♦ (ouverture)",
+          "Partenaire : Passe",
+          "Adversaire : 2♦ (soutien simple naturel)"
+        ],
+        "context": "Les adversaires se sont soutenus naturellement à Carreau. Vous êtes quatrième, à vulnérabilité favorable, avec un bicolore franc Cœur–Trèfle. Dans les bicolores conventionnels après soutien mineur, quelle enchère permet au partenaire de choisir entre vos deux couleurs ?",
+        "choices": [
+          "2♥",
+          "2SA",
+          "3♣",
+          "3♦"
+        ],
+        "answer": "2SA",
+        "explain": "Vos cinq Cœurs et cinq Trèfles, bien honorés, constituent les deux couleurs libres les moins chères derrière le soutien Carreau. 2SA conventionnel les montre simultanément. 3♦ serait le cue-bid des deux majeures et inventerait cinq Piques ; 2♥ ou 3♣ ne décrirait qu’une seule de vos longues.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître les deux couleurs libres les moins chères derrière soutien mineur avec un bicolore net.",
+        "caseFamily": "reserve-v1-m4-reveil-soutien-mineur-2sa-mineure-majeure"
+      },
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Bicolore mixte par 2SA après soutien mineur ; différent de 2SA bicolore mineur derrière soutien majeur et du 2SA naturel en réveil direct.",
+      "source": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique)."
+    },
+    {
+      "id": "V1-M4-008",
+      "qcm": {
+        "id": "V1-M4-008",
+        "theme": "reveil",
+        "hand": [
+          [
+            "6"
+          ],
+          [
+            "A",
+            "R",
+            "8",
+            "7"
+          ],
+          [
+            "R",
+            "V",
+            "9",
+            "4"
+          ],
+          [
+            "D",
+            "10",
+            "8",
+            "4"
+          ]
+        ],
+        "h": 13,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "auction": [
+          "Adversaire : 1♠ (ouverture)",
+          "Partenaire : Passe",
+          "Adversaire : 2♠ (soutien simple naturel)"
+        ],
+        "context": "Vous êtes le quatrième joueur derrière le soutien naturel adverse à Pique. Les deux camps sont non vulnérables. Vous avez un singleton Pique, quatre cartes dans chacune des trois autres couleurs et des valeurs d’ouverture. Les enchères bicolores exigent au moins cinq cartes dans chacune des deux couleurs promises. Que choisissez-vous ?",
+        "choices": [
+          "Contre",
+          "2SA",
+          "3♠",
+          "4♣"
+        ],
+        "answer": "Contre",
+        "explain": "Avec 13 H, un singleton Pique et trois couleurs quatrièmes, votre distribution appelle le Contre d’appel. Aucun bicolore 5–5 n’existe : 2SA promettrait les deux mineures, 3♠ Cœur–Trèfle et 4♣ Cœur–Carreau. Contre permet de chercher un fit parmi les trois couleurs libres sans annoncer une distribution inexistante.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer un tricolore d’appel des trois bicolores conventionnels derrière soutien majeur.",
+        "caseFamily": "reserve-v1-m4-reveil-soutien-majeur-refus-bicolore-tricolore"
+      },
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reason": "Cas négatif interne au concept : savoir quand ne pas employer un Michaël derrière soutien majeur ; ne remplace pas le contre de réveil direct.",
+      "source": "Catalogue SEF-L04-028, SEF-L26-002, SEF-L24-004, SEF-L20-006, SEF-L29-006 et SEF-L42-004 ; iBridge, fiche 32QF, https://www.ibridge.fr/public/fichedetails/292 (rubrique mains bicolores après soutien mineur/majeur et contre d’appel ; source pédagogique)."
+    }
+  ],
+  "patches": [],
+  "reserves": []
+}
