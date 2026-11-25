@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-const build=function build(exercises){
+const legacyBuild=function build(exercises){
  const roadmap={ouv:0,majeur:1,mineur:1,sa:3,red:4,second:6,stayman:7,apres_fit:8,intervenir:10,contre:12,reponse_inter:13,apres_inter:14,barrage:17,reveil:19,roudi:22,drury:24,fortes:26,forcing:28,multilandy:32,rubensohl:34,michaels:36,chelem:39};
  const rows=exercises.map(q=>{
   const t=q.theme,d=q.difficulty,b=q.answer,id=q.id, reason=q.difficultyReason||'';
@@ -157,10 +157,13 @@ const build=function build(exercises){
  }
  return {schema:'QPJB_PREREQUIS_V1',byId};
 };
+// Table explicite : préserver les classifications historiques lors des reformulations.
+const explicit=require('../../qualite-quiz-20261125/integration/prerequis.json');
+function build(exercises){const ids=new Set(exercises.map(q=>q.id));if(ids.size!==exercises.length||ids.size!==Object.keys(explicit.byId).length||[...ids].some(id=>!explicit.byId[id]))throw Error('Explicit prerequis coverage mismatch');return {schema:explicit.schema,byId:Object.fromEntries(exercises.map(q=>[q.id,explicit.byId[q.id]]))};}
 const root=path.resolve(__dirname,'../../..');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const table=build(data.exercises);
-const source="/* QPJB progression M1 — catalogue 2b89070d82ae45fc7aa9fe921ed43984e05eded0 */\n(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.QPJBPrerequis=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';return "+JSON.stringify(table)+';});\n';
+const source="/* QPJB qualité 2026-11-25 — table explicite, source audits/qualite-quiz-20261125/integration/prerequis.json */\n(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.QPJBPrerequis=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';return "+JSON.stringify(table)+';});\n';
 if(require.main===module){if(process.argv.includes('--write'))fs.writeFileSync(path.join(root,'quizz-prerequis.js'),source);else if(fs.readFileSync(path.join(root,'quizz-prerequis.js'),'utf8')!==source)throw Error('Generated module differs');}
 module.exports={build,source};

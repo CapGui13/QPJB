@@ -1,0 +1,3 @@
+# Intégration pilote — candidat non publié
+
+Base 4bb2df19929f921aff81468be22830445d4f87b0. Six lots sources conservés exactement. 405 QCM historiques modifiés, 6 patches réservés, 72 nouveaux QCM (deux quasi-doublons écartés), 1595 au total. 1595/1595 accessibles au graphe théorique, 0 erreurs structurelles. 3 réponses modifiées (deux transferts Stayman, troisième couleur forcing), sources complémentaires dans le manifeste. Les réserves nouvelles doivent être arbitrées avant publication. Tests natifs, CI FULL, sauvegarde/reprise et comparaison historique/candidat à vérifier. Pas de fusion main.

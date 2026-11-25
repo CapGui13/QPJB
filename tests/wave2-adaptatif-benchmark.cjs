@@ -22,8 +22,8 @@ function answer(profile,session,rand){
  const assisted=profile==='aides'&&rand()<.72;
  return {result:rand()<p?'wrong':'correct',assisted,hadFreeError:false};
 }
-function simulate(profile,horizon,seed,engine=api,observer=null){
- const api=engine;
+function simulate(profile,horizon,seed,engine=api,observer=null,catalogue=exercises){
+ const api=engine,exercises=catalogue;
  let state=api.empty();const rand=rng(seed);
  const counts={nouveau:0,revision:0,hard:0,weak:0,assisted:0,foundation:0,weakDueAvailable:0,weakDueSelected:0};
  const themes=new Set(),families=new Set(),contexts=new Set(),decisions=new Set(),ids=new Set();

@@ -3,7 +3,8 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const H=require('./progression-guidee-historical.cjs'),G=require('./wave2-adaptatif-golden.cjs');
 const {simulate,profiles,horizons,seeds,exercises}=require('./wave2-adaptatif-benchmark.cjs');
-const root=path.resolve(__dirname,'..'),base=H.engine(),byId=new Map(exercises.map(q=>[q.id,q]));
+const root=path.resolve(__dirname,'..'),base=H.engine();
+const live=JSON.parse(H.payload(fs.readFileSync(path.join(root,'quizz.html'),'utf8'))).exercises;
 const foundations=['ouv','mineur','majeur','sa','red','second','stayman'];
 const advanced=['SEF-V44-002','SEF-L06-029','SEF-L37-004','SEF-L38-001','SEF-L40-001','SEF-L41-002','SEF-L28-001','SEF-L09-029'];
 const bid=q=>String(q.answer).replace(/[\s\uFE0E\uFE0F]/g,'');
@@ -13,7 +14,8 @@ const opener=q=>String(q.auction?.[0]||'').match(/:\s*(1[♣♦♥♠])/)?.[1];
 const clone=x=>JSON.parse(JSON.stringify(x));
 const max=a=>a.length?Math.max(...a):0;
 const quantile=(a,p)=>a.length?a.slice().sort((a,b)=>a-b)[Math.floor((a.length-1)*p)]:null;
-function metrics(profile,horizon,meta=null){
+function metrics(profile,horizon,meta=null,catalogue=exercises){
+ const exercises=catalogue,byId=new Map(exercises.map(q=>[q.id,q]));
  const d={first20:[],firstTheme:{},maxGap:{},firstAdvanced:{},firstDifficulty:{},firstConcept:{},eligibleThemeSince:{},
   responseAdjacencies:0,themeTriples:0,shapeAdjacencies:0,forceAdjacencies:0,newFamily:0,repeatFamily:0,
   recallAlternate:0,recallDirect:0,errors:0,assisted:0,weakAdvanced:0,difficultyCounts:{},selectionReasons:{},violations:[]};
@@ -123,8 +125,9 @@ function metrics(profile,horizon,meta=null){
  return {observe,finish};
 }
 function metadataFor(candidate){
+ const exercises=live;
  const m=require(path.join(root,'quizz-prerequis.js'));
- assert.equal(m.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(m.byId).length,1523);
+ assert.equal(m.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(m.byId).length,exercises.length);
  assert.equal(typeof candidate.eligibility,'function','Missing M2 diagnostic');
  for(const q of exercises){
   const x=m.byId[q.id];assert(x&&typeof x.concept==='string'&&x.concept.length&&[0,1,2,3].includes(x.stage)&&Number.isInteger(x.minSession)&&x.minSession>=0&&Array.isArray(x.requires),'Metadata '+q.id);
@@ -133,8 +136,9 @@ function metadataFor(candidate){
  return m.byId;
 }
 function runTrajectory(api,profile,horizon,seed,meta){
- const m=metrics(profile,horizon,meta);
- return {summary:simulate(profile,horizon,seed,api,m.observe),detail:m.finish()};
+ const catalogue=meta?live:exercises;
+ const m=metrics(profile,horizon,meta,catalogue);
+ return {summary:simulate(profile,horizon,seed,api,m.observe,catalogue),detail:m.finish()};
 }
 function compare(before,after){
  const a=before.summary,b=after.summary,d=after.detail,problems=d.violations.slice(),notes=[];
@@ -183,6 +187,7 @@ function stateSemantics(candidate){
 }
 function compatibility(candidate){
  stateSemantics(candidate);
+ const exercises=live,byId=new Map(exercises.map(q=>[q.id,q]));
  // No fallback can admit an advanced real case with unmet prerequisites.
  const gated=advanced.map(id=>byId.get(id));
  assert(gated.every(Boolean),'Named regression cases absent');
@@ -203,7 +208,7 @@ function compatibility(candidate){
  try{diagnostic=candidate.eligibility(unknown,empty,[...exercises,unknown])}
  catch(err){assert.match(String(err.message),/metadata|m[ée]tadonn[ée]e|pr[eé]requis|catalog|unknown|missing|inconnu|absent/i)}
  if(diagnostic!==undefined)assert.equal(diagnostic.eligible,false,'Unknown real ID admitted');
- const legacy=base.empty(),deck=base.start(legacy,exercises);
+ const legacy=base.empty(),deck=base.start(legacy,H.catalogue().exercises);
  assert(base.record(legacy,deck[0],'wrong',0,null,false,false));legacy.active.index=1;
  const loaded=candidate.load(JSON.stringify(legacy));
  assert.deepEqual(loaded.active,legacy.active,'exact legacy active');
