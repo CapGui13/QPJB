@@ -2,862 +2,508 @@
   "historical-targeted": {
     "id": "SEF-001-1",
     "choice": "1♣",
-    "category": "priorite",
-    "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 15 H et une main régulière, vous êtes dans la zone d’ouverture de 1SA (15–17 H). Ouvrez de 1SA, qui décrit immédiatement votre force et votre répartition.",
-      "feedback": "Une ouverture mineure ne précise pas aussi directement la zone de force et la régularité.",
-      "reminder": null,
-      "checkNext": "Vérifie d’abord les conditions d’une ouverture à Sans-Atout.",
-      "targetConcept": "ouv.sa1",
-      "targetCriteria": [
-        "priorite"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.sa1",
+    "family": "cas-001",
+    "feedback": "Une ouverture mineure ne précise pas aussi directement la zone de force et la régularité.",
+    "checkNext": "Vérifie d’abord les conditions d’une ouverture à Sans-Atout.",
+    "criteria": [
+      "priorite"
+    ]
   },
   "transfer-force-zone": {
     "id": "SEF-003-2",
     "choice": "Passe",
-    "category": "force",
-    "reason": "Le cas validé est une ouverture et la main compte au moins 12 H ; un seuil d’ouverture mal appliqué est une hypothèse.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 15 H et une main régulière, vous êtes dans la zone d’ouverture de 1SA (15–17 H). Ouvrez de 1SA, qui décrit immédiatement votre force et votre répartition. Une mineure cinquième n’empêche pas cette ouverture.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, repère la zone de force propre à cette enchère avant d’ouvrir et situe ta main par rapport à ses limites.",
-      "targetConcept": "ouv.sa1",
-      "targetCriteria": [
-        "zone-force",
-        "role-encherisseur"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.sa1",
+    "family": "cas-003",
+    "feedback": null,
+    "checkNext": "Sur une autre main, repère la zone de force propre à cette enchère avant d’ouvrir et situe ta main par rapport à ses limites.",
+    "criteria": [
+      "zone-force",
+      "role-encherisseur"
+    ]
   },
   "opening-minor-comparison": {
     "id": "SEF-009-1",
     "choice": "1♣",
-    "category": "priorite",
-    "reason": "La main contient 5 Carreaux et 3 Trèfles ; la règle de meilleure mineure conduit à 1♦.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, avec 5 Carreaux contre 3 Trèfles.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main sans majeure cinquième, compare les deux mineures, y compris si elles sont de même longueur.",
-      "targetConcept": "ouv.mineure",
-      "targetCriteria": [
-        "longueur-mineures",
-        "egalite-mineures"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.mineure",
+    "family": "cas-009",
+    "feedback": null,
+    "checkNext": "Sur une autre main sans majeure cinquième, compare les deux mineures, y compris si elles sont de même longueur.",
+    "criteria": [
+      "longueur-mineures",
+      "egalite-mineures"
+    ]
   },
   "opening-major-length": {
     "id": "SEF-011-2",
     "choice": "1♥",
-    "category": "distribution",
-    "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, avec 3 Carreaux contre 2 Trèfles.",
-      "feedback": "Tu as 4 Cœurs. La majeure choisie ne compte pas cinq cartes.",
-      "reminder": null,
-      "checkNext": "Sur une autre ouverture, vérifie la force puis compte les cartes de chaque majeure.",
-      "targetConcept": "ouv.mineure",
-      "targetCriteria": [
-        "force-ouverture",
-        "longueur-majeure-ouverture"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.mineure",
+    "family": "cas-011",
+    "feedback": "Tu as 4 Cœurs. La majeure choisie ne compte pas cinq cartes.",
+    "checkNext": "Sur une autre ouverture, vérifie la force puis compte les cartes de chaque majeure.",
+    "criteria": [
+      "force-ouverture",
+      "longueur-majeure-ouverture"
+    ]
   },
   "transfer-force-hl": {
     "id": "SEF-014-1",
     "choice": "1♠",
-    "category": "force",
-    "reason": "6 H, distribution ♠♥♦♣ 5-3-3-2, sans enchère préalable : 1♠ au lieu de Passe. Le seuil d'ouverture naturelle de 12 H ou 13 HL n'est pas atteint.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 6 H et un point de longueur, vous totalisez 7 HL. Vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL : passez.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, compte les points H puis les points de longueur retenus avant d’ouvrir. La zone nécessaire est-elle atteinte ?",
-      "targetConcept": "ouv.passe",
-      "targetCriteria": [
-        "evaluation-hl",
-        "seuil-force"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.passe",
+    "family": "cas-014",
+    "feedback": null,
+    "checkNext": "Sur une autre main, compte les points H puis les points de longueur retenus avant d’ouvrir. La zone nécessaire est-elle atteinte ?",
+    "criteria": [
+      "evaluation-hl",
+      "seuil-force"
+    ]
   },
   "transfer-shape-length": {
     "id": "SEF-014-1",
     "choice": "2♠",
-    "category": "distribution",
-    "reason": "6 H, distribution ♠♥♦♣ 5-3-3-2, sans enchère préalable : 2♠ au lieu de Passe. Le 2 faible en majeure demande une sixième ; la main n'en possède que cinq.",
-    "auction": [],
-    "out": {
-      "canonical": "Avec 6 H et un point de longueur, vous totalisez 7 HL. Vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL : passez.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main dans la même séquence, compte les cartes de la couleur que tu envisages d’annoncer et vérifie la longueur que cette enchère promet.",
-      "targetConcept": "ouv.passe",
-      "targetCriteria": [
-        "longueur-couleur",
-        "promesse-enchere"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "ouv.passe",
+    "family": "cas-014",
+    "feedback": null,
+    "checkNext": "Sur une autre main dans la même séquence, compte les cartes de la couleur que tu envisages d’annoncer et vérifie la longueur que cette enchère promet.",
+    "criteria": [
+      "longueur-couleur",
+      "promesse-enchere"
+    ]
   },
   "response-minor-force": {
     "id": "SEF-019-2",
     "choice": "Passe",
-    "category": "force",
-    "reason": "Le corrigé considère la main assez forte pour répondre ; le seuil de réponse est une piste.",
-    "auction": [
-      "Partenaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Avec cinq Piques et 7 H après 1♣, répondez 1♠, naturel et non limité en force si vous n'avez pas passé. Recherchez le fit majeur plutôt que de répondre 1SA. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
-      "feedback": "Avec 7 H, le corrigé retient une réponse plutôt que Passe.",
-      "reminder": null,
-      "checkNext": "Sur une autre main, décide d’abord si tu as assez de force pour répondre.",
-      "targetConcept": "mineur.base",
-      "targetCriteria": [
-        "force-reponse"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "mineur.base",
+    "family": "cas-019",
+    "feedback": null,
+    "checkNext": "Sur une autre main, décide d’abord si tu as assez de force pour répondre.",
+    "criteria": [
+      "force-reponse"
+    ]
   },
   "response-minor-major-first": {
     "id": "SEF-019-2",
     "choice": "1SA",
-    "category": "priorite",
-    "reason": "Une majeure d’au moins quatre cartes est annoncée au palier de 1 dans le corrigé plutôt que SA.",
-    "auction": [
-      "Partenaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Avec cinq Piques et 7 H après 1♣, répondez 1♠, naturel et non limité en force si vous n'avez pas passé. Recherchez le fit majeur plutôt que de répondre 1SA. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre réponse à une mineure, cherche une majeure annonçable avant Sans-Atout.",
-      "targetConcept": "mineur.base",
-      "targetCriteria": [
-        "force-reponse",
-        "majeure-reponse"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "mineur.base",
+    "family": "cas-019",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à une mineure, cherche une majeure annonçable avant Sans-Atout.",
+    "criteria": [
+      "force-reponse",
+      "majeure-reponse"
+    ]
   },
   "transfer-force-pass": {
     "id": "SEF-020-3",
     "choice": "Passe",
-    "category": "force",
-    "reason": "Le corrigé considère la main assez forte pour répondre ; le seuil de réponse est une piste.",
-    "auction": [
-      "Partenaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Avec 6 H et une main régulière, sans majeure quatrième ni quatre Carreaux, vous avez la force d’une réponse limitée. Répondez 1SA.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main comparable, vérifie d’abord si tu as les valeurs nécessaires pour parler dans cette séquence, avant de chercher une enchère.",
-      "targetConcept": "mineur.base",
-      "targetCriteria": [
-        "seuil-force",
-        "passe"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "mineur.base",
+    "family": "cas-020",
+    "feedback": null,
+    "checkNext": "Sur une autre main comparable, vérifie d’abord si tu as les valeurs nécessaires pour parler dans cette séquence, avant de chercher une enchère.",
+    "criteria": [
+      "seuil-force",
+      "passe"
+    ]
   },
   "transfer-shape-regular": {
     "id": "SEF-020-1",
     "choice": "1SA",
-    "category": "distribution",
-    "reason": "Le corrigé oppose la distribution requise par l’enchère choisie à celle de la main ; une longueur ou une forme mal évaluée est une piste. Contraste du corrigé : « 1SA décrirait mal la courte et la forme ».",
-    "auction": [
-      "Partenaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Les cinq Trèfles ♣DV984, le singleton ♥5 et 7 H décrivent un soutien mineur faible et irrégulier : 2♣. 1SA décrirait mal la courte et la forme; 3♣ surévaluerait l'annonce. Le soutien simple n'est pas une invitation de manche.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, repère la couleur la plus courte et la plus longue ; une enchère à Sans-Atout décrit-elle vraiment cette forme ?",
-      "targetConcept": "mineur.soutien",
-      "targetCriteria": [
-        "forme-main",
-        "regularite-sa"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "mineur.soutien",
+    "family": "cas-020",
+    "feedback": null,
+    "checkNext": "Sur une autre main, repère la couleur la plus courte et la plus longue ; une enchère à Sans-Atout décrit-elle vraiment cette forme ?",
+    "criteria": [
+      "forme-main",
+      "regularite-sa"
+    ]
   },
   "transfer-level-same-suit": {
     "id": "SEF-020-1",
     "choice": "3♣",
-    "category": "niveau",
-    "reason": "La couleur ou SA est conservé, mais le palier choisi (3♣) diffère du palier attendu (2♣) dans cette décision. La force, le fit ou le jugement de niveau restent à distinguer.",
-    "auction": [
-      "Partenaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Les cinq Trèfles ♣DV984, le singleton ♥5 et 7 H décrivent un soutien mineur faible et irrégulier : 2♣. 1SA décrirait mal la courte et la forme; 3♣ surévaluerait l'annonce. Le soutien simple n'est pas une invitation de manche.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main avec cette même couleur, compare ce que promet le palier simple et ce que promet le saut, avant de choisir.",
-      "targetConcept": "mineur.soutien",
-      "targetCriteria": [
-        "palier",
-        "saut",
-        "objectif-contrat"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "mineur.soutien",
+    "family": "cas-020",
+    "feedback": null,
+    "checkNext": "Sur une autre main avec cette même couleur, compare les deux paliers et ce que chacun promet, sans supposer qu’une enchère plus haute est toujours plus forte.",
+    "criteria": [
+      "palier",
+      "promesse-enchere",
+      "objectif-contrat"
+    ]
   },
   "transfer-level-sa": {
     "id": "SEF-032-1",
     "choice": "3SA",
-    "category": "niveau",
-    "reason": "La couleur ou SA est conservé, mais le palier choisi (3SA) diffère du palier attendu (2SA) dans cette décision. La force, le fit ou le jugement de niveau restent à distinguer.",
-    "auction": [
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Avec 8 H et une main régulière sans majeure quatrième, votre camp totalise 23 à 25 H face à 1SA (15–17 H). La manche est possible mais pas certaine : proposez-la par 2SA. L’ouvreur acceptera s’il est maximum.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, distingue une proposition à Sans-Atout d’une conclusion ; quelle ambition la force cumulée autorise-t-elle ?",
-      "targetConcept": "sa1.seuil",
-      "targetCriteria": [
-        "palier-sa",
-        "objectif-contrat"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa1.seuil",
+    "family": "cas-032",
+    "feedback": null,
+    "checkNext": "Sur une autre main, compare la signification des deux paliers à Sans-Atout dans cette séquence : quelle ambition et quelle force chacun indique-t-il ?",
+    "criteria": [
+      "palier-sa",
+      "objectif-contrat"
+    ]
   },
   "transfer-force-contract": {
     "id": "SEF-034-1",
     "choice": "3SA",
-    "category": "force",
-    "reason": "9 H, ♠♥♦♣ 4-3-3-3, Partenaire : 1SA : 3SA au lieu de 2♣. Les valeurs permettent une invitation seulement ; demander directement la manche dépasse cette force et peut en outre masquer le fit.",
-    "auction": [
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Vos quatre Piques justifient le Stayman à 2♣ : avec 9 H, vous êtes dans la zone où l'on peut inviter à la manche. Si l'ouvreur montre quatre Piques, vous inviterez dans la majeure ; s'il n'y a pas de fit majeur, à Sans-Atout. 2SA direct risquerait de manquer le fit 4–4.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main dans cette situation, estime les valeurs promises par ton partenaire : faut-il s’arrêter, inviter ou imposer la manche ?",
-      "targetConcept": "sa1.stayman",
-      "targetCriteria": [
-        "force-partenaire",
-        "objectif-contrat"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa1.stayman",
+    "family": "cas-034",
+    "feedback": null,
+    "checkNext": "Sur une autre main dans cette situation, estime les valeurs promises par ton partenaire : faut-il s’arrêter, inviter ou imposer la manche ?",
+    "criteria": [
+      "force-partenaire",
+      "objectif-contrat"
+    ]
   },
   "transfer-priority-sa-suit": {
     "id": "SEF-034-1",
     "choice": "2SA",
-    "category": "priorite",
-    "reason": "9 H, ♠♥♦♣ 4-3-3-3, Partenaire : 1SA : 2SA au lieu de 2♣. L'enchère directe à SA masque la majeure quatrième ; le Stayman recherche le fit 4–4 avant de fixer le contrat.",
-    "auction": [
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Vos quatre Piques justifient le Stayman à 2♣ : avec 9 H, vous êtes dans la zone où l'on peut inviter à la manche. Si l'ouvreur montre quatre Piques, vous inviterez dans la majeure ; s'il n'y a pas de fit majeur, à Sans-Atout. 2SA direct risquerait de manquer le fit 4–4.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, compare l’information que le partenaire reçoit par Sans-Atout et par l’enchère à la couleur : laquelle est prioritaire ici ?",
-      "targetConcept": "sa1.stayman",
-      "targetCriteria": [
-        "information-enchere",
-        "priorite-sa-couleur"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa1.stayman",
+    "family": "cas-034",
+    "feedback": null,
+    "checkNext": "Sur une autre main, compare l’information que transmet chaque enchère, naturelle ou conventionnelle dans cette séquence : laquelle est prioritaire ici ?",
+    "criteria": [
+      "information-enchere",
+      "priorite-sa-couleur"
+    ]
   },
   "transfer-texas": {
     "id": "SEF-037-1",
     "choice": "Passe",
-    "category": "convention",
-    "reason": "Le corrigé utilise un Texas avec une majeure longue ; Passe peut signaler une méconnaissance du transfert même avec peu de points.",
-    "auction": [
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Avec cinq Cœurs et 4 H, vous cherchez une partielle, pas la manche. 2♦ est le Texas Cœur : après la rectification normale à 2♥, passez. Elle ne promet pas trois Cœurs, mais permet de jouer dans votre longue au palier de deux. 2♥ direct serait un Texas Pique.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre séquence de Texas, nomme la couleur demandée par le transfert avant de décider s’il faut rectifier ou poursuivre.",
-      "targetConcept": "sa1.texas",
-      "targetCriteria": [
-        "texas-couleur-cible",
-        "texas-suite"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa1.texas",
+    "family": "cas-037",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence de Texas, nomme la couleur demandée par le transfert avant de décider s’il faut rectifier ou poursuivre.",
+    "criteria": [
+      "texas-couleur-cible",
+      "texas-suite"
+    ]
   },
   "transfer-fit-major": {
     "id": "SEF-044-1",
     "choice": "2♠",
-    "category": "fit",
-    "reason": "La majeure annoncée par le répondant au palier de un peut être quatrième ; le soutien direct étudié demande quatre cartes chez l’ouvreur, et la main en contient 3.",
-    "auction": [
-      "Vous : 1♣",
-      "Partenaire : 1♠"
-    ],
-    "out": {
-      "canonical": "Après 1♣–1♠, avec 12 H réguliers et trois Piques, la main est minimale et non fittée : 1SA montre 12–14 H. 2♠ requerrait quatre atouts.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, additionne tes cartes de la majeure et celles promises par ton partenaire avant de choisir le soutien.",
-      "targetConcept": "red.base",
-      "targetCriteria": [
-        "fit-majeur",
-        "atouts-communs"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "red.base",
+    "family": "cas-044",
+    "feedback": null,
+    "checkNext": "Sur une autre main, additionne tes cartes de la majeure et celles promises par ton partenaire avant de choisir le soutien.",
+    "criteria": [
+      "fit-majeur",
+      "atouts-communs"
+    ]
   },
   "transfer-shape-two-suits": {
     "id": "SEF-049-1",
     "choice": "2SA",
-    "category": "distribution",
-    "reason": "Le corrigé décrit deux couleurs avec cinq cartes dans l’ouverture et au moins quatre dans la seconde ; la redemande naturelle à SA ne décrit pas ce bicolore.",
-    "auction": [
-      "Vous : 1♠",
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Après 1♠–1SA (non forcing en SEF), cinq Piques et quatre Cœurs avec 12 H : 2♥ est un bicolore économique et cherche un meilleur contrat. 3♥ à saut demanderait plus de force.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main à deux couleurs longues, compte les cartes de chacune et vérifie laquelle doit être décrite maintenant.",
-      "targetConcept": "red.bicolore",
-      "targetCriteria": [
-        "deux-longues",
-        "ordre-description"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "red.bicolore",
+    "family": "cas-049",
+    "feedback": null,
+    "checkNext": "Sur une autre main à deux couleurs longues, compte les cartes de chacune et vérifie laquelle doit être décrite maintenant.",
+    "criteria": [
+      "deux-longues",
+      "ordre-description"
+    ]
   },
   "transfer-priority-rebid": {
     "id": "SEF-051-1",
     "choice": "2♥",
-    "category": "priorite",
-    "reason": "La répétition de la couleur d’ouverture ne décrit pas la seconde couleur d’au moins quatre cartes que le corrigé montre.",
-    "auction": [
-      "Vous : 1♥",
-      "Partenaire : 1♠"
-    ],
-    "out": {
-      "canonical": "Après 1♥–1♠, vos 13 H, cinq Cœurs et quatre Carreaux justifient 2♦, bicolore économique. Le partenaire peut revenir à 2♥ sans monter au palier de trois. Répéter les Cœurs masquerait les quatre Carreaux.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre redemande, vérifie si une deuxième couleur peut être décrite économiquement avant de répéter la première.",
-      "targetConcept": "red.bicolore",
-      "targetCriteria": [
-        "seconde-couleur",
-        "economie-redemande"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "red.bicolore",
+    "family": "cas-051",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande, vérifie si une deuxième couleur peut être décrite économiquement avant de répéter la première.",
+    "criteria": [
+      "seconde-couleur",
+      "economie-redemande"
+    ]
+  },
+  "response-major-short-fit": {
+    "id": "SEF-N061-3",
+    "choice": "2♥",
+    "concept": "majeur.base",
+    "family": "cas-117",
+    "feedback": "Avec 2 cartes en soutien, les cinq cartes promises ne suffisent pas à établir huit atouts communs.",
+    "checkNext": "Sur une autre réponse à une majeure, compte les atouts garantis avant de choisir un soutien.",
+    "criteria": [
+      "fit-majeur",
+      "atouts-communs"
+    ]
   },
   "transfer-fit-count": {
     "id": "SEF-N106-1",
     "choice": "1SA",
-    "category": "fit",
-    "reason": "Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.",
-    "auction": [
-      "Vous : 1♣",
-      "Partenaire : 1♥"
-    ],
-    "out": {
-      "canonical": "Votre partenaire promet au moins quatre Cœurs par sa réponse. Avec vos 4 Cœurs, le fit est établi. Vos 12 H correspondent à la première zone de l’ouvreur (12–14 H) : soutenez à 2♥.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main dans cette séquence, identifie la couleur vraiment promise par le partenaire et compte le minimum d’atouts communs.",
-      "targetConcept": "red.base",
-      "targetCriteria": [
-        "couleur-promise",
-        "atouts-communs"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "red.base",
+    "family": "cas-158",
+    "feedback": null,
+    "checkNext": "Sur une autre main dans cette séquence, identifie la couleur vraiment promise par le partenaire et compte le minimum d’atouts communs.",
+    "criteria": [
+      "couleur-promise",
+      "atouts-communs"
+    ]
   },
-  "transfer-stayman-response": {
+  "stayman-response-count": {
     "id": "SEF-V3-011-1",
     "choice": "2♠",
-    "category": "convention",
-    "reason": "Dans le Stayman à quatre réponses du catalogue, la distribution majeure détermine le code : 3 Piques et 3 Cœurs conduisent à 2♦.",
-    "auction": [
-      "Vous : 1SA",
-      "Partenaire : 2♣"
-    ],
-    "out": {
-      "canonical": "Vous avez ouvert 1SA avec 15 H et une main 3-3-4-3, mais seulement 3 Piques (♠R42) et 3 Cœurs (♥1063). La réponse de 2♦ au Stayman nie toute majeure quatrième ; elle décrit exactement cette situation sans répéter la zone de force de 1SA.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre réponse au Stayman, compte d’abord les Piques et les Cœurs ; retrouve le code correspondant à aucune, une ou deux majeures quatrièmes.",
-      "targetConcept": "sa1.stayman.reponse",
-      "targetCriteria": [
-        "stayman-code",
-        "deux-majeures"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa1.stayman.reponse",
+    "family": "cas-211",
+    "feedback": "Tu détiens 3 Piques et 3 Cœurs : vérifie que le code choisi décrit bien ces deux longueurs.",
+    "checkNext": "Sur une autre ouverture à 1SA suivie du Stayman, compte séparément les deux majeures puis retrouve le code.",
+    "criteria": [
+      "stayman-code",
+      "deux-majeures"
+    ]
   },
   "transfer-context-direct": {
     "id": "SEF-V3-029-4",
     "choice": "Contre",
-    "category": "competition",
-    "reason": "La longue majeure peut être décrite directement par l’enchère naturelle du corrigé ; le contre est une décision compétitive de nature différente.",
-    "auction": [
-      "Adversaire : 1♦"
-    ],
-    "out": {
-      "canonical": "Vous avez 14 H, cinq Cœurs ARD82, soit 15 HL, et deux petits Carreaux. La qualité de la majeure permet 1♥ naturel. 1SA d'intervention demanderait 16–18 HL et un arrêt Carreau : les deux conditions manquent ici. Contre rechercherait un fit plus largement alors que les Cœurs sont votre couleur prioritaire.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, repère que l’adversaire a déjà ouvert : ne transpose pas automatiquement les critères d’une ouverture à une intervention.",
-      "targetConcept": "intervenir.base",
-      "targetCriteria": [
-        "position-intervention",
-        "contexte-competitif"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "intervenir.base",
+    "family": "cas-229",
+    "feedback": null,
+    "checkNext": "Sur une autre main, repère que l’adversaire a déjà ouvert : ne transpose pas automatiquement les critères d’une ouverture à une intervention.",
+    "criteria": [
+      "position-intervention",
+      "contexte-competitif"
+    ]
   },
   "transfer-fit-trial": {
     "id": "SEF-V4-004-1",
     "choice": "3♥",
-    "category": "convention",
-    "reason": "Après le soutien simple, 2SA est l’essai généralisé ; le soutien à trois n’est pas un essai mais une enchère préventive dans cet accord.",
-    "auction": [
-      "Vous : 1♥",
-      "Partenaire : 2♥"
-    ],
-    "out": {
-      "canonical": "Vos 15 H, ♥AV742 et ♦A2 permettent une invitation, mais le soutien à 2♥ peut être minimum. 2SA demande au partenaire d'évaluer ses compléments en vue de 4♥ ; 3♥ serait préventif, pas un essai.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main après soutien, distingue une enchère qui invite à la manche d’une enchère destinée à occuper de l’espace.",
-      "targetConcept": "apres_fit.essai",
-      "targetCriteria": [
-        "essai-manche",
-        "barrage"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "apres_fit.essai",
+    "family": "cas-312",
+    "feedback": null,
+    "checkNext": "Sur une autre main après soutien, distingue une enchère qui invite à la manche d’une enchère destinée à occuper de l’espace.",
+    "criteria": [
+      "essai-manche",
+      "barrage"
+    ]
   },
   "transfer-forcing": {
     "id": "SEF-V4-010-1",
     "choice": "Passe",
-    "category": "forcing",
-    "reason": "L’essai de l’ouvreur appelle une réponse ; passer ne permet pas de transmettre l’acceptation ou le refus.",
-    "auction": [
-      "Partenaire : 1♥",
-      "Vous : 2♥",
-      "Partenaire : 2SA"
-    ],
-    "out": {
-      "canonical": "Le 2SA de l'ouvreur après 1♥–2♥ interroge sur l'acceptation de la manche en Cœur. Vos 9 H, ♥A62 et ♠A72 constituent un soutien maximum : 4♥ accepte l'essai. Passe sur 2SA est exclu puisque l'essai appelle une réponse; 3♥ signifierait le refus.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre séquence, demande-toi si le partenaire a le droit de passer maintenant et quelle information il reste à obtenir.",
-      "targetConcept": "apres_fit.essai.suite",
-      "targetCriteria": [
-        "caractere-forcing",
-        "information-manquante"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "apres_fit.essai.suite",
+    "family": "cas-319",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence, vérifie si l’enchère précédente te permet de passer, puis si celle que tu envisages oblige le partenaire à reparler.",
+    "criteria": [
+      "caractere-forcing",
+      "information-manquante"
+    ]
   },
   "transfer-context-balancing": {
     "id": "SEF-V4-048-1",
     "choice": "Passe",
-    "category": "contexte",
-    "reason": "Le corrigé utilise la position de réveil et les valeurs de la longue ; le choix de passer peut correspondre à un seuil appliqué hors de ce contexte.",
-    "auction": [
-      "Adversaire : 1♣",
-      "Partenaire : Passe",
-      "Adversaire : Passe"
-    ],
-    "out": {
-      "canonical": "Après l'ouverture adverse de 1♣ et deux Passe, vous avez 10 H et cinq Cœurs (♥AD932), soit 11 HL. Le réveil naturel de 1♥ annonce cette cinquième dans la zone habituelle 8–13 HL. L'As-Dame de Cœur donne de bonnes levées potentielles. Contrairement à l'intervention directe, le réveil tient compte du fait que le partenaire peut posséder des valeurs sans avoir pu parler ; la couleur cinquième rend le réveil naturel plus descriptif qu'un Contre.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre séquence, vérifie si les deux Passe te placent en réveil avant d’appliquer les critères de force et de distribution.",
-      "targetConcept": "reveil.base",
-      "targetCriteria": [
-        "position-reveil",
-        "contexte-competitif"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "reveil.base",
+    "family": "cas-358",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence, vérifie si les deux Passe te placent en réveil avant d’appliquer les critères de force et de distribution.",
+    "criteria": [
+      "position-reveil",
+      "contexte-competitif"
+    ]
   },
   "transfer-roudi-purpose": {
     "id": "SEF-V4-074-3",
     "choice": "2♣",
-    "category": "convention",
-    "reason": "La répétition faible du corrigé vise une partielle ; le Roudi ouvrirait une recherche constructive dans cette séquence.",
-    "auction": [
-      "Partenaire : 1♣",
-      "Vous : 1♥",
-      "Partenaire : 1SA"
-    ],
-    "out": {
-      "canonical": "Avec ♥106543 cinquièmes et seulement 7 H, vous voulez jouer bas. Répétez naturellement 2♥, enchère faible dans ce cadre. 2♣ déclencherait le Roudi pour explorer le fit 5–3 et une suite constructive; 3♥ ou 2SA pousseraient inutilement le niveau.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main après la redemande à 1SA, identifie l’information encore nécessaire sur la majeure et distingue la demande conventionnelle d’une enchère naturelle.",
-      "targetConcept": "roudi.choix",
-      "targetCriteria": [
-        "roudi-objectif",
-        "information-manquante"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "roudi.choix",
+    "family": "cas-384",
+    "feedback": null,
+    "checkNext": "Sur une autre main après la redemande à 1SA, identifie l’information encore nécessaire sur la majeure et distingue la demande conventionnelle d’une enchère naturelle.",
+    "criteria": [
+      "roudi-objectif",
+      "information-manquante"
+    ]
   },
   "transfer-roudi-response": {
     "id": "SEF-V4-076-3",
     "choice": "2SA",
-    "category": "convention",
-    "reason": "Les deux enchères correspondent à des réponses différentes au Roudi ; le codage, la force ou le nombre de cartes dans la majeure peuvent être en cause.",
-    "auction": [
-      "Vous : 1♣",
-      "Partenaire : 1♥",
-      "Vous : 1SA",
-      "Partenaire : 2♣ (Roudi)"
-    ],
-    "out": {
-      "canonical": "Dans le Roudi à trois réponses utilisé ici, 2♦ nie trois cartes dans la majeure annoncée par le répondant. Avec seulement ♥R7, vous n'avez aucun fit 5–3 à Cœur à révéler : répondez 2♦, même avec 13 H. Les réponses codées 2♥ (minimum) et 2♠ (maximum) indiquent toutes deux trois cartes dans la majeure du répondant ; elles ne décrivent pas une nouvelle couleur naturelle.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre réponse au Roudi, vérifie d’abord les cartes de la majeure du répondant, puis la zone minimum ou maximum si le soutien est présent.",
-      "targetConcept": "roudi.reponse",
-      "targetCriteria": [
-        "roudi-soutien",
-        "roudi-zone",
-        "roudi-code"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "roudi.reponse",
+    "family": "cas-386",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Roudi, vérifie d’abord les cartes de la majeure du répondant, puis la zone minimum ou maximum si le soutien est présent.",
+    "criteria": [
+      "roudi-soutien",
+      "roudi-zone",
+      "roudi-code"
+    ]
   },
   "transfer-drury": {
     "id": "SEF-V4-098-1",
     "choice": "3♥",
-    "category": "convention",
-    "reason": "Le Drury permet d’explorer la valeur de l’ouverture après Passe ; le soutien direct ne transmet pas la même information.",
-    "auction": [
-      "Vous : Passe",
-      "Adversaire : Passe",
-      "Partenaire : 1♥ (3e position)",
-      "Adversaire : Passe"
-    ],
-    "out": {
-      "canonical": "Avec 10 H, quatre Cœurs, le neuvième atout (+2) et un doubleton (+1), vous avez un soutien constructif d'environ 13 HLD. 2♣ Drury permet de vérifier la qualité de l'ouverture de troisième position. Une main plate de 9 H ne se revalorise pas mécaniquement au seul motif du neuvième atout.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, vérifie qui a déjà passé et le soutien disponible avant d’utiliser le Drury.",
-      "targetConcept": "drury.init",
-      "targetCriteria": [
-        "drury-position",
-        "drury-fit"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "drury.init",
+    "family": "cas-408",
+    "feedback": null,
+    "checkNext": "Sur une autre main, vérifie qui a déjà passé et le soutien disponible avant d’utiliser le Drury.",
+    "criteria": [
+      "drury-position",
+      "drury-fit"
+    ]
   },
   "transfer-priority-overcall": {
     "id": "SEF-V44-033",
     "choice": "Contre",
-    "category": "priorite",
-    "reason": "La longue de six Carreaux est immédiatement annonçable à 1♦ ; le contre d'appel la masque et la main n'a que deux majeures de deux cartes.",
-    "auction": [
-      "Adversaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Sur l'ouverture adverse de 1♣, vos six Carreaux As-Dame-Valet-10 et vos 12 H justifient 1♦ naturel : la longue mineure peut être annoncée au palier de un, sans sauter à 2♦.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre intervention, compare ce qu’une enchère à la couleur révèle et ce qu’un contre laisse au partenaire le soin de choisir.",
-      "targetConcept": "intervenir.base",
-      "targetCriteria": [
-        "description-intervention",
-        "contre-vs-couleur"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "intervenir.base",
+    "family": "v44-cas-033",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention, compare ce qu’une enchère à la couleur révèle et ce qu’un contre laisse au partenaire le soin de choisir.",
+    "criteria": [
+      "description-intervention",
+      "contre-vs-couleur"
+    ]
   },
   "transfer-michaels": {
     "id": "SEF-V44-060",
     "choice": "2♦",
-    "category": "convention",
-    "reason": "Sur 1♣ suivi de deux Passe, le saut 2♦ est bicolore majeur 5–5 en SEF 2024, absent avec deux Piques et trois Cœurs.",
-    "auction": [
-      "Adversaire : 1♣",
-      "Partenaire : Passe",
-      "Adversaire : Passe"
-    ],
-    "out": {
-      "canonical": "Après (1♣) – Passe – Passe, le SEF 2024 attribue au réveil de 2♦ un sens artificiel : un bicolore majeur 5–5. Votre main compte 11 H, six Carreaux (♦RDV982) et seulement deux Piques et trois Cœurs. La meilleure enchère est donc 1♦ naturel, sans saut. Le Contre d'appel, le Passe ou le 2♦ bicolore décriraient mal cette main.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre ouverture adverse, identifie les deux couleurs que l’enchère bicolore promet et vérifie leur longueur dans ta main.",
-      "targetConcept": "michaels.reveil",
-      "targetCriteria": [
-        "michaels-couleur-adverse",
-        "michaels-deux-longues"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "michaels.reveil",
+    "family": "v44-cas-060",
+    "feedback": null,
+    "checkNext": "Sur une autre ouverture adverse, identifie les deux couleurs que l’enchère bicolore promet et vérifie leur longueur dans ta main.",
+    "criteria": [
+      "michaels-couleur-adverse",
+      "michaels-deux-longues"
+    ]
   },
   "transfer-multilandy": {
     "id": "SEF-V45-023",
     "choice": "2♥",
-    "category": "convention",
-    "reason": "2♥ promet cinq Cœurs et une mineure quatrième, mais la main a quatre Cœurs, cinq Piques et aucune mineure quatrième.",
-    "auction": [
-      "Adversaire : 1SA (15-17 H)"
-    ],
-    "out": {
-      "canonical": "Vos cinq Piques et quatre Cœurs, avec 15 H, offrent les deux majeures à jouer. Dans le Multi-Landy retenu, 2♣ montre ce bicolore au moins 5–4. 2♦ montrerait une seule majeure sixième, ce que votre main ne possède pas.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main après 1SA adverse, distingue une majeure longue seule des mains à deux couleurs et retrouve le code correspondant.",
-      "targetConcept": "multilandy.intervention",
-      "targetCriteria": [
-        "multilandy-distribution",
-        "multilandy-code"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "multilandy.intervention",
+    "family": "v45-cas-023",
+    "feedback": null,
+    "checkNext": "Sur une autre main après 1SA adverse, distingue une majeure longue seule des mains à deux couleurs et retrouve le code correspondant.",
+    "criteria": [
+      "multilandy-distribution",
+      "multilandy-code"
+    ]
   },
   "transfer-rubensohl": {
     "id": "SEF-V45-032",
     "choice": "3♣",
-    "category": "convention",
-    "reason": "Les enchères artificielles du Rubensohl ne désignent pas la même couleur ou la même recherche de fit dans cette séquence.",
-    "auction": [
-      "Partenaire : 1SA",
-      "Adversaire : 2♥ (naturel)"
-    ],
-    "out": {
-      "canonical": "Avec ♣RD10975 sixièmes et 5 H, cherchez le contrat partiel à Trèfle. Dans le Rubensohl convenu, 2SA est un Texas pour 3♣, pas une invitation à jouer Sans-Atout. Le 3♣ direct transfère vers les Carreaux, tandis que 3SA exigerait des valeurs de manche.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre intervention sur 1SA, repère la couleur adverse puis distingue l’enchère naturelle encore disponible et la couleur que désigne le transfert.",
-      "targetConcept": "rubensohl.init",
-      "targetCriteria": [
-        "rubensohl-contexte",
-        "rubensohl-code"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "rubensohl.init",
+    "family": "v45-cas-032",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention sur 1SA, repère la couleur adverse puis distingue l’enchère naturelle encore disponible et la couleur que désigne le transfert.",
+    "criteria": [
+      "rubensohl-contexte",
+      "rubensohl-code"
+    ]
   },
   "transfer-level-ambition": {
     "id": "SEF-V45-038",
     "choice": "3♦",
-    "category": "niveau",
-    "reason": "La longue peut être annoncée naturellement au palier de deux ; le Texas du palier de trois ferait dépasser la partielle économique recherchée.",
-    "auction": [
-      "Partenaire : 1SA",
-      "Adversaire : 2♦ (naturel)"
-    ],
-    "out": {
-      "canonical": "Avec cinq Cœurs et 6 H après l’intervention naturelle à 2♦, 2♥ annonce naturellement votre longue, sans forcer. 3♦ serait un Texas pour les Cœurs au palier supérieur : inutile ici quand la partielle à 2♥ est accessible.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, précise d’abord le contrat que tu cherches : partielle, manche ou davantage. Choisis ensuite le palier qui laisse la bonne liberté au partenaire.",
-      "targetConcept": "rubensohl.naturel",
-      "targetCriteria": [
-        "objectif-contrat",
-        "palier"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "rubensohl.naturel",
+    "family": "v45-cas-038",
+    "feedback": null,
+    "checkNext": "Sur une autre main, précise d’abord le contrat que tu cherches : partielle, manche ou davantage. Choisis ensuite le palier qui laisse la bonne liberté au partenaire.",
+    "criteria": [
+      "objectif-contrat",
+      "palier"
+    ]
   },
   "blackwood-count-keys": {
     "id": "SEF-V45-050",
     "choice": "5♠",
-    "category": "convention",
-    "reason": "La réponse choisie et le corrigé codent deux réponses différentes au Blackwood cinq clés ; le comptage des clés ou le codage peuvent être en cause.",
-    "auction": [
-      "Partenaire : 4SA (Blackwood 5 clés)"
-    ],
-    "out": {
-      "canonical": "À l'atout Pique, comptez exclusivement les quatre As et le Roi de Pique. Vous n'avez aucun As ni ♠R : zéro clé, malgré vos 8 H et la Dame d'atout. 5♣ code zéro ou trois clés en 30–41 ; la Dame n'est jamais une sixième clé et n'est pas indiquée par cette réponse.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, nomme l’atout agréé, compte les clés puis distingue les réponses 30–41.",
-      "targetConcept": "chelem.cles",
-      "targetCriteria": [
-        "blackwood-atout",
-        "blackwood-cles",
-        "blackwood-code"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "chelem.cles",
+    "family": "v45-cas-050",
+    "feedback": null,
+    "checkNext": "Sur une autre main, nomme l’atout agréé, compte les clés puis distingue les réponses 30–41.",
+    "criteria": [
+      "blackwood-atout",
+      "blackwood-cles",
+      "blackwood-code"
+    ]
   },
   "transfer-force-hld": {
     "id": "SEF-V49-032",
     "choice": "2♣",
-    "category": "force",
-    "reason": "Le cue-bid est forcing et constructif ; 9 H et environ 10 HLD avec trois Cœurs relèvent du soutien limité.",
-    "auction": [
-      "Adversaire : 1♣",
-      "Partenaire : 1♥ (intervention)",
-      "Adversaire : Passe"
-    ],
-    "out": {
-      "canonical": "Avec 9 H, trois Cœurs (♥873) et un doubleton Pique (♠97), la main représente environ 10 HLD avec un fit huitième après 1♣ – 1♥ – Passe. Le soutien simple à 2♥ exprime le fit et une force limitée, sans engager le camp vers la manche.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main fittée, distingue les points H et la réévaluation au fit, puis compare la zone du soutien.",
-      "targetConcept": "reponse_inter.base",
-      "targetCriteria": [
-        "evaluation-hld",
-        "fit",
-        "zone-soutien"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "reponse_inter.base",
+    "family": "v49-032",
+    "feedback": null,
+    "checkNext": "Sur une autre main fittée, distingue les points H et la réévaluation au fit, puis compare la zone du soutien.",
+    "criteria": [
+      "evaluation-hld",
+      "fit",
+      "zone-soutien"
+    ]
   },
   "transfer-context-auction": {
     "id": "SEF-V410-026",
     "choice": "2♥",
-    "category": "competition",
-    "reason": "Le corrigé utilise le contre en compétition alors que la majeure choisie est seulement quatrième ; la distinction contre de réponse/enquête et enchère naturelle est une piste.",
-    "auction": [
-      "Partenaire : 1♣",
-      "Adversaire : 1♠"
-    ],
-    "out": {
-      "canonical": "Votre partenaire ouvre de 1♣ et l'adversaire intervient à 1♠. Avec 8 H, quatre Cœurs ♥R962 et ♠65 dans la couleur adverse, vous utilisez le Contre Spoutnik pour rechercher un fit Cœur 4–4, plutôt que de nommer directement 2♥ à un palier trop élevé.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre séquence, identifie qui a annoncé la dernière enchère et ce que l’intervention adverse change avant de choisir.",
-      "targetConcept": "competitif.spoutnik",
-      "targetCriteria": [
-        "role-encherisseur",
-        "contexte-competitif"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "competitif.spoutnik",
+    "family": "v410-026",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence, identifie qui a annoncé la dernière enchère et ce que l’intervention adverse change avant de choisir.",
+    "criteria": [
+      "role-encherisseur",
+      "contexte-competitif"
+    ]
   },
   "transfer-competitive-code": {
     "id": "SEF-V470-005",
     "choice": "2♥",
-    "category": "convention",
-    "reason": "Le 2SA Truscott et les soutiens directs ne promettent pas les mêmes valeurs ni le même nombre d’atouts.",
-    "auction": [
-      "Partenaire : 1♥",
-      "Adversaire : Contre"
-    ],
-    "out": {
-      "canonical": "Vos quatre Cœurs R1094, 9 H, le neuvième atout (+2) et le doubleton Trèfle (+1) donnent 12 HLD. Après 1♥–(Contre), 2SA Truscott montre précisément ce soutien de quatre atouts et 11–12 HLD, forcing. 3♥ direct serait un barrage, non une invitation ; après une intervention naturelle à la couleur, le 2SA fitté aurait normalement un autre nombre d'atouts.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre séquence compétitive, identifie l’intervention adverse exacte puis ce que l’enchère conventionnelle transmet sur la force ou le fit.",
-      "targetConcept": "competitif.truscott",
-      "targetCriteria": [
-        "contexte-competitif",
-        "signification-convention"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "competitif.truscott",
+    "family": "v470-005",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence compétitive, identifie l’intervention adverse exacte puis ce que l’enchère conventionnelle transmet sur la force ou le fit.",
+    "criteria": [
+      "contexte-competitif",
+      "signification-convention"
+    ]
   },
   "transfer-blackwood": {
     "id": "SEF-V474-004",
     "choice": "5SA",
-    "category": "convention",
-    "reason": "Après la réponse aux clés, la question porte sur la Dame d’atout ou les Rois annexes selon la séquence ; le Roi d’atout est déjà compté. Le code et les honneurs détenus sont à distinguer.",
-    "auction": [
-      "Partenaire : 4SA (Blackwood 5 clés, atout Pique)",
-      "Vous : 5♦ (une clé)",
-      "Partenaire : 5♥ (question Dame de Pique)"
-    ],
-    "out": {
-      "canonical": "Le 5♦ initial a renseigné sur les clés, pas sur la Dame. Le partenaire interroge maintenant par 5♥. Vous n'avez pas ♠D : revenez à 5♠, le premier palier possible dans l'atout, afin qu'il puisse s'arrêter. Il ne faut pas annoncer 6♠ pour la seule présence du Roi d'atout : celui-ci a déjà été compté.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre main, identifie d’abord l’atout agréé et le renseignement demandé : nombre de clés, Dame d’atout ou suite du Blackwood.",
-      "targetConcept": "chelem.blackwood.dame_rois",
-      "targetCriteria": [
-        "blackwood-atout",
-        "blackwood-information"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "chelem.blackwood.dame_rois",
+    "family": "v474-pique-5d-non",
+    "feedback": null,
+    "checkNext": "Sur une autre main, identifie d’abord l’atout agréé et le renseignement demandé : nombre de clés, Dame d’atout ou suite du Blackwood.",
+    "criteria": [
+      "blackwood-atout",
+      "blackwood-information"
+    ]
   },
   "transfer-fit-two-suits": {
     "id": "SEF-V477-001",
     "choice": "2♠",
-    "category": "fit",
-    "reason": "La majeure retenue compte 4 cartes dans la main, contre 2 dans celle choisie ; le corrigé privilégie le fit dans le bicolore décrit.",
-    "auction": [
-      "Adversaire : 1♣",
-      "Partenaire : 2♦ (Michaël précisé)",
-      "Adversaire : Passe"
-    ],
-    "out": {
-      "canonical": "Avec quatre Cœurs en face des cinq Cœurs au moins garantis par 2♦, le fit atteint neuf atouts. La préférence simple à 2♥ permet de jouer au palier le plus économique sans surestimer les trois points d'honneur.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre réponse à ce bicolore, compare les nombres d’atouts communs dans les deux couleurs promises avant de choisir.",
-      "targetConcept": "michaels.reponse",
-      "targetCriteria": [
-        "fit-bicolore",
-        "atouts-communs"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "michaels.reponse",
+    "family": "v477-deux-majeures-preference-coeurs",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à ce bicolore, compare les nombres d’atouts communs dans les deux couleurs promises avant de choisir.",
+    "criteria": [
+      "fit-bicolore",
+      "atouts-communs"
+    ]
+  },
+  "transfer-stayman-response": {
+    "id": "SEF-L38-001",
+    "choice": "3♦",
+    "concept": "sa2.stayman.reponse",
+    "family": "LOT38-2026-11-16-001",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Stayman, compte d’abord les Piques et les Cœurs ; retrouve le code correspondant à aucune, une ou deux majeures quatrièmes.",
+    "criteria": [
+      "stayman-code",
+      "deux-majeures"
+    ]
   },
   "transfer-direct-sa": {
     "id": "V2-M4-007",
     "choice": "1SA",
-    "category": "force",
-    "reason": "La main est en dessous de la zone de 16–18 HL enseignée pour l’intervention directe à 1SA ; une tenue éventuelle ne suffit pas.",
-    "auction": [
-      "Adversaire : 1♣"
-    ],
-    "out": {
-      "canonical": "Vous avez 13 H réguliers et une tenue Trèfle RV64. En intervention immédiate, 1SA exige 16–18 HL : cette main est trop faible. Les trois couleurs libres ne sont que troisièmes, ce qui écarte le Contre d'appel. 2♣ serait naturel dans cette position, mais quatre Trèfles ne suffisent pas : cette intervention demande une couleur sixième. Passe.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre intervention directe à Sans-Atout, contrôle séparément force, régularité et arrêt dans la couleur adverse.",
-      "targetConcept": "intervenir.base",
-      "targetCriteria": [
-        "zone-intervention-sa",
-        "regularite",
-        "arret-adverse"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "intervenir.base",
+    "family": "reserve-v2-m4-04",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention directe à Sans-Atout, contrôle séparément force, régularité et arrêt dans la couleur adverse.",
+    "criteria": [
+      "zone-intervention-sa",
+      "regularite",
+      "arret-adverse"
+    ]
   },
   "stayman-texas-length": {
     "id": "SEF-PN26-M1-034",
     "choice": "3♥",
-    "category": "convention",
-    "reason": "Faire un Texas avec quatre Piques seulement.",
-    "auction": [
-      "Partenaire : 2SA"
-    ],
-    "out": {
-      "canonical": "Avec 5 H face à 20–21 H, vous avez la force nécessaire pour demander la manche. Vos quatre Piques justifient un Stayman à 3♣ pour rechercher un éventuel fit 4–4 ; 3♥ Texas demanderait cinq Piques.",
-      "feedback": null,
-      "reminder": null,
-      "checkNext": "Sur une autre réponse à Sans-Atout, distingue la recherche d’un fit 4–4 et l’annonce d’une majeure longue.",
-      "targetConcept": "sa2.stayman",
-      "targetCriteria": [
-        "stayman-texas",
-        "longueur-majeure"
-      ],
-      "kind": "targeted"
-    }
+    "concept": "sa2.stayman",
+    "family": "pn26-m1-034",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à Sans-Atout, distingue la recherche d’un fit 4–4 et l’annonce d’une majeure longue.",
+    "criteria": [
+      "stayman-texas",
+      "longueur-majeure"
+    ]
   }
 }
