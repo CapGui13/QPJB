@@ -64,8 +64,8 @@ function run(sources){
  eq(m.options,5745,'options');eq(m.questions,1915,'questions');eq(m.baselineTargeted,140,'baseline');
  const pairs={};
  for(const t of targets){
-  const u=targets.find(u=>u.q.id!==t.q.id&&u.q.caseFamily!==t.q.caseFamily&&JSON.stringify(u.q.hand)!==JSON.stringify(t.q.hand)&&u.q.answer!==t.q.answer&&u.reason===t.reason&&meta.byId[u.q.id].concept===meta.byId[t.q.id].concept&&meta.byId[u.q.id].stage<=meta.byId[t.q.id].stage+1);
-  if(u){pairs[t.q.id+'|'+t.c]={id:u.q.id,choice:u.c,criterion:t.reason,concept:meta.byId[t.q.id].concept};}
+  const u=targets.find(u=>u.q.id!==t.q.id&&u.q.caseFamily!==t.q.caseFamily&&JSON.stringify(u.q.hand)!==JSON.stringify(t.q.hand)&&u.q.answer!==t.q.answer&&u.reason===t.reason&&u.d.category===t.d.category&&JSON.stringify(u.criteria)===JSON.stringify(t.criteria)&&meta.byId[u.q.id].concept===meta.byId[t.q.id].concept&&meta.byId[u.q.id].stage<=meta.byId[t.q.id].stage+1);
+  if(u){pairs[t.q.id+'|'+t.c]={id:u.q.id,choice:u.c,criterion:t.reason,concept:meta.byId[t.q.id].concept,category:t.d.category,targetCriteria:t.criteria};}
  }
  m.distinctHandPairs=Object.keys(pairs).length;
  const t=targets.find(t=>t.assisted&&targets.filter(u=>u.assisted&&u.d.category===t.d.category&&u.q.caseFamily!==t.q.caseFamily).length>3);
