@@ -4,18 +4,19 @@
 const m4=require('../quizz-coherence-m4-diversite.js');
 const contrast=require('../quizz-coherence-m4-contrast.js');
 const reactivation=require('../quizz-coherence-m4-reactivation.js');
+const cautious=require('../quizz-coherence-m4-cautious.js');
 const anchor='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason';
 const end='const m=mOf(q),cat=category||classify(q);';
 function instrument(source,policy='A'){
   if(source.split(anchor).length!==2||source.split(end).length!==2)throw Error('Ancre choose() modifiée : revue obligatoire');
   return source.replace(anchor,anchor.replace('const q','let q')).replace(end,`
-      if(!explicitRecall && (!priority || s<${policy==='A'?2:5}) && (!forcedReason || forcedReason==='equilibre_ouvertures')){
+      if(${policy==='D'?'s>=2 && s<5 && !priority && !forcedReason && category===\'discovery\' && fresh(q) && novelFamily(q) && !due(q) && !bad(q) && ':' '}!explicitRecall && (!priority || s<${policy==='A'?2:5}) && (!forcedReason || forcedReason==='equilibre_ouvertures')){
         const chosen=q;
         const winning=ranked.find(r=>r.q===chosen);
         const tieType=v=>JSON.stringify([v.theme,mOf(v).concept,mOf(v).stage,v.difficulty,
-          ${policy==='A'?'context(v),bid(v)':'(priority||s<2)?context(v):null,(priority||s<2)?bid(v):null'},classify(v),fresh(v),novelFamily(v),oldFamily(v),!!due(v),!!bad(v),
+          ${(policy==='A'||policy==='D')?'context(v),bid(v)':'(priority||s<2)?context(v):null,(priority||s<2)?bid(v):null'},classify(v),fresh(v),novelFamily(v),oldFamily(v),!!due(v),!!bad(v),
           s===1&&v.theme==='ouv'&&mOf(v).concept==='ouv.mineure'?(v.shape[2]===v.shape[3]?v.shape[2]:0):null]);
-        const same=ranked.filter(r=>tieType(r.q)===tieType(chosen)&&Math.abs(r.v-winning.v)<=${policy==='A'?24:policy==='B'?36:0});
+        const same=ranked.filter(r=>${policy==='D'?'fresh(r.q)&&novelFamily(r.q)&&!due(r.q)&&!bad(r.q)&&':''}tieType(r.q)===tieType(chosen)&&Math.abs(r.v-winning.v)<=${policy==='A'?24:policy==='B'?36:0});
         ${policy==='C'?`// Fixture du contrat M1 : rappel secondaire uniquement dans le slot maintenance natif.
         const core=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
         const debtOptions=(!priority&&category==='maintenance'&&s>=5)?ranked.filter(({q:v,v:score})=>
@@ -32,7 +33,7 @@ function instrument(source,policy='A'){
 }
 function pick(ctx,rows,baseline,maxSession=180,onChange=()=>{},policy='A'){
   if(ctx.session>maxSession||rows.length<2)return baseline;
-  const ranked=(policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
+  const ranked=(policy==='D'?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
   const b=rows.find(r=>r.q===baseline),base=b.v+(d.get(baseline.id)?.delta||0);
   let winner=b,score=base;
   for(const row of rows){
