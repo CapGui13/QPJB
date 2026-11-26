@@ -6,10 +6,13 @@ const contrast=require('../quizz-coherence-m4-contrast.js');
 const reactivation=require('../quizz-coherence-m4-reactivation.js');
 const cautious=require('../quizz-coherence-m4-cautious.js');
 const atomic=require('./coherence-concrete-m4-atomic-adapter.cjs');
+const recall=require('../quizz-coherence-m4-recall.js');
+const recallAdapter=require('./coherence-concrete-m4-recall-adapter.cjs');
 const anchor='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason';
 const end='const m=mOf(q),cat=category||classify(q);';
 function instrument(source,policy='A'){
   if(policy==='E')return atomic.instrument(source);
+  if(policy==='F'||policy==='G')return recallAdapter.instrument(instrument(source,'D').replace(/const m=mOf\(q\),cat=category\|\|classify\(q\);/,'const m=mOf(q),cat=category||classify(q);'),policy);
   if(source.split(anchor).length!==2||source.split(end).length!==2)throw Error('Ancre choose() modifiée : revue obligatoire');
   return source.replace(anchor,anchor.replace('const q','let q')).replace(end,`
       if(${policy==='D'?'s>=2 && s<5 && !priority && !forcedReason && category===\'discovery\' && fresh(q) && novelFamily(q) && !due(q) && !bad(q) && ':' '}!explicitRecall && (!priority || s<${policy==='A'?2:5}) && (!forcedReason || forcedReason==='equilibre_ouvertures')){
@@ -35,14 +38,14 @@ function instrument(source,policy='A'){
 }
 function pick(ctx,rows,baseline,maxSession=180,onChange=()=>{},policy='A'){
   if(ctx.session>maxSession||rows.length<2)return baseline;
-  const ranked=((policy==='D'||policy==='E')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
+  const ranked=((policy==='F'||policy==='G')&&ctx.category==='maintenance'?recall:(policy==='D'||policy==='E'||policy==='F'||policy==='G')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
   const b=rows.find(r=>r.q===baseline),base=b.v+(d.get(baseline.id)?.delta||0);
   let winner=b,score=base;
   for(const row of rows){
     const value=row.v+(d.get(row.q.id)?.delta||0);
     if(value>score){winner=row;score=value;}
   }
-  if(winner!==b)onChange({session:ctx.session,before:baseline.id,after:winner.q.id,baseScore:b.v,newScore:winner.v,beforeSignal:d.get(baseline.id),afterSignal:d.get(winner.q.id),category:ctx.category,priority:ctx.priority});
+  if(winner!==b&&!ctx.preview)onChange({session:ctx.session,before:baseline.id,after:winner.q.id,baseScore:b.v,newScore:winner.v,rawScore:winner.rawScore??winner.v,noveltyAdjustment:winner.noveltyAdjustment||0,beforeSignal:d.get(baseline.id),afterSignal:d.get(winner.q.id),category:ctx.category,priority:ctx.priority});
   return winner.q;
 }
 module.exports={instrument,pick};
