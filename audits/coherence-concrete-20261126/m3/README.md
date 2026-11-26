@@ -32,7 +32,7 @@ V8, blobs de la base réelle via GitHub. Pas de checkout Node natif ni de naviga
 | Questions N4/N5 | 6768 | 6798 |
 | Erreurs synthétiques à S180 | 9279 | 9402 |
 
-Exemple S5, profil faible / 47 : SEF-N084-1 (11 H, 5 Cœurs, réponse 2♦, projet de manche) est remplacé par SEF-037-1 (6 H, 5 Cœurs, réponse 2♦, partielle). Les neuf autres IDs sont conservés ; l'ordonnancement est recalculé par le moteur historique. Le profil autonome / 47 remplace son deuxième Texas, fort, par SEF-036-1 (Stayman), et conserve le Texas élémentaire.
+Exemple S5, profil faible / 47 : SEF-N084-1 (11 H, 5 Cœurs, réponse 2♦, projet de manche) est remplacé par SEF-037-1 (4 H, 5 Cœurs, réponse 2♦, partielle). Les neuf autres IDs sont conservés ; l'ordonnancement est recalculé par le moteur historique. Le profil autonome / 47 remplace son deuxième Texas, fort, par SEF-036-1 (Stayman), et conserve le Texas élémentaire.
 
 Écarts à ne pas masquer : l'intermédiaire/47 ne revoit la variante forte qu'en S31 ; aide/11 perd 10 familles distinctes à S180 ; faible/103 perd deux concepts à S65 (rattrapés à S153). Les erreurs synthétiques augmentent de 123 au total (les réponses sont tirées de l'ID et de la séance, donc une variation de séquence change les tirages, et ne démontre ni progrès ni régression humaine). Le Texas mineur sur 2SA reste parfois tardif : aide/47 S55 → S104 ; faible/11 S104 → S108. Ne pas supprimer les protections de preuve pour accélérer ces questions N4. La variante sans changement de stage a donné les mêmes délais de première rencontre forte dans le banc court ; elle ne résout pas le cas intermédiaire/47.
 
