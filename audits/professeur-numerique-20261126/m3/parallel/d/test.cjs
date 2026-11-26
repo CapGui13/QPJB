@@ -36,11 +36,12 @@ function run({exercises,cart,rows,data,holds,patches,base,extendDiagnostic,signa
   check(Object.values(data.byId).reduce((n,x)=>n+Object.keys(x.choices).length,0)===proposals.size,'payload count');
   check(data.baseSHA==='71b0823235db1400eaf57c2552df35c18094f30a','base SHA');
   const diagnose=extendDiagnostic(base,data);
-  let retained=0,promoted=0,correct=0,globalRetained=0,initialHyp=0;
+  const originalCatalogue=JSON.stringify(exercises),originalData=JSON.stringify(data);let retained=0,promoted=0,correct=0,globalRetained=0,initialHyp=0,invalid=0;const start=Date.now();
   for(const c of cart){
     const x=map.get(c.id);check(!!x,'catalogue ID '+c.id);
     const input={exercise:x,choice:x.answer,assisted:true,hadFreeError:true};
     check(same(diagnose(input),base(input))&&diagnose(input).status==='correct','correct '+c.id);correct++;
+    for(const choice of [null,'foo','8SA']){const invalidInput={exercise:x,choice,assisted:true,hadFreeError:true};check(same(diagnose(invalidInput),base(invalidInput)),'invalid free '+c.id);invalid++;}
     for(const o of c.options){
       const choice=o[0],input={exercise:x,choice,assisted:false,hadFreeError:false};
       const d=base(input),n=diagnose(input),k=key(c.id,choice),row=proposals.get(k);
@@ -61,6 +62,10 @@ function run({exercises,cart,rows,data,holds,patches,base,extendDiagnostic,signa
   }
   check(promoted===509&&retained===54,'promotion totals');
   check(initialHyp===322,'initial hypotheses');
+  check(promoted+globalRetained===5637,'global options');
+  check(JSON.stringify(exercises)===originalCatalogue&&JSON.stringify(data)===originalData,'non mutation');
+  for(const [id,choice] of [['SEF-L33-005','2♦'],['V2-M1-031','1♦'],['V2-M4-017','Passe']]){const n=diagnose({exercise:map.get(id),choice});check(n.status==='unknown'&&n.evidence.rule==='editorial-hold','historical HOLD '+id);}
+  const elapsedMs=Date.now()-start;
   for(const p of patches){
     const x=map.get(p.id);
     check(scope.some(c=>c.id===p.id),'patch scope');
@@ -74,7 +79,7 @@ function run({exercises,cart,rows,data,holds,patches,base,extendDiagnostic,signa
     }
     check(!holds.some(h=>h.id===p.id),'no patch HOLD');
   }
-  return {assertions,qcm:scope.length,reviewed:rows.length,promoted,retained,initialHyp,globalRetained,correct,counts,patches:patches.length,holds:holds.length};
+  return {assertions,qcm:scope.length,reviewed:rows.length,promoted,retained,initialHyp,globalRetained,correct,invalid,elapsedMs,counts,patches:patches.length,holds:holds.length};
 }
 module.exports={run,names};
 if(require.main===module){
