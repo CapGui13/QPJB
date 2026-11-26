@@ -40,6 +40,7 @@ const runChecks=function runChecks(api,q,patches,meta){
  assert(api.diagnose({exercise:sample,choice:null,assisted:true,hadFreeError:true}).status==='unknown','no invented choice');
  assert(api.diagnose(null).status==='unknown','absent input');
  for(const [id,choice,category] of [["SEF-V3-011-1","2SA","convention"],["SEF-L38-001","3♥","convention"],["SEF-V3-001-1","3SA","fit"],["SEF-V44-026","4♥","fit"],["SEF-V45-009","2SA","convention"],["SEF-V3-057-1","Passe","forcing"],["SEF-V3-027-2","Contre","competition"],["SEF-V470-005","2♥","convention"]])assert(api.diagnose({exercise:by.get(id),choice}).category===category,'contextual fixture '+id);
+ const explicit=api.diagnose({exercise:by.get("SEF-045-1"),choice:"1SA"});assert(explicit.evidence.rule==='canonical-explicit-contrast'&&explicit.confidence==='low'&&explicit.evidence.canonicalExcerpt,'textual contrast');
  assert(offered===5637,'wrong total');
  return {counts,categories,concepts,rows,offered,afterHyp,beforeDistinct,afterDistinct};
 };
