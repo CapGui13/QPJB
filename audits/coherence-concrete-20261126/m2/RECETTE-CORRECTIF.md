@@ -1,6 +1,6 @@
 # Recette native corrective — campagne 45903425019 (version intermédiaire)
 
-SHA code : ac33ebff7fcf473cb9194b4840385ce0a29857c6. Base : 2d336054bc91fbd6ac762c093ecb5ec6da9f97e8. Cette campagne ne certifie pas le dernier SHA 6bd6a8b66f97abbc9429988259eefb8d42fbea, dont le run 45904459078 est en file.
+SHA code : ac33ebff7fcf473cb9194b4840385ce0a29857c6. Base : 2d336054bc91fbd6ac762c093ecb5ec6da9f97e8. Cette campagne ne certifie pas le dernier SHA 6bd6a8b66f97abbc9429988259eefb8d8f42fbea, dont le run 45904459078 est en file.
 
 21/21 jobs GitHub réussis. Les 18 ZIP natifs ont été téléchargés et extraits, puis contrôlés par tests/coherence-concrete-m2-state-audit.cjs sous Node : 175141 assertions PASS. Les 3240 séances par bras, les motifs de sélection, les ensembles et les indicateurs de composition aux 90 checkpoints ont été vérifiés. Aucune régression cumulée par profil/graine aux 5 horizons. Le contrôle distinct de l'ordre final par rapport à la trajectoire indépendante recense 87 hausses ponctuelles (pas de régression de la permutation par rapport à son propre deck historique) : 25 inversions de prérequis, 5 inversions de difficulté, 56 sauts de difficulté, 1 contraste manqué. 6 de ces événements sont S1–20 ; ils ont disparu dans les 18 paires V8 sur le nouveau candidat (voir PASSE4-S20.md).
 
@@ -50,3 +50,5 @@ SHA code : ac33ebff7fcf473cb9194b4840385ce0a29857c6. Base : 2d336054bc91fbd6ac76
 | modere/103 | 15157935218 | ced308ce2af7b2bdeb2f60f6b4b131ff32168ab0074d70da203fe56fdc9fe0d7 |
 
 Le banc d'audit produit le registre exhaustif régénérable : node tests/coherence-concrete-m2-state-audit.cjs <dossier des 18 archives extraites> registre.json. Une copie complète du registre et des 18 ZIP est fournie à l'utilisateur. Aucun changement de production.
+
+Contrôle supplémentaire sur le dernier SHA exact : 3986 assertions V8 PASS, dont parité des 1915 motifs historiques et les six cas de régression. Le module durable non sollicité est remplacé par un Proxy qui lève à tout accès. Cela ne remplace pas la recette native complète.
