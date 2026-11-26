@@ -1,6 +1,7 @@
 'use strict';
 // Reusable in Node and in a V8 in-memory harness with exact GitHub sources.
 const LAB=require('../quizz-durable-m6-lab.js');
+const GUARDS=require('../quizz-durable-m6-guards.js');
 const BASE='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
 const paths=['quizz.html','quizz-prerequis.js','quizz-session-plan.js','quizz-parcours.js','quizz-pedagogie-initiation.js','quizz-pedagogie-intermediaire.js','quizz-pedagogie-avancee.js'];
 const assert=(v,m)=>{if(!v)throw Error(m)};
@@ -46,9 +47,9 @@ function run(sources,name,seed,horizon=180,options={}){
  const probe=options.probe||e;
  const catalogueBefore=JSON.stringify(e.exercises),metaBefore=JSON.stringify(e.meta);
  const begin=Date.now();
- const result=LAB.run({...e,probeExercises:probe.exercises,probeMeta:probe.meta,name,seed,horizon,verifyEarly,measure:()=>Date.now(),overrides:options.overrides||{},model:options.model||'learning',ruleMap:options.ruleMap});
+ const result=LAB.run({...e,probeExercises:probe.exercises,probeMeta:probe.meta,name,seed,horizon,verifyEarly,measure:()=>Date.now(),overrides:options.overrides||{},model:options.model||'learning',ruleMap:options.ruleMap,collectProbeRows:!!options.collectProbeRows});
  assert(JSON.stringify(e.exercises)===catalogueBefore&&JSON.stringify(e.meta)===metaBefore,'Engine mutated catalogue or metadata');
- return {...result,elapsedMs:Date.now()-begin};
+ return {...result,universeKey:GUARDS.universeKey(probe.exercises,probe.meta),elapsedMs:Date.now()-begin};
 }
 const diagnosticPaths=['quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js'];
 function referenceRules(sources,diagnosticSources){
@@ -60,11 +61,19 @@ function referenceRules(sources,diagnosticSources){
 function pair(base,candidate,name,seed,horizon=180,options={}){
  const b=prepare(base),c=prepare(candidate),byId=new Map(c.exercises.map(q=>[q.id,q]));
  for(const q of b.exercises){const newer=byId.get(q.id);assert(newer,'Lost historical ID '+q.id);
- assert(JSON.stringify(newer)===JSON.stringify(q),'Changed historical exercise '+q.id);
- assert(JSON.stringify(c.meta.byId[q.id])===JSON.stringify(b.meta.byId[q.id]),'Changed historical metadata '+q.id);}
+ assert(GUARDS.sameHistorical(newer,q),'Changed historical exercise '+q.id);
+ assert(GUARDS.sameHistorical(c.meta.byId[q.id],b.meta.byId[q.id]),'Changed historical metadata '+q.id);}
  const cross=crossResume(b,c);
- const before=run(base,name,seed,horizon,{...options,probe:b}),after=run(candidate,name,seed,horizon,{...options,probe:b});
- return {before,after,crossResume:cross,comparison:LAB.compare(before,after)};
+ const before=run(base,name,seed,horizon,{...options,probe:b,collectProbeRows:true}),after=run(candidate,name,seed,horizon,{...options,probe:b,collectProbeRows:true});
+ GUARDS.validatePair(before,after);
+ const comparison=LAB.compare(before,after).map((r,i)=>{
+  const a=before.checkpoints[i],b=after.checkpoints[i];
+  const common=before.model==='learning'?GUARDS.commonTransfer(a,b,seed,LAB.random):null;
+  if(common?.n>=10&&common.delta<-.03)r.review.push('common-transfer-probe');
+  if(a.crossSessionNewFamily-b.crossSessionNewFamily>Math.max(5,.15*a.crossSessionNewFamily))r.review.push('cross-session-transfer');
+  return {...r,commonTransfer:common,crossSessionNewFamilyDelta:b.crossSessionNewFamily-a.crossSessionNewFamily};
+ });
+ return {before,after,crossResume:cross,comparison};
 }
 function crossResume(b,c){
  b.clock(0);c.clock(0);
@@ -103,17 +112,18 @@ if(require.main===module){
  const p=LAB.PROFILES[name],cases=[['reference',{}],['half-x0.5',{overrides:{half:p.half*.5}}],['half-x2',{overrides:{half:p.half*2}}],['fixed-control',{model:'fixed'}],['slow-learning',{overrides:{learn:p.learn*.5}}],['fast-learning',{overrides:{learn:p.learn*2}}]];
  result=cases.map(([label,opts])=>({label,result:cmd==='sensitivity-pair'?pair(gitSources,local(),name,seed,h,opts):run(gitSources,name,seed,h,opts)}));
  }
- else if(cmd==='semantic'){
+ else if(cmd==='semantic'||cmd==='semantic-pair'){
  const diagnosticSources=Object.fromEntries(diagnosticPaths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
  const ruleMap=referenceRules(gitSources,diagnosticSources);
- result={tally:ruleMap.tally,categories:ruleMap.categories,result:run(gitSources,name,seed,h,{ruleMap,overrides:{pauseDays:5}})};
+ const opts={ruleMap,overrides:{pauseDays:5}};
+ result={tally:ruleMap.tally,categories:ruleMap.categories,result:cmd==='semantic-pair'?pair(gitSources,local(),name,seed,h,opts):run(gitSources,name,seed,h,opts)};
  }
  else if(cmd==='legacy')result=legacy(gitSources);
  else if(cmd==='size'){
  const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js'];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
- }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|legacy|size');
+ }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));
- const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:[result];
- if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length)||(Array.isArray(result)&&result.some(x=>x.result?.comparison?.some(y=>y.review.length))))process.exitCode=2;
+ const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:cmd==='semantic-pair'?[result.result.before,result.result.after]:[result];
+ if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length)||result.result?.comparison?.some(x=>x.review.length)||(Array.isArray(result)&&result.some(x=>x.result?.comparison?.some(y=>y.review.length))))process.exitCode=2;
 }
