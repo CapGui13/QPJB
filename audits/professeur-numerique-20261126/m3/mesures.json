@@ -1,0 +1,642 @@
+{
+  "summary": {
+    "base": "f8ae2120eb893c68b4cac315b7901ece69806b87",
+    "htmlBlob": "99049d0d5790767ba991414240aa7d837c1b188e",
+    "qcm": 1879,
+    "concepts": 99,
+    "wrongOptions": 5637,
+    "initialStructuredDiagnostics": 0,
+    "afterModule": {
+      "hypothesis": 719,
+      "unknown": 4918,
+      "correct": 0
+    },
+    "afterPatchesHypotheses": 719,
+    "categories": {
+      "priorite": 102,
+      "force": 110,
+      "distribution": 56,
+      "inconnu": 4918,
+      "niveau": 263,
+      "fit": 56,
+      "convention": 122,
+      "forcing": 1,
+      "competition": 5,
+      "contexte": 4
+    },
+    "distinctHypothesisCategoriesPerQuestionSum": {
+      "beforePatches": 551,
+      "afterPatches": 556
+    },
+    "patches": 5,
+    "performance": {
+      "environment": "V8 Code Mode, direct same factory; not Node/browser",
+      "calls": 37580,
+      "elapsedMs": 1343
+    },
+    "goals": {
+      "catalogueCoverage": 1879,
+      "conceptCoverage": 99,
+      "wrongOptions": 5637,
+      "zeroInvalidPatches": true,
+      "unknownAllowed": true,
+      "patchesNoQuota": true
+    }
+  },
+  "byConcept": {
+    "ouv.sa1": {
+      "qcm": 15,
+      "options": 45,
+      "hypothesis": 45,
+      "unknown": 0
+    },
+    "ouv.sa2": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 19,
+      "unknown": 5
+    },
+    "ouv.majeure": {
+      "qcm": 19,
+      "options": 57,
+      "hypothesis": 35,
+      "unknown": 22
+    },
+    "ouv.mineure": {
+      "qcm": 35,
+      "options": 105,
+      "hypothesis": 96,
+      "unknown": 9
+    },
+    "ouv.passe": {
+      "qcm": 14,
+      "options": 42,
+      "hypothesis": 25,
+      "unknown": 17
+    },
+    "mineur.base": {
+      "qcm": 94,
+      "options": 282,
+      "hypothesis": 39,
+      "unknown": 243
+    },
+    "mineur.soutien": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 7,
+      "unknown": 17
+    },
+    "majeur.soutien": {
+      "qcm": 35,
+      "options": 105,
+      "hypothesis": 40,
+      "unknown": 65
+    },
+    "sa1.seuil": {
+      "qcm": 24,
+      "options": 72,
+      "hypothesis": 13,
+      "unknown": 59
+    },
+    "sa1.stayman": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 9,
+      "unknown": 15
+    },
+    "sa1.texas": {
+      "qcm": 15,
+      "options": 45,
+      "hypothesis": 16,
+      "unknown": 29
+    },
+    "sa2.seuil": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 9,
+      "unknown": 30
+    },
+    "red.bicolore": {
+      "qcm": 36,
+      "options": 108,
+      "hypothesis": 0,
+      "unknown": 108
+    },
+    "red.base": {
+      "qcm": 72,
+      "options": 216,
+      "hypothesis": 0,
+      "unknown": 216
+    },
+    "second.base": {
+      "qcm": 111,
+      "options": 333,
+      "hypothesis": 0,
+      "unknown": 333
+    },
+    "fit.2sa": {
+      "qcm": 7,
+      "options": 21,
+      "hypothesis": 12,
+      "unknown": 9
+    },
+    "majeur.base": {
+      "qcm": 62,
+      "options": 186,
+      "hypothesis": 38,
+      "unknown": 148
+    },
+    "sa2.stayman": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 9,
+      "unknown": 6
+    },
+    "sa2.texas": {
+      "qcm": 9,
+      "options": 27,
+      "hypothesis": 5,
+      "unknown": 22
+    },
+    "roudi.init": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "sa1.stayman.suite": {
+      "qcm": 27,
+      "options": 81,
+      "hypothesis": 0,
+      "unknown": 81
+    },
+    "sa1.stayman.reponse": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "sa1.texas.suite": {
+      "qcm": 16,
+      "options": 48,
+      "hypothesis": 0,
+      "unknown": 48
+    },
+    "sa2.stayman.suite": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "sa2.texas.suite": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 0,
+      "unknown": 24
+    },
+    "intervenir.base": {
+      "qcm": 72,
+      "options": 216,
+      "hypothesis": 0,
+      "unknown": 216
+    },
+    "contre.base": {
+      "qcm": 57,
+      "options": 171,
+      "hypothesis": 40,
+      "unknown": 131
+    },
+    "apres_inter.base": {
+      "qcm": 90,
+      "options": 270,
+      "hypothesis": 0,
+      "unknown": 270
+    },
+    "competitif.2sa_fitte": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "barrage.ouverture": {
+      "qcm": 32,
+      "options": 96,
+      "hypothesis": 48,
+      "unknown": 48
+    },
+    "barrage.reponse": {
+      "qcm": 30,
+      "options": 90,
+      "hypothesis": 15,
+      "unknown": 75
+    },
+    "apres_fit.base": {
+      "qcm": 12,
+      "options": 36,
+      "hypothesis": 7,
+      "unknown": 29
+    },
+    "apres_fit.essai": {
+      "qcm": 17,
+      "options": 51,
+      "hypothesis": 0,
+      "unknown": 51
+    },
+    "apres_fit.essai.suite": {
+      "qcm": 17,
+      "options": 51,
+      "hypothesis": 17,
+      "unknown": 34
+    },
+    "reponse_inter.base": {
+      "qcm": 70,
+      "options": 210,
+      "hypothesis": 34,
+      "unknown": 176
+    },
+    "reveil.base": {
+      "qcm": 48,
+      "options": 144,
+      "hypothesis": 0,
+      "unknown": 144
+    },
+    "roudi.choix": {
+      "qcm": 11,
+      "options": 33,
+      "hypothesis": 0,
+      "unknown": 33
+    },
+    "roudi.reponse": {
+      "qcm": 14,
+      "options": 42,
+      "hypothesis": 42,
+      "unknown": 0
+    },
+    "drury.choix": {
+      "qcm": 16,
+      "options": 48,
+      "hypothesis": 0,
+      "unknown": 48
+    },
+    "drury.init": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "drury.reponse": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 0,
+      "unknown": 39
+    },
+    "fortes.ouverture": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "chelem.quantitatif": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 24,
+      "unknown": 0
+    },
+    "red.bicolore_cher": {
+      "qcm": 12,
+      "options": 36,
+      "hypothesis": 0,
+      "unknown": 36
+    },
+    "competitif.truscott": {
+      "qcm": 23,
+      "options": 69,
+      "hypothesis": 0,
+      "unknown": 69
+    },
+    "michaels.reveil": {
+      "qcm": 15,
+      "options": 45,
+      "hypothesis": 0,
+      "unknown": 45
+    },
+    "roudi.suite": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 0,
+      "unknown": 39
+    },
+    "fortes.relais": {
+      "qcm": 15,
+      "options": 45,
+      "hypothesis": 6,
+      "unknown": 39
+    },
+    "fortes.redemande": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "forcing.troisieme": {
+      "qcm": 14,
+      "options": 42,
+      "hypothesis": 0,
+      "unknown": 42
+    },
+    "forcing.quatrieme": {
+      "qcm": 30,
+      "options": 90,
+      "hypothesis": 0,
+      "unknown": 90
+    },
+    "forcing.base": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "multilandy.intervention": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 0,
+      "unknown": 39
+    },
+    "multilandy.choix": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "rubensohl.naturel": {
+      "qcm": 17,
+      "options": 51,
+      "hypothesis": 0,
+      "unknown": 51
+    },
+    "rubensohl.init": {
+      "qcm": 19,
+      "options": 57,
+      "hypothesis": 0,
+      "unknown": 57
+    },
+    "michaels.intervention": {
+      "qcm": 11,
+      "options": 33,
+      "hypothesis": 0,
+      "unknown": 33
+    },
+    "michaels.choix": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "chelem.cles": {
+      "qcm": 11,
+      "options": 33,
+      "hypothesis": 24,
+      "unknown": 9
+    },
+    "chelem.splinter": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "competitif.spoutnik": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 5,
+      "unknown": 34
+    },
+    "ouv.position": {
+      "qcm": 12,
+      "options": 36,
+      "hypothesis": 4,
+      "unknown": 32
+    },
+    "barrage.suite": {
+      "qcm": 14,
+      "options": 42,
+      "hypothesis": 0,
+      "unknown": 42
+    },
+    "intervenir.deux_faible": {
+      "qcm": 7,
+      "options": 21,
+      "hypothesis": 0,
+      "unknown": 21
+    },
+    "red.competitif": {
+      "qcm": 23,
+      "options": 69,
+      "hypothesis": 0,
+      "unknown": 69
+    },
+    "michaels.defense": {
+      "qcm": 22,
+      "options": 66,
+      "hypothesis": 0,
+      "unknown": 66
+    },
+    "chelem.blackwood.suite": {
+      "qcm": 14,
+      "options": 42,
+      "hypothesis": 0,
+      "unknown": 42
+    },
+    "chelem.blackwood.dame_rois": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "fortes.suite": {
+      "qcm": 16,
+      "options": 48,
+      "hypothesis": 0,
+      "unknown": 48
+    },
+    "contre.deux_faible": {
+      "qcm": 19,
+      "options": 57,
+      "hypothesis": 4,
+      "unknown": 53
+    },
+    "michaels.reponse": {
+      "qcm": 32,
+      "options": 96,
+      "hypothesis": 16,
+      "unknown": 80
+    },
+    "multilandy.reponse": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "multilandy.suite": {
+      "qcm": 11,
+      "options": 33,
+      "hypothesis": 0,
+      "unknown": 33
+    },
+    "rubensohl.reponse": {
+      "qcm": 16,
+      "options": 48,
+      "hypothesis": 0,
+      "unknown": 48
+    },
+    "sa1.texas_mineur": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "sa1.texas_mineur.suite": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 0,
+      "unknown": 39
+    },
+    "chelem.controles": {
+      "qcm": 22,
+      "options": 66,
+      "hypothesis": 0,
+      "unknown": 66
+    },
+    "drury.suite": {
+      "qcm": 13,
+      "options": 39,
+      "hypothesis": 0,
+      "unknown": 39
+    },
+    "fit.2sa.suite": {
+      "qcm": 11,
+      "options": 33,
+      "hypothesis": 0,
+      "unknown": 33
+    },
+    "forcing.quatrieme.suite": {
+      "qcm": 12,
+      "options": 36,
+      "hypothesis": 0,
+      "unknown": 36
+    },
+    "chelem.quantitatif.suite": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 9,
+      "unknown": 21
+    },
+    "chelem.blackwood.declenchement": {
+      "qcm": 12,
+      "options": 36,
+      "hypothesis": 0,
+      "unknown": 36
+    },
+    "rubensohl.suite": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "competitif.sa_adverse": {
+      "qcm": 7,
+      "options": 21,
+      "hypothesis": 0,
+      "unknown": 21
+    },
+    "sa.gambling": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "reveil.deux_faible": {
+      "qcm": 10,
+      "options": 30,
+      "hypothesis": 0,
+      "unknown": 30
+    },
+    "forcing.checkback": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 0,
+      "unknown": 24
+    },
+    "chelem.splinter.variante": {
+      "qcm": 16,
+      "options": 48,
+      "hypothesis": 0,
+      "unknown": 48
+    },
+    "second.bicolore_cher": {
+      "qcm": 17,
+      "options": 51,
+      "hypothesis": 0,
+      "unknown": 51
+    },
+    "forcing.troisieme.suite": {
+      "qcm": 8,
+      "options": 24,
+      "hypothesis": 0,
+      "unknown": 24
+    },
+    "sa2.texas.reponse": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "sa1.stayman.contre": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "sa1.texas.contre": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "sa1.texas_mineur.reponse": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "ouv.bicolore.exception": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 7,
+      "unknown": 8
+    },
+    "sa2.stayman.reponse": {
+      "qcm": 6,
+      "options": 18,
+      "hypothesis": 0,
+      "unknown": 18
+    },
+    "sa2.bicolore": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    },
+    "intervenir.sa.suite": {
+      "qcm": 9,
+      "options": 27,
+      "hypothesis": 0,
+      "unknown": 27
+    },
+    "sa2.texas_mineur.reponse": {
+      "qcm": 5,
+      "options": 15,
+      "hypothesis": 0,
+      "unknown": 15
+    }
+  }
+}
