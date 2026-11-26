@@ -39,7 +39,7 @@ const server=http.createServer((req,res)=>{
   assert.deepEqual(warm,{type:'QPJB_OFFLINE_READY',ok:true});
   const cached=await page.evaluate(async()=>{
    const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();
-   return ['/QPJB/quizz-prerequis.js?v=2','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=17','/QPJB/qpjb-bridge-ui.css?v=20261113e']
+   return ['/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=17','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1','/QPJB/qpjb-bridge-ui.css?v=20261113e']
     .every(required=>keys.some(x=>new URL(x).pathname+new URL(x).search===required));
   });
   assert(cached,'Prerequisite module or Quiz CSS was not warmed by the service worker');
