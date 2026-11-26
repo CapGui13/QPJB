@@ -49,7 +49,7 @@
   const major=a.length===1&&/^Partenaire : 1[♥♠]$/.test(a[0])?a[0].slice(-1):null;
   if(q.theme==='majeur'&&major&&ans==='2'+major&&count(major)>=3&&/fit|atouts/i.test(x)&&axis==='fit'&&c==='1SA')
    return rule('response-major-fit','Le partenaire promet cinq '+nm(major)+' et tu en as '+count(major)+'. Le fit est déjà établi.','Sur une autre main, calcule le nombre d’atouts communs avant d’envisager Sans-Atout.',['fit-majeur','atouts-communs']);
-  if(q.theme==='majeur'&&major&&axis==='fit'&&c==='2'+major&&count(major)<3&&/fit|atouts|soutien/i.test(x)&&/deux|2 cartes|singleton|chicane|pas.*fit|absence.*fit/i.test(x))
+  if(q.theme==='majeur'&&major&&axis==='fit'&&c==='2'+major&&count(major)<3&&/fit|atouts|soutien|soutenir|deux (?:Cœurs|Piques)/i.test(x)&&/deux|2 cartes|singleton|chicane|pas.*fit|absence.*fit/i.test(x))
    return rule('response-major-short-fit','Avec '+count(major)+' cartes en soutien, les cinq cartes promises ne suffisent pas à établir huit atouts communs.','Sur une autre réponse à une majeure, compte les atouts garantis avant de choisir un soutien.',['fit-majeur','atouts-communs']);
   if(axis==='convention'&&a.length===2&&a[0]==='Vous : 1SA'&&/^Partenaire : 2♣/.test(a[1])&&/Stayman/i.test(x+' '+q.context)&&/majeure|quatre|4 cartes/i.test(x)&&['2♦','2♥','2♠','2SA'].includes(c)){
    const expected=s[0]>=4?(s[1]>=4?'2SA':'2♠'):(s[1]>=4?'2♥':'2♦');
@@ -81,6 +81,32 @@
   const reg=['4333','4432','5332'].includes([...s].sort((a,b)=>b-a).join(''));
   const bidSuit=b=>/^[1-7][♠♥♦♣]$/.test(b)?b[1]:null;
   const cs=bidSuit(c),as=bidSuit(ans),length=z=>s[suits.indexOf(z)];
+  // Conditions spécifiques : rôle, palier, longueurs et preuve dans les deux textes.
+  const partnerOpen=a.length===1&&/^Partenaire : 1[♣♦♥♠]$/.test(a[0]);
+  const direct=a.length===1&&/^Adversaire : 1[♣♦♥♠]$/.test(a[0]);
+  const hl=q.h+s.reduce((n,k)=>n+Math.max(0,k-4),0);
+  if(axis==='force'&&q.theme==='ouv'&&a.length===0&&c==='Passe'&&/^1[♣♦♥♠]$/.test(ans)&&q.h>=12&&/force d[’']ouvrir|force nécessaire|valeurs.*ouvrir|ouverture/i.test(x)&&/seuil|force|sous.estim|\d+ H/i.test(y))
+   return result('transfer-opening-threshold','Sur une autre ouverture, vérifie d’abord si les points H ou HL permettent de parler, puis décide de la couleur.',['force-ouverture','seuil-force']);
+  if(axis==='force'&&partnerOpen&&c==='Passe'&&q.h>=6&&/^1(?:[♣♦♥♠]|SA)$/.test(ans)&&/répond|réponse/i.test(x)&&/force|valeurs|seuil|sous.évalu/i.test(y))
+   return result('transfer-response-threshold','Sur une autre première réponse, vérifie la force minimale de réponse sans la confondre avec la force nécessaire pour ouvrir.',['force-reponse','seuil-force']);
+  if(axis==='force'&&partnerOpen&&c==='1SA'&&/^2[♣♦♥♠]$/.test(ans)&&ans[1]!==a[0].slice(-1)&&/11\s*H|12\s*HL/.test(x)&&/changement de couleur|2 sur 1|forcing/i.test(x)&&/seuil|valeurs|force/i.test(y))
+   return result('transfer-response-two-over-one','Sur une autre première réponse, vérifie le seuil du changement de couleur au palier de deux et distingue-le d’une réponse limitée à 1SA.',['force-reponse','seuil-deux-sur-un']);
+  if(axis==='force'&&direct&&c==='Passe'&&as&&ans[0]<='2'&&length(as)>=5&&/intervention|adversaire|palier|naturel/i.test(x)&&/intervention|intervenir/i.test(y)&&/HL|\d+ H|valeurs|force/i.test(y))
+   return result('transfer-overcall-values','Sur une autre intervention naturelle, contrôle la force, la longueur et la qualité de la couleur ainsi que le palier disponible.',['force-intervention','longueur-couleur','qualite-couleur']);
+  if(axis==='force'&&direct&&q.theme==='intervenir'&&c==='1SA'&&as&&length(as)>=5&&hl<16&&/HL|\d+ H/i.test(x)&&/intervention.*1SA|1SA.*valeurs|1SA.*force/i.test(y))
+   return result('transfer-overcall-sa-vs-long-suit','Sur une autre intervention, compare la zone du 1SA direct avec celle de l’intervention naturelle à la couleur ; vérifie aussi la tenue adverse.',['zone-intervention-sa','force-intervention','arret-adverse']);
+  if((axis==='distribution'||axis==='priorite')&&direct&&c==='Contre'&&as&&length(as)>=5&&/Contre/i.test(x)&&/contre/i.test(y)&&/couleur|longue|Piques|Cœurs|Carreaux|Trèfles/i.test(x+' '+y))
+   return result('transfer-overcall-shape','Sur une autre intervention, compare la longue que tu peux annoncer aux couleurs dans lesquelles le partenaire risque de répondre au Contre.',['distribution-intervention','contre-vs-couleur']);
+  if(axis==='convention'&&a.length===3&&/^Adversaire : 1[♣♦♥♠]$/.test(a[0])&&a[1]==='Partenaire : Contre'&&a[2]==='Adversaire : Passe'&&c==='2'+a[0].slice(-1)&&/Contre/i.test(x)&&/cue.bid/i.test(y))
+   return result('transfer-cuebid-after-double','Sur une autre réponse au contre d’appel, repère la couleur ouverte par l’adversaire : distingue son cue-bid d’une réponse naturelle.',['cue-bid','role-encherisseur']);
+  if(axis==='convention'&&a.length===1&&/^Partenaire : 2♦.*forcing de manche/i.test(a[0])&&/As|barème/i.test(x)&&/As|barème|codifi/i.test(y))
+   return result('transfer-strong-diamond-response','Sur une autre réponse au 2♦ forcing de manche, compte les As puis vérifie la force et le barème de réponses enseigné ; ne lis pas le relais comme une couleur naturelle.',['fortes-as','fortes-code']);
+  if(axis==='convention'&&q.theme==='apres_inter'&&a.length===2&&/^Partenaire : 1[♥♠]$/.test(a[0])&&/^Adversaire : /.test(a[1])&&[ans,c].includes('2SA')&&/2SA fitté|Truscott/i.test(x)&&/2SA fitté|Truscott/i.test(y))
+   return result('transfer-competitive-fit-sa','Sur une autre main fittée, distingue une intervention naturelle d’un Contre adverse avant de retrouver la signification du 2SA et sa zone de soutien.',['contexte-competitif','2sa-fitte','zone-soutien']);
+  if(axis==='priorite'&&direct&&/^michaels\.(intervention|choix)/.test(concept)&&s.filter(k=>k>=5).length===2&&cs&&length(cs)>=5&&/Micha[eë]l/i.test(x)&&/deux|bicolore|masque|révèle/i.test(y))
+   return result('transfer-michaels-both-suits','Sur une autre main bicolore, compare l’information d’une intervention naturelle à celle de l’enchère précisée qui décrit les deux longues.',['michaels-deux-longues','information-enchere']);
+  if(axis==='niveau'&&partnerOpen&&as&&cs===as&&ans[0]!==c[0]&&/soutien|HLD/i.test(x)&&/palier|niveau/i.test(y)&&s[suits.indexOf(as)]>=3&&a[0].slice(-1)===as)
+   return result('transfer-support-level','Sur une autre main de soutien, compte les atouts et évalue la force selon le fit ; vérifie le sens de chaque palier dans cette séquence.',['fit','zone-soutien','palier']);
   if(axis==='force'){
    if(partner&&both(/\bHLD\b|points? D|points? de distribution/i)&&/fit|atout|soutien/i.test(x)&&/fit|atout|soutien/i.test(y))
     return result('transfer-force-hld','Sur une autre main fittée, distingue les points H et la réévaluation au fit, puis compare la zone du soutien.',['evaluation-hld','fit','zone-soutien']);
