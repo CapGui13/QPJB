@@ -88,5 +88,9 @@ const extra=function extra(api,qs,assert){
  assert(!st.fragile,"same family corrected on later session");
  history={completed:6,journal:[...history.journal,evt(6,wrong(x),correct(x))]};st=api.recommend({concept:"ouv.sa1",history}).concepts["ouv.sa1"];
  assert(st.fragile,"same session error precedence");
+ history={completed:7,journal:[evt(1,correct(x)),evt(2,correct(y)),evt(3,wrong(x)),evt(5,correct(z)),evt(7,correct(y))]};st=api.recommend({concept:"ouv.sa1",history}).concepts["ouv.sa1"];
+ assert(!st.fragile&&st.unresolvedWeakFamilies.includes(x.caseFamily)&&st.mastery==="not_established","recovery on two independent later families does not invent a clean history");
+ history={completed:7,journal:[evt(1,correct(x)),evt(2,correct(y)),evt(3,wrong(x)),evt(7,correct(z),correct(y))]};st=api.recommend({concept:"ouv.sa1",history}).concepts["ouv.sa1"];
+ assert(st.fragile,"recovery must span different sessions");
 };
 extra(api,qs,assert.ok);
