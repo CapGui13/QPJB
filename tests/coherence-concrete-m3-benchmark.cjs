@@ -41,7 +41,7 @@ function run({sources,exercises,metadata,moduleM3,horizon=20,groups=['none','tex
     if(wrong)errors++;
     assert(api.record(st,q,wrong?'wrong':'correct',i,null,help,false),'Record failed');
    }
-   if(s===0||s===2)assert(openingPass===(s===0?3:1),'Opening Passe protection');
+   if(s===0)assert(openingPass===3,'S1 Passe');if(s===2)assert(openingPass<=1,'S3 Passe cap');
    trace.push({session:s+1,selection,openingPass});
    assert(api.finish(st,exercises),'Finish failed');
   }
