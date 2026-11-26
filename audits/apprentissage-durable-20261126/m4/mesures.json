@@ -745,5 +745,69 @@
       }
     ],
     "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
+  },
+  "pass15": {
+    "reviewedNaturalResponses": 156,
+    "counts": {
+      "coherent_in_catalogue_framework": 133,
+      "guided_not_independent": 23
+    },
+    "totalIndividualTargetedReview": 742,
+    "remainingIndividualTargetedReview": 1173,
+    "completedConcepts": [
+      {
+        "concept": "mineur.base",
+        "total": 96,
+        "previous": 1,
+        "new": 95
+      },
+      {
+        "concept": "majeur.base",
+        "total": 63,
+        "previous": 2,
+        "new": 61
+      }
+    ],
+    "gaps": [
+      {
+        "criterion": "Priorité sur 1♣, 4♦–4M à 12 HL contre 13 HL",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "SEF-L05-022 teste 13 H avec 4♦–4♠ ; les seuils exacts 12/13 HL sont couverts sur cinq Carreaux par SEF-Q26-M1-008/009, mais la frontière avec quatre Carreaux manque côté 12 H. Vérifier la priorité à longueur égale sans ajouter un point L fictif."
+      },
+      {
+        "criterion": "Rencontre après Passe initial versus réponse naturelle",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "Les trois rencontres sur ouverture mineure et le cas naturel après Passe initial donnent dans l'énoncé les critères discriminants. Un cas sans indice de convention ni de longueur doit vérifier le changement de statut du répondant."
+      },
+      {
+        "criterion": "1SA de recours après ouverture majeure versus 2 sur 1",
+        "disposition": "COVERED",
+        "reason": "SEF-N072-1, SEF-Q26-M1-012, V2-M1-037/038 et SEF-L06-017 couvrent les frontières 10 H/11 H et cinq/six cartes. Pas de nouvel exercice nécessaire."
+      },
+      {
+        "criterion": "1♥–1♠ illimité et 1♠–2♥ cinq cartes",
+        "disposition": "COVERED",
+        "reason": "SEF-Q26-M1-016, V2-M1-033/034/035/036 et SEF-L06-018 vérifient force élevée et longueur requise sans dévoiler la réponse."
+      },
+      {
+        "criterion": "1SA régulier sur ouverture mineure avec cinq cartes",
+        "disposition": "BOUNDED",
+        "reason": "Les cas à 10 H et une cinquième, notamment SEF-N031-1, appartiennent au barème en H du catalogue. Ne pas extrapoler à toutes les mains fortes en levées, ni au système 1SA forcing d'une autre paire."
+      }
+    ],
+    "tests": [
+      {
+        "assertions": 641,
+        "status": "PASS",
+        "reviewed": 156,
+        "totalReviewed": 742,
+        "statusCounts": {
+          "coherent_in_catalogue_framework": 133,
+          "guided_not_independent": 23
+        },
+        "completeNaturalResponses": 159
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
   }
 }
