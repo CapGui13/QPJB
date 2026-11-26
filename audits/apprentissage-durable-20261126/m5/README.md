@@ -101,3 +101,7 @@ python audits/apprentissage-durable-20261126/m5/test-navigation-full.py
 ```
 
 Conserver les sorties et les empreintes des trois fichiers imprimées par le banc navigateur. Ne pas substituer le corpus synthétique à la recette réelle. Aucun workflow actif n'a été ajouté ni modifié par M5.
+
+## Complément V471/V472/V487 et note Walsh
+
+Quatre archives relues intégralement, avec contrôle des 21 fiches actuelles correspondantes et des deux candidats écartés. Neuf approfondissements et quinze exemples canoniques supplémentaires : 88 approfondissements, 316 exemples, 187 mini-vérifications. Notamment redemandes libres/obligées, contre/surcontre de soutien, cue-bids après nouvelle couleur, 4SA après 2♣ fort, arrêt à 3♣ et quatrième couleur répétée ou soutien différé. Registre `archives-complementaires.json` et test dédié ; cardinalités historiques maintenues dans les anciens tests. Dix suites exécutées sous V8 sur sources exactes au SHA 855e04d03153efaab4a053f71f517eb3ac26bd0a : **181081 assertions réussies** dont 52 458 pour les trois trajectoires de 65 séances (1 950 réponses synthétiques). Voir `recette-complementaire.json`. Aucun changement du catalogue ni du moteur V1. La recette native Chromium/WebKit et la vérification éditoriale exhaustive restent non attestées ; statut NON maintenu.
