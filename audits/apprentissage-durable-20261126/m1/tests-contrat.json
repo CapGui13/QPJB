@@ -1,6 +1,6 @@
 {
-  "environment": "V8, blobs réels; exécution du corps exact du test, adaptateurs Node mémoire",
-  "assertions": 25306,
+  "environment": "V8, blobs réels, corps exact du test; réexécuté après correctifs ec3a159, contrôle UMD window simulé et signaux transversaux complémentaires",
+  "assertions": 25319,
   "results": [
     {
       "rows": 1915,
@@ -142,6 +142,17 @@
         "SEF-N017-2"
       ]
     }
+  ],
+  "cross": [
+    "force:H",
+    "force:HL",
+    "force:HLD",
+    "distribution:longueur",
+    "fit:priorite",
+    "forcing:statut",
+    "niveau:palier",
+    "convention",
+    "competition"
   ],
   "failure": null
 }
