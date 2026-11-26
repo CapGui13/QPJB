@@ -6430,6 +6430,113 @@
           ],
           "assisted": true,
           "assessment": false
+        },
+        {
+          "id": "m5-ext-85",
+          "title": "Cue-bid simple ou à saut après la nouvelle couleur adverse",
+          "rule": "Après (1♣)–1♥–(1♠), le cue-bid simple à 2♣ montre dans le traitement QPJB un soutien fort de trois Cœurs ; à 3♣, un soutien fort de quatre Cœurs. 2SA décrit quatre atouts et 7–9 H (mixed raise), tandis que 3♥ est barrage. La tenue Trèfle n’est pas le critère du cue-bid.",
+          "check": {
+            "prompt": "Dans cette séquence, quel cue-bid fort choisir avec quatre Cœurs ?",
+            "answer": "3♣ à saut ; 2♣ simple correspond ici à trois atouts.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V487-001",
+              "hand": [
+                [
+                  "R",
+                  "5"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6",
+                  "3"
+                ],
+                [
+                  "D",
+                  "10",
+                  "4",
+                  "2"
+                ],
+                [
+                  "R",
+                  "8",
+                  "3"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                2,
+                4,
+                4,
+                3
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention naturelle)",
+                "Adversaire : 1♠ (nouvelle couleur)"
+              ],
+              "context": "L’adversaire de gauche ouvre de 1♣, votre partenaire intervient naturellement à 1♥ et le répondant adverse annonce 1♠. Vous êtes le quatrième joueur et vous n’avez pas passé d’entrée. Quelle réponse choisissez-vous selon le SEF 2024 ?",
+              "answer": "3♣",
+              "comment": "Après (1♣)–1♥–(1♠), la couleur d'ouverture peut être cue-biddée à 2♣ ou à 3♣. Avec quatre Cœurs A863 et 12 H, 3♣ à saut exprime le soutien fort de quatre cartes. 2♣ simple décrirait le soutien fort de trois cartes ; 2SA serait un mixed raise limité à 7–9 H et 3♥ un barrage. C'est la combinaison du nombre d'atouts et de la force qui désigne le saut."
+            },
+            {
+              "id": "SEF-V487-002",
+              "hand": [
+                [
+                  "A",
+                  "4"
+                ],
+                [
+                  "R",
+                  "D",
+                  "7"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6",
+                  "5"
+                ],
+                [
+                  "V",
+                  "10",
+                  "8",
+                  "5"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                2,
+                3,
+                4,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention naturelle)",
+                "Adversaire : 1♠ (nouvelle couleur)"
+              ],
+              "context": "L’adversaire de gauche ouvre de 1♣, votre partenaire intervient naturellement à 1♥ et le répondant adverse annonce 1♠. Vous êtes le quatrième joueur. Quelle réponse choisissez-vous selon le SEF 2024 ?",
+              "answer": "2♣",
+              "comment": "Après (1♣)–1♥–(1♠), vous avez 14 H et trois Cœurs RD7. 2♣, cue-bid simple de la couleur d'ouverture, montre le soutien fort de trois atouts. Le cue-bid à saut à 3♣, disponible dans la même séquence, décrirait quatre atouts ; 2SA montre quatre atouts et seulement 7–9 H. 2♥ simple sous-évaluerait la force. La tenue Trèfle n'est pas le critère du cue-bid."
+            }
+          ],
+          "minSession": 17,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
         }
       ]
     },
@@ -8684,6 +8791,115 @@
             },
             {
               "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-84",
+          "title": "Barrage mineur ou surcontre positif",
+          "rule": "Après ouverture mineure contrée, six atouts et seulement 4 H peuvent conduire au soutien à saut de barrage (3♦ sur 1♦ dans le cas étudié). Avec 12 H sans majeure quatrième ni les cinq atouts exigés pour le Truscott mineur, le surcontre exprime les valeurs du répondant.",
+          "check": {
+            "prompt": "Après 1♣–(Contre), avec 12 H sans majeure quatrième ni cinq Trèfles, quelle annonce exprime la force ?",
+            "answer": "Surcontre : les cinq atouts nécessaires au Truscott ne sont pas présents.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V472-002",
+              "hand": [
+                [
+                  "8",
+                  "7",
+                  "3"
+                ],
+                [
+                  "V",
+                  "6",
+                  "5"
+                ],
+                [
+                  "R",
+                  "10",
+                  "9",
+                  "8",
+                  "6",
+                  "4"
+                ],
+                [
+                  "2"
+                ]
+              ],
+              "h": 4,
+              "shape": [
+                3,
+                3,
+                6,
+                1
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Adversaire : Contre"
+              ],
+              "context": "Votre partenaire ouvre de 1♦ et l'adversaire de droite contre d'appel. Vous possédez six Carreaux mais très peu de points. Quelle réponse gêne efficacement les adversaires sans promettre une main constructive ?",
+              "answer": "3♦",
+              "comment": "Avec seulement 4 H mais six Carreaux, vous pouvez soutenir à 3♦ en barrage après le Contre adverse. Le partenaire possède normalement au moins trois Carreaux : neuf atouts sont ainsi plausibles, et l'objectif est de prendre de la place aux adversaires, non de proposer la manche."
+            },
+            {
+              "id": "SEF-V472-004",
+              "hand": [
+                [
+                  "A",
+                  "8",
+                  "5"
+                ],
+                [
+                  "R",
+                  "7",
+                  "3"
+                ],
+                [
+                  "D",
+                  "V",
+                  "4"
+                ],
+                [
+                  "D",
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Adversaire : Contre"
+              ],
+              "context": "Votre partenaire ouvre de 1♣ et l'adversaire de droite fait un Contre d'appel. Vous avez 12 H, aucune majeure quatrième et seulement quatre Trèfles. Quelle est votre réponse ?",
+              "answer": "Surcontre",
+              "comment": "Avec 12 H après le Contre d'appel adverse, votre camp dispose de valeurs importantes : Surcontre exprime cette force et laisse les enchères ouvertes. Vous n'avez ni majeure quatrième à annoncer au palier de 1 ni les cinq Trèfles requis pour le 2SA Truscott mineur."
+            }
+          ],
+          "minSession": 16,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
               "minExposure": 1
             }
           ],
@@ -12014,7 +12230,419 @@
         }
       ],
       "minSession": 14,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-80",
+          "title": "1SA libre : l’arrêt change la décision",
+          "rule": "Après 1♦–Passe–1♥–(1♠), l’ouvreur peut passer. Avec une bonne ouverture régulière de première zone et l’arrêt à Pique, 1SA libre est descriptif. Sans arrêt, sans fit ni longue à répéter, Passe peut convenir.",
+          "check": {
+            "prompt": "Après intervention du quatrième joueur, 1SA libre exige-t-il l’arrêt adverse ?",
+            "answer": "Oui, dans cette séquence : sans arrêt ni autre annonce utile, Passe peut convenir.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V471-002",
+              "hand": [
+                [
+                  "A",
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "7",
+                  "5"
+                ],
+                [
+                  "R",
+                  "V",
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "8",
+                  "5"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : Passe",
+                "Partenaire : 1♥",
+                "Adversaire : 1♠"
+              ],
+              "context": "Vous ouvrez de 1♦. L'adversaire de gauche passe, votre partenaire répond 1♥ et l'adversaire de droite intervient à 1♠. Quelle est votre redemande selon le SEF ?",
+              "answer": "1SA",
+              "comment": "Cette fois, vous possédez 14 H réguliers, trois Cœurs sans fit assuré et l'As de Pique qui arrête la couleur d'intervention. Après 1♦–Passe–1♥–1♠, la redemande à 1SA est libre : elle montre une bonne ouverture de première zone et garantit une tenue à Pique."
+            }
+          ],
+          "minSession": 14,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-81",
+          "title": "Fit ou longue après la parole adverse",
+          "rule": "Après 1♦–Passe–1♥–(1♠), quatre Cœurs justifient le soutien simple à 2♥ avec une ouverture de première zone. Six beaux Carreaux et une main minimale peuvent justifier 2♦. Ces deux redemandes naturelles libres ne promettent pas une tenue à Pique.",
+          "check": {
+            "prompt": "Avec quatre Cœurs, faut-il une tenue Pique pour soutenir à 2♥ ?",
+            "answer": "Non : le fit majeur permet le soutien naturel, indépendamment de l’arrêt Pique.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V471-003",
+              "hand": [
+                [
+                  "8",
+                  "4"
+                ],
+                [
+                  "A",
+                  "D",
+                  "9",
+                  "7"
+                ],
+                [
+                  "R",
+                  "V",
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                2,
+                4,
+                4,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : Passe",
+                "Partenaire : 1♥",
+                "Adversaire : 1♠"
+              ],
+              "context": "Vous ouvrez de 1♦. L'adversaire de gauche passe, votre partenaire répond 1♥ et l'adversaire de droite intervient à 1♠. Quelle est votre redemande selon le SEF ?",
+              "answer": "2♥",
+              "comment": "Votre partenaire a promis au moins quatre Cœurs par sa réponse de 1♥, et vous en possédez quatre : le fit majeur est établi. Avec 13 H d'ouverture de première zone, le soutien libre à 2♥ est l'enchère naturelle au palier le plus bas, même sans arrêt à Pique."
+            },
+            {
+              "id": "SEF-V471-004",
+              "hand": [
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "8",
+                  "6"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "10",
+                  "8",
+                  "5"
+                ],
+                [
+                  "R",
+                  "7",
+                  "2"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                2,
+                2,
+                6,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : Passe",
+                "Partenaire : 1♥",
+                "Adversaire : 1♠"
+              ],
+              "context": "Vous ouvrez de 1♦. L'adversaire de gauche passe, votre partenaire répond 1♥ et l'adversaire de droite intervient à 1♠. Quelle est votre redemande selon le SEF ?",
+              "answer": "2♦",
+              "comment": "Votre ouverture est minimale, mais vous détenez six Carreaux de bonne qualité, commandés par As-Roi-Dame. Après l'intervention à 1♠ du quatrième joueur, répéter librement 2♦ décrit cette couleur sixième et offre un contrat partiel naturel sans inventer un arrêt à Pique."
+            }
+          ],
+          "minSession": 14,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-82",
+          "title": "1SA obligé et 2SA libre",
+          "rule": "Après 1♦–(1♥)–1♠–Passe, 1♠ est forcing un tour : 1SA obligé peut ne pas tenir Cœur. Après 1♦–Passe–1♥–(1♠), 2SA libre montre au contraire la troisième zone régulière et un double arrêt Pique dans le cas étudié (18 H, AR).",
+          "check": {
+            "prompt": "Après 1♦–(1♥)–1♠–Passe, 1SA obligé garantit-il l’arrêt Cœur ?",
+            "answer": "Non : le changement de couleur forcing impose une redemande, même sans arrêt Cœur.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V471-005",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "7"
+                ],
+                [
+                  "R",
+                  "8",
+                  "5"
+                ],
+                [
+                  "A",
+                  "R",
+                  "7",
+                  "4"
+                ],
+                [
+                  "V",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : Passe",
+                "Partenaire : 1♥",
+                "Adversaire : 1♠"
+              ],
+              "context": "Vous ouvrez de 1♦. L'adversaire de gauche passe, votre partenaire répond 1♥ et l'adversaire de droite intervient à 1♠. Quelle est votre redemande selon le SEF ?",
+              "answer": "2SA",
+              "comment": "Votre main régulière de 18 H appartient à la troisième zone d'ouverture, et As-Roi de Pique constitue un double arrêt certain dans la couleur adverse. Après 1♦–Passe–1♥–1♠, la redemande libre à 2SA décrit cette force et les deux arrêts ; 1SA sous-évaluerait votre main."
+            },
+            {
+              "id": "SEF-V471-006",
+              "hand": [
+                [
+                  "R",
+                  "9",
+                  "4"
+                ],
+                [
+                  "9",
+                  "7",
+                  "2"
+                ],
+                [
+                  "A",
+                  "D",
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "V",
+                  "4"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : 1♥",
+                "Partenaire : 1♠",
+                "Adversaire : Passe"
+              ],
+              "context": "Vous ouvrez de 1♦. L'adversaire de gauche intervient à 1♥, votre partenaire répond 1♠ et l'adversaire de droite passe. Quelle est votre redemande selon le SEF ?",
+              "answer": "1SA",
+              "comment": "Votre partenaire a changé de couleur au palier de 1 par 1♠, une enchère forcing pour un tour : vous ne pouvez pas passer. Avec 13 H réguliers, seulement trois Piques et quatre Carreaux, 1SA est une redemande obligée de première zone ; contrairement au 1SA libre, elle ne promet pas l'arrêt à Cœur, ici absent."
+            }
+          ],
+          "minSession": 18,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-83",
+          "title": "Contre et surcontre de soutien",
+          "rule": "Après 1♦–Passe–1♥–(1♠), le contre de soutien décrit exactement trois Cœurs avec une bonne ouverture dans l’accord étudié. Après 1♥–Passe–1♠–(Contre), le surcontre de soutien décrit exactement trois Piques. Le soutien direct montrerait quatre cartes.",
+          "check": {
+            "prompt": "Que montre le contre de soutien après 1♦–Passe–1♥–(1♠) ?",
+            "answer": "Une bonne ouverture et exactement trois Cœurs, non un soutien direct de quatre cartes.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V472-005",
+              "hand": [
+                [
+                  "8",
+                  "6"
+                ],
+                [
+                  "A",
+                  "D",
+                  "8"
+                ],
+                [
+                  "A",
+                  "R",
+                  "10",
+                  "4",
+                  "3"
+                ],
+                [
+                  "8",
+                  "5",
+                  "2"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                2,
+                3,
+                5,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Adversaire : Passe",
+                "Partenaire : 1♥",
+                "Adversaire : 1♠"
+              ],
+              "context": "Vous ouvrez de 1♦ ; l'adversaire de gauche passe ; votre partenaire répond 1♥ ; l'adversaire de droite intervient à 1♠. Vous avez une bonne ouverture et exactement trois Cœurs. Quelle est votre redemande dans la convention de soutien du SEF ?",
+              "answer": "Contre",
+              "comment": "Après 1♦ – Passe – 1♥ – 1♠, le Contre de soutien de l'ouvreur montre une bonne ouverture et exactement trois Cœurs chez vous. Il permet de signaler cette longueur au partenaire sans annoncer 2♥, qui correspondrait à un véritable fit de quatre cartes dans sa majeure."
+            },
+            {
+              "id": "SEF-V472-006",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "5"
+                ],
+                [
+                  "A",
+                  "R",
+                  "10",
+                  "8",
+                  "4"
+                ],
+                [
+                  "9",
+                  "2"
+                ],
+                [
+                  "7",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                5,
+                2,
+                3
+              ],
+              "auction": [
+                "Vous : 1♥",
+                "Adversaire : Passe",
+                "Partenaire : 1♠",
+                "Adversaire : Contre"
+              ],
+              "context": "Vous ouvrez de 1♥ ; l'adversaire de gauche passe ; votre partenaire annonce 1♠ ; l'adversaire de droite produit un Contre d'appel. Vous avez une bonne ouverture et exactement trois Piques. Quelle redemande décrit le mieux ce soutien ?",
+              "answer": "Surcontre",
+              "comment": "Lorsque le quatrième joueur contre la réponse de 1♠ du partenaire, le Surcontre de soutien par l'ouvreur indique une bonne ouverture et exactement trois Piques. Vous distinguez ainsi votre fit troisième d'un soutien direct de quatre cartes et donnez au partenaire une information de distribution essentielle."
+            }
+          ],
+          "minSession": 18,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "michaels.defense": {
       "title": "Réagir à un bicolore adverse",
@@ -13217,6 +13845,72 @@
             {
               "concept": "fortes.suite",
               "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-87",
+          "title": "S’arrêter après une mineure très forte",
+          "rule": "Après 2♣–2♦–3♣ naturel décrivant sept très beaux Trèfles et environ neuf levées de jeu, la manche n’est pas imposée. Avec 0 H et sans complément utile dans la main étudiée, Passe à 3♣ est raisonnable.",
+          "check": {
+            "prompt": "Après cette redemande forte à 3♣, une main nulle sans complément peut-elle passer ?",
+            "answer": "Oui : 2♣ fort indéterminé n’est pas forcing de manche.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V487-005",
+              "hand": [
+                [
+                  "8",
+                  "6",
+                  "4"
+                ],
+                [
+                  "9",
+                  "5",
+                  "2"
+                ],
+                [
+                  "10",
+                  "8",
+                  "6",
+                  "3"
+                ],
+                [
+                  "7",
+                  "5",
+                  "2"
+                ]
+              ],
+              "h": 0,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Vous : 2♦ (relais obligatoire)",
+                "Partenaire : 3♣ (sept très beaux Trèfles, environ neuf levées de jeu)"
+              ],
+              "context": "Votre partenaire ouvre de 2♣ fort indéterminé, vous annoncez le relais obligatoire de 2♦ puis il redemande 3♣. Cette redemande décrit une très belle couleur septième à Trèfle et un nombre élevé de levées de jeu, sans rendre la manche automatiquement obligatoire. Les adversaires passent. Vous êtes le répondant, totalement dépourvu d’honneurs. Quelle est votre enchère ?",
+              "answer": "Passe",
+              "comment": "La redemande de 3♣ annonce une mineure très forte, mais elle n’impose pas la manche. Avec 0 H et aucune levée utile clairement apportée à votre partenaire, vous ne disposez pas des compléments nécessaires pour déclarer 3SA ou 5♣. Vous pouvez vous arrêter à 3♣ en passant."
+            }
+          ],
+          "minSession": 31,
+          "prerequisites": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 1
             }
           ],
           "assisted": true,
@@ -16174,7 +16868,124 @@
         }
       ],
       "minSession": 30,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-88",
+          "title": "Répéter la quatrième couleur ou soutenir avec ambition",
+          "rule": "Après 1♦–1♥–1♠–2♣–2♥, l’ouvreur montre trois Cœurs. Avec quatre Cœurs et sans arrêt Trèfle, 3♣ renouvelle la demande d’arrêt sans promettre de longueur. Avec cinq beaux Cœurs, 17 H et une courte dans l’autre cas, 3♥ soutien différé est forcing de manche et préserve l’espace pour le chelem.",
+          "check": {
+            "prompt": "Après 2♥ montrant trois Cœurs, que faire avec quatre Cœurs et sans arrêt Trèfle dans la main étudiée ?",
+            "answer": "Répéter 3♣, quatrième couleur artificielle, pour demander l’arrêt ; sept atouts ne suffisent pas.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V487-006",
+              "hand": [
+                [
+                  "R",
+                  "9",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "8",
+                  "3"
+                ],
+                [
+                  "R",
+                  "D",
+                  "2"
+                ],
+                [
+                  "9",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Vous : 1♥",
+                "Partenaire : 1♠",
+                "Vous : 2♣ (quatrième couleur forcing)",
+                "Partenaire : 2♥ (soutien de trois cartes)"
+              ],
+              "context": "Dans le silence adverse, votre partenaire a ouvert de 1♦, vous avez répondu 1♥, puis il a déclaré 1♠. Vous avez employé la quatrième couleur forcing à 2♣ ; il a répondu 2♥, décrivant trois cartes à Cœur, mais sans promettre de tenue à Trèfle. Vous n’avez que quatre Cœurs : le camp ne possède donc pas de fit majeur à huit atouts, et vous ne détenez aucune tenue sûre à Trèfle. Quelle est votre troisième enchère ?",
+              "answer": "3♣",
+              "comment": "Après 2♣ quatrième couleur forcing, 2♥ montre trois Cœurs, mais vos quatre Cœurs n'assurent que sept atouts. Vous avez 13 H et ♣953 sans arrêt : répéter 3♣ renouvelle la demande de tenue Trèfle, sans promettre des Trèfles. 3SA direct supposerait cette tenue acquise."
+            },
+            {
+              "id": "SEF-V487-007",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "8"
+                ],
+                [
+                  "A",
+                  "R",
+                  "V",
+                  "9",
+                  "7"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6",
+                  "4"
+                ],
+                [
+                  "6"
+                ]
+              ],
+              "h": 17,
+              "shape": [
+                3,
+                5,
+                4,
+                1
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Vous : 1♥",
+                "Partenaire : 1♠",
+                "Vous : 2♣ (quatrième couleur forcing)",
+                "Partenaire : 2♥ (soutien de trois cartes)"
+              ],
+              "context": "Votre partenaire ouvre de 1♦, vous répondez 1♥, il annonce 1♠ et vous faites une quatrième couleur forcing à 2♣. Il répond à 2♥, montrant ici trois atouts Cœur. Tous les adversaires passent. Vous possédez cinq beaux Cœurs, un singleton Trèfle et beaucoup de jeu : le fit 5–3 à Cœur est assuré et le chelem mérite d’être exploré, sans brûler les contrôles. Quelle est votre troisième enchère ?",
+              "answer": "3♥",
+              "comment": "Le soutien différé à 3♥ après la quatrième couleur forcing est forcing de manche et exprime des ambitions de chelem. Avec cinq beaux Cœurs, un fit 5–3 assuré, 17 H et un singleton à Trèfle, vous conservez de l’espace pour les annonces de contrôles au lieu de conclure tout de suite à 4♥."
+            }
+          ],
+          "minSession": 38,
+          "prerequisites": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "chelem.quantitatif.suite": {
       "title": "Accepter ou refuser 4SA quantitatif",
@@ -16244,7 +17055,83 @@
         }
       ],
       "minSession": 39,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-86",
+          "title": "Inviter au chelem après un 2♣ fort",
+          "rule": "Après 2♣–2♦–2SA, l’ouvreur a 22–23 H réguliers. Avec 10 H réguliers dans la main étudiée, les 32–33 H combinés justifient 4SA quantitatif, sans fit agréé. L’ouvreur évalue ses plus-values avant d’accepter à 6SA.",
+          "check": {
+            "prompt": "Après 2♣–2♦–2SA, que signifie 4SA avec 10 H réguliers sans fit ?",
+            "answer": "Une invitation quantitative au petit chelem, pas un Blackwood.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V487-003",
+              "hand": [
+                [
+                  "R",
+                  "V",
+                  "6"
+                ],
+                [
+                  "D",
+                  "9",
+                  "7"
+                ],
+                [
+                  "R",
+                  "10",
+                  "6",
+                  "2"
+                ],
+                [
+                  "V",
+                  "8",
+                  "5"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Vous : 2♦ (relais obligatoire)",
+                "Partenaire : 2SA (22–23 H réguliers)"
+              ],
+              "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Après votre relais obligatoire de 2♦, il redemande 2SA : une main régulière de 22–23 points H. Les adversaires passent. Vous êtes le répondant, avec une main régulière et sans majeure quatrième ou longue. Votre force justifie de proposer le chelem sans l’imposer ; votre enchère ne doit pas être confondue avec un Blackwood à l’atout. Quelle est votre enchère ?",
+              "answer": "4SA",
+              "comment": "Après 2♣–2♦–2SA, l’ouvreur possède 22–23 H réguliers. Avec 10 H, vous totalisez 32–33 H, une zone d’invitation à 6SA : l’enchère de 4SA est quantitative et non un Blackwood. Votre partenaire accepte l’invitation avec une main suffisamment maximale et adaptée."
+            }
+          ],
+          "minSession": 45,
+          "prerequisites": [
+            {
+              "concept": "chelem.quantitatif",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.quantitatif.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "chelem.blackwood.declenchement": {
       "title": "Vérifier quand poser le Blackwood",

@@ -1857,6 +1857,27 @@
         ],
         "disposition": "ready",
         "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-85",
+        "title": "Cue-bid simple ou à saut après la nouvelle couleur adverse",
+        "sources": [
+          "SEF-V487-001",
+          "SEF-V487-002"
+        ],
+        "minCompleted": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
       }
     ],
     "objective": "Reconnaître le fit après une intervention majeure du partenaire et choisir un soutien non forcing adapté.",
@@ -2509,6 +2530,31 @@
         ],
         "disposition": "ready",
         "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-84",
+        "title": "Barrage mineur ou surcontre positif",
+        "sources": [
+          "SEF-V472-002",
+          "SEF-V472-004"
+        ],
+        "minCompleted": 16,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V472 et corrigés de la base figée ; aucune homologation nouvelle."
       }
     ],
     "objective": "Choisir le soutien conventionnel adapté au fit majeur ou mineur après un contre, ou le Surcontre selon la main.",
@@ -3470,7 +3516,107 @@
     "canonicalLength": 307,
     "reminderLength": 100,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-80",
+        "title": "1SA libre : l’arrêt change la décision",
+        "sources": [
+          "SEF-V471-002"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-81",
+        "title": "Fit ou longue après la parole adverse",
+        "sources": [
+          "SEF-V471-003",
+          "SEF-V471-004"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-82",
+        "title": "1SA obligé et 2SA libre",
+        "sources": [
+          "SEF-V471-005",
+          "SEF-V471-006"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-83",
+        "title": "Contre et surcontre de soutien",
+        "sources": [
+          "SEF-V472-005",
+          "SEF-V472-006"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V472 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître quand l'intervention du quatrième joueur permet à l'ouvreur minimal de passer.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3794,6 +3940,26 @@
         ],
         "disposition": "ready",
         "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-87",
+        "title": "S’arrêter après une mineure très forte",
+        "sources": [
+          "SEF-V487-005"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
       }
     ],
     "objective": "Évaluer si sa main justifie de poursuivre après 2♣–2♦–2SA ou permet de passer.",
@@ -4516,7 +4682,33 @@
     "canonicalLength": 316,
     "reminderLength": 87,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-88",
+        "title": "Répéter la quatrième couleur ou soutenir avec ambition",
+        "sources": [
+          "SEF-V487-006",
+          "SEF-V487-007"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Utiliser l'information de fit ou d'arrêt apportée par la réponse à la quatrième couleur.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -4543,7 +4735,36 @@
     "canonicalLength": 283,
     "reminderLength": 103,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-86",
+        "title": "Inviter au chelem après un 2♣ fort",
+        "sources": [
+          "SEF-V487-003"
+        ],
+        "minCompleted": 45,
+        "requires": [
+          {
+            "concept": "chelem.quantitatif",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.quantitatif.suite",
+            "minExposure": 2
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Décider si la force de l'ouvreur justifie d'accepter l'invitation quantitative à 6SA.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
