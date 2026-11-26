@@ -1,0 +1,677 @@
+{
+  "assertions": 19486,
+  "scenarios": [
+    {
+      "name": "new",
+      "evidence": "unseen",
+      "next": "discovery",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "old",
+      "evidence": "exposed",
+      "next": "consolidation",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "assisted",
+      "evidence": "exposed",
+      "next": "consolidation",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "free-error",
+      "evidence": "exposed",
+      "next": "consolidation",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "invalid-choice",
+      "evidence": "exposed",
+      "next": "consolidation",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "first",
+      "evidence": "first_success",
+      "next": "consolidation",
+      "proofFamilies": 1,
+      "proofSessions": 1
+    },
+    {
+      "name": "same-session",
+      "evidence": "first_success",
+      "next": "consolidation",
+      "proofFamilies": 2,
+      "proofSessions": 1
+    },
+    {
+      "name": "same-family",
+      "evidence": "first_success",
+      "next": "consolidation",
+      "proofFamilies": 1,
+      "proofSessions": 2
+    },
+    {
+      "name": "independent",
+      "evidence": "multi_family_evidence",
+      "next": "discrimination",
+      "proofFamilies": 2,
+      "proofSessions": 2
+    },
+    {
+      "name": "consolidation-only",
+      "evidence": "unseen",
+      "next": "discovery",
+      "proofFamilies": 0,
+      "proofSessions": 0
+    },
+    {
+      "name": "relapse",
+      "evidence": "fragile",
+      "next": "consolidation",
+      "proofFamilies": 2,
+      "proofSessions": 2
+    }
+  ],
+  "verified": {
+    "pairs": 1254,
+    "consolidations": 726,
+    "transfers": 561,
+    "profiles": 495,
+    "boundaries": {
+      "ouv.mineure": [
+        {
+          "id": "SEF-012-1",
+          "h": 12,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "answer": "1♣",
+          "contrast": "SEF-001-1"
+        }
+      ],
+      "ouv.sa1": [
+        {
+          "id": "SEF-001-1",
+          "h": 15,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-V49-002"
+        },
+        {
+          "id": "SEF-002-3",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-V49-002"
+        },
+        {
+          "id": "SEF-002-1",
+          "h": 17,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-N003-1"
+        },
+        {
+          "id": "SEF-003-2",
+          "h": 15,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-L05-013"
+        },
+        {
+          "id": "SEF-003-1",
+          "h": 17,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-L05-013"
+        },
+        {
+          "id": "SEF-N017-2",
+          "h": 15,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-V49-002"
+        },
+        {
+          "id": "SEF-N018-2",
+          "h": 15,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-N002-2"
+        },
+        {
+          "id": "SEF-N018-3",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-N002-1"
+        },
+        {
+          "id": "SEF-N019-2",
+          "h": 15,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-L05-013"
+        },
+        {
+          "id": "SEF-N019-1",
+          "h": 17,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-L05-013"
+        },
+        {
+          "id": "V2-M1-006",
+          "h": 15,
+          "shape": [
+            3,
+            3,
+            2,
+            5
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-V49-002"
+        },
+        {
+          "id": "V2-M1-007",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-L05-013"
+        },
+        {
+          "id": "V2-M1-009",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "answer": "1SA",
+          "contrast": "SEF-V49-002"
+        }
+      ],
+      "majeur.soutien": [
+        {
+          "id": "SEF-028-2",
+          "h": 7,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♠",
+          "contrast": "SEF-N071-2"
+        },
+        {
+          "id": "SEF-028-1",
+          "h": 8,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♠",
+          "contrast": "SEF-V49-011"
+        },
+        {
+          "id": "SEF-030-3",
+          "h": 1,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "Passe",
+          "contrast": "SEF-C-008"
+        },
+        {
+          "id": "SEF-030-1",
+          "h": 3,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "Passe",
+          "contrast": "SEF-C-008"
+        },
+        {
+          "id": "SEF-N048-3",
+          "h": 6,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♥",
+          "contrast": "SEF-N061-2"
+        },
+        {
+          "id": "SEF-N048-1",
+          "h": 8,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♥",
+          "contrast": "SEF-N061-2"
+        },
+        {
+          "id": "SEF-N052-1",
+          "h": 0,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "Passe",
+          "contrast": "SEF-N051-2"
+        },
+        {
+          "id": "SEF-N053-2",
+          "h": 6,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♠",
+          "contrast": "SEF-N071-2"
+        },
+        {
+          "id": "SEF-N053-1",
+          "h": 7,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♠",
+          "contrast": "SEF-N071-2"
+        },
+        {
+          "id": "SEF-N057-1",
+          "h": 1,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "Passe",
+          "contrast": "SEF-N056-1"
+        },
+        {
+          "id": "SEF-N057-2",
+          "h": 2,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "Passe",
+          "contrast": "SEF-N056-1"
+        },
+        {
+          "id": "SEF-V49-010",
+          "h": 7,
+          "shape": [
+            2,
+            3,
+            4,
+            4
+          ],
+          "answer": "2♥",
+          "contrast": "SEF-N061-2"
+        },
+        {
+          "id": "SEF-C-006",
+          "h": 6,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ],
+          "answer": "2♠",
+          "contrast": "SEF-N071-2"
+        },
+        {
+          "id": "V2-M1-039",
+          "h": 10,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "2♥",
+          "contrast": "SEF-N051-2"
+        }
+      ],
+      "chelem.quantitatif": [
+        {
+          "id": "SEF-V44-013",
+          "h": 16,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L13-018",
+          "h": 16,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "5SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L40-002",
+          "h": 12,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-Q26-M2-016",
+          "h": 17,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "V2-M6-033",
+          "h": 12,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": "V2-M6-035"
+        },
+        {
+          "id": "V2-M6-034",
+          "h": 13,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "6SA",
+          "contrast": "V2-M6-035"
+        },
+        {
+          "id": "V2-M6-035",
+          "h": 16,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "5SA",
+          "contrast": "V2-M6-034"
+        },
+        {
+          "id": "V2-M6-036",
+          "h": 17,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "answer": "7SA",
+          "contrast": null
+        }
+      ],
+      "chelem.blackwood.declenchement": [
+        {
+          "id": "SEF-L01-A-01",
+          "h": 17,
+          "shape": [
+            2,
+            4,
+            2,
+            5
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-A-02",
+          "h": 16,
+          "shape": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-A-03",
+          "h": 19,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-A-05",
+          "h": 18,
+          "shape": [
+            5,
+            3,
+            2,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-A-06",
+          "h": 16,
+          "shape": [
+            3,
+            4,
+            1,
+            5
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-01",
+          "h": 19,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-02",
+          "h": 18,
+          "shape": [
+            3,
+            3,
+            5,
+            2
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-03",
+          "h": 18,
+          "shape": [
+            5,
+            3,
+            3,
+            2
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-04",
+          "h": 16,
+          "shape": [
+            4,
+            3,
+            1,
+            5
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-05",
+          "h": 17,
+          "shape": [
+            6,
+            2,
+            2,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L01-B-06",
+          "h": 16,
+          "shape": [
+            4,
+            3,
+            5,
+            1
+          ],
+          "answer": "4SA",
+          "contrast": null
+        },
+        {
+          "id": "SEF-L02-E-08",
+          "h": 19,
+          "shape": [
+            2,
+            3,
+            5,
+            3
+          ],
+          "answer": "4SA",
+          "contrast": null
+        }
+      ]
+    }
+  },
+  "environment": "V8 : source UMD relue depuis GitHub, modes CommonJS et window simulés ; pas Node ni navigateur réel"
+}
