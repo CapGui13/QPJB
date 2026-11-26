@@ -26,7 +26,7 @@ console.log((function test(api, corpus, idConcept, all, meta){
  const history={completed:Math.max(1,l.minSession),active:null,journal:[],entries};const request={concept:c,mode:'discovery',history,nowMs:10};
  const before=JSON.stringify(history),result=api.lesson(request);
  if(l.prerequisites.some(p=>p.concept===c)){ok(result===null,c+' self prerequisite conservative')}else{
- ok(result?.assessment===false&&result.assisted===true,c+' lesson');ok(result.examples.length===1&&result.checks.length===1,c+' size');ok(JSON.stringify(result)===JSON.stringify(api.lesson(request)),c+' determinism');
+ ok(result?.assessment===false&&result.assisted===true,c+' lesson');ok(result.examples.length>=1&&result.checks.length===1,c+' size');ok(JSON.stringify(result)===JSON.stringify(api.lesson(request)),c+' determinism');
  }
  ok(JSON.stringify(history)===before,c+' pure');ok(api.lesson({...request,exercise:q})===null,c+' no active exercise');
  ok(api.lesson({...request,history:{...history,active:{ids:[q.id],answers:{}}}})===null,c+' active');

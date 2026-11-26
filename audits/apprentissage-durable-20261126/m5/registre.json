@@ -7,10 +7,12 @@
     "catalogueCount": 15,
     "minCompleted": 0,
     "requires": [],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 149,
-    "canonicalLength": 159
+    "ruleLength": 196,
+    "canonicalLength": 159,
+    "reminderLength": 46,
+    "contrasts": []
   },
   {
     "concept": "ouv.sa2",
@@ -25,10 +27,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 107,
-    "canonicalLength": 188
+    "canonicalLength": 188,
+    "reminderLength": 46,
+    "contrasts": []
   },
   {
     "concept": "ouv.majeure",
@@ -38,10 +42,12 @@
     "catalogueCount": 19,
     "minCompleted": 0,
     "requires": [],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 184,
-    "canonicalLength": 147
+    "ruleLength": 228,
+    "canonicalLength": 147,
+    "reminderLength": 72,
+    "contrasts": []
   },
   {
     "concept": "ouv.mineure",
@@ -51,10 +57,12 @@
     "catalogueCount": 39,
     "minCompleted": 0,
     "requires": [],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 165,
-    "canonicalLength": 171
+    "canonicalLength": 171,
+    "reminderLength": 82,
+    "contrasts": []
   },
   {
     "concept": "ouv.passe",
@@ -64,10 +72,12 @@
     "catalogueCount": 14,
     "minCompleted": 0,
     "requires": [],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 208,
-    "canonicalLength": 99
+    "canonicalLength": 99,
+    "reminderLength": 102,
+    "contrasts": []
   },
   {
     "concept": "mineur.base",
@@ -82,10 +92,45 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 217,
-    "canonicalLength": 293
+    "ruleLength": 316,
+    "canonicalLength": 293,
+    "reminderLength": 103,
+    "contrasts": [
+      {
+        "id": "SEF-V49-005",
+        "reason": "8 HL : priorité à la majeure malgré cinq Carreaux.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V49-006",
+        "reason": "15 HL : Carreaux d'abord, puis les Cœurs.",
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "mineur.soutien",
@@ -100,10 +145,41 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 210,
-    "canonicalLength": 225
+    "ruleLength": 307,
+    "canonicalLength": 225,
+    "reminderLength": 107,
+    "contrasts": [
+      {
+        "id": "SEF-020-3",
+        "reason": "Main régulière : la forme et les honneurs orientent vers 1SA.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": true
+      },
+      {
+        "id": "SEF-V412-014",
+        "reason": "Force réévaluée : soutien invitant, pas simple.",
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "majeur.soutien",
@@ -118,10 +194,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 207,
-    "canonicalLength": 171
+    "canonicalLength": 171,
+    "reminderLength": 90,
+    "contrasts": [
+      {
+        "id": "SEF-026-3",
+        "reason": "Quatre atouts : neuvième atout valorisé.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": true
+      },
+      {
+        "id": "SEF-029-2",
+        "reason": "Fit certain mais force insuffisante : Passe.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": true
+      }
+    ]
   },
   {
     "concept": "sa1.seuil",
@@ -136,10 +239,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 214,
-    "canonicalLength": 96
+    "ruleLength": 241,
+    "canonicalLength": 96,
+    "reminderLength": 110,
+    "contrasts": [
+      {
+        "id": "SEF-032-1",
+        "reason": "8 H : la manche est possible, non certaine.",
+        "minCompleted": 3,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-033-1",
+        "reason": "10 H : au moins 25 H au camp.",
+        "minCompleted": 3,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa1.stayman",
@@ -154,10 +284,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 219,
-    "canonicalLength": 270
+    "canonicalLength": 270,
+    "reminderLength": 76,
+    "contrasts": []
   },
   {
     "concept": "sa1.texas",
@@ -172,10 +304,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 207,
-    "canonicalLength": 258
+    "canonicalLength": 258,
+    "reminderLength": 96,
+    "contrasts": []
   },
   {
     "concept": "sa2.seuil",
@@ -194,10 +328,49 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 208,
-    "canonicalLength": 131
+    "canonicalLength": 131,
+    "reminderLength": 97,
+    "contrasts": [
+      {
+        "id": "SEF-N097-3",
+        "reason": "0 H : aucune ambition de manche.",
+        "minCompleted": 6,
+        "requires": [
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "V2-M2-001",
+        "reason": "Quatre Cœurs ne suffisent pas à justifier Stayman avec 3 H.",
+        "minCompleted": 6,
+        "requires": [
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "red.bicolore",
@@ -216,10 +389,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 197,
-    "canonicalLength": 174
+    "canonicalLength": 174,
+    "reminderLength": 82,
+    "contrasts": []
   },
   {
     "concept": "red.base",
@@ -238,10 +413,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 204,
-    "canonicalLength": 135
+    "canonicalLength": 135,
+    "reminderLength": 81,
+    "contrasts": []
   },
   {
     "concept": "second.base",
@@ -256,10 +433,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 192,
-    "canonicalLength": 189
+    "canonicalLength": 189,
+    "reminderLength": 89,
+    "contrasts": []
   },
   {
     "concept": "fit.2sa",
@@ -278,10 +457,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 180,
-    "canonicalLength": 208
+    "canonicalLength": 208,
+    "reminderLength": 104,
+    "contrasts": []
   },
   {
     "concept": "majeur.base",
@@ -296,10 +477,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 255,
-    "canonicalLength": 73
+    "ruleLength": 247,
+    "canonicalLength": 73,
+    "reminderLength": 82,
+    "contrasts": []
   },
   {
     "concept": "sa2.stayman",
@@ -318,10 +501,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 165,
-    "canonicalLength": 135
+    "canonicalLength": 135,
+    "reminderLength": 74,
+    "contrasts": []
   },
   {
     "concept": "sa2.texas",
@@ -340,10 +525,33 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 187,
-    "canonicalLength": 253
+    "ruleLength": 245,
+    "canonicalLength": 253,
+    "reminderLength": 117,
+    "contrasts": [
+      {
+        "id": "SEF-C-005",
+        "reason": "Cinq Piques mais 3 H : le risque de 3SA est trop grand.",
+        "minCompleted": 12,
+        "requires": [
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.texas.reponse",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "roudi.init",
@@ -358,10 +566,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 183,
-    "canonicalLength": 267
+    "canonicalLength": 267,
+    "reminderLength": 78,
+    "contrasts": []
   },
   {
     "concept": "sa1.stayman.suite",
@@ -380,10 +590,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 199,
-    "canonicalLength": 202
+    "canonicalLength": 202,
+    "reminderLength": 104,
+    "contrasts": []
   },
   {
     "concept": "sa1.stayman.reponse",
@@ -398,10 +610,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 142,
-    "canonicalLength": 237
+    "ruleLength": 215,
+    "canonicalLength": 237,
+    "reminderLength": 79,
+    "contrasts": [
+      {
+        "id": "SEF-V3-013-4",
+        "reason": "Une seule majeure quatrième.",
+        "minCompleted": 7,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V416-007",
+        "reason": "Les deux majeures quatrièmes ; 2SA ne décrit pas la force.",
+        "minCompleted": 7,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa1.texas.suite",
@@ -416,10 +655,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 188,
-    "canonicalLength": 217
+    "ruleLength": 268,
+    "canonicalLength": 217,
+    "reminderLength": 101,
+    "contrasts": [
+      {
+        "id": "SEF-V44-028",
+        "reason": "Cinq cartes et force de manche : laisser le choix à l'ouvreur.",
+        "minCompleted": 9,
+        "requires": [
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V3-018-1",
+        "reason": "Six cartes : fit assuré, manche majeure directe.",
+        "minCompleted": 9,
+        "requires": [
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa2.stayman.suite",
@@ -438,10 +704,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 191,
-    "canonicalLength": 209
+    "canonicalLength": 209,
+    "reminderLength": 78,
+    "contrasts": []
   },
   {
     "concept": "sa2.texas.suite",
@@ -460,10 +728,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 201,
-    "canonicalLength": 250
+    "canonicalLength": 250,
+    "reminderLength": 104,
+    "contrasts": []
   },
   {
     "concept": "intervenir.base",
@@ -482,10 +752,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 259,
-    "canonicalLength": 178
+    "canonicalLength": 178,
+    "reminderLength": 98,
+    "contrasts": []
   },
   {
     "concept": "contre.base",
@@ -500,10 +772,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 245,
-    "canonicalLength": 370
+    "canonicalLength": 370,
+    "reminderLength": 86,
+    "contrasts": []
   },
   {
     "concept": "apres_inter.base",
@@ -522,10 +796,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 198,
-    "canonicalLength": 276
+    "canonicalLength": 276,
+    "reminderLength": 80,
+    "contrasts": []
   },
   {
     "concept": "competitif.2sa_fitte",
@@ -544,10 +820,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 196,
-    "canonicalLength": 374
+    "canonicalLength": 374,
+    "reminderLength": 80,
+    "contrasts": []
   },
   {
     "concept": "barrage.ouverture",
@@ -566,10 +844,45 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 244,
-    "canonicalLength": 321
+    "ruleLength": 302,
+    "canonicalLength": 321,
+    "reminderLength": 118,
+    "contrasts": [
+      {
+        "id": "SEF-V3-092-3",
+        "reason": "Six cartes mais 13 H : ouverture naturelle.",
+        "minCompleted": 17,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V3-101-2",
+        "reason": "Six cartes mais couleur et force insuffisantes : Passe.",
+        "minCompleted": 17,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "barrage.reponse",
@@ -584,10 +897,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 242,
-    "canonicalLength": 296
+    "canonicalLength": 296,
+    "reminderLength": 89,
+    "contrasts": []
   },
   {
     "concept": "apres_fit.base",
@@ -602,10 +917,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 189,
-    "canonicalLength": 231
+    "canonicalLength": 231,
+    "reminderLength": 98,
+    "contrasts": []
   },
   {
     "concept": "apres_fit.essai",
@@ -620,10 +937,41 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 168,
-    "canonicalLength": 229
+    "ruleLength": 227,
+    "canonicalLength": 229,
+    "reminderLength": 71,
+    "contrasts": [
+      {
+        "id": "SEF-V423-001",
+        "reason": "3♥ reste sous 3♠ : essai à la couleur possible.",
+        "minCompleted": 8,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V44-054",
+        "reason": "3♠ dépasserait 3♥ : préférer 2SA.",
+        "minCompleted": 12,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 2
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "apres_fit.essai.suite",
@@ -638,10 +986,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 195,
-    "canonicalLength": 242
+    "canonicalLength": 242,
+    "reminderLength": 70,
+    "contrasts": []
   },
   {
     "concept": "reponse_inter.base",
@@ -656,10 +1006,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 222,
-    "canonicalLength": 403
+    "canonicalLength": 403,
+    "reminderLength": 95,
+    "contrasts": []
   },
   {
     "concept": "reveil.base",
@@ -674,10 +1026,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 199,
-    "canonicalLength": 445
+    "canonicalLength": 445,
+    "reminderLength": 93,
+    "contrasts": []
   },
   {
     "concept": "roudi.choix",
@@ -692,10 +1046,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 188,
-    "canonicalLength": 244
+    "canonicalLength": 244,
+    "reminderLength": 87,
+    "contrasts": []
   },
   {
     "concept": "roudi.reponse",
@@ -710,10 +1066,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 175,
-    "canonicalLength": 370
+    "canonicalLength": 370,
+    "reminderLength": 83,
+    "contrasts": [
+      {
+        "id": "SEF-V4-077-1",
+        "reason": "Trois Cœurs et minimum : 2♥ codé.",
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V4-078-1",
+        "reason": "Trois Cœurs et maximum : 2♠ codé, pas des Piques.",
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "drury.choix",
@@ -732,10 +1115,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 196,
-    "canonicalLength": 161
+    "canonicalLength": 161,
+    "reminderLength": 111,
+    "contrasts": []
   },
   {
     "concept": "drury.init",
@@ -754,10 +1139,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 183,
-    "canonicalLength": 285
+    "canonicalLength": 285,
+    "reminderLength": 92,
+    "contrasts": []
   },
   {
     "concept": "drury.reponse",
@@ -772,10 +1159,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 199,
-    "canonicalLength": 224
+    "ruleLength": 282,
+    "canonicalLength": 224,
+    "reminderLength": 89,
+    "contrasts": [
+      {
+        "id": "SEF-V4-102-1",
+        "reason": "Ouverture normale avec espoir de manche : 2♦.",
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V484-011",
+        "reason": "Très belle main : ambition de chelem.",
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "fortes.ouverture",
@@ -794,10 +1208,29 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 210,
-    "canonicalLength": 248
+    "ruleLength": 235,
+    "canonicalLength": 248,
+    "reminderLength": 98,
+    "contrasts": [
+      {
+        "id": "SEF-V45-002",
+        "reason": "25 H réguliers : 2♦ forcing de manche.",
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "chelem.quantitatif",
@@ -812,10 +1245,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 182,
-    "canonicalLength": 246
+    "canonicalLength": 246,
+    "reminderLength": 86,
+    "contrasts": []
   },
   {
     "concept": "red.bicolore_cher",
@@ -830,10 +1265,37 @@
         "minExposure": 2
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 240,
-    "canonicalLength": 339
+    "ruleLength": 271,
+    "canonicalLength": 339,
+    "reminderLength": 105,
+    "contrasts": [
+      {
+        "id": "SEF-V410-006",
+        "reason": "18 HL : seuil atteint sans saut.",
+        "minCompleted": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V416-003",
+        "reason": "Bicolore à saut, forcing de manche : autre mécanisme.",
+        "minCompleted": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "competitif.truscott",
@@ -852,10 +1314,61 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 216,
-    "canonicalLength": 325
+    "ruleLength": 255,
+    "canonicalLength": 325,
+    "reminderLength": 99,
+    "contrasts": [
+      {
+        "id": "SEF-V470-005",
+        "reason": "Quatre Cœurs, 12 HLD : Truscott majeur.",
+        "minCompleted": 16,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V472-001",
+        "reason": "Cinq Carreaux et 9 H : Truscott mineur.",
+        "minCompleted": 16,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V472-003",
+        "reason": "Cinq Trèfles et 8 H : seuil mineur non atteint.",
+        "minCompleted": 16,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "michaels.reveil",
@@ -874,10 +1387,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 176,
-    "canonicalLength": 324
+    "canonicalLength": 324,
+    "reminderLength": 76,
+    "contrasts": []
   },
   {
     "concept": "roudi.suite",
@@ -896,10 +1411,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 197,
-    "canonicalLength": 367
+    "canonicalLength": 367,
+    "reminderLength": 90,
+    "contrasts": []
   },
   {
     "concept": "fortes.relais",
@@ -914,10 +1431,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 144,
-    "canonicalLength": 240
+    "canonicalLength": 240,
+    "reminderLength": 75,
+    "contrasts": []
   },
   {
     "concept": "fortes.redemande",
@@ -932,10 +1451,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 154,
-    "canonicalLength": 250
+    "canonicalLength": 250,
+    "reminderLength": 49,
+    "contrasts": []
   },
   {
     "concept": "forcing.troisieme",
@@ -950,10 +1471,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 240,
-    "canonicalLength": 216
+    "canonicalLength": 216,
+    "reminderLength": 113,
+    "contrasts": []
   },
   {
     "concept": "forcing.quatrieme",
@@ -968,10 +1491,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 221,
-    "canonicalLength": 269
+    "canonicalLength": 269,
+    "reminderLength": 97,
+    "contrasts": []
   },
   {
     "concept": "forcing.base",
@@ -986,10 +1511,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 219,
-    "canonicalLength": 202
+    "canonicalLength": 202,
+    "reminderLength": 100,
+    "contrasts": []
   },
   {
     "concept": "multilandy.intervention",
@@ -1008,10 +1535,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 189,
-    "canonicalLength": 217
+    "canonicalLength": 217,
+    "reminderLength": 80,
+    "contrasts": []
   },
   {
     "concept": "multilandy.choix",
@@ -1030,10 +1559,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 214,
-    "canonicalLength": 234
+    "canonicalLength": 234,
+    "reminderLength": 98,
+    "contrasts": []
   },
   {
     "concept": "rubensohl.naturel",
@@ -1056,10 +1587,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 188,
-    "canonicalLength": 285
+    "canonicalLength": 285,
+    "reminderLength": 99,
+    "contrasts": []
   },
   {
     "concept": "rubensohl.init",
@@ -1082,10 +1615,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 218,
-    "canonicalLength": 205
+    "canonicalLength": 205,
+    "reminderLength": 83,
+    "contrasts": []
   },
   {
     "concept": "michaels.intervention",
@@ -1100,10 +1635,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 201,
-    "canonicalLength": 214
+    "canonicalLength": 214,
+    "reminderLength": 65,
+    "contrasts": []
   },
   {
     "concept": "michaels.choix",
@@ -1118,10 +1655,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 207,
-    "canonicalLength": 301
+    "canonicalLength": 301,
+    "reminderLength": 101,
+    "contrasts": []
   },
   {
     "concept": "chelem.cles",
@@ -1136,10 +1675,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 139,
-    "canonicalLength": 262
+    "canonicalLength": 262,
+    "reminderLength": 78,
+    "contrasts": []
   },
   {
     "concept": "chelem.splinter",
@@ -1158,10 +1699,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 212,
-    "canonicalLength": 259
+    "ruleLength": 247,
+    "canonicalLength": 259,
+    "reminderLength": 100,
+    "contrasts": []
   },
   {
     "concept": "competitif.spoutnik",
@@ -1176,10 +1719,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 226,
-    "canonicalLength": 248
+    "canonicalLength": 248,
+    "reminderLength": 95,
+    "contrasts": []
   },
   {
     "concept": "ouv.position",
@@ -1198,10 +1743,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 240,
-    "canonicalLength": 207
+    "canonicalLength": 207,
+    "reminderLength": 105,
+    "contrasts": []
   },
   {
     "concept": "barrage.suite",
@@ -1216,10 +1763,37 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 186,
-    "canonicalLength": 361
+    "ruleLength": 277,
+    "canonicalLength": 361,
+    "reminderLength": 123,
+    "contrasts": [
+      {
+        "id": "SEF-V486-002",
+        "reason": "Maximum avec Roi annexe : le nommer.",
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V486-003",
+        "reason": "Maximum sans gros honneur annexe : montrer la courte.",
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "intervenir.deux_faible",
@@ -1238,10 +1812,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 215,
-    "canonicalLength": 231
+    "canonicalLength": 231,
+    "reminderLength": 106,
+    "contrasts": []
   },
   {
     "concept": "red.competitif",
@@ -1260,10 +1836,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 182,
-    "canonicalLength": 307
+    "canonicalLength": 307,
+    "reminderLength": 100,
+    "contrasts": []
   },
   {
     "concept": "michaels.defense",
@@ -1286,10 +1864,12 @@
         "minExposure": 2
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 194,
-    "canonicalLength": 281
+    "canonicalLength": 281,
+    "reminderLength": 96,
+    "contrasts": []
   },
   {
     "concept": "chelem.blackwood.suite",
@@ -1308,10 +1888,45 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 231,
-    "canonicalLength": 305
+    "canonicalLength": 305,
+    "reminderLength": 102,
+    "contrasts": [
+      {
+        "id": "SEF-L02-E-19",
+        "reason": "Cinq clés et Dame d'atout : petit chelem dans ce contexte.",
+        "minCompleted": 43,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 2
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "V1-M6-004",
+        "reason": "Quatre clés et Dame détenue : petit chelem, pas grand.",
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "chelem.blackwood.dame_rois",
@@ -1334,10 +1949,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 218,
-    "canonicalLength": 299
+    "canonicalLength": 299,
+    "reminderLength": 116,
+    "contrasts": []
   },
   {
     "concept": "fortes.suite",
@@ -1352,10 +1969,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 143,
-    "canonicalLength": 242
+    "canonicalLength": 242,
+    "reminderLength": 80,
+    "contrasts": []
   },
   {
     "concept": "contre.deux_faible",
@@ -1374,10 +1993,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 188,
-    "canonicalLength": 227
+    "canonicalLength": 227,
+    "reminderLength": 105,
+    "contrasts": []
   },
   {
     "concept": "michaels.reponse",
@@ -1392,10 +2013,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 192,
-    "canonicalLength": 209
+    "canonicalLength": 209,
+    "reminderLength": 102,
+    "contrasts": []
   },
   {
     "concept": "multilandy.reponse",
@@ -1410,10 +2033,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 227,
-    "canonicalLength": 300
+    "canonicalLength": 300,
+    "reminderLength": 94,
+    "contrasts": []
   },
   {
     "concept": "multilandy.suite",
@@ -1428,10 +2053,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 169,
-    "canonicalLength": 292
+    "canonicalLength": 292,
+    "reminderLength": 97,
+    "contrasts": []
   },
   {
     "concept": "rubensohl.reponse",
@@ -1446,10 +2073,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 157,
-    "canonicalLength": 223
+    "canonicalLength": 223,
+    "reminderLength": 93,
+    "contrasts": []
   },
   {
     "concept": "sa1.texas_mineur",
@@ -1468,10 +2097,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 204,
-    "canonicalLength": 343
+    "ruleLength": 222,
+    "canonicalLength": 343,
+    "reminderLength": 44,
+    "contrasts": []
   },
   {
     "concept": "sa1.texas_mineur.suite",
@@ -1490,10 +2121,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 186,
-    "canonicalLength": 284
+    "canonicalLength": 284,
+    "reminderLength": 93,
+    "contrasts": []
   },
   {
     "concept": "chelem.controles",
@@ -1508,10 +2141,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 234,
-    "canonicalLength": 214
+    "canonicalLength": 214,
+    "reminderLength": 96,
+    "contrasts": []
   },
   {
     "concept": "drury.suite",
@@ -1530,10 +2165,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 179,
-    "canonicalLength": 264
+    "canonicalLength": 264,
+    "reminderLength": 95,
+    "contrasts": []
   },
   {
     "concept": "fit.2sa.suite",
@@ -1552,10 +2189,45 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 212,
-    "canonicalLength": 279
+    "canonicalLength": 279,
+    "reminderLength": 91,
+    "contrasts": [
+      {
+        "id": "SEF-V486-008",
+        "reason": "Plus-value de distribution : accepter.",
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V486-009",
+        "reason": "Recherche d'un fit 4–4 malgré le fit 5–3 établi.",
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "forcing.quatrieme.suite",
@@ -1574,10 +2246,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 220,
-    "canonicalLength": 316
+    "canonicalLength": 316,
+    "reminderLength": 87,
+    "contrasts": []
   },
   {
     "concept": "chelem.quantitatif.suite",
@@ -1596,10 +2270,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 172,
-    "canonicalLength": 283
+    "canonicalLength": 283,
+    "reminderLength": 103,
+    "contrasts": []
   },
   {
     "concept": "chelem.blackwood.declenchement",
@@ -1618,10 +2294,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 178,
-    "canonicalLength": 351
+    "canonicalLength": 351,
+    "reminderLength": 85,
+    "contrasts": []
   },
   {
     "concept": "rubensohl.suite",
@@ -1640,10 +2318,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 162,
-    "canonicalLength": 219
+    "canonicalLength": 219,
+    "reminderLength": 94,
+    "contrasts": []
   },
   {
     "concept": "competitif.sa_adverse",
@@ -1662,10 +2342,29 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 215,
-    "canonicalLength": 254
+    "ruleLength": 263,
+    "canonicalLength": 254,
+    "reminderLength": 103,
+    "contrasts": [
+      {
+        "id": "SEF-L16-009",
+        "reason": "Après ouverture majeure, cue-bid fitté de quatre atouts.",
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa.gambling",
@@ -1684,10 +2383,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 215,
-    "canonicalLength": 401
+    "canonicalLength": 401,
+    "reminderLength": 88,
+    "contrasts": []
   },
   {
     "concept": "reveil.deux_faible",
@@ -1706,10 +2407,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 241,
-    "canonicalLength": 448
+    "canonicalLength": 448,
+    "reminderLength": 103,
+    "contrasts": []
   },
   {
     "concept": "forcing.checkback",
@@ -1732,10 +2435,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 210,
-    "canonicalLength": 270
+    "canonicalLength": 270,
+    "reminderLength": 104,
+    "contrasts": []
   },
   {
     "concept": "chelem.splinter.variante",
@@ -1758,10 +2463,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 201,
-    "canonicalLength": 232
+    "canonicalLength": 232,
+    "reminderLength": 84,
+    "contrasts": []
   },
   {
     "concept": "second.bicolore_cher",
@@ -1780,10 +2487,12 @@
         "minExposure": 2
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 226,
-    "canonicalLength": 255
+    "canonicalLength": 255,
+    "reminderLength": 97,
+    "contrasts": []
   },
   {
     "concept": "forcing.troisieme.suite",
@@ -1802,10 +2511,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 189,
-    "canonicalLength": 241
+    "canonicalLength": 241,
+    "reminderLength": 109,
+    "contrasts": []
   },
   {
     "concept": "sa2.texas.reponse",
@@ -1820,10 +2531,25 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 149,
-    "canonicalLength": 290
+    "canonicalLength": 290,
+    "reminderLength": 77,
+    "contrasts": [
+      {
+        "id": "SEF-L39-001",
+        "reason": "Trois Piques : rectification positive.",
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "sa2.texas",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa1.stayman.contre",
@@ -1846,10 +2572,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 204,
-    "canonicalLength": 278
+    "canonicalLength": 278,
+    "reminderLength": 83,
+    "contrasts": []
   },
   {
     "concept": "sa1.texas.contre",
@@ -1868,10 +2596,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 174,
-    "canonicalLength": 230
+    "canonicalLength": 230,
+    "reminderLength": 88,
+    "contrasts": []
   },
   {
     "concept": "sa1.texas_mineur.reponse",
@@ -1886,10 +2616,41 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 234,
-    "canonicalLength": 393
+    "ruleLength": 257,
+    "canonicalLength": 393,
+    "reminderLength": 103,
+    "contrasts": [
+      {
+        "id": "SEF-L25-007",
+        "reason": "Complément favorable et main non minimum : modulation.",
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 2
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-L37-004",
+        "reason": "Texas Carreau : rectification obligatoire sans modulation.",
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "ouv.bicolore.exception",
@@ -1912,10 +2673,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 232,
-    "canonicalLength": 273
+    "canonicalLength": 273,
+    "reminderLength": 94,
+    "contrasts": []
   },
   {
     "concept": "sa2.stayman.reponse",
@@ -1930,10 +2693,25 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 168,
-    "canonicalLength": 188
+    "canonicalLength": 188,
+    "reminderLength": 79,
+    "contrasts": [
+      {
+        "id": "SEF-L38-001",
+        "reason": "Deux majeures quatrièmes : 3SA codé, non naturel.",
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ]
   },
   {
     "concept": "sa2.bicolore",
@@ -1956,10 +2734,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 199,
-    "canonicalLength": 306
+    "canonicalLength": 306,
+    "reminderLength": 92,
+    "contrasts": []
   },
   {
     "concept": "intervenir.sa.suite",
@@ -1982,10 +2762,12 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 218,
-    "canonicalLength": 277
+    "canonicalLength": 277,
+    "reminderLength": 103,
+    "contrasts": []
   },
   {
     "concept": "sa2.texas_mineur.reponse",
@@ -2012,9 +2794,11 @@
         "minExposure": 1
       }
     ],
-    "review": "individual-rule-and-selected-example",
+    "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
     "ruleLength": 173,
-    "canonicalLength": 308
+    "canonicalLength": 308,
+    "reminderLength": 62,
+    "contrasts": []
   }
 ]
