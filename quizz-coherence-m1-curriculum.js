@@ -70,7 +70,7 @@ const rows=[
 ['Choisir entre manche, partielle et essai','sa1.seuil apres_fit.base apres_fit.essai','majeur.soutien sa2.seuil',9,65,2],
 ['Réunir les connaissances compétitives','intervenir.base contre.base reponse_inter.base','reveil.base apres_inter.base',14,65,2],
 ['Réinvestir les suites après 2SA','sa2.texas_mineur.reponse sa2.stayman.suite','sa2.texas sa2.seuil',23,65,2],
-['Consolider la décision dans une séquence complète','second.base red.base majeur.soutien','sa1.seuil mineur.base ou v.passe'.replace('ou v','ouv'),7,65,2]
+['Consolider la décision dans une séquence complète','second.base red.base majeur.soutien','sa1.seuil mineur.base ouv.passe',7,65,2]
 ];
 const split=s=>s?s.split(' '):[];
 const map=Object.freeze(rows.map(([title,p,s,from,to,target],i)=>Object.freeze({session:i+1,title,primary:Object.freeze(split(p)),secondary:Object.freeze(split(s)),window:Object.freeze([from,to]),target})));
@@ -107,6 +107,33 @@ function plan(ctx={}){
  return {session:row.session,objective:row.title,primary:row.primary.slice(),secondary:row.secondary.slice(),targetConcepts:active,window:row.window.slice(),roles:{focus:row.primary.slice(),reinforcement:row.secondary.slice(),necessaryRecall:overdue},softQuotas:{focus:row.target,necessaryRecall:'priorité historique',discrimination:'si éligible et utile',reinvestment:'conditionnel'},prerequisites:prereq,evidence:stats,justification:'Objectif indicatif ; la preuve et l’éligibilité restent celles du moteur.',fallback:active.length?'Conserver rappel explicite, quotas et priorités historiques ; objectif non obligatoire.':'Aucun candidat cible dans cette strate : sélection historique.'};
 }
 function role(ctx,q){const row=map[ctx.session-1],c=meta(ctx.metadataById,q.id)?.concept;if(!row)return 'entretien-historique';if(row.primary.includes(c))return 'objectif';if(row.secondary.includes(c))return 'rappel-ou-lien';if(foundation.includes(c))return 'entretien-fondamental';return 'adaptation-ou-diversite';}
+// A soft focus slot acts only within the historical, already filtered
+// discovery bucket. No new eligibility, no priority or due recall bypass.
+// Empty subsets always return the original candidates (including object identity).
+function prefer(ctx={}){
+ const row=map[ctx.session-1],s=ctx.session,list=ctx.candidates||[];
+ if(!row||!Number.isInteger(s)||s<3||ctx.history?.active||ctx.priority||ctx.forcedReason||ctx.category!=='discovery')return list;
+ const chosen=(ctx.selected||[]).map(question),concept=q=>meta(ctx.metadataById,q.id)?.concept;
+ const focus=chosen.filter(q=>row.primary.includes(concept(q)));
+ const target=s<=5?row.target:1;
+ if(focus.length>=target)return list;
+ // Preserve the first 2SA opening as a parallel early discovery; one
+ // additional 2SA exercise is not itself a reason to displace fit practice.
+ if(s===3&&!chosen.some(q=>concept(q)==='ouv.sa2')&&list.some(q=>concept(q)==='ouv.sa2'))return list;
+ const eligible=list.filter(q=>row.primary.includes(concept(q))&&q.difficulty<=3&&meta(ctx.metadataById,q.id)?.stage<=1);
+ if(!eligible.length)return list;
+ if(s===3){
+  const supports=focus.filter(q=>concept(q)==='majeur.soutien').length;
+  const natural=focus.filter(q=>concept(q)==='majeur.base').length;
+  const preferred=eligible.filter(q=>concept(q)===(supports<2?'majeur.soutien':natural<1?'majeur.base':concept(q)));
+  if(preferred.length)return preferred;
+ }
+ if(s===4){
+  const uncovered=eligible.filter(q=>!focus.some(v=>normalize(v)===normalize(q)));
+  if(uncovered.length)return uncovered;
+ }
+ return eligible;
+}
 function rank(ctx={}){
  const s=ctx.session,row=map[s-1];
  // S1/S2 immuables. Après S65 aucun changement direct. Les rappels
@@ -134,5 +161,5 @@ function rank(ctx={}){
  }
  return out;
 }
-return Object.freeze({schema,curriculum:map,plan,rank,role});
+return Object.freeze({schema,curriculum:map,plan,rank,role,prefer});
 });
