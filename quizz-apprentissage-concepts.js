@@ -33,9 +33,9 @@
     const transferred=ids.some(id=>{const other=classify(id).transferId,ss=e.proof.get(other);return ss&&[...e.proof.get(id)].some(s=>[...ss].some(t=>s!==t))});
     const spaced=sessions.size>=2&&Math.max(...sessions)-Math.min(...sessions)>1;
     const multi=families.size>=2&&sessions.size>=2;
-    const weakFamilies=[...e.familyHistory].filter(([,v])=>!v.clean).map(([k])=>k);const fragile=weakFamilies.length>0;
+    const unresolvedWeakFamilies=[...e.familyHistory].filter(([,v])=>!v.clean);const weakFamilies=unresolvedWeakFamilies.filter(([family,v])=>{const later=e.events.filter(a=>a.session>v.session&&classify(a.id).family!==family&&e.familyHistory.get(classify(a.id).family)?.clean);return new Set(later.map(a=>classify(a.id).family)).size<2||new Set(later.map(a=>a.session)).size<2;}).map(([family])=>family);const fragile=weakFamilies.length>0;
     let next=!e.seen.size?"discovery":!multi||fragile?"consolidation":!contrasted&&d.stages.discrimination.ids.length?"discrimination":!ids.some(id=>classify(id).roles.includes("deepening"))&&d.stages.deepening.ids.length?"deepening":!transferred&&d.stages.transfer.ids.length?"transfer":"review";
-    return {concept:k,targetAvailable:d.stages[next].ids.length>0,weakFamilies,exposed:e.seen.size,independentIds:ids.length,independentFamilies:families.size,independentSessions:sessions.size,contrasted,transferred,spaced,fragile,evidence:!e.seen.size?"unseen":!ids.length?"exposed":!multi?"first_success":fragile?"fragile":"multi_family_evidence",next,mastery:"not_established"};
+    return {concept:k,targetAvailable:d.stages[next].ids.length>0,weakFamilies,unresolvedWeakFamilies:unresolvedWeakFamilies.map(([family])=>family),exposed:e.seen.size,independentIds:ids.length,independentFamilies:families.size,independentSessions:sessions.size,contrasted,transferred,spaced,fragile,evidence:!e.seen.size?"unseen":!ids.length?"exposed":!multi?"first_success":fragile?"fragile":"multi_family_evidence",next,mastery:"not_established"};
   }
   const eligible=Array.isArray(c.candidates)?c.candidates:[],selected=new Set((Array.isArray(c.selected)?c.selected:[]).map(x=>typeof x==="string"?x:x?.id)),seen=new Set(),results=[],states={};
   if(typeof c.concept==="string"&&describe(c.concept))states[c.concept]=status(c.concept);
