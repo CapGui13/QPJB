@@ -75,12 +75,35 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/durable-m6-campaign.cjs sensitivity intermediaire 47 65 > sensitivity.json
+      - run: node tests/durable-m6-campaign.cjs sensitivity-pair intermediaire 47 65 > sensitivity.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: durable-sensitivity
           path: sensitivity.json
+  semantic:
+    needs: quick
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {profile: cible, seed: 47}
+          - {profile: faible, seed: 103}
+          - {profile: aide, seed: 11}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/durable-m6-campaign.cjs semantic ${{ matrix.profile }} ${{ matrix.seed }} 65 > semantic.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-semantic-${{ matrix.profile }}-${{ matrix.seed }}
+          path: semantic.json
   browsers:
     needs: quick
     runs-on: ubuntu-latest
