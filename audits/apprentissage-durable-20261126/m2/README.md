@@ -105,3 +105,8 @@ Revue des 114 HOLD de ces deux thèmes : 106 dispositions « corrigé suffisant 
 ## Passe 10 — Chelems et Michaëls
 
 Revue des 92 HOLD de ces deux thèmes : 78 dispositions « corrigé suffisant », 14 HOLD conservés et nommés dans `pass10-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect du bilan de levées propre à chaque question, aucune généralisation des décisions de chelem. Comparaison exhaustive des registres : exactement 78 changements attendus. 1229 HOLD, un contraste restant, 3371 ciblages et 620 corrigés suffisants. Banc exact exécuté en V8 : 103467 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 11 — Deuxièmes enchères du répondant
+
+Revue des 147 HOLD de ce thème : 141 dispositions « corrigé suffisant », six HOLD conservés et nommés dans `pass11-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Distinction préférence, fit, invitation, manche, relais Roudi et modérateur après bicolore cher ; aucune modification des accords. Comparaison exhaustive des registres : exactement 141 changements attendus. 1088 HOLD, un contraste restant, 3371 ciblages et 761 corrigés suffisants. Banc exact exécuté en V8 : 104031 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
