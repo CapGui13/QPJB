@@ -45,5 +45,40 @@
       "openingReviewed": 52,
       "proposals": 8
     }
-  }
+  },
+  "group2": {
+    "tests/durable-m4-sa-initial.cjs": {
+      "assertions": 320,
+      "status": "PASS",
+      "reviewed": 77,
+      "counts": {
+        "coherent_in_catalogue_framework": 73,
+        "bounded_context": 2,
+        "guided_not_independent": 2
+      },
+      "totalReviewed": 236
+    },
+    "tests/durable-m4-autonomie.cjs": {
+      "assertions": 1070,
+      "status": "PASS",
+      "reviewed": 148,
+      "totalReviewed": 384,
+      "statusCounts": {
+        "coherent_in_catalogue_framework": 93,
+        "guided_not_independent": 51,
+        "bounded_context": 4
+      },
+      "pairCounts": {
+        "editorial_review_missing": 63,
+        "candidate_only": 5,
+        "guided_prompt": 9
+      }
+    },
+    "tests/durable-m4-sa-ajouts.cjs": {
+      "assertions": 39,
+      "status": "PASS",
+      "proposed": 3
+    }
+  },
+  "totalAssertions": 32463
 }
