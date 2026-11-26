@@ -6,10 +6,10 @@ const {chromium,webkit}=require('playwright');
 const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('quizz.html'),qs=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const scripts=[...html.matchAll(/<script[^>]*src=["']\.\/((?:quizz|parcours)-[\w-]+\.js)\?[^"']+["'][^>]*>/g)].map(m=>m[1]).filter(x=>x!=='quizz-parcours.js');
-const raw=read('quizz-parcours.js'),anchor='const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));';
-assert.equal(raw.split(anchor).length,2);
-const injected=raw.replace(anchor,'const m1Context={session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason};\n      const m1Deltas=new Map(curriculum.rank(m1Context).map(r=>[r.id,r.delta]));\n      const ranked=curriculum.prefer(m1Context).map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));');
-const guarded=process.env.QPJB_M1_POLICY==='guarded';
+const {sourceFor}=require('./coherence-concrete-m1-bench.cjs');
+const raw=read('quizz-parcours.js'),injected=sourceFor(raw,true,false);
+const conditional=process.env.QPJB_M1_POLICY==='conditional';
+const guarded=conditional||process.env.QPJB_M1_POLICY==='guarded';
 const reference=JSON.parse(read(process.env.QPJB_M1_REFERENCE||'audits/coherence-concrete-20261126/m1/s1-s5-paired.json'));
 (async()=>{
  const name=process.env.PW_BROWSER||'chromium',driver={chromium,webkit}[name];assert.ok(driver);
@@ -20,7 +20,8 @@ const reference=JSON.parse(read(process.env.QPJB_M1_REFERENCE||'audits/coherence
   for(const name of scripts)await page.addScriptTag({content:read(name)});
   await page.addScriptTag({content:read('quizz-coherence-m1-curriculum.js')});
   if(guarded)await page.addScriptTag({content:read('quizz-coherence-m1-guarded.js')});
-  await page.addScriptTag({content:guarded?'window.curriculum=window.QPJBCoherenceM1Guarded;':'window.curriculum=window.QPJBCoherenceCurriculum;'});
+  if(conditional)await page.addScriptTag({content:read('quizz-coherence-m1-conditional.js')});
+  await page.addScriptTag({content:conditional?'window.curriculum=window.QPJBCoherenceM1Conditional;':guarded?'window.curriculum=window.QPJBCoherenceM1Guarded;':'window.curriculum=window.QPJBCoherenceCurriculum;'});
   for(const [side,source] of [['before',raw],['after',injected]]){
    await page.addScriptTag({content:source});
    for(const p of reference.results.filter(x=>x.seed===47&&['autonome','faible','aide'].includes(x.profile))){
