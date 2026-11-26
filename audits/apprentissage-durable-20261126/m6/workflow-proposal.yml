@@ -31,6 +31,7 @@ jobs:
           node-version: '22'
       - run: |
           node tests/durable-m6-unit.cjs
+          node tests/durable-m6-guards.cjs
           node tests/durable-m6-assets.cjs
           node tests/durable-m6-register.cjs
           node tests/durable-m6-campaign.cjs legacy
@@ -98,7 +99,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/durable-m6-campaign.cjs semantic ${{ matrix.profile }} ${{ matrix.seed }} 65 > semantic.json
+      - run: node tests/durable-m6-campaign.cjs semantic-pair ${{ matrix.profile }} ${{ matrix.seed }} 65 > semantic.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
