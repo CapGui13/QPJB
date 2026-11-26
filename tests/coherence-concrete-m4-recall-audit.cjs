@@ -10,7 +10,7 @@ function analyze(trace){
  if(!Array.isArray(sessions)||!sessions.length||sessions.length!==trace.horizon)failure('trace incomplète');
  const states=Object.fromEntries(CORE.map(c=>[c,{last:0,first:0,debt:0,exposures:0,after65:0,maxGap:0,miss18:0}]));
  const allProof=new Map(),seenFamilies=new Map(),seenIds=new Set(),checkpoints=[],reservations=trace.changes?.filter(x=>x.kind==='reservation')||[];
- const perSession=new Map();
+ const perSession=new Map(),duplicateConceptReservations=[];
  for(const r of reservations){
   if(!Number.isInteger(r.session)||r.session<66||r.session>trace.horizon||perSession.has(r.session))failure('réservation multiple ou hors horizon');
   perSession.set(r.session,r);
@@ -24,7 +24,7 @@ function analyze(trace){
    if(!row||row.concept!==reservation.concept||!state?.last||row.level>3||row.stage>1||row.role!=='revision'||!['rappel_nouvelle_situation','rappel_question'].includes(row.reason))failure('réservation non attestée S'+session);
    const gap=session-state.last,lastFam=seenFamilies.get(row.family),famGap=lastFam?session-lastFam:Infinity;
    if(gap<18||gap!==reservation.conceptGap||famGap<8||Boolean(reservation.novelFamily)!==!lastFam||(lastFam&&famGap!==reservation.familyGap))failure('délai de rappel incohérent S'+session);
-   if(rows.filter(x=>x.concept===row.concept).length!==1)failure('rappel redondant dans la séance S'+session);
+   if(rows.filter(x=>x.concept===row.concept).length!==1)duplicateConceptReservations.push({session,concept:row.concept,id:row.id});
    if(trace.policy==='I'){
     const windows=[sessions.slice(i-10,i-5),sessions.slice(i-5,i)];
     if(windows.some(w=>w.length!==5||w.flatMap(x=>x.rows).filter(x=>clean(x.response)).length<30||w.flatMap(x=>x.rows).filter(x=>x.response?.assisted===true||x.response?.hadFreeError===true).length>10))failure('garde autonomie I S'+session);
@@ -49,7 +49,7 @@ function analyze(trace){
   }
  }
  if(checkpoints.at(-1)?.session!==trace.horizon)failure('checkpoint final absent');
- return {profile:trace.profile,seed:trace.seed,policy:trace.policy,horizon:trace.horizon,reservations:reservations.length,checkpoints};
+ return {profile:trace.profile,seed:trace.seed,policy:trace.policy,horizon:trace.horizon,reservations:reservations.length,duplicateConceptReservations,checkpoints};
 }
 function compare(pair){
  const a=analyze(pair.before),b=analyze(pair.after);
@@ -59,6 +59,7 @@ function compare(pair){
   const x=pair.before.checkpoints[i],y=pair.after.checkpoints[i];if(x.session!==y.session)failure('horizon non apparié');
   for(const [k,sign] of Object.entries(metrics)){if(!Number.isFinite(x[k])||!Number.isFinite(y[k]))failure('métrique manquante '+k);if(sign*(y[k]-x[k])>0)regressions.push({session:x.session,key:k,before:x[k],after:y[k]});}
  }
+ for(const r of b.duplicateConceptReservations)regressions.push({session:r.session,key:'duplicateConceptReservation',concept:r.concept,id:r.id,before:0,after:1});
  const debtBefore=a.checkpoints.at(-1).debt,debtAfter=b.checkpoints.at(-1).debt;
  return {profile:a.profile,seed:a.seed,policy:b.policy,horizon:a.horizon,changes:pair.after.changes?.length||0,reservations:b.reservations,debtBefore,debtAfter,regressions,perConceptBefore:a.checkpoints.at(-1).concepts,perConceptAfter:b.checkpoints.at(-1).concepts,verdict:debtAfter<debtBefore&&!regressions.length?'CANDIDAT_A_REVOIR':'HOLD'};
 }

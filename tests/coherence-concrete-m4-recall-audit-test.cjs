@@ -6,7 +6,7 @@ for(const s of sessions.slice(1,69))s.rows[0].concept='other0';
 const target=sessions[69].rows[0];target.role='revision';target.reason='rappel_question';target.id=sessions[0].rows[0].id;target.family=sessions[0].rows[0].family;
 let expectedDebt=0;for(let s=2;s<70;s++)expectedDebt+=Math.max(0,s-1-6);
 const reservation={kind:'reservation',session:70,after:target.id,concept:'ouv.passe',conceptGap:69,familyGap:69,novelFamily:false};
-const trace={profile:'autonome',seed:11,policy:'I',horizon:70,sessions,changes:[reservation],checkpoints:[{session:70,coreDebt:expectedDebt,proof:11,families:699,ids:699}]};
+const trace={profile:'autonome',seed:11,policy:'I',horizon:70,sessions,changes:[reservation],checkpoints:[{session:70,coreDebt:expectedDebt,proof:10,families:699,ids:699}]};
 let n=0;const check=(v,m)=>{assert.ok(v,m);n++};const fails=(f,m)=>{let hit=false;try{f()}catch(_){hit=true}check(hit,m)};
 check(a.analyze(trace).reservations===1,'reservation verified');
 check(a.analyze(trace).checkpoints[0].concepts['ouv.passe'].terminalGap===0,'terminal gap');
