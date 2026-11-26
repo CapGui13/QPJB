@@ -39,6 +39,23 @@
   const twenty=qs.slice(0,20).map(q=>q.id);
   const twentyResult=mod.order({...ctx,session:66,deck:twenty,exercises:qs});
   ck(twentyResult.ids.slice().sort().join()===twenty.slice().sort().join(),'20 IDs');
+  // Exact IDs seen on real S1–5 autonomous/11 pilot. Their contrast is
+  // pedagogical, not a transfer credit or an arbitrary transposition.
+  const realPairs=[
+   ['SEF-002-3','SEF-PN26-M1-001','ouverture_mineure_ou_1SA_meme_distribution_zones_force_distinctes'],
+   ['SEF-002-3','SEF-004-1','ouverture_1SA_ou_2SA_meme_distribution_zones_force_distinctes'],
+   ['SEF-N023-1','SEF-007-2','passe_ou_ouverture_force_distribution_constante'],
+   ['SEF-N088-1','SEF-033-1','reponse_sur_1SA_seuil_passe_invitation_manche'],
+   ['SEF-N095-1','SEF-N084-1','stayman_quatre_ou_texas_cinq_cartes_force_comparable']
+  ];
+  for(const [a,b,criterion] of realPairs){
+   const result=mod.order({session:8,deck:[a,b],exercises:[map.get(a),map.get(b)],metadataById:byId});
+   ck(result.contrastPairs.some(x=>x.criterion===criterion),'catalogue contrast '+criterion);
+  }
+  const dependent=mod.order({session:8,deck:['SEF-004-1','SEF-002-3'],exercises:[map.get('SEF-004-1'),map.get('SEF-002-3')],metadataById:byId});
+  ck(dependent.before.prereqOrderInversions===1&&dependent.after.prereqOrderInversions===0,'real prerequisite order');
+  ck(dependent.ids[0]==='SEF-002-3','recall 1SA before 2SA');
+  ck(mod.order(null).ids.length===0,'null context');
   const black=qs.filter(q=>byId[q.id].concept==='chelem.cles');
   const x=black[0],y=black.find(q=>q.answer!==x.answer);
   ck(x&&y&&mod.decisionPattern(x,byId[x.id])!==mod.decisionPattern(y,byId[y.id]),'Blackwood not falsely mirrored');
@@ -53,5 +70,21 @@ if(typeof require==='function'&&require.main===module){
  const visit=p=>{if(Object.hasOwn(sources,p))return;sources[p]=read(p);for(const m of sources[p].matchAll(/require\(['"]\.\/([-\w]+\.js)['"]\)/g))visit(m[1]);};
  visit('quizz-parcours.js');
  const e=bench.prepare(sources,mod,false);
- console.log(JSON.stringify(module.exports(mod,e.qs,e.metadata,e.api.decisionPattern)));
+ const result=module.exports(mod,e.qs,e.metadata,e.api.decisionPattern);
+ const c=bench.prepare(sources,mod,true),state=e.api.empty();
+ for(let s=1;s<=3;s++){
+  const deck=e.api.start(state,e.qs);
+  for(let i=0;i<deck.length;i++)if(!e.api.record(state,deck[i],'wrong',i,null,false,false))throw Error('weak record');
+  if(!e.api.finish(state,e.qs))throw Error('weak finish');
+ }
+ const clone=c.api.load(JSON.parse(JSON.stringify(state))),basePlan=e.api.consolidationPlan(state,e.qs),newPlan=c.api.consolidationPlan(clone,c.qs);
+ const sort=a=>a.map(x=>x.id+'|'+x.target).sort().join();
+ if(!basePlan.available||!newPlan.available||sort(basePlan.items)!==sort(newPlan.items))throw Error('consolidation ID/target permutation');
+ const deck=c.api.startConsolidation(clone,c.qs);
+ if(deck.map(x=>x.id).join()!==newPlan.items.map(x=>x.id).join())throw Error('consolidation order');
+ if(!c.api.record(clone,deck[0],'correct',0,null,false,false))throw Error('consolidation record');
+ c.api.move(clone,1);
+ const snap=JSON.stringify(clone.active),resume=c.api.load(JSON.parse(JSON.stringify(clone)));
+ if(c.api.start(resume,c.qs).map(x=>x.id).join()!==deck.map(x=>x.id).join()||JSON.stringify(resume.active)!==snap)throw Error('consolidation resume');
+ console.log(JSON.stringify({...result,nativeConsolidation:{status:'PASS',length:deck.length,ids:deck.map(x=>x.id)}}));
 }
