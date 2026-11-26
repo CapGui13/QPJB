@@ -1,7 +1,8 @@
 'use strict';
 const L=require('../quizz-durable-m6-lab.js');
+const G=require('../quizz-durable-m6-guards.js');
 const BASE='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
-function summarize(baselines,sensitivity,targeted,semantic){
+function summarize(baselines,sensitivity,targeted,semantic,extension){
  const ok=(v,m)=>{if(!v)throw Error(m)};
  const expected=new Set(Object.keys(L.PROFILES).flatMap(name=>L.SEEDS.map(seed=>name+'/'+seed)));
  const actual=new Set(),registry=[],profiles={},totals={trajectories:0,sessions:0,responses:0,ineligible:0,duplicates:0,short:0,resumes:0,exports:0,elapsedMs:0};
@@ -59,11 +60,26 @@ function summarize(baselines,sensitivity,targeted,semantic){
  {unit:'integrated-M1-M5',scope:'candidate',disposition:'not-examined',reason:'Independent branch; coordinator must integrate and replay all 18 pairs'},
  {unit:'native-browser-and-offline',scope:'environment',disposition:'HOLD',reason:'Complete native checkout and browser/build validation not available through connector V8 environment'},
  {unit:'native-process-cpu-rss',scope:'environment',disposition:'HOLD',reason:'V8 wall time and serialized size measured; process metrics require native checkout'});
- return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},semantic:{tally:semantic.tally,categories:semantic.categories,rows:semanticRows},registry};
+ const extensionKeys=new Set(['intermediaire/47/65/ordinary','cible/47/65/semantic','intermediaire/47/180/ordinary']);
+ ok(extension?.guards?.base===BASE&&extension.guards.guard.status==='PASS'&&extension.guards.unit.status==='PASS','Extension guard suite');
+ registry.push({unit:'paired-guard-adversarial',scope:'unit',disposition:'executed',reason:'Strict pair validation and common unseen-family cohort; rerun historical unit suite',assertions:extension.guards.guard.assertions,historicalAssertions:extension.guards.unit.assertions});
+ let additionalResponses=0;
+ const identityPairs=extension.pairs.map(p=>{
+  const a=p.before,b=p.after,kind=a.ruleSource?'semantic':'ordinary',key=a.profile+'/'+a.seed+'/'+a.horizon+'/'+kind;
+  ok(p.base===BASE&&extensionKeys.delete(key)&&G.validatePair(a,b),'Extension pair '+key);
+  ok(JSON.stringify(a.events)===JSON.stringify(b.events)&&!a.violations.length&&!b.violations.length&&p.crossResume.checked,'Identity and restore '+key);
+  ok(p.comparison.length===a.checkpoints.length&&p.comparison.every((c,i)=>c.session===a.checkpoints[i].session&&!c.review.length&&Object.values(c.deltas).every(v=>v===0)&&c.crossSessionNewFamilyDelta===0&&c.commonTransfer.n>0&&c.commonTransfer.delta===0&&G.sameHistorical(c.commonTransfer,G.commonTransfer(a.checkpoints[i],b.checkpoints[i],a.seed,L.random))),'Paired checkpoints '+key);
+  if(a.horizon===180){const historical=profiles.intermediaire.find(r=>r.seed===47);ok(p.historicalReplay?.identicalEvents&&p.historicalReplay.changes.length===0&&JSON.stringify(historical.events)===JSON.stringify(a.events)&&historical.checkpoints.every((c,i)=>p.historicalReplay.checkedMetrics.every(k=>c[k]===a.checkpoints[i][k])),'Historical replay');}
+  const responses=[a,b].reduce((n,r)=>n+r.events.reduce((m,e)=>m+e.answers.length,0),0);additionalResponses+=responses;
+  const row={key,responses,universeKey:a.universeKey,checkpoints:p.comparison.map(c=>({session:c.session,commonN:c.commonTransfer.n,delta:c.commonTransfer.delta,review:c.review})),historicalReplay:p.historicalReplay??null};
+  registry.push({unit:'identity-'+key,scope:'pair',disposition:'executed',reason:'Frozen reference compared with itself; same unseen exercises; no candidate gain claimed',...row});return row;
+ });
+ ok(extensionKeys.size===0,'Incomplete extension pairs');
+ return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},semantic:{tally:semantic.tally,categories:semantic.categories,rows:semanticRows},extension:{additionalResponses,guardAssertions:extension.guards.guard.assertions,identityPairs},registry};
 }
 module.exports={summarize};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path');
  const dir=path.join(__dirname,'../audits/apprentissage-durable-20261126/m6'),read=p=>JSON.parse(fs.readFileSync(path.join(dir,p),'utf8'));
- console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json'),read('semantic-results.json')),null,2));
+ console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json'),read('semantic-results.json'),{guards:read('guard-results.json'),pairs:['identity-paired-s65.json','identity-semantic-s65.json','identity-paired-s180.json'].map(read)}),null,2));
 }
