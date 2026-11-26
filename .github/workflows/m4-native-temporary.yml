@@ -1,0 +1,95 @@
+name: QPJB M4 — recette native temporaire
+on:
+  pull_request:
+    branches: ['apprentissage-durable/m4-transfert']
+    paths: ['.github/workflows/m4-native-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 33dced838f5dca94e855c27b2314e937af649a51
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exécuter toutes les suites M4, même après un échec
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = "33dced838f5dca94e855c27b2314e937af649a51" || exit 1
+          node --version
+          mkdir -p /tmp/m4-reports
+          failed=0
+          count=0
+          for f in tests/durable-m4-*.cjs; do
+            count=$((count+1))
+            echo "::group::$f"
+            if node "$f" 2>&1 | tee "/tmp/m4-reports/$(basename "$f").log"; then
+              echo "PASS $f" | tee -a /tmp/m4-reports/summary.txt
+            else
+              echo "FAIL $f" | tee -a /tmp/m4-reports/summary.txt
+              failed=$((failed+1))
+            fi
+            echo "::endgroup::"
+          done
+          echo "M4_NATIVE source=33dced838f5dca94e855c27b2314e937af649a51 suites=$count failures=$failed" | tee -a /tmp/m4-reports/summary.txt
+          test "$count" = 26 && test "$failed" = 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-native-33dced8
+          path: /tmp/m4-reports/
+  browsers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 33dced838f5dca94e855c27b2314e937af649a51
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Modules UMD réels hors ligne
+        env:
+          PW_BROWSER: ${{ matrix.browser }}
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = "33dced838f5dca94e855c27b2314e937af649a51" || exit 1
+          node <<'NODE' | tee m4-browser-result.json
+          const { chromium,webkit }=require('playwright');
+          const fs=require('node:fs');
+          (async()=>{
+            const name=process.env.PW_BROWSER;
+            const browser=await ({chromium,webkit}[name]).launch();
+            try{
+              const context=await browser.newContext({offline:true});
+              const page=await context.newPage();
+              for(const path of ['quizz-durable-m4-transfert.js','quizz-durable-m4-autonomie.js','tests/durable-m4-runtime.cjs']){
+                await page.addScriptTag({content:fs.readFileSync(path,'utf8')});
+              }
+              const result=await page.evaluate(()=>globalThis.verifyM4(globalThis.QPJBDurableTransfer,globalThis.QPJBDurableTransferAutonomy));
+              if(result.status!=='PASS'||result.assertions!==32)throw Error(JSON.stringify(result));
+              console.log(JSON.stringify({source:'33dced838f5dca94e855c27b2314e937af649a51',browser:name,version:browser.version(),offline:true,...result}));
+            }finally{await browser.close();}
+          })().catch(e=>{console.error(e);process.exitCode=1;});
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-browser-${{ matrix.browser }}-33dced8
+          path: m4-browser-result.json
+          if-no-files-found: warn
