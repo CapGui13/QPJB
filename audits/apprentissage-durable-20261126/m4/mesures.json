@@ -8,11 +8,17 @@
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 118,
-  "newPairs": 83,
+  "allPairs": 126,
+  "newPairs": 91,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
-  "holdConcepts": [],
+  "holdConcepts": [
+    "chelem.blackwood.declenchement",
+    "red.bicolore",
+    "red.bicolore_cher",
+    "michaels.choix",
+    "michaels.reveil"
+  ],
   "structurallyMapped": 1915,
   "individualEditorialReview": "partial; no global certification",
   "pass2": {
@@ -34,7 +40,8 @@
     "contextual_candidate": 42,
     "discrimination": 18,
     "discrimination_context": 22,
-    "role_complement": 1
+    "role_complement": 1,
+    "reviewed_reuse": 8
   },
   "pass3": {
     "proposed": 22,
@@ -48,5 +55,47 @@
     ]
   },
   "nativeNode": false,
-  "browserReal": false
+  "browserReal": false,
+  "pass4": {
+    "reviewedPairs": 118,
+    "newReusedPairs": 8,
+    "totalPairs": 126,
+    "counts": {
+      "intercontextual": 35,
+      "near_transfer": 10,
+      "context_boundary": 37,
+      "hold": 3,
+      "discrimination": 31,
+      "role_complement": 9,
+      "consolidation": 1
+    },
+    "transferConcepts": 43,
+    "reviewedHistoricalIds": 197,
+    "tests": [
+      {
+        "assertions": 5132,
+        "ids": 1915,
+        "additions": 3,
+        "pairs": 126,
+        "status": "PASS"
+      },
+      {
+        "assertions": 7730,
+        "status": "PASS",
+        "pairs": 126,
+        "counts": {
+          "intercontextual": 35,
+          "near_transfer": 10,
+          "context_boundary": 37,
+          "hold": 3,
+          "discrimination": 31,
+          "role_complement": 9,
+          "consolidation": 1
+        },
+        "transferConcepts": 43,
+        "reviewedHistoricalIds": 197
+      }
+    ],
+    "environment": "V8 on actual blobs, full CJS entries with fs/git adapters; not Node CLI or browser."
+  }
 }

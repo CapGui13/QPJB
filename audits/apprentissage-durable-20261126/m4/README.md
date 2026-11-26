@@ -27,3 +27,15 @@ Trois ajouts ciblés à mains indépendantes : Texas faible 1SA/2SA, rectificati
 additions.json : vérifier et viser les nouveaux cas avant insertion. contrasts.json : données consultatives, automaticCredit=false. QPJBDurableTransfer.links({id,concept,contrasts,candidates}) : uniquement candidats déjà éligibles, aucune mutation, score ou modification du parcours. Aucun changement de production ni fusion.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+## Reprise — revue qualitative des paires
+
+Les 118 paires initiales ont été relues à partir de leurs forces, distributions, séquences, réponses et corrigés exacts. Huit nouveaux liens exploitent des QCM existants ; aucune création artificielle. Le registre `revue-paires.json` complète la cartographie historique : 197 anciens IDs impliqués dans une revue de critère, 1718 anciens IDs sans revue de critère de paire dans cette passe, 99 dispositions conceptuelles. Il ne prétend pas certifier chaque main ni distracteur. Bilan : {
+  "intercontextual": 35,
+  "near_transfer": 10,
+  "context_boundary": 37,
+  "hold": 3,
+  "discrimination": 31,
+  "role_complement": 9,
+  "consolidation": 1
+} ; 43/99 concepts avec au moins un indice intercontextuel candidat. Les cas HOLD restent dans le registre mais sont exclus par le module. Cas #271 SEF-L25-004 conservé conformément au visa #364. `links({purpose:'transfer',...})` exclut tous les liens non intercontextuels et les données non revues ; `purpose:'practice'` ou absence de purpose donne les contrastes non HOLD, sans crédit automatique. Ne pas confondre discrimination de contexte et réussite autonome transférée. Aucun score ni sélection. Les deux tests CJS complets ont été exécutés dans V8 sur blobs exacts : 5132 + 7730 assertions PASS. Node CLI/navigateur non exécutés ; cartographie structurelle conservée, revue éditoriale des 1915 QCM et visa humain des trois ajouts restent à faire. Aucun merge.
