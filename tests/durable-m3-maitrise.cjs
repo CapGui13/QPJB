@@ -1,10 +1,21 @@
 'use strict';
 const fs=require('node:fs'),vm=require('node:vm');
-const api=require('../quizz-durable-m3-maitrise.js');
-const engine=require('../quizz-parcours.js'),architecture=require('../quizz-apprentissage-concepts.js'),meta=require('../quizz-prerequis.js').byId;
+const {execFileSync}=require('node:child_process');
+const BASE='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
 const root=require('node:path').join(__dirname,'..');
 const read=p=>fs.readFileSync(require('node:path').join(root,p),'utf8');
-const qs=JSON.parse(read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const readBase=p=>execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
+const cache=new Map();
+function baseRequire(p){
+ p=p.replace(/^\.\//,'');
+ if(cache.has(p))return cache.get(p).exports;
+ const m={exports:{}};cache.set(p,m);
+ new Function('module','exports','require','window',readBase(p))(m,m.exports,baseRequire,undefined);
+ return m.exports;
+}
+const api=require('../quizz-durable-m3-maitrise.js');
+const engine=baseRequire('quizz-parcours.js'),architecture=baseRequire('quizz-apprentissage-concepts.js'),meta=baseRequire('quizz-prerequis.js').byId;
+const qs=JSON.parse(readBase('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const registry=JSON.parse(read('audits/apprentissage-durable-20261126/m3/registre.json'));
 const win={};vm.runInNewContext(read('quizz-durable-m3-maitrise.js'),{window:win});
 const run=function run(api,browser,engine,architecture,qs,meta,registry){
@@ -242,7 +253,10 @@ const run=function run(api,browser,engine,architecture,qs,meta,registry){
  eq(Object.values(stressResult.concepts).reduce((sum,s)=>sum+s.evidence.autonomous,0),20000,"20k proof rows");
  eq(stressResult.quality.invalidAnswers,0,"stress valid answers");
  ok(stressRank.every(x=>x.delta<=30&&lookup.has(x.id)),"stress rank bounded");
- const stress={events:1000,answers:20000,assessMs:stressMs,rankMs:stressRankMs,rankCandidates:stressRank.length,resultJsonChars:JSON.stringify(stressResult).length};
+ const prepStart=Date.now(),prep=api.prepareReview({history:stressHistory,exercises:qs,nowMs:stressNow}),prepareMs=Date.now()-prepStart;
+ const t2=Date.now();for(let i=0;i<10;i++)eq(prep.rank({candidates:qs}),stressRank,"prepared ranking parity "+i);const preparedTenRankMs=Date.now()-t2;
+ eq(prep.rank({candidates:qs,priority:true}),[],"prepared priority guard");
+ const stress={events:1000,answers:20000,assessMs:stressMs,rankMs:stressRankMs,prepareMs,preparedTenRankMs,rankCandidates:stressRank.length,resultJsonChars:JSON.stringify(stressResult).length};
  return {assertions,perConcept,pairTests:registry.pairs.length,metrics,oracle,stress,execution:"actual module and base source; synthetic histories"};
 };
 const results=run(api,win.QPJBDurableMastery,engine,architecture,qs,meta,registry);
