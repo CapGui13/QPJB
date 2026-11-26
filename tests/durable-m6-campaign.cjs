@@ -9,9 +9,14 @@ function data(html){const m=[...html.matchAll(/<script id="training-data" type="
 function engine(sources){
  let current=Date.UTC(2026,0,1);
  class Clock extends Date{constructor(...a){super(...(a.length?a:[current]))}static now(){return current}}
- const modules={};const req=n=>{if(!Object.hasOwn(modules,n))throw Error('Missing module '+n);return modules[n]};
- for(const p of paths.filter(p=>p.endsWith('.js')&&p!=='quizz-parcours.js'&&p!=='quizz-session-plan.js'))modules['./'+p]=compile(sources[p],req,Clock);
- modules['./quizz-session-plan.js']=compile(sources['quizz-session-plan.js'],req,Clock);
+ const modules={},loading=new Set();
+ const req=n=>{
+  if(Object.hasOwn(modules,n))return modules[n];
+  if(!/^\.\/[-\w]+\.js$/.test(n)||!Object.hasOwn(sources,n.slice(2)))throw Error('Missing module '+n);
+  if(loading.has(n))throw Error('Circular dependency '+n);
+  loading.add(n);try{return modules[n]=compile(sources[n.slice(2)],req,Clock)}finally{loading.delete(n)}
+ };
+ req('./quizz-prerequis.js');req('./quizz-session-plan.js');
  assert(modules['./quizz-session-plan.js'].pedagogyReady,'Production policies must be active');
  const source=sources['quizz-parcours.js'],anchor='return {eligibility,adaptiveDiagnostics,createForTests:';
  assert(source.split(anchor).length===2,'Exact instrumentation anchor; adapt explicitly if engine changes');
@@ -39,16 +44,32 @@ function prepare(sources){const e=engine(sources);const c=LAB.catalog(e.exercise
 function run(sources,name,seed,horizon=180,options={}){
  const e=prepare(sources);
  const probe=options.probe||e;
+ const catalogueBefore=JSON.stringify(e.exercises),metaBefore=JSON.stringify(e.meta);
  const begin=Date.now();
  const result=LAB.run({...e,probeExercises:probe.exercises,probeMeta:probe.meta,name,seed,horizon,verifyEarly,measure:()=>Date.now(),overrides:options.overrides||{},model:options.model||'learning'});
+ assert(JSON.stringify(e.exercises)===catalogueBefore&&JSON.stringify(e.meta)===metaBefore,'Engine mutated catalogue or metadata');
  return {...result,elapsedMs:Date.now()-begin};
 }
 function pair(base,candidate,name,seed,horizon=180,options={}){
  const b=prepare(base),c=prepare(candidate),byId=new Map(c.exercises.map(q=>[q.id,q]));
  for(const q of b.exercises){const newer=byId.get(q.id);assert(newer,'Lost historical ID '+q.id);
- for(const key of ['hand','answer','auction','difficulty','caseFamily','explain'])assert(JSON.stringify(newer[key])===JSON.stringify(q[key]),'Changed historical '+key+' '+q.id);}
+ assert(JSON.stringify(newer)===JSON.stringify(q),'Changed historical exercise '+q.id);
+ assert(JSON.stringify(c.meta.byId[q.id])===JSON.stringify(b.meta.byId[q.id]),'Changed historical metadata '+q.id);}
+ const cross=crossResume(b,c);
  const before=run(base,name,seed,horizon,{...options,probe:b}),after=run(candidate,name,seed,horizon,{...options,probe:b});
- return {before,after,comparison:LAB.compare(before,after)};
+ return {before,after,crossResume:cross,comparison:LAB.compare(before,after)};
+}
+function crossResume(b,c){
+ b.clock(0);c.clock(0);
+ const s=b.api.empty(),deck=b.api.start(s,b.exercises);
+ assert(b.api.record(s,deck[0],'correct',0,deck[0].answer,true,false),'Cross resume setup');
+ const raw=JSON.stringify(s),expected=JSON.stringify(s.active);
+ const saved=b.api.exportProgress(s,b.exercises,{});
+ for(const restored of [c.api.load(raw),c.api.importProgress(JSON.stringify(saved))]){
+  assert(JSON.stringify(restored.active)===expected,'Cross version active evidence');
+  assert(JSON.stringify(c.api.start(restored,c.exercises).map(q=>q.id))===JSON.stringify(deck.map(q=>q.id)),'Cross version exact deck');
+ }
+ return {checked:true,answered:1,deckSize:deck.length};
 }
 function legacy(sources){
  const e=prepare(sources),s=e.api.empty();e.clock(0);const deck=e.api.start(s,e.exercises);
@@ -61,12 +82,12 @@ function legacy(sources){
  assert(e.api.exportProgress(imported,e.exercises,{}).limitations.historicalSessionsWithoutDetailedAnswers===1,'Historical limitation');
  return {oldEntries:deck.length,restoredEntries:Object.keys(imported.entries).length,inventedJournal:imported.journal.length};
 }
-module.exports={BASE,paths,compile,data,engine,prepare,run,pair,legacy,verifyEarly};
+module.exports={BASE,paths,compile,data,engine,prepare,run,pair,crossResume,legacy,verifyEarly};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),crypto=require('node:crypto'),zlib=require('node:zlib');
  const root=path.join(__dirname,'..'),args=process.argv.slice(2),cmd=args[0]||'baseline',name=args[1]||'intermediaire',seed=Number(args[2]||47),h=Number(args[3]||180);
  const gitSources=Object.fromEntries(paths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
- const local=()=>Object.fromEntries(paths.map(p=>[p,fs.readFileSync(path.join(root,p),'utf8')]));
+ const local=()=>Object.fromEntries([...new Set([...paths,...fs.readdirSync(root).filter(p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js')])].map(p=>[p,fs.readFileSync(path.join(root,p),'utf8')]));
  let result;
  if(cmd==='baseline')result=run(gitSources,name,seed,h);
  else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h);
