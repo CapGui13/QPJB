@@ -115,3 +115,8 @@ Revue des 147 HOLD de ce thème : 141 dispositions « corrigé suffisant », six
 ## Passe 12 — 2SA et 3SA gambling
 
 Revue des 82 HOLD de ces deux thèmes : 67 dispositions « corrigé suffisant », 15 HOLD conservés et nommés dans `pass12-propositions.json`. Justifications individuelles sur la main, séquence, force, distribution, corrigé et diagnostic signé. Distinction Stayman, Texas fitté, double cinq majeur et passe ou corrige ; pas de généralisation des accords QPJB. Comparaison exhaustive des registres : exactement 67 changements attendus, données et transferts existants reproduits. 1021 HOLD, un contraste restant, 3371 ciblages et 828 corrigés suffisants. Banc exact exécuté en V8 : 104299 assertions. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 13 — Développements sur 1SA
+
+Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16 HOLD maintenus et identifiés dans `pass13-propositions.json`. Stayman, Texas majeurs et mineurs, courtes après Texas, relais sur les deux majeures quatrièmes, distinction des accords locaux après Contre d'entame. Aucun changement de corrigé, de ciblage, de module ou de transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 104656 assertions, 16899 ms. 932 HOLD, un contraste restant, 3371 remédiations ciblées et 917 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
