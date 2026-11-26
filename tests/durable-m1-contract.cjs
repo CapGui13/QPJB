@@ -1,0 +1,53 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const A=require('../quizz-durable-m1-adaptation.js'),P=require('../quizz-professeur.js');
+const root=path.join(__dirname,'..'),qs=JSON.parse(fs.readFileSync(path.join(root,'quizz.html'),'utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const by=new Map(qs.map(q=>[q.id,q])),rows=[0,1,2,3].flatMap(n=>require('../audits/apprentissage-durable-20261126/m1/registre-'+n+'.json'));
+let hyp=0,unknown=0,low=0;
+assert.equal(new Set(rows.map(r=>r.id)).size,1915);
+for(const row of rows){const q=by.get(row.id);assert.ok(q);assert.equal(row.family,q.caseFamily||q.id);assert.equal(row.options.length,q.choices.length-1);assert.deepEqual(row.options.map(x=>x[0]),q.choices.filter(c=>c!==q.answer));
+for(const [choice,status,cat,conf,key,rule,reason,disposition] of row.options){const d=P.diagnose({exercise:q,choice,assisted:false,hadFreeError:false});assert.deepEqual([d.status,d.category,d.confidence,d.evidence?.rule||null,d.reason||null],[status,cat,conf,rule,reason]);if(status==='hypothesis'){hyp++;assert.equal(A.criterion(d),key);assert.equal(disposition,conf==='low'?'abstention-low':'rule-verified');low+=+(conf==='low')}else{unknown++;assert.equal(disposition,'abstention-unknown')}}}
+assert.deepEqual([rows.length,hyp,unknown,low],[1915,5416,329,195]);
+const q=by.get('SEF-001-1'),q2=by.get('SEF-002-3');
+const ans=(q,choice,result='wrong',assisted=false,hadFreeError=false,firstGuess)=>({id:q.id,result,choice,assisted,hadFreeError,firstGuess});
+const event=(session,...answers)=>({mode:'parcours',session,answers});
+const analyze=(journal,completed=4)=>A.analyze({history:{completed,journal},exercises:qs,diagnose:P.diagnose});
+const history={completed:4,journal:[event(1,ans(q,'2SA')),event(2,ans(q2,'2SA'))]};
+const snap=JSON.stringify(history);const a=A.analyze({history,exercises:qs,diagnose:P.diagnose});
+assert.equal(JSON.stringify(history),snap);assert.deepEqual(a,A.analyze({history,exercises:qs,diagnose:P.diagnose}));
+assert.ok(a.signals.some(s=>s.strength==='recurrent'&&s.criterion==='force:H'));
+assert.ok(!analyze([event(1,ans(q,'2SA'))]).signals.some(s=>s.strength==='recurrent'));
+assert.ok(!analyze([event(1,ans(q,'2SA','wrong',true)),event(2,ans(q2,'2SA','wrong',true))]).signals.length);
+assert.ok(!analyze([event(1,ans(q,q.answer,'correct',true,true)),event(2,ans(q2,q2.answer,'correct',true,true))]).signals.length);
+assert.ok(analyze([event(1,ans(q,q.answer,'correct',true,true,'2SA'))]).observations.some(o=>o.kind==='corrected'));
+assert.ok(!analyze([event(1,{id:q.id,result:'wrong',choice:'2SA'})]).signals.length);
+assert.ok(!analyze([event(1,ans(q,'2SA')),event(1,ans(q2,'2SA'))]).signals.length);
+assert.ok(!analyze([event(1,ans(q,'2SA')),event(2,ans(q,'2SA'))]).signals.some(s=>s.strength==='recurrent'));
+const ranked=A.rank({history,candidates:qs,selected:[],signals:a,category:'weakness'});
+assert.ok(ranked.every(v=>by.has(v.id)&&v.delta>0&&v.delta<=A.MAX_DELTA&&v.signalIds.length===1));
+assert.deepEqual(A.rank({history:{...history,completed:2},candidates:qs,selected:[],signals:a,category:'weakness'}),[]);
+assert.deepEqual(A.rank({history,candidates:qs,selected:[],signals:a,category:'discovery'}),[]);
+assert.deepEqual(A.rank({history:{...history,active:{}},candidates:qs,selected:[],signals:a,category:'weakness'}),[]);
+assert.deepEqual(A.rank({history,candidates:[{...q,answer:'Passe'}],selected:[],signals:a,category:'weakness'}),[]);
+const eligible=rows.filter(r=>r.concept==='ouv.sa1'&&r.family!==q.caseFamily&&r.family!==q2.caseFamily&&r.options.some(o=>o[4]==='force:H'&&o[3]!=='low'));
+const recover=[];for(const row of eligible){if(!recover.some(x=>x.family===row.family))recover.push(row);if(recover.length===2)break}
+assert.equal(recover.length,2);
+const recovered=analyze([...history.journal,...recover.map((row,i)=>event(i+3,ans(by.get(row.id),by.get(row.id).answer,'correct')))]);
+assert.ok(recovered.signals.some(s=>s.criterion==='force:H'&&s.strength==='recovered'));
+assert.deepEqual(A.rank({history,candidates:qs,selected:[],signals:recovered,category:'weakness'}),[]);
+const categories=new Set(),criteria=new Set(),positive=[];
+const groups=new Map();
+for(const row of rows)for(const o of row.options){if(o[1]!=='hypothesis'||o[3]==='low')continue;const k=row.concept+'|'+o[4];if(!groups.has(k))groups.set(k,[]);groups.get(k).push([row,o]);}
+for(const [key,items] of groups){const pair=[items[0],items.find(([r])=>r.family!==items[0][0].family)];if(!pair[1])continue;
+const h={completed:4,journal:pair.map(([r,o],i)=>event(i+1,ans(by.get(r.id),o[0])))};
+const sig=A.analyze({history:h,exercises:qs,diagnose:P.diagnose});
+assert.ok(sig.signals.some(s=>s.strength==='recurrent'&&s.id==='local:'+key.replace('|',':')));
+categories.add(pair[0][1][2]);criteria.add(pair[0][1][4]);
+const matches=A.rank({history:h,candidates:qs,selected:[],signals:sig,category:'weakness'});
+if(matches.length){positive.push({key,count:matches.length,example:matches[0]});
+const best=by.get(matches[0].id);assert.deepEqual(A.rank({history:h,candidates:[best],selected:[{exercise:best}],signals:sig,category:'weakness'}),[]);
+assert.deepEqual(A.rank({history:h,candidates:[best],selected:[],signals:sig,category:'maintenance'}),[]);
+assert.deepEqual(A.rank({history:h,candidates:[{...best,difficulty:99}],selected:[],signals:sig,category:'weakness'}),[]);
+}}
+assert.ok(positive.length>0);
+console.log(JSON.stringify({rows:rows.length,hyp,unknown,low,groups:groups.size,categories:[...categories],criteria:[...criteria],positiveGroups:positive.length,examples:positive.slice(0,8),initialRanked:ranked.length,recovery:recover.map(r=>r.id)}));
