@@ -5,9 +5,11 @@ const m4=require('../quizz-coherence-m4-diversite.js');
 const contrast=require('../quizz-coherence-m4-contrast.js');
 const reactivation=require('../quizz-coherence-m4-reactivation.js');
 const cautious=require('../quizz-coherence-m4-cautious.js');
+const atomic=require('./coherence-concrete-m4-atomic-adapter.cjs');
 const anchor='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason';
 const end='const m=mOf(q),cat=category||classify(q);';
 function instrument(source,policy='A'){
+  if(policy==='E')return atomic.instrument(source);
   if(source.split(anchor).length!==2||source.split(end).length!==2)throw Error('Ancre choose() modifiée : revue obligatoire');
   return source.replace(anchor,anchor.replace('const q','let q')).replace(end,`
       if(${policy==='D'?'s>=2 && s<5 && !priority && !forcedReason && category===\'discovery\' && fresh(q) && novelFamily(q) && !due(q) && !bad(q) && ':' '}!explicitRecall && (!priority || s<${policy==='A'?2:5}) && (!forcedReason || forcedReason==='equilibre_ouvertures')){
@@ -33,7 +35,7 @@ function instrument(source,policy='A'){
 }
 function pick(ctx,rows,baseline,maxSession=180,onChange=()=>{},policy='A'){
   if(ctx.session>maxSession||rows.length<2)return baseline;
-  const ranked=(policy==='D'?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
+  const ranked=((policy==='D'||policy==='E')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
   const b=rows.find(r=>r.q===baseline),base=b.v+(d.get(baseline.id)?.delta||0);
   let winner=b,score=base;
   for(const row of rows){
