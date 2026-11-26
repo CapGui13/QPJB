@@ -247,6 +247,43 @@
   if(majorOpen&&key==='fit-2sa'&&axis==='convention'&&ans==='2SA'&&c==='2'+major&&length(major)===3&&/2SA fitté/i.test(x)&&/11\s*[–-]\s*12\s*HLD/i.test(x))
    return specific('fit-2sa-zone','Le fit troisième est établi ; c’est la zone invitante explicitée dans le corrigé qui distingue le 2SA fitté du soutien simple.','Sur une autre réponse à une majeure, distingue le nombre d’atouts et la zone de force du soutien.',['2sa-fitte','zone-soutien']);
 
+
+  // Pass 4 — transfer only where the previous rule set abstained; never displace signed reviews.
+  if(explicit(q,c))return null;
+  const p4=(id,prompt,criteria)=>result('pass4-'+id,prompt,criteria);
+  const partnerMinor=partnerOpen&&/[♣♦]$/.test(a[0]), partnerMajor=partnerOpen&&/[♥♠]$/.test(a[0]);
+  const m=partnerMajor?a[0].slice(-1):null;
+  if(op&&axis==='priorite'&&reg&&Math.max(s[0],s[1])<5&&/^1[♣♦]$/.test(c)&&((ans==='1SA'&&q.h>=15&&q.h<=17&&/15\s*[–-]\s*17\s*H/.test(x))||(ans==='2SA'&&q.h>=20&&q.h<=21&&/20\s*[–-]\s*21\s*H/.test(x)))&&/régulièr/i.test(x))
+   return p4('opening-sa-before-minor','Sur une autre ouverture régulière, situe d’abord tes points H dans les zones de Sans-Atout ; une mineure peut-elle être annoncée sans masquer cette zone ?',['zone-sa','priorite-sa']);
+  if(op&&axis==='priorite'&&ans==='1♠'&&c==='1♥'&&s[0]===5&&s[1]===5&&/deux majeures cinquièmes|deux majeures de cinq/i.test(x)&&/plus chère/i.test(x))
+   return p4('opening-equal-majors','Sur une autre main à deux majeures de cinq cartes, compare l’ordre des ouvertures avec celui des réponses à une mineure.',['longueur-ouverture','ordre-majeures']);
+  if(op&&axis==='force'&&ans==='Passe'&&/^[12]SA$/.test(c)&&q.h<12&&hl<13&&/12\s*H\s*(?:ou|\/)\s*13\s*HL/.test(x)&&/seuil|force|insuffis/i.test(x))
+   return p4('opening-below-threshold','Sur une autre main faible, calcule H et HL avant de choisir entre Passe et une ouverture.',['force-ouverture','points-longueur']);
+  if(partnerMinor&&axis==='force'&&ans==='Passe'&&/^([12][♣♦♥♠]|1SA)$/.test(c)&&hl<=4&&/pas la force nécessaire pour répondre|trop faible pour répondre|force insuffisante pour répondre/i.test(x))
+   return p4('response-minor-below-threshold','Sur une autre première réponse, vérifie les valeurs de réponse avant de chercher une couleur, même si une majeure est disponible.',['force-reponse','seuil-force']);
+  if(partnerMinor&&axis==='force'&&ans==='1SA'&&c==='2♣'&&a[0]==='Partenaire : 1♦'&&reg&&s[0]<4&&s[1]<4&&hl<11&&/pas la force nécessaire pour annoncer les Trèfles au palier de deux/i.test(x))
+   return p4('minor-two-over-one-values','Sur une autre réponse à 1♦ sans majeure quatrième, compare les valeurs nécessaires pour le changement de couleur à 2♣ à celles d’une réponse limitée.',['force-reponse','seuil-deux-sur-un']);
+  if(partnerMajor&&axis==='force'&&ans==='Passe'&&c[1]===m&&['2','3'].includes(c[0])&&length(m)>=3&&Math.min(...s)>=3&&q.h+2*Math.max(0,length(m)-3)<6&&/6\s*HLD|soutien simple/i.test(x)&&/faible|insuffis|sous les/i.test(x))
+   return p4('major-support-below-threshold','Sur une autre main fittée, évalue les points de distribution puis vérifie si le soutien simple est justifié, avant de choisir son palier.',['evaluation-hld','zone-soutien']);
+  if(partnerMajor&&axis==='distribution'&&ans==='2'+m&&c==='1♠'&&m==='♥'&&s[0]<4&&s[1]>=3&&/atouts|soutien|fit/i.test(x)&&/HLD/i.test(x))
+   return p4('major-fit-versus-short-spades','Sur une autre réponse à 1♥, compare le nombre de Piques réellement détenus et les atouts Cœur déjà garantis.',['fit-majeur','longueur-majeure-reponse']);
+  if(responseSA&&axis==='niveau'&&ans==='3SA'&&reg&&Math.max(s[0],s[1])<4&&((startSA==='1SA'&&c==='2SA'&&q.h>=11&&q.h<=14&&/manche|conclu|27 H|26 H/i.test(x))||(startSA==='2SA'&&c==='4SA'&&q.h>=5&&q.h<=9&&/manche|conclu|2[5-9]\s*H/i.test(x))))
+   return p4('sa-game-level','Sur une autre main après ouverture à Sans-Atout, additionne ta force au minimum et au maximum de l’ouvreur ; distingue invitation, manche et exploration du chelem.',['force-partenaire','objectif-contrat']);
+  if(direct&&axis==='priorite'&&ans==='1SA'&&c==='Contre'&&reg&&hl>=16&&hl<=18&&/16\s*[–-]\s*18\s*HL/.test(x)&&/tenue|arrêt/i.test(x)&&/Contre d[’']appel décrirait moins bien/i.test(x))
+   return p4('direct-sa-before-double','Sur une autre intervention directe, contrôle la régularité, la force et l’arrêt dans la couleur d’ouverture avant de comparer 1SA au Contre d’appel.',['zone-intervention-sa','regularite','arret-adverse']);
+  if(direct&&axis==='force'&&ans==='Contre'&&c==='1SA'&&hl<16&&length(a[0].slice(-1))===1&&s.filter(n=>n===4).length===3&&/singleton/i.test(x)&&/tricolore|trois autres couleurs/i.test(x)&&/Contre d[’']appel/i.test(x))
+   return p4('direct-double-tricolor','Sur une autre main tricolore courte dans la couleur adverse, compare la force nécessaire pour 1SA direct et la distribution décrite par le Contre d’appel.',['zone-intervention-sa','distribution-contre']);
+  if(q.theme==='second'&&axis==='force'&&a.length===3&&/^Partenaire : 1[♣♦]$/.test(a[0])&&/^Vous : 1[♥♠]$/.test(a[1])&&/^Partenaire : (?:1SA|2[♣♦])$/.test(a[2])&&ans==='2'+a[1].slice(-1)&&c==='3'+a[1].slice(-1)&&length(a[1].slice(-1))>=6&&q.h<=8&&/partiel|faible|non forcing|sans forcer/i.test(x))
+   return p4('responder-weak-repeat','Sur une autre deuxième enchère du répondant, distingue une répétition simple pour jouer la partielle et un saut qui invite à la manche.',['force-repondant','objectif-partielle','niveau-redemande']);
+  if(q.theme==='red'&&axis==='force'&&a.length===2&&/^Vous : 1[♣♦]$/.test(a[0])&&/^Partenaire : 1[♦♥]$/.test(a[1])&&/^1[♥♠]$/.test(ans)&&c==='2SA'&&reg&&q.h>=12&&q.h<=14&&length(ans[1])>=4&&/majeure|Piques|Cœurs/i.test(x)&&/12\s*[–-]\s*14\s*H|première zone/i.test(x))
+   return p4('opener-major-before-sa-jump','Sur une autre redemande régulière, vérifie la zone du 2SA à saut puis si une majeure quatrième reste annonçable au palier de un.',['zone-redemande-sa','priorite-majeure']);
+  if(q.theme==='forcing'&&axis==='priorite'&&a.length===4&&/^Vous : 1[♣♦]$/.test(a[0])&&/^Partenaire : 1[♥♠]$/.test(a[1])&&/^Vous : 1[♥♠]$/.test(a[2])&&/4e (?:couleur )?forcing/i.test(a[3])&&ans==='2'+a[1].slice(-1)&&length(a[1].slice(-1))===3&&c==='2SA'&&/prioritaire|d’abord|d'abord|premier devoir/i.test(x)&&/arrêt|tenue/i.test(x))
+   return p4('fourth-forcing-support-priority','Sur une autre quatrième couleur forcing, vérifie d’abord le soutien différé dans la majeure du répondant, puis l’arrêt dans la quatrième couleur.',['quatrieme-forcing','soutien-differe','arret']);
+  if(q.theme==='multilandy'&&axis==='distribution'&&a.length===1&&/^Adversaire : 1SA/.test(a[0])&&ans==='2♦'&&c==='2♣'&&Math.max(s[0],s[1])>=6&&s.filter(n=>n>=4).length===1&&/Multi.Landy|2♦ Multi/i.test(x)&&/sixième|six |unicolore/i.test(x)&&/sans (?:seconde|deuxième) couleur quatrième/i.test(x))
+   return p4('multilandy-unicolor-not-landy','Sur une autre intervention sur 1SA, compte les deux majeures et vérifie s’il existe une seconde couleur avant de choisir le code Multi-Landy.',['multilandy-distribution','multilandy-code']);
+  if(q.theme==='chelem'&&['niveau','contexte'].includes(axis)&&a.length===2&&/^Vous : 4SA \(Blackwood 5 clés, atout Cœur\)/.test(a[0])&&/^Partenaire : 5♦ \(1 ou 4 clés\)/.test(a[1])&&ans==='5♥'&&['5SA','6♥'].includes(c)&&q.hand.filter(cards=>cards.includes('A')).length+Number(q.hand[1].includes('R'))===3&&/il en manque une|manque une clé/i.test(x)&&/5♥ est un arrêt|revenez donc à 5♥/i.test(x))
+   return p4('blackwood-missing-key-stop','Sur une autre réponse ambiguë au Blackwood, élimine les nombres de clés impossibles à partir de tes propres clés avant de décider si l’arrêt au palier de cinq reste nécessaire.',['blackwood-cles','blackwood-arret']);
+
   return null;
  }
 

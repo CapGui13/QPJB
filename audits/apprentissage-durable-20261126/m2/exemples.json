@@ -34,6 +34,18 @@
       "longueur-majeure-ouverture"
     ]
   },
+  "pass4-opening-sa-before-minor": {
+    "id": "SEF-005-1",
+    "choice": "1♦",
+    "concept": "ouv.sa2",
+    "family": "cas-005",
+    "feedback": null,
+    "checkNext": "Sur une autre ouverture régulière, situe d’abord tes points H dans les zones de Sans-Atout ; une mineure peut-elle être annoncée sans masquer cette zone ?",
+    "criteria": [
+      "zone-sa",
+      "priorite-sa"
+    ]
+  },
   "pass2-opening-major-first": {
     "id": "SEF-006-2",
     "choice": "1♦",
@@ -56,6 +68,18 @@
     "criteria": [
       "force-ouverture",
       "seuil-force"
+    ]
+  },
+  "pass4-opening-equal-majors": {
+    "id": "SEF-008-2",
+    "choice": "1♥",
+    "concept": "ouv.majeure",
+    "family": "cas-008",
+    "feedback": null,
+    "checkNext": "Sur une autre main à deux majeures de cinq cartes, compare l’ordre des ouvertures avec celui des réponses à une mineure.",
+    "criteria": [
+      "longueur-ouverture",
+      "ordre-majeures"
     ]
   },
   "opening-minor-comparison": {
@@ -92,6 +116,18 @@
     "criteria": [
       "longueur-mineures",
       "egalite-mineures"
+    ]
+  },
+  "pass4-opening-below-threshold": {
+    "id": "SEF-014-1",
+    "choice": "1SA",
+    "concept": "ouv.passe",
+    "family": "cas-014",
+    "feedback": null,
+    "checkNext": "Sur une autre main faible, calcule H et HL avant de choisir entre Passe et une ouverture.",
+    "criteria": [
+      "force-ouverture",
+      "points-longueur"
     ]
   },
   "transfer-force-hl": {
@@ -190,6 +226,54 @@
       "palier"
     ]
   },
+  "pass4-minor-two-over-one-values": {
+    "id": "SEF-023-3",
+    "choice": "2♣",
+    "concept": "mineur.base",
+    "family": "cas-023",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à 1♦ sans majeure quatrième, compare les valeurs nécessaires pour le changement de couleur à 2♣ à celles d’une réponse limitée.",
+    "criteria": [
+      "force-reponse",
+      "seuil-deux-sur-un"
+    ]
+  },
+  "pass4-response-minor-below-threshold": {
+    "id": "SEF-024-2",
+    "choice": "2♦",
+    "concept": "mineur.base",
+    "family": "cas-024",
+    "feedback": null,
+    "checkNext": "Sur une autre première réponse, vérifie les valeurs de réponse avant de chercher une couleur, même si une majeure est disponible.",
+    "criteria": [
+      "force-reponse",
+      "seuil-force"
+    ]
+  },
+  "pass4-major-fit-versus-short-spades": {
+    "id": "SEF-026-1",
+    "choice": "1♠",
+    "concept": "majeur.soutien",
+    "family": "cas-026",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à 1♥, compare le nombre de Piques réellement détenus et les atouts Cœur déjà garantis.",
+    "criteria": [
+      "fit-majeur",
+      "longueur-majeure-reponse"
+    ]
+  },
+  "pass4-major-support-below-threshold": {
+    "id": "SEF-029-2",
+    "choice": "2♥",
+    "concept": "majeur.soutien",
+    "family": "cas-029",
+    "feedback": null,
+    "checkNext": "Sur une autre main fittée, évalue les points de distribution puis vérifie si le soutien simple est justifié, avant de choisir son palier.",
+    "criteria": [
+      "evaluation-hld",
+      "zone-soutien"
+    ]
+  },
   "pass2-sa-no-transfer-length": {
     "id": "SEF-031-2",
     "choice": "2♦",
@@ -223,6 +307,18 @@
     "checkNext": "Sur une autre main, compare la signification des deux paliers à Sans-Atout dans cette séquence : quelle ambition et quelle force chacun indique-t-il ?",
     "criteria": [
       "palier-sa",
+      "objectif-contrat"
+    ]
+  },
+  "pass4-sa-game-level": {
+    "id": "SEF-033-2",
+    "choice": "2SA",
+    "concept": "sa1.seuil",
+    "family": "cas-033",
+    "feedback": null,
+    "checkNext": "Sur une autre main après ouverture à Sans-Atout, additionne ta force au minimum et au maximum de l’ouvreur ; distingue invitation, manche et exploration du chelem.",
+    "criteria": [
+      "force-partenaire",
       "objectif-contrat"
     ]
   },
@@ -308,6 +404,18 @@
     "criteria": [
       "fit-majeur",
       "atouts-communs"
+    ]
+  },
+  "pass4-opener-major-before-sa-jump": {
+    "id": "SEF-047-1",
+    "choice": "2SA",
+    "concept": "red.bicolore",
+    "family": "cas-047",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande régulière, vérifie la zone du 2SA à saut puis si une majeure quatrième reste annonçable au palier de un.",
+    "criteria": [
+      "zone-redemande-sa",
+      "priorite-majeure"
     ]
   },
   "transfer-shape-two-suits": {
@@ -517,6 +625,19 @@
       "contexte-competitif"
     ]
   },
+  "pass4-direct-sa-before-double": {
+    "id": "SEF-V3-043-3",
+    "choice": "Contre",
+    "concept": "intervenir.base",
+    "family": "cas-243",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention directe, contrôle la régularité, la force et l’arrêt dans la couleur d’ouverture avant de comparer 1SA au Contre d’appel.",
+    "criteria": [
+      "zone-intervention-sa",
+      "regularite",
+      "arret-adverse"
+    ]
+  },
   "transfer-force-pass": {
     "id": "SEF-V3-045-2",
     "choice": "Passe",
@@ -527,6 +648,18 @@
     "criteria": [
       "seuil-force",
       "passe"
+    ]
+  },
+  "pass4-direct-double-tricolor": {
+    "id": "SEF-V3-048-2",
+    "choice": "1SA",
+    "concept": "intervenir.base",
+    "family": "cas-248",
+    "feedback": null,
+    "checkNext": "Sur une autre main tricolore courte dans la couleur adverse, compare la force nécessaire pour 1SA direct et la distribution décrite par le Contre d’appel.",
+    "criteria": [
+      "zone-intervention-sa",
+      "distribution-contre"
     ]
   },
   "pass2-double-weak-response": {
@@ -663,6 +796,19 @@
       "drury-fit"
     ]
   },
+  "pass4-responder-weak-repeat": {
+    "id": "SEF-V44-024",
+    "choice": "3♠",
+    "concept": "second.base",
+    "family": "v44-cas-024",
+    "feedback": null,
+    "checkNext": "Sur une autre deuxième enchère du répondant, distingue une répétition simple pour jouer la partielle et un saut qui invite à la manche.",
+    "criteria": [
+      "force-repondant",
+      "objectif-partielle",
+      "niveau-redemande"
+    ]
+  },
   "transfer-priority-overcall": {
     "id": "SEF-V44-033",
     "choice": "Contre",
@@ -706,6 +852,18 @@
     "family": "v45-cas-023",
     "feedback": null,
     "checkNext": "Sur une autre main après 1SA adverse, distingue une majeure longue seule des mains à deux couleurs et retrouve le code correspondant.",
+    "criteria": [
+      "multilandy-distribution",
+      "multilandy-code"
+    ]
+  },
+  "pass4-multilandy-unicolor-not-landy": {
+    "id": "SEF-V45-026",
+    "choice": "2♣",
+    "concept": "multilandy.intervention",
+    "family": "v45-cas-026",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention sur 1SA, compte les deux majeures et vérifie s’il existe une seconde couleur avant de choisir le code Multi-Landy.",
     "criteria": [
       "multilandy-distribution",
       "multilandy-code"
@@ -797,6 +955,18 @@
       "signification-convention"
     ]
   },
+  "pass4-blackwood-missing-key-stop": {
+    "id": "SEF-V474-002",
+    "choice": "5SA",
+    "concept": "chelem.blackwood.suite",
+    "family": "v474-arret-coeur-5d",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse ambiguë au Blackwood, élimine les nombres de clés impossibles à partir de tes propres clés avant de décider si l’arrêt au palier de cinq reste nécessaire.",
+    "criteria": [
+      "blackwood-cles",
+      "blackwood-arret"
+    ]
+  },
   "transfer-blackwood": {
     "id": "SEF-V474-004",
     "choice": "5SA",
@@ -819,6 +989,19 @@
     "criteria": [
       "fit-bicolore",
       "atouts-communs"
+    ]
+  },
+  "pass4-fourth-forcing-support-priority": {
+    "id": "SEF-V480-013",
+    "choice": "2SA",
+    "concept": "forcing.quatrieme",
+    "family": "v480-C-013",
+    "feedback": null,
+    "checkNext": "Sur une autre quatrième couleur forcing, vérifie d’abord le soutien différé dans la majeure du répondant, puis l’arrêt dans la quatrième couleur.",
+    "criteria": [
+      "quatrieme-forcing",
+      "soutien-differe",
+      "arret"
     ]
   },
   "transfer-stayman-response": {

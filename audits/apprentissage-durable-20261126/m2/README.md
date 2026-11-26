@@ -70,3 +70,8 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 ## Passe 3 — relecture des contrastes
 
 Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés suffisants pour écarter l'option, sans feedback supplémentaire ni inférence causale. Quatre contrastes restent en arbitrage, motivés dans `revue-contrastes.json`. Chaque décision conserve le corrigé source, l'empreinte, la catégorie, la confiance et la règle du diagnostic. Le générateur contrôle la correspondance et l'utilisation de toutes les décisions. 101 318 assertions exécutées dans V8, avec aller-retour des artefacts générés. Les 2 194 HOLD et les 524 abstentions restent distincts ; aucune relecture humaine ou recette navigateur réelle n'est revendiquée. Le code de production et le module de remédiation restent inchangés durant cette passe.
+
+
+## Passe 4 — critères de réinvestissement supplémentaires
+
+68 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 15 règles effectives. Chaque cas est vérifié sur la main, la séquence, la bonne enchère, le diagnostic signé et le corrigé figé ; le détail est dans `pass4.json`. Aucun autre statut ni ciblage existant modifié. Total : 2794 ciblages, 288 compléments, 2203 références distinctes ; 2126 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101386 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés. Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
