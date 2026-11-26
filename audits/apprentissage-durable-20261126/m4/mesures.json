@@ -8,8 +8,8 @@
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 126,
-  "newPairs": 91,
+  "allPairs": 148,
+  "newPairs": 113,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
   "holdConcepts": [
@@ -41,7 +41,7 @@
     "discrimination": 18,
     "discrimination_context": 22,
     "role_complement": 1,
-    "reviewed_reuse": 8
+    "reviewed_reuse": 30
   },
   "pass3": {
     "proposed": 22,
@@ -97,5 +97,46 @@
       }
     ],
     "environment": "V8 on actual blobs, full CJS entries with fs/git adapters; not Node CLI or browser."
+  },
+  "pass5": {
+    "proposed": 22,
+    "retained": 22,
+    "skipped": [],
+    "counts": {
+      "intercontextual": 47,
+      "near_transfer": 10,
+      "context_boundary": 43,
+      "hold": 3,
+      "discrimination": 35,
+      "role_complement": 9,
+      "consolidation": 1
+    },
+    "transferConcepts": 59,
+    "reviewedHistoricalIds": 222,
+    "tests": [
+      {
+        "assertions": 5352,
+        "ids": 1915,
+        "additions": 3,
+        "pairs": 148,
+        "status": "PASS"
+      },
+      {
+        "assertions": 8074,
+        "status": "PASS",
+        "pairs": 148,
+        "counts": {
+          "intercontextual": 47,
+          "near_transfer": 10,
+          "context_boundary": 43,
+          "hold": 3,
+          "discrimination": 35,
+          "role_complement": 9,
+          "consolidation": 1
+        },
+        "transferConcepts": 59,
+        "reviewedHistoricalIds": 222
+      }
+    ]
   }
 }
