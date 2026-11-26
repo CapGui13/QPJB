@@ -390,5 +390,46 @@
       }
     ],
     "reason": "Deux anciens exercices de relais 2♣ FI donnent la règle dans l'énoncé ; les deux ajouts sans indice comblent cette lacune ciblée."
+  },
+  "pass9": {
+    "reviewedSA": 77,
+    "counts": {
+      "coherent_in_catalogue_framework": 73,
+      "bounded_context": 2,
+      "guided_not_independent": 2
+    },
+    "totalIndividualTargetedReview": 236,
+    "remainingIndividualTargetedReview": 1679,
+    "gaps": [
+      {
+        "criterion": "4 H sur 2SA : 24–25 H",
+        "disposition": "HOLD_AGREEMENT",
+        "reason": "Aucun des 29 QCM du périmètre sur 2SA n'a 4 H ; ne pas choisir arbitrairement Passe ou manche sans arbitrage explicite de la règle et de la qualité de main."
+      },
+      {
+        "criterion": "Six cartes majeures faibles sur 2SA",
+        "disposition": "HOLD_AGREEMENT",
+        "reason": "Les cas faibles à cinq cartes et le cas à six cartes avec 7 H sont présents ; vérifier la distinction rectification fittée/refus puis répétition du Texas avant tout ajout."
+      },
+      {
+        "criterion": "Cinq cartes mineures, invitation et évaluation H/HL",
+        "disposition": "BOUNDED",
+        "reason": "SEF-N091-3 et SEF-N091-1 défendent 2SA dans le barème H du catalogue ; ne pas déduire une règle universelle indépendante de la qualité des levées."
+      }
+    ],
+    "tests": [
+      {
+        "assertions": 320,
+        "status": "PASS",
+        "reviewed": 77,
+        "counts": {
+          "coherent_in_catalogue_framework": 73,
+          "bounded_context": 2,
+          "guided_not_independent": 2
+        },
+        "totalReviewed": 236
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub blobs and fs/git adapters; not Node CLI"
   }
 }
