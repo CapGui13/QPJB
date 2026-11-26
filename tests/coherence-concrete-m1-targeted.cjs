@@ -7,7 +7,7 @@ const pass=q('p','majeur','Passe',[3,3,4,3],['Partenaire : 1♠']),support=q('s'
 const others=Array.from({length:4},(_,i)=>q('other'+i,'ouv','1♣',[3,3,3,4],[]));
 const metadataById=Object.fromEntries([orig,seen,seen2,pass,support,supportS,...others].map(x=>[x.id,{concept:x.theme==='mineur'?'mineur.base':x.theme==='majeur'?'majeur.soutien':'ouv.mineure',stage:0}]));
 const reply=(q,family,wrong)=>({id:q.id,family,result:wrong?'wrong':'correct',assisted:false,hadFreeError:false});
-const row=(s)=>({mode:'parcours',session:s,answers:[reply(support,'s'+s,true),reply(supportS,'t'+s,s===2),reply(seen,'m'+s,false),reply(seen2,'n'+s,false),...Array.from({length:6},(_,i)=>reply(others[i%4],'other'+i,true))]});
+const row=(s)=>({mode:'parcours',session:s,answers:[reply(support,'s',s===2),reply(supportS,'t',false),reply(seen,'m'+s,false),reply(seen2,'n'+s,false),...Array.from({length:6},(_,i)=>reply(others[i%4],'other'+i,true))]});
 const history={journal:[row(1),row(2)]};
 const flags={due:false,bad:false,novelFamily:true,firstConcept:false,overdueCore:false};
 const selected=[seen,seen2,support,...others].map(exercise=>({exercise}));
@@ -18,7 +18,7 @@ const choice=C.compose(ctx,rank);
 assert.equal(choice?.id,'p');assert.equal(choice?.reason,'contraste-fit-et-force-insuffisante');
 assert.equal(JSON.stringify([ctx,rank]),before);
 assert.deepEqual(C.compose(ctx,rank),choice);
-const noPass={...ctx,selected:[...ctx.selected,{exercise:pass}]};
+const noPass={...ctx,history:{journal:history.journal.map(row=>({...row,answers:row.answers.map(a=>['s','t'].includes(a.family)?{...a,result:'wrong'}:a)}))},selected:[...ctx.selected,{exercise:pass}]};
 assert.equal(C.compose(noPass,rank)?.id,'t');
 assert.equal(C.compose({...ctx,category:'transfer'},rank),null);
 for(const patch of [{changed:true},{priority:true},{forcedReason:'rappel_erreur_aide'},{history:{active:{},journal:history.journal}},{history:{journal:[]}},{session:1},{session:66},{candidates:[orig]},{selected:[{exercise:seen}]}])assert.equal(C.compose({...ctx,...patch},rank),null);
