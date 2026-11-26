@@ -33,7 +33,7 @@ function position(q,prev,old,first){
  if(prev.pattern&&prev.pattern===q.pattern)why.push('miroir consécutif');}
  return why;
 }
-function traceSession({deck,selection,meta,elig,pattern,s,history,profile,seed,latencyMs,objective=null}){
+function traceSession({deck,selection,meta,rawMeta=meta,elig,pattern,s,history,profile,seed,latencyMs,objective=null}){
  check(deck.length===selection.length&&deck.length===elig.length,'Trace misalignment');
  const past=history.flatMap(x=>x.rows);
  const seenConcept=new Set(past.map(x=>x.concept)),last=new Map(),lastId=new Map(),lastFamily=new Map(),seenIds=new Map(),proof=new Map();
@@ -44,7 +44,7 @@ function traceSession({deck,selection,meta,elig,pattern,s,history,profile,seed,l
  for(let i=0;i<deck.length;i++){
  const q=deck[i],m=meta.byId[q.id],sel=selection[i];check(m&&sel.id===q.id,'Missing metadata or wrong selection ID');
  const first=!seenConcept.has(m.concept),gap=last.has(m.concept)?s-last.get(m.concept):null;
- const r={session:s,position:i+1,id:q.id,theme:q.theme,context:q.context,hand:q.hand,h:q.h,shape:q.shape,auction:q.auction,answer:q.answer,difficulty:q.difficulty,concept:m.concept,stage:m.stage,family:family(q),pattern:pattern(q),kind:sel.kind,selectionReason:sel.reason,role:role(sel,first),firstExposure:first,conceptGap:gap,idGap:lastId.has(q.id)?s-lastId.get(q.id):null,familyGap:lastFamily.has(family(q))?s-lastFamily.get(family(q)):null,requires:m.requires.map(req=>({concept:req.concept,minExposure:req.minExposure,exposureIds:seenIds.get(req.concept)?.size||0,autonomousFamilies:new Set((proof.get(req.concept)||[]).map(x=>x.family)).size,autonomousSessions:new Set((proof.get(req.concept)||[]).map(x=>x.session)).size})),eligibility:elig[i],...outcome(profile,seed,q,s)};
+ const r={session:s,position:i+1,id:q.id,theme:q.theme,context:q.context,hand:q.hand,h:q.h,shape:q.shape,auction:q.auction,answer:q.answer,difficulty:q.difficulty,concept:m.concept,stage:m.stage,minSession:m.minSession??null,metadataOverride:same(rawMeta.byId[q.id],m)?null:{catalogue:rawMeta.byId[q.id],effective:m},family:family(q),pattern:pattern(q),kind:sel.kind,selectionReason:sel.reason,role:role(sel,first),firstExposure:first,conceptGap:gap,idGap:lastId.has(q.id)?s-lastId.get(q.id):null,familyGap:lastFamily.has(family(q))?s-lastFamily.get(family(q)):null,requires:m.requires.map(req=>({concept:req.concept,minExposure:req.minExposure,exposureIds:seenIds.get(req.concept)?.size||0,autonomousFamilies:new Set((proof.get(req.concept)||[]).map(x=>x.family)).size,autonomousSessions:new Set((proof.get(req.concept)||[]).map(x=>x.session)).size})),eligibility:elig[i],...outcome(profile,seed,q,s)};
  r.positionObservations=position(r,rows.at(-1),gap,first);rows.push(r);seenConcept.add(m.concept);
  }
  const counts={};for(const r of rows)counts[r.concept]=(counts[r.concept]||0)+1;
