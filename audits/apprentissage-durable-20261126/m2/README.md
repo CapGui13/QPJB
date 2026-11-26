@@ -150,3 +150,8 @@ Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16
 ## Passe 19 — Chelems, bicolores conventionnels et compétition
 
 93 HOLD dans les trois familles ; 83 dispositions « corrigé suffisant » retenues par revue éditoriale IA contextualisée, 10 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass19-propositions.json`. Les codes de cue-bid, rencontre, Splinter et quantitative sont limités à leurs séquences documentées. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 83 dispositions attendues uniquement. Banc exact V8 : 107943 assertions, 18176 ms ; données et transferts reproduits. 110 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 20 — revue transversale des derniers HOLD
+
+111 options ouvertes examinées sur le catalogue figé (110 HOLD et un contraste). 58 corrigés jugés suffisants avec une justification individuelle, 52 HOLD et un contraste conservés ; instantané des décisions et des cas en attente dans `pass20-propositions.json`. Les accords ambigus restent à arbitrer par le coordinateur. Aucun nouveau feedback, aucune modification du moteur, des ciblages ou des transferts. Banc exact V8 : 108175 assertions, données et transferts reproduits. Comparaison exhaustive : exactement 58 dispositions HOLD vers canonical-sufficient. Revue IA, non humaine. Node CLI et navigateurs réels non exécutés. Statut NON.
