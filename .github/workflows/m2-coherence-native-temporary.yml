@@ -1,0 +1,89 @@
+name: QPJB M2 coherence native S20
+on:
+  pull_request:
+    branches: ['coherence-concrete/m2-ordre']
+    paths: ['.github/workflows/m2-coherence-native-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 6bd6a8b66f97abbc9429988259eefb8d8f42fbea
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          test "$(git rev-parse HEAD)" = "6bd6a8b66f97abbc9429988259eefb8d8f42fbea"
+          node tests/coherence-concrete-m2-unit.cjs
+  trajectory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, modere, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 6bd6a8b66f97abbc9429988259eefb8d8f42fbea
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native exact base and paired candidate
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = "6bd6a8b66f97abbc9429988259eefb8d8f42fbea" || exit 1
+          node tests/coherence-concrete-m2-replay.cjs ${{ matrix.profile }} ${{ matrix.seed }} 180 /tmp/m2-results | tee /tmp/m2-summary.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m2-${{ matrix.profile }}-${{ matrix.seed }}
+          path: |
+            /tmp/m2-results/
+            /tmp/m2-summary.json
+  browser:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 6bd6a8b66f97abbc9429988259eefb8d8f42fbea
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - env:
+          PW_BROWSER: ${{ matrix.browser }}
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = "6bd6a8b66f97abbc9429988259eefb8d8f42fbea" || exit 1
+          node <<'NODE'
+          const fs=require('node:fs'), pw=require('playwright');
+          (async()=>{
+            const browser=await pw[process.env.PW_BROWSER].launch();
+            try{
+              const page=await (await browser.newContext({offline:true})).newPage();
+              for(const p of ['quizz-prerequis.js','quizz-coherence-m2-ordre.js','tests/coherence-concrete-m2-unit.cjs'])
+                await page.addScriptTag({content:fs.readFileSync(p,'utf8')});
+              const html=fs.readFileSync('quizz.html','utf8');
+              const qs=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+              const result=await page.evaluate(qs=>verifyM2Order(QPJBCoherenceM2,qs,QPJBPrerequis),qs);
+              console.log(JSON.stringify({browser:process.env.PW_BROWSER,version:browser.version(),...result}));
+            }finally{await browser.close()}
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          NODE
