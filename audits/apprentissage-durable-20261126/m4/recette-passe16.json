@@ -1,0 +1,48 @@
+{
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "testedHead": "1fec4135719b31b9486bf95d7d3dc6d10c01ee1b",
+  "execution": "V8 avec adaptateurs fs et git lisant les blobs exacts ; pas Node natif ni navigateur.",
+  "results": {
+    "tests/durable-m4-transfert.cjs": {
+      "assertions": 6002,
+      "ids": 1915,
+      "additions": 13,
+      "pairs": 202,
+      "status": "PASS"
+    },
+    "tests/durable-m4-revue.cjs": {
+      "assertions": 8932,
+      "status": "PASS",
+      "pairs": 202,
+      "counts": {
+        "intercontextual": 77,
+        "near_transfer": 13,
+        "context_boundary": 54,
+        "hold": 4,
+        "discrimination": 42,
+        "role_complement": 9,
+        "consolidation": 3
+      },
+      "transferConcepts": 92,
+      "reviewedHistoricalIds": 280
+    },
+    "tests/durable-m4-mecanique.cjs": {
+      "schema": "QPJB_M4_MECHANICAL_V1",
+      "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+      "scope": "Structure des enchères abrégées : montants croissants, camps pour Contre/Surcontre, choix licites après préfixe. Ni tour de parole complet, ni unicité pédagogique, ni accords certifiés.",
+      "historical": 1915,
+      "additions": 13,
+      "pairs": 202,
+      "assertions": 15935,
+      "status": "PASS",
+      "failures": []
+    },
+    "tests/durable-m4-residuel.cjs": {
+      "assertions": 357,
+      "status": "PASS",
+      "reviewedResidual": 107,
+      "openingReviewed": 52,
+      "proposals": 13
+    }
+  }
+}
