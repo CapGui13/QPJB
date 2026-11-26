@@ -130,3 +130,8 @@ Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16
 ## Passe 15 — lot groupé interventions, contres et réveils
 
 153 HOLD examinés sur le catalogue figé (revue éditoriale IA) : interventions 61/62, contres 55/59, réveils 31/32. Total 147 corrigés jugés suffisants ; 6 HOLD conservés et identifiés dans `pass15-propositions.json`. Distinctions intervention directe et réveil, contre d'appel/de force, réponse obligatoire ou libre, mini-cue-bid, Texas après intervention à SA ; accords et zones explicitement propres au catalogue, pas de généralisation. Aucun changement de corrigé canonique, moteur, ciblage ni transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 106028 assertions, 17615 ms. 589 HOLD, un contraste restant, 3371 remédiations ciblées et 1260 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 16 — Réponses après intervention et à l'intervention
+
+121 HOLD dans les deux familles ; 97 dispositions « corrigé suffisant » validées par revue éditoriale IA contextualisée, 24 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass16-propositions.json`. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 97 dispositions attendues uniquement. Banc exact V8 : 106415 assertions, 16540 ms ; données et transferts reproduits. 492 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
