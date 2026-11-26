@@ -87,8 +87,29 @@ rankReview accepte les mêmes champs directement. Le bonus est borné à 30, jam
 
 Un journal versionné distinct, append-only, pourrait enregistrer attemptId/sessionId stables, sessionKind, concept/id/famille/catalogueVersion, presentedAt/answeredAt/completedAt, source d'horloge, epoch de redémarrage, résultat, firstGuess, choix, assisted et hadFreeError avec état inconnu explicite. Distinguer heure UTC de durée monotone locale, jamais réconcilier automatiquement deux horloges incohérentes. Dédupliquer par attemptId, conserver les métadonnées de qualité et les bornes de rétention. V1 reste lisible et inchangée : import en lecture seule, migration additive idempotente et réversible par le coordinateur, sans backfill temporel ni création de preuves à partir des agrégats. Les anciens journaux sans timestamps restent sans mesure du temps. Évaluer taille, quota navigateur et consentement avant tout changement. Ne pas stocker le résultat détaillé d'assess.
 
+## Complément de reprise — sélecteur expérimental, validation croisée
+
+Le paragraphe historique « Limites / clôture » ci-dessous précède les essais de sélection isolés. Le runner `tests/durable-m3-selector.cjs` a ensuite exécuté le sélecteur réel figé avec un raccordement **en mémoire uniquement**, sans modification de production. Les 12 comparaisons initiales (six profils, graine 47, deux stratégies) sont auditées dans `selector-review.json` : 60 516 assertions rapportées, 4 320 séances simulées. La reprise a exécuté six comparaisons calendaires supplémentaires de 180 séances par variante, soit 30 258 assertions réussies, 2 160 séances et 21 600 réponses simulées. Chaque profil calendaire a maintenant deux graines, et les six nouveaux fichiers sont conservés. Le contrôle transversal des 12 résultats calendaires a réussi 564 vérifications. Au total, 36 trajectoires de sélection, 6 480 séances et 90 774 assertions du runner de sélection (distinctes de la recette principale de maîtrise). Les variantes de référence sont répétées entre stratégies et ne sont pas indépendantes.
+
+| Profil | Graine | Familles Δ | Rétention différée Δ | Fragiles Δ | Rappels dus servis Δ | Rappels fragiles servis Δ | Rappels explicites Δ | Lacunes >20 Δ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| grouped | 47 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| grouped | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| daily | 47 | 0 | 0 | 0 | -2 | 0 | 0 | -4 |
+| daily | 103 | 0 | 0 | 0 | -2 | 0 | 0 | -4 |
+| weekly | 47 | -12 | -2 | 2 | 27 | 5 | 0 | -2 |
+| weekly | 11 | 3 | 3 | -3 | -75 | -62 | 0 | 6 |
+| forgetting | 47 | 3 | 4 | -4 | 0 | -13 | -2 | 0 |
+| forgetting | 103 | 8 | 3 | -2 | -1 | -5 | 0 | 2 |
+| assisted | 47 | 4 | 0 | 1 | -20 | -28 | 1 | -12 |
+| assisted | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| resumption | 47 | 0 | 2 | -2 | -8 | -2 | -6 | -4 |
+| resumption | 103 | 0 | 0 | 0 | 0 | 2 | 9 | 0 |
+
+Les écarts sont candidat moins référence. La politique calendaire peut améliorer certaines preuves différées, mais ne domine pas systématiquement : le nombre de rappels dus/fragiles servis ou les lacunes de concepts peuvent se dégrader, et le nombre d'occasions varie. La comparaison ne mesure pas l'apprentissage humain. Conserver le classement V1 par défaut ; module d'évaluation candidat à la revue du coordinateur, bonus large HOLD, bonus calendaire expérimental uniquement. Troisième graine par profil, validation native Node/Chromium/WebKit et recette intégrée restent à faire ; pas de changement de production. Exécution de cette reprise en V8, avec blobs figés et runner exact, pas d'exécution native revendiquée. Données et détails dans `selector-calendar-cross-seed.json`.
+
 ## Limites / clôture
 
-Tests natifs checkout impossible dans cet environnement (résolution DNS github.com indisponible). Le moteur comparatif a été réellement exécuté sur ses blobs, mais pas de trajet comparatif complet du sélecteur raccordé au M3 ; intégration et recette globale coordinateur restent à faire. Le registre est exhaustif par concept/ID et paire historique recensée, pas une nouvelle validation humaine de tous les corrigés ni de toutes les archives historiques. Aucune mesure causale d'apprentissage. Le code et les résultats sont livrés en PR brouillon, aucun merge ni publication.
+Tests natifs checkout impossible dans cet environnement (résolution DNS github.com indisponible). Le moteur comparatif a été réellement exécuté sur ses blobs, y compris les essais du sélecteur raccordé en mémoire (voir complément ci-dessus). L'intégration de production et la recette globale coordinateur restent à faire. Le registre est exhaustif par concept/ID et paire historique recensée, pas une nouvelle validation humaine de tous les corrigés ni de toutes les archives historiques. Aucune mesure causale d'apprentissage. Le code et les résultats sont livrés en PR brouillon, aucun merge ni publication.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON — livraison fonctionnelle et recette V8 complète ; validation native et validation du raccordement restant non exécutées.
