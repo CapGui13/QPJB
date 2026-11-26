@@ -37,9 +37,9 @@ function evidence(ctx){
  const by=new Map((ctx.exercises||[]).map(q=>[q.id,q])), out=new Map();
  function add(id,session,proof){
  const q=by.get(id),m=q&&get(ctx.metadataById,id);if(!m)return;
- if(!out.has(m.concept))out.set(m.concept,{ids:new Set(),families:new Set(),sessions:new Set()});
+ if(!out.has(m.concept))out.set(m.concept,{ids:new Set(),families:new Set(),sessions:new Set(),proofs:[]});
  const a=out.get(m.concept);a.ids.add(id);
- if(proof){a.families.add(q.family||q.caseFamily||q.id);a.sessions.add(session);}
+ if(proof){const family=String(q.caseFamily||q.id);a.families.add(family);a.sessions.add(session);a.proofs.push({family,session,difficulty:q.difficulty});}
  }
  const history=ctx.history||{};
  const completed=Number.isInteger(history.completed)?history.completed:ctx.session-1;
@@ -53,15 +53,36 @@ function evidence(ctx){
  return out;
 }
 function rules(ctx={}){
- const ev=evidence(ctx);
+ const ev=evidence(ctx),byId=new Map((ctx.exercises||[]).map(q=>[q.id,q])),byConcept=new Map();
+ for(const q of byId.values()){const m=effective(q,get(ctx.metadataById,q.id));if(!m)continue;if(!byConcept.has(m.concept))byConcept.set(m.concept,[]);byConcept.get(m.concept).push(q);}
  return (ctx.candidates||[]).map(c=>{
- const id=idOf(c),q=(ctx.exercises||[]).find(x=>x.id===id)||c,m=effective(q,get(ctx.metadataById,id));
+ const id=idOf(c),q=byId.get(id)||c,m=effective(q,get(ctx.metadataById,id));
  if(!m)return {id,status:'unknown',requirements:[],advisory:true};
  const requirements=(m.requires||[]).map(r=>{
  const a=ev.get(r.concept),exposure=a?a.ids.size:0,proofFamilies=a?a.families.size:0,proofSessions=a?a.sessions.size:0;
  return {...r,exposure,proofFamilies,proofSessions,status:exposure<r.minExposure?'missing-exposure':proofFamilies===0?'exposed-without-autonomous-proof':'exposed-with-autonomous-proof'};
  });
- return {id,concept:m.concept,stage:m.stage,minSession:m.minSession,status:ctx.session-1<m.minSession?'calendar':requirements.some(r=>r.status==='missing-exposure')?'missing-exposure':'requirements-observed',requirements,advisory:true};
+ // Reflect the independent lower-difficulty proof constraint of the frozen
+ // engine, not its complete eligibility predicate. Never promote on exposure.
+ const difficulty=q.difficulty,lower=key=>(byConcept.get(key)||[]).filter(v=>v.difficulty<difficulty);
+ let autonomy=null;
+ if(difficulty>=4&&difficulty<=5){
+  const threshold=difficulty===5?3:2;
+  const keys=lower(m.concept).length?[m.concept]:[...new Set(m.requires.map(r=>r.concept))];
+  const available=new Set(keys.flatMap(k=>lower(k).map(v=>String(v.caseFamily||v.id))));
+  const proofs=keys.flatMap(k=>(ev.get(k)?.proofs||[]).filter(p=>p.difficulty<difficulty));
+  const families=new Set(proofs.map(p=>p.family)),sessions=new Set(proofs.map(p=>p.session));
+  const exposed=keys.some(k=>lower(k).some(v=>ev.get(k)?.ids.has(v.id)));
+  const ownBasics=(byConcept.get(m.concept)||[]).filter(v=>v.difficulty<=3&&effective(v,get(ctx.metadataById,v.id)).stage<=1);
+  const ownBasicExposed=!ownBasics.length||ownBasics.some(v=>ev.get(m.concept)?.ids.has(v.id));
+  const foundation=available.size>0&&exposed&&ownBasicExposed;
+  const independent=available.size>0&&families.size>=Math.min(threshold,available.size)&&sessions.size>=threshold;
+  autonomy={keys,availableFamilies:available.size,requiredFamilies:Math.min(threshold,available.size),requiredSessions:threshold,proofFamilies:families.size,proofSessions:sessions.size,foundation,independent,status:!foundation?'missing-foundation':!independent?'missing-independent-proof':'independent-proof-observed'};
+ }else if(difficulty===3&&m.stage>=1&&lower(m.concept).length){
+  const foundation=lower(m.concept).some(v=>ev.get(m.concept)?.ids.has(v.id));
+  autonomy={keys:[m.concept],foundation,status:foundation?'lower-exposure-observed':'missing-foundation',independent:null};
+ }
+ return {id,concept:m.concept,stage:m.stage,minSession:m.minSession,status:ctx.session-1<m.minSession?'calendar':requirements.some(r=>r.status==='missing-exposure')?'missing-exposure':'requirements-observed',requirements,autonomy,advisory:true};
  });
 }
 function graph(metadataById,exercises){
