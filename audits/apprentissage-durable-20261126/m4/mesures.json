@@ -587,5 +587,68 @@
     "totalAssertions": 32463,
     "environment": "V8 CJS full entry with fs/git adapters on exact recorded blobs; not native Node CLI or browser.",
     "remainingIndividualTargetedReview": 1531
+  },
+  "pass12": {
+    "reviewedMajorFit": 104,
+    "counts": {
+      "coherent_in_catalogue_framework": 50,
+      "guided_not_independent": 39,
+      "bounded_context": 15
+    },
+    "totalIndividualTargetedReview": 488,
+    "remainingIndividualTargetedReview": 1427,
+    "gaps": [
+      {
+        "criterion": "Rôle du 2SA : invitation du répondant ou essai de l'ouvreur",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "La paire SEF-V4-002-1/SEF-V486-007 existe mais les énoncés explicitent la force et/ou le sens de l'invitation. Une sonde non guidée du rôle de joueur doit compléter la discrimination, sans compter comme transfert par simple changement de rôle."
+      },
+      {
+        "criterion": "Essai généralisé à 2SA vs soutien préventif à 3M, à force minimale et vulnérabilité explicite",
+        "disposition": "REVIEW_EXISTING",
+        "reason": "Les cas V2-M3-035/036 et SEF-V4-017-2 nomment le projet. Un exercice sans indice peut compléter la décision ; conserver la vulnérabilité et ne pas traiter le nombre d'atouts comme condition suffisante."
+      },
+      {
+        "criterion": "Soutien direct de cinq atouts à 4M",
+        "disposition": "BOUNDED",
+        "reason": "Les trois cas à cinq atouts et 6 H sont tous à vulnérabilité favorable. Les enchères limites à vulnérabilité défavorable restent un jugement de levées et ne justifient pas un nouvel accord artificiel."
+      },
+      {
+        "criterion": "3SA alternatif avec fit 5–3 après 2SA fitté",
+        "disposition": "BOUNDED",
+        "reason": "Les exemples de choix 3SA/4M donnent des critères mais pas une règle universelle : qualité d'atout, tenues, forme et forme inconnue du partenaire."
+      },
+      {
+        "criterion": "Essai de manche ciblé et 2SA généralisé tous deux disponibles",
+        "disposition": "HOLD_AGREEMENT",
+        "reason": "Plusieurs cas d'essai ciblé excluent 2SA des choix ou nomment explicitement le but de l'essai. Ne pas inventer une règle de priorité absolue entre deux enchères potentiellement défendables."
+      }
+    ],
+    "transferScreen": {
+      "editorial_review_missing": 56,
+      "candidate_only": 5,
+      "guided_prompt": 12,
+      "bounded_context": 4
+    },
+    "tests": [
+      {
+        "assertions": 819,
+        "status": "PASS",
+        "reviewed": 104,
+        "totalReviewed": 488,
+        "statusCounts": {
+          "coherent_in_catalogue_framework": 50,
+          "guided_not_independent": 39,
+          "bounded_context": 15
+        },
+        "pairCounts": {
+          "editorial_review_missing": 56,
+          "candidate_only": 5,
+          "guided_prompt": 12,
+          "bounded_context": 4
+        }
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
   }
 }
