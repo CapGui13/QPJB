@@ -7,6 +7,7 @@
     sessionPlan=require('./quizz-session-plan.js');
   }
   if(!sessionPlan||sessionPlan.schema!=='QPJB_SESSION_PLAN_V1')throw Error('QPJB session plan unavailable');
+  if(root?.document&&!sessionPlan.pedagogyReady)throw Error('QPJB pedagogical modules unavailable');
   const api=factory(prerequis,sessionPlan);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   if(root){
@@ -568,6 +569,35 @@
   const openBid=q=>q.theme==='ouv'&&!openingPass(q);
   // Les Passes sont une alternative de base, pas des questions de fin de séance.
   // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
+  // Même décision naturelle, transposée dans une autre couleur : éviter
+  // les exercices miroirs successifs sans confondre les enchères codées.
+  function decisionPattern(q,mode){
+    const o=opener(q),a=bid(q);
+    if(q.auction?.length===1){
+      if(majorSupport(q))return 'fit-majeur|'+a[0];
+      if(minorSupport(q))return 'fit-mineur|'+a[0];
+      if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^1[♥♠]$/.test(a))return 'reponse-majeure-sur-mineure';
+      if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
+      if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
+    }
+    if(mode==='legacy')return '';
+    const concept=metadata(q)?.concept;
+    if(!concept||!a)return '';
+    const sequence=[...(Array.isArray(q.auction)?q.auction:[]),a]
+      .map(v=>String(v).replace(/[\uFE0E\uFE0F]/g,'').trim().replace(/\s+/g,' ')).join('|');
+    // Seulement les concepts naturels : ne jamais transformer un Texas,
+    // une réponse au Blackwood ou une enchère conventionnelle en son miroir.
+    // Les ouvertures mineures restent contrastées (meilleure mineure).
+    const natural=/^(ouv\.majeure|mineur\.base|mineur\.soutien|majeur\.soutien|majeur\.base|red\.base|red\.bicolore|second\.base|intervenir\.base|apres_inter\.base|reponse_inter\.base|reveil\.base|apres_fit\.base|barrage\.ouverture|barrage\.reponse)$/.test(concept);
+    const variants=[sequence];
+    if(natural)for(let mask=1;mask<4;mask++){
+      variants.push(sequence.replace(/[♥♠♣♦]/g,c=>({
+        '♥':mask&1?'♠':'♥','♠':mask&1?'♥':'♠',
+        '♣':mask&2?'♦':'♣','♦':mask&2?'♣':'♦'
+      })[c]));
+    }
+    return concept+'|'+variants.sort()[0];
+  }
   function passDeadlines(s,count,length){
     if(!count||s>2||length!==10)return [];
     return (s===0?[2,5,7]:[4,7]).slice(0,count);
@@ -591,6 +621,24 @@
     const earlyOrder=s===1&&items.length===10&&items.filter(x=>openBid(exerciseOf(x))).length>=2;
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
     const deadlines=passDeadlines(s,totalPass,items.length);
+    const features=items.map(x=>{
+      const q=exerciseOf(x);
+      return {q,pattern:decisionPattern(q),concept:metadata(q)?.concept||'',
+        answer:bid(q),shape:Array.isArray(q.shape)?q.shape.join(','):'',
+        kind:x.kind||x.target||''};
+    });
+    const mixedKinds=new Set(features.map(x=>x.kind).filter(Boolean)).size>1;
+    const priorityCounts=order=>{
+      let exact=0,triples=0;
+      for(let i=1;i<order.length;i++){
+        const a=exerciseOf(order[i]),b=exerciseOf(order[i-1]);
+        if(bid(a)===bid(b))exact++;
+        if(s>0&&i>1&&a.theme===b.theme&&b.theme===exerciseOf(order[i-2]).theme)triples++;
+      }
+      return {exact,triples};
+    };
+    function search(mode='m4'){
+    const legacy=mode==='legacy',wide=mode==='wide';
     let beam=[{seq:[],mask:0,cost:0,tie:0}];
     // Les sessions normales ont dix questions ; limite explicite pour API n<=20.
     for(let pos=0;pos<items.length;pos++){
@@ -602,7 +650,11 @@
           if(node.mask&(1<<i))continue;
           const q=exerciseOf(items[i]),pass=openingPass(q);
           if(earlyOrder&&pos<2&&!openBid(q))continue;
-          if(earlyOrder&&majorSupport(q)&&items.some((v,j)=>!(node.mask&(1<<j))&&(minorMajor4(exerciseOf(v))||minorNotrump(exerciseOf(v)))))continue;
+          // Introduire chaque type de réponse simple avant le premier fit,
+          // pas toutes ses variantes : sinon les deux fits miroir sont
+          // mécaniquement repoussés en fin de séance.
+          if(earlyOrder&&majorSupport(q)&&[minorMajor4,minorNotrump].some(test=>
+            items.some(v=>test(exerciseOf(v)))&&!node.seq.some(j=>test(exerciseOf(items[j])))))continue;
           if(deadlines.length){
             if(pass&&last&&openingPass(last))continue;
             const used=usedPass+Number(pass);
@@ -617,12 +669,28 @@
             if(totalPass-usedPass-Number(pass)>Math.ceil((items.length-pos-1-Number(pass))/2))continue;
           }
           let c=0;
+          const f=features[i],l=features[node.seq.at(-1)],p=features[node.seq.at(-2)],
+            pp=features[node.seq.at(-3)];
           if(last){
-            if(bid(q)===bid(last))c+=100;
+            if(f.answer===l.answer)c+=legacy?100:wide?30000:300;
+            if(legacy){
+              const pattern=decisionPattern(q,'legacy');
+              if(pattern&&pattern===decisionPattern(last,'legacy'))c+=100;
+            }else{
+            if(f.pattern&&f.pattern===l.pattern)c+=150;
+            // Une deuxième main proche reste utile, mais pas immédiatement
+            // ni après un seul exercice lorsque la séance offre une alternative.
+            if(p&&f.pattern&&f.pattern===p.pattern)c+=18;
+            if(p&&f.concept&&f.concept===l.concept&&f.concept===p.concept)c+=10;
+            // Ne pas substituer un rythme ABAB mécanique à un bloc monotone.
+            if(s>0&&pp&&q.theme===p.q.theme&&last.theme===pp.q.theme&&q.theme!==last.theme)c+=7;
+            // Motifs intacts ; pénalité faible seulement sur les séries de 3.
+            if(s>0&&mixedKinds&&p&&f.kind&&f.kind===l.kind&&f.kind===p.kind)c+=3;
+            }
             if(s>0&&q.theme===last.theme)c+=3;
-            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=100;
+            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=legacy?100:wide?30000:300;
             if(q.h===last.h&&Number.isInteger(q.h))c+=8;
-            if(Array.isArray(q.shape)&&Array.isArray(last.shape)&&q.shape.join(',')===last.shape.join(','))c+=7;
+            if(f.shape&&f.shape===l.shape)c+=7;
             if(context(q)===context(last)&&opener(q))c+=5;
             if(s===0&&prev&&openingPass(prev)&&!openingPass(last)&&pass)c+=4;
           }
@@ -635,9 +703,26 @@
         return items.slice();
       }
       next.sort((a,b)=>a.cost-b.cost||a.tie-b.tie);
-      beam=next.slice(0,48);
+      beam=next.slice(0,wide?192:48);
     }
     return beam[0].seq.map(i=>items[i]);
+    }
+    let ordered=search();
+    let quality=priorityCounts(ordered);
+    // Garder les anciennes garanties en priorité. Une recherche de secours
+    // n'est utile que si la première solution présente une collision.
+    if(quality.exact||quality.triples){
+      const previous=search('legacy'),prior=priorityCounts(previous);
+      if(quality.exact>prior.exact||quality.triples>prior.triples){
+        ordered=previous;quality=prior;
+      }
+      if(quality.exact||quality.triples){
+        const expanded=search('wide'),next=priorityCounts(expanded);
+        if(next.exact<=quality.exact&&next.triples<=quality.triples&&
+          next.exact+next.triples<quality.exact+quality.triples)ordered=expanded;
+      }
+    }
+    return ordered;
   }
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
@@ -722,8 +807,14 @@
     function choose(list,category,forcedReason,priority=false){
       const moreHard=profile!=='weak'||hardChosen<2||
         !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap));
-      const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
+      const baseAvailable=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
         (q.difficulty<=3||moreHard);
+      // Quand le réservoir de familles nouvelles se raréfie, ne pas
+      // concentrer la séance dans une seule rubrique si un rappel éligible
+      // et de famille distincte permet de conserver la diversité.
+      const diversify=s>=65&&Object.values(themes).some(n=>n>=5)&&
+        pool.some(q=>baseAvailable(q)&&!families.has(family(q))&&(themes[q.theme]||0)<5);
+      const available=q=>baseAvailable(q)&&(!diversify||(themes[q.theme]||0)<5);
       const distinct=q=>available(q)&&!families.has(family(q));
       let candidates=list.filter(available);
       if(!candidates.length)return false;
@@ -739,7 +830,13 @@
       if(balanced.length)candidates=balanced;
       else if(s>0&&!priority&&pool.some(q=>distinct(q)&&
         (unseen.length?novelFamily(q):true)&&(themes[q.theme]||0)<4))return false;
-      const ranked=candidates.map(q=>({q,v:score(q,category)}));
+      // Les trois phases n'interviennent qu'après les filtres existants.
+      // Aucun bonus ne peut lever un prérequis, un quota ou un rappel explicite.
+      const usePolicy=!explicitRecall&&(s>=20||!priority||(s===1&&forcedReason==='equilibre_ouvertures'));
+      const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
+        new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
+          history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
+      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;

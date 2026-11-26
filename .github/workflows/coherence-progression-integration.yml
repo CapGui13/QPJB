@@ -1,0 +1,88 @@
+name: QPJB — cohérence pédagogique intégrée
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.head_ref == 'coherence-progression/integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparaison S20, S65, S153, S180
+        shell: bash
+        run: |
+          mkdir -p artifacts/coherence
+          node tests/coherence-progression-integration.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" 180 | tee "artifacts/coherence/${{ matrix.profile }}-${{ matrix.seed }}.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coherence-${{ matrix.profile }}-${{ matrix.seed }}
+          path: artifacts/coherence/
+  native:
+    if: github.head_ref == 'coherence-progression/integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-progression-m1-unit.cjs
+          node -e "require('./tests/coherence-progression-m2-policy.cjs').unit(require('./quizz-pedagogie-intermediaire.js'))"
+          node tests/coherence-progression-m3-rank.cjs
+          node tests/optimisation-adaptatif-maitrise.cjs
+          node tests/optimisation-seances-unit.cjs
+          node tests/quizz-parcours.cjs
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/quizz-progression-selection-real.cjs
+          node tests/quizz-retours-progression-20261126.cjs
+          node tests/quizz-catalogue-live.cjs --early
+          node tests/quizz-ergonomie-retours.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1879
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+  browsers:
+    if: github.head_ref == 'coherence-progression/integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.64.1
+          npx playwright install --with-deps "${{ matrix.browser }}"
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+      - run: |
+          PW_BROWSER="${{ matrix.browser }}" node tests/quizz-parcours-browser.cjs
+          PW_BROWSER="${{ matrix.browser }}" node tests/quizz-browser.cjs
+          PW_BROWSER="${{ matrix.browser }}" node tests/progression-guidee-offline.cjs _public_site
