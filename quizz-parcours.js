@@ -568,6 +568,18 @@
   const openBid=q=>q.theme==='ouv'&&!openingPass(q);
   // Les Passes sont une alternative de base, pas des questions de fin de séance.
   // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
+  // Même décision naturelle, transposée dans une autre couleur : éviter
+  // les exercices miroirs successifs sans confondre les enchères codées.
+  function decisionPattern(q){
+    if(q.auction?.length!==1)return '';
+    const o=opener(q),a=bid(q);
+    if(majorSupport(q))return 'fit-majeur|'+a[0];
+    if(minorSupport(q))return 'fit-mineur|'+a[0];
+    if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^1[♥♠]$/.test(a))return 'reponse-majeure-sur-mineure';
+    if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
+    if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
+    return '';
+  }
   function passDeadlines(s,count,length){
     if(!count||s>2||length!==10)return [];
     return (s===0?[2,5,7]:[4,7]).slice(0,count);
@@ -602,7 +614,11 @@
           if(node.mask&(1<<i))continue;
           const q=exerciseOf(items[i]),pass=openingPass(q);
           if(earlyOrder&&pos<2&&!openBid(q))continue;
-          if(earlyOrder&&majorSupport(q)&&items.some((v,j)=>!(node.mask&(1<<j))&&(minorMajor4(exerciseOf(v))||minorNotrump(exerciseOf(v)))))continue;
+          // Introduire chaque type de réponse simple avant le premier fit,
+          // pas toutes ses variantes : sinon les deux fits miroir sont
+          // mécaniquement repoussés en fin de séance.
+          if(earlyOrder&&majorSupport(q)&&[minorMajor4,minorNotrump].some(test=>
+            items.some(v=>test(exerciseOf(v)))&&!node.seq.some(j=>test(exerciseOf(items[j])))))continue;
           if(deadlines.length){
             if(pass&&last&&openingPass(last))continue;
             const used=usedPass+Number(pass);
@@ -619,6 +635,8 @@
           let c=0;
           if(last){
             if(bid(q)===bid(last))c+=100;
+            const pattern=decisionPattern(q);
+            if(pattern&&pattern===decisionPattern(last))c+=100;
             if(s>0&&q.theme===last.theme)c+=3;
             if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=100;
             if(q.h===last.h&&Number.isInteger(q.h))c+=8;
