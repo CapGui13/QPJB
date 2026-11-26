@@ -106,7 +106,28 @@ Le paragraphe historique « Limites / clôture » ci-dessous précède les essai
 | resumption | 47 | 0 | 2 | -2 | -8 | -2 | -6 | -4 |
 | resumption | 103 | 0 | 0 | 0 | 0 | 2 | 9 | 0 |
 
-Les écarts sont candidat moins référence. La politique calendaire peut améliorer certaines preuves différées, mais ne domine pas systématiquement : le nombre de rappels dus/fragiles servis ou les lacunes de concepts peuvent se dégrader, et le nombre d'occasions varie. La comparaison ne mesure pas l'apprentissage humain. Conserver le classement V1 par défaut ; module d'évaluation candidat à la revue du coordinateur, bonus large HOLD, bonus calendaire expérimental uniquement. Troisième graine par profil, validation native Node/Chromium/WebKit et recette intégrée restent à faire ; pas de changement de production. Exécution de cette reprise en V8, avec blobs figés et runner exact, pas d'exécution native revendiquée. Données et détails dans `selector-calendar-cross-seed.json`.
+Les écarts sont candidat moins référence. La politique calendaire peut améliorer certaines preuves différées, mais ne domine pas systématiquement : le nombre de rappels dus/fragiles servis ou les lacunes de concepts peuvent se dégrader, et le nombre d'occasions varie. La comparaison ne mesure pas l'apprentissage humain. Conserver le classement V1 par défaut ; module d'évaluation candidat à la revue du coordinateur, bonus large HOLD, bonus calendaire expérimental uniquement. Troisième graine par profil (complétée ci-dessous), validation native Node/Chromium/WebKit et recette intégrée restent à faire ; pas de changement de production. Exécution de cette reprise en V8, avec blobs figés et runner exact, pas d'exécution native revendiquée. Données et détails dans `selector-calendar-cross-seed.json`.
+
+## Recette calendaire complète — trois graines par profil
+
+La troisième passe a exécuté six comparaisons supplémentaires sur le sélecteur figé, soit **30 258 assertions réussies**, 2 160 séances et 21 600 réponses simulées supplémentaires. La matrice calendaire est désormais complète : six profils × trois graines (11, 47, 103), 18 comparaisons, 36 trajectoires, 6 480 séances, 90 774 assertions. Avec les six comparaisons de la politique large (graine 47), le total du runner sélecteur est de **24 comparaisons, 48 trajectoires, 8 640 séances, 86 400 réponses, 121 032 assertions**. Les trajectoires de référence peuvent se répéter entre politiques et le profil quotidien n'utilise pas la graine pour ses réponses.
+
+Contrôle reproductible sur les 18 fichiers calendaires : `node tests/durable-m3-three-seeds.cjs` (corps exécuté en V8 : 1 099 vérifications réussies). Rapport complet : `selector-calendar-three-seeds.json`, comprenant différences absolues et taux de rappels servis sur occasions dues, sans division par zéro. Résultats finaux :
+
+| Indicateur | Meilleur | Identique | Moins bon |
+|---|---:|---:|---:|
+| Concepts rencontrés | 0 | 18 | 0 |
+| Familles distinctes | 6 | 11 | 1 |
+| Preuves différées candidates | 5 | 12 | 1 |
+| Fragilité (moins = mieux) | 5 | 11 | 2 |
+| Rappels dus servis (nombre brut) | 3 | 7 | 8 |
+| Rappels fragiles servis (nombre brut) | 3 | 8 | 7 |
+| Rappels explicites servis (nombre brut) | 3 | 12 | 3 |
+| Concepts non revus >20 séances (moins = mieux) | 7 | 7 | 4 |
+
+Sur toutes les trajectoires calendaires, aucune séance courte, aucune duplication de famille/ID et aucune violation d'éligibilité détectées. Alerte explicite : profil assisté, graine 103, 98 concepts rencontrés sur 99 dans les deux variantes ; aucune perte de couverture attribuable au M3. La couverture du registre/module reste 99/99. Les écarts de nombres de rappels doivent être interprétés avec les dénominateurs et l'évolution des états ; la simulation ne mesure pas un gain causal de mémorisation.
+
+**Décision finale de calibration : HOLD_DEFAULT.** Ne pas activer les bonus de sélection large ni calendaire par défaut ; intégrer le modèle d'état après recette coordinateur. Le troisième tirage calendaire est terminé. La politique large est maintenue HOLD sans extrapoler ses résultats à trois graines. Node v22.16.0 et Chromium sont installés dans le conteneur de reprise mais `git ls-remote https://github.com/CapGui13/QPJB.git HEAD` échoue avec résolution DNS indisponible : les sources lues via connecteur ne constituent pas un checkout natif. Aucun résultat de test natif Node, Chromium ou WebKit revendiqué. Aucun workflow commun modifié.
 
 ## Limites / clôture
 
