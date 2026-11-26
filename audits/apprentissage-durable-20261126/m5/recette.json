@@ -511,5 +511,108 @@
       "demo": "77963adcdead391ac7e9ccdc2a6d930baa6516ce677dea3dc9e88a87ac6e8f92",
       "corpus": "f5ab0e29a77dd8d7f59eaff13dc0a630e16ccf5fb437de2273348e36e9b663cf"
     }
+  },
+  "thresholdFollowup": {
+    "testedHead": "747ac3dc5fb10d31143ae348c475a892655de064",
+    "environment": "V8 with exact blobs from tested HEAD and frozen base, CommonJS/fs adapters; DOM simulated, not native Node or real browser",
+    "tests": [
+      {
+        "test": "tests/durable-m5-lecons.cjs",
+        "assertions": 3037,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-contrastes.cjs",
+        "assertions": 3771,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-extensions.cjs",
+        "assertions": 1703,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-dom.cjs",
+        "assertions": 1454,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-arbitrages.cjs",
+        "assertions": 157,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-archives.cjs",
+        "assertions": 505,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-seuils.cjs",
+        "assertions": 116,
+        "status": "pass"
+      },
+      {
+        "test": "tests/durable-m5-trajectoires.cjs",
+        "assertions": 51458,
+        "status": "pass"
+      }
+    ],
+    "totalAssertions": 62201,
+    "trajectories": [
+      {
+        "profile": "autonome",
+        "seed": 47,
+        "horizon": 65,
+        "questions": 650,
+        "skips": 0,
+        "assisted": 0,
+        "wrong": 0,
+        "consultations": 115,
+        "assertions": 17789,
+        "conceptsSeen": 99,
+        "discoveryEver": 99,
+        "extensionsEver": 78,
+        "elapsedMs": 15413
+      },
+      {
+        "profile": "faible",
+        "seed": 47,
+        "horizon": 65,
+        "questions": 650,
+        "skips": 39,
+        "assisted": 0,
+        "wrong": 266,
+        "consultations": 131,
+        "assertions": 16845,
+        "conceptsSeen": 94,
+        "discoveryEver": 95,
+        "extensionsEver": 73,
+        "elapsedMs": 10663
+      },
+      {
+        "profile": "aide",
+        "seed": 73,
+        "horizon": 65,
+        "questions": 650,
+        "skips": 27,
+        "assisted": 327,
+        "wrong": 269,
+        "consultations": 131,
+        "assertions": 16824,
+        "conceptsSeen": 97,
+        "discoveryEver": 97,
+        "extensionsEver": 69,
+        "elapsedMs": 10427
+      }
+    ],
+    "counts": {
+      "concepts": 99,
+      "extensions": 79,
+      "distinctExamples": 301,
+      "checks": 178,
+      "archivesAdditional": 9
+    },
+    "limits": "DNS github.com still fails in local container; native Node checkout, Chromium on real full corpus and WebKit remain unverified. Earlier Chromium synthetic test applies to prior corpus; not a new native result.",
+    "historicalScope": "Nine additional archives read; previous 13 archives and 35 final decisions preserved. Not a complete editorial audit of all archives."
   }
 }
