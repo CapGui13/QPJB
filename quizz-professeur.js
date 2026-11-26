@@ -16,6 +16,10 @@
      const d=row.diagnostics.find(x=>x.choice===choice);
      if(d)return {status:'hypothesis',category:d.category,reason:d.reason,confidence:d.confidence,evidence:{id:q.id,concept:concepts.classify(q.id)?.concept,choice,expected:q.answer,offered:true,rule:'coordinateur-signed'}};
    }
+   if(q&&own(signed,q.id)&&!row){
+     const legacy=signed[q.id],expected=JSON.parse(legacy.signature);
+     if(!legacy.oldChoices||JSON.stringify(q.choices)!==JSON.stringify(legacy.oldChoices)||signature({...q,choices:expected[8]})!==legacy.signature)return unknown();
+   }
    return diagnostic?.diagnose(input)||unknown();
  }
  function displayChoices(q,answer){
@@ -43,7 +47,7 @@
      if(a.result==='wrong'||a.result==='skipped'||a.assisted===true||a.hadFreeError===true)weak.set(m.concept,(weak.get(m.concept)||0)+1);
      if(a.result!=='wrong'||typeof a.choice!=='string'||a.choice===q.answer)continue;
      const d=diagnose({exercise:q,choice:a.choice,assisted:a.assisted,hadFreeError:a.hadFreeError});
-     if(d.status!=='hypothesis'||!['high','medium'].includes(d.confidence)||!own(axisLabels,d.category))continue;
+     if(d.status!=='hypothesis'||d.evidence?.offered!==true||!['high','medium'].includes(d.confidence)||!own(axisLabels,d.category))continue;
      if(!axes.has(d.category))axes.set(d.category,{families:new Set(),sessions:new Set()});
      axes.get(d.category).families.add(q.caseFamily||q.id);axes.get(d.category).sessions.add(e.session);
    }

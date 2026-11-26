@@ -1,9 +1,12 @@
-name: QPJB Professeur numérique — recette native des livrables
+name: QPJB Professeur numérique — recette intégrée
 on:
   pull_request:
     branches: [main]
     paths:
+      - 'quizz.html'
       - 'quizz-*.js'
+      - 'service-worker.js'
+      - 'scripts/build_public_site.py'
       - 'audits/professeur-numerique-20261126/**'
       - 'tests/professeur-numerique-*.cjs'
       - '.github/workflows/professeur-numerique-integration.yml'
@@ -24,6 +27,8 @@ jobs:
       - name: Tests livrables sur base figée
         run: |
           set -eux
+          git worktree add --detach "$RUNNER_TEMP/livrables-pn" 1f415d76d668b9e433e90afef755faa737c09c71
+          cd "$RUNNER_TEMP/livrables-pn"
           node tests/professeur-numerique-m1-catalogue.cjs
           node tests/professeur-numerique-m2-concepts.cjs
           node tests/professeur-numerique-m2-journal.cjs
@@ -34,6 +39,43 @@ jobs:
           node tests/professeur-numerique-m3-revue.cjs
           node tests/professeur-numerique-m4-demo-dom.cjs
           node tests/professeur-numerique-m4-remediation.cjs
+      - name: Recette native du candidat réellement raccordé
+        run: |
+          set -eux
+          node tests/professeur-numerique-integrated.cjs
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-retours-progression-20261126.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1915
+          node tests/quizz-catalogue-live.cjs
+          node tests/quizz-distractors.cjs
+          node tests/quizz-quality.cjs
+          python3 scripts/build_catalogue.py
+          python3 tests/repository-layout.py
+  compare:
+    if: github.head_ref == 'professeur-numerique/integration' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11,47,103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparaison S20, S65, S153, S180 avec la version publiée
+        run: |
+          set -o pipefail
+          node tests/professeur-numerique-parcours.cjs ${{ matrix.profile }} ${{ matrix.seed }} 180 | tee parcours-result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: professeur-${{ matrix.profile }}-${{ matrix.seed }}
+          path: parcours-result.json
   browsers:
     if: github.head_ref == 'professeur-numerique/integration' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -49,3 +91,8 @@ jobs:
       - run: npm install --no-save playwright@1.64.1
       - run: npx playwright install --with-deps ${{ matrix.browser }}
       - run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-m4-browser.cjs
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-production-browser.cjs
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
+      - run: python3 scripts/build_catalogue.py && python3 scripts/build_public_site.py --output _public_site
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/progression-guidee-offline.cjs _public_site

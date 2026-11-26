@@ -1359,7 +1359,7 @@ function professeurFeedbackHTML(x,current){
  try{
    const result=window.QPJBProfesseur.feedback({exercise:x,answer:current,history:sessionType==='parcours'?parcoursState:null});
    const lines=[];
-   if(result.feedback)lines.push('<p class="feedback-explanation">'+escapeHTML(result.feedback)+'</p>');
+   if(result.feedback||result.reminder)lines.push('<p class="feedback-explanation">'+escapeHTML(result.feedback||result.reminder)+'</p>');
    if(result.checkNext)lines.push('<p class="feedback-explanation"><strong>Pour progresser : </strong>'+escapeHTML(result.checkNext)+'</p>');
    if(!lines.length)return '';
    return '<div class="professeur-feedback" aria-label="Conseil personnalisé">'+lines.join('')+'</div>';
@@ -1392,9 +1392,8 @@ function render(){
  const freeError=!answered&&stage.freeWrong?`<p class="free-retry-note" role="status">Ta première enchère (${richBid(stage.firstGuess)}) n’est pas la réponse attendue. À toi de choisir parmi ces quatre propositions.</p>`:'';
  const verdict=current?.result==='skipped'?'Question passée · Bonne réponse : '+richBid(x.answer):
    current?.result==='correct'?(current.assisted?'✓ Bonne réponse avec les propositions !':'✓ Bonne réponse sans aide !'):'Bonne réponse : '+richBid(x.answer);
- const helpNote=current?.assisted?`<p class="assistance-note">${current.hadFreeError?'Ta première réponse libre était différente. ':'Tu as utilisé les propositions. '}Cet exercice reste dans « À retravailler » pour le réussir sans aide.</p>`:'';
  const personalised=answered?professeurFeedbackHTML(x,current):'';
- const feedback=answered?`<section class="feedback" id="answer-feedback" role="region" tabindex="-1" aria-labelledby="answer-verdict"><strong id="answer-verdict">${verdict}</strong><h3 class="feedback-heading" id="feedback-explanation-heading">Explication</h3><p class="feedback-explanation" aria-labelledby="feedback-explanation-heading">${escapeHTML(x.explain)}</p>${personalised||helpNote}</section>`:'';
+ const feedback=answered?`<section class="feedback" id="answer-feedback" role="region" tabindex="-1" aria-labelledby="answer-verdict"><strong id="answer-verdict">${verdict}</strong><h3 class="feedback-heading" id="feedback-explanation-heading">Explication</h3><p class="feedback-explanation" aria-labelledby="feedback-explanation-heading">${escapeHTML(x.explain)}</p>${personalised}</section>`:'';
  $('body').innerHTML=`<h2 class="seat-headline">Vous êtes en Sud</h2>${seq}<div class="hand" role="img" tabindex="0" aria-label="Votre main : ${x.hand.map((s,i)=>['Pique','Coeur','Carreau','Trèfle'][i]+' '+s.join(' ')).join(', ')}">${hands}</div><div class="meta">${x.h} points H · ${x.shape.join('-')} (♠-♥-♦-♣)</div>${conventionNote(x)}<h3 class="question" id="question-heading" tabindex="-1">Quelle enchère convient le mieux ?</h3>${prompt}${freeError}${answers}${feedback}<div class="nextrow session-navigation"><button id="previous" ${position===0?'disabled':''}>← Question précédente</button><button id="pass" ${answered?'disabled':''}>Passer</button><button id="next" class="primary" ${!answered?'disabled':''}>${position===deck.length-1?'Terminer la séance':'Question suivante →'}</button></div>`;
  if(answered){const turnCell=$('body').querySelector('.auc .ask');if(turnCell)turnCell.classList.remove('pulse')}
  if(displayChoices)$('answers').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>choose(x,Number(btn.dataset.choice))));
