@@ -1,15 +1,15 @@
 {
   "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
   "catalogueBefore": 1915,
-  "catalogueAfter": 1918,
+  "catalogueAfter": 1920,
   "concepts": 99,
   "familiesBefore": 1556,
-  "familiesAfter": 1559,
+  "familiesAfter": 1561,
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 194,
-  "newPairs": 159,
+  "allPairs": 196,
+  "newPairs": 161,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
   "holdConcepts": [
@@ -43,7 +43,7 @@
     "discrimination": 18,
     "discrimination_context": 22,
     "role_complement": 1,
-    "reviewed_reuse": 76
+    "reviewed_reuse": 78
   },
   "pass3": {
     "proposed": 22,
@@ -332,5 +332,63 @@
       "coherent_in_catalogue_framework": 49,
       "hold_editorial": 3
     }
+  },
+  "pass8": {
+    "newExercises": 2,
+    "newPairs": 2,
+    "reviewedResidual": 107,
+    "reviewCounts": {
+      "coherent_in_catalogue_framework": 93,
+      "guided_not_independent": 12,
+      "bounded_context": 1,
+      "hold_editorial": 1
+    },
+    "openingReviewed": 52,
+    "totalIndividualTargetedReview": 159,
+    "reviewedHistoricalPairIds": 276,
+    "tests": [
+      {
+        "assertions": 5854,
+        "ids": 1915,
+        "additions": 5,
+        "pairs": 196,
+        "status": "PASS"
+      },
+      {
+        "assertions": 8832,
+        "status": "PASS",
+        "pairs": 196,
+        "counts": {
+          "intercontextual": 77,
+          "near_transfer": 12,
+          "context_boundary": 51,
+          "hold": 4,
+          "discrimination": 40,
+          "role_complement": 9,
+          "consolidation": 3
+        },
+        "transferConcepts": 92,
+        "reviewedHistoricalIds": 276
+      },
+      {
+        "schema": "QPJB_M4_MECHANICAL_V1",
+        "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+        "scope": "Structure des enchères abrégées : montants croissants, camps pour Contre/Surcontre, choix licites après préfixe. Ni tour de parole complet, ni unicité pédagogique, ni accords certifiés.",
+        "historical": 1915,
+        "additions": 5,
+        "pairs": 196,
+        "assertions": 15859,
+        "status": "PASS",
+        "failures": []
+      },
+      {
+        "assertions": 341,
+        "status": "PASS",
+        "reviewedResidual": 107,
+        "openingReviewed": 52,
+        "proposals": 5
+      }
+    ],
+    "reason": "Deux anciens exercices de relais 2♣ FI donnent la règle dans l'énoncé ; les deux ajouts sans indice comblent cette lacune ciblée."
   }
 }

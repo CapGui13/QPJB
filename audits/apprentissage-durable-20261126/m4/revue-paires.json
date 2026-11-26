@@ -6,11 +6,11 @@
   "counts": {
     "intercontextual": 77,
     "near_transfer": 12,
-    "context_boundary": 50,
+    "context_boundary": 51,
     "hold": 4,
     "discrimination": 40,
     "role_complement": 9,
-    "consolidation": 2
+    "consolidation": 3
   },
   "reviewedHistoricalIds": 276,
   "transferConcepts": 92,
@@ -1088,13 +1088,15 @@
       "context_boundary": [
         "SEF-V45-005|SEF-V45-009",
         "SEF-V45-005|SEF-V475-009",
-        "SEF-L41-005|SEF-V45-011"
+        "SEF-L41-005|SEF-V45-011",
+        "SEF-AD26-M4-004|SEF-V45-009"
       ],
       "near_transfer": [],
       "discrimination": [],
       "role_complement": [],
       "consolidation": [
-        "SEF-V45-005|SEF-V45-006"
+        "SEF-V45-005|SEF-V45-006",
+        "SEF-AD26-M4-004|SEF-AD26-M4-005"
       ],
       "hold": [],
       "disposition": "boundary_only",
@@ -5104,6 +5106,10 @@
       "pairReviews": [
         {
           "pair": "SEF-V45-005|SEF-V45-009",
+          "classification": "context_boundary"
+        },
+        {
+          "pair": "SEF-AD26-M4-004|SEF-V45-009",
           "classification": "context_boundary"
         }
       ]
@@ -11151,7 +11157,29 @@
           "classification": "context_boundary"
         }
       ]
+    },
+    "SEF-AD26-M4-004": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-004|SEF-AD26-M4-005",
+          "classification": "consolidation"
+        },
+        {
+          "pair": "SEF-AD26-M4-004|SEF-V45-009",
+          "classification": "context_boundary"
+        }
+      ]
+    },
+    "SEF-AD26-M4-005": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-004|SEF-AD26-M4-005",
+          "classification": "consolidation"
+        }
+      ]
     }
   },
-  "lastReviewedHead": "5c425d43523669939ae3a4d2c43bc8276200cb27"
+  "lastReviewedHead": "0d3bc2848667da7a8bad64c357f3d9a7414a17d2"
 }

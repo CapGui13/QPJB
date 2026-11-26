@@ -280,5 +280,189 @@
         "confidence": "medium"
       }
     ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-004",
+      "theme": "fortes",
+      "hand": [
+        [
+          "10",
+          "8",
+          "7",
+          "3"
+        ],
+        [
+          "9",
+          "6",
+          "2"
+        ],
+        [
+          "10",
+          "7",
+          "5"
+        ],
+        [
+          "9",
+          "6",
+          "4"
+        ]
+      ],
+      "h": 0,
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 2♣ (fort indéterminé)"
+      ],
+      "context": "Votre partenaire ouvre de 2♣ fort indéterminé. Les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♦",
+      "choices": [
+        "2♥",
+        "Passe",
+        "2♦",
+        "2SA"
+      ],
+      "explain": "Avec 0 H, vous devez néanmoins répondre. Sur l'ouverture de 2♣ fort indéterminé, 2♦ est le relais obligatoire : il ne promet ni points ni longueur à Carreau. L'ouvreur décrira ensuite sa main.",
+      "difficulty": 2,
+      "difficultyReason": "Les deux anciens énoncés sur 2♣ fort indéterminé indiquent explicitement que le relais est systématique. Un jeu nul sans rappel teste la connaissance de cette obligation.",
+      "caseFamily": "ad26-m4-004"
+    },
+    "metadata": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "SEF-AD26-M4-005"
+      ],
+      "rationale": "Les deux anciens énoncés sur 2♣ fort indéterminé indiquent explicitement que le relais est systématique. Un jeu nul sans rappel teste la connaissance de cette obligation."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "forcing",
+        "reason": "Hypothèse : traiter cette ouverture artificielle comme une ouverture naturelle sur laquelle on pourrait passer sans point.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♥",
+        "category": "convention",
+        "reason": "Hypothèse : transposer la réponse négative au 2♦ forcing de manche.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Hypothèse : croire qu'il faut décrire directement la distribution régulière.",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-005",
+      "theme": "fortes",
+      "hand": [
+        [
+          "A",
+          "9",
+          "7",
+          "3"
+        ],
+        [
+          "R",
+          "10",
+          "8"
+        ],
+        [
+          "D",
+          "V",
+          "6"
+        ],
+        [
+          "A",
+          "9",
+          "4"
+        ]
+      ],
+      "h": 14,
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 2♣ (fort indéterminé)"
+      ],
+      "context": "Votre partenaire ouvre de 2♣ fort indéterminé. Les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♦",
+      "choices": [
+        "2SA",
+        "2♠",
+        "3♦",
+        "2♦"
+      ],
+      "explain": "Avec 14 H et quatre Piques, vous avez un jeu fort, mais votre première réponse reste 2♦. C'est le relais obligatoire sur 2♣ fort indéterminé. Vous pourrez préciser vos valeurs après la redemande descriptive de l'ouvreur.",
+      "difficulty": 2,
+      "difficultyReason": "Les anciens cas à 5 et 12 H rappellent l'obligation avant la décision. Ce cas fort sans indice vérifie que la force ne change pas la première réponse, contrairement au barème de 2♦ forcing de manche.",
+      "caseFamily": "ad26-m4-005"
+    },
+    "metadata": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "SEF-AD26-M4-004"
+      ],
+      "rationale": "Les anciens cas à 5 et 12 H rappellent l'obligation avant la décision. Ce cas fort sans indice vérifie que la force ne change pas la première réponse, contrairement au barème de 2♦ forcing de manche."
+    },
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Hypothèse : vouloir annoncer directement les honneurs et la régularité.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♠",
+        "category": "distribution",
+        "reason": "Hypothèse : vouloir décrire les quatre Piques avant le relais.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♦",
+        "category": "niveau",
+        "reason": "Hypothèse : chercher à signaler une force élevée par un saut en Carreau.",
+        "confidence": "low"
+      }
+    ]
   }
 ]

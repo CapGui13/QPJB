@@ -5,10 +5,10 @@
   "metrics": {
     "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
     "catalogueBefore": 1915,
-    "catalogueAfter": 1918,
+    "catalogueAfter": 1920,
     "concepts": 99,
     "familiesBefore": 1556,
-    "familiesAfter": 1559,
+    "familiesAfter": 1561,
     "historicalTransferPairs": 18,
     "historicalTransferConcepts": 22,
     "historicalPairsUnique": 35,
@@ -23,7 +23,9 @@
       "proposed": 42,
       "retained": 42,
       "skipped": []
-    }
+    },
+    "latestPairs": 196,
+    "latestReview": "Voir revue-paires.json et mesures.json ; les liens historiques de cartographie restent un instantané de la première passe."
   },
   "concepts": {
     "ouv.sa1": {
@@ -2215,7 +2217,10 @@
         "SEF-V45-005|SEF-V45-009",
         "SEF-V45-005|SEF-V475-009"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-004",
+        "SEF-AD26-M4-005"
+      ],
       "objective": "Donner la réponse ou le relais convenu à une ouverture forte, selon son type.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -72812,6 +72817,22 @@
       "disposition": "proposed_new_exercise",
       "attestedLinks": [
         "SEF-L25-001"
+      ]
+    },
+    "SEF-AD26-M4-004": {
+      "concept": "fortes.relais",
+      "family": "ad26-m4-004",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-005"
+      ]
+    },
+    "SEF-AD26-M4-005": {
+      "concept": "fortes.relais",
+      "family": "ad26-m4-005",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-004"
       ]
     }
   }
