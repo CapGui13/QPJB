@@ -35,9 +35,9 @@ const verify=function verify(api,qs,meta,assert){
  for(const x of qs){const m=api.classify(x.id);
    for(const [role,field] of [["discrimination","contrastId"],["consolidation","consolidationId"],["transfer","transferId"]]){
      assert(m.roles.includes(role)===!!m[field],x.id+" "+role);
-     if(!m[field])continue;const y=lookup.get(m[field]);assert(y&&meaningful(x,y),x.id+" distinct family/hand");
+     if(!m[field])continue;const y=lookup.get(m[field]);assert(y&&(role==="transfer"?x.caseFamily!==y.caseFamily&&JSON.stringify(x.hand)!==JSON.stringify(y.hand):meaningful(x,y)),x.id+" distinct family/hand");
      if(role==="discrimination"){assert(x.answer!==y.answer&&x.choices.includes(y.answer)&&y.choices.includes(x.answer)&&JSON.stringify(x.auction)===JSON.stringify(y.auction),x.id+" contrast");report.pairs++;}
-     else {assert(x.answer===y.answer&&meta[x.id].concept===meta[y.id].concept,x.id+" same decision");if(role==="transfer"){assert(m.contextKey!==api.classify(y.id).contextKey,x.id+" context shift");report.transfers++;}else{assert(JSON.stringify(x.auction)===JSON.stringify(y.auction),x.id+" consolidation");report.consolidations++;}}
+     else if(role==="transfer"){assert(JSON.stringify(x.auction)!==JSON.stringify(y.auction),x.id+" context shift");assert(api.describe(m.concept).transferPairs.some(p=>(p.a===x.id&&p.b===y.id||p.b===x.id&&p.a===y.id)&&p.criterion&&p.status==="source_reviewed_transfer_candidate"),x.id+" curated pair");report.transfers++;}else{assert(x.answer===y.answer&&meta[x.id].concept===meta[y.id].concept,x.id+" same decision");assert(JSON.stringify(x.auction)===JSON.stringify(y.auction),x.id+" consolidation");report.consolidations++;}
    }
  }
  const answer=(q,extra={})=>({id:q.id,result:"correct",choice:q.answer,assisted:false,hadFreeError:false,...extra});
@@ -94,3 +94,15 @@ const extra=function extra(api,qs,assert){
  assert(st.fragile,"recovery must span different sessions");
 };
 extra(api,qs,assert.ok);
+
+const transferTest=function transferTest(api,qs,assert){
+ const map=new Map(qs.map(x=>[x.id,x]));
+ const pairs=new Map();for(const d of Object.values(api.concepts))for(const p of d.transferPairs){pairs.set(p.a+"|"+p.b,p);assert(p.criterion&&p.concepts.every(k=>api.describe(k).transferPairs.some(x=>x.a===p.a&&x.b===p.b)),"pair reference");}
+ assert(pairs.size===18,"18 curated transfer pairs");
+ for(const [a,b] of [["SEF-V475-006","SEF-L29-005"],["SEF-V410-006","V2-M3-001"],["SEF-V45-022","SEF-L13-006"],["SEF-V3-105-3","SEF-L43-003"]])assert(api.classify(a).transferId!==b,"different meanings not transfer");
+ const a=map.get("SEF-034-1"),b=map.get("SEF-N101-3"),answer=q=>({id:q.id,result:"correct",choice:q.answer,assisted:false,hadFreeError:false}),event=(session,q)=>({mode:"parcours",session,answers:[answer(q)]});
+ const check=journal=>api.recommend({concept:"sa1.stayman",history:{completed:3,journal}}).concepts["sa1.stayman"];
+ assert(check([event(1,a),event(3,b)]).transferred,"documented cross-concept transfer");
+ assert(!check([event(1,a),event(1,b)]).transferred,"same session not transfer evidence");
+};
+transferTest(api,qs,assert.ok);
