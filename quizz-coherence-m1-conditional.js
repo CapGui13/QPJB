@@ -47,37 +47,49 @@ function plan(ctx={}){
 }
 function compose(ctx={},ranked=[]){
  const s=ctx.session,row=base.curriculum[s-1],best=ranked[0];
- if(!row||s<3||s>65||!Number.isInteger(s)||ctx.history?.active||ctx.priority||ctx.forcedReason||
+ if(!row||s<3||s>65||!Number.isInteger(s)||ctx.changed||ctx.history?.active||ctx.priority||ctx.forcedReason||
     !['weakness','maintenance','transfer','discovery'].includes(ctx.category)||!best?.q||!Number.isFinite(best.v))return null;
+ const early=s<=5;
+ // V2 remains the only early override when autonomy is established.
+ if(early&&base.autonomy(ctx).enabled)return null;
  const selected=(ctx.selected||[]).map(question),obs=observations(ctx);
  const chosen=new Set(selected.map(q=>concept(ctx,q)));
  const c0=concept(ctx,best.q),m0=meta(ctx,best.q),f0=ctx.flagsById?.[best.q.id];
- if(!m0||!f0||f0.due||f0.bad||f0.firstConcept||f0.overdueCore||row.primary.includes(c0))return null;
- // Only one primary/linked focus in a session. Existing primary already satisfies it.
- if(row.primary.some(c=>chosen.has(c)))return null;
- // Need at least two observed guided sessions; absence of evidence = historical.
+ if(!m0||!f0||f0.due||f0.bad||f0.firstConcept||f0.overdueCore||!f0.novelFamily)return null;
  const complete=(ctx.history?.journal||[]).filter(r=>r.mode==='parcours'&&r.session<s&&r.answers?.length===10);
  if(new Set(complete.map(r=>r.session)).size<2)return null;
- // Special early slot: support already encountered, recently fragile on
- // two distinct families; permit moving between foundational response
- // concepts only if the displaced one is neither old nor the first today.
- // Later slots stay in the same theme, preserve the difficulty and stage.
- const early=s<=5;
- const wanted=row.primary;
- const maxCost=early?60:45;
+ const focus=selected.filter(q=>row.primary.includes(concept(ctx,q)));
+ const supports=selected.filter(q=>concept(ctx,q)==='majeur.soutien').length;
+ if(early&&(focus.length>=row.target||s===3&&supports>=2))return null;
+ if(!early&&(focus.length||!late[s]))return null;
+ // Preserve first 2SA opening, and already useful focus unless a second
+ // fit case can supplement natural responses without removing their only case.
+ if(s===3&&c0==='ouv.sa2'&&!chosen.has(c0))return null;
+ if(row.primary.includes(c0)&&!(s===3&&c0==='majeur.base'&&chosen.has(c0)&&supports<2))return null;
+ const available=target({...ctx,candidates:ranked.map(x=>x.q)},obs);
+ const wanted=s===3?['majeur.soutien']:available.kind==='primary'?available.primary:early?[]:available.linked;
+ if(!wanted.length||!early&&wanted.some(c=>chosen.has(c)))return null;
+ const maxCost=early?80:65;
  const allowed=q=>{
   const c=concept(ctx,q),m=meta(ctx,q),f=ctx.flagsById?.[q.id],o=obs.get(c);
-  if(!m||!f||!wanted.includes(c)||chosen.has(c)||!o?.families.size||f.due||f.bad||!f.novelFamily||
-     q.difficulty!==best.q.difficulty||m.stage>m0.stage||m.stage>2||q.id===best.q.id)return false;
+  if(!m||!f||!wanted.includes(c)||f.due||f.bad||!f.novelFamily||
+     q.difficulty!==best.q.difficulty||m.stage>m0.stage||q.id===best.q.id)return false;
   if(core.has(c0)&&(!early||!chosen.has(c0)))return false;
   if(q.theme!==best.q.theme&&!early)return false;
+  if(!early&&m.stage>1&&!base.autonomy(ctx).enabled)return false;
   if(ctx.category==='weakness'||ctx.category==='transfer'){
-    if(o.weak.size<2)return false;
-  }else if(!late[s]||o.correct.size<2||!base.autonomy(ctx).enabled)return false;
+    // Two distinct recently fragile families, not an isolated mistake.
+    if(!o||o.weak.size<2||o.weak.size<(obs.get(c0)?.weak.size||0))return false;
+  }else if(ctx.category==='maintenance'){
+    if(!o||o.correct.size<2)return false;
+  }else if(early){
+    // One extra eligible practice case in a concept already present today.
+    if(!chosen.has(c))return false;
+  }else if(!base.autonomy(ctx).enabled)return false;
   return true;
  };
  const next=ranked.find(x=>Number.isFinite(x.v)&&best.v-x.v<=maxCost&&allowed(x.q));
- return next?{id:next.q.id,oldId:best.q.id,concept:concept(ctx,next.q),cost:best.v-next.v,reason:'objectif-deja-rencontre-et-consolidation-compatible'}:null;
+ return next?{id:next.q.id,oldId:best.q.id,concept:concept(ctx,next.q),cost:best.v-next.v,reason:row.primary.includes(concept(ctx,next.q))?'objectif-principal-compatible':'reactivation-liee-conditionnelle'}:null;
 }
 return Object.freeze({...base,policy:'conditional-composition-v3',plan,compose});
 });
