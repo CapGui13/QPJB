@@ -1,0 +1,114 @@
+{
+  "testedHead": "855e04d03153efaab4a053f71f517eb3ac26bd0a",
+  "moduleBlob": "1903d96b8645403f681e64b1a155cc2d3541ba97",
+  "corpusBlob": "a878838023963f19fc23624556ab28c21d350685",
+  "environment": "V8 exact candidate and base sources, virtual FS/CommonJS/VM adapters; DOM simulated, no native browser or Node CLI",
+  "tests": [
+    {
+      "test": "tests/durable-m5-lecons.cjs",
+      "assertions": 3037,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-contrastes.cjs",
+      "assertions": 3771,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-extensions.cjs",
+      "assertions": 1840,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-dom.cjs",
+      "assertions": 1481,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-expositions.cjs",
+      "assertions": 117549,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-arbitrages.cjs",
+      "assertions": 157,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-archives.cjs",
+      "assertions": 505,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-seuils.cjs",
+      "assertions": 117,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-archives-complementaires.cjs",
+      "assertions": 166,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-trajectoires.cjs",
+      "assertions": 52458,
+      "status": "pass"
+    }
+  ],
+  "totalAssertions": 181081,
+  "counts": {
+    "concepts": 99,
+    "extensions": 88,
+    "distinctExamples": 316,
+    "checks": 187,
+    "archivesAdditional": 4
+  },
+  "trajectories": [
+    {
+      "profile": "autonome",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 0,
+      "assisted": 0,
+      "wrong": 0,
+      "consultations": 115,
+      "assertions": 18166,
+      "conceptsSeen": 99,
+      "discoveryEver": 99,
+      "extensionsEver": 87,
+      "elapsedMs": 12916
+    },
+    {
+      "profile": "faible",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 39,
+      "assisted": 0,
+      "wrong": 266,
+      "consultations": 131,
+      "assertions": 17162,
+      "conceptsSeen": 94,
+      "discoveryEver": 95,
+      "extensionsEver": 81,
+      "elapsedMs": 8567
+    },
+    {
+      "profile": "aide",
+      "seed": 73,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 27,
+      "assisted": 327,
+      "wrong": 269,
+      "consultations": 131,
+      "assertions": 17130,
+      "conceptsSeen": 97,
+      "discoveryEver": 97,
+      "extensionsEver": 78,
+      "elapsedMs": 9090
+    }
+  ],
+  "limitations": "Synthetic histories and trajectories, not evidence of human learning. Full native Chromium/WebKit and complete historical review remain unverified."
+}
