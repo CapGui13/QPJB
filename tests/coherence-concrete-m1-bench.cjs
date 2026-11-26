@@ -21,14 +21,47 @@ function outcome(profile,seed,q,s){
  return {wrong:u<probability,help:profile==='aide'&&v<.6};
 }
 function compile(source,req){const m={exports:{}};new Function('module','require',source)(m,req);return m.exports}
-function instrument(source,req,curriculum,after){
+// Single injection shared by Node and browser. V1/V2 unchanged when compose is absent.
+function sourceFor(source,after,diagnostics=true){
  const anchor='const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));';
  const tail='return {eligibility,adaptiveDiagnostics,createForTests:';
- ok(source.split(anchor).length===2&&source.split(tail).length===2,'Exact base anchors');
+ const counter='const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};';
+ const sort='ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+\'#\'+s)-hash(b.q.id+\'#\'+s)||a.q.id.localeCompare(b.q.id));';
+ const picked='const m=mOf(q),cat=category||classify(q);';
+ for(const key of [anchor,tail,counter,sort,picked])ok(source.split(key).length===2,'Exact base anchor '+key);
  const extra='const m1Context={session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason};\n      const m1Deltas=new Map(curriculum.rank(m1Context).map(r=>[r.id,r.delta]));\n      const ranked=curriculum.prefer(m1Context).map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));';
+ const hook=`
+      let m1Choice=null;
+      if(typeof curriculum.compose==='function'&&s>=2&&s<65&&!m1Changed){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),overdueCore:oldConcept(q)>=5,stage:mOf(q).stage}]));
+        m1Choice=curriculum.compose({...m1Context,changed:m1Changed,flagsById},ranked);
+        if(m1Choice){
+          const index=ranked.findIndex(x=>x.q.id===m1Choice.id);
+          if(index<1)throw Error('M1 returned an invalid alternate');
+          ranked.unshift(...ranked.splice(index,1));m1Changed=true;
+        }
+      }`;
+ const event=`
+      if(typeof observe==='function'&&m1Choice)observe({session:s+1,category,actualId:q.id,...m1Choice});
+      `;
+ const latePool=`
+      if(typeof observe==='function'&&[44,54,55,59].includes(s+1)){
+        const objective=curriculum.curriculum[s],keys=[...objective.primary,...objective.secondary];
+        const count=xs=>Object.fromEntries(keys.map(k=>[k,xs.filter(v=>mOf(v).concept===k).length]));
+        observe({session:s+1,category:category||null,priority:!!priority,forcedReason:forcedReason||null,primaryPool:count(pool),candidatePool:count(candidates),winner:q.id});
+      }
+      `;
  const diagnostic='return {eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,adaptiveDiagnostics,createForTests:';
- const src=(after?source.replace(anchor,extra):source).replace(tail,diagnostic);
- const m={exports:{}};new Function('module','require','curriculum',src)(m,req,curriculum);return m.exports;
+ let src=source;
+ if(after)src=src.replace(counter,counter+' let m1Changed=false;').replace(anchor,extra).replace(sort,sort+hook).replace(picked,event+picked);
+ if(diagnostics)src=src.replace(picked,latePool+picked).replace(tail,diagnostic);
+ return src;
+}
+function instrument(source,req,curriculum,after){
+ const events=[],m={exports:{}};
+ new Function('module','require','curriculum','observe',sourceFor(source,after))(m,req,curriculum,event=>events.push(event));
+ m.exports.m1Events=events;
+ return m.exports;
 }
 function verifyEarly(deck,s){
  const pp=deck.flatMap((q,i)=>openingPass(q)?[i]:[]);
@@ -85,7 +118,7 @@ function run(api,peer,curriculum,meta,qs,profile,seed,horizon){
      checkpoints.push({session:s+1,focus,focusSlots,ids:ids.size,families:families.size,concepts:concepts.size,themes:themes.size,proof:[...proof.values()].filter(x=>x.families.size>=2&&x.sessions.size>=2).length,debt,conceptDebt,hard,mirrors,repeat,recalls,medianRecall:sorted.length?sorted[Math.floor((sorted.length-1)/2)]:null,wrongCount,assistCount,first:Object.fromEntries(first),ms:clock()-start});
    }
  }
- return {trace,checkpoints};
+ return {trace,checkpoints,events:api.m1Events||[]};
 }
 function compare({source,req,curriculum,meta,qs},profile,seed,horizon=180){
  ok(PROFILES.includes(profile)&&SEEDS.includes(seed)&&HORIZONS.includes(horizon),'Invalid profile seed horizon');
@@ -108,13 +141,13 @@ function questionDictionary(qs,meta,results){
  const used=new Set(results.flatMap(p=>[p.before,p.after].flatMap(b=>b.trace.flatMap(s=>s.items.map(x=>x.id)))));
  return Object.fromEntries(qs.filter(q=>used.has(q.id)).map(q=>[q.id,{hand:q.hand,h:q.h,shape:q.shape,auction:q.auction,context:q.context,answer:q.answer,theme:q.theme,family:family(q),level:q.difficulty,concept:meta.byId[q.id].concept}]));
 }
-module.exports={BASE,PROFILES,SEEDS,HORIZONS,compile,instrument,compare,questionDictionary};
+module.exports={BASE,PROFILES,SEEDS,HORIZONS,compile,sourceFor,instrument,compare,questionDictionary};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
  const root=path.join(__dirname,'..'),old=p=>execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});
  const source=old('quizz-parcours.js'),data=old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1],qs=JSON.parse(data).exercises;
  const cache={};function req(n){if(cache[n])return cache[n];ok(/^\.\/quizz-[a-z0-9-]+\.js$/.test(n),'Unexpected require '+n);return cache[n]=compile(old(n.slice(2)),req);}
- const meta=req('./quizz-prerequis.js'),curriculum=require(process.env.QPJB_M1_POLICY==='guarded'?'../quizz-coherence-m1-guarded.js':'../quizz-coherence-m1-curriculum.js');
+ const meta=req('./quizz-prerequis.js'),curriculum=require(process.env.QPJB_M1_POLICY==='conditional'?'../quizz-coherence-m1-conditional.js':process.env.QPJB_M1_POLICY==='guarded'?'../quizz-coherence-m1-guarded.js':'../quizz-coherence-m1-curriculum.js');
  const profiles=process.argv[2]&&process.argv[2]!=='all'?[process.argv[2]]:PROFILES,seeds=process.argv[3]&&process.argv[3]!=='all'?[Number(process.argv[3])]:SEEDS,horizon=Number(process.argv[4]||180);
  const input={source,req,curriculum,meta,qs};
  const fixed=Date.UTC(2026,10,26,12);const now=Date.now;Date.now=()=>fixed;
