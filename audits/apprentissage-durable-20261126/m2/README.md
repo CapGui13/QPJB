@@ -95,3 +95,8 @@ Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés su
 ## Passe 8 — revue contextualisée individuelle
 
 55 décisions éditoriales IA supplémentaires (54 HOLD et un contraste provisoire), sans nouveau feedback redondant. Chaque décision est liée à la main, la séquence, la force, la distribution, le diagnostic signé, le corrigé intégral et la justification individuelle dans `pass8-propositions.json` (instantané de la proposition, désormais intégrée). Le test contrôle ces éléments et reproduit les données et transferts existants ; comparaison exhaustive avec le registre précédent : exactement 55 changements attendus. 1413 HOLD et un contraste restant ; 3371 ciblages, 436 corrigés suffisants, 524 abstentions. Banc exact exécuté en V8 : 102731 assertions. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 9 — Rubensohl et Multi-Landy
+
+Revue des 114 HOLD de ces deux thèmes : 106 dispositions « corrigé suffisant », huit HOLD conservés et nommés dans `pass9-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect des accords explicitement locaux, pas de généralisation au SEF. Comparaison exhaustive des registres : exactement 106 changements attendus. 1307 HOLD, un contraste restant, 3371 ciblages et 542 corrigés suffisants. Banc exact exécuté en V8 : 103155 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
