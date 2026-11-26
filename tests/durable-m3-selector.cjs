@@ -12,11 +12,11 @@ function makeEngine(read,api,clock,candidate){
    patch('const previous=state.entries||{};', 'const previous=state.entries||{};');
    // Both variants assert the identical original eligibility and selection checks.
    patch('const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));',
-     'const hints=durable&&category==="maintenance"&&!priority&&durableSlots<2?new Map(durable.rank({candidates,selected,category,forcedReason,priority}).map(x=>[x.id,x.delta])):new Map();\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(hints.get(q.id)||0)}));');
+     'const hints=durable&&category==="maintenance"&&!priority&&durableSlots<(clock.strategy==="calendar"?1:2)?new Map(durable.rank({candidates,selected,category,forcedReason,priority}).filter(x=>clock.strategy!=="calendar"||clock.calendarOnly.has(x.concept)).map(x=>[x.id,clock.strategy==="calendar"?Math.min(12,x.delta):x.delta])):new Map();\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(hints.get(q.id)||0)}));');
    patch('const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);',
-     'const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);\n    const durable=enabled&&s>=3&&!state.active?mastery.prepareReview({history:state,exercises,nowMs:clock.now}):null;let durableSlots=0;');
+     'const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);\n    const durable=enabled&&s>=3&&!state.active&&(clock.strategy!=="calendar"||clock.calendarOnly.size>0)?mastery.prepareReview({history:state,exercises,nowMs:clock.now}):null;let durableSlots=0;');
    patch('const q=ranked[0].q,m=mOf(q),cat=category||classify(q);',
-     'const q=ranked[0].q,m=mOf(q),cat=category||classify(q);\n      if(hints.has(q.id)){durableSlots++;clock.hinted++;}if(durableSlots>2)throw Error("M3 cap");if(!evaluate(q,state,e).eligible)throw Error("ineligible "+q.id);');
+     'const q=ranked[0].q,m=mOf(q),cat=category||classify(q);\n      if(hints.has(q.id)){durableSlots++;clock.hinted++;}if(durableSlots>(clock.strategy==="calendar"?1:2))throw Error("M3 cap");if(!evaluate(q,state,e).eligible)throw Error("ineligible "+q.id);');
   }
   const m={exports:{}};cache.set(path,m);
   new Function('module','exports','require','window','mastery','clock','enabled',src)(m,m.exports,load,undefined,api,clock,candidate);
@@ -30,16 +30,17 @@ function run(read,api,qs,meta,configs){
  const byId=new Map(qs.map(q=>[q.id,q])),key=q=>meta[q.id].concept;
  const results=[];
  let checks=0;const ok=(v,m)=>{checks++;if(!v)throw Error(m)};
- for(const {profile,seed,horizon} of configs){
+ for(const {profile,seed,horizon,strategy="broad"} of configs){
   const pair=[];
   for(const candidate of [false,true]){
-   const clock={now:T,hinted:0},engine=makeEngine(read,api,clock,candidate),state=engine.empty();
+   const clock={now:T,hinted:0,strategy,calendarOnly:new Set()},engine=makeEngine(read,api,clock,candidate),state=engine.empty();
    const allFamilies=new Set(),allConcepts=new Set(),last={},answers=[],snapshots=[];
    let dueServed=0,weakDueServed=0,dueOpportunities=0,weakDueOpportunities=0,short=0,dupes=0,violations=0,hard=0,exactRecall=0,elapsed=0,peak=0,previousTime=T,firstThree=[];
    for(let n=1;n<=horizon;n++){
     clock.now+=profile==='grouped'?HOUR:profile==='weekly'?7*DAY:DAY;
     if(profile==='resumption'&&n===91)clock.now+=90*DAY;
     const due=api.assess({history:state,exercises:qs,nowMs:clock.now}).concepts;
+    clock.calendarOnly=new Set(Object.values(due).filter(x=>x.review.timeDue===true&&x.review.sessionDue!==true&&!x.fragile).map(x=>x.concept));
     const start=Date.now(),deck=engine.start(state,qs),ms=Date.now()-start;elapsed+=ms;peak=Math.max(peak,ms);
     const ids=deck.map(q=>q.id),families=deck.map(q=>q.caseFamily);
     if(ids.length!==10)short++;if(new Set(families).size!==families.length||new Set(ids).size!==ids.length)dupes++;
@@ -79,7 +80,7 @@ function run(read,api,qs,meta,configs){
    pair.push({variant:candidate?'m3':'base',firstThree,snapshots});
   }
   ok(JSON.stringify(pair[0].firstThree)===JSON.stringify(pair[1].firstThree),'S1–3 exact parity');
-  results.push({profile,seed,horizon,checks:checks,pair});
+  results.push({profile,seed,horizon,strategy,checks:checks,pair});
  }
  return {checks,results};
 }
@@ -90,7 +91,7 @@ if(require.main===module){
  const read=p=>execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
  const qs=JSON.parse(read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
  const meta=JSON.parse(read('quizz-prerequis.js').split('return ')[1].split('};});')[0]+'}').byId;
- const profile=process.argv[2],seed=Number(process.argv[3]),horizon=Number(process.argv[4]||180);
- const configs=profile?[{profile,seed,horizon}]:['grouped','daily','weekly','forgetting','assisted','resumption'].flatMap(profile=>[11,47,103].map(seed=>({profile,seed,horizon})));
+ const profile=process.argv[2],seed=Number(process.argv[3]),horizon=Number(process.argv[4]||180),strategy=process.argv[5]||"broad";
+ const configs=profile?[{profile,seed,horizon,strategy}]:['grouped','daily','weekly','forgetting','assisted','resumption'].flatMap(profile=>[11,47,103].map(seed=>({profile,seed,horizon,strategy})));
  console.log(JSON.stringify(run(read,api,qs,meta,configs),null,2));
 }
