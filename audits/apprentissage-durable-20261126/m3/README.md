@@ -127,7 +127,42 @@ Contrôle reproductible sur les 18 fichiers calendaires : `node tests/durable-m3
 
 Sur toutes les trajectoires calendaires, aucune séance courte, aucune duplication de famille/ID et aucune violation d'éligibilité détectées. Alerte explicite : profil assisté, graine 103, 98 concepts rencontrés sur 99 dans les deux variantes ; aucune perte de couverture attribuable au M3. La couverture du registre/module reste 99/99. Les écarts de nombres de rappels doivent être interprétés avec les dénominateurs et l'évolution des états ; la simulation ne mesure pas un gain causal de mémorisation.
 
-**Décision finale de calibration : HOLD_DEFAULT.** Ne pas activer les bonus de sélection large ni calendaire par défaut ; intégrer le modèle d'état après recette coordinateur. Le troisième tirage calendaire est terminé. La politique large est maintenue HOLD sans extrapoler ses résultats à trois graines. Node v22.16.0 et Chromium sont installés dans le conteneur de reprise mais `git ls-remote https://github.com/CapGui13/QPJB.git HEAD` échoue avec résolution DNS indisponible : les sources lues via connecteur ne constituent pas un checkout natif. Aucun résultat de test natif Node, Chromium ou WebKit revendiqué. Aucun workflow commun modifié.
+**Décision finale de calibration : HOLD_DEFAULT.** Ne pas activer les bonus de sélection large ni calendaire par défaut ; intégrer le modèle d'état après recette coordinateur. Le troisième tirage calendaire est terminé. La politique large est maintenue HOLD ; la validation à trois graines est complétée dans la section suivante. Node v22.16.0 et Chromium sont installés dans le conteneur de reprise mais `git ls-remote https://github.com/CapGui13/QPJB.git HEAD` échoue avec résolution DNS indisponible : les sources lues via connecteur ne constituent pas un checkout natif. Aucun résultat de test natif Node, Chromium ou WebKit revendiqué. Aucun workflow commun modifié.
+
+## Recette complète des deux politiques et transmission native
+
+Cette section actualise les conclusions et les compteurs des passes précédentes. Les **36 comparaisons** (6 profils × 3 graines × 2 politiques) sont désormais réalisées sur le sélecteur figé : **72 trajectoires, 12 960 séances, 129 600 réponses et 181 548 assertions** du runner. Douze nouvelles comparaisons de classement large : 60 516 assertions, 4 320 séances et 43 200 réponses supplémentaires. Les références sont répétées entre politiques ; les réponses quotidiennes ne dépendent pas de la graine. Les métriques ne constituent pas des échantillons indépendants ni des preuves d'apprentissage humain.
+
+`selector-broad-three-seeds.json` et `tests/durable-m3-broad-three-seeds.cjs` : 1 586 vérifications réussies en V8, parité de tous les indicateurs finaux non temporels des références large et calendaire sur les 18 couples profil/graine. Les données calendaires sont vérifiées séparément par `durable-m3-three-seeds.cjs`. Une reproduction supplémentaire de grouped/47/broad (5 043 assertions) confirme la compatibilité des archives historiques sans champ strategy avec le runner actuel ; les compteurs de la matrice n'incluent pas cette reproduction ni les contrôles ciblés.
+
+| Indicateur | Large : mieux / égal / moins bien | Calendaire : mieux / égal / moins bien |
+|---|---:|---:|
+| Concepts rencontrés | 1 / 17 / 0 | 0 / 18 / 0 |
+| Familles distinctes | 8 / 6 / 4 | 6 / 11 / 1 |
+| Preuves différées candidates | 7 / 7 / 4 | 5 / 12 / 1 |
+| Fragilité (moins = mieux) | 7 / 6 / 5 | 5 / 11 / 2 |
+| Rappels dus servis (nombre brut) | 12 / 0 / 6 | 3 / 7 / 8 |
+| Rappels fragiles servis (nombre brut) | 7 / 3 / 8 | 3 / 8 / 7 |
+| Rappels explicites servis (nombre brut) | 6 / 8 / 4 | 3 / 12 / 3 |
+| Lacunes >20 séances (moins = mieux) | 13 / 2 / 3 | 7 / 7 / 4 |
+
+Sur les 36 comparaisons : aucune séance courte, duplication ID/famille ni violation d'éligibilité détectée par le runner. Les taux de rappels servis sur occasions dues figurent dans les deux rapports. **HOLD_DEFAULT** pour les deux bonus ; intégrer uniquement le modèle d'état après recette coordinateur. Ni suppression de rappels ni modification du classement de référence en production.
+
+### Alerte de couverture identifiée
+
+`selector-coverage-alert.json` et `tests/durable-m3-coverage-alert.cjs` : scénario assisté, graine 103. Le concept absent est `sa2.texas_mineur.reponse` (six QCM). Aux checkpoints jusqu'à S153 inclus, aucun de ces QCM n'est éligible ; à la fin de S180 les six le sont dans les quatre trajectoires. La référence et la politique calendaire n'ont présenté aucun QCM de ce concept ; le classement large en a présenté aux séances 173 et 179. Ces observations localisent une question de progression/éligibilité et de priorité à examiner par le coordinateur, sans prouver une cause de classement ni justifier l'activation générale du bonus. Deux comparaisons ciblées reproduites avec instrumentation en mémoire, 10 086 assertions, distinctes de la matrice principale. Aucun changement de production.
+
+### Recette native autonome prête à lancer
+
+Depuis un checkout de la PR contenant le commit figé, avec Node et Playwright (Chromium/WebKit installés) :
+
+```bash
+node tests/durable-m3-native.cjs
+```
+
+Le runner vérifie le commit de référence, lance la recette maîtrise, la politique calendaire, les contrôles d'archives, la reproduction de l'alerte de couverture, les 36 comparaisons natives (égalité des résultats archivés hors mesures de durée et normalisation du champ historique strategy), puis compare le résultat du module CommonJS avec le module UMD chargé dans Chromium et WebKit réels hors ligne, sur sept scénarios issus des 1 915 QCM. Il échoue si un contrôle échoue ; un résultat `PASS` n'est émis que si tout est exécuté. `--quick` et `--node-only` sont des recettes partielles, signalées `PARTIAL_PASS`. Si Playwright n'est pas résolu, installer en dehors du dépôt et utiliser `QPJB_PLAYWRIGHT_MODULE` pour indiquer le chemin absolu de son module (aucune dépendance de production ajoutée).
+
+Les sept scénarios et les fonctions de vérification ont été exécutés en V8 sur les blobs figés ; le runner native complet et la comparaison dans de vrais navigateurs n'ont pas pu être exécutés ici. Node v22.16.0 et Chromium sont installés localement, mais `git ls-remote` échoue (DNS et connexion directe indisponibles), la récupération publique du blob brut échoue également, et les workflows de validation de la PR sont ignorés (seul Training smoke passe, hors périmètre M3). Aucun workflow commun modifié, aucun environnement externe facturable créé. Le coordinateur doit lancer la recette native sur un checkout réel puis raccorder le modèle, sans bonus par défaut.
 
 ## Limites / clôture
 
