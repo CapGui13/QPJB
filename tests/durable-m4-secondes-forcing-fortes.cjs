@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m4/',base='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,dir+p),'utf8')),old=p=>execFileSync('git',['show',base+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
+const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const meta={exports:{}};new Function('module',old('quizz-prerequis.js'))(meta);
+const names=["revue-ouvertures.json","revue-notions-residuelles.json","revue-sa-initial.json","revue-sa-developpements.json","revue-fit-majeur.json","revue-extremites-transfert.json","revue-extremites-complement.json","revue-reponses-naturelles.json","revue-roudi-drury.json","revue-redemandes.json","revue-ouvertures-position.json"],prior=new Set(names.flatMap(p=>Object.keys(read(p).byId))),review=read('revue-secondes-forcing-fortes.json'),scope=qs.filter(q=>/^(second|forcing|fortes)\./.test(meta.exports.byId[q.id].concept)),expected=scope.filter(q=>!prior.has(q.id));
+let assertions=0;const ok=(x,m)=>{assertions++;if(!x)throw Error(m)};
+ok(prior.size===963,'prior coverage');ok(expected.length===215&&Object.keys(review.byId).length===215,'new coverage');ok(scope.length===review.coverage.scopeTotal,'scope');
+const counts={};for(const q of expected){const z=review.byId[q.id];ok(z&&z.concept===meta.exports.byId[q.id].concept,'concept '+q.id);ok(z.h===q.h&&z.answer===q.answer&&z.family===q.caseFamily&&z.difficulty===q.difficulty,'source '+q.id);ok(JSON.stringify(z.shape)===JSON.stringify(q.shape)&&JSON.stringify(z.choices)===JSON.stringify(q.choices),'exact choices '+q.id);ok(z.reason.length>25&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context','hold_editorial'].includes(z.status),'review '+q.id);ok(!prior.has(q.id),'disjoint '+q.id);counts[z.status]=(counts[z.status]||0)+1;}
+ok(JSON.stringify(counts)===JSON.stringify(review.counts),'counts');ok(review.coverage.total===1178&&review.coverage.remaining===qs.length-1178,'total');
+const by=id=>qs.find(q=>q.id===id);
+for(const [id,suit,len,h,answer] of [['SEF-052-3',1,5,6,'2♥'],['SEF-054-1',1,4,6,'Passe'],['V2-M3-019',0,6,6,'2♠'],['V2-M3-020',0,6,11,'3♠'],['V2-M3-021',0,4,6,'2SA'],['V2-M3-022',0,4,10,'3SA'],['V2-M6-025',0,4,14,'3SA'],['V2-M6-026',0,5,14,'4♠'],['V2-M6-019',1,6,19,'2♥'],['V2-M6-020',1,7,19,'3♥'],['V2-M6-031',1,4,7,'3SA'],['V2-M6-032',1,5,7,'3♦']]){const q=by(id);ok(q.shape[suit]===len&&q.h===h&&q.answer===answer,'boundary '+id)}
+ok(expected.filter(q=>q.id.startsWith('SEF-V480-')).every(q=>review.byId[q.id].status==='guided_not_independent'),'guided V480');ok(review.byId['SEF-V417-008'].status==='bounded_context','slam judgment');
+console.log(JSON.stringify({assertions,status:'PASS',reviewed:expected.length,totalReviewed:1178,scopeTotal:scope.length,counts}));
