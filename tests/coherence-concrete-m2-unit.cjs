@@ -101,6 +101,23 @@
    ck(JSON.stringify(v)===JSON.stringify(mod.order(ctx)),'regression determinism');
    regressionResults.push({session,metric,ids:v.ids,rescueNodes:v.rescueNodes});
   }
+  // Native French selection reasons must drive the explanatory role.
+  const roleCases=[
+   ['nouveau','nouveau_qcm',false,'acquisition'],
+   ['nouveau','nouveau_qcm',true,'application'],
+   ['nouveau','equilibre_ouvertures',false,'acquisition'],
+   ['revision','rappel_question',true,'rappel'],
+   ['revision','rappel_nouvelle_situation',true,'rappel'],
+   ['revision','rappel_erreur_aide',true,'consolidation_ciblee'],
+   ['nouveau','renforcement_lacune',true,'consolidation_ciblee'],
+   ['nouveau','transfert_contexte',true,'reinvestissement_conditionnel']
+  ];
+  for(const [kind,reason,prior,role] of roleCases)
+   ck(mod.annotateSelectionRole(kind,reason,prior)===role,'real selection role '+reason+' '+prior);
+  const frenchSelected=ids.map((id,i)=>({id,kind:i%2?'revision':'nouveau',reason:i%2?'rappel_erreur_aide':'nouveau_qcm'}));
+  const fr=mod.order({...ctx,selected:frenchSelected});
+  ck(fr.reasons.every(x=>x.selectionReason===frenchSelected.find(y=>y.id===x.id).reason),'selection reason preserved');
+  ck(fr.reasons.filter(x=>x.selectionReason==='rappel_erreur_aide').every(x=>x.baseRole==='consolidation_ciblee'),'targeted recall labels');
   const black=qs.filter(q=>byId[q.id].concept==='chelem.cles');
   const x=black[0],y=black.find(q=>q.answer!==x.answer);
   ck(x&&y&&mod.decisionPattern(x,byId[x.id])!==mod.decisionPattern(y,byId[y.id]),'Blackwood not falsely mirrored');
