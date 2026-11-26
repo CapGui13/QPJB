@@ -8,11 +8,16 @@ function status(id,reviews){
  for(const r of reviews){const d=r&&r.byId;if(!d||!Object.prototype.hasOwnProperty.call(d,id))continue;const s=d[id]?.status;if(!known.has(s))continue;if(priority[s]>priority[result])result=s}
  return result;
 }
+function reserved(a,b,reviews){
+ if(typeof a!=='string'||typeof b!=='string'||!Array.isArray(reviews))return false;
+ return reviews.some(r=>Array.isArray(r?.pairReservations)&&r.pairReservations.some(p=>p&&typeof p.reason==='string'&&p.reason.trim().length>0&&((p.a===a&&p.b===b)||(p.a===b&&p.b===a))));
+}
 function inspect({pair,reviews}={}){
  const a=pair?.a,b=pair?.b;
  const statuses=[status(a,reviews),status(b,reviews)];
  let reason='candidate_only';
  if(typeof a!=='string'||typeof b!=='string'||a===b||pair?.evidence?.automaticCredit!==false||pair?.evidence?.review?.classification!=='intercontextual'||pair?.evidence?.transferEvidenceEligible!==true)reason='not_intercontextual_candidate';
+ else if(reserved(a,b,reviews))reason='pair_reservation';
  else if(statuses.includes('hold_editorial'))reason='editorial_hold';
  else if(statuses.includes('guided_not_independent'))reason='guided_prompt';
  else if(statuses.includes('bounded_context'))reason='bounded_context';

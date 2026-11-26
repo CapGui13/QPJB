@@ -660,8 +660,9 @@
     "totalIndividualTargetedReview": 579,
     "remainingIndividualTargetedReview": 1336,
     "transferScreen": {
-      "candidate_only": 25,
+      "candidate_only": 22,
       "guided_prompt": 48,
+      "pair_reservation": 3,
       "bounded_context": 4
     },
     "pairReservations": [
@@ -686,7 +687,7 @@
     ],
     "tests": [
       {
-        "assertions": 760,
+        "assertions": 782,
         "status": "PASS",
         "reviewed": 91,
         "totalReviewed": 579,
@@ -695,13 +696,20 @@
           "guided_not_independent": 47
         },
         "pairCounts": {
-          "candidate_only": 25,
+          "candidate_only": 22,
           "guided_prompt": 48,
+          "pair_reservation": 3,
           "bounded_context": 4
         },
         "pairReservations": 3
       }
     ],
-    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI",
+    "transferScreenBeforePairReservations": {
+      "candidate_only": 25,
+      "guided_prompt": 48,
+      "bounded_context": 4
+    },
+    "pairReservationsEnforced": 3
   }
 }

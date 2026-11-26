@@ -1937,10 +1937,11 @@
     }
   ],
   "transferScreen": {
-    "scope": "77 existing candidate pairs; endpoint review is necessary but not sufficient to validate actual intercontextual transfer. Pair reservations remain to be adjudicated separately.",
+    "scope": "77 existing candidate pairs; the optional strict filter excludes pair-level reservations symmetrically before evaluating the endpoints. Remaining candidates are potential probes, not proof of transfer or mastery.",
     "counts": {
-      "candidate_only": 25,
+      "candidate_only": 22,
       "guided_prompt": 48,
+      "pair_reservation": 3,
       "bounded_context": 4
     },
     "pairs": [
@@ -2303,8 +2304,8 @@
           "coherent_in_catalogue_framework",
           "coherent_in_catalogue_framework"
         ],
-        "reason": "candidate_only",
-        "eligibleForIndependentProbe": true,
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
         "automaticCredit": false
       },
       {
@@ -2446,8 +2447,8 @@
           "coherent_in_catalogue_framework",
           "coherent_in_catalogue_framework"
         ],
-        "reason": "candidate_only",
-        "eligibleForIndependentProbe": true,
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
         "automaticCredit": false
       },
       {
@@ -2468,8 +2469,8 @@
           "coherent_in_catalogue_framework",
           "coherent_in_catalogue_framework"
         ],
-        "reason": "candidate_only",
-        "eligibleForIndependentProbe": true,
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
         "automaticCredit": false
       },
       {
@@ -2792,5 +2793,10 @@
         "automaticCredit": false
       }
     ]
+  },
+  "transferScreenBeforePairReservations": {
+    "candidate_only": 25,
+    "guided_prompt": 48,
+    "bounded_context": 4
   }
 }
