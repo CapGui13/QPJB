@@ -24,6 +24,19 @@ function run(M,meta,ex){
  let a=advisory({completed:1,journal:[event('correct'),event('correct')],entries:{}});check(a.requirements[0].proofFamilies===1&&a.requirements[0].proofSessions===1,'distinct proof');
  a=advisory({completed:1,journal:[event('correct',false,false,'consolidation'),event('correct',false,false,'parcours',2)],entries:{}});check(a.status==='missing-exposure','not future/consolidation');
  a=advisory({completed:1,journal:[],entries:{Q:{assessment:{lastSession:0,result:'correct'}}}});check(a.requirements[0].exposure===1&&a.requirements[0].proofFamilies===0,'legacy exposure not proof');
+ // Independent proof is lower difficulty, distinct sessions and native caseFamily.
+ const low1={id:'L1',caseFamily:'F',family:'misleading-1',difficulty:2},low2={id:'L2',caseFamily:'F',family:'misleading-2',difficulty:3},low3={id:'L3',caseFamily:'G',difficulty:3},high={id:'H',caseFamily:'H',difficulty:4};
+ const md=Object.fromEntries([low1,low2,low3,high].map(q=>[q.id,{concept:'advanced',stage:q===high?3:0,minSession:0,requires:[]}]));
+ const e=(id,session,result='correct',assisted=false,hadFreeError=false)=>({mode:'parcours',session,answers:[{id,result,assisted,hadFreeError}]});
+ const adv=journal=>M.rules({session:10,history:{completed:9,journal},exercises:[low1,low2,low3,high],metadataById:md,candidates:[high]})[0].autonomy;
+ check(adv([e('L1',1,'wrong')]).foundation&&!adv([e('L1',1,'wrong')]).independent,'weak exposure is not mastery');
+ check(adv([e('L1',1),e('L2',2)]).proofFamilies===1&&!adv([e('L1',1),e('L2',2)]).independent,'native family wins over alternate field');
+ check(!adv([e('L1',1),e('L3',1)]).independent,'same session not independent');
+ check(!adv([e('L1',1),e('H',2)]).independent,'same difficulty excluded');
+ check(!adv([e('L1',1),e('L3',2,'correct',true)]).independent,'assisted proof excluded');
+ check(adv([e('L1',1),e('L3',2)]).independent,'two distinct lower families and sessions');
+ const only=[low1,low2,high],single=M.rules({session:10,history:{completed:9,journal:[e('L1',1),e('L2',2)]},exercises:only,metadataById:md,candidates:[high]})[0].autonomy;
+ check(single.requiredFamilies===1&&single.independent,'single available family still requires two sessions');
  check(JSON.stringify(meta)===old&&JSON.stringify(ex)===data,'pure');
  check(JSON.stringify(M.rules(ctx))===JSON.stringify(M.rules(ctx)),'deterministic');
  return {assertions:n};
