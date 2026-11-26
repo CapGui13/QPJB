@@ -8,16 +8,18 @@
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 174,
-  "newPairs": 139,
+  "allPairs": 194,
+  "newPairs": 159,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
   "holdConcepts": [
     "chelem.blackwood.declenchement",
     "red.bicolore",
     "red.bicolore_cher",
+    "fortes.ouverture",
     "michaels.choix",
-    "michaels.reveil"
+    "michaels.reveil",
+    "ouv.majeure"
   ],
   "structurallyMapped": 1915,
   "individualEditorialReview": "partial; no global certification",
@@ -41,7 +43,7 @@
     "discrimination": 18,
     "discrimination_context": 22,
     "role_complement": 1,
-    "reviewed_reuse": 56
+    "reviewed_reuse": 76
   },
   "pass3": {
     "proposed": 22,
@@ -203,5 +205,132 @@
         "reviewedHistoricalIds": 250
       }
     ]
+  },
+  "pass7": {
+    "proposed": 20,
+    "retained": 20,
+    "skipped": [],
+    "counts": {
+      "intercontextual": 77,
+      "near_transfer": 12,
+      "context_boundary": 50,
+      "hold": 4,
+      "discrimination": 40,
+      "role_complement": 9,
+      "consolidation": 2
+    },
+    "transferConcepts": 92,
+    "newConcepts": [
+      "roudi.reponse",
+      "multilandy.intervention",
+      "ouv.sa1",
+      "drury.choix",
+      "chelem.blackwood.suite",
+      "chelem.blackwood.dame_rois",
+      "ouv.sa2",
+      "ouv.majeure",
+      "ouv.passe",
+      "ouv.position",
+      "second.base"
+    ],
+    "reviewedHistoricalIds": 276,
+    "residual": [
+      {
+        "concept": "ouv.mineure",
+        "families": 29,
+        "exercises": 39,
+        "disposition": "discrimination_only",
+        "reason": "La meilleure mineure s'applique à l'ouverture sans enchère antérieure ; les égalités 3–3/4–4 et zones SA sont des discriminations directes. Ne pas inventer un équivalent en intervention.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "drury.init",
+        "families": 6,
+        "exercises": 7,
+        "disposition": "near_only",
+        "reason": "La troisième et quatrième position disposent de cas indépendants ; le passage de l'une à l'autre garde le même code. Le contraste Drury / 2SA fitté et le faux Drury sont plus informatifs qu'une prétendue preuve de transfert lointain.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "ouv.bicolore.exception",
+        "families": 4,
+        "exercises": 6,
+        "disposition": "discrimination_only",
+        "reason": "Exception circonscrite au 5–5 Pique-Trèfle et aux perdantes : autres bicolores ou simples permutations ne sont pas équivalents. Garder les contrastes nécessaires.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "fortes.ouverture",
+        "families": 9,
+        "exercises": 10,
+        "disposition": "discrimination_only",
+        "reason": "La décision initiale est essentiellement une discrimination entre zones régulières, levées de jeu et conditions de défense. Les redemandes fortes sont complémentaires, pas une preuve de transfert de l'ouverture. SEF-L33-005 en réserve.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "fortes.relais",
+        "families": 13,
+        "exercises": 15,
+        "disposition": "boundary_only",
+        "reason": "Distinguer relais obligatoire, réponses aux As et réponses négatives. Un autre code conventionnel ne démontre pas à lui seul un transfert de ce relais.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "mineur.soutien",
+        "families": 7,
+        "exercises": 8,
+        "disposition": "boundary_only",
+        "reason": "Les soutiens sans intervention et Truscott mineur après Contre ont des longueurs et seuils propres. La paire est une discrimination de contexte.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      },
+      {
+        "concept": "barrage.ouverture",
+        "families": 20,
+        "exercises": 32,
+        "disposition": "boundary_only",
+        "reason": "Position, vulnérabilité, force et longueur changent la décision. Première et quatrième position fournissent un contraste utile, sans assimiler cette paire à une preuve de transfert de la même action.",
+        "next": "Réexaminer les situations authentiques et les accords avant de créer un cas ; ne pas compter automatiquement comme transfert."
+      }
+    ],
+    "tests": [
+      {
+        "assertions": 5812,
+        "ids": 1915,
+        "additions": 3,
+        "pairs": 194,
+        "status": "PASS"
+      },
+      {
+        "assertions": 8800,
+        "status": "PASS",
+        "pairs": 194,
+        "counts": {
+          "intercontextual": 77,
+          "near_transfer": 12,
+          "context_boundary": 50,
+          "hold": 4,
+          "discrimination": 40,
+          "role_complement": 9,
+          "consolidation": 2
+        },
+        "transferConcepts": 92,
+        "reviewedHistoricalIds": 276
+      },
+      {
+        "schema": "QPJB_M4_MECHANICAL_V1",
+        "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+        "scope": "Structure des enchères abrégées : montants croissants, camps pour Contre/Surcontre, choix licites après préfixe. Ni tour de parole complet, ni unicité pédagogique, ni accords certifiés.",
+        "historical": 1915,
+        "additions": 3,
+        "pairs": 194,
+        "assertions": 15839,
+        "status": "PASS",
+        "failures": []
+      }
+    ],
+    "openingCounts": {
+      "coherent_in_catalogue_framework": 49,
+      "hold_editorial": 3
+    }
   }
 }
