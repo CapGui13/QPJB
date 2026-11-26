@@ -384,9 +384,9 @@ check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=202
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261113bh039m01'),
  'both entry points load the current pedagogical module');
 check(read('service-worker.js').includes("const CACHE = 'qpjb-v102'")&&
- read('service-worker.js').includes("BASE + 'quizz-parcours.js?v=17'")&&
+ read('service-worker.js').includes("BASE + 'quizz-parcours.js?v=18'")&&
  read('service-worker.js').includes("BASE + 'quizz-prerequis.js?v=3'")&&
- read('quizz.html').includes('quizz-parcours.js?v=17')&&
+ read('quizz.html').includes('quizz-parcours.js?v=18')&&
  read('quizz.html').includes('quizz-prerequis.js?v=3'),
  'PWA cache revision and guided Quiz module included for offline use');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.

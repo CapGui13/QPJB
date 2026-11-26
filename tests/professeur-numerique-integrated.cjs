@@ -8,7 +8,9 @@ const M=require('../quizz-prerequis.js'),C=require('../quizz-apprentissage-conce
 const manifest=require('../audits/professeur-numerique-20261126/integration/publication.json'),adds=require('../audits/professeur-numerique-20261126/m1/additions.json');
 const by=new Map(qs.map(q=>[q.id,q])),patch=new Map(manifest.patches.map(p=>[p.id,p]));
 assert.equal(qs.length,1915);assert.equal(by.size,1915);assert.equal(Object.keys(M.byId).length,1915);assert.equal(Object.keys(C.byId).length,1915);assert.equal(Object.keys(C.concepts).length,99);
-assert.equal(read('quizz-parcours.js'),old('quizz-parcours.js'),'Moteur de sélection et notation inchangé');
+const selectionAnchor="      const priorities=sessionPlan.priorityThemes",selectionPatch="      // Réserver au plus une découverte éligible et un rappel fondamental\n      // ancien, après le rappel explicite des erreurs.\n      if(s>=20&&s<65){\n        const core=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);\n        if(selected.length<limit)choose(pool.filter(q=>core.has(mOf(q).concept)&&e.seen.has(mOf(q).concept)&&oldConcept(q)>=8&&!concepts[mOf(q).concept]),'maintenance',null,true);\n        if(selected.length<limit)choose(pool.filter(q=>!e.seen.has(mOf(q).concept)&&!concepts[mOf(q).concept]),'discovery',null,true);\n      }\n      const priorities=sessionPlan.priorityThemes";
+assert.equal(old('quizz-parcours.js').split(selectionAnchor).length,2,'Point de raccord unique');
+assert.equal(read('quizz-parcours.js'),old('quizz-parcours.js').replace(selectionAnchor,selectionPatch),'Seuls les deux créneaux pédagogiques changent ; notation, prérequis, reprise et reste du moteur inchangés');
 for(const q of oldQs){const p=patch.get(q.id);assert.deepEqual(by.get(q.id),p?{...q,choices:p.newChoices}:q,q.id);assert.deepEqual(M.byId[q.id],oldMeta.byId[q.id],q.id+' prerequis')}
 for(const a of adds)assert.deepEqual(by.get(a.exercise.id),a.exercise);
 const tally={hypothesis:0,unknown:0,correct:0},target={total:0,feedback:0};

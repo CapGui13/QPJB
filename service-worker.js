@@ -32,7 +32,7 @@ const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
 // L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
 // ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
 const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
-const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'qpjb-bridge-ui.css?v=20261113e', BASE + 'quizz-prerequis.js?v=3', BASE + 'quizz-pedagogie-initiation.js?v=1', BASE + 'quizz-pedagogie-intermediaire.js?v=1', BASE + 'quizz-pedagogie-avancee.js?v=1', BASE + 'quizz-session-plan.js?v=2', BASE + 'quizz-parcours.js?v=17', BASE + 'parcours-recommandations.js?v=1', BASE + 'quizz-apprentissage-concepts.js?v=1', BASE + 'quizz-diagnostic-erreurs.js?v=1', BASE + 'quizz-remediation.js?v=1', BASE + 'quizz-professeur.js?v=1'];
+const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'qpjb-bridge-ui.css?v=20261113e', BASE + 'quizz-prerequis.js?v=3', BASE + 'quizz-pedagogie-initiation.js?v=1', BASE + 'quizz-pedagogie-intermediaire.js?v=1', BASE + 'quizz-pedagogie-avancee.js?v=1', BASE + 'quizz-session-plan.js?v=2', BASE + 'quizz-parcours.js?v=18', BASE + 'parcours-recommandations.js?v=1', BASE + 'quizz-apprentissage-concepts.js?v=1', BASE + 'quizz-diagnostic-erreurs.js?v=1', BASE + 'quizz-remediation.js?v=1', BASE + 'quizz-professeur.js?v=1'];
 let warmPromise = null;
 async function cacheOfflineResources() {
   const cache = await caches.open(CACHE);
