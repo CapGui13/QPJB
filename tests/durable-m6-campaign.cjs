@@ -65,7 +65,7 @@ function pair(base,candidate,name,seed,horizon=180,options={}){
  assert(GUARDS.sameHistorical(c.meta.byId[q.id],b.meta.byId[q.id]),'Changed historical metadata '+q.id);}
  const cross=crossResume(b,c);
  const before=run(base,name,seed,horizon,{...options,probe:b,collectProbeRows:true}),after=run(candidate,name,seed,horizon,{...options,probe:b,collectProbeRows:true});
- GUARDS.validatePair(before,after);
+ GUARDS.validatePair(before,after,{requireEvents:true});
  const comparison=LAB.compare(before,after).map((r,i)=>{
   const a=before.checkpoints[i],b=after.checkpoints[i];
   const common=before.model==='learning'?GUARDS.commonTransfer(a,b,seed,LAB.random):null;

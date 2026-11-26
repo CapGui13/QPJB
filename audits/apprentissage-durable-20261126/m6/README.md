@@ -23,7 +23,7 @@ Objectifs retenus : 6 profils × 3 graines × S180, mêmes graines et univers de
 
 ## 3. Campagne de référence réellement exécutée
 
-Exécution JavaScript V8 des sources récupérées par le connecteur GitHub au SHA exact, sans mocks du moteur. Horloge simulée ; chronométrage réel distinct. Les six fichiers baseline contiennent les événements de séance et checkpoints S20/S65/S153/S180. `register.json` fournit les distributions intégrales et les 37 unités recensées (33 initiales, 4 complémentaires).
+Exécution JavaScript V8 des sources récupérées par le connecteur GitHub au SHA exact, sans mocks du moteur. Horloge simulée ; chronométrage réel distinct. Les six fichiers baseline contiennent les événements de séance et checkpoints S20/S65/S153/S180. `register.json` fournit les distributions intégrales et les 38 unités recensées (33 initiales, 5 complémentaires).
 
 **18 trajectoires, 3 240 séances, 32 400 réponses simulées, 294 reprises, 72 exports vérifiés.** 0 inéligibilité, 0 doublon de famille, 0 séance courte. Toutes les trajectoires couvrent 99 concepts et 22 rubriques à S180.
 
@@ -81,6 +81,7 @@ L'extension optionnelle prend les catégories du diagnostic figé #395, pas cell
 ```sh
 node tests/durable-m6-unit.cjs
 node tests/durable-m6-guards.cjs
+node tests/durable-m6-evidence.cjs
 node tests/durable-m6-assets.cjs
 node tests/durable-m6-register.cjs
 node tests/durable-m6-campaign.cjs legacy
@@ -113,6 +114,14 @@ Après la première livraison, un défaut méthodologique a été corrigé : les
 - La proposition de workflow inactive exécute désormais les garde-fous et le scénario sémantique en comparaison appariée.
 
 Contrôle GitHub de la première PR #408 : le workflow [QPJB Training smoke](https://github.com/CapGui13/QPJB/actions/runs/45887187594) a réussi en mode TARGETED (contrôle rapide), mais les recettes lourdes ont été ignorées par leurs conditions de déclenchement. Ce succès ne constitue pas une exécution native du laboratoire, des navigateurs ou du hors ligne. Le DNS du terminal a été vérifié de nouveau et ne permet toujours pas de cloner github.com. Aucun workflow actif n'a été changé pour contourner ce blocage.
+
+### Contrôle complémentaire de l'intégrité des preuves appariées
+
+Le comparateur acceptait deux empreintes de référence absentes simultanément et ne recomptait pas les réponses du journal. Le nouveau contrôle impose l'identité de provenance, l'horloge de chaque séance, les checkpoints programmés et la cohérence des compteurs de réponses libres, aidées, corrigées, erronées, sautées et des IDs. La comparaison de production exige le journal complet et les sondes. Des fixtures sans journal restent possibles hors mode strict.
+
+- Node natif v22.16.0 : 33 assertions nouvelles PASS, sur les deux fichiers dont les SHA Git ont été vérifiés octet pour octet ; l'ancien garde-fou échoue au test Missing universeKey.
+- V8 : 4 367 assertions historiques + 131 assertions précédentes + 33 nouvelles PASS. Trois archives appariées (6 200 réponses déjà comptées) revalidées avec rejet d'un compteur autonome artificiellement gonflé dans chaque archive.
+- Les données historiques ne sont pas modifiées. Le registre comporte une unité supplémentaire, et la proposition CI exécute la nouvelle suite. Le test natif est limité aux garde-fous et ne remplace ni checkout complet, ni navigateur, ni comparaison intégrée. Voir `evidence-integrity-results.json`.
 
 ## 8. Périmètre, limites et clôture
 

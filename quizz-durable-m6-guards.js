@@ -56,8 +56,37 @@ function validateTrajectory(r){
  }
  return r;
 }
-function validatePair(before,after){
+// Check the evidence actually logged, not merely equality of reported summaries.
+function validateEventEvidence(r){
+ const expected=[...new Set([20,65,153,180,r.horizon].filter(s=>s<=r.horizon))].sort((a,b)=>a-b);
+ if(stable(r.checkpoints.map(c=>c.session))!==stable(expected))throw Error('Missing scheduled checkpoint');
+ const checkpoints=new Map(r.checkpoints.map(c=>[c.session,c])),ids=new Set();
+ const counts={independent:0,help:0,corrected:0,wrong:0,skipped:0};
+ for(const e of r.events){
+  if(!Number.isInteger(e.day)||e.day<0||!e.answers.length)throw Error('Invalid event time or empty session');
+  if(e.startDay!==undefined&&(!Number.isInteger(e.startDay)||e.startDay<0||e.startDay>e.day))throw Error('Invalid session start day');
+  for(const a of e.answers){
+   if(typeof a[0]!=='string'||!a[0]||((a[2]||a[3])&&a[1]!=='correct'))throw Error('Inconsistent answer evidence');
+   ids.add(a[0]);
+   const kind=a[2]?'help':a[3]?'corrected':a[1]==='correct'?'independent':a[1];
+   counts[kind]++;
+  }
+  const c=checkpoints.get(e.s);
+  if(!c)continue;
+  if(c.day!==e.day||c.ids!==ids.size)throw Error('Checkpoint disagrees with event log S'+e.s);
+  for(const k of Object.keys(counts))if(c[k]!==counts[k])throw Error('Checkpoint answer accounting S'+e.s+' '+k);
+ }
+}
+function validatePair(before,after,{requireEvents=false}={}){
  validateTrajectory(before);validateTrajectory(after);
+ for(const r of [before,after]){
+  if(!Number.isInteger(r.horizon)||r.horizon<1||typeof r.universeKey!=='string'||!r.universeKey.trim()||!r.profile.trim())throw Error('Missing paired provenance');
+  if(r.checkpoints.some(c=>!Number.isInteger(c.day)||c.day<0))throw Error('Invalid checkpoint day');
+  if(requireEvents&&(!Array.isArray(r.events)||!Array.isArray(r.violations)||r.checkpoints.some(c=>!Array.isArray(c.probeRows))))throw Error('Missing full paired evidence');
+  if(r.events!==undefined)validateEventEvidence(r);
+ }
+ if((before.events===undefined)!==(after.events===undefined))throw Error('Unpaired event log');
+ if(before.events&&before.events.some((e,i)=>e.day!==after.events[i]?.day||e.startDay!==after.events[i]?.startDay))throw Error('Unpaired event clock');
  for(const k of ['profile','seed','model','ruleSource','horizon','universeKey'])if(before[k]!==after[k])throw Error('Unpaired '+k);
  if(stable(before.parameters)!==stable(after.parameters))throw Error('Unpaired parameters');
  if(before.checkpoints.length!==after.checkpoints.length)throw Error('Unpaired checkpoints');

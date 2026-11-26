@@ -66,7 +66,7 @@ function summarize(baselines,sensitivity,targeted,semantic,extension){
  let additionalResponses=0;
  const identityPairs=extension.pairs.map(p=>{
   const a=p.before,b=p.after,kind=a.ruleSource?'semantic':'ordinary',key=a.profile+'/'+a.seed+'/'+a.horizon+'/'+kind;
-  ok(p.base===BASE&&extensionKeys.delete(key)&&G.validatePair(a,b),'Extension pair '+key);
+  ok(p.base===BASE&&extensionKeys.delete(key)&&G.validatePair(a,b,{requireEvents:true}),'Extension pair '+key);
   ok(JSON.stringify(a.events)===JSON.stringify(b.events)&&!a.violations.length&&!b.violations.length&&p.crossResume.checked,'Identity and restore '+key);
   ok(p.comparison.length===a.checkpoints.length&&p.comparison.every((c,i)=>c.session===a.checkpoints[i].session&&!c.review.length&&Object.values(c.deltas).every(v=>v===0)&&c.crossSessionNewFamilyDelta===0&&c.commonTransfer.n>0&&c.commonTransfer.delta===0&&G.sameHistorical(c.commonTransfer,G.commonTransfer(a.checkpoints[i],b.checkpoints[i],a.seed,L.random))),'Paired checkpoints '+key);
   if(a.horizon===180){const historical=profiles.intermediaire.find(r=>r.seed===47);ok(p.historicalReplay?.identicalEvents&&p.historicalReplay.changes.length===0&&JSON.stringify(historical.events)===JSON.stringify(a.events)&&historical.checkpoints.every((c,i)=>p.historicalReplay.checkedMetrics.every(k=>c[k]===a.checkpoints[i][k])),'Historical replay');}
@@ -75,11 +75,15 @@ function summarize(baselines,sensitivity,targeted,semantic,extension){
   registry.push({unit:'identity-'+key,scope:'pair',disposition:'executed',reason:'Frozen reference compared with itself; same unseen exercises; no candidate gain claimed',...row});return row;
  });
  ok(extensionKeys.size===0,'Incomplete extension pairs');
- return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},semantic:{tally:semantic.tally,categories:semantic.categories,rows:semanticRows},extension:{additionalResponses,guardAssertions:extension.guards.guard.assertions,identityPairs},registry};
+ const evidence=extension.evidence;
+ ok(evidence?.base===BASE&&evidence.native.status==='PASS'&&evidence.native.exactBlobHashesVerified===true&&evidence.native.assertions>0&&evidence.v8.evidenceAssertions===evidence.native.assertions,'Evidence test record');
+ ok(evidence.archives.length===identityPairs.length&&evidence.archives.every((a,i)=>a.valid&&a.inflatedRejected&&a.responses===identityPairs[i].responses),'Evidence archive record');
+ registry.push({unit:'paired-event-accounting',scope:'unit',disposition:'executed',reason:'Reject missing provenance, clocks or falsified summary counters; exact-blob native Node test and archive revalidation in V8',assertions:evidence.native.assertions,archiveResponses:evidence.archives.reduce((n,a)=>n+a.responses,0)});
+ return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},semantic:{tally:semantic.tally,categories:semantic.categories,rows:semanticRows},extension:{additionalResponses,guardAssertions:extension.guards.guard.assertions,identityPairs,evidenceAssertions:evidence.native.assertions},registry};
 }
 module.exports={summarize};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path');
  const dir=path.join(__dirname,'../audits/apprentissage-durable-20261126/m6'),read=p=>JSON.parse(fs.readFileSync(path.join(dir,p),'utf8'));
- console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json'),read('semantic-results.json'),{guards:read('guard-results.json'),pairs:['identity-paired-s65.json','identity-semantic-s65.json','identity-paired-s180.json'].map(read)}),null,2));
+ console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json'),read('semantic-results.json'),{guards:read('guard-results.json'),evidence:read('evidence-integrity-results.json'),pairs:['identity-paired-s65.json','identity-semantic-s65.json','identity-paired-s180.json'].map(read)}),null,2));
 }
