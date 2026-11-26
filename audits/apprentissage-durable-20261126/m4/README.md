@@ -133,3 +133,7 @@ Le registre `couverture-editoriale.json` agrège les 13 registres individuels, f
 ## Passe 26 — chelems : fin de la revue individuelle
 
 93 QCM relus dans neuf concepts de chelem (quantitatif, clés, Splinter, contrôles, déclenchement et suites du Blackwood, Dame/Rois). {"guided_not_independent":55,"coherent_in_catalogue_framework":29,"bounded_context":9}. Distinction systématique entre seuil de points et garantie de levées, chicane utile et singleton, Dame et cinquième clé, contrôle sauté et absence de contrôle, dialogue économique et décision de chelem bornée au bilan fourni. Couverture individuelle 1915/1915, 99/99 concepts ; reste à relire : 0. 494 assertions PASS via V8 et adaptateurs des blobs réels. Pas de recette native Node/navigateur ni visa coordinateur. Aucune modification du catalogue ni du moteur. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+## Contrôle consolidé — couverture éditoriale exhaustive
+
+1915 QCM uniques, 99 concepts, 18 registres, aucun doublon ni omission. 11693 assertions PASS via V8 et adaptateurs des blobs réels. 1065 cohérents dans le référentiel, 729 guidés, 112 bornés, 9 HOLD. Les quatre suites des passes 23–26 ont été rejouées sur le HEAD 8986f120b9ea4b7f217a1ea4c32cb349c37ecc01 (2513 assertions). Voir recette-couverture-finale.json pour les résultats et les neuf réserves individuelles. Couverture complète ne signifie ni validation autonome des QCM guidés, ni visa éditorial externe, ni recette native. PR brouillon, aucun changement de production. MISSION DÉFINITIVEMENT TERMINÉE : NON.
