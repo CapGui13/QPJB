@@ -8,28 +8,11 @@
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 97,
-  "newPairs": 62,
+  "allPairs": 118,
+  "newPairs": 83,
   "conceptsWithHistoricalPairs": 36,
-  "conceptsWithPairs": 83,
-  "holdConcepts": [
-    "ouv.sa2",
-    "ouv.majeure",
-    "ouv.passe",
-    "mineur.soutien",
-    "red.base",
-    "second.base",
-    "contre.base",
-    "barrage.ouverture",
-    "barrage.reponse",
-    "ouv.position",
-    "barrage.suite",
-    "red.competitif",
-    "sa.gambling",
-    "second.bicolore_cher",
-    "sa1.texas.contre",
-    "intervenir.sa.suite"
-  ],
+  "conceptsWithPairs": 99,
+  "holdConcepts": [],
   "structurallyMapped": 1915,
   "individualEditorialReview": "partial; no global certification",
   "pass2": {
@@ -38,11 +21,32 @@
     "skipped": []
   },
   "test": {
-    "assertions": 4741,
+    "assertions": 5052,
     "ids": 1915,
     "additions": 3,
-    "pairs": 97,
+    "pairs": 118,
     "status": "PASS"
   },
-  "environment": "V8 connector, exact GitHub blobs; Node CLI not executed"
+  "environment": "V8: full CJS entry executed with exact blob-backed fs/git shims; not native Node CLI",
+  "pairKinds": {
+    "historical_transfer_candidate": 18,
+    "historical_discrimination": 17,
+    "contextual_candidate": 42,
+    "discrimination": 18,
+    "discrimination_context": 22,
+    "role_complement": 1
+  },
+  "pass3": {
+    "proposed": 22,
+    "retained": 21,
+    "skipped": [
+      {
+        "a": "SEF-V471-001",
+        "b": "SEF-V471-002",
+        "reason": "same family/hand"
+      }
+    ]
+  },
+  "nativeNode": false,
+  "browserReal": false
 }
