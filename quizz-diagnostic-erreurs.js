@@ -136,6 +136,34 @@ return (function factory(byId,signature){
       if(choice==='Passe')return H('forcing','diamond-transfer-pass','Le Texas Carreau du cas impose une rectification ; Passe interrompt ce transfert.','high');
       return H('convention','diamond-transfer-rectification','Le corrigé impose la rectification à Carreau, sans modulation du soutien dans ce cas.','high');
     }
+
+    // Relier une option au contraste explicite du corrigé, sans générer de corrigé
+    // ni attribuer un raisonnement à l'élève. Les axes multiples restent unknown.
+    if(typeof x.explain==='string'){
+      const expression=new RegExp(String.raw`(?:^|[.;:!?]\s*|,\s*|\bet\s+|\balors que\s+|\btandis que\s+|\bmais\s+)`+choice+String.raw`\s+(?:serait|montrerait|indiquerait|promettrait|nierait|ne\s+|ferait|exigerait|supposerait|demanderait|impliquerait|minimiserait|surestimerait|décrirait|déformerait|sous-estimerait|sous-évaluerait|interromprait|fixerait|annoncerait|rechercherait|laisserait|retarderait|conviendrait|garantirait|inventerait|risquerait|priverait|masquerait|abandonnerait|contredirait)[^.;!?]{3,170}`,'giu');
+      const match=expression.exec(x.explain);
+      if(match){
+        let clause=match[0].trim();
+        const cut=clause.search(/(?:,?\s+(?:et|mais|alors que|tandis que)\s+|,\s+)(?:[1-7](?:♣|♦|♥|♠|SA)|Passe|Contre|Surcontre)\s+(?:serait|montrerait|indiquerait|promettrait|nierait|ne\s+|ferait|exigerait|supposerait|demanderait|impliquerait|inventerait|annoncerait|décrirait|risquerait|masquerait|pourrait)/i);
+        if(cut>0)clause=clause.slice(0,cut);
+        const axes=[
+          ['force',/\b(?:force|minimum|maximum|points?|HLD|HL)\b|\d+\s*H\b|sous.estim|surestim|minimiser|sous.évalu/i],
+          ['fit',/\b(?:fit|atouts?|soutien)\b/i],
+          ['distribution',/\b(?:cartes?|longueur|singleton|doubleton|chicane|cinquième|quatrième|sixième|septième|distribution|bicolore|répartition|irrégulière?)\b/i],
+          ['forcing',/\b(?:forcing|non.forcing|obligatoire)\b|interromprait/i],
+          ['niveau',/\b(?:palier|manche|chelem|partielle|invitation|conclusion)\b/i],
+          ['convention',/\b(?:artificiel(?:le|lement)?|conventionnel(?:le|lement)?|relais|Texas|Stayman|Roudi|Drury|Blackwood|Truscott|cue.bid)\b/i],
+          ['contexte',/\b(?:arrêt|tenue|vulnérabilité|position|entame|contrôles?)\b/i],
+          ['priorite',/\bpriorit[ée]/i],
+          ['competition',/\b(?:barrage|pénalité|contre d.appel|intervention|réveil)\b/i]
+        ].filter(([,rx])=>rx.test(clause)).map(a=>a[0]);
+        // Le choix doit être explicitement mis en cause par le corrigé et un
+        // seul axe détecté. Même dans ce cas, confiance faible : les mots seuls
+        // ne constituent pas une preuve du mécanisme cognitif.
+        if(axes.length===1)return H(axes[0],'canonical-explicit-contrast','Le corrigé mentionne précisément cette alternative ; il fournit une piste à vérifier, pas une cause certaine.','low',{canonicalExcerpt:clause,axisSignals:axes});
+        return unknown('Le corrigé mentionne cette alternative, mais ne permet pas une attribution univoque.',{...ev,rule:'canonical-ambiguous-contrast',canonicalExcerpt:clause,axisSignals:axes});
+      }
+    }
     return unknown('Plusieurs causes restent possibles ; le seul choix ne permet pas de privilégier une hypothèse suffisamment étayée.',{...ev,rule:'ambiguous'});
   }
   return Object.freeze({schema,diagnose});
