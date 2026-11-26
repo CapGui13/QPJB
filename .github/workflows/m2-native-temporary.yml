@@ -1,0 +1,33 @@
+name: QPJB M2 — recette native temporaire
+on:
+  pull_request:
+    branches: ['apprentissage-durable/m2-remediation']
+    paths: ['.github/workflows/m2-native-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 31acfb40c4369db190cce7c5ed76eb04b9d83044
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Full native M2 acceptance at exact source SHA
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = 31acfb40c4369db190cce7c5ed76eb04b9d83044
+          node tests/durable-m2-native.cjs | tee m2-native-result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m2-native-31acfb4
+          path: m2-native-result.json
+          if-no-files-found: warn
