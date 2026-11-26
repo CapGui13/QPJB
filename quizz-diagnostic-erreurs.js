@@ -461,6 +461,83 @@ return (function factory(byId,signature){
       if(x.answer==='1SA'&&choice==='2SA'&&h<=13&&/10[–-]13 H/.test(t))return H('force','pn-balancing-sa-level','Le corrigé place la main dans la zone de réveil à 1SA ; le saut à 2SA exprimerait une force supérieure.');
       if(choice==='1SA'&&h<10&&x.answer!=='1SA'&&x.answer!=='2SA')return H('force','pn-balancing-sa-low','Même en position de réveil, la force est inférieure à la zone de 10–13 H étudiée pour 1SA.');
     }
+
+    // Contrastes contextualisés : ne pas généraliser les accords conventionnels.
+    if(c==='second.base'&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'){
+      const own=bid(first[1][1]),last=bid(first[2][1]);
+      if(own&&last&&major(own[2])){
+        if(first[2][1]==='1SA'&&x.answer==='Passe'&&['2SA','3SA'].includes(choice)&&h<=9&&/insuffisant.*invit|pas.*invit|ne.*invit/i.test(t))
+          return H('force','pn2-responder-sa-stop','Le corrigé indique que la force ne justifie même pas une invitation après la redemande minimale à 1SA.');
+        if(a&&a[1]==='2'&&a[2]===own[2]&&len(own[2])>=6&&h<=8&&['2SA','3SA'].includes(choice)&&/faible|partiel|sans prétendre|davantage de force/i.test(t))
+          return H('force','pn2-responder-weak-long-vs-sa','Le corrigé recherche une partielle dans la longue sixième avec une main faible ; l’enchère à SA choisie engagerait davantage le camp.');
+        if(last[1]==='2'&&last[2]===own[2]&&x.answer==='Passe'&&h<=7&&/insuffisant.*invit|aucune invitation|force.*insuffisante/i.test(t)&&(choice==='2SA'||(z&&z[2]===own[2]&&Number(z[1])>=3)))
+          return H('force','pn2-responder-known-fit-stop','Le fit est déjà établi, mais le corrigé ne justifie pas une invitation ou une manche avec cette force.');
+        if(a&&last[1]==='2'&&last[2]===own[2]&&a[2]===own[2]&&Number(a[1])>=3&&choice==='Passe'&&/invitante|demandez.*4|revaloris/i.test(t))
+          return H('force','pn2-responder-known-fit-advance','Le corrigé revalorise la main après le soutien connu et justifie de poursuivre ; passer ne traduit pas cette réévaluation.');
+        if(a&&last[1]==='1'&&major(last[2])&&a[2]===last[2]&&len(last[2])>=4&&a[1]==='2'&&(choice==='1SA'||(z&&z[2]===own[2]))&&/fit|soutien/i.test(t))
+          return H('fit','pn2-responder-new-fit','Le partenaire a annoncé la seconde majeure et la main en détient quatre cartes ; le choix ne montre pas le fit 4–4 établi.');
+      }
+    }
+    if(c==='apres_inter.base'&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&p&&p[1]==='1'){
+      const ob=bid(first[1][1]);
+      if(ob&&ob[2]!=='SA'&&x.answer==='Passe'&&h<=3&&/peu de force|ni la force|force.*insuffisante|n'avez.*force/i.test(t)&&z&&z[2]!==p[2]&&z[2]!==ob[2]&&z[2]!=='SA')
+        return H('force','pn2-competitive-free-new-suit-weak','Le corrigé indique que les valeurs ne permettent pas une enchère libre de nouvelle couleur après intervention.');
+      if(ob&&p[2]==='♦'&&ob[2]==='♥'&&x.answer==='1♠'&&choice==='Contre'&&len('♠')>=4&&/dénie.*quatre Piques|dénie.*4 Piques/i.test(t))
+        return H('convention','pn2-spoutnik-denies-four-spades','Dans cette séquence précise, le contre Spoutnik dénie quatre Piques ; la réponse naturelle à 1♠ décrit cette longueur.','high');
+    }
+    if(c==='forcing.quatrieme'&&first.length===4&&first[0][0]==='Vous'&&first[1][0]==='Partenaire'&&first[2][0]==='Vous'&&first[3][0]==='Partenaire'&&/quatrième couleur|quatrième forcing|4e couleur forcing|4e forcing/i.test(x.auction[3]||'')&&a){
+      const respond=bid(first[1][1]),fourth=bid(first[3][1]),own1=bid(first[0][1]),own2=bid(first[2][1]);
+      if(respond&&fourth&&own1&&own2&&major(respond[2])){
+        if(a[2]===respond[2]&&len(respond[2])===3&&/priorit|doit|devoir|montrer ce soutien/i.test(t)&&z&&z[2]!==respond[2])
+          return H('priorite','pn2-fourth-forcing-show-fit-first','La quatrième couleur demande une description complémentaire ; le corrigé donne priorité au soutien différé de trois cartes, avant les autres descriptions.','high');
+        if(z&&z[2]===respond[2]&&len(respond[2])<=2&&/deux (?:Piques|Cœurs)|pas.*soutien|excluent.*soutien/i.test(t))
+          return H('fit','pn2-fourth-forcing-no-three','La main ne détient pas les trois cartes recherchées dans la majeure initiale du répondant ; ce soutien différé inventerait une longueur.','high');
+        if(choice==='2SA'&&a[2]!=='SA'&&/pas d.arrêt|sans.*arrêt|ne (?:permet|fournit) pas.*(?:2SA|arrêt)|absence.*arrêt/i.test(t))
+          return H('contexte','pn2-fourth-forcing-no-stopper','Le corrigé indique que la quatrième couleur n’est pas tenue ; le choix de SA ne transmettrait pas correctement cette information.');
+        if(x.answer==='2SA'&&choice==='3SA'&&h<=14&&/première zone|sans monter/i.test(t))
+          return H('niveau','pn2-fourth-forcing-sa-level','Le corrigé transmet la tenue avec une ouverture de première zone ; conclure directement à 3SA monte inutilement les enchères.');
+      }
+    }
+    if(c==='forcing.quatrieme'&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'&&a&&/quatrième couleur/i.test(t)){
+      const own=bid(first[1][1]),p2=bid(first[2][1]);
+      if(own&&p2&&p&&new Set([p[2],own[2],p2[2],a[2]]).size===4&&a[2]!=='SA'&&h>=13&&['1SA','2SA'].includes(choice)&&/précision|poursuivre|recherche/i.test(t))
+        return H('forcing','pn2-fourth-forcing-investigate-vs-sa','Le corrigé utilise la quatrième couleur pour poursuivre la recherche du bon contrat avant de limiter la main à SA.');
+    }
+    if(c==='red.competitif'&&steps.length===4&&steps[0][0]==='Vous'&&steps[2][0]==='Partenaire'&&steps[3][0]==='Adversaire'){
+      const opening=bid(steps[0][1]),resp=bid(steps[2][1]);
+      if(opening&&resp&&major(resp[2])){
+        if(choice==='Passe'&&steps[3][1]==='Passe'&&/forcing.*tour|redemande obligée|devez (?:reparler|redemander)/i.test(t))
+          return H('forcing','pn2-competitive-rebid-mandatory','Le changement de couleur est forcing un tour et le quatrième joueur a passé ; le corrigé impose une redemande.','high');
+        if(x.answer==='Passe'&&z&&z[2]===resp[2]&&len(resp[2])<4&&/sans fit|trois Cœurs seulement|trois Piques seulement|aucun fit/i.test(t))
+          return H('fit','pn2-competitive-rebid-short-support','La redemande libre ne justifie pas d’inventer le soutien de quatre cartes dans la majeure du répondant.','high');
+        if(x.answer==='Passe'&&z&&z[2]===opening[2]&&len(opening[2])===4&&/réguliers|régulière/i.test(t))
+          return H('distribution','pn2-competitive-rebid-short-repeat','La couleur d’ouverture n’est que quatrième ; le corrigé ne justifie pas sa répétition libre.');
+        if(a&&a[2]===resp[2]&&len(resp[2])>=4&&z&&z[2]!==resp[2]&&/fit majeur|fit.*établi|cacheraient le fit/i.test(t))
+          return H('fit','pn2-competitive-rebid-show-fit','Le fit majeur est établi par les quatre cartes du répondant et les quatre cartes de l’ouvreur ; la redemande choisie ne le montre pas.');
+        if(['Contre','Surcontre'].includes(x.answer)&&len(resp[2])===3&&/soutien.*(exactement|trois)|exactement trois/i.test(t)&&z&&z[2]===resp[2])
+          return H('convention','pn2-competitive-support-double','Le contre ou surcontre de soutien indique précisément trois cartes ; le soutien direct de ce cas en promettrait quatre.','high');
+      }
+    }
+    if(c==='contre.base'&&steps.length===3&&steps[0][0]==='Adversaire'&&steps[1][1]==='Contre'&&steps[2][1]==='Passe'&&p&&z){
+      if(x.answer==='1SA'&&choice==='2SA'&&h<=9&&/7[–-]9 H/.test(t))
+        return H('force','pn2-takeout-sa-zone','Le corrigé situe la réponse naturelle à 1SA dans la zone de 7–9 H ; le saut demanderait davantage de force.');
+      if(x.answer==='2SA'&&choice==='1SA'&&h>=10&&/invit|proposit/i.test(t))
+        return H('force','pn2-takeout-sa-invite','Le corrigé retient une invitation à la manche à SA ; 1SA limiterait excessivement cette main.');
+      if(a&&major(a[2])&&a[1]==='1'&&len(a[2])===4&&minor(z[2])&&len(z[2])===4&&/majeure.*(?:plus bas|priorit|économique)|négligerait la majeure/i.test(t))
+        return H('priorite','pn2-takeout-major-priority','À longueur égale, le corrigé privilégie la majeure économique plutôt que la mineure.');
+    }
+    if(c==='michaels.defense'&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&p&&a&&z&&/cue.bid/i.test(t)){
+      const ob=bid(first[1][1]);
+      // Ces deux accords sont documentés dans le corrigé lui-même.
+      if(ob&&ob[2]==='SA'&&ob[1]==='2'&&p[2]==='♠'&&/bicolore mineur/.test(x.auction[1])){
+        if(x.answer==='3♣'&&choice==='3♦'&&len('♠')>=4&&/second.*longue Cœur/i.test(t))return H('convention','pn2-michaels-cuebid-order','Le premier cue-bid montre le fit Pique forcing de manche ; le second décrit les Cœurs.','high');
+        if(x.answer==='3♦'&&choice==='3♥'&&len('♥')>=5&&/naturel.*ne transmettrait pas/i.test(t))return H('forcing','pn2-michaels-natural-vs-forcing','Le second cue-bid décrit les Cœurs en situation forcing de manche ; l’enchère naturelle ne transmet pas la même force.');
+      }
+      if(ob&&p[2]==='♥'&&ob[2]==='♥'&&ob[1]==='2'&&x.answer==='2♠'&&choice==='3♣'&&/second.*(?:Carreaux|♦)|second.*cue.bid.*Carreaux/i.test(t))
+        return H('convention','pn2-michaels-heart-cuebid-order','Le premier cue-bid disponible soutient les Cœurs ; le second montre la quatrième couleur, Carreau. L’ordre est celui des enchères disponibles.','high');
+      if(ob&&p[2]==='♦'&&ob[2]==='♦'&&ob[1]==='2'&&((x.answer==='2♥'&&choice==='2♠')||(x.answer==='2♠'&&choice==='2♥'))&&/fit Carreau|soutien Carreau/i.test(t))
+        return H('convention','pn2-michaels-diamond-cuebid-order','Sur ce Michaël majeur, 2♥ montre le fit Carreau forcing de manche ; 2♠ annonce les Trèfles avec force de manche.','high');
+    }
     return d;
   }
   return Object.freeze({schema,diagnose});

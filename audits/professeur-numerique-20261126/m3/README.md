@@ -25,3 +25,6 @@ Les deux HOLD explicites sont neutralisés dans diagnose(), même si une règle 
 
 ## Reprise après interruption de conversation
 Base de reprise : 592f55435c82574658cb4d616d7f4971735f6948. 161 options auparavant indéterminées deviennent des hypothèses par 14 règles contextuelles, sans aucun changement aux sorties antérieures correctes, diagnostiquées ou en HOLD. Couverture : 2476/5637 ; 3161 unknown. Les sept patches restent inchangés. 14 fixtures nouvelles, contrôle des cas modifiés et réexécution des deux suites CJS dans V8. La revue qualitative intégrale et la recette Node native restent ouvertes ; accès Git local impossible (DNS). Aucune fusion ni publication.
+
+## Deuxième passe de reprise
+Base e178be17ada1317fa3321d6fa2f176577c616704. 90 hypothèses nouvelles via 24 règles contextuelles, aucune sortie précédente correcte ou hypothèse modifiée. Résultat : 2566 hypothèses et 3071 unknown. Les accords de quatrième couleur et Michaël restent conditionnés par séquence, main et corrigé. Les deux tests CJS passent dans V8, sans recette native Node (DNS GitHub toujours indisponible). HOLD et sept patches inchangés. Revue qualitative non exhaustive.
