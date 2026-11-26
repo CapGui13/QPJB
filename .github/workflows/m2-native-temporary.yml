@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 31acfb40c4369db190cce7c5ed76eb04b9d83044
+          ref: 4f3f999d3a45c21ae55d72248e93dda86ef8ce69
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -23,11 +23,11 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          test "$(git rev-parse HEAD)" = 31acfb40c4369db190cce7c5ed76eb04b9d83044
+          test "$(git rev-parse HEAD)" = 4f3f999d3a45c21ae55d72248e93dda86ef8ce69
           node tests/durable-m2-native.cjs | tee m2-native-result.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: m2-native-31acfb4
+          name: m2-native-4f3f999
           path: m2-native-result.json
           if-no-files-found: warn
