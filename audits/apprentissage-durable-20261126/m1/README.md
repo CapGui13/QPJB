@@ -36,3 +36,13 @@ Le banc lit la base exacte via git show, fonctionne sans réseau sur checkout co
 Recette des 18 paires S180 et profils spécifiques non intégralement exécutée ; vérifier les compromis par profil, la stabilité de l'exposition et les mesures de latence. Les signaux de récupération sont des preuves indirectes ; la sélection ne démontre ni rétention humaine ni transfert réel. Aucun merge ni publication. Le coordinateur arbitre et raccorde.
 
 **MISSION DÉFINITIVEMENT TERMINÉE : NON** (recette comparative exhaustive non attestée).
+
+### Recette complémentaire sur la version durcie ec3a159
+
+S20 : 6 profils × 3 graines (18 paires, 7 200 réponses cumulées avant/après), données par graine dans banc-s20-*.json. Aucun écart S1–3, violation d'éligibilité, famille dupliquée, séance courte, dépassement Passe ou baisse du nombre de familles. Ciblages 18→53 (+35). Détail par profil : autonome 0→0, intermédiaire 1→6, faible 13→39, cible 3→5, aide 1→3, Passe 0→0. Des variations de preuves existent malgré l'absence de HOLD au seuil du banc.
+
+S65 : six profils spécifiques, graine 47, dans banc-s65-confusions.json (7 800 réponses avant/après). Ciblages : force 14→34 ; longueur 4→12 ; fit 11→29 ; forcing 0→5 ; convention 9→18 ; compétition 0→0. Total 38→98. Zéro violation, couverture des 22 thèmes. HOLD explicite force S20 : 17→13 concepts avec preuves multi-familles/multi-séances, au-delà du seuil de tolérance. Fit S65 : 67→62 preuves, familles 558→551, sous le seuil d'alerte du banc mais à surveiller. Compétition : aucune occasion admissible dans la trajectoire, pas de bonus forcé. Ne pas présenter ces résultats comme preuve de maîtrise ou d'amélioration humaine.
+
+S180 récupération et difficulté, graine 47, dans banc-recuperation-47.json : ciblages 7→31, familles 1534→1526 (-0,52 %), concepts 99→99, thèmes 22→22, preuve autonome 97→95, erreurs 395→401, zéro violation, S1–3 exactes. Scénario de difficulté ajustée aux séances 26 et 46, changement de probabilité d'erreur à S41. A S180, signaux récurrents/forts 2→0, récupération 1→1. Indicateurs synthétiques uniquement.
+
+Reste : 17 des 18 paires standards S180 non exécutées, et la paire intermédiaire 47 doit être rejouée sur la version durcie (seule l'ancienne a S180). 6 profils spécifiques testés à S65, non à S180 ; le profil récupération est à S180 sur version durcie. HOLD force S20 à résoudre, et audit du compromis de la preuve autonome. Le statut demeure NON. Les tests de contrat de 25319 assertions ont été pérennisés dans tests/durable-m1-contract.cjs ; l'environnement V8 a exécuté le corps et les contrôles complémentaires équivalents, pas Node natif. Aucun merge.
