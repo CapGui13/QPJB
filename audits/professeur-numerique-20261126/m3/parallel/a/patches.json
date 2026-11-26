@@ -1,0 +1,296 @@
+[
+  {
+    "id": "SEF-005-1",
+    "oldChoices": [
+      "2SA",
+      "1SA",
+      "Passe",
+      "1♦"
+    ],
+    "newChoices": [
+      "2SA",
+      "1SA",
+      "2♣",
+      "1♦"
+    ],
+    "reason": "Remplacer Passe, très peu discriminant avec 20–21 H, par l'ouverture forte voisine 2♣ (22–23 H réguliers après relais). Les deux autres distracteurs et la bonne réponse sont conservés.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "20 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-005-1",
+          "concept": "ouv.sa2",
+          "choice": "1SA",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      },
+      {
+        "choice": "2♣",
+        "status": "hypothesis",
+        "category": "force",
+        "confidence": "high",
+        "reason": "20 H réguliers : 2♣ suivi de 2SA décrit 22–23 H, alors que la zone de 2SA direct est 20–21 H.",
+        "evidence": {
+          "id": "SEF-005-1",
+          "concept": "ouv.sa2",
+          "choice": "2♣",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "m3-a-patch-strong-opening",
+          "source": "M3-A"
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-005-1",
+          "concept": "ouv.sa2",
+          "choice": "1♦",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N021-2",
+    "oldChoices": [
+      "Passe",
+      "2SA",
+      "1♦",
+      "1SA"
+    ],
+    "newChoices": [
+      "2♣",
+      "2SA",
+      "1♦",
+      "1SA"
+    ],
+    "reason": "Remplacer Passe, très peu discriminant avec 20–21 H, par l'ouverture forte voisine 2♣ (22–23 H réguliers après relais). Les deux autres distracteurs et la bonne réponse sont conservés.",
+    "diagnostics": [
+      {
+        "choice": "2♣",
+        "status": "hypothesis",
+        "category": "force",
+        "confidence": "high",
+        "reason": "20 H réguliers : 2♣ suivi de 2SA décrit 22–23 H, alors que la zone de 2SA direct est 20–21 H.",
+        "evidence": {
+          "id": "SEF-N021-2",
+          "concept": "ouv.sa2",
+          "choice": "2♣",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "m3-a-patch-strong-opening",
+          "source": "M3-A"
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N021-2",
+          "concept": "ouv.sa2",
+          "choice": "1♦",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      },
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "20 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N021-2",
+          "concept": "ouv.sa2",
+          "choice": "1SA",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N021-1",
+    "oldChoices": [
+      "2SA",
+      "1SA",
+      "1♦",
+      "Passe"
+    ],
+    "newChoices": [
+      "2SA",
+      "1SA",
+      "1♦",
+      "2♣"
+    ],
+    "reason": "Remplacer Passe, très peu discriminant avec 20–21 H, par l'ouverture forte voisine 2♣ (22–23 H réguliers après relais). Les deux autres distracteurs et la bonne réponse sont conservés.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "21 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N021-1",
+          "concept": "ouv.sa2",
+          "choice": "1SA",
+          "expected": "2SA",
+          "h": 21,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N021-1",
+          "concept": "ouv.sa2",
+          "choice": "1♦",
+          "expected": "2SA",
+          "h": 21,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      },
+      {
+        "choice": "2♣",
+        "status": "hypothesis",
+        "category": "force",
+        "confidence": "high",
+        "reason": "21 H réguliers : 2♣ suivi de 2SA décrit 22–23 H, alors que la zone de 2SA direct est 20–21 H.",
+        "evidence": {
+          "id": "SEF-N021-1",
+          "concept": "ouv.sa2",
+          "choice": "2♣",
+          "expected": "2SA",
+          "h": 21,
+          "shape": [
+            3,
+            2,
+            5,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "m3-a-patch-strong-opening",
+          "source": "M3-A"
+        }
+      }
+    ]
+  }
+]
