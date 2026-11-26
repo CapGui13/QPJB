@@ -15,7 +15,7 @@
   return candidates.flatMap(q=>{
    const c=concept(q);if(!c)return [];
    let delta=0,reason='';
-   if(session===1&&c==='ouv.mineure'){
+   if(session===2&&c==='ouv.mineure'){
     const t=tie(q),already=chosen.some(x=>concept(x)===c&&tie(x)===t&&x.answer===q.answer);
     if(t&&!already){delta=100;reason='meilleure_mineure_egalite';}
     else if(already){delta=-30;reason='contraste_meilleure_mineure';}
