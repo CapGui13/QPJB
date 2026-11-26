@@ -10,6 +10,7 @@ check(m.rank(ctx)[0].delta<m.rank(ctx)[1].delta,'contraste utile');
 check(m.rank({...ctx,session:1}).length===0,'S1 préservée');
 check(m.rank({...ctx,history:{journal:[]}}).every(r=>r.delta===0),'absence de preuve');
 check(m.rank({...ctx,category:'weakness'}).every(r=>r.delta===0),'rappel lacune');
+check(m.rank({...ctx,history:{...ctx.history,micros:{'ouv:passe':{score:-1}}}}).every(r=>r.delta===0),'fragilité Passe S1–5');
 check(m.rank({...ctx,forcedReason:'rappel_erreur_aide'}).length===0,'rappel explicite');
 check(m.rank({...ctx,history:{active:{}}}).length===0,'reprise');
 const debt={...ctx,session:15,candidates:[pass,minor],baselineId:'m',selected:[],category:'maintenance',objective:{concepts:['ouv.passe']},history:{journal:[{mode:'parcours',session:2,answers:[{id:'p',result:'wrong'}]},{mode:'parcours',session:14,answers:[{id:'m',result:'correct'}]}]}};

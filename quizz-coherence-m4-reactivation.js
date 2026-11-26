@@ -27,7 +27,9 @@
    const c=meta[id]?.concept,s=r?.assessment?.lastSession;
    if(c&&Number.isInteger(s)&&s>=0&&s+1<ctx.session)last.set(c,Math.max(last.get(c)||0,s+1));
   }
-  const fragile=!observations||clean*2<observations;
+  const passFragile=ctx.session<=5&&((ctx.history?.micros?.['ouv:passe']?.score||0)<0||
+    (ctx.history?.journal||[]).some(e=>e.mode==='parcours'&&e.session<ctx.session&&ctx.session-e.session<=2&&(e.answers||[]).some(a=>meta[a.id]?.concept==='ouv.passe'&&!independent(a))));
+  const fragile=!observations||clean*2<observations||passFragile;
   const baseline=byId.get(ctx.baselineId),baselineConcept=baseline&&meta[baseline.id]?.concept;
   const gap=c=>last.has(c)?ctx.session-last.get(c):0;
   const allowed=new Set(Array.isArray(ctx.objective?.concepts)?ctx.objective.concepts:[]);
