@@ -4225,6 +4225,106 @@
       }
     ]
   },
+  "extension": {
+    "additionalResponses": 6200,
+    "guardAssertions": 131,
+    "identityPairs": [
+      {
+        "key": "intermediaire/47/65/ordinary",
+        "responses": 1300,
+        "universeKey": "69e9f2f0ededf724",
+        "checkpoints": [
+          {
+            "session": 20,
+            "commonN": 41,
+            "delta": 0,
+            "review": []
+          },
+          {
+            "session": 65,
+            "commonN": 88,
+            "delta": 0,
+            "review": []
+          }
+        ],
+        "historicalReplay": null
+      },
+      {
+        "key": "cible/47/65/semantic",
+        "responses": 1300,
+        "universeKey": "69e9f2f0ededf724",
+        "checkpoints": [
+          {
+            "session": 20,
+            "commonN": 40,
+            "delta": 0,
+            "review": []
+          },
+          {
+            "session": 65,
+            "commonN": 89,
+            "delta": 0,
+            "review": []
+          }
+        ],
+        "historicalReplay": null
+      },
+      {
+        "key": "intermediaire/47/180/ordinary",
+        "responses": 3600,
+        "universeKey": "69e9f2f0ededf724",
+        "checkpoints": [
+          {
+            "session": 20,
+            "commonN": 41,
+            "delta": 0,
+            "review": []
+          },
+          {
+            "session": 65,
+            "commonN": 88,
+            "delta": 0,
+            "review": []
+          },
+          {
+            "session": 153,
+            "commonN": 77,
+            "delta": 0,
+            "review": []
+          },
+          {
+            "session": 180,
+            "commonN": 74,
+            "delta": 0,
+            "review": []
+          }
+        ],
+        "historicalReplay": {
+          "identicalEvents": true,
+          "checkedMetrics": [
+            "families",
+            "concepts",
+            "proof",
+            "independent",
+            "retention7",
+            "retention30",
+            "transferProof",
+            "debt",
+            "coreDebt",
+            "help",
+            "corrected",
+            "wrong",
+            "skipped",
+            "ineligible",
+            "duplicates",
+            "short",
+            "variety"
+          ],
+          "changes": []
+        }
+      }
+    ]
+  },
   "registry": [
     {
       "unit": "autonome/11",
@@ -7717,6 +7817,120 @@
       "scope": "environment",
       "disposition": "HOLD",
       "reason": "V8 wall time and serialized size measured; process metrics require native checkout"
+    },
+    {
+      "unit": "paired-guard-adversarial",
+      "scope": "unit",
+      "disposition": "executed",
+      "reason": "Strict pair validation and common unseen-family cohort; rerun historical unit suite",
+      "assertions": 131,
+      "historicalAssertions": 4367
+    },
+    {
+      "unit": "identity-intermediaire/47/65/ordinary",
+      "scope": "pair",
+      "disposition": "executed",
+      "reason": "Frozen reference compared with itself; same unseen exercises; no candidate gain claimed",
+      "key": "intermediaire/47/65/ordinary",
+      "responses": 1300,
+      "universeKey": "69e9f2f0ededf724",
+      "checkpoints": [
+        {
+          "session": 20,
+          "commonN": 41,
+          "delta": 0,
+          "review": []
+        },
+        {
+          "session": 65,
+          "commonN": 88,
+          "delta": 0,
+          "review": []
+        }
+      ],
+      "historicalReplay": null
+    },
+    {
+      "unit": "identity-cible/47/65/semantic",
+      "scope": "pair",
+      "disposition": "executed",
+      "reason": "Frozen reference compared with itself; same unseen exercises; no candidate gain claimed",
+      "key": "cible/47/65/semantic",
+      "responses": 1300,
+      "universeKey": "69e9f2f0ededf724",
+      "checkpoints": [
+        {
+          "session": 20,
+          "commonN": 40,
+          "delta": 0,
+          "review": []
+        },
+        {
+          "session": 65,
+          "commonN": 89,
+          "delta": 0,
+          "review": []
+        }
+      ],
+      "historicalReplay": null
+    },
+    {
+      "unit": "identity-intermediaire/47/180/ordinary",
+      "scope": "pair",
+      "disposition": "executed",
+      "reason": "Frozen reference compared with itself; same unseen exercises; no candidate gain claimed",
+      "key": "intermediaire/47/180/ordinary",
+      "responses": 3600,
+      "universeKey": "69e9f2f0ededf724",
+      "checkpoints": [
+        {
+          "session": 20,
+          "commonN": 41,
+          "delta": 0,
+          "review": []
+        },
+        {
+          "session": 65,
+          "commonN": 88,
+          "delta": 0,
+          "review": []
+        },
+        {
+          "session": 153,
+          "commonN": 77,
+          "delta": 0,
+          "review": []
+        },
+        {
+          "session": 180,
+          "commonN": 74,
+          "delta": 0,
+          "review": []
+        }
+      ],
+      "historicalReplay": {
+        "identicalEvents": true,
+        "checkedMetrics": [
+          "families",
+          "concepts",
+          "proof",
+          "independent",
+          "retention7",
+          "retention30",
+          "transferProof",
+          "debt",
+          "coreDebt",
+          "help",
+          "corrected",
+          "wrong",
+          "skipped",
+          "ineligible",
+          "duplicates",
+          "short",
+          "variety"
+        ],
+        "changes": []
+      }
     }
   ]
 }
