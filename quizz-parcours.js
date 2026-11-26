@@ -7,6 +7,7 @@
     sessionPlan=require('./quizz-session-plan.js');
   }
   if(!sessionPlan||sessionPlan.schema!=='QPJB_SESSION_PLAN_V1')throw Error('QPJB session plan unavailable');
+  if(root?.document&&!sessionPlan.pedagogyReady)throw Error('QPJB pedagogical modules unavailable');
   const api=factory(prerequis,sessionPlan);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   if(root){
@@ -823,7 +824,13 @@
       if(balanced.length)candidates=balanced;
       else if(s>0&&!priority&&pool.some(q=>distinct(q)&&
         (unseen.length?novelFamily(q):true)&&(themes[q.theme]||0)<4))return false;
-      const ranked=candidates.map(q=>({q,v:score(q,category)}));
+      // Les trois phases n'interviennent qu'après les filtres existants.
+      // Aucun bonus ne peut lever un prérequis, un quota ou un rappel explicite.
+      const usePolicy=!explicitRecall&&(s>=20||!priority||(s===1&&forcedReason==='equilibre_ouvertures'));
+      const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
+        new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
+          history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
+      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
