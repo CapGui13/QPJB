@@ -35,6 +35,10 @@ return (function factory(byId,signature){
     const validShape=Array.isArray(shape)&&shape.length===4&&shape.every(n=>Number.isInteger(n)&&n>=0)&&shape.reduce((s,n)=>s+n,0)===13;
     if(!validShape||!Number.isInteger(h))return unknown('Force ou distribution non exploitable.',{rule:'invalid-hand',choice,concept:c});
     const ev={id:x.id,concept:c,choice,expected:x.answer,h,shape:shape.slice(),auction:x.auction.slice(),assisted:!!assisted,hadFreeError:!!hadFreeError,offered:Array.isArray(x.choices)&&x.choices.includes(choice)};
+    // Les alternatives expressément défendables ne sont pas diagnostiquées :
+    // l'utilisateur peut avoir une raison bridge valable. Le score reste externe.
+    if((x.id==='SEF-L33-005'&&choice==='2♦')||(x.id==='V2-M1-031'&&choice==='1♦'))
+      return unknown('Le corrigé reconnaît explicitement une alternative défendable ; validation éditoriale nécessaire avant toute attribution.',{...ev,rule:'editorial-hold'});
     const H=(category,rule,reason,confidence='medium',facts={})=>({status:'hypothesis',category,reason,confidence,evidence:{...ev,rule,...facts}});
     const len=s=>shape[suits.indexOf(s)];
     const major=s=>s==='♠'||s==='♥';
@@ -309,6 +313,83 @@ return (function factory(byId,signature){
     }
     if(c==='chelem.controles'&&choice==='4SA'&&x.answer!=='4SA'&&/contrôle/.test(text)&&/prématuré|immédiat|manquant|lacune/.test(text))
       return H('contexte','slam-controls-before-keycards','Le corrigé souligne qu’un contrôle extérieur reste à préciser ; le Blackwood ne remplace pas cette vérification préalable.','medium');
+
+
+    if(!opp&&['mineur.base','majeur.base'].includes(c)&&first.length===1&&p0&&p0[1]==='1'&&!st.steps.some(s=>s[0]==='Vous'&&s[1]==='Passe')){
+      if(choice==='Passe'&&a&&h>=6&&/force de répondre|suffisent pour répondre|seuil de 11 H|force d.une réponse|assez pour répondre|vous atteignez le seuil/.test(text))
+        return H('force','response-obvious-threshold','Le corrigé confirme que la main possède les valeurs nécessaires à la réponse ; une sous-évaluation de ces valeurs est possible.','medium');
+      if(c==='mineur.base'&&a&&major(a[2])&&a[1]==='1'&&z&&z[2]===p0[2]&&minor(p0[2])&&len(a[2])>=4&&len(p0[2])<=3)
+        return H('fit','minor-response-insufficient-fit','La main ne détient pas le soutien mineur long recherché et possède une majeure quatrième annoncée par le corrigé.','medium');
+      if(c==='majeur.base'&&a&&major(a[2])&&a[1]==='1'&&z&&z[1]==='2'&&z[2]!==p0[2]&&z[2]!=='SA'&&h<11&&hl<12)
+        return H('force','response-premature-two-level','La réponse majeure au palier de un est disponible ; les valeurs de cette main sont sous le seuil du changement de couleur naturel au palier de deux étudié.','medium');
+    }
+    if(simpleResponderSA&&['second.base','roudi.choix','roudi.init'].includes(c)){
+      if(choice==='Passe'&&a&&a[2]===v0[2]&&a[1]==='2'&&len(v0[2])>=5&&h<=8&&/partielle|jouer bas|jouer la longue|non forcing/.test(text))
+        return H('distribution','responder-long-suit-partial','La majeure cinquième permet de proposer une partielle naturelle à la couleur ; Passe laisserait jouer 1SA. Ce choix dépend aussi de la qualité de la longue.','medium');
+      if(x.answer==='Passe'&&['2SA','3SA'].includes(choice)&&reg&&h<=8&&/main régulière|main 4|4–3–3–3/.test(text))
+        return H('force','responder-regular-stop','La force du répondant ne justifie pas une nouvelle proposition naturelle à SA dans ce cas.','medium');
+      if(a&&a[2]==='SA'&&z&&z[2]===v0[2]&&z[1]==='2'&&len(v0[2])===4&&reg&&/sans fit|seulement quatre|quatre.*seulement|main régulière|réguliers/.test(text))
+        return H('distribution','responder-regular-vs-repeat','La majeure ne comporte que quatre cartes ; la répétition naturelle au palier de deux ferait croire à une longueur supplémentaire.','high');
+    }
+    if(!opp&&['red.base','red.bicolore'].includes(c)&&first.length===2&&v0&&p0){
+      if(a&&a[2]==='SA'&&z&&z[1]==='1'&&major(z[2])&&z[2]!==p0[2]&&z[2]!==v0[2]&&len(z[2])<4)
+        return H('distribution','rebid-new-major-length','La nouvelle majeure au palier de un demande quatre cartes ; la main en détient moins.','high');
+      if(a&&a[2]===v0[2]&&z&&z[2]!==v0[2]&&z[2]!==p0[2]&&z[2]!=='SA'&&len(z[2])<4&&len(v0[2])>=6&&/répétition|répétez|sixième/.test(text))
+        return H('distribution','rebid-invented-second-suit','La seconde couleur naturelle proposée ne comporte pas quatre cartes ; le corrigé décrit au contraire la couleur sixième.','high');
+      if(a&&majorCall(p0)&&a[2]===p0[2]&&len(p0[2])>=4&&z&&z[2]===v0[2]&&/fit|atouts/.test(text))
+        return H('priorite','rebid-fit-before-repeat','Le fit majeur est acquis ; le soutien du corrigé est prioritaire sur la répétition de la couleur d’ouverture dans ce cas.','medium');
+    }
+    if(c==='reponse_inter.base'&&opp&&majorCall(p0)&&p0[1]==='2'&&/intervention/.test(text)){
+      if(a&&a[2]===p0[2]&&len(p0[2])>=3&&z&&z[2]==='SA'&&/fit|atouts/.test(text))
+        return H('fit','reply-two-level-overcall-fit','La majeure d’intervention et la longueur du répondant établissent le fit utilisé par le corrigé ; l’alternative à SA ne le décrit pas.','medium');
+      if(a&&a[2]===p0[2]&&len(p0[2])>=3&&choice==='Passe'&&/fit|atouts/.test(text))
+        return H('fit','reply-two-level-overcall-pass','Le corrigé soutient le partenaire au palier adapté au fit ; l’évaluation des ressources à l’atout est une piste pour distinguer Passe et soutien.','medium');
+    }
+    if(c==='reponse_inter.base'&&opp&&x.answer==='Passe'&&z&&z[2]==='SA'&&h<=4&&/force|ressources/.test(text))
+      return H('force','reply-overcall-too-weak-sa','Le corrigé relève le manque de valeurs pour répondre à SA après l’intervention ; la force est une piste.','medium');
+    if(c==='apres_inter.base'&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&p0){
+      if(x.answer==='Passe'&&h<=3&&hl<=4&&(choice==='Contre'||z&&z[1]==='2')&&/ne permettent|ne permet|ni un contre|manque de force/.test(text))
+        return H('force','competitive-insufficient-values','Le corrigé ne reconnaît pas assez de valeurs pour ce changement de couleur ou ce contre compétitif.','medium');
+      if(a&&a[2]===p0[2]&&majorCall(p0)&&len(p0[2])>=3&&z&&z[2]!==p0[2]&&z[2]!=='SA'&&len(z[2])<=4&&/soutien simple|fit/.test(text))
+        return H('priorite','competitive-fit-before-new-suit','Le fit majeur connu permet le soutien du corrigé ; l’alternative annonce une autre couleur sans ce soutien.','medium');
+      if(choice==='Contre'&&a&&a[1]==='1'&&major(a[2])&&len(a[2])>=5&&/Contre ne montre pas|Contre n.est pas/.test(text))
+        return H('competition','competitive-natural-vs-negative-double','Le corrigé annonce naturellement la majeure disponible ; le contre ne transmet pas la même information dans cette séquence.','medium');
+    }
+    if(['contre.base','contre.deux_faible'].includes(c)&&st.steps.some(s=>s[0]==='Partenaire'&&s[1]==='Contre')&&st.steps.at(-1)?.[0]==='Adversaire'&&st.steps.at(-1)?.[1]==='Passe'){
+      if(choice==='Passe'&&x.answer!=='Passe'&&/convertirait|transformerait|transformer.*pénalité|convertir.*pénalité/.test(text))
+        return H('competition','takeout-double-vs-penalty','Passe transformerait le contre d’appel en pénalité alors que le corrigé ne justifie pas cette transformation.','medium');
+      if(a&&major(a[2])&&len(a[2])>=4&&z&&z[2]==='SA'&&/majeure.*priorit|priorit.*majeure|majeure.*privilég|économique/.test(text))
+        return H('priorite','takeout-double-major-first','Le corrigé privilégie la majeure disponible dans la réponse au contre d’appel ; SA ne donne pas cette information.','medium');
+    }
+    if(c==='intervenir.base'&&first.length===1&&first[0][0]==='Adversaire'&&a&&a[2]!=='SA'&&len(a[2])>=5&&choice==='Passe'&&h>=11&&/naturel/.test(text))
+      return H('force','overcall-pass-values','Le corrigé estime que la force et la longue permettent l’intervention naturelle ; Passe peut relever d’une sous-évaluation de ces ressources, sans obligation générale d’intervenir.','medium');
+    if(c==='intervenir.base'&&first.length===1&&first[0][0]==='Adversaire'&&a&&minor(a[2])&&len(a[2])>=6&&choice==='Contre'&&/Contre d.appel ne décrirait|contre d.appel ne décrirait/.test(text))
+      return H('competition','minor-overcall-vs-double','Le contre d’appel ne décrit pas aussi directement la longue mineure du corrigé dans cette situation.','medium');
+    if(c==='reveil.base'&&first.length===1&&first[0][0]==='Adversaire'&&st.steps.filter(s=>s[1]==='Passe').length===2){
+      if(choice==='Passe'&&a&&a[2]!=='SA'&&len(a[2])>=5&&/réveil naturel/.test(text)&&/8[–-]13 HL|11[–-]13 HL/.test(text)&&! /sans faire|non impératif|pas une obligation|modestes/.test(text))
+        return H('contexte','balancing-position-pass','Le corrigé utilise la position de réveil et les valeurs de la longue ; le choix de passer peut correspondre à un seuil appliqué hors de ce contexte.','medium');
+    }
+    if(c==='michaels.reponse'&&a&&z&&a[2]!==z[2]&&a[2]!=='SA'&&z[2]!=='SA'&&pLast&&/Michaël|cue.bid/.test(text)&&/fit|atouts|préférence/.test(text)){
+      const op=first.find(s=>s[0]==='Adversaire'&&rank(s[1])>=0),ob=op&&bid(op[1]);
+      let two=null;
+      if(ob&&pLast[1]==='2'&&pLast[2]==='♦'&&minor(ob[2]))two=['♥','♠'];
+      else if(ob&&major(ob[2])&&pLast[1]==='2'&&pLast[2]===ob[2])two=[ob[2]==='♥'?'♠':'♥','♣'];
+      else if(ob&&major(ob[2])&&pLast[1]==='2'&&pLast[2]==='SA')two=['♣','♦'];
+      if(two&&two.includes(a[2])&&two.includes(z[2])&&len(a[2])>len(z[2])&&len(a[2])>=3&&/fit.*mieux|atouts|préférence/.test(text))
+        return H('fit','michaels-preference-length','Les deux couleurs du partenaire sont connues dans l’accord du cas ; la main soutient davantage celle choisie par le corrigé.','medium');
+      if(two&&two.includes(a[2])&&two.includes(z[2])&&len(a[2])===len(z[2])&&h<=7&&rank(x.answer)<rank(choice)&&/économique|moins chère/.test(text))
+        return H('niveau','michaels-equal-preference','À longueurs personnelles égales, le corrigé privilégie l’enchère économique de préférence ; les longueurs totales restent inconnues.','medium');
+    }
+    if(c==='barrage.reponse'&&p0&&p0[1]==='2'&&majorCall(p0)&&/deux faible|2 faible|ouverture faible|barrage/.test(text)){
+      if(x.answer==='Passe'&&h<=5&&z&&z[2]===p0[2]&&/prolongation|saut inutile|contrat.*suffit/.test(text))
+        return H('niveau','weak-two-unneeded-raise','Le corrigé s’arrête à la partielle déjà atteinte ; le soutien à un palier supérieur prolongerait le barrage sans justification suffisante dans ce cas.','medium');
+      if(a&&a[2]===p0[2]&&choice==='2SA'&&h<=8&&/prolong|barrage/.test(text))
+        return H('convention','weak-two-raise-vs-inquiry','Le soutien prolonge le barrage dans le corrigé ; le relais 2SA est une recherche constructive dans l’accord étudié.','medium');
+      if(x.answer==='2SA'&&z&&z[2]===p0[2]&&/relais/.test(text))
+        return H('convention','weak-two-inquiry-vs-raise','Le relais 2SA permet de préciser la qualité de l’ouverture avant de décider du contrat ; le soutien direct ne pose pas cette question.','medium');
+    }
+    if(c==='fortes.ouverture'&&st.steps.length===0&&choice==='3SA'&&x.answer!=='3SA'&&reg&&Math.max(shape[2],shape[3])<7)
+      return H('convention','gambling-opening-not-natural','Le 3SA d’ouverture gambling n’est pas une ouverture naturelle de main régulière très forte ; le cas ne possède pas la longue mineure requise.','high');
 
     // Relier une option au contraste explicite du corrigé, sans générer de corrigé
     // ni attribuer un raisonnement à l'élève. Les axes multiples restent unknown.
