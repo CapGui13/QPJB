@@ -257,5 +257,36 @@
     },
     "decision": "candidat V4 à valider sur la recette longue; V2 reste le seul candidat avec recette précédente complète et sans contre-exemple identifié."
   },
-  "scope": "Mesures synthétiques sur données réelles; aucun gain humain. Les observations V3 de disponibilité ne sont pas un visa de modification de prérequis. Les remplacements au sein d'un même concept ne constituent pas une amélioration de curriculum."
+  "scope": "Mesures synthétiques sur données réelles; aucun gain humain. Les observations V3 de disponibilité ne sont pas un visa de modification de prérequis. Les remplacements au sein d'un même concept ne constituent pas une amélioration de curriculum.",
+  "historical": {
+    "run": 45904248782,
+    "artifact": 15157188051,
+    "scope": "12 suites exécutées sur le moteur de production inchangé, checkout candidat V3; aucune modification des suites historiques.",
+    "passed": [
+      "quizz-parcours",
+      "quizz-parcours-lot-b",
+      "quizz-progression-selection",
+      "coherence-progression-m1-unit",
+      "coherence-progression-m3-rank",
+      "durable-integration-contract",
+      "durable-integration-evidence",
+      "quizz-prerequis",
+      "quizz-catalogue-live",
+      "quizz-progression-selection-assets"
+    ],
+    "failed": [
+      {
+        "suite": "coherence-progression-m2-policy",
+        "error": "catalogue non conforme (assertion historique cat.length!==1879)",
+        "path": "audits/coherence-progression-20261126/m2/bench.cjs:106"
+      },
+      {
+        "suite": "coherence-progression-m3-boundary",
+        "error": "unexpected require",
+        "path": "tests/coherence-progression-m3-bench.cjs:11",
+        "note": "Chargeur historique sans dépendances de la version actuelle."
+      }
+    ],
+    "disposition": "HOLD suites historiques à recaler sur leur référence figée par le coordinateur; aucun affaiblissement des assertions ni modification hors M1."
+  }
 }
