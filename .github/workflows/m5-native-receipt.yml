@@ -1,0 +1,69 @@
+name: M5 — recette native isolée
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/m5-native-receipt.yml'
+permissions:
+  contents: read
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: c2ded86b57bd9eda6006f3c085d298d6a86451a3
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Onze suites M5, SHA exact
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "c2ded86b57bd9eda6006f3c085d298d6a86451a3"
+          node --version
+          shopt -s nullglob
+          suites=(tests/durable-m5-*.cjs)
+          test "${#suites[@]}" -eq 11
+          mkdir -p /tmp/m5-receipt
+          for f in "${suites[@]}"; do
+            echo "::group::$f"
+            node "$f" 2>&1 | tee "/tmp/m5-receipt/$(basename "$f").log"
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m5-node-logs
+          path: /tmp/m5-receipt/
+  browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: c2ded86b57bd9eda6006f3c085d298d6a86451a3
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer Playwright
+        run: |
+          python -m pip install playwright==1.51.0
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Corpus complet, navigation réelle
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "c2ded86b57bd9eda6006f3c085d298d6a86451a3"
+          mkdir -p /tmp/m5-receipt
+          python audits/apprentissage-durable-20261126/m5/test-navigation-full.py --browser ${{ matrix.browser }} 2>&1 | tee /tmp/m5-receipt/browser.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m5-${{ matrix.browser }}-logs
+          path: /tmp/m5-receipt/
