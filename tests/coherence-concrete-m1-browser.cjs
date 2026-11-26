@@ -8,8 +8,9 @@ const html=read('quizz.html'),qs=JSON.parse(html.match(/<script id="training-dat
 const scripts=[...html.matchAll(/<script[^>]*src=["']\.\/((?:quizz|parcours)-[\w-]+\.js)\?[^"']+["'][^>]*>/g)].map(m=>m[1]).filter(x=>x!=='quizz-parcours.js');
 const {sourceFor}=require('./coherence-concrete-m1-bench.cjs');
 const raw=read('quizz-parcours.js'),injected=sourceFor(raw,true,false);
+const windowPolicy=process.env.QPJB_M1_POLICY==='window';
 const targeted=process.env.QPJB_M1_POLICY==='targeted';
-const fit=targeted||process.env.QPJB_M1_POLICY==='fit';
+const fit=windowPolicy||targeted||process.env.QPJB_M1_POLICY==='fit';
 const conditional=fit||process.env.QPJB_M1_POLICY==='conditional';
 const guarded=conditional||process.env.QPJB_M1_POLICY==='guarded';
 const reference=JSON.parse(read(process.env.QPJB_M1_REFERENCE||'audits/coherence-concrete-20261126/m1/s1-s5-paired.json'));
@@ -25,7 +26,8 @@ const reference=JSON.parse(read(process.env.QPJB_M1_REFERENCE||'audits/coherence
   if(conditional)await page.addScriptTag({content:read('quizz-coherence-m1-conditional.js')});
   if(fit)await page.addScriptTag({content:read('quizz-coherence-m1-fit.js')});
   if(targeted)await page.addScriptTag({content:read('quizz-coherence-m1-targeted.js')});
-  await page.addScriptTag({content:targeted?'window.curriculum=window.QPJBCoherenceM1Targeted;':fit?'window.curriculum=window.QPJBCoherenceM1Fit;':conditional?'window.curriculum=window.QPJBCoherenceM1Conditional;':guarded?'window.curriculum=window.QPJBCoherenceM1Guarded;':'window.curriculum=window.QPJBCoherenceCurriculum;'});
+  if(windowPolicy)await page.addScriptTag({content:read('quizz-coherence-m1-window.js')});
+  await page.addScriptTag({content:windowPolicy?'window.curriculum=window.QPJBCoherenceM1Window;':targeted?'window.curriculum=window.QPJBCoherenceM1Targeted;':fit?'window.curriculum=window.QPJBCoherenceM1Fit;':conditional?'window.curriculum=window.QPJBCoherenceM1Conditional;':guarded?'window.curriculum=window.QPJBCoherenceM1Guarded;':'window.curriculum=window.QPJBCoherenceCurriculum;'});
   for(const [side,source] of [['before',raw],['after',injected]]){
    await page.addScriptTag({content:source});
    for(const p of reference.results.filter(x=>(x.seed===47&&['autonome','faible','aide'].includes(x.profile))||(targeted&&x.seed===11&&['faible','aide'].includes(x.profile)))){
