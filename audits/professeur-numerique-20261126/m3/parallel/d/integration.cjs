@@ -10,7 +10,7 @@ function extendDiagnostic(baseDiagnose,data){
   if(typeof baseDiagnose!=='function'||data.schema!=='QPJB_M3_PARALLEL_D_V1')throw Error('Contrat de diagnostic incompatible');
   return function diagnose(input={}){
     const previous=baseDiagnose(input);
-    if(previous.status!=='unknown'||previous.evidence?.rule!=='ambiguous')return previous;
+    if(previous.status!=='unknown'||!['ambiguous','canonical-ambiguous-contrast'].includes(previous.evidence?.rule))return previous;
     const {exercise:x,choice}=input||{};
     if(!x||!Array.isArray(x.choices)||!x.choices.includes(choice))return previous;
     const record=Object.hasOwn(data.byId,x.id)?data.byId[x.id]:null;
