@@ -40,6 +40,13 @@ function smallPool(api,qs,meta){
     if(q)subset.push(q);
     if(subset.length===3)break;
   }
+  // A legacy state without evidence need not have three eligible rubrics.
+  // Fill the small pool only with distinct eligible real cases.
+  for(const q of qs){
+    if(subset.length===3)break;
+    if(q.answer!=='Passe'&&q.difficulty<=2&&meta.byId[q.id].requires.length===0&&
+      !subset.some(v=>(v.caseFamily||v.id)===(q.caseFamily||q.id))&&api.eligibility(q,state,qs).eligible)subset.push(q);
+  }
   check(subset.length===3,'Real small pool');
   const deck=api.start(state,subset);
   check(deck.length===3&&new Set(deck.map(q=>q.id)).size===3,'No invented fillers');
