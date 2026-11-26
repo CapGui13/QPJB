@@ -25,7 +25,7 @@ function instrument(source,req,curriculum,after){
  const anchor='const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));';
  const tail='return {eligibility,adaptiveDiagnostics,createForTests:';
  ok(source.split(anchor).length===2&&source.split(tail).length===2,'Exact base anchors');
- const extra='const m1Deltas=new Map(curriculum.rank({session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason}).map(r=>[r.id,r.delta]));\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));';
+ const extra='const m1Context={session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason};\n      const m1Deltas=new Map(curriculum.rank(m1Context).map(r=>[r.id,r.delta]));\n      const ranked=curriculum.prefer(m1Context).map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));';
  const diagnostic='return {eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,adaptiveDiagnostics,createForTests:';
  const src=(after?source.replace(anchor,extra):source).replace(tail,diagnostic);
  const m={exports:{}};new Function('module','require','curriculum',src)(m,req,curriculum);return m.exports;
@@ -52,9 +52,9 @@ function verifyEarly(deck,s){
 function run(api,peer,curriculum,meta,qs,profile,seed,horizon){
  const state=api.empty(),families=new Set(),ids=new Set(),concepts=new Set(),themes=new Set(),last=new Map(),first=new Map(),proof=new Map(),pending=new Map(),delays=[];
  const trace=[],checkpoints=[];let debt=0,conceptDebt=0,hard=0,mirrors=0,repeat=0,recalls=0,focus=0,focusSlots=0,wrongCount=0,assistCount=0;
- const start=Date.now();
+ const clock=()=>typeof performance!=='undefined'?performance.now():Date.now();const start=clock();
  for(let s=0;s<horizon;s++){
-   const begin=Date.now(),deck=api.start(state,qs),selection=state.active.selection,ms=Date.now()-begin;
+   const begin=clock(),deck=api.start(state,qs),selection=state.active.selection,ms=clock()-begin;
    ok(deck.length===10,'Short S'+(s+1));ok(new Set(deck.map(q=>q.id)).size===10&&new Set(deck.map(family)).size===10,'Duplicate S'+(s+1));
    same(selection.map(x=>x.id),deck.map(q=>q.id),'Selection alignment');
    ok(api.eligibilityBatch(deck,state,qs).every(v=>v.eligible),'Eligibility S'+(s+1));verifyEarly(deck,s);
@@ -82,7 +82,7 @@ function run(api,peer,curriculum,meta,qs,profile,seed,horizon){
    trace.push({session:s+1,objective:p?.title||null,focusCount:n,target:p?.target||null,conceptCounts:cs,ms,items});
    if(HORIZONS.includes(s+1)){
      const sorted=delays.slice().sort((a,b)=>a-b);
-     checkpoints.push({session:s+1,focus,focusSlots,ids:ids.size,families:families.size,concepts:concepts.size,themes:themes.size,proof:[...proof.values()].filter(x=>x.families.size>=2&&x.sessions.size>=2).length,debt,conceptDebt,hard,mirrors,repeat,recalls,medianRecall:sorted.length?sorted[Math.floor((sorted.length-1)/2)]:null,wrongCount,assistCount,first:Object.fromEntries(first),ms:Date.now()-start});
+     checkpoints.push({session:s+1,focus,focusSlots,ids:ids.size,families:families.size,concepts:concepts.size,themes:themes.size,proof:[...proof.values()].filter(x=>x.families.size>=2&&x.sessions.size>=2).length,debt,conceptDebt,hard,mirrors,repeat,recalls,medianRecall:sorted.length?sorted[Math.floor((sorted.length-1)/2)]:null,wrongCount,assistCount,first:Object.fromEntries(first),ms:clock()-start});
    }
  }
  return {trace,checkpoints};
