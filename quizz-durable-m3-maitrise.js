@@ -16,7 +16,7 @@
      if(!obj(s)||s.version!==1||!n(s.completed)||raw.summary?.completedSessions!==s.completed)return {};
      return s;
    }
-   return raw;
+   return own(raw,"version")&&raw.version!==1?{}:raw;
  }
  function exerciseIndex(exercises,metadataById){
    const map=new Map(),bad=new Set();
@@ -67,7 +67,7 @@
        if(ambiguous){s.invalid++;continue;}
        const clean=a.result==="correct"&&a.assisted===false&&a.hadFreeError===false&&normalize(a.choice)===normalize(q.answer)&&
          (typeof a.firstGuess!=="string"||normalize(a.firstGuess)===normalize(q.answer));
-       const kind=clean?"autonomous":a.result==="skipped"?"skipped":a.result==="wrong"?"wrong":a.hadFreeError===true?"corrected":a.assisted===true?"assisted":"uncertain";
+       const kind=clean?"autonomous":a.result==="skipped"?(a.hadFreeError===true?"skipped_after_error":"skipped"):a.result==="wrong"?"wrong":a.hadFreeError===true?"corrected":a.assisted===true?"assisted":"uncertain";
        const r={id:q.id,family:q.family,session:event.session,eventIndex:index,kind,timeMs:counts.clockRollback?null:time};
        if(isAssessment){s.observations.push(r);if(!allById.has(q.id))allById.set(q.id,[]);allById.get(q.id).push(r);}
        else s.practice.push(r);
@@ -84,7 +84,7 @@
    const concepts={};
    function latest(rows){return rows.length?rows[rows.length-1]:null;}
    for(const [k,s] of slots){
-     const assessed=s.observations,clean=assessed.filter(r=>r.kind==="autonomous"),weak=assessed.filter(r=>["wrong","assisted","corrected"].includes(r.kind));
+     const assessed=s.observations,clean=assessed.filter(r=>r.kind==="autonomous"),weak=assessed.filter(r=>["wrong","assisted","corrected","skipped_after_error"].includes(r.kind));
      const lastWeak=weak.length?Math.max(...weak.map(r=>r.session)):null;
      const uncertain=assessed.filter(r=>r.kind==="uncertain");
      // A weak or uncertain observation in a session prevents a clean concept-level session.
@@ -97,8 +97,8 @@
      const fragile=lastWeak!==null&&!multi;
      const stable=multi&&families.size>=3&&sessions.size>=3;
      const timed=recovery.filter(r=>r.timeMs!==null);
-     let best=null,first=null;
-     // Timestamp is completion only. Require different completed sessions and families.
+     let best=null,sameFamilyRecall=null;
+     // Timestamp is completion only. Require different completed sessions and families for generalization.
      // Earliest by family lets us avoid a quadratic scan of a long history.
      const earliest=new Map();
      for(const r of timed){
@@ -110,14 +110,15 @@
        if(candidate&&(!best||r.timeMs-candidate.timeMs>best.intervalMs)){
          best={from:candidate,to:r,intervalMs:r.timeMs-candidate.timeMs};
        }
-       if(!earliest.has(r.family))earliest.set(r.family,r);
-       if(first===null)first=r;
+       const same=earliest.get(r.family);
+       if(same&&same.session<r.session&&(!sameFamilyRecall||r.timeMs-same.timeMs>sameFamilyRecall.intervalMs))sameFamilyRecall={from:same,to:r,intervalMs:r.timeMs-same.timeMs};
+       if(!same)earliest.set(r.family,r);
      }
      const delay=best?best.intervalMs:null;
-     const retentionStatus=counts.clockRollback||now===null||timed.length<2?"unknown":delay===null?"not_demonstrated":delay>=30*DAY?"observed_30d":delay>=7*DAY?"observed_7d":delay>=DAY?"observed_1d":"same_day_only";
-     const last=latest(assessed),lastPractice=latest(s.practice);
-     const recent=last&&last.kind!=="skipped"?last:latest(assessed.filter(r=>r.kind!=="skipped"));
-     // A skip never postpones a review; consolidation is visible but never resets the evaluation clock.
+     const retentionStatus=counts.clockRollback||now===null||timed.length<2?"unknown":delay===null?"not_demonstrated":delay>=30*DAY?"observed_30d":delay>=7*DAY?"observed_7d":delay>=DAY?"observed_1d":"less_than_24h";
+     const lastPractice=latest(s.practice);
+     const recent=latest(assessed.filter(r=>!["skipped","uncertain"].includes(r.kind)))??assessed[0]??null;
+     // A skip or uncertain answer never postpones a review; a first exposure can trigger one.
      const oldSession=s.legacy.length?Math.max(...s.legacy.map(r=>r.session)):null;
      const lastSession=recent?.session??oldSession;
      const level=fragile?0:retentionStatus==="observed_30d"&&stable?4:retentionStatus==="observed_7d"&&stable?3:multi?2:clean.length?1:0;
@@ -127,9 +128,13 @@
      const timeDue=dueAt!==null&&now!==null?now>=dueAt:null;
      const sessionDue=dueSession!==null&&completed!==null?completed>=dueSession:null;
      const reviewDue=lastSession===null?null:timeDue===true||sessionDue===true?true:timeDue===false||sessionDue===false?false:null;
+     const unresolvedWeakFamilies=[...new Set(weak.map(r=>r.family))].filter(f=>{
+       const lastFailure=Math.max(...weak.filter(r=>r.family===f).map(r=>r.session));
+       return !usable.some(r=>r.family===f&&r.session>lastFailure);
+     });
      const status=!s.exposed.size?"unobserved":!clean.length?"exposed":fragile?"fragile":stable?"multi_family_multi_session":multi?"multi_family_multi_session":"first_autonomous";
      concepts[k]={concept:k,evidence:{status,exposureIds:[...s.exposed],legacyExposure:s.legacy,assessments:assessed,practice:s.practice,autonomous:clean.length,firstAutonomous:clean[0]??null,historicalFamilies:[...historicalFamilies],historicalSessions:[...historicalSessions],currentFamilies:[...families],currentSessions:[...sessions],invalidObservations:s.invalid},
-       fragile, recovery:{lastWeakSession:lastWeak,observed:lastWeak!==null&&multi,proofs:recovery},retention:{status:retentionStatus,intervalMs:delay,pair:best,clock:"session_completion_only",lastAssessmentTimeMs:recent?.timeMs??null,ageMs:recent?.timeMs!=null&&now!==null?now-recent.timeMs:null},
+       fragile, recovery:{lastWeakSession:lastWeak,observed:lastWeak!==null&&multi,unrecheckedWeakFamilies:unresolvedWeakFamilies,proofs:recovery},retention:{status:retentionStatus,intervalMs:delay,pair:best,sameFamilyRecall,clock:"session_completion_only",lastAssessmentTimeMs:recent?.timeMs??null,ageMs:recent?.timeMs!=null&&now!==null?now-recent.timeMs:null},
        discrimination:{status:"not_demonstrated",pairs:[]},transfer:{status:"not_demonstrated",pairs:[],reinvestment:[]},
        reviewDue,review:{dueAtMs:dueAt,dueSession,days,sessionInterval,timeDue,sessionDue,overdueMs:timeDue?Math.min(30*DAY,now-dueAt):0,lastPractice:lastPractice??null},
        reason:!s.exposed.size?"Aucune observation exploitable.":fragile?"Difficulté observée ; récupération multi-familles et multi-séances non établie.":multi?"Réussites autonomes sur plusieurs familles et séances ; la maîtrise n’est pas certaine.":clean.length?"Réussite autonome observée ; généralisation non établie.":"Exposition uniquement ; pas de preuve autonome.",
