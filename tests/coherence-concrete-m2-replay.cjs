@@ -133,6 +133,14 @@ function pair(sources,mod,profile,seed,horizon){
   const a=after.rows[i],sameSet=r.ids.slice().sort().join()===a.ids.slice().sort().join();
   return {session:r.session,sameSet,sameOrder:r.ids.join()===a.ids.join(),historicalIds:r.ids,candidateIds:a.ids};
  });
+ const localRegressions=[];
+ for(let i=0;i<horizon;i++){
+  const b=before.rows[i],a=after.rows[i];
+  for(const key of [...mod.HARD,...mod.SOFT]){
+   const x=b.metricsBefore?.[key],y=a.metricsAfter?.[key];
+   if(Number.isFinite(x)&&Number.isFinite(y)&&y>x)localRegressions.push({session:i+1,key,before:x,after:y,ids:a.ids,sameSet:comparison[i].sameSet,historicalCandidate:a.metricsBefore[key]});
+  }
+ }
  const actualComparison=before.checkpoints.map((b,i)=>{
   const a=after.checkpoints[i],delta=Object.fromEntries(Object.keys(b.before).map(k=>[k,(a.after[k]||0)-(b.before[k]||0)]));
   const review=[...mod.HARD,...mod.SOFT].filter(k=>delta[k]>0).map(k=>'order:'+k);
@@ -143,7 +151,7 @@ function pair(sources,mod,profile,seed,horizon){
   if(changedSets)review.push('longitudinal-set-change');
   return {session:b.session,delta,changedSets,changedOrders:comparison.slice(0,b.session).filter(x=>!x.sameOrder).length,review};
  });
- return {base:BASE,profile,seed,horizon,before,after,comparison,actualComparison,changedSets:comparison.filter(r=>!r.sameSet).map(r=>r.session),changedOrders:comparison.filter(r=>!r.sameOrder).length};
+ return {base:BASE,profile,seed,horizon,before,after,comparison,actualComparison,localRegressions,changedSets:comparison.filter(r=>!r.sameSet).map(r=>r.session),changedOrders:comparison.filter(r=>!r.sameOrder).length};
 }
 function readable(r){
  const safe=x=>String(x??'').replace(/\|/g,'/').replace(/[\r\n]+/g,' ');
@@ -172,6 +180,6 @@ if(typeof require==='function'&&require.main===module){
   const r=pair(sources,mod,p,n,horizon);
   fs.writeFileSync(path.resolve(root,dest,p+'-'+n+'-S'+horizon+'.json'),JSON.stringify(r));
   fs.writeFileSync(path.resolve(root,dest,p+'-'+n+'-S'+horizon+'.md'),readable(r));
-  console.log(JSON.stringify({profile:p,seed:n,horizon,changedSets:r.changedSets,changedOrders:r.changedOrders,actualComparison:r.actualComparison,baseline:r.before.checkpoints,candidate:r.after.checkpoints}));
+  console.log(JSON.stringify({profile:p,seed:n,horizon,changedSets:r.changedSets,changedOrders:r.changedOrders,localRegressions:r.localRegressions,actualComparison:r.actualComparison,baseline:r.before.checkpoints,candidate:r.after.checkpoints}));
  }
 }
