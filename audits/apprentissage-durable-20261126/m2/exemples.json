@@ -22,6 +22,18 @@
       "role-encherisseur"
     ]
   },
+  "transfer-opening-threshold": {
+    "id": "SEF-006-2",
+    "choice": "Passe",
+    "concept": "ouv.majeure",
+    "family": "cas-006",
+    "feedback": null,
+    "checkNext": "Sur une autre ouverture, vérifie d’abord si les points H ou HL permettent de parler, puis décide de la couleur.",
+    "criteria": [
+      "force-ouverture",
+      "seuil-force"
+    ]
+  },
   "opening-minor-comparison": {
     "id": "SEF-009-1",
     "choice": "1♣",
@@ -93,16 +105,16 @@
       "majeure-reponse"
     ]
   },
-  "transfer-force-pass": {
+  "transfer-response-threshold": {
     "id": "SEF-020-3",
     "choice": "Passe",
     "concept": "mineur.base",
     "family": "cas-020",
     "feedback": null,
-    "checkNext": "Sur une autre main comparable, vérifie d’abord si tu as les valeurs nécessaires pour parler dans cette séquence, avant de chercher une enchère.",
+    "checkNext": "Sur une autre première réponse, vérifie la force minimale de réponse sans la confondre avec la force nécessaire pour ouvrir.",
     "criteria": [
-      "seuil-force",
-      "passe"
+      "force-reponse",
+      "seuil-force"
     ]
   },
   "transfer-shape-regular": {
@@ -117,17 +129,17 @@
       "regularite-sa"
     ]
   },
-  "transfer-level-same-suit": {
+  "transfer-support-level": {
     "id": "SEF-020-1",
     "choice": "3♣",
     "concept": "mineur.soutien",
     "family": "cas-020",
     "feedback": null,
-    "checkNext": "Sur une autre main avec cette même couleur, compare les deux paliers et ce que chacun promet, sans supposer qu’une enchère plus haute est toujours plus forte.",
+    "checkNext": "Sur une autre main de soutien, compte les atouts et évalue la force selon le fit ; vérifie le sens de chaque palier dans cette séquence.",
     "criteria": [
-      "palier",
-      "promesse-enchere",
-      "objectif-contrat"
+      "fit",
+      "zone-soutien",
+      "palier"
     ]
   },
   "transfer-level-sa": {
@@ -202,6 +214,19 @@
       "ordre-description"
     ]
   },
+  "transfer-level-same-suit": {
+    "id": "SEF-049-1",
+    "choice": "3♥",
+    "concept": "red.bicolore",
+    "family": "cas-049",
+    "feedback": null,
+    "checkNext": "Sur une autre main avec cette même couleur, compare les deux paliers et ce que chacun promet, sans supposer qu’une enchère plus haute est toujours plus forte.",
+    "criteria": [
+      "palier",
+      "promesse-enchere",
+      "objectif-contrat"
+    ]
+  },
   "transfer-priority-rebid": {
     "id": "SEF-051-1",
     "choice": "2♥",
@@ -214,8 +239,20 @@
       "economie-redemande"
     ]
   },
+  "transfer-response-two-over-one": {
+    "id": "SEF-N045-1",
+    "choice": "1SA",
+    "concept": "mineur.base",
+    "family": "cas-101",
+    "feedback": null,
+    "checkNext": "Sur une autre première réponse, vérifie le seuil du changement de couleur au palier de deux et distingue-le d’une réponse limitée à 1SA.",
+    "criteria": [
+      "force-reponse",
+      "seuil-deux-sur-un"
+    ]
+  },
   "response-major-short-fit": {
-    "id": "SEF-N061-3",
+    "id": "SEF-N061-2",
     "choice": "2♥",
     "concept": "majeur.base",
     "family": "cas-117",
@@ -250,6 +287,44 @@
       "deux-majeures"
     ]
   },
+  "transfer-overcall-values": {
+    "id": "SEF-V3-027-2",
+    "choice": "Passe",
+    "concept": "intervenir.base",
+    "family": "cas-227",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention naturelle, contrôle la force, la longueur et la qualité de la couleur ainsi que le palier disponible.",
+    "criteria": [
+      "force-intervention",
+      "longueur-couleur",
+      "qualite-couleur"
+    ]
+  },
+  "transfer-overcall-sa-vs-long-suit": {
+    "id": "SEF-V3-028-4",
+    "choice": "1SA",
+    "concept": "intervenir.base",
+    "family": "cas-228",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention, compare la zone du 1SA direct avec celle de l’intervention naturelle à la couleur ; vérifie aussi la tenue adverse.",
+    "criteria": [
+      "zone-intervention-sa",
+      "force-intervention",
+      "arret-adverse"
+    ]
+  },
+  "transfer-overcall-shape": {
+    "id": "SEF-V3-028-1",
+    "choice": "Contre",
+    "concept": "intervenir.base",
+    "family": "cas-228",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention, compare la longue que tu peux annoncer aux couleurs dans lesquelles le partenaire risque de répondre au Contre.",
+    "criteria": [
+      "distribution-intervention",
+      "contre-vs-couleur"
+    ]
+  },
   "transfer-context-direct": {
     "id": "SEF-V3-029-4",
     "choice": "Contre",
@@ -260,6 +335,43 @@
     "criteria": [
       "position-intervention",
       "contexte-competitif"
+    ]
+  },
+  "transfer-force-pass": {
+    "id": "SEF-V3-045-2",
+    "choice": "Passe",
+    "concept": "intervenir.base",
+    "family": "cas-245",
+    "feedback": null,
+    "checkNext": "Sur une autre main comparable, vérifie d’abord si tu as les valeurs nécessaires pour parler avant d’intervenir, avant de chercher une enchère.",
+    "criteria": [
+      "seuil-force",
+      "passe"
+    ]
+  },
+  "transfer-cuebid-after-double": {
+    "id": "SEF-V3-070-2",
+    "choice": "2♣",
+    "concept": "contre.base",
+    "family": "cas-270",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au contre d’appel, repère la couleur ouverte par l’adversaire : distingue son cue-bid d’une réponse naturelle.",
+    "criteria": [
+      "cue-bid",
+      "role-encherisseur"
+    ]
+  },
+  "transfer-competitive-fit-sa": {
+    "id": "SEF-V3-074-3",
+    "choice": "2SA",
+    "concept": "apres_inter.base",
+    "family": "cas-274",
+    "feedback": null,
+    "checkNext": "Sur une autre main fittée, distingue une intervention naturelle d’un Contre adverse avant de retrouver la signification du 2SA et sa zone de soutien.",
+    "criteria": [
+      "contexte-competitif",
+      "2sa-fitte",
+      "zone-soutien"
     ]
   },
   "transfer-fit-trial": {
@@ -359,6 +471,18 @@
       "michaels-deux-longues"
     ]
   },
+  "transfer-strong-diamond-response": {
+    "id": "SEF-V45-009",
+    "choice": "2♠",
+    "concept": "fortes.relais",
+    "family": "v45-cas-009",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au 2♦ forcing de manche, compte les As puis vérifie la force et le barème de réponses enseigné ; ne lis pas le relais comme une couleur naturelle.",
+    "criteria": [
+      "fortes-as",
+      "fortes-code"
+    ]
+  },
   "transfer-multilandy": {
     "id": "SEF-V45-023",
     "choice": "2♥",
@@ -393,6 +517,18 @@
     "criteria": [
       "objectif-contrat",
       "palier"
+    ]
+  },
+  "transfer-michaels-both-suits": {
+    "id": "SEF-V45-041",
+    "choice": "1♥",
+    "concept": "michaels.intervention",
+    "family": "v45-cas-041",
+    "feedback": null,
+    "checkNext": "Sur une autre main bicolore, compare l’information d’une intervention naturelle à celle de l’enchère précisée qui décrit les deux longues.",
+    "criteria": [
+      "michaels-deux-longues",
+      "information-enchere"
     ]
   },
   "blackwood-count-keys": {
@@ -434,10 +570,10 @@
     ]
   },
   "transfer-competitive-code": {
-    "id": "SEF-V470-005",
-    "choice": "2♥",
+    "id": "SEF-V472-001",
+    "choice": "2♦",
     "concept": "competitif.truscott",
-    "family": "v470-005",
+    "family": "v472-truscott-mineur",
     "feedback": null,
     "checkNext": "Sur une autre séquence compétitive, identifie l’intervention adverse exacte puis ce que l’enchère conventionnelle transmet sur la force ou le fit.",
     "criteria": [
