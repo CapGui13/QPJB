@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   compare:
-    if: github.head_ref == 'optimisation-parcours/integration'
+    if: github.head_ref == 'optimisation-parcours/integration' || github.head_ref == 'quiz/retours-261126'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -25,7 +25,7 @@ jobs:
           node-version: '22'
       - run: node tests/optimisation-parcours-integration.cjs "${{ matrix.profile }}" "${{ matrix.seed }}"
   native:
-    if: github.head_ref == 'optimisation-parcours/integration'
+    if: github.head_ref == 'optimisation-parcours/integration' || github.head_ref == 'quiz/retours-261126'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -44,11 +44,12 @@ jobs:
           node tests/quizz-progression-selection-real.cjs
           node tests/quizz-catalogue-live.cjs --early
           node tests/quizz-ergonomie-retours.cjs
+          if [ -f tests/quizz-retours-progression-20261126.cjs ]; then node tests/quizz-retours-progression-20261126.cjs; fi
           python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1879
           python3 scripts/build_catalogue.py
           python3 scripts/build_public_site.py --output _public_site
   browsers:
-    if: github.head_ref == 'optimisation-parcours/integration'
+    if: github.head_ref == 'optimisation-parcours/integration' || github.head_ref == 'quiz/retours-261126'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
