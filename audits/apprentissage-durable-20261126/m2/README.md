@@ -90,3 +90,8 @@ Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés su
 ## Passe 7 — revue éditoriale des contrastes déjà suffisants
 
 84 options relues sur la main, la séquence, le corrigé et le diagnostic signé : 82 HOLD avec contraste exact déjà présent dans le corrigé, plus deux arbitrages (SEF-L23-001|Passe et SEF-L39-002|4♥) fondés sur l'objectif explicite de la question. Pas de nouveau texte redondant ni de modification du module. Les deux autres arbitrages restent ouverts : SEF-V470-007|Contre et SEF-L08-026|Contre. Le banc vérifie désormais également la provenance des contrastes exacts et maintient les anciennes conditions pour les revues historiques. Registre individuel `pass7.json`, revue IA et non humaine. Total : 3371 ciblages, 288 compléments, 2495 références distinctes, 381 corrigés suffisants, 1467 HOLD et 2 contrastes en attente. Banc V8 : 102512 assertions, reproduction des artefacts comprise. Node CLI et navigateur réel non exécutés. Statut NON.
+
+
+## Passe 8 — revue contextualisée individuelle
+
+55 décisions éditoriales IA supplémentaires (54 HOLD et un contraste provisoire), sans nouveau feedback redondant. Chaque décision est liée à la main, la séquence, la force, la distribution, le diagnostic signé, le corrigé intégral et la justification individuelle dans `pass8-propositions.json` (instantané de la proposition, désormais intégrée). Le test contrôle ces éléments et reproduit les données et transferts existants ; comparaison exhaustive avec le registre précédent : exactement 55 changements attendus. 1413 HOLD et un contraste restant ; 3371 ciblages, 436 corrigés suffisants, 524 abstentions. Banc exact exécuté en V8 : 102731 assertions. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
