@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict');
+const M=require('../quizz-session-plan.js');
+const roadmap=[['ouv',0],['sa',3],['stayman',7],['intervenir',10],['chelem',39]];
+const lastTheme=Object.freeze({ouv:34,sa:35,stayman:36,intervenir:30});
+const args=Object.freeze({roadmap:Object.freeze(roadmap.map(Object.freeze)),completed:40,lastTheme,eligibleThemes:Object.freeze(['ouv','sa','stayman','intervenir','chelem'])});
+assert.equal(M.schema,'QPJB_SESSION_PLAN_V1');
+assert.deepEqual(M.priorityThemes(args),[['intervenir',10],['ouv',0]]);
+assert.deepEqual(M.priorityThemes({...args,eligibleThemes:['ouv']}),[['ouv',0]]);
+assert.deepEqual(M.priorityThemes({...args,eligibleThemes:[]}),[]);
+assert.deepEqual(M.priorityThemes({...args,completed:0,lastTheme:{}}),[]);
+assert.deepEqual(M.priorityThemes({...args,completed:2,lastTheme:{},eligibleThemes:['ouv','sa']}),[['ouv',0]]);
+assert.deepEqual(M.priorityThemes({...args,completed:9,lastTheme:{ouv:8,sa:8},eligibleThemes:['stayman']}),[['stayman',7]]);
+assert.deepEqual(M.priorityThemes({...args,completed:41}),[['intervenir',10],['ouv',0],['sa',3],['chelem',39]]);
+assert.deepEqual(M.priorityThemes({...args,lastTheme:{ouv:40,intervenir:-1}}),[['stayman',7],['sa',3]]);
+assert.throws(()=>M.priorityThemes({...args,completed:-1}),TypeError);
+assert.deepEqual(lastTheme,{ouv:34,sa:35,stayman:36,intervenir:30});
+console.log('M3 unit: OK');
