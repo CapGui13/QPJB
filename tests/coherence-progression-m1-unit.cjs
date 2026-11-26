@@ -1,0 +1,5 @@
+'use strict';
+const assert=require('node:assert/strict');const p=require('../quizz-pedagogie-initiation.js');
+const q={id:'a',shape:[4,3,3,3],difficulty:2,answer:'1♣',caseFamily:'f'};const r={id:'b',shape:[3,2,5,3],difficulty:1,answer:'1♦',caseFamily:'g'};const metadataById={a:{concept:'ouv.mineure'},b:{concept:'ouv.mineure'}};const ctx={session:1,candidates:[q,r],metadataById,history:{journal:[]},selected:[],category:'discovery'};
+const snap=JSON.stringify(ctx);assert.equal(p.schema,'QPJB_PEDAGOGIE_V1');assert.equal(p.phase,'initiation');assert.deepEqual(p.rank(ctx),[{id:'a',delta:100,reason:'meilleure_mineure_egalite'}]);assert.equal(JSON.stringify(ctx),snap);assert.deepEqual(p.rank({...ctx,session:21}),[]);assert.deepEqual(p.rank({...ctx,category:'weakness'}),[]);assert.deepEqual(p.rank({...ctx,candidates:[]}),[]);
+const later={...ctx,session:9,history:{journal:[{mode:'parcours',session:2,answers:[{id:'a',family:'f'}]}]}};assert.ok(p.rank(later).find(x=>x.id==='b').delta>p.rank(later).find(x=>x.id==='a').delta);assert.deepEqual(p.rank({...later,selected:[q]}),[]);console.log('M1 unit OK');
