@@ -5,13 +5,15 @@ on:
     paths: ['.github/workflows/coherence-concrete-m1-isolated.yml']
 permissions:
   contents: read
+env:
+  QPJB_M1_POLICY: guarded
 jobs:
   quick:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f32e82f2be7265da42ddaf45dac9b3bb57050f36
+          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -20,7 +22,8 @@ jobs:
           git rev-parse HEAD
           node --version
           node tests/coherence-concrete-m1-unit.cjs
-          node tests/coherence-concrete-m1-bench.cjs autonome 47 5 quick.json
+          node tests/coherence-concrete-m1-guarded.cjs
+          node tests/coherence-concrete-m1-bench.cjs all all 5 quick.json
           node tests/quizz-prerequis.cjs
           node tests/quizz-catalogue-live.cjs
       - uses: actions/upload-artifact@v4
@@ -39,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f32e82f2be7265da42ddaf45dac9b3bb57050f36
+          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -62,14 +65,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f32e82f2be7265da42ddaf45dac9b3bb57050f36
+          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: npm install --no-save playwright@1.64.1
       - run: npx playwright install --with-deps ${{ matrix.browser }}
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/coherence-concrete-m1-browser.cjs > browser.json
+      - run: |
+          node tests/coherence-concrete-m1-bench.cjs all 47 5 browser-reference.json
+          PW_BROWSER=${{ matrix.browser }} QPJB_M1_REFERENCE=browser-reference.json node tests/coherence-concrete-m1-browser.cjs > browser.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
