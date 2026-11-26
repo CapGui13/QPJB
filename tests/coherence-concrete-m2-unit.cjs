@@ -56,11 +56,56 @@
   ck(dependent.before.prereqOrderInversions===1&&dependent.after.prereqOrderInversions===0,'real prerequisite order');
   ck(dependent.ids[0]==='SEF-002-3','recall 1SA before 2SA');
   ck(mod.order(null).ids.length===0,'null context');
+  // Six longitudinal counterexamples archived by the previous native run.
+  const regressions=[
+  [
+    4,
+    "themeABAB",
+    "SEF-001-2 SEF-Q26-M1-010 SEF-N088-1 SEF-N017-2 SEF-N091-3 SEF-V49-004 SEF-N018-3 SEF-033-1 SEF-006-1 SEF-031-2"
+  ],
+  [
+    2,
+    "stageInversions",
+    "SEF-PN26-M1-004 SEF-012-1 SEF-V410-022 SEF-N023-1 SEF-018-2 SEF-022-1 SEF-028-1 SEF-N025-2 SEF-N042-1 SEF-PN26-M1-005"
+  ],
+  [
+    136,
+    "stageInversions",
+    "SEF-V49-006 SEF-L06-018 V2-M3-029 SEF-V425-004 SEF-V410-028 SEF-N037-1 SEF-V45-027 SEF-V410-009 SEF-V410-021 SEF-L34-005"
+  ],
+  [
+    2,
+    "stageInversions",
+    "SEF-012-1 SEF-PN26-M1-004 SEF-V410-022 SEF-N023-1 SEF-018-2 SEF-022-1 SEF-028-1 SEF-N025-2 SEF-N042-1 SEF-PN26-M1-005"
+  ],
+  [
+    12,
+    "answerABAB",
+    "SEF-V3-002-1 SEF-N018-3 SEF-N104-1 V2-M1-040 SEF-N105-2 SEF-N026-1 SEF-V421-012 SEF-Q26-M1-001 SEF-V486-007 SEF-V411-019"
+  ],
+  [
+    172,
+    "answerABAB",
+    "SEF-025-1 SEF-N082-2 V2-M6-003 V2-M4-037 SEF-N049-1 SEF-V45-034 V2-M2-006 V1-M5-005 SEF-039-1 SEF-027-1"
+  ]
+];
+  const regressionResults=[];
+  for(const [session,metric,raw] of regressions){
+   const deck=raw.split(' '),exercises=deck.map(id=>map.get(id));
+   const ctx={session,deck,exercises,metadataById:byId};
+   const v=mod.order(ctx);
+   ck(v.before[metric]===1&&v.after[metric]===0,'historic regression '+session+' '+metric);
+   ck(v.ids.slice().sort().join()===deck.slice().sort().join(),'regression permutation');
+   ck(v.scoreAfter<v.scoreBefore,'regression strict gain');
+   for(const k of [...mod.HARD,...mod.SOFT])ck(v.after[k]<=v.before[k],'regression guard '+k);
+   ck(JSON.stringify(v)===JSON.stringify(mod.order(ctx)),'regression determinism');
+   regressionResults.push({session,metric,ids:v.ids,rescueNodes:v.rescueNodes});
+  }
   const black=qs.filter(q=>byId[q.id].concept==='chelem.cles');
   const x=black[0],y=black.find(q=>q.answer!==x.answer);
   ck(x&&y&&mod.decisionPattern(x,byId[x.id])!==mod.decisionPattern(y,byId[y.id]),'Blackwood not falsely mirrored');
   ck(JSON.stringify(qs)===frozen&&JSON.stringify(byId)===metaFrozen,'catalogue and metadata immutable');
-  return {status:'PASS',assertions,changed:r.changed,example:{before:ids,after:r.ids,metricsBefore:r.before,metricsAfter:r.after,contrastPairs:r.contrastPairs}};
+  return {status:'PASS',assertions,regressionResults,changed:r.changed,example:{before:ids,after:r.ids,metricsBefore:r.before,metricsAfter:r.after,contrastPairs:r.contrastPairs}};
  };
 });
 if(typeof require==='function'&&require.main===module){
