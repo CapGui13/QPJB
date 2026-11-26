@@ -1,3 +1,13 @@
+# M1 — recette complète de la première variante et protection de consolidation
+
+**Statut provisoire NON.** La variante preserve-concept-level est intégralement exécutée : 25/25 comparaisons, 23 PASS et 2 profils HOLD (3 alertes aux horizons S65/S180). Contrat Node 22 réussi sur le run [45898381293](https://github.com/CapGui13/QPJB/actions/runs/45898381293), job 140177860136 : 1915 QCM, 5416 hypothèses, 329 unknown, 195 low, 621 groupes, 82 groupes positifs. Les 17 preuves natives sont archivées en deux lots et les 25 comparaisons dans protection-concept-niveau-synthese-s180.json. Aucun échec technique d'intégrité : 99 concepts et 22 thèmes à S180 par trajectoire, 0 éligibilité/doublon/séance courte/Passe. Agrégats S180 : ciblages 260→507 ; familles 36093→36097 ; preuves autonomes 2191→2194 ; erreurs synthétiques 13356→13414. Les sommes sont des mesures par trajectoire, pas des effectifs uniques.
+
+HOLD faible 11 : preuves S65 46→41, S180 67→60 ; faible 103 : S180 68→61. Les seuils de HOLD n'ont pas changé. La hausse de ciblage ne justifie pas la perte de preuves. La nouvelle variante propose un garde de consolidation pur (quizz-durable-m1-guard.js) : sur les dix dernières séances normales, au moins trois séances et 20 réponses autonomes vérifiables, taux de succès autonome >=45% pour permettre les bonus facultatifs. Sinon, le moteur historique décide sans bonus. Pas de profil simulé, pas de nouveau filtre ni de changement de l'évaluation. Les réponses assistées/corrigées/ambiguës ne contribuent pas; le garde peut se rouvrir après récupération. Le seuil 45% est une hypothèse opérationnelle à éprouver, pas une mesure de maîtrise ni un accord pédagogique établi. Le garde et la protection concept/niveau avant S65 doivent être évalués ensemble, jamais activés sans visa coordinateur.
+
+Nouveau SHA source `238a7f8a8d3b7eac889c678aeda3a15a0a88e265`. Recette native complète des 25 candidats et des deux contrats via [PR technique #416](https://github.com/CapGui13/QPJB/pull/416), isolée et à fermer sans fusion. Les témoins historiques sont conservés. Comparer les résultats à la variante précédente et à la référence avant toute décision. Aucune modification du moteur existant ni de main.
+
+---
+
 # M1 — état de recette de la variante protégée (26 novembre 2026)
 
 **Statut actuel : NON — 8/25 comparaisons validées, 17 confiées à la recette native isolée.** Ce bilan remplace les statuts historiques ci-dessous.
