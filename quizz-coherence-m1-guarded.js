@@ -4,7 +4,7 @@
  * No inferred evidence from legacy or incomplete journals. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory(require('./quizz-coherence-m1-curriculum.js'));else root.QPJBCoherenceM1Guarded=factory(root.QPJBCoherenceCurriculum);})(typeof window==='undefined'?null:window,function(base){
 'use strict';
-const clean=a=>a&&a.result==='correct'&&a.assisted!==true&&a.hadFreeError!==true;
+const clean=a=>a&&a.result==='correct'&&a.assisted===false&&a.hadFreeError===false;
 function autonomy(ctx={}){
  const s=ctx.session,j=ctx.history?.journal;
  if(!Number.isInteger(s)||s<3||!Array.isArray(j))return {enabled:false,reason:'preuve-autonome-recente-absente'};
