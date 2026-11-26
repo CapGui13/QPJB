@@ -137,3 +137,7 @@ Le registre `couverture-editoriale.json` agrège les 13 registres individuels, f
 ## Contrôle consolidé — couverture éditoriale exhaustive
 
 1915 QCM uniques, 99 concepts, 18 registres, aucun doublon ni omission. 11693 assertions PASS via V8 et adaptateurs des blobs réels. 1065 cohérents dans le référentiel, 729 guidés, 112 bornés, 9 HOLD. Les quatre suites des passes 23–26 ont été rejouées sur le HEAD 8986f120b9ea4b7f217a1ea4c32cb349c37ecc01 (2513 assertions). Voir recette-couverture-finale.json pour les résultats et les neuf réserves individuelles. Couverture complète ne signifie ni validation autonome des QCM guidés, ni visa éditorial externe, ni recette native. PR brouillon, aucun changement de production. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+## Passe 27 — sondes sans guidage pour les 11 concepts sans candidat autonome historique
+
+Onze concepts à zéro QCM historique classé cohérent et non guidé. Onze mains distinctes et énoncés sans indication de décision, avec règles ancrées dans les cas historiques et choix contrastés. 24 propositions au total, 1939 QCM et 1580 familles projetés ; 213 paires dont 77 candidates intercontextuelles (inchangé). Les 11 nouvelles paires sont des consolidations, pas des transferts attestés. Les propositions restent soumises au visa coordinateur ; elles ne sont pas dans le catalogue actif. Tests complets transfert/revue/mécanique exécutés en V8 avec données réelles : 6233 + 9108 + 16045 assertions PASS. Aucun changement de production. MISSION DÉFINITIVEMENT TERMINÉE : NON.
