@@ -6,7 +6,7 @@ Base figée : d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. Contrat commun #396. Bra
 
 99 concepts et 1 915 QCM attribués. La base fournit les corrigés et le parcours, mais pas de corpus autonome M5. Les leçons et approfondissements sont rédigés individuellement, avec exemples canoniques, règle contextualisée, mini-vérification non notée, rappel et disponibilité par calendrier/exposition. Aucun QCM ajouté ni modifié.
 
-| Mesure | Base commune | Première livraison 7d67bfa | Dernière recette |
+| Mesure | Base commune | Première livraison 7d67bfa | Recette intermédiaire (49 approfondissements) |
 |---|---:|---:|---:|
 | Leçons de base | 0 | 99 | 99 |
 | Dispositions | 0 | 99 | 99 |
@@ -84,3 +84,20 @@ Huit suites V8 exécutées avec succès sur les blobs exacts : 62 201 assertio
 Sur checkout : node tests/durable-m5-lecons.cjs ; node tests/durable-m5-contrastes.cjs ; node tests/durable-m5-extensions.cjs ; node tests/durable-m5-dom.cjs ; node tests/durable-m5-trajectoires.cjs ; python audits/apprentissage-durable-20261126/m5/test-navigation.py. Les résultats V8 proviennent d'une exécution effective avec adaptateurs CommonJS et fichiers en mémoire sur les blobs exacts, non d'une exécution Node CLI du checkout. Le DNS GitHub local reste indisponible : la recette native Node/Chromium sur le corpus complet et WebKit n'est pas attestée. Les tests Chromium ciblés sont réels, distincts du DOM simulé. Aucun succès CI M5 revendiqué. La revue historique exhaustive reste à certifier. Les raccordements, tests intégrés et publication relèvent du coordinateur ; aucune modification des fichiers de production existants, aucun merge ni publication.
 
 **MISSION DÉFINITIVEMENT TERMINÉE : NON** — production substantielle et recettes autonomes livrées ; le contrat strict #396 ne permet pas de masquer les limites historiques et la recette navigateur native complète manquante.
+
+## Recette exhaustive des expositions par identifiant
+
+Nouveau banc `node tests/durable-m5-expositions.cjs` : **117 549 assertions réussies**, 1 915 identifiants, 26 909 scénarios et 159 portes de prérequis. Chaque ID est vérifié dans les deux canaux (journal et assessment historique), résultat correct/incorrect, avec/sans aide, cas sautés, consolidation, sessions futures et absence de session valide. Les répétitions d'un même ID ne gonflent pas l'exposition ; l'union des IDs distincts est acceptée. Blocage des trois modes en présence de question ou de contexte ambigu, y compris via available(). Exécution V8 effective sur les blobs exacts, détails dans `expositions.json`. Ce test utilise des historiques synthétiques, sans prétention de mesure de l'apprentissage réel. Aucun changement du moteur ni du catalogue ; la recette native complète et la relecture historique exhaustive restent non attestées. Le workflow Training smoke du SHA b79068c a réussi, mais les quatre recettes intégrées ont été ignorées : aucun succès CI M5 spécifique revendiqué. Statut NON inchangé.
+
+### Commandes de recette native pour le coordinateur
+
+Depuis un checkout du SHA de la PR (ou du candidat intégrant M5) :
+
+```sh
+for f in tests/durable-m5-*.cjs; do node "$f" || exit 1; done
+python -m pip install playwright
+python -m playwright install --with-deps chromium webkit
+python audits/apprentissage-durable-20261126/m5/test-navigation-full.py
+```
+
+Conserver les sorties et les empreintes des trois fichiers imprimées par le banc navigateur. Ne pas substituer le corpus synthétique à la recette réelle. Aucun workflow actif n'a été ajouté ni modifié par M5.
