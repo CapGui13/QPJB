@@ -445,7 +445,7 @@
     "mineur.base": {
       "title": "Répondre naturellement à une mineure",
       "objective": "Choisir une réponse naturelle à une mineure selon la force, les longueurs et la priorité majeure.",
-      "rule": "Avec environ 6 H pour répondre, recherchez une majeure quatrième, sinon une couleur naturelle disponible (1♦ sur 1♣ avec quatre Carreaux au moins). 1♥/1♠ est forcing un tour et non limité si vous n'avez pas passé. 1SA (6–10 H) convient faute de meilleure enchère. Avec une main très faible, Passe.",
+      "rule": "En silence adverse, avec environ 6 H, cherchez une majeure quatrième. Sur 1♣, avec 4–5 Carreaux et une majeure quatrième, priorité à la majeure jusqu’à 12 HL inclus ; au-delà, 1♦ d’abord dans ces cas. Sur 1♣, 1♦ naturel demande au moins quatre Carreaux. 1♥/1♠ est forcing un tour et non limité si non passé. 1SA (6–10 H) faute de mieux ; très faible : Passe.",
       "typicalError": "La majeure de réponse peut être quatrième, contrairement à l'ouverture.",
       "checks": [
         {
@@ -454,7 +454,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Sur ouverture mineure, chercher une majeure quatrième, puis couleur naturelle disponible ; 1SA 6–10 H faute de meilleure description.",
+      "reminder": "Sur 1m, chercher une majeure quatrième ; sur 1♣ avec 4–5 Carreaux, priorité majeure jusqu’à 12 HL, puis 1♦ dans ces cas. 1SA : 6–10 H faute de mieux.",
       "examples": [
         {
           "id": "SEF-015-1",
@@ -917,7 +917,7 @@
         {
           "id": "m5-ext-24",
           "title": "Proposer ou conclure à Sans-Atout",
-          "rule": "Sans majeure quatrième et sans meilleure description, 2SA naturel après ouverture mineure propose la manche avec 11–12 H réguliers. 3SA peut conclure avec les valeurs et la forme appropriées. Ne confondez pas cette zone avec 2SA après 1SA.",
+          "rule": "En silence adverse, sans majeure quatrième ni meilleure description, 2SA naturel après ouverture mineure propose la manche avec 11–12 H réguliers. Deux arrêts majeurs sûrs ne sont pas obligatoires. 3SA peut conclure avec les valeurs et la forme appropriées. Ne confondez pas cette zone avec 2SA après 1SA.",
           "check": {
             "prompt": "Après 1♣, 11 H réguliers, sans majeure quatrième et sans autre enchère préférable : quel niveau de SA ?",
             "answer": "2SA invitant dans les cas étudiés.",
@@ -1139,7 +1139,7 @@
     "mineur.soutien": {
       "title": "Reconnaître un soutien mineur simple",
       "objective": "Distinguer un soutien mineur simple, une invitation et une réponse à SA selon la main.",
-      "rule": "Une main faible irrégulière avec cinq atouts mineurs et sans majeure à annoncer peut se soutenir simplement à 2m. Une main régulière avec une mineure faible et des honneurs extérieurs peut préférer 1SA. 3m peut être invitant avec une main réévaluée, par exemple 12 HLD, dans les séquences sans intervention.",
+      "rule": "Avec cinq atouts mineurs et sans majeure prioritaire, le soutien faible à 2m peut convenir si la main est irrégulière ou les honneurs concentrés dans la mineure. Avec une forme régulière et une mineure faible, 1SA peut mieux décrire les honneurs extérieurs. Sans intervention, 3m peut être invitant, par exemple 12 HLD.",
       "typicalError": "Un saut à 3♣ ne décrit pas automatiquement la même force.",
       "checks": [
         {
@@ -1148,7 +1148,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Soutien mineur faible : vérifier fit, irrégularité et honneurs ; 1SA peut mieux décrire une main régulière.",
+      "reminder": "Soutien mineur faible : vérifier fit, irrégularité et localisation des honneurs ; 1SA peut mieux décrire une main régulière aux honneurs extérieurs.",
       "examples": [
         {
           "id": "SEF-020-1",
@@ -3139,7 +3139,7 @@
     "fit.2sa": {
       "title": "Distinguer 2SA fitté et soutien à trois",
       "objective": "Distinguer les deux soutiens invitants sans intervention en comptant précisément ses atouts.",
-      "rule": "Sans intervention, 2SA direct après ouverture majeure montre exactement trois atouts et 11–12 HLD dans l'accord QPJB. Dans cette même zone, le soutien à trois promet quatre atouts.",
+      "rule": "Sans intervention, 2SA direct après ouverture majeure montre exactement trois atouts et 11–12 HLD dans l'accord QPJB. Dans cette même zone, 3M direct (soutien au palier de trois) promet quatre atouts.",
       "typicalError": "Ne prenez pas 2SA fitté pour une enchère naturelle à SA.",
       "checks": [
         {
@@ -3206,7 +3206,7 @@
     "majeur.base": {
       "title": "Évaluer la force de réponse à une majeure",
       "objective": "Choisir entre réponse majeure, 1SA, changement de couleur au palier de deux et Passe sans fit.",
-      "rule": "Sans fit sur 1M, annoncez 1♠ sur 1♥ avec quatre Piques et force suffisante. À défaut, 1SA (6–10 H) est non forcing et peut cacher une mineure longue. Un 2/1 naturel demande 11 H ou 12 HL et est auto-forcing. Avec une main très faible, Passe.",
+      "rule": "En silence adverse, sans fit sur 1M, annoncez 1♠ sur 1♥ avec quatre Piques et force suffisante. À défaut, 1SA (6–10 H) est non forcing et peut cacher une mineure longue. Un 2/1 naturel demande 11 H ou 12 HL et est auto-forcing. Avec une main très faible, Passe.",
       "typicalError": "Ne confondez pas l'obligation de répondre à un contre avec une ouverture naturelle.",
       "checks": [
         {
@@ -3215,7 +3215,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Sur 1M sans fit : 1SA non forcing, 6–10 H ; 2/1 naturel à partir de 11 H ou 12 HL.",
+      "reminder": "Sur 1M sans fit ni intervention : 1SA non forcing, 6–10 H ; 2/1 naturel auto-forcing à partir de 11 H ou 12 HL.",
       "examples": [
         {
           "id": "SEF-N068-1",
@@ -11371,10 +11371,10 @@
         {
           "id": "m5-ext-07",
           "title": "Relais constructif après Landy",
-          "rule": "Après (1SA)–2♣ Landy–Passe, 2SA est un relais positif dans les développements locaux retenus : demander force et majeure longue. Ce n'est pas une réponse universelle du SEF.",
+          "rule": "Après (1SA)–2♣ Landy–Passe, dans le développement conventionnel de l'exemple, 2SA est un relais positif demandant force et majeure longue. Ce traitement doit être convenu entre partenaires ; il n'est pas imposé par le SEF.",
           "check": {
             "prompt": "Le 2SA positif sur Landy est-il imposé par le SEF standard ?",
-            "answer": "Non, c'est le développement QPJB explicitement enseigné.",
+            "answer": "Non : uniquement si ce relais positif est convenu ; l'exemple fixe ce cadre.",
             "assisted": true
           },
           "examples": [

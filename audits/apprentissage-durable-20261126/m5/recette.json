@@ -191,5 +191,150 @@
     },
     "environment": "V8 with exact fetched source and test; virtual filesystem, DOM test double; no native browser or Node CLI",
     "unchanged": "All lesson output properties except objective identical for 99 concepts in discovery, study and reminder; active guard verified."
+  },
+  "historicalFollowup": {
+    "testedParent": "02334f37a46b2cb16423e535a376ba88a77477e2",
+    "source": {
+      "issue": 364,
+      "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+      "path": "audits/coherence-integrale-20261125/integration/arbitrages-finaux.json",
+      "sha": "889b3a065a63a5f5cba1881537c1cbb853ed0ae0"
+    },
+    "counts": {
+      "decisions": 35,
+      "answersVerified": 35,
+      "directExamples": 7,
+      "notUsedAsExamples": 28
+    },
+    "changedConcepts": [
+      "mineur.base",
+      "mineur.soutien",
+      "majeur.base",
+      "fit.2sa",
+      "multilandy.reponse"
+    ],
+    "invariantAssertions": 1171,
+    "results": [
+      {
+        "test": "tests/durable-m5-lecons.cjs",
+        "results": [
+          {
+            "assertions": 3037,
+            "ready": 99,
+            "hold": 0,
+            "maxRule": 358,
+            "maxCanonical": 448,
+            "meanRule": 214,
+            "calls": 20000,
+            "ms": 91
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-contrastes.cjs",
+        "results": [
+          {
+            "assertions": 3771,
+            "concepts": 99,
+            "catalogue": 1915,
+            "examples": 150,
+            "contrasts": 51,
+            "contrastsDeferredAtDiscovery": 11,
+            "standaloneReminders": 99,
+            "fullHistoryAvailableCalls": 1000,
+            "elapsedMs": 464,
+            "engine": "V8"
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-extensions.cjs",
+        "results": [
+          {
+            "assertions": 1139,
+            "extensions": 49,
+            "examples": 83,
+            "duplicateCore": 0
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-dom.cjs",
+        "results": [
+          {
+            "assertions": 1364,
+            "recalls": 99,
+            "studies": 99,
+            "extensions": 49,
+            "renderedExampleIds": 228,
+            "scope": "Exact module and inline demo script; DOM test double, not a browser"
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-trajectoires.cjs",
+        "results": [
+          {
+            "profile": "autonome",
+            "seed": 47,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 0,
+            "assisted": 0,
+            "wrong": 0,
+            "consultations": 115,
+            "assertions": 16764,
+            "conceptsSeen": 99,
+            "discoveryEver": 99,
+            "extensionsEver": 48,
+            "elapsedMs": 13034
+          },
+          {
+            "profile": "faible",
+            "seed": 47,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 39,
+            "assisted": 0,
+            "wrong": 266,
+            "consultations": 131,
+            "assertions": 15927,
+            "conceptsSeen": 94,
+            "discoveryEver": 95,
+            "extensionsEver": 47,
+            "elapsedMs": 9066
+          },
+          {
+            "profile": "aide",
+            "seed": 73,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 27,
+            "assisted": 327,
+            "wrong": 269,
+            "consultations": 131,
+            "assertions": 16025,
+            "conceptsSeen": 97,
+            "discoveryEver": 97,
+            "extensionsEver": 42,
+            "elapsedMs": 8943
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-arbitrages.cjs",
+        "results": [
+          {
+            "assertions": 156,
+            "decisions": 35,
+            "directExamples": 7,
+            "notUsedAsExamples": 28,
+            "scope": "targeted historical record; not universal convention validation"
+          }
+        ]
+      }
+    ],
+    "environment": "V8 exact GitHub sources, in-memory CommonJS and filesystem adapters, DOM test double; not native checkout",
+    "limits": "Native Node CLI and full Chromium/WebKit remain unexecuted."
   }
 }
