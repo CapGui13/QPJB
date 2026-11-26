@@ -10,10 +10,11 @@ function candidate(src,kind){
  check(['local','revocable'].includes(kind),'unknown candidate');
  src=replaceOnce(src,'const weakConcept={},weakContext={};',
  'const weakConcept={},weakContext={},localHistory=new Map();');
- src=replaceOnce(src,'add(seen,m.concept,q.id);',
+ src=replaceOnce(src,'add(seen,m.concept,q.id);\n      if(q.difficulty',
  String.raw`add(seen,m.concept,q.id);
       if(!localHistory.has(m.concept))localHistory.set(m.concept,[]);
-      localHistory.get(m.concept).push({family:family(q),difficulty:q.difficulty,session:s,weak:weakAnswer(a),skipped:a.result==='skipped'});`);
+      localHistory.get(m.concept).push({family:family(q),difficulty:q.difficulty,session:s,weak:weakAnswer(a),skipped:a.result==='skipped'});
+      if(q.difficulty`);
  src=replaceOnce(src,'return {seen,basic,proofs,byConcept,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent};',
  String.raw`const localTargets=new Map(),localFragility=new Map();
     for(const [key,items] of byConcept){
