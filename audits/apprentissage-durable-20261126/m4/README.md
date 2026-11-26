@@ -1,0 +1,18 @@
+# M4 transfert pédagogique — livraison partielle #400
+
+Base d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. Catalogue réel 1915/99 ; registre structurel exhaustif, mais revue éditoriale individuelle incomplète. Aucun ancien fichier modifié.
+
+## Cartographie et production
+18 paires de transfert historiques, 22 concepts avec rôle transfert. 35 paires historiques distinctes (transfert et discrimination réunis), 55 paires proposées au total dont 20 nouveaux rapprochements. Concepts avec une paire : 36 → 45. Familles 1556 → 1559, QCM 1915 → 1918. Les 3 ajouts comblent des lacunes de comparaison contrôlée (faible Texas 1SA/2SA, rectification Cœur 1SA/2SA, Stayman ordinaire/contré). Ils ne sont pas des preuves d'apprentissage humain.
+
+Le registre distingue variantes structurelles, candidats miroirs (heuristique non sémantique), consolidation, liens historiques et liens ciblés. Les séquences normalisées retirent les Passes adverses explicites et annotations entre parenthèses seulement pour le comptage ; la séquence complète est conservée. Aucun transfert déduit d'un changement de couleur. Les paires de discrimination ne constituent pas une preuve intercontextuelle. Le champ evidence est un objet et automaticCredit=false.
+
+## HOLD
+54 concepts sans paire retenue : ouv.sa2, ouv.majeure, ouv.passe, mineur.soutien, red.base, second.base, sa1.stayman.suite, sa2.stayman.suite, sa2.texas.suite, contre.base, competitif.2sa_fitte, barrage.ouverture, barrage.reponse, apres_fit.base, apres_fit.essai, roudi.choix, drury.choix, drury.reponse, fortes.ouverture, competitif.truscott, michaels.reveil, roudi.suite, fortes.relais, fortes.redemande, forcing.troisieme, forcing.quatrieme, michaels.choix, chelem.splinter, competitif.spoutnik, ouv.position, barrage.suite, red.competitif, michaels.defense, chelem.blackwood.suite, chelem.blackwood.dame_rois, fortes.suite, michaels.reponse, multilandy.reponse, multilandy.suite, rubensohl.reponse, sa1.texas_mineur, sa1.texas_mineur.suite, drury.suite, fit.2sa.suite, forcing.quatrieme.suite, chelem.quantitatif.suite, rubensohl.suite, competitif.sa_adverse, sa.gambling, forcing.checkback, second.bicolore_cher, forcing.troisieme.suite, sa1.texas.contre, intervenir.sa.suite. Les autres concepts ne sont pas certifiés exhaustivement : les lacunes restantes exigent une revue sémantique des cas voisins et des accords. Ne pas compléter artificiellement les concepts à contexte unique. Les nuances des Texas mineurs et les accords non explicitement attestés restent à arbitrer. Les ajouts n'ont pas reçu de visa coordinateur. Statut NON.
+
+## Recette et intégration
+Résultat réel : {"assertions":4363,"ids":1915,"additions":3,"pairs":55,"status":"PASS"}. Exécution du corps verify en V8 avec les blobs GitHub exacts ; DNS du terminal indisponible, Node natif et navigateurs non exécutés. Commande reproductible après checkout : node tests/durable-m4-transfert.cjs. Les contrôles mécaniques de cartes, H, enchères et familles ne certifient pas la pertinence éditoriale de toutes les propositions.
+
+Coordinateur : examiner additions.json au format #386, copier exercise et metadata seulement après visa, préserver les 1915 IDs historiques ; contrasts.json ne donne aucun crédit automatique. QPJBDurableTransfer.links({id,concept,contrasts,candidates}) retourne uniquement des candidats déjà éligibles, aucune mutation ni score ; aucune injection dans séance active, rappel ou prérequis. Toute preuve M3 doit être autonome, multi-famille et multi-séance ; une discrimination n'est pas un transfert. Aucun changement de production ni fusion.
+
+MISSION DÉFINITIVEMENT TERMINÉE : NON.
