@@ -19,7 +19,7 @@ S1/S2 exactement identiques. S3 cible 53→61/180, soutien majeur 25→34 ; S4 s
 Run https://github.com/CapGui13/QPJB/actions/runs/45902446308 sur le SHA exact du candidat. PR technique #429 vers la branche M1, workflow isolé, jamais à fusionner. Contournement de l'impossibilité de cloner localement (DNS GitHub).
 Node v22.23.5 : job quick réussi (unit, bench autonome/47 S5, quizz-prerequis et quizz-catalogue-live).
 Chromium 156.0.8078.4 et WebKit 27.2 : 30 séances appariées par navigateur, hors ligne, reprise, PASS (artefacts 15156597487 et 15156413108). Interface de production non testée.
-Les premières trajectoires natives S180 ont produit leurs traces complètes ; faible/11 : S65 preuves 46→40 (échec du seuil) ; cible/103 : S65 concepts 99→96 (échec du seuil) ; cible/47 : PASS. Pas d'assouplissement des seuils. Les 18 jobs du run sont la recette longue de référence. Les artefacts restent sur GitHub Actions ; tous n'ont pas encore été inspectés à cette rédaction.
+Les 18 trajectoires natives S180 ont produit leurs traces complètes (64 800 réponses simulées appariées). Les 18 archives ont été téléchargées et inspectées. 11 PASS, 7 revues bloquantes, aucune violation structurelle. À S65, score plafonné 1758→1859, preuves 1254→1243, dette 202→266. À S180, preuves 1562→1536, dette 8885→9112 ; 99 concepts et 22 thèmes par trajectoire dans les deux variantes. Les seuils restent inchangés. Bilan détaillé, 65 séances et liste des artefacts : `native-s1-s180-summary.json`.
 
 ## Reproduction
 ```sh
@@ -30,7 +30,7 @@ node tests/quizz-catalogue-live.cjs
 ```
 Le banc retourne 2 en présence de revues bloquantes, après écriture de trace.json. Ne pas traiter une telle sortie comme PASS. Les suites historiques complètes et la publication restent à valider par le coordinateur après correction.
 
-## Décision
-Candidat de composition réel livré, non intégré. Garder les seuils, corriger la dégradation longitudinale, répéter sur les 18 trajectoires et examiner les 65 séances avant tout visa. Les objectifs S6–65 restent candidats ; les gains S3–5 ne valident pas l'ensemble. Les références historiques ont été consultées, mais la lecture exhaustive de toutes les archives n'est pas attestée.
+## Décision et seconde variante
+Candidat V1 non intégrable en l'état. Une seconde variante `quizz-coherence-m1-guarded.js` conserve la carte et les règles de composition, mais ne permet leur intervention que si les deux dernières séances guidées complètes attestent une autonomie intégrale et si au moins 90 % des réponses guidées enregistrées sont autonomes. C'est une politique prudente d'activation du changement, pas un nouveau prérequis pédagogique ; absence de preuves ou erreurs/aide = repli historique sans bloquer la progression. Ce seuil est une hypothèse après les contre-exemples V1, non une preuve d'efficacité humaine. Banc identique avec `QPJB_M1_POLICY=guarded`, contrat dédié et navigateur avec trace native fraîche. SHA de code/tests V2 : 4434a11535332a1ef176347ebacd0891fcd5a88e. Les résultats V2 ne sont pas encore attestés à cette rédaction. V1 reste archivé et le HOLD global reste en vigueur. Les objectifs S6–65 restent candidats ; les gains S3–5 ne valident pas l'ensemble. Les références historiques ont été consultées, mais la lecture exhaustive de toutes les archives n'est pas attestée.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON.
