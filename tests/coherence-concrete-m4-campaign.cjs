@@ -13,11 +13,11 @@ function response(profile,seed,s,q,m){
   const correct=assisted||u('correct')<p;
   return {result:correct?'correct':'wrong',choice:correct?q.answer:q.choices.find(c=>c!==q.answer),assisted,hadFreeError:false};
 }
-function run({source,requireBase,exercises,meta,profile,seed,horizon=180,candidate=false,maxSession=180,verify=true,measure=()=>0}){
+function run({source,requireBase,exercises,meta,profile,seed,horizon=180,candidate=false,maxSession=180,policy='A',verify=true,measure=()=>0}){
   let now=Date.UTC(2026,0,1);const changes=[];
   class FixedDate extends Date{constructor(...a){super(...(a.length?a:[now]))}static now(){return now}}
-  const mod={exports:{}},pick=(ctx,rows,q)=>adapter.pick({...ctx,nowMs:now},rows,q,maxSession,c=>changes.push(c));
-  new Function('module','exports','require','Date','__m4Pick',candidate?adapter.instrument(source):source)(mod,mod.exports,requireBase,FixedDate,pick);
+  const mod={exports:{}},pick=(ctx,rows,q)=>adapter.pick({...ctx,nowMs:now},rows,q,maxSession,c=>changes.push(c),policy);
+  new Function('module','exports','require','Date','__m4Pick',candidate?adapter.instrument(source,policy):source)(mod,mod.exports,requireBase,FixedDate,pick);
   const api=mod.exports,state=api.empty(),sessions=[],last=new Map(),seenFamilies=new Set(),seenConcepts=new Set(),seenThemes=new Set(),nearLast=new Map(),seenIds=new Set(),proof=new Map(),checkpoints=[];
   let nearPairs=0,decisionPairs=0,nearRecent=0,repeatFamily=0,coreDebt=0,hard=0,independent=0,violations=0,short=0,dupes=0;
   const lastGap={};const times=[];
@@ -58,7 +58,7 @@ function run({source,requireBase,exercises,meta,profile,seed,horizon=180,candida
     sessions.push({session:s,nearPairs:localNear,decisionPairs:localDecision,nearRecent:localRecent,rows});
     if(HORIZONS.includes(s)||s===horizon)checkpoints.push({session:s,nearPairs,decisionPairs,nearRecent,repeatFamily,coreDebt,hard,independent,violations,short,dupes,families:seenFamilies.size,ids:seenIds.size,concepts:seenConcepts.size,themes:seenThemes.size,proof:[...proof.values()].filter(p=>p.families.size>=2&&p.sessions.size>=2).length,maxGap:{...lastGap},p95Ms:times.slice().sort((a,b)=>a-b)[Math.floor((times.length-1)*.95)]});
   }
-  return {profile,seed,horizon,candidate,maxSession,checkpoints,sessions,changes};
+  return {profile,seed,horizon,candidate,maxSession,policy,checkpoints,sessions,changes};
 }
 function pair(opts){const before=run(opts),after=run({...opts,candidate:true});return {profile:opts.profile,seed:opts.seed,horizon:opts.horizon,before,after}}
 module.exports={run,pair,PROFILES,SEEDS,HORIZONS};
@@ -76,7 +76,7 @@ if(require.main===module){
   const out=process.env.OUT||path.join(root,'audits/coherence-concrete-20261126/m4/native');
   fs.mkdirSync(out,{recursive:true});
   for(const profile of PROFILES.filter(p=>!process.env.PROFILE||p===process.env.PROFILE))for(const seed of SEEDS.filter(s=>!process.env.SEED||s===Number(process.env.SEED))){
-    const p=pair({source,requireBase,exercises,meta,profile,seed,horizon,maxSession,measure:()=>performance.now()});
+    const p=pair({source,requireBase,exercises,meta,profile,seed,horizon,maxSession,policy:process.env.POLICY||'A',measure:()=>performance.now()});
     fs.writeFileSync(path.join(out,profile+'-'+seed+'.json'),JSON.stringify(p));
     console.log(profile,seed,p.before.checkpoints,p.after.checkpoints,'changes',p.after.changes.length);
   }
