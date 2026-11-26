@@ -35,8 +35,8 @@ if(q.id.endsWith("014"))check(s===5&&k===5&&q.answer==="3♣",q.id+" Michaels");
 }
 return {base:old.length,concepts:concepts.size,new:additions.length,projected:ids.size,checks:"PASS"};
 };
-const result=verify(old,meta,additions,19);
-assert.equal(result.projected,1898);
+const result=verify(old,meta,additions,30);
+assert.equal(result.projected,1909);
 const newRules=function(additions){
 const check=(ok,m)=>{if(!ok)throw Error(m)};
 const get=n=>additions.find(x=>x.exercise.id===`SEF-PN26-M1-${String(n).padStart(3,"0")}`).exercise;
@@ -47,4 +47,25 @@ check(c.h===15&&JSON.stringify(c.hand)===JSON.stringify(b.hand)&&c.auction.at(-1
 check(d.h===15&&d.shape[0]===2&&d.answer==="Passe"&&e.h===15&&e.shape[0]===3&&e.answer==="3♠"&&JSON.stringify(d.auction)===JSON.stringify(e.auction),"minimum invitation contrast");
 };
 newRules(additions);
+const rules3=function(additions){
+const check=(ok,m)=>{if(!ok)throw Error(m)};
+const get=n=>additions.find(x=>x.exercise.id===`SEF-PN26-M1-${String(n).padStart(3,"0")}`).exercise;
+const a=get(20),b=get(21),c=get(22),d=get(23),e=get(24),f=get(25),g=get(26),h=get(27),i=get(28),j=get(29),k=get(30);
+check(a.h===5&&Math.max(...a.shape)===4&&a.answer==="Passe","5H minor response");
+check(b.h===5&&b.shape[1]===3&&Math.min(...b.shape)===3&&b.answer==="Passe","5 HLD support");
+check(c.h===12&&c.shape[1]===3&&Math.min(...c.shape)===3&&c.answer==="2SA","12 HLD support");
+check(d.h===10&&d.shape[1]===3&&d.shape[0]===2&&d.answer==="2SA","10 H + D");
+check(e.h===6&&e.shape[0]<4&&e.shape[1]<4&&e.shape[2]===4&&e.shape[3]===4&&e.answer==="3SA","2SA minor 4-4");
+check(f.h===10&&f.auction.length===0&&f.shape[3]===7&&["A","R","D","V","10","9"].every(x=>f.hand[3].includes(x))&&f.hand.slice(0,3).flat().every(x=>!["A","R"].includes(x))&&f.answer==="3SA","gambling");
+const losers=s=>Math.min(3,s.length)-["A","R","D"].slice(0,Math.min(3,s.length)).filter(x=>s.includes(x)).length;
+check(g.h===15&&g.shape[0]===5&&g.shape[3]===5&&g.hand.reduce((n,s)=>n+losers(s),0)===6&&g.answer==="1♠","six losers despite 15 H");
+check(h.h===15&&h.shape[0]===3&&h.hand[1].every(x=>!["A","R","D","V"].includes(x))&&h.answer==="Surcontre","Texas fit without stopper");
+check(i.h===17&&i.shape[3]===3&&i.hand[3].every(x=>!["A","R","D","V"].includes(x))&&i.answer==="3♣","maximum without complement");
+check(j.h===21&&j.shape[3]===2&&j.answer==="3SA","2SA maximum without club support");
+check(k.h===21&&k.shape[1]===3&&k.shape[0]===2&&k.answer==="4♥","5-5 game choice");
+};
+rules3(additions);
+const suits=['♣','♦','♥','♠','SA'];
+function rank(b){const m=b.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(Number(m[1])-1)*5+suits.indexOf(m[2]):-1;}
+for(const {exercise:q} of additions){const last=q.auction.flatMap(s=>{const m=s.match(/:\s*([1-7](?:♣|♦|♥|♠|SA))/);return m?[m[1]]:[]}).at(-1);for(const bid of q.choices){if(rank(bid)>=0&&last)assert.equal(rank(bid)>rank(last),true,q.id+' non-rising '+bid);if(bid==='Surcontre')assert.equal(q.auction.at(-1)?.includes('Contre'),true,q.id+' surcontre');}}
 console.log(JSON.stringify(result));
