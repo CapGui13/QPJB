@@ -4,7 +4,7 @@ const api=require('../quizz-durable-m3-maitrise.js');
 const engine=require('../quizz-parcours.js'),architecture=require('../quizz-apprentissage-concepts.js'),meta=require('../quizz-prerequis.js').byId;
 const root=require('node:path').join(__dirname,'..');
 const read=p=>fs.readFileSync(require('node:path').join(root,p),'utf8');
-const qs=JSON.parse(read('quizz.html').match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/)[1]).exercises;
+const qs=JSON.parse(read('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const registry=JSON.parse(read('audits/apprentissage-durable-20261126/m3/registre.json'));
 const win={};vm.runInNewContext(read('quizz-durable-m3-maitrise.js'),{window:win});
 const run=function run(api,browser,engine,architecture,qs,meta,registry){
@@ -173,7 +173,77 @@ const run=function run(api,browser,engine,architecture,qs,meta,registry){
    eq(assess(engine.importProgress(exported),qs,time),final,"real import exact");
    metrics.push({profile,seed,events:180,answers:total,assessmentAnswers:totalAssessed,snapshots:out});
  }
- return {assertions,perConcept,pairTests:registry.pairs.length,metrics,execution:"actual module and base source; synthetic histories"};
+ // Adversarial calibration: expected values arise from constructed scenarios,
+ // not from interpreting the base's session spacing as elapsed calendar time.
+ const oracle={concepts:99,qualificationChecks:0,qualificationErrors:0,baseSessionSpacedInUnder24h:0,newDelayedInUnder24h:0,baseDueAfter90DaysNoSessions:0,newDueAfter90DaysNoSessions:0,newPrematureDue:0,newDelayedTrue:0,fragileAfterForgetting:0,assistedNotProof:0,missingTimeUnknown:0};
+ const qualify=(condition,label)=>{oracle.qualificationChecks++;if(!condition)oracle.qualificationErrors++;ok(condition,label);};
+ for(const [key,pool] of groups){
+   const [x,y,z]=distinct(pool);
+   const groupedHistory=state([event(1,T,[a(x)]),event(2,T+HOUR,[a(y)]),event(3,T+2*HOUR,[a(z)])]);
+   const prev=architecture.recommend({history:groupedHistory,candidates:[x]}).concepts[key];
+   oracle.baseSessionSpacedInUnder24h+=prev.spaced?1:0;
+   const candidate=assess(groupedHistory,pool,T+3*HOUR).concepts[key];
+   oracle.newDelayedInUnder24h+=candidate.retention.intervalMs>=DAY?1:0;
+   qualify(candidate.retention.intervalMs<DAY&&candidate.retention.status==="less_than_24h","grouped sessions not elapsed days "+key);
+   const before=engine.empty();
+   before.active={ids:[x.id],index:0,answers:{},createdAt:before.completed};
+   ok(engine.record(before,x,"correct",0,x.answer,false,false),"base real observation");
+   ok(engine.finish(before,qs),"base real completion");
+   before.journal[0].recordedAt=new Date(T).toISOString();
+   oracle.baseDueAfter90DaysNoSessions+=before.entries[x.id].due<=before.completed?1:0;
+   const fresh=assess(before,pool,T+HOUR).concepts[key];
+   const late=assess(before,pool,T+90*DAY).concepts[key];
+   oracle.newPrematureDue+=fresh.reviewDue===true?1:0;
+   oracle.newDueAfter90DaysNoSessions+=late.reviewDue===true?1:0;
+   qualify(fresh.reviewDue===false,"no early reminder "+key);
+   qualify(late.reviewDue===true&&!late.fragile,"time only due without punishment "+key);
+   const spacedHistory=state([event(1,T,[a(x)]),event(2,T+7*DAY,[a(y)]),event(3,T+31*DAY,[a(z)])]);
+   const spaced=assess(spacedHistory,pool,T+31*DAY+HOUR).concepts[key];
+   oracle.newDelayedTrue+=spaced.retention.status==="observed_30d"?1:0;
+   qualify(spaced.retention.status==="observed_30d","positive delayed evidence "+key);
+   const forgotten=assess(state([...spacedHistory.journal,event(4,T+90*DAY,[a(z,"wrong")])]),pool,T+90*DAY+HOUR).concepts[key];
+   oracle.fragileAfterForgetting+=forgotten.fragile?1:0;
+   qualify(forgotten.fragile&&forgotten.retention.intervalMs===null&&forgotten.evidence.autonomous===3,"forgetting preserves historical proofs "+key);
+   const helped=assess(state([event(1,T,[a(x,"assisted")]),event(2,T+7*DAY,[a(y,"corrected")])]),pool,T+10*DAY).concepts[key];
+   oracle.assistedNotProof+=helped.evidence.autonomous===0?1:0;
+   qualify(helped.evidence.autonomous===0&&helped.reviewDue===true,"assistance no evidence "+key);
+   const undated=assess(state([event(1,null,[a(x)]),event(2,null,[a(y)])]),pool,T+10*DAY).concepts[key];
+   oracle.missingTimeUnknown+=undated.retention.status==="unknown"?1:0;
+   qualify(undated.retention.status==="unknown"&&undated.retention.intervalMs===null,"time missing "+key);
+ }
+ // Optional coordinator contract: additions require explicit trusted metadata,
+ // and a supplied contrast is not a transfer unless labelled as such.
+ const future={...q1,id:"SEF-AD26-M4-FIXTURE",caseFamily:"fixture-new-family"};
+ const futureHistory=state([event(1,T,[a(q1)]),event(2,T+7*DAY,[a(future)])]);
+ const fp={a:q1.id,b:future.id,concepts:[k],criterion:"Fixture",contextDifference:"Fixture only",evidence:"Fixture only"};
+ const input={history:futureHistory,exercises:[q1,future],nowMs:T+8*DAY,metadataById:{[future.id]:{concept:k}},contrastPairs:[fp]};
+ const ex=api.assess(input);
+ eq(ex.concepts[k].evidence.currentFamilies.length,2,"coordinator addition fixture");
+ eq(ex.pairs.find(p=>p.b===future.id).status,"observed_candidate","provided contrast fixture");
+ eq(ex.pairs.find(p=>p.b===future.id).kind,"discrimination","no implicit transfer");
+ eq(api.assess({...input,metadataById:{}}).concepts[k].evidence.currentFamilies.length,1,"unknown ID not credited");
+ eq(api.assess({...input,contrastPairs:[{...fp,evidence:null}]}).pairs.find(p=>p.b===future.id).status,"unavailable","missing signed evidence");
+ const pair=registry.pairs.find(p=>p.kind==="transfer"),px=lookup.get(pair.a),py=lookup.get(pair.b);
+ const lost=assess(state([event(1,T,[a(px)]),event(2,T+DAY,[a(py)]),event(3,T+2*DAY,[a(py,"wrong")])]),[px,py],T+3*DAY).pairs.find(p=>p.a===pair.a&&p.b===pair.b&&p.kind==="transfer");
+ eq(lost.status,"not_demonstrated","current transfer interrupted");
+ eq(lost.historicalStatus,"observed_candidate","historical pair not erased");
+ eq(api.rankReview({...rankInput,selected:[{exercise:q1,reason:"rappel_question"}]}),[],"actual selected wrapper");
+ eq(api.rankReview({...rankInput,forcedReason:"rappel_erreur_aide"}),[],"explicit reason");
+ eq(api.rankReview({...rankInput,priority:true}),[],"priority untouched");
+ eq(api.rankReview({...rankInput,history:state([event(1,T,[a(q1)])])}),[],"S1–3 neutral");
+ // Full supported journal window: 1000 completed sessions, 20 distinct IDs
+ // per event, real IDs/families and injected clock. Measure, do not assert
+ // platform-specific wall clock threshold.
+ const stressJournal=Array.from({length:1000},(_,i)=>event(i+1,T+i*DAY,Array.from({length:20},(_,j)=>a(qs[(i*19+j)%qs.length]))));
+ const stressHistory=state(stressJournal,1000),stressNow=T+1000*DAY;
+ const t0=Date.now(),stressResult=assess(stressHistory,qs,stressNow),stressMs=Date.now()-t0;
+ const t1=Date.now(),stressRank=api.rankReview({history:stressHistory,exercises:qs,nowMs:stressNow,candidates:qs,selected:[]}),stressRankMs=Date.now()-t1;
+ eq(stressResult.quality.retainedEvents,1000,"full supported window");eq(stressResult.quality.possibleTruncation,true,"possible loaded truncation");
+ eq(Object.values(stressResult.concepts).reduce((sum,s)=>sum+s.evidence.autonomous,0),20000,"20k proof rows");
+ eq(stressResult.quality.invalidAnswers,0,"stress valid answers");
+ ok(stressRank.every(x=>x.delta<=30&&lookup.has(x.id)),"stress rank bounded");
+ const stress={events:1000,answers:20000,assessMs:stressMs,rankMs:stressRankMs,rankCandidates:stressRank.length,resultJsonChars:JSON.stringify(stressResult).length};
+ return {assertions,perConcept,pairTests:registry.pairs.length,metrics,oracle,stress,execution:"actual module and base source; synthetic histories"};
 };
 const results=run(api,win.QPJBDurableMastery,engine,architecture,qs,meta,registry);
 console.log(JSON.stringify(results,null,2));
