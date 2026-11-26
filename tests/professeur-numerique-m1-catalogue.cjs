@@ -35,6 +35,16 @@ if(q.id.endsWith("014"))check(s===5&&k===5&&q.answer==="3♣",q.id+" Michaels");
 }
 return {base:old.length,concepts:concepts.size,new:additions.length,projected:ids.size,checks:"PASS"};
 };
-const result=verify(old,meta,additions,14);
-assert.equal(result.projected,1893);
+const result=verify(old,meta,additions,19);
+assert.equal(result.projected,1898);
+const newRules=function(additions){
+const check=(ok,m)=>{if(!ok)throw Error(m)};
+const get=n=>additions.find(x=>x.exercise.id===`SEF-PN26-M1-${String(n).padStart(3,"0")}`).exercise;
+const a=get(15),b=get(16),c=get(17),d=get(18),e=get(19);
+check(a.h===11&&a.shape[1]===3&&Math.min(...a.shape)>=3&&a.auction[0]==="Vous : Passe"&&a.answer==="2♣","Drury boundary");
+check(b.h===15&&b.shape[0]===2&&b.answer==="2♠"&&b.auction.at(-1)==="Adversaire : Passe","ordinary Texas");
+check(c.h===15&&JSON.stringify(c.hand)===JSON.stringify(b.hand)&&c.auction.at(-1).includes("Contre")&&c.answer==="Passe","Texas doubled contrast");
+check(d.h===15&&d.shape[0]===2&&d.answer==="Passe"&&e.h===15&&e.shape[0]===3&&e.answer==="3♠"&&JSON.stringify(d.auction)===JSON.stringify(e.auction),"minimum invitation contrast");
+};
+newRules(additions);
 console.log(JSON.stringify(result));

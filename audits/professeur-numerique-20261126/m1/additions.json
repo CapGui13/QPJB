@@ -1307,5 +1307,510 @@
         "confidence": "medium"
       }
     ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-015",
+      "theme": "drury",
+      "hand": [
+        [
+          "A",
+          "8",
+          "3"
+        ],
+        [
+          "R",
+          "9",
+          "2"
+        ],
+        [
+          "D",
+          "V",
+          "7",
+          "4"
+        ],
+        [
+          "V",
+          "10",
+          "5"
+        ]
+      ],
+      "h": 11,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "auction": [
+        "Vous : Passe",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe"
+      ],
+      "context": "Vous avez passé d’entrée. Votre partenaire ouvre de 1♥ en troisième position, sans intervention. Quelle est votre réponse ?",
+      "answer": "2♣",
+      "choices": [
+        "2♥",
+        "2SA",
+        "2♣",
+        "1SA"
+      ],
+      "explain": "Avec 11 H et une main sans courte, vous avez 11 HLD grâce à vos trois Cœurs qui établissent le fit huitième. Après votre Passe initial, 2♣ Drury vérifie la qualité de l’ouverture de troisième position. Avec seulement 10 HLD, le soutien simple à 2♥ conviendrait.",
+      "difficulty": 3,
+      "difficultyReason": "Les 22 cas drury.init/choix utilisent 6 à 10 H ; aucun 11 H plat au seuil positif, malgré la règle explicite du 11 HLD.",
+      "caseFamily": "pn26-m1-015"
+    },
+    "metadata": {
+      "concept": "drury.init",
+      "stage": 0,
+      "minSession": 24,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-V4-097-1",
+        "SEF-C2-011"
+      ],
+      "rationale": "Les 22 cas drury.init/choix utilisent 6 à 10 H ; aucun 11 H plat au seuil positif, malgré la règle explicite du 11 HLD."
+    },
+    "diagnostics": [
+      {
+        "choice": "2♥",
+        "category": "force",
+        "reason": "Appliquer le soutien simple alors que le seuil du Drury est atteint.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "distribution",
+        "reason": "Annoncer le soutien quatrième avec singleton sans ces conditions.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "1SA",
+        "category": "fit",
+        "reason": "Masquer le soutien troisième.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-016",
+      "theme": "stayman",
+      "hand": [
+        [
+          "R",
+          "8"
+        ],
+        [
+          "A",
+          "D",
+          "9",
+          "5"
+        ],
+        [
+          "R",
+          "7",
+          "3"
+        ],
+        [
+          "D",
+          "V",
+          "8",
+          "4"
+        ]
+      ],
+      "h": 15,
+      "shape": [
+        2,
+        4,
+        3,
+        4
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♥ (Texas Pique)",
+        "Adversaire : Passe"
+      ],
+      "context": "Votre partenaire fait un Texas Pique sur votre ouverture de 1SA. Les adversaires passent. Quelle est votre redemande ?",
+      "answer": "2♠",
+      "choices": [
+        "2SA",
+        "Passe",
+        "2♠",
+        "3♠"
+      ],
+      "explain": "Avec 15 H réguliers et seulement deux Piques, rectifiez tout de même à 2♠ : sur 1SA sans intervention, la rectification normale ne garantit pas trois atouts. Le partenaire précisera ensuite sa force et éventuellement sa longueur.",
+      "difficulty": 2,
+      "difficultyReason": "Aucun des 16 cas sa1.texas.suite ne pose la rectification normale elle-même ; elle est seulement présupposée. Le doubleton est déterminant pour distinguer cette règle de celle sur 2SA et après Contre.",
+      "caseFamily": "pn26-m1-016"
+    },
+    "metadata": {
+      "concept": "sa1.texas.suite",
+      "stage": 1,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discovery",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "SEF-L08-002",
+        "SEF-L23-006",
+        "SEF-PN26-M1-017"
+      ],
+      "rationale": "Aucun des 16 cas sa1.texas.suite ne pose la rectification normale elle-même ; elle est seulement présupposée. Le doubleton est déterminant pour distinguer cette règle de celle sur 2SA et après Contre."
+    },
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Confondre la rectification du Texas majeur sur 1SA avec un refus de fit.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "Passe",
+        "category": "contexte",
+        "reason": "Appliquer une règle de Texas contré à une séquence sans intervention.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♠",
+        "category": "niveau",
+        "reason": "Sauter malgré l’absence de soutien et une ouverture minimum.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-017",
+      "theme": "stayman",
+      "hand": [
+        [
+          "R",
+          "8"
+        ],
+        [
+          "A",
+          "D",
+          "9",
+          "5"
+        ],
+        [
+          "R",
+          "7",
+          "3"
+        ],
+        [
+          "D",
+          "V",
+          "8",
+          "4"
+        ]
+      ],
+      "h": 15,
+      "shape": [
+        2,
+        4,
+        3,
+        4
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♥ (Texas Pique)",
+        "Adversaire : Contre (d'entame, indiquant des Cœurs)"
+      ],
+      "context": "Votre partenaire fait un Texas Pique sur votre ouverture de 1SA, que l’adversaire contre pour demander l’entame Cœur. Quelle est votre redemande ?",
+      "answer": "Passe",
+      "choices": [
+        "2♠",
+        "Surcontre",
+        "Passe",
+        "2SA"
+      ],
+      "explain": "Avec 15 H mais seulement deux Piques, vous n’avez pas le soutien troisième. Sur le Contre d’entame du Texas, vous n’êtes plus obligé de rectifier : Passe nie ce soutien. La tenue à Cœur ne suffit pas à justifier une rectification sans trois atouts.",
+      "difficulty": 4,
+      "difficultyReason": "Même main qu’en 016 mais Contre adverse ajouté : véritable changement de règle, et non simple miroir des cinq Texas Cœur contrés existants.",
+      "caseFamily": "pn26-m1-017"
+    },
+    "metadata": {
+      "concept": "sa1.texas.contre",
+      "stage": 3,
+      "minSession": 14,
+      "requires": [
+        {
+          "concept": "contre.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-PN26-M1-016",
+        "SEF-L25-004"
+      ],
+      "rationale": "Même main qu’en 016 mais Contre adverse ajouté : véritable changement de règle, et non simple miroir des cinq Texas Cœur contrés existants."
+    },
+    "diagnostics": [
+      {
+        "choice": "2♠",
+        "category": "contexte",
+        "reason": "Rectifier automatiquement comme si l’adversaire avait passé.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "Surcontre",
+        "category": "fit",
+        "reason": "Indiquer un soutien troisième absent.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Inventer une réponse non prévue par ce traitement.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-018",
+      "theme": "stayman",
+      "hand": [
+        [
+          "D",
+          "8"
+        ],
+        [
+          "A",
+          "R",
+          "9",
+          "4"
+        ],
+        [
+          "R",
+          "7",
+          "3"
+        ],
+        [
+          "D",
+          "V",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 15,
+      "shape": [
+        2,
+        4,
+        3,
+        4
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♥ (Texas Pique)",
+        "Adversaire : Passe",
+        "Vous : 2♠",
+        "Adversaire : Passe",
+        "Partenaire : 2SA (invitation, exactement cinq Piques)",
+        "Adversaire : Passe"
+      ],
+      "context": "Après avoir rectifié le Texas Pique de votre partenaire, vous recevez une invitation à 2SA. Quelle est votre décision ?",
+      "answer": "Passe",
+      "choices": [
+        "3SA",
+        "3♠",
+        "Passe",
+        "4♠"
+      ],
+      "explain": "Avec 15 H, vous êtes minimum et refusez l’invitation de manche. Vos deux Piques face aux cinq annoncés ne garantissent pas le fit huitième : passez sur 2SA. Vous ne devez ni accepter la manche ni corriger dans une majeure non fittée.",
+      "difficulty": 3,
+      "difficultyReason": "Les deux cas ouvreur sur 2SA invitant existants sont maximum 17 H ; branche refus sans fit absente.",
+      "caseFamily": "pn26-m1-018"
+    },
+    "metadata": {
+      "concept": "sa1.texas.suite",
+      "stage": 2,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "consolidation"
+      ],
+      "contrastWith": [
+        "V2-M2-028",
+        "SEF-PN26-M1-019"
+      ],
+      "rationale": "Les deux cas ouvreur sur 2SA invitant existants sont maximum 17 H ; branche refus sans fit absente."
+    },
+    "diagnostics": [
+      {
+        "choice": "3SA",
+        "category": "force",
+        "reason": "Accepter une invitation avec une ouverture minimum.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♠",
+        "category": "fit",
+        "reason": "Corriger dans une majeure avec seulement deux atouts.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "4♠",
+        "category": "force",
+        "reason": "Imposer une manche sans force ni fit suffisants.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-019",
+      "theme": "stayman",
+      "hand": [
+        [
+          "D",
+          "8",
+          "4"
+        ],
+        [
+          "A",
+          "R",
+          "9"
+        ],
+        [
+          "R",
+          "7",
+          "3"
+        ],
+        [
+          "D",
+          "V",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 15,
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♥ (Texas Pique)",
+        "Adversaire : Passe",
+        "Vous : 2♠",
+        "Adversaire : Passe",
+        "Partenaire : 2SA (invitation, exactement cinq Piques)",
+        "Adversaire : Passe"
+      ],
+      "context": "Après avoir rectifié le Texas Pique de votre partenaire, vous recevez une invitation à 2SA. Quelle est votre décision ?",
+      "answer": "3♠",
+      "choices": [
+        "Passe",
+        "3SA",
+        "3♠",
+        "4♠"
+      ],
+      "explain": "Avec 15 H, vous êtes minimum et refusez la manche. Mais vos trois Piques face aux cinq annoncés assurent huit atouts. Corrigez à 3♠, contrat de partielle dans la majeure fittée, sans accepter l’invitation à la manche.",
+      "difficulty": 3,
+      "difficultyReason": "Même force que 018, une carte déplacée établit le fit ; branche refus avec fit absente des suites sur invitation.",
+      "caseFamily": "pn26-m1-019"
+    },
+    "metadata": {
+      "concept": "sa1.texas.suite",
+      "stage": 2,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-PN26-M1-018",
+        "V2-M2-027"
+      ],
+      "rationale": "Même force que 018, une carte déplacée établit le fit ; branche refus avec fit absente des suites sur invitation."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "fit",
+        "reason": "Refuser la manche sans exploiter le fit majeur établi.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3SA",
+        "category": "force",
+        "reason": "Accepter l’invitation malgré le minimum.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "4♠",
+        "category": "force",
+        "reason": "Confondre fit établi et force de manche.",
+        "confidence": "medium"
+      }
+    ]
   }
 ]
