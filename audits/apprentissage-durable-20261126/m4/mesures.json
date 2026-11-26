@@ -8,8 +8,8 @@
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 148,
-  "newPairs": 113,
+  "allPairs": 174,
+  "newPairs": 139,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
   "holdConcepts": [
@@ -41,7 +41,7 @@
     "discrimination": 18,
     "discrimination_context": 22,
     "role_complement": 1,
-    "reviewed_reuse": 30
+    "reviewed_reuse": 56
   },
   "pass3": {
     "proposed": 22,
@@ -136,6 +136,71 @@
         },
         "transferConcepts": 59,
         "reviewedHistoricalIds": 222
+      }
+    ]
+  },
+  "pass6": {
+    "proposed": 26,
+    "retained": 26,
+    "skipped": [],
+    "counts": {
+      "intercontextual": 66,
+      "near_transfer": 11,
+      "context_boundary": 48,
+      "hold": 3,
+      "discrimination": 36,
+      "role_complement": 9,
+      "consolidation": 1
+    },
+    "transferConcepts": 81,
+    "newConcepts": [
+      "mineur.base",
+      "majeur.base",
+      "fit.2sa",
+      "roudi.init",
+      "red.bicolore_cher",
+      "rubensohl.naturel",
+      "rubensohl.init",
+      "sa2.texas.reponse",
+      "sa1.stayman.contre",
+      "sa1.texas_mineur.reponse",
+      "sa2.texas_mineur.reponse",
+      "roudi.choix",
+      "forcing.checkback",
+      "drury.reponse",
+      "drury.suite",
+      "competitif.2sa_fitte",
+      "competitif.spoutnik",
+      "sa1.texas_mineur",
+      "michaels.choix",
+      "second.bicolore_cher",
+      "sa1.texas.contre",
+      "intervenir.sa.suite"
+    ],
+    "reviewedHistoricalIds": 250,
+    "tests": [
+      {
+        "assertions": 5612,
+        "ids": 1915,
+        "additions": 3,
+        "pairs": 174,
+        "status": "PASS"
+      },
+      {
+        "assertions": 8488,
+        "status": "PASS",
+        "pairs": 174,
+        "counts": {
+          "intercontextual": 66,
+          "near_transfer": 11,
+          "context_boundary": 48,
+          "hold": 3,
+          "discrimination": 36,
+          "role_complement": 9,
+          "consolidation": 1
+        },
+        "transferConcepts": 81,
+        "reviewedHistoricalIds": 250
       }
     ]
   }
