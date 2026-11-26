@@ -4,6 +4,8 @@ function run(M,meta,ex){
  let n=0;const check=(x,m)=>{n++;ok(x,m)};
  const old=JSON.stringify(meta),data=JSON.stringify(ex),patches=M.patches(meta,ex);
  check(patches.length===14,'14 individual proposals');
+ check(patches.every(p=>p.status==='HOLD'&&p.decision),'all experimental metadata held');
+ check(JSON.stringify(M.applyExperimental(meta,ex))===old,'omitted variant is non-activating');
  const by=new Map(ex.map(q=>[q.id,q]));
  for(const p of patches){check(!!by.get(p.id),'ID exists');check(JSON.stringify(meta[p.id])===JSON.stringify(p.old),'old metadata exact');check(p.new.minSession===p.old.minSession,'calendar unchanged');check(!!p.preuve&&!!p.accord,'justification');}
  for(const group of ['texas','red','both','none']){
@@ -37,6 +39,31 @@ function run(M,meta,ex){
  check(adv([e('L1',1),e('L3',2)]).independent,'two distinct lower families and sessions');
  const only=[low1,low2,high],single=M.rules({session:10,history:{completed:9,journal:[e('L1',1),e('L2',2)]},exercises:only,metadataById:md,candidates:[high]})[0].autonomy;
  check(single.requiredFamilies===1&&single.independent,'single available family still requires two sessions');
+ // Subvariant exposure is advisory only. Never infer it from an advanced
+ // exposure, a selected but unfinished question or a free/consolidation answer.
+ for(const [concept,simpleId,complexId] of [['sa1.texas','SEF-037-1','SEF-N084-1'],['sa1.stayman.reponse','SEF-V3-012-1','SEF-V416-007']]){
+ const simple=by.get(simpleId),complex=by.get(complexId);
+ const tc={session:12,history:{completed:11,journal:[],entries:{}},exercises:ex,metadataById:meta,candidates:[complex,simple],selected:[]};
+ const advice=(overrides={})=>M.rules({...tc,...overrides}).find(x=>x.id===complexId).transition;
+ const make=(id,result='correct',mode='parcours',session=8)=>({mode,session,answers:[{id,result,assisted:false,hadFreeError:false}]});
+ const history=journal=>({completed:11,journal,entries:{}});
+ const first=advice();
+ check(first.status==='prefer-elementary-alternative'&&first.presentElementaryCandidateIds.includes(simpleId),'prefer actual elementary candidate');
+ check(first.neverBlocks===true&&first.grantsProof===false,'non-blocking no proof');
+ check(advice({candidates:[complex]}).status==='no-alternative-preserve-native','no alternative fallback');
+ const selected=advice({selected:[{exercise:simple}]});
+ check(selected.status==='order-after-elementary-in-same-session'&&selected.observedElementaryIds.length===0,'same session not exposure');
+ const oldComplex=advice({history:history([make(complexId)])});
+ check(oldComplex.priorComplexIds.includes(complexId)&&!oldComplex.observedElementaryIds.length,'complex alone not elementary');
+ check(advice({history:history([make(simpleId,'wrong')])}).status==='elementary-previously-exposed','error is exposure only');
+ check(advice({history:history([make(simpleId,'correct','consolidation')])}).status==='prefer-elementary-alternative','consolidation excluded');
+ check(advice({history:history([make(simpleId,'correct','parcours',12)])}).status==='prefer-elementary-alternative','future excluded');
+ check(advice({forcedReason:'rappel_erreur_aide'}).status==='preserve-recall','explicit recall wins');
+ check(advice({category:'weakness'}).status==='preserve-recall','weakness wins');
+ const legacy=advice({history:{completed:11,journal:[],entries:{[simpleId]:{assessment:{lastSession:7,result:'correct'}}}}});
+ check(legacy.status==='elementary-previously-exposed'&&!legacy.grantsProof,'legacy exposure not proof');
+ check(M.rules(tc).find(x=>x.id===simpleId).transition.status==='elementary-introduction','simple introduction annotated');
+ }
  check(JSON.stringify(meta)===old&&JSON.stringify(ex)===data,'pure');
  check(JSON.stringify(M.rules(ctx))===JSON.stringify(M.rules(ctx)),'deterministic');
  return {assertions:n};
