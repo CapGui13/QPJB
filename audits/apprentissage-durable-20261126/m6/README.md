@@ -23,7 +23,7 @@ Objectifs retenus : 6 profils × 3 graines × S180, mêmes graines et univers de
 
 ## 3. Campagne de référence réellement exécutée
 
-Exécution JavaScript V8 des sources récupérées par le connecteur GitHub au SHA exact, sans mocks du moteur. Horloge simulée ; chronométrage réel distinct. Les six fichiers baseline contiennent les événements de séance et checkpoints S20/S65/S153/S180. `register.json` fournit les distributions intégrales et les 33 unités recensées.
+Exécution JavaScript V8 des sources récupérées par le connecteur GitHub au SHA exact, sans mocks du moteur. Horloge simulée ; chronométrage réel distinct. Les six fichiers baseline contiennent les événements de séance et checkpoints S20/S65/S153/S180. `register.json` fournit les distributions intégrales et les 37 unités recensées (33 initiales, 4 complémentaires).
 
 **18 trajectoires, 3 240 séances, 32 400 réponses simulées, 294 reprises, 72 exports vérifiés.** 0 inéligibilité, 0 doublon de famille, 0 séance courte. Toutes les trajectoires couvrent 99 concepts et 22 rubriques à S180.
 
@@ -80,6 +80,7 @@ L'extension optionnelle prend les catégories du diagnostic figé #395, pas cell
 
 ```sh
 node tests/durable-m6-unit.cjs
+node tests/durable-m6-guards.cjs
 node tests/durable-m6-assets.cjs
 node tests/durable-m6-register.cjs
 node tests/durable-m6-campaign.cjs legacy
@@ -89,6 +90,7 @@ node tests/durable-m6-campaign.cjs pair intermediaire 47 180
 node tests/durable-m6-campaign.cjs sensitivity intermediaire 47 65
 node tests/durable-m6-campaign.cjs sensitivity-pair intermediaire 47 65
 node tests/durable-m6-campaign.cjs semantic cible 47 65
+node tests/durable-m6-campaign.cjs semantic-pair cible 47 65
 python3 scripts/build_catalogue.py
 python3 scripts/build_public_site.py --output _public_site
 PW_BROWSER=chromium node tests/durable-m6-browser.cjs _public_site
@@ -99,7 +101,20 @@ PW_BROWSER=webkit node tests/progression-guidee-offline.cjs _public_site
 
 La recette proposée requiert un checkout complet avec historique du SHA figé, Node 22, Python et Playwright avec Chromium/WebKit installés. Les scripts Node incluent mesures process CPU et mémoire et tailles gzip. Les sorties de benchmark ne sont pas déterministes pour le temps réel ; les sélections et décisions doivent l'être.
 
-## 7. Périmètre, limites et clôture
+## 7. Durcissement de la comparaison et contre-épreuves supplémentaires
+
+Après la première livraison, un défaut méthodologique a été corrigé : les moyennes de transfert sur des exercices non encore vus dans chaque bras peuvent reposer sur des populations différentes. Les opportunités propres à chaque bras restent rapportées, mais une comparaison supplémentaire porte désormais sur **le même exercice, d'une famille non vue dans les deux bras**, avec une graine commune. Une empreinte déterministe de l'univers de référence, un contrôle des horizons, jours, métriques finies et sondes empêchent les comparaisons incohérentes. Une absence d'opportunité reste non mesurable. Les métadonnées historiques sont comparées sans confondre ordre des clés JSON et changement de contenu. Les flags d'autonomie doivent être explicitement faux ; une information absente ne constitue pas une preuve. Un nouveau compteur interséance est fourni à côté de l'ancien compteur de transfert, conservé pour la reproductibilité.
+
+- `quizz-durable-m6-guards.js`, `tests/durable-m6-guards.cjs` : 131 assertions adversariales réussies ; la suite historique de 4 367 assertions a également été rejouée avec succès (4 498 assertions distinctes).
+- Trois paires supplémentaires sur le moteur immuable : intermédiaire 47 S65 (1 300 réponses), ciblé 47 S65 avec catégories figées et interruptions (1 300), intermédiaire 47 S180 (3 600). Les journaux sont identiques dans les deux bras, aucune alerte ni violation, reprise exacte.
+- Sur la paire S180, 41 / 88 / 77 / 74 concepts disposent respectivement d'une sonde de transfert commune à S20 / S65 / S153 / S180. Tous les deltas sont nuls. Les 1 800 réponses de référence reproduisent exactement le journal archivé ; 17 métriques historiques contrôlées à chacun des quatre checkpoints restent identiques. Les trois nouvelles paires ne constituent pas une comparaison avec les missions M1–M5.
+- Le scénario sémantique apparié utilise le diagnostic figé ; 48 erreurs ciblées et 44 jours d'interruption simulés par bras, sans modifier la référence.
+- Résultats archivés : `guard-results.json`, `identity-paired-s65.json`, `identity-semantic-s65.json`, `identity-paired-s180.json`. Le registre est régénéré et vérifié par le script de recette ; **6 200 réponses supplémentaires, soit 44 200 réponses synthétiques archivées au total**.
+- La proposition de workflow inactive exécute désormais les garde-fous et le scénario sémantique en comparaison appariée.
+
+Contrôle GitHub de la première PR #408 : le workflow [QPJB Training smoke](https://github.com/CapGui13/QPJB/actions/runs/45887187594) a réussi en mode TARGETED (contrôle rapide), mais les recettes lourdes ont été ignorées par leurs conditions de déclenchement. Ce succès ne constitue pas une exécution native du laboratoire, des navigateurs ou du hors ligne. Le DNS du terminal a été vérifié de nouveau et ne permet toujours pas de cloner github.com. Aucun workflow actif n'a été changé pour contourner ce blocage.
+
+## 8. Périmètre, limites et clôture
 
 Les fichiers sont nouveaux dans les trois emplacements autorisés. La proposition CI est volontairement hors .github/workflows. Le laboratoire ne doit pas être ajouté au build du site.
 
