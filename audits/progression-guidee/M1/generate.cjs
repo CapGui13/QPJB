@@ -165,6 +165,12 @@ for(const p of correction){
  if(p.id!=='SEF-020-3'||JSON.stringify(explicit.byId[p.id])!==JSON.stringify(p.old))throw Error('Unexpected pedagogical metadata patch');
  explicit.byId[p.id]=p.new;
 }
+// Visa Professeur numérique #386 : nouveaux IDs uniquement, métadonnées validées par coordinateur.
+const publication=require('../../professeur-numerique-20261126/integration/publication.json');
+for(const row of publication.additions){
+ if(explicit.byId[row.id])throw Error('New pedagogical ID already exists '+row.id);
+ explicit.byId[row.id]=row.metadata;
+}
 function build(exercises){const ids=new Set(exercises.map(q=>q.id));if(ids.size!==exercises.length||ids.size!==Object.keys(explicit.byId).length||[...ids].some(id=>!explicit.byId[id]))throw Error('Explicit prerequis coverage mismatch');return {schema:explicit.schema,byId:Object.fromEntries(exercises.map(q=>[q.id,explicit.byId[q.id]]))};}
 const root=path.resolve(__dirname,'../../..');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
