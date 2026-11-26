@@ -17,7 +17,7 @@ const check=function check(api, qs, meta, assert){
  ["first",{completed:1,journal:[event(1,[answer(x)])]},"first_success"],
  ["same-session",{completed:1,journal:[event(1,[answer(x),answer(y)])]},"first_success"],
  ["same-family",{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(x)])]},"first_success"],
- ["independent",{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(y)])]},"multi_context_evidence"],
+ ["independent",{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(y)])]},"multi_family_evidence"],
  ["consolidation-only",{completed:1,journal:[event(1,[answer(x)],"consolidation")]},"unseen"],
  ["relapse",{completed:5,journal:[event(1,[answer(x)]),event(4,[answer(y)]),event(5,[answer(y,{result:"wrong",choice:"Passe"})])]},"fragile"]
  ];
@@ -27,3 +27,40 @@ const check=function check(api, qs, meta, assert){
  assert(api.recommend(null).candidates.length===0,"null");return output;
 };
 console.log(check(api,qs,meta,assert.ok));const context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'quizz-apprentissage-concepts.js'),'utf8'),context);assert.equal(context.window.QPJBApprentissageConcepts.schema,api.schema);assert.equal(Object.keys(context.window.QPJBApprentissageConcepts.byId).length,1879);console.log('M2 tests OK');
+
+const verify=function verify(api,qs,meta,assert){
+ const lookup=new Map(qs.map(x=>[x.id,x]));
+ const meaningful=(x,y)=>x.caseFamily!==y.caseFamily&&(x.h!==y.h||JSON.stringify(x.shape)!==JSON.stringify(y.shape))&&JSON.stringify(x.hand)!==JSON.stringify(y.hand);
+ const report={pairs:0,consolidations:0,transfers:0,profiles:0,boundaries:{}};
+ for(const x of qs){const m=api.classify(x.id);
+   for(const [role,field] of [["discrimination","contrastId"],["consolidation","consolidationId"],["transfer","transferId"]]){
+     assert(m.roles.includes(role)===!!m[field],x.id+" "+role);
+     if(!m[field])continue;const y=lookup.get(m[field]);assert(y&&meaningful(x,y),x.id+" distinct family/hand");
+     if(role==="discrimination"){assert(x.answer!==y.answer&&x.choices.includes(y.answer)&&y.choices.includes(x.answer)&&JSON.stringify(x.auction)===JSON.stringify(y.auction),x.id+" contrast");report.pairs++;}
+     else {assert(x.answer===y.answer&&meta[x.id].concept===meta[y.id].concept,x.id+" same decision");if(role==="transfer"){assert(m.contextKey!==api.classify(y.id).contextKey,x.id+" context shift");report.transfers++;}else{assert(JSON.stringify(x.auction)===JSON.stringify(y.auction),x.id+" consolidation");report.consolidations++;}}
+   }
+ }
+ const answer=(q,extra={})=>({id:q.id,result:"correct",choice:q.answer,assisted:false,hadFreeError:false,...extra});
+ const event=(session,answers)=>({session,mode:"parcours",answers});
+ for(const [k,d] of Object.entries(api.concepts)){
+   const g=d.stages.review.ids.map(id=>lookup.get(id)),x=g[0],y=g.find(q=>q.caseFamily!==x.caseFamily);
+   assert(y,"independent family available "+k);
+   const scenarios=[
+     {history:{completed:0},expected:"unseen"},
+     {history:{completed:2,journal:[event(2,[answer(x,{assisted:true})])]},expected:"exposed"},
+     {history:{completed:2,journal:[event(2,[answer(x),answer(y)])]},expected:"first_success"},
+     {history:{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(y)])]},expected:"multi_family_evidence"},
+     {history:{completed:5,journal:[event(1,[answer(x)]),event(4,[answer(y)]),event(5,[answer(y,{result:"wrong",choice:"?"})])]},expected:"fragile"}
+   ];
+   for(const {history,expected} of scenarios){const ctx={concept:k,candidates:g,history};const before=JSON.stringify(ctx),res=api.recommend(ctx);assert(res.concepts[k].evidence===expected,k+" "+expected);assert(JSON.stringify(ctx)===before,k+" non mutation");assert(res.candidates.every(x=>g.some(y=>y.id===x.id)&&(!x.role||api.classify(x.id).roles.includes(x.role))),k+" candidates");report.profiles++;}
+ }
+ for(const [k,filter] of [
+ ["ouv.mineure",x=>x.shape[2]===3&&x.shape[3]===3],
+ ["ouv.sa1",x=>x.h===15||x.h===17],
+ ["majeur.soutien",x=>x.auction.some(a=>/1[♥♠]/.test(a))&&x.shape[x.auction.find(a=>/1[♥♠]/.test(a)).includes("♠")?0:1]===3],
+ ["chelem.quantitatif",x=>x.choices.includes("4SA")],
+ ["chelem.blackwood.declenchement",x=>x.choices.includes("4SA")]
+ ]){const ids=api.describe(k).stages.review.ids.map(id=>lookup.get(id)).filter(filter);report.boundaries[k]=ids.map(x=>({id:x.id,h:x.h,shape:x.shape,answer:x.answer,contrast:api.classify(x.id).contrastId}));}
+ return report;
+};
+console.log(verify(api,qs,meta,assert.ok));
