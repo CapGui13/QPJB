@@ -1,0 +1,42 @@
+'use strict';
+const T=require('../quizz-coherence-m6-traces.js');
+let assertions=0;
+const ok=(v,m)=>{assertions++;if(!v)throw Error(m)};
+const copy=x=>JSON.parse(JSON.stringify(x));
+const q=i=>({id:'fixture-'+i,theme:i%2?'mineur':'ouv',context:'fixture only',hand:[['A'],[],[],[]],h:4,shape:[1,0,0,0],auction:[],answer:['1♣','1♦','1♥','1♠','1SA'][i%5],difficulty:1,caseFamily:'f-'+i});
+const deck=Array.from({length:10},(_,i)=>q(i));
+const meta={byId:Object.fromEntries(deck.map((q,i)=>[q.id,{concept:'c'+i,stage:0,requires:[]}]))};
+const selection=deck.map(q=>({id:q.id,kind:'nouveau',reason:'nouveau_qcm'}));
+const input={deck,selection,meta,elig:deck.map(()=>({eligible:true,reasons:[]})),pattern:q=>q.id,s:1,history:[],profile:'autonome',seed:47,latencyMs:1};
+const serialized=JSON.stringify({...input,pattern:null});
+const t=T.traceSession(input);
+ok(JSON.stringify({...input,pattern:null})===serialized,'Read only');
+ok(t.rows.length===10&&t.rows.every(r=>r.firstExposure&&r.role==='decouverte'),'Discovery rows');
+ok(t.rows.every((r,i)=>r.position===i+1&&r.id===deck[i].id&&r.eligibility.eligible),'Alignment');
+ok(t.objective.source==='observed-dominant-concept-not-intent','No invented objective');
+ok(T.metrics([t]).violations.length===0,'Valid fixture');
+const base={profile:'autonome',seed:47,catalogueKey:'fixture',policy:'fixed-385-395-v1',sessions:Array.from({length:5},(_,i)=>({...copy(t),session:i+1,rows:t.rows.map(r=>({...r,session:i+1}))}))};
+ok(T.compare(base,copy(base)).checkpoints[0].review.length===0,'Identity comparator');
+const bad=copy(base);
+for(const s of bad.sessions){s.rows[1].id=s.rows[0].id;s.rows[1].family=s.rows[0].family;s.rows[2].eligibility.eligible=false;s.rows[3].requires=[{concept:'missing',minExposure:1,exposureIds:0}];}
+ok(T.compare(base,bad).checkpoints[0].review.includes('structure'),'Duplicates, eligibility and exposure fail');
+ok(T.metrics(bad.sessions).violations.some(v=>v[2]==='prerequisite-exposure'),'Independent exposure guard');
+const order=copy(base);
+for(const s of order.sessions)for(const r of s.rows){r.answer='Passe';r.pattern='same';r.theme='ouv';r.difficulty=r.position%2?1:4;}
+const warning=T.compare(base,order).checkpoints[0];
+ok(warning.review.includes('order')&&warning.review.includes('difficulty-jumps'),'Order and difficulty counterexample');
+ok(warning.after.orderScore<warning.before.orderScore,'Transparent score detects incoherence');
+const reduced=copy(base);
+for(const s of reduced.sessions)for(const r of s.rows)r.family='same';
+ok(T.compare(base,reduced).checkpoints[0].review.includes('families'),'Family loss');
+let rejected=false;try{T.compare(base,{...base,seed:103})}catch{rejected=true}ok(rejected,'Mismatched seed');
+rejected=false;try{T.compare(base,{...base,catalogueKey:'different'})}catch{rejected=true}ok(rejected,'Mismatched catalogue');
+rejected=false;try{T.traceSession({...input,selection:selection.slice(1)})}catch{rejected=true}ok(rejected,'Misaligned trace');
+const repeated=T.traceSession({...input,s:2,history:[t],selection:deck.map(q=>({id:q.id,kind:'revision',reason:'rappel_erreur_aide'}))});
+ok(repeated.rows.every(r=>r.idGap===1&&r.familyGap===1&&r.conceptGap===1&&r.role==='consolidation_ciblee'&&!r.firstExposure),'Reactivation observed');
+ok(T.metrics([t,repeated]).nearFamily===10&&T.metrics([t,repeated]).nearId===10,'Near repeats measured');
+for(const p of T.PROFILES)for(const seed of T.SEEDS){for(const x of deck){const a=T.outcome(p,seed,x,1);ok(T.same(a,T.outcome(p,seed,x,1)),'Deterministic outcome');}}
+const long={...base,sessions:Array.from({length:65},(_,i)=>({...copy(t),session:i+1,rows:t.rows.map(r=>({...r,session:i+1,theme:i===3?'sa':r.theme}))}))};
+const slow=copy(long);slow.sessions.forEach(s=>s.latencyMs=100);
+ok(T.compare(long,slow).checkpoints.at(-1).review.includes('latency-review'),'Latency alert');
+console.log(JSON.stringify({assertions,fixture:'synthetic only',status:'PASS'}));
