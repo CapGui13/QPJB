@@ -21,7 +21,7 @@ function profile(name,overrides={}){
  const p={...PROFILES[name],...overrides};
  for(const k of ['initial','learn','help','skip','free','confusion'])if(!Number.isFinite(p[k])||p[k]<0||p[k]>1)throw Error('Invalid '+k);
  for(const k of ['half','pace','breakEvery','breakDays'])if(!Number.isFinite(p[k])||p[k]<0||(['half','breakEvery'].includes(k)&&p[k]===0))throw Error('Invalid '+k);
- if(!Array.isArray(p.weak))throw Error('Invalid weakness');return p;
+ if(!Array.isArray(p.weak))throw Error('Invalid weakness');if(p.pauseDays!==undefined&&(!Number.isFinite(p.pauseDays)||p.pauseDays<0))throw Error('Invalid pauseDays');return p;
 }
 function weak(p,k){return p.weak.some(w=>k===w||k.startsWith(w+'.'))}
 function sessionDay(p,s){return (s-1)*p.pace+Math.floor((s-1)/p.breakEvery)*p.breakDays}
@@ -38,7 +38,33 @@ function probability(p,k,seed,entry,q,day,probe=false){
  // Four alternatives: guessed success not equivalent to a known rule.
  return clamp(.12+.80*v+familiarity-(Number(q.difficulty||1)-1)*.067-confusion,.04,.96);
 }
-function answer(p,k,seed,entry,q,s,day,mode='learning'){
+// Semantic error choices derive exclusively from an immutable reference.
+function buildRuleMap(exercises,meta,diagnose,source){
+ if(typeof diagnose!=='function'||typeof source!=='string'||!source)throw Error('Reference diagnostics required');
+ const byId={},byConcept={},tally={hypothesis:0,unknown:0,low:0,usable:0},categories={};
+ const known=new Set(['force','distribution','fit','priorite','niveau','forcing','convention','competition','contexte','autre','inconnu']);
+ for(const q of exercises){
+  const k=meta.byId[q.id]?.concept;if(!k)throw Error('Missing reference concept');
+  const row=byId[q.id]={};
+  for(const choice of q.choices.filter(c=>c!==q.answer)){
+   const d=diagnose({exercise:q,choice,assisted:false,hadFreeError:false});
+   if(d?.status!=='hypothesis'||!known.has(d.category)){tally.unknown++;continue}
+   tally.hypothesis++;
+   if(!['high','medium'].includes(d.confidence)||d.category==='inconnu'){tally.low++;continue}
+   row[choice]=d.category;tally.usable++;
+   categories[d.category]=(categories[d.category]||0)+1;
+   const counts=byConcept[k]??={};counts[d.category]=(counts[d.category]||0)+1;
+  }
+ }
+ return {source,byId,byConcept,tally,categories};
+}
+function persistentCategory(ruleMap,k,seed){
+ const entries=Object.entries(ruleMap?.byConcept?.[k]||{}).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'en'));
+ if(!entries.length)return null;
+ const strongest=entries.filter(([,n])=>n>=Math.max(1,entries[0][1]*.4));
+ return strongest[Math.floor(random(seed,k,'semantic-confusion')*strongest.length)][0];
+}
+function answer(p,k,seed,entry,q,s,day,mode='learning',ruleMap){
  const u=(label)=>random(seed,k,q.id,s,label);
  if(u('skip')<p.skip)return {id:q.id,result:'skipped',choice:null,assisted:false,hadFreeError:false,firstGuess:null};
  const prob=mode==='fixed'?clamp(p.initial+(weak(p,k)?-.18:0),.05,.95):probability(p,k,seed,entry,q,day);
@@ -46,11 +72,16 @@ function answer(p,k,seed,entry,q,s,day,mode='learning'){
  const wrong=q.choices.filter(c=>c!==q.answer);
  const distractor=wrong[Math.floor(u('distractor')*wrong.length)]||null;
  // Persistent confusion biases a wrong option, not a diagnosis of a real student.
- const initial=success?q.answer:(weak(p,k)&&u('confuse')<p.confusion?wrong[Math.floor(random(seed,k,'confusion')*wrong.length)]||distractor:distractor);
+ let initial=success?q.answer:(weak(p,k)&&u('confuse')<p.confusion?wrong[Math.floor(random(seed,k,'confusion')*wrong.length)]||distractor:distractor),semantic=null;
+ if(ruleMap&&!success&&u('semantic')<p.confusion*(weak(p,k)?1:.35)){
+  const category=persistentCategory(ruleMap,k,seed);
+  const matches=wrong.filter(choice=>category&&ruleMap.byId[q.id]?.[choice]===category);
+  if(matches.length){initial=matches[Math.floor(u('semantic-choice')*matches.length)];semantic=category;}
+ }
  const assisted=u('help')<p.help*(success?.55:1);
  const corrected=!success&&!assisted&&u('free')<p.free;
  const choice=assisted||corrected?q.answer:initial;
- return {id:q.id,result:choice===q.answer?'correct':'wrong',choice,assisted,hadFreeError:corrected,firstGuess:initial};
+ return {id:q.id,result:choice===q.answer?'correct':'wrong',choice,assisted,hadFreeError:corrected,firstGuess:initial,...(ruleMap?{semanticConfusion:semantic}: {})};
 }
 const independent=a=>a.result==='correct'&&!a.assisted&&!a.hadFreeError;
 function update(p,k,seed,entry,q,a,day){
@@ -85,7 +116,7 @@ function probes(p,seed,learned,universe,day){
  return {latent:round(strength/n),retention7:round(retention7/n),retention30:round(retention30/n),unseenFamilyProbe:transferN?round(transfer/transferN):null,transferN,probeN:n,learnedConcepts:observed};
 }
 function compare(before,after){
- if(before.profile!==after.profile||before.seed!==after.seed||before.model!==after.model||JSON.stringify(before.parameters)!==JSON.stringify(after.parameters))throw Error('Unpaired trajectories');
+ if(before.profile!==after.profile||before.seed!==after.seed||before.model!==after.model||before.ruleSource!==after.ruleSource||JSON.stringify(before.parameters)!==JSON.stringify(after.parameters))throw Error('Unpaired trajectories');
  return before.checkpoints.map((a,i)=>{const b=after.checkpoints[i];if(!b||a.session!==b.session)throw Error('Unpaired horizon');
  const deltas={};for(const k of ['families','concepts','proof','independent','retention30','retention7','debt','coreDebt','help','wrong','skipped','transferProof','duplicates','ineligible','short','variety'])deltas[k]=round(b[k]-a[k]);
  const review=[];if(b.ineligible||b.duplicates||b.short)review.push('invariants');
@@ -98,13 +129,14 @@ function compare(before,after){
  if(a.retention30-b.retention30>.03)review.push('synthetic-retention');
  return {session:a.session,deltas,review};});
 }
-function run({api,exercises,meta,probeExercises=exercises,probeMeta=meta,name,seed,horizon=180,overrides={},model='learning',clock,verifyEarly,measure=()=>0}){
+function run({api,exercises,meta,probeExercises=exercises,probeMeta=meta,name,seed,horizon=180,overrides={},model='learning',ruleMap,clock,verifyEarly,measure=()=>0}){
  if(!Number.isInteger(horizon)||horizon<1||!Number.isInteger(seed)||!['learning','fixed'].includes(model)||typeof clock!=='function')throw Error('Invalid run');
  const p=profile(name,overrides),universe=catalog(probeExercises,probeMeta),pool=catalog(exercises,meta);
  let state=api.empty(),learned={},independentCount=0,help=0,wrong=0,skipped=0,corrected=0,ineligible=0,duplicates=0,short=0,variety=0,debt=0,coreDebt=0,transferProof=0,resumes=0,exports=0;
- const allIds=new Set(),allFamilies=new Set(),concepts=new Set(),themes=new Set(),proof={},last={},pending={},delays=[],checkpoints=[],latencies=[],violations=[],events=[];
+ const allIds=new Set(),allFamilies=new Set(),concepts=new Set(),themes=new Set(),proof={},last={},pending={},delays=[],checkpoints=[],latencies=[],violations=[],events=[],semanticEvidence={};
+ let pauseOffset=0,semanticMatches=0,interruptedDays=0;
  for(let s=1;s<=horizon;s++){
-  const day=sessionDay(p,s);clock(day*DAY);
+  const startDay=sessionDay(p,s)+pauseOffset;let day=startDay;clock(day*DAY);const semanticAnswers=[];
   const begin=measure(),deck=api.start(state,exercises);latencies.push(Math.max(0,measure()-begin));
   if(!deck.length)throw Error('Empty real session '+s);
   if(deck.length!==10){short++;violations.push({s,kind:'short',length:deck.length})}
@@ -119,7 +151,8 @@ function run({api,exercises,meta,probeExercises=exercises,probeMeta=meta,name,se
    allIds.add(q.id);allFamilies.add(f);concepts.add(k);themes.add(q.theme);last[k]=s;
    if(i&&deck[i-1].answer===q.answer)variety++;
    if(Object.hasOwn(pending,q.id)){delays.push(s-pending[q.id]);delete pending[q.id]}
-   const a=answer(p,k,seed,entry,q,s,day,model);
+   const a=answer(p,k,seed,entry,q,s,day,model,ruleMap);
+   if(ruleMap){semanticAnswers.push([q.id,a.firstGuess,a.semanticConfusion??null,a.choice]);if(a.semanticConfusion){semanticMatches++;const row=semanticEvidence[k]??={category:a.semanticConfusion,sessions:new Set(),families:new Set(),matches:0};row.sessions.add(s);row.families.add(f);row.matches++;}}
    help+=+a.assisted;wrong+=+(a.result==='wrong');skipped+=+(a.result==='skipped');corrected+=+a.hadFreeError;
    if(independent(a)){independentCount++;const ev=proof[k]??={families:new Set(),sessions:new Set()};
     if(ev.families.size&&!ev.families.has(f)&&!ev.sessions.has(s))transferProof++;
@@ -132,11 +165,12 @@ function run({api,exercises,meta,probeExercises=exercises,probeMeta=meta,name,se
     const saved=JSON.stringify(state.active),restored=api.load(JSON.stringify(state));
     if(JSON.stringify(restored.active)!==saved||JSON.stringify(api.start(restored,exercises).map(x=>x.id))!==JSON.stringify(deck.map(x=>x.id)))throw Error('Resume '+s);
     state=restored;resumes++;
+    if(p.pauseDays&&random(seed,s,'abandon')<.07){const gap=Math.max(1,Math.round(p.pauseDays*(.5+random(seed,s,'pause-length'))));day+=gap;pauseOffset+=gap;interruptedDays+=gap;clock(day*DAY);}
    }
   }
   if(!api.finish(state,exercises))throw Error('Finish '+s);
   if(state.completed!==s)throw Error('Completed counter');
-  events.push({s,day,ids:deck.map(q=>q.id),answers:state.journal.at(-1).answers.map(a=>[a.id,a.result,a.assisted,a.hadFreeError])});
+  events.push({s,day,ids:deck.map(q=>q.id),answers:state.journal.at(-1).answers.map(a=>[a.id,a.result,a.assisted,a.hadFreeError]),...(ruleMap?{startDay,semanticAnswers}: {})});
   if(HORIZONS.includes(s)||s===horizon){
    const exported=api.exportProgress(state,exercises,{}),restored=api.importProgress(JSON.stringify(exported));
    if(restored.completed!==s||JSON.stringify(restored.journal)!==JSON.stringify(state.journal)||JSON.stringify(restored.entries)!==JSON.stringify(state.entries))throw Error('Export roundtrip '+s);
@@ -144,10 +178,10 @@ function run({api,exercises,meta,probeExercises=exercises,probeMeta=meta,name,se
    const ls=latencies.slice().sort((a,b)=>a-b),ds=delays.slice().sort((a,b)=>a-b);
    checkpoints.push({session:s,day,ids:allIds.size,families:allFamilies.size,concepts:concepts.size,themes:themes.size,proof:Object.values(proof).filter(e=>e.families.size>=2&&e.sessions.size>=2).length,
     independent:independentCount,help,wrong,skipped,corrected,transferProof,ineligible,duplicates,short,variety,debt,coreDebt,pending:Object.keys(pending).length,medianRecall:ds.length?ds[Math.floor(ds.length/2)]:null,
-    resumes,exports,stateChars:JSON.stringify(state).length,exportChars:JSON.stringify(exported).length,selectionP50:ls[Math.floor(ls.length*.5)],selectionP95:ls[Math.floor(ls.length*.95)],...probes(p,seed,learned,universe,day)});
+    resumes,exports,stateChars:JSON.stringify(state).length,exportChars:JSON.stringify(exported).length,selectionP50:ls[Math.floor(ls.length*.5)],selectionP95:ls[Math.floor(ls.length*.95)],...probes(p,seed,learned,universe,day),...(ruleMap?{semanticMatches,interruptedDays,semanticPersistentConcepts:Object.values(semanticEvidence).filter(v=>v.families.size>=2&&v.sessions.size>=2).length}: {})});
   }
  }
- return {schema:'QPJB_DURABLE_LAB_V1',profile:name,seed,model,parameters:p,horizon,availableIds:pool.ids.size,availableFamilies:pool.families.size,checkpoints,violations,events};
+ return {schema:'QPJB_DURABLE_LAB_V1',profile:name,seed,model,parameters:p,horizon,availableIds:pool.ids.size,availableFamilies:pool.families.size,checkpoints,violations,events,...(ruleMap?{ruleSource:ruleMap.source,semanticEvidence:Object.fromEntries(Object.entries(semanticEvidence).map(([k,v])=>[k,{category:v.category,sessions:[...v.sessions],families:[...v.families],matches:v.matches}]))}: {})};
 }
-return Object.freeze({schema:'QPJB_DURABLE_LAB_V1',DAY,HORIZONS,SEEDS,PROFILES,random,profile,sessionDay,baseSkill,effective,probability,answer,update,independent,catalog,probes,compare,run});
+return Object.freeze({schema:'QPJB_DURABLE_LAB_V1',DAY,HORIZONS,SEEDS,PROFILES,random,profile,sessionDay,baseSkill,effective,probability,buildRuleMap,persistentCategory,answer,update,independent,catalog,probes,compare,run});
 });
