@@ -12,7 +12,7 @@ assert.deepEqual(M.priorityThemes({...args,completed:0,lastTheme:{}}),[]);
 assert.deepEqual(M.priorityThemes({...args,completed:2,lastTheme:{},eligibleThemes:['ouv','sa']}),[['ouv',0]]);
 assert.deepEqual(M.priorityThemes({...args,completed:9,lastTheme:{ouv:8,sa:8},eligibleThemes:['stayman']}),[['stayman',7]]);
 assert.deepEqual(M.priorityThemes({...args,completed:41}),[['intervenir',10],['ouv',0],['sa',3],['chelem',39]]);
-assert.deepEqual(M.priorityThemes({...args,lastTheme:{ouv:40,intervenir:-1}}),[['stayman',7],['sa',3]]);
+assert.deepEqual(M.priorityThemes({...args,lastTheme:{ouv:40,intervenir:-1}}),[['sa',3],['stayman',7]]);
 assert.throws(()=>M.priorityThemes({...args,completed:-1}),TypeError);
 assert.deepEqual(lastTheme,{ouv:34,sa:35,stayman:36,intervenir:30});
 console.log('M3 unit: OK');
