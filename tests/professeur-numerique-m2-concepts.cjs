@@ -70,3 +70,23 @@ const checkContextPairs=function checkContextPairs(api,assert){
  assert(pairs.size===14,"14 teacher contrasts");assert(pairs.has("SEF-V44-013|SEF-L01-A-01"),"4SA contextual meaning");return pairs.size;
 };
 console.log('Contrastes didactiques :',checkContextPairs(api,assert.ok));
+
+const extra=function extra(api,qs,assert){
+ const lookup=new Map(qs.map(x=>[x.id,x]));
+ const concepts=Object.entries(api.concepts);
+ for(const [k,d] of concepts){for(const [role,examples] of Object.entries(d.learningCriteria.examples)){assert(examples.length<=3,"examples bound");for(const v of examples){assert(lookup.has(v.id)&&api.classify(v.id).roles.includes(role)&&v.criterion&&v.decision===lookup.get(v.id).answer,"example "+k+" "+role);}}}
+ const fit=api.describe("majeur.soutien").stages.discovery.ids;
+ assert(fit.length===9&&fit.every(id=>{const x=lookup.get(id);return x.shape[x.answer.endsWith("♠")?0:1]===3&&/^2[♥♠]$/.test(x.answer)}),"5-3 first");
+ const [x,y,z]=[...new Map(qs.filter(x=>api.classify(x.id).concept==="ouv.sa1").map(x=>[x.caseFamily,x])).values()];
+ const correct=q=>({id:q.id,result:"correct",choice:q.answer,assisted:false,hadFreeError:false});
+ const wrong=q=>({...correct(q),result:"wrong",choice:"Passe"});
+ const evt=(session,...answers)=>({mode:"parcours",session,answers});
+ let history={completed:5,journal:[evt(1,correct(x)),evt(2,correct(y)),evt(3,wrong(x)),evt(5,correct(z))]};
+ let st=api.recommend({concept:"ouv.sa1",history,candidates:[x,y,z]}).concepts["ouv.sa1"];
+ assert(st.fragile&&st.weakFamilies.includes(x.caseFamily)&&st.next==="consolidation","weak family not masked by another success");
+ history={completed:6,journal:[...history.journal,evt(6,correct(x))]};st=api.recommend({concept:"ouv.sa1",history}).concepts["ouv.sa1"];
+ assert(!st.fragile,"same family corrected on later session");
+ history={completed:6,journal:[...history.journal,evt(6,wrong(x),correct(x))]};st=api.recommend({concept:"ouv.sa1",history}).concepts["ouv.sa1"];
+ assert(st.fragile,"same session error precedence");
+};
+extra(api,qs,assert.ok);
