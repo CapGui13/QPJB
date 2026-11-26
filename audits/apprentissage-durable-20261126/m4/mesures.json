@@ -650,5 +650,58 @@
       }
     ],
     "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
+  },
+  "pass13": {
+    "reviewedTransferEndpoints": 91,
+    "counts": {
+      "coherent_in_catalogue_framework": 44,
+      "guided_not_independent": 47
+    },
+    "totalIndividualTargetedReview": 579,
+    "remainingIndividualTargetedReview": 1336,
+    "transferScreen": {
+      "candidate_only": 25,
+      "guided_prompt": 48,
+      "bounded_context": 4
+    },
+    "pairReservations": [
+      {
+        "a": "SEF-V45-052",
+        "b": "SEF-C2-009",
+        "reason": "Même réponse 5♥ en 30–41 et même nombre de clés ; différence pédagogique As/As contre As/Roi d'atout, mais le mécanisme de codage ne change pas. À requalifier en discrimination/consolidation plutôt qu'en transfert intercontextuel.",
+        "recommendedClassification": "discrimination"
+      },
+      {
+        "a": "SEF-015-1",
+        "b": "SEF-N058-2",
+        "reason": "Règle de réponse naturelle avec majeure quatrième après deux ouvertures différentes ; vérifier que le choix ne repose pas sur une simple transposition de couleur et que le contexte du fit connu est réellement différent.",
+        "recommendedClassification": "context_boundary"
+      },
+      {
+        "a": "SEF-V470-005",
+        "b": "SEF-V472-001",
+        "reason": "Truscott majeur et mineur ont des seuils distincts et nombre d'atouts distincts. La même enchère 2SA ne suffit pas à démontrer la compréhension des deux règles ; le cas doit tester la frontière H/HLD.",
+        "recommendedClassification": "context_boundary"
+      }
+    ],
+    "tests": [
+      {
+        "assertions": 760,
+        "status": "PASS",
+        "reviewed": 91,
+        "totalReviewed": 579,
+        "statusCounts": {
+          "coherent_in_catalogue_framework": 44,
+          "guided_not_independent": 47
+        },
+        "pairCounts": {
+          "candidate_only": 25,
+          "guided_prompt": 48,
+          "bounded_context": 4
+        },
+        "pairReservations": 3
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
   }
 }

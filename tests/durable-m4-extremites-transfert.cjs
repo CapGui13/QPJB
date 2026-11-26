@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m4/',base='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
+const read=p=>fs.readFileSync(path.join(root,p),'utf8'), old=p=>execFileSync('git',['show',base+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
+const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises,by=new Map(qs.map(q=>[q.id,q]));
+const meta={exports:{}};new Function('module',old('quizz-prerequis.js'))(meta);
+const reviews=['revue-ouvertures.json','revue-notions-residuelles.json','revue-sa-initial.json','revue-sa-developpements.json','revue-fit-majeur.json','revue-extremites-transfert.json'].map(p=>JSON.parse(read(dir+p))),review=reviews[5],pairs=JSON.parse(read(dir+'contrasts.json')),api=require('../quizz-durable-m4-autonomie.js');
+let assertions=0;const ok=(x,m)=>{assertions++;if(!x)throw Error(m)};
+const ids=new Set();for(const x of reviews[4].transferScreen.pairs.filter(x=>x.reason==='editorial_review_missing'))for(let i=0;i<2;i++)if(x.statuses[i]==='unreviewed')ids.add(i===0?x.a:x.b);
+ok(ids.size===91&&Object.keys(review.byId).length===91,'scope');
+for(const id of ids){const q=by.get(id),z=review.byId[id];ok(q&&z&&z.concept===meta.exports.byId[id].concept&&z.h===q.h&&z.answer===q.answer&&z.family===q.caseFamily&&z.difficulty===q.difficulty,'source '+id);ok(JSON.stringify(z.shape)===JSON.stringify(q.shape)&&JSON.stringify(z.choices)===JSON.stringify(q.choices),'exact choices/shape '+id);ok(z.reason.length>30&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context','hold_editorial'].includes(z.status),'status '+id);ok(reviews.slice(0,5).every(r=>!(id in r.byId)),'disjoint '+id)}
+const counts={};for(const z of Object.values(review.byId))counts[z.status]=(counts[z.status]||0)+1;
+ok(JSON.stringify(counts)===JSON.stringify({"coherent_in_catalogue_framework":44,"guided_not_independent":47}),'status counts');
+const candidates=pairs.filter(p=>p.evidence.transferEvidenceEligible===true);ok(candidates.length===77,'candidate count');const prior=JSON.stringify(reviews),pairCounts={};
+for(const [i,pair] of candidates.entries()){const r=api.inspect({pair,reviews});pairCounts[r.reason]=(pairCounts[r.reason]||0)+1;ok(JSON.stringify(r)===JSON.stringify(review.transferScreen.pairs[i]),'recorded screen');ok(r.automaticCredit===false,'no automatic credit');ok(r.eligibleForIndependentProbe===r.statuses.every(s=>s==='coherent_in_catalogue_framework'),'two coherent endpoints');ok(api.filter({id:pair.a,contrasts:[pair],reviews,candidates:[pair.b]}).length===Number(r.eligibleForIndependentProbe),'candidate filter');ok(api.filter({id:pair.a,contrasts:[pair],reviews,candidates:[]}).length===0,'eligibility')}
+ok(JSON.stringify(pairCounts)===JSON.stringify(review.transferScreen.counts),'counts');ok(!pairCounts.editorial_review_missing,'all formerly missing candidates screened');ok(JSON.stringify(reviews)===prior,'pure');
+for(const r of review.pairReservations)ok(candidates.some(p=>[p.a,p.b].includes(r.a)&&[p.a,p.b].includes(r.b))&&r.reason.length>40,'existing pair reservation');
+const a=by.get('SEF-V45-052'),b=by.get('SEF-C2-009');ok(a.answer===b.answer&&a.answer==='5♥'&&a.hand[0].includes('A')&&a.hand[2].includes('A')&&b.hand[0].includes('A')&&b.hand[1].includes('R'),'same key-count mechanism not automatic transfer');
+const total=reviews.reduce((s,r)=>s+Object.keys(r.byId).length,0);ok(total===579,'cumulative reviewed');
+console.log(JSON.stringify({assertions,status:'PASS',reviewed:ids.size,totalReviewed:total,statusCounts:counts,pairCounts,pairReservations:review.pairReservations.length}));
