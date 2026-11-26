@@ -1,7 +1,7 @@
 'use strict';
 const L=require('../quizz-durable-m6-lab.js');
 const BASE='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
-function summarize(baselines,sensitivity,targeted){
+function summarize(baselines,sensitivity,targeted,semantic){
  const ok=(v,m)=>{if(!v)throw Error(m)};
  const expected=new Set(Object.keys(L.PROFILES).flatMap(name=>L.SEEDS.map(seed=>name+'/'+seed)));
  const actual=new Set(),registry=[],profiles={},totals={trajectories:0,sessions:0,responses:0,ineligible:0,duplicates:0,short:0,resumes:0,exports:0,elapsedMs:0};
@@ -42,17 +42,28 @@ function summarize(baselines,sensitivity,targeted){
  });
  ok(!labels.size,'Missing sensitivity scenario');
  ok(targeted.unit.status==='PASS'&&targeted.identity.identicalEvents&&targeted.identity.sameSelection&&targeted.legacy.inventedJournal===0,'Targeted tests');
+ ok(semantic.base===BASE&&semantic.tally.hypothesis+semantic.tally.unknown===5745&&semantic.tally.usable+semantic.tally.low===semantic.tally.hypothesis,'Frozen diagnostic census');
+ const semanticKeys=new Set(['cible/47','faible/103','aide/11']);
+ const semanticRows=semantic.rows.map(r=>{
+  const key=r.profile+'/'+r.seed,c=r.checkpoints.at(-1);
+  ok(semanticKeys.delete(key)&&r.horizon===65&&r.ruleSource===BASE&&r.violations.length===0,'Semantic scenario '+key);
+  ok(c.semanticMatches>0&&c.semanticPersistentConcepts>0&&c.interruptedDays>0,'Persistent rule and interruption evidence '+key);
+  registry.push({unit:key,scope:'semantic',disposition:'executed',reason:'Frozen diagnostic categories, explicit interrupted days and independent seed',checkpoints:r.checkpoints,elapsedMs:r.elapsedMs});
+  return {profile:r.profile,seed:r.seed,checkpoint:c};
+ });
+ ok(!semanticKeys.size,'Missing semantic scenario');
  registry.push({unit:'model-and-contracts',scope:'unit',disposition:'executed',reason:'Pure model and independent interface fixtures',assertions:targeted.unit.assertions},
  {unit:'identity-intermediaire-47-S20',scope:'pair',disposition:'executed',reason:'Two exact-base replays with identical event sequences',comparison:targeted.identity.comparison},
  {unit:'legacy-export',scope:'save',disposition:'executed',reason:'Synthetic old-format export, no reconstructed journal',result:targeted.legacy},
+ {unit:'asset-inventory',scope:'static',disposition:'executed',reason:'Actual production references, cache list, build allowlist and Git blob sizes; no browser execution'},
  {unit:'integrated-M1-M5',scope:'candidate',disposition:'not-examined',reason:'Independent branch; coordinator must integrate and replay all 18 pairs'},
  {unit:'native-browser-and-offline',scope:'environment',disposition:'HOLD',reason:'Complete native checkout and browser/build validation not available through connector V8 environment'},
  {unit:'native-process-cpu-rss',scope:'environment',disposition:'HOLD',reason:'V8 wall time and serialized size measured; process metrics require native checkout'});
- return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},registry};
+ return {schema:'QPJB_DURABLE_M6_REGISTER_V1',base:BASE,totals,byProfile,sensitivity:{reference:ref,variants:sensitivityRows},semantic:{tally:semantic.tally,categories:semantic.categories,rows:semanticRows},registry};
 }
 module.exports={summarize};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path');
  const dir=path.join(__dirname,'../audits/apprentissage-durable-20261126/m6'),read=p=>JSON.parse(fs.readFileSync(path.join(dir,p),'utf8'));
- console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json')),null,2));
+ console.log(JSON.stringify(summarize(Object.keys(L.PROFILES).map(n=>read('baseline-'+n+'.json')),read('sensitivity.json'),read('targeted-results.json'),read('semantic-results.json')),null,2));
 }
