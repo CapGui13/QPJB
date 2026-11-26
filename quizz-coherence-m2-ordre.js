@@ -247,6 +247,26 @@
    };
    visit([],work);
   }
+  // Early lessons: a bounded beam can recover useful combinations of moves
+  // which a greedy pass cannot reach. Only the final permutation is eligible,
+  // and every original HARD/SOFT bound still applies. No ID-specific rules.
+  if(s<=20&&f.length===10&&(after.prereqOrderInversions||after.largeJumps||after.missedContrasts)){
+   const seen=new Set([current.map(x=>x.id).join('|')]);
+   let frontier=[{p:current,m:after}];
+   for(let depth=0;depth<3;depth++){
+    const next=[];
+    for(const n of frontier)for(const p of alternatives(n.p,true)){
+     if(!valid(p,s))continue;
+     const key=p.map(x=>x.id).join('|');if(seen.has(key))continue;seen.add(key);
+     const m=metric(p,s,links);
+     if(admissible(p,m)&&score(m)<score(after)){current=p;after=m;}
+     const excess=[...HARD,...SOFT].reduce((v,k)=>v+Math.max(0,m[k]-before[k]),0);
+     next.push({p,m,key,excess});
+    }
+    next.sort((a,b)=>a.excess-b.excess||score(a.m)-score(b.m)||(a.key<b.key?-1:a.key>b.key?1:0));
+    frontier=next.slice(0,8);if(!frontier.length||!(after.prereqOrderInversions||after.largeJumps||after.missedContrasts))break;
+   }
+  }
   return {ids:current.map(x=>x.id),reasons:explain(current,links),changed:current!==f,
    status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes};
  }
