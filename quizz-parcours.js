@@ -689,13 +689,15 @@
       else if(oldFamily(q)<=5)value-=85;
       else if(oldFamily(q)<=8)value-=30;
       if(!Object.hasOwn(e.lastTheme,t))value+=age>=3?150:85;
-      if(!e.seen.has(m.concept))value+=m.stage<=1?60:15;
+      if(!e.seen.has(m.concept))value+=m.stage<=1?100:25;
       if(FOUNDATIONS.includes(t)&&oldTheme(q)>=5)value+=100;
       if(age<=2&&m.stage<=1)value+=35;
       if(profile==='weak'&&q.difficulty>=3)value-=q.difficulty>=4?170:35;
       if(category==='weakness'){
         value+=Math.min(75,(e.weakConcept[m.concept]||0)*8); if(e.localFragility.has(m.concept)&&novelFamily(q)&&q.difficulty<=target)value+=45;
-        if(bad(q)&&due(q))value+=180;
+        // Chez les élèves fragiles, favoriser un rappel à distance courte sans
+        // dépasser le budget de reprises ni rendre les erreurs anciennes inéligibles.
+        if(bad(q)&&due(q))value+=180+(profile==='weak'&&r&&s-r.lastSession>=3&&s-r.lastSession<=8?100:0);
       }
       if(category==='maintenance'&&due(q)&&!bad(q))value+=40;
       if(category==='transfer')value+=Math.min(60,(e.weakContext[context(q)]||0)*8);
@@ -763,6 +765,12 @@
     }
     // Garantie de découverte et d'entretien, avant les quotas indicatifs.
     if(s>=2){
+      // Une erreur récente mérite une réponse ciblée sans prendre toute la séance.
+      if(selected.length<limit&&buckets.weakness<quotas[2]){
+        const recallLimit=profile==='weak'?2:1;
+        for(let i=0;i<recallLimit&&selected.length<limit&&repeatedFamilies<Math.max(1,repeatBudget);i++)
+          if(!choose(pool.filter(q=>due(q)&&bad(q)),'weakness','rappel_erreur_aide'))break;
+      }
       const priorities=sessionPlan.priorityThemes({roadmap:ROADMAP,completed:s,lastTheme:e.lastTheme,eligibleThemes:pool.map(q=>q.theme)});
       for(const [t] of priorities){
         if(selected.length>=limit||themes[t])continue;
@@ -774,12 +782,7 @@
               choose(options,null,null,true);
         }else choose(options,'discovery',null,true);
       }
-      // Une erreur récente mérite une réponse ciblée sans prendre toute la séance.
-      if(selected.length<limit&&buckets.weakness<quotas[2]){
-        const recallLimit=profile==='weak'?2:1;
-        for(let i=0;i<recallLimit&&selected.length<limit&&repeatedFamilies<Math.max(1,repeatBudget);i++)
-          if(!choose(pool.filter(q=>due(q)&&bad(q)),'weakness','rappel_erreur_aide'))break;
-      }
+
     }
     const order=['discovery','maintenance','weakness','transfer'];
     while(selected.length<limit){
