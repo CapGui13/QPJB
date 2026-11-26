@@ -190,6 +190,63 @@
    if(partner&&/contre|intervention|adversaire/i.test(x)&&explicit(q,c))
     return result('transfer-context-auction','Sur une autre séquence, identifie qui a annoncé la dernière enchère et ce que l’intervention adverse change avant de choisir.',['role-encherisseur','contexte-competitif']);
   }
+  // Pass 2: narrow additional rules, after existing rules (no replacement).
+  // Signed diagnosis, exact sequence, actual computed hand facts, canonical corroboration.
+  const key=d.evidence?.rule, op=a.length===0&&q.theme==='ouv', responseSA=a.length===1&&/^Partenaire : [12]SA(?: \([^)]*\))?$/.test(a[0]);
+  const startSA=responseSA?a[0].match(/[12]SA/)[0]:null, p=startSA==='1SA'?'2':'3';
+  const majorOpen=partnerOpen&&/[♥♠]$/.test(a[0]), major=majorOpen?a[0].slice(-1):null;
+  const specific=(id,feedback,prompt,criteria)=>rule('pass2-'+id,feedback,prompt,criteria);
+  if(op&&key==='opening-major-first'&&axis==='priorite'&&/^1[♥♠]$/.test(ans)&&/^1[♣♦]$/.test(c)&&length(as)>=5&&length(as)>=length(cs)&&/majeure cinquième|cinq (?:Piques|Cœurs)/i.test(x))
+   return specific('opening-major-first','Tu as '+length(as)+' cartes dans la majeure, contre '+length(cs)+' dans la mineure choisie. Dans ce cas, la majeure cinquième est prioritaire.','Sur une autre ouverture, vérifie d’abord les majeures cinquièmes avant de comparer les mineures.',['priorite-majeure','longueur-ouverture']);
+  if(op&&key==='opening-major-length'&&axis==='distribution'&&/^1[♥♠]$/.test(c)&&length(cs)<5&&((ans==='Passe'&&/seuil d[’']ouverture|force.*ouvrir/i.test(x)&&hl<13&&q.h<12)||(reg&&/^[12]SA$/.test(ans)&&/régulièr/i.test(x)&&((ans==='1SA'&&q.h>=15&&q.h<=17)||(ans==='2SA'&&q.h>=20&&q.h<=21)))))
+   return specific('opening-short-major','Indépendamment de la force, la majeure choisie ne compte que '+length(cs)+' cartes : ce n’est pas une majeure cinquième.','Sur une autre main, vérifie séparément le seuil d’ouverture, la longueur majeure et la zone de Sans-Atout.',['force-ouverture','longueur-majeure-ouverture']);
+  if(op&&key==='opening-best-minor'&&axis==='priorite'&&/^1[♣♦]$/.test(ans)&&/^1[♣♦]$/.test(c)&&s[0]<5&&s[1]<5&&/meilleure mineure/i.test(x)){
+   const expected=s[2]>s[3]?'1♦':s[2]<s[3]?'1♣':s[2]===3?'1♣':s[2]===4?'1♦':null;
+   if(expected===ans)return specific('opening-minor-tie','La comparaison donne '+s[2]+' Carreaux et '+s[3]+' Trèfles. '+(s[2]===s[3]?'C’est la règle d’égalité '+s[2]+'–'+s[3]+' qui tranche.':'C’est la mineure la plus longue qui tranche.'),'Sur une autre ouverture sans majeure cinquième, applique la comparaison puis, si nécessaire, la règle d’égalité.',['longueur-mineures','egalite-mineures']);
+  }
+  if(key==='response-major-before-minor-support'&&axis==='priorite'&&partnerOpen&&/[♣♦]$/.test(a[0])&&c==='2'+a[0].slice(-1)&&/^1[♥♠]$/.test(ans)&&length(as)>=4&&/quatre|4 cartes|majeure/i.test(x)&&/fit|masquer|forcing/i.test(x))
+   return specific('minor-major-before-support','Tu détiens '+length(as)+' cartes dans une majeure annonçable au palier de un. Le soutien mineur ne les montre pas.','Sur une autre réponse à une mineure, cherche d’abord la majeure naturelle disponible avant le soutien mineur.',['majeure-reponse','priorite-fit-majeur']);
+  if(key==='major-support-short'&&axis==='fit'&&majorOpen&&c==='2'+major&&length(major)<3&&/sans fit|pas.*fit|absence.*fit|ne suffi|non fitt/i.test(x))
+   return specific('major-short-support','Tes '+length(major)+' cartes face aux cinq promises ne garantissent pas huit atouts.','Sur une autre réponse à une majeure, compte les atouts garantis avant de choisir un soutien.',['fit-majeur','atouts-communs']);
+  if(key==='response-premature-two-level'&&axis==='force'&&majorOpen&&major==='♥'&&ans==='1♠'&&/^2[♣♦]$/.test(c)&&s[0]>=4&&q.h<11&&hl<12&&/forcing|naturel|quatre|cinq/i.test(x))
+   return specific('major-low-two-over-one','Tes '+q.h+' H ('+hl+' HL) sont en dessous du seuil de changement de couleur au palier de deux retenu dans le quiz. La majeure est annonçable au palier de un.','Sur une autre main après 1♥, compare le seuil du deux-sur-un à celui de 1♠ avant de choisir.',['force-reponse','seuil-deux-sur-un']);
+  if(responseSA&&axis==='distribution'&&ans==='Passe'&&reg&&/manche/i.test(x)&&/aucun espoir|pas la force nécessaire|pas.*espoir/i.test(x)&&((startSA==='1SA'&&q.h<=6)||(startSA==='2SA'&&q.h<=2))){
+   if(key==='pn3-sa-threshold-no-major'&&c===p+'♣'&&s[0]<4&&s[1]<4)
+    return specific('sa-no-stayman-major','Tu as '+s[0]+' Piques et '+s[1]+' Cœurs. Sur cette main régulière et faible, aucun fit majeur 4–4 n’est à rechercher.','Sur une autre réponse faible à Sans-Atout, compte les majeures et vérifie la force avant le Stayman.',['stayman-longueurs','force-reponse-sa']);
+   if(key==='pn3-sa-threshold-no-transfer-length'&&c[0]===p&&['♦','♥'].includes(c[1])&&length(c[1]==='♦'?'♥':'♠')<5)
+    return specific('sa-no-transfer-length','La majeure désignée par ton Texas ne compte que '+length(c[1]==='♦'?'♥':'♠')+' cartes.','Sur une autre réponse faible et régulière à Sans-Atout, vérifie la longueur de la majeure que désigne le Texas.',['texas-couleur-cible','longueur-majeure']);
+  }
+  if(responseSA&&axis==='convention'&&/Texas/i.test(x)&&ans[0]===p&&['♦','♥'].includes(ans[1])){
+   const dest=ans[1]==='♦'?'♥':'♠';
+   if(length(dest)>=5&&key==='texas-natural-target'&&c===p+dest)
+    return specific('texas-target-not-direct','Le Texas désigne '+(dest==='♥'?'les Cœurs':'les Piques')+' par l’enchère inférieure. Annoncer directement la couleur n’est pas le transfert demandé.','Sur une autre réponse à Sans-Atout, nomme la majeure longue, puis retrouve le palier du Texas correspondant.',['texas-couleur-cible','texas-code']);
+   if(startSA==='1SA'&&length(dest)>=5&&key==='texas-pass'&&c==='Passe'&&/partiel|pas de minimum|levée.*atout|jouer.*couleur/i.test(x))
+    return specific('texas-before-pass','Tes '+length(dest)+' cartes dans la majeure peuvent être utiles comme atouts, même si la manche est hors de portée.','Sur une autre main faible sur 1SA, distingue Passe immédiat et Texas suivi de Passe.',['texas-couleur-cible','objectif-partielle']);
+  }
+  if(responseSA&&key==='stayman-vs-texas'&&axis==='convention'&&ans===p+'♣'&&c[0]===p&&['♦','♥'].includes(c[1])&&Math.max(s[0],s[1])===4&&/Stayman/i.test(x)&&/fit|quatre|4–4/i.test(x))
+   return specific('stayman-before-texas','La majeure désignée par le Texas choisi ne compte que '+length(c[1]==='♦'?'♥':'♠')+' cartes. Le Stayman recherche ici une majeure quatrième chez l’ouvreur.','Sur une autre réponse à Sans-Atout, distingue les mains à majeure quatrième de celles à majeure cinquième.',['stayman-texas','longueur-majeure']);
+  const rebid=a.length===2&&/^Vous : 1[♣♦♥♠]$/.test(a[0])&&/^Partenaire : 1[♥♠]$/.test(a[1]), first=rebid?a[0].slice(-1):null, reply=rebid?a[1].slice(-1):null;
+  if(rebid&&key==='rebid-sa-zone'&&axis==='force'&&reg&&length(reply)<4&&/régulièr/i.test(x)&&((ans==='1SA'&&c==='2SA'&&q.h>=12&&q.h<=14&&/12\s*[–-]\s*14\s*H/.test(x))||(ans==='2SA'&&c==='1SA'&&q.h>=18&&q.h<=19&&/18\s*[–-]\s*19\s*H/.test(x))))
+   return specific('rebid-sa-zone','Tu as '+q.h+' H. La redemande à Sans-Atout ne décrit pas les mêmes zones qu’une ouverture à Sans-Atout.','Sur une autre redemande régulière sans fit, distingue 1SA (12–14 H) et 2SA à saut (18–19 H).',['zone-redemande-sa','force-ouverture-vs-redemande']);
+  if(rebid&&key==='rebid-regular-vs-repeat'&&axis==='distribution'&&reg&&length(first)===4&&length(reply)<4&&c==='2'+first&&/^[12]SA$/.test(ans)&&/régulièr/i.test(x))
+   return specific('rebid-short-repeat','La couleur ouverte ne compte que quatre cartes. La main régulière est décrite par la redemande à Sans-Atout dans cette séquence.','Sur une autre redemande, compare longueur de la couleur ouverte et régularité de la main.',['longueur-redemande','regularite-sa']);
+  if(key==='natural-overcall-vs-double'&&axis==='competition'&&direct&&c==='Contre'&&as&&ans[0]==='1'&&length(as)>=5&&/Contre d[’']appel/i.test(x)&&/naturel|cinquième|couleur/i.test(x))
+   return specific('direct-overcall-vs-double',null,'Sur une autre intervention directe, identifie la couleur longue annonçable et compare l’information transmise par la couleur et le Contre d’appel.',['intervention-naturelle','contre-vs-couleur']);
+  if(key==='takeout-double-weak-sa'&&axis==='force'&&a.length===3&&/^Adversaire : 1[♣♦]$/.test(a[0])&&a[1]==='Partenaire : Contre'&&a[2]==='Adversaire : Passe'&&c==='1SA'&&/^1[♥♠]$/.test(ans)&&length(as)>=4&&q.h<=5&&/obligatoire|doit répondre/i.test(x))
+   return specific('double-weak-response','Tes '+q.h+' H ne t’empêchent pas de répondre au Contre d’appel ; la majeure quatrième est disponible au palier de un.','Sur une autre réponse faible au Contre d’appel, repère la couleur annonçable au plus bas palier avant de choisir Sans-Atout.',['reponse-contre','force-reponse-contre']);
+  if(key==='competitive-fit-before-new-suit'&&axis==='priorite'&&a.length===2&&/^Partenaire : 1[♥♠]$/.test(a[0])&&/^Adversaire : 1[♥♠]$/.test(a[1])&&ans==='2'+a[0].slice(-1)&&length(as)>=3&&/^2[♣♦]$/.test(c)&&/soutien simple/i.test(x)&&/6\s*[–-]\s*10\s*HLD/i.test(x))
+   return specific('competitive-fit-first','Le soutien dispose déjà de '+length(as)+' atouts en face de la majeure cinquième promise. Le changement de couleur ne transmet pas ce fit.','Sur une autre réponse après intervention, identifie le fit et évalue la zone de soutien avant d’envisager une autre couleur.',['fit-competitif','zone-soutien']);
+  const simpleFit=a.length===2&&/^Vous : 1[♥♠]$/.test(a[0])&&a[1]==='Partenaire : 2'+a[0].slice(-1);
+  if(simpleFit&&axis==='niveau'&&ans==='2SA'&&/essai|invitation|proposer la manche/i.test(x)&&(/pas de l[’']imposer|pas.*imposer|minimum|refuse|accepte/i.test(x))&&((key==='pn3-trial-not-stop'&&c==='Passe')||(key==='pn3-trial-not-game'&&c==='4'+a[0].slice(-1))))
+   return specific('fit-trial-ambition',c==='Passe'?'Passe arrête la séquence alors qu’une invitation reste possible.':'Cette conclusion impose la manche alors que le soutien peut être minimum.','Sur une autre main après soutien simple, distingue arrêt, essai généralisé et conclusion directe à la manche.',['essai-manche','objectif-contrat']);
+  const roudi=a.length===3&&/^Partenaire : 1[♣♦]$/.test(a[0])&&/^Vous : 1[♥♠]$/.test(a[1])&&a[2]==='Partenaire : 1SA';
+  if(roudi&&key==='roudi-vs-weak-repeat'&&axis==='convention'&&c==='2♣'&&ans==='2'+a[1].slice(-1)&&length(as)>=5&&/partielle|non forcing|sans obliger/i.test(x)&&/manche.*pas|non la manche|faible|injustifiée/i.test(x))
+   return specific('roudi-weak-repeat','La répétition naturelle permet de jouer la majeure longue ; le relais Roudi sert à explorer, non à proposer directement cette partielle.','Sur une autre main après la redemande à 1SA, distingue une répétition faible non forcing et une recherche constructive du fit.',['roudi-objectif','objectif-partielle']);
+  if(roudi&&key==='roudi-vs-nonforcing-repeat'&&axis==='forcing'&&ans==='2♣'&&c==='2'+a[1].slice(-1)&&length(cs)>=5&&/Roudi/i.test(x)&&/faible|plus faible|espoir de manche/i.test(x))
+   return specific('roudi-constructive-repeat',null,'Sur une autre main constructive après 1SA, vérifie si une répétition non forcing risque de fermer la recherche du fit 5–3 et de la manche.',['roudi-objectif','caractere-forcing']);
+  if(majorOpen&&key==='fit-2sa'&&axis==='convention'&&ans==='2SA'&&c==='2'+major&&length(major)===3&&/2SA fitté/i.test(x)&&/11\s*[–-]\s*12\s*HLD/i.test(x))
+   return specific('fit-2sa-zone','Le fit troisième est établi ; c’est la zone invitante explicitée dans le corrigé qui distingue le 2SA fitté du soutien simple.','Sur une autre réponse à une majeure, distingue le nombre d’atouts et la zone de force du soutien.',['2sa-fitte','zone-soutien']);
+
   return null;
  }
 

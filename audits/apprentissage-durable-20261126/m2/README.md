@@ -56,8 +56,12 @@ const result = QPJBDurableRemediation.explain({exercise,answer,diagnostic,histor
 
 Afficher le canonique historique une seule fois; ajouter feedback, reminder et checkNext séparément s'ils existent. Ne pas utiliser reminder ou targetCriteria comme preuve de maîtrise ou pour écraser la séance active. Sur diagnostic modifié/non compatible, version d'exercice différente, choix libre non proposé, données incohérentes : repli canonique. La répétition concerne les mauvaises options réellement observées dans les six séances de parcours terminées; une erreur assistée n'est retenue que si son diagnostic historique est compatible, jamais l'aide seule. L'historique ancien ne stocke pas toujours la première enchère libre ni une empreinte de version; aucun diagnostic rétrospectif de ce premier choix n'est produit. Les signaux M1 ne sont pas consommés à ce stade. Ne pas ajouter de champs au schéma existant. Tests intégration et publication du coordinateur distincts.
 
+## Pass 2 — reprise après 640ba77b2f6f91af48d2936a622694e6a0e76ab1
+
+131 options supplémentaires couvertes par 18 règles étroites (`pass2-*`) conditionnées au diagnostic signé, à la séquence, aux longueurs/force calculées et au canonique. Aucun ancien ciblage supprimé. Le registre et les références de transfert sont régénérés sur la base figée. Détail par option, contexte et règle dans `pass2.json`. Résultat courant : 2726 ciblages, 288 compléments, 2199 références distinctes ; 100721 assertions exécutées dans V8 en 16844 ms sur le nouveau module et les artefacts générés. Les chiffres du tableau précédent décrivent la première livraison. Pas de relecture individuelle exhaustive revendiquée.
+
 ## Limites et suite
 
-Restent 2 322 HOLD à examiner au fond, 304 contrastes provisoires à valider, une relecture éditoriale qualitative des règles et des exceptions à poursuivre, et une recette réelle Node/Chromium/WebKit à exécuter. Ne pas substituer une question générique à un critère non démontré. Aucun nouveau diagnostic affirmatif pour les 524 abstentions. Le module est opérationnel dans son périmètre mais la couverture pédagogique intégrale demandée par #398 n'est pas atteinte. Ne pas fusionner automatiquement.
+Restent 2194 HOLD à examiner au fond, 301 contrastes provisoires à valider, et une recette réelle Node/Chromium/WebKit à exécuter. Ne pas substituer une question générique à un critère non démontré. Les 524 abstentions restent prudentes. La couverture pédagogique intégrale demandée par #398 n'est pas atteinte. Ne pas fusionner automatiquement.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON

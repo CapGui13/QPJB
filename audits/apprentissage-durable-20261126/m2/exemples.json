@@ -22,6 +22,30 @@
       "role-encherisseur"
     ]
   },
+  "pass2-opening-short-major": {
+    "id": "SEF-004-1",
+    "choice": "1♠",
+    "concept": "ouv.sa2",
+    "family": "cas-004",
+    "feedback": "Indépendamment de la force, la majeure choisie ne compte que 4 cartes : ce n’est pas une majeure cinquième.",
+    "checkNext": "Sur une autre main, vérifie séparément le seuil d’ouverture, la longueur majeure et la zone de Sans-Atout.",
+    "criteria": [
+      "force-ouverture",
+      "longueur-majeure-ouverture"
+    ]
+  },
+  "pass2-opening-major-first": {
+    "id": "SEF-006-2",
+    "choice": "1♦",
+    "concept": "ouv.majeure",
+    "family": "cas-006",
+    "feedback": "Tu as 5 cartes dans la majeure, contre 4 dans la mineure choisie. Dans ce cas, la majeure cinquième est prioritaire.",
+    "checkNext": "Sur une autre ouverture, vérifie d’abord les majeures cinquièmes avant de comparer les mineures.",
+    "criteria": [
+      "priorite-majeure",
+      "longueur-ouverture"
+    ]
+  },
   "transfer-opening-threshold": {
     "id": "SEF-006-2",
     "choice": "Passe",
@@ -58,6 +82,18 @@
       "longueur-majeure-ouverture"
     ]
   },
+  "pass2-opening-minor-tie": {
+    "id": "SEF-012-1",
+    "choice": "1♦",
+    "concept": "ouv.mineure",
+    "family": "cas-012",
+    "feedback": "La comparaison donne 3 Carreaux et 3 Trèfles. C’est la règle d’égalité 3–3 qui tranche.",
+    "checkNext": "Sur une autre ouverture sans majeure cinquième, applique la comparaison puis, si nécessaire, la règle d’égalité.",
+    "criteria": [
+      "longueur-mineures",
+      "egalite-mineures"
+    ]
+  },
   "transfer-force-hl": {
     "id": "SEF-014-1",
     "choice": "1♠",
@@ -80,6 +116,18 @@
     "criteria": [
       "longueur-couleur",
       "promesse-enchere"
+    ]
+  },
+  "pass2-minor-major-before-support": {
+    "id": "SEF-015-1",
+    "choice": "2♣",
+    "concept": "mineur.base",
+    "family": "cas-015",
+    "feedback": "Tu détiens 4 cartes dans une majeure annonçable au palier de un. Le soutien mineur ne les montre pas.",
+    "checkNext": "Sur une autre réponse à une mineure, cherche d’abord la majeure naturelle disponible avant le soutien mineur.",
+    "criteria": [
+      "majeure-reponse",
+      "priorite-fit-majeur"
     ]
   },
   "response-minor-force": {
@@ -142,6 +190,30 @@
       "palier"
     ]
   },
+  "pass2-sa-no-transfer-length": {
+    "id": "SEF-031-2",
+    "choice": "2♦",
+    "concept": "sa1.seuil",
+    "family": "cas-031",
+    "feedback": "La majeure désignée par ton Texas ne compte que 3 cartes.",
+    "checkNext": "Sur une autre réponse faible et régulière à Sans-Atout, vérifie la longueur de la majeure que désigne le Texas.",
+    "criteria": [
+      "texas-couleur-cible",
+      "longueur-majeure"
+    ]
+  },
+  "pass2-sa-no-stayman-major": {
+    "id": "SEF-031-2",
+    "choice": "2♣",
+    "concept": "sa1.seuil",
+    "family": "cas-031",
+    "feedback": "Tu as 3 Piques et 3 Cœurs. Sur cette main régulière et faible, aucun fit majeur 4–4 n’est à rechercher.",
+    "checkNext": "Sur une autre réponse faible à Sans-Atout, compte les majeures et vérifie la force avant le Stayman.",
+    "criteria": [
+      "stayman-longueurs",
+      "force-reponse-sa"
+    ]
+  },
   "transfer-level-sa": {
     "id": "SEF-032-1",
     "choice": "3SA",
@@ -152,6 +224,18 @@
     "criteria": [
       "palier-sa",
       "objectif-contrat"
+    ]
+  },
+  "pass2-stayman-before-texas": {
+    "id": "SEF-034-1",
+    "choice": "2♥",
+    "concept": "sa1.stayman",
+    "family": "cas-034",
+    "feedback": "La majeure désignée par le Texas choisi ne compte que 4 cartes. Le Stayman recherche ici une majeure quatrième chez l’ouvreur.",
+    "checkNext": "Sur une autre réponse à Sans-Atout, distingue les mains à majeure quatrième de celles à majeure cinquième.",
+    "criteria": [
+      "stayman-texas",
+      "longueur-majeure"
     ]
   },
   "transfer-force-contract": {
@@ -188,6 +272,30 @@
     "criteria": [
       "texas-couleur-cible",
       "texas-suite"
+    ]
+  },
+  "pass2-texas-target-not-direct": {
+    "id": "SEF-038-1",
+    "choice": "2♠",
+    "concept": "sa1.texas",
+    "family": "cas-038",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à Sans-Atout, nomme la majeure longue, puis retrouve le palier du Texas correspondant.",
+    "criteria": [
+      "texas-couleur-cible",
+      "texas-code"
+    ]
+  },
+  "pass2-texas-before-pass": {
+    "id": "SEF-038-1",
+    "choice": "Passe",
+    "concept": "sa1.texas",
+    "family": "cas-038",
+    "feedback": "Tes 5 cartes dans la majeure peuvent être utiles comme atouts, même si la manche est hors de portée.",
+    "checkNext": "Sur une autre main faible sur 1SA, distingue Passe immédiat et Texas suivi de Passe.",
+    "criteria": [
+      "texas-couleur-cible",
+      "objectif-partielle"
     ]
   },
   "transfer-fit-major": {
@@ -239,6 +347,18 @@
       "economie-redemande"
     ]
   },
+  "pass2-roudi-weak-repeat": {
+    "id": "SEF-052-3",
+    "choice": "2♣",
+    "concept": "second.base",
+    "family": "cas-052",
+    "feedback": "La répétition naturelle permet de jouer la majeure longue ; le relais Roudi sert à explorer, non à proposer directement cette partielle.",
+    "checkNext": "Sur une autre main après la redemande à 1SA, distingue une répétition faible non forcing et une recherche constructive du fit.",
+    "criteria": [
+      "roudi-objectif",
+      "objectif-partielle"
+    ]
+  },
   "transfer-response-two-over-one": {
     "id": "SEF-N045-1",
     "choice": "1SA",
@@ -246,6 +366,30 @@
     "family": "cas-101",
     "feedback": null,
     "checkNext": "Sur une autre première réponse, vérifie le seuil du changement de couleur au palier de deux et distingue-le d’une réponse limitée à 1SA.",
+    "criteria": [
+      "force-reponse",
+      "seuil-deux-sur-un"
+    ]
+  },
+  "pass2-fit-2sa-zone": {
+    "id": "SEF-N051-2",
+    "choice": "2♥",
+    "concept": "fit.2sa",
+    "family": "cas-107",
+    "feedback": "Le fit troisième est établi ; c’est la zone invitante explicitée dans le corrigé qui distingue le 2SA fitté du soutien simple.",
+    "checkNext": "Sur une autre réponse à une majeure, distingue le nombre d’atouts et la zone de force du soutien.",
+    "criteria": [
+      "2sa-fitte",
+      "zone-soutien"
+    ]
+  },
+  "pass2-major-low-two-over-one": {
+    "id": "SEF-N058-2",
+    "choice": "2♦",
+    "concept": "majeur.base",
+    "family": "cas-114",
+    "feedback": "Tes 6 H (6 HL) sont en dessous du seuil de changement de couleur au palier de deux retenu dans le quiz. La majeure est annonçable au palier de un.",
+    "checkNext": "Sur une autre main après 1♥, compare le seuil du deux-sur-un à celui de 1♠ avant de choisir.",
     "criteria": [
       "force-reponse",
       "seuil-deux-sur-un"
@@ -263,6 +407,18 @@
       "atouts-communs"
     ]
   },
+  "pass2-major-short-support": {
+    "id": "SEF-N064-2",
+    "choice": "2♥",
+    "concept": "majeur.base",
+    "family": "cas-120",
+    "feedback": "Tes 2 cartes face aux cinq promises ne garantissent pas huit atouts.",
+    "checkNext": "Sur une autre réponse à une majeure, compte les atouts garantis avant de choisir un soutien.",
+    "criteria": [
+      "fit-majeur",
+      "atouts-communs"
+    ]
+  },
   "transfer-fit-count": {
     "id": "SEF-N106-1",
     "choice": "1SA",
@@ -273,6 +429,18 @@
     "criteria": [
       "couleur-promise",
       "atouts-communs"
+    ]
+  },
+  "pass2-roudi-constructive-repeat": {
+    "id": "SEF-N137-1",
+    "choice": "2♥",
+    "concept": "roudi.init",
+    "family": "cas-189",
+    "feedback": null,
+    "checkNext": "Sur une autre main constructive après 1SA, vérifie si une répétition non forcing risque de fermer la recherche du fit 5–3 et de la manche.",
+    "criteria": [
+      "roudi-objectif",
+      "caractere-forcing"
     ]
   },
   "stayman-response-count": {
@@ -298,6 +466,18 @@
       "force-intervention",
       "longueur-couleur",
       "qualite-couleur"
+    ]
+  },
+  "pass2-direct-overcall-vs-double": {
+    "id": "SEF-V3-027-2",
+    "choice": "Contre",
+    "concept": "intervenir.base",
+    "family": "cas-227",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention directe, identifie la couleur longue annonçable et compare l’information transmise par la couleur et le Contre d’appel.",
+    "criteria": [
+      "intervention-naturelle",
+      "contre-vs-couleur"
     ]
   },
   "transfer-overcall-sa-vs-long-suit": {
@@ -349,6 +529,18 @@
       "passe"
     ]
   },
+  "pass2-double-weak-response": {
+    "id": "SEF-V3-057-1",
+    "choice": "1SA",
+    "concept": "contre.base",
+    "family": "cas-257",
+    "feedback": "Tes 3 H ne t’empêchent pas de répondre au Contre d’appel ; la majeure quatrième est disponible au palier de un.",
+    "checkNext": "Sur une autre réponse faible au Contre d’appel, repère la couleur annonçable au plus bas palier avant de choisir Sans-Atout.",
+    "criteria": [
+      "reponse-contre",
+      "force-reponse-contre"
+    ]
+  },
   "transfer-cuebid-after-double": {
     "id": "SEF-V3-070-2",
     "choice": "2♣",
@@ -359,6 +551,18 @@
     "criteria": [
       "cue-bid",
       "role-encherisseur"
+    ]
+  },
+  "pass2-competitive-fit-first": {
+    "id": "SEF-V3-074-3",
+    "choice": "2♣",
+    "concept": "apres_inter.base",
+    "family": "cas-274",
+    "feedback": "Le soutien dispose déjà de 3 atouts en face de la majeure cinquième promise. Le changement de couleur ne transmet pas ce fit.",
+    "checkNext": "Sur une autre réponse après intervention, identifie le fit et évalue la zone de soutien avant d’envisager une autre couleur.",
+    "criteria": [
+      "fit-competitif",
+      "zone-soutien"
     ]
   },
   "transfer-competitive-fit-sa": {
@@ -372,6 +576,18 @@
       "contexte-competitif",
       "2sa-fitte",
       "zone-soutien"
+    ]
+  },
+  "pass2-fit-trial-ambition": {
+    "id": "SEF-V4-002-1",
+    "choice": "Passe",
+    "concept": "apres_fit.essai",
+    "family": "cas-310",
+    "feedback": "Passe arrête la séquence alors qu’une invitation reste possible.",
+    "checkNext": "Sur une autre main après soutien simple, distingue arrêt, essai généralisé et conclusion directe à la manche.",
+    "criteria": [
+      "essai-manche",
+      "objectif-contrat"
     ]
   },
   "transfer-fit-trial": {
