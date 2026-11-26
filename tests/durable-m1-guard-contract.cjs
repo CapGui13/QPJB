@@ -1,0 +1,16 @@
+'use strict';
+const assert=require('node:assert/strict'),G=require('../quizz-durable-m1-guard.js');
+const session=(n,correct,assisted=false)=>({mode:'parcours',session:n,answers:Array.from({length:10},(_,i)=>({id:'Q'+i,result:i<correct?'correct':'wrong',assisted,hadFreeError:false}))});
+const h=(...journal)=>({completed:Math.max(3,...journal.map(x=>x.session)),journal});
+assert.equal(G.evaluate(null).allow,false);
+assert.equal(G.evaluate(h(session(1,10),session(2,10))).allow,false);
+assert.equal(G.evaluate(h(session(1,3),session(2,3),session(3,3))).allow,false);
+assert.equal(G.evaluate(h(session(1,5),session(2,5),session(3,5))).allow,true);
+assert.equal(G.evaluate(h(session(1,10,true),session(2,10,true),session(3,10,true))).allow,false);
+assert.equal(G.evaluate(h(session(1,10),session(1,10),session(3,10))).allow,false);
+const recovered=h(...Array.from({length:10},(_,i)=>session(i+1,2)),...Array.from({length:10},(_,i)=>session(i+11,8)));
+const snap=JSON.stringify(recovered);assert.equal(G.evaluate(recovered).allow,true);assert.equal(JSON.stringify(recovered),snap);assert.deepEqual(G.evaluate(recovered),G.evaluate(recovered));
+assert.equal(G.evaluate(h(session(1,10),session(2,10),{...session(3,10),mode:'review'})).allow,false);
+const corrected=session(3,10);corrected.answers.forEach(a=>a.hadFreeError=true);
+assert.equal(G.evaluate(h(session(1,10),session(2,10),corrected)).allow,false);
+console.log(JSON.stringify({contract:'guard',pass:true,threshold:G.MIN_SUCCESS,window:G.WINDOW}));

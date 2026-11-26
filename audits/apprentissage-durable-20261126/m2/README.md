@@ -1,0 +1,169 @@
+# M2 — Remédiation approfondie (apprentissage durable)
+
+Contrat [#396](https://github.com/CapGui13/QPJB/issues/396), mission [#398](https://github.com/CapGui13/QPJB/issues/398). Base immuable `d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7`. Branche exclusive M2. Aucune modification du catalogue ni des modules de production existants.
+
+## Cartographie initiale et objectifs
+
+1 915 QCM, 99 concepts, 5 745 mauvaises options. Le professeur numérique historique produit 5 416 hypothèses dont 195 de confiance faible, 329 unknown, 140 remédiations ciblées dont 119 compléments et 140 pistes. Les autres cas restent au corrigé canonique. Objectifs : conserver intégralement les 140 cas, ne jamais modifier le canonique, contrôler les 5 745 mauvaises options et 1 915 bonnes réponses, augmenter les compléments utiles sans paraphrase systématique, distinguer aide/réussite autonome/correction spontanée, ne jamais inventer un accord, proposer un critère et des références inter-familles lorsque vérifiables.
+
+Lecture des contrats et historiques #377–395, du professeur numérique, de la table des prérequis, de la classification des concepts, du diagnostic M3, du module M4 antérieur et des formats réels de journal/export. Certaines longues références historiques n'ont pu être relues intégralement dans la fenêtre disponible ; aucune prétention de revue SEF exhaustive.
+
+## Résultat mesuré sur les blobs de la base
+
+| Indicateur | Avant | Après |
+|---|---:|---:|
+| Remédiations ciblées (diagnostic sans aide) | 140 | 2 595 |
+| Compléments de feedback non vides | 119 | 186 |
+| Pistes de réinvestissement non vides | 140 | 2 595 |
+| Remédiations ciblées avec diagnostic après affichage des propositions | non mesuré | 2 426 |
+| Références de transfert même concept, même règle, catégorie et critères, autre famille, autre main, autre bonne enchère | non mesuré | 2 129 |
+| Questions et options contrôlées | — | 1 915 / 5 745 |
+| Anciens compléments et pistes ciblés conservés sur les diagnostics compatibles | 140 | 140 |
+
+Les 2 595 pistes comprennent 140 historiques, 132 issues de règles contextualisées (dont certaines sans complément textuel volontairement), 2 323 issues de règles de réinvestissement. Le registre conserve également 304 contrastes canoniques détectés par heuristique et encore à valider éditorialement, 524 abstentions (329 unknown, 195 hypothèses faibles) et **2 322 HOLD** sans règle validée. Total exact 5 745. Tous les cas ont une disposition technique ; les HOLD ne sont pas individuellement arbitrés et ne doivent pas être considérés comme traités sur le fond. Aucun nouveau texte individualisé n'est revendiqué comme relu exhaustivement. La mesure de non-redondance vérifie qu'un nouveau complément n'est pas ajouté si l'enchère rejetée figure déjà dans le canonique ; elle n'établit pas l'absence de toute redondance sémantique. Les règles de transfert sont des questions de méthode contextualisées, pas une preuve d'apprentissage humain.
+
+## Fichiers et reproductibilité
+
+- `quizz-durable-m2-remediation.js` : UMD/CommonJS autonome, synchrone, sans réseau, sans stockage, sans horloge interne. Signature de l'exercice et empreinte du diagnostic de la base, contrôle du choix réellement formulé. L'empreinte est un garde-version non cryptographique. Les règles requièrent main valide, rôle/séquence, bonne enchère et compatibilité avec canonique et diagnostic. Les règles générales n'ajoutent pas de nouveaux accords SEF.
+- `quizz-durable-m2-data.js` : données figées des options; provenance générée à partir des modules historiques et de la table réelle de concepts. Compatibilité du diagnostic avec une mauvaise réponse assistée explicitement calculée.
+- `registre.json` : une entrée par mauvaise option, disposition, motif, catégorie, confiance, règle de diagnostic, présence des champs et critères. Les HOLD et contrastes provisoires sont visibles.
+- `transferts.json` : références de mains distinctes, autre famille, autre bonne réponse, même concept, règle, catégorie et critères. La borne de stade est au plus +1. Ces références ne constituent pas une sélection éligible ni un verdict de maîtrise; le coordinateur doit filtrer les prérequis et le stade réel avant utilisation.
+- `exemples.json`, `mesures.json` : exemples par règle et compteurs.
+- `demo.html` : 37 scénarios à deux mains, réponse libre, propositions facultatives, corrigé après validation, sans score/progression; ouverture locale depuis un checkout du dépôt. Les diagnostics sont des fixtures réelles du catalogue figé; les réponses utilisateur ne sont jamais transmises. Aucun changement de production.
+- `tests/durable-m2-remediation.cjs` : reproduit les données et le registre à partir de `git show BASE:fichier`; contrôle les options et bonnes réponses, incompatibilités, déterminisme, canonique, historique réel (dont exports), aide, première réponse corrigée, UMD et pureté. `--write` régénère les données principales et références, pas le HTML de démo.
+- `tests/durable-m2-demo.cjs` : double DOM (focus demandé, soumission, fuite avant validation, erreur, aide, correction, passage autre main).
+
+Commandes après checkout :
+```sh
+node tests/durable-m2-remediation.cjs
+node tests/durable-m2-demo.cjs
+```
+
+**Réellement exécuté** : corps exact des deux tests en V8 avec blobs GitHub de la base et fichiers committés, module CommonJS et UMD global. 100 488 assertions du test exhaustif, 296 du démonstrateur sur double DOM (37 scénarios). Dernière exécution du banc exhaustif : 16 323 ms, incluant la génération et le parcours de toutes les options, non une mesure de latence individuelle. Les fichiers data/registre/transferts committés ont été comparés aux résultats générés. Clone/CLI Node non exécutés (résolution DNS GitHub indisponible dans le conteneur), Chromium/WebKit réels et navigation clavier/mobile visuelle non exécutés. Aucun succès de CI revendiqué.
+
+## Raccordement coordinateur (non réalisé par M2)
+
+Charger data puis remediation. Appeler exclusivement après validation avec la main réelle de la base et l'objet answer réel. En cas de bonne réponse après première enchère libre incorrecte et connue, calculer le diagnostic sur firstGuess avec assisted:false et hadFreeError:true; sinon diagnostic sur le choix final avec flags réels. Ne jamais fabriquer une première réponse sur reprise historique. Exemple :
+
+```js
+const first = answer.result === 'correct' && answer.hadFreeError === true && typeof answer.firstGuess === 'string';
+const diagnostic = QPJBProfesseur.diagnose({
+  exercise, choice: first ? answer.firstGuess : answer.choice,
+  assisted: first ? false : answer.assisted, hadFreeError: answer.hadFreeError
+});
+const result = QPJBDurableRemediation.explain({exercise,answer,diagnostic,history});
+```
+
+Afficher le canonique historique une seule fois; ajouter feedback, reminder et checkNext séparément s'ils existent. Ne pas utiliser reminder ou targetCriteria comme preuve de maîtrise ou pour écraser la séance active. Sur diagnostic modifié/non compatible, version d'exercice différente, choix libre non proposé, données incohérentes : repli canonique. La répétition concerne les mauvaises options réellement observées dans les six séances de parcours terminées; une erreur assistée n'est retenue que si son diagnostic historique est compatible, jamais l'aide seule. L'historique ancien ne stocke pas toujours la première enchère libre ni une empreinte de version; aucun diagnostic rétrospectif de ce premier choix n'est produit. Les signaux M1 ne sont pas consommés à ce stade. Ne pas ajouter de champs au schéma existant. Tests intégration et publication du coordinateur distincts.
+
+## Pass 2 — reprise après 640ba77b2f6f91af48d2936a622694e6a0e76ab1
+
+131 options supplémentaires couvertes par 18 règles étroites (`pass2-*`) conditionnées au diagnostic signé, à la séquence, aux longueurs/force calculées et au canonique. Aucun ancien ciblage supprimé. Le registre et les références de transfert sont régénérés sur la base figée. Détail par option, contexte et règle dans `pass2.json`. Résultat courant : 2726 ciblages, 288 compléments, 2199 références distinctes ; 100721 assertions exécutées dans V8 en 16844 ms sur le nouveau module et les artefacts générés. Les chiffres du tableau précédent décrivent la première livraison. Pas de relecture individuelle exhaustive revendiquée.
+
+## Limites et suite
+
+Restent 2194 HOLD à examiner au fond, 301 contrastes provisoires à valider, et une recette réelle Node/Chromium/WebKit à exécuter. Ne pas substituer une question générique à un critère non démontré. Les 524 abstentions restent prudentes. La couverture pédagogique intégrale demandée par #398 n'est pas atteinte. Ne pas fusionner automatiquement.
+
+MISSION DÉFINITIVEMENT TERMINÉE : NON (état historique de cette passe)
+
+
+## Passe 3 — relecture des contrastes
+
+Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés suffisants pour écarter l'option, sans feedback supplémentaire ni inférence causale. Quatre contrastes restent en arbitrage, motivés dans `revue-contrastes.json`. Chaque décision conserve le corrigé source, l'empreinte, la catégorie, la confiance et la règle du diagnostic. Le générateur contrôle la correspondance et l'utilisation de toutes les décisions. 101 318 assertions exécutées dans V8, avec aller-retour des artefacts générés. Les 2 194 HOLD et les 524 abstentions restent distincts ; aucune relecture humaine ou recette navigateur réelle n'est revendiquée. Le code de production et le module de remédiation restent inchangés durant cette passe.
+
+
+## Passe 4 — critères de réinvestissement supplémentaires
+
+68 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 15 règles effectives. Chaque cas est vérifié sur la main, la séquence, la bonne enchère, le diagnostic signé et le corrigé figé ; le détail est dans `pass4.json`. Aucun autre statut ni ciblage existant modifié. Total : 2794 ciblages, 288 compléments, 2203 références distinctes ; 2126 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101386 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés. Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
+
+
+## Passe 5 — traitement transversal des enchères naturelles et conventionnelles
+
+453 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 74 règles effectives. Les règles contrôlent la main, la séquence, la bonne enchère, le diagnostic signé et les critères du corrigé figé ; le détail est dans `pass5.json`. Aucun autre statut ni ciblage existant modifié. Total : 3247 ciblages, 288 compléments, 2470 références distinctes ; 1673 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101839 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés. Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
+
+
+## Passe 6 — approfondissement transversal et développements avancés
+
+124 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 52 règles effectives. Les règles contrôlent la main, la séquence, la bonne enchère, le diagnostic signé et les critères du corrigé figé ; le détail est dans `pass6.json`. Aucun autre statut ni ciblage existant modifié. Total : 3371 ciblages, 288 compléments, 2495 références distinctes ; 1549 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101963 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés (clone GitHub impossible dans le conteneur, DNS). Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
+
+
+## Passe 7 — revue éditoriale des contrastes déjà suffisants
+
+84 options relues sur la main, la séquence, le corrigé et le diagnostic signé : 82 HOLD avec contraste exact déjà présent dans le corrigé, plus deux arbitrages (SEF-L23-001|Passe et SEF-L39-002|4♥) fondés sur l'objectif explicite de la question. Pas de nouveau texte redondant ni de modification du module. Les deux autres arbitrages restent ouverts : SEF-V470-007|Contre et SEF-L08-026|Contre. Le banc vérifie désormais également la provenance des contrastes exacts et maintient les anciennes conditions pour les revues historiques. Registre individuel `pass7.json`, revue IA et non humaine. Total : 3371 ciblages, 288 compléments, 2495 références distinctes, 381 corrigés suffisants, 1467 HOLD et 2 contrastes en attente. Banc V8 : 102512 assertions, reproduction des artefacts comprise. Node CLI et navigateur réel non exécutés. Statut NON.
+
+
+## Passe 8 — revue contextualisée individuelle
+
+55 décisions éditoriales IA supplémentaires (54 HOLD et un contraste provisoire), sans nouveau feedback redondant. Chaque décision est liée à la main, la séquence, la force, la distribution, le diagnostic signé, le corrigé intégral et la justification individuelle dans `pass8-propositions.json` (instantané de la proposition, désormais intégrée). Le test contrôle ces éléments et reproduit les données et transferts existants ; comparaison exhaustive avec le registre précédent : exactement 55 changements attendus. 1413 HOLD et un contraste restant ; 3371 ciblages, 436 corrigés suffisants, 524 abstentions. Banc exact exécuté en V8 : 102731 assertions. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 9 — Rubensohl et Multi-Landy
+
+Revue des 114 HOLD de ces deux thèmes : 106 dispositions « corrigé suffisant », huit HOLD conservés et nommés dans `pass9-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect des accords explicitement locaux, pas de généralisation au SEF. Comparaison exhaustive des registres : exactement 106 changements attendus. 1307 HOLD, un contraste restant, 3371 ciblages et 542 corrigés suffisants. Banc exact exécuté en V8 : 103155 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 10 — Chelems et Michaëls
+
+Revue des 92 HOLD de ces deux thèmes : 78 dispositions « corrigé suffisant », 14 HOLD conservés et nommés dans `pass10-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect du bilan de levées propre à chaque question, aucune généralisation des décisions de chelem. Comparaison exhaustive des registres : exactement 78 changements attendus. 1229 HOLD, un contraste restant, 3371 ciblages et 620 corrigés suffisants. Banc exact exécuté en V8 : 103467 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 11 — Deuxièmes enchères du répondant
+
+Revue des 147 HOLD de ce thème : 141 dispositions « corrigé suffisant », six HOLD conservés et nommés dans `pass11-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Distinction préférence, fit, invitation, manche, relais Roudi et modérateur après bicolore cher ; aucune modification des accords. Comparaison exhaustive des registres : exactement 141 changements attendus. 1088 HOLD, un contraste restant, 3371 ciblages et 761 corrigés suffisants. Banc exact exécuté en V8 : 104031 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 12 — 2SA et 3SA gambling
+
+Revue des 82 HOLD de ces deux thèmes : 67 dispositions « corrigé suffisant », 15 HOLD conservés et nommés dans `pass12-propositions.json`. Justifications individuelles sur la main, séquence, force, distribution, corrigé et diagnostic signé. Distinction Stayman, Texas fitté, double cinq majeur et passe ou corrige ; pas de généralisation des accords QPJB. Comparaison exhaustive des registres : exactement 67 changements attendus, données et transferts existants reproduits. 1021 HOLD, un contraste restant, 3371 ciblages et 828 corrigés suffisants. Banc exact exécuté en V8 : 104299 assertions. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 13 — Développements sur 1SA
+
+Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16 HOLD maintenus et identifiés dans `pass13-propositions.json`. Stayman, Texas majeurs et mineurs, courtes après Texas, relais sur les deux majeures quatrièmes, distinction des accords locaux après Contre d'entame. Aucun changement de corrigé, de ciblage, de module ou de transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 104656 assertions, 16899 ms. 932 HOLD, un contraste restant, 3371 remédiations ciblées et 917 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 14 — lot groupé redemandes, forcing, Roudi et seconde enchère
+
+209 HOLD examinés sur le catalogue figé (revue éditoriale IA) : redemandes 109/121, forcing 68/68, Roudi 15/15, seconde enchère 4/5. Total 196 corrigés jugés suffisants ; 13 HOLD conservés et identifiés dans `pass14-propositions.json`. Les décisions concernent les bicolores, répétitions, soutiens, mini-maxi, troisième et quatrième couleurs, checkback et développements Roudi. Les accords locaux ne sont pas généralisés. Aucun changement de corrigé canonique, moteur, ciblage ni transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 105440 assertions, 17958 ms. 736 HOLD, un contraste restant, 3371 remédiations ciblées et 1113 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 15 — lot groupé interventions, contres et réveils
+
+153 HOLD examinés sur le catalogue figé (revue éditoriale IA) : interventions 61/62, contres 55/59, réveils 31/32. Total 147 corrigés jugés suffisants ; 6 HOLD conservés et identifiés dans `pass15-propositions.json`. Distinctions intervention directe et réveil, contre d'appel/de force, réponse obligatoire ou libre, mini-cue-bid, Texas après intervention à SA ; accords et zones explicitement propres au catalogue, pas de généralisation. Aucun changement de corrigé canonique, moteur, ciblage ni transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 106028 assertions, 17615 ms. 589 HOLD, un contraste restant, 3371 remédiations ciblées et 1260 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 16 — Réponses après intervention et à l'intervention
+
+121 HOLD dans les deux familles ; 97 dispositions « corrigé suffisant » validées par revue éditoriale IA contextualisée, 24 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass16-propositions.json`. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 97 dispositions attendues uniquement. Banc exact V8 : 106415 assertions, 16540 ms ; données et transferts reproduits. 492 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 17 — Ouvertures, barrages et ouvertures fortes
+
+151 HOLD dans les trois familles ; 137 dispositions « corrigé suffisant » validées par revue éditoriale IA contextualisée, 14 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass17-propositions.json`. Attention aux exceptions d'ouverture 5–5, aux positions, aux relais après deux faibles et à l'ouverture forte ; les codes du catalogue ne sont pas généralisés. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 137 dispositions attendues uniquement. Banc exact V8 : 106963 assertions, 20387 ms ; données et transferts reproduits. 355 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 18 — Réponses naturelles, fits, essais et Drury
+
+166 HOLD dans les cinq familles ; 162 dispositions « corrigé suffisant » retenues par revue éditoriale IA contextualisée, 4 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass18-propositions.json`. Les accords QPJB, les distinctions de seuil, les essais de manche et le Drury sont traités dans leur séquence réelle. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 162 dispositions attendues uniquement. Banc exact V8 : 107611 assertions, 19574 ms ; données et transferts reproduits. 193 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 19 — Chelems, bicolores conventionnels et compétition
+
+93 HOLD dans les trois familles ; 83 dispositions « corrigé suffisant » retenues par revue éditoriale IA contextualisée, 10 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass19-propositions.json`. Les codes de cue-bid, rencontre, Splinter et quantitative sont limités à leurs séquences documentées. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 83 dispositions attendues uniquement. Banc exact V8 : 107943 assertions, 18176 ms ; données et transferts reproduits. 110 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 20 — revue transversale des derniers HOLD
+
+111 options ouvertes examinées sur le catalogue figé (110 HOLD et un contraste). 58 corrigés jugés suffisants avec une justification individuelle, 52 HOLD et un contraste conservés ; instantané des décisions et des cas en attente dans `pass20-propositions.json`. Les accords ambigus restent à arbitrer par le coordinateur. Aucun nouveau feedback, aucune modification du moteur, des ciblages ou des transferts. Banc exact V8 : 108175 assertions, données et transferts reproduits. Comparaison exhaustive : exactement 58 dispositions HOLD vers canonical-sufficient. Revue IA, non humaine. Node CLI et navigateurs réels non exécutés. Statut NON.
+
+
+## Passe 21 — dossier final des arbitrages et recette native
+
+Les 53 cas encore ouverts (52 HOLD, un contraste) sont documentés individuellement dans `pass21-arbitrages.json` : motif spécifique, main et contexte du catalogue, catégorie du point à arbitrer, propriétaire coordinateur. Aucune conversion artificielle en corrigé suffisant, aucune nouvelle affirmation SEF, repli canonique inchangé. Le registre généré reste inchangé. Le test `tests/durable-m2-native.cjs` vérifie la couverture exacte de ce dossier, exécute les deux CLI historiques et pilote 37 paires de scénarios sur Chromium et WebKit à deux largeurs (360 et 1280 px), clavier, hors ligne, focus, absence de fuite avant validation et absence de débordement horizontal. Exécution native à attester sur le SHA de cette livraison ; pas de succès anticipé. La revue est IA et non humaine.
+
+
+## Clôture — recette native attestée
+
+Voir [CLOTURE.md](CLOTURE.md) et [recette-native.json](recette-native.json). La recette native sur `4f3f999d3a45c21ae55d72248e93dda86ef8ce69` est réussie, archive téléchargée et vérifiée : 108176 assertions Node, 296 double DOM, 3408 contrôles et 148 scénarios sur chacun des deux navigateurs. Les 53 arbitrages sont documentés et réservés au coordinateur ; aucune fusion ou publication. Les statuts précédents du README décrivent les passes historiques.
+
+MISSION DÉFINITIVEMENT TERMINÉE : OUI — périmètre autonome, avec arbitrages et intégration réservés au coordinateur.

@@ -1,0 +1,3387 @@
+{
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "previous": "640ba77b2f6f91af48d2936a622694e6a0e76ab1",
+  "scope": "Pass 2: narrow rule-condition verification, not individual editorial certification",
+  "previousMetrics": {
+    "targeted": 2595,
+    "feedback": 186,
+    "transfer": 2595,
+    "hold": 2322,
+    "contrast": 304,
+    "pairs": 2129
+  },
+  "metrics": {
+    "questions": 1915,
+    "options": 5745,
+    "baselineTargeted": 140,
+    "baselineFeedback": 119,
+    "baselineTransfer": 140,
+    "afterTargeted": 2726,
+    "afterFeedback": 288,
+    "afterTransfer": 2726,
+    "assistedTargeted": 2557,
+    "diagnosticUnknown": 329,
+    "diagnosticLow": 195,
+    "dispositions": {
+      "legacy": 140,
+      "transfer-rule": 2323,
+      "rule": 263,
+      "HOLD": 2194,
+      "canonical-contrast": 301,
+      "abstain": 524
+    },
+    "rules": {
+      "historical-targeted": 140,
+      "transfer-force-zone": 142,
+      "pass2-opening-short-major": 8,
+      "pass2-opening-major-first": 11,
+      "transfer-opening-threshold": 31,
+      "opening-minor-comparison": 17,
+      "opening-major-length": 15,
+      "pass2-opening-minor-tie": 8,
+      "transfer-force-hl": 47,
+      "transfer-shape-length": 240,
+      "pass2-minor-major-before-support": 11,
+      "response-minor-force": 13,
+      "response-minor-major-first": 14,
+      "transfer-response-threshold": 43,
+      "transfer-shape-regular": 53,
+      "transfer-support-level": 24,
+      "pass2-sa-no-transfer-length": 6,
+      "pass2-sa-no-stayman-major": 7,
+      "transfer-level-sa": 65,
+      "pass2-stayman-before-texas": 14,
+      "transfer-force-contract": 250,
+      "transfer-priority-sa-suit": 123,
+      "transfer-texas": 24,
+      "pass2-texas-target-not-direct": 7,
+      "pass2-texas-before-pass": 2,
+      "transfer-fit-major": 220,
+      "transfer-shape-two-suits": 37,
+      "transfer-level-same-suit": 215,
+      "transfer-priority-rebid": 25,
+      "pass2-roudi-weak-repeat": 4,
+      "transfer-response-two-over-one": 26,
+      "pass2-fit-2sa-zone": 7,
+      "pass2-major-low-two-over-one": 4,
+      "response-major-short-fit": 17,
+      "pass2-major-short-support": 11,
+      "transfer-fit-count": 215,
+      "pass2-roudi-constructive-repeat": 6,
+      "stayman-response-count": 30,
+      "transfer-overcall-values": 30,
+      "pass2-direct-overcall-vs-double": 12,
+      "transfer-overcall-sa-vs-long-suit": 28,
+      "transfer-overcall-shape": 5,
+      "transfer-context-direct": 5,
+      "transfer-force-pass": 10,
+      "pass2-double-weak-response": 4,
+      "transfer-cuebid-after-double": 6,
+      "pass2-competitive-fit-first": 3,
+      "transfer-competitive-fit-sa": 27,
+      "pass2-fit-trial-ambition": 6,
+      "transfer-fit-trial": 15,
+      "transfer-forcing": 44,
+      "transfer-context-balancing": 34,
+      "transfer-roudi-purpose": 17,
+      "transfer-roudi-response": 36,
+      "transfer-drury": 15,
+      "transfer-priority-overcall": 6,
+      "transfer-michaels": 30,
+      "transfer-strong-diamond-response": 39,
+      "transfer-multilandy": 7,
+      "transfer-rubensohl": 24,
+      "transfer-level-ambition": 7,
+      "transfer-michaels-both-suits": 8,
+      "blackwood-count-keys": 25,
+      "transfer-force-hld": 15,
+      "transfer-context-auction": 1,
+      "transfer-competitive-code": 10,
+      "transfer-blackwood": 63,
+      "transfer-fit-two-suits": 41,
+      "transfer-stayman-response": 19,
+      "transfer-direct-sa": 1,
+      "stayman-texas-length": 1
+    },
+    "themes": {
+      "ouv:legacy": 66,
+      "ouv:transfer-rule": 69,
+      "ouv:rule": 59,
+      "ouv:HOLD": 80,
+      "ouv:canonical-contrast": 25,
+      "ouv:abstain": 43,
+      "mineur:rule": 38,
+      "mineur:legacy": 31,
+      "mineur:HOLD": 99,
+      "mineur:abstain": 28,
+      "mineur:transfer-rule": 109,
+      "majeur:legacy": 24,
+      "majeur:transfer-rule": 127,
+      "majeur:HOLD": 123,
+      "majeur:canonical-contrast": 15,
+      "sa:rule": 37,
+      "sa:legacy": 1,
+      "sa:HOLD": 161,
+      "sa:transfer-rule": 161,
+      "sa:abstain": 51,
+      "red:legacy": 2,
+      "red:transfer-rule": 210,
+      "red:HOLD": 188,
+      "red:canonical-contrast": 10,
+      "second:rule": 6,
+      "second:legacy": 2,
+      "second:HOLD": 215,
+      "second:transfer-rule": 148,
+      "mineur:canonical-contrast": 7,
+      "majeur:rule": 39,
+      "second:abstain": 31,
+      "second:canonical-contrast": 15,
+      "stayman:legacy": 2,
+      "stayman:transfer-rule": 132,
+      "stayman:HOLD": 81,
+      "stayman:rule": 30,
+      "intervenir:transfer-rule": 109,
+      "intervenir:legacy": 1,
+      "intervenir:rule": 12,
+      "intervenir:HOLD": 92,
+      "intervenir:canonical-contrast": 13,
+      "intervenir:abstain": 10,
+      "contre:legacy": 2,
+      "contre:rule": 4,
+      "contre:HOLD": 115,
+      "contre:transfer-rule": 60,
+      "contre:canonical-contrast": 36,
+      "apres_inter:rule": 3,
+      "apres_inter:transfer-rule": 197,
+      "apres_inter:HOLD": 217,
+      "apres_inter:canonical-contrast": 45,
+      "apres_inter:abstain": 48,
+      "barrage:HOLD": 96,
+      "barrage:legacy": 2,
+      "barrage:transfer-rule": 74,
+      "barrage:canonical-contrast": 14,
+      "barrage:abstain": 42,
+      "apres_fit:transfer-rule": 101,
+      "apres_fit:HOLD": 47,
+      "apres_fit:abstain": 14,
+      "apres_fit:rule": 6,
+      "apres_fit:canonical-contrast": 6,
+      "reponse_inter:transfer-rule": 129,
+      "reponse_inter:HOLD": 86,
+      "reponse_inter:canonical-contrast": 10,
+      "reveil:transfer-rule": 107,
+      "reveil:abstain": 20,
+      "reveil:HOLD": 81,
+      "reveil:canonical-contrast": 11,
+      "roudi:legacy": 2,
+      "roudi:HOLD": 25,
+      "roudi:transfer-rule": 86,
+      "roudi:canonical-contrast": 12,
+      "roudi:rule": 4,
+      "roudi:abstain": 9,
+      "drury:HOLD": 68,
+      "drury:transfer-rule": 54,
+      "drury:abstain": 21,
+      "drury:canonical-contrast": 4,
+      "contre:abstain": 11,
+      "reponse_inter:abstain": 12,
+      "fortes:transfer-rule": 94,
+      "fortes:legacy": 1,
+      "fortes:HOLD": 44,
+      "fortes:abstain": 19,
+      "fortes:canonical-contrast": 4,
+      "forcing:legacy": 1,
+      "forcing:HOLD": 84,
+      "forcing:transfer-rule": 76,
+      "forcing:abstain": 34,
+      "forcing:canonical-contrast": 18,
+      "multilandy:abstain": 27,
+      "multilandy:transfer-rule": 32,
+      "multilandy:HOLD": 55,
+      "rubensohl:legacy": 1,
+      "rubensohl:HOLD": 95,
+      "rubensohl:transfer-rule": 71,
+      "rubensohl:abstain": 10,
+      "rubensohl:canonical-contrast": 9,
+      "michaels:transfer-rule": 88,
+      "michaels:abstain": 27,
+      "michaels:HOLD": 26,
+      "chelem:legacy": 2,
+      "chelem:rule": 25,
+      "chelem:HOLD": 116,
+      "majeur:abstain": 2,
+      "red:abstain": 28,
+      "stayman:abstain": 21,
+      "stayman:canonical-contrast": 7,
+      "chelem:canonical-contrast": 19,
+      "chelem:abstain": 16,
+      "chelem:transfer-rule": 89,
+      "michaels:canonical-contrast": 6,
+      "multilandy:canonical-contrast": 6,
+      "sa:canonical-contrast": 9
+    },
+    "invalidHands": 0,
+    "distinctHandPairs": 2199,
+    "assertions": 100718,
+    "ms": 17411
+  },
+  "delta": {
+    "HOLD -> rule": 128,
+    "canonical-contrast -> rule": 3
+  },
+  "counts": {
+    "pass2-opening-short-major": 8,
+    "pass2-opening-major-first": 11,
+    "pass2-opening-minor-tie": 8,
+    "pass2-minor-major-before-support": 11,
+    "pass2-sa-no-transfer-length": 6,
+    "pass2-sa-no-stayman-major": 7,
+    "pass2-stayman-before-texas": 14,
+    "pass2-texas-target-not-direct": 7,
+    "pass2-texas-before-pass": 2,
+    "pass2-roudi-weak-repeat": 4,
+    "pass2-fit-2sa-zone": 7,
+    "pass2-major-low-two-over-one": 4,
+    "pass2-major-short-support": 11,
+    "pass2-roudi-constructive-repeat": 6,
+    "pass2-direct-overcall-vs-double": 12,
+    "pass2-double-weak-response": 4,
+    "pass2-competitive-fit-first": 3,
+    "pass2-fit-trial-ambition": 6
+  },
+  "changed": [
+    {
+      "id": "SEF-004-1",
+      "choice": "1♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 21 H et une main régulière, vous êtes dans la zone d’ouverture de 2SA (20–21 H). Ouvrez de 2SA, qui décrit immédiatement votre force et votre répartition. Rappel : 1SA montre 15–17 H.",
+      "auction": [],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 21,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-006-2",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir. Vos cinq Piques conduisent à ouvrir de 1♠, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        5,
+        2,
+        4,
+        2
+      ],
+      "h": 12,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-006-1",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 14 H, vous avez la force d’ouvrir. Vos cinq Piques conduisent à ouvrir de 1♠, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        5,
+        2,
+        4,
+        2
+      ],
+      "h": 14,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-007-1",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        2,
+        5,
+        4,
+        2
+      ],
+      "h": 12,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-007-2",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 13 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        2,
+        5,
+        4,
+        2
+      ],
+      "h": 13,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-012-1",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♣, selon la règle de l’égalité 3–3.",
+      "auction": [],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "1♣"
+    },
+    {
+      "id": "SEF-013-2",
+      "choice": "1♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 8 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 8,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-015-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Vos 8 H suffisent pour répondre et vos quatre Cœurs permettent 1♥, même sans cinquième carte. Cette réponse naturelle est forcing un tour pour un répondant non passé, sans plafond de force ; 1SA masquerait une possibilité de fit majeur. Rappel : la réponse de 1♥ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 8,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-015-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec quatre Cœurs et 9 H après 1♣, répondez 1♥, naturel et forcing un tour si vous n'avez pas passé. 1SA masquerait la majeure quatrième et empêcherait de rechercher immédiatement le fit. Rappel : la réponse de 1♥ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 9,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-016-3",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec quatre Piques et 7 H après 1♦, répondez 1♠ : vous avez la force de répondre et recherchez le fit majeur. 1SA masquerait cette majeure quatrième. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♦"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-017-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec ♠R763 et ♥D1072, les deux majeures comptent quatre cartes. Dans la réponse à 1♣, on annonce d'abord 1♥, la majeure la moins chère, pour laisser à l'ouvreur la possibilité de montrer 1♠. 1♠ ferait perdre de l'espace pour décrire les Cœurs; 1SA masquerait les deux majeures. La réponse de 1♥ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 8,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-018-2",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec 8 H, vous avez la force de répondre. Sur 1♦, annoncez 1♥ avec vos quatre Cœurs pour rechercher le fit majeur. La réponse de 1♥ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♦"
+      ],
+      "shape": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "h": 8,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-019-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec cinq Piques et 7 H après 1♣, répondez 1♠, naturel et non limité en force si vous n'avez pas passé. Recherchez le fit majeur plutôt que de répondre 1SA. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-019-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Vos cinq Piques et 8 H (9 HL) se décrivent naturellement par 1♠ sur 1♣. L'annonce est forcing un tour pour un répondant non passé : inutile de choisir 1SA pour limiter la force avant d'avoir recherché le fit majeur. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 8,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-031-2",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 3 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 3,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-031-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 3 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 3,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-031-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 6 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 6,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-031-1",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 6 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 6,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-034-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vos quatre Piques justifient le Stayman à 2♣ : avec 9 H, vous êtes dans la zone où l'on peut inviter à la manche. Si l'ouvreur montre quatre Piques, vous inviterez dans la majeure ; s'il n'y a pas de fit majeur, à Sans-Atout. 2SA direct risquerait de manquer le fit 4–4.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 9,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-035-2",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec quatre Cœurs et 9 H, le 2♣ Stayman après 1SA cherche un fit majeur 4–4 avant de décider de la manche ou d'une invitation.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 9,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-036-1",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "La main comporte quatre Cœurs, quatre Piques et 10 H. Sur l'ouverture de 1SA, 2♣ Stayman explore les deux fits majeurs possibles.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 10,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-036-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "La main comporte quatre Cœurs, quatre Piques et 10 H. Sur l'ouverture de 1SA, 2♣ Stayman explore les deux fits majeurs possibles.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 10,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-038-1",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Piques et 6 H, le Texas 2♥ après 1SA fait annoncer 2♠ à l'ouvreur et permet de rechercher le contrat partiel majeur.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-038-1",
+      "choice": "Passe",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-before-pass",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "objectif-partielle"
+      ],
+      "canonical": "Avec cinq Piques et 6 H, le Texas 2♥ après 1SA fait annoncer 2♠ à l'ouvreur et permet de rechercher le contrat partiel majeur.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-039-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Cœurs et 12 H, commencez par 2♦ Texas sur 1SA afin de transférer le contrat vers l'ouvreur, avant de montrer votre force.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 12,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-052-3",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-weak-repeat",
+      "feedback": true,
+      "criteria": [
+        "roudi-objectif",
+        "objectif-partielle"
+      ],
+      "canonical": "Le 1SA de l'ouvreur montre 12–14 H : avec vos 6 H, la manche n'est pas en vue. Vos cinq Cœurs peuvent trouver une partielle à la couleur ; 2♥ est naturel et non forcing. Avec seulement quatre Cœurs, on conserverait plutôt 1SA.",
+      "auction": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-053-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-weak-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "objectif-partielle"
+      ],
+      "canonical": "Avec cinq Piques et 6 H face à 12–14 H, vous cherchez une partielle et non la manche. 2♠ propose de jouer la longue, sans obliger l'ouvreur à reparler ; 2♣ Roudi serait une exploration constructive injustifiée.",
+      "auction": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 6,
+      "answer": "2♠"
+    },
+    {
+      "id": "SEF-056-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-weak-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "objectif-partielle"
+      ],
+      "canonical": "Vos cinq Cœurs et 7 H vous placent dans la recherche d'une partielle, face aux 12–14 H de l'ouvreur. 2♥ est naturel non forcing ; 2♣ Roudi servirait à explorer la manche, pas à choisir simplement une partielle.",
+      "auction": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 7,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-N001-1",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 13 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 13,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N001-3",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 14 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 14,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N002-2",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 15 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N002-1",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 17 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 17,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-N003-1",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 16 H, vous avez la force d’ouvrir. Vos cinq Piques conduisent à ouvrir de 1♠, conformément au système d’enchères français (majeure cinquième).",
+      "auction": [],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 16,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N007-1",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, selon la règle de l’égalité 4–4.",
+      "auction": [],
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "h": 12,
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-N008-2",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, selon la règle de l’égalité 4–4.",
+      "auction": [],
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "h": 12,
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-N008-1",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 13 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, selon la règle de l’égalité 4–4.",
+      "auction": [],
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "h": 13,
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-N024-1",
+      "choice": "1♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 5 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N024-1",
+      "choice": "1♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 5 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N024-2",
+      "choice": "1♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 6 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N024-2",
+      "choice": "1♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 6 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N025-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Vous disposez de quatre Piques et 8 H face à 1♣ : 1♠ est une réponse naturelle au palier de un pour rechercher un fit majeur. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 8,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N025-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec 9 H et quatre Piques, répondez naturellement 1♠, forcing un tour si vous n'avez pas passé. Quatre cartes suffisent pour répondre au palier de un, contrairement à l'ouverture majeure cinquième. 1SA masquerait votre majeure et la recherche du fit.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 9,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N051-2",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Vous avez trois Cœurs, 11 H et aucune courte valorisable. Dans le cadre du 2SA fitté, 2SA montre un fit troisième et une valeur invitante de 11–12 HLD face à l'ouverture de 1♥.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-N056-1",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Avec exactement trois Piques et 11 H réguliers, vous avez une main de proposition de manche. Le 2SA fitté du SEF exprime précisément ce soutien troisième de 11–12 HLD.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-N058-2",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-low-two-over-one",
+      "feedback": true,
+      "criteria": [
+        "force-reponse",
+        "seuil-deux-sur-un"
+      ],
+      "canonical": "Après 1♥, vous avez quatre Piques, deux Cœurs et 6 H. Répondez 1♠, naturel et forcing un tour si vous n'avez pas passé : 1SA masquerait les Piques. La réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "h": 6,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N059-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-low-two-over-one",
+      "feedback": true,
+      "criteria": [
+        "force-reponse",
+        "seuil-deux-sur-un"
+      ],
+      "canonical": "Vos cinq Piques sont annonçables à 1♠ et deux Cœurs ne suffisent pas à soutenir 1♥. Avec 9 H (10 HL), répondez 1♠, naturel et forcing un tour pour un répondant non passé ; 1SA masquerait la majeure. La réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 9,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-N064-2",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Carreaux, sans fit majeur, répondez 2♦ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        2,
+        5,
+        3
+      ],
+      "h": 12,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-N064-3",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 14 H (15 HL) et 5 Carreaux, sans fit majeur, répondez 2♦ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        2,
+        5,
+        3
+      ],
+      "h": 14,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-N065-2",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        2,
+        2,
+        4,
+        5
+      ],
+      "h": 12,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N066-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        2,
+        3,
+        5
+      ],
+      "h": 12,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N066-3",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 14 H (15 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        2,
+        3,
+        5
+      ],
+      "h": 14,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N074-1",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Cœurs, sans fit majeur, répondez 2♥ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-N074-3",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 13 H (14 HL) et 5 Cœurs, sans fit majeur, répondez 2♥ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 13,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-N078-2",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Carreaux, sans fit majeur, répondez 2♦ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        2,
+        3,
+        5,
+        3
+      ],
+      "h": 12,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-N079-2",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        2,
+        3,
+        3,
+        5
+      ],
+      "h": 12,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N079-1",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 14 H (15 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♠. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        2,
+        3,
+        3,
+        5
+      ],
+      "h": 14,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N082-2",
+      "choice": "Passe",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-before-pass",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "objectif-partielle"
+      ],
+      "canonical": "Avec 0 H, il n'est pas question d'inviter à la manche. Mais vos cinq Cœurs peuvent servir d'atouts même si votre main n'apporte aucune levée d'honneur à Sans-Atout. 2♦ Texas demande à l'ouvreur de dire normalement 2♥ ; passez ensuite. Le Texas sur 1SA n'a pas de minimum de points.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 0,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-N088-3",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 1 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 1,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N088-3",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 1 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 1,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N088-1",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 5 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 5,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N088-1",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 5 H et une main régulière, vous n’avez aucun espoir de manche face à 1SA (15–17 H). Passez.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 5,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N094-3",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 8 H, vous pouvez envisager la manche. Vos quatre Piques vous incitent à rechercher un fit majeur 4–4 : répondez 2♣ Stayman sur 1SA.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "h": 8,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N095-1",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vous avez quatre Cœurs et 9 H, sans majeure cinquième. Après 1SA, 2♣ Stayman recherche le fit 4–4 à Cœur.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "h": 9,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N096-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vos quatre Piques, quatre Cœurs et 8 H justifient le 2♣ Stayman sur 1SA : les deux majeures quatrièmes offrent deux occasions de fit.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 8,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-N097-3",
+      "choice": "3♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 0 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 2SA (20–21 H). Passez.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 0,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N097-3",
+      "choice": "3♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 0 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 2SA (20–21 H). Passez.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 0,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N097-1",
+      "choice": "3♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 2 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 2SA (20–21 H). Passez.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 2,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N097-1",
+      "choice": "3♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-transfer-length",
+      "feedback": true,
+      "criteria": [
+        "texas-couleur-cible",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec 2 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 2SA (20–21 H). Passez.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 2,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N098-1",
+      "choice": "3♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-sa-no-stayman-major",
+      "feedback": true,
+      "criteria": [
+        "stayman-longueurs",
+        "force-reponse-sa"
+      ],
+      "canonical": "Avec 2 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 2SA (20–21 H). Passez.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 2,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-N101-3",
+      "choice": "3♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec quatre Piques et 7 H sur l'ouverture de 2SA (20–21 H), 3♣ Stayman recherche un éventuel fit 4–4 majeur avant de choisir la manche.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N101-3",
+      "choice": "3♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec quatre Piques et 7 H sur l'ouverture de 2SA (20–21 H), 3♣ Stayman recherche un éventuel fit 4–4 majeur avant de choisir la manche.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N102-2",
+      "choice": "3♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vous détenez quatre Cœurs et 7 H. Après 2SA, 3♣ Stayman permet de vérifier la présence de quatre Cœurs chez l'ouvreur avant de conclure.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N102-2",
+      "choice": "3♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vous détenez quatre Cœurs et 7 H. Après 2SA, 3♣ Stayman permet de vérifier la présence de quatre Cœurs chez l'ouvreur avant de conclure.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N103-2",
+      "choice": "3♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vous possédez quatre Cœurs et quatre Piques, avec 5 H face à 2SA. Le Stayman 3♣ cherche un fit 4–4 en majeure à partir de la force de manche.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N103-2",
+      "choice": "3♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Vous possédez quatre Cœurs et quatre Piques, avec 5 H face à 2SA. Le Stayman 3♣ cherche un fit 4–4 en majeure à partir de la force de manche.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "3♣"
+    },
+    {
+      "id": "SEF-N104-1",
+      "choice": "3♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Cœurs et 5 H face à 2SA (20–21 H), vous avez les valeurs de manche. 3♦ est le Texas pour les Cœurs : en SEF 2024, 3♥ de l’ouvreur confirme au moins trois atouts, tandis que 3SA nie ce fit. Vous pourrez choisir la manche en connaissance du fit.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "3♦"
+    },
+    {
+      "id": "SEF-N104-2",
+      "choice": "3♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Cœurs et 8 H face à 2SA (20–21 H), vous avez les valeurs de manche. 3♦ est le Texas pour les Cœurs : en SEF 2024, 3♥ de l’ouvreur confirme au moins trois atouts, tandis que 3SA nie ce fit. Vous pourrez choisir la manche en connaissance du fit.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 8,
+      "answer": "3♦"
+    },
+    {
+      "id": "SEF-N105-1",
+      "choice": "3♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Piques et 5 H face à 2SA (20–21 H), vous avez les valeurs de manche. 3♥ est le Texas pour les Piques : en SEF 2024, 3♠ de l’ouvreur confirme au moins trois atouts, tandis que 3SA nie ce fit. Vous pourrez choisir la manche en connaissance du fit.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 5,
+      "answer": "3♥"
+    },
+    {
+      "id": "SEF-N105-2",
+      "choice": "3♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Avec cinq Piques et 7 H face à 2SA (20–21 H), vous avez les valeurs de manche. 3♥ est le Texas pour les Piques : en SEF 2024, 3♠ de l’ouvreur confirme au moins trois atouts, tandis que 3SA nie ce fit. Vous pourrez choisir la manche en connaissance du fit.",
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 7,
+      "answer": "3♥"
+    },
+    {
+      "id": "SEF-N135-3",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-weak-repeat",
+      "feedback": true,
+      "criteria": [
+        "roudi-objectif",
+        "objectif-partielle"
+      ],
+      "canonical": "Avec 6 H, cinq Piques et une redemande à 1SA de 12–14 H, la manche est hors de portée. 2♠ est une répétition naturelle faible et non forcing, qui propose une partielle à la couleur ; 2SA serait une invitation trop forte.",
+      "auction": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 6,
+      "answer": "2♠"
+    },
+    {
+      "id": "SEF-N137-1",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Avec six Cœurs et 9 H, vous possédez 11 HL (9 H + 2 L). Dans le Roudi à trois réponses retenu au QPJB, 2♣ permet d’explorer la manche et le soutien de trois cartes de l’ouvreur. La répétition directe à 2♥ est réservée à une main plus faible.",
+      "auction": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        6,
+        2,
+        2
+      ],
+      "h": 9,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V3-027-2",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♣, 12 H et 5 cartes à Cœur (♥RV1062), soit 13 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♣"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 12,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-028-4",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♣, 12 H et 5 cartes à Cœur (♥A7654), soit 13 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♣"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-029-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♦, 12 H et 5 cartes à Cœur (♥RD642), soit 13 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♦"
+      ],
+      "shape": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "h": 12,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-030-2",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♦, 12 H et 5 cartes à Cœur (♥AD432), soit 13 HL, justifient 1♥ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♦"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-031-2",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♣, 12 H et 5 cartes à Pique (♠A8542), soit 13 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♣"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 12,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-031-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♣, 14 H et 5 cartes à Pique (♠RV732), soit 15 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♣"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 14,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-032-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♣, 13 H et 5 cartes à Pique (♠ADV43), soit 14 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♣"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 13,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-033-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♦, 12 H et 5 cartes à Pique (♠AV653), soit 13 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♦"
+      ],
+      "shape": [
+        5,
+        3,
+        2,
+        3
+      ],
+      "h": 12,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-034-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♦, 12 H et 5 cartes à Pique (♠RD932), soit 13 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♦"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-035-4",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♥, 12 H et 5 cartes à Pique (♠AD532), soit 13 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♥"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 12,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-035-1",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♥, 14 H et 5 cartes à Pique (♠A10974), soit 15 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♥"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 14,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-036-2",
+      "choice": "Contre",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-direct-overcall-vs-double",
+      "feedback": false,
+      "criteria": [
+        "intervention-naturelle",
+        "contre-vs-couleur"
+      ],
+      "canonical": "Sur 1♥, 14 H et 5 cartes à Pique (♠DV543), soit 15 HL, justifient 1♠ naturel. Le Contre d’appel rechercherait plusieurs couleurs, alors que votre cinquième est déjà identifiable.",
+      "auction": [
+        "Adversaire : 1♥"
+      ],
+      "shape": [
+        5,
+        1,
+        4,
+        3
+      ],
+      "h": 14,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-057-1",
+      "choice": "1SA",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-double-weak-response",
+      "feedback": true,
+      "criteria": [
+        "reponse-contre",
+        "force-reponse-contre"
+      ],
+      "canonical": "Après 1♣ – Contre – Passe, la réponse est normalement obligatoire, même avec 3 H. Les quatre Cœurs permettent d'annoncer 1♥ au plus bas palier disponible (la majeure étant privilégiée sur une mineure de même longueur). Passe convertirait le Contre d'appel en pénalité, alors que ♣96 ne constitue pas une tenue d'atout adverse suffisante pour une transformation punitive.",
+      "auction": [
+        "Adversaire : 1♣",
+        "Partenaire : Contre",
+        "Adversaire : Passe"
+      ],
+      "shape": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "h": 3,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-058-3",
+      "choice": "1SA",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-double-weak-response",
+      "feedback": true,
+      "criteria": [
+        "reponse-contre",
+        "force-reponse-contre"
+      ],
+      "canonical": "Après 1♣ – Contre – Passe, la réponse est normalement obligatoire, même avec 4 H. Les quatre Piques permettent d'annoncer 1♠ au plus bas palier disponible (la majeure étant privilégiée sur une mineure de même longueur). Passe convertirait le Contre d'appel en pénalité, alors que ♣D4 ne constitue pas une tenue d'atout adverse suffisante pour une transformation punitive.",
+      "auction": [
+        "Adversaire : 1♣",
+        "Partenaire : Contre",
+        "Adversaire : Passe"
+      ],
+      "shape": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "h": 4,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-059-5",
+      "choice": "1SA",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-double-weak-response",
+      "feedback": true,
+      "criteria": [
+        "reponse-contre",
+        "force-reponse-contre"
+      ],
+      "canonical": "Après 1♦ – Contre – Passe, la réponse est normalement obligatoire, même avec 2 H. Les quatre Cœurs permettent d'annoncer 1♥ au plus bas palier disponible (la majeure quatrième est ici prioritaire sur les cinq Trèfles). Passe convertirait le Contre d'appel en pénalité, alors que ♦92 ne constitue pas une tenue d'atout adverse suffisante pour une transformation punitive.",
+      "auction": [
+        "Adversaire : 1♦",
+        "Partenaire : Contre",
+        "Adversaire : Passe"
+      ],
+      "shape": [
+        3,
+        4,
+        2,
+        4
+      ],
+      "h": 2,
+      "answer": "1♥"
+    },
+    {
+      "id": "SEF-V3-060-2",
+      "choice": "1SA",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-double-weak-response",
+      "feedback": true,
+      "criteria": [
+        "reponse-contre",
+        "force-reponse-contre"
+      ],
+      "canonical": "Après 1♦ – Contre – Passe, la réponse est normalement obligatoire, même avec 2 H. Les quatre Piques permettent d'annoncer 1♠ au plus bas palier disponible (la majeure étant privilégiée sur une mineure de même longueur). Passe convertirait le Contre d'appel en pénalité, alors que ♦53 ne constitue pas une tenue d'atout adverse suffisante pour une transformation punitive.",
+      "auction": [
+        "Adversaire : 1♦",
+        "Partenaire : Contre",
+        "Adversaire : Passe"
+      ],
+      "shape": [
+        4,
+        3,
+        2,
+        4
+      ],
+      "h": 2,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V3-074-3",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-competitive-fit-first",
+      "feedback": true,
+      "criteria": [
+        "fit-competitif",
+        "zone-soutien"
+      ],
+      "canonical": "Après 1♥ du partenaire et 1♠ adverse, vous détenez 6 H, trois atouts ♥V106 et la forme 2-3-4-4. L'évaluation au fit donne 7 HLD (6 H + 1 point de courte). Le soutien simple de 2♥ montre environ 6–10 HLD après intervention naturelle, tandis que 2SA fitté annoncerait 11–15 HLD.",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠"
+      ],
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "h": 6,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-V3-074-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-competitive-fit-first",
+      "feedback": true,
+      "criteria": [
+        "fit-competitif",
+        "zone-soutien"
+      ],
+      "canonical": "Après 1♥ du partenaire et 1♠ adverse, vous détenez 9 H, trois atouts ♥1075 et la forme 2-3-4-4. L'évaluation au fit donne 10 HLD (9 H + 1 point de courte). Le soutien simple de 2♥ montre environ 6–10 HLD après intervention naturelle, tandis que 2SA fitté annoncerait 11–15 HLD.",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠"
+      ],
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "h": 9,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-V3-075-2",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-competitive-fit-first",
+      "feedback": true,
+      "criteria": [
+        "fit-competitif",
+        "zone-soutien"
+      ],
+      "canonical": "Après 1♥ du partenaire et 1♠ adverse, vous détenez 6 H, trois atouts ♥842 et la forme 1-3-5-4. L'évaluation au fit donne 9 HLD (6 H + 1 point de longueur + 2 points de courte). Le soutien simple de 2♥ montre environ 6–10 HLD après intervention naturelle, tandis que 2SA fitté annoncerait 11–15 HLD.",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠"
+      ],
+      "shape": [
+        1,
+        3,
+        5,
+        4
+      ],
+      "h": 6,
+      "answer": "2♥"
+    },
+    {
+      "id": "SEF-V4-002-1",
+      "choice": "Passe",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": true,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Avec 15 H, ♥AR865 et cinq atouts seulement, vous avez de quoi proposer la manche, pas de l'imposer. Après 1♥–2♥, 2SA est l'essai généralisé : le partenaire refuse à 3♥ ou accepte à 4♥. 3♥ serait ici préventif, non une invitation.",
+      "auction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V4-002-1",
+      "choice": "4♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": false,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Avec 15 H, ♥AR865 et cinq atouts seulement, vous avez de quoi proposer la manche, pas de l'imposer. Après 1♥–2♥, 2SA est l'essai généralisé : le partenaire refuse à 3♥ ou accepte à 4♥. 3♥ serait ici préventif, non une invitation.",
+      "auction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V4-004-1",
+      "choice": "Passe",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": true,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Vos 15 H, ♥AV742 et ♦A2 permettent une invitation, mais le soutien à 2♥ peut être minimum. 2SA demande au partenaire d'évaluer ses compléments en vue de 4♥ ; 3♥ serait préventif, pas un essai.",
+      "auction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "shape": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V4-004-1",
+      "choice": "4♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": false,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Vos 15 H, ♥AV742 et ♦A2 permettent une invitation, mais le soutien à 2♥ peut être minimum. 2SA demande au partenaire d'évaluer ses compléments en vue de 4♥ ; 3♥ serait préventif, pas un essai.",
+      "auction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "shape": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V4-014-1",
+      "choice": "Passe",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": true,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Vos 15 H et ♠ARD97 rendent la manche possible face à un soutien maximum, pas certaine face à un minimum. 2SA est l'essai généralisé après 1♠–2♠ ; 3♠ serait préventif et 4♠ engagerait la manche sans consulter le partenaire.",
+      "auction": [
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit.",
+      "auction": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 11,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V4-085-3",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Après 1♦–1♥–1SA, vos cinq Cœurs ♥AD865 et 11 H donnent une perspective de manche. 2♣ Roudi interroge sur un soutien troisième et la force de l'ouvreur. 2♥ serait une répétition faible ; 2SA ne vérifierait pas le fit 5–3.",
+      "auction": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 11,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V4-091-3",
+      "choice": "2♠",
+      "before": "canonical-contrast",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Avec ♠AR864 cinquièmes et 11 H, vous pouvez envisager la manche mais ignorez si le partenaire a trois Piques. Le relais 2♣ Roudi vérifie ce fit 5–3 et la force en face ; 2♠ serait faible et 2SA ne vérifierait pas le fit.",
+      "auction": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 11,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V44-001",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 18 H et une main régulière, vous êtes entre les zones de 1SA (15–17 H) et de 2SA (20–21 H). Sans majeure cinquième, ouvrez 1♦, votre meilleure mineure. Vous préciserez vos 18–19 H à la redemande.",
+      "auction": [],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 18,
+      "answer": "1♦"
+    },
+    {
+      "id": "SEF-V44-054",
+      "choice": "4♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-trial-ambition",
+      "feedback": false,
+      "criteria": [
+        "essai-manche",
+        "objectif-contrat"
+      ],
+      "canonical": "Après 1♥–2♥, vos 15 H permettent une enchère d'essai généralisée à 2SA : elle invite votre partenaire à préciser la qualité de son soutien en vue de 4♥, sans rechercher un contrat à Sans-Atout. L'enchère de 3♠ ne convient pas comme simple essai, car elle dépasse 3♥ et interdit au partenaire de refuser en revenant à 3♥. La manche à 4♥ ne doit pas être imposée automatiquement avec cette force.",
+      "auction": [
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "shape": [
+        4,
+        5,
+        2,
+        2
+      ],
+      "h": 15,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V49-012",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-short-support",
+      "feedback": true,
+      "criteria": [
+        "fit-majeur",
+        "atouts-communs"
+      ],
+      "canonical": "Avec 12 H (14 HL) et 6 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        2,
+        2,
+        3,
+        6
+      ],
+      "h": 12,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V49-027",
+      "choice": "2♠",
+      "before": "canonical-contrast",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Avec six Piques et 10 H, vous possédez 12 HL (10 H + 2 L). Utilisez 2♣ Roudi pour préciser le fit et la force de l’ouvreur. 2♠ serait faible et 3♠ direct ne constitue pas la simple invitation de manche enseignée par le Roudi.",
+      "auction": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        6,
+        2,
+        3,
+        2
+      ],
+      "h": 10,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-V410-022",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-low-two-over-one",
+      "feedback": true,
+      "criteria": [
+        "force-reponse",
+        "seuil-deux-sur-un"
+      ],
+      "canonical": "Avec 7 H, vous avez la force de répondre. Sur 1♥, annoncez 1♠ avec vos quatre Piques. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "h": 7,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-V410-023",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Vous avez exactement trois Cœurs : le fit est au moins huitième. Vos 11 H et le doubleton Pique donnent 12 HLD, au maximum de la zone invitante de 11–12 HLD. Répondez 2SA fitté, qui montre le soutien troisième dans le traitement SEF du quiz.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-V410-024",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Vous avez exactement trois Piques et un doubleton Cœur. Vos 11 H deviennent 12 HLD (11 H + 1 point D pour le doubleton), au maximum de la zone invitante. 2SA fitté montre précisément le soutien troisième de 11–12 HLD.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "SEF-C-003",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-texas-target-not-direct",
+      "feedback": false,
+      "criteria": [
+        "texas-couleur-cible",
+        "texas-code"
+      ],
+      "canonical": "Vous détenez cinq Cœurs avec seulement 3 H. Après 1SA, 2♦ Texas reste la première réponse, sans minimum de points, pour jouer éventuellement 2♥.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "h": 3,
+      "answer": "2♦"
+    },
+    {
+      "id": "SEF-C-004",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-stayman-before-texas",
+      "feedback": true,
+      "criteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "canonical": "Avec quatre Cœurs et 8 H sur 1SA, 2♣ Stayman demande si l'ouvreur possède une majeure quatrième et permet de chercher le fit 4–4.",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 8,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-C-007",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-major-low-two-over-one",
+      "feedback": true,
+      "criteria": [
+        "force-reponse",
+        "seuil-deux-sur-un"
+      ],
+      "canonical": "Avec cinq Piques et 7 H, répondez naturellement 1♠ à l'ouverture de 1♥. Vous annoncez votre majeure au palier de un, même avec une force limitée. La réponse de 1♠ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "h": 7,
+      "answer": "1♠"
+    },
+    {
+      "id": "SEF-C2-012",
+      "choice": "2♥",
+      "before": "canonical-contrast",
+      "after": "rule",
+      "rule": "pass2-roudi-constructive-repeat",
+      "feedback": false,
+      "criteria": [
+        "roudi-objectif",
+        "caractere-forcing"
+      ],
+      "canonical": "Vos cinq Cœurs ♥AD1096 et 12 H donnent un espoir de manche face à la redemande 1SA (12–14 H). Le relais 2♣ Roudi recherche le soutien troisième et précise la force en face. 2♥ serait faible et 3SA risquerait de manquer le fit 5–3.",
+      "auction": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "h": 12,
+      "answer": "2♣"
+    },
+    {
+      "id": "SEF-Q26-M1-003",
+      "choice": "1♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 11 H et une main régulière, vous n’atteignez pas le seuil d’ouverture de 12 H ou 13 HL. Passez.",
+      "auction": [],
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "h": 11,
+      "answer": "Passe"
+    },
+    {
+      "id": "SEF-Q26-M1-005",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 19 H et une main régulière, vous êtes entre les zones de 1SA (15–17 H) et de 2SA (20–21 H). Sans majeure cinquième, ouvrez 1♣, votre meilleure mineure. Vous préciserez votre force à la redemande.",
+      "auction": [],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 19,
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-001",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "Avec 19 H et une main régulière, vous êtes entre les zones de 1SA (15–17 H) et de 2SA (20–21 H). Sans majeure cinquième, ouvrez 1♣, votre meilleure mineure. Vous préciserez votre force à la redemande.",
+      "auction": [],
+      "shape": [
+        3,
+        3,
+        2,
+        5
+      ],
+      "h": 19,
+      "answer": "1♣"
+    },
+    {
+      "id": "V2-M1-003",
+      "choice": "1♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-short-major",
+      "feedback": true,
+      "criteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "canonical": "Avec 20 H et une main régulière, vous êtes dans la zone de 2SA (20–21 H). Rappel : l’ouverture de 1SA montre 15–17 H. Ouvrez 2SA pour décrire immédiatement votre force et votre répartition.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 20,
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-008",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-minor-tie",
+      "feedback": true,
+      "criteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "canonical": "18 H dépassent 1SA sans atteindre 2SA. La meilleure mineure est Carreau (trois contre deux) ; ouvrez 1♦ avant de préciser 18–19 H.",
+      "auction": [],
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "h": 18,
+      "answer": "1♦"
+    },
+    {
+      "id": "V2-M1-010",
+      "choice": "1♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 15 H, vous avez la force d’ouvrir. Vos cinq Piques sont prioritaires dans le système d’enchères français (majeure cinquième) : ouvrez 1♠.",
+      "auction": [],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-010",
+      "choice": "1♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-opening-major-first",
+      "feedback": true,
+      "criteria": [
+        "priorite-majeure",
+        "longueur-ouverture"
+      ],
+      "canonical": "Avec 15 H, vous avez la force d’ouvrir. Vos cinq Piques sont prioritaires dans le système d’enchères français (majeure cinquième) : ouvrez 1♠.",
+      "auction": [],
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "h": 15,
+      "answer": "1♠"
+    },
+    {
+      "id": "V2-M1-024",
+      "choice": "2♦",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "11 H suffiraient pour un changement de couleur au palier de deux, mais vous avez quatre Cœurs et quatre Trèfles. 1♥ recherche d'abord le fit majeur au palier de un, est forcing un tour et n'est pas limitée en force puisque vous n'avez pas passé. La réponse de 1♥ promet au moins quatre cartes.",
+      "auction": [
+        "Partenaire : 1♦"
+      ],
+      "shape": [
+        3,
+        4,
+        2,
+        4
+      ],
+      "h": 11,
+      "answer": "1♥"
+    },
+    {
+      "id": "V2-M1-032",
+      "choice": "2♣",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-minor-major-before-support",
+      "feedback": true,
+      "criteria": [
+        "majeure-reponse",
+        "priorite-fit-majeur"
+      ],
+      "canonical": "Avec 7 H et quatre Cœurs, répondez 1♥ en priorité pour rechercher le fit majeur. Cette réponse promet au moins quatre cartes et est forcing un tour pour un répondant non passé.",
+      "auction": [
+        "Partenaire : 1♣"
+      ],
+      "shape": [
+        1,
+        4,
+        3,
+        5
+      ],
+      "h": 7,
+      "answer": "1♥"
+    },
+    {
+      "id": "V2-M1-040",
+      "choice": "2♥",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Trois Cœurs et 11 H réguliers : la zone invitante 11–12 HLD est atteinte. 2SA fitté montre trois atouts, contrairement à 3♥ qui demande quatre atouts dans cette zone.",
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-041",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Avec trois Piques et une distribution 3–3–3–4, les 11 H restent 11 HLD : le fit est au moins huitième et la zone 11–12 HLD est invitante. Le 2SA fitté montre exactement trois atouts ; 3♠ de proposition en promet au moins quatre dans ce traitement.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 11,
+      "answer": "2SA"
+    },
+    {
+      "id": "V2-M1-043",
+      "choice": "2♠",
+      "before": "HOLD",
+      "after": "rule",
+      "rule": "pass2-fit-2sa-zone",
+      "feedback": true,
+      "criteria": [
+        "2sa-fitte",
+        "zone-soutien"
+      ],
+      "canonical": "Avec trois Piques, le fit est établi. La main 3–3–3–4 vaut 11 HLD (11 H, aucun bonus de distribution ou de longueur). 2SA fitté indique exactement trois atouts et 11–12 HLD ; le changement de couleur à 2♣ ne décrit pas aussi directement cette invitation fittée.",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "h": 11,
+      "answer": "2SA"
+    }
+  ],
+  "limitations": [
+    "No individual review claimed for remaining HOLD or heuristic contrasts",
+    "No real browser test",
+    "No production changes",
+    "Rules apply only after answer and exact diagnostic match"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "testedHead": "51fd86e6b3c8dfbc0a27d3b0a95b1cb1a9677f39",
+  "moduleBlob": "77de4c0d92c2d43e34bb895e29ae9d6ed04a94fd",
+  "corpusBlob": "3f3d33df296ba4d9f2b09f4d008c05e6523ad20c",
+  "environment": "V8 exact candidate and base sources, virtual FS/CommonJS/VM adapters; DOM simulated, no native browser or Node CLI",
+  "tests": [
+    {
+      "test": "tests/durable-m5-lecons.cjs",
+      "assertions": 3037,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-contrastes.cjs",
+      "assertions": 3771,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-extensions.cjs",
+      "assertions": 2149,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-dom.cjs",
+      "assertions": 1547,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-expositions.cjs",
+      "assertions": 117549,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-arbitrages.cjs",
+      "assertions": 201,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-archives.cjs",
+      "assertions": 505,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-seuils.cjs",
+      "assertions": 117,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-archives-complementaires.cjs",
+      "assertions": 166,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-validation-historique.cjs",
+      "assertions": 1521,
+      "status": "pass"
+    },
+    {
+      "test": "tests/durable-m5-trajectoires.cjs",
+      "assertions": 55071,
+      "status": "pass"
+    }
+  ],
+  "totalAssertions": 185634,
+  "counts": {
+    "concepts": 99,
+    "extensions": 110,
+    "distinctExamples": 349,
+    "checks": 209,
+    "coreEdits": 5,
+    "glossaryConcepts": 71,
+    "definitionsAdded": 103,
+    "closureRows": 118,
+    "approvedRows": 60,
+    "distinctDecisionIds": 169
+  },
+  "trajectories": [
+    {
+      "profile": "autonome",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 0,
+      "assisted": 0,
+      "wrong": 0,
+      "consultations": 115,
+      "assertions": 19066,
+      "conceptsSeen": 99,
+      "discoveryEver": 99,
+      "extensionsEver": 108,
+      "elapsedMs": 17721
+    },
+    {
+      "profile": "faible",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 39,
+      "assisted": 0,
+      "wrong": 266,
+      "consultations": 131,
+      "assertions": 18080,
+      "conceptsSeen": 94,
+      "discoveryEver": 95,
+      "extensionsEver": 103,
+      "elapsedMs": 12440
+    },
+    {
+      "profile": "aide",
+      "seed": 73,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 27,
+      "assisted": 327,
+      "wrong": 269,
+      "consultations": 131,
+      "assertions": 17925,
+      "conceptsSeen": 97,
+      "discoveryEver": 97,
+      "extensionsEver": 97,
+      "elapsedMs": 12395
+    }
+  ],
+  "limitations": "Synthetic histories and trajectories, not evidence of human learning. Full native Chromium/WebKit and complete historical review remain unverified. Reconciliation of 178 records is source comparison, not a new independent SEF certification. SEF-020-3 historic answer 2♣ superseded by frozen 1SA; 17 approved field comparisons differ from current catalogue, retained with both values in the register. No rollback."
+}

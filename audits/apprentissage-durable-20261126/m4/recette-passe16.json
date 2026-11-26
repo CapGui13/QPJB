@@ -1,0 +1,148 @@
+{
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "testedHead": "1fec4135719b31b9486bf95d7d3dc6d10c01ee1b",
+  "execution": "V8 avec adaptateurs fs et git lisant les blobs exacts ; pas Node natif ni navigateur.",
+  "results": {
+    "tests/durable-m4-transfert.cjs": {
+      "assertions": 6002,
+      "ids": 1915,
+      "additions": 13,
+      "pairs": 202,
+      "status": "PASS"
+    },
+    "tests/durable-m4-revue.cjs": {
+      "assertions": 8932,
+      "status": "PASS",
+      "pairs": 202,
+      "counts": {
+        "intercontextual": 77,
+        "near_transfer": 13,
+        "context_boundary": 54,
+        "hold": 4,
+        "discrimination": 42,
+        "role_complement": 9,
+        "consolidation": 3
+      },
+      "transferConcepts": 92,
+      "reviewedHistoricalIds": 280
+    },
+    "tests/durable-m4-mecanique.cjs": {
+      "schema": "QPJB_M4_MECHANICAL_V1",
+      "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+      "scope": "Structure des enchères abrégées : montants croissants, camps pour Contre/Surcontre, choix licites après préfixe. Ni tour de parole complet, ni unicité pédagogique, ni accords certifiés.",
+      "historical": 1915,
+      "additions": 13,
+      "pairs": 202,
+      "assertions": 15935,
+      "status": "PASS",
+      "failures": []
+    },
+    "tests/durable-m4-residuel.cjs": {
+      "assertions": 357,
+      "status": "PASS",
+      "reviewedResidual": 107,
+      "openingReviewed": 52,
+      "proposals": 13
+    },
+    "tests/durable-m4-autonomie.cjs": {
+      "assertions": 1070,
+      "status": "PASS",
+      "reviewed": 148,
+      "totalReviewed": 384,
+      "statusCounts": {
+        "coherent_in_catalogue_framework": 93,
+        "guided_not_independent": 51,
+        "bounded_context": 4
+      },
+      "pairCounts": {
+        "editorial_review_missing": 63,
+        "candidate_only": 5,
+        "guided_prompt": 9
+      }
+    },
+    "tests/durable-m4-extremites-complement.cjs": {
+      "assertions": 496,
+      "status": "PASS",
+      "reviewed": 7,
+      "totalReviewed": 586,
+      "uniqueTransferEndpoints": 140,
+      "pairCounts": {
+        "candidate_only": 22,
+        "guided_prompt": 49,
+        "pair_reservation": 3,
+        "bounded_context": 3
+      },
+      "unreviewedEndpoints": 0
+    },
+    "tests/durable-m4-extremites-transfert.cjs": {
+      "assertions": 782,
+      "status": "PASS",
+      "reviewed": 91,
+      "totalReviewed": 579,
+      "statusCounts": {
+        "coherent_in_catalogue_framework": 44,
+        "guided_not_independent": 47
+      },
+      "pairCounts": {
+        "candidate_only": 22,
+        "guided_prompt": 48,
+        "pair_reservation": 3,
+        "bounded_context": 4
+      },
+      "pairReservations": 3
+    },
+    "tests/durable-m4-fit-majeur.cjs": {
+      "assertions": 819,
+      "status": "PASS",
+      "reviewed": 104,
+      "totalReviewed": 488,
+      "statusCounts": {
+        "coherent_in_catalogue_framework": 50,
+        "guided_not_independent": 39,
+        "bounded_context": 15
+      },
+      "pairCounts": {
+        "editorial_review_missing": 56,
+        "candidate_only": 5,
+        "guided_prompt": 12,
+        "bounded_context": 4
+      }
+    },
+    "tests/durable-m4-reponses-naturelles.cjs": {
+      "assertions": 641,
+      "status": "PASS",
+      "reviewed": 156,
+      "totalReviewed": 742,
+      "statusCounts": {
+        "coherent_in_catalogue_framework": 133,
+        "guided_not_independent": 23
+      },
+      "completeNaturalResponses": 159
+    },
+    "tests/durable-m4-sa-initial.cjs": {
+      "assertions": 320,
+      "status": "PASS",
+      "reviewed": 77,
+      "counts": {
+        "coherent_in_catalogue_framework": 73,
+        "bounded_context": 2,
+        "guided_not_independent": 2
+      },
+      "totalReviewed": 236
+    },
+    "tests/durable-m4-sa-ajouts.cjs": {
+      "assertions": 39,
+      "status": "PASS",
+      "proposed": 3
+    },
+    "tests/durable-m4-fit-reponses-ajouts.cjs": {
+      "assertions": 62,
+      "status": "PASS",
+      "proposed": 5
+    }
+  },
+  "suites": 12,
+  "assertions": 35455,
+  "status": "PASS",
+  "reviewTestsHead": "e12bac4551a20c8bfe65e3222ef27f5a51fd977f"
+}

@@ -1,0 +1,1169 @@
+{
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "parent": "6d2615ac5eb54bf2fad403b603052d755227a8e9",
+  "review": "IA, non humaine ; examen individualisé des cas déjà conservés. Ne change aucune disposition, aucun accord, aucun canonique. Les raisons spécifiques remplacent les motifs génériques de la passe 20 pour le dossier de décision, non le registre généré.",
+  "count": 53,
+  "rows": {
+    "SEF-N002-2|1SA": {
+      "concept": "ouv.majeure",
+      "choice": "1SA",
+      "answer": "1♥",
+      "auction": [],
+      "h": 15,
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "evidence": "Avec 15 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "reason": "Le corrigé invoque la majeure cinquième avec 15 H mais n'explicite pas la priorité sur 1SA dans une 5-3-3-2. Valider le traitement de la majeure cinquième dans la zone SA, y compris les exceptions éventuelles.",
+      "type": "priority",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-N002-1|1SA": {
+      "concept": "ouv.majeure",
+      "choice": "1SA",
+      "answer": "1♥",
+      "auction": [],
+      "h": 17,
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "evidence": "Avec 17 H, vous avez la force d’ouvrir. Vos cinq Cœurs conduisent à ouvrir de 1♥, conformément au système d’enchères français (majeure cinquième).",
+      "reason": "Même concurrence majeure cinquième/SA avec 17 H. Le canonique ne précise pas si la force maximale ou la qualité de la majeure modifie la règle.",
+      "type": "priority",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-N003-1|1SA": {
+      "concept": "ouv.majeure",
+      "choice": "1SA",
+      "answer": "1♠",
+      "auction": [],
+      "h": 16,
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "evidence": "Avec 16 H, vous avez la force d’ouvrir. Vos cinq Piques conduisent à ouvrir de 1♠, conformément au système d’enchères français (majeure cinquième).",
+      "reason": "Avec cinq Piques, 16 H et forme 5-3-3-2, la concurrence avec 1SA est réelle ; expliciter l'accord de priorité, sans transformer la réponse de ce cas en règle universelle.",
+      "type": "priority",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-N040-2|3♦": {
+      "concept": "mineur.base",
+      "choice": "3♦",
+      "answer": "1SA",
+      "auction": [
+        "Partenaire : 1♦"
+      ],
+      "h": 9,
+      "shape": [
+        3,
+        3,
+        5,
+        2
+      ],
+      "evidence": "Avec 9 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA.",
+      "reason": "Le corrigé limite la main à 9 H mais ne donne pas les conditions du soutien à saut de la mineure (HLD, longueur et traitement convenu). Vérifier ce régime avant un complément.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V4-046-3|2♠": {
+      "concept": "reponse_inter.base",
+      "choice": "2♠",
+      "answer": "Passe",
+      "auction": [
+        "Adversaire : 1♠",
+        "Partenaire : 2♥ (intervention)",
+        "Adversaire : Passe"
+      ],
+      "h": 3,
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "evidence": "Après l’intervention naturelle du partenaire à 2♥, deux Cœurs seulement et 3 H ne permettent ni de soutenir à 3♥, ni d’annoncer une nouvelle couleur au palier de 3. Passe.",
+      "reason": "Le cue-bid de l'ouverture adverse n'est pas expliqué ; deux atouts et 3 H suffisent à motiver la prudence mais pas à définir le cue-bid.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V4-046-1|2♠": {
+      "concept": "reponse_inter.base",
+      "choice": "2♠",
+      "answer": "Passe",
+      "auction": [
+        "Adversaire : 1♠",
+        "Partenaire : 2♥ (intervention)",
+        "Adversaire : Passe"
+      ],
+      "h": 5,
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "evidence": "Face à une intervention à 2♥ du partenaire, 5 H et deux atouts ne donnent aucune perspective suffisante : 3♥ engagerait le camp au palier de trois sans fit huitième garanti ni valeurs suffisantes et 3♦ une enchère trop ambitieuse. Passe.",
+      "reason": "Le corrigé oppose soutien et nouvelle couleur, pas le cue-bid. Vérifier la force et le sens de 2♠ en réponse à l'intervention avec n°3 passé.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V4-102-1|3♥": {
+      "concept": "drury.reponse",
+      "choice": "3♥",
+      "answer": "2♦",
+      "auction": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "h": 13,
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "evidence": "Après votre ouverture en troisième position et le Drury à 2♣, 2♦ est la réponse ambiguë du SEF 2024 indiquant un espoir de manche. Avec 13 H et cinq Cœurs, la main justifie cette exploration. 2♥ découragerait la poursuite.",
+      "reason": "2♦ ambigu et 2♥ décourageant sont explicités, pas le saut à 3♥ dans le Drury. Vérifier le code et son ambition avant de différencier.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V44-043|2SA": {
+      "concept": "apres_inter.base",
+      "choice": "2SA",
+      "answer": "3♥",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : Contre"
+      ],
+      "h": 5,
+      "shape": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "evidence": "Après 1♥ – (Contre), vous avez 5 H, quatre cartes d'atout ♥D1098 et une main 3-4-4-2 avec un doubleton ♣103. En vulnérabilité favorable, le soutien à saut 3♥ est un barrage avec neuf atouts présumés, non une invitation de manche ni un Surcontre fort.",
+      "reason": "Barrage après contre avec quatre Cœurs et 5 H : le corrigé ne définit pas le 2SA fitté après contre ni ses limites.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V44-044|2SA": {
+      "concept": "apres_inter.base",
+      "choice": "2SA",
+      "answer": "3♠",
+      "auction": [
+        "Partenaire : 1♠",
+        "Adversaire : Contre"
+      ],
+      "h": 5,
+      "shape": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "evidence": "Après 1♠ – (Contre), vous avez 5 H, quatre cartes d'atout ♠D843 et une main 4-3-4-2 avec un doubleton ♣D2. En vulnérabilité favorable, le soutien à saut 3♠ est un barrage avec neuf atouts présumés, non une invitation de manche ni un Surcontre fort.",
+      "reason": "Barrage à Pique avec quatre atouts et 5 H ; le code du 2SA après contre manque, et ne doit pas être importé du traitement après intervention naturelle.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V49-016|2♥": {
+      "concept": "sa1.seuil",
+      "choice": "2♥",
+      "answer": "Passe",
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "h": 6,
+      "shape": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "evidence": "Avec 6 H et une main régulière, vous n’avez pas la force nécessaire pour envisager la manche face à 1SA (15–17 H). Passez.",
+      "reason": "Le canonique traite uniquement l'absence de force de manche. Un Texas faible ne requiert pas une force de manche : distinguer la longueur de Pique et le code 2♥.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V410-028|2♥": {
+      "concept": "apres_inter.base",
+      "choice": "2♥",
+      "answer": "1SA",
+      "auction": [
+        "Partenaire : 1♣",
+        "Adversaire : 1♥"
+      ],
+      "h": 9,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "evidence": "Avec 9 H, l’As troisième à Cœur et aucune majeure quatrième, 1SA décrit naturellement votre main après 1♣–(1♥). Vous êtes dans la zone 8–10 HL ; 1♠ inventerait une quatrième carte et le Contre n’est pas nécessaire avec cette tenue.",
+      "reason": "2♥ est dans la couleur d'intervention : préciser le sens et l'ambition du cue-bid, non le traiter comme une annonce naturelle.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V411-013|2♥": {
+      "concept": "apres_inter.base",
+      "choice": "2♥",
+      "answer": "2♦",
+      "auction": [
+        "Partenaire : 1♦",
+        "Adversaire : 1♥"
+      ],
+      "h": 8,
+      "shape": [
+        2,
+        2,
+        5,
+        4
+      ],
+      "evidence": "Vos cinq Carreaux A9832 et 8 H permettent un soutien naturel limité à 2♦ après 1♦–(1♥). Vous n’avez ni arrêt à Cœur pour 1SA ni majeure quatrième à rechercher ; le soutien décrit mieux votre main.",
+      "reason": "Le soutien naturel limité est justifié, mais la signification du cue-bid Cœur et son exigence de force ne sont pas données.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V412-017|2♠": {
+      "concept": "apres_inter.base",
+      "choice": "2♠",
+      "answer": "1♠",
+      "auction": [
+        "Partenaire : 1♦",
+        "Adversaire : 1♥"
+      ],
+      "h": 8,
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "evidence": "Avec cinq Piques et 8 H, la réponse naturelle de 1♠ décrit directement la majeure. Le contre Spoutnik n’est pas nécessaire lorsqu’une annonce naturelle appropriée est disponible.",
+      "reason": "Cinq Piques et 8 H justifient 1♠ ; le sens du changement à saut et sa force ne sont pas exposés, donc ne pas inférer un seuil.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V413-009|2♣": {
+      "concept": "reponse_inter.base",
+      "choice": "2♣",
+      "answer": "1♠",
+      "auction": [
+        "Adversaire : 1♣",
+        "Partenaire : 1♥ (intervention)",
+        "Adversaire : Passe"
+      ],
+      "h": 10,
+      "shape": [
+        4,
+        2,
+        3,
+        4
+      ],
+      "evidence": "Sur (1♣)–1♥–(Passe), vous avez 10 H, quatre Piques AV107 et seulement deux Cœurs. Le n°3 a passé : 1♠ est un changement de couleur naturel forcing pour un tour, qui permet au partenaire de montrer quatre Piques. 1SA masquerait cette recherche et 2♥ inventerait un fit. Ne transposez pas ici l'exception de (1♣)–1♦–(1♥), où le n°4 doit distinguer quatre et cinq Piques.",
+      "reason": "Le canonique justifie 1♠ forcing après Passe du n°3 mais ne définit pas le cue-bid de l'ouverture adverse en réponse à une intervention.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V420-011|2SA": {
+      "concept": "apres_inter.base",
+      "choice": "2SA",
+      "answer": "2♥",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 1♠"
+      ],
+      "h": 7,
+      "shape": [
+        2,
+        4,
+        4,
+        3
+      ],
+      "evidence": "Sept H + 1 D pour le doubleton Pique + 2 pour le neuvième Cœur donnent 10 HLD. Après une intervention naturelle, 2♥ décrit 6–10 HLD ; 3♥ avec quatre atouts est un soutien constructif de 11–12 HLD. Avec cette main, 2♥ est le soutien SEF adapté.",
+      "reason": "10 HLD et quatre Cœurs : 2♥ contre 3♥ est expliqué, mais la zone et le nombre d'atouts du 2SA fitté ne sont pas rappelés dans ce corrigé.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V421-008|2SA": {
+      "concept": "apres_inter.base",
+      "choice": "2SA",
+      "answer": "2♠",
+      "auction": [
+        "Partenaire : 1♠",
+        "Adversaire : 2♥"
+      ],
+      "h": 7,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "evidence": "Sept H + 1 D (doubleton Cœur) + 2 pour le neuvième Pique donnent 10 HLD. Avec quatre atouts, 2♠ exprime le soutien de 6–10 HLD après intervention. 3♠ serait une proposition constructive de 11–12 HLD, trop forte ici.",
+      "reason": "Même difficulté après 1♠–(2♥) : 10 HLD et quatre Piques, mais pas de code 2SA fitté dans le canonique.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V422-004|2SA": {
+      "concept": "reponse_inter.base",
+      "choice": "2SA",
+      "answer": "3♠",
+      "auction": [
+        "Adversaire : 1♥",
+        "Partenaire : 1♠ (intervention)",
+        "Adversaire : 2♥"
+      ],
+      "h": 6,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "evidence": "Après 1♥–(1♠)–2♥, quatre Piques et seulement 6 H avec doubleton Cœur justifient un soutien compétitif à 3♠. Ce palier cherche à gagner l’enchère, sans inviter à la manche.",
+      "reason": "Le n°3 a soutenu les Cœurs ; le régime de 2SA (mixed raise ou autre selon accord) doit être confirmé dans ce contexte précis.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V425-007|2♦": {
+      "concept": "apres_inter.base",
+      "choice": "2♦",
+      "answer": "1SA",
+      "auction": [
+        "Partenaire : 1♣",
+        "Adversaire : 1♠"
+      ],
+      "h": 9,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "evidence": "Après l'ouverture de 1♣ et l'intervention adverse à 1♠, vous avez 9 H, une main 3-3-4-3 plutôt régulière et une tenue ♠A94 dans la couleur d'intervention. Sans fit majeur ni quatre cartes à Cœur permettant un Contre Spoutnik, 1SA est une réponse naturelle limitée et non forcing.",
+      "reason": "1SA limité avec arrêt Pique est décrit ; le seuil et la longueur du changement à 2♦ après intervention ne sont pas explicitement comparés.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V470-004|Surcontre": {
+      "concept": "apres_inter.base",
+      "choice": "Surcontre",
+      "answer": "2♥",
+      "auction": [
+        "Partenaire : 1♠",
+        "Adversaire : Contre"
+      ],
+      "h": 6,
+      "shape": [
+        2,
+        6,
+        3,
+        2
+      ],
+      "evidence": "Avec six Cœurs R109764, 6 H et seulement deux Piques, 2♥ est naturel sur 1♠–(Contre) : vous proposez une partielle dans votre longue. Ce changement de couleur au palier de deux est non forcing ; l'ouvreur peut passer. Il ne faut pas lui appliquer le régime d'un 2 sur 1 après intervention adverse à la couleur, qui oblige l'ouvreur à reparler une fois.",
+      "reason": "La longue Cœur et le caractère non forcing de 2♥ sont établis ; le seuil exact du Surcontre après contre d'appel manque.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V470-007|2SA": {
+      "concept": "intervenir.deux_faible",
+      "choice": "2SA",
+      "answer": "Passe",
+      "auction": [
+        "Adversaire : 2♥"
+      ],
+      "h": 9,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "evidence": "Avec seulement 9 H, quatre Piques, un doubleton dans l'ouverture adverse et une forme 4-2-4-3, votre main ne justifie ni une intervention à 2♠ ni un Contre d'appel sur un barrage au palier de 2. Passe conserve la souplesse du camp.",
+      "reason": "9 H et une forme 4-2-4-3 conduisent à Passe ; le seuil de 2SA immédiat après 2♥ faible et les exigences d'arrêt ne sont pas donnés.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V473-007|2SA": {
+      "concept": "apres_inter.base",
+      "choice": "2SA",
+      "answer": "3♥",
+      "auction": [
+        "Partenaire : 1♠",
+        "Adversaire : 2♥ (naturel)"
+      ],
+      "h": 10,
+      "shape": [
+        4,
+        1,
+        4,
+        4
+      ],
+      "evidence": "Avec ♠R1085 ♥5 ♦A974 ♣DV86, vous avez 10 H et un fit Pique au moins neuvième : deux points HLD pour le quatrième atout et deux pour le singleton Cœur donnent environ 14 HLD. Après 1♠–(2♥), 3♥ est un cue-bid de la couleur adverse, forcing de manche et montrant au moins quatre Piques selon le SEF 2024 retenu ici. Ce n'est pas un simple soutien invitant à 3♠.",
+      "reason": "Le cue-bid forcing de manche avec quatre Piques est décrit ; le 2SA fitté, sa longueur et sa zone doivent être distingués explicitement dans cette séquence.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V478-007|3SA": {
+      "concept": "michaels.reponse",
+      "choice": "3SA",
+      "answer": "Passe",
+      "auction": [
+        "Adversaire : 1♠",
+        "Partenaire : 2♠ (Michaël précisé)",
+        "Adversaire : 3♠ (soutien)"
+      ],
+      "h": 9,
+      "shape": [
+        5,
+        2,
+        4,
+        2
+      ],
+      "evidence": "Vous ne garantissez que sept atouts dans chaque couleur du partenaire. Votre As de Pique a une vocation défensive ; après 3♠ adverse, Passe est préférable à une surenchère au palier de quatre sans fit assuré.",
+      "reason": "L'As de Pique et l'absence de fit établi motivent Passe. Le traitement de 3SA en réponse au Michaël après soutien adverse (force et arrêts) n'est pas donné.",
+      "type": "judgment",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V486-005|3SA": {
+      "concept": "barrage.suite",
+      "choice": "3SA",
+      "answer": "4♥",
+      "auction": [
+        "Vous : 2♥ (ouverture faible)",
+        "Partenaire : 2SA (relais interrogatif)"
+      ],
+      "h": 8,
+      "shape": [
+        1,
+        6,
+        3,
+        3
+      ],
+      "evidence": "Avec les six Cœurs ARV1097, aucun As ni Roi annexe et ♠5 singleton, vous êtes dans la branche maximale de ce cas. Le code doit transmettre la courte à Pique sans dépasser la manche à Cœur : 4♥ a précisément ce sens après le relais 2SA. 4♠ dépasserait 4♥ ; 3♥ indiquerait un minimum. Ne lisez pas ce 4♥ comme une simple conclusion sans renseignement.",
+      "reason": "Le code 4♥ décrit le singleton Pique après relais de 2SA ; le sens de 3SA dans cette grille exacte n'est pas explicité.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-V486-020|2♦": {
+      "concept": "rubensohl.naturel",
+      "choice": "2♦",
+      "answer": "2♥",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♣ (Landy, les deux majeures)"
+      ],
+      "h": 9,
+      "shape": [
+        2,
+        4,
+        4,
+        3
+      ],
+      "evidence": "Après le Landy 2♣, l'adversaire a annoncé les deux majeures. Vos 9 H donnent 24–26 H face à 1SA et ♥AD108 tient les Cœurs, mais ♠85 ne tient pas les Piques. 2♥ est le cue-bid de tenue Cœur avec un espoir de manche ; il invite à vérifier la tenue Pique avant 3SA. Ce n'est pas une enchère naturelle de Cœurs.",
+      "reason": "Le cue-bid de tenue Cœur est bien défini, mais le statut naturel de 2♦ et la longueur minimale après Landy ne sont pas indiqués ici.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L01-C-04|2SA": {
+      "concept": "rubensohl.naturel",
+      "choice": "2SA",
+      "answer": "Contre",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♠ (naturel)"
+      ],
+      "h": 8,
+      "shape": [
+        2,
+        4,
+        4,
+        3
+      ],
+      "evidence": "Dans cette variante du Rubensohl, le contre d’appel s’utilise à partir de 8 H. Avec quatre Cœurs, il permet de chercher un fit majeur sans imposer la manche. Il ne s’agit pas d’un contre punitif.",
+      "reason": "Le contre d'appel à partir de 8 H est spécifique à la variante ; le Texas Trèfle via 2SA ou tout autre code doit être confirmé pour la même variante.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L01-C-04|3♦": {
+      "concept": "rubensohl.naturel",
+      "choice": "3♦",
+      "answer": "Contre",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♠ (naturel)"
+      ],
+      "h": 8,
+      "shape": [
+        2,
+        4,
+        4,
+        3
+      ],
+      "evidence": "Dans cette variante du Rubensohl, le contre d’appel s’utilise à partir de 8 H. Avec quatre Cœurs, il permet de chercher un fit majeur sans imposer la manche. Il ne s’agit pas d’un contre punitif.",
+      "reason": "La recherche de quatre Cœurs par Contre est explicite ; le Texas Cœur à 3♦ et ses conditions dans cette variante restent à comparer.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L10-015|2♦": {
+      "concept": "reveil.base",
+      "choice": "2♦",
+      "answer": "Contre",
+      "auction": [
+        "Adversaire : 1♦",
+        "Partenaire : Passe",
+        "Adversaire : Passe"
+      ],
+      "h": 20,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "evidence": "Cette main régulière de 20 H excède la zone convenue de 2SA direct (17–19 H). Commencez par Contre pour conserver la possibilité de décrire ensuite la grande force à SA. Attention : on ne promet PAS « Contre puis 2SA » de façon automatique ; la redemande exacte dépend de l’annonce de Nord, d’éventuelles enchères adverses et de l’espace disponible. La plage du 2SA direct est ici un accord explicitement fixé.",
+      "reason": "Le réveil par Contre avec 20 H est motivé ; le cue-bid de l'ouverture adverse n'est pas défini par le corrigé.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L08-027|Contre": {
+      "concept": "contre.base",
+      "choice": "Contre",
+      "answer": "3♥",
+      "auction": [
+        "Adversaire : 1♠",
+        "Partenaire : Contre",
+        "Adversaire : 2♠"
+      ],
+      "h": 10,
+      "shape": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "evidence": "3♥ est une enchère libre naturelle constructive : la qualité des cinq Cœurs et les 10 H permettent de concurrencer le soutien adverse en vulnérabilité favorable.",
+      "reason": "L'enchère libre à 3♥ est justifiée, mais le sens du Contre du répondant après le soutien adverse manque.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L10-005|2♣": {
+      "concept": "reponse_inter.base",
+      "choice": "2♣",
+      "answer": "2SA",
+      "auction": [
+        "Adversaire : 1♣",
+        "Partenaire : 1♥",
+        "Adversaire : Passe"
+      ],
+      "h": 13,
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "evidence": "Si le numéro 3 a passé, 2SA à saut sur l’intervention demeure naturel et montre 13–14 HL, avec arrêt dans la couleur d’ouverture. Le mixed raise à quatre atouts ne s’applique qu’après une enchère du numéro 3.",
+      "reason": "2SA naturel à saut avec 13–14 HL et arrêt est expliqué ; le cue-bid de l'ouverture adverse n'est pas comparé.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L08-026|Contre": {
+      "concept": "contre.base",
+      "choice": "Contre",
+      "answer": "2♠",
+      "auction": [
+        "Adversaire : 1♥",
+        "Partenaire : Contre",
+        "Adversaire : 2♥"
+      ],
+      "h": 9,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "evidence": "Sur 1♥–Contre–2♥, répondre n'est plus obligatoire. Vos 9 H et quatre Piques AD95 sont néanmoins suffisants pour l'enchère libre de 2♠ dans ce traitement SEF 2024, afin de concurrencer la partielle. La qualité de la majeure quatrième est ici importante ; ne déduisez pas qu'une majeure quatrième quelconque suffit. 2SA demanderait une tenue Cœur, absente avec ♥107. Passe serait raisonnable avec moins de jeu.",
+      "reason": "Les 9 H, quatre beaux Piques et l'absence de tenue Cœur justifient 2♠, mais ne permettent pas d'écarter le Contre sans en définir le sens après soutien adverse.",
+      "type": "convention",
+      "disposition": "canonical-contrast",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L19-001|Contre": {
+      "concept": "michaels.defense",
+      "choice": "Contre",
+      "answer": "2♥",
+      "auction": [
+        "Partenaire : 1♦ (ouverture)",
+        "Adversaire : 2♦ (Michaël précisé : cinq Cœurs et cinq Piques au moins)"
+      ],
+      "h": 14,
+      "shape": [
+        2,
+        2,
+        5,
+        4
+      ],
+      "evidence": "Sur 1♦–(2♦ Michaël majeur), les deux couleurs adverses sont ♥ et ♠. Le premier cue-bid disponible, 2♥, montre un fit Carreau forcing de manche. L'autre cue-bid, 2♠, promet au moins cinq Trèfles dans un jeu forcing de manche ; 3♦ ne transmet pas la même force.",
+      "reason": "Les deux cue-bids après Michaël sont explicités ; le Contre et ses conditions ne le sont pas. Confirmer le régime de défense dans l'accord.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L19-006|3♣": {
+      "concept": "michaels.defense",
+      "choice": "3♣",
+      "answer": "4♦",
+      "auction": [
+        "Partenaire : 1♠ (ouverture)",
+        "Adversaire : 2♠ (Michaël précisé : cinq Cœurs et cinq Trèfles au moins)"
+      ],
+      "h": 10,
+      "shape": [
+        4,
+        2,
+        5,
+        2
+      ],
+      "evidence": "Après 1♠–(2♠ Michaël montrant ♥+♣), 4♦ est une enchère de rencontre : elle promet une longue à Carreau (la quatrième couleur) et un soutien de quatre cartes à Pique. Elle ne doit pas être confondue avec un Splinter en couleur adverse ni un simple changement naturel à 3♦.",
+      "reason": "L'enchère de rencontre décrit longue Carreau et quatre Piques ; le cue-bid économique 3♣ et sa zone ne sont pas comparés.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L19-006|3♥": {
+      "concept": "michaels.defense",
+      "choice": "3♥",
+      "answer": "4♦",
+      "auction": [
+        "Partenaire : 1♠ (ouverture)",
+        "Adversaire : 2♠ (Michaël précisé : cinq Cœurs et cinq Trèfles au moins)"
+      ],
+      "h": 10,
+      "shape": [
+        4,
+        2,
+        5,
+        2
+      ],
+      "evidence": "Après 1♠–(2♠ Michaël montrant ♥+♣), 4♦ est une enchère de rencontre : elle promet une longue à Carreau (la quatrième couleur) et un soutien de quatre cartes à Pique. Elle ne doit pas être confondue avec un Splinter en couleur adverse ni un simple changement naturel à 3♦.",
+      "reason": "L'enchère de rencontre décrit longue Carreau et quatre Piques ; le cue-bid non économique 3♥ et sa zone ne sont pas comparés.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L20-004|2SA": {
+      "concept": "reponse_inter.base",
+      "choice": "2SA",
+      "answer": "3♣",
+      "auction": [
+        "Adversaire : 2♥ (ouverture faible, six Cœurs)",
+        "Partenaire : 2♠ (intervention naturelle)",
+        "Adversaire : Passe"
+      ],
+      "h": 11,
+      "shape": [
+        2,
+        3,
+        3,
+        5
+      ],
+      "evidence": "Après 2♥ faible–(2♠ d'intervention)–(Passe), vos cinq Trèfles RV1098 et 11 H atteignent le minimum de 11 H du changement naturel au palier de trois. 3♣ est non forcing dans ce traitement sur ouverture faible : le partenaire peut passer malgré votre force constructive. Ne transposez pas le régime d'une nouvelle couleur après intervention sur ouverture de un, même lorsque le n°3 a passé. Deux Piques ne garantissent pas le fit pour 3♠.",
+      "reason": "Le changement naturel non forcing à 3♣ est décrit ; la force et la tenue requises pour 2SA après intervention sur deux faible manquent.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L21-004|Contre": {
+      "concept": "rubensohl.naturel",
+      "choice": "Contre",
+      "answer": "2♠",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♣ (Landy, les deux majeures)"
+      ],
+      "h": 10,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "evidence": "Après 1SA–(2♣ Landy), 2♠ est un cue-bid qui indique l'arrêt dans la majeure nommée et des valeurs pour chercher la manche. L'ouvreur peut rechercher l'arrêt Cœur manquant avant 3SA. 2♥ annoncerait une tenue Cœur, ce qui ne correspond pas à votre main.",
+      "reason": "Les deux cue-bids de tenue sont décrits mais le Contre après Landy ne l'est pas. Ne pas importer automatiquement le Contre après intervention naturelle.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L25-001|Surcontre": {
+      "concept": "sa1.stayman.contre",
+      "choice": "Surcontre",
+      "answer": "Passe",
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Stayman)",
+        "Adversaire : Contre (d'entame, indiquant des Trèfles)"
+      ],
+      "h": 16,
+      "shape": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "evidence": "Après 1SA–2♣–(Contre), si l'ouvreur n'a pas l'arrêt Trèfle, il passe, même avec une majeure quatrième. Une annonce immédiate d'une majeure impliquerait la tenue Trèfle pour jouer de sa main. Le répondant peut poursuivre la recherche du fit ensuite : Passe ne nie pas les Piques.",
+      "reason": "L'absence de tenue Trèfle impose Passe dans le code étudié ; le Surcontre (longue réelle à Trèfle dans d'autres cas nommés) n'est pas décrit ici.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L25-003|Surcontre": {
+      "concept": "sa1.stayman.contre",
+      "choice": "Surcontre",
+      "answer": "2♥",
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Stayman)",
+        "Adversaire : Contre (d'entame, indiquant des Trèfles)"
+      ],
+      "h": 17,
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "evidence": "Quand 2♣ Stayman est contré, l'ouvreur conserve la possibilité de nommer directement une majeure quatrième s'il possède également la tenue Trèfle. Ici 2♥ montre quatre Cœurs et l'As de Trèfle protège l'entame annoncée. Sans tenue Trèfle, il faudrait passer avant de décrire la majeure.",
+      "reason": "La tenue Trèfle et les quatre Cœurs justifient 2♥. Distinguer une tenue d'une vraie longue permettant le Surcontre selon l'accord exact.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L28-001|2♣": {
+      "concept": "ouv.bicolore.exception",
+      "choice": "2♣",
+      "answer": "1♣",
+      "auction": [],
+      "h": 15,
+      "shape": [
+        5,
+        1,
+        2,
+        5
+      ],
+      "evidence": "Les cinq Piques et cinq Trèfles donnent cinq perdantes (1 à Pique, 1 à Trèfle, 1 à Cœur, 2 à Carreau). Vous remplissez les deux conditions de l'exception 5–5 forte du SEF 2024 : ouvrez 1♣ pour décrire ensuite les Piques. À six perdantes, le traitement normal reprendrait (1♠).",
+      "reason": "Les cinq perdantes et le 5–5 justifient l'exception 1♣ ; les conditions d'une ouverture forte artificielle 2♣ ne sont pas comparées.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L29-003|2♠": {
+      "concept": "red.competitif",
+      "choice": "2♠",
+      "answer": "Contre",
+      "auction": [
+        "Vous : 1♦ (ouverture)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (réponse naturelle 2 sur 1)",
+        "Adversaire : 2♥ (intervention naturelle)"
+      ],
+      "h": 19,
+      "shape": [
+        4,
+        1,
+        5,
+        3
+      ],
+      "evidence": "Après 1♦–(Passe)–2♣–(2♥), le Contre d'appel de l'ouvreur décrit une main forte, courte dans la couleur adverse. Vos 19 H, un seul Cœur et quatre Piques rendent ce contre pertinent : il laisse le partenaire choisir la meilleure suite, contrairement à un Contre punitif.",
+      "reason": "19 H, singleton Cœur et quatre Piques justifient le Contre d'appel ; préciser la comparaison avec la redemande libre à 2♠ et sa distribution requise.",
+      "type": "judgment",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L29-003|3♦": {
+      "concept": "red.competitif",
+      "choice": "3♦",
+      "answer": "Contre",
+      "auction": [
+        "Vous : 1♦ (ouverture)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (réponse naturelle 2 sur 1)",
+        "Adversaire : 2♥ (intervention naturelle)"
+      ],
+      "h": 19,
+      "shape": [
+        4,
+        1,
+        5,
+        3
+      ],
+      "evidence": "Après 1♦–(Passe)–2♣–(2♥), le Contre d'appel de l'ouvreur décrit une main forte, courte dans la couleur adverse. Vos 19 H, un seul Cœur et quatre Piques rendent ce contre pertinent : il laisse le partenaire choisir la meilleure suite, contrairement à un Contre punitif.",
+      "reason": "La force et la courte justifient le Contre ; la répétition de cinq Carreaux et sa zone dans cette séquence ne sont pas comparées.",
+      "type": "judgment",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-L39-005|Contre": {
+      "concept": "apres_inter.base",
+      "choice": "Contre",
+      "answer": "2SA",
+      "auction": [
+        "Partenaire : 1♥ (ouverture en première position)",
+        "Adversaire : 2♠ (intervention naturelle faible à saut)"
+      ],
+      "h": 11,
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "evidence": "Après 1♥–(2♠ faible à saut), 2SA est exceptionnellement naturel : vos 11 H, deux Cœurs et l’arrêt ♠AD8 décrivent une invitation à 3SA. Ne transposez pas ce sens à une intervention naturelle non sautée, telle que 1♥–(1♠) ou 1♥–(2♣), où le 2SA est normalement fitté.",
+      "reason": "Le sens naturel exceptionnel de 2SA après saut faible est établi ; le rôle du Contre du répondant dans ce même cas ne l'est pas.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-Q26-M1-006|2♣": {
+      "concept": "ouv.bicolore.exception",
+      "choice": "2♣",
+      "answer": "1♣",
+      "auction": [],
+      "h": 15,
+      "shape": [
+        5,
+        1,
+        2,
+        5
+      ],
+      "evidence": "Le bicolore cinq Piques/cinq Trèfles compte cinq perdantes : une à Pique, une à Trèfle, une à Cœur et deux à Carreau. Le SEF 2024 prévoit ici 1♣, exception à la majeure cinquième, pour décrire ensuite les Piques.",
+      "reason": "L'exception du 5–5 à cinq perdantes justifie 1♣ mais n'énonce pas les conditions de 2♣ fort.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-Q26-M2-002|4SA": {
+      "concept": "rubensohl.suite",
+      "choice": "4SA",
+      "answer": "4♥",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♠ (naturel)",
+        "Vous : 3♦ (Texas Cœur)",
+        "Partenaire : 3♠ (pas de fit troisième Cœur, pas d’arrêt Pique)"
+      ],
+      "h": 10,
+      "shape": [
+        2,
+        6,
+        3,
+        2
+      ],
+      "evidence": "Avec six Cœurs menés par As-Roi-Dame et 10 H, les deux Cœurs de l’ouvreur donnent huit atouts. Vous n’avez pas d’arrêt Pique non plus : 3SA serait dangereux. Choisissez la manche à 4♥ plutôt que de renoncer malgré les valeurs et le fit.",
+      "reason": "Le fit huitième à Cœur et l'absence de tenue Pique orientent la manche ; la signification de 4SA et le niveau de force requis ne sont pas précisés.",
+      "type": "judgment",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M1-013|2♣": {
+      "concept": "ouv.bicolore.exception",
+      "choice": "2♣",
+      "answer": "1♣",
+      "auction": [],
+      "h": 16,
+      "shape": [
+        5,
+        2,
+        1,
+        5
+      ],
+      "evidence": "♠AR974, ♥R8, ♦6 et ♣AD963 : une perdante dans chacune des quatre couleurs, soit quatre. Les deux couleurs Pique et Trèfle sont cinquièmes et la limite de cinq perdantes est respectée. L'exception du SEF 2024 indiquée permet 1♣ pour décrire ensuite le bicolore fort à Pique.",
+      "reason": "Le 5–5 à quatre perdantes justifie 1♣ selon l'exception citée. Vérifier la priorité par rapport à 2♣ fort plutôt que déduire une règle générale.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M1-014|2♣": {
+      "concept": "ouv.bicolore.exception",
+      "choice": "2♣",
+      "answer": "1♠",
+      "auction": [],
+      "h": 16,
+      "shape": [
+        5,
+        2,
+        2,
+        4
+      ],
+      "evidence": "♠AR974, ♥R8, ♦63 et ♣AD96 donnent cinq perdantes (1 + 1 + 2 + 1). Mais les Trèfles ne sont que quatrièmes : la condition du bicolore Pique–Trèfle 5–5 manque. Ouvrez normalement 1♠.",
+      "reason": "L'exception est exclue car quatre Trèfles seulement ; les critères de 2♣ fort avec 16 H et cinq perdantes ne sont pas explicités.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M1-038|2SA": {
+      "concept": "majeur.base",
+      "choice": "2SA",
+      "answer": "2♦",
+      "auction": [
+        "Partenaire : 1♠"
+      ],
+      "h": 11,
+      "shape": [
+        2,
+        3,
+        5,
+        3
+      ],
+      "evidence": "11 H et cinq Carreaux = 12 HL : le seuil du 2 sur 1 est atteint. 2♦ est naturel, forcing et auto-forcing ; 1SA sous-évaluerait la main.",
+      "reason": "Le 2 sur 1 naturel forcing est motivé, mais le 2SA sur majeure et ses conditions de fit ne sont pas comparés.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M2-029|2♦": {
+      "concept": "sa1.seuil",
+      "choice": "2♦",
+      "answer": "Passe",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe"
+      ],
+      "h": 3,
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "evidence": "Avec 3 H et une main régulière, votre camp totalise seulement 18 à 20 H face à 1SA (15–17 H). Vous n’avez pas d’espoir de manche : passez.",
+      "reason": "3 H et pas de manche ne suffisent pas à exclure un Texas faible. Le manque de cinquième Cœur est le critère à expliciter dans le cadre retenu.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M2-031|2♠": {
+      "concept": "sa1.seuil",
+      "choice": "2♠",
+      "answer": "Passe",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe"
+      ],
+      "h": 3,
+      "shape": [
+        3,
+        3,
+        2,
+        5
+      ],
+      "evidence": "Avec 3 H et une main régulière sans majeure quatrième ni majeure cinquième, vous n’avez pas d’espoir de manche face à 1SA (15–17 H). Passez.",
+      "reason": "Le corrigé invoque l'absence de majeure et de force de manche, mais 2♠ peut avoir un sens de Texas mineur faible. Vérifier la longueur Trèfle nécessaire.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M5-005|Contre": {
+      "concept": "apres_inter.base",
+      "choice": "Contre",
+      "answer": "2SA",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 2♠ (faible à saut)"
+      ],
+      "h": 11,
+      "shape": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "evidence": "Avec 11 H, une distribution régulière et ♠AD8, vous pouvez inviter à 3SA sans promettre de fit Cœur. Le 2SA est exceptionnellement naturel après ce saut faible à 2♠. Après une intervention naturelle non sautée, le 2SA direct serait normalement fitté dans le système étudié.",
+      "reason": "2SA naturel après saut faible décrit 11 H et arrêt ; le Contre dans cette séquence doit être défini avant comparaison.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M5-033|Contre": {
+      "concept": "rubensohl.naturel",
+      "choice": "Contre",
+      "answer": "2♦",
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : 2♣ (Landy : les deux majeures)"
+      ],
+      "h": 6,
+      "shape": [
+        2,
+        2,
+        6,
+        3
+      ],
+      "evidence": "Sur 2♣ Landy, 2♦ reste naturel non forcing. Avec six Carreaux et 6 H, le contrat de 2♦ est accessible ; inutile de transférer au palier trois.",
+      "reason": "2♦ naturel non forcing avec six Carreaux et 6 H est décrit. La fonction du Contre sur Landy dans l'accord étudié ne l'est pas.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M5-037|Contre": {
+      "concept": "michaels.defense",
+      "choice": "Contre",
+      "answer": "2SA",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 2♥ (Michaël précisé : Piques et Trèfles)"
+      ],
+      "h": 11,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "evidence": "Vos trois Cœurs et 11 H réguliers donnent 11 HLD. Derrière ce Michaël précisé, 2SA disponible décrit le soutien limite de trois atouts dans la zone 11–12 HLD, différente de celle après une intervention naturelle simple. Le cue-bid économique 2♠ serait un soutien forcing de manche, donc trop ambitieux ici.",
+      "reason": "Le soutien limite à trois Cœurs après Michaël est expliqué, pas le Contre de défense contre ce bicolore.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "V2-M5-038|Contre": {
+      "concept": "michaels.defense",
+      "choice": "Contre",
+      "answer": "2♠",
+      "auction": [
+        "Partenaire : 1♥",
+        "Adversaire : 2♥ (Michaël précisé : Piques et Trèfles)"
+      ],
+      "h": 11,
+      "shape": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "evidence": "11 H + 2 pour le neuvième atout + 1 pour le doubleton Trèfle donnent environ 14 HLD. Le premier cue-bid disponible, 2♠, indique le fit Cœur forcing de manche. Le second cue-bid (3♣) montrerait au moins cinq Carreaux avec une force de manche ; 2SA décrit ici seulement trois atouts et 11–12 HLD.",
+      "reason": "Le cue-bid forcing de manche avec quatre Cœurs est expliqué ; préciser le Contre de défense contre Michaël avant de le distinguer.",
+      "type": "convention",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    },
+    "SEF-PN26-M1-026|2♣": {
+      "concept": "ouv.bicolore.exception",
+      "choice": "2♣",
+      "answer": "1♠",
+      "auction": [],
+      "h": 15,
+      "shape": [
+        5,
+        2,
+        1,
+        5
+      ],
+      "evidence": "Avec 15 H, votre bicolore 5–5 comporte six perdantes : deux à Pique, une à Cœur, une à Carreau et deux à Trèfle. L’exception d’ouverture à 1♣ s’applique jusqu’à cinq perdantes dans ce bicolore précis. Ici, ouvrez normalement de 1♠.",
+      "reason": "Six perdantes excluent l'exception 1♣ ; le corrigé ne donne pas les conditions du 2♣ fort avec cette main de 15 H.",
+      "type": "threshold",
+      "disposition": "HOLD",
+      "owner": "coordinateur",
+      "runtime": "canonical-only"
+    }
+  }
+}
