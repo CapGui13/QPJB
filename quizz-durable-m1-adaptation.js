@@ -4,8 +4,8 @@
 const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 const fam=q=>String(q.caseFamily||q.id);
 const crossKeys=new Set(['force:H','force:HL','force:HLD','distribution:longueur','fit:priorite','forcing:statut','niveau:palier']);
-function criterion(d){
- const t=d.reason||'',c=d.category;
+function criterion(d={}){
+ const t=typeof d.reason==='string'?d.reason:'',c=d.category;
  if(c==='force'){
   if(/\bHLD\b|points? D\b|points? de distribution|réévalu.{0,30}(?:fit|atout)/iu.test(t))return 'force:HLD';
   if(/\bHL\b|points? de longueur/iu.test(t))return 'force:HL';
@@ -45,6 +45,7 @@ function analyze({history,exercises,diagnose}={}){
    if(!a||ids.get(a.id)!==1)continue;
    const q=byId.get(a.id),m=lookup(q);if(!m)continue;
    if(a.family!=null&&a.family!==m[1])continue;
+   if(a.result==='correct'&&a.choice!==q.answer||a.result==='wrong'&&a.choice===q.answer)continue;
    const ref={id:q.id,family:m[1],concept:m[0],session:e.session,difficulty:q.difficulty};
    if(isClean(a,q)){success.push({...ref,criteria:m[3]});continue}
    const observed=a.hadFreeError===true&&typeof a.firstGuess==='string'&&a.firstGuess!==q.answer?a.firstGuess:
@@ -62,7 +63,7 @@ function analyze({history,exercises,diagnose}={}){
    const o={...ref,choice:observed,expected:q.answer,confidence:d.confidence,kind:corrected?'corrected':'initial-error',reason:d.reason,rule:d.evidence.rule||null};
    result.observations.push(o);
    add('local:'+m[0]+':'+k,'local',m[0],k,d.category,o);
-   if(crossKeys.has(k))add('cross:'+k,'cross',null,k,d.category,o);
+   if(crossKeys.has(k)||k==='convention'||k==='competition')add('cross:'+k,'cross',null,k,d.category,o);
   }
  }
  for(const g of groups.values()){
@@ -84,7 +85,7 @@ function analyze({history,exercises,diagnose}={}){
    families:fs.size,sessions:ss.size,concepts:[...cs].sort(),lastSession:last,minDifficulty,maxDifficulty,
    contradictory:prior.map(({id,family,session,difficulty})=>({id,family,session,difficulty})),
    recovery:later.map(({id,family,session,difficulty})=>({id,family,session,difficulty})),
-   recovering,limits:['Hypothèse sur une décision, pas une intention ni un défaut de connaissance établi.','Une réussite correcte ne démontre pas à elle seule la discrimination.']});
+   recovering,knowledgeEvidence:prior.length?'prior-autonomous-success': 'no-observed-autonomous-success',limits:['Hypothèse sur une décision, pas une intention ni un défaut de connaissance établi.','Une réussite correcte ne démontre pas à elle seule la discrimination.']});
  }
  result.signals.sort((a,b)=>a.id.localeCompare(b.id));
  return result;
@@ -93,12 +94,14 @@ function rank({history,exercises,candidates,selected,signals,conceptStates,categ
  if(!history||!Number.isInteger(history.completed)||history.completed<3||history.active||!['weakness','transfer'].includes(category)||!Array.isArray(candidates)||!Array.isArray(selected))return [];
  const all=Array.isArray(signals)?signals:signals?.signals;
  if(!Array.isArray(all))return [];
- const active=all.filter(s=>s&&['recurrent','strong'].includes(s.strength)&&Number.isInteger(s.lastSession)&&s.lastSession<=history.completed&&s.lastSession>history.completed-WINDOW&&Array.isArray(s.errors)&&s.families>=2&&s.sessions>=2);
+ const active=all.filter(s=>s&&['recurrent','strong'].includes(s.strength)&&Number.isInteger(s.lastSession)&&s.lastSession<=history.completed&&s.lastSession>history.completed-WINDOW&&Array.isArray(s.errors)&&s.errors.length>=2&&s.errors.every(o=>o&&typeof o.id==='string'&&typeof o.family==='string'&&typeof o.choice==='string'&&typeof o.expected==='string')&&['local','cross'].includes(s.scope)&&typeof s.id==='string'&&typeof s.criterion==='string'&&Number.isInteger(s.minDifficulty)&&Number.isInteger(s.maxDifficulty)&&s.families>=2&&s.sessions>=2);
  if(!active.length)return [];
- const chosen=selected.map(x=>x?.exercise||x).filter(Boolean),chosenFamilies=new Set(chosen.map(fam)),chosenIds=new Set(chosen.map(q=>q.id));
+ const chosen=selected.map(x=>x?.exercise||x).filter(x=>x&&typeof x.id==='string'),chosenFamilies=new Set(chosen.map(fam)),chosenIds=new Set(chosen.map(q=>q.id));
  const chosenMeta=chosen.map(lookup).filter(Boolean);
  const result=[];
  for(const q of candidates){
+  const preliminary=q&&typeof q.id==='string'&&own(index,q.id)?index[q.id]:null;
+  if(!preliminary||!active.some(s=>preliminary[3].includes(s.criterion)&&(s.scope==='local'?preliminary[0]===s.concept:crossKeys.has(s.criterion)&&Array.isArray(s.concepts)&&s.concepts.includes(preliminary[0]))))continue;
   const m=lookup(q);if(!m||chosenIds.has(q.id)||chosenFamilies.has(m[1]))continue;
   let best=null;
   for(const s of active){
