@@ -1,0 +1,1432 @@
+{
+  "schema": "QPJB_M3C_REVIEW_V1",
+  "baselineSHA": "71b0823235db1400eaf57c2552df35c18094f30a",
+  "rows": [
+    {
+      "id": "SEF-N137-1",
+      "choice": "Passe",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "9 H et six Cœurs donnent 11 HL : arrêter à 1SA abandonne la recherche de manche prévue.",
+      "evidence": {
+        "id": "SEF-N137-1",
+        "concept": "roudi.init",
+        "choice": "Passe",
+        "expected": "2♣",
+        "h": 9,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec six Cœurs et 9 H, vous possédez 11 HL (9 H + 2 L). Dans le Roudi à trois réponses retenu au QPJB, 2♣ permet d’explorer la manche et le soutien de trois cartes de l’ouvreur. La répétition directe à 2♥ est réservée à une main plus faible."
+      }
+    },
+    {
+      "id": "SEF-N137-1",
+      "choice": "2SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "Avec six Cœurs et 11 HL, 2SA naturel ne vérifie ni le soutien troisième ni la force de l'ouvreur.",
+      "evidence": {
+        "id": "SEF-N137-1",
+        "concept": "roudi.init",
+        "choice": "2SA",
+        "expected": "2♣",
+        "h": 9,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec six Cœurs et 9 H, vous possédez 11 HL (9 H + 2 L). Dans le Roudi à trois réponses retenu au QPJB, 2♣ permet d’explorer la manche et le soutien de trois cartes de l’ouvreur. La répétition directe à 2♥ est réservée à une main plus faible."
+      }
+    },
+    {
+      "id": "SEF-V4-073-1",
+      "choice": "3SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Avec cinq Cœurs et 12 H, conclure à 3SA sans relais peut manquer huit atouts.",
+      "evidence": {
+        "id": "SEF-V4-073-1",
+        "concept": "roudi.init",
+        "choice": "3SA",
+        "expected": "2♣",
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♣–1♥–1SA, l'ouvreur peut détenir trois Cœurs malgré sa redemande à Sans-Atout. Avec cinq Cœurs (♥V10983) et 12 H, vous avez assez de force pour envisager la manche. Le Roudi à 2♣ interroge l'ouvreur sur son éventuel soutien troisième pour découvrir un fit 5–3."
+      }
+    },
+    {
+      "id": "SEF-V4-073-1",
+      "choice": "2SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Une invitation à SA ne vérifie pas les trois Cœurs possibles en face.",
+      "evidence": {
+        "id": "SEF-V4-073-1",
+        "concept": "roudi.init",
+        "choice": "2SA",
+        "expected": "2♣",
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♣–1♥–1SA, l'ouvreur peut détenir trois Cœurs malgré sa redemande à Sans-Atout. Avec cinq Cœurs (♥V10983) et 12 H, vous avez assez de force pour envisager la manche. Le Roudi à 2♣ interroge l'ouvreur sur son éventuel soutien troisième pour découvrir un fit 5–3."
+      }
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "choice": "2SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "L'invitation directe à SA avec cinq Piques ne vérifie pas le soutien troisième.",
+      "evidence": {
+        "id": "SEF-V4-079-3",
+        "concept": "roudi.init",
+        "choice": "2SA",
+        "expected": "2♣",
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit."
+      }
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "choice": "3SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H face à 12–14 H ne garantissent pas la manche ; la conclusion néglige aussi la recherche du fit.",
+      "evidence": {
+        "id": "SEF-V4-079-3",
+        "concept": "roudi.init",
+        "choice": "3SA",
+        "expected": "2♣",
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit."
+      }
+    },
+    {
+      "id": "SEF-V4-080-2",
+      "choice": "2♣",
+      "concept": "roudi.choix",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "8 H et cinq Piques donnent 9 HL, insuffisants pour le Roudi constructif.",
+      "evidence": {
+        "id": "SEF-V4-080-2",
+        "concept": "roudi.choix",
+        "choice": "2♣",
+        "expected": "2♠",
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec 8 H et cinq Piques commandés par Roi-Dame-10-9, vous êtes trop faible pour rechercher la manche : le Roudi à 2♣ ne se justifie pas. Après 1♣–1♠–1SA, la répétition simple à 2♠ montre votre longueur cinquième et vise une partielle dans votre majeure, sans forcer le partenaire à reparler."
+      }
+    },
+    {
+      "id": "SEF-V4-085-3",
+      "choice": "3SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H et cinq Cœurs ne garantissent pas la manche face au minimum ; le relais est préférable pour explorer fit et force.",
+      "evidence": {
+        "id": "SEF-V4-085-3",
+        "concept": "roudi.init",
+        "choice": "3SA",
+        "expected": "2♣",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♦–1♥–1SA, vos cinq Cœurs ♥AD865 et 11 H donnent une perspective de manche. 2♣ Roudi interroge sur un soutien troisième et la force de l'ouvreur. 2♥ serait une répétition faible ; 2SA ne vérifierait pas le fit 5–3."
+      }
+    },
+    {
+      "id": "SEF-V4-086-1",
+      "choice": "2♣",
+      "concept": "roudi.choix",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "8 H et cinq Cœurs ne donnent que 9 HL ; le relais demande davantage de force.",
+      "evidence": {
+        "id": "SEF-V4-086-1",
+        "concept": "roudi.choix",
+        "choice": "2♣",
+        "expected": "2♥",
+        "h": 8,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Vos cinq Cœurs ♥D7532 et 8 H justifient de jouer la partielle dans la majeure. 2♥ est une répétition faible et non forcing sur 1SA. Le Roudi 2♣ et l'invitation 2SA demanderaient davantage de force."
+      }
+    },
+    {
+      "id": "SEF-V4-091-3",
+      "choice": "3SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "Avec 11 H, la manche à SA n'est pas certaine face à 12 H ; le fit Pique reste à vérifier.",
+      "evidence": {
+        "id": "SEF-V4-091-3",
+        "concept": "roudi.init",
+        "choice": "3SA",
+        "expected": "2♣",
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec ♠AR864 cinquièmes et 11 H, vous pouvez envisager la manche mais ignorez si le partenaire a trois Piques. Le relais 2♣ Roudi vérifie ce fit 5–3 et la force en face ; 2♠ serait faible et 2SA ne vérifierait pas le fit."
+      }
+    },
+    {
+      "id": "SEF-V4-092-2",
+      "choice": "2♣",
+      "concept": "roudi.choix",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "8 H et cinq Piques ne donnent que 9 HL ; le Roudi constructif dépasse la force.",
+      "evidence": {
+        "id": "SEF-V4-092-2",
+        "concept": "roudi.choix",
+        "choice": "2♣",
+        "expected": "2♠",
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec cinq Piques (♠RV982) et 8 H, vous préférez jouer la partielle dans votre majeure. Sur 1♦–1♠–1SA, 2♠ est une répétition simple, naturelle et non forcing. Le Roudi à 2♣ chercherait un fit 5–3 dans une perspective constructive ; ici, la force de manche n'est pas en vue."
+      }
+    },
+    {
+      "id": "SEF-V4-093-1",
+      "choice": "2SA",
+      "concept": "roudi.choix",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "6 H face à 12–14 H ne suffisent pas à une invitation à 3SA.",
+      "evidence": {
+        "id": "SEF-V4-093-1",
+        "concept": "roudi.choix",
+        "choice": "2SA",
+        "expected": "Passe",
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Vos quatre Piques ♠10842 et 6 H ne permettent ni de rechercher la manche ni d'allonger naturellement les Piques à 2♠. Passe conserve le contrat de 1SA ; lancer le Roudi n'a pas d'intérêt sans perspective de fit 5–3."
+      }
+    },
+    {
+      "id": "SEF-V44-062",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H face à 12–14 H sans fit connu n'imposent pas la manche.",
+      "evidence": {
+        "id": "SEF-V44-062",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "2SA",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 2♦ négatif au Roudi, le partenaire n'a pas trois Cœurs. Vos cinq Cœurs et 11 H ne suffisent pas à imposer la manche, mais 2SA invite naturellement à 3SA. 3♥ laisserait croire à un autre projet, alors que le fit 5–3 n'est pas trouvé."
+      }
+    },
+    {
+      "id": "SEF-V44-062",
+      "choice": "2♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le 2♦ négatif dénie trois Cœurs ; cinq cartes du répondant ne donnent que sept atouts connus.",
+      "evidence": {
+        "id": "SEF-V44-062",
+        "concept": "roudi.suite",
+        "choice": "2♥",
+        "expected": "2SA",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 2♦ négatif au Roudi, le partenaire n'a pas trois Cœurs. Vos cinq Cœurs et 11 H ne suffisent pas à imposer la manche, mais 2SA invite naturellement à 3SA. 3♥ laisserait croire à un autre projet, alors que le fit 5–3 n'est pas trouvé."
+      }
+    },
+    {
+      "id": "SEF-V44-063",
+      "choice": "3♠",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Après le 2♦ négatif, cinq Piques en main ne donnent que sept atouts ; la manche à SA est disponible.",
+      "evidence": {
+        "id": "SEF-V44-063",
+        "concept": "roudi.suite",
+        "choice": "3♠",
+        "expected": "3SA",
+        "h": 13,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ du partenaire nie trois Piques. Avec 13 H, cinq Piques ♠RV764 et une main régulière, vous avez la force de manche face à 12–14 H. 3SA conclut sans imposer un contrat dans une majeure non fittée ; 2SA ne serait qu'une invitation."
+      }
+    },
+    {
+      "id": "SEF-V44-063",
+      "choice": "2♠",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "13 H face à 12–14 H permettent la manche ; la répétition non forcing à 2♠ risque de l'enterrer.",
+      "evidence": {
+        "id": "SEF-V44-063",
+        "concept": "roudi.suite",
+        "choice": "2♠",
+        "expected": "3SA",
+        "h": 13,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (pas de fit)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ du partenaire nie trois Piques. Avec 13 H, cinq Piques ♠RV764 et une main régulière, vous avez la force de manche face à 12–14 H. 3SA conclut sans imposer un contrat dans une majeure non fittée ; 2SA ne serait qu'une invitation."
+      }
+    },
+    {
+      "id": "SEF-V44-064",
+      "choice": "4♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H et un doubleton face au minimum conduisent à inviter, non à imposer la manche.",
+      "evidence": {
+        "id": "SEF-V44-064",
+        "concept": "roudi.suite",
+        "choice": "4♥",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ codé du Roudi annonce trois Cœurs et un minimum. Vos cinq Cœurs assurent le fit et vos 11 H, avec un doubleton, permettent une invitation : 3♥ laisse au partenaire le choix d'accepter. Face à une réponse maximum 2♠, la manche serait bien plus attractive."
+      }
+    },
+    {
+      "id": "SEF-V44-064",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le 2♥ codé confirme huit Cœurs ; 2SA naturel ne valorise pas ce fit.",
+      "evidence": {
+        "id": "SEF-V44-064",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ codé du Roudi annonce trois Cœurs et un minimum. Vos cinq Cœurs assurent le fit et vos 11 H, avec un doubleton, permettent une invitation : 3♥ laisse au partenaire le choix d'accepter. Face à une réponse maximum 2♠, la manche serait bien plus attractive."
+      }
+    },
+    {
+      "id": "SEF-V44-064",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Choisir la manche à SA néglige le fit 5–3 confirmé, et la manche n'est pas certaine.",
+      "evidence": {
+        "id": "SEF-V44-064",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ codé du Roudi annonce trois Cœurs et un minimum. Vos cinq Cœurs assurent le fit et vos 11 H, avec un doubleton, permettent une invitation : 3♥ laisse au partenaire le choix d'accepter. Face à une réponse maximum 2♠, la manche serait bien plus attractive."
+      }
+    },
+    {
+      "id": "SEF-V44-065",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Huit Piques confirmés et ARD cinquièmes rendent 4♠ la conclusion enseignée.",
+      "evidence": {
+        "id": "SEF-V44-065",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "4♠",
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♠ (fit, maximum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♠ codé du Roudi annonce trois Piques et le maximum de 1SA. Vos cinq Piques commandés par As-Roi-Dame assurent huit atouts ; avec 12 H, vous connaissez la force suffisante pour 4♠. 3♠ laisserait inutilement une décision que la réponse maximum a déjà éclairée."
+      }
+    },
+    {
+      "id": "SEF-V44-065",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "12 H face au maximum et huit atouts justifient la manche, pas une invitation à SA.",
+      "evidence": {
+        "id": "SEF-V44-065",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "4♠",
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♠ (fit, maximum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♠ codé du Roudi annonce trois Piques et le maximum de 1SA. Vos cinq Piques commandés par As-Roi-Dame assurent huit atouts ; avec 12 H, vous connaissez la force suffisante pour 4♠. 3♠ laisserait inutilement une décision que la réponse maximum a déjà éclairée."
+      }
+    },
+    {
+      "id": "SEF-V44-066",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Cinq Cœurs ARDV et trois en face établissent un fit majeur ; 4♥ est la manche retenue.",
+      "evidence": {
+        "id": "SEF-V44-066",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "4♥",
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ du partenaire au Roudi confirme trois Cœurs et une ouverture minimum. Vos cinq Cœurs ♥ARDV2 et 13 H assurent huit atouts et la force de manche, même au minimum. 4♥ conclut ; 3♥ ne serait qu'une invitation."
+      }
+    },
+    {
+      "id": "SEF-V44-066",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "13 H face au minimum 12 H suffisent déjà à la manche avec le fit ; 2SA n'est qu'invitant.",
+      "evidence": {
+        "id": "SEF-V44-066",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "4♥",
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♥",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (fit, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ du partenaire au Roudi confirme trois Cœurs et une ouverture minimum. Vos cinq Cœurs ♥ARDV2 et 13 H assurent huit atouts et la force de manche, même au minimum. 4♥ conclut ; 3♥ ne serait qu'une invitation."
+      }
+    },
+    {
+      "id": "SEF-V49-027",
+      "choice": "2SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "Six Piques et 12 HL justifient l'exploration du soutien troisième et de la force par le Roudi, avant de choisir le contrat.",
+      "evidence": {
+        "id": "SEF-V49-027",
+        "concept": "roudi.init",
+        "choice": "2SA",
+        "expected": "2♣",
+        "h": 10,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec six Piques et 10 H, vous possédez 12 HL (10 H + 2 L). Utilisez 2♣ Roudi pour préciser le fit et la force de l’ouvreur. 2♠ serait faible et 3♠ direct ne constitue pas la simple invitation de manche enseignée par le Roudi."
+      }
+    },
+    {
+      "id": "SEF-C2-012",
+      "choice": "2SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Cinq Cœurs et 12 H : une invitation naturelle à SA peut manquer le fit 5–3.",
+      "evidence": {
+        "id": "SEF-C2-012",
+        "concept": "roudi.init",
+        "choice": "2SA",
+        "expected": "2♣",
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Vos cinq Cœurs ♥AD1096 et 12 H donnent un espoir de manche face à la redemande 1SA (12–14 H). Le relais 2♣ Roudi recherche le soutien troisième et précise la force en face. 2♥ serait faible et 3SA risquerait de manquer le fit 5–3."
+      }
+    },
+    {
+      "id": "SEF-L10-030",
+      "choice": "Passe",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "9 H et six Piques donnent 11 HL, seuil constructif explicitement retenu dans ce cas.",
+      "evidence": {
+        "id": "SEF-L10-030",
+        "concept": "roudi.init",
+        "choice": "Passe",
+        "expected": "2♣",
+        "h": 9,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Vos six Piques et 9 H donnent exactement 11 HL. Dans la zone 11–12 HL avec six cartes, 2♣ Roudi précise le soutien troisième et la force de l'ouvreur avant de choisir le contrat. 2♠ immédiat serait faible ; 3♠ direct ne constitue pas la simple invitation enseignée ici."
+      }
+    },
+    {
+      "id": "SEF-L14-007",
+      "choice": "2♠",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "Sept Piques seulement sont connus ; répéter les Piques masque les quatre Cœurs qui pourraient constituer un fit 4–4.",
+      "evidence": {
+        "id": "SEF-L14-007",
+        "concept": "roudi.suite",
+        "choice": "2♠",
+        "expected": "2♥",
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe",
+          "Vous : 2♣ (Roudi trois réponses)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (pas trois Piques)",
+          "Adversaire : Passe"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "La réponse négative 2♦ ne laisse que sept Piques connus : cinq chez vous, deux chez l'ouvreur. Avec quatre Cœurs et 11 H (12 HL), 2♥ naturel, non forcing, recherche une meilleure partielle ou un éventuel fit 4–4. 3♥ imposerait la manche alors que le 2♦ ne précise pas la force."
+      }
+    },
+    {
+      "id": "SEF-L14-007",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "Après le 2♦ négatif, 2SA ne montre pas les quatre Cœurs et ne recherche pas le fit 4–4.",
+      "evidence": {
+        "id": "SEF-L14-007",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "2♥",
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe",
+          "Vous : 2♣ (Roudi trois réponses)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (pas trois Piques)",
+          "Adversaire : Passe"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "La réponse négative 2♦ ne laisse que sept Piques connus : cinq chez vous, deux chez l'ouvreur. Avec quatre Cœurs et 11 H (12 HL), 2♥ naturel, non forcing, recherche une meilleure partielle ou un éventuel fit 4–4. 3♥ imposerait la manche alors que le 2♦ ne précise pas la force."
+      }
+    },
+    {
+      "id": "SEF-L14-007",
+      "choice": "3♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "forcing",
+      "confidence": "medium",
+      "reason": "Le saut à 3♥ impose la manche dans ce développement, alors que 12 HL face à une zone non précisée ne l'assurent pas.",
+      "evidence": {
+        "id": "SEF-L14-007",
+        "concept": "roudi.suite",
+        "choice": "3♥",
+        "expected": "2♥",
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Adversaire : Passe",
+          "Vous : 1♠",
+          "Adversaire : Passe",
+          "Partenaire : 1SA",
+          "Adversaire : Passe",
+          "Vous : 2♣ (Roudi trois réponses)",
+          "Adversaire : Passe",
+          "Partenaire : 2♦ (pas trois Piques)",
+          "Adversaire : Passe"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "La réponse négative 2♦ ne laisse que sept Piques connus : cinq chez vous, deux chez l'ouvreur. Avec quatre Cœurs et 11 H (12 HL), 2♥ naturel, non forcing, recherche une meilleure partielle ou un éventuel fit 4–4. 3♥ imposerait la manche alors que le 2♦ ne précise pas la force."
+      }
+    },
+    {
+      "id": "SEF-L21-003",
+      "choice": "2♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "forcing",
+      "confidence": "medium",
+      "reason": "La répétition économique des cinq Cœurs ne transmet pas le caractère forcing de manche du 2♠ bicolore cher.",
+      "evidence": {
+        "id": "SEF-L21-003",
+        "concept": "roudi.suite",
+        "choice": "2♥",
+        "expected": "2♠",
+        "h": 14,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi à trois réponses)",
+          "Partenaire : 2♦ (deux Cœurs, sans indication de force)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♣–1♥–1SA–2♣ (Roudi)–2♦, 2♠ est le bicolore cher du répondant : cinq Cœurs, quatre Piques et un jeu forcing de manche. Il ne faut pas le confondre avec les continuations non forcing au palier de 2, comme 2SA. Le Roudi reste ici celui à trois réponses."
+      }
+    },
+    {
+      "id": "SEF-L21-003",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "forcing",
+      "confidence": "medium",
+      "reason": "2SA est non forcing dans cette suite ; avec 14 H et le bicolore 5–4, il risque d'arrêter les enchères trop tôt.",
+      "evidence": {
+        "id": "SEF-L21-003",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "2♠",
+        "h": 14,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi à trois réponses)",
+          "Partenaire : 2♦ (deux Cœurs, sans indication de force)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♣–1♥–1SA–2♣ (Roudi)–2♦, 2♠ est le bicolore cher du répondant : cinq Cœurs, quatre Piques et un jeu forcing de manche. Il ne faut pas le confondre avec les continuations non forcing au palier de 2, comme 2SA. Le Roudi reste ici celui à trois réponses."
+      }
+    },
+    {
+      "id": "SEF-L21-003",
+      "choice": "3♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "La répétition des Cœurs masque les quatre Piques et ne décrit pas le bicolore cher recherché.",
+      "evidence": {
+        "id": "SEF-L21-003",
+        "concept": "roudi.suite",
+        "choice": "3♥",
+        "expected": "2♠",
+        "h": 14,
+        "shape": [
+          4,
+          5,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi à trois réponses)",
+          "Partenaire : 2♦ (deux Cœurs, sans indication de force)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Après 1♣–1♥–1SA–2♣ (Roudi)–2♦, 2♠ est le bicolore cher du répondant : cinq Cœurs, quatre Piques et un jeu forcing de manche. Il ne faut pas le confondre avec les continuations non forcing au palier de 2, comme 2SA. Le Roudi reste ici celui à trois réponses."
+      }
+    },
+    {
+      "id": "V1-M5-001",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le 2♦ négatif annonce deux Piques : avec six en main, le fit de huit existe malgré l'absence de soutien troisième.",
+      "evidence": {
+        "id": "V1-M5-001",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "2♠",
+        "h": 10,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ codé indique deux Piques, sans préciser la zone 12–14 H. Vos six Piques assurent donc huit atouts. Avec 10 H et deux points de longueur, vous n'avez pas de manche certaine. 2♠ est naturel et non forcing : ce n'est pas une nouvelle invitation formelle. L'ouvreur pourra poursuivre avec des compléments utiles. 3♠ serait plus engageant et 3SA sacrifierait le fit."
+      }
+    },
+    {
+      "id": "V1-M5-001",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Six Piques plus deux en face assurent le fit ; 3SA abandonne ce fit et impose une manche non certaine.",
+      "evidence": {
+        "id": "V1-M5-001",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "2♠",
+        "h": 10,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ codé indique deux Piques, sans préciser la zone 12–14 H. Vos six Piques assurent donc huit atouts. Avec 10 H et deux points de longueur, vous n'avez pas de manche certaine. 2♠ est naturel et non forcing : ce n'est pas une nouvelle invitation formelle. L'ouvreur pourra poursuivre avec des compléments utiles. 3♠ serait plus engageant et 3SA sacrifierait le fit."
+      }
+    },
+    {
+      "id": "V1-M5-002",
+      "choice": "Passe",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "convention",
+      "confidence": "medium",
+      "reason": "2♥ est un code de trois Piques minimum, non une proposition de contrat à Cœur.",
+      "evidence": {
+        "id": "V1-M5-002",
+        "concept": "roudi.suite",
+        "choice": "Passe",
+        "expected": "2♠",
+        "h": 10,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Piques, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "2♥ est ici une réponse codée, non un contrat à Cœur : l'ouvreur possède trois Piques et est minimum. Vos 10 H et cinq Piques donnent 11 HL, avec des honneurs modestes et un seul doubleton. Revenez à 2♠, non forcing ; Passe laisserait jouer la mauvaise majeure et 3♠ ou 4♠ surévaluerait la main."
+      }
+    },
+    {
+      "id": "V1-M5-002",
+      "choice": "3♠",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "10 H et cinq Piques face au minimum ne justifient pas une nouvelle invitation dans le corrigé.",
+      "evidence": {
+        "id": "V1-M5-002",
+        "concept": "roudi.suite",
+        "choice": "3♠",
+        "expected": "2♠",
+        "h": 10,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Piques, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "2♥ est ici une réponse codée, non un contrat à Cœur : l'ouvreur possède trois Piques et est minimum. Vos 10 H et cinq Piques donnent 11 HL, avec des honneurs modestes et un seul doubleton. Revenez à 2♠, non forcing ; Passe laisserait jouer la mauvaise majeure et 3♠ ou 4♠ surévaluerait la main."
+      }
+    },
+    {
+      "id": "V2-M6-002",
+      "choice": "3SA",
+      "concept": "roudi.init",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H face à 12–14 H ne garantissent pas la manche et le fit 5–3 est encore inconnu.",
+      "evidence": {
+        "id": "V2-M6-002",
+        "concept": "roudi.init",
+        "choice": "3SA",
+        "expected": "2♣",
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA (12–14 H)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Avec 11 H et cinq Piques, un fit 5–3 reste possible. 2♣ Roudi interroge sur les trois Piques de l'ouvreur et permet de choisir ensuite entre la majeure et SA. 2SA direct pourrait manquer le fit."
+      }
+    },
+    {
+      "id": "V2-M6-003",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "priorite",
+      "confidence": "medium",
+      "reason": "Le 2♦ négatif laisse sept Piques ; 2SA masque les quatre Cœurs susceptibles de trouver un fit 4–4.",
+      "evidence": {
+        "id": "V2-M6-003",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "2♥",
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ du Roudi indique deux Piques, pas la force de l'ouvreur. Vos cinq Piques ne donnent donc que sept atouts ; un fit 4–4 à Cœur reste possible. Avec 11 H (12 HL), 2♥ montre vos quatre Cœurs et peut être passé. 3♥ imposerait la manche alors que le minimum de l'ouvreur ne la justifie pas."
+      }
+    },
+    {
+      "id": "V2-M6-003",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H (12 HL) ne garantissent pas la manche face au minimum ; le fit Cœur reste à explorer.",
+      "evidence": {
+        "id": "V2-M6-003",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "2♥",
+        "h": 11,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ du Roudi indique deux Piques, pas la force de l'ouvreur. Vos cinq Piques ne donnent donc que sept atouts ; un fit 4–4 à Cœur reste possible. Avec 11 H (12 HL), 2♥ montre vos quatre Cœurs et peut être passé. 3♥ imposerait la manche alors que le minimum de l'ouvreur ne la justifie pas."
+      }
+    },
+    {
+      "id": "V2-M6-004",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "forcing",
+      "confidence": "medium",
+      "reason": "15 H et le bicolore 5–4 imposent la manche ; 2SA non forcing ne transmet pas ce projet ni les quatre Cœurs.",
+      "evidence": {
+        "id": "V2-M6-004",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "3♥",
+        "h": 15,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♦",
+          "Vous : 1♠",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♦ (deux Piques)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♦ du Roudi ne donne que deux Piques à l'ouvreur. Avec 15 H et quatre Cœurs commandés par As-Roi, la manche est à rechercher sans pouvoir s'arrêter en partielle. 3♥ montre les quatre Cœurs et impose la manche dans ce développement ; 2♥ pourrait être passé, et 3SA ne vérifierait pas le fit 4–4."
+      }
+    },
+    {
+      "id": "V2-M6-005",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le 2♥ codé garantit trois Cœurs et huit atouts ; l'invitation doit conserver le fit.",
+      "evidence": {
+        "id": "V2-M6-005",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Cœurs, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ du Roudi est codé : trois cartes dans votre majeure et minimum de l'ouverture. Vos cinq Cœurs assurent huit atouts ; les 11 H et le doubleton Trèfle donnent une main constructive, pas une manche à imposer face au minimum. 3♥ invite à 4♥ en conservant le fit ; 4♥ serait plus engagé."
+      }
+    },
+    {
+      "id": "V2-M6-005",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le fit Cœur est déjà trouvé ; choisir 3SA le néglige et impose une manche non certaine.",
+      "evidence": {
+        "id": "V2-M6-005",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Cœurs, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ du Roudi est codé : trois cartes dans votre majeure et minimum de l'ouverture. Vos cinq Cœurs assurent huit atouts ; les 11 H et le doubleton Trèfle donnent une main constructive, pas une manche à imposer face au minimum. 3♥ invite à 4♥ en conservant le fit ; 4♥ serait plus engagé."
+      }
+    },
+    {
+      "id": "V2-M6-005",
+      "choice": "4♥",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "force",
+      "confidence": "medium",
+      "reason": "11 H et un doubleton face au minimum donnent une invitation, pas une manche à imposer.",
+      "evidence": {
+        "id": "V2-M6-005",
+        "concept": "roudi.suite",
+        "choice": "4♥",
+        "expected": "3♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♥ (trois Cœurs, minimum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♥ du Roudi est codé : trois cartes dans votre majeure et minimum de l'ouverture. Vos cinq Cœurs assurent huit atouts ; les 11 H et le doubleton Trèfle donnent une main constructive, pas une manche à imposer face au minimum. 3♥ invite à 4♥ en conservant le fit ; 4♥ serait plus engagé."
+      }
+    },
+    {
+      "id": "V2-M6-006",
+      "choice": "2SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le 2♠ codé annonce trois Cœurs maximum ; 2SA ne valorise pas les huit atouts.",
+      "evidence": {
+        "id": "V2-M6-006",
+        "concept": "roudi.suite",
+        "choice": "2SA",
+        "expected": "4♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♠ (trois Cœurs, maximum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♠ est une réponse artificielle du Roudi à trois réponses : il confirme trois Cœurs et le maximum, et ne montre pas des Piques. Vos cinq Cœurs, 11 H et le doubleton Trèfle permettent alors de conclure à 4♥. 3♥ ne serait qu'une invitation, devenue inutile après l'annonce du maximum."
+      }
+    },
+    {
+      "id": "V2-M6-006",
+      "choice": "3SA",
+      "concept": "roudi.suite",
+      "disposition": "hypothesis",
+      "status": "hypothesis",
+      "category": "fit",
+      "confidence": "medium",
+      "reason": "Le code 2♠ confirme le fit Cœur et le maximum ; 4♥ est la conclusion dans la majeure.",
+      "evidence": {
+        "id": "V2-M6-006",
+        "concept": "roudi.suite",
+        "choice": "3SA",
+        "expected": "4♥",
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "auction": [
+          "Partenaire : 1♣",
+          "Vous : 1♥",
+          "Partenaire : 1SA (12–14 H)",
+          "Vous : 2♣ (Roudi)",
+          "Partenaire : 2♠ (trois Cœurs, maximum)"
+        ],
+        "rule": "m3c-reviewed-roudi",
+        "canonical": "Le 2♠ est une réponse artificielle du Roudi à trois réponses : il confirme trois Cœurs et le maximum, et ne montre pas des Piques. Vos cinq Cœurs, 11 H et le doubleton Trèfle permettent alors de conclure à 4♥. 3♥ ne serait qu'une invitation, devenue inutile après l'annonce du maximum."
+      }
+    }
+  ]
+}
