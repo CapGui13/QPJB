@@ -100,3 +100,8 @@ Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés su
 ## Passe 9 — Rubensohl et Multi-Landy
 
 Revue des 114 HOLD de ces deux thèmes : 106 dispositions « corrigé suffisant », huit HOLD conservés et nommés dans `pass9-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect des accords explicitement locaux, pas de généralisation au SEF. Comparaison exhaustive des registres : exactement 106 changements attendus. 1307 HOLD, un contraste restant, 3371 ciblages et 542 corrigés suffisants. Banc exact exécuté en V8 : 103155 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 10 — Chelems et Michaëls
+
+Revue des 92 HOLD de ces deux thèmes : 78 dispositions « corrigé suffisant », 14 HOLD conservés et nommés dans `pass10-propositions.json` (instantané de la proposition, désormais intégrée). Justifications individuelles liées à la main, séquence, force, distribution, corrigé et diagnostic signé. Respect du bilan de levées propre à chaque question, aucune généralisation des décisions de chelem. Comparaison exhaustive des registres : exactement 78 changements attendus. 1229 HOLD, un contraste restant, 3371 ciblages et 620 corrigés suffisants. Banc exact exécuté en V8 : 103467 assertions, données et transferts existants reproduits. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
