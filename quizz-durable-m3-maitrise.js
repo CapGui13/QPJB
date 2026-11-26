@@ -115,7 +115,9 @@
        if(!same)earliest.set(r.family,r);
      }
      const delay=best?best.intervalMs:null;
-     const retentionStatus=counts.clockRollback||now===null||timed.length<2?"unknown":delay===null?"not_demonstrated":delay>=30*DAY?"observed_30d":delay>=7*DAY?"observed_7d":delay>=DAY?"observed_1d":"less_than_24h";
+     const retentionStatus=counts.clockRollback||now===null?"unknown":delay===null?
+       (recovery.length>0&&timed.length<recovery.length?"unknown":"not_demonstrated"):
+       delay>=30*DAY?"observed_30d":delay>=7*DAY?"observed_7d":delay>=DAY?"observed_1d":"less_than_24h";
      const lastPractice=latest(s.practice);
      const recent=latest(assessed.filter(r=>!["skipped","uncertain"].includes(r.kind)))??assessed[0]??null;
      // A skip or uncertain answer never postpones a review; a first exposure can trigger one.
@@ -134,10 +136,10 @@
      });
      const status=!s.exposed.size?"unobserved":!clean.length?"exposed":fragile?"fragile":stable?"multi_family_multi_session":multi?"multi_family_multi_session":"first_autonomous";
      concepts[k]={concept:k,evidence:{status,exposureIds:[...s.exposed],legacyExposure:s.legacy,assessments:assessed,practice:s.practice,autonomous:clean.length,firstAutonomous:clean[0]??null,historicalFamilies:[...historicalFamilies],historicalSessions:[...historicalSessions],currentFamilies:[...families],currentSessions:[...sessions],invalidObservations:s.invalid},
-       fragile, recovery:{lastWeakSession:lastWeak,observed:lastWeak!==null&&multi,unrecheckedWeakFamilies:unresolvedWeakFamilies,proofs:recovery},retention:{status:retentionStatus,intervalMs:delay,pair:best,sameFamilyRecall,clock:"session_completion_only",lastAssessmentTimeMs:recent?.timeMs??null,ageMs:recent?.timeMs!=null&&now!==null?now-recent.timeMs:null},
+       fragile, recovery:{lastWeakSession:lastWeak,observed:lastWeak!==null&&multi,unrecheckedWeakFamilies:unresolvedWeakFamilies,proofs:recovery},retention:{status:recent?.timeMs==null&&delay===null&&timed.length===0?"unknown":retentionStatus,intervalMs:delay,pair:best,sameFamilyRecall,datedCurrentProofs:timed.length,undatedCurrentProofs:recovery.length-timed.length,clock:"session_completion_only",lastAssessmentTimeMs:recent?.timeMs??null,ageMs:recent?.timeMs!=null&&now!==null?now-recent.timeMs:null},
        discrimination:{status:"not_demonstrated",pairs:[]},transfer:{status:"not_demonstrated",pairs:[],reinvestment:[]},
        reviewDue,review:{dueAtMs:dueAt,dueSession,days,sessionInterval,timeDue,sessionDue,overdueMs:timeDue?Math.min(30*DAY,now-dueAt):0,lastPractice:lastPractice??null},
-       reason:!s.exposed.size?"Aucune observation exploitable.":fragile?"Difficulté observée ; récupération multi-familles et multi-séances non établie.":multi?"Réussites autonomes sur plusieurs familles et séances ; la maîtrise n’est pas certaine.":clean.length?"Réussite autonome observée ; généralisation non établie.":"Exposition uniquement ; pas de preuve autonome.",
+       reason:!s.exposed.size?"Aucune observation exploitable.":fragile?"Réponse non autonome ou difficulté observée ; récupération multi-familles et multi-séances non établie.":multi?"Réussites autonomes sur plusieurs familles et séances ; la maîtrise n’est pas certaine.":clean.length?"Réussite autonome observée ; généralisation non établie.":"Exposition uniquement ; pas de preuve autonome.",
        mastery:"not_established"};
    }
    const pairResults=[],pairKeys=new Set();
@@ -148,18 +150,27 @@
      const actual=qa&&qb?[...new Set([qa.concept,qb.concept])]:[];
      let disposition=p.disposition;
      if(disposition==="accepted"&&(!qa||!qb||qa.family===qb.family||!Array.isArray(p.concepts)||p.concepts.some(k=>!actual.includes(k))||actual.some(k=>!p.concepts.includes(k))))disposition="HOLD_unavailable_or_mismatch";
-     let proof=null,sameSession=false;
+     let proof=null,historicalProof=null,sameSession=false,historicalSameSession=false;
      if(disposition==="accepted"){
-       const valid=(id,q)=>(allById.get(id)||[]).filter(r=>r.kind==="autonomous"&&concepts[q.concept].recovery.proofs.some(x=>x.eventIndex===r.eventIndex&&x.id===id));
-       const left=valid(p.a,qa),right=valid(p.b,qb);
-       if(left.length&&right.length){
+       const clean=(id,q,current)=>{
+         const s=concepts[q.concept];
+         if(current){const eligible=new Set(s.recovery.proofs.map(x=>x.eventIndex+":"+x.id));return (allById.get(id)||[]).filter(r=>eligible.has(r.eventIndex+":"+r.id));}
+         const tainted=new Set(s.evidence.assessments.filter(r=>!["autonomous","skipped"].includes(r.kind)).map(r=>r.session));
+         return (allById.get(id)||[]).filter(r=>r.kind==="autonomous"&&!tainted.has(r.session));
+       };
+       const compare=(left,right)=>{
+         if(!left.length||!right.length)return {proof:null,sameSession:false};
          const x=left[0],y=right[right.length-1],z=right[0],w=left[left.length-1];
-         if(x.session<y.session)proof={from:x,to:y};
-         else if(p.kind==="discrimination"&&z.session<w.session)proof={from:z,to:w};
-         else sameSession=left.some(r=>right.some(t=>t.session===r.session));
-       }
+         if(x.session<y.session)return {proof:{from:x,to:y},sameSession:false};
+         if(p.kind==="discrimination"&&z.session<w.session)return {proof:{from:z,to:w},sameSession:false};
+         const sessions=new Set(left.map(r=>r.session));
+         return {proof:null,sameSession:right.some(r=>sessions.has(r.session))};
+       };
+       ({proof,sameSession}=compare(clean(p.a,qa,true),clean(p.b,qb,true)));
+       const historical=compare(clean(p.a,qa,false),clean(p.b,qb,false));
+       historicalProof=historical.proof;historicalSameSession=historical.sameSession;
      }
-     const result={a:p.a,b:p.b,kind:p.kind,source:p.source,criterion:p.criterion,disposition,status:disposition!=="accepted"?"unavailable":proof?"observed_candidate":sameSession?"same_session_only":"not_demonstrated",proof};
+     const result={a:p.a,b:p.b,kind:p.kind,source:p.source,criterion:p.criterion,disposition,status:disposition!=="accepted"?"unavailable":proof?"observed_candidate":sameSession?"same_session_only":"not_demonstrated",proof,historicalStatus:disposition!=="accepted"?"unavailable":historicalProof?"observed_candidate":historicalSameSession?"same_session_only":"not_demonstrated",historicalProof};
      pairResults.push(result);
      if(disposition!=="accepted")continue;
      for(const k of actual){
@@ -173,9 +184,9 @@
  }
  function rankReview(input={}){
    const c=obj(input)?input:{},h=historyOf(c.history);
-   if(h.active||["due","review","weakness","discovery","rappel_erreur_aide","rappel_question"].includes(c.category))return [];
+   if(h.active||!n(h.completed)||h.completed<3||c.priority===true||["rappel_erreur_aide","rappel_question"].includes(c.forcedReason)||["due","review","weakness","discovery","rappel_erreur_aide","rappel_question"].includes(c.category))return [];
    const state=assess(c),{map}=exerciseIndex(c.exercises,c.metadataById);
-   const idOf=x=>typeof x==="string"?x:x?.id;
+   const idOf=x=>typeof x==="string"?x:x?.id??x?.exercise?.id;
    const ids=new Set(list(c.selected).map(idOf)),selectedFamilies=new Set([...ids].map(id=>map.get(id)?.family).filter(Boolean));
    const selectedConcepts=new Set([...ids].map(id=>map.get(id)?.concept).filter(Boolean)),seen=new Set(),out=[];
    for(const x of list(c.candidates)){
