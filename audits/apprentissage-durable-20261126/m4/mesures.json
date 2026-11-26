@@ -711,5 +711,39 @@
       "bounded_context": 4
     },
     "pairReservationsEnforced": 3
+  },
+  "pass14": {
+    "reviewedRemainingTransferEndpoints": 7,
+    "counts": {
+      "guided_not_independent": 4,
+      "bounded_context": 3
+    },
+    "totalIndividualTargetedReview": 586,
+    "remainingIndividualTargetedReview": 1329,
+    "transferScreen": {
+      "candidate_only": 22,
+      "guided_prompt": 49,
+      "pair_reservation": 3,
+      "bounded_context": 3
+    },
+    "uniqueTransferEndpoints": 140,
+    "unreviewedTransferEndpoints": 0,
+    "tests": [
+      {
+        "assertions": 496,
+        "status": "PASS",
+        "reviewed": 7,
+        "totalReviewed": 586,
+        "uniqueTransferEndpoints": 140,
+        "pairCounts": {
+          "candidate_only": 22,
+          "guided_prompt": 49,
+          "pair_reservation": 3,
+          "bounded_context": 3
+        },
+        "unreviewedEndpoints": 0
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
   }
 }
