@@ -2,11 +2,14 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.QPJB_COHERENCE_M3=api;})(typeof globalThis==='object'?globalThis:this,function(){
 'use strict';
 const TEXAS=['SEF-039-2','SEF-039-1','SEF-040-2','SEF-N084-1','SEF-N087-2','V2-M2-018'];
+const TEXAS_ELEMENTARY=['SEF-037-1','SEF-038-1','SEF-N082-2','SEF-N085-1','SEF-V44-015','SEF-V44-016','SEF-V49-017','SEF-C-003','V2-M2-030'];
+const STAYMAN_FOURTH=['SEF-V416-007','SEF-PN26-M1-033'];
+const STAYMAN_SIMPLE=['SEF-V3-011-1','SEF-V3-011-3','SEF-V3-012-1','SEF-V3-013-4','SEF-V3-014-2','SEF-V3-014-1','SEF-V3-015-1','SEF-V3-016-1','SEF-V3-016-2'];
 const RED=['SEF-042-2','SEF-043-1','SEF-043-3','SEF-047-1','SEF-N110-1','SEF-N111-1','SEF-N112-2','SEF-N113-1'];
 const VISAS=['SEF-028-2','SEF-028-1','SEF-N048-3','SEF-N048-1','SEF-N053-2','SEF-N053-1','SEF-C-006'];
 const clone=x=>JSON.parse(JSON.stringify(x));
 const get=(m,id)=>m instanceof Map?m.get(id):m&&m[id];
-const idOf=x=>typeof x==='string'?x:x&&x.id;
+const idOf=x=>typeof x==='string'?x:x&&(x.id||x.exercise?.id||x.q?.id);
 function patches(metadataById,exercises){
  const by=new Map(exercises.map(q=>[q.id,q]));
  return [...TEXAS,...RED].map(id=>{
@@ -18,12 +21,13 @@ function patches(metadataById,exercises){
  const next=clone(old);
  if(texas){next.stage=1;next.requires.push({concept:'sa1.texas',minExposure:1});}
  else next.concept='red.base';
- return {id,old:clone(old),new:next,status:texas?'PROPOSAL_REVIEW':'HOLD',preuve:texas?'Texas majeur avec force de manche : introduire auparavant le transfert élémentaire sur main faible. Exposition seulement, jamais réussite obligatoire.':'Redemande de majeure quatrième avec main régulière, pas le bicolore 5-4 économique ou cher ; ne pas créditer cette notion par assimilation.',accord:'Aucun changement de réponse SEF ; validation du coordinateur requise.',question:{auction:q.auction,answer:q.answer,explain:q.explain}};
+ return {id,old:clone(old),new:next,status:'HOLD',decision:texas?'Régression de couverture de preuve faible/103 à S65 ; ne pas activer sans recette intégrée.':'Pas de gain de sélection démontré ; ne pas activer.',preuve:texas?'Texas majeur avec force de manche : introduire auparavant le transfert élémentaire sur main faible. Exposition seulement, jamais réussite obligatoire.':'Redemande de majeure quatrième avec main régulière, pas le bicolore 5-4 économique ou cher ; ne pas créditer cette notion par assimilation.',accord:'Aucun changement de réponse SEF ; validation du coordinateur requise.',question:{auction:q.auction,answer:q.answer,explain:q.explain}};
  });
 }
-function applyExperimental(metadataById,exercises,group='texas'){
+function applyExperimental(metadataById,exercises,group='none'){
  if(!['texas','red','both','none'].includes(group))throw Error('Unknown group');
  const out=clone(metadataById);
+ if(group==='none')return out;
  for(const p of patches(metadataById,exercises))if(group==='both'||(group==='texas'&&TEXAS.includes(p.id))||(group==='red'&&RED.includes(p.id)))out[p.id]=p.new;
  return out;
 }
@@ -52,8 +56,24 @@ function evidence(ctx){
  }
  return out;
 }
+// Advisory transition constraints, not eligibility. Same-session candidates
+// and previously completed exposures are deliberately separate.
+function transitionFor(id,m,ev,candidateIds,selectedIds,ctx){
+ const spec=m.concept==='sa1.texas'?{simple:TEXAS_ELEMENTARY,complex:TEXAS,kind:'texas-partielle-avant-manche'}:m.concept==='sa1.stayman.reponse'?{simple:STAYMAN_SIMPLE,complex:STAYMAN_FOURTH,kind:'stayman-reponses-simples-avant-2SA'}:null;
+ if(!spec||!spec.simple.includes(id)&&!spec.complex.includes(id))return null;
+ const history=ev.get(m.concept)?.ids||new Set();
+ const observedElementaryIds=spec.simple.filter(x=>history.has(x));
+ const priorComplexIds=spec.complex.filter(x=>history.has(x));
+ const alternatives=spec.simple.filter(x=>candidateIds.has(x)&&!selectedIds.has(x));
+ const sameSessionElementaryIds=spec.simple.filter(x=>selectedIds.has(x));
+ const preserveRecall=ctx.forcedReason==='rappel_erreur_aide'||ctx.category==='weakness';
+ const isSimple=spec.simple.includes(id);
+ const status=preserveRecall?'preserve-recall':observedElementaryIds.length?'elementary-previously-exposed':isSimple?'elementary-introduction':sameSessionElementaryIds.length?'order-after-elementary-in-same-session':alternatives.length?'prefer-elementary-alternative':'no-alternative-preserve-native';
+ return {kind:spec.kind,status,observedElementaryIds,priorComplexIds,presentElementaryCandidateIds:alternatives,sameSessionElementaryIds,neverBlocks:true,grantsProof:false};
+}
 function rules(ctx={}){
  const ev=evidence(ctx),byId=new Map((ctx.exercises||[]).map(q=>[q.id,q])),byConcept=new Map();
+ const candidateIds=new Set((ctx.candidates||[]).map(idOf)),selectedIds=new Set((ctx.selected||[]).map(idOf));
  for(const q of byId.values()){const m=effective(q,get(ctx.metadataById,q.id));if(!m)continue;if(!byConcept.has(m.concept))byConcept.set(m.concept,[]);byConcept.get(m.concept).push(q);}
  return (ctx.candidates||[]).map(c=>{
  const id=idOf(c),q=byId.get(id)||c,m=effective(q,get(ctx.metadataById,id));
@@ -82,7 +102,7 @@ function rules(ctx={}){
   const foundation=lower(m.concept).some(v=>ev.get(m.concept)?.ids.has(v.id));
   autonomy={keys:[m.concept],foundation,status:foundation?'lower-exposure-observed':'missing-foundation',independent:null};
  }
- return {id,concept:m.concept,stage:m.stage,minSession:m.minSession,status:ctx.session-1<m.minSession?'calendar':requirements.some(r=>r.status==='missing-exposure')?'missing-exposure':'requirements-observed',requirements,autonomy,advisory:true};
+ return {id,concept:m.concept,stage:m.stage,minSession:m.minSession,status:ctx.session-1<m.minSession?'calendar':requirements.some(r=>r.status==='missing-exposure')?'missing-exposure':'requirements-observed',requirements,autonomy,transition:transitionFor(id,m,ev,candidateIds,selectedIds,ctx),advisory:true};
  });
 }
 function graph(metadataById,exercises){
@@ -115,5 +135,5 @@ function reachability(metadataById,exercises,horizon=180){
  }
  return {reachable:available.size,blocked:exercises.filter(q=>!available.has(q.id)).map(q=>q.id),first,limitation:'Exposition théorique illimitée par séance, sans quotas ni preuves de difficulté ; pas une simulation élève.'};
 }
-return {rules,patches,applyExperimental,graph,reachability,TEXAS,RED,VISAS};
+return {rules,patches,applyExperimental,graph,reachability,TEXAS,RED,VISAS,TEXAS_ELEMENTARY,STAYMAN_SIMPLE,STAYMAN_FOURTH};
 });
