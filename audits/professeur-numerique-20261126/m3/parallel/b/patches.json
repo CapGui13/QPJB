@@ -1,0 +1,132 @@
+[
+  {
+    "id": "SEF-V484-001",
+    "signature": "1p9febi",
+    "removed": "2SA",
+    "added": "Passe",
+    "status": "proposal-only",
+    "reason": "2SA n'a pas de sens documenté dans le corrigé à ce stade. Passe teste une confusion plausible entre le 2♦ d'attente du Drury et une enchère naturelle à laisser jouer. La question demande explicitement une deuxième enchère décrivant le fit ; 2♥ reste la seule réponse attendue dans l'accord explicité. Vérifier l'accord de poursuite avant toute application.",
+    "answer": "2♥",
+    "source": "corrigé et contexte SEF-V484-001, catalogue figé",
+    "oldChoices": [
+      "2♥",
+      "2SA",
+      "3♥",
+      "4♥"
+    ],
+    "newChoices": [
+      "2♥",
+      "Passe",
+      "3♥",
+      "4♥"
+    ],
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "status": "hypothesis",
+        "category": "forcing",
+        "confidence": "medium",
+        "reason": "Après le 2♦ d'attente, Passe ne répond pas à la demande de préciser la longueur du fit ; une confusion sur le caractère de relais est possible.",
+        "evidence": {
+          "id": "SEF-V484-001",
+          "concept": "drury.suite",
+          "choice": "Passe",
+          "expected": "2♥",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [
+            "Vous : Passe (premier tour)",
+            "Adversaire : Passe",
+            "Partenaire : 1♥ (3e position)",
+            "Adversaire : Passe",
+            "Vous : 2♣ (Drury, fit Cœur)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+            "Adversaire : Passe"
+          ],
+          "rule": "m3b-patch-proposed-drury-relay",
+          "signature": "1p9febi"
+        }
+      },
+      {
+        "choice": "3♥",
+        "status": "hypothesis",
+        "category": "fit",
+        "reason": "Le corrigé mentionne précisément cette alternative ; il fournit une piste à vérifier, pas une cause certaine.",
+        "confidence": "low",
+        "evidence": {
+          "id": "SEF-V484-001",
+          "concept": "drury.suite",
+          "choice": "3♥",
+          "expected": "2♥",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [
+            "Vous : Passe (premier tour)",
+            "Adversaire : Passe",
+            "Partenaire : 1♥ (3e position)",
+            "Adversaire : Passe",
+            "Vous : 2♣ (Drury, fit Cœur)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+            "Adversaire : Passe"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "canonical-explicit-contrast",
+          "canonicalExcerpt": ". 3♥ annoncerait quatre atouts dans ce développement",
+          "axisSignals": [
+            "fit"
+          ]
+        }
+      },
+      {
+        "choice": "4♥",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "Cette réponse ne respecte pas la zone constructive, minimale ou de conclusion décrite par le corrigé après Passe initial et les informations du Drury. Cas : 11 H, ♠A84 ♥D96 ♦R1094 ♣D72; Vous : Passe (premier tour) / Adversaire : Passe / Partenaire : 1♥ (3e position) / Adversaire : Passe / Vous : 2♣ (Drury, fit Cœur) / Adversaire : Passe / Partenaire : 2♦ (enchère d’attente, espoir de manche) / Adversaire : Passe; 4♥ au lieu de 2♥.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-V484-001",
+          "concept": "drury.suite",
+          "choice": "4♥",
+          "expected": "2♥",
+          "h": 11,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [
+            "Vous : Passe (premier tour)",
+            "Adversaire : Passe",
+            "Partenaire : 1♥ (3e position)",
+            "Adversaire : Passe",
+            "Vous : 2♣ (Drury, fit Cœur)",
+            "Adversaire : Passe",
+            "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+            "Adversaire : Passe"
+          ],
+          "context": "Vous avez passé au premier tour. Votre partenaire ouvre de 1♥ en troisième position ; vous répondez 2♣ Drury fitté. Il annonce 2♦, enchère d’attente avec au moins un espoir de manche. Dans le SEF 2024, quelle est votre deuxième enchère du répondant pour décrire précisément la longueur de votre fit Cœur ?",
+          "rule": "m3b-reviewed-drury-S",
+          "canonicalExcerpt": "Vous détenez exactement trois Cœurs ♥D96 et 11 H. Après votre Passe initial, le Drury et le 2♦ d'attente de l'ouvreur, 2♥ montre les trois atouts en restant au palier le plus économique. 3♥ annoncerait quatre atouts dans ce développement ; 4♥ imposerait la manche.",
+          "base": "71b0823235db1400eaf57c2552df35c18094f30a",
+          "signature": "1p9febi",
+          "source": "catalogue figé + corrigé + cartographie M3"
+        }
+      }
+    ]
+  }
+]
