@@ -611,11 +611,34 @@
   "validation": {
     "assertions": 66,
     "status": "PASS",
-    "environment": "V8 exact catalogue blob, historical metadata and previous supplements; editorial proposal, not independent visa"
+    "environment": "V8 exact catalogue blob, historical metadata and previous supplements; editorial proposal, not independent visa",
+    "filter": {
+      "status": "PASS ciblé",
+      "assertions": 75,
+      "environment": "V8 sur modules et suppléments enregistrés, huit registres éditoriaux pertinents",
+      "additionalReviewSourcesChecked": 10,
+      "conflicts": 0,
+      "actualExistingPairCandidates": 2,
+      "blockedPendingNewIdReview": 5,
+      "simulatedVisaOnly": 7,
+      "nativeFullTest": "NOT RUN",
+      "durableTest": "tests/durable-m4-supplement-residuel.cjs"
+    }
   },
   "limits": [
     "Les deux paires Stayman partagent SEF-AD26-M4-025 : ne pas les comptabiliser comme deux preuves indépendantes du Rubensohl.",
     "Aucune intégration ni mise en production, aucun changement de réponse historique.",
     "Les paires à ajout ne passent pas le filtre autonome tant que les nouveaux IDs n'ont pas reçu un registre de visa."
-  ]
+  ],
+  "handoff": {
+    "order": [
+      "Viser les 28 propositions (24 additions.json + 4 dans ce supplément).",
+      "Viser séparément les 4 paires du premier supplément et les 7 du second ; concaténer seulement les paires et ajouts approuvés aux jeux de données de production.",
+      "Ajouter les nouveaux statuts de revue uniquement sur décision éditoriale réelle ; filtre strict obligatoire, jamais links seul.",
+      "Conserver les 7 réserves éditoriales non arbitrées, les deux visas historiques et tous les anciens IDs/réponses.",
+      "Exécuter les suites natives M4 et la recette intégrée Chromium/WebKit au SHA du candidat coordinateur."
+    ],
+    "productionScope": "Aucune modification de production ; aucun visa ou crédit de maîtrise auto-attribué.",
+    "missionDefinitelyFinished": false
+  }
 }
