@@ -1,0 +1,261 @@
+{
+  "base": "2d336054bc91fbd6ac762c093ecb5ec6da9f97e8",
+  "v3": {
+    "policy": "conditional-composition-v3",
+    "sha": "aca8623a2ef4cbea292b5b98237227213128d1d5",
+    "run": 45904248782,
+    "decision": "HOLD: un vrai soutien 5–3 disparaît en S3 dans passe/47, malgré le PASS des seuils longitudinaux.",
+    "nativeLongitudinal": {
+      "paired": 18,
+      "pass": 18,
+      "answers": 64800,
+      "browser": [
+        "chromium",
+        "webkit"
+      ],
+      "artifactIds": {
+        "autonome-11": 15156902825,
+        "autonome-47": 15157306870,
+        "autonome-103": 15158011037,
+        "intermediaire-11": 15156758605,
+        "intermediaire-47": 15156947769,
+        "intermediaire-103": 15157606640,
+        "faible-11": 15158056117,
+        "faible-47": 15157661174,
+        "faible-103": 15158150413,
+        "cible-11": 15156973119,
+        "cible-47": 15157471303,
+        "cible-103": 15156679818,
+        "aide-11": 15157286785,
+        "aide-47": 15158150068,
+        "aide-103": 15156897978,
+        "passe-11": 15158030874,
+        "passe-47": 15157676035,
+        "passe-103": 15157930765
+      }
+    },
+    "checkpoints": {
+      "5": {
+        "focus": [
+          480,
+          486
+        ],
+        "proof": [
+          93,
+          94
+        ],
+        "families": [
+          825,
+          825
+        ],
+        "debt": [
+          0,
+          0
+        ],
+        "concepts": [
+          236,
+          236
+        ],
+        "recalls": [
+          75,
+          75
+        ]
+      },
+      "20": {
+        "focus": [
+          1118,
+          1125
+        ],
+        "proof": [
+          401,
+          406
+        ],
+        "families": [
+          3212,
+          3212
+        ],
+        "debt": [
+          0,
+          0
+        ],
+        "concepts": [
+          865,
+          868
+        ],
+        "recalls": [
+          388,
+          388
+        ]
+      },
+      "65": {
+        "focus": [
+          1758,
+          1786
+        ],
+        "proof": [
+          1254,
+          1251
+        ],
+        "families": [
+          10227,
+          10224
+        ],
+        "debt": [
+          202,
+          199
+        ],
+        "concepts": [
+          1752,
+          1752
+        ],
+        "recalls": [
+          1337,
+          1337
+        ]
+      },
+      "153": {
+        "focus": [
+          1758,
+          1786
+        ],
+        "proof": [
+          1482,
+          1480
+        ],
+        "families": [
+          23779,
+          23772
+        ],
+        "debt": [
+          7001,
+          7036
+        ],
+        "concepts": [
+          1782,
+          1782
+        ],
+        "recalls": [
+          3269,
+          3267
+        ]
+      },
+      "180": {
+        "focus": [
+          1758,
+          1786
+        ],
+        "proof": [
+          1562,
+          1556
+        ],
+        "families": [
+          25703,
+          25672
+        ],
+        "debt": [
+          8885,
+          8960
+        ],
+        "concepts": [
+          1782,
+          1782
+        ],
+        "recalls": [
+          4296,
+          4307
+        ]
+      }
+    },
+    "lateAvailability": [
+      {
+        "session": 44,
+        "eligibleTrajectories": 0,
+        "freeCandidateTrajectories": 0,
+        "primaryPresent": 0,
+        "decision": "fenêtre prématurée; rappel contrôle/déclenchement conditionnel, pas de déblocage"
+      },
+      {
+        "session": 54,
+        "eligibleTrajectories": 18,
+        "freeCandidateTrajectories": 0,
+        "primaryPresent": 0,
+        "decision": "éligibilité globale mais aucun créneau libre après filtres; transmettre M4 pour réactivation sans quota forcé"
+      },
+      {
+        "session": 55,
+        "eligibleTrajectories": 18,
+        "freeCandidateTrajectories": 18,
+        "primaryPresent": 0,
+        "decision": "candidats libres mais contraintes de catégorie, strate ou score; HOLD plutôt que sacrifier la consolidation"
+      },
+      {
+        "session": 59,
+        "eligibleTrajectories": 18,
+        "freeCandidateTrajectories": 18,
+        "primaryPresent": 0,
+        "decision": "candidats libres mais contraintes de catégorie, strate ou score; HOLD plutôt que forcer une exception"
+      }
+    ]
+  },
+  "v4": {
+    "policy": "semantic-fit-v4",
+    "sha": "c44fa8231814340f8a4f4a36a170f1af0d659083",
+    "run": 45904764450,
+    "quickArtifact": 15157177955,
+    "quickNative": {
+      "paired": 18,
+      "passed": 18,
+      "answers": 1800,
+      "focusBefore": [
+        180,
+        126,
+        53,
+        58,
+        63
+      ],
+      "focusAfter": [
+        180,
+        126,
+        56,
+        61,
+        63
+      ],
+      "trueSupportS3": [
+        18,
+        18
+      ],
+      "passWithFitS3": [
+        7,
+        13
+      ],
+      "directChanges": [
+        [
+          "intermediaire",
+          103,
+          "SEF-N026-1",
+          "SEF-030-1"
+        ],
+        [
+          "cible",
+          103,
+          "SEF-N026-1",
+          "SEF-030-1"
+        ],
+        [
+          "aide",
+          11,
+          "SEF-016-1",
+          "SEF-V49-010"
+        ],
+        [
+          "passe",
+          103,
+          "SEF-V49-013",
+          "SEF-030-1"
+        ]
+      ]
+    },
+    "decision": "candidat V4 à valider sur la recette longue; V2 reste le seul candidat avec recette précédente complète et sans contre-exemple identifié."
+  },
+  "scope": "Mesures synthétiques sur données réelles; aucun gain humain. Les observations V3 de disponibilité ne sont pas un visa de modification de prérequis. Les remplacements au sein d'un même concept ne constituent pas une amélioration de curriculum."
+}
