@@ -1,0 +1,55 @@
+{
+  "base": "2d336054bc91fbd6ac762c093ecb5ec6da9f97e8",
+  "environment": "V8 exact historical test and all reachable CJS modules, fs/path adapters; unused corpus parameter supplied as empty object solely due to tool-call limit. Actual corpus is embedded in exact historical lesson module.",
+  "test": "tests/durable-m5-trajectoires.cjs",
+  "ok": true,
+  "results": [
+    {
+      "profile": "autonome",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 0,
+      "assisted": 0,
+      "wrong": 0,
+      "consultations": 115,
+      "assertions": 19066,
+      "conceptsSeen": 99,
+      "discoveryEver": 99,
+      "extensionsEver": 108,
+      "elapsedMs": 12825
+    },
+    {
+      "profile": "faible",
+      "seed": 47,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 39,
+      "assisted": 0,
+      "wrong": 266,
+      "consultations": 131,
+      "assertions": 18080,
+      "conceptsSeen": 94,
+      "discoveryEver": 95,
+      "extensionsEver": 103,
+      "elapsedMs": 9119
+    },
+    {
+      "profile": "aide",
+      "seed": 73,
+      "horizon": 65,
+      "questions": 650,
+      "skips": 27,
+      "assisted": 327,
+      "wrong": 269,
+      "consultations": 131,
+      "assertions": 17925,
+      "conceptsSeen": 97,
+      "discoveryEver": 97,
+      "extensionsEver": 97,
+      "elapsedMs": 8772
+    }
+  ],
+  "assertions": 55071,
+  "questions": 1950
+}
