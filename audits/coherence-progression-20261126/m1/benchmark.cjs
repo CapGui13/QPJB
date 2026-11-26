@@ -5,7 +5,7 @@ const source=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8');const h
 function adapter(source){
  const anchor="const ranked=candidates.map(q=>({q,v:score(q,category)}));";
  if(source.split(anchor).length!==2)throw Error('Injection point changed');
- return source.replace(anchor,`const m1Delta = (!priority || s===0) && !explicitRecall ? new Map(initiation.rank({session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category}).map(x=>[x.id,x.delta])) : new Map();\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(m1Delta.get(q.id)||0)}));`);
+ return source.replace(anchor,`const m1Delta = (!priority || (s===1 && forcedReason==='equilibre_ouvertures')) && !explicitRecall ? new Map(initiation.rank({session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category}).map(x=>[x.id,x.delta])) : new Map();\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(m1Delta.get(q.id)||0)}));`);
 }
 function benchmark(makeEngine,policy,qs,meta,horizon=21){
  const core=['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base'];
