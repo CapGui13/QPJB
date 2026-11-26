@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir="audits/apprentissage-durable-20261126/m4/",base="d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",priorRef="1ced6e25c981116402d5ecc404d8a5cb3d4ef188";
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,dir+p),'utf8')),old=(ref,p)=>execFileSync('git',['show',ref+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
+const qs=JSON.parse(old(base,'quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const meta={exports:{}};new Function('module',old(base,'quizz-prerequis.js'))(meta);
+const prior=JSON.parse(old(priorRef,dir+'couverture-editoriale.json')),review=read("revue-chelems.json"),cov=read('couverture-editoriale.json'),targets=["chelem.quantitatif","chelem.cles","chelem.splinter","chelem.blackwood.suite","chelem.blackwood.dame_rois","chelem.controles","chelem.quantitatif.suite","chelem.blackwood.declenchement","chelem.splinter.variante"],ids=targets.flatMap(c=>prior.byConcept[c].remainingIds),by=new Map(qs.map(q=>[q.id,q]));
+let assertions=0;const ok=(x,m)=>{assertions++;if(!x)throw Error(m)};
+ok(ids.length===93&&new Set(ids).size===93,'scope');ok(Object.keys(review.byId).length===ids.length,'coverage');const counts={};
+for(const id of ids){const q=by.get(id),z=review.byId[id];ok(q&&z&&z.concept===meta.exports.byId[id].concept,'concept '+id);ok(z.h===q.h&&z.answer===q.answer&&z.family===q.caseFamily&&z.difficulty===q.difficulty,'source '+id);ok(JSON.stringify(z.shape)===JSON.stringify(q.shape)&&JSON.stringify(z.choices)===JSON.stringify(q.choices),'shape and options '+id);ok(z.reason.length>25&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context','hold_editorial'].includes(z.status),'review '+id);ok(q.hand.flat().length===13&&q.hand.flat().reduce((s,c)=>s+({A:4,R:3,D:2,V:1}[c]||0),0)===q.h,'hand '+id);counts[z.status]=(counts[z.status]||0)+1;}
+ok(JSON.stringify(counts)===JSON.stringify(review.counts),'counts');ok(cov.reviewed===1915&&cov.remaining===0&&cov.completeConcepts===99,'complete');ok(review.coverage.total===1915&&review.coverage.remaining===0,'snapshot');
+for(const c of targets){ok(cov.byConcept[c].remainingIds.length===0&&cov.byConcept[c].reviewed===cov.byConcept[c].total,'complete '+c);}
+ok(Object.values(cov.byConcept).reduce((s,g)=>s+g.reviewed,0)===cov.reviewed,'sum reviewed');ok(Object.values(cov.byConcept).reduce((s,g)=>s+g.remainingIds.length,0)===cov.remaining,'sum remaining');ok(Object.values(cov.statusCounts).reduce((s,v)=>s+v,0)===cov.reviewed,'status sum');
+for(const [id,a] of Object.entries({'V2-M6-033':'4SA','V2-M6-034':'6SA','V2-M6-035':'5SA','V2-M6-036':'7SA','V2-M6-041':'5SA','V2-M6-042':'5♥','V2-M6-037':'4♥','V2-M6-038':'4♠','V2-M6-043':'4♦','V2-M6-044':'3♦','V2-M6-039':'5SA','V2-M6-040':'6♠'})){ok(by.get(id).answer===a&&review.byId[id].answer===a,'boundary '+id)}
+console.log(JSON.stringify({assertions,status:'PASS',reviewed:ids.length,totalReviewed:review.coverage.total,remaining:review.coverage.remaining,counts}));

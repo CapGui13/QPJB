@@ -1,0 +1,694 @@
+{
+  "testedSha": "c4e8807a5a10478611786a0dd43ce6516becf43d",
+  "runtime": "V8 avec blobs GitHub réels",
+  "profile": "intermediaire",
+  "seed": 47,
+  "horizon": 180,
+  "before": {
+    "results": [
+      {
+        "session": 20,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 180,
+        "ids": 180,
+        "concepts": 48,
+        "topics": 14,
+        "proof": 23,
+        "repeated": 20,
+        "recall": 20,
+        "wrong": 72,
+        "assisted": 0,
+        "difficulty": 333,
+        "coreDebt": 3,
+        "recovered": 4,
+        "signalCount": 6,
+        "eligibleOffers": 0,
+        "allTrace": 0,
+        "targeted": 0,
+        "ms": 2393
+      },
+      {
+        "session": 65,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 578,
+        "ids": 585,
+        "concepts": 98,
+        "topics": 22,
+        "proof": 78,
+        "repeated": 72,
+        "recall": 65,
+        "wrong": 212,
+        "assisted": 0,
+        "difficulty": 1489,
+        "coreDebt": 121,
+        "recovered": 0,
+        "signalCount": 6,
+        "eligibleOffers": 29,
+        "allTrace": 13,
+        "targeted": 2,
+        "ms": 9720
+      },
+      {
+        "session": 153,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 1368,
+        "ids": 1377,
+        "concepts": 99,
+        "topics": 22,
+        "proof": 88,
+        "repeated": 162,
+        "recall": 153,
+        "wrong": 499,
+        "assisted": 0,
+        "difficulty": 4272,
+        "coreDebt": 551,
+        "recovered": 2,
+        "signalCount": 7,
+        "eligibleOffers": 210,
+        "allTrace": 57,
+        "targeted": 4,
+        "ms": 25465
+      },
+      {
+        "session": 180,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 1501,
+        "ids": 1589,
+        "concepts": 99,
+        "topics": 22,
+        "proof": 91,
+        "repeated": 299,
+        "recall": 189,
+        "wrong": 587,
+        "assisted": 0,
+        "difficulty": 5083,
+        "coreDebt": 693,
+        "recovered": 0,
+        "signalCount": 4,
+        "eligibleOffers": 325,
+        "allTrace": 95,
+        "targeted": 9,
+        "ms": 31707
+      }
+    ],
+    "early": [
+      [
+        "SEF-N022-1",
+        "SEF-002-3",
+        "SEF-N014-1",
+        "SEF-N024-1",
+        "SEF-006-1",
+        "SEF-PN26-M1-001",
+        "SEF-N023-1",
+        "SEF-009-2",
+        "SEF-PN26-M1-002",
+        "SEF-007-2"
+      ],
+      [
+        "SEF-PN26-M1-004",
+        "SEF-012-1",
+        "SEF-V410-022",
+        "SEF-N024-1",
+        "SEF-N025-2",
+        "SEF-N042-1",
+        "SEF-PN26-M1-005",
+        "SEF-018-2",
+        "SEF-022-1",
+        "SEF-028-1"
+      ],
+      [
+        "SEF-005-2",
+        "SEF-V49-010",
+        "SEF-009-2",
+        "SEF-N026-1",
+        "SEF-N012-1",
+        "SEF-V410-022",
+        "SEF-004-1",
+        "SEF-023-1",
+        "SEF-030-1",
+        "SEF-016-1"
+      ]
+    ],
+    "trace": [
+      {
+        "session": 30,
+        "eligible": 2,
+        "chosen": "SEF-V3-096-2",
+        "target": {
+          "id": "SEF-V3-096-2",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:barrage.ouverture:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 45,
+        "eligible": 1,
+        "chosen": "SEF-V45-050",
+        "target": {
+          "id": "SEF-V45-050",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — convention",
+          "signalIds": [
+            "local:chelem.cles:convention"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 109,
+        "eligible": 2,
+        "chosen": "SEF-V4-082-1",
+        "target": {
+          "id": "SEF-V4-082-1",
+          "delta": 24,
+          "reason": "Contraste pédagogique référencé — convention",
+          "signalIds": [
+            "local:roudi.reponse:convention"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 114,
+        "eligible": 9,
+        "chosen": "SEF-021-1",
+        "target": {
+          "id": "SEF-021-1",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:mineur.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 162,
+        "eligible": 4,
+        "chosen": "SEF-V44-021",
+        "target": {
+          "id": "SEF-V44-021",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 165,
+        "eligible": 5,
+        "chosen": "SEF-V418-001",
+        "target": {
+          "id": "SEF-V418-001",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — distribution:longueur",
+          "signalIds": [
+            "local:second.base:distribution:longueur"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 165,
+        "eligible": 3,
+        "chosen": "SEF-N146-2",
+        "target": {
+          "id": "SEF-N146-2",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:second.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 167,
+        "eligible": 7,
+        "chosen": "SEF-N145-1",
+        "target": {
+          "id": "SEF-N145-1",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 170,
+        "eligible": 1,
+        "chosen": "SEF-N147-3",
+        "target": {
+          "id": "SEF-N147-3",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      }
+    ]
+  },
+  "after": {
+    "results": [
+      {
+        "session": 20,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 180,
+        "ids": 180,
+        "concepts": 48,
+        "topics": 14,
+        "proof": 23,
+        "repeated": 20,
+        "recall": 20,
+        "wrong": 72,
+        "assisted": 0,
+        "difficulty": 333,
+        "coreDebt": 3,
+        "recovered": 4,
+        "signalCount": 6,
+        "eligibleOffers": 0,
+        "allTrace": 0,
+        "targeted": 0,
+        "ms": 2339
+      },
+      {
+        "session": 65,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 578,
+        "ids": 584,
+        "concepts": 98,
+        "topics": 22,
+        "proof": 74,
+        "repeated": 72,
+        "recall": 65,
+        "wrong": 224,
+        "assisted": 0,
+        "difficulty": 1462,
+        "coreDebt": 111,
+        "recovered": 2,
+        "signalCount": 4,
+        "eligibleOffers": 60,
+        "allTrace": 16,
+        "targeted": 3,
+        "ms": 9355
+      },
+      {
+        "session": 153,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 1363,
+        "ids": 1373,
+        "concepts": 99,
+        "topics": 22,
+        "proof": 88,
+        "repeated": 167,
+        "recall": 156,
+        "wrong": 521,
+        "assisted": 0,
+        "difficulty": 4241,
+        "coreDebt": 550,
+        "recovered": 3,
+        "signalCount": 10,
+        "eligibleOffers": 205,
+        "allTrace": 73,
+        "targeted": 13,
+        "ms": 24244
+      },
+      {
+        "session": 180,
+        "invalid": 0,
+        "short": 0,
+        "duplicates": 0,
+        "passViolation": 0,
+        "families": 1504,
+        "ids": 1594,
+        "concepts": 99,
+        "topics": 22,
+        "proof": 93,
+        "repeated": 296,
+        "recall": 188,
+        "wrong": 607,
+        "assisted": 0,
+        "difficulty": 5067,
+        "coreDebt": 697,
+        "recovered": 0,
+        "signalCount": 4,
+        "eligibleOffers": 265,
+        "allTrace": 91,
+        "targeted": 22,
+        "ms": 30589
+      }
+    ],
+    "early": [
+      [
+        "SEF-N022-1",
+        "SEF-002-3",
+        "SEF-N014-1",
+        "SEF-N024-1",
+        "SEF-006-1",
+        "SEF-PN26-M1-001",
+        "SEF-N023-1",
+        "SEF-009-2",
+        "SEF-PN26-M1-002",
+        "SEF-007-2"
+      ],
+      [
+        "SEF-PN26-M1-004",
+        "SEF-012-1",
+        "SEF-V410-022",
+        "SEF-N024-1",
+        "SEF-N025-2",
+        "SEF-N042-1",
+        "SEF-PN26-M1-005",
+        "SEF-018-2",
+        "SEF-022-1",
+        "SEF-028-1"
+      ],
+      [
+        "SEF-005-2",
+        "SEF-V49-010",
+        "SEF-009-2",
+        "SEF-N026-1",
+        "SEF-N012-1",
+        "SEF-V410-022",
+        "SEF-004-1",
+        "SEF-023-1",
+        "SEF-030-1",
+        "SEF-016-1"
+      ]
+    ],
+    "trace": [
+      {
+        "session": 28,
+        "eligible": 2,
+        "chosen": "SEF-V3-096-2",
+        "target": {
+          "id": "SEF-V3-096-2",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:barrage.ouverture:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 32,
+        "eligible": 12,
+        "chosen": "SEF-V484-012",
+        "target": {
+          "id": "SEF-V484-012",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — niveau:palier",
+          "signalIds": [
+            "cross:niveau:palier"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 45,
+        "eligible": 1,
+        "chosen": "SEF-V45-050",
+        "target": {
+          "id": "SEF-V45-050",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — convention",
+          "signalIds": [
+            "local:chelem.cles:convention"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 118,
+        "eligible": 2,
+        "chosen": "SEF-V480-004",
+        "target": {
+          "id": "SEF-V480-004",
+          "delta": 24,
+          "reason": "Contraste pédagogique référencé — contexte",
+          "signalIds": [
+            "local:forcing.quatrieme:contexte"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 128,
+        "eligible": 6,
+        "chosen": "SEF-C-008",
+        "target": {
+          "id": "SEF-C-008",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:majeur.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 144,
+        "eligible": 3,
+        "chosen": "SEF-V413-001",
+        "target": {
+          "id": "SEF-V413-001",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — distribution:longueur",
+          "signalIds": [
+            "cross:distribution:longueur"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 145,
+        "eligible": 4,
+        "chosen": "SEF-V420-006",
+        "target": {
+          "id": "SEF-V420-006",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — distribution:longueur",
+          "signalIds": [
+            "cross:distribution:longueur"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 146,
+        "eligible": 3,
+        "chosen": "SEF-V477-013",
+        "target": {
+          "id": "SEF-V477-013",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — fit",
+          "signalIds": [
+            "local:michaels.reponse:fit"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 149,
+        "eligible": 6,
+        "chosen": "SEF-V412-002",
+        "target": {
+          "id": "SEF-V412-002",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:red.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 149,
+        "eligible": 4,
+        "chosen": "SEF-N059-2",
+        "target": {
+          "id": "SEF-N059-2",
+          "delta": 24,
+          "reason": "Contraste pédagogique référencé — force",
+          "signalIds": [
+            "local:majeur.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 150,
+        "eligible": 4,
+        "chosen": "SEF-N043-1",
+        "target": {
+          "id": "SEF-N043-1",
+          "delta": 24,
+          "reason": "Contraste pédagogique référencé — force",
+          "signalIds": [
+            "local:mineur.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 151,
+        "eligible": 3,
+        "chosen": "SEF-N033-1",
+        "target": {
+          "id": "SEF-N033-1",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:mineur.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 152,
+        "eligible": 3,
+        "chosen": "SEF-V412-003",
+        "target": {
+          "id": "SEF-V412-003",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:red.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 154,
+        "eligible": 1,
+        "chosen": "SEF-Q26-M1-015",
+        "target": {
+          "id": "SEF-Q26-M1-015",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force:HL",
+          "signalIds": [
+            "cross:force:HL"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 161,
+        "eligible": 5,
+        "chosen": "SEF-V425-002",
+        "target": {
+          "id": "SEF-V425-002",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 162,
+        "eligible": 4,
+        "chosen": "SEF-V49-041",
+        "target": {
+          "id": "SEF-V49-041",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 164,
+        "eligible": 3,
+        "chosen": "SEF-N143-2",
+        "target": {
+          "id": "SEF-N143-2",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:second.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 165,
+        "eligible": 6,
+        "chosen": "SEF-V410-019",
+        "target": {
+          "id": "SEF-V410-019",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:second.base:force"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 165,
+        "eligible": 2,
+        "chosen": "SEF-V420-007",
+        "target": {
+          "id": "SEF-V420-007",
+          "delta": 24,
+          "reason": "Décisions réciproques dans une autre famille — force:H",
+          "signalIds": [
+            "cross:force:H"
+          ]
+        },
+        "category": "weakness"
+      },
+      {
+        "session": 166,
+        "eligible": 3,
+        "chosen": "SEF-V411-008",
+        "target": {
+          "id": "SEF-V411-008",
+          "delta": 12,
+          "reason": "Décisions réciproques dans une autre famille — force",
+          "signalIds": [
+            "local:second.base:force"
+          ]
+        },
+        "category": "weakness"
+      }
+    ]
+  },
+  "hold": []
+}

@@ -11,7 +11,7 @@ const expected=qs.filter(q=>groups.has(meta.exports.byId[q.id].concept));ok(expe
 for(const q of expected){let z=review.byId[q.id];ok(z&&z.concept===meta.exports.byId[q.id].concept&&z.answer===q.answer&&z.h===q.h&&z.family===q.caseFamily&&JSON.stringify(z.shape)===JSON.stringify(q.shape),'source '+q.id);ok(z.reason.length>20&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context','hold_editorial'].includes(z.status),'status '+q.id);ok(!(q.id in opening.byId),'disjoint '+q.id)}
 ok(review.byId['SEF-V45-005'].status==='guided_not_independent'&&review.byId['SEF-V45-006'].status==='guided_not_independent','old prompts scaffolded');
 ok(review.byId['V2-M1-031'].status==='hold_editorial','ambiguity preserved');
-ok(add.length===5&&Object.keys(addReview.byId).length===5,'proposals');
+ok(add.length>=5&&Object.keys(addReview.byId).length===add.length,'proposals');
 for(const a of add){const q=a.exercise,r=addReview.byId[q.id];ok(r&&r.sources.every(id=>by.has(id))&&r.criterion.length>20,'source '+q.id);ok(a.diagnostics.every(d=>q.choices.includes(d.choice)&&d.choice!==q.answer),'diagnostic '+q.id)}
 const x=add[3],y=add[4];for(const a of [x,y]){const q=a.exercise;ok(q.answer==='2♦'&&q.auction[0]==='Partenaire : 2♣ (fort indéterminé)'&&!/relais|obligatoire|systématique|2♦/.test(q.context),'unprompted relay');ok(JSON.stringify(a.metadata)===JSON.stringify(meta.exports.byId['SEF-V45-005']),'metadata floor')}
 ok(x.exercise.h===0&&y.exercise.h===14,'extremes');ok(pairs.some(p=>p.a===x.exercise.id&&p.b===y.exercise.id&&p.evidence.review.classification==='consolidation'&&!p.evidence.transferEvidenceEligible),'no false transfer');

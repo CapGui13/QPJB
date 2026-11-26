@@ -3,19 +3,19 @@
   "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
   "main": "7e4cb99cf5ff3287814eda29aa9d47e7e684c3a8",
   "heads": {
-    "m1": "c4e8807a5a10478611786a0dd43ce6516becf43d",
-    "m2": "29c1aa043547e393f3481f9b786a3b5c243b685d",
-    "m3": "99a095ee61fc81bd67736f9e617c82878d901dbf",
-    "m4": "5f8a5a187f1d951e45d05ed5f7c5c8befc005580",
-    "m5": "02334f37a46b2cb16423e535a376ba88a77477e2",
+    "m1": "22b752ef5715ab135a7a05dfca04a0defe9d937c",
+    "m2": "d94b4741c95e29d2b86c33f1d489dd8d3a4c5e99",
+    "m3": "2f1cfd5b97ae4710093c01f9bfb5c428c46f548a",
+    "m4": "33dced838f5dca94e855c27b2314e937af649a51",
+    "m5": "c2ded86b57bd9eda6006f3c085d298d6a86451a3",
     "m6": "b0f325255a3a8e3c8d9a2655287306c21200e2eb"
   },
   "counts": {
-    "m1": 19,
-    "m2": 13,
-    "m3": 22,
-    "m4": 17,
-    "m5": 13,
+    "m1": 65,
+    "m2": 33,
+    "m3": 55,
+    "m4": 62,
+    "m5": 28,
     "m6": 26
   },
   "modules": {
@@ -24,6 +24,11 @@
         "path": "quizz-durable-m1-adaptation.js",
         "sha": "a09254905aae5021062087b3175ce24ad156ef68",
         "size": 228123
+      },
+      {
+        "path": "quizz-durable-m1-guard.js",
+        "sha": "dabdf63fcab97fc0ebf98a01188b70031a4b8db1",
+        "size": 2126
       }
     ],
     "m2": [
@@ -34,8 +39,8 @@
       },
       {
         "path": "quizz-durable-m2-remediation.js",
-        "sha": "7fc6be89e81952872ba5c5550904eb31960a7bfe",
-        "size": 51778
+        "sha": "a63c619ebdae9fea17417f08dcd2ff7a89ad3b59",
+        "size": 119936
       }
     ],
     "m3": [
@@ -47,16 +52,21 @@
     ],
     "m4": [
       {
+        "path": "quizz-durable-m4-autonomie.js",
+        "sha": "890eee28dc9c74ff7a38909693035e32ee2d6150",
+        "size": 3076
+      },
+      {
         "path": "quizz-durable-m4-transfert.js",
-        "sha": "20cd0bca77e7dc506cd4869cf90fd5b02c2d7194",
-        "size": 1821
+        "sha": "2450d499d546401d88ac0d3d8ff07653f6e28a73",
+        "size": 1845
       }
     ],
     "m5": [
       {
         "path": "quizz-durable-m5-lecons.js",
-        "sha": "94a6a7739df6c8b66b68b34dea6534ae52a3dcd6",
-        "size": 355854
+        "sha": "77de4c0d92c2d43e34bb895e29ae9d6ed04a94fd",
+        "size": 513441
       }
     ],
     "m6": [
@@ -75,11 +85,111 @@
   "files": [
     {
       "path": "audits/apprentissage-durable-20261126/m1/README.md",
-      "sha": "b207758e2023b118466928b213ac988840f530f3"
+      "sha": "e3c3243697bc91f3dc2c040644c8e6b055f1c3b3"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m1/banc-intermediaire-47.json",
       "sha": "8f570bda8c7f9a7855d4b8e518824afd2b3fa40d"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-aide-103.json",
+      "sha": "cbff69064d3033d6b464a097cd968172d4745369"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-aide-11.json",
+      "sha": "3685a5007c2018cf4c8a713939234e378380055b"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-aide-47.json",
+      "sha": "44845128a7ed90d6429e80bec414c9fa54f5233c"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-autonome-103.json",
+      "sha": "32f94173e8a519a15c570234f0d87fc9640c2bb2"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-autonome-11.json",
+      "sha": "2c315c594958fc824e246155885f703ca55ec133"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-autonome-47.json",
+      "sha": "4aa6dc57a0034f36720e7a6c1f97e34f3d77ebe7"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-cible-103.json",
+      "sha": "ff133665a698c32934f1fab1dd0c59f5426d6423"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-cible-11.json",
+      "sha": "a5ce3f8c2f016a4f4860cb451e187c36986453d3"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-cible-47.json",
+      "sha": "d978eda2dc6c749862184fe3f24e5f10ac9a28f4"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-competition-47.json",
+      "sha": "10e6fc0bb2d6aaa72ec4d041b718cbfa833fe2f2"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-convention-47.json",
+      "sha": "be347bba3da1322853c143590bdb5922d3fbb33a"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-faible-103.json",
+      "sha": "5c09360aa98e7a2f52f4692c3656043ff8857c62"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-faible-11.json",
+      "sha": "feb53ce685d96402fb9b5a1f1fe9a5af783f93d7"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-faible-47.json",
+      "sha": "fac447f497e094726c90c96b1d18b6d7c834d341"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-fit-47.json",
+      "sha": "672943da5c742bc2f5eccba38a539d4074541b59"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-force-47.json",
+      "sha": "fefc752949f2911eb6ce1f4353088f573d719384"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-forcing-47.json",
+      "sha": "2a96cc3620051e1a7aa50c04b3bebb2233f2e914"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-intermediaire-103.json",
+      "sha": "f99369f441474c6f2e2f9eb1fcf997f176b781d0"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-intermediaire-11.json",
+      "sha": "470d899da39da4730ae6dbae1fe30ec3f3e58dee"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-intermediaire-47.json",
+      "sha": "1495e3aed506022b35a3550f58a191cb5ff93568"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-longueur-47.json",
+      "sha": "cebac43fa87c838074c637323c6ed7f0b5b3999a"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-passe-103.json",
+      "sha": "3b25d05d98601724163ef0c6f0ee99689fb7fe54"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-passe-11.json",
+      "sha": "d437eef9e4607fa7748509a4f7fa344e19d3588d"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-passe-47.json",
+      "sha": "82ed6360b496511dada9d026bb2b43b4e4cfde19"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/banc-phase-protegee-recuperation-47.json",
+      "sha": "c6caf61381c827a0807c055b735b1363163ed601"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m1/banc-recuperation-47.json",
@@ -118,6 +228,62 @@
       "sha": "bfb16fec69dee48de9ab0583c722244b07d00652"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m1/consolidation-native-lot1-s180.json",
+      "sha": "b719d7a281b2971c19cec1f280ca8cc45050163f"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/consolidation-native-lot2-s180.json",
+      "sha": "28fc128de97c59639e2dd8f1b8c833288269e05a"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/consolidation-native-lot3-s180.json",
+      "sha": "866d4c5993d49ac2cb138568062987bb674e7c66"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/consolidation-native-synthese-s180.json",
+      "sha": "3565d0789c584310459a1db3abb5693c536d6774"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/hold-cible-103-eligibilite.md",
+      "sha": "b773b91177c3653cfdd3a70483dbe86dd2af52c0"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/hold-cible-103-prerequis-variantes.json",
+      "sha": "830b83a5ff5b3840ebc3a84f9c6dd51b8abefdce"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/hold-cible-103-protection-rang-reference.json",
+      "sha": "767762c22078bc3e5242201808e8d3b5156f727f"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/hold-cible-103-variantes-structurelles.json",
+      "sha": "8735cb6d3102d9e5d60e39e1b64a7ca7f7dceb19"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-cible-aide-s180.json",
+      "sha": "57e81b4031c8616378d6eef3a99494ba9fb1a3db"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-faible-47-s180.json",
+      "sha": "1444888d17b97be202ba4b9af98ca896ba35de93"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-native-lot1-s180.json",
+      "sha": "8536b2378dbc92df10e15071a736c6d8e985b841"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-native-lot2-s180.json",
+      "sha": "b30a7479e82e4bac381ea532028440600b83c95b"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-prioritaires-s180.json",
+      "sha": "6fdf6ad381349c4c2bc43a188b4d5fa7a17bf34b"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/protection-concept-niveau-synthese-s180.json",
+      "sha": "bbe6f17ea6399a33a9051490599f37f3f0435ac7"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m1/registre-0.json",
       "sha": "cf135623de57cd568aa47db7268e3b40305c3567"
     },
@@ -134,6 +300,18 @@
       "sha": "43fcbb9f307412bfd78c15273b39bf1840837d99"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m1/synthese-phase-protegee-specifiques.json",
+      "sha": "341fd6e37f0673945210e8a46a60fda49457bb35"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/synthese-phase-protegee-standards.json",
+      "sha": "d2a046fd387713a9c161ed03c8c67ddd6253b4bf"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m1/tests-contrat-phase-protegee.json",
+      "sha": "281d1fd59062cf51b35476ba973ce14a5b5d26d2"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m1/tests-contrat.json",
       "sha": "8c10a99daeeb2829ae18b2fe8a2c04cdd2f35f7e"
     },
@@ -142,16 +320,36 @@
       "sha": "a09254905aae5021062087b3175ce24ad156ef68"
     },
     {
+      "path": "quizz-durable-m1-guard.js",
+      "sha": "dabdf63fcab97fc0ebf98a01188b70031a4b8db1"
+    },
+    {
       "path": "tests/durable-m1-banc.cjs",
-      "sha": "d6d54499003c8b5b0641b939b8a097cbc3f92870"
+      "sha": "5cf8f6578655f8318a1cf2d1e2c28d73501d7d1e"
     },
     {
       "path": "tests/durable-m1-contract.cjs",
-      "sha": "6210238003608a95c04bfcb7dbb4059d868ce1c8"
+      "sha": "87b3a4357ce3ad833e8ce11df561277bde78277f"
+    },
+    {
+      "path": "tests/durable-m1-guard-contract.cjs",
+      "sha": "0856dd27971747a239a7f1f5ae1fe61842d10693"
+    },
+    {
+      "path": "tests/durable-m1-guard-native.cjs",
+      "sha": "52b3776254aec9b1e233ad78eb4ea98c16d81de2"
+    },
+    {
+      "path": "tests/durable-m1-native.cjs",
+      "sha": "3d2e8d7e6aec9b765cdff3a254c8f6ec0d1179fa"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/CLOTURE.md",
+      "sha": "ee00e724dc6c8b201e2b102772eb5977acdc7bee"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/README.md",
-      "sha": "5f9bdb419cf987c924c2c239eade292a480d744f"
+      "sha": "e002bb55097c2b65bda124f2a22e503e405b8cb9"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/demo.html",
@@ -159,31 +357,103 @@
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/exemples.json",
-      "sha": "29e21344d38479d3b06fe42d70508512575e90e7"
+      "sha": "88780605fad438cdfd607ef6f497320bebaea31d"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/mesures.json",
-      "sha": "4176f629951757f7ea5199c9d6903cffd5833a00"
+      "sha": "da27dc2410b0c4c6ca307c918b3c87de174252e8"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass10-propositions.json",
+      "sha": "7ac5ebb33c3011a582654b7940db5d6c3a810aa4"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass11-propositions.json",
+      "sha": "385b683b9f7e5ac9b88fb127b6a2fc7561d0b332"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass12-propositions.json",
+      "sha": "9d7495c081fd02c8453f33534a05b11a56c535ab"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass13-propositions.json",
+      "sha": "a25daf0050f34ac0a4f63e03b7cc49f87e15ee90"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass14-propositions.json",
+      "sha": "b0d860f54fed27249f0764e1ffd1c03b0cdfa1c8"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass15-propositions.json",
+      "sha": "e2b901c2dcae96cf0c2e2089d132a3fca78e0982"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass16-propositions.json",
+      "sha": "cb60ca3fcaae26669a24e6df86855384bd55acc6"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass17-propositions.json",
+      "sha": "a75cb4046b5fa9cc3f35b3cf4c7e5c195397da07"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass18-propositions.json",
+      "sha": "eb3717727534a4e87e18fc3f21012ffeecfcdb33"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass19-propositions.json",
+      "sha": "08e70b2114315f49b3a006264269c388046aaa21"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/pass2.json",
       "sha": "03b71ff660ed5a1bf530aca97c800499f9b68d11"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m2/pass20-propositions.json",
+      "sha": "de6562fe0b3a3f3cc906ffb2b2c7c9402bff2fd2"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass21-arbitrages.json",
+      "sha": "a7fed26a8dc3e1577e72c2a76bf742b09087473d"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m2/pass4.json",
       "sha": "89822b9f8c34376abc133ab97fb58b11c964fe4c"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m2/pass5.json",
+      "sha": "c92666d16570a1b747c484a3d212f743014d1ea6"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass6.json",
+      "sha": "2f83e8ce0c59c0b99ec97e1436e4c318775897dd"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass7.json",
+      "sha": "7c7b47c6ccbd8df0e4b9d05888e5bb4c48eee6b2"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass8-propositions.json",
+      "sha": "252c4aae3ef2abf4e95c735c9b978420a499259c"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/pass9-propositions.json",
+      "sha": "f612947e7b6e725e2f04a456f8691ca5ab938a12"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m2/recette-native.json",
+      "sha": "0967650a9896569aa69ff3050dcb0d88697591bb"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m2/registre.json",
-      "sha": "3d58e103ed2d90fb88f540c675b5b0d610ca7fd8"
+      "sha": "91db9ea2d7d12009def1f3b9b79a46af20303c3e"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/revue-contrastes.json",
-      "sha": "ab5c91889f8c5a2b1967fa20eda19809b813577b"
+      "sha": "a74339870c93cf8674562b724bf4d4c71a22e89b"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m2/transferts.json",
-      "sha": "a5b947f60fa63a8c7c2f048bd2015aaaa4818063"
+      "sha": "b149196f11b53654f8d39420edc56449b33580ae"
     },
     {
       "path": "quizz-durable-m2-data.js",
@@ -191,19 +461,23 @@
     },
     {
       "path": "quizz-durable-m2-remediation.js",
-      "sha": "7fc6be89e81952872ba5c5550904eb31960a7bfe"
+      "sha": "a63c619ebdae9fea17417f08dcd2ff7a89ad3b59"
     },
     {
       "path": "tests/durable-m2-demo.cjs",
       "sha": "cc5d2c8c59f107b6b94154e5a58f025684b7c3cf"
     },
     {
+      "path": "tests/durable-m2-native.cjs",
+      "sha": "e725a3091446b6ed69e21f7248868db20f38d1d9"
+    },
+    {
       "path": "tests/durable-m2-remediation.cjs",
-      "sha": "a7420ecfc51a988c85cca2b669cf19a5bba446f6"
+      "sha": "612575f456b95a2df546f843eedba57e00c6a71b"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/README.md",
-      "sha": "bda307d54d3514d164d0e2695e775bcb08e9c074"
+      "sha": "447003d4347e2fbc07a8fc52590e6e4e5dd2e310"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/calendar-policy-results.json",
@@ -218,44 +492,148 @@
       "sha": "cc77444bf2be9392528a68550932be111fcdc020"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-assisted-103.json",
+      "sha": "11c95e315ed015fe8620f171da8893115067ee24"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-assisted-11.json",
+      "sha": "8aaea241d1ce7ea3e3cba6c8195d5449d0612d32"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-assisted-47.json",
       "sha": "25a20ee76f0769f49e5618f3b6360a6405e7505e"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-broad-three-seeds.json",
+      "sha": "9268e8cf2358f25aafe997f6e45713ade4b01fb6"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-assisted-103.json",
+      "sha": "aa0b1feb7ce749b60bc8eedc522ed35d9283af8f"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-assisted-11.json",
+      "sha": "696c4ff4499cd5904c383dbb10a4a4c042a1b2d0"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-assisted-47.json",
       "sha": "4b235b7534baa1a6d68918d3b00deec8dcc004f6"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-cross-seed.json",
+      "sha": "28ff3480d4134329eb49f72a6649939e735a1f71"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-daily-103.json",
+      "sha": "1a62d84b1398be3db7953e462cbc50cb7b6bd6cf"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-daily-11.json",
+      "sha": "2da109c9cf545f43b5b75d3a06a7ccdcbeb08e00"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-daily-47.json",
       "sha": "1ad9cbb2390d3bda9486790b4ff3931a735d4281"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-forgetting-103.json",
+      "sha": "1f384d379986a6c6b23286dc656e0ff6c02f47dd"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-forgetting-11.json",
+      "sha": "fa43648ad94a7f09ef77c6edbbe723cad1d2ac1e"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-forgetting-47.json",
       "sha": "39e300e328eae8a63365b677f4ec216cfdbfa6c1"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-grouped-103.json",
+      "sha": "02b9684abe15d858eedb5d7403e1f9a122fa3751"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-grouped-11.json",
+      "sha": "fb90cd46bd7919ae1a105761cd5a754e691547c1"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-grouped-47.json",
       "sha": "ece7ee405657ae290cd36e604bbb4c94145c3d7f"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-resumption-103.json",
+      "sha": "b828728a65d031d85e99f845af08de1eea33e906"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-resumption-11.json",
+      "sha": "ca191f08b331f70faba362f91a978e643ae4faaf"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-resumption-47.json",
       "sha": "0c73c1cfad854d033b892684516b26d4f3285ca7"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-three-seeds.json",
+      "sha": "8dc2dd515fc478487b2a7ae3dc8ebd21e96e9af6"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-weekly-103.json",
+      "sha": "86daea2253d17d05ed489ff7640240d94421467d"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-weekly-11.json",
+      "sha": "3609d837181c051717a4e6afff70ae948c68dbb1"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-calendar-weekly-47.json",
       "sha": "b7b0cb7a9c4f5c0fea94f8a53ea724c25d7bfb54"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-coverage-alert.json",
+      "sha": "a244cd02c10e73f4f6937477b63dcba7857e8b61"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-daily-103.json",
+      "sha": "242204bb2374a8d345944531fade603eb1747ee1"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-daily-11.json",
+      "sha": "40cc2c6bd54a9dbd0b22043ceedce87173f0d3d3"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/selector-daily-47.json",
       "sha": "e05d5ad898dfae2ed3d4abcbe8f4d52604c83ea0"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-forgetting-103.json",
+      "sha": "5d818bca014cf938aa51a1c4ab54a9780ba7100e"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-forgetting-11.json",
+      "sha": "a57ac9114dddfb6d8013d5f169dd180f61675c38"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-forgetting-47.json",
       "sha": "592cd1066fc69e79965ba8aa3d190a06e93d4aa7"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-grouped-103.json",
+      "sha": "f307d90db6351f0167fd4741d6c7df8844665362"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-grouped-11.json",
+      "sha": "c80d2a130ab0cd856bae459a0d4bed6c6bfbe480"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-grouped-47.json",
       "sha": "60a2f942f253d94560e53fd59c9f4386af54d1e1"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-resumption-103.json",
+      "sha": "498448618138cd80e0afbc087f3719eae6a939b0"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-resumption-11.json",
+      "sha": "e7fc3cee0039f64c0178a6950fbad1453b7a8284"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m3/selector-resumption-47.json",
@@ -266,6 +644,14 @@
       "sha": "f2d014ebc4374d22f8ea6930706875d9a076a9ad"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-weekly-103.json",
+      "sha": "3f386d5e84b73062a1af8087b0b941f2bc8b0833"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m3/selector-weekly-11.json",
+      "sha": "b439c292bcf3d9b4e433c78a17c1ebbfabd7e63e"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m3/selector-weekly-47.json",
       "sha": "561339be91562ed0034dc1b96993ced0b9c51945"
     },
@@ -274,12 +660,28 @@
       "sha": "766539f73228a848ef6f0bfcc56ab1cc3db82d1f"
     },
     {
+      "path": "tests/durable-m3-broad-three-seeds.cjs",
+      "sha": "a5d1b74e6436c9f12ab674c3a58f3a983886ef84"
+    },
+    {
       "path": "tests/durable-m3-calendar-policy.cjs",
       "sha": "5bf63441dfde5862739c91816ea35960e750c9b3"
     },
     {
+      "path": "tests/durable-m3-coverage-alert.cjs",
+      "sha": "06bf5c3a76a0631865d70569caf3b1590df73bac"
+    },
+    {
+      "path": "tests/durable-m3-cross-seed.cjs",
+      "sha": "06fe5e4b7d0dd8faef333881c25f2a519f7d22c7"
+    },
+    {
       "path": "tests/durable-m3-maitrise.cjs",
       "sha": "11049bcc9aea9de8e4f2f2daf02bc191a17458ae"
+    },
+    {
+      "path": "tests/durable-m3-native.cjs",
+      "sha": "c63004ff0f967c1886e39ff1c0fbc60f97081ec5"
     },
     {
       "path": "tests/durable-m3-selector-review.cjs",
@@ -290,36 +692,104 @@
       "sha": "22275a85674ba31b278e2fb2b7119f0751ce4e94"
     },
     {
+      "path": "tests/durable-m3-three-seeds.cjs",
+      "sha": "fbad62ef34b1b7c2883a1c07ce5e28919c8eeeb7"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m4/README.md",
-      "sha": "2cab242d427dcaff80352c6b5d58306977796d61"
+      "sha": "589e571965a2abdbecac93b2ec6594a29772ad38"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/additions.json",
-      "sha": "5db0b0d9d086b599fc92e9d96dbb7f9ac576ff62"
+      "sha": "bd7fe3b3d41b0a2bfe137379c986ab87db31fe30"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/cartographie.json",
-      "sha": "ee3fe7bbc5d3cb6bdfa4802d96e6c537004e9d4e"
+      "sha": "e26fe060c8246a14595d0b2f13299d457a04ab70"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/cloture-transfert.json",
+      "sha": "9cd8ebe0f822fc5c26ee48602ae53e1988834bb1"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/contrasts.json",
-      "sha": "ecbf2ffe87cee28854770ca7eabc16ad9328edbe"
+      "sha": "b414453ae86518d42067e86947d44f1e09775d6b"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/controle-mecanique.json",
-      "sha": "4489a506731466356ef19328f1d9f81cd93ed0bf"
+      "sha": "93bb946ebd6bdae362d5f8eb62806ccdde56f6f2"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/couverture-editoriale.json",
+      "sha": "3940207ed027e6739f927ec6407a15f6850f5781"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/mesures.json",
-      "sha": "d9b6e918940459233844feebdcb98d309dac7e1b"
+      "sha": "42d2069c275e523417b709722b7ef88b3e0c7137"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/recette-couverture-finale.json",
+      "sha": "f11ff35c7d93ec0633098f5c7e187ce6b90a096c"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/recette-passe11.json",
+      "sha": "2cb823c565dc136af1278d8b8b7a6c9878c677d5"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/recette-passe16.json",
+      "sha": "5bf59f3fe49cbe5f3f1f36ed44bf0c2c6b3e35e5"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/revue-ajouts.json",
-      "sha": "ffefa60abf9423984d3709cf8c216507d501195b"
+      "sha": "23bd52844ae961bbb9dcb7787ae75c6e3a4bb6cb"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-barrages-michaels.json",
+      "sha": "56edac367d9face1ee37096dc0a34827a7750c42"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-chelems.json",
+      "sha": "8a67068c7e2a1676cdcf1f64ccc8e54188d1f489"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-competitif-developpements.json",
+      "sha": "752dbc7f61476dabd40ca1a80e72b60d64de5b6c"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-competitif-fit.json",
+      "sha": "832cda8c9765fb648f5bfd153ab950b74dbd9f4a"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-extremites-complement.json",
+      "sha": "d980a4533b54434d244ec9a3a7c90651c5b23760"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-extremites-transfert.json",
+      "sha": "39063918328600c764f58c1897f59e97b4c62079"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-fit-majeur.json",
+      "sha": "e39ffcfa819fcde244a6f95a80cc697902779727"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-interventions-contres-reveils.json",
+      "sha": "2c8730def749b2f06370f294bb8b9a52d53f2972"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-lacunes-autonomie.json",
+      "sha": "135789cf802cd8b9e6ad94d8adfb34a087bfbb12"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-multilandy-rubensohl.json",
+      "sha": "f112138f882e8880353582d33ed162d4e1019980"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/revue-notions-residuelles.json",
       "sha": "9c05362ff7cf2c70f290ca139fb8aa8928e3b2a9"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-ouvertures-position.json",
+      "sha": "4bb16d28e4944cf39e6afff29bf57dfae966c4e2"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/revue-ouvertures.json",
@@ -327,31 +797,147 @@
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/revue-paires.json",
-      "sha": "2ec7d974354c8d8119c317624790a16848f41af5"
+      "sha": "f6293278745ae7fa4b5491dea55807547e22860e"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-redemandes.json",
+      "sha": "79281ab846020e26b09a2793eb7fcb9861a7962e"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-reponses-naturelles.json",
+      "sha": "6e31b522d0eaf95fc35141acec845b74e683f554"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-roudi-drury.json",
+      "sha": "b11c856e7c1f8c633c411a28bcd4fe2a015fe334"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-sa-developpements.json",
+      "sha": "4b1af654b015c90765d2d31f3e1b01fa8c9b2f89"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m4/revue-sa-initial.json",
       "sha": "51cadc8e137787f8a0826c5024c8a2f7f35319fe"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m4/revue-secondes-forcing-fortes.json",
+      "sha": "8850fb59d71772e1b02501e1ad97c0569f6af652"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/supplement-transfert-historique.json",
+      "sha": "e02b74883b16c2512923eb32aba99763496eff56"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m4/supplement-transfert-residuel.json",
+      "sha": "8466c284e37ff1565959ac1a882692892cd3210f"
+    },
+    {
+      "path": "quizz-durable-m4-autonomie.js",
+      "sha": "890eee28dc9c74ff7a38909693035e32ee2d6150"
+    },
+    {
       "path": "quizz-durable-m4-transfert.js",
-      "sha": "20cd0bca77e7dc506cd4869cf90fd5b02c2d7194"
+      "sha": "2450d499d546401d88ac0d3d8ff07653f6e28a73"
+    },
+    {
+      "path": "tests/durable-m4-autonomie.cjs",
+      "sha": "10fdde0010a5ed5e429a5fa7cad84baeba2c2bc5"
+    },
+    {
+      "path": "tests/durable-m4-barrages-michaels.cjs",
+      "sha": "4e432542d6005c6e23aa3b2855511422e162f249"
+    },
+    {
+      "path": "tests/durable-m4-chelems.cjs",
+      "sha": "bd87e05bc44592b64884e18aa376ec078a48b805"
+    },
+    {
+      "path": "tests/durable-m4-competitif-developpements.cjs",
+      "sha": "89dfea0559e50ad08b4e207935a0f2e1033055e5"
+    },
+    {
+      "path": "tests/durable-m4-competitif-fit.cjs",
+      "sha": "377a58448f7e52ea22de4df5b8cbffc160c18b6f"
+    },
+    {
+      "path": "tests/durable-m4-couverture-finale.cjs",
+      "sha": "d7f9e34ee2a343d528154985411b46253d437ad9"
+    },
+    {
+      "path": "tests/durable-m4-extremites-complement.cjs",
+      "sha": "0d301feb7196382e34cd8f4bb7ba59cc209af04d"
+    },
+    {
+      "path": "tests/durable-m4-extremites-transfert.cjs",
+      "sha": "963c58f2e0264da01a047c99cb0b64e055c5801f"
+    },
+    {
+      "path": "tests/durable-m4-fit-majeur.cjs",
+      "sha": "c7b3ef6b4f912f7d8bc0dcdd5367b7bc2815a9a9"
+    },
+    {
+      "path": "tests/durable-m4-fit-reponses-ajouts.cjs",
+      "sha": "f0a9a069a1e1c342259151cc4356a6194388d912"
+    },
+    {
+      "path": "tests/durable-m4-interventions-contres-reveils.cjs",
+      "sha": "8b89c4feea141da82de587374f3d2c77c81f7081"
     },
     {
       "path": "tests/durable-m4-mecanique.cjs",
       "sha": "c5bed68007218804acb796b63bfe2b4fb08ae8cc"
     },
     {
+      "path": "tests/durable-m4-multilandy-rubensohl.cjs",
+      "sha": "065c4a83191ebe70357d2010d750650105c14f66"
+    },
+    {
+      "path": "tests/durable-m4-ouvertures-position.cjs",
+      "sha": "4ae92338817d342a00574851c70cec952070e6fc"
+    },
+    {
+      "path": "tests/durable-m4-redemandes.cjs",
+      "sha": "e137770d1029006f74095329479fa83945499d34"
+    },
+    {
+      "path": "tests/durable-m4-reponses-naturelles.cjs",
+      "sha": "8c718e2ab25b879fed1ac7880c75c17586791c31"
+    },
+    {
       "path": "tests/durable-m4-residuel.cjs",
-      "sha": "014f2887563232d9e65014631865fd0b4c4d7000"
+      "sha": "9bd0f04248e09097d5cc2ce2130863042d7618f0"
     },
     {
       "path": "tests/durable-m4-revue.cjs",
       "sha": "918111bd58aa91b5f40e19c1485fac37f6d4ffd8"
     },
     {
+      "path": "tests/durable-m4-roudi-drury.cjs",
+      "sha": "8c868f8c27341116d3727e75f45b9486268f5818"
+    },
+    {
+      "path": "tests/durable-m4-runtime.cjs",
+      "sha": "d8c275e640bb83f19dd3db34a7b6bda9bcc1bb12"
+    },
+    {
+      "path": "tests/durable-m4-sa-ajouts.cjs",
+      "sha": "bca8f0096ff67e149168093e77b3a9bb8933bf2d"
+    },
+    {
       "path": "tests/durable-m4-sa-initial.cjs",
       "sha": "0d0e0c1cdee0cfa3fdedae7dc186a5751e7126bc"
+    },
+    {
+      "path": "tests/durable-m4-secondes-forcing-fortes.cjs",
+      "sha": "6198f1976f34645d29cbc351a466be48a04e533f"
+    },
+    {
+      "path": "tests/durable-m4-supplement-historique.cjs",
+      "sha": "584507acfd502f27a40e16718446e1385ca6bd31"
+    },
+    {
+      "path": "tests/durable-m4-supplement-residuel.cjs",
+      "sha": "2a040141a6db4a87e34a92c581f4bae1d93d7b56"
     },
     {
       "path": "tests/durable-m4-transfert.cjs",
@@ -359,23 +945,55 @@
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/README.md",
-      "sha": "afbff2d8a12536b7259cfbf1fdbd1d092aeaa873"
+      "sha": "8b1ff571ef535ad4915c31e1e5585365ccab345d"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/arbitrages-35.json",
+      "sha": "cb5ef14155fccae9398c2584a0cd1cd859624602"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/archives-complementaires.json",
+      "sha": "1310bc428ac7ecbb7145643deed9245de3161952"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/archives-v473-v485.json",
+      "sha": "70c2757154c1ab07668fe82c89b12fdbe34d1942"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/corpus-verification.json",
-      "sha": "aadbd5dc4211ce06691571b3a3092286d521ce78"
+      "sha": "3f3d33df296ba4d9f2b09f4d008c05e6523ad20c"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/demo.html",
       "sha": "207fad529099ade67b39b1ea91a1f03f034cce95"
     },
     {
+      "path": "audits/apprentissage-durable-20261126/m5/expositions.json",
+      "sha": "9e58fd12b2d925248081dc8bafd172dc0ac31a9f"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/recette-complementaire.json",
+      "sha": "056a7523573a28f91afbbf780179e87e5d12d36b"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/recette-validation-historique.json",
+      "sha": "e3b7ce2075286afd1eecad30b65f28b3d23264bc"
+    },
+    {
       "path": "audits/apprentissage-durable-20261126/m5/recette.json",
-      "sha": "69ff70188854213abae57ec04ee299bf05cfe976"
+      "sha": "a910f08913a2345dac93b08c1429a7a056f146dd"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/registre.json",
-      "sha": "43fca51d46a36bc1a468ea0efc0d9774f23a6d44"
+      "sha": "e56fa262d7cedbe7dbdc95bc087e4f52f6f53770"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/seuils-historiques.json",
+      "sha": "9b51006c4f54077bde74bd438cf546a5561cb851"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/test-navigation-full.py",
+      "sha": "98fc45a0deb09e9b3176565d086433a18792cbc1"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/test-navigation.py",
@@ -383,11 +1001,27 @@
     },
     {
       "path": "audits/apprentissage-durable-20261126/m5/trajectoires.json",
-      "sha": "69ad0b920e4fd8d2554a173fba3b67100d1d03ce"
+      "sha": "9b10f3b9219ae511c2412ad9ec7117f91e888d1a"
+    },
+    {
+      "path": "audits/apprentissage-durable-20261126/m5/validation-historique-finale.json",
+      "sha": "cba482dfe7f4fffa2dc8a07f183fe1d922538c65"
     },
     {
       "path": "quizz-durable-m5-lecons.js",
-      "sha": "94a6a7739df6c8b66b68b34dea6534ae52a3dcd6"
+      "sha": "77de4c0d92c2d43e34bb895e29ae9d6ed04a94fd"
+    },
+    {
+      "path": "tests/durable-m5-arbitrages.cjs",
+      "sha": "64afaa141ba70af7cc6ab4fa25ce034f43241167"
+    },
+    {
+      "path": "tests/durable-m5-archives-complementaires.cjs",
+      "sha": "718cc85f49f896b2f06267f29a44626156f4ae66"
+    },
+    {
+      "path": "tests/durable-m5-archives.cjs",
+      "sha": "6aa96c07980b91ac580639c1eb209591306742b8"
     },
     {
       "path": "tests/durable-m5-contrastes.cjs",
@@ -398,6 +1032,10 @@
       "sha": "3c228b436ab07b7497fc4efecbe2ac09ed0fe110"
     },
     {
+      "path": "tests/durable-m5-expositions.cjs",
+      "sha": "9dad98ce189a08c4231ae27ac0e7c671ad19eb69"
+    },
+    {
       "path": "tests/durable-m5-extensions.cjs",
       "sha": "d69d78d66245aa40b09e554fadd1551c4cd06b6c"
     },
@@ -406,8 +1044,16 @@
       "sha": "b4f281f47085d64c315e11eabb370bb52f3d56ae"
     },
     {
+      "path": "tests/durable-m5-seuils.cjs",
+      "sha": "0328c8dbcd01fe03c49604bcaad9285636a92ed1"
+    },
+    {
       "path": "tests/durable-m5-trajectoires.cjs",
       "sha": "706102334fcbfc6b12d070afdb33dc1f7937f1d6"
+    },
+    {
+      "path": "tests/durable-m5-validation-historique.cjs",
+      "sha": "9bec3443e873c91c58717b8ea753fdf35b5567ed"
     },
     {
       "path": "audits/apprentissage-durable-20261126/m6/README.md",
@@ -514,13 +1160,16 @@
       "sha": "30cde5e78b5d2da7f90f995235419228293820b2"
     }
   ],
-  "status": "collected-not-wired",
+  "status": "final-source-synchronized-adapters-pending",
   "holds": [
-    "M1 comparative long matrix and force regression",
-    "M2 editorial HOLD and no hints before response",
-    "M3 calendar/time qualification and selection regression",
-    "M4 additions require coordinator approval; do not activate unreviewed content",
-    "M5 availability outside active evaluation, corpus editorial review",
-    "M6 native and integrated recipe"
+    "M1 guard and final adapters pending",
+    "M2 53 residual arbitrations",
+    "M3 calendar calibration",
+    "M4 strict probe filter and 28 proposed QCM pending visa",
+    "M5 historical certification",
+    "M6 final recipe"
+  ],
+  "integrationOverrides": [
+    "tests/durable-m6-campaign.cjs: production asset inventory; all other source files exact"
   ]
 }

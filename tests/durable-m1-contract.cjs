@@ -66,3 +66,17 @@ for(const k of ["force:H","force:HL","force:HLD","distribution:longueur","fit:pr
  if(['convention','competition'].includes(k))assert.deepEqual(A.rank({history,candidates:qs,selected:[],signals:a,category:'weakness'}),[]);
 }
 console.log(JSON.stringify({cross}));
+
+// Initiation: le seul bonus possible exige un contraste référencé et un signal local fort.
+const earlyStrong={completed:4,journal:['SEF-015-1','SEF-016-3','SEF-017-1'].map((id,i)=>({mode:'parcours',session:i+1,answers:[{id,result:'wrong',choice:'1SA',assisted:false,hadFreeError:false}]}))};
+const earlyStrongSignals=A.analyze({history:earlyStrong,exercises:qs,diagnose:P.diagnose});
+assert.ok(earlyStrongSignals.signals.some(s=>s.id==='local:mineur.base:priorite'&&s.strength==='strong'));
+const earlyStrongRank=A.rank({history:earlyStrong,candidates:qs,selected:[],signals:earlyStrongSignals,category:'weakness'});
+assert.ok(earlyStrongRank.some(r=>r.id==='SEF-N029-2'&&r.delta===8));
+assert.ok(earlyStrongRank.every(r=>r.delta<=8&&r.reason.startsWith('Contraste pédagogique référencé')&&r.signalIds.every(id=>earlyStrongSignals.signals.some(s=>s.id===id&&s.scope==='local'&&s.strength==='strong'))));
+const lateStrong={completed:24,journal:earlyStrong.journal.map(e=>({...e,session:e.session+20}))};
+const lateStrongSignals=A.analyze({history:lateStrong,exercises:qs,diagnose:P.diagnose});
+const lateStrongRank=A.rank({history:lateStrong,candidates:qs,selected:[],signals:lateStrongSignals,category:'weakness'});
+assert.ok(lateStrongRank.some(r=>r.id==='SEF-N029-2'&&r.delta===24));
+assert.ok(lateStrongRank.every(r=>r.delta<=24));
+console.log(JSON.stringify({earlyStrongRank,lateStrongRank:lateStrongRank.length}));

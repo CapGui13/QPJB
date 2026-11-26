@@ -3,7 +3,8 @@
 'use strict';
 const valid=p=>p&&typeof p.a==='string'&&typeof p.b==='string'&&p.a!==p.b&&Array.isArray(p.concepts)&&p.concepts.length>0&&typeof p.criterion==='string'&&p.criterion.length>0&&typeof p.contextDifference==='string'&&p.contextDifference.length>0&&p.evidence&&p.evidence.automaticCredit===false;
 const allowed=new Set(['intercontextual','context_boundary','near_transfer','discrimination','role_complement','consolidation']);
-function links({id,concept,contrasts,candidates,purpose}={}){
+function links(input={}){
+ const {id,concept,contrasts,candidates,purpose}=input??{};
  if(typeof id!=='string'||!Array.isArray(contrasts)||!Array.isArray(candidates)||purpose!==undefined&&purpose!=='transfer'&&purpose!=='practice')return [];
  const eligible=new Set(candidates.map(x=>typeof x==='string'?x:x&&x.id).filter(Boolean));const seen=new Set(),out=[];
  for(const p of contrasts){if(!valid(p)||concept&&!p.concepts.includes(concept))continue;

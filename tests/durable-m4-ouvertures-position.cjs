@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m4/',base='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,dir+p),'utf8')),old=p=>execFileSync('git',['show',base+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
+const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const meta={exports:{}};new Function('module',old('quizz-prerequis.js'))(meta);
+const names=["revue-ouvertures.json","revue-notions-residuelles.json","revue-sa-initial.json","revue-sa-developpements.json","revue-fit-majeur.json","revue-extremites-transfert.json","revue-extremites-complement.json","revue-reponses-naturelles.json","revue-roudi-drury.json","revue-redemandes.json"],prior=new Set(names.flatMap(p=>Object.keys(read(p).byId))),review=read('revue-ouvertures-position.json'),scope=qs.filter(q=>/^ouv\.(passe|position)$/.test(meta.exports.byId[q.id].concept)),expected=scope.filter(q=>!prior.has(q.id));
+let assertions=0;const ok=(x,m)=>{assertions++;if(!x)throw Error(m)};
+ok(prior.size===939,'prior coverage');ok(expected.length===24&&Object.keys(review.byId).length===24,'new coverage');ok(scope.length===review.coverage.scopeTotal,'scope');
+const counts={};for(const q of expected){const z=review.byId[q.id];ok(z&&z.concept===meta.exports.byId[q.id].concept,'concept '+q.id);ok(z.h===q.h&&z.answer===q.answer&&z.family===q.caseFamily&&z.difficulty===q.difficulty,'source '+q.id);ok(JSON.stringify(z.shape)===JSON.stringify(q.shape)&&JSON.stringify(z.choices)===JSON.stringify(q.choices),'exact choices '+q.id);ok(z.reason.length>30&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context'].includes(z.status),'review '+q.id);ok(!prior.has(q.id),'disjoint '+q.id);counts[z.status]=(counts[z.status]||0)+1;}
+ok(JSON.stringify(counts)===JSON.stringify(review.counts),'counts');ok(review.coverage.total===963&&review.coverage.remaining===qs.length-963,'total');
+const by=id=>qs.find(q=>q.id===id),a=by('V2-M1-015'),b=by('V2-M1-016'),c=by('V2-M1-017'),d=by('V2-M1-018');
+ok(JSON.stringify(a.hand)===JSON.stringify(b.hand),'same hand not independent');ok(a.auction.length===1&&b.auction.length===2&&a.answer==='Passe'&&b.answer==='1♠','position contrast');ok(c.h+c.shape[0]===15&&d.h+d.shape[0]===14,'rule of 15 boundary');ok(c.answer==='1♠'&&d.answer==='Passe','fourth position decisions');ok(review.byId[b.id].status==='bounded_context'&&review.byId[c.id].status==='bounded_context','judgment not universal');
+console.log(JSON.stringify({assertions,status:'PASS',reviewed:expected.length,totalReviewed:963,scopeTotal:scope.length,counts}));

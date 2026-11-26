@@ -1,0 +1,1014 @@
+{
+  "schema": "QPJB_M4_TRANSFER_ENDPOINT_COMPLETION_V1",
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "selection": "All still unreviewed endpoints of the 77 candidate pairs after pass 13, including already excluded pairs.",
+  "byId": {
+    "SEF-Q26-M2-001": {
+      "concept": "rubensohl.suite",
+      "status": "guided_not_independent",
+      "reason": "3 H et sept Trèfles après 1SA–(2♥)–2SA–3♣ : Passe sur la rectification Rubensohl. Le texte annonce le jeu faible et identifie déjà le Texas ; preuve de décision partiellement guidée.",
+      "h": 3,
+      "shape": [
+        2,
+        2,
+        2,
+        7
+      ],
+      "answer": "Passe",
+      "family": "QUAL-M2-001",
+      "choices": [
+        "Passe",
+        "3♦",
+        "3SA",
+        "4♣"
+      ],
+      "difficulty": 3
+    },
+    "SEF-V426-006": {
+      "concept": "barrage.suite",
+      "status": "bounded_context",
+      "reason": "5 H et trois Piques sur 2♠ faible contré : 3♠ prolonge le barrage à neuf atouts. Vulnérabilité non précisée ; décision de prévention plausible dans le catalogue, non universelle.",
+      "h": 5,
+      "shape": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "answer": "3♠",
+      "family": "v426-cas-006",
+      "choices": [
+        "Passe",
+        "3♠",
+        "4♠",
+        "2SA"
+      ],
+      "difficulty": 3
+    },
+    "SEF-V3-104-4": {
+      "concept": "barrage.reponse",
+      "status": "bounded_context",
+      "reason": "7 H et quatre Cœurs face au 2♥ faible : dix atouts, 4♥ barrage à vulnérabilité favorable. La consigne annonce la prolongation et le choix reste lié à la vulnérabilité.",
+      "h": 7,
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "answer": "4♥",
+      "family": "cas-304",
+      "choices": [
+        "4♥",
+        "3♥",
+        "Passe",
+        "2SA"
+      ],
+      "difficulty": 3
+    },
+    "SEF-V484-013": {
+      "concept": "drury.reponse",
+      "status": "bounded_context",
+      "reason": "12 H, cinq Cœurs et singleton Trèfle face au Drury 11 HLD et plus : 4♥ retenu par réévaluation. Le contrat dépend des valeurs utiles et de l'étendue du soutien, pas d'un seuil de 12 H.",
+      "h": 12,
+      "shape": [
+        3,
+        5,
+        4,
+        1
+      ],
+      "answer": "4♥",
+      "family": "v484-openH-013",
+      "choices": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "difficulty": 3
+    },
+    "SEF-L01-F-04": {
+      "concept": "drury.suite",
+      "status": "guided_not_independent",
+      "reason": "12 H, cinq Cœurs et doubleton Trèfle après Drury puis 3♥ montrant quatre atouts : 4♥. Le texte fournit le neuvième atout, la force et l'ambition précédente.",
+      "h": 12,
+      "shape": [
+        3,
+        5,
+        3,
+        2
+      ],
+      "answer": "4♥",
+      "family": "l01-f04-drury-opener-after-2d-3heart-four-card-fit-revalue-4heart",
+      "choices": [
+        "Passe",
+        "3SA",
+        "4♥",
+        "4SA"
+      ],
+      "difficulty": 4
+    },
+    "SEF-V45-032": {
+      "concept": "rubensohl.init",
+      "status": "guided_not_independent",
+      "reason": "5 H et six Trèfles après 1SA–(2♥) : 2SA Texas Trèfle selon Rubensohl, non naturel. La consigne donne force, longueur et but de partielle.",
+      "h": 5,
+      "shape": [
+        2,
+        2,
+        3,
+        6
+      ],
+      "answer": "2SA",
+      "family": "v45-cas-032",
+      "choices": [
+        "2♠",
+        "2SA",
+        "3♣",
+        "3SA"
+      ],
+      "difficulty": 4
+    },
+    "SEF-V4-076-3": {
+      "concept": "roudi.reponse",
+      "status": "guided_not_independent",
+      "reason": "13 H et deux Cœurs après 1♣–1♥–1SA–2♣ Roudi : 2♦ nie le soutien troisième, indépendamment de la force. Le texte donne exactement le critère de longueur.",
+      "h": 13,
+      "shape": [
+        3,
+        2,
+        3,
+        5
+      ],
+      "answer": "2♦",
+      "family": "cas-386",
+      "choices": [
+        "2♦",
+        "2SA",
+        "2♥",
+        "2♠"
+      ],
+      "difficulty": 3
+    }
+  },
+  "transferScreen": {
+    "scope": "All 77 historical transfer candidate pairs, every unique endpoint individually reviewed; pair reservations enforced; potential probes only.",
+    "uniqueEndpoints": 140,
+    "unreviewedEndpoints": 0,
+    "counts": {
+      "candidate_only": 22,
+      "guided_prompt": 49,
+      "pair_reservation": 3,
+      "bounded_context": 3
+    },
+    "pairs": [
+      {
+        "a": "SEF-028-2",
+        "b": "SEF-V3-074-3",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-034-1",
+        "b": "SEF-N101-3",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-040-2",
+        "b": "SEF-N104-1",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-027-2",
+        "b": "SEF-V4-048-1",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-074-3",
+        "b": "SEF-V4-025-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-021-1",
+        "b": "V2-M3-034",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-022-3",
+        "b": "V2-M3-033",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V44-013",
+        "b": "SEF-L40-002",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V476-006",
+        "b": "SEF-V476-015",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V476-007",
+        "b": "SEF-V476-014",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L01-A-04",
+        "b": "SEF-L02-E-15",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L13-008",
+        "b": "SEF-L28-004",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L19-005",
+        "b": "SEF-L28-004",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V470-009",
+        "b": "SEF-Q26-M4-003",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-022",
+        "b": "SEF-L13-005",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-013",
+        "b": "SEF-V45-016",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V44-063",
+        "b": "SEF-Q26-M3-006",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-Q26-M3-005",
+        "b": "SEF-V486-027",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-Q26-M6-003",
+        "b": "SEF-V486-028",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V475-008",
+        "b": "V1-M2-002",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-002-1",
+        "b": "SEF-V3-023-2",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-021-2",
+        "b": "SEF-Q26-M3-006",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-018-1",
+        "b": "SEF-V3-025-1",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V482-003",
+        "b": "SEF-Q26-M2-001",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-015-1",
+        "b": "SEF-V481-001",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V479-001",
+        "b": "SEF-V477-001",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V473-009",
+        "b": "SEF-L09-029",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V44-013",
+        "b": "SEF-V487-003",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V487-003",
+        "b": "SEF-L22-007",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-056",
+        "b": "SEF-L13-008",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V3-057-1",
+        "b": "SEF-V476-001",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-046-1",
+        "b": "SEF-V471-005",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-052",
+        "b": "SEF-C2-009",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L01-A-01",
+        "b": "SEF-L01-B-03",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V410-001",
+        "b": "SEF-N131-1",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-045",
+        "b": "SEF-L26-001",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-047",
+        "b": "SEF-L26-002",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-008",
+        "b": "SEF-L20-003",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V479-014",
+        "b": "SEF-Q26-M2-014",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V479-015",
+        "b": "SEF-L06-029",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-033-1",
+        "b": "SEF-041-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L43-005",
+        "b": "SEF-V481-001",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-005-2",
+        "b": "SEF-V426-006",
+        "statuses": [
+          "bounded_context",
+          "bounded_context"
+        ],
+        "reason": "bounded_context",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-005-2",
+        "b": "SEF-V3-104-4",
+        "statuses": [
+          "bounded_context",
+          "bounded_context"
+        ],
+        "reason": "bounded_context",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-001-1",
+        "b": "SEF-V486-007",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V470-005",
+        "b": "SEF-V472-001",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "V1-M3-005",
+        "b": "V2-M5-022",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-015-1",
+        "b": "SEF-N058-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "pair_reservation",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-N051-2",
+        "b": "SEF-V3-082-1",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-073-1",
+        "b": "SEF-V45-013",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L13-003",
+        "b": "SEF-V45-016",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-075-2",
+        "b": "V1-M5-006",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L01-F-03",
+        "b": "SEF-V424-002",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V484-013",
+        "b": "SEF-V4-007-1",
+        "statuses": [
+          "bounded_context",
+          "bounded_context"
+        ],
+        "reason": "bounded_context",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L01-F-04",
+        "b": "SEF-V4-007-2",
+        "statuses": [
+          "guided_not_independent",
+          "bounded_context"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-031",
+        "b": "SEF-V4-080-4",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-032",
+        "b": "SEF-V482-001",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-034",
+        "b": "SEF-L38-005",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-036",
+        "b": "V1-M3-004",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L25-007",
+        "b": "SEF-Q26-M2-012",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-PN26-M1-028",
+        "b": "SEF-PN26-M1-029",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L25-003",
+        "b": "SEF-L25-006",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L23-006",
+        "b": "SEF-L25-004",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V410-026",
+        "b": "SEF-V45-037",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-C2-008",
+        "b": "SEF-V44-060",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L15-003",
+        "b": "SEF-Q26-M3-006",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-001-2",
+        "b": "SEF-V3-043-3",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-005-1",
+        "b": "SEF-V470-009",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-006-2",
+        "b": "SEF-V3-031-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-007-2",
+        "b": "SEF-L01-E-03",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-N022-1",
+        "b": "SEF-V4-065-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-106-1",
+        "b": "SEF-N073-3",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V4-076-3",
+        "b": "SEF-L23-006",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-L02-E-10",
+        "b": "V1-M6-003",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V474-004",
+        "b": "SEF-V474-010",
+        "statuses": [
+          "guided_not_independent",
+          "guided_not_independent"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-V45-029",
+        "b": "SEF-V45-047",
+        "statuses": [
+          "guided_not_independent",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "guided_prompt",
+        "eligibleForIndependentProbe": false,
+        "automaticCredit": false
+      },
+      {
+        "a": "SEF-032-1",
+        "b": "SEF-N143-2",
+        "statuses": [
+          "coherent_in_catalogue_framework",
+          "coherent_in_catalogue_framework"
+        ],
+        "reason": "candidate_only",
+        "eligibleForIndependentProbe": true,
+        "automaticCredit": false
+      }
+    ]
+  }
+}

@@ -15,7 +15,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître une main régulière, compter ses points H et choisir 1SA dans la zone 15–17 H.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "ouv.sa2",
@@ -38,7 +41,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Distinguer une main régulière de 20–21 H d'une ouverture de 1SA et choisir 2SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "ouv.majeure",
@@ -56,7 +62,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Vérifier la force d'ouverture et les cinq cartes requises avant de nommer une majeure.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "ouv.mineure",
@@ -114,7 +123,10 @@
       }
     ],
     "objective": "Choisir la mineure à ouvrir en comparant les longueurs et en appliquant les deux règles d'égalité.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "ouv.passe",
@@ -132,7 +144,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître une main trop faible pour une ouverture normale au palier de un en première position.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+    ]
   },
   {
     "concept": "mineur.base",
@@ -149,9 +164,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 297,
+    "ruleLength": 358,
     "canonicalLength": 293,
-    "reminderLength": 133,
+    "reminderLength": 149,
     "contrasts": [
       {
         "id": "SEF-V49-005",
@@ -302,10 +317,56 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-89",
+        "title": "Deux majeures : économie ou longueur",
+        "sources": [
+          "SEF-017-1",
+          "SEF-N029-2"
+        ],
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 26 textes et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-90",
+        "title": "Cinq atouts mineurs ne suffisent pas à imposer un soutien",
+        "sources": [
+          "SEF-021-2",
+          "SEF-N031-1"
+        ],
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 26 textes et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Choisir une réponse naturelle à une mineure selon la force, les longueurs et la priorité majeure.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalFollowup": "Relecture ciblée #364 : formulation précisée, exemples et seuils historiques conservés.",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+    ]
   },
   {
     "concept": "mineur.soutien",
@@ -322,9 +383,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 307,
+    "ruleLength": 319,
     "canonicalLength": 225,
-    "reminderLength": 107,
+    "reminderLength": 148,
     "contrasts": [
       {
         "id": "SEF-020-3",
@@ -357,7 +418,12 @@
     ],
     "extensions": [],
     "objective": "Distinguer un soutien mineur simple, une invitation et une réponse à SA selon la main.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalFollowup": "Relecture ciblée #364 : formulation précisée, exemples et seuils historiques conservés.",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "majeur.soutien",
@@ -475,7 +541,10 @@
     ],
     "extensions": [],
     "objective": "Additionner sa force à celle de l'ouvreur et choisir entre Passe, invitation et manche à SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "sa1.stayman",
@@ -498,7 +567,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître quand rechercher une majeure quatrième par 2♣ plutôt que proposer directement SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa1.texas",
@@ -521,7 +594,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Choisir le transfert correspondant à une majeure cinquième et comprendre ce que garantit la rectification.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa2.seuil",
@@ -585,7 +661,11 @@
     ],
     "extensions": [],
     "objective": "Calculer la force minimale du camp après 2SA et décider si la manche à SA est justifiée.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "red.bicolore",
@@ -684,7 +764,10 @@
       }
     ],
     "objective": "Reconnaître une seconde couleur annonçable économiquement et vérifier le niveau de retour dans la première.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "red.base",
@@ -802,7 +885,11 @@
       }
     ],
     "objective": "Choisir une redemande minimale à SA ou à la couleur selon le fit, la forme et les couleurs disponibles.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "second.base",
@@ -886,10 +973,33 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-108",
+        "title": "Deux atouts après la répétition de six cartes",
+        "sources": [
+          "SEF-V418-008"
+        ],
+        "minCompleted": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Utiliser les renseignements de la redemande pour choisir une partielle, une invitation ou une manche.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "fit.2sa",
@@ -910,13 +1020,18 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 180,
+    "ruleLength": 240,
     "canonicalLength": 208,
-    "reminderLength": 104,
+    "reminderLength": 142,
     "contrasts": [],
     "extensions": [],
     "objective": "Distinguer les deux soutiens invitants sans intervention en comptant précisément ses atouts.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalFollowup": "Relecture ciblée #364 : formulation précisée, exemples et seuils historiques conservés.",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "majeur.base",
@@ -933,13 +1048,39 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 241,
+    "ruleLength": 261,
     "canonicalLength": 73,
-    "reminderLength": 82,
+    "reminderLength": 111,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-110",
+        "title": "Changement de couleur naturel et auto-forcing",
+        "sources": [
+          "SEF-N067-1"
+        ],
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique Lot A et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Choisir entre réponse majeure, 1SA, changement de couleur au palier de deux et Passe sans fit.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalFollowup": "Relecture ciblée #364 : formulation précisée, exemples et seuils historiques conservés.",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "sa2.stayman",
@@ -966,7 +1107,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Employer 3♣ pour rechercher un fit majeur quatrième après une ouverture de 2SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "sa2.texas",
@@ -1014,7 +1159,11 @@
     ],
     "extensions": [],
     "objective": "Choisir le transfert majeur sur 2SA en tenant compte du fit promis et du risque de dépasser la partielle.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "roudi.init",
@@ -1031,13 +1180,17 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 183,
+    "ruleLength": 227,
     "canonicalLength": 267,
-    "reminderLength": 78,
+    "reminderLength": 83,
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître la séquence où 2♣ permet de rechercher un soutien troisième de sa majeure cinquième.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+    ]
   },
   {
     "concept": "sa1.stayman.suite",
@@ -1090,7 +1243,11 @@
       }
     ],
     "objective": "Utiliser le fit révélé par le Stayman et la force de sa main pour inviter ou conclure.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa1.stayman.reponse",
@@ -1186,7 +1343,11 @@
     ],
     "extensions": [],
     "objective": "Après rectification du Texas, choisir entre Passe, proposition à SA et manche majeure.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa2.stayman.suite",
@@ -1213,7 +1374,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Après une réponse négative au Stayman, éviter une manche majeure sans fit et choisir le contrat adapté.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa2.texas.suite",
@@ -1240,7 +1404,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître le fit huitième confirmé par la rectification et conclure selon la force.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "intervenir.base",
@@ -1361,7 +1529,10 @@
       }
     ],
     "objective": "Reconnaître l'obligation habituelle de répondre au contre d'appel même avec une main très faible.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "apres_inter.base",
@@ -1436,10 +1607,92 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-70",
+        "title": "Distinguer le contre adverse de l'intervention naturelle",
+        "sources": [
+          "SEF-V485-004",
+          "SEF-V485-008",
+          "SEF-V485-009",
+          "SEF-V485-010"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V485 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-71",
+        "title": "Soutiens à quatre ou cinq atouts après intervention",
+        "sources": [
+          "SEF-V473-006",
+          "SEF-V473-007",
+          "SEF-V473-008"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-102",
+        "title": "La liberté de parler ne crée pas une force suffisante",
+        "sources": [
+          "SEF-V3-087-2",
+          "SEF-V3-088-1"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et décision 29 et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Réévaluer sa main avec le fit après intervention adverse et choisir le niveau de soutien.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "competitif.2sa_fitte",
@@ -1466,7 +1719,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Distinguer le 2SA fitté après intervention de celui utilisé sans intervention.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte."
+    ]
   },
   {
     "concept": "barrage.ouverture",
@@ -1487,9 +1743,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 302,
+    "ruleLength": 297,
     "canonicalLength": 321,
-    "reminderLength": 118,
+    "reminderLength": 162,
     "contrasts": [
       {
         "id": "SEF-V3-092-3",
@@ -1524,9 +1780,39 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-107",
+        "title": "Sept belles cartes dans une mineure",
+        "sources": [
+          "SEF-V44-046",
+          "SEF-V44-047"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.passe",
+            "minExposure": 1
+          },
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Vérifier longueur, force, qualité de couleur et contexte avant de choisir un deux faible.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "barrage.reponse",
@@ -1592,7 +1878,10 @@
       }
     ],
     "objective": "Compter le fit face à un deux faible et distinguer prolongation du barrage et invitation.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "apres_fit.base",
@@ -1615,7 +1904,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Évaluer sa main d'ouvreur après un soutien simple pour passer, inviter ou conclure.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte."
+    ]
   },
   {
     "concept": "apres_fit.essai",
@@ -1665,9 +1957,56 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-91",
+        "title": "Neuf atouts : prolonger sans inviter",
+        "sources": [
+          "SEF-V4-005-2",
+          "SEF-V4-017-2"
+        ],
+        "minCompleted": 12,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 26 textes et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-92",
+        "title": "Choisir une vraie couleur d’essai",
+        "sources": [
+          "SEF-V44-050",
+          "SEF-V44-053"
+        ],
+        "minCompleted": 12,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 26 textes et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Distinguer essai généralisé, essai à la couleur et soutien préventif après un fit majeur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "apres_fit.essai.suite",
@@ -1684,13 +2023,38 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 195,
+    "ruleLength": 257,
     "canonicalLength": 242,
-    "reminderLength": 70,
+    "reminderLength": 105,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-93",
+        "title": "Répondre à l’essai généralisé ou à la couleur",
+        "sources": [
+          "SEF-V4-010-1",
+          "SEF-V423-003"
+        ],
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.essai",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_fit.essai.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 26 textes et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Évaluer sa force et ses compléments dans la couleur d'essai pour accepter ou refuser la manche.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "reponse_inter.base",
@@ -1707,9 +2071,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 222,
+    "ruleLength": 302,
     "canonicalLength": 403,
-    "reminderLength": 95,
+    "reminderLength": 127,
     "contrasts": [],
     "extensions": [
       {
@@ -1757,10 +2121,97 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-72",
+        "title": "Une rencontre après soutien adverse",
+        "sources": [
+          "SEF-V473-004"
+        ],
+        "minCompleted": 21,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-76",
+        "title": "Neuf atouts : barrage ou soutien simple",
+        "sources": [
+          "SEF-V4-026-3",
+          "SEF-V4-026-4"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-85",
+        "title": "Cue-bid simple ou à saut après la nouvelle couleur adverse",
+        "sources": [
+          "SEF-V487-001",
+          "SEF-V487-002"
+        ],
+        "minCompleted": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-101",
+        "title": "2SA naturel quand le troisième joueur passe",
+        "sources": [
+          "SEF-L10-005"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Reconnaître le fit après une intervention majeure du partenaire et choisir un soutien non forcing adapté.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+    ]
   },
   {
     "concept": "reveil.base",
@@ -1823,10 +2274,33 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-106",
+        "title": "Réveiller malgré une couleur modeste",
+        "sources": [
+          "SEF-V4-050-2"
+        ],
+        "minCompleted": 19,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Identifier une position où Passe terminerait les enchères et évaluer une intervention de réveil.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+    ]
   },
   {
     "concept": "roudi.choix",
@@ -1843,13 +2317,40 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 188,
+    "ruleLength": 238,
     "canonicalLength": 244,
-    "reminderLength": 87,
+    "reminderLength": 119,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-74",
+        "title": "Passer ou répéter : la cinquième carte",
+        "sources": [
+          "SEF-V4-075-2",
+          "SEF-V4-080-2"
+        ],
+        "minCompleted": 22,
+        "requires": [
+          {
+            "concept": "roudi.choix",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      }
+    ],
     "objective": "Distinguer une répétition faible de la majeure d'une recherche constructive du troisième atout.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "roudi.reponse",
@@ -1866,7 +2367,7 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 175,
+    "ruleLength": 257,
     "canonicalLength": 370,
     "reminderLength": 83,
     "contrasts": [
@@ -1895,9 +2396,35 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-94",
+        "title": "Le code Roudi ne nomme pas votre majeure",
+        "sources": [
+          "SEF-V4-082-1",
+          "SEF-V4-083-1"
+        ],
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "roudi.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Décoder puis choisir les trois réponses du Roudi selon le soutien et la force de l'ouvreur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "drury.choix",
@@ -1918,9 +2445,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 196,
+    "ruleLength": 247,
     "canonicalLength": 161,
-    "reminderLength": 111,
+    "reminderLength": 107,
     "contrasts": [],
     "extensions": [
       {
@@ -1946,10 +2473,39 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-96",
+        "title": "Pas de Drury sans fit",
+        "sources": [
+          "SEF-V4-106-1"
+        ],
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.choix",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Choisir entre soutien simple et Drury en fonction de la force du fit après son Passe initial.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "drury.init",
@@ -1974,9 +2530,38 @@
     "canonicalLength": 285,
     "reminderLength": 92,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-95",
+        "title": "Quatre atouts et force réellement réévaluée",
+        "sources": [
+          "SEF-V4-098-1"
+        ],
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers puis corrigé figé et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître les conditions de position et de fit qui rendent 2♣ Drury pertinent.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "drury.reponse",
@@ -2022,9 +2607,34 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-69",
+        "title": "Conclure à la manche après Drury",
+        "sources": [
+          "SEF-V484-013"
+        ],
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V484 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer la réponse de freinage et les réponses constructives après Drury.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "fortes.ouverture",
@@ -2090,10 +2700,39 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-75",
+        "title": "Reconnaître le fort unicolore majeur",
+        "sources": [
+          "SEF-V45-003",
+          "SEF-V45-004"
+        ],
+        "minCompleted": 30,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
       }
     ],
     "objective": "Distinguer les ouvertures fortes artificielles et l'ouverture directe de 2SA selon la force régulière.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "chelem.quantitatif",
@@ -2116,7 +2755,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître une invitation quantitative au chelem sans fit agréé et la distinguer d'une demande de clés.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "red.bicolore_cher",
@@ -2164,7 +2807,11 @@
     ],
     "extensions": [],
     "objective": "Identifier le retour coûteux dans la première couleur et vérifier la force requise pour un bicolore cher.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+      "Auto-forcing : le joueur qui a fait l’enchère devra aussi reparler dans le cadre indiqué."
+    ]
   },
   {
     "concept": "competitif.truscott",
@@ -2238,9 +2885,139 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-73",
+        "title": "Soutien simple ou barrage après mineure contrée",
+        "sources": [
+          "SEF-V485-002",
+          "SEF-V485-011"
+        ],
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V485 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-77",
+        "title": "Le mixed raise après Contre adverse",
+        "sources": [
+          "SEF-L13-007",
+          "SEF-L14-015"
+        ],
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-78",
+        "title": "Le Truscott fort et sa forme",
+        "sources": [
+          "SEF-L24-002",
+          "SEF-L44-003"
+        ],
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 3
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-79",
+        "title": "Rencontre en mineure après Contre",
+        "sources": [
+          "SEF-L22-003",
+          "SEF-L14-016"
+        ],
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Contraste canonique et corrigés actuels vérifiés, prérequis réels cumulés ; hors évaluation."
+      },
+      {
+        "id": "m5-ext-84",
+        "title": "Barrage mineur ou surcontre positif",
+        "sources": [
+          "SEF-V472-002",
+          "SEF-V472-004"
+        ],
+        "minCompleted": 16,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V472 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Choisir le soutien conventionnel adapté au fit majeur ou mineur après un contre, ou le Surcontre selon la main.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "michaels.reveil",
@@ -2347,7 +3124,10 @@
       }
     ],
     "objective": "Combiner la réponse au Roudi avec sa propre longueur majeure et sa force pour déterminer le contrat.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "fortes.relais",
@@ -2364,9 +3144,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 267,
+    "ruleLength": 301,
     "canonicalLength": 240,
-    "reminderLength": 115,
+    "reminderLength": 142,
     "contrasts": [
       {
         "id": "SEF-V45-009",
@@ -2451,10 +3231,35 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-50",
+        "title": "L'exception des deux Rois sur 2♦ fort",
+        "sources": [
+          "SEF-V475-002"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.relais",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Distinguer le relais obligatoire sur 2♣ des réponses codées sur 2♦ forcing de manche.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse.",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "fortes.redemande",
@@ -2519,7 +3324,10 @@
       }
     ],
     "objective": "Reconnaître la zone régulière annoncée par 2SA après le relais fort et la comparer à 2SA direct.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "forcing.troisieme",
@@ -2563,9 +3371,58 @@
     "canonicalLength": 269,
     "reminderLength": 97,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-62",
+        "title": "Donner le soutien troisième avant l'arrêt",
+        "sources": [
+          "SEF-V480-001",
+          "SEF-V480-002",
+          "SEF-V480-007"
+        ],
+        "minCompleted": 32,
+        "requires": [
+          {
+            "concept": "forcing.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V480 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-63",
+        "title": "Distinguer arrêt, longueur et enchère d'attente",
+        "sources": [
+          "SEF-V480-009",
+          "SEF-V480-010",
+          "SEF-V480-011"
+        ],
+        "minCompleted": 32,
+        "requires": [
+          {
+            "concept": "forcing.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V480 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Employer la quatrième couleur pour rechercher un renseignement de fit ou d'arrêt sans promettre cette couleur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "forcing.base",
@@ -2588,7 +3445,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Identifier dans la séquence si le partenaire doit reparler ou peut passer.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+    ]
   },
   {
     "concept": "multilandy.intervention",
@@ -2666,7 +3526,10 @@
       }
     ],
     "objective": "Associer les distributions majeures enseignées aux interventions conventionnelles correspondantes contre 1SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "multilandy.choix",
@@ -2687,13 +3550,14 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 214,
+    "ruleLength": 285,
     "canonicalLength": 234,
-    "reminderLength": 98,
+    "reminderLength": 114,
     "contrasts": [],
     "extensions": [],
     "objective": "Vérifier si la distribution et la qualité de la main justifient une intervention conventionnelle ou Passe.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalThresholdFollowup": "Relecture du lot historique du 2 novembre et du catalogue figé ; précision du contexte ou du rappel, sans changement de réponse."
   },
   {
     "concept": "rubensohl.naturel",
@@ -2722,7 +3586,36 @@
     "canonicalLength": 285,
     "reminderLength": 99,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-99",
+        "title": "Distinguer contre d’appel et traitement du contre artificiel",
+        "sources": [
+          "SEF-L01-C-04"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître les réponses conservées face au contre artificiel décrit par l'accord étudié.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -2810,10 +3703,41 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-98",
+        "title": "Demande d’arrêt distincte des Texas",
+        "sources": [
+          "SEF-L27-006"
+        ],
+        "minCompleted": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
       }
     ],
     "objective": "Reconnaître le transfert vers les Trèfles après l'intervention adverse prévue par l'accord.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "michaels.intervention",
@@ -2834,7 +3758,28 @@
     "canonicalLength": 214,
     "reminderLength": 65,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-100",
+        "title": "Michaëls après soutien de l’adversaire",
+        "sources": [
+          "SEF-L13-012"
+        ],
+        "minCompleted": 44,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître la distribution bicolore majeure promise par 2♦ sur une ouverture adverse de 1♣.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -2960,7 +3905,10 @@
       }
     ],
     "objective": "Reconnaître le fit, la courte et la force qui justifient un Splinter dans la séquence étudiée.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "competitif.spoutnik",
@@ -2981,9 +3929,33 @@
     "canonicalLength": 248,
     "reminderLength": 95,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-109",
+        "title": "Chercher les deux majeures après 1♦–(2♣)",
+        "sources": [
+          "SEF-V410-027"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître quand le contre Spoutnik recherche quatre Cœurs plutôt qu'une pénalité.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "ouv.position",
@@ -3131,9 +4103,112 @@
     "canonicalLength": 307,
     "reminderLength": 100,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-80",
+        "title": "1SA libre : l’arrêt change la décision",
+        "sources": [
+          "SEF-V471-002"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-81",
+        "title": "Fit ou longue après la parole adverse",
+        "sources": [
+          "SEF-V471-003",
+          "SEF-V471-004"
+        ],
+        "minCompleted": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-82",
+        "title": "1SA obligé et 2SA libre",
+        "sources": [
+          "SEF-V471-005",
+          "SEF-V471-006"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V471 et corrigés de la base figée ; aucune homologation nouvelle."
+      },
+      {
+        "id": "m5-ext-83",
+        "title": "Contre et surcontre de soutien",
+        "sources": [
+          "SEF-V472-005",
+          "SEF-V472-006"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.competitif",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V472 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Reconnaître quand l'intervention du quatrième joueur permet à l'ouvreur minimal de passer.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "michaels.defense",
@@ -3162,9 +4237,42 @@
     "canonicalLength": 281,
     "reminderLength": 96,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-59",
+        "title": "Classer les deux cue-bids après un bicolore mineur",
+        "sources": [
+          "SEF-V473-009",
+          "SEF-V473-010"
+        ],
+        "minCompleted": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.defense",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier les couleurs promises par l'intervention bicolore adverse avant de choisir une réponse ou Passe.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "chelem.blackwood.suite",
@@ -3185,7 +4293,7 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 231,
+    "ruleLength": 312,
     "canonicalLength": 305,
     "reminderLength": 102,
     "contrasts": [
@@ -3222,7 +4330,59 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-53",
+        "title": "Évaluer le coût de la question à la Dame",
+        "sources": [
+          "SEF-V474-001",
+          "SEF-V474-002",
+          "SEF-V474-003"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V474 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-103",
+        "title": "Cinq clés : petit ou grand chelem selon le bilan",
+        "sources": [
+          "SEF-L02-E-17",
+          "SEF-L02-E-18"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique Lot A et L02 et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Compter les clés du camp après la réponse codée et reconnaître quand renoncer au chelem.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3253,7 +4413,38 @@
     "canonicalLength": 299,
     "reminderLength": 116,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-54",
+        "title": "Même enchère, sens différent pour la Dame",
+        "sources": [
+          "SEF-V474-008",
+          "SEF-V474-009",
+          "SEF-V474-010"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.blackwood.dame_rois",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V474 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer la Dame d'atout du Roi déjà compté comme clé et répondre à l'interrogation prévue.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3326,10 +4517,75 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-51",
+        "title": "Passer ou conclure sur l'unicolore fort",
+        "sources": [
+          "SEF-V475-009",
+          "SEF-V475-010"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-52",
+        "title": "Choisir la majeure du bicolore fort",
+        "sources": [
+          "SEF-V475-008"
+        ],
+        "minCompleted": 35,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-87",
+        "title": "S’arrêter après une mineure très forte",
+        "sources": [
+          "SEF-V487-005"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
       }
     ],
     "objective": "Évaluer si sa main justifie de poursuivre après 2♣–2♦–2SA ou permet de passer.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "contre.deux_faible",
@@ -3402,10 +4658,64 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-55",
+        "title": "Redemander minimum après le mini-cue-bid",
+        "sources": [
+          "SEF-V476-012",
+          "SEF-V476-013"
+        ],
+        "minCompleted": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V476 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-56",
+        "title": "Redemander fort après le mini-cue-bid",
+        "sources": [
+          "SEF-V476-014",
+          "SEF-V476-015"
+        ],
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V476 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Reconnaître une réponse minimale non forcing au contre d'appel d'un deux faible.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "michaels.reponse",
@@ -3426,9 +4736,76 @@
     "canonicalLength": 209,
     "reminderLength": 102,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-57",
+        "title": "Réagir au soutien du troisième joueur",
+        "sources": [
+          "SEF-V478-001",
+          "SEF-V478-003"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V478 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-58",
+        "title": "La vulnérabilité et les couvrantes au palier de quatre",
+        "sources": [
+          "SEF-V478-002",
+          "SEF-V478-006",
+          "SEF-V478-008"
+        ],
+        "minCompleted": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V478 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-105",
+        "title": "Dix atouts sans courte : le risque reste déterminant",
+        "sources": [
+          "SEF-V478-005"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 118 clôtures et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Comparer ses fits dans les deux couleurs promises et choisir une préférence économique.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "multilandy.reponse",
@@ -3512,7 +4889,8 @@
       }
     ],
     "objective": "Distinguer une préférence majeure directe du relais qui demande de départager les majeures.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "historicalFollowup": "Relecture ciblée #364 : formulation précisée, exemples et seuils historiques conservés."
   },
   {
     "concept": "multilandy.suite",
@@ -3533,7 +4911,74 @@
     "canonicalLength": 292,
     "reminderLength": 97,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-60",
+        "title": "Répondre au passe-ou-corrige de la majeure",
+        "sources": [
+          "SEF-V479-010",
+          "SEF-V479-011",
+          "SEF-V479-012",
+          "SEF-V479-013"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V479 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-61",
+        "title": "Répondre au passe-ou-corrige de la mineure",
+        "sources": [
+          "SEF-V479-014",
+          "SEF-V479-015"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V479 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-97",
+        "title": "Deux grilles distinctes pour le relais positif 2SA",
+        "sources": [
+          "SEF-L14-002",
+          "SEF-L14-003",
+          "SEF-L14-004"
+        ],
+        "minCompleted": 44,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Répondre au relais 2♦ Landy en indiquant la majeure la plus longue dans le cas étudié.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3556,7 +5001,53 @@
     "canonicalLength": 223,
     "reminderLength": 93,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-64",
+        "title": "Répondre au Texas impossible après 2♥",
+        "sources": [
+          "SEF-V481-002",
+          "SEF-V481-003",
+          "SEF-V481-005"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V481 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-65",
+        "title": "Répondre au Texas impossible après 2♦",
+        "sources": [
+          "SEF-V481-007",
+          "SEF-V481-009",
+          "SEF-V481-010",
+          "SEF-V481-012"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V481 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier la couleur demandée par 2SA Rubensohl et effectuer la rectification correspondante.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3610,7 +5101,35 @@
     "canonicalLength": 284,
     "reminderLength": 93,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-66",
+        "title": "Après Texas mineur : courte ou partielle",
+        "sources": [
+          "SEF-V482-004",
+          "SEF-V482-005",
+          "SEF-V482-006",
+          "SEF-V482-007"
+        ],
+        "minCompleted": 15,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V482 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer l'arrêt en partielle et la poursuite constructive après rectification du Texas mineur.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3633,9 +5152,35 @@
     "canonicalLength": 214,
     "reminderLength": 96,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-67",
+        "title": "Priorité économique et contrôle sauté",
+        "sources": [
+          "SEF-V483-010",
+          "SEF-V483-008",
+          "SEF-V483-014"
+        ],
+        "minCompleted": 43,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V483 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier les contrôles de premier et second tour et reconnaître quand freiner avant le Blackwood.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "drury.suite",
@@ -3660,9 +5205,51 @@
     "canonicalLength": 264,
     "reminderLength": 95,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-68",
+        "title": "Décrire le singleton après 2SA fitté tardif",
+        "sources": [
+          "SEF-V484-005",
+          "SEF-V484-006",
+          "SEF-V484-007"
+        ],
+        "minCompleted": 30,
+        "requires": [
+          {
+            "concept": "drury.choix",
+            "minExposure": 2
+          },
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V484 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer le soutien à trois et celui à quatre atouts après la réponse d'attente au Drury.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "fit.2sa.suite",
@@ -3747,7 +5334,11 @@
       }
     ],
     "objective": "Évaluer la main de l'ouvreur pour accepter ou refuser l'invitation du 2SA fitté direct.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "forcing.quatrieme.suite",
@@ -3772,9 +5363,39 @@
     "canonicalLength": 316,
     "reminderLength": 87,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-88",
+        "title": "Répéter la quatrième couleur ou soutenir avec ambition",
+        "sources": [
+          "SEF-V487-006",
+          "SEF-V487-007"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Utiliser l'information de fit ou d'arrêt apportée par la réponse à la quatrième couleur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "chelem.quantitatif.suite",
@@ -3799,9 +5420,41 @@
     "canonicalLength": 283,
     "reminderLength": 103,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-86",
+        "title": "Inviter au chelem après un 2♣ fort",
+        "sources": [
+          "SEF-V487-003"
+        ],
+        "minCompleted": 45,
+        "requires": [
+          {
+            "concept": "chelem.quantitatif",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.quantitatif.suite",
+            "minExposure": 2
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture V487 et corrigés de la base figée ; aucune homologation nouvelle."
+      }
+    ],
     "objective": "Décider si la force de l'ouvreur justifie d'accepter l'invitation quantitative à 6SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "chelem.blackwood.declenchement",
@@ -3828,7 +5481,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Vérifier le fit, la perspective de chelem et les contrôles avant de demander les clés.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "rubensohl.suite",
@@ -3899,7 +5555,11 @@
     ],
     "extensions": [],
     "objective": "Distinguer les réponses conventionnelles et naturelles après 1SA adverse selon l'ouverture du partenaire.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+      "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+    ]
   },
   {
     "concept": "sa.gambling",
@@ -3953,7 +5613,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Comparer couleur, contre et SA en position de réveil et vérifier la tenue adverse requise.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   },
   {
     "concept": "forcing.checkback",
@@ -3984,7 +5647,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître le relais dans l'autre mineure après la redemande à saut de 2SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+    ]
   },
   {
     "concept": "chelem.splinter.variante",
@@ -4013,9 +5679,45 @@
     "canonicalLength": 232,
     "reminderLength": 84,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-104",
+        "title": "Splinter après 2♣ fort indéterminé",
+        "sources": [
+          "SEF-L20-002"
+        ],
+        "minCompleted": 48,
+        "requires": [
+          {
+            "concept": "chelem.controles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.splinter",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.splinter.variante",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Décision historique 29 dossiers et corrigés figés ; portée contextualisée et aucune homologation nouvelle."
+      }
+    ],
     "objective": "Identifier le fit et la courte décrits par le saut conventionnel après la seconde couleur de l'ouvreur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "second.bicolore_cher",
@@ -4042,7 +5744,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Distinguer la répétition économique forcing un tour d'une répétition à saut plus constructive.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+    ]
   },
   {
     "concept": "forcing.troisieme.suite",
@@ -4069,7 +5774,10 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître le fit huitième révélé par la réponse à la troisième couleur et conclure selon la force.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa2.texas.reponse",
@@ -4334,7 +6042,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître le double cinq majeur décrit par 4♦ sur 2SA et comprendre la décision laissée à l'ouvreur.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "intervenir.sa.suite",
@@ -4365,7 +6077,11 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Reconnaître le contexte où Stayman et Texas restent utilisables après l'intervention naturelle à 1SA du partenaire.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+      "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+    ]
   },
   {
     "concept": "sa2.texas_mineur.reponse",
@@ -4400,6 +6116,9 @@
     "contrasts": [],
     "extensions": [],
     "objective": "Distinguer 3SA et 4♣ selon la qualité du soutien au Texas Trèfle sur 2SA.",
-    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
+    "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed",
+    "glossaryAdded": [
+      "SA signifie Sans-Atout."
+    ]
   }
 ]
