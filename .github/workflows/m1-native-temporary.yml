@@ -1,0 +1,91 @@
+name: QPJB M1 — recette native temporaire
+on:
+  pull_request:
+    branches: ['apprentissage-durable/m1-adaptation']
+    paths: ['.github/workflows/m1-native-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5e2a9ccadf4a303b0528232930b0b4596b7c1263
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = 5e2a9ccadf4a303b0528232930b0b4596b7c1263
+          node tests/durable-m1-contract.cjs | tee m1-contract.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1-contract-5e2a9cc
+          path: m1-contract.log
+          if-no-files-found: error
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: autonome
+            seed: 11
+          - profile: autonome
+            seed: 47
+          - profile: autonome
+            seed: 103
+          - profile: intermediaire
+            seed: 11
+          - profile: intermediaire
+            seed: 47
+          - profile: intermediaire
+            seed: 103
+          - profile: passe
+            seed: 11
+          - profile: passe
+            seed: 47
+          - profile: passe
+            seed: 103
+          - profile: faible
+            seed: 11
+          - profile: faible
+            seed: 103
+          - profile: longueur
+            seed: 47
+          - profile: fit
+            seed: 47
+          - profile: forcing
+            seed: 47
+          - profile: convention
+            seed: 47
+          - profile: competition
+            seed: 47
+          - profile: recuperation
+            seed: 47
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5e2a9ccadf4a303b0528232930b0b4596b7c1263
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Candidate against preserved witness
+        shell: bash
+        run: |
+          set -o pipefail
+          test "$(git rev-parse HEAD)" = 5e2a9ccadf4a303b0528232930b0b4596b7c1263
+          node tests/durable-m1-native.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" | tee m1-proof.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1-${{ matrix.profile }}-${{ matrix.seed }}
+          path: m1-proof.json
+          if-no-files-found: error
