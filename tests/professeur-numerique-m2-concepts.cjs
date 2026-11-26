@@ -64,3 +64,9 @@ const verify=function verify(api,qs,meta,assert){
  return report;
 };
 console.log(verify(api,qs,meta,assert.ok));
+
+const checkContextPairs=function checkContextPairs(api,assert){
+ const pairs=new Map();for(const [k,d] of Object.entries(api.concepts))for(const p of d.contextContrasts||[]){assert(p.concepts.includes(k)&&p.proof==="non_automatique","context pair contract");assert(api.classify(p.a)&&api.classify(p.b)&&p.criterion,"context pair traceability");pairs.set(p.a+"|"+p.b,p);}
+ assert(pairs.size===14,"14 teacher contrasts");assert(pairs.has("SEF-V44-013|SEF-L01-A-01"),"4SA contextual meaning");return pairs.size;
+};
+console.log('Contrastes didactiques :',checkContextPairs(api,assert.ok));
