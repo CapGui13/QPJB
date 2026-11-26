@@ -24,4 +24,9 @@ assert.equal(prep(4,[],qs,{a:{result:'correct',lastSession:0,assessment:null}}).
 assert.equal(prep(1,[event(1,'a','wrong')],[qs[1]]).rank(qs[0]),null);
 const state={completed:1,journal:[event(1,'a','wrong')],entries:{}},before=JSON.stringify(state);
 P.prepare({state,metadata,exercises:qs,candidates:qs});assert.equal(JSON.stringify(state),before);
+const cstate={completed:9,journal:[event(1,'b'),event(9,'a','wrong')],entries:{}};
+const C=P.prepare({state:cstate,metadata,exercises:qs,candidates:qs,mode:'C'});
+assert.equal(C.replacement(qs[0],qs).id,'b');
+assert.equal(C.replacement(qs[0],[qs[2],qs[3],qs[4]]),null);
+assert.equal(C.replacement(qs[0],qs,{x:1}),null);
 console.log('M2 unit assertions OK');
