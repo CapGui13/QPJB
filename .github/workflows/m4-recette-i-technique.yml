@@ -1,0 +1,42 @@
+name: M4 I recette maintenance protegee native
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 22ac8b18b29f3b392bc44043caadc6a6919776aa
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests unitaires
+        run: |
+          node tests/coherence-concrete-m4-unit.cjs
+          node tests/coherence-concrete-m4-reactivation.cjs
+          node tests/coherence-concrete-m4-cautious.cjs
+          node tests/coherence-concrete-m4-atomic.cjs
+          node tests/coherence-concrete-m4-recall.cjs
+          node tests/coherence-concrete-m4-reserve.cjs
+      - name: Campagne M4 I S180
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          POLICY: I
+          HORIZON: 180
+          OUT: /tmp/m4-i
+        run: node tests/coherence-concrete-m4-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-i-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4-i
+          retention-days: 14
