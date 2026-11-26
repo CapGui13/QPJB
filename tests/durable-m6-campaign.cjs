@@ -120,7 +120,7 @@ if(require.main===module){
  }
  else if(cmd==='legacy')result=legacy(gitSources);
  else if(cmd==='size'){
- const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js'];
+ const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js',...['quizz-durable-m1-adaptation.js','quizz-durable-m2-data.js','quizz-durable-m2-remediation.js','quizz-durable-m3-maitrise.js','quizz-durable-m4-transfert.js','quizz-durable-m5-lecons.js','quizz-durable-integration.js'].filter(p=>fs.existsSync(path.join(root,p)))];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
  }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));

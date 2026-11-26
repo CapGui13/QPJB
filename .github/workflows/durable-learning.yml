@@ -1,0 +1,146 @@
+# Coordinator #396: candidate receipt, no deployment. Durable checks independent of branch name.
+name: QPJB — laboratoire apprentissage durable
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'quizz.html'
+      - 'quizz-*.js'
+      - 'parcours-recommandations.js'
+      - 'service-worker.js'
+      - 'scripts/build*.py'
+      - 'tests/durable-m6-*.cjs'
+      - 'tests/durable-integration-*.cjs'
+      - 'tests/quizz-progression-selection-assets.cjs'
+      - 'tests/progression-guidee-offline.cjs'
+      - 'tests/quizz-*.cjs'
+      - 'audits/apprentissage-durable-20261126/**'
+      - '.github/workflows/durable-learning.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '20 2 * * 1'
+permissions:
+  contents: read
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/durable-integration-contract.cjs
+          node tests/durable-integration-evidence.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-catalogue-live.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1915
+          node tests/durable-m6-unit.cjs
+          node tests/durable-m6-guards.cjs
+          node tests/durable-m6-evidence.cjs
+          node tests/durable-m6-assets.cjs
+          node tests/durable-m6-register.cjs
+          node tests/durable-m6-campaign.cjs legacy
+          node tests/durable-m6-campaign.cjs size > sizes.json
+          node tests/durable-m6-campaign.cjs pair intermediaire 47 20 > quick-pair.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-quick
+          path: |
+            sizes.json
+            quick-pair.json
+  longitudinal:
+    needs: quick
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Paired reference and candidate through S180
+        run: node tests/durable-m6-campaign.cjs pair ${{ matrix.profile }} ${{ matrix.seed }} 180 > paired.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-${{ matrix.profile }}-${{ matrix.seed }}
+          path: paired.json
+  sensitivity:
+    needs: quick
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/durable-m6-campaign.cjs sensitivity-pair intermediaire 47 65 > sensitivity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-sensitivity
+          path: sensitivity.json
+  semantic:
+    needs: quick
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {profile: cible, seed: 47}
+          - {profile: faible, seed: 103}
+          - {profile: aide, seed: 11}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/durable-m6-campaign.cjs semantic-pair ${{ matrix.profile }} ${{ matrix.seed }} 65 > semantic.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-semantic-${{ matrix.profile }}-${{ matrix.seed }}
+          path: semantic.json
+  browsers:
+    needs: quick
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: python3 scripts/build_catalogue.py && python3 scripts/build_public_site.py --output _public_site
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/durable-integration-browser.cjs _public_site > browser-integration.json
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/durable-m6-browser.cjs _public_site > browser-performance.json
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/progression-guidee-offline.cjs _public_site
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-production-browser.cjs
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-browser-${{ matrix.browser }}
+          path: |
+            browser-integration.json
+            browser-performance.json
