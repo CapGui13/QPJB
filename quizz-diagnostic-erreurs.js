@@ -21,7 +21,7 @@ return (function factory(byId,signature){
     }
     return {last,side,double,steps};
   }
-  function diagnose(input={}){
+  function diagnoseBase(input={}){
     const {exercise:x,choice,assisted=false,hadFreeError=false}=input||{};
     if(!x||!call(x.answer)||!call(choice))return unknown('Réponse absente ou non reconnue.',{rule:'invalid-call'});
     if(choice===x.answer)return {status:'correct',category:'inconnu',reason:'La réponse formulée correspond au corrigé ; elle ne permet pas de déduire une maîtrise ni une erreur antérieure.',confidence:'high',evidence:{rule:'correct',choice,assisted:!!assisted,hadFreeError:!!hadFreeError}};
@@ -419,6 +419,49 @@ return (function factory(byId,signature){
       }
     }
     return unknown('Plusieurs causes restent possibles ; le seul choix ne permet pas de privilégier une hypothèse suffisamment étayée.',{...ev,rule:'ambiguous'});
+  }
+
+  // Seconde passe : seulement les options encore non attribuées, sur cas signé.
+  // Aucun diagnostic existant ni HOLD n'est supplanté.
+  function diagnose(input={}){
+    const d=diagnoseBase(input);
+    if(d.status!=='unknown'||!['ambiguous','canonical-ambiguous-contrast'].includes(d.evidence.rule))return d;
+    const {exercise:x,choice}=input, {concept:c,h,shape}=d.evidence;
+    const a=bid(x.answer),z=bid(choice),st=auctionState(x.auction),steps=st.steps,first=steps.filter(s=>s[1]!=='Passe');
+    const p=first[0]&&bid(first[0][1]),len=s=>shape[suits.indexOf(s)],major=s=>s==='♥'||s==='♠',minor=s=>s==='♣'||s==='♦';
+    const hl=h+shape.reduce((v,n)=>v+Math.max(0,n-4),0);
+    const t=x.explain||'', H=(category,rule,reason,confidence='medium')=>({status:'hypothesis',category,reason,confidence,evidence:{...d.evidence,rule}});
+    if(first.length===1&&first[0][0]==='Partenaire'&&p&&p[1]==='1'&&p[2]!=='SA'){
+      if(['mineur.base','majeur.base'].includes(c)&&choice==='Passe'&&a&&a[1]==='1'&&a[2]!==p[2]&&h>=6)
+        return H('force','pn-response-pass-values','La main dispose de valeurs suffisantes pour la réponse économique validée ; passer peut traduire un seuil de réponse trop élevé.');
+      if(c==='mineur.base'&&minor(p[2])&&x.answer==='1♥'&&choice==='1♠'&&len('♥')===4&&len('♠')===4&&/moins chère|économique|d.abord|priorit/i.test(t))
+        return H('priorite','pn-response-two-four-majors','Les deux majeures comptent quatre cartes ; commencer par les Cœurs préserve la possibilité de découvrir les Piques au palier de un.','high');
+      if(c==='majeur.soutien'&&major(p[2])&&x.answer==='2'+p[2]&&len(p[2])>=3&&h>=6&&choice==='Passe')
+        return H('force','pn-support-pass-values','Le fit est établi et les points H seuls atteignent déjà le seuil du soutien simple ; passer peut traduire un seuil de soutien trop élevé.');
+      if(c==='majeur.soutien'&&major(p[2])&&x.answer==='2'+p[2]&&len(p[2])===3&&h<=8&&choice==='2SA'&&/6[–-]10 HLD|première zone/.test(t))
+        return H('convention','pn-support-simple-vs-fitted-sa','Avec trois atouts, le corrigé retient la première zone de soutien ; le 2SA fitté appartient à une zone constructive différente.');
+      if(c==='majeur.soutien'&&major(p[2])&&x.answer==='Passe'&&z&&z[2]===p[2]&&len(p[2])>=3&&h<=2&&/trop faible|sous les 6|sans les 6|insuffisante/i.test(t))
+        return H('force','pn-support-insufficient-values','Le fit existe, mais le corrigé indique que sa valorisation ne suffit pas pour un soutien ; distinguer longueur d’atout et force de soutien.');
+      if(['mineur.base','majeur.base'].includes(c)&&x.answer==='1SA'&&z&&z[1]==='2'&&z[2]!==p[2]&&z[2]!=='SA'&&h<11&&hl<12&&((p[2]==='♦'&&z[2]==='♣')||(major(p[2])&&minor(z[2]))||(p[2]==='♠'&&z[2]==='♥')))
+        return H('force','pn-response-two-over-one-values','La force est inférieure aux seuils enseignés de 11 H ou 12 HL pour un changement de couleur naturel au palier de deux.','high');
+    }
+    if(c==='intervenir.base'&&steps.length===1&&first[0][0]==='Adversaire'&&p&&p[1]==='1'&&p[2]!=='SA'){
+      if(choice==='1SA'&&hl<=15)return H('force','pn-direct-sa-overcall-values','La main est en dessous de la zone de 16–18 HL enseignée pour l’intervention directe à 1SA ; une tenue éventuelle ne suffit pas.','high');
+      if(choice==='Contre'&&x.answer==='Passe'&&h<=4&&Math.max(...shape)<=4)return H('force','pn-direct-double-weak','La main ne détient que quatre points H au plus, sans longue ; le corrigé ne justifie pas un contre d’appel.');
+      if(choice==='Passe'&&x.answer==='Contre'&&h>=12&&len(p[2])<=1&&shape.filter((_,i)=>suits[i]!==p[2]).every(n=>n===4))
+        return H('competition','pn-direct-takeout-tricolor','Le corrigé exploite le singleton adverse et les trois couleurs quatrièmes par le contre d’appel ; passer peut correspondre à une méconnaissance de ce contexte.');
+    }
+    if(c==='second.base'&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'&&first[2][1]==='1SA'&&a&&a[1]==='2'&&major(a[2])&&first[1][1]==='1'+a[2]&&len(a[2])>=6&&h<=9&&choice==='Passe')
+      return H('distribution','pn-responder-six-card-preference','La répétition au palier de deux est faible ; la sixième donne une préférence pour l’atout plutôt que pour la partielle à SA.');
+    if(c==='red.base'&&first.length===2&&first[0][0]==='Vous'&&first[1][0]==='Partenaire'&&first[1][1]==='1♥'&&x.answer==='2♥'&&choice==='1♠'&&len('♥')>=4&&len('♠')<4)
+      return H('distribution','pn-opener-invented-spades','Le soutien Cœur est disponible, tandis que la redemande naturelle à 1♠ promettrait une quatrième carte absente.','high');
+    if(c==='red.competitif'&&x.answer==='Passe'&&choice==='1SA'&&first.length===3&&first[2][0]==='Adversaire'&&/aucune tenue|sans tenue|pas d.arrêt|aucun arrêt/i.test(t))
+      return H('contexte','pn-competitive-rebid-no-stopper','Le corrigé indique l’absence de tenue dans la couleur d’intervention ; la redemande libre à SA ne convient pas à ce contexte.');
+    if(c==='reveil.base'&&steps.length===3&&steps[0][0]==='Adversaire'&&steps[1][1]==='Passe'&&steps[2][1]==='Passe'){
+      if(x.answer==='1SA'&&choice==='2SA'&&h<=13&&/10[–-]13 H/.test(t))return H('force','pn-balancing-sa-level','Le corrigé place la main dans la zone de réveil à 1SA ; le saut à 2SA exprimerait une force supérieure.');
+      if(choice==='1SA'&&h<10&&x.answer!=='1SA'&&x.answer!=='2SA')return H('force','pn-balancing-sa-low','Même en position de réveil, la force est inférieure à la zone de 10–13 H étudiée pour 1SA.');
+    }
+    return d;
   }
   return Object.freeze({schema,diagnose});
 })(byId,signature);

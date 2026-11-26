@@ -7,32 +7,32 @@
     "wrongOptions": 5637,
     "initialStructuredDiagnostics": 0,
     "afterModule": {
-      "hypothesis": 2315,
-      "unknown": 3322,
+      "hypothesis": 2476,
+      "unknown": 3161,
       "correct": 0
     },
-    "afterPatchesHypotheses": 2315,
+    "afterPatchesHypotheses": 2476,
     "categories": {
-      "priorite": 210,
-      "force": 503,
-      "distribution": 219,
-      "inconnu": 3322,
+      "priorite": 215,
+      "force": 642,
+      "distribution": 223,
+      "inconnu": 3161,
       "fit": 366,
       "niveau": 412,
-      "convention": 436,
+      "convention": 440,
       "forcing": 48,
-      "competition": 66,
-      "contexte": 55
+      "competition": 74,
+      "contexte": 56
     },
     "distinctHypothesisCategoriesPerQuestionSum": {
-      "beforePatches": 1765,
-      "afterPatches": 1772
+      "beforePatches": 1885,
+      "afterPatches": 1892
     },
     "patches": 7,
     "performance": {
       "environment": "V8 exact UMD source, CommonJS/window emulation; not Node/browser",
       "calls": 37580,
-      "elapsedMs": 1995
+      "elapsedMs": 1651
     },
     "goals": {
       "catalogueCoverage": 1879,
@@ -47,7 +47,7 @@
       "opening-sa-zone": 67,
       "opening-major-length": 38,
       "opening-pass": 35,
-      "ambiguous": 3124,
+      "ambiguous": 2966,
       "opening-major-first": 16,
       "opening-sa-shape": 9,
       "opening-best-minor": 27,
@@ -55,14 +55,19 @@
       "response-major-before-minor-support": 13,
       "response-major-before-sa": 32,
       "response-obvious-threshold": 36,
+      "pn-response-pass-values": 40,
       "response-threshold": 14,
       "minor-response-insufficient-fit": 6,
-      "canonical-ambiguous-contrast": 196,
+      "pn-response-two-four-majors": 5,
+      "canonical-ambiguous-contrast": 193,
       "same-denomination-natural-level": 263,
       "response-major-length": 9,
+      "pn-response-two-over-one-values": 21,
       "response-two-level-weak": 17,
       "response-too-weak": 17,
       "major-support-vs-sa": 20,
+      "pn-support-pass-values": 18,
+      "pn-support-insufficient-values": 4,
       "sa-response-threshold": 24,
       "stayman-vs-texas": 18,
       "texas-pass": 9,
@@ -87,14 +92,17 @@
       "response-diamond-before-1sa": 5,
       "two-over-one-threshold": 11,
       "two-over-one-vs-1sa": 33,
+      "pn-support-simple-vs-fitted-sa": 4,
       "fit-2sa": 12,
       "response-premature-two-level": 5,
       "response-major-before-1sa": 10,
       "major-support-short": 36,
       "rebid-show-fit": 13,
       "rebid-fit-before-repeat": 9,
+      "pn-opener-invented-spades": 3,
       "rebid-new-major-length": 2,
       "roudi-vs-nonforcing-repeat": 9,
+      "pn-responder-six-card-preference": 1,
       "responder-regular-invite": 12,
       "responder-regular-vs-repeat": 3,
       "stayman-fit-vs-sa": 17,
@@ -106,8 +114,11 @@
       "overcall-pass-values": 27,
       "direct-overcall-sa-zone": 26,
       "natural-overcall-vs-double": 32,
+      "pn-direct-sa-overcall-values": 29,
       "minor-overcall-vs-double": 5,
       "canonical-explicit-contrast": 195,
+      "pn-direct-takeout-tricolor": 8,
+      "pn-direct-double-weak": 4,
       "takeout-double-weak-sa": 17,
       "response-to-takeout-double": 21,
       "takeout-double-major-first": 8,
@@ -127,8 +138,10 @@
       "reply-two-level-overcall-pass": 1,
       "reply-two-level-overcall-fit": 4,
       "balancing-position-pass": 14,
+      "pn-balancing-sa-low": 16,
       "balancing-natural-vs-double": 11,
       "balancing-strong-double": 7,
+      "pn-balancing-sa-level": 7,
       "responder-repeat-level": 4,
       "roudi-four-cards": 6,
       "roudi-response-code": 42,
@@ -160,6 +173,7 @@
       "passed-partner-opening": 4,
       "weak-two-inquiry-vs-raise": 4,
       "truscott-vs-direct-raise": 13,
+      "pn-competitive-rebid-no-stopper": 1,
       "truscott-raise-level": 5,
       "blackwood-queen-kings": 24,
       "two-suiter-preference": 13,
@@ -185,19 +199,19 @@
       "2sa-major-choice": 2
     },
     "conceptsWithHypothesis": 99,
-    "questionsWithHypothesis": 1199,
+    "questionsWithHypothesis": 1252,
     "holdTextualSignals": 8,
     "confidences": {
-      "high": 761,
-      "medium": 1359,
-      "low": 195
+      "high": 819,
+      "low": 3356,
+      "medium": 1462
     },
     "holdAfterManualReview": 2,
     "testHarness": {
-      "mode": "Exact .cjs executed with in-memory V8 shims for fs/path/vm; native Node not run",
+      "mode": "Exact diagnostic and plausibility CJS executed with in-memory V8 shims for fs/path/vm/assert; native Node not run",
       "output": [
-        "{\"counts\":{\"hypothesis\":2315,\"unknown\":3322,\"correct\":0},\"categories\":{\"priorite\":210,\"force\":503,\"distribution\":219,\"inconnu\":3322,\"fit\":366,\"niveau\":412,\"convention\":436,\"forcing\":48,\"competition\":66,\"contexte\":55},\"afterHyp\":2315,\"beforeDistinct\":1765,\"afterDistinct\":1772,\"elapsedMs\":1995}",
-        "{\"before\":{\"options\":5637,\"sameFamily\":265,\"sameContext\":1562,\"sameAuction\":1648,\"noCatalogueExample\":2162,\"unknownWithExample\":1775,\"unknownWithoutExample\":1547,\"conflicts\":0,\"sameRulePairs\":516},\"after\":{\"options\":5637,\"sameFamily\":265,\"sameContext\":1560,\"sameAuction\":1649,\"noCatalogueExample\":2163,\"unknownWithExample\":1775,\"unknownWithoutExample\":1547,\"conflicts\":0,\"sameRulePairs\":509}}"
+        "{\"counts\":{\"hypothesis\":2476,\"unknown\":3161,\"correct\":0},\"categories\":{\"priorite\":215,\"force\":642,\"distribution\":223,\"inconnu\":3161,\"fit\":366,\"niveau\":412,\"convention\":440,\"forcing\":48,\"competition\":74,\"contexte\":56},\"afterHyp\":2476,\"beforeDistinct\":1885,\"afterDistinct\":1892,\"elapsedMs\":1651}",
+        "{\"before\":{\"options\":5637,\"sameFamily\":265,\"sameContext\":1562,\"sameAuction\":1648,\"noCatalogueExample\":2162,\"unknownWithExample\":1623,\"unknownWithoutExample\":1538,\"conflicts\":0,\"sameRulePairs\":523},\"after\":{\"options\":5637,\"sameFamily\":265,\"sameContext\":1560,\"sameAuction\":1649,\"noCatalogueExample\":2163,\"unknownWithExample\":1623,\"unknownWithoutExample\":1538,\"conflicts\":0,\"sameRulePairs\":516}}"
       ]
     },
     "continuation": {
@@ -227,10 +241,10 @@
         "sameContext": 1562,
         "sameAuction": 1648,
         "noCatalogueExample": 2162,
-        "unknownWithExample": 1775,
-        "unknownWithoutExample": 1547,
+        "unknownWithExample": 1623,
+        "unknownWithoutExample": 1538,
         "conflicts": 0,
-        "sameRulePairs": 516
+        "sameRulePairs": 523
       },
       "after": {
         "options": 5637,
@@ -238,11 +252,35 @@
         "sameContext": 1560,
         "sameAuction": 1649,
         "noCatalogueExample": 2163,
-        "unknownWithExample": 1775,
-        "unknownWithoutExample": 1547,
+        "unknownWithExample": 1623,
+        "unknownWithoutExample": 1538,
         "conflicts": 0,
-        "sameRulePairs": 509
+        "sameRulePairs": 516
       }
+    },
+    "reprise": {
+      "previousSHA": "592f55435c82574658cb4d616d7f4971735f6948",
+      "previousHypotheses": 2315,
+      "newHypotheses": 161,
+      "priorOutputsChanged": 0,
+      "ruleCounts": {
+        "pn-response-pass-values": 40,
+        "pn-response-two-four-majors": 5,
+        "pn-response-two-over-one-values": 21,
+        "pn-support-pass-values": 18,
+        "pn-support-insufficient-values": 4,
+        "pn-support-simple-vs-fitted-sa": 4,
+        "pn-opener-invented-spades": 3,
+        "pn-responder-six-card-preference": 1,
+        "pn-direct-sa-overcall-values": 29,
+        "pn-direct-takeout-tricolor": 8,
+        "pn-direct-double-weak": 4,
+        "pn-balancing-sa-low": 16,
+        "pn-balancing-sa-level": 7,
+        "pn-competitive-rebid-no-stopper": 1
+      },
+      "fixtures": 14,
+      "reviewComplete": false
     }
   },
   "byConcept": {
@@ -279,8 +317,8 @@
     "mineur.base": {
       "qcm": 94,
       "options": 282,
-      "hypothesis": 140,
-      "unknown": 142
+      "hypothesis": 174,
+      "unknown": 108
     },
     "mineur.soutien": {
       "qcm": 8,
@@ -291,8 +329,8 @@
     "majeur.soutien": {
       "qcm": 35,
       "options": 105,
-      "hypothesis": 40,
-      "unknown": 65
+      "hypothesis": 66,
+      "unknown": 39
     },
     "sa1.seuil": {
       "qcm": 24,
@@ -327,14 +365,14 @@
     "red.base": {
       "qcm": 72,
       "options": 216,
-      "hypothesis": 155,
-      "unknown": 61
+      "hypothesis": 158,
+      "unknown": 58
     },
     "second.base": {
       "qcm": 111,
       "options": 333,
-      "hypothesis": 116,
-      "unknown": 217
+      "hypothesis": 117,
+      "unknown": 216
     },
     "fit.2sa": {
       "qcm": 7,
@@ -345,8 +383,8 @@
     "majeur.base": {
       "qcm": 62,
       "options": 186,
-      "hypothesis": 124,
-      "unknown": 62
+      "hypothesis": 156,
+      "unknown": 30
     },
     "sa2.stayman": {
       "qcm": 5,
@@ -399,8 +437,8 @@
     "intervenir.base": {
       "qcm": 72,
       "options": 216,
-      "hypothesis": 82,
-      "unknown": 134
+      "hypothesis": 123,
+      "unknown": 93
     },
     "contre.base": {
       "qcm": 57,
@@ -459,8 +497,8 @@
     "reveil.base": {
       "qcm": 48,
       "options": 144,
-      "hypothesis": 44,
-      "unknown": 100
+      "hypothesis": 67,
+      "unknown": 77
     },
     "roudi.choix": {
       "qcm": 11,
@@ -633,8 +671,8 @@
     "red.competitif": {
       "qcm": 23,
       "options": 69,
-      "hypothesis": 8,
-      "unknown": 61
+      "hypothesis": 9,
+      "unknown": 60
     },
     "michaels.defense": {
       "qcm": 22,
