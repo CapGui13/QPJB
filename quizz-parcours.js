@@ -570,7 +570,7 @@
   // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
   // Même décision naturelle, transposée dans une autre couleur : éviter
   // les exercices miroirs successifs sans confondre les enchères codées.
-  function decisionPattern(q){
+  function decisionPattern(q,mode){
     const o=opener(q),a=bid(q);
     if(q.auction?.length===1){
       if(majorSupport(q))return 'fit-majeur|'+a[0];
@@ -579,6 +579,7 @@
       if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
       if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
     }
+    if(mode==='legacy')return '';
     const concept=metadata(q)?.concept;
     if(!concept||!a)return '';
     const sequence=[...(Array.isArray(q.auction)?q.auction:[]),a]
@@ -626,6 +627,17 @@
         kind:x.kind||x.target||''};
     });
     const mixedKinds=new Set(features.map(x=>x.kind).filter(Boolean)).size>1;
+    const priorityCounts=order=>{
+      let exact=0,triples=0;
+      for(let i=1;i<order.length;i++){
+        const a=exerciseOf(order[i]),b=exerciseOf(order[i-1]);
+        if(bid(a)===bid(b))exact++;
+        if(s>0&&i>1&&a.theme===b.theme&&b.theme===exerciseOf(order[i-2]).theme)triples++;
+      }
+      return {exact,triples};
+    };
+    function search(mode='m4'){
+    const legacy=mode==='legacy',wide=mode==='wide';
     let beam=[{seq:[],mask:0,cost:0,tie:0}];
     // Les sessions normales ont dix questions ; limite explicite pour API n<=20.
     for(let pos=0;pos<items.length;pos++){
@@ -659,7 +671,11 @@
           const f=features[i],l=features[node.seq.at(-1)],p=features[node.seq.at(-2)],
             pp=features[node.seq.at(-3)];
           if(last){
-            if(f.answer===l.answer)c+=300;
+            if(f.answer===l.answer)c+=legacy?100:wide?30000:300;
+            if(legacy){
+              const pattern=decisionPattern(q,'legacy');
+              if(pattern&&pattern===decisionPattern(last,'legacy'))c+=100;
+            }else{
             if(f.pattern&&f.pattern===l.pattern)c+=150;
             // Une deuxième main proche reste utile, mais pas immédiatement
             // ni après un seul exercice lorsque la séance offre une alternative.
@@ -669,8 +685,9 @@
             if(s>0&&pp&&q.theme===p.q.theme&&last.theme===pp.q.theme&&q.theme!==last.theme)c+=7;
             // Motifs intacts ; pénalité faible seulement sur les séries de 3.
             if(s>0&&mixedKinds&&p&&f.kind&&f.kind===l.kind&&f.kind===p.kind)c+=3;
+            }
             if(s>0&&q.theme===last.theme)c+=3;
-            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=300;
+            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=legacy?100:wide?30000:300;
             if(q.h===last.h&&Number.isInteger(q.h))c+=8;
             if(f.shape&&f.shape===l.shape)c+=7;
             if(context(q)===context(last)&&opener(q))c+=5;
@@ -685,9 +702,26 @@
         return items.slice();
       }
       next.sort((a,b)=>a.cost-b.cost||a.tie-b.tie);
-      beam=next.slice(0,48);
+      beam=next.slice(0,wide?192:48);
     }
     return beam[0].seq.map(i=>items[i]);
+    }
+    let ordered=search();
+    let quality=priorityCounts(ordered);
+    // Garder les anciennes garanties en priorité. Une recherche de secours
+    // n'est utile que si la première solution présente une collision.
+    if(quality.exact||quality.triples){
+      const previous=search('legacy'),prior=priorityCounts(previous);
+      if(quality.exact>prior.exact||quality.triples>prior.triples){
+        ordered=previous;quality=prior;
+      }
+      if(quality.exact||quality.triples){
+        const expanded=search('wide'),next=priorityCounts(expanded);
+        if(next.exact<=quality.exact&&next.triples<=quality.triples&&
+          next.exact+next.triples<quality.exact+quality.triples)ordered=expanded;
+      }
+    }
+    return ordered;
   }
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
