@@ -5,10 +5,10 @@
   "metrics": {
     "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
     "catalogueBefore": 1915,
-    "catalogueAfter": 1920,
+    "catalogueAfter": 1923,
     "concepts": 99,
     "familiesBefore": 1556,
-    "familiesAfter": 1561,
+    "familiesAfter": 1564,
     "historicalTransferPairs": 18,
     "historicalTransferConcepts": 22,
     "historicalPairsUnique": 35,
@@ -24,8 +24,8 @@
       "retained": 42,
       "skipped": []
     },
-    "latestPairs": 196,
-    "latestReview": "Voir revue-paires.json et mesures.json ; les liens historiques de cartographie restent un instantané de la première passe."
+    "latestPairs": 199,
+    "latestReview": "Voir revue-paires.json et mesures.json ; les liens historiques de cartographie restent un instantané de la première passe, enrichi des nouveaux ajouts."
   },
   "concepts": {
     "ouv.sa1": {
@@ -1060,7 +1060,8 @@
       "transferRoleCount": 0,
       "priorPairs": [],
       "deliveredPairs": [
-        "SEF-V3-002-1|SEF-V3-023-2"
+        "SEF-V3-002-1|SEF-V3-023-2",
+        "SEF-AD26-M4-007|V2-M2-026"
       ],
       "additions": [],
       "objective": "Conclure ou inviter après la réponse au Stayman sur 1SA en tenant compte du fit révélé ou absent.",
@@ -1169,9 +1170,12 @@
       "priorPairs": [],
       "deliveredPairs": [
         "SEF-V3-002-1|SEF-V3-023-2",
-        "SEF-Q26-M3-006|SEF-V3-021-2"
+        "SEF-Q26-M3-006|SEF-V3-021-2",
+        "SEF-AD26-M4-007|V2-M2-026"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-007"
+      ],
       "objective": "Exploiter la réponse au Stayman sur 2SA pour choisir la manche adéquate.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -3091,9 +3095,14 @@
       "deliveredPairs": [
         "SEF-V482-001|SEF-V482-003",
         "SEF-Q26-M2-001|SEF-V482-003",
-        "SEF-V3-017-2|SEF-V482-003"
+        "SEF-V3-017-2|SEF-V482-003",
+        "SEF-AD26-M4-006|V2-M2-033",
+        "SEF-AD26-M4-008|V2-M2-034"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-006",
+        "SEF-AD26-M4-008"
+      ],
       "objective": "Après la rectification mineure, arrêter ou poursuivre selon la force et les objectifs de contrat.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -72833,6 +72842,30 @@
       "disposition": "proposed_new_exercise",
       "attestedLinks": [
         "SEF-AD26-M4-004"
+      ]
+    },
+    "SEF-AD26-M4-006": {
+      "concept": "sa1.texas_mineur.suite",
+      "family": "ad26-m4-006",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "V2-M2-033"
+      ]
+    },
+    "SEF-AD26-M4-007": {
+      "concept": "sa2.stayman.suite",
+      "family": "ad26-m4-007",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "V2-M2-026"
+      ]
+    },
+    "SEF-AD26-M4-008": {
+      "concept": "sa1.texas_mineur.suite",
+      "family": "ad26-m4-008",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "V2-M2-034"
       ]
     }
   }

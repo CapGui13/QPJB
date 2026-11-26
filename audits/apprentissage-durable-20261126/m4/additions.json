@@ -464,5 +464,312 @@
         "confidence": "low"
       }
     ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-006",
+      "theme": "stayman",
+      "hand": [
+        [
+          "9",
+          "7",
+          "3"
+        ],
+        [
+          "8",
+          "6"
+        ],
+        [
+          "V",
+          "8"
+        ],
+        [
+          "D",
+          "10",
+          "9",
+          "7",
+          "4",
+          "2"
+        ]
+      ],
+      "h": 3,
+      "shape": [
+        3,
+        2,
+        2,
+        6
+      ],
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Vous : 2♠ (Texas Trèfle)",
+        "Adversaire : Passe",
+        "Partenaire : 2SA",
+        "Adversaire : Passe"
+      ],
+      "context": "Sud est à la parole. Les adversaires passent. Quelle enchère choisissez-vous dans le traitement SEF/QPJB étudié ?",
+      "answer": "3♣",
+      "choices": [
+        "Passe",
+        "3♦",
+        "3♣",
+        "3SA"
+      ],
+      "explain": "Avec 3 H et six Trèfles, votre objectif est une partielle dans la longue. Le 2SA de l’ouvreur après votre Texas Trèfle signale une modulation positive, pas une invitation naturelle à jouer à Sans-Atout. Revenez à 3♣, où le partenaire pourra s’arrêter. Vos valeurs ne justifient pas de poursuivre vers la manche.",
+      "difficulty": 3,
+      "difficultyReason": "Le réservoir explique la suite faible sur modulation positive, mais ne la pose jamais directement ; la décision doit être retrouvée sans annonce du but de partielle.",
+      "caseFamily": "ad26-m4-006"
+    },
+    "metadata": {
+      "concept": "sa1.texas_mineur.suite",
+      "stage": 2,
+      "minSession": 15,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "V2-M2-033"
+      ],
+      "rationale": "Le réservoir explique la suite faible sur modulation positive, mais ne la pose jamais directement ; la décision doit être retrouvée sans annonce du but de partielle."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "convention",
+        "reason": "Hypothèse : interpréter 2SA comme une conclusion naturelle ou un contrat où s’arrêter.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♦",
+        "category": "distribution",
+        "reason": "Hypothèse : annoncer les Carreaux au lieu de revenir à la longue déjà transférée.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3SA",
+        "category": "force",
+        "reason": "Hypothèse : confondre complément favorable et valeurs suffisantes pour la manche.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-007",
+      "theme": "stayman",
+      "hand": [
+        [
+          "V",
+          "8",
+          "2"
+        ],
+        [
+          "R",
+          "10",
+          "7",
+          "4"
+        ],
+        [
+          "R",
+          "8",
+          "3"
+        ],
+        [
+          "9",
+          "6",
+          "2"
+        ]
+      ],
+      "h": 7,
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA",
+        "Adversaire : Passe"
+      ],
+      "context": "Sud est à la parole. Les adversaires passent. Quelle enchère choisissez-vous dans le traitement SEF/QPJB étudié ?",
+      "answer": "4♣",
+      "choices": [
+        "4♦",
+        "Passe",
+        "4SA",
+        "4♣"
+      ],
+      "explain": "Avec 7 H face à 20–21 H, vous avez les valeurs de manche, sans ambition quantitative de chelem. Le 3SA de l’ouvreur au Stayman à quatre réponses annonce ses deux majeures quatrièmes ; vos quatre Cœurs donnent donc un fit 4–4. Le transfert à 4♣ demande 4♥ et laisse l’ouvreur déclarant. 4♦ transférerait vers les Piques, où vous n’avez que trois cartes.",
+      "difficulty": 4,
+      "difficultyReason": "Les deux cas historiques équivalents donnent le fit ou le but du transfert. Ici, le répondant doit identifier lui-même le sens du 3SA et sa majeure fittée avant de choisir le transfert.",
+      "caseFamily": "ad26-m4-007"
+    },
+    "metadata": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "V2-M2-026"
+      ],
+      "rationale": "Les deux cas historiques équivalents donnent le fit ou le but du transfert. Ici, le répondant doit identifier lui-même le sens du 3SA et sa majeure fittée avant de choisir le transfert."
+    },
+    "diagnostics": [
+      {
+        "choice": "4♦",
+        "category": "distribution",
+        "reason": "Hypothèse : choisir le transfert Pique malgré seulement trois Piques.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "Passe",
+        "category": "convention",
+        "reason": "Hypothèse : lire le 3SA conventionnel comme une conclusion naturelle.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "4SA",
+        "category": "force",
+        "reason": "Hypothèse : proposer un chelem quantitatif malgré seulement 27–28 H.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-008",
+      "theme": "stayman",
+      "hand": [
+        [
+          "R",
+          "D",
+          "8"
+        ],
+        [
+          "A",
+          "9",
+          "4"
+        ],
+        [
+          "6"
+        ],
+        [
+          "D",
+          "V",
+          "10",
+          "9",
+          "8",
+          "3"
+        ]
+      ],
+      "h": 12,
+      "shape": [
+        3,
+        3,
+        1,
+        6
+      ],
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Vous : 2♠ (Texas Trèfle)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣",
+        "Adversaire : Passe"
+      ],
+      "context": "Sud est à la parole. Les adversaires passent. Quelle enchère choisissez-vous dans le traitement SEF/QPJB étudié ?",
+      "answer": "3SA",
+      "choices": [
+        "3♥",
+        "3SA",
+        "4♣",
+        "3♠"
+      ],
+      "explain": "Avec 12 H, six Trèfles et un singleton Carreau, vous avez les valeurs pour rechercher la meilleure manche. Votre longue Trèfle est déjà annoncée. Après ce Texas rectifié, 3SA décrit conventionnellement la courte dans l’autre mineure, ici Carreau ; ce n’est pas une conclusion naturelle. L’ouvreur appréciera sa tenue Carreau avant de choisir le contrat. 3♥ et 3♠ décriraient une courte dans la majeure nommée.",
+      "difficulty": 4,
+      "difficultyReason": "Les anciens cas de courte dans l’autre mineure indiquent dans l’énoncé la courte ou la convention demandée. Ce cas exige de lire la courte et de retrouver le sens artificiel de 3SA sans indication.",
+      "caseFamily": "ad26-m4-008"
+    },
+    "metadata": {
+      "concept": "sa1.texas_mineur.suite",
+      "stage": 2,
+      "minSession": 15,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "V2-M2-034"
+      ],
+      "rationale": "Les anciens cas de courte dans l’autre mineure indiquent dans l’énoncé la courte ou la convention demandée. Ce cas exige de lire la courte et de retrouver le sens artificiel de 3SA sans indication."
+    },
+    "diagnostics": [
+      {
+        "choice": "3♥",
+        "category": "distribution",
+        "reason": "Hypothèse : annoncer une courte Cœur inexistante ou prendre 3♥ pour une couleur naturelle.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♠",
+        "category": "distribution",
+        "reason": "Hypothèse : annoncer une courte Pique inexistante ou prendre 3♠ pour une couleur naturelle.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "4♣",
+        "category": "niveau",
+        "reason": "Hypothèse : dépasser 3SA avant de signaler la courte qui doit aider au choix de manche.",
+        "confidence": "medium"
+      }
+    ]
   }
 ]
