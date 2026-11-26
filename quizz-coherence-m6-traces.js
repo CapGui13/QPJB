@@ -50,7 +50,18 @@ function traceSession({deck,selection,meta,rawMeta=meta,elig,pattern,s,history,p
  const counts={};for(const r of rows)counts[r.concept]=(counts[r.concept]||0)+1;
  const dominant=Object.entries(counts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0]?.[0]||null;
  // Native engine exposes selection reasons, not causal position rationale or an explicit lesson objective.
- return {session:s,objective:objective||{source:'observed-dominant-concept-not-intent',principal:dominant},latencyMs,rows};
+ const chosenObjective=objective||{source:'observed-dominant-concept-not-intent',principal:dominant};
+ const declared=chosenObjective.source==='declared'&&typeof chosenObjective.principal==='string';
+ const allowed=new Set([chosenObjective.principal,...(chosenObjective.secondary||[]),...(chosenObjective.allowedConcepts||[])]);
+ const roleCounts={},themeCounts={};
+ for(const r of rows){roleCounts[r.role]=(roleCounts[r.role]||0)+1;themeCounts[r.theme]=(themeCounts[r.theme]||0)+1;}
+ const summary={conceptCounts:counts,themeCounts,roleCounts,firstExposures:rows.filter(r=>r.firstExposure).map(r=>r.concept),
+ newFamilies:rows.filter(r=>r.familyGap===null).length,nearFamily:rows.filter(r=>r.familyGap!==null&&r.familyGap<=2).length,
+ difficulty:rows.map(r=>r.difficulty),themeSwitches:rows.filter((r,i)=>i>0&&r.theme!==rows[i-1].theme).length,
+ objectiveAlignment:declared?{onTarget:rows.filter(r=>allowed.has(r.concept)).length,
+ justifiedOffTarget:rows.filter(r=>!allowed.has(r.concept)&&['consolidation_ciblee','rappel_autre_main','rappel','transfert'].includes(r.role)).map(r=>r.id),
+ offTargetNew:rows.filter(r=>!allowed.has(r.concept)&&!['consolidation_ciblee','rappel_autre_main','rappel','transfert'].includes(r.role)).map(r=>r.id)}:null};
+ return {session:s,objective:chosenObjective,latencyMs,summary,rows};
 }
 function metrics(sessions){
  const ids=new Set(),families=new Set(),concepts=new Set(),themes=new Set(),last=new Map(),proof=new Map(),first={},firstTheme={},pending=new Map(),delays=[],gaps=[],violations=[];
