@@ -1,0 +1,106 @@
+name: QPJB M5 coherence — isolated native receipt
+on:
+  pull_request:
+    branches: ['coherence-concrete/m5-lecons']
+    paths: ['.github/workflows/m5-coherence-native-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  historical:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 713a6197c6256f107a79a2c7fdb62c816377cd76
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          test "$(git rev-parse HEAD)" = "713a6197c6256f107a79a2c7fdb62c816377cd76"
+          node --version
+          set -o pipefail
+          for f in tests/durable-m5-*.cjs; do
+            echo "=== $f ==="
+            node "$f"
+          done | tee m5-historical.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m5-historical
+          path: m5-historical.log
+  paired:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 713a6197c6256f107a79a2c7fdb62c816377cd76
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          test "$(git rev-parse HEAD)" = "713a6197c6256f107a79a2c7fdb62c816377cd76"
+          node --version
+          node tests/coherence-concrete-m5-bench.cjs ${{ matrix.profile }} ${{ matrix.seed }} 180 > paired.json
+          node -e 'const r=require("./paired.json"); console.log(JSON.stringify({name:r.name,seed:r.seed,horizon:r.horizon,counts:r.counts,summary:r.summary})); if(r.rows.length!==180||!r.paired)process.exit(1)'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m5-paired-${{ matrix.profile }}-${{ matrix.seed }}
+          path: paired.json
+  browser:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 713a6197c6256f107a79a2c7fdb62c816377cd76
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - env:
+          PW_BROWSER: ${{ matrix.browser }}
+        run: |
+          test "$(git rev-parse HEAD)" = "713a6197c6256f107a79a2c7fdb62c816377cd76"
+          node <<'NODE'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const engine=require('./quizz-parcours.js'),meta=require('./quizz-prerequis.js').byId,planner=require('./quizz-coherence-m5-study.js');
+          const exercises=JSON.parse(fs.readFileSync('quizz.html','utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+          (async()=>{
+            const state=engine.empty(),prior=JSON.parse(JSON.stringify(state)),deck=engine.start(state,exercises);
+            const before={session:1,history:prior,selected:deck,metadataById:meta,phase:'before'};
+            const active={...before,history:JSON.parse(JSON.stringify(state))};
+            assert.equal(deck.length,10);
+            assert.ok(planner.studyPlan(before).before.length>0);
+            for(let i=0;i<deck.length;i++){const q=deck[i];assert.ok(engine.record(state,q,'wrong',i,q.choices.find(c=>c!==q.answer),false,false))}
+            assert.ok(engine.finish(state,exercises));
+            const after={session:1,history:state,metadataById:meta,phase:'after'};
+            const fixtures=[before,active,after,{...before,questionActive:true},{...before,quizActive:true},{...before,exercise:deck[0]},{...before,session:3},{...before,selected:undefined},{...before,selected:undefined,objective:{primary:meta[deck[0].id].concept}},{...after,history:{...state,journal:[]}}];
+            const browser=await require('playwright')[process.env.PW_BROWSER].launch();
+            try{
+              const context=await browser.newContext({offline:true});
+              const page=await context.newPage();await page.setContent('<html><body></body></html>');
+              await page.addScriptTag({path:'quizz-durable-m5-lecons.js'});
+              await page.addScriptTag({path:'quizz-coherence-m5-study.js'});
+              let assertions=0;
+              for(const input of fixtures){
+                const result=await page.evaluate(x=>{const before=JSON.stringify(x);const p=window.QPJBCoherenceM5.studyPlan(x);return {p,unchanged:before===JSON.stringify(x),frozen:Object.isFrozen(p)&&Object.isFrozen(p.before)&&Object.isFrozen(p.after)}},JSON.parse(JSON.stringify(input)));
+                assert.deepEqual(result.p,planner.studyPlan(input));assertions++;
+                assert.ok(result.unchanged);assertions++;assert.ok(result.frozen);assertions++;
+              }
+              console.log(JSON.stringify({browser:process.env.PW_BROWSER,version:browser.version(),assertions,scope:'standalone UMD offline, real engine fixtures before/active/after; no integrated UI'}));
+            }finally{await browser.close()}
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
