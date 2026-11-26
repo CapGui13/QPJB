@@ -117,6 +117,10 @@ function rank({history,exercises,candidates,selected,signals,conceptStates,categ
    let delta=s.strength==='strong'?MAX_DELTA:32;
    if(s.scope==='cross')delta=Math.min(delta,24);
    if(s.recovering)delta=Math.min(delta,12);
+   // Protéger l'initiation : seules les preuves locales fortes et un contraste
+   // référencé peuvent influencer S4–20 ; ensuite le bonus reste secondaire.
+   if(history.completed<20&&(!contrast||s.scope!=='local'||s.strength!=='strong'))continue;
+   delta=Math.min(delta,history.completed<20?8:24);
    if(!best||delta>best.delta)best={id:q.id,delta,reason:(contrast?'Contraste pédagogique référencé':'Décisions réciproques dans une autre famille')+' — '+s.criterion,signalIds:[s.id]};
   }
   if(best)result.push(best);
