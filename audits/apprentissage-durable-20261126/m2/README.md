@@ -85,3 +85,8 @@ Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés su
 ## Passe 6 — approfondissement transversal et développements avancés
 
 124 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 52 règles effectives. Les règles contrôlent la main, la séquence, la bonne enchère, le diagnostic signé et les critères du corrigé figé ; le détail est dans `pass6.json`. Aucun autre statut ni ciblage existant modifié. Total : 3371 ciblages, 288 compléments, 2495 références distinctes ; 1549 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101963 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés (clone GitHub impossible dans le conteneur, DNS). Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
+
+
+## Passe 7 — revue éditoriale des contrastes déjà suffisants
+
+84 options relues sur la main, la séquence, le corrigé et le diagnostic signé : 82 HOLD avec contraste exact déjà présent dans le corrigé, plus deux arbitrages (SEF-L23-001|Passe et SEF-L39-002|4♥) fondés sur l'objectif explicite de la question. Pas de nouveau texte redondant ni de modification du module. Les deux autres arbitrages restent ouverts : SEF-V470-007|Contre et SEF-L08-026|Contre. Le banc vérifie désormais également la provenance des contrastes exacts et maintient les anciennes conditions pour les revues historiques. Registre individuel `pass7.json`, revue IA et non humaine. Total : 3371 ciblages, 288 compléments, 2495 références distinctes, 381 corrigés suffisants, 1467 HOLD et 2 contrastes en attente. Banc V8 : 102512 assertions, reproduction des artefacts comprise. Node CLI et navigateur réel non exécutés. Statut NON.
