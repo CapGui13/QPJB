@@ -96,5 +96,17 @@
     "medium": 497,
     "high": 15
   },
-  "execution": "V8 : validate exécuté avec le module réel, catalogue réel et fichiers relus sur la branche. CLI Node, CI et navigateur non exécutés."
+  "execution": "V8 : validate exécuté avec le module réel, catalogue réel et fichiers relus sur la branche. CLI Node, CI et navigateur non exécutés.",
+  "historicalTests": {
+    "diagnostic": {
+      "hypothesis": 2985,
+      "unknown": 2652,
+      "wrongOptions": 5637,
+      "afterHyp": 2985
+    },
+    "umdParity": 7516,
+    "plausibility": "identical snapshot",
+    "review": "identical snapshot",
+    "execution": "Fonctions historiques runChecks, buildPlausibility et buildReview exécutées en V8 sur sources figées et vraies données. Comparaisons exactes des snapshots et parité UMD simulée via objet window; pas de processus Node ou de navigateur réel."
+  }
 }
