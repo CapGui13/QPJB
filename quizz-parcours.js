@@ -18,7 +18,6 @@
         const button=root.document.createElement('button');
         button.id='progress-import';button.type='button';
         button.textContent='Importer une sauvegarde (JSON)';
-        button.style.marginLeft='8px';
         const input=root.document.createElement('input');
         input.type='file';input.id='progress-import-file';
         input.accept='.json,application/json';input.hidden=true;

@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8'),js=fs.readFileSync(path.join(__dirname,'..','quizz-parcours.js'),'utf8');
+assert(!html.includes('Les séances privilégient des situations variées'));
+assert(!html.includes('Les résultats sont enregistrés sur cet appareil. Les niveaux restent indicatifs.'));
+assert(!html.includes('<section class="stage">'));
+assert(html.includes('id="progress-reset"'));
+assert(html.includes("if(!window.confirm('Effacer définitivement"));
+assert(html.includes('feedback.contains(target)'));
+assert(html.includes('event.repeat'));
+assert(html.includes('next.getBoundingClientRect()'));
+assert(!js.includes("button.style.marginLeft='8px'"));
+console.log('Quiz ergonomie : contrôles statiques réussis');
