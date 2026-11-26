@@ -383,11 +383,11 @@ check(splitItems.filter(x=>x.quarantineReason&&x.reviewStatus!=='a_verifier').le
 check(read('entrainement/index.html').includes('training-data-bootstrap.js?v=20261113bh039m01')&&
  read('entrainement/qp-training-corrige.html').includes('training-data-bootstrap.js?v=20261113bh039m01'),
  'both entry points load the current pedagogical module');
-check(read('service-worker.js').includes("const CACHE = 'qpjb-v96'")&&
- read('service-worker.js').includes("BASE + 'quizz-parcours.js?v=14'")&&
- read('service-worker.js').includes("BASE + 'quizz-prerequis.js?v=1'")&&
- read('quizz.html').includes('quizz-parcours.js?v=14')&&
- read('quizz.html').includes('quizz-prerequis.js?v=1'),
+check(read('service-worker.js').includes("const CACHE = 'qpjb-v102'")&&
+ read('service-worker.js').includes("BASE + 'quizz-parcours.js?v=18'")&&
+ read('service-worker.js').includes("BASE + 'quizz-prerequis.js?v=3'")&&
+ read('quizz.html').includes('quizz-parcours.js?v=18')&&
+ read('quizz.html').includes('quizz-prerequis.js?v=3'),
  'PWA cache revision and guided Quiz module included for offline use');
 // Résolution SEF documentée de deux dernières réserves Texas / réponse naturelle à 2SA.
 for(const {id,answer} of [{id:'EN-BH-019-04',answer:'2♥'},{id:'EN-BH-025-01',answer:'4♥'}]){

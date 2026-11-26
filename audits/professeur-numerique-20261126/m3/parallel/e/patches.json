@@ -1,0 +1,107 @@
+[
+  {
+    "id": "SEF-V3-047-4",
+    "oldChoices": [
+      "1SA",
+      "2♣",
+      "Contre",
+      "Passe"
+    ],
+    "newChoices": [
+      "1SA",
+      "1♥",
+      "Contre",
+      "Passe"
+    ],
+    "reason": "Remplacer 2♣ avec un singleton (distracteur extrême) par 1♥ avec ARV9 quatrièmes : confusion plausible entre réponse naturelle et intervention directe. Le corrigé reste exact et ne cite pas 2♣. Choix distincts, légaux, aucune deuxième réponse conforme.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "contexte",
+        "reason": "Le corrigé mentionne précisément cette alternative ; il fournit une piste à vérifier, pas une cause certaine.",
+        "confidence": "low",
+        "evidence": {
+          "id": "SEF-V3-047-4",
+          "concept": "intervenir.base",
+          "choice": "1SA",
+          "expected": "Contre",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            4,
+            1
+          ],
+          "auction": [
+            "Adversaire : 1♣"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "canonical-explicit-contrast",
+          "canonicalExcerpt": "; 1SA exigerait notamment une tenue à Trèfle",
+          "axisSignals": [
+            "contexte"
+          ]
+        }
+      },
+      {
+        "choice": "1♥",
+        "status": "hypothesis",
+        "category": "distribution",
+        "confidence": "high",
+        "reason": "La main possède ARV9, quatre Cœurs seulement ; une intervention naturelle à 1♥ demande une cinquième. Le Contre permet de découvrir un fit dans chacune des trois couleurs libres.",
+        "evidence": {
+          "id": "SEF-V3-047-4",
+          "concept": "intervenir.base",
+          "choice": "1♥",
+          "expected": "Contre",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            4,
+            1
+          ],
+          "auction": [
+            "Adversaire : 1♣"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "pn3-e-patch-major-four"
+        }
+      },
+      {
+        "choice": "Passe",
+        "status": "hypothesis",
+        "category": "competition",
+        "reason": "Le corrigé exploite le singleton adverse et les trois couleurs quatrièmes par le contre d’appel ; passer peut correspondre à une méconnaissance de ce contexte.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-V3-047-4",
+          "concept": "intervenir.base",
+          "choice": "Passe",
+          "expected": "Contre",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            4,
+            1
+          ],
+          "auction": [
+            "Adversaire : 1♣"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "pn-direct-takeout-tricolor"
+        }
+      }
+    ],
+    "signature": "1u0zt5u",
+    "status": "proposal-only"
+  }
+]

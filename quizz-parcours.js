@@ -886,6 +886,13 @@
         for(let i=0;i<recallLimit&&selected.length<limit&&repeatedFamilies<Math.max(1,repeatBudget);i++)
           if(!choose(pool.filter(q=>due(q)&&bad(q)),'weakness','rappel_erreur_aide'))break;
       }
+      // Réserver au plus une découverte éligible et un rappel fondamental
+      // ancien, après le rappel explicite des erreurs.
+      if(s>=20&&s<65){
+        const core=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
+        if(selected.length<limit)choose(pool.filter(q=>core.has(mOf(q).concept)&&e.seen.has(mOf(q).concept)&&oldConcept(q)>=8&&!concepts[mOf(q).concept]),'maintenance',null,true);
+        if(selected.length<limit)choose(pool.filter(q=>!e.seen.has(mOf(q).concept)&&!concepts[mOf(q).concept]),'discovery',null,true);
+      }
       const priorities=sessionPlan.priorityThemes({roadmap:ROADMAP,completed:s,lastTheme:e.lastTheme,eligibleThemes:pool.map(q=>q.theme)});
       for(const [t] of priorities){
         if(selected.length>=limit||themes[t])continue;

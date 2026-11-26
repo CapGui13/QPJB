@@ -22,7 +22,7 @@ LEGACY={
     "icon-512.png": "archives/visuels/icon-512.png",
 }
 CORE={
-    "index.html","quizz.html","quizz-parcours.js","quizz-prerequis.js","quizz-session-plan.js","quizz-pedagogie-initiation.js","quizz-pedagogie-intermediaire.js","quizz-pedagogie-avancee.js","parcours-recommandations.js",
+    "index.html","quizz.html","quizz-parcours.js","quizz-prerequis.js","quizz-session-plan.js","quizz-pedagogie-initiation.js","quizz-pedagogie-intermediaire.js","quizz-pedagogie-avancee.js","parcours-recommandations.js","quizz-apprentissage-concepts.js","quizz-diagnostic-erreurs.js","quizz-remediation.js","quizz-professeur.js",
     "service-worker.js","site-update.js","qpjb-design-tokens.css","qpjb-bridge-ui.css",
     "manifest.json","catalogue.json","config.json","site-version.json",
     "QPJB App.png","apple-touch-icon-qpjb.png","qpjb-logo-fixed.svg",

@@ -6,14 +6,14 @@ const path=require('node:path');
 const root=path.join(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('quizz.html');
-const prereq='<script src="./quizz-prerequis.js?v=2"></script>';
+const prereq='<script src="./quizz-prerequis.js?v=3"></script>';
 const plan='<script src="./quizz-session-plan.js?v=2"></script>';
-const engine='<script src="./quizz-parcours.js?v=17"></script>';
+const engine='<script src="./quizz-parcours.js?v=18"></script>';
 const pedagogy=["<script src=\"./quizz-pedagogie-initiation.js?v=1\"></script>","<script src=\"./quizz-pedagogie-intermediaire.js?v=1\"></script>","<script src=\"./quizz-pedagogie-avancee.js?v=1\"></script>"].join('');
 assert.ok(html.includes(prereq+pedagogy+plan+engine),'Prerequisites and pedagogical policies loaded before the engine');
 for(const module of ["quizz-pedagogie-initiation.js","quizz-pedagogie-intermediaire.js","quizz-pedagogie-avancee.js"])assert.ok(read('scripts/build_public_site.py').includes('"'+module+'"'));
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
-assert.equal(data.exercises.length,1879);
+assert.equal(data.exercises.length,1915);
 assert.equal(data.themes.length,22);
 assert.ok(read('scripts/build_public_site.py').includes('"quizz-parcours.js","quizz-prerequis.js"'));
 const cached=new Set(),listeners={},requests=[];
@@ -39,7 +39,7 @@ async function warm(){
  assert.equal(await warm(),false,'Missing prerequisites must not report offline ready');
  fail=false;
  assert.equal(await warm(),true);
- for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=2','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=17','/QPJB/parcours-recommandations.js?v=1'])
+ for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=18','/QPJB/parcours-recommandations.js?v=1','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1'])
   assert.ok(cached.has(url),'Offline resource '+url);
  const before=requests.length;
  assert.equal(await warm(),true);

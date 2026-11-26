@@ -1,0 +1,885 @@
+[
+  {
+    "id": "SEF-N013-2",
+    "oldChoices": [
+      "1♦",
+      "1♠",
+      "1♥",
+      "1♣"
+    ],
+    "newChoices": [
+      "1♦",
+      "1SA",
+      "1♥",
+      "1♣"
+    ],
+    "reason": "Deux distracteurs de majeure quatrième testaient le même mécanisme. 1SA teste une confusion indépendante sur la zone 15–17 H ; 12 H ne suffisent pas.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "12 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-2",
+          "concept": "ouv.mineure",
+          "choice": "1SA",
+          "expected": "1♦",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      },
+      {
+        "choice": "1♥",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-2",
+          "concept": "ouv.mineure",
+          "choice": "1♥",
+          "expected": "1♦",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "1♣",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La main contient 3 Carreaux et 2 Trèfles ; la règle de meilleure mineure conduit à 1♦.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-2",
+          "concept": "ouv.mineure",
+          "choice": "1♣",
+          "expected": "1♦",
+          "h": 12,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-best-minor"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N013-3",
+    "oldChoices": [
+      "1♥",
+      "1♦",
+      "1♣",
+      "1♠"
+    ],
+    "newChoices": [
+      "1SA",
+      "1♦",
+      "1♣",
+      "1♠"
+    ],
+    "reason": "Deux majeures quatrièmes testaient le même mécanisme. 1SA teste la frontière haute de la zone d'ouverture en mineure : 14 H restent insuffisants pour 1SA.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "14 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-3",
+          "concept": "ouv.mineure",
+          "choice": "1SA",
+          "expected": "1♦",
+          "h": 14,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      },
+      {
+        "choice": "1♣",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La main contient 3 Carreaux et 2 Trèfles ; la règle de meilleure mineure conduit à 1♦.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-3",
+          "concept": "ouv.mineure",
+          "choice": "1♣",
+          "expected": "1♦",
+          "h": 14,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-best-minor"
+        }
+      },
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N013-3",
+          "concept": "ouv.mineure",
+          "choice": "1♠",
+          "expected": "1♦",
+          "h": 14,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N018-2",
+    "oldChoices": [
+      "1♥",
+      "1SA",
+      "2SA",
+      "1♠"
+    ],
+    "newChoices": [
+      "1♦",
+      "1SA",
+      "2SA",
+      "1♠"
+    ],
+    "reason": "Les deux majeures quatrièmes testaient le même prérequis. 1♦ est une ouverture naturelle de trois cartes plausible pour un débutant qui oublie la priorité de 1SA à 15 H.",
+    "diagnostics": [
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-2",
+          "concept": "ouv.sa1",
+          "choice": "1♦",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      },
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "15 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-2",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      },
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-2",
+          "concept": "ouv.sa1",
+          "choice": "1♠",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N018-3",
+    "oldChoices": [
+      "1SA",
+      "1♥",
+      "1♠",
+      "2SA"
+    ],
+    "newChoices": [
+      "1SA",
+      "1♥",
+      "1♦",
+      "2SA"
+    ],
+    "reason": "À 17 H réguliers, la meilleure mineure serait 1♦ si SA n'était pas prioritaire. Cette option distingue la priorité de SA de l'erreur de majeure quatrième.",
+    "diagnostics": [
+      {
+        "choice": "1♥",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-3",
+          "concept": "ouv.sa1",
+          "choice": "1♥",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-3",
+          "concept": "ouv.sa1",
+          "choice": "1♦",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      },
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "17 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N018-3",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N020-1",
+    "oldChoices": [
+      "1♥",
+      "1SA",
+      "1♠",
+      "2SA"
+    ],
+    "newChoices": [
+      "1♦",
+      "1SA",
+      "1♠",
+      "2SA"
+    ],
+    "reason": "Une ouverture mineure naturelle de trois cartes est un distracteur plus discriminant que la seconde majeure quatrième : elle teste la priorité du 2SA régulier à 20 H.",
+    "diagnostics": [
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N020-1",
+          "concept": "ouv.sa2",
+          "choice": "1♦",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      },
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "20 H sont hors de la zone 15–17 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N020-1",
+          "concept": "ouv.sa2",
+          "choice": "1SA",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            15,
+            17
+          ]
+        }
+      },
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N020-1",
+          "concept": "ouv.sa2",
+          "choice": "1♠",
+          "expected": "2SA",
+          "h": 20,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N107-2",
+    "oldChoices": [
+      "2♠",
+      "1SA",
+      "2SA",
+      "2♣"
+    ],
+    "newChoices": [
+      "2♠",
+      "1SA",
+      "3♠",
+      "2♣"
+    ],
+    "reason": "Après une réponse de 1♠, le corrigé établit le fit 4–4 et une redemande de première zone (13 H). 1SA et 2SA testaient tous deux la non-description du fit ; 2SA cumulait une erreur importante de force. 3♠ conserve le fit mais teste la distinction soutien simple/soutien à saut propositionnel. Le saut n'est pas justifié avec cette main régulière de première zone. 1SA reste le distracteur du fit non montré.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "fit",
+        "reason": "Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "1SA",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-show-fit"
+        }
+      },
+      {
+        "choice": "3♠",
+        "status": "hypothesis",
+        "category": "niveau",
+        "reason": "Le soutien de la majeure conserve la couleur mais change le niveau de proposition ou de conclusion.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "3♠",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-support-level"
+        }
+      },
+      {
+        "choice": "2♣",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "Le fit majeur est acquis ; le soutien du corrigé est prioritaire sur la répétition de la couleur d’ouverture dans ce cas.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "2♣",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-fit-before-repeat"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N109-1",
+    "oldChoices": [
+      "2SA",
+      "2♠",
+      "2♦",
+      "1SA"
+    ],
+    "newChoices": [
+      "3♠",
+      "2♠",
+      "2♦",
+      "1SA"
+    ],
+    "reason": "Après une réponse de 1♠, le corrigé établit le fit 4–4 et une redemande de première zone (13 H). 1SA et 2SA testaient tous deux la non-description du fit ; 2SA cumulait une erreur importante de force. 3♠ conserve le fit mais teste la distinction soutien simple/soutien à saut propositionnel. Le saut n'est pas justifié avec cette main régulière de première zone. 1SA reste le distracteur du fit non montré.",
+    "diagnostics": [
+      {
+        "choice": "3♠",
+        "status": "hypothesis",
+        "category": "niveau",
+        "reason": "Le soutien de la majeure conserve la couleur mais change le niveau de proposition ou de conclusion.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "3♠",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-support-level"
+        }
+      },
+      {
+        "choice": "2♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "Le fit majeur est acquis ; le soutien du corrigé est prioritaire sur la répétition de la couleur d’ouverture dans ce cas.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "2♦",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-fit-before-repeat"
+        }
+      },
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "fit",
+        "reason": "Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "1SA",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-show-fit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "V2-M1-007",
+    "oldChoices": [
+      "2SA",
+      "1SA",
+      "1♣",
+      "1♦"
+    ],
+    "newChoices": [
+      "2SA",
+      "1SA",
+      "1♠",
+      "1♦"
+    ],
+    "reason": "La main 4–4–3–2 possède trois Carreaux et seulement deux Trèfles : 1♦ reste l’alternative mineure la plus descriptive. Remplacer 1♣, redondant sur la priorité de SA et en plus inadéquat en meilleure mineure, par 1♠ teste la confusion fréquente majeure quatrième/cinquième. La bonne réponse 1SA est inchangée.",
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "17 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      },
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "1♠",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "1♦",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      }
+    ]
+  },
+  {
+    "id": "V2-M1-009",
+    "oldChoices": [
+      "1♠",
+      "1♦",
+      "1♣",
+      "1SA"
+    ],
+    "newChoices": [
+      "1♠",
+      "2SA",
+      "1♣",
+      "1SA"
+    ],
+    "reason": "Les deux mineures sont troisièmes ; la meilleure mineure de repli serait 1♣. Garder 1♣ et 1♠, remplacer 1♦ par 2SA distingue l’erreur de zone 15–17/20–21 H de la priorité de SA et de la majeure cinquième. La bonne réponse 1SA est inchangée.",
+    "diagnostics": [
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "1♠",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "15 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      },
+      {
+        "choice": "1♣",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "1♣",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      }
+    ]
+  }
+]

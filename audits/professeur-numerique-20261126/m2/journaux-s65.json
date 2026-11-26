@@ -1,0 +1,107 @@
+{
+  "environment": "V8, blobs de base et module M2 exacts ; réponses synthétiques",
+  "base": "f8ae2120eb893c68b4cac315b7901ece69806b87",
+  "assertions": 1826,
+  "configs": [
+    {
+      "profile": "autonome",
+      "seed": 11,
+      "horizon": 65
+    },
+    {
+      "profile": "aide",
+      "seed": 103,
+      "horizon": 65
+    }
+  ],
+  "out": [
+    {
+      "profile": "autonome",
+      "seed": 11,
+      "horizon": 65,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 50,
+          "families": 200,
+          "levels": {
+            "multi_family_evidence": 30,
+            "first_success": 20
+          },
+          "stageMatches": 177,
+          "decisions": 200,
+          "baselineFirstMatched": 17,
+          "rankedFirstMatched": 20,
+          "neutral": 23,
+          "unknown": 23,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.4
+        },
+        {
+          "session": 65,
+          "concepts": 99,
+          "families": 650,
+          "levels": {
+            "multi_family_evidence": 89,
+            "first_success": 10
+          },
+          "stageMatches": 482,
+          "decisions": 650,
+          "baselineFirstMatched": 51,
+          "rankedFirstMatched": 65,
+          "neutral": 168,
+          "unknown": 168,
+          "mutations": 0,
+          "maxMs": 3,
+          "meanMs": 1.09
+        }
+      ]
+    },
+    {
+      "profile": "aide",
+      "seed": 103,
+      "horizon": 65,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 44,
+          "families": 163,
+          "levels": {
+            "first_success": 13,
+            "fragile": 3,
+            "exposed": 28
+          },
+          "stageMatches": 183,
+          "decisions": 200,
+          "baselineFirstMatched": 18,
+          "rankedFirstMatched": 20,
+          "neutral": 17,
+          "unknown": 17,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.5
+        },
+        {
+          "session": 65,
+          "concepts": 97,
+          "families": 523,
+          "levels": {
+            "fragile": 26,
+            "first_success": 15,
+            "exposed": 56
+          },
+          "stageMatches": 440,
+          "decisions": 650,
+          "baselineFirstMatched": 47,
+          "rankedFirstMatched": 65,
+          "neutral": 210,
+          "unknown": 210,
+          "mutations": 0,
+          "maxMs": 2,
+          "meanMs": 0.88
+        }
+      ]
+    }
+  ]
+}
