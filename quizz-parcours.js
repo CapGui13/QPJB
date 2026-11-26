@@ -1,11 +1,13 @@
 /* QPJB — parcours algorithmique V1.10 : preuves de maîtrise séparées des entraînements, sans IA ni API. */
 (function(root,factory){
-  let prerequis=root?.QPJBPrerequis;
+  let prerequis=root?.QPJBPrerequis,sessionPlan=root?.QPJBSessionPlan;
   if(typeof module!=='undefined'&&module.exports){
     try{prerequis=require('./quizz-prerequis.js')}
     catch(err){if(err.code!=='MODULE_NOT_FOUND'||!String(err.message).includes("'./quizz-prerequis.js'"))throw err;}
+    sessionPlan=require('./quizz-session-plan.js');
   }
-  const api=factory(prerequis);
+  if(!sessionPlan||sessionPlan.schema!=='QPJB_SESSION_PLAN_V1')throw Error('QPJB session plan unavailable');
+  const api=factory(prerequis,sessionPlan);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   if(root){
     root.QPJBParcours=api;
@@ -59,7 +61,7 @@
       else setupImport();
     }
   }
-})(typeof window!=='undefined'?window:null,function factory(prerequis){
+})(typeof window!=='undefined'?window:null,function factory(prerequis,sessionPlan){
   'use strict';
   const VERSION=1;
   // Métadonnées de sélection purement descriptives : aucun changement des
@@ -406,12 +408,14 @@
   function evidence(state,exercises){
     const byId=new Map(exercises.map(q=>[q.id,q]));
     const seen=new Map(),basic=new Map(),proofs=new Map(),lastTheme={},lastFamily={},lastConcept={};
-    const weakConcept={},weakContext={};
+    const weakConcept={},weakContext={},localHistory=new Map();
     const recent=[];
     function add(map,key,value){if(!map.has(key))map.set(key,new Set());map.get(key).add(value)}
     function observe(q,a,s){
       const m=metadata(q);if(!m)return;
       add(seen,m.concept,q.id);
+      if(!localHistory.has(m.concept))localHistory.set(m.concept,[]);
+      localHistory.get(m.concept).push({family:family(q),difficulty:q.difficulty,session:s,weak:weakAnswer(a),skipped:a.result==='skipped'});
       if(q.difficulty<=3)add(basic,m.concept,family(q));
       if(!weakAnswer(a)){
         if(!proofs.has(m.concept))proofs.set(m.concept,[]);
@@ -455,7 +459,35 @@
       if(!byConcept.has(m.concept))byConcept.set(m.concept,[]);
       byConcept.get(m.concept).push(q);
     }
-    return {seen,basic,proofs,byConcept,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent};
+    const localTargets=new Map(),localFragility=new Map();
+    for(const [key,items] of byConcept){
+      const floor=Math.min(...items.map(q=>q.difficulty));
+      const history=localHistory.get(key)||[];
+      const sessions=[...new Set(history.map(r=>r.session))].slice(-6);
+      const recentLocal=history.filter(r=>sessions.includes(r.session));
+      const clean=recentLocal.filter(r=>!r.weak);
+      const weakSessions=new Set(recentLocal.filter(r=>r.weak&&!r.skipped).map(r=>r.session));
+      const lastWeak=Math.max(-1,...weakSessions);
+      const recovery=clean.filter(r=>r.session>lastWeak);
+      const cleanSessions=new Set(recovery.map(r=>r.session));
+      const weak=weakSessions.size>=2&&cleanSessions.size<2;
+      let target=floor;
+      if(recovery.length){
+        // Three sessions and two families for promotion; isolated successes
+        // or assisted attempts never increase the target.
+        for(let level=floor;level<5;level++){
+          const atLevel=recovery.filter(r=>r.difficulty>=level);
+          if(new Set(atLevel.map(r=>r.session)).size>=3&&new Set(atLevel.map(r=>r.family)).size>=2)
+            target=Math.max(target,level+1);
+          else if(new Set(atLevel.map(r=>r.session)).size>=2&&new Set(atLevel.map(r=>r.family)).size>=2)
+            target=Math.max(target,level);
+        }
+      }
+      if(weak)target=Math.max(floor,target-1);
+      localTargets.set(key,target);
+      if(weak)localFragility.set(key,{lastWeak,weakSessions:weakSessions.size});
+    }
+    return {seen,basic,proofs,byConcept,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent,localTargets,localFragility};
   }
   function evaluate(q,state,e){
     const s=state.completed,m=metadata(q),reasons=[];
@@ -498,6 +530,20 @@
     return {eligible:reasons.length===0,reasons};
   }
   function eligibility(q,state,exercises){return evaluate(q,state,evidence(state,exercises))}
+  // Lecture seule pour le coordinateur M2/M3 : cibles locales, fragilités
+  // et preuves historiques distinctes. Ni statut acquis, ni autorisation
+  // d'ignorer eligibility(). Ne persiste aucune donnée supplémentaire.
+  function adaptiveDiagnostics(state,exercises){
+    const e=evidence(state,exercises);
+    return [...e.localTargets].map(([concept,target])=>{
+      const proof=e.proofs.get(concept)||[],fragility=e.localFragility.get(concept);
+      return {concept,target,adjustedTarget:clamp(target+(state.difficultyAdjustment||0),1,5),
+        fragile:!!fragility,lastWeak:fragility?.lastWeak??null,
+        weakSessions:fragility?.weakSessions??0,exposedIds:e.seen.get(concept)?.size||0,
+        proofFamilies:new Set(proof.map(r=>r.family)).size,
+        proofSessions:new Set(proof.map(r=>r.session)).size};
+    });
+  }
   function eligiblePool(exercises,state,e=evidence(state,exercises)){
     // Une erreur d'intégration ne doit jamais devenir un accès par défaut.
     if(exercises.some(q=>!metadata(q)))throw Error('QPJB: prérequis manquants ou invalides (catalogue incomplet)');
@@ -631,8 +677,10 @@
     }
     function score(q,category){
       const m=mOf(q),t=q.theme,age=s-INTRO[t],r=previous[q.id];
-      const target=clamp((targetByTheme[t]||1)+(state.difficultyAdjustment||0),1,5);
-      let value= -28*Math.abs(q.difficulty-target)-32*(themes[t]||0)
+      // An old saved theme level is preserved; absence of local journal
+      // does not magically confer mastery of an unobserved concept.
+      const target=clamp((e.localTargets.get(m.concept)||targetByTheme[t]||1)+(state.difficultyAdjustment||0),1,5);
+      let value= -48*Math.abs(q.difficulty-target)-32*(themes[t]||0)
         -24*(answers[bid(q)]||0)-22*(contexts[context(q)]||0)-25*(concepts[m.concept]||0)
         +Math.min(70,oldTheme(q)*9)+Math.min(35,oldConcept(q)*3);
       if(!r)value+=55;
@@ -646,7 +694,7 @@
       if(age<=2&&m.stage<=1)value+=35;
       if(profile==='weak'&&q.difficulty>=3)value-=q.difficulty>=4?170:35;
       if(category==='weakness'){
-        value+=Math.min(75,(e.weakConcept[m.concept]||0)*8);
+        value+=Math.min(75,(e.weakConcept[m.concept]||0)*8); if(e.localFragility.has(m.concept)&&novelFamily(q)&&q.difficulty<=target)value+=45;
         if(bad(q)&&due(q))value+=180;
       }
       if(category==='maintenance'&&due(q)&&!bad(q))value+=40;
@@ -715,10 +763,7 @@
     }
     // Garantie de découverte et d'entretien, avant les quotas indicatifs.
     if(s>=2){
-      const priorities=ROADMAP.filter(([t,intro])=>s>=intro&&
-        ((!Object.hasOwn(e.lastTheme,t)&&s-intro>=2)||
-        (FOUNDATIONS.includes(t)&&Object.hasOwn(e.lastTheme,t)&&s-e.lastTheme[t]>=6)))
-        .sort(([a,ia],[b,ib])=>(s-(e.lastTheme[b]??ib-1))-(s-(e.lastTheme[a]??ia-1)));
+      const priorities=sessionPlan.priorityThemes({roadmap:ROADMAP,completed:s,lastTheme:e.lastTheme,eligibleThemes:pool.map(q=>q.theme)});
       for(const [t] of priorities){
         if(selected.length>=limit||themes[t])continue;
         const known=Object.hasOwn(e.lastTheme,t);
@@ -794,7 +839,7 @@
         const rec=(state.entries||{})[x.id];
         const recent=rec?s-rec.lastSession:999;
         return (rec?-35:65)+(recent<=2?-80:recent<=5?-20:0)
-          -28*Math.abs(x.difficulty-levelFor(state,exercises,x.theme))
+          -28*Math.abs(x.difficulty-(e.localTargets.get(metadata(x).concept)||levelFor(state,exercises,x.theme)))
           -16*(counts[x.theme]||0)-22*(bids[x.theme+'|'+bid(x)]||0)
           -11*(contexts[context(x)]||0);
       }
@@ -1200,5 +1245,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {eligibility,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
+  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
