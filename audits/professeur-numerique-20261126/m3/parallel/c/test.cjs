@@ -10,6 +10,7 @@ function runChecks({base,adapter,docs,signed,cart,exercises,patches,hold}){
  const index=new Map(rows.map(x=>[key(x.id,x.choice),x]));
  const scope=cart.filter(scoped);
  const expected=new Set(scope.flatMap(m=>m.options.filter(o=>o[1]==='unknown').map(o=>key(m.id,o[0]))));
+ const beforeInputs=JSON.stringify([exercises,docs,signed,cart,patches,hold]);
  const api=adapter.createOverlay(base,docs,signed);
  const metrics={catalogue:exercises.length,scope:scope.length,wrong:0,correct:0,reviewed:rows.length,priorHypotheses:0,priorPreserved:0,changed:0,retainedUnknown:0,outsideChanged:0,guards:0,patches:0,byConcept:{},categories:{},dispositions:{}};
  assert(exercises.length===1879&&by.size===1879&&cart.length===1879,'catalogue cardinality');
@@ -70,6 +71,10 @@ function runChecks({base,adapter,docs,signed,cart,exercises,patches,hold}){
  for(const input of [{},{exercise,choice:'???'},{exercise:{...exercise,id:'M3C-UNSEEN'},choice:fixture.choice},{exercise,choice:null}]){
   assert(equal(api.diagnose(input),base.diagnose(input)),'invalid/unseen input');metrics.guards++;
  }
+ assert(JSON.stringify([exercises,docs,signed,cart,patches,hold])===beforeInputs,'input mutation');metrics.guards++;
+ const start=Date.now();let benchmarkCalls=0;
+ for(let pass=0;pass<5;pass++)for(const x of exercises)for(const choice of x.choices){api.diagnose({exercise:x,choice});benchmarkCalls++}
+ metrics.benchmark={calls:benchmarkCalls,elapsedMs:Date.now()-start};
  return metrics;
 }
 module.exports={runChecks};
