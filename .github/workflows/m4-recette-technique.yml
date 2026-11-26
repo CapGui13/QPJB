@@ -1,0 +1,37 @@
+name: M4 recette native isolée
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 62666e9c12a77c1b4e0a8ee15bebdd9b5770e9f6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests unitaires
+        run: |
+          node tests/coherence-concrete-m4-unit.cjs
+          node tests/coherence-concrete-m4-reactivation.cjs
+      - name: Campagne M4 S180
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          POLICY: C
+          HORIZON: 180
+        run: node tests/coherence-concrete-m4-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-${{ matrix.profile }}-${{ matrix.seed }}
+          path: audits/coherence-concrete-20261126/m4/
+          retention-days: 14
