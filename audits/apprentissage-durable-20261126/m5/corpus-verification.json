@@ -2,7 +2,7 @@
   "corpus": {
     "ouv.sa1": {
       "title": "Ouvrir de 1SA",
-      "objective": "Ouvrir de 1SA",
+      "objective": "Reconnaître une main régulière, compter ses points H et choisir 1SA dans la zone 15–17 H.",
       "rule": "Une main régulière a une répartition 4–3–3–3, 4–4–3–2 ou 5–3–3–2. Comptez les points H : As 4, Roi 3, Dame 2, Valet 1. Avec 15–17 H réguliers, 1SA décrit la force et la forme dans les cas étudiés.",
       "typicalError": "Ne choisissez pas la couleur la plus longue avant de vérifier la zone de SA.",
       "checks": [
@@ -58,7 +58,7 @@
     },
     "ouv.sa2": {
       "title": "Ouvrir de 2SA",
-      "objective": "Ouvrir de 2SA",
+      "objective": "Distinguer une main régulière de 20–21 H d'une ouverture de 1SA et choisir 2SA.",
       "rule": "Une main régulière de 20–21 H s'ouvre de 2SA. Ce n'est pas une ouverture faible ni un saut pour une longue.",
       "typicalError": "Ne confondez pas 20–21 H avec la zone 15–17 H.",
       "checks": [
@@ -119,7 +119,7 @@
     },
     "ouv.majeure": {
       "title": "Choisir une majeure cinquième",
-      "objective": "Choisir une majeure cinquième",
+      "objective": "Vérifier la force d'ouverture et les cinq cartes requises avant de nommer une majeure.",
       "rule": "Avec 12 H ou 13 HL (H + un point par carte à partir de la cinquième dans une couleur), une majeure d'au moins cinq cartes conduit normalement à ouvrir de 1♥ ou 1♠. Vérifiez d'abord la force et les situations particulières de SA.",
       "typicalError": "Quatre cartes en majeure ne suffisent pas à une ouverture majeure naturelle.",
       "checks": [
@@ -179,7 +179,7 @@
     },
     "ouv.mineure": {
       "title": "Choisir la meilleure mineure",
-      "objective": "Choisir la meilleure mineure",
+      "objective": "Choisir la mineure à ouvrir en comparant les longueurs et en appliquant les deux règles d'égalité.",
       "rule": "Avec la force d'ouverture, hors zone de SA et sans majeure cinquième, ouvrez de la mineure la plus longue. À égalité 3–3 choisissez 1♣ ; à égalité 4–4 choisissez 1♦.",
       "typicalError": "La qualité des honneurs ne remplace pas la règle de longueur.",
       "checks": [
@@ -388,7 +388,7 @@
     },
     "ouv.passe": {
       "title": "Savoir ne pas ouvrir",
-      "objective": "Savoir ne pas ouvrir",
+      "objective": "Reconnaître une main trop faible pour une ouverture normale au palier de un en première position.",
       "rule": "En première position, une ouverture naturelle au palier de un demande normalement 12 H ou 13 HL. Avec une main régulière faible, passez. Les barrages et les autres positions font l'objet de règles distinctes.",
       "typicalError": "Ne transformez pas le seuil en règle absolue de 12 H sans tenir compte de la longueur.",
       "checks": [
@@ -444,7 +444,7 @@
     },
     "mineur.base": {
       "title": "Répondre naturellement à une mineure",
-      "objective": "Répondre naturellement à une mineure",
+      "objective": "Choisir une réponse naturelle à une mineure selon la force, les longueurs et la priorité majeure.",
       "rule": "Avec environ 6 H pour répondre, recherchez une majeure quatrième, sinon une couleur naturelle disponible (1♦ sur 1♣ avec quatre Carreaux au moins). 1♥/1♠ est forcing un tour et non limité si vous n'avez pas passé. 1SA (6–10 H) convient faute de meilleure enchère. Avec une main très faible, Passe.",
       "typicalError": "La majeure de réponse peut être quatrième, contrairement à l'ouverture.",
       "checks": [
@@ -1138,7 +1138,7 @@
     },
     "mineur.soutien": {
       "title": "Reconnaître un soutien mineur simple",
-      "objective": "Reconnaître un soutien mineur simple",
+      "objective": "Distinguer un soutien mineur simple, une invitation et une réponse à SA selon la main.",
       "rule": "Une main faible irrégulière avec cinq atouts mineurs et sans majeure à annoncer peut se soutenir simplement à 2m. Une main régulière avec une mineure faible et des honneurs extérieurs peut préférer 1SA. 3m peut être invitant avec une main réévaluée, par exemple 12 HLD, dans les séquences sans intervention.",
       "typicalError": "Un saut à 3♣ ne décrit pas automatiquement la même force.",
       "checks": [
@@ -1301,7 +1301,7 @@
     },
     "majeur.soutien": {
       "title": "Trouver le fit majeur huitième",
-      "objective": "Trouver le fit majeur huitième",
+      "objective": "Compter les atouts du camp et reconnaître le soutien simple avec trois atouts et la force adaptée.",
       "rule": "L'ouverture majeure promet cinq cartes ; trois cartes suffisent donc à établir huit atouts. Sans intervention, le soutien simple est dans la zone 6–10 HLD. Apprenez ce cas avant les soutiens à quatre atouts.",
       "typicalError": "Ne répondez pas 1SA pour masquer un fit simple.",
       "checks": [
@@ -1569,7 +1569,7 @@
     },
     "sa1.seuil": {
       "title": "Évaluer les chances de manche après 1SA",
-      "objective": "Évaluer les chances de manche après 1SA",
+      "objective": "Additionner sa force à celle de l'ouvreur et choisir entre Passe, invitation et manche à SA.",
       "rule": "Sur 1SA, sans majeure ou longue à traiter, une main régulière de 0–7 H passe, 8–9 H invite par 2SA et 10 H suffisent pour conclure à 3SA. En effet, 10 + 15 = 25 H. Les mains très fortes relèvent d'une recherche de chelem, étudiée séparément.",
       "typicalError": "Ne comptez pas seulement vos propres points.",
       "checks": [
@@ -1731,7 +1731,7 @@
     },
     "sa1.stayman": {
       "title": "Rechercher un fit majeur 4–4",
-      "objective": "Rechercher un fit majeur 4–4",
+      "objective": "Reconnaître quand rechercher une majeure quatrième par 2♣ plutôt que proposer directement SA.",
       "rule": "Sur 1SA sans intervention, avec une majeure quatrième et une force permettant d'envisager la manche, 2♣ Stayman interroge sur les majeures quatrièmes. Dans le cas usuel invitant, recherchez le fit avant de proposer 2SA.",
       "typicalError": "2♣ n'annonce pas des Trèfles naturels.",
       "checks": [
@@ -1794,7 +1794,7 @@
     },
     "sa1.texas": {
       "title": "Utiliser le Texas majeur sur 1SA",
-      "objective": "Utiliser le Texas majeur sur 1SA",
+      "objective": "Choisir le transfert correspondant à une majeure cinquième et comprendre ce que garantit la rectification.",
       "rule": "Avec au moins cinq Cœurs, annoncez 2♦ ; avec au moins cinq Piques, 2♥. Sans intervention, l'ouvreur rectifie normalement dans la majeure, sans promettre trois cartes. La force détermine ensuite la poursuite.",
       "typicalError": "La rectification sur 1SA n'établit pas à elle seule le fit 5–3.",
       "checks": [
@@ -1857,7 +1857,7 @@
     },
     "sa2.seuil": {
       "title": "Évaluer la manche après 2SA",
-      "objective": "Évaluer la manche après 2SA",
+      "objective": "Calculer la force minimale du camp après 2SA et décider si la manche à SA est justifiée.",
       "rule": "L'ouvreur a 20–21 H réguliers. Sans recherche de fit, 5 H réguliers donnent au moins 25 H et justifient 3SA. Une main beaucoup plus faible peut passer ; les majeures longues suivent leurs conventions propres.",
       "typicalError": "N'appliquez pas les seuils de réponse à 1SA sans recalculer.",
       "checks": [
@@ -2033,7 +2033,7 @@
     },
     "red.bicolore": {
       "title": "Décrire une deuxième couleur économique",
-      "objective": "Décrire une deuxième couleur économique",
+      "objective": "Reconnaître une seconde couleur annonçable économiquement et vérifier le niveau de retour dans la première.",
       "rule": "Après 1♣–1♥, quatre Piques peuvent être nommés à 1♠ sans surplus de force. Avec une première couleur cinquième et une seconde quatrième, le bicolore économique permet de revenir dans la première couleur au même palier. Cherchez d'abord le fit ; ne masquez pas la seconde couleur.",
       "typicalError": "Ne redemandez pas systématiquement 1SA dès que la main paraît régulière.",
       "checks": [
@@ -2378,7 +2378,7 @@
     },
     "red.base": {
       "title": "Redemander 1SA avec une ouverture minimale",
-      "objective": "Redemander 1SA avec une ouverture minimale",
+      "objective": "Choisir une redemande minimale à SA ou à la couleur selon le fit, la forme et les couleurs disponibles.",
       "rule": "Après la réponse du partenaire, vérifiez le fit et les couleurs annonçables. Avec 12–14 H réguliers, sans soutien quatrième ni majeure quatrième prioritaire, redemandez 1SA. Avec une sixième et une ouverture minimale, sa répétition naturelle est souvent plus descriptive.",
       "typicalError": "Trois atouts ne permettent pas automatiquement le soutien direct de l'ouvreur.",
       "checks": [
@@ -2750,7 +2750,7 @@
     },
     "second.base": {
       "title": "Choisir la deuxième enchère du répondant",
-      "objective": "Choisir la deuxième enchère du répondant",
+      "objective": "Utiliser les renseignements de la redemande pour choisir une partielle, une invitation ou une manche.",
       "rule": "Après la redemande de l'ouvreur, demandez-vous si un fit est établi et quelle force le partenaire a montrée. Avec une main faible, conservez ou choisissez une partielle ; avec une force intermédiaire invitez ; si la manche est certaine, concluez au meilleur contrat.",
       "typicalError": "Ne montez pas au palier de trois pour la seule présence d'un neuvième atout.",
       "checks": [
@@ -3138,7 +3138,7 @@
     },
     "fit.2sa": {
       "title": "Distinguer 2SA fitté et soutien à trois",
-      "objective": "Distinguer 2SA fitté et soutien à trois",
+      "objective": "Distinguer les deux soutiens invitants sans intervention en comptant précisément ses atouts.",
       "rule": "Sans intervention, 2SA direct après ouverture majeure montre exactement trois atouts et 11–12 HLD dans l'accord QPJB. Dans cette même zone, le soutien à trois promet quatre atouts.",
       "typicalError": "Ne prenez pas 2SA fitté pour une enchère naturelle à SA.",
       "checks": [
@@ -3205,7 +3205,7 @@
     },
     "majeur.base": {
       "title": "Évaluer la force de réponse à une majeure",
-      "objective": "Évaluer la force de réponse à une majeure",
+      "objective": "Choisir entre réponse majeure, 1SA, changement de couleur au palier de deux et Passe sans fit.",
       "rule": "Sans fit sur 1M, annoncez 1♠ sur 1♥ avec quatre Piques et force suffisante. À défaut, 1SA (6–10 H) est non forcing et peut cacher une mineure longue. Un 2/1 naturel demande 11 H ou 12 HL et est auto-forcing. Avec une main très faible, Passe.",
       "typicalError": "Ne confondez pas l'obligation de répondre à un contre avec une ouverture naturelle.",
       "checks": [
@@ -3268,7 +3268,7 @@
     },
     "sa2.stayman": {
       "title": "Rechercher une majeure quatrième sur 2SA",
-      "objective": "Rechercher une majeure quatrième sur 2SA",
+      "objective": "Employer 3♣ pour rechercher un fit majeur quatrième après une ouverture de 2SA.",
       "rule": "Sur 2SA (20–21 H), 3♣ Stayman recherche une majeure quatrième avec les valeurs nécessaires à la manche. La réponse de l'ouvreur détermine si un fit 4–4 est possible.",
       "typicalError": "2♣ n'est pas une enchère disponible à ce palier.",
       "checks": [
@@ -3335,7 +3335,7 @@
     },
     "sa2.texas": {
       "title": "Transférer sur 2SA",
-      "objective": "Transférer sur 2SA",
+      "objective": "Choisir le transfert majeur sur 2SA en tenant compte du fit promis et du risque de dépasser la partielle.",
       "rule": "Sur 2SA, 3♦ transfère aux Cœurs et 3♥ aux Piques. La rectification promet au moins trois atouts ; 3SA nie ce soutien. Avec seulement 3 H et cinq cartes dans la majeure, le Texas risque donc d'imposer une manche trop haute : Passe peut s'imposer.",
       "typicalError": "Ne transposez pas la rectification automatique de 1SA.",
       "checks": [
@@ -3458,7 +3458,7 @@
     },
     "roudi.init": {
       "title": "Interroger sur le troisième atout",
-      "objective": "Interroger sur le troisième atout",
+      "objective": "Reconnaître la séquence où 2♣ permet de rechercher un soutien troisième de sa majeure cinquième.",
       "rule": "Après ouverture mineure, réponse majeure et redemande 1SA (12–14 H), 2♣ Roudi permet avec une majeure cinquième et des valeurs constructives de rechercher trois atouts chez l'ouvreur.",
       "typicalError": "2♣ ne décrit pas une longue naturelle à Trèfle dans cette séquence.",
       "checks": [
@@ -3523,7 +3523,7 @@
     },
     "sa1.stayman.suite": {
       "title": "Conclure après le Stayman",
-      "objective": "Conclure après le Stayman",
+      "objective": "Utiliser le fit révélé par le Stayman et la force de sa main pour inviter ou conclure.",
       "rule": "Si la réponse au Stayman révèle la majeure quatrième que vous détenez, le fit 4–4 est établi. Avec la force de manche, choisissez la manche majeure ; avec la force invitante, invitez dans la majeure.",
       "typicalError": "Ne concluez pas à SA sans utiliser l'information obtenue.",
       "checks": [
@@ -3705,7 +3705,7 @@
     },
     "sa1.stayman.reponse": {
       "title": "Répondre au Stayman à quatre réponses",
-      "objective": "Répondre au Stayman à quatre réponses",
+      "objective": "Choisir la réponse codée au Stayman à partir des seules longueurs majeures.",
       "rule": "Sur 1SA–2♣ Stayman à quatre réponses : 2♦ aucune majeure quatrième, 2♥ quatre Cœurs sans quatre Piques, 2♠ quatre Piques sans quatre Cœurs, 2SA les deux. Ce code décrit les longueurs, non la zone minimum ou maximum.",
       "typicalError": "Ne répétez pas la zone de force de 1SA au lieu de décrire les majeures.",
       "checks": [
@@ -3867,7 +3867,7 @@
     },
     "sa1.texas.suite": {
       "title": "Distinguer partielle et poursuite après Texas",
-      "objective": "Distinguer partielle et poursuite après Texas",
+      "objective": "Après rectification du Texas, choisir entre Passe, proposition à SA et manche majeure.",
       "rule": "Après rectification ordinaire du Texas sur 1SA, Passe avec une main faible. Avec une force de manche et cinq cartes, 3SA laisse l'ouvreur choisir la majeure s'il est fitté ; avec six cartes, le fit est acquis et la manche majeure directe convient dans les cas étudiés.",
       "typicalError": "Le Texas initial ne promet pas une invitation.",
       "checks": [
@@ -4032,7 +4032,7 @@
     },
     "sa2.stayman.suite": {
       "title": "Choisir la manche après Stayman sur 2SA",
-      "objective": "Choisir la manche après Stayman sur 2SA",
+      "objective": "Après une réponse négative au Stayman, éviter une manche majeure sans fit et choisir le contrat adapté.",
       "rule": "Après 2SA–3♣–3♦ Stayman, aucune majeure quatrième de l'ouvreur n'est annoncée. Sans autre recherche utile, les valeurs de manche conduisent à 3SA plutôt qu'à une majeure quatrième non fittée.",
       "typicalError": "Ne supposez pas un fit 4–4 après une réponse négative.",
       "checks": [
@@ -4101,7 +4101,7 @@
     },
     "sa2.texas.suite": {
       "title": "Utiliser le fit confirmé après Texas sur 2SA",
-      "objective": "Utiliser le fit confirmé après Texas sur 2SA",
+      "objective": "Reconnaître le fit huitième confirmé par la rectification et conclure selon la force.",
       "rule": "Une rectification majeure après le Texas sur 2SA garantit trois cartes. Avec au moins cinq cartes dans cette majeure et les valeurs de manche, privilégiez la manche majeure lorsque le fit est confirmé.",
       "typicalError": "Ne choisissez pas 3SA par automatisme après une ouverture à SA.",
       "checks": [
@@ -4170,7 +4170,7 @@
     },
     "intervenir.base": {
       "title": "Intervenir naturellement sur une ouverture",
-      "objective": "Intervenir naturellement sur une ouverture",
+      "objective": "Évaluer la longueur et la qualité de sa couleur avant de préférer une intervention naturelle.",
       "rule": "Une intervention naturelle au palier de un décrit habituellement une couleur au moins cinquième et une force adaptée à la qualité de couleur, à la position et au risque. Une couleur identifiable favorise cette intervention plutôt qu'un contre d'appel général.",
       "typicalError": "Ne transposez pas mécaniquement le seuil d'ouverture à l'intervention.",
       "checks": [
@@ -4414,7 +4414,7 @@
     },
     "contre.base": {
       "title": "Répondre au contre d'appel",
-      "objective": "Répondre au contre d'appel",
+      "objective": "Reconnaître l'obligation habituelle de répondre au contre d'appel même avec une main très faible.",
       "rule": "Si le partenaire contre d'appel et l'adversaire suivant passe, il faut normalement répondre même très faible, en privilégiant une couleur appropriée au palier disponible. Passer transforme le contre en pénalité et demande un contexte défendable.",
       "typicalError": "Ne passez pas simplement parce que vous avez moins de 6 H.",
       "checks": [
@@ -4547,7 +4547,7 @@
     },
     "apres_inter.base": {
       "title": "Soutenir après intervention naturelle",
-      "objective": "Soutenir après intervention naturelle",
+      "objective": "Réévaluer sa main avec le fit après intervention adverse et choisir le niveau de soutien.",
       "rule": "Sur ouverture majeure du partenaire suivie d'une intervention naturelle, le soutien simple reste adapté au fit et à environ 6–10 HLD. Réévaluez les courtes et la longueur avant de choisir le niveau.",
       "typicalError": "Le palier dépend du fit et des valeurs réévaluées, pas seulement des H.",
       "checks": [
@@ -4835,7 +4835,7 @@
     },
     "competitif.2sa_fitte": {
       "title": "Reconnaître le 2SA fitté compétitif",
-      "objective": "Reconnaître le 2SA fitté compétitif",
+      "objective": "Distinguer le 2SA fitté après intervention de celui utilisé sans intervention.",
       "rule": "Après ouverture majeure et intervention naturelle adverse, 2SA fitté montre environ 11–15 HLD, normalement trois atouts. Ne lui appliquez pas la zone 11–12 HLD du soutien direct sans intervention.",
       "typicalError": "Ne prenez pas 2SA pour un contrat naturel.",
       "checks": [
@@ -4903,7 +4903,7 @@
     },
     "barrage.ouverture": {
       "title": "Reconnaître le deux faible",
-      "objective": "Reconnaître le deux faible",
+      "objective": "Vérifier longueur, force, qualité de couleur et contexte avant de choisir un deux faible.",
       "rule": "En première position, 2♥ ou 2♠ faible montre normalement six cartes convenables et 6–10 H. Vérifiez les gros honneurs de la couleur, l'absence d'une autre majeure quatrième et la qualité défensive extérieure ; la vulnérabilité compte. Avec sept cartes et force faible, un barrage à trois peut convenir.",
       "typicalError": "Ne barrez pas simplement parce que vous manquez de force d'ouverture.",
       "checks": [
@@ -5068,7 +5068,7 @@
     },
     "barrage.reponse": {
       "title": "Répondre au deux faible sans surenchérir",
-      "objective": "Répondre au deux faible sans surenchérir",
+      "objective": "Compter le fit face à un deux faible et distinguer prolongation du barrage et invitation.",
       "rule": "Le partenaire a annoncé six cartes. Deux cartes suffisent donc à un fit huitième. Avec une main faible, le contrat de départ peut convenir ; un soutien plus haut prolonge le barrage selon longueur et contexte, il n'invite pas automatiquement.",
       "typicalError": "Ne montez pas pour le seul plaisir de montrer un fit.",
       "checks": [
@@ -5341,7 +5341,7 @@
     },
     "apres_fit.base": {
       "title": "Choisir partielle ou manche après soutien simple",
-      "objective": "Choisir partielle ou manche après soutien simple",
+      "objective": "Évaluer sa main d'ouvreur après un soutien simple pour passer, inviter ou conclure.",
       "rule": "Après 1M–2M, le répondant montre environ 6–10 HLD. Une ouverture minimale sans plus-value peut passer ; une ouverture constructive peut proposer la manche, une main assez forte la conclure.",
       "typicalError": "Le soutien simple ne garantit pas la manche.",
       "checks": [
@@ -5408,7 +5408,7 @@
     },
     "apres_fit.essai": {
       "title": "Proposer la manche après un fit majeur",
-      "objective": "Proposer la manche après un fit majeur",
+      "objective": "Distinguer essai généralisé, essai à la couleur et soutien préventif après un fit majeur.",
       "rule": "Après 1M–2M, 2SA est l'essai généralisé ; une autre couleur à trois est un essai à la couleur seulement si 3M reste accessible pour refuser. Ainsi 3♠ après 1♥–2♥ n'est pas un essai simple. 3M direct est préventif, non invitant.",
       "typicalError": "Ne confondez pas l'essai avec le soutien préventif à trois.",
       "checks": [
@@ -5574,7 +5574,7 @@
     },
     "apres_fit.essai.suite": {
       "title": "Accepter ou refuser un essai de manche",
-      "objective": "Accepter ou refuser un essai de manche",
+      "objective": "Évaluer sa force et ses compléments dans la couleur d'essai pour accepter ou refuser la manche.",
       "rule": "Face à un essai à la couleur, appréciez votre zone de soutien et vos compléments dans cette couleur. Un soutien minimum sans complément revient à 3M ; une acceptation conclut à la manche majeure.",
       "typicalError": "Ne passez pas sur la couleur d'essai comme si elle était naturelle et finale.",
       "checks": [
@@ -5639,7 +5639,7 @@
     },
     "reponse_inter.base": {
       "title": "Soutenir une intervention majeure",
-      "objective": "Soutenir une intervention majeure",
+      "objective": "Reconnaître le fit après une intervention majeure du partenaire et choisir un soutien non forcing adapté.",
       "rule": "Après intervention naturelle majeure du partenaire et Passe adverse, trois atouts suffisent au fit. Le soutien simple avec une main modeste est non forcing ; un saut répond à d'autres conditions de longueur et de contexte.",
       "typicalError": "Ne traitez pas tous les soutiens comme une invitation.",
       "checks": [
@@ -5924,7 +5924,7 @@
     },
     "reveil.base": {
       "title": "Reconnaître une position de réveil",
-      "objective": "Reconnaître une position de réveil",
+      "objective": "Identifier une position où Passe terminerait les enchères et évaluer une intervention de réveil.",
       "rule": "Après ouverture adverse et deux Passe, le prochain Passe termine les enchères. Une couleur cinquième peut justifier un réveil naturel dans une zone usuelle de 8–13 HL ; jugez la qualité et le risque.",
       "typicalError": "Ne confondez pas réveil et intervention directe.",
       "checks": [
@@ -6205,7 +6205,7 @@
     },
     "roudi.choix": {
       "title": "Choisir entre Roudi et répétition faible",
-      "objective": "Choisir entre Roudi et répétition faible",
+      "objective": "Distinguer une répétition faible de la majeure d'une recherche constructive du troisième atout.",
       "rule": "Après ouverture mineure, réponse majeure et 1SA de redemande, la répétition de la majeure au palier de deux est faible dans le cadre étudié. Roudi sert à une recherche constructive du fit.",
       "typicalError": "N'utilisez pas systématiquement Roudi dès que vous avez cinq cartes.",
       "checks": [
@@ -6270,7 +6270,7 @@
     },
     "roudi.reponse": {
       "title": "Coder les réponses du Roudi",
-      "objective": "Coder les réponses du Roudi",
+      "objective": "Décoder puis choisir les trois réponses du Roudi selon le soutien et la force de l'ouvreur.",
       "rule": "Dans le Roudi à trois réponses, 2♦ nie le soutien troisième ; 2♥ montre trois atouts et minimum, 2♠ trois atouts et maximum. La majeure réelle du répondant reste la référence.",
       "typicalError": "2♠ codé n'annonce pas nécessairement des Piques naturels.",
       "checks": [
@@ -6438,7 +6438,7 @@
     },
     "drury.choix": {
       "title": "Distinguer Drury et soutien simple",
-      "objective": "Distinguer Drury et soutien simple",
+      "objective": "Choisir entre soutien simple et Drury en fonction de la force du fit après son Passe initial.",
       "rule": "Après votre Passe initial et ouverture majeure en troisième ou quatrième position, Drury sert à un soutien encourageant à partir de 11 HLD dans cet accord ; un soutien simple faible reste naturel.",
       "typicalError": "Un fit faible n'appelle pas automatiquement Drury.",
       "checks": [
@@ -6581,7 +6581,7 @@
     },
     "drury.init": {
       "title": "Interroger une ouverture tardive",
-      "objective": "Interroger une ouverture tardive",
+      "objective": "Reconnaître les conditions de position et de fit qui rendent 2♣ Drury pertinent.",
       "rule": "Après avoir passé et vu le partenaire ouvrir 1M en troisième ou quatrième position, 2♣ Drury montre un fit encourageant et interroge la qualité de l'ouverture, qui peut être tactique.",
       "typicalError": "Ne prenez pas 2♣ pour une couleur naturelle ni pour un relais après n'importe quelle position.",
       "checks": [
@@ -6652,7 +6652,7 @@
     },
     "drury.reponse": {
       "title": "Signaler une ouverture tactique après Drury",
-      "objective": "Signaler une ouverture tactique après Drury",
+      "objective": "Distinguer la réponse de freinage et les réponses constructives après Drury.",
       "rule": "Après Drury, 2M signale une ouverture sous la force normale (moins de 13 HL dans les cas étudiés). 2♦ est une réponse ambiguë avec espoir de manche ; 3M peut marquer une ambition de chelem dans les développements enseignés. Ne confondez pas ces séquences avec les réponses directes.",
       "typicalError": "Ne confondez pas 2M faible et un soutien de manche.",
       "checks": [
@@ -6824,7 +6824,7 @@
     },
     "fortes.ouverture": {
       "title": "Identifier une ouverture forte indéterminée",
-      "objective": "Identifier une ouverture forte indéterminée",
+      "objective": "Distinguer les ouvertures fortes artificielles et l'ouverture directe de 2SA selon la force régulière.",
       "rule": "Une main régulière de 22–23 H dépasse 2SA direct (20–21 H) : 2♣ fort indéterminé puis 2SA la décrit. Avec une force exceptionnelle comme 25 H réguliers, 2♦ forcing de manche convient. Ne confondez pas les deux ouvertures artificielles.",
       "typicalError": "Ne confondez pas cette ouverture avec un deux faible.",
       "checks": [
@@ -7007,7 +7007,7 @@
     },
     "chelem.quantitatif": {
       "title": "Inviter au chelem à Sans-Atout",
-      "objective": "Inviter au chelem à Sans-Atout",
+      "objective": "Reconnaître une invitation quantitative au chelem sans fit agréé et la distinguer d'une demande de clés.",
       "rule": "Sans fit agréé, 4SA quantitatif après 1SA invite au petit chelem selon la zone de l'ouvreur. Dans les cas réguliers, la référence usuelle du petit chelem est autour de 33 H combinés.",
       "typicalError": "4SA n'est pas automatiquement Blackwood.",
       "checks": [
@@ -7070,7 +7070,7 @@
     },
     "red.bicolore_cher": {
       "title": "Reconnaître le coût du bicolore cher",
-      "objective": "Reconnaître le coût du bicolore cher",
+      "objective": "Identifier le retour coûteux dans la première couleur et vérifier la force requise pour un bicolore cher.",
       "rule": "Le bicolore cher oblige le répondant à atteindre le palier de trois pour revenir dans la première couleur. Le cas usuel 5–4 exige au moins 18 HL ; il est forcing et auto-forcing. Un bicolore à saut est distinct et peut être forcing de manche. Vérifiez la séquence exacte.",
       "typicalError": "N'annoncez pas une seconde couleur chère seulement parce qu'elle est quatrième.",
       "checks": [
@@ -7232,7 +7232,7 @@
     },
     "competitif.truscott": {
       "title": "Distinguer Truscott majeur, mineur et Surcontre",
-      "objective": "Distinguer Truscott majeur, mineur et Surcontre",
+      "objective": "Choisir le soutien conventionnel adapté au fit majeur ou mineur après un contre, ou le Surcontre selon la main.",
       "rule": "Après 1M–(Contre), 2SA Truscott montre quatre atouts et 11–12 HLD, forcing ; 3M direct est barrage. Après 1m–(Contre), le Truscott mineur demande au moins cinq atouts et 9 H, non 9 HLD. Sans fit suffisant, le Surcontre positif peut exprimer au moins 10 H.",
       "typicalError": "Confondre Truscott majeur, Truscott mineur et 2SA fitté après intervention naturelle.",
       "checks": [
@@ -7462,7 +7462,7 @@
     },
     "michaels.reveil": {
       "title": "Ne pas confondre réveil bicolore et naturel",
-      "objective": "Ne pas confondre réveil bicolore et naturel",
+      "objective": "Distinguer le réveil conventionnel montrant deux majeures de l'annonce naturelle d'une longue Carreau.",
       "rule": "Dans l'accord SEF étudié, après (1♣)–Passe–Passe, 2♦ montre les deux majeures au moins 5–5. Une longue Carreau isolée appelle plutôt une enchère naturelle au palier disponible.",
       "typicalError": "Le saut à 2♦ n'annonce pas forcément des Carreaux.",
       "checks": [
@@ -7531,7 +7531,7 @@
     },
     "roudi.suite": {
       "title": "Exploiter la réponse négative du Roudi",
-      "objective": "Exploiter la réponse négative du Roudi",
+      "objective": "Combiner la réponse au Roudi avec sa propre longueur majeure et sa force pour déterminer le contrat.",
       "rule": "Après Roudi, utilisez d'abord le renseignement de fit et, si la réponse le précise, la force de l'ouvreur. Même après 2♦ négatif, six cartes et deux chez l'ouvreur peuvent assurer huit atouts. Choisissez ensuite le niveau selon la force ; les suites contrastées sont approfondies séparément.",
       "typicalError": "L'absence de trois atouts ne signifie pas toujours l'absence de huit atouts.",
       "checks": [
@@ -7925,7 +7925,7 @@
     },
     "fortes.relais": {
       "title": "Répondre à une ouverture forte",
-      "objective": "Répondre à une ouverture forte",
+      "objective": "Distinguer le relais obligatoire sur 2♣ des réponses codées sur 2♦ forcing de manche.",
       "rule": "Sur 2♣ fort indéterminé, 2♦ est le relais obligatoire. Sur 2♦ forcing de manche, le code étudié distingue 2♥ négatif, 2♠ un As majeur, 3♣/3♦ un As dans la mineure nommée, 2SA sans As avec 8 H ou plus et main régulière. Ce sont des codes, non des longueurs naturelles.",
       "typicalError": "Ne passez pas simplement avec une main faible.",
       "checks": [
@@ -8372,7 +8372,7 @@
     },
     "fortes.redemande": {
       "title": "Décrire 22–23 H après le relais fort",
-      "objective": "Décrire 22–23 H après le relais fort",
+      "objective": "Reconnaître la zone régulière annoncée par 2SA après le relais fort et la comparer à 2SA direct.",
       "rule": "Après 2♣ fort indéterminé–2♦ relais, la redemande de 2SA décrit 22–23 H réguliers dans l'accord étudié. 2SA direct à l'ouverture décrit seulement 20–21 H.",
       "typicalError": "Ne confondez pas ouverture directe et redemande après relais.",
       "checks": [
@@ -8608,7 +8608,7 @@
     },
     "forcing.troisieme": {
       "title": "Répondre à une troisième couleur forcing",
-      "objective": "Répondre à une troisième couleur forcing",
+      "objective": "Reconnaître l'interrogation artificielle et donner notamment le soutien troisième recherché.",
       "rule": "Après répétition de sa mineure par l'ouvreur, le répondant peut employer une troisième couleur artificielle pour poursuivre la recherche de contrat. L'ouvreur montre notamment un soutien troisième de la majeure du répondant s'il le détient.",
       "typicalError": "Ne traitez pas systématiquement la troisième couleur comme une vraie longue.",
       "checks": [
@@ -8674,7 +8674,7 @@
     },
     "forcing.quatrieme": {
       "title": "Interroger par la quatrième couleur",
-      "objective": "Interroger par la quatrième couleur",
+      "objective": "Employer la quatrième couleur pour rechercher un renseignement de fit ou d'arrêt sans promettre cette couleur.",
       "rule": "Quand trois couleurs naturelles ont déjà été nommées, la quatrième couleur forcing peut rechercher le fit ou un arrêt avant de choisir le contrat. Elle ne promet pas nécessairement des cartes dans cette quatrième couleur.",
       "typicalError": "Ne la confondez pas avec une répétition faible naturelle.",
       "checks": [
@@ -8739,7 +8739,7 @@
     },
     "forcing.base": {
       "title": "Reconnaître une enchère non forcing",
-      "objective": "Reconnaître une enchère non forcing",
+      "objective": "Identifier dans la séquence si le partenaire doit reparler ou peut passer.",
       "rule": "Une enchère forcing oblige le partenaire à reparler ; une répétition naturelle faible au palier de deux peut au contraire être non forcing dans les séquences enseignées. Lisez la séquence avant d'attribuer ce caractère.",
       "typicalError": "Ne confondez pas force de la main et obligation de reparler.",
       "checks": [
@@ -8804,7 +8804,7 @@
     },
     "multilandy.intervention": {
       "title": "Décrire un bicolore majeur contre 1SA",
-      "objective": "Décrire un bicolore majeur contre 1SA",
+      "objective": "Associer les distributions majeures enseignées aux interventions conventionnelles correspondantes contre 1SA.",
       "rule": "Dans le Multi-Landy QPJB contre 1SA 15–17 H, 2♣ montre les deux majeures, au moins 5–4 ; 2♦ montre une majeure sixième. Les autres branches et la force dépendent de l'accord et du contexte.",
       "typicalError": "2♣ ne décrit pas une longue Trèfle.",
       "checks": [
@@ -9087,7 +9087,7 @@
     },
     "multilandy.choix": {
       "title": "Savoir passer contre 1SA",
-      "objective": "Savoir passer contre 1SA",
+      "objective": "Vérifier si la distribution et la qualité de la main justifient une intervention conventionnelle ou Passe.",
       "rule": "Avant de choisir une intervention Multi-Landy, vérifiez une distribution conforme à la convention et une force ou qualité suffisante. Avec une main faible sans longue ni bicolore exploitable, Passe est raisonnable.",
       "typicalError": "Ne forcez pas une convention dont vous n'avez pas les cartes.",
       "checks": [
@@ -9154,7 +9154,7 @@
     },
     "rubensohl.naturel": {
       "title": "Reconnaître les réponses conservées sur contre artificiel",
-      "objective": "Reconnaître les réponses conservées sur contre artificiel",
+      "objective": "Reconnaître les réponses conservées face au contre artificiel décrit par l'accord étudié.",
       "rule": "Dans l'accord QPJB de l'exemple, un contre adverse artificiel mineure–majeure sur 1SA conserve les réponses usuelles : 2♣ Stayman, Texas habituels ; Surcontre exprime une volonté punitive.",
       "typicalError": "Ne transposez pas ces réponses à une intervention naturelle au palier de deux.",
       "checks": [
@@ -9226,7 +9226,7 @@
     },
     "rubensohl.init": {
       "title": "Utiliser le Texas Rubensohl",
-      "objective": "Utiliser le Texas Rubensohl",
+      "objective": "Reconnaître le transfert vers les Trèfles après l'intervention adverse prévue par l'accord.",
       "rule": "Après l'intervention adverse décrite sur 1SA, 2SA Rubensohl transfère vers les Trèfles. Les transferts à partir de 2SA ne sont pas des propositions naturelles de contrat à SA ; leur usage dépend du type d'intervention.",
       "typicalError": "Ne lisez pas 2SA comme naturel après avoir identifié l'accord Rubensohl.",
       "checks": [
@@ -9486,7 +9486,7 @@
     },
     "michaels.intervention": {
       "title": "Montrer les deux majeures sur 1♣",
-      "objective": "Montrer les deux majeures sur 1♣",
+      "objective": "Reconnaître la distribution bicolore majeure promise par 2♦ sur une ouverture adverse de 1♣.",
       "rule": "Sur 1♣ adverse, 2♦ Michaëls précisé décrit deux majeures au moins cinquièmes dans l'accord enseigné. La force et la qualité doivent permettre l'intervention ; ce n'est pas un barrage naturel à Carreau.",
       "typicalError": "Ne promettez pas un bicolore avec une seule majeure cinquième.",
       "checks": [
@@ -9549,7 +9549,7 @@
     },
     "michaels.choix": {
       "title": "Choisir naturel ou Michaëls précisé",
-      "objective": "Choisir naturel ou Michaëls précisé",
+      "objective": "Vérifier les deux longueurs cinquièmes et choisir l'annonce bicolore correspondant aux couleurs détenues.",
       "rule": "Sur 1♥ adverse, dans l'accord étudié, 2♥ montre Pique–Trèfle, 3♣ Pique–Carreau et 2SA les mineures. Chacune des deux couleurs promises doit être au moins cinquième. Une majeure isolée se nomme naturellement.",
       "typicalError": "Ne montrez pas une seconde longue que vous n'avez pas.",
       "checks": [
@@ -9612,7 +9612,7 @@
     },
     "chelem.cles": {
       "title": "Compter les cinq clés du Blackwood",
-      "objective": "Compter les cinq clés du Blackwood",
+      "objective": "Compter les cinq clés et interpréter les quatre réponses du Blackwood 30–41.",
       "rule": "Les cinq clés sont les quatre As et le Roi d'atout. Dans le code ordinaire 30–41, 5♣ = 0 ou 3, 5♦ = 1 ou 4, 5♥ = 2 sans Dame d'atout, 5♠ = 2 avec Dame d'atout.",
       "typicalError": "Le Roi d'une autre couleur et la Dame d'atout ne sont pas des clés supplémentaires.",
       "checks": [
@@ -9779,7 +9779,7 @@
     },
     "chelem.splinter": {
       "title": "Décrire une courte avec le fit",
-      "objective": "Décrire une courte avec le fit",
+      "objective": "Reconnaître le fit, la courte et la force qui justifient un Splinter dans la séquence étudiée.",
       "rule": "Un Splinter est un saut conventionnel montrant un fit d'au moins quatre atouts, une courte (singleton ou chicane) dans la couleur nommée et une force adaptée à la manche ou au chelem selon la séquence. Il ne propose pas de jouer la couleur courte.",
       "typicalError": "Ne l'utilisez pas pour une longue naturelle dans la couleur annoncée.",
       "checks": [
@@ -9921,7 +9921,7 @@
     },
     "competitif.spoutnik": {
       "title": "Rechercher une majeure par contre Spoutnik",
-      "objective": "Rechercher une majeure par contre Spoutnik",
+      "objective": "Reconnaître quand le contre Spoutnik recherche quatre Cœurs plutôt qu'une pénalité.",
       "rule": "Après 1♣ du partenaire et 1♠ adverse, le contre Spoutnik permet notamment de montrer quatre Cœurs avec une force qui ne justifie pas une enchère naturelle à 2♥. Il s'agit d'une recherche de fit, non d'une pénalité automatique.",
       "typicalError": "Ne nommez pas 2♥ seulement parce que vous avez quatre cartes.",
       "checks": [
@@ -9985,7 +9985,7 @@
     },
     "ouv.position": {
       "title": "Tenir compte de la position d'ouverture",
-      "objective": "Tenir compte de la position d'ouverture",
+      "objective": "Distinguer les conditions normales d'ouverture de la souplesse tactique de troisième position.",
       "rule": "Les conditions d'ouverture normale s'appliquent en première et deuxième position. En troisième position, après Passe du partenaire, une ouverture tactique peut être plus légère dans certaines situations ; ne généralisez pas cette exception.",
       "typicalError": "Ne prenez pas tout Passe adverse pour un Passe du partenaire.",
       "checks": [
@@ -10052,7 +10052,7 @@
     },
     "barrage.suite": {
       "title": "Répondre à l'interrogation sur un deux faible",
-      "objective": "Répondre à l'interrogation sur un deux faible",
+      "objective": "Distinguer les réponses minimum et maximum au relais sur un deux faible selon les caractéristiques de la main.",
       "rule": "Après deux faible–2SA relais, la main minimum répète la majeure à trois. La branche maximum montre notamment un gros honneur annexe ; une courte peut être annoncée en l'absence de gros honneur dans le traitement étudié. Ne décrivez pas une courte comme si c'était une longueur.",
       "typicalError": "Un Roi extérieur ne transforme pas à lui seul un minimum en maximum.",
       "checks": [
@@ -10281,7 +10281,7 @@
     },
     "intervenir.deux_faible": {
       "title": "Intervenir sur un barrage adverse",
-      "objective": "Intervenir sur un barrage adverse",
+      "objective": "Évaluer si la force, la distribution et la vulnérabilité justifient une action sur le deux faible adverse.",
       "rule": "Sur un deux faible adverse, le palier est déjà élevé. Une couleur trop courte ou une force insuffisante ne justifient ni une intervention naturelle ni un contre d'appel. Évaluez distribution, force et vulnérabilité.",
       "typicalError": "Ne transposez pas automatiquement les conditions d'intervention au palier de un.",
       "checks": [
@@ -10348,7 +10348,7 @@
     },
     "red.competitif": {
       "title": "Redemander après une intervention du quatrième joueur",
-      "objective": "Redemander après une intervention du quatrième joueur",
+      "objective": "Reconnaître quand l'intervention du quatrième joueur permet à l'ouvreur minimal de passer.",
       "rule": "Une intervention du quatrième joueur peut libérer l'ouvreur de l'obligation de redemander. Avec une ouverture minimale, sans fit ni enchère constructive adaptée, Passe peut convenir.",
       "typicalError": "Ne produisez pas une enchère artificiellement descriptive si la parole n'est plus obligatoire.",
       "checks": [
@@ -10418,7 +10418,7 @@
     },
     "michaels.defense": {
       "title": "Réagir à un bicolore adverse",
-      "objective": "Réagir à un bicolore adverse",
+      "objective": "Identifier les couleurs promises par l'intervention bicolore adverse avant de choisir une réponse ou Passe.",
       "rule": "Face à une intervention bicolore adverse, identifiez les couleurs réellement promises et les accords de réponse avant de choisir. Une main très faible sans fit ni couleur annonçable peut passer.",
       "typicalError": "Ne transformez pas automatiquement un contre en pénalité et n'inventez pas un fit.",
       "checks": [
@@ -10490,7 +10490,7 @@
     },
     "chelem.blackwood.suite": {
       "title": "Décider après la réponse aux clés",
-      "objective": "Décider après la réponse aux clés",
+      "objective": "Compter les clés du camp après la réponse codée et reconnaître quand renoncer au chelem.",
       "rule": "Additionnez les clés certaines de votre main et celles du partenaire, en éliminant les branches impossibles du code 30–41. Si deux clés manquent, arrêtez-vous au palier possible dans l'atout plutôt que chercher la Dame ou les Rois.",
       "typicalError": "Un Roi annexe ne compense pas une clé absente.",
       "checks": [
@@ -10664,7 +10664,7 @@
     },
     "chelem.blackwood.dame_rois": {
       "title": "Répondre à la question sur la Dame d'atout",
-      "objective": "Répondre à la question sur la Dame d'atout",
+      "objective": "Distinguer la Dame d'atout du Roi déjà compté comme clé et répondre à l'interrogation prévue.",
       "rule": "Après réponse codée aux clés, une interrogation spécifique peut demander la Dame d'atout. Sans elle, revenez au premier palier possible dans l'atout dans la séquence étudiée. Le Roi d'atout a déjà été compté comme clé.",
       "typicalError": "Ne répondez pas positivement pour la seule présence du Roi d'atout.",
       "checks": [
@@ -10737,7 +10737,7 @@
     },
     "fortes.suite": {
       "title": "Évaluer la manche après 2♣ fort",
-      "objective": "Évaluer la manche après 2♣ fort",
+      "objective": "Évaluer si sa main justifie de poursuivre après 2♣–2♦–2SA ou permet de passer.",
       "rule": "Après 2♣–2♦–2SA, l'ouvreur a 22–23 H réguliers. Une main nulle sans longue utile peut passer : 2♣ fort indéterminé n'est pas forcing de manche.",
       "typicalError": "Le relais obligatoire ne rend pas toutes les suites forcing.",
       "checks": [
@@ -11029,7 +11029,7 @@
     },
     "contre.deux_faible": {
       "title": "Répondre au contre d'un deux faible",
-      "objective": "Répondre au contre d'un deux faible",
+      "objective": "Reconnaître une réponse minimale non forcing au contre d'appel d'un deux faible.",
       "rule": "Après un contre d'appel d'un deux faible et Passe adverse, une réponse minimale dans une couleur disponible peut être faite avec moins de 8 H. Elle est non forcing dans la branche étudiée.",
       "typicalError": "Ne surévaluez pas une réponse obligatoire au palier de deux.",
       "checks": [
@@ -11240,7 +11240,7 @@
     },
     "michaels.reponse": {
       "title": "Choisir une préférence sur Michaëls",
-      "objective": "Choisir une préférence sur Michaëls",
+      "objective": "Comparer ses fits dans les deux couleurs promises et choisir une préférence économique.",
       "rule": "Le partenaire a annoncé deux couleurs au moins cinquièmes. Avec une main faible, préférez la couleur offrant le meilleur fit au palier économique, sans transformer la préférence en invitation.",
       "typicalError": "Ne sautez pas pour une force que vous n'avez pas.",
       "checks": [
@@ -11305,7 +11305,7 @@
     },
     "multilandy.reponse": {
       "title": "Choisir la majeure après Landy",
-      "objective": "Choisir la majeure après Landy",
+      "objective": "Distinguer une préférence majeure directe du relais qui demande de départager les majeures.",
       "rule": "Après 2♣ Landy du partenaire, choisissez une préférence majeure faible au palier de deux si vous avez une longueur nettement préférable ; le relais 2♦ demande de départager les majeures lorsqu'une préférence n'est pas évidente.",
       "typicalError": "2♦ relais n'est pas une proposition naturelle de jouer Carreau.",
       "checks": [
@@ -11570,7 +11570,7 @@
     },
     "multilandy.suite": {
       "title": "Répondre au relais Landy",
-      "objective": "Répondre au relais Landy",
+      "objective": "Répondre au relais 2♦ Landy en indiquant la majeure la plus longue dans le cas étudié.",
       "rule": "Après 2♣ Landy–2♦ relais, l'intervenant annonce sa majeure la plus longue au palier de deux dans la branche étudiée. Le partenaire n'a pas annoncé des Carreaux naturels.",
       "typicalError": "Ne sautez pas seulement pour montrer une force supplémentaire.",
       "checks": [
@@ -11637,7 +11637,7 @@
     },
     "rubensohl.reponse": {
       "title": "Rectifier un Texas Rubensohl",
-      "objective": "Rectifier un Texas Rubensohl",
+      "objective": "Identifier la couleur demandée par 2SA Rubensohl et effectuer la rectification correspondante.",
       "rule": "Après 1SA–(2♥ naturel)–2SA Rubensohl et Passe, 2SA est un transfert vers les Trèfles. L'ouvreur rectifie à 3♣ pour laisser le répondant passer ou poursuivre.",
       "typicalError": "Ne passez pas sur 2SA comme sur une proposition naturelle.",
       "checks": [
@@ -11703,7 +11703,7 @@
     },
     "sa1.texas_mineur": {
       "title": "Transférer vers les Trèfles sur 1SA",
-      "objective": "Transférer vers les Trèfles sur 1SA",
+      "objective": "Associer les deux Texas mineurs sur 1SA à leur couleur cible et reconnaître les rectifications.",
       "rule": "Sur 1SA, 2♠ est le Texas Trèfle et 3♣ le Texas Carreau dans le SEF enseigné. La rectification Carreau est 3♦ ; la rectification Trèfle peut être modulée. Le répondant décide ensuite de jouer une partielle ou de poursuivre.",
       "typicalError": "2♠ ne montre pas nécessairement des Piques.",
       "checks": [
@@ -11771,7 +11771,7 @@
     },
     "sa1.texas_mineur.suite": {
       "title": "Arrêter les enchères après un Texas mineur faible",
-      "objective": "Arrêter les enchères après un Texas mineur faible",
+      "objective": "Distinguer l'arrêt en partielle et la poursuite constructive après rectification du Texas mineur.",
       "rule": "Après rectification du Texas Trèfle à 3♣, passez avec une main faible dont le projet était la partielle. Une main forte peut utiliser le même Texas mais doit poursuivre selon son projet.",
       "typicalError": "Le transfert initial ne garantit pas une main de manche.",
       "checks": [
@@ -11841,7 +11841,7 @@
     },
     "chelem.controles": {
       "title": "Nommer les contrôles avant Blackwood",
-      "objective": "Nommer les contrôles avant Blackwood",
+      "objective": "Identifier les contrôles de premier et second tour et reconnaître quand freiner avant le Blackwood.",
       "rule": "Après fit agréé et projet de chelem, nommez économiquement les contrôles annexes : As ou chicane (premier tour), Roi ou singleton (deuxième tour), dans les séquences étudiées. Freinez à la manche si les contrôles nécessaires manquent.",
       "typicalError": "Ne posez pas Blackwood simplement parce que vous avez beaucoup de points.",
       "checks": [
@@ -11909,7 +11909,7 @@
     },
     "drury.suite": {
       "title": "Préciser la longueur du fit après Drury",
-      "objective": "Préciser la longueur du fit après Drury",
+      "objective": "Distinguer le soutien à trois et celui à quatre atouts après la réponse d'attente au Drury.",
       "rule": "Après Passe initial, 1M–2♣ Drury–2♦ attente, 2M montre trois atouts et 3M quatre dans le développement étudié. Ne transposez pas ces réponses à une ouverture en première position.",
       "typicalError": "Ne confondez pas force et nombre d'atouts dans ces réponses.",
       "checks": [
@@ -11983,7 +11983,7 @@
     },
     "fit.2sa.suite": {
       "title": "Répondre au 2SA fitté direct",
-      "objective": "Répondre au 2SA fitté direct",
+      "objective": "Évaluer la main de l'ouvreur pour accepter ou refuser l'invitation du 2SA fitté direct.",
       "rule": "Après 1M–2SA fitté (exactement trois atouts, 11–12 HLD sans intervention), l'ouvreur minimum peut refuser par 3M. Avec les valeurs nécessaires il accepte ; le jugement tient compte de la forme et des compléments.",
       "typicalError": "Ne confondez pas ce 2SA du répondant avec l'essai 2SA de l'ouvreur après 1M–2M.",
       "checks": [
@@ -12228,7 +12228,7 @@
     },
     "forcing.quatrieme.suite": {
       "title": "Exploiter la réponse à la quatrième couleur",
-      "objective": "Exploiter la réponse à la quatrième couleur",
+      "objective": "Utiliser l'information de fit ou d'arrêt apportée par la réponse à la quatrième couleur.",
       "rule": "Après quatrième couleur forcing, une réponse à SA peut indiquer l'arrêt dans la couleur demandée et, dans la séquence étudiée, nier le soutien troisième recherché. Le répondant choisit la suite selon force, fit et arrêt.",
       "typicalError": "Ne prenez pas l'enchère artificielle pour une couleur à jouer.",
       "checks": [
@@ -12299,7 +12299,7 @@
     },
     "chelem.quantitatif.suite": {
       "title": "Accepter ou refuser 4SA quantitatif",
-      "objective": "Accepter ou refuser 4SA quantitatif",
+      "objective": "Décider si la force de l'ouvreur justifie d'accepter l'invitation quantitative à 6SA.",
       "rule": "Sur 1SA–4SA sans fit agréé, l'ouvreur minimum passe, le maximum peut accepter à 6SA. Ce n'est pas une demande de clés ; l'évaluation de la force du camp reste déterminante.",
       "typicalError": "Ne donnez pas une réponse 5♣ ou 5♦ comme au Blackwood.",
       "checks": [
@@ -12369,7 +12369,7 @@
     },
     "chelem.blackwood.declenchement": {
       "title": "Vérifier quand poser le Blackwood",
-      "objective": "Vérifier quand poser le Blackwood",
+      "objective": "Vérifier le fit, la perspective de chelem et les contrôles avant de demander les clés.",
       "rule": "Avant 4SA Blackwood, identifiez l'atout agréé, une perspective réelle de chelem et les contrôles annexes nécessaires. Le code à cinq clés ne répare pas une couleur non contrôlée.",
       "typicalError": "Ne posez pas le Blackwood pour découvrir les contrôles manquants.",
       "checks": [
@@ -12442,7 +12442,7 @@
     },
     "rubensohl.suite": {
       "title": "Conclure après la rectification Rubensohl",
-      "objective": "Conclure après la rectification Rubensohl",
+      "objective": "Choisir entre Passe et poursuite selon le projet initial après la rectification Rubensohl.",
       "rule": "Après Texas Rubensohl vers les Trèfles et rectification à 3♣, une main faible qui visait ce contrat passe. Une main constructive poursuit selon force et contexte.",
       "typicalError": "Ne confondez pas transfert et invitation systématique.",
       "checks": [
@@ -12512,7 +12512,7 @@
     },
     "competitif.sa_adverse": {
       "title": "Identifier un accord après 1SA adverse",
-      "objective": "Identifier un accord après 1SA adverse",
+      "objective": "Distinguer les réponses conventionnelles et naturelles après 1SA adverse selon l'ouverture du partenaire.",
       "rule": "Après 1♦–(1SA naturel), le traitement QPJB étudié prévoit 2♣ Landyk faible avec deux majeures 5–4 au moins, 2♥ naturel, Contre punitif. Après 1M–(1SA naturel), 2SA cue-bid fitté montre quatre atouts et au moins 11 HLD. Ne transposez pas ces accords hors contexte.",
       "typicalError": "Vérifiez l'accord avant d'attribuer un sens à 2♣.",
       "checks": [
@@ -12633,7 +12633,7 @@
     },
     "sa.gambling": {
       "title": "Comprendre passe ou corrige après 3SA gambling",
-      "objective": "Comprendre passe ou corrige après 3SA gambling",
+      "objective": "Choisir Passe ou 4♦ sur 4♣ du partenaire en fonction de la mineure maîtresse détenue.",
       "rule": "Après votre ouverture de 3SA gambling avec une mineure longue maîtresse, 4♣ du partenaire passe ou corrige : passez avec les Trèfles, corrigez à 4♦ avec les Carreaux. Cette règle concerne précisément cette séquence.",
       "typicalError": "Ne confondez pas 4♣ passe ou corrige avec un 4♦ direct du répondant.",
       "checks": [
@@ -12703,7 +12703,7 @@
     },
     "reveil.deux_faible": {
       "title": "Comparer les réveils sur un deux faible",
-      "objective": "Comparer les réveils sur un deux faible",
+      "objective": "Comparer couleur, contre et SA en position de réveil et vérifier la tenue adverse requise.",
       "rule": "Après deux faible et deux Passe, comparez couleur naturelle, contre et SA selon la distribution et l'accord. Dans le cas étudié, 2SA naturel exige un arrêt dans la couleur adverse ; sans arrêt, une longue solide peut se nommer naturellement.",
       "typicalError": "Une mineure maîtresse ne garantit pas un arrêt adverse.",
       "checks": [
@@ -12772,7 +12772,7 @@
     },
     "forcing.checkback": {
       "title": "Rechercher un fit après 2SA de redemande",
-      "objective": "Rechercher un fit après 2SA de redemande",
+      "objective": "Reconnaître le relais dans l'autre mineure après la redemande à saut de 2SA.",
       "rule": "Après ouverture mineure, réponse majeure et redemande 2SA à saut (18–19 H), le checkback utilise l'autre mineure dans l'accord étudié : 3♦ après 1♣. Il recherche notamment trois cartes dans la majeure répondue.",
       "typicalError": "Ne confondez pas le checkback avec le Roudi après 1SA de redemande.",
       "checks": [
@@ -12845,7 +12845,7 @@
     },
     "chelem.splinter.variante": {
       "title": "Montrer une courte après la seconde couleur de l'ouvreur",
-      "objective": "Montrer une courte après la seconde couleur de l'ouvreur",
+      "objective": "Identifier le fit et la courte décrits par le saut conventionnel après la seconde couleur de l'ouvreur.",
       "rule": "Après 1♣–1♥–1♠, un saut à 4♦ dans le développement étudié montre un fit Pique et une courte Carreau. Le principe du Splinter vaut aussi pour certaines séquences différées ; vérifiez la séquence exacte.",
       "typicalError": "Ne prenez pas le saut dans la courte pour une proposition naturelle.",
       "checks": [
@@ -12921,7 +12921,7 @@
     },
     "second.bicolore_cher": {
       "title": "Répondre économiquement à un bicolore cher",
-      "objective": "Répondre économiquement à un bicolore cher",
+      "objective": "Distinguer la répétition économique forcing un tour d'une répétition à saut plus constructive.",
       "rule": "Après bicolore cher de l'ouvreur, la répétition économique de la majeure du répondant peut obliger l'ouvreur à reparler sans imposer la manche. Une répétition à saut demande des valeurs supplémentaires dans la branche étudiée.",
       "typicalError": "Ne confondez pas forcing un tour et forcing de manche.",
       "checks": [
@@ -12993,7 +12993,7 @@
     },
     "forcing.troisieme.suite": {
       "title": "Conclure après la troisième couleur forcing",
-      "objective": "Conclure après la troisième couleur forcing",
+      "objective": "Reconnaître le fit huitième révélé par la réponse à la troisième couleur et conclure selon la force.",
       "rule": "Si la réponse de l'ouvreur montre trois cartes dans votre majeure cinquième, le fit huitième est établi. Avec les valeurs de manche, concluez à la manche majeure plutôt qu'à une invitation.",
       "typicalError": "Ne négligez pas le renseignement obtenu.",
       "checks": [
@@ -13064,7 +13064,7 @@
     },
     "sa2.texas.reponse": {
       "title": "Nier le fit après Texas sur 2SA",
-      "objective": "Nier le fit après Texas sur 2SA",
+      "objective": "Choisir entre rectification positive et 3SA en vérifiant le soutien troisième dans la majeure.",
       "rule": "Sur 2SA–3♦ Texas Cœur, 3♥ garantit au moins trois Cœurs dans l'accord SEF étudié. Avec deux Cœurs, 3SA nie ce soutien, même si l'ouvreur est maximum.",
       "typicalError": "Une force maximale ne remplace pas le troisième atout.",
       "checks": [
@@ -13181,7 +13181,7 @@
     },
     "sa1.stayman.contre": {
       "title": "Réagir au contre d'entame du Stayman",
-      "objective": "Réagir au contre d'entame du Stayman",
+      "objective": "Vérifier la tenue Trèfle avant de répondre immédiatement au Stayman contré dans l'accord étudié.",
       "rule": "Sur 1SA–2♣–(Contre d'entame), dans l'accord étudié, sans arrêt Trèfle l'ouvreur passe, même avec une majeure quatrième. La recherche peut reprendre ensuite. Une annonce immédiate implique la tenue Trèfle.",
       "typicalError": "Passe ne nie pas nécessairement une majeure quatrième.",
       "checks": [
@@ -13255,7 +13255,7 @@
     },
     "sa1.texas.contre": {
       "title": "Réagir au contre d'entame du Texas",
-      "objective": "Réagir au contre d'entame du Texas",
+      "objective": "Reconnaître quand Passe est permis sur le Texas Cœur contré et ce qu'il indique dans l'accord étudié.",
       "rule": "Quand le Texas Cœur à 2♦ sur 1SA est contré d'entame, la rectification n'est plus obligatoire. Dans l'accord étudié, Passe avec seulement deux Cœurs nie le soutien troisième.",
       "typicalError": "Ne transposez pas la rectification automatique sans contre.",
       "checks": [
@@ -13325,7 +13325,7 @@
     },
     "sa1.texas_mineur.reponse": {
       "title": "Distinguer rectification et modulation positive",
-      "objective": "Distinguer rectification et modulation positive",
+      "objective": "Distinguer la rectification normale et la modulation positive du Texas Trèfle, et la rectification Carreau obligatoire.",
       "rule": "Sur 1SA–2♠ Texas Trèfle, 3♣ est la rectification normale. Une modulation positive à 2SA existe dans le traitement étudié ; le Valet troisième d'une main minimum ne suffit pas. Sur 1SA–3♣ Texas Carreau, la rectification 3♦ est obligatoire, même avec deux Carreaux.",
       "typicalError": "Trois cartes quelconques ne garantissent pas la modulation positive.",
       "checks": [
@@ -13566,7 +13566,7 @@
     },
     "ouv.bicolore.exception": {
       "title": "Reconnaître l'exception Pique–Trèfle",
-      "objective": "Reconnaître l'exception Pique–Trèfle",
+      "objective": "Reconnaître les conditions particulières qui permettent d'ouvrir de 1♣ avec un bicolore Pique–Trèfle.",
       "rule": "Dans l'exception SEF 2024 enseignée, un bicolore Pique–Trèfle 5–5 de cinq perdantes au plus peut s'ouvrir de 1♣ pour décrire ensuite le bicolore fort à Pique. Cette exception ne remplace pas la majeure cinquième dans les autres cas.",
       "typicalError": "Ne généralisez pas l'ouverture mineure à tous les bicolores 5–5.",
       "checks": [
@@ -13635,7 +13635,7 @@
     },
     "sa2.stayman.reponse": {
       "title": "Répondre au Stayman sur 2SA",
-      "objective": "Répondre au Stayman sur 2SA",
+      "objective": "Choisir les réponses au Stayman sur 2SA selon les deux longueurs majeures.",
       "rule": "Sur 2SA–3♣ Stayman à quatre réponses, 3♦ nie les majeures quatrièmes ; 3♥ ou 3♠ montre la majeure correspondante, 3SA les deux. La force maximale ne change pas ce code.",
       "typicalError": "3SA n'est pas une réponse de maximum.",
       "checks": [
@@ -13752,7 +13752,7 @@
     },
     "sa2.bicolore": {
       "title": "Choisir la manche après un double cinq majeur",
-      "objective": "Choisir la manche après un double cinq majeur",
+      "objective": "Reconnaître le double cinq majeur décrit par 4♦ sur 2SA et comprendre la décision laissée à l'ouvreur.",
       "rule": "Dans l'accord QPJB, 4♦ direct sur 2SA montre au moins cinq cartes dans chaque majeure et demande à l'ouvreur de choisir la manche majeure selon son fit. Ce n'est pas une annonce naturelle de Carreau.",
       "typicalError": "Ne choisissez pas SA sans raison dans cette demande de choix de majeure.",
       "checks": [
@@ -13826,7 +13826,7 @@
     },
     "intervenir.sa.suite": {
       "title": "Répondre à une intervention naturelle de 1SA",
-      "objective": "Répondre à une intervention naturelle de 1SA",
+      "objective": "Reconnaître le contexte où Stayman et Texas restent utilisables après l'intervention naturelle à 1SA du partenaire.",
       "rule": "Après ouverture adverse mineure, intervention naturelle du partenaire à 1SA (16–18 HL) et Passe du troisième joueur, l'accord enseigné conserve Stayman et Texas. Avec une majeure quatrième, le Stayman recherche le fit.",
       "typicalError": "Ne généralisez pas à une intervention sur ouverture majeure ni à toutes les séquences compétitives.",
       "checks": [
@@ -13899,7 +13899,7 @@
     },
     "sa2.texas_mineur.reponse": {
       "title": "Répondre au Texas Trèfle sur 2SA",
-      "objective": "Répondre au Texas Trèfle sur 2SA",
+      "objective": "Distinguer 3SA et 4♣ selon la qualité du soutien au Texas Trèfle sur 2SA.",
       "rule": "Dans l'accord étudié, 2SA–3♠ Texas Trèfle : sans soutien approprié à Trèfle, 3SA propose de jouer à SA ; 4♣ accepte le soutien. Deux Trèfles ne justifient pas l'acceptation.",
       "typicalError": "Ne transposez pas la rectification obligatoire du Texas majeur sur 1SA.",
       "checks": [
