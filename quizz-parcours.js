@@ -571,14 +571,30 @@
   // Même décision naturelle, transposée dans une autre couleur : éviter
   // les exercices miroirs successifs sans confondre les enchères codées.
   function decisionPattern(q){
-    if(q.auction?.length!==1)return '';
     const o=opener(q),a=bid(q);
-    if(majorSupport(q))return 'fit-majeur|'+a[0];
-    if(minorSupport(q))return 'fit-mineur|'+a[0];
-    if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^1[♥♠]$/.test(a))return 'reponse-majeure-sur-mineure';
-    if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
-    if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
-    return '';
+    if(q.auction?.length===1){
+      if(majorSupport(q))return 'fit-majeur|'+a[0];
+      if(minorSupport(q))return 'fit-mineur|'+a[0];
+      if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^1[♥♠]$/.test(a))return 'reponse-majeure-sur-mineure';
+      if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
+      if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
+    }
+    const concept=metadata(q)?.concept;
+    if(!concept||!a)return '';
+    const sequence=[...(Array.isArray(q.auction)?q.auction:[]),a]
+      .map(v=>String(v).replace(/[\uFE0E\uFE0F]/g,'').trim().replace(/\s+/g,' ')).join('|');
+    // Seulement les concepts naturels : ne jamais transformer un Texas,
+    // une réponse au Blackwood ou une enchère conventionnelle en son miroir.
+    // Les ouvertures mineures restent contrastées (meilleure mineure).
+    const natural=/^(ouv\.majeure|mineur\.base|mineur\.soutien|majeur\.soutien|majeur\.base|red\.base|red\.bicolore|second\.base|intervenir\.base|apres_inter\.base|reponse_inter\.base|reveil\.base|apres_fit\.base|barrage\.ouverture|barrage\.reponse)$/.test(concept);
+    const variants=[sequence];
+    if(natural)for(let mask=1;mask<4;mask++){
+      variants.push(sequence.replace(/[♥♠♣♦]/g,c=>({
+        '♥':mask&1?'♠':'♥','♠':mask&1?'♥':'♠',
+        '♣':mask&2?'♦':'♣','♦':mask&2?'♣':'♦'
+      })[c]));
+    }
+    return concept+'|'+variants.sort()[0];
   }
   function passDeadlines(s,count,length){
     if(!count||s>2||length!==10)return [];
@@ -603,6 +619,13 @@
     const earlyOrder=s===1&&items.length===10&&items.filter(x=>openBid(exerciseOf(x))).length>=2;
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
     const deadlines=passDeadlines(s,totalPass,items.length);
+    const features=items.map(x=>{
+      const q=exerciseOf(x);
+      return {q,pattern:decisionPattern(q),concept:metadata(q)?.concept||'',
+        answer:bid(q),shape:Array.isArray(q.shape)?q.shape.join(','):'',
+        kind:x.kind||x.target||''};
+    });
+    const mixedKinds=new Set(features.map(x=>x.kind).filter(Boolean)).size>1;
     let beam=[{seq:[],mask:0,cost:0,tie:0}];
     // Les sessions normales ont dix questions ; limite explicite pour API n<=20.
     for(let pos=0;pos<items.length;pos++){
@@ -633,14 +656,23 @@
             if(totalPass-usedPass-Number(pass)>Math.ceil((items.length-pos-1-Number(pass))/2))continue;
           }
           let c=0;
+          const f=features[i],l=features[node.seq.at(-1)],p=features[node.seq.at(-2)],
+            pp=features[node.seq.at(-3)];
           if(last){
-            if(bid(q)===bid(last))c+=100;
-            const pattern=decisionPattern(q);
-            if(pattern&&pattern===decisionPattern(last))c+=100;
+            if(f.answer===l.answer)c+=300;
+            if(f.pattern&&f.pattern===l.pattern)c+=150;
+            // Une deuxième main proche reste utile, mais pas immédiatement
+            // ni après un seul exercice lorsque la séance offre une alternative.
+            if(p&&f.pattern&&f.pattern===p.pattern)c+=18;
+            if(p&&f.concept&&f.concept===l.concept&&f.concept===p.concept)c+=10;
+            // Ne pas substituer un rythme ABAB mécanique à un bloc monotone.
+            if(s>0&&pp&&q.theme===p.q.theme&&last.theme===pp.q.theme&&q.theme!==last.theme)c+=7;
+            // Motifs intacts ; pénalité faible seulement sur les séries de 3.
+            if(s>0&&mixedKinds&&p&&f.kind&&f.kind===l.kind&&f.kind===p.kind)c+=3;
             if(s>0&&q.theme===last.theme)c+=3;
-            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=100;
+            if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=300;
             if(q.h===last.h&&Number.isInteger(q.h))c+=8;
-            if(Array.isArray(q.shape)&&Array.isArray(last.shape)&&q.shape.join(',')===last.shape.join(','))c+=7;
+            if(f.shape&&f.shape===l.shape)c+=7;
             if(context(q)===context(last)&&opener(q))c+=5;
             if(s===0&&prev&&openingPass(prev)&&!openingPass(last)&&pass)c+=4;
           }
