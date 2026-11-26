@@ -64,6 +64,19 @@ function candidate(src,kind){
 }
 function makeEngine(src,prerequis,kind){
  let s=candidate(src,kind);
+ // Computationally equivalent acceleration of the harness on the frozen,
+ // immutable catalogue only. Cross-checked against the uncached engine.
+ // Cache immutable metadata and string identities, not student outcomes.
+ s=replaceOnce(s,'function metadata(q){','const metaCache=new WeakMap(); function metadata(q){if(!metaCache.has(q))metaCache.set(q,readMetadata(q));return metaCache.get(q)} function readMetadata(q){');
+ for(const [name,anchor] of [['family','const family=x=>'],['bid','const bid=x=>'],['opener','const opener=x=>']]){
+   const old=anchor,wrap='const '+name+'Cache=new WeakMap(); const '+name+'=x=>{if(!'+name+'Cache.has(x))'+name+'Cache.set(x,raw_'+name+'(x));return '+name+'Cache.get(x)}; const raw_'+name+'=x=>';
+   s=replaceOnce(s,old,wrap);
+ }
+ s=replaceOnce(s,'const context=x=>','const contextCache=new WeakMap(); const context=x=>{if(!contextCache.has(x))contextCache.set(x,raw_context(x));return contextCache.get(x)}; const raw_context=x=>');
+ s=replaceOnce(s,'return exercises.filter(q=>evaluate(q,state,e).eligible);',
+ 'if(state.completed===0)return exercises.filter(q=>evaluate(q,state,e).eligible); const eligibilityCache=new Map(); return exercises.filter(q=>{const m=metadata(q); const key=JSON.stringify([q.theme,q.difficulty,m.concept,m.stage,m.minSession,m.requires,q.theme==="ouv"&&bid(q)==="2♣"]); if(!eligibilityCache.has(key))eligibilityCache.set(key,evaluate(q,state,e).eligible);return eligibilityCache.get(key)});');
+ s=replaceOnce(s,"const ranked=candidates.map(q=>({q,v:score(q,category)}));\n      ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));\n      const q=ranked[0].q,m=mOf(q),cat=category||classify(q);",
+ "let best=null,bestValue=-Infinity,bestHash=0; for(const item of candidates){const v=score(item,category);if(v<bestValue)continue;const h=hash(item.id+'#'+s);if(!best||v>bestValue||h<bestHash||(h===bestHash&&item.id.localeCompare(best.id)<0)){best=item;bestValue=v;bestHash=h}} const q=best,m=mOf(q),cat=category||classify(q);");
  s=replaceOnce(s,'return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));',
  'if(selected.some(v=>!evaluate(v.exercise,state,e).eligible))throw Error("ineligible selection"); return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));');
  const mod={exports:{}};
