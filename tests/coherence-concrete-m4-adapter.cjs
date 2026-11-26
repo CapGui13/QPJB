@@ -13,7 +13,7 @@ const anchor='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReaso
 const end='const m=mOf(q),cat=category||classify(q);';
 function instrument(source,policy='A'){
   if(policy==='E')return atomic.instrument(source);
-  if(policy==='H')return reserve.instrument(instrument(source,'D'));
+  if(policy==='H'||policy==='I')return reserve.instrument(instrument(source,'D'),policy);
   if(policy==='F'||policy==='G')return recallAdapter.instrument(instrument(source,'D').replace(/const m=mOf\(q\),cat=category\|\|classify\(q\);/,'const m=mOf(q),cat=category||classify(q);'),policy);
   if(source.split(anchor).length!==2||source.split(end).length!==2)throw Error('Ancre choose() modifiée : revue obligatoire');
   return source.replace(anchor,anchor.replace('const q','let q')).replace(end,`
@@ -40,7 +40,7 @@ function instrument(source,policy='A'){
 }
 function pick(ctx,rows,baseline,maxSession=180,onChange=()=>{},policy='A'){
   if(ctx.session>maxSession||rows.length<2)return baseline;
-  const ranked=((policy==='F'||policy==='G')&&ctx.category==='maintenance'?recall:(policy==='D'||policy==='E'||policy==='F'||policy==='G'||policy==='H')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
+  const ranked=((policy==='F'||policy==='G')&&ctx.category==='maintenance'?recall:(policy==='D'||policy==='E'||policy==='F'||policy==='G'||policy==='H'||policy==='I')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
   const b=rows.find(r=>r.q===baseline),base=b.v+(d.get(baseline.id)?.delta||0);
   let winner=b,score=base;
   for(const row of rows){

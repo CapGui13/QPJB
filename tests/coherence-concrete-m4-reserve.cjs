@@ -22,4 +22,15 @@ const snap=JSON.stringify(ctx);check(JSON.stringify(r.rank(ctx))===JSON.stringif
 const fs=require('node:fs'),path=require('node:path');
 const src=fs.readFileSync(path.join(__dirname,'../quizz-parcours.js'),'utf8');
 check(typeof new Function('module','exports','require','Date','__m4Pick','__m4Reserve',adapter.instrument(src,'H'))==='function','native source syntax');
-console.log('M4 H reservation PASS',n);
+const historyFor=(good,help=0)=>({journal:Array.from({length:10},(_,i)=>({mode:'parcours',session:90+i,answers:Array.from({length:10},(_,j)=>({id:'s'+i+'q'+j,result:j<good?'correct':'wrong',assisted:j<help,hadFreeError:false}))}))});
+check(r.autonomyGate({...ctx,history:historyFor(6)}).allow,'stable 60% independently in each half');
+check(!r.autonomyGate({...ctx,history:historyFor(5)}).allow,'50% protected');
+check(!r.autonomyGate({...ctx,history:historyFor(10,4)}).allow,'help >20% protected');
+check(!r.autonomyGate({...ctx,history:{journal:historyFor(10).journal.slice(1)}}).allow,'missing full session');
+const unstable=historyFor(8);for(const ev of unstable.journal.slice(5))for(const a of ev.answers)a.result='wrong';
+check(!r.autonomyGate({...ctx,history:unstable}).allow,'recent decline protected');
+const unknown=historyFor(10);for(const ev of unknown.journal)for(const a of ev.answers)delete a.assisted;
+check(!r.autonomyGate({...ctx,history:unknown}).allow,'no fabricated autonomy');
+check(!r.rank({...ctx,objective:{...ctx.objective,guardStableAutonomy:true}}).length,'I requires actual guard');
+check(typeof new Function('module','exports','require','Date','__m4Pick','__m4Reserve',adapter.instrument(src,'I'))==='function','I syntax');
+console.log('M4 H/I reservation PASS',n);
