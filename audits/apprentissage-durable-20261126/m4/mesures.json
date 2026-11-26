@@ -431,5 +431,66 @@
       }
     ],
     "environment": "V8 CJS full entry, exact GitHub blobs and fs/git adapters; not Node CLI"
+  },
+  "pass10": {
+    "reviewedSADevelopments": 148,
+    "counts": {
+      "coherent_in_catalogue_framework": 93,
+      "guided_not_independent": 51,
+      "bounded_context": 4
+    },
+    "totalIndividualTargetedReview": 384,
+    "remainingIndividualTargetedReview": 1531,
+    "gaps": [
+      {
+        "criterion": "Texas Trèfle faible après modulation positive 2SA",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "SEF-V482-001, V2-M2-032 et SEF-Q26-M2-005 expliquent 3♣ sur 2SA modulé mais aucun QCM de suite mineure ne pose effectivement cette décision. Un exercice autonome avec 2SA en enchère de l'ouvreur est nécessaire."
+      },
+      {
+        "criterion": "Choix spontané du transfert de manche après Stayman sur 2SA et réponse 3SA",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "Les deux cas SEF-L39-002 et SEF-Q26-M2-020 indiquent déjà le but du transfert ; tester l'orientation de la déclaration sans nommer le code."
+      },
+      {
+        "criterion": "Texas mineur : courte mineure codée par 3SA",
+        "disposition": "PROPOSE_UNCUED",
+        "reason": "Les cas SEF-V482-007, SEF-V482-010, SEF-L13-019 et SEF-L42-003 donnent la courte ou le but dans le texte ; ajouter une décision sur main indépendante sans indice sur la courte."
+      },
+      {
+        "criterion": "Modulation positive Texas Trèfle : cas limites",
+        "disposition": "HOLD_AGREEMENT",
+        "reason": "Les sources précisent Roi troisième à 16 H, RV3 à 16 H, trois petits à 17 H. Ne pas inventer seuil universel pour As/Dame troisième, 15 H ou doubletons."
+      },
+      {
+        "criterion": "Texas majeur après rectification ordinaire : six cartes et 9 H",
+        "disposition": "BOUNDED",
+        "reason": "SEF-V44-030 et SEF-V44-031 illustrent l'évaluation qualitative ; ne pas traiter le contraste comme une frontière absolue."
+      }
+    ],
+    "transferScreen": {
+      "editorial_review_missing": 63,
+      "candidate_only": 5,
+      "guided_prompt": 9
+    },
+    "tests": [
+      {
+        "assertions": 1070,
+        "status": "PASS",
+        "reviewed": 148,
+        "totalReviewed": 384,
+        "statusCounts": {
+          "coherent_in_catalogue_framework": 93,
+          "guided_not_independent": 51,
+          "bounded_context": 4
+        },
+        "pairCounts": {
+          "editorial_review_missing": 63,
+          "candidate_only": 5,
+          "guided_prompt": 9
+        }
+      }
+    ],
+    "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
   }
 }
