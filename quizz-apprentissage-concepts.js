@@ -35,7 +35,7 @@
     const multi=families.size>=2&&sessions.size>=2;
     const fragile=e.lastWeak>=0&&e.lastWeak>=e.lastClean;
     let next=!e.seen.size?"discovery":!multi||fragile?"consolidation":!contrasted&&d.stages.discrimination.ids.length?"discrimination":!ids.some(id=>classify(id).roles.includes("deepening"))&&d.stages.deepening.ids.length?"deepening":!transferred&&d.stages.transfer.ids.length?"transfer":"review";
-    return {concept:k,exposed:e.seen.size,independentIds:ids.length,independentFamilies:families.size,independentSessions:sessions.size,contrasted,transferred,spaced,fragile,evidence:!e.seen.size?"unseen":!ids.length?"exposed":!multi?"first_success":fragile?"fragile":"multi_context_evidence",next,mastery:"not_established"};
+    return {concept:k,exposed:e.seen.size,independentIds:ids.length,independentFamilies:families.size,independentSessions:sessions.size,contrasted,transferred,spaced,fragile,evidence:!e.seen.size?"unseen":!ids.length?"exposed":!multi?"first_success":fragile?"fragile":"multi_family_evidence",next,mastery:"not_established"};
   }
   const eligible=Array.isArray(c.candidates)?c.candidates:[],selected=new Set((Array.isArray(c.selected)?c.selected:[]).map(x=>typeof x==="string"?x:x?.id)),seen=new Set(),results=[],states={};
   if(typeof c.concept==="string"&&describe(c.concept))states[c.concept]=status(c.concept);
@@ -51,7 +51,7 @@
     if(e.seen.has(id)&&s.next!=="review")delta-=3;
     // Un rappel explicitement prioritaire demeure au moteur : aucun bonus.
     if(["review","maintenance","weakness","due"].includes(c.category))delta=0;
-    results.push({id,delta,reason:"Objectif informatif : "+s.next,concept:m.concept,role:s.next});
+    const supported=m.roles.includes(s.next);results.push({id,delta,reason:supported?"Objectif informatif : "+s.next:"Alternative éligible ; rôle cible non attesté",concept:m.concept,role:supported?s.next:null});
   }
   results.sort((a,b)=>b.delta-a.delta||a.id.localeCompare(b.id));
   return freeze({schema:data.schema,concepts:states,candidates:results});
