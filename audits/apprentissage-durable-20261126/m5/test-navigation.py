@@ -1,0 +1,59 @@
+"""Run from a checkout: python audits/apprentissage-durable-20261126/m5/test-navigation.py [--root PATH] [--fixture]. Requires playwright + Chromium."""
+import argparse
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+parser=argparse.ArgumentParser()
+parser.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[3])
+parser.add_argument('--fixture',action='store_true',help='Only for an isolated small fixture, not a checkout certification')
+parser.add_argument('--chromium',default='/usr/bin/chromium')
+a=parser.parse_args()
+html=(a.root/'audits/apprentissage-durable-20261126/m5/demo.html').read_text(encoding='utf-8')
+module=(a.root/'quizz-durable-m5-lecons.js').read_text(encoding='utf-8')
+script='<script src="../../../quizz-durable-m5-lecons.js"></script>'
+assert script in html
+html=html.replace(script,'<script>'+module.replace('</script','<\\/script')+'</script>',1)
+checks=0
+def check(value,why):
+    global checks
+    checks+=1
+    assert value,why
+with sync_playwright() as pw:
+    browser=pw.chromium.launch(executable_path=a.chromium,args=['--no-sandbox'])
+    for width,height in [(1280,800),(360,740),(320,640)]:
+        page=browser.new_page(viewport={'width':width,'height':height},is_mobile=width<500,has_touch=width<500)
+        errors=[];page.on('pageerror',lambda e: errors.append(str(e)))
+        page.evaluate("window.storageAccesses=0; for(const key of ['localStorage','sessionStorage']) Object.defineProperty(window,key,{get(){window.storageAccesses++;throw new Error('unexpected storage access')}})")
+        page.set_content(html)
+        check(page.locator('#concept option').count()==(1 if a.fixture else 4),'starting concepts')
+        check(page.locator('#lesson').is_hidden(),'no automatic lesson')
+        page.keyboard.press('Tab');check(page.locator('#profile').evaluate('(el)=>el===document.activeElement'),'profile tab')
+        page.keyboard.press('Tab');check(page.locator('#mode').evaluate('(el)=>el===document.activeElement'),'mode tab')
+        page.keyboard.press('Tab');check(page.locator('#concept').evaluate('(el)=>el===document.activeElement'),'concept tab')
+        page.locator('#concept').select_option('ouv.sa1')
+        page.keyboard.press('Tab');check(page.locator('#open').evaluate('(el)=>el===document.activeElement'),'open tab')
+        page.keyboard.press('Enter');check(page.locator('#lesson').is_visible(),'keyboard open')
+        check(page.locator('#heading').evaluate('(el)=>el===document.activeElement'),'heading focus')
+        check(page.locator('details[open]').count()==0,'no automatic answers expanded')
+        page.keyboard.press('Tab');check(page.locator('summary').first.evaluate('(el)=>el===document.activeElement'),'example focus')
+        page.keyboard.press('Enter');check(page.locator('details').first.get_attribute('open') is not None,'example expansion')
+        check(page.get_by_text('Décision : 1SA',exact=True).is_visible(),'example answer')
+        page.keyboard.press('Tab');page.keyboard.press('Enter');check(page.get_by_text('Aide pédagogique, non notée.',exact=True).is_visible(),'check feedback')
+        check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'),'no horizontal overflow')
+        page.locator('#close').click();check(page.locator('#lesson').is_hidden(),'close')
+        check(page.locator('#open').evaluate('(el)=>el===document.activeElement'),'restore focus')
+        page.locator('#mode').select_option('reminder');check(page.locator('#open').is_disabled(),'unseen reminder blocked')
+        page.locator('#profile').select_option('advanced');check(page.locator('#concept option').count()==(2 if a.fixture else 99),'advanced profile')
+        page.locator('#concept').select_option('ouv.sa1');page.locator('#open').click()
+        check(page.locator('#lesson').inner_text().endswith("1SA à l'ouverture : 15–17 H et main régulière."),'short standalone reminder')
+        check(page.locator('#lesson details').count()==0,'reminder without examples')
+        page.locator('#mode').select_option('study');check(page.locator('#lesson').is_hidden(),'mode change closes')
+        page.locator('#concept').select_option('fixture.contrast' if a.fixture else 'competitif.truscott');page.locator('#open').click()
+        check(page.get_by_text('Comparer :',exact=False).count()>0,'contrasts available')
+        check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'),'no contrast overflow')
+        page.locator('#mode').select_option('discovery');check(page.locator('#open').is_disabled(),'no repetitive discovery')
+        page.locator('#profile').select_option('start');check(page.locator('#open').is_enabled(),'start reset')
+        check(page.evaluate('window.storageAccesses===0'),'no persistence')
+        check(not errors,'no JS errors: '+str(errors))
+        page.close()
+    print({'browser':browser.version,'viewports':3,'checks':checks,'fixture':a.fixture})
+    browser.close()
