@@ -83,6 +83,59 @@ return (function factory(byId,signature){
     if(c==='roudi.reponse'&&['2♦','2♥','2♠','2SA'].includes(x.answer)&&['2♦','2♥','2♠','2SA'].includes(choice)&&x.auction.some(s=>s.includes('Roudi')))return H('convention','roudi-response-code','Les deux enchères correspondent à des réponses différentes au Roudi ; le codage, la force ou le nombre de cartes dans la majeure peuvent être en cause.','medium');
     if(c==='competitif.spoutnik'&&opp&&x.answer==='Contre'&&z&&major(z[2])&&len(z[2])===4)return H('competition','negative-double-vs-natural','Le corrigé utilise le contre en compétition alors que la majeure choisie est seulement quatrième ; la distinction contre de réponse/enquête et enchère naturelle est une piste.','medium');
     if(c==='ouv.position'&&st.steps.some(s=>s[0]==='Partenaire'&&s[1]==='Passe')&&choice==='Passe'&&h===11&&a&&a[1]==='1')return H('contexte','passed-partner-opening','Le partenaire a déjà passé et le corrigé ouvre avec 11 H ; une application du seuil d’ouverture hors contexte de position est une piste.','medium');
+
+    const passOrSA=v=>v==='Passe'||/^[1-7]SA$/.test(v);
+    if(['sa1.seuil','sa2.seuil'].includes(c)&&passOrSA(choice)&&passOrSA(x.answer)&&reg&&Math.max(shape[0],shape[1])<4)
+      return H('force','sa-response-threshold','Dans cette réponse naturelle à SA sans majeure quatrième, le choix et le corrigé correspondent à deux objectifs de contrat différents ; la zone de force cumulée est une piste.','medium');
+    if(['sa1.stayman.reponse','sa2.stayman.reponse'].includes(c)){
+      const n=c.startsWith('sa1')?'2':'3';
+      const code=shape[0]>=4?(shape[1]>=4?'SA':'♠'):(shape[1]>=4?'♥':'♦');
+      if(x.answer===n+code&&[n+'♦',n+'♥',n+'♠',n+'SA'].includes(choice))
+        return H('convention','stayman-four-responses','Dans le Stayman à quatre réponses du catalogue, la distribution majeure détermine le code : '+shape[0]+' Piques et '+shape[1]+' Cœurs conduisent à '+x.answer+'.','high',{majorLengths:[shape[0],shape[1]]});
+    }
+    if(['sa1.stayman.suite','sa2.stayman.suite'].includes(c)&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'){
+      const p=bid(first[2][1]);
+      if(p&&major(p[2])&&a&&a[2]===p[2]&&len(p[2])>=4&&z&&z[2]==='SA')
+        return H('fit','stayman-fit-vs-sa','La réponse au Stayman révèle quatre cartes dans la majeure, et la main en détient au moins quatre ; le choix de SA peut négliger ce fit.','high');
+      if(p&&p[2]==='♦'&&a&&a[2]==='SA'&&z&&major(z[2])&&len(z[2])===4)
+        return H('fit','stayman-no-fit','La réponse Carreau nie une majeure quatrième ; quatre cartes dans la majeure choisie ne suffisent pas à établir un fit 4–4.','high');
+      if(p&&p[2]==='SA'&&c==='sa2.stayman.suite'&&['4♣','4♦'].includes(x.answer)&&['4♣','4♦','4♥','4♠'].includes(choice))
+        return H('convention','stayman-two-majors-transfer','Après la réponse montrant les deux majeures, le corrigé utilise le transfert convenu pour faire jouer la main forte.','medium');
+      if(p&&a&&z&&a[2]===z[2]&&p[2]!=='SA')
+        return H('niveau','stayman-continuation-level','La destination est conservée mais le palier diffère après la réponse au Stayman ; invitation et conclusion doivent être distinguées.','medium');
+    }
+    if(['sa1.texas.suite','sa2.texas.suite'].includes(c)&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'){
+      const target=texasTarget[first[1][1]],p=bid(first[2][1]);
+      if(target&&p&&p[2]===target){
+        if(a&&a[2]===target&&len(target)>=6&&z&&z[2]==='SA')
+          return H('fit','texas-known-fit','La longue sixième et la rectification de cette ouverture régulière établissent au moins huit atouts ; le choix de SA peut ne pas exploiter le fit.','high');
+        if(c==='sa1.texas.suite'&&a&&a[2]==='SA'&&z&&z[2]===target&&len(target)===5)
+          return H('fit','texas-fit-not-established','Sur 1SA, la rectification ordinaire du Texas ne garantit pas trois atouts ; avec cinq cartes le fit n’est pas encore certain.','high');
+        if(a&&z&&a[2]===z[2])return H('niveau','texas-continuation-level','La destination est conservée, mais pas le palier de poursuite après la rectification.','medium');
+        if(c==='sa1.texas.suite'&&x.answer==='Passe'&&h<=5&&z&&(z[2]===target||z[2]==='SA'))
+          return H('force','texas-weak-stop','Le Texas a atteint la partielle recherchée ; la main faible ne justifie pas une nouvelle proposition.','medium');
+      }
+    }
+    if(c==='fortes.relais'&&first.length===1&&first[0][0]==='Partenaire'&&first[0][1]==='2♦'&&x.auction.some(s=>s.includes('forcing de manche'))&&['2♥','2♠','2SA','3♣','3♦','3♥','3♠'].includes(x.answer)){
+      if(choice==='Passe')return H('forcing','game-forcing-pass','Le 2♦ d’ouverture est explicitement forcing de manche ; Passe interrompt la séquence.','high');
+      if(['2♥','2♠','2SA','3♣','3♦','3♥','3♠'].includes(choice))return H('convention','strong-game-force-response','Il s’agit de réponses codifiées à l’ouverture forcing de manche, et non de simples annonces naturelles de couleur. Le comptage des As ou le barème peut être en cause.','medium');
+    }
+    if(['contre.base','contre.deux_faible'].includes(c)&&choice==='Passe'&&x.answer!=='Passe'&&st.steps.at(-1)?.[0]==='Adversaire'&&st.steps.at(-1)?.[1]==='Passe'&&st.steps.some(s=>s[0]==='Partenaire'&&s[1]==='Contre')&&/répondre|réponse/.test(x.explain)&&/obligatoire|doit|devez/.test(x.explain))
+      return H('forcing','response-to-takeout-double','Le contre du partenaire est suivi d’un Passe adverse et le corrigé rappelle la nécessité de répondre dans ce cas ; Passe peut signaler une confusion sur cette obligation.','medium');
+    if(['intervenir.base','reveil.base','reveil.deux_faible'].includes(c)&&opp&&choice==='Contre'&&a&&major(a[2])&&len(a[2])>=5&&/naturel/.test(x.explain)&&/Contre|contre/.test(x.explain))
+      return H('competition','natural-overcall-vs-double','La longue majeure peut être décrite directement par l’enchère naturelle du corrigé ; le contre est une décision compétitive de nature différente.','medium');
+    if(c==='competitif.truscott'&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&first[1][1]==='Contre'){
+      const p=bid(first[0][1]);
+      if(p&&a&&z&&a[2]===p[2]&&z[2]===p[2])return H('niveau','truscott-raise-level','Les soutiens directs après contre n’ont pas tous la même fonction constructive ou de barrage. Le palier est une piste, sans assimiler le saut à plus de force.','medium');
+      if(p&&((x.answer==='2SA'&&z&&z[2]===p[2])||(choice==='2SA'&&a&&a[2]===p[2])))
+        return H('convention','truscott-vs-direct-raise','Le 2SA Truscott et les soutiens directs ne promettent pas les mêmes valeurs ni le même nombre d’atouts.','medium');
+    }
+    if(['michaels.reponse','multilandy.reponse'].includes(c)&&a&&z&&major(a[2])&&major(z[2])&&a[2]!==z[2]&&len(a[2])>=4&&len(z[2])<=2&&x.auction.some(s=>/Landy\)|Michaël/.test(s))&&/fit|atouts/.test(x.explain))
+      return H('fit','two-suiter-preference','La majeure retenue compte '+len(a[2])+' cartes dans la main, contre '+len(z[2])+' dans celle choisie ; le corrigé privilégie le fit dans le bicolore décrit.','medium');
+    if(c==='sa1.texas_mineur.reponse'&&x.answer==='3♦'&&x.auction.some(s=>s.startsWith('Partenaire : 3♣')&&s.includes('Texas'))&&/toujours rectifier|doit rectifier|rectification obligatoire/.test(x.explain)){
+      if(choice==='Passe')return H('forcing','diamond-transfer-pass','Le Texas Carreau du cas impose une rectification ; Passe interrompt ce transfert.','high');
+      return H('convention','diamond-transfer-rectification','Le corrigé impose la rectification à Carreau, sans modulation du soutien dans ce cas.','high');
+    }
     return unknown('Plusieurs causes restent possibles ; le seul choix ne permet pas de privilégier une hypothèse suffisamment étayée.',{...ev,rule:'ambiguous'});
   }
   return Object.freeze({schema,diagnose});
