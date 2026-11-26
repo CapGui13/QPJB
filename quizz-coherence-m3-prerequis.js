@@ -18,7 +18,7 @@ function patches(metadataById,exercises){
  const next=clone(old);
  if(texas){next.stage=1;next.requires.push({concept:'sa1.texas',minExposure:1});}
  else next.concept='red.base';
- return {id,old:clone(old),new:next,status:'PROPOSAL',proof:texas?'Texas majeur avec force de manche : introduire auparavant le transfert élémentaire sur main faible. Exposition seulement, jamais réussite obligatoire.':'Redemande de majeure quatrième avec main régulière, pas le bicolore 5-4 économique ou cher ; ne pas créditer cette notion par assimilation.',accord:'Aucun changement de réponse SEF ; validation du coordinateur requise.',question:{auction:q.auction,answer:q.answer,explain:q.explain}};
+ return {id,old:clone(old),new:next,status:texas?'PROPOSAL_REVIEW':'HOLD',preuve:texas?'Texas majeur avec force de manche : introduire auparavant le transfert élémentaire sur main faible. Exposition seulement, jamais réussite obligatoire.':'Redemande de majeure quatrième avec main régulière, pas le bicolore 5-4 économique ou cher ; ne pas créditer cette notion par assimilation.',accord:'Aucun changement de réponse SEF ; validation du coordinateur requise.',question:{auction:q.auction,answer:q.answer,explain:q.explain}};
  });
 }
 function applyExperimental(metadataById,exercises,group='texas'){
@@ -29,7 +29,7 @@ function applyExperimental(metadataById,exercises,group='texas'){
 }
 function effective(q,m){
  if(!m)return m;
- if(VISAS.includes(q.id)&&m.concept==='majeur.soutien'&&m.minSession===1&&q.difficulty<=2)
+ if(VISAS.includes(q.id)&&m.concept==='majeur.soutien'&&m.minSession===1&&q.difficulty<=2&&q.theme==='majeur'&&q.auction?.length===1&&(/^2[♥♠]$/.test(q.answer))&&q.shape?.[q.answer==='2♠'?0:1]===3&&q.auction[0].includes('1'+q.answer[1]))
  return {...m,stage:0,requires:m.requires.filter(r=>r.concept!=='majeur.soutien')};
  return m;
 }
@@ -44,15 +44,15 @@ function evidence(ctx){
  const history=ctx.history||{};
  const completed=Number.isInteger(history.completed)?history.completed:ctx.session-1;
  for(const j of (Array.isArray(history.journal)?history.journal:[])){
- if(j.mode!=='parcours'||!Number.isInteger(j.session)||j.session>completed||j.session>=ctx.session)continue;
- for(const a of j.answers||[]){if(a&&a.id)add(a.id,j.session,a.result==='correct'&&a.assisted===false&&a.hadFreeError===false);}
+ if(j.mode!=='parcours'||!Number.isInteger(j.session)||j.session<1||j.session>completed||j.session>=ctx.session)continue;
+ for(const a of j.answers||[]){if(a&&a.id&&['correct','wrong','skipped'].includes(a.result))add(a.id,j.session,a.result==='correct'&&a.assisted===false&&a.hadFreeError===false);}
  }
  for(const [id,entry] of Object.entries(history.entries||{})){
- const s=entry&&entry.assessment&&entry.assessment.lastSession;if(Number.isInteger(s)&&s<completed)add(id,s,false);
+ const s=entry&&entry.assessment&&entry.assessment.lastSession;if(Number.isInteger(s)&&s>=0&&s<completed)add(id,s,false);
  }
  return out;
 }
-function rules(ctx){
+function rules(ctx={}){
  const ev=evidence(ctx);
  return (ctx.candidates||[]).map(c=>{
  const id=idOf(c),q=(ctx.exercises||[]).find(x=>x.id===id)||c,m=effective(q,get(ctx.metadataById,id));
@@ -73,7 +73,13 @@ function graph(metadataById,exercises){
  rows.push({id:q.id,concept:m.concept,stage:m.stage,minSession:m.minSession,requires:m.requires,disposition});
  for(const r of m.requires){const key=JSON.stringify([r.concept,m.concept,r.minExposure]);if(!arcs.has(key))arcs.set(key,{from:r.concept,to:m.concept,minExposure:r.minExposure,ids:[]});arcs.get(key).ids.push(q.id);}
  }
- return {concepts:Object.fromEntries(concepts),arcs:[...arcs.values()],rows};
+ const edges=[...arcs.values()].map(a=>({...a,disposition:a.from===a.to?'self-progression':'historical-dependency-not-individually-certified',justification:a.from===a.to?'Le moteur exige des IDs déjà exposés dans ce concept avant cette variante. L’existence d’une entrée sans auto-prérequis doit être vérifiée par accessibilité.':'Dépendance historique explicite dans les métadonnées effectives. Nécessité pédagogique à vérifier par ID ; aucun changement automatique.'}));
+ const adjacency=new Map([...concepts.keys()].map(c=>[c,new Set()]));
+ for(const a of edges)if(adjacency.has(a.from))adjacency.get(a.from).add(a.to);
+ function reachable(c){const visited=new Set(),pending=[c];while(pending.length){const v=pending.pop();if(visited.has(v))continue;visited.add(v);for(const w of adjacency.get(v)||[])pending.push(w);}return visited;}
+ const reach=new Map([...adjacency.keys()].map(c=>[c,reachable(c)])),assigned=new Set(),components=[];
+ for(const c of adjacency.keys()){if(assigned.has(c))continue;const component=[...reach.get(c)].filter(v=>reach.get(v)?.has(c));for(const v of component)assigned.add(v);if(component.length>1)components.push(component.sort());}
+ return {concepts:Object.fromEntries(concepts),arcs:edges,rows,crossConceptCycles:components,selfConcepts:[...new Set(edges.filter(a=>a.from===a.to).map(a=>a.from))],unknownPrerequisites:[...new Set(edges.filter(a=>!concepts.has(a.from)).map(a=>a.from))]};
 }
 function reachability(metadataById,exercises,horizon=180){
  const seen=new Map(),first={},available=new Set();
