@@ -687,5 +687,199 @@
         }
       }
     ]
+  },
+  {
+    "id": "V2-M1-007",
+    "oldChoices": [
+      "2SA",
+      "1SA",
+      "1♣",
+      "1♦"
+    ],
+    "newChoices": [
+      "2SA",
+      "1SA",
+      "1♠",
+      "1♦"
+    ],
+    "reason": "La main 4–4–3–2 possède trois Carreaux et seulement deux Trèfles : 1♦ reste l’alternative mineure la plus descriptive. Remplacer 1♣, redondant sur la priorité de SA et en plus inadéquat en meilleure mineure, par 1♠ teste la confusion fréquente majeure quatrième/cinquième. La bonne réponse 1SA est inchangée.",
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "17 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      },
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "1♠",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "1♦",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-007",
+          "concept": "ouv.sa1",
+          "choice": "1♦",
+          "expected": "1SA",
+          "h": 17,
+          "shape": [
+            4,
+            4,
+            3,
+            2
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      }
+    ]
+  },
+  {
+    "id": "V2-M1-009",
+    "oldChoices": [
+      "1♠",
+      "1♦",
+      "1♣",
+      "1SA"
+    ],
+    "newChoices": [
+      "1♠",
+      "2SA",
+      "1♣",
+      "1SA"
+    ],
+    "reason": "Les deux mineures sont troisièmes ; la meilleure mineure de repli serait 1♣. Garder 1♣ et 1♠, remplacer 1♦ par 2SA distingue l’erreur de zone 15–17/20–21 H de la priorité de SA et de la majeure cinquième. La bonne réponse 1SA est inchangée.",
+    "diagnostics": [
+      {
+        "choice": "1♠",
+        "status": "hypothesis",
+        "category": "distribution",
+        "reason": "La majeure choisie compte 4 cartes ; une ouverture naturelle en majeure au palier de 1 en demande cinq.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "1♠",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-major-length"
+        }
+      },
+      {
+        "choice": "2SA",
+        "status": "hypothesis",
+        "category": "force",
+        "reason": "15 H sont hors de la zone 20–21 H de cette ouverture régulière.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "2SA",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-zone",
+          "zone": [
+            20,
+            21
+          ]
+        }
+      },
+      {
+        "choice": "1♣",
+        "status": "hypothesis",
+        "category": "priorite",
+        "reason": "La zone de force et la forme régulière du corrigé rendent l’ouverture à SA prioritaire sur la mineure.",
+        "confidence": "high",
+        "evidence": {
+          "id": "V2-M1-009",
+          "concept": "ouv.sa1",
+          "choice": "1♣",
+          "expected": "1SA",
+          "h": 15,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "opening-sa-first"
+        }
+      }
+    ]
   }
 ]
