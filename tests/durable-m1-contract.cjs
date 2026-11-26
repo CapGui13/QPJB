@@ -51,3 +51,17 @@ assert.deepEqual(A.rank({history:h,candidates:[{...best,difficulty:99}],selected
 }}
 assert.ok(positive.length>0);
 console.log(JSON.stringify({rows:rows.length,hyp,unknown,low,groups:groups.size,categories:[...categories],criteria:[...criteria],positiveGroups:positive.length,examples:positive.slice(0,8),initialRanked:ranked.length,recovery:recover.map(r=>r.id)}));
+
+const window={};new Function('window',fs.readFileSync(path.join(root,'quizz-durable-m1-adaptation.js'),'utf8'))(window);assert.equal(window.QPJBDurableAdaptation.schema,A.schema);
+assert.deepEqual(A.rank({history:{completed:4},signals:[{scope:'local',strength:'strong',lastSession:4,errors:[null,null],families:2,sessions:2}],candidates:qs,selected:[],category:'weakness'}),[]);
+const cross=[];
+for(const k of ["force:H","force:HL","force:HLD","distribution:longueur","fit:priorite","forcing:statut","niveau:palier","convention","competition"]){
+ const found=rows.filter(r=>r.options.some(o=>o[4]===k&&o[3]!=='low'));
+ const pair=[found[0],found.find(r=>r.concept!==found[0]?.concept&&r.family!==found[0]?.family)];
+ if(!pair[1])continue;
+ const history={completed:4,journal:pair.map((row,i)=>({mode:'parcours',session:i+1,answers:[{id:row.id,result:'wrong',choice:row.options.find(o=>o[4]===k&&o[3]!=='low')[0],assisted:false,hadFreeError:false}]}))};
+ const a=A.analyze({history,exercises:qs,diagnose:P.diagnose});
+ assert.ok(a.signals.some(s=>s.id==='cross:'+k&&s.strength==='recurrent'));cross.push(k);
+ if(['convention','competition'].includes(k))assert.deepEqual(A.rank({history,candidates:qs,selected:[],signals:a,category:'weakness'}),[]);
+}
+console.log(JSON.stringify({cross}));
