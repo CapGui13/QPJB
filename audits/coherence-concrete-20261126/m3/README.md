@@ -65,6 +65,10 @@ Exemple S5, profil faible / 47 : SEF-N084-1 (11 H, 5 Cœurs, réponse 2♦, proj
 - Relecture des protections #385/#395/#409 : les seuils de dette et les preuves distinctes doivent être vérifiés au niveau intégré, sans abaisser les garde-fous et sans créditer les HOLD. Le contrat #419 mentionne en plus une alerte M2 indépendante sur la sensibilité de record() à l'ordre. Aucune intervention sur ces fichiers hors périmètre.
 - Le terminal ne peut toujours pas résoudre github.com ; tests V8 réels sur blobs, pas de prétention à une recette Node native ou navigateur. Les workflows de recette intégrée ne sont pas automatiquement exécutés sur cette branche. Les limites précédentes restent applicables.
 
+## Garde-fous historiques sur les 18 paires S180
+
+Recalcul exécuté des critères historiques #385 à partir des 36 traces archivées, avec les réponses déterministes d'origine. Les contraintes S1–3 et Passe ultérieur sont respectées sur les 36 trajectoires. Une alerte de couverture des preuves autonomes pour faible/103 à S65 : 43→38 (seuil historique max(3,10%) dépassé). Aucune alerte de dette fondamentale sur ces seuils, mais des écarts individuels persistent. Candidat Texas maintenu en HOLD, ne pas activer. Voir `historical-metrics-s180.json` et `tests/coherence-concrete-m3-historical-metrics.cjs`. Recalcul partiel #385 : ne couvre pas motifs miroirs, éligibilité réelle, reprise, latence, ni modèle #409. L'essai longitudinal de la variante stage 0 a été interrompu par la limite d'appels ; aucun résultat nouveau revendiqué.
+
 ## Restes et réserves
 
 Le cahier des charges n'est pas entièrement rempli : revue pédagogique individuelle des dépendances résiduelles et exhaustivité des références historiques non attestées ; raisons de sélection détaillées disponibles jusqu'à S20 (IDs réels complets jusqu'à S180), pas de justification de position M2 ; métriques de dette, latence, rappel et protections #385/#395/#409 non toutes rejouées ; exécution Node natif/Chromium/WebKit non effectuée dans cette branche. L'intégration et la publication relèvent du coordinateur. Aucune fusion ni modification de main.
