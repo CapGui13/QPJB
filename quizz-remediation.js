@@ -21,7 +21,7 @@
     "options": {
       "1♠": {
         "category": "distribution",
-        "feedback": "Quatre Piques ne constituent pas une majeure cinquième. La force est également insuffisante pour ouvrir.",
+        "feedback": "La force est insuffisante pour ouvrir. De plus, quatre Piques ne constituent pas une majeure cinquième.",
         "checkNext": "Sur une autre main, vérifie d'abord la force d'ouverture puis compte les cartes de la majeure."
       }
     }
@@ -343,7 +343,16 @@
     if(!live&&!exported)return false;
     const events=live?history.journal:history.sessions, completed=live?history.completed:history.summary.completedSessions;
     if(completed<0)return false;
-    return events.slice(-6).some(e=>e&&e.mode==='parcours'&&Number.isInteger(e.session)&&e.session>=1&&e.session<=completed&&e.session>=completed-5&&Array.isArray(e.answers)&&e.answers.some(a=>a&&a.id===q.id&&a.result==='wrong'&&a.choice===choice));
+    // Count normal sessions, not intervening consolidation events.
+    let normal=0;
+    for(let i=events.length-1;i>=0&&normal<6;i--){
+      const e=events[i];
+      if(!e||e.mode!=='parcours'||!Number.isInteger(e.session)||e.session<1||e.session>completed)continue;
+      if(e.session<completed-5)break;
+      normal++;
+      if(Array.isArray(e.answers)&&e.answers.some(a=>a&&a.id===q.id&&a.result==='wrong'&&a.choice===choice))return true;
+    }
+    return false;
   }
   function explain(input){
     const a=input&&typeof input==='object'?input:{},q=a.exercise;

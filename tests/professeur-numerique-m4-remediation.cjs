@@ -58,6 +58,8 @@ function verify(api,data,meta,cases){
     const e={mode:'parcours',session:4,answers:[{id:q.id,result:'wrong',choice:f.choice,assisted:false,hadFreeError:false}]};
     const state=deepFreeze({completed:5,active:{ids:[q.id]},journal:[e]});
     const repeated=api.explain({...a,history:state});assert(repeated.reminder&&repeated.checkNext===r.checkNext,'observed repetition');
+    const afterConsolidations={...state,journal:[e,...Array.from({length:8},()=>({mode:'consolidation',session:5,answers:[]}))]};
+    eq(api.explain({...a,history:afterConsolidations}),repeated,'consolidation does not erase recent normal error');
     const exported={format:'QPJB_PROGRESS_EXPORT_1',summary:{completedSessions:5},currentSession:{ids:[q.id]},sessions:[e]};
     eq(api.explain({...a,history:exported}),repeated,'export');
     for(const h of [{...state,completed:20},{...state,active:null},{...state,journal:[{...e,session:6}]},{...state,journal:[{...e,answers:[{...e.answers[0],result:'correct'}]}]},{...state,journal:[{...e,mode:'consolidation'}]}])eq(api.explain({...a,history:h}),r,'ignore unsupported history');
