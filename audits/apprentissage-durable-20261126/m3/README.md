@@ -87,8 +87,85 @@ rankReview accepte les mêmes champs directement. Le bonus est borné à 30, jam
 
 Un journal versionné distinct, append-only, pourrait enregistrer attemptId/sessionId stables, sessionKind, concept/id/famille/catalogueVersion, presentedAt/answeredAt/completedAt, source d'horloge, epoch de redémarrage, résultat, firstGuess, choix, assisted et hadFreeError avec état inconnu explicite. Distinguer heure UTC de durée monotone locale, jamais réconcilier automatiquement deux horloges incohérentes. Dédupliquer par attemptId, conserver les métadonnées de qualité et les bornes de rétention. V1 reste lisible et inchangée : import en lecture seule, migration additive idempotente et réversible par le coordinateur, sans backfill temporel ni création de preuves à partir des agrégats. Les anciens journaux sans timestamps restent sans mesure du temps. Évaluer taille, quota navigateur et consentement avant tout changement. Ne pas stocker le résultat détaillé d'assess.
 
+## Complément de reprise — sélecteur expérimental, validation croisée
+
+Le paragraphe historique « Limites / clôture » ci-dessous précède les essais de sélection isolés. Le runner `tests/durable-m3-selector.cjs` a ensuite exécuté le sélecteur réel figé avec un raccordement **en mémoire uniquement**, sans modification de production. Les 12 comparaisons initiales (six profils, graine 47, deux stratégies) sont auditées dans `selector-review.json` : 60 516 assertions rapportées, 4 320 séances simulées. La reprise a exécuté six comparaisons calendaires supplémentaires de 180 séances par variante, soit 30 258 assertions réussies, 2 160 séances et 21 600 réponses simulées. Chaque profil calendaire a maintenant deux graines, et les six nouveaux fichiers sont conservés. Le contrôle transversal des 12 résultats calendaires a réussi 564 vérifications. Au total, 36 trajectoires de sélection, 6 480 séances et 90 774 assertions du runner de sélection (distinctes de la recette principale de maîtrise). Les variantes de référence sont répétées entre stratégies et ne sont pas indépendantes.
+
+| Profil | Graine | Familles Δ | Rétention différée Δ | Fragiles Δ | Rappels dus servis Δ | Rappels fragiles servis Δ | Rappels explicites Δ | Lacunes >20 Δ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| grouped | 47 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| grouped | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| daily | 47 | 0 | 0 | 0 | -2 | 0 | 0 | -4 |
+| daily | 103 | 0 | 0 | 0 | -2 | 0 | 0 | -4 |
+| weekly | 47 | -12 | -2 | 2 | 27 | 5 | 0 | -2 |
+| weekly | 11 | 3 | 3 | -3 | -75 | -62 | 0 | 6 |
+| forgetting | 47 | 3 | 4 | -4 | 0 | -13 | -2 | 0 |
+| forgetting | 103 | 8 | 3 | -2 | -1 | -5 | 0 | 2 |
+| assisted | 47 | 4 | 0 | 1 | -20 | -28 | 1 | -12 |
+| assisted | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| resumption | 47 | 0 | 2 | -2 | -8 | -2 | -6 | -4 |
+| resumption | 103 | 0 | 0 | 0 | 0 | 2 | 9 | 0 |
+
+Les écarts sont candidat moins référence. La politique calendaire peut améliorer certaines preuves différées, mais ne domine pas systématiquement : le nombre de rappels dus/fragiles servis ou les lacunes de concepts peuvent se dégrader, et le nombre d'occasions varie. La comparaison ne mesure pas l'apprentissage humain. Conserver le classement V1 par défaut ; module d'évaluation candidat à la revue du coordinateur, bonus large HOLD, bonus calendaire expérimental uniquement. Troisième graine par profil (complétée ci-dessous), validation native Node/Chromium/WebKit et recette intégrée restent à faire ; pas de changement de production. Exécution de cette reprise en V8, avec blobs figés et runner exact, pas d'exécution native revendiquée. Données et détails dans `selector-calendar-cross-seed.json`.
+
+## Recette calendaire complète — trois graines par profil
+
+La troisième passe a exécuté six comparaisons supplémentaires sur le sélecteur figé, soit **30 258 assertions réussies**, 2 160 séances et 21 600 réponses simulées supplémentaires. La matrice calendaire est désormais complète : six profils × trois graines (11, 47, 103), 18 comparaisons, 36 trajectoires, 6 480 séances, 90 774 assertions. Avec les six comparaisons de la politique large (graine 47), le total du runner sélecteur est de **24 comparaisons, 48 trajectoires, 8 640 séances, 86 400 réponses, 121 032 assertions**. Les trajectoires de référence peuvent se répéter entre politiques et le profil quotidien n'utilise pas la graine pour ses réponses.
+
+Contrôle reproductible sur les 18 fichiers calendaires : `node tests/durable-m3-three-seeds.cjs` (corps exécuté en V8 : 1 099 vérifications réussies). Rapport complet : `selector-calendar-three-seeds.json`, comprenant différences absolues et taux de rappels servis sur occasions dues, sans division par zéro. Résultats finaux :
+
+| Indicateur | Meilleur | Identique | Moins bon |
+|---|---:|---:|---:|
+| Concepts rencontrés | 0 | 18 | 0 |
+| Familles distinctes | 6 | 11 | 1 |
+| Preuves différées candidates | 5 | 12 | 1 |
+| Fragilité (moins = mieux) | 5 | 11 | 2 |
+| Rappels dus servis (nombre brut) | 3 | 7 | 8 |
+| Rappels fragiles servis (nombre brut) | 3 | 8 | 7 |
+| Rappels explicites servis (nombre brut) | 3 | 12 | 3 |
+| Concepts non revus >20 séances (moins = mieux) | 7 | 7 | 4 |
+
+Sur toutes les trajectoires calendaires, aucune séance courte, aucune duplication de famille/ID et aucune violation d'éligibilité détectées. Alerte explicite : profil assisté, graine 103, 98 concepts rencontrés sur 99 dans les deux variantes ; aucune perte de couverture attribuable au M3. La couverture du registre/module reste 99/99. Les écarts de nombres de rappels doivent être interprétés avec les dénominateurs et l'évolution des états ; la simulation ne mesure pas un gain causal de mémorisation.
+
+**Décision finale de calibration : HOLD_DEFAULT.** Ne pas activer les bonus de sélection large ni calendaire par défaut ; intégrer le modèle d'état après recette coordinateur. Le troisième tirage calendaire est terminé. La politique large est maintenue HOLD ; la validation à trois graines est complétée dans la section suivante. Node v22.16.0 et Chromium sont installés dans le conteneur de reprise mais `git ls-remote https://github.com/CapGui13/QPJB.git HEAD` échoue avec résolution DNS indisponible : les sources lues via connecteur ne constituent pas un checkout natif. Aucun résultat de test natif Node, Chromium ou WebKit revendiqué. Aucun workflow commun modifié.
+
+## Recette complète des deux politiques et transmission native
+
+Cette section actualise les conclusions et les compteurs des passes précédentes. Les **36 comparaisons** (6 profils × 3 graines × 2 politiques) sont désormais réalisées sur le sélecteur figé : **72 trajectoires, 12 960 séances, 129 600 réponses et 181 548 assertions** du runner. Douze nouvelles comparaisons de classement large : 60 516 assertions, 4 320 séances et 43 200 réponses supplémentaires. Les références sont répétées entre politiques ; les réponses quotidiennes ne dépendent pas de la graine. Les métriques ne constituent pas des échantillons indépendants ni des preuves d'apprentissage humain.
+
+`selector-broad-three-seeds.json` et `tests/durable-m3-broad-three-seeds.cjs` : 1 586 vérifications réussies en V8, parité de tous les indicateurs finaux non temporels des références large et calendaire sur les 18 couples profil/graine. Les données calendaires sont vérifiées séparément par `durable-m3-three-seeds.cjs`. Une reproduction supplémentaire de grouped/47/broad (5 043 assertions) confirme la compatibilité des archives historiques sans champ strategy avec le runner actuel ; les compteurs de la matrice n'incluent pas cette reproduction ni les contrôles ciblés.
+
+| Indicateur | Large : mieux / égal / moins bien | Calendaire : mieux / égal / moins bien |
+|---|---:|---:|
+| Concepts rencontrés | 1 / 17 / 0 | 0 / 18 / 0 |
+| Familles distinctes | 8 / 6 / 4 | 6 / 11 / 1 |
+| Preuves différées candidates | 7 / 7 / 4 | 5 / 12 / 1 |
+| Fragilité (moins = mieux) | 7 / 6 / 5 | 5 / 11 / 2 |
+| Rappels dus servis (nombre brut) | 12 / 0 / 6 | 3 / 7 / 8 |
+| Rappels fragiles servis (nombre brut) | 7 / 3 / 8 | 3 / 8 / 7 |
+| Rappels explicites servis (nombre brut) | 6 / 8 / 4 | 3 / 12 / 3 |
+| Lacunes >20 séances (moins = mieux) | 13 / 2 / 3 | 7 / 7 / 4 |
+
+Sur les 36 comparaisons : aucune séance courte, duplication ID/famille ni violation d'éligibilité détectée par le runner. Les taux de rappels servis sur occasions dues figurent dans les deux rapports. **HOLD_DEFAULT** pour les deux bonus ; intégrer uniquement le modèle d'état après recette coordinateur. Ni suppression de rappels ni modification du classement de référence en production.
+
+### Alerte de couverture identifiée
+
+`selector-coverage-alert.json` et `tests/durable-m3-coverage-alert.cjs` : scénario assisté, graine 103. Le concept absent est `sa2.texas_mineur.reponse` (six QCM). Aux checkpoints jusqu'à S153 inclus, aucun de ces QCM n'est éligible ; à la fin de S180 les six le sont dans les quatre trajectoires. La référence et la politique calendaire n'ont présenté aucun QCM de ce concept ; le classement large en a présenté aux séances 173 et 179. Ces observations localisent une question de progression/éligibilité et de priorité à examiner par le coordinateur, sans prouver une cause de classement ni justifier l'activation générale du bonus. Deux comparaisons ciblées reproduites avec instrumentation en mémoire, 10 086 assertions, distinctes de la matrice principale. Aucun changement de production.
+
+### Recette native autonome prête à lancer
+
+Depuis un checkout de la PR contenant le commit figé, avec Node et Playwright (Chromium/WebKit installés) :
+
+```bash
+node tests/durable-m3-native.cjs
+```
+
+Le runner vérifie le commit de référence, lance la recette maîtrise, la politique calendaire, les contrôles d'archives, la reproduction de l'alerte de couverture, les 36 comparaisons natives (égalité des résultats archivés hors mesures de durée et normalisation du champ historique strategy), puis compare le résultat du module CommonJS avec le module UMD chargé dans Chromium et WebKit réels hors ligne, sur sept scénarios issus des 1 915 QCM. Il échoue si un contrôle échoue ; un résultat `PASS` n'est émis que si tout est exécuté. `--quick` et `--node-only` sont des recettes partielles, signalées `PARTIAL_PASS`. Si Playwright n'est pas résolu, installer en dehors du dépôt et utiliser `QPJB_PLAYWRIGHT_MODULE` pour indiquer le chemin absolu de son module (aucune dépendance de production ajoutée).
+
+Les sept scénarios et les fonctions de vérification ont été exécutés en V8 sur les blobs figés ; le runner native complet et la comparaison dans de vrais navigateurs n'ont pas pu être exécutés ici. Node v22.16.0 et Chromium sont installés localement, mais `git ls-remote` échoue (DNS et connexion directe indisponibles), la récupération publique du blob brut échoue également, et les workflows de validation de la PR sont ignorés (seul Training smoke passe, hors périmètre M3). Aucun workflow commun modifié, aucun environnement externe facturable créé. Le coordinateur doit lancer la recette native sur un checkout réel puis raccorder le modèle, sans bonus par défaut.
+
 ## Limites / clôture
 
-Tests natifs checkout impossible dans cet environnement (résolution DNS github.com indisponible). Le moteur comparatif a été réellement exécuté sur ses blobs, mais pas de trajet comparatif complet du sélecteur raccordé au M3 ; intégration et recette globale coordinateur restent à faire. Le registre est exhaustif par concept/ID et paire historique recensée, pas une nouvelle validation humaine de tous les corrigés ni de toutes les archives historiques. Aucune mesure causale d'apprentissage. Le code et les résultats sont livrés en PR brouillon, aucun merge ni publication.
+Tests natifs checkout impossible dans cet environnement (résolution DNS github.com indisponible). Le moteur comparatif a été réellement exécuté sur ses blobs, y compris les essais du sélecteur raccordé en mémoire (voir complément ci-dessus). L'intégration de production et la recette globale coordinateur restent à faire. Le registre est exhaustif par concept/ID et paire historique recensée, pas une nouvelle validation humaine de tous les corrigés ni de toutes les archives historiques. Aucune mesure causale d'apprentissage. Le code et les résultats sont livrés en PR brouillon, aucun merge ni publication.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON — livraison fonctionnelle et recette V8 complète ; validation native et validation du raccordement restant non exécutées.
