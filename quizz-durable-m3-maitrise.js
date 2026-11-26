@@ -190,8 +190,11 @@
  // only derived evidence and immutable catalogue rows, never mutable history.
  const blockedRank=o=>o.priority===true||["rappel_erreur_aide","rappel_question"].includes(o.forcedReason)||["due","review","weakness","discovery","rappel_erreur_aide","rappel_question"].includes(o.category);
  function prepareReview(input={}){
-   const c=obj(input)?input:{},h=historyOf(c.history),enabled=!h.active&&validCompleted(h.completed)&&h.completed>=3;
-   const reviewByConcept=new Map(enabled?Object.entries(assessInternal(c,false).concepts).map(([k,v])=>[k,{due:v.reviewDue,fragile:v.fragile,families:new Set(v.evidence.currentFamilies),overdueMs:v.review.overdueMs}]):[]);
+   const c=obj(input)?input:{},h=historyOf(c.history),policy=c.policy??"broad";
+   const enabled=!h.active&&validCompleted(h.completed)&&h.completed>=3&&["broad","calendar"].includes(policy);
+   // calendar: complement only an independently due calendar reminder not
+   // already due by session; keep fragility with the existing explicit policy.
+   const reviewByConcept=new Map(enabled?Object.entries(assessInternal(c,false).concepts).map(([k,v])=>[k,{due:v.reviewDue,calendarDue:v.review.timeDue===true&&v.review.sessionDue!==true&&!v.fragile,fragile:v.fragile,families:new Set(v.evidence.currentFamilies),overdueMs:v.review.overdueMs}]):[]);
    const {map}=enabled?exerciseIndex(c.exercises,c.metadataById):{map:new Map()};
    const idOf=x=>typeof x==="string"?x:x?.id??x?.exercise?.id;
    function rank(options={}){
@@ -203,14 +206,14 @@
        const id=idOf(x),q=map.get(id);
        if(!q||ids.has(id)||seen.has(id)||selectedFamilies.has(q.family)||selectedConcepts.has(q.concept))continue;
        seen.add(id);
-       const s=reviewByConcept.get(q.concept);if(s?.due!==true)continue;
+       const s=reviewByConcept.get(q.concept);if(s?.due!==true||(policy==="calendar"&&!s.calendarDue))continue;
        const novel=!s.families.has(q.family);
-       const delta=Math.min(thresholds.maxRankDelta,(s.fragile?16:10)+(novel?4:0)+Math.min(8,Math.floor(s.overdueMs/(3*DAY))));
+       const delta=Math.min(policy==="calendar"?12:thresholds.maxRankDelta,(s.fragile?16:10)+(novel?4:0)+Math.min(8,Math.floor(s.overdueMs/(3*DAY))));
        out.push({id,delta,reason:s.fragile?"Rappel prudent après réponse non autonome ou difficulté.":"Échéance de rappel atteinte.",concept:q.concept});
      }
      return out.sort((a,b)=>b.delta-a.delta||a.id.localeCompare(b.id));
    }
-   return Object.freeze({schema:"QPJB_DURABLE_MASTERY_REVIEW_V1",rank});
+   return Object.freeze({schema:"QPJB_DURABLE_MASTERY_REVIEW_V1",policy,rank});
  }
  function rankReview(input={}){return !obj(input)||blockedRank(input)?[]:prepareReview(input).rank(input);}
  return Object.freeze({schema:"QPJB_DURABLE_MASTERY_V1",version:1,assess,rankReview,prepareReview});
