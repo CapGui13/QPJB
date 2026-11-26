@@ -1,3 +1,19 @@
+# M1 — recette autonome finale : PASS
+
+**MISSION DÉFINITIVEMENT TERMINÉE : OUI (périmètre autonome #397).** Visa et intégration du coordinateur #396 toujours requis; aucun merge ni publication.
+
+## Preuves finales
+- Source testée : `238a7f8a8d3b7eac889c678aeda3a15a0a88e265`; base historique inchangée. [Run natif Node 22 #45898710690](https://github.com/CapGui13/QPJB/actions/runs/45898710690), conclusion success, 25 comparaisons + 2 contrats natifs dans le job contract. 25/25 PASS, aucun HOLD sur S20/S65/S153/S180; 99 concepts et 22 thèmes sur chacune des 25 trajectoires à S180; aucune violation d'intégrité et S1–3 identiques.
+- Preuves intégrales : consolidation-native-lot1/2/3-s180.json, synthèse consolidation-native-synthese-s180.json (commit `b3731b3042721481f843ed607c4282d8d163b165`). Les témoins conservés sont les trajectoires originales à base et blobs vérifiés; les 25 candidats ont été exécutés à nouveau. 45 000 réponses candidates simulées, 45 000 témoins antérieurs; pas 90 000 nouvelles exécutions.
+- Contrat : 1915 QCM, 5416 hypothèses, 329 unknown, 195 low, 621 groupes, 82 groupes positifs; garde autonome PASS.
+- Ciblages 260→387 (+48,85%), familles 36093→36129, preuves autonomes 2191→2202, erreurs synthétiques 13356→13425. Agrégats sur trajectoires, non effectifs uniques. Les preuves autonomes ne constituent pas une mesure de maîtrise humaine. Aide 11 : preuves 84→78, cible 11 : 90→87, intermédiaire 103 : 94→92; ces variations restent sous les seuils contractuels de HOLD et sont à surveiller. Trois profils faibles : métriques identiques au témoin à chaque horizon (67→67, 62→62, 68→68 à S180), donc absence de gain adaptatif sur ces trajectoires. Le garde est une protection, pas un gain démontré pour les élèves faibles.
+- La première variante (23/25, trois HOLD sur deux profils) demeure archivée comme preuve négative. Aucun seuil d'acceptation n'a été relâché.
+
+## Raccordement à respecter
+Charger quizz-durable-m1-adaptation.js et quizz-durable-m1-guard.js. Le garde evaluate(history) est calculé une fois par génération de séance. Utiliser uniquement le bonus de rang M1 déjà autorisé par le moteur historique lorsque guard.allow est vrai; sinon conserver le score historique sans bonus M1. Jusqu'à S65, conserver concept et difficulté du meilleur candidat historique, départagé exactement selon le moteur; le bonus ne peut changer ce cadre. Aucune action sur séances 1–3, rappels explicites et slots prioritaires. Le banc tests/durable-m1-guard-native.cjs définit l'injection testée, non un remplacement du moteur. Recalculer les garde-fous après chaque séance terminée. Les seuils de 10 séances, 3 séances autonomes, 20 réponses et 45% sont un choix d'ingénierie validé sur cette matrice synthétique, à confirmer en exploitation par le coordinateur; ils ne constituent pas des seuils de maîtrise. Le module M1 d'origine est inchangé. PR #405 reste brouillon, aucun workflow temporaire à fusionner. Tests d'intégration croisée M1–M6 et navigateur hors périmètre de la recette autonome.
+
+---
+
 # M1 — recette complète de la première variante et protection de consolidation
 
 **Statut provisoire NON.** La variante preserve-concept-level est intégralement exécutée : 25/25 comparaisons, 23 PASS et 2 profils HOLD (3 alertes aux horizons S65/S180). Contrat Node 22 réussi sur le run [45898381293](https://github.com/CapGui13/QPJB/actions/runs/45898381293), job 140177860136 : 1915 QCM, 5416 hypothèses, 329 unknown, 195 low, 621 groupes, 82 groupes positifs. Les 17 preuves natives sont archivées en deux lots et les 25 comparaisons dans protection-concept-niveau-synthese-s180.json. Aucun échec technique d'intégrité : 99 concepts et 22 thèmes à S180 par trajectoire, 0 éligibilité/doublon/séance courte/Passe. Agrégats S180 : ciblages 260→507 ; familles 36093→36097 ; preuves autonomes 2191→2194 ; erreurs synthétiques 13356→13414. Les sommes sont des mesures par trajectoire, pas des effectifs uniques.
