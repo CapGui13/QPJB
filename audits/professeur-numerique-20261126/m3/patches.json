@@ -483,5 +483,209 @@
         }
       }
     ]
+  },
+  {
+    "id": "SEF-N107-2",
+    "oldChoices": [
+      "2♠",
+      "1SA",
+      "2SA",
+      "2♣"
+    ],
+    "newChoices": [
+      "2♠",
+      "1SA",
+      "3♠",
+      "2♣"
+    ],
+    "reason": "Après une réponse de 1♠, le corrigé établit le fit 4–4 et une redemande de première zone (13 H). 1SA et 2SA testaient tous deux la non-description du fit ; 2SA cumulait une erreur importante de force. 3♠ conserve le fit mais teste la distinction soutien simple/soutien à saut propositionnel. Le saut n'est pas justifié avec cette main régulière de première zone. 1SA reste le distracteur du fit non montré.",
+    "diagnostics": [
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "fit",
+        "reason": "Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "1SA",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-show-fit"
+        }
+      },
+      {
+        "choice": "3♠",
+        "status": "hypothesis",
+        "category": "niveau",
+        "reason": "Le soutien de la majeure conserve la couleur mais change le niveau de proposition ou de conclusion.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "3♠",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-support-level"
+        }
+      },
+      {
+        "choice": "2♣",
+        "status": "unknown",
+        "category": "inconnu",
+        "reason": "Plusieurs causes restent possibles ; le seul choix ne permet pas de privilégier une hypothèse suffisamment étayée.",
+        "confidence": "low",
+        "evidence": {
+          "id": "SEF-N107-2",
+          "concept": "red.base",
+          "choice": "2♣",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Vous : 1♣",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "ambiguous"
+        }
+      }
+    ]
+  },
+  {
+    "id": "SEF-N109-1",
+    "oldChoices": [
+      "2SA",
+      "2♠",
+      "2♦",
+      "1SA"
+    ],
+    "newChoices": [
+      "3♠",
+      "2♠",
+      "2♦",
+      "1SA"
+    ],
+    "reason": "Après une réponse de 1♠, le corrigé établit le fit 4–4 et une redemande de première zone (13 H). 1SA et 2SA testaient tous deux la non-description du fit ; 2SA cumulait une erreur importante de force. 3♠ conserve le fit mais teste la distinction soutien simple/soutien à saut propositionnel. Le saut n'est pas justifié avec cette main régulière de première zone. 1SA reste le distracteur du fit non montré.",
+    "diagnostics": [
+      {
+        "choice": "3♠",
+        "status": "hypothesis",
+        "category": "niveau",
+        "reason": "Le soutien de la majeure conserve la couleur mais change le niveau de proposition ou de conclusion.",
+        "confidence": "medium",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "3♠",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-support-level"
+        }
+      },
+      {
+        "choice": "2♦",
+        "status": "unknown",
+        "category": "inconnu",
+        "reason": "Plusieurs causes restent possibles ; le seul choix ne permet pas de privilégier une hypothèse suffisamment étayée.",
+        "confidence": "low",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "2♦",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "ambiguous"
+        }
+      },
+      {
+        "choice": "1SA",
+        "status": "hypothesis",
+        "category": "fit",
+        "reason": "Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.",
+        "confidence": "high",
+        "evidence": {
+          "id": "SEF-N109-1",
+          "concept": "red.base",
+          "choice": "1SA",
+          "expected": "2♠",
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Vous : 1♦",
+            "Partenaire : 1♠"
+          ],
+          "assisted": false,
+          "hadFreeError": false,
+          "offered": true,
+          "rule": "rebid-show-fit"
+        }
+      }
+    ]
   }
 ]

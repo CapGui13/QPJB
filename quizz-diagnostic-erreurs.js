@@ -244,6 +244,72 @@ return (function factory(byId,signature){
     if(c==='rubensohl.init'&&opp&&/Rubensohl/.test(text)&&['2SA','3♣','3♦','3♥','3♠'].includes(x.answer)&&['2SA','3♣','3♦','3♥','3♠'].includes(choice))
       return H('convention','rubensohl-transfer-code','Les enchères artificielles du Rubensohl ne désignent pas la même couleur ou la même recherche de fit dans cette séquence.','medium');
 
+
+    const hl=h+shape.reduce((s,n)=>s+Math.max(0,n-4),0);
+    if(simpleResponderSA&&['second.base','roudi.init','roudi.choix'].includes(c)){
+      if((x.answer==='Passe'||a&&a[2]===v0[2]&&a[1]==='2')&&h<=8&&['2SA','3SA'].includes(choice)&&/faible|partielle|manche n.est pas|manche.*loin|pas.*manche|non forcing/.test(text))
+        return H('force','responder-weak-vs-invite','Le corrigé vise une partielle après la redemande limitée de l’ouvreur ; la proposition à SA exprime davantage d’ambition.','medium');
+      if(['2SA','3SA'].includes(x.answer)&&passOrSA(choice)&&len(v0[2])===4&&reg&&/invitation|invite|manche/.test(text))
+        return H('force','responder-regular-invite','La réponse et le corrigé correspondent à des ambitions différentes face à la redemande limitée ; la zone de force est à vérifier.','medium');
+      if(x.answer==='Passe'&&choice==='2♣'&&len(v0[2])===4&&h<=8&&/quatre|quatrième/.test(text))
+        return H('convention','responder-unneeded-roudi','Le Roudi n’est pas destiné à rechercher un soutien troisième avec une majeure seulement quatrième dans cette séquence.','medium');
+    }
+    if(!opp&&['mineur.base','majeur.base'].includes(c)&&first.length===1&&p0&&p0[1]==='1'&&!st.steps.some(s=>s[0]==='Vous'&&s[1]==='Passe')){
+      if(c==='mineur.base'&&a&&a[1]==='1'&&major(a[2])&&z&&z[2]===p0[2]&&minor(p0[2])&&len(a[2])>=4&&/majeure|fit/.test(text))
+        return H('priorite','response-major-before-minor-support','La majeure quatrième du corrigé doit être recherchée avant le soutien direct de la mineure dans ce cas.','high');
+      if(x.answer==='Passe'&&h<=4&&hl<=5&&z&&z[1]==='2'&&/force.*répondre|force nécessaire/.test(text))
+        return H('force','response-two-level-weak','La main ne satisfait même pas le seuil de réponse retenu dans le corrigé ; l’enchère au palier de deux est une hypothèse de surestimation.','high');
+      if(x.answer==='1SA'&&z&&z[1]==='2'&&z[2]!==p0[2]&&z[2]!=='SA'&&h<11&&hl<12&&/2 sur 1|11 H|12 HL/.test(text))
+        return H('force','two-over-one-threshold','Le changement de couleur naturel au palier de deux est plus exigeant que la réponse limitée à 1SA ; les valeurs de cette main restent sous le seuil retenu dans le cas.','high');
+      if(a&&a[1]==='2'&&a[2]!==p0[2]&&a[2]!=='SA'&&choice==='1SA'&&/2 sur 1|forcing et auto.forcing/.test(text))
+        return H('force','two-over-one-vs-1sa','Le changement de couleur du corrigé décrit une main constructive répondant au seuil indiqué ; 1SA sous-décrirait ces valeurs.','medium');
+      if(a&&a[1]==='1'&&major(a[2])&&choice==='1SA'&&a[2]!==p0[2]&&len(a[2])>=4&&/majeure|Piques/.test(text))
+        return H('priorite','response-major-before-1sa','La majeure quatrième disponible au palier de un est prioritaire sur la réponse limitée à 1SA dans cette séquence.','high');
+      if(a&&a[1]==='1'&&a[2]==='♦'&&choice==='1SA'&&p0[2]==='♣'&&len('♦')>=5&&Math.max(shape[0],shape[1])<4&&/naturellement|naturel|forcing/.test(text))
+        return H('priorite','response-diamond-before-1sa','Sans majeure quatrième, les cinq Carreaux et le corrigé conduisent à annoncer cette couleur au palier de un plutôt que 1SA.','medium');
+    }
+    if(!opp&&['red.base','red.bicolore','red.bicolore_cher'].includes(c)&&first.length===2&&v0&&p0&&v0[2]!=='SA'){
+      if(a&&a[2]==='SA'&&z&&z[2]===v0[2]&&z[1]==='2'&&reg&&len(v0[2])<=4&&/régulière|réguliers/.test(text))
+        return H('distribution','rebid-regular-vs-repeat','La redemande régulière du corrigé ne promet pas une longue ; répéter l’ouverture ferait croire à une longueur que cette main ne possède pas.','medium');
+      if(a&&a[2]===v0[2]&&z&&z[2]==='SA'&&len(v0[2])>=6&&/répétition|répétez|six/.test(text))
+        return H('distribution','rebid-long-vs-sa','La couleur sixième est l’information de distribution centrale du corrigé ; une redemande naturelle à SA ne la transmet pas.','medium');
+      if(a&&a[2]!==v0[2]&&a[2]!==p0[2]&&a[2]!=='SA'&&z&&z[2]==='SA'&&/bicolore/.test(text)&&len(a[2])>=4&&len(v0[2])>=5)
+        return H('distribution','rebid-two-suits-vs-sa','Le corrigé décrit deux couleurs avec cinq cartes dans l’ouverture et au moins quatre dans la seconde ; la redemande naturelle à SA ne décrit pas ce bicolore.','medium');
+    }
+    if(c==='reponse_inter.base'&&opp&&majorCall(p0)&&p0[1]==='1'&&st.steps.some(s=>s[0]==='Adversaire'&&rank(s[1])>=0)){
+      if(a&&a[2]===p0[2]&&len(p0[2])>=3&&choice==='1SA'&&/fit|atouts/.test(text))
+        return H('fit','reply-overcall-fit','La majeure cinquième d’intervention et les trois cartes ou plus de la main établissent le fit du corrigé ; 1SA ne le met pas en valeur.','high');
+      if(z&&z[2]===p0[2]&&len(p0[2])<3&&(!a||a[2]!==p0[2])&&/fit|atouts/.test(text))
+        return H('fit','reply-overcall-no-fit','La main n’a que '+len(p0[2])+' cartes dans la majeure d’intervention : le fit d’au moins huit cartes n’est pas établi.','high');
+      if(a&&a[2]===p0[2]&&len(p0[2])>=3&&choice==='Passe'&&/fit|atouts/.test(text))
+        return H('fit','reply-overcall-pass','Le corrigé valorise le fit connu en soutien ; l’évaluation de la main avec atout est une piste pour distinguer Passe et soutien.','medium');
+    }
+    if(c==='apres_inter.base'&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&p0&&p0[1]==='1'){
+      if(x.answer==='Passe'&&h<=4&&hl<=5&&(choice==='Contre'||z&&z[1]==='2')&&/force supérieure|manque de force|trop faible/.test(text))
+        return H('force','competitive-response-weak','Le corrigé indique que la main est trop faible pour cette réponse compétitive ; le seuil est une piste.','medium');
+      if(a&&major(a[2])&&a[1]==='1'&&len(a[2])>=4&&choice==='1SA'&&/naturel/.test(text))
+        return H('priorite','competitive-major-first','La majeure disponible au palier de un est l’information recherchée par le corrigé ; 1SA la masquerait.','medium');
+      if(a&&z&&a[2]===z[2]&&a[2]!==p0[2]&&/naturel|saut/.test(text))return H('niveau','competitive-new-suit-level','La même couleur nouvelle est proposée à deux paliers différents ; le saut et la force promise sont à distinguer.','medium');
+    }
+    if(c==='intervenir.base'&&first.length===1&&first[0][0]==='Adversaire'&&a&&a[2]!=='SA'&&len(a[2])>=5&&choice==='1SA'&&hl<16&&/naturel/.test(text))
+      return H('force','direct-overcall-sa-zone','L’intervention naturelle de 1SA demande davantage de valeurs que la main du cas ; la couleur longue permet l’intervention naturelle du corrigé.','medium');
+    if(c==='reveil.base'&&first.length===1&&first[0][0]==='Adversaire'&&st.steps.filter(s=>s[1]==='Passe').length===2){
+      if(x.answer==='Contre'&&z&&z[2]!=='SA'&&hl>13&&/13 HL|14 HL/.test(text)&&len(z[2])>=5)
+        return H('force','balancing-strong-double','Le corrigé commence par Contre avec cette longue mais au-dessus du plafond de force du réveil naturel direct étudié.','medium');
+      if(a&&a[2]!=='SA'&&len(a[2])>=5&&hl>=8&&hl<=13&&choice==='Contre'&&/8[–-]13 HL|11[–-]13 HL/.test(text))
+        return H('competition','balancing-natural-vs-double','La main est dans la zone de réveil naturel du cas et possède la longue décrite ; le choix de Contre relève d’un mécanisme compétitif distinct.','medium');
+    }
+    if(['contre.base','contre.deux_faible'].includes(c)&&h<=4&&z&&z[2]==='SA'&&a&&a[2]!=='SA'&&/réponse|répondre/.test(text)&&st.steps.some(s=>s[0]==='Partenaire'&&s[1]==='Contre'))
+      return H('force','takeout-double-weak-sa','Avec ce jeu très faible, la réponse économique en couleur du corrigé se distingue d’une réponse naturelle à SA, qui promet des valeurs et généralement une tenue.','medium');
+    if(['forcing.troisieme','forcing.quatrieme'].includes(c)&&!opp&&own.length===2&&partner.length===2&&majorCall(p0)&&/couleur (?:artificielle )?forcing|4e forcing/.test(text)){
+      if(a&&a[2]===p0[2]&&len(p0[2])>=3&&z&&z[2]==='SA'&&/soutien|priorité/.test(text))
+        return H('fit','forcing-show-delayed-support','Le soutien troisième recherché par l’enchère d’investigation peut être montré dans la majeure ; SA ne donne pas cette information.','medium');
+      if(a&&z&&a[2]===z[2]&&a[2]===p0[2]&&len(p0[2])>=3&&/soutien/.test(text))
+        return H('niveau','forcing-support-level','Le soutien différé est dans la même couleur, mais le palier choisi n’a pas la même signification que celui du corrigé.','medium');
+    }
+    if(c==='chelem.controles'&&choice==='4SA'&&x.answer!=='4SA'&&/contrôle/.test(text)&&/prématuré|immédiat|manquant|lacune/.test(text))
+      return H('contexte','slam-controls-before-keycards','Le corrigé souligne qu’un contrôle extérieur reste à préciser ; le Blackwood ne remplace pas cette vérification préalable.','medium');
+
     // Relier une option au contraste explicite du corrigé, sans générer de corrigé
     // ni attribuer un raisonnement à l'élève. Les axes multiples restent unknown.
     if(typeof x.explain==='string'){
