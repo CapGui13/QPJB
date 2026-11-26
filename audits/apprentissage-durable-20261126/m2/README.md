@@ -155,3 +155,8 @@ Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16
 ## Passe 20 — revue transversale des derniers HOLD
 
 111 options ouvertes examinées sur le catalogue figé (110 HOLD et un contraste). 58 corrigés jugés suffisants avec une justification individuelle, 52 HOLD et un contraste conservés ; instantané des décisions et des cas en attente dans `pass20-propositions.json`. Les accords ambigus restent à arbitrer par le coordinateur. Aucun nouveau feedback, aucune modification du moteur, des ciblages ou des transferts. Banc exact V8 : 108175 assertions, données et transferts reproduits. Comparaison exhaustive : exactement 58 dispositions HOLD vers canonical-sufficient. Revue IA, non humaine. Node CLI et navigateurs réels non exécutés. Statut NON.
+
+
+## Passe 21 — dossier final des arbitrages et recette native
+
+Les 53 cas encore ouverts (52 HOLD, un contraste) sont documentés individuellement dans `pass21-arbitrages.json` : motif spécifique, main et contexte du catalogue, catégorie du point à arbitrer, propriétaire coordinateur. Aucune conversion artificielle en corrigé suffisant, aucune nouvelle affirmation SEF, repli canonique inchangé. Le registre généré reste inchangé. Le test `tests/durable-m2-native.cjs` vérifie la couverture exacte de ce dossier, exécute les deux CLI historiques et pilote 37 paires de scénarios sur Chromium et WebKit à deux largeurs (360 et 1280 px), clavier, hors ligne, focus, absence de fuite avant validation et absence de débordement horizontal. Exécution native à attester sur le SHA de cette livraison ; pas de succès anticipé. La revue est IA et non humaine.
