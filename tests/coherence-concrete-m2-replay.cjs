@@ -31,22 +31,26 @@ function prepare(sources,mod,apply=false){
  check(src.split(marker).length===2,'exact injection anchor');
  const hook=String.raw`
   function logicalOrder(items,state,exerciseOf=x=>x.exercise){
+   const historicalStarted=__measure();
    const historic=historicalLogicalOrder(items,state,exerciseOf);
+   const historicalMs=__measure()-historicalStarted;
    const id=x=>exerciseOf(x).id;
    const byId=new Map(historic.map(x=>[id(x),x]));
    const selected=historic.map(x=>({id:id(x),kind:x.kind,target:x.target,reason:x.reason}));
    const ctx={session:state.completed+1,history:state,exercises:historic.map(exerciseOf),
      metadataById:prerequis.byId,deck:historic.map(id),selected};
+   const m2Started=__measure();
    const plan=__m2.order(ctx);
+   const m2Ms=__measure()-m2Started;
    if(plan.ids.length!==historic.length||new Set(plan.ids).size!==historic.length||plan.ids.some(x=>!byId.has(x)))throw Error('M2 strict permutation');
-   __trace.push({historical:historic.map(id),selected,plan});
+   __trace.push({historical:historic.map(id),selected,plan,historicalMs,m2Ms});
    return __apply?plan.ids.map(x=>byId.get(x)):historic;
   }
   function historicalLogicalOrder(items,state,exerciseOf=x=>x.exercise){`;
  const exportMarker='return {eligibility,adaptiveDiagnostics,createForTests:';
  check(src.split(exportMarker).length===2,'exact export anchor');
  const instrumented=src.replace(marker,hook).replace(exportMarker,'return {decisionPattern,eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,adaptiveDiagnostics,createForTests:');
- const m={exports:{}};new Function('module','require','Date','__m2','__trace','__apply',instrumented)(m,req,Clock,mod,calls,apply);
+ const m={exports:{}};new Function('module','require','Date','__m2','__trace','__apply','__measure',instrumented)(m,req,Clock,mod,calls,apply,()=>Date.now());
  return {api:m.exports,metadata,qs,byId,calls,clock:s=>{time=Date.UTC(2026,0,1)+s*86400000}};
 }
 function early(deck,s){
@@ -77,12 +81,13 @@ function run(sources,mod,profile,seed,horizon,apply){
  const snapshot=JSON.stringify(qs),metaSnapshot=JSON.stringify(metadata);
  for(let s=1;s<=horizon;s++){
   e.clock(s);
-  const started=Date.now(),deck=api.start(state,qs);times.push(Date.now()-started);
+  const started=Date.now(),deck=api.start(state,qs);const totalMs=Date.now()-started;
   check(deck.length===10&&new Set(deck.map(q=>q.id)).size===10,'ten IDs '+s);
   check(new Set(deck.map(q=>q.caseFamily||q.id)).size===10,'ten families '+s);
   check(api.eligibilityBatch(deck,state,qs).every(v=>v.eligible),'eligibility '+s);
   early(deck,s);
   const call=e.calls.at(-1),plan=call.plan,ids=deck.map(q=>q.id),selected=state.active.selection;
+  times.push(Math.max(0,totalMs-(apply?0:call.m2Ms)));
   check(selected.every((x,i)=>x.id===ids[i]),'selection reason alignment');
   check(ids.join()=== (apply?plan.ids:call.historical).join(),'effective order');
   if(plan.before&&plan.after){
@@ -91,7 +96,7 @@ function run(sources,mod,profile,seed,horizon,apply){
   }else stats.unavailable++;
   if(plan.changed)stats.changed++;
   add(stats.before,plan.before);add(stats.after,plan.after);
-  const before=detail(call.historical,byId,metadata,call.selected,[]),after=detail(plan.ids,byId,metadata,call.selected,plan.reasons);
+  const before=detail(call.historical,byId,metadata,call.selected,plan.beforeReasons||[]),after=detail(plan.ids,byId,metadata,call.selected,plan.reasons);
   const roles=new Map(selected.map(x=>[x.id,x]));
   for(let i=0;i<deck.length;i++){
    const q=deck[i],m=metadata[q.id],o=outcome(q,s-1,seed,profile);
@@ -105,7 +110,7 @@ function run(sources,mod,profile,seed,horizon,apply){
    }
   }
   check(api.finish(state,qs),'finish '+s);
-  rows.push({session:s,ids,selection:ids.map(id=>roles.get(id)),historical:call.historical,proposed:plan.ids,status:plan.status,metricsBefore:plan.before,metricsAfter:plan.after,contrastPairs:plan.contrastPairs||[],before,after});
+  rows.push({session:s,ids,selection:ids.map(id=>roles.get(id)),historical:call.historical,proposed:plan.ids,status:plan.status,metricsBefore:plan.before,metricsAfter:plan.after,contrastPairs:plan.contrastPairs||[],historicalMs:call.historicalMs,m2Ms:call.m2Ms,before,after});
   if(CHECKPOINTS.includes(s)||s===horizon)checkpoints.push({session:s,changed:stats.changed,before:{...stats.before},after:{...stats.after},families:families.size,first:{...first},maxGaps:{...gaps},difficulty:{...difficulty},selectionP95:times.slice().sort((a,b)=>a-b)[Math.ceil(times.length*.95)-1]});
  }
  check(JSON.stringify(qs)===snapshot&&JSON.stringify(metadata)===metaSnapshot,'catalogue/meta mutated');
