@@ -1,21 +1,29 @@
-# M4 transfert pédagogique — livraison partielle #400
+# M4 — transfert pédagogique, livraison partielle #400
 
-Base d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. Catalogue réel 1915/99 ; registre structurel exhaustif, mais revue éditoriale individuelle incomplète. Aucun ancien fichier modifié.
+Base d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. Aucun fichier historique ou moteur modifié.
 
-## Cartographie et production
-18 paires de transfert historiques, 22 concepts avec rôle transfert. 35 paires historiques distinctes (transfert et discrimination réunis), 97 paires proposées au total dont 62 nouveaux rapprochements. Concepts avec une paire : 36 → 83. Familles 1556 → 1559, QCM 1915 → 1918. Les 3 ajouts comblent des lacunes de comparaison contrôlée (faible Texas 1SA/2SA, rectification Cœur 1SA/2SA, Stayman ordinaire/contré). Ils ne sont pas des preuves d'apprentissage humain.
+## Bilan mesuré
 
-Le registre distingue variantes structurelles, candidats miroirs (heuristique non sémantique), consolidation, liens historiques et liens ciblés. Les séquences normalisées retirent les Passes adverses explicites et annotations entre parenthèses seulement pour le comptage ; la séquence complète est conservée. Aucun transfert déduit d'un changement de couleur. Les paires de discrimination ne constituent pas une preuve intercontextuelle. Le champ evidence est un objet et automaticCredit=false.
+| Mesure | Avant | Après proposé |
+|---|---:|---:|
+| QCM | 1915 | 1918 |
+| Familles | 1556 | 1559 |
+| Concepts | 99 | 99 |
+| Paires distinctes de toute nature | 35 | 118 |
+| Concepts avec au moins une paire | 36 | 99 |
 
-## Deuxième passe éditoriale ciblée
-42 propositions examinées sur les corrigés réels, 42 retenues, 0 écartées (voir mesures.json). Roudi, Drury, forcing, redemandes fortes, contre, soutien compétitif, Stayman/Texas, Rubensohl, Landy/Michaël, chelems : comparer la décision et le sens de l'enchère, pas uniquement la dénomination. Les paires complémentaires de rôles ne sont pas des preuves d'un même savoir transféré.
+18 paires historiques de transfert couvrant 22 concepts, conservées comme candidates. 83 nouveaux rapprochements. Répartition exacte : {"historical_transfer_candidate":18,"historical_discrimination":17,"contextual_candidate":42,"discrimination":18,"discrimination_context":22,"role_complement":1}. Une paire de discrimination ou de rôles complémentaires ne vaut pas preuve de transfert. Le registre de 1915 IDs est exhaustif structurellement, pas une certification éditoriale de chacun. Les trois nouveaux IDs sont enregistrés séparément. Les critères de miroir sont heuristiques ; aucun crédit automatique.
 
-## HOLD
-16 concepts sans paire retenue : ouv.sa2, ouv.majeure, ouv.passe, mineur.soutien, red.base, second.base, contre.base, barrage.ouverture, barrage.reponse, ouv.position, barrage.suite, red.competitif, sa.gambling, second.bicolore_cher, sa1.texas.contre, intervenir.sa.suite.sa2, ouv.majeure, ouv.passe, mineur.soutien, red.base, second.base, sa1.stayman.suite, sa2.stayman.suite, sa2.texas.suite, contre.base, competitif.2sa_fitte, barrage.ouverture, barrage.reponse, apres_fit.base, apres_fit.essai, roudi.choix, drury.choix, drury.reponse, fortes.ouverture, competitif.truscott, michaels.reveil, roudi.suite, fortes.relais, fortes.redemande, forcing.troisieme, forcing.quatrieme, michaels.choix, chelem.splinter, competitif.spoutnik, ouv.position, barrage.suite, red.competitif, michaels.defense, chelem.blackwood.suite, chelem.blackwood.dame_rois, fortes.suite, michaels.reponse, multilandy.reponse, multilandy.suite, rubensohl.reponse, sa1.texas_mineur, sa1.texas_mineur.suite, drury.suite, fit.2sa.suite, forcing.quatrieme.suite, chelem.quantitatif.suite, rubensohl.suite, competitif.sa_adverse, sa.gambling, forcing.checkback, second.bicolore_cher, forcing.troisieme.suite, sa1.texas.contre, intervenir.sa.suite. Les autres concepts ne sont pas certifiés exhaustivement : les lacunes restantes exigent une revue sémantique des cas voisins et des accords. Ne pas compléter artificiellement les concepts à contexte unique. Les nuances des Texas mineurs et les accords non explicitement attestés restent à arbitrer. Les ajouts n'ont pas reçu de visa coordinateur. Statut NON.
+## Production
 
-## Recette et intégration
-Résultat réel : {"assertions":4741,"ids":1915,"additions":3,"pairs":97,"status":"PASS"}. Exécution du corps verify en V8 avec les blobs GitHub exacts ; DNS du terminal indisponible, Node natif et navigateurs non exécutés. Commande reproductible après checkout : node tests/durable-m4-transfert.cjs. Les contrôles mécaniques de cartes, H, enchères et familles ne certifient pas la pertinence éditoriale de toutes les propositions.
+Trois ajouts ciblés à mains indépendantes : Texas faible 1SA/2SA, rectification Cœur 1SA/2SA, Stayman ordinaire/contré. Les passes suivantes réutilisent les corrigés existants pour distinguer conventions, seuils, forcing, compétition et rôles. Dernière passe : 21 paires retenues sur 22, 1 écartée pour famille commune. Ne pas forcer de nouveaux exercices si une comparaison pertinente existe déjà.
 
-Coordinateur : examiner additions.json au format #386, copier exercise et metadata seulement après visa, préserver les 1915 IDs historiques ; contrasts.json ne donne aucun crédit automatique. QPJBDurableTransfer.links({id,concept,contrasts,candidates}) retourne uniquement des candidats déjà éligibles, aucune mutation ni score ; aucune injection dans séance active, rappel ou prérequis. Toute preuve M3 doit être autonome, multi-famille et multi-séance ; une discrimination n'est pas un transfert. Aucun changement de production ni fusion.
+## Tests et limites
+
+{"assertions":5052,"ids":1915,"additions":3,"pairs":118,"status":"PASS"}. Entrée complète CJS exécutée en V8 avec données GitHub exactes et adaptateurs fs/git, pas Node CLI natif : DNS du terminal indisponible. Rejouer après checkout : node tests/durable-m4-transfert.cjs. Aucun navigateur réel ni intégration moteur. Contrôles structurels ne prouvent pas la qualité humaine de chaque corrigé. Concepts sans aucune paire : 0; cela ne signifie pas que les concepts liés disposent tous d'un vrai transfert intercontextuel. Restent la revue éditoriale individuelle complète des 1915 QCM, la lecture complète des références historiques et des accords, la validation humaine des nouveaux exercices et la recette native. Ne pas assimiler une couverture de paires à une couverture de maîtrise.
+
+## Intégration par le coordinateur
+
+additions.json : vérifier et viser les nouveaux cas avant insertion. contrasts.json : données consultatives, automaticCredit=false. QPJBDurableTransfer.links({id,concept,contrasts,candidates}) : uniquement candidats déjà éligibles, aucune mutation, score ou modification du parcours. Aucun changement de production ni fusion.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON.
