@@ -31,4 +31,4 @@ const bench=function bench(engine,api,qs,configs,assert){
  }
  return output;
 };
-const configs=[{"profile":"autonome","seed":47,"horizon":20},{"profile":"intermediaire","seed":47,"horizon":20},{"profile":"faible","seed":47,"horizon":20},{"profile":"cible","seed":47,"horizon":20},{"profile":"aide","seed":47,"horizon":20},{"profile":"passe","seed":47,"horizon":20}];console.log(JSON.stringify(bench(engine,api,qs,configs,assert.ok),null,2));
+const allConfigs=[{"profile":"autonome","seed":47,"horizon":20},{"profile":"intermediaire","seed":47,"horizon":20},{"profile":"faible","seed":47,"horizon":20},{"profile":"cible","seed":47,"horizon":20},{"profile":"aide","seed":47,"horizon":20},{"profile":"passe","seed":47,"horizon":20},{"profile":"autonome","seed":11,"horizon":65},{"profile":"aide","seed":103,"horizon":65},{"profile":"intermediaire","seed":47,"horizon":153}];const configs=process.argv.includes('--full')?allConfigs:allConfigs.slice(0,6);console.log(JSON.stringify(bench(engine,api,qs,configs,assert.ok),null,2));
