@@ -1,0 +1,24 @@
+{
+  "schema": "QPJB_M3C_DIAGNOSTIC_OVERLAY_V1",
+  "baselineSHA": "71b0823235db1400eaf57c2552df35c18094f30a",
+  "files": [
+    "revue-roudi.json",
+    "revue-forcing-3e-checkback.json",
+    "revue-forcing-4e.json",
+    "revue-red-competitif.json",
+    "revue-red-base.json",
+    "revue-red-bicolores.json",
+    "revue-second-bicolore-cher.json",
+    "revue-second-base-1.json",
+    "revue-second-base-2.json",
+    "revue-second-base-3.json"
+  ],
+  "scope": [
+    "red",
+    "second",
+    "forcing",
+    "roudi"
+  ],
+  "expectedRows": 546,
+  "policy": "Index par id:choice des seules dispositions hypothesis. Appliquer uniquement après diagnose() du moteur mère si status=unknown, rule=ambiguous ou canonical-ambiguous-contrast, evidence.offered=true et concept identique. Le moteur mère vérifie la signature de la fiche. Conserver les preuves du moteur, ajouter la règle, catégorie, raison et confiance de la revue. Ne pas appliquer les patches sans arbitrage. Les autres dispositions restent unknown."
+}
