@@ -46,9 +46,16 @@ function run(sources,name,seed,horizon=180,options={}){
  const probe=options.probe||e;
  const catalogueBefore=JSON.stringify(e.exercises),metaBefore=JSON.stringify(e.meta);
  const begin=Date.now();
- const result=LAB.run({...e,probeExercises:probe.exercises,probeMeta:probe.meta,name,seed,horizon,verifyEarly,measure:()=>Date.now(),overrides:options.overrides||{},model:options.model||'learning'});
+ const result=LAB.run({...e,probeExercises:probe.exercises,probeMeta:probe.meta,name,seed,horizon,verifyEarly,measure:()=>Date.now(),overrides:options.overrides||{},model:options.model||'learning',ruleMap:options.ruleMap});
  assert(JSON.stringify(e.exercises)===catalogueBefore&&JSON.stringify(e.meta)===metaBefore,'Engine mutated catalogue or metadata');
  return {...result,elapsedMs:Date.now()-begin};
+}
+const diagnosticPaths=['quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js'];
+function referenceRules(sources,diagnosticSources){
+ const mods={},req=n=>{if(!Object.hasOwn(mods,n))throw Error('Missing reference diagnostic module '+n);return mods[n]};
+ for(const p of diagnosticPaths)mods['./'+p]=compile(diagnosticSources[p],req);
+ const e=prepare(sources);
+ return LAB.buildRuleMap(e.exercises,e.meta,mods['./quizz-professeur.js'].diagnose,BASE);
 }
 function pair(base,candidate,name,seed,horizon=180,options={}){
  const b=prepare(base),c=prepare(candidate),byId=new Map(c.exercises.map(q=>[q.id,q]));
@@ -82,7 +89,7 @@ function legacy(sources){
  assert(e.api.exportProgress(imported,e.exercises,{}).limitations.historicalSessionsWithoutDetailedAnswers===1,'Historical limitation');
  return {oldEntries:deck.length,restoredEntries:Object.keys(imported.entries).length,inventedJournal:imported.journal.length};
 }
-module.exports={BASE,paths,compile,data,engine,prepare,run,pair,crossResume,legacy,verifyEarly};
+module.exports={BASE,paths,diagnosticPaths,referenceRules,compile,data,engine,prepare,run,pair,crossResume,legacy,verifyEarly};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),crypto=require('node:crypto'),zlib=require('node:zlib');
  const root=path.join(__dirname,'..'),args=process.argv.slice(2),cmd=args[0]||'baseline',name=args[1]||'intermediaire',seed=Number(args[2]||47),h=Number(args[3]||180);
@@ -93,12 +100,17 @@ if(require.main===module){
  else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h);
  else if(cmd==='fixed')result=run(gitSources,name,seed,h,{model:'fixed'});
  else if(cmd==='sensitivity')result=[.5,1,2].map(factor=>({factor,result:run(gitSources,name,seed,h,{overrides:{half:LAB.PROFILES[name].half*factor}})}));
+ else if(cmd==='semantic'){
+ const diagnosticSources=Object.fromEntries(diagnosticPaths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
+ const ruleMap=referenceRules(gitSources,diagnosticSources);
+ result={tally:ruleMap.tally,categories:ruleMap.categories,result:run(gitSources,name,seed,h,{ruleMap,overrides:{pauseDays:5}})};
+ }
  else if(cmd==='legacy')result=legacy(gitSources);
  else if(cmd==='size'){
  const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js'];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
- }else throw Error('Command: baseline|pair|fixed|sensitivity|legacy|size');
+ }else throw Error('Command: baseline|pair|fixed|sensitivity|semantic|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));
- const trajectories=Array.isArray(result)?result.map(x=>x.result):cmd==='pair'?[result.before,result.after]:[result];
+ const trajectories=Array.isArray(result)?result.map(x=>x.result):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:[result];
  if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length))process.exitCode=2;
 }
