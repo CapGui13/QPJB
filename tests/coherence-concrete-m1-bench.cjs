@@ -152,7 +152,7 @@ if(require.main===module){
  const root=path.join(__dirname,'..'),old=p=>execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});
  const source=old('quizz-parcours.js'),data=old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1],qs=JSON.parse(data).exercises;
  const cache={};function req(n){if(cache[n])return cache[n];ok(/^\.\/quizz-[a-z0-9-]+\.js$/.test(n),'Unexpected require '+n);return cache[n]=compile(old(n.slice(2)),req);}
- const meta=req('./quizz-prerequis.js'),curriculum=require(process.env.QPJB_M1_POLICY==='fit'?'../quizz-coherence-m1-fit.js':process.env.QPJB_M1_POLICY==='conditional'?'../quizz-coherence-m1-conditional.js':process.env.QPJB_M1_POLICY==='guarded'?'../quizz-coherence-m1-guarded.js':'../quizz-coherence-m1-curriculum.js');
+ const meta=req('./quizz-prerequis.js'),curriculum=require(process.env.QPJB_M1_POLICY==='targeted'?'../quizz-coherence-m1-targeted.js':process.env.QPJB_M1_POLICY==='fit'?'../quizz-coherence-m1-fit.js':process.env.QPJB_M1_POLICY==='conditional'?'../quizz-coherence-m1-conditional.js':process.env.QPJB_M1_POLICY==='guarded'?'../quizz-coherence-m1-guarded.js':'../quizz-coherence-m1-curriculum.js');
  const profiles=process.argv[2]&&process.argv[2]!=='all'?[process.argv[2]]:PROFILES,seeds=process.argv[3]&&process.argv[3]!=='all'?[Number(process.argv[3])]:SEEDS,horizon=Number(process.argv[4]||180);
  const input={source,req,curriculum,meta,qs};
  const fixed=Date.UTC(2026,10,26,12);const now=Date.now;Date.now=()=>fixed;
