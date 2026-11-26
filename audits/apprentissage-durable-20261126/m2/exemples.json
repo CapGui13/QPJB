@@ -1,0 +1,120 @@
+{
+  "historical-targeted": {
+    "id": "SEF-001-1",
+    "choice": "1♣",
+    "category": "priorite",
+    "out": {
+      "canonical": "Avec 15 H et une main régulière, vous êtes dans la zone d’ouverture de 1SA (15–17 H). Ouvrez de 1SA, qui décrit immédiatement votre force et votre répartition.",
+      "feedback": "Une ouverture mineure ne précise pas aussi directement la zone de force et la régularité.",
+      "reminder": null,
+      "checkNext": "Vérifie d’abord les conditions d’une ouverture à Sans-Atout.",
+      "targetConcept": "ouv.sa1",
+      "targetCriteria": [
+        "priorite"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "opening-minor-comparison": {
+    "id": "SEF-009-1",
+    "choice": "1♣",
+    "category": "priorite",
+    "out": {
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, avec 5 Carreaux contre 3 Trèfles.",
+      "feedback": "Compare les 5 Carreaux aux 3 Trèfles : ce sont les longueurs qui départagent les deux mineures.",
+      "reminder": null,
+      "checkNext": "Sur une autre main sans majeure cinquième, compare les deux mineures, y compris si elles sont de même longueur.",
+      "targetConcept": "ouv.mineure",
+      "targetCriteria": [
+        "longueur-mineures",
+        "egalite-mineures"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "opening-major-length": {
+    "id": "SEF-011-2",
+    "choice": "1♥",
+    "category": "distribution",
+    "out": {
+      "canonical": "Avec 12 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, avec 3 Carreaux contre 2 Trèfles.",
+      "feedback": "Tu as 4 Cœurs. La majeure choisie ne compte pas cinq cartes.",
+      "reminder": null,
+      "checkNext": "Sur une autre ouverture, vérifie la force puis compte les cartes de chaque majeure.",
+      "targetConcept": "ouv.mineure",
+      "targetCriteria": [
+        "force-ouverture",
+        "longueur-majeure-ouverture"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "response-minor-force": {
+    "id": "SEF-019-2",
+    "choice": "Passe",
+    "category": "force",
+    "out": {
+      "canonical": "Avec cinq Piques et 7 H après 1♣, répondez 1♠, naturel et non limité en force si vous n'avez pas passé. Recherchez le fit majeur plutôt que de répondre 1SA. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "feedback": "Avec 7 H, le corrigé retient une réponse plutôt que Passe.",
+      "reminder": null,
+      "checkNext": "Sur une autre main, décide d’abord si tu as assez de force pour répondre.",
+      "targetConcept": "mineur.base",
+      "targetCriteria": [
+        "force-reponse"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "response-minor-major-first": {
+    "id": "SEF-019-2",
+    "choice": "1SA",
+    "category": "priorite",
+    "out": {
+      "canonical": "Avec cinq Piques et 7 H après 1♣, répondez 1♠, naturel et non limité en force si vous n'avez pas passé. Recherchez le fit majeur plutôt que de répondre 1SA. Rappel : la réponse de 1♠ promet au moins quatre cartes.",
+      "feedback": null,
+      "reminder": null,
+      "checkNext": "Sur une autre réponse à une mineure, cherche une majeure annonçable avant Sans-Atout.",
+      "targetConcept": "mineur.base",
+      "targetCriteria": [
+        "force-reponse",
+        "majeure-reponse"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "blackwood-count-keys": {
+    "id": "SEF-V45-050",
+    "choice": "5♠",
+    "category": "convention",
+    "out": {
+      "canonical": "À l'atout Pique, comptez exclusivement les quatre As et le Roi de Pique. Vous n'avez aucun As ni ♠R : zéro clé, malgré vos 8 H et la Dame d'atout. 5♣ code zéro ou trois clés en 30–41 ; la Dame n'est jamais une sixième clé et n'est pas indiquée par cette réponse.",
+      "feedback": "À l’atout Piques, compte 0 As et 0 Roi d’atout : 0 clé(s).",
+      "reminder": null,
+      "checkNext": "Sur une autre main, nomme l’atout agréé, compte les clés puis distingue les réponses 30–41.",
+      "targetConcept": "chelem.cles",
+      "targetCriteria": [
+        "blackwood-atout",
+        "blackwood-cles",
+        "blackwood-code"
+      ],
+      "kind": "targeted"
+    }
+  },
+  "stayman-texas-length": {
+    "id": "SEF-PN26-M1-034",
+    "choice": "3♥",
+    "category": "convention",
+    "out": {
+      "canonical": "Avec 5 H face à 20–21 H, vous avez la force nécessaire pour demander la manche. Vos quatre Piques justifient un Stayman à 3♣ pour rechercher un éventuel fit 4–4 ; 3♥ Texas demanderait cinq Piques.",
+      "feedback": "Le Texas choisi désignerait Piques, où tu n’as que 4 cartes.",
+      "reminder": null,
+      "checkNext": "Sur une autre réponse à Sans-Atout, distingue la recherche d’un fit 4–4 et l’annonce d’une majeure longue.",
+      "targetConcept": "sa2.stayman",
+      "targetCriteria": [
+        "stayman-texas",
+        "longueur-majeure"
+      ],
+      "kind": "targeted"
+    }
+  }
+}
