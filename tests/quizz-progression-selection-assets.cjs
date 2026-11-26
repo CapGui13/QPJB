@@ -7,8 +7,9 @@ const root=path.join(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('quizz.html');
 const prereq='<script src="./quizz-prerequis.js?v=1"></script>';
-const engine='<script src="./quizz-parcours.js?v=14"></script>';
-assert.ok(html.includes(prereq+engine),'Prerequisites loaded before the engine');
+const plan='<script src="./quizz-session-plan.js?v=1"></script>';
+const engine='<script src="./quizz-parcours.js?v=15"></script>';
+assert.ok(html.includes(prereq+plan+engine),'Prerequisites loaded before the engine');
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 assert.equal(data.exercises.length,1879);
 assert.equal(data.themes.length,22);
@@ -36,7 +37,7 @@ async function warm(){
  assert.equal(await warm(),false,'Missing prerequisites must not report offline ready');
  fail=false;
  assert.equal(await warm(),true);
- for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=1','/QPJB/quizz-parcours.js?v=14','/QPJB/parcours-recommandations.js?v=1'])
+ for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=1','/QPJB/quizz-session-plan.js?v=1','/QPJB/quizz-parcours.js?v=15','/QPJB/parcours-recommandations.js?v=1'])
   assert.ok(cached.has(url),'Offline resource '+url);
  const before=requests.length;
  assert.equal(await warm(),true);

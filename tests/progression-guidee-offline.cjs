@@ -39,7 +39,7 @@ const server=http.createServer((req,res)=>{
   assert.deepEqual(warm,{type:'QPJB_OFFLINE_READY',ok:true});
   const cached=await page.evaluate(async()=>{
    const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();
-   return ['/QPJB/quizz-prerequis.js?v=1','/QPJB/qpjb-bridge-ui.css?v=20261113e']
+   return ['/QPJB/quizz-prerequis.js?v=1','/QPJB/quizz-session-plan.js?v=1','/QPJB/quizz-parcours.js?v=15','/QPJB/qpjb-bridge-ui.css?v=20261113e']
     .every(required=>keys.some(x=>new URL(x).pathname+new URL(x).search===required));
   });
   assert(cached,'Prerequisite module or Quiz CSS was not warmed by the service worker');
@@ -48,7 +48,7 @@ const server=http.createServer((req,res)=>{
   offline=true;await context.setOffline(true);
   await page.goto(url+'quizz.html',{waitUntil:'domcontentloaded'});
   await page.locator('#parcours-start').waitFor({state:'visible'});
-  assert(await page.evaluate(()=>window.QPJBPrerequis?.schema==='QPJB_PREREQUIS_V1'));
+  assert(await page.evaluate(()=>window.QPJBPrerequis?.schema==='QPJB_PREREQUIS_V1'&&window.QPJBSessionPlan?.schema==='QPJB_SESSION_PLAN_V1'&&typeof window.QPJBParcours?.adaptiveDiagnostics==='function'));
   await page.locator('#parcours-start').click();
   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
   await page.locator('#pass').click();

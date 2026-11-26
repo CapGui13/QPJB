@@ -141,8 +141,8 @@ const server=http.createServer((req,res)=>{
   }
   await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
   await page.reload({waitUntil:'domcontentloaded'});
-  assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
-  assert.ok(!(await page.locator('.stage').textContent()).includes('accord de paire'),'No pair settings are advertised');
+   assert.equal(await page.locator('.stage').count(),0,'Requested removal of the introductory panel (#365)');
+   assert.ok(!(await page.locator('main').innerText()).includes('accord de paire'),'No pair settings are advertised');
   assert.equal(await page.locator('#selection-mode option').count(),5);
   assert.equal(await page.locator('#topic option').count(),23);
   const dimensions=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:document.documentElement.clientWidth}));
@@ -581,10 +581,15 @@ const server=http.createServer((req,res)=>{
     assert.ok(fullHeight>170,'Bridge keyboard opens to its real content height: '+fullHeight);
     // Recliquer sur le bouton ne doit pas masquer instantanément le clavier.
     await motion.locator('#bid-key-toggle').click();
-    await motion.waitForTimeout(160);
-    const foldingHeight=await motion.locator('#bid-keypad').evaluate(el=>el.getBoundingClientRect().height);
-    assert.ok(foldingHeight>0&&foldingHeight<fullHeight-3,
-      'Bridge keyboard folds progressively: '+JSON.stringify({fullHeight,foldingHeight}));
+    assert.equal(await motion.locator('#bid-key-toggle').getAttribute('aria-expanded'),'false','Closing actually requested');
+    // Observe an intermediate rendered frame, not an arbitrary wall-clock instant.
+    // A jump from full height straight to hidden still fails.
+    await motion.waitForFunction(full=>{
+      const el=document.getElementById('bid-keypad');
+      if(!el||el.hidden)return false;
+      const height=el.getBoundingClientRect().height;
+      return height>0&&height<full-3;
+    },fullHeight,{polling:'raf',timeout:900});
     await motion.locator('#bid-keypad').waitFor({state:'hidden',timeout:1600});
     assert.equal(await motion.locator('#free-form').count(),1,'Closing keyboard keeps the question and free entry');
     assert.equal(await motion.locator('#answers button').count(),0,'Closing keyboard does not reveal proposals');
