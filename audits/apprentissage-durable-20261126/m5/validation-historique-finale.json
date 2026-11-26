@@ -1,0 +1,3948 @@
+{
+  "schema": "QPJB_M5_LATE_APPROVALS_CLOSURE_RECONCILIATION",
+  "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
+  "previousHead": "baf05ee59d118ce16a80db888c362f2cc71e4d61",
+  "sources": [
+    {
+      "path": "audits/pedagogie/validation-globale-29-20261124.json",
+      "sha": "f0c304bf0ff4c1356aa7e4dfb9e5e48384e3cc47"
+    },
+    {
+      "path": "audits/pedagogie/proposition-26-textes-revue-20261123.json",
+      "sha": "77e353aff3f82ae7b1e47dd4c6037c5f2dc2b768"
+    },
+    {
+      "path": "audits/pedagogie/validations-2sa-fitte-20261123.json",
+      "sha": "cd21f4b74561ae000ea1ffe91f3c5b3021706548"
+    },
+    {
+      "path": "audits/pedagogie/validations-lot-a-complement-20261123.json",
+      "sha": "52267b6562c8e07b8cd7976974eceaae6d976ca3"
+    },
+    {
+      "path": "audits/REGISTRE_QUIZ_SEF_V4110_118_CLOTURES.csv",
+      "sha": "895b1f660dbd9311ef6c6e65124986f4711c2762"
+    }
+  ],
+  "counts": {
+    "previousExtensions": 88,
+    "extensions": 110,
+    "previousExamples": 316,
+    "distinctExamples": 349,
+    "newDistinctExamples": 33,
+    "checks": 209,
+    "coreEdits": 5,
+    "glossaryConcepts": 71,
+    "definitionsAdded": 103,
+    "closureRows": 118,
+    "approvedRows": 60,
+    "distinctDecisionIds": 169
+  },
+  "newExtensions": [
+    {
+      "id": "m5-ext-89",
+      "concept": "mineur.base",
+      "archive": "26 textes",
+      "ids": [
+        "SEF-017-1",
+        "SEF-N029-2"
+      ],
+      "answers": [
+        "1♥",
+        "1♠"
+      ],
+      "minSession": 1,
+      "prerequisites": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        },
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-90",
+      "concept": "mineur.base",
+      "archive": "26 textes",
+      "ids": [
+        "SEF-021-2",
+        "SEF-N031-1"
+      ],
+      "answers": [
+        "1SA",
+        "1SA"
+      ],
+      "minSession": 1,
+      "prerequisites": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        },
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-91",
+      "concept": "apres_fit.essai",
+      "archive": "26 textes",
+      "ids": [
+        "SEF-V4-005-2",
+        "SEF-V4-017-2"
+      ],
+      "answers": [
+        "3♥",
+        "3♠"
+      ],
+      "minSession": 12,
+      "prerequisites": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "apres_fit.essai",
+          "minExposure": 2
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-92",
+      "concept": "apres_fit.essai",
+      "archive": "26 textes",
+      "ids": [
+        "SEF-V44-050",
+        "SEF-V44-053"
+      ],
+      "answers": [
+        "3♣",
+        "3♦"
+      ],
+      "minSession": 12,
+      "prerequisites": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "apres_fit.essai",
+          "minExposure": 2
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-93",
+      "concept": "apres_fit.essai.suite",
+      "archive": "26 textes",
+      "ids": [
+        "SEF-V4-010-1",
+        "SEF-V423-003"
+      ],
+      "answers": [
+        "4♥",
+        "3♠"
+      ],
+      "minSession": 10,
+      "prerequisites": [
+        {
+          "concept": "apres_fit.essai",
+          "minExposure": 1
+        },
+        {
+          "concept": "apres_fit.essai.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-94",
+      "concept": "roudi.reponse",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-V4-082-1",
+        "SEF-V4-083-1"
+      ],
+      "answers": [
+        "2♦",
+        "2♥"
+      ],
+      "minSession": 24,
+      "prerequisites": [
+        {
+          "concept": "roudi.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "roudi.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-95",
+      "concept": "drury.init",
+      "archive": "29 dossiers puis corrigé figé",
+      "ids": [
+        "SEF-V4-098-1"
+      ],
+      "answers": [
+        "2♣"
+      ],
+      "minSession": 24,
+      "prerequisites": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-96",
+      "concept": "drury.choix",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-V4-106-1"
+      ],
+      "answers": [
+        "1SA"
+      ],
+      "minSession": 24,
+      "prerequisites": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.choix",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-97",
+      "concept": "multilandy.suite",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L14-002",
+        "SEF-L14-003",
+        "SEF-L14-004"
+      ],
+      "answers": [
+        "3♥",
+        "3♠",
+        "3♦"
+      ],
+      "minSession": 44,
+      "prerequisites": [
+        {
+          "concept": "multilandy.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "multilandy.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-98",
+      "concept": "rubensohl.init",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L27-006"
+      ],
+      "answers": [
+        "3♠"
+      ],
+      "minSession": 42,
+      "prerequisites": [
+        {
+          "concept": "apres_inter.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "rubensohl.init",
+          "minExposure": 3
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-99",
+      "concept": "rubensohl.naturel",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L01-C-04"
+      ],
+      "answers": [
+        "Contre"
+      ],
+      "minSession": 38,
+      "prerequisites": [
+        {
+          "concept": "apres_inter.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "rubensohl.naturel",
+          "minExposure": 2
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-100",
+      "concept": "michaels.intervention",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L13-012"
+      ],
+      "answers": [
+        "3♥"
+      ],
+      "minSession": 44,
+      "prerequisites": [
+        {
+          "concept": "intervenir.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "michaels.intervention",
+          "minExposure": 3
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-101",
+      "concept": "reponse_inter.base",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L10-005"
+      ],
+      "answers": [
+        "2SA"
+      ],
+      "minSession": 14,
+      "prerequisites": [
+        {
+          "concept": "intervenir.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "reponse_inter.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-102",
+      "concept": "apres_inter.base",
+      "archive": "118 clôtures et décision 29",
+      "ids": [
+        "SEF-V3-087-2",
+        "SEF-V3-088-1"
+      ],
+      "answers": [
+        "Passe",
+        "Passe"
+      ],
+      "minSession": 14,
+      "prerequisites": [
+        {
+          "concept": "intervenir.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "apres_inter.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-103",
+      "concept": "chelem.blackwood.suite",
+      "archive": "Lot A et L02",
+      "ids": [
+        "SEF-L02-E-17",
+        "SEF-L02-E-18"
+      ],
+      "answers": [
+        "5SA",
+        "Passe"
+      ],
+      "minSession": 47,
+      "prerequisites": [
+        {
+          "concept": "chelem.cles",
+          "minExposure": 3
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-104",
+      "concept": "chelem.splinter.variante",
+      "archive": "29 dossiers",
+      "ids": [
+        "SEF-L20-002"
+      ],
+      "answers": [
+        "3♠"
+      ],
+      "minSession": 48,
+      "prerequisites": [
+        {
+          "concept": "chelem.controles",
+          "minExposure": 3
+        },
+        {
+          "concept": "chelem.splinter",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.splinter.variante",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-105",
+      "concept": "michaels.reponse",
+      "archive": "118 clôtures",
+      "ids": [
+        "SEF-V478-005"
+      ],
+      "answers": [
+        "4♥"
+      ],
+      "minSession": 38,
+      "prerequisites": [
+        {
+          "concept": "michaels.intervention",
+          "minExposure": 1
+        },
+        {
+          "concept": "michaels.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-106",
+      "concept": "reveil.base",
+      "archive": "118 clôtures",
+      "ids": [
+        "SEF-V4-050-2"
+      ],
+      "answers": [
+        "1♠"
+      ],
+      "minSession": 19,
+      "prerequisites": [
+        {
+          "concept": "intervenir.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "reveil.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-107",
+      "concept": "barrage.ouverture",
+      "archive": "118 clôtures",
+      "ids": [
+        "SEF-V44-046",
+        "SEF-V44-047"
+      ],
+      "answers": [
+        "3♣",
+        "3♦"
+      ],
+      "minSession": 18,
+      "prerequisites": [
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.passe",
+          "minExposure": 1
+        },
+        {
+          "concept": "barrage.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-108",
+      "concept": "second.base",
+      "archive": "118 clôtures",
+      "ids": [
+        "SEF-V418-008"
+      ],
+      "answers": [
+        "3♥"
+      ],
+      "minSession": 7,
+      "prerequisites": [
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-109",
+      "concept": "competitif.spoutnik",
+      "archive": "118 clôtures",
+      "ids": [
+        "SEF-V410-027"
+      ],
+      "answers": [
+        "Contre"
+      ],
+      "minSession": 18,
+      "prerequisites": [
+        {
+          "concept": "apres_inter.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "competitif.spoutnik",
+          "minExposure": 2
+        }
+      ]
+    },
+    {
+      "id": "m5-ext-110",
+      "concept": "majeur.base",
+      "archive": "Lot A",
+      "ids": [
+        "SEF-N067-1"
+      ],
+      "answers": [
+        "2♦"
+      ],
+      "minSession": 2,
+      "prerequisites": [
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        },
+        {
+          "concept": "majeur.base",
+          "minExposure": 1
+        }
+      ]
+    }
+  ],
+  "edits": [
+    {
+      "concept": "mineur.base",
+      "before": {
+        "rule": "En silence adverse, avec environ 6 H, cherchez une majeure quatrième. Sur 1♣, avec 4–5 Carreaux et une majeure quatrième, priorité à la majeure jusqu’à 12 HL inclus ; au-delà, 1♦ d’abord dans ces cas. Sur 1♣, 1♦ naturel demande au moins quatre Carreaux. 1♥/1♠ est forcing un tour et non limité si non passé. 1SA (6–10 H) faute de mieux ; très faible : Passe."
+      },
+      "after": {
+        "rule": "Sans intervention, dès environ 6 H, cherchez la majeure quatrième : avec 4–4, Cœur d’abord ; avec 5–4, la plus longue. Sur 1♣ avec 4–5 Carreaux et une majeure quatrième, priorité majeure jusqu’à 12 HL inclus, puis 1♦ d’abord. 1♦ naturel promet quatre cartes. 1♥/1♠ forcing un tour, non limité si non passé ; 1SA faute de mieux (6–10 H) ; très faible : Passe."
+      }
+    },
+    {
+      "concept": "apres_fit.essai.suite",
+      "before": {
+        "rule": "Face à un essai à la couleur, appréciez votre zone de soutien et vos compléments dans cette couleur. Un soutien minimum sans complément revient à 3M ; une acceptation conclut à la manche majeure.",
+        "reminder": "Sur essai à la couleur, juger les compléments ; 3M refuse, 4M accepte."
+      },
+      "after": {
+        "rule": "Sur 2SA essai généralisé après 1M–2M, jugez les valeurs et la zone du soutien : 3M refuse, 4M accepte. Sur un essai à la couleur, appréciez aussi les compléments dans cette couleur. Un soutien minimum sans complément revient à 3M ; l’atout reste la majeure.",
+        "reminder": "Essai généralisé : juger les valeurs ; essai à la couleur : aussi les compléments. 3M refuse, 4M accepte."
+      }
+    },
+    {
+      "concept": "roudi.reponse",
+      "before": {
+        "rule": "Dans le Roudi à trois réponses, 2♦ nie le soutien troisième ; 2♥ montre trois atouts et minimum, 2♠ trois atouts et maximum. La majeure réelle du répondant reste la référence."
+      },
+      "after": {
+        "rule": "Roudi à trois réponses : 2♦ nie le soutien troisième, indépendamment de la zone 12–14 H ; 2♥ montre trois atouts et minimum, 2♠ trois atouts et maximum. Ces deux réponses codent la force et le fit dans la majeure du répondant, quelle que soit cette majeure."
+      }
+    },
+    {
+      "concept": "fit.2sa",
+      "before": {
+        "rule": "Sans intervention, 2SA direct après ouverture majeure montre exactement trois atouts et 11–12 HLD dans l'accord QPJB. Dans cette même zone, 3M direct (soutien au palier de trois) promet quatre atouts.",
+        "reminder": "Sur 1M sans intervention, 2SA = trois atouts exactement, 11–12 HLD ; 3M = quatre atouts dans cette zone."
+      },
+      "after": {
+        "rule": "Après ouverture majeure normale, sans intervention et avec un répondant non passé, 2SA direct montre exactement trois atouts et 11–12 HLD dans l'accord QPJB. Dans cette même zone, 3M direct (soutien au palier de trois) promet quatre atouts.",
+        "reminder": "Sur ouverture majeure normale, non passé et sans intervention : 2SA = trois atouts exactement, 11–12 HLD ; 3M = quatre atouts dans cette zone."
+      }
+    },
+    {
+      "concept": "chelem.blackwood.suite",
+      "before": {
+        "rule": "Additionnez les clés certaines de votre main et celles du partenaire, en éliminant les branches impossibles du code 30–41. Si deux clés manquent, arrêtez-vous au palier possible dans l'atout plutôt que chercher la Dame ou les Rois."
+      },
+      "after": {
+        "rule": "Additionnez les clés certaines et éliminez les branches impossibles du code 30–41. Si deux clés manquent, arrêtez-vous au palier possible dans l'atout. Avec les cinq clés, la Dame d'atout et le bilan de levées orientent petit ou grand chelem ; 5SA aux Rois ne se justifie que si le grand chelem est envisageable."
+      }
+    }
+  ],
+  "glossary": [
+    {
+      "concept": "ouv.sa1",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "ouv.sa2",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "ouv.majeure",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "ouv.mineure",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "ouv.passe",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+      ]
+    },
+    {
+      "concept": "mineur.base",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+      ]
+    },
+    {
+      "concept": "mineur.soutien",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "sa1.seuil",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "sa1.stayman",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa1.texas",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa2.seuil",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "red.bicolore",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "red.base",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "second.base",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "fit.2sa",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "majeur.base",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "sa2.stayman",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "sa2.texas",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "roudi.init",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+      ]
+    },
+    {
+      "concept": "sa1.stayman.suite",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa1.texas.suite",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa2.stayman.suite",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa2.texas.suite",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "contre.base",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "apres_inter.base",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "competitif.2sa_fitte",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte."
+      ]
+    },
+    {
+      "concept": "barrage.ouverture",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "barrage.reponse",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "apres_fit.base",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte."
+      ]
+    },
+    {
+      "concept": "apres_fit.essai",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "apres_fit.essai.suite",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "reponse_inter.base",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+      ]
+    },
+    {
+      "concept": "reveil.base",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur."
+      ]
+    },
+    {
+      "concept": "roudi.choix",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "roudi.reponse",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "drury.choix",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "drury.init",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau).",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "drury.reponse",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "fortes.ouverture",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "chelem.quantitatif",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "red.bicolore_cher",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+        "Auto-forcing : le joueur qui a fait l’enchère devra aussi reparler dans le cadre indiqué."
+      ]
+    },
+    {
+      "concept": "competitif.truscott",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "roudi.suite",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "fortes.relais",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "fortes.redemande",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "forcing.quatrieme",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "forcing.base",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+      ]
+    },
+    {
+      "concept": "multilandy.intervention",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "rubensohl.init",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "chelem.splinter",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "competitif.spoutnik",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "red.competitif",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "michaels.defense",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "fortes.suite",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "contre.deux_faible",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "michaels.reponse",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "chelem.controles",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "drury.suite",
+      "added": [
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "fit.2sa.suite",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "forcing.quatrieme.suite",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche.",
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "chelem.quantitatif.suite",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "chelem.blackwood.declenchement",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "competitif.sa_adverse",
+      "added": [
+        "HLD : points d’honneurs, de longueur et de distribution après le fit ; évaluez la forme et les honneurs dans leur contexte.",
+        "Dans les séquences abrégées, M désigne une majeure (Cœur ou Pique), m une mineure (Trèfle ou Carreau)."
+      ]
+    },
+    {
+      "concept": "reveil.deux_faible",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    },
+    {
+      "concept": "forcing.checkback",
+      "added": [
+        "H : points d’honneurs ; As 4, Roi 3, Dame 2, Valet 1."
+      ]
+    },
+    {
+      "concept": "chelem.splinter.variante",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "second.bicolore_cher",
+      "added": [
+        "Forcing : le partenaire doit reparler si les adversaires passent ; ce n’est pas forcément forcing de manche."
+      ]
+    },
+    {
+      "concept": "forcing.troisieme.suite",
+      "added": [
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa2.bicolore",
+      "added": [
+        "SA signifie Sans-Atout.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "intervenir.sa.suite",
+      "added": [
+        "HL : points H, plus un point par carte à partir de la cinquième dans une couleur.",
+        "Fit : au moins huit cartes connues ou promises dans une couleur entre les deux partenaires."
+      ]
+    },
+    {
+      "concept": "sa2.texas_mineur.reponse",
+      "added": [
+        "SA signifie Sans-Atout."
+      ]
+    }
+  ],
+  "closureRows": [
+    {
+      "id": "SEF-V44-060",
+      "concept": "michaels.reveil",
+      "oldAnswer": "1♦",
+      "currentAnswer": "1♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Solution corrigée et historique archivé, version V4.88",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-020-3",
+      "concept": "mineur.base",
+      "oldAnswer": "2♣",
+      "currentAnswer": "1SA",
+      "answerStatus": "later-catalogue-differs",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Soutien mineur 2♣ conforme SEF 6–9 HL ; aucun changement nécessaire",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V49-005",
+      "concept": "mineur.base",
+      "oldAnswer": "1♥",
+      "currentAnswer": "1♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 1♥ ; après 1♣, annoncer la majeure 4e jusqu'à 12 HL même avec 5♦ ; pas Walsh.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V418-008",
+      "concept": "second.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 3♥ invitation après 1♥–1♠–2♥, l'ouvreur ayant en principe six Cœurs, soutien de deux cartes.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-005",
+      "concept": "sa2.texas",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Solution corrigée et historique archivé, version V4.88",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V416-012",
+      "concept": "sa2.texas.suite",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Solution corrigée et historique archivé, version V4.88",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V416-013",
+      "concept": "sa2.texas.suite",
+      "oldAnswer": "4♠",
+      "currentAnswer": "4♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Solution corrigée et historique archivé, version V4.88",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-050-2",
+      "concept": "reveil.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 1♠ de réveil ; avec le minimum pour réveiller, intervenir car le partenaire détient souvent du jeu.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-053-3",
+      "concept": "reveil.base",
+      "oldAnswer": "Contre",
+      "currentAnswer": "Contre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : Contre de réveil avec plus de 13 HL (soit à partir de 14 HL) selon l'accord retenu.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-055-1",
+      "concept": "reveil.base",
+      "oldAnswer": "Contre",
+      "currentAnswer": "Contre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : Contre de réveil avec plus de 13 HL (soit à partir de 14 HL) selon l'accord retenu.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-056-1",
+      "concept": "reveil.base",
+      "oldAnswer": "Contre",
+      "currentAnswer": "Contre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : Contre de réveil avec plus de 13 HL (soit à partir de 14 HL) selon l'accord retenu.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-069-1",
+      "concept": "reveil.base",
+      "oldAnswer": "Contre",
+      "currentAnswer": "Contre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : Contre de réveil avec plus de 13 HL (soit à partir de 14 HL) selon l'accord retenu.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V478-002",
+      "concept": "michaels.reponse",
+      "oldAnswer": "4♣",
+      "currentAnswer": "4♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 4♣ à vulnérabilité favorable, fit très long ; à vulnérabilité défavorable, la passe peut être retenue.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V478-005",
+      "concept": "michaels.reponse",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 4♥ à vulnérabilité favorable selon loi des atouts ; à vulnérabilité défavorable, la passe peut être retenue.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V478-006",
+      "concept": "michaels.reponse",
+      "oldAnswer": "4♣",
+      "currentAnswer": "4♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : 4♣ même sans vulnérabilité favorable, grosse couvrante (As-Roi) et fit très long.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V478-008",
+      "concept": "michaels.reponse",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ARBITRAGE_ANTERIEUR",
+      "historicalDecision": "Arbitrage utilisatrice : Passe dans tous les cas, sans force suffisante pour surenchérir.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V486-014",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Corrigé ou main HLD ajusté, bonne enchère conservée",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V483-010",
+      "concept": "chelem.controles",
+      "oldAnswer": "4♦",
+      "currentAnswer": "4♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Corrigé ou main HLD ajusté, bonne enchère conservée",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V413-013",
+      "concept": "red.bicolore_cher",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Corrigé ou main HLD ajusté, bonne enchère conservée",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V425-003",
+      "concept": "forcing.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Corrigé ou main HLD ajusté, bonne enchère conservée",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V479-004",
+      "concept": "multilandy.reponse",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ACCORD_CONVENTIONNEL",
+      "historicalDecision": "Accord de paire hors SEF strict : 2SA relais positif constructif après Landy 2♣, montrant deux majeures.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V479-008",
+      "concept": "multilandy.reponse",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ACCORD_CONVENTIONNEL",
+      "historicalDecision": "Accord de paire hors SEF strict : 2♦ Multi-Landy promet majeure sixième indéterminée ; 2♠ Passe ou corrige (3♥ avec six Cœurs).",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V479-016",
+      "concept": "multilandy.reponse",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_ACCORD_CONVENTIONNEL",
+      "historicalDecision": "Accord de paire hors SEF strict : 2SA relais constructif après 2♠ Multi-Landy, Piques et mineure.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-001-2",
+      "concept": "ouv.sa1",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-005-2",
+      "concept": "ouv.sa2",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-006-1",
+      "concept": "ouv.majeure",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-007-1",
+      "concept": "ouv.majeure",
+      "oldAnswer": "1♥",
+      "currentAnswer": "1♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-007-2",
+      "concept": "ouv.majeure",
+      "oldAnswer": "1♥",
+      "currentAnswer": "1♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-009-2",
+      "concept": "ouv.mineure",
+      "oldAnswer": "1♦",
+      "currentAnswer": "1♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-010-1",
+      "concept": "ouv.mineure",
+      "oldAnswer": "1♣",
+      "currentAnswer": "1♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-013-2",
+      "concept": "ouv.passe",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-006",
+      "concept": "majeur.soutien",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Même soutien à 2♠, mais mains distinctes et forces de 6–7 H ; répétition de consolidation conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-007",
+      "concept": "majeur.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Réponse 1♠ après 1♥ ; longue Pique et tenues différentes, 7–9 H ; variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-008",
+      "concept": "majeur.base",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Niveau de difficulté et justification recalibrés à la compétence testée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N041-2",
+      "concept": "mineur.base",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N076-2",
+      "concept": "majeur.base",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V412-014",
+      "concept": "mineur.soutien",
+      "oldAnswer": "3♦",
+      "currentAnswer": "3♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V412-015",
+      "concept": "mineur.soutien",
+      "oldAnswer": "3♣",
+      "currentAnswer": "3♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V419-001",
+      "concept": "ouv.position",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V426-001",
+      "concept": "mineur.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Référence Walsh retirée du contenu actif ; réponse 1♠ expliquée selon la priorité majeure quatrième du SEF 2024.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-002",
+      "concept": "fortes.ouverture",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Niveau de difficulté et justification recalibrés à la compétence testée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-011",
+      "concept": "majeur.soutien",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-012",
+      "concept": "majeur.soutien",
+      "oldAnswer": "4♠",
+      "currentAnswer": "4♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V49-033",
+      "concept": "mineur.base",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N108-1",
+      "concept": "red.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N111-1",
+      "concept": "red.bicolore",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Même redemande 1♠ sur 1♦–1♥ ; mains de 12–14 H distinctes ; variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N114-1",
+      "concept": "red.base",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N115-1",
+      "concept": "red.base",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Même redemande 1SA sans fit Pique ; mains distinctes dans la zone 12–14 H ; variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N116-1",
+      "concept": "red.base",
+      "oldAnswer": "1SA",
+      "currentAnswer": "1SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N123-1",
+      "concept": "red.base",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Répétition à 2♠ après 1♠–1SA ; forces 12–14 H distinctes ; un corrigé identique mais pas une même donne.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N127-2",
+      "concept": "red.bicolore",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Bicolore 5♠–4♥ après 1♠–1SA ; forces 12–14 H distinctes ; variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N134-1",
+      "concept": "second.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Répétition de cinq Cœurs après 1SA ; variation de 6 à 8 H, honneurs et mains distincts.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N134-3",
+      "concept": "second.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Répétition de cinq Cœurs après 1SA ; variations de force et de qualité d'atout.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N138-2",
+      "concept": "second.base",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Répétition de six Piques après 1SA ; qualité et force différenciées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N139-2",
+      "concept": "second.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Passe avec quatre Cœurs après 1♣–1♥–1SA ; mains régulières distinctes de 6–8 H.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N142-1",
+      "concept": "second.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Passe avec quatre Piques après 1♦–1♠–1SA ; progression 6–9 H.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-N142-3",
+      "concept": "second.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Passe avec quatre Piques après 1♦–1♠–1SA ; cas à 9 H, variante de seuil.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-032-1",
+      "concept": "sa1.seuil",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Quasi-jumeau de compétence 2SA sur 1SA avec 8 H ; main différente, répétition assumée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-033-1",
+      "concept": "sa1.seuil",
+      "oldAnswer": "3SA",
+      "currentAnswer": "3SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Quasi-jumeau de compétence 3SA sur 1SA avec 10 H ; main différente, répétition assumée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-001",
+      "concept": "sa1.seuil",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Quasi-jumeau de compétence 2SA sur 1SA avec 8 H ; main différente, répétition assumée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-002",
+      "concept": "sa1.seuil",
+      "oldAnswer": "3SA",
+      "currentAnswer": "3SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Quasi-jumeau de compétence 3SA sur 1SA avec 10 H ; main différente, répétition assumée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-002-1",
+      "concept": "sa1.stayman.suite",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-004-1",
+      "concept": "sa1.stayman.suite",
+      "oldAnswer": "4♠",
+      "currentAnswer": "4♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-005-1",
+      "concept": "sa1.stayman.suite",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-007-4",
+      "concept": "sa1.stayman.suite",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-009-1",
+      "concept": "sa1.stayman.suite",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-021-2",
+      "concept": "sa2.stayman.suite",
+      "oldAnswer": "3SA",
+      "currentAnswer": "3SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-025-1",
+      "concept": "sa2.texas.suite",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-026-1",
+      "concept": "sa2.texas.suite",
+      "oldAnswer": "4♠",
+      "currentAnswer": "4♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Explication rattachée à la main, à la séquence et au seuil de points concernés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-073-1",
+      "concept": "roudi.init",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-076-3",
+      "concept": "roudi.reponse",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-078-1",
+      "concept": "roudi.reponse",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-080-2",
+      "concept": "roudi.choix",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-092-2",
+      "concept": "roudi.choix",
+      "oldAnswer": "2♠",
+      "currentAnswer": "2♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-C-010",
+      "concept": "contre.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Réponse 1♠ à un contre d'appel, même règle et même corrigé ; cartes et distracteurs distincts.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-051-1",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-051-3",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-052-1",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-052-2",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-053-1",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-053-3",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-054-1",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-054-2",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-056-4",
+      "concept": "intervenir.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Choix concurrent plus plausible introduit ; explication et, le cas échéant, difficulté recalibrées.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-062-1",
+      "concept": "contre.base",
+      "oldAnswer": "1♠",
+      "currentAnswer": "1♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Réponse 1♠ à un contre d'appel, même force et corrigé ; mains distinctes.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-064-2",
+      "concept": "contre.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_VARIANTE_CONSERVEE",
+      "historicalDecision": "Réponse 2♥ au contre d'appel ; 6–7 H et distributions distinctes.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-087-2",
+      "concept": "apres_inter.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-087-3",
+      "concept": "apres_inter.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-088-1",
+      "concept": "apres_inter.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-088-2",
+      "concept": "apres_inter.base",
+      "oldAnswer": "Passe",
+      "currentAnswer": "Passe",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V410-027",
+      "concept": "competitif.spoutnik",
+      "oldAnswer": "Contre",
+      "currentAnswer": "Contre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V411-012",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V412-019",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V417-011",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V422-006",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V423-004",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V423-005",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V424-005",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♣",
+      "currentAnswer": "2♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V424-006",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♦",
+      "currentAnswer": "2♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-042",
+      "concept": "apres_inter.base",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Correction du statut de la nouvelle couleur après intervention : forcing un tour, non auto-forcing.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-045",
+      "concept": "competitif.truscott",
+      "oldAnswer": "Surcontre",
+      "currentAnswer": "Surcontre",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V473-007",
+      "concept": "apres_inter.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Valeur corrigée de 15 HLD approximatifs à 14 HLD ; explication du cue-bid individualisée.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-045-1",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Suppression de la prétendue garantie de six Cœurs chez l'intervenant ; fit au moins neuvième correctement indiqué.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V45-029",
+      "concept": "multilandy.intervention",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Accord Multi-Landy pour les deux mineures explicitement identifié comme conventionnel et hors SEF standard.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V477-003",
+      "concept": "michaels.reponse",
+      "oldAnswer": "2♥",
+      "currentAnswer": "2♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Corrigé et/ou contexte différencié, ou niveau recalibré ; main distincte et variante conservée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V481-001",
+      "concept": "rubensohl.reponse",
+      "oldAnswer": "3♠",
+      "currentAnswer": "3♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Variantes Rubensohl/Texas impossible différenciées par la tenue Cœur et la difficulté ; deux exercices conservés.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V481-002",
+      "concept": "rubensohl.reponse",
+      "oldAnswer": "3♠",
+      "currentAnswer": "3♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Variantes Rubensohl/Texas impossible différenciées par la tenue Cœur et la difficulté ; deux exercices conservés.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V486-011",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "2SA",
+      "currentAnswer": "2SA",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Niveau de difficulté et justification recalibrés à la compétence testée.",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-105-3",
+      "concept": "barrage.reponse",
+      "oldAnswer": "4♥",
+      "currentAnswer": "4♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V3-108-1",
+      "concept": "barrage.reponse",
+      "oldAnswer": "4♠",
+      "currentAnswer": "4♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Explication enrichie, réponse et main conservées",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-046",
+      "concept": "barrage.ouverture",
+      "oldAnswer": "3♣",
+      "currentAnswer": "3♣",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V44-047",
+      "concept": "barrage.ouverture",
+      "oldAnswer": "3♦",
+      "currentAnswer": "3♦",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_AMELIORATION_VERIFIEE",
+      "historicalDecision": "Énoncé précisé (séquence, main, vulnérabilité et/ou position) ; corrigé cohérent individualisé.",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-026-4",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "canonical-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-030-1",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-034-4",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♠",
+      "currentAnswer": "3♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-038-4",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♠",
+      "currentAnswer": "3♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V4-042-1",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♠",
+      "currentAnswer": "3♠",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    },
+    {
+      "id": "SEF-V486-013",
+      "concept": "reponse_inter.base",
+      "oldAnswer": "3♥",
+      "currentAnswer": "3♥",
+      "answerStatus": "same",
+      "historicalStatus": "CLOS_HISTORIQUE",
+      "historicalDecision": "Fausse alerte : vulnérabilité déjà présente dans le contexte",
+      "usage": "not-selected-as-example",
+      "scope": "Historical disposition only; frozen catalogue prevails; do not reopen automatically."
+    }
+  ],
+  "approved": [
+    {
+      "id": "SEF-020-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "mineur.soutien",
+      "currentAnswer": "2♣",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Choisir le soutien mineur faible à 2♣ avec une courte.",
+          "current": "Choisir le soutien mineur faible à 2♣ avec une courte."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N031-2",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "mineur.soutien",
+      "currentAnswer": "2♣",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Soutien mineur simple : intégrer le singleton et le seuil de force.",
+          "current": "Soutien mineur simple : intégrer le singleton et le seuil de force."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V49-006",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Avec cinq Carreaux, quatre Cœurs et 14 H, quelle couleur annoncez-vous d'abord selon le SEF 2024 ?",
+          "current": "Votre partenaire ouvre de 1♣. Avec cinq Carreaux, quatre Cœurs et 14 H, quelle couleur annoncez-vous d'abord selon le SEF 2024 ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "La main comporte ♦AR543 cinquièmes et ♥A1083 quatrièmes. La règle retenue privilégie la majeure quatrième jusqu'à 12 HL après 1♣; avec 14 H, elle conduit ici à 1♦ d'abord. Les Cœurs pourront être annoncés au tour suivant. On joue la meilleure mineure, sans Walsh.",
+          "current": "Après 1♣, avec quatre ou cinq Carreaux et une majeure quatrième, la majeure est prioritaire jusqu'à 12 HL inclus. Avec cinq Carreaux, quatre Cœurs et 14 H (15 HL), commencez par 1♦ ; les Cœurs pourront être annoncés ensuite. Cette règle ne suppose pas de jouer le Walsh."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Appliquer la frontière de 12 HL pour répondre à 1♣.",
+          "current": "Appliquer la frontière de 12 HL pour répondre à 1♣."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V426-002",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♦",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre 1♣. Vous avez cinq Carreaux, quatre Piques et 13 H : selon le SEF 2024, quelle est la première réponse ?",
+          "current": "Votre partenaire ouvre 1♣. Vous avez cinq Carreaux, quatre Piques et 13 H : selon le SEF 2024, quelle est la première réponse ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec ♦AR962 cinquièmes et ♠AD74 quatrièmes, on commence par 1♦ selon cette règle, car la main dépasse 12 HL. La priorité à la majeure quatrième enseignée jusqu'à 12 HL ne s'applique plus ici; les Piques pourront être nommés ensuite. On joue la meilleure mineure, sans Walsh.",
+          "current": "Après 1♣, avec quatre ou cinq Carreaux et une majeure quatrième, la majeure est prioritaire jusqu'à 12 HL inclus. Avec 13 H (14 HL), cinq Carreaux et quatre Piques, commencez par 1♦ ; les Piques pourront être annoncés ensuite. Cette règle ne suppose pas de jouer le Walsh."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Repérer la frontière de 12 HL pour répondre après 1♣.",
+          "current": "Repérer la frontière de 12 HL pour répondre après 1♣."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-005-2",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Distinguer 3♥ préventif de 2SA essai après un fit majeur.",
+          "current": "Distinguer 3♥ préventif de 2SA essai après un fit majeur."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-017-2",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Reconnaître le barrage à 3♠ après 1♠–2♠, distinct d'un essai.",
+          "current": "Reconnaître le barrage à 3♠ après 1♠–2♠, distinct d'un essai."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-010-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai.suite",
+      "currentAnswer": "4♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Accepter 2SA essai généralisé avec un soutien majeur maximum.",
+          "current": "Accepter 2SA essai généralisé avec un soutien majeur maximum."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-022-3",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai.suite",
+      "currentAnswer": "4♠",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠.",
+          "current": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "roudi.init",
+      "currentAnswer": "2♣",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Déclencher le Roudi à 2♣ avec cinq Piques et une force invitante.",
+          "current": "Déclencher le Roudi à 2♣ avec cinq Piques et une force invitante."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-082-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "roudi.reponse",
+      "currentAnswer": "2♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez ouvert de 1♣, puis redemandé 1SA après la réponse de 1♠ de votre partenaire. Celui-ci utilise ensuite 2♣ Roudi. Avec seulement deux Piques et 13 H, quelle enchère choisissez-vous ?",
+          "current": "Vous avez ouvert de 1♣, puis redemandé 1SA après la réponse de 1♠ de votre partenaire. Celui-ci utilise ensuite 2♣ Roudi. Avec seulement deux Piques et 13 H, quelle enchère choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Votre main contient ♠R9, deux cartes seulement. Dans le Roudi à trois réponses, 2♦ annonce l'absence de fit troisième en Pique, quelle que soit ici la force exacte dans la fourchette 12–14 H. 2♥ et 2♠ promettraient toutes deux trois atouts, respectivement minimum ou maximum.",
+          "current": "Votre main contient ♠R9, deux cartes seulement. Dans le Roudi à trois réponses, 2♦ annonce l'absence de fit troisième en Pique, quelle que soit ici la force exacte dans la fourchette 12–14 H. 2♥ et 2♠ promettraient toutes deux trois atouts, respectivement minimum ou maximum."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Faire primer la présence du fit troisième sur la force dans les réponses au Roudi.",
+          "current": "Faire primer la présence du fit troisième sur la force dans les réponses au Roudi."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-098-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "drury.init",
+      "currentAnswer": "2♣",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "later-catalogue-differs",
+          "approved": "Vous avez passé d'entrée. Après un Passe adverse, votre partenaire ouvre 1♥ en troisième position. Avec quatre Cœurs et environ 11 HLD, quelle réponse conventionnelle choisissez-vous ?",
+          "current": "Vous avez passé d'entrée. Après un Passe adverse, votre partenaire ouvre 1♥ en troisième position. Avec quatre Cœurs, 10 H et un doubleton Pique, quelle réponse conventionnelle choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Vous avez passé d'entrée puis soutenez potentiellement quatre Cœurs (♥10942) face à une ouverture de troisième position, qui peut être tactique. Le fit quatrième valorise cette main de 9 H à environ 11 HLD dans le cadre enseigné. 2♣ Drury permet de vérifier la qualité de l'ouverture avant de s'engager; 2♥ minimiserait ce potentiel.",
+          "current": "Avec 10 H, quatre Cœurs, le neuvième atout (+2) et un doubleton (+1), vous avez un soutien constructif d'environ 13 HLD. 2♣ Drury permet de vérifier la qualité de l'ouverture de troisième position. Une main plate de 9 H ne se revalorise pas mécaniquement au seul motif du neuvième atout."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Déclencher le Drury après Passe d'entrée avec quatre atouts et une force constructive.",
+          "current": "Déclencher le Drury après Passe d'entrée avec quatre atouts et une force constructive."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-102-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "drury.reponse",
+      "currentAnswer": "2♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez ouvert 1♥ en troisième position après le Passe initial du partenaire. Il répond 2♣ Drury. Avec cinq Cœurs et 13 H, quelle redemande conventionnelle choisissez-vous ?",
+          "current": "Vous avez ouvert 1♥ en troisième position après le Passe initial du partenaire. Il répond 2♣ Drury. Avec cinq Cœurs et 13 H, quelle redemande conventionnelle choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec ♥AD832 et 13 H, vous avez une ouverture normale, sans ambition immédiate de chelem. Dans les réponses au Drury du SEF 2024, 2♦ est une enchère ambiguë montrant un espoir de manche. La répétition à 2♥ dénierait l’ouverture normale ; 3♥ inviterait au chelem. Choisissez 2♦.",
+          "current": "Après votre ouverture en troisième position et le Drury à 2♣, 2♦ est la réponse ambiguë du SEF 2024 indiquant un espoir de manche. Avec 13 H et cinq Cœurs, la main justifie cette exploration. 2♥ découragerait la poursuite."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Reconnaître le 2♦ ambigu du Drury 2024 avec un espoir de manche.",
+          "current": "Reconnaître le 2♦ ambigu du Drury 2024 avec un espoir de manche."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-106-1",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "drury.choix",
+      "currentAnswer": "1SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez passé d'entrée. Votre partenaire ouvre 1♠ en troisième position et vous avez seulement deux Piques, avec 7 H : quelle réponse choisissez-vous ?",
+          "current": "Vous avez passé d'entrée. Votre partenaire ouvre 1♠ en troisième position et vous avez seulement deux Piques, avec 7 H : quelle réponse choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec seulement ♠V3, vous n'avez pas le fit Pique nécessaire au Drury à 2♣ ou à un soutien direct à 2♠. Votre main de 7 H, sans majeure annonçable, répond économiquement 1SA dans le système retenu après Passe. 2♦ ne conviendrait pas avec seulement quatre Carreaux et cette force.",
+          "current": "Avec seulement deux Piques, vous n'avez pas le fit requis pour un Drury ni pour un soutien direct. Après votre Passe d'entrée, 1SA non forcing décrit cette main limitée de 7 H sans majeure annonçable ; 2♦ ne convient pas avec quatre Carreaux et cette force."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Répondre 1SA après Passe avec une main limitée non fittée.",
+          "current": "Répondre 1SA après Passe avec une main limitée non fittée."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V45-025",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "multilandy.intervention",
+      "currentAnswer": "2♦",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "L'adversaire ouvre 1SA (15–17 H). Vous jouez Multi-Landy non vulnérable et possédez six Piques sans autre couleur quatrième. Quelle intervention décrit cette main ?",
+          "current": "L'adversaire ouvre 1SA (15–17 H). Vous jouez Multi-Landy non vulnérable et possédez six Piques sans autre couleur quatrième. Quelle intervention décrit cette main ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Vous détenez ♠ARD1073 sixièmes, mais aucune deuxième couleur quatrième. Dans le Multi-Landy convenu, 2♦ est artificiel et montre un unicolore majeur sixième, ici Pique, sans promettre de longueur à Carreau. 2♣ montrerait un bicolore majeur, et 2♠ montrerait un Pique-mineure dans cette structure.",
+          "current": "Vous détenez ♠ARD1073 sixièmes, mais aucune deuxième couleur quatrième. Dans le Multi-Landy convenu, 2♦ est artificiel et montre un unicolore majeur sixième, ici Pique, sans promettre de longueur à Carreau. 2♣ montrerait un bicolore majeur, et 2♠ montrerait un Pique-mineure dans cette structure."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Ne pas confondre 2♦ artificiel Multi-Landy et des Carreaux naturels.",
+          "current": "Ne pas confondre 2♦ artificiel Multi-Landy et des Carreaux naturels."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V45-027",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "multilandy.intervention",
+      "currentAnswer": "2♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Sur l'ouverture adverse de 1SA (15–17 H), vous jouez Multi-Landy et avez cinq Cœurs et quatre Carreaux. Quelle intervention conventionnelle décrit ces deux couleurs ?",
+          "current": "Sur l'ouverture adverse de 1SA (15–17 H), vous jouez Multi-Landy et avez cinq Cœurs et quatre Carreaux. Quelle intervention conventionnelle décrit ces deux couleurs ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Votre bicolore est ♥AR1072 cinquième et ♦RDV6 quatrième. Dans le Multi-Landy utilisé ici, 2♥ montre cinq Cœurs et une mineure d'au moins quatre cartes. 2♣ serait réservé aux deux majeures; 2♦ montrerait une majeure sixième seule, et non ce bicolore.",
+          "current": "Votre bicolore est ♥AR1072 cinquième et ♦RDV6 quatrième. Dans le Multi-Landy utilisé ici, 2♥ montre cinq Cœurs et une mineure d'au moins quatre cartes. 2♣ serait réservé aux deux majeures; 2♦ montrerait une majeure sixième seule, et non ce bicolore."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Identifier 2♥ majeure–mineure plutôt que 2♣ Landy ou 2♦ Multi.",
+          "current": "Identifier 2♥ majeure–mineure plutôt que 2♣ Landy ou 2♦ Multi."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V45-032",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "rubensohl.init",
+      "currentAnswer": "2SA",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre 1SA, puis l'adversaire intervient naturellement à 2♥. En Rubensohl, avec six Trèfles et seulement 5 H, quelle enchère permet de jouer la couleur longue ?",
+          "current": "Votre partenaire ouvre 1SA, puis l'adversaire intervient naturellement à 2♥. En Rubensohl, avec six Trèfles et seulement 5 H, quelle enchère permet de jouer la couleur longue ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♣RD10975 sixièmes et 5 H, cherchez le contrat partiel à Trèfle. Dans le Rubensohl convenu, 2SA est un Texas pour 3♣, pas une invitation à jouer Sans-Atout. Le 3♣ direct transfère vers les Carreaux, tandis que 3SA exigerait des valeurs de manche.",
+          "current": "Avec ♣RD10975 sixièmes et 5 H, cherchez le contrat partiel à Trèfle. Dans le Rubensohl convenu, 2SA est un Texas pour 3♣, pas une invitation à jouer Sans-Atout. Le 3♣ direct transfère vers les Carreaux, tandis que 3SA exigerait des valeurs de manche."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Comprendre le 2SA Rubensohl comme transfert vers 3♣ après 2♥ adverse.",
+          "current": "Comprendre le 2SA Rubensohl comme transfert vers 3♣ après 2♥ adverse."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V45-034",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "rubensohl.init",
+      "currentAnswer": "3♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après l'ouverture 1SA du partenaire et l'intervention naturelle à 2♥, vous jouez Rubensohl. Avec quatre Piques, 11 H et seulement ♥D3, quelle enchère artificielle recherche la manche ?",
+          "current": "Après l'ouverture 1SA du partenaire et l'intervention naturelle à 2♥, vous jouez Rubensohl. Avec quatre Piques, 11 H et seulement ♥D3, quelle enchère artificielle recherche la manche ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "La couleur Cœur a déjà été nommée par l'adversaire. Dans ce Rubensohl, 3♦ serait normalement un transfert vers les Cœurs : dans cette variante, ce Texas impossible devient un Stayman artificiel forcing de manche, utile pour chercher un fit Pique à quatre cartes. Avec ♠AV63 et 11 H, annoncez 3♦ plutôt que 3SA sans arrêt Cœur sûr.",
+          "current": "La couleur Cœur a déjà été nommée par l'adversaire. Dans ce Rubensohl, 3♦ serait normalement un transfert vers les Cœurs : dans cette variante, ce Texas impossible devient un Stayman artificiel forcing de manche, utile pour chercher un fit Pique à quatre cartes. Avec ♠AV63 et 11 H, annoncez 3♦ plutôt que 3SA sans arrêt Cœur sûr."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Reconnaître le Texas impossible à 3♦ comme Stayman forcing après intervention 2♥.",
+          "current": "Reconnaître le Texas impossible à 3♦ comme Stayman forcing après intervention 2♥."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V44-005",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "2SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣ sans intervention adverse. Vous détenez 11 H, une main régulière et aucune majeure quatrième. Quelle réponse choisissez-vous ?",
+          "current": "Votre partenaire ouvre de 1♣ sans intervention adverse. Vous détenez 11 H, une main régulière et aucune majeure quatrième. Quelle réponse choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec 11 H, une distribution régulière et aucune majeure quatrième, 2SA est la réponse naturelle qui invite à jouer la manche. Les Dames troisièmes dans les deux majeures constituent des honneurs, sans garantir des arrêts sûrs. Cette réponse suppose que le référentiel n’exige pas deux arrêts assurés.",
+          "current": "Avec 11 H, une main régulière et aucune majeure quatrième, 2SA naturel propose la manche dans la zone 11–12 H. En silence adverse, deux arrêts majeurs assurés ne sont pas une condition obligatoire de cette réponse ; les Dames troisièmes restent des tenues fragiles que l'ouvreur appréciera."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L13-012",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "michaels.intervention",
+      "currentAnswer": "3♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "L’adversaire de gauche ouvre 1♥, votre partenaire passe et l’adversaire de droite soutient à 2♥. Vous êtes en quatrième position, avec cinq Piques et cinq Trèfles. Quelle intervention conventionnelle décrit vos deux longues ?",
+          "current": "L’adversaire de gauche ouvre 1♥, votre partenaire passe et l’adversaire de droite soutient à 2♥. Vous êtes en quatrième position, avec cinq Piques et cinq Trèfles. Quelle intervention conventionnelle décrit vos deux longues ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Après (1♥)–Passe–(2♥), le cue-bid à 3♥ en quatrième position décrit ici l’autre majeure et les Trèfles, au moins cinquièmes. 2SA montrerait les deux mineures.",
+          "current": "Après (1♥)–Passe–(2♥), le cue-bid à 3♥ en quatrième position décrit ici l’autre majeure et les Trèfles, au moins cinquièmes. 2SA montrerait les deux mineures."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L27-006",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "rubensohl.init",
+      "currentAnswer": "3♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre 1SA et Est intervient naturellement à 2♥. Vous jouez le Rubensohl dans sa version avec une enchère spécifique de demande d’arrêt, distincte des Texas. Avec 10 H, sans majeure quatrième, sans couleur cinquième ni arrêt Cœur, quelle enchère choisissez-vous ?",
+          "current": "Votre partenaire ouvre 1SA et Est intervient naturellement à 2♥. Vous jouez le Rubensohl dans sa version avec une enchère spécifique de demande d’arrêt, distincte des Texas. Avec 10 H, sans majeure quatrième, sans couleur cinquième ni arrêt Cœur, quelle enchère choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Dans cette variante du Rubensohl, 3♠ interroge l’ouvreur sur l’arrêt dans la couleur adverse pour jouer 3SA. Ici, il s’agit des Cœurs. 3♥ serait un Texas pour les Piques, et non une demande de tenue.",
+          "current": "Dans cette variante du Rubensohl, 3♠ interroge l’ouvreur sur l’arrêt dans la couleur adverse pour jouer 3SA. Ici, il s’agit des Cœurs. 3♥ serait un Texas pour les Piques, et non une demande de tenue."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L01-C-04",
+      "source": "global29",
+      "kind": "approved-edit",
+      "concept": "rubensohl.naturel",
+      "currentAnswer": "Contre",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre 1SA (15–17 H) et Est intervient naturellement à 2♠. Vous jouez le Rubensohl dans la variante étudiée. Vous détenez quatre Cœurs, deux Piques et 8 H. Quelle est votre décision ?",
+          "current": "Votre partenaire ouvre 1SA (15–17 H) et Est intervient naturellement à 2♠. Vous jouez le Rubensohl dans la variante étudiée. Vous détenez quatre Cœurs, deux Piques et 8 H. Quelle est votre décision ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Dans cette variante du Rubensohl, le contre d’appel s’utilise à partir de 8 H. Avec quatre Cœurs, il permet de chercher un fit majeur sans imposer la manche. Il ne s’agit pas d’un contre punitif.",
+          "current": "Dans cette variante du Rubensohl, le contre d’appel s’utilise à partir de 8 H. Avec quatre Cœurs, il permet de chercher un fit majeur sans imposer la manche. Il ne s’agit pas d’un contre punitif."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Reconnaître le contre d’appel en Rubensohl après 2♠ et appliquer le seuil de la variante enseignée.",
+          "current": "Reconnaître le contre d’appel en Rubensohl après 2♠ et appliquer le seuil de la variante enseignée."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L14-002",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "multilandy.suite",
+      "currentAnswer": "3♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez montré cinq Cœurs et au moins quatre cartes dans une mineure. Votre partenaire utilise le relais positif 2SA, qui demande votre mineure et votre force. Accord Multi-Landy : les réponses à 3♣/3♦ sont minimales, celles à 3♥/3♠ maximales et montrent respectivement Trèfle/Carreau. Que répondez-vous ?",
+          "current": "Vous avez montré cinq Cœurs et au moins quatre cartes dans une mineure. Votre partenaire utilise le relais positif 2SA, qui demande votre mineure et votre force. Accord Multi-Landy : les réponses à 3♣/3♦ sont minimales, celles à 3♥/3♠ maximales et montrent respectivement Trèfle/Carreau. Que répondez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Votre mineure est Trèfle et votre jeu est supérieur au minimum. Dans la structure de réponses indiquée, 3♥ est la réponse maximale qui montre les Trèfles ; 3♠ montrerait Carreau.",
+          "current": "Vous détenez 17 H, cinq Cœurs et quatre Trèfles. Dans la grille mini/maxi convenue, 3♥ montre la zone maximale et la mineure Trèfle. 3♣ montrerait les Trèfles avec une main minimale ; 3♠ montrerait Carreau maximum. Ce codage est un accord Multi-Landy, non une règle universelle."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "3♥",
+          "current": "3♥"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L20-002",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "chelem.splinter.variante",
+      "currentAnswer": "3♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez quatre atouts Cœur, un singleton Pique et pour unique contrôle d'honneur extérieur le Roi de Carreau. Quelle enchère à saut est le Splinter du SEF 2024 ?",
+          "current": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez quatre atouts Cœur, un singleton Pique et pour unique contrôle d'honneur extérieur le Roi de Carreau. Quelle enchère à saut est le Splinter du SEF 2024 ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "3♠ est un saut dans une nouvelle couleur après la redemande 2♥ : c'est un Splinter montrant la courte à Pique et au moins quatre Cœurs. Le SEF 2024 accepte au maximum un contrôle d'honneur, y compris à l'atout ; le Roi de Carreau ne l'exclut pas.",
+          "current": "3♠ est un saut dans une nouvelle couleur après la redemande 2♥ : c'est un Splinter montrant la courte à Pique et au moins quatre Cœurs. Le SEF 2024 accepte au maximum un contrôle d'honneur, y compris à l'atout ; le Roi de Carreau ne l'exclut pas."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "3♠",
+          "current": "3♠"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L13-017",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "fortes.suite",
+      "currentAnswer": "3♣",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez une vraie couleur cinquième à Trèfle et suffisamment de points H pour un changement de couleur naturel au palier de 3. Quel est ce changement de couleur ?",
+          "current": "Après 2♣ fort indéterminé – 2♦ relais – 2♥ naturel, vous possédez une vraie couleur cinquième à Trèfle et suffisamment de points H pour un changement de couleur naturel au palier de 3. Quel est ce changement de couleur ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Après 2♣ fort indéterminé – 2♦ – 2♥, la nouvelle couleur naturelle au palier de 3 est possible à partir de 7 H dans le SEF 2024. Avec cinq Trèfles et les valeurs requises, 3♣ décrit votre couleur.",
+          "current": "Après 2♣ fort indéterminé – 2♦ – 2♥, la nouvelle couleur naturelle au palier de 3 est possible à partir de 7 H dans le SEF 2024. Avec cinq Trèfles et les valeurs requises, 3♣ décrit votre couleur."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "3♣",
+          "current": "3♣"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L10-005",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "reponse_inter.base",
+      "currentAnswer": "2SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous êtes Sud, donneur Ouest. Ouest ouvre 1♣, Nord intervient à 1♥ et Est passe. Vous n’avez que deux Cœurs, 13 H réguliers et un arrêt ♣ solide. Quelle enchère privilégiez-vous, sachant que le numéro 3 a passé ?",
+          "current": "Vous êtes Sud, donneur Ouest. Ouest ouvre 1♣, Nord intervient à 1♥ et Est passe. Vous n’avez que deux Cœurs, 13 H réguliers et un arrêt ♣ solide. Quelle enchère privilégiez-vous, sachant que le numéro 3 a passé ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Si le numéro 3 a passé, 2SA à saut sur l’intervention demeure naturel et montre 13–14 HL, avec arrêt dans la couleur d’ouverture. Le mixed raise à quatre atouts ne s’applique qu’après une enchère du numéro 3.",
+          "current": "Si le numéro 3 a passé, 2SA à saut sur l’intervention demeure naturel et montre 13–14 HL, avec arrêt dans la couleur d’ouverture. Le mixed raise à quatre atouts ne s’applique qu’après une enchère du numéro 3."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "2SA",
+          "current": "2SA"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L13-010",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "apres_inter.base",
+      "currentAnswer": "1♠",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♦, l’adversaire contre d’appel. Vous avez quatre Piques et exactement 7 H, sans fit Carreau établi. Dans le SEF 2024, quelle réponse naturelle au palier de 1 est autorisée dès 7 HL après un Contre ?",
+          "current": "Votre partenaire ouvre de 1♦, l’adversaire contre d’appel. Vous avez quatre Piques et exactement 7 H, sans fit Carreau établi. Dans le SEF 2024, quelle réponse naturelle au palier de 1 est autorisée dès 7 HL après un Contre ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Après 1♦–(Contre), un changement de couleur 1 sur 1 reste forcing et se pratique dès 7 HL dans le SEF 2024. Avec quatre Piques et 7 H, 1♠ convient sans saut.",
+          "current": "Après 1♦–(Contre), un changement de couleur 1 sur 1 reste forcing et se pratique dès 7 HL dans le SEF 2024. Avec quatre Piques et 7 H, 1♠ convient sans saut."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "1♠",
+          "current": "1♠"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L25-004",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "sa1.texas.contre",
+      "currentAnswer": "Passe",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous ouvrez de 1SA avec 16 H. Le partenaire utilise le Texas Cœur à 2♦, contré à votre droite pour indiquer l'entame Carreau. Avec seulement deux Cœurs (♥R8), vous n'avez pas le fit troisième. Quelle action vous permet de ne plus rectifier automatiquement le Texas ?",
+          "current": "Vous ouvrez de 1SA avec 16 H. Le partenaire utilise le Texas Cœur à 2♦, contré à votre droite pour indiquer l'entame Carreau. Avec seulement deux Cœurs (♥R8), vous n'avez pas le fit troisième. Quelle action vous permet de ne plus rectifier automatiquement le Texas ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Le Contre d'entame du Texas libère l'ouvreur de l'obligation de rectifier. Avec seulement deux Cœurs, on passe sur 2♦ contré pour nier le fit de trois cartes. Une autre action, notamment 2♥ ou Surcontre, promettrait le fit à Cœur.",
+          "current": "Le Contre d'entame du Texas libère l'ouvreur de l'obligation de rectifier. Avec seulement deux Cœurs, on passe sur 2♦ contré pour nier le fit de trois cartes. Une autre action, notamment 2♥ ou Surcontre, promettrait le fit à Cœur."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "Passe",
+          "current": "Passe"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V479-004",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "multilandy.reponse",
+      "currentAnswer": "2SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après l'ouverture adverse de 1SA (15–17 H), votre partenaire intervient par 2♣ Landy : il annonce un bicolore majeur au moins 5–4. Le joueur suivant passe. Avec 10 H et quatre cartes dans chacune des majeures, vous souhaitez explorer une manche. Pour cette question, vous jouez les développements conventionnels constructifs du Landy convenus avec le partenaire (ce traitement n'est pas une obligation du SEF). Quelle est votre enchère ?",
+          "current": "Après l'ouverture adverse de 1SA (15–17 H), votre partenaire intervient par 2♣ Landy : il annonce un bicolore majeur au moins 5–4. Le joueur suivant passe. Avec 10 H et quatre cartes dans chacune des majeures, vous souhaitez explorer une manche. Pour cette question, vous jouez les développements conventionnels constructifs du Landy convenus avec le partenaire (ce traitement n'est pas une obligation du SEF). Quelle est votre enchère ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Votre partenaire a annoncé les deux majeures par 2♣ Landy. Avec 10 H, quatre Piques menés par l'As et quatre Cœurs avec le Roi, vous détenez des valeurs utiles et du soutien quelle que soit sa majeure longue. Dans les développements conventionnels retenus pour cet exercice, 2SA est un relais positif : il invite l'intervenant à préciser la force de son jeu et la majeure la plus longue pour décider de la manche. Cette utilisation de 2SA doit être convenue entre partenaires ; ce n'est pas une réponse imposée universellement par le SEF, et le Landy 2♣ ne doit pas être confondu avec l'ensemble du Multi-Landy.",
+          "current": "Votre partenaire a annoncé les deux majeures par 2♣ Landy. Avec 10 H, quatre Piques menés par l'As et quatre Cœurs avec le Roi, vous détenez des valeurs utiles et du soutien quelle que soit sa majeure longue. Dans les développements conventionnels retenus pour cet exercice, 2SA est un relais positif : il invite l'intervenant à préciser la force de son jeu et la majeure la plus longue pour décider de la manche. Cette utilisation de 2SA doit être convenue entre partenaires ; ce n'est pas une réponse imposée universellement par le SEF, et le Landy 2♣ ne doit pas être confondu avec l'ensemble du Multi-Landy."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "2SA",
+          "current": "2SA"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-C-008",
+      "source": "global29",
+      "kind": "approved-keep",
+      "concept": "majeur.base",
+      "currentAnswer": "1SA",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+          "current": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle est votre réponse selon le SEF ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Vous avez seulement deux Piques, quatre Cœurs et 6 H. En SEF, la réponse de 1SA sur 1♠ est non forcing et décrit cette main limitée sans fit.",
+          "current": "Avec deux Piques, quatre Cœurs et 6 H, 1SA est la réponse économique limitée sans fit. En SEF, cette réponse est non forcing : l'ouvreur peut passer. Un changement de couleur au palier de deux demanderait davantage de force."
+        },
+        {
+          "field": "answer",
+          "status": "exact",
+          "approved": "1SA",
+          "current": "1SA"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-017-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Avec quatre Cœurs et quatre Piques, quelle majeure annoncez-vous en premier ?",
+          "current": "Votre partenaire ouvre de 1♣. Avec quatre Cœurs et quatre Piques, quelle majeure annoncez-vous en premier ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec ♠R763 et ♥D1072, les deux majeures comptent quatre cartes. Dans la réponse à 1♣, on annonce d'abord 1♥, la majeure la moins chère, pour laisser à l'ouvreur la possibilité de montrer 1♠. 1♠ ferait perdre de l'espace pour décrire les Cœurs; 1SA masquerait les deux majeures.",
+          "current": "Avec ♠R763 et ♥D1072, les deux majeures comptent quatre cartes. Dans la réponse à 1♣, on annonce d'abord 1♥, la majeure la moins chère, pour laisser à l'ouvreur la possibilité de montrer 1♠. 1♠ ferait perdre de l'espace pour décrire les Cœurs; 1SA masquerait les deux majeures. La réponse de 1♥ promet au moins quatre cartes."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Hiérarchiser deux majeures quatrièmes après 1♣, sans oublier l'ordre économique.",
+          "current": "Hiérarchiser deux majeures quatrièmes après 1♣, sans oublier l'ordre économique."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-018-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♥",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♦. Vous possédez quatre Cœurs et quatre Carreaux avec 8 H : quelle réponse privilégier ?",
+          "current": "Votre partenaire ouvre de 1♦. Vous possédez quatre Cœurs et quatre Carreaux avec 8 H : quelle réponse privilégier ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "La main contient ♥10974 et ♦R1072, mais aussi 8 H suffisants pour répondre. Face à 1♦, 1♥ recherche d'abord un fit majeur de quatre cartes; le soutien mineur à 2♦ serait prématuré. 1SA n'est pas prioritaire tant qu'une majeure quatrième peut être annoncée.",
+          "current": "Avec 8 H, vous avez la force de répondre. Sur 1♦, annoncez 1♥ avec vos quatre Cœurs pour rechercher le fit majeur. La réponse de 1♥ promet au moins quatre cartes."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Prioriser une majeure quatrième sur un soutien mineur pourtant possible.",
+          "current": "Prioriser une majeure quatrième sur un soutien mineur pourtant possible."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-020-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.soutien",
+      "currentAnswer": "2♣",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Votre main comporte cinq Trèfles et un singleton Cœur : que répondez-vous avec 7 H ?",
+          "current": "Votre partenaire ouvre de 1♣. Votre main comporte cinq Trèfles et un singleton Cœur : que répondez-vous avec 7 H ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Les cinq Trèfles ♣DV984, le singleton ♥5 et 7 H décrivent un soutien mineur faible et irrégulier : 2♣. 1SA décrirait mal la courte et la forme; 3♣ surévaluerait l'annonce. Le soutien simple n'est pas une invitation de manche.",
+          "current": "Les cinq Trèfles ♣DV984, le singleton ♥5 et 7 H décrivent un soutien mineur faible et irrégulier : 2♣. 1SA décrirait mal la courte et la forme; 3♣ surévaluerait l'annonce. Le soutien simple n'est pas une invitation de manche."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-021-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux mais une main régulière 3-3-5-2 de 6 H, choisissez votre réponse.",
+          "current": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux mais une main régulière 3-3-5-2 de 6 H, choisissez votre réponse."
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Les cinq Carreaux ne suffisent pas à imposer un soutien. La main est régulière (♠RV5 ♥V75 ♦V9532 ♣65), compte 6 H et ne contient aucune majeure quatrième. 1SA exprime cette force limitée. 2♦ privilégierait à tort le fit mineur avec cette forme régulière.",
+          "current": "Avec 6 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Ne pas confondre cinq cartes dans la mineure d'ouverture et soutien prioritaire.",
+          "current": "Ne pas confondre cinq cartes dans la mineure d'ouverture et soutien prioritaire."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N028-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♥",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après l'ouverture de 1♣ du partenaire, vous détenez quatre Piques et quatre Cœurs. Quelle majeure annoncer en premier avec 8 H ?",
+          "current": "Après l'ouverture de 1♣ du partenaire, vous détenez quatre Piques et quatre Cœurs. Quelle majeure annoncer en premier avec 8 H ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Les Cœurs ♥A963 et les Piques ♠10984 sont tous deux quatrièmes. La réponse 1♥ est la plus économique et laisse les Piques disponibles pour la suite. 1♠ n'est pas la priorité avec deux majeures exactement quatrièmes; 1SA cacherait la recherche du fit.",
+          "current": "Les Cœurs ♥A963 et les Piques ♠10984 sont tous deux quatrièmes. La réponse 1♥ est la plus économique et laisse les Piques disponibles pour la suite. 1♠ n'est pas la priorité avec deux majeures exactement quatrièmes; 1SA cacherait la recherche du fit. La réponse de 1♥ promet au moins quatre cartes."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Choisir l'ordre des réponses avec les deux majeures quatrièmes.",
+          "current": "Choisir l'ordre des réponses avec les deux majeures quatrièmes."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N029-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Vous avez cinq Piques et quatre Cœurs avec 8 H : quelle couleur nommez-vous d'abord ?",
+          "current": "Votre partenaire ouvre de 1♣. Vous avez cinq Piques et quatre Cœurs avec 8 H : quelle couleur nommez-vous d'abord ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Contrairement au cas de deux majeures quatrièmes, cette main est 5-4 en majeures : ♠AV1097 est plus longue que ♥D974. On annonce donc 1♠, la majeure cinquième. 1♥ serait l'ordre correct pour deux majeures quatrièmes, mais pas ici.",
+          "current": "Avec 8 H et cinq Piques contre quatre Cœurs, répondez d’abord 1♠, la majeure la plus longue. Vous pourrez annoncer 2♥ ensuite si la suite des enchères le permet. Rappel : la réponse de 1♠ promet au moins quatre cartes."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Différencier une majeure cinquième de deux majeures quatrièmes dans la première réponse.",
+          "current": "Différencier une majeure cinquième de deux majeures quatrièmes dans la première réponse."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N031-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.soutien",
+      "currentAnswer": "2♣",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Vous détenez ♣A10952 et un singleton Pique avec 7 H. Choisissez le niveau de soutien.",
+          "current": "Votre partenaire ouvre de 1♣. Vous détenez ♣A10952 et un singleton Pique avec 7 H. Choisissez le niveau de soutien."
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Le singleton ♠8 rend la main irrégulière, et les cinq Trèfles soutiennent la couleur ouverte. Avec 7 H, 2♣ est le soutien simple de première zone. 1SA décrirait mal la courte; 3♣ promettrait plus que ce qu'autorise la main.",
+          "current": "Le singleton ♠8 rend la main irrégulière, et les cinq Trèfles soutiennent la couleur ouverte. Avec 7 H, 2♣ est le soutien simple de première zone. 1SA décrirait mal la courte; 3♣ promettrait plus que ce qu'autorise la main."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N031-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♣. Vous avez cinq Trèfles mais une main régulière 3-3-2-5 avec 10 H : que répondez-vous ?",
+          "current": "Votre partenaire ouvre de 1♣. Vous avez cinq Trèfles mais une main régulière 3-3-2-5 avec 10 H : que répondez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Malgré ♣108654 cinquièmes, la répartition 3-3-2-5 reste régulière et ne contient pas de majeure quatrième. Avec 10 H, 1SA décrit mieux la force et la forme que le soutien mineur. À la différence d'une main avec singleton, 2♣ n'est pas prioritaire ici.",
+          "current": "Avec 10 H et cinq Trèfles, vous avez 11 HL. Votre main est régulière, sans majeure quatrième ni quatre Carreaux. Répondez 1SA : votre force se situe à la limite supérieure de cette réponse."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Comparer 1SA régulier à un soutien mineur avec cinq cartes.",
+          "current": "Comparer 1SA régulier à un soutien mineur avec cinq cartes."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N040-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "1SA",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux et 8 H mais aucune majeure quatrième, quelle réponse décrit le mieux votre main régulière ?",
+          "current": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux et 8 H mais aucune majeure quatrième, quelle réponse décrit le mieux votre main régulière ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "La répartition 3-3-5-2 est régulière, même avec ♦V9653 cinquièmes. Sans majeure quatrième et avec 8 H, 1SA montre une main limitée. 2♦ pourrait sembler naturel grâce à la longueur mais ne décrit pas aussi bien cette main régulière.",
+          "current": "Avec 8 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Résister au soutien mineur automatique avec cinq Carreaux.",
+          "current": "Résister au soutien mineur automatique avec cinq Carreaux."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N045-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "mineur.base",
+      "currentAnswer": "2♣",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♦. Vous avez cinq Trèfles et 12 H : faut-il décrire cette nouvelle couleur au palier de deux ?",
+          "current": "Votre partenaire ouvre de 1♦. Vous avez cinq Trèfles et 12 H : faut-il décrire cette nouvelle couleur au palier de deux ?"
+        },
+        {
+          "field": "explain",
+          "status": "later-catalogue-differs",
+          "approved": "Avec ♣R7652 cinquièmes et 12 H, 2♣ annonce naturellement une nouvelle mineure au palier de deux et constitue une réponse forcing dans ce cadre. 1SA limiterait excessivement la force; 2♦ serait un soutien plutôt que la description de vos Trèfles.",
+          "current": "Vos cinq Trèfles et 12 H donnent 13 HL : vous dépassez le seuil de 11 H ou 12 HL d'un 2 sur 1. Sans majeure quatrième ni soutien Carreau, 2♣ est naturel, forcing et auto-forcing : après une redemande économique non fittée, vous devrez reparler. 1SA sous-évaluerait votre jeu."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Identifier un changement de mineure au palier de deux, naturel et forcing.",
+          "current": "Identifier un changement de mineure au palier de deux, naturel et forcing."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-005-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez ouvert 1♥, puis reçu le soutien 2♥. Avec six Cœurs, un singleton Trèfle et seulement 11 H, cherchez-vous la manche ou gênez-vous les adversaires ?",
+          "current": "Vous avez ouvert 1♥, puis reçu le soutien 2♥. Avec six Cœurs, un singleton Trèfle et seulement 11 H, cherchez-vous la manche ou gênez-vous les adversaires ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Les six Cœurs ♥ADV1092 associés au singleton ♣7 portent à neuf les atouts présumés du camp après 1♥–2♥. Avec 11 H, 3♥ a ici une portée préventive : occuper de l'espace, sans solliciter la manche. 2SA serait un essai généralisé plus constructif; 4♥ dépasserait l'objectif de cette main.",
+          "current": "Les six Cœurs ♥ADV1092 associés au singleton ♣7 portent à neuf les atouts présumés du camp après 1♥–2♥. Avec 11 H, 3♥ a ici une portée préventive : occuper de l'espace, sans solliciter la manche. 2SA serait un essai généralisé plus constructif; 4♥ dépasserait l'objectif de cette main."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-017-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous ouvrez 1♠ puis recevez 2♠. Votre main a six Piques, un singleton Trèfle et 11 H : quelle redemande correspond au plan préventif ?",
+          "current": "Vous ouvrez 1♠ puis recevez 2♠. Votre main a six Piques, un singleton Trèfle et 11 H : quelle redemande correspond au plan préventif ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♠ARV1073 sixièmes et ♣4 singleton, le soutien 2♠ indique au moins neuf atouts dans la ligne. 3♠ exploite cette longueur de manière préventive. Dans le système enseigné, 2SA inviterait à la manche et 4♠ conclurait au-delà de la force disponible. 3♠ n'est pas un essai.",
+          "current": "Avec ♠ARV1073 sixièmes et ♣4 singleton, le soutien 2♠ indique au moins neuf atouts dans la ligne. 3♠ exploite cette longueur de manière préventive. Dans le système enseigné, 2SA inviterait à la manche et 4♠ conclurait au-delà de la force disponible. 3♠ n'est pas un essai."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-010-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai.suite",
+      "currentAnswer": "4♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Séquence 1♥–2♥–2SA : vous êtes le répondant et 2SA est un essai généralisé de manche, pas une proposition de contrat à Sans-Atout. Avec 9 H et trois Cœurs, que répondez-vous ?",
+          "current": "Séquence 1♥–2♥–2SA : vous êtes le répondant et 2SA est un essai généralisé de manche, pas une proposition de contrat à Sans-Atout. Avec 9 H et trois Cœurs, que répondez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Le 2SA de l'ouvreur après 1♥–2♥ interroge sur l'acceptation de la manche en Cœur. Vos 9 H, ♥A62 et ♠A72 constituent un soutien maximum : 4♥ accepte l'essai. Passe sur 2SA est exclu puisque l'essai appelle une réponse; 3♥ signifierait le refus.",
+          "current": "Le 2SA de l'ouvreur après 1♥–2♥ interroge sur l'acceptation de la manche en Cœur. Vos 9 H, ♥A62 et ♠A72 constituent un soutien maximum : 4♥ accepte l'essai. Passe sur 2SA est exclu puisque l'essai appelle une réponse; 3♥ signifierait le refus."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-022-3",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai.suite",
+      "currentAnswer": "4♠",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 1♠–2♠, l'ouvreur annonce 2SA, essai généralisé. Vous détenez trois Piques et 9 H, dont ♦RD94 : acceptez-vous l'essai ?",
+          "current": "Après 1♠–2♠, l'ouvreur annonce 2SA, essai généralisé. Vous détenez trois Piques et 9 H, dont ♦RD94 : acceptez-vous l'essai ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "La séquence 1♠–2♠–2SA propose la manche à Pique et appelle une réponse. Avec 9 H, trois Piques et ♦RD94, le soutien se situe en haut de la zone : annoncez 4♠. 3♠ refuserait malgré les valeurs disponibles et 3SA ignorerait le fit majeur.",
+          "current": "La séquence 1♠–2♠–2SA propose la manche à Pique et appelle une réponse. Avec 9 H, trois Piques et ♦RD94, le soutien se situe en haut de la zone : annoncez 4♠. 3♠ refuserait malgré les valeurs disponibles et 3SA ignorerait le fit majeur."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V44-050",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♣",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous ouvrez 1♥ et recevez le soutien 2♥. Avec cinq Cœurs, quatre Trèfles solides et 15 H, quelle enchère sonde le complément utile avant la manche ?",
+          "current": "Vous ouvrez 1♥ et recevez le soutien 2♥. Avec cinq Cœurs, quatre Trèfles solides et 15 H, quelle enchère sonde le complément utile avant la manche ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Après 1♥–2♥, ♣AR65 constitue une seconde couleur où les honneurs du partenaire peuvent être utiles. 3♣ est un essai de manche à la couleur, avec les Cœurs comme atout déjà fixé : le partenaire pourra accepter à 4♥ ou refuser à 3♥. 3♥ n'est pas ici l'essai demandé; 4♥ imposerait la manche sans consultation.",
+          "current": "Après 1♥–2♥, ♣AR65 constitue une seconde couleur où les honneurs du partenaire peuvent être utiles. 3♣ est un essai de manche à la couleur, avec les Cœurs comme atout déjà fixé : le partenaire pourra accepter à 4♥ ou refuser à 3♥. 3♥ n'est pas ici l'essai demandé; 4♥ imposerait la manche sans consultation."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Essai à 3♣ après fit Cœur : demander un complément et préserver le refus à 3♥.",
+          "current": "Essai à 3♣ après fit Cœur : demander un complément et préserver le refus à 3♥."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V44-051",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♦",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après votre ouverture 1♥ et le soutien 2♥, vous avez ♦AR75 quatrièmes et 15 H : quel essai permet d'évaluer le complément du répondant ?",
+          "current": "Après votre ouverture 1♥ et le soutien 2♥, vous avez ♦AR75 quatrièmes et 15 H : quel essai permet d'évaluer le complément du répondant ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "L'atout Cœur est déjà trouvé par 1♥–2♥. Les quatre Carreaux ♦AR75 donnent une seconde couleur où chercher des points utiles chez le partenaire : 3♦ est un essai de manche, non une demande de contrat à Carreau. Le partenaire peut revenir à 3♥ pour refuser ou conclure à 4♥ pour accepter.",
+          "current": "L'atout Cœur est déjà trouvé par 1♥–2♥. Les quatre Carreaux ♦AR75 donnent une seconde couleur où chercher des points utiles chez le partenaire : 3♦ est un essai de manche, non une demande de contrat à Carreau. Le partenaire peut revenir à 3♥ pour refuser ou conclure à 4♥ pour accepter."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Distinguer essai à 3♦ et changement de contrat après fit Cœur.",
+          "current": "Distinguer essai à 3♦ et changement de contrat après fit Cœur."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V44-053",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai",
+      "currentAnswer": "3♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez ouvert 1♠, le partenaire répond 2♠. Vous détenez ♦R1093 quatrièmes et 15 H : comment chercher un complément pour 4♠ ?",
+          "current": "Vous avez ouvert 1♠, le partenaire répond 2♠. Vous détenez ♦R1093 quatrièmes et 15 H : comment chercher un complément pour 4♠ ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Le fit Pique est acquis. Avec ♠AR974, ♦R1093 quatrièmes et 15 H, 3♦ est un essai de manche à la couleur : il demande si le partenaire détient des valeurs utiles à Carreau. Le Roi quatrième accompagné de 10-9 fournit une couleur recevable pour cet essai; 3♠ serait préventif, tandis que 4♠ imposerait la manche.",
+          "current": "Le fit Pique est acquis. Avec ♠AR974, ♦R1093 quatrièmes et 15 H, 3♦ est un essai de manche à la couleur : il demande si le partenaire détient des valeurs utiles à Carreau. Le Roi quatrième accompagné de 10-9 fournit une couleur recevable pour cet essai; 3♠ serait préventif, tandis que 4♠ imposerait la manche."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Choisir 3♦ essai après fit Pique sans exiger une couleur secondaire parfaite.",
+          "current": "Choisir 3♦ essai après fit Pique sans exiger une couleur secondaire parfaite."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V423-003",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "apres_fit.essai.suite",
+      "currentAnswer": "3♠",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez soutenu 1♠ à 2♠. L'ouvreur essaie 3♥ pour la manche : avec trois Piques, 6 H et aucun honneur à Cœur, que répondez-vous ?",
+          "current": "Vous avez soutenu 1♠ à 2♠. L'ouvreur essaie 3♥ pour la manche : avec trois Piques, 6 H et aucun honneur à Cœur, que répondez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "3♥ est un essai à la couleur après 1♠–2♠. Votre main ♠D85 ♥974, de 6 H, n'apporte aucun honneur Cœur et reste minimale : le retour à 3♠ refuse la manche. 4♠ accepterait sans complément utile; Passe sur 3♥ abandonnerait l'atout Pique convenu.",
+          "current": "3♥ est un essai à la couleur après 1♠–2♠. Votre main ♠D85 ♥974, de 6 H, n'apporte aucun honneur Cœur et reste minimale : le retour à 3♠ refuse la manche. 4♠ accepterait sans complément utile; Passe sur 3♥ abandonnerait l'atout Pique convenu."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Refuser un essai à 3♥ faute de complément dans la couleur d'essai.",
+          "current": "Refuser un essai à 3♥ faute de complément dans la couleur d'essai."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-074-3",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.choix",
+      "currentAnswer": "2♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 1♣–1♥–1SA (l'ouvreur a montré une main régulière de 12–14 H), vous avez cinq Cœurs et 7 H. Quelle seconde enchère choisissez-vous ?",
+          "current": "Après 1♣–1♥–1SA (l'ouvreur a montré une main régulière de 12–14 H), vous avez cinq Cœurs et 7 H. Quelle seconde enchère choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♥106543 cinquièmes et seulement 7 H, vous voulez jouer bas. Répétez naturellement 2♥, enchère faible dans ce cadre. 2♣ déclencherait le Roudi pour explorer le fit 5–3 et une suite constructive; 3♥ ou 2SA pousseraient inutilement le niveau.",
+          "current": "Avec ♥106543 cinquièmes et seulement 7 H, vous voulez jouer bas. Répétez naturellement 2♥, enchère faible dans ce cadre. 2♣ déclencherait le Roudi pour explorer le fit 5–3 et une suite constructive; 3♥ ou 2SA pousseraient inutilement le niveau."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Distinguer la répétition faible de la majeure du relais Roudi à 2♣.",
+          "current": "Distinguer la répétition faible de la majeure du relais Roudi à 2♣."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-075-2",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.choix",
+      "currentAnswer": "Passe",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire a ouvert 1♣, vous avez répondu 1♥, puis il a annoncé 1SA. Avec quatre Cœurs et 7 H dans une main régulière, que faites-vous ?",
+          "current": "Votre partenaire a ouvert 1♣, vous avez répondu 1♥, puis il a annoncé 1SA. Avec quatre Cœurs et 7 H dans une main régulière, que faites-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Le partenaire a décrit une main régulière de 12–14 H. Avec ♥D842 quatrièmes, 7 H et sans longue couleur à sauver, la bonne réponse est Passe : conservez 1SA. 2♥ ferait croire à une majeure plus longue; 2♣ Roudi serait sans projet de fit 5–3.",
+          "current": "Le partenaire a décrit une main régulière de 12–14 H. Avec ♥D842 quatrièmes, 7 H et sans longue couleur à sauver, la bonne réponse est Passe : conservez 1SA. 2♥ ferait croire à une majeure plus longue; 2♣ Roudi serait sans projet de fit 5–3."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Passer sur 1SA avec une majeure seulement quatrième et une force faible.",
+          "current": "Passer sur 1SA avec une majeure seulement quatrième et une force faible."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-077-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.reponse",
+      "currentAnswer": "2♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous avez ouvert 1♣, puis redemandé 1SA. Sur le Roudi 2♣ de votre partenaire après son 1♥, que répondez-vous avec trois Cœurs et 12 H ?",
+          "current": "Vous avez ouvert 1♣, puis redemandé 1SA. Sur le Roudi 2♣ de votre partenaire après son 1♥, que répondez-vous avec trois Cœurs et 12 H ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Vous possédez ♥D93, soit trois Cœurs, et 12 H, le minimum de votre redemande à 1SA. Dans le Roudi à trois réponses adopté ici, 2♦ nierait le fit troisième, 2♥ montre trois Cœurs et une main minimum, et 2♠ trois Cœurs avec maximum. Répondez donc 2♥.",
+          "current": "Vous possédez ♥D93, soit trois Cœurs, et 12 H, le minimum de votre redemande à 1SA. Dans le Roudi à trois réponses adopté ici, 2♦ nierait le fit troisième, 2♥ montre trois Cœurs et une main minimum, et 2♠ trois Cœurs avec maximum. Répondez donc 2♥."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Décoder les trois réponses du Roudi : fit de trois Cœurs et ouverture minimum.",
+          "current": "Décoder les trois réponses du Roudi : fit de trois Cœurs et ouverture minimum."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-079-3",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.init",
+      "currentAnswer": "2♣",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 1♣–1♠–1SA, vous détenez cinq Piques et 11 H. Quelle enchère permet de vérifier un fit de trois Piques chez l'ouvreur ?",
+          "current": "Après 1♣–1♠–1SA, vous détenez cinq Piques et 11 H. Quelle enchère permet de vérifier un fit de trois Piques chez l'ouvreur ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit.",
+          "current": "Avec ♠AV842 cinquièmes et 11 H, il existe un espoir de manche, mais on ignore si l'ouvreur a trois Piques. 2♣ Roudi est le relais de recherche du fit 5–3. 2♠ serait une répétition naturelle faible; 2SA invite à Sans-Atout sans vérifier le fit."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-081-3",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.choix",
+      "currentAnswer": "Passe",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre 1♣. Vous répondez 1♠ avec quatre Piques, puis il redemande 1SA. Que faites-vous avec 7 H ?",
+          "current": "Votre partenaire ouvre 1♣. Vous répondez 1♠ avec quatre Piques, puis il redemande 1SA. Que faites-vous avec 7 H ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "♠RD53 est seulement quatrième. Votre main 4-3-3-3 compte 7 H et ne permet pas de projet de manche : Passe conserve 1SA. Le Roudi 2♣ recherche normalement trois cartes face à une majeure au moins cinquième; 2♠ est une répétition faible qui allongerait indûment la couleur.",
+          "current": "♠RD53 est seulement quatrième. Votre main 4-3-3-3 compte 7 H et ne permet pas de projet de manche : Passe conserve 1SA. Le Roudi 2♣ recherche normalement trois cartes face à une majeure au moins cinquième; 2♠ est une répétition faible qui allongerait indûment la couleur."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Écarter le Roudi et la répétition d'une majeure seulement quatrième.",
+          "current": "Écarter le Roudi et la répétition d'une majeure seulement quatrième."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-083-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.reponse",
+      "currentAnswer": "2♥",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après 1♣–1♠–1SA–2♣ Roudi, vous êtes l'ouvreur et détenez trois Piques avec seulement 12 H. Quelle réponse codée choisissez-vous ?",
+          "current": "Après 1♣–1♠–1SA–2♣ Roudi, vous êtes l'ouvreur et détenez trois Piques avec seulement 12 H. Quelle réponse codée choisissez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♠A54, vous détenez bien trois Piques, et 12 H correspondent au minimum de 1SA. Dans ce Roudi à trois réponses, 2♥ est la réponse codée 'fit troisième, minimum', même si le partenaire avait annoncé les Piques et non les Cœurs. 2♦ nierait le fit et 2♠ signalerait un maximum.",
+          "current": "Avec ♠A54, vous détenez bien trois Piques, et 12 H correspondent au minimum de 1SA. Dans ce Roudi à trois réponses, 2♥ est la réponse codée 'fit troisième, minimum', même si le partenaire avait annoncé les Piques et non les Cœurs. 2♦ nierait le fit et 2♠ signalerait un maximum."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Comprendre que 2♥ est un code de fit minimum même après 1♠.",
+          "current": "Comprendre que 2♥ est un code de fit minimum même après 1♠."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-089-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.reponse",
+      "currentAnswer": "2♥",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Vous ouvrez 1♦, redemandez 1SA après 1♥, puis votre partenaire fait 2♣ Roudi. Avec ♥D76 et 12 H, quelle réponse donnez-vous ?",
+          "current": "Vous ouvrez 1♦, redemandez 1SA après 1♥, puis votre partenaire fait 2♣ Roudi. Avec ♥D76 et 12 H, quelle réponse donnez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Vos trois Cœurs ♥D76 confirment le fit potentiel 5–3 et vos 12 H vous situent au minimum de la redemande à 1SA. Répondez 2♥, code 'fit troisième minimum' dans le Roudi adopté. 2♦ nierait le fit; 2♠ montrerait la même longueur avec une ouverture maximum.",
+          "current": "Vos trois Cœurs ♥D76 confirment le fit potentiel 5–3 et vos 12 H vous situent au minimum de la redemande à 1SA. Répondez 2♥, code 'fit troisième minimum' dans le Roudi adopté. 2♦ nierait le fit; 2♠ montrerait la même longueur avec une ouverture maximum."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Associer trois Cœurs et 12 H à la réponse Roudi minimum 2♥.",
+          "current": "Associer trois Cœurs et 12 H à la réponse Roudi minimum 2♥."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V4-090-1",
+      "source": "text26",
+      "kind": "approved-edit",
+      "concept": "roudi.reponse",
+      "currentAnswer": "2♠",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Après votre ouverture 1♦, la séquence se poursuit 1♥–1SA–2♣ Roudi. Avec trois Cœurs et 14 H, quelle réponse codée donnez-vous ?",
+          "current": "Après votre ouverture 1♦, la séquence se poursuit 1♥–1SA–2♣ Roudi. Avec trois Cœurs et 14 H, quelle réponse codée donnez-vous ?"
+        },
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Vous avez ♥RV8 troisièmes et 14 H, haut de la fourchette de votre redemande à 1SA. La réponse 2♠ signifie ici 'fit de trois cartes dans la majeure du partenaire, ouverture maximum' et n'annonce pas vos propres Piques. 2♥ serait la réponse de minimum; 2♦ nierait le fit.",
+          "current": "Vous avez ♥RV8 troisièmes et 14 H, haut de la fourchette de votre redemande à 1SA. La réponse 2♠ signifie ici 'fit de trois cartes dans la majeure du partenaire, ouverture maximum' et n'annonce pas vos propres Piques. 2♥ serait la réponse de minimum; 2♦ nierait le fit."
+        },
+        {
+          "field": "difficultyReason",
+          "status": "exact",
+          "approved": "Interpréter 2♠ comme code Roudi maximum pour les Cœurs du partenaire.",
+          "current": "Interpréter 2♠ comme code Roudi maximum pour les Cœurs du partenaire."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N051-2",
+      "source": "2sa-fitte",
+      "kind": "approved-edit",
+      "concept": "fit.2sa",
+      "currentAnswer": "2SA",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♥ en première position et les adversaires passent. Vous n’avez pas encore parlé. Quelle est votre réponse selon le SEF ?",
+          "current": "Votre partenaire ouvre de 1♥ en première position et les adversaires passent. Vous n’avez pas encore parlé. Quelle est votre réponse selon le SEF ?"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N056-1",
+      "source": "2sa-fitte",
+      "kind": "approved-edit",
+      "concept": "fit.2sa",
+      "currentAnswer": "2SA",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 1♠ en première position et les adversaires passent. Vous n’avez pas encore parlé. Quelle est votre réponse selon le SEF ?",
+          "current": "Votre partenaire ouvre de 1♠ en première position et les adversaires passent. Vous n’avez pas encore parlé. Quelle est votre réponse selon le SEF ?"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-N067-1",
+      "source": "lot-a",
+      "kind": "approved-edit",
+      "concept": "majeur.base",
+      "currentAnswer": "2♦",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec ♠A109 ♥AV ♦D109754 ♣V6, vous détenez 12 H, soit 14 HL grâce aux six Carreaux, et seulement deux Cœurs : vous n’êtes pas fitté. Répondez 2♦ pour annoncer votre longue mineure. Ce changement de couleur 2 sur 1 sans saut est forcing et auto-forcing : vous devrez reparler si l’ouvreur reste sous le niveau de la manche.",
+          "current": "Avec ♠A109 ♥AV ♦D109754 ♣V6, vous détenez 12 H, soit 14 HL grâce aux six Carreaux, et seulement deux Cœurs : vous n’êtes pas fitté. Répondez 2♦ pour annoncer votre longue mineure. Ce changement de couleur 2 sur 1 sans saut est forcing et auto-forcing : vous devrez reparler si l’ouvreur reste sous le niveau de la manche."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-L02-E-17",
+      "source": "lot-a",
+      "kind": "approved-edit",
+      "concept": "chelem.blackwood.suite",
+      "currentAnswer": "5SA",
+      "usage": "canonical-example",
+      "fields": [
+        {
+          "field": "explain",
+          "status": "exact",
+          "approved": "Avec les quatre As dans votre main, le partenaire ne peut pas détenir quatre clés : sa réponse 5♦ (une ou quatre clés) signifie nécessairement une clé, le Roi de Pique, cinquième clé du Blackwood. Vous avez aussi la Dame d'atout (♠D). Les cinq clés et la Dame d'atout sont donc réunies ; 5SA demande les Rois annexes pour explorer un grand chelem sans imposer directement 7♠.",
+          "current": "Avec les quatre As dans votre main, le partenaire ne peut pas détenir quatre clés : sa réponse 5♦ (une ou quatre clés) signifie nécessairement une clé, le Roi de Pique, cinquième clé du Blackwood. Vous avez aussi la Dame d'atout (♠D). Les cinq clés et la Dame d'atout sont donc réunies ; 5SA demande les Rois annexes pour explorer un grand chelem sans imposer directement 7♠."
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    },
+    {
+      "id": "SEF-V3-103-3",
+      "source": "lot-a",
+      "kind": "approved-edit",
+      "concept": "barrage.reponse",
+      "currentAnswer": "Passe",
+      "usage": "not-selected-as-example",
+      "fields": [
+        {
+          "field": "context",
+          "status": "exact",
+          "approved": "Votre partenaire ouvre de 2♥ faible, montrant généralement six Cœurs. Vous détenez deux Cœurs et 6 H. Quelle réponse choisissez-vous à cette ouverture ?",
+          "current": "Votre partenaire ouvre de 2♥ faible, montrant généralement six Cœurs. Vous détenez deux Cœurs et 6 H. Quelle réponse choisissez-vous à cette ouverture ?"
+        }
+      ],
+      "scope": "Do not restore historical text automatically; current frozen catalogue and later arbitration prevail."
+    }
+  ],
+  "constructionAssertions": 418,
+  "limitations": "The 118 archived decisions and 60 approval records are reconciled by ID and frozen answer/text, not newly certified as SEF. Differences are retained and attributed to later frozen catalogue; no historical rollback or variant approval. Selected rules and examples reviewed qualitatively. No native browser execution."
+}

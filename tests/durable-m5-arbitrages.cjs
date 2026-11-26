@@ -17,6 +17,8 @@ for(const d of original.decisions){
  const l=corpus[e.concept],examples=[...l.examples,...(l.extensions||[]).flatMap(x=>x.examples)].filter(x=>x.id===d.id);
  ok(e.usedAsExample===(examples.length>0),d.id+' source usage');
  if(examples.length)direct++;
+ const cross=Object.entries(corpus).filter(([c,l])=>c!==e.concept&&[...l.examples,...(l.extensions||[]).flatMap(x=>x.examples)].some(x=>x.id===d.id)).map(([c])=>c);
+ ok(JSON.stringify(cross)===JSON.stringify(e.crossConceptExamples||[]),d.id+' cross-concept usage');
  for(const x of examples){const a=by[x.id];ok(x.answer===a.answer&&x.comment===a.explain&&x.context===a.context&&JSON.stringify(x.hand)===JSON.stringify(a.hand)&&JSON.stringify(x.auction)===JSON.stringify(a.auction),d.id+' exact example')}
 }
 ok(direct===report.counts.directExamples&&35-direct===report.counts.notUsedAsExamples,'counts');

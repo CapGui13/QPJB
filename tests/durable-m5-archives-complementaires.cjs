@@ -17,7 +17,8 @@ for(const r of report.newExtensions){const ext=corpus[r.concept].extensions.find
  for(const p of ext.prerequisites){const entries={...history.entries};for(const id of groups[p.concept])delete entries[id];ok(!api.lesson({...ctx,history:{...history,entries}})?.extensions.some(e=>e.id===r.id),r.id+' prerequisite '+p.concept)}
  for(const [i,e] of ext.examples.entries()){const a=by[e.id],m=meta[e.id];ok(!seen.has(e.id),e.id+' unique');seen.add(e.id);ok(e.id===r.ids[i]&&e.answer===r.answers[i]&&e.answer===a.answer&&e.comment===a.explain&&e.context===a.context&&JSON.stringify(e.hand)===JSON.stringify(a.hand)&&JSON.stringify(e.auction)===JSON.stringify(a.auction),e.id+' exact');ok(ext.minSession>=m.minSession&&m.requires.every(p=>ext.prerequisites.some(z=>z.concept===p.concept&&z.minExposure>=p.minExposure)),e.id+' gates');ok(m.concept===r.concept,e.id+' concept');}
 }
-const oldExamples=Object.values(corpus).flatMap(l=>[...l.examples,...(l.extensions||[]).filter(e=>!ids.has(e.id)).flatMap(e=>e.examples)]);
+const finalReview=read('audits/apprentissage-durable-20261126/m5/validation-historique-finale.json'), laterIds=new Set(finalReview.newExtensions.map(x=>x.id));
+const oldExamples=Object.values(corpus).flatMap(l=>[...l.examples,...(l.extensions||[]).filter(e=>!ids.has(e.id)&&!laterIds.has(e.id)).flatMap(e=>e.examples)]);
 ok(new Set(oldExamples.map(e=>e.id)).size===report.counts.previousExamples,'previous coverage');ok(seen.size===report.counts.newDistinctExamples,'new coverage');
 ok(report.dispositions.filter(x=>x.disposition==='rejected-historical').length===2,'two rejected cases');
 for(const row of report.dispositions.filter(x=>x.answer))ok(by[row.id]?.answer===row.answer,row.id+' frozen answer');
