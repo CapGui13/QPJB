@@ -31,30 +31,62 @@
  }
  function feature(q,m,item){
   const kind=typeof (item?.kind||item?.target)==='string'?(item.kind||item.target):'';
-  return {id:q.id,q,c:m?.concept||'',stage:Number.isInteger(m?.stage)?m.stage:null,d:Number.isInteger(q.difficulty)?q.difficulty:null,
+  return {id:q.id,q,c:m?.concept||'',requires:[...new Set((Array.isArray(m?.requires)?m.requires:[]).map(x=>x?.concept).filter(Boolean))],stage:Number.isInteger(m?.stage)?m.stage:null,d:Number.isInteger(q.difficulty)?q.difficulty:null,
    a:bid(q),p:decisionPattern(q,m),t:q.theme,f:String(q.caseFamily||q.id),kind,
    role:kind==='maintenance'||kind==='revision'?'rappel':kind==='weakness'?'consolidation_ciblee':kind==='discovery'?'acquisition':kind==='transfer'?'reinvestissement_conditionnel':kind.startsWith('micro:')||kind.startsWith('axis:')?'consolidation_ciblee':'application'};
  }
  // Only explicit discriminants supported by actual shape, sequence, and answer.
  // No convention analogy, no inference of mastery, no claim of transfer for mirror cases.
+ const regular=q=>Array.isArray(q.shape)&&['2,3,3,5','2,3,4,4','3,3,3,4'].includes(q.shape.slice().sort((a,b)=>a-b).join());
+ const majorMax=q=>Math.max(q.shape?.[0]??99,q.shape?.[1]??99);
+ const hBetween=(q,lo,hi)=>Number.isInteger(q.h)&&q.h>=lo&&q.h<=hi;
  function contrast(a,b){
   if(a.f===b.f||a.a===b.a)return '';
   const x=a.q,y=b.q;
-  if(x.theme==='ouv'&&y.theme==='ouv'&&!x.auction?.length&&!y.auction?.length&&a.c==='ouv.mineure'&&b.c===a.c){
+  const empty=x.theme==='ouv'&&y.theme==='ouv'&&!x.auction?.length&&!y.auction?.length;
+  const sameShape=Array.isArray(x.shape)&&Array.isArray(y.shape)&&x.shape.join()===y.shape.join();
+  const sameAuction=x.auction?.length===1&&y.auction?.length===1&&x.auction[0]===y.auction[0];
+  const naturalMinor=z=>z.c==='ouv.mineure'&&/^1[♣♦]$/.test(z.a);
+  const naturalMajor=z=>z.c==='ouv.majeure'&&/^1[♥♠]$/.test(z.a)&&majorMax(z.q)>=5;
+  if(empty&&a.c==='ouv.mineure'&&b.c===a.c){
    const tie=(q,n)=>q.shape?.[2]===n&&q.shape?.[3]===n&&q.shape?.[0]<5&&q.shape?.[1]<5;
    if((tie(x,3)&&a.a==='1♣'&&tie(y,4)&&b.a==='1♦')||(tie(y,3)&&b.a==='1♣'&&tie(x,4)&&a.a==='1♦'))return 'meilleure_mineure_egalite_3_3_4_4';
   }
-  if(x.theme==='mineur'&&y.theme==='mineur'&&opener(x)===opener(y)&&/^1[♣♦]$/.test(opener(x))&&x.auction?.[0]===y.auction?.[0]&&
+  if(empty&&sameShape&&regular(x)&&regular(y)){
+   const sa1=z=>z.c==='ouv.sa1'&&z.a==='1SA'&&hBetween(z.q,15,17);
+   const sa2=z=>z.c==='ouv.sa2'&&z.a==='2SA'&&hBetween(z.q,20,21);
+   const low=z=>naturalMinor(z)&&hBetween(z.q,12,14)&&majorMax(z.q)<5;
+   if((sa1(a)&&low(b))||(sa1(b)&&low(a)))return 'ouverture_mineure_ou_1SA_meme_distribution_zones_force_distinctes';
+   if((sa1(a)&&sa2(b))||(sa1(b)&&sa2(a)))return 'ouverture_1SA_ou_2SA_meme_distribution_zones_force_distinctes';
+  }
+  if(empty&&hBetween(x,12,14)&&hBetween(y,12,14)&&Math.abs(x.h-y.h)<=1&&
+     ((naturalMajor(a)&&naturalMinor(b)&&majorMax(y)<5)||(naturalMajor(b)&&naturalMinor(a)&&majorMax(x)<5)))
+   return 'ouverture_majeure_cinquieme_ou_mineure_force_comparable';
+  if(empty&&sameShape&&
+     ((pass(x)&&hBetween(x,0,11)&&hBetween(y,12,19)&&/^1[♣♦♥♠]$/.test(b.a))||(pass(y)&&hBetween(y,0,11)&&hBetween(x,12,19)&&/^1[♣♦♥♠]$/.test(a.a))))
+   return 'passe_ou_ouverture_force_distribution_constante';
+  if(sameAuction&&x.theme==='mineur'&&y.theme==='mineur'&&/^1[♣♦]$/.test(opener(x))&&
      ((major(x)&&sa(y))||(major(y)&&sa(x)))&&Number.isInteger(x.h)&&Number.isInteger(y.h)&&Math.abs(x.h-y.h)<=2)
    return 'reponse_majeure_quatrieme_ou_1SA';
-  if(x.theme==='ouv'&&y.theme==='ouv'&&!x.auction?.length&&!y.auction?.length&&Array.isArray(x.shape)&&x.shape.join()===y.shape?.join()&&
-     ((pass(x)&&x.h<=11&&y.h>=12&&/^1[♣♦♥♠]$/.test(b.a))||(pass(y)&&y.h<=11&&x.h>=12&&/^1[♣♦♥♠]$/.test(a.a))))
-   return 'passe_ou_ouverture_force_distribution_constante';
+  if(sameAuction&&x.theme==='majeur'&&y.theme==='majeur'&&/^1[♥♠]$/.test(opener(x))&&hBetween(x,6,10)&&hBetween(y,6,10)){
+   const suit=opener(x)==='1♠'?0:1;
+   const support=z=>fit(z.q)&&z.a==='2'+opener(z.q)[1]&&z.q.shape?.[suit]===3;
+   const nonfit=z=>z.q.shape?.[suit]<=2&&(z.a==='1SA'||(opener(z.q)==='1♥'&&z.a==='1♠'));
+   if((support(a)&&nonfit(b))||(support(b)&&nonfit(a)))return 'fit_majeur_5_3_ou_reponse_naturelle_sans_fit';
+  }
+  if(sameAuction&&opener(x)==='1SA'){
+   const simple=z=>z.c==='sa1.seuil'&&regular(z.q)&&majorMax(z.q)<4&&
+    ((z.a==='Passe'&&hBetween(z.q,0,7))||(z.a==='2SA'&&hBetween(z.q,8,9))||(z.a==='3SA'&&hBetween(z.q,10,15)));
+   if(simple(a)&&simple(b))return 'reponse_sur_1SA_seuil_passe_invitation_manche';
+   const stay=z=>z.c==='sa1.stayman'&&z.a==='2♣'&&majorMax(z.q)===4&&hBetween(z.q,8,15);
+   const texas=z=>z.c==='sa1.texas'&&/^2[♦♥]$/.test(z.a)&&majorMax(z.q)===5&&Math.min(z.q.shape[0],z.q.shape[1])<4&&hBetween(z.q,8,15);
+   if(Math.abs(x.h-y.h)<=2&&((stay(a)&&texas(b))||(stay(b)&&texas(a))))return 'stayman_quatre_ou_texas_cinq_cartes_force_comparable';
+  }
   return '';
  }
  const HARD=['exact','triples','mirrors','nearMirrors','answerABAB','themeABAB','familyAdjacent'];
- const SOFT=['stageInversions','difficultyInversions','roleInversions','largeJumps','sameShape','sameForce','missedContrasts'];
- const weights={stageInversions:12,difficultyInversions:6,roleInversions:4,largeJumps:3,sameShape:1,sameForce:1,missedContrasts:5};
+ const SOFT=['prereqOrderInversions','stageInversions','difficultyInversions','roleInversions','largeJumps','sameShape','sameForce','missedContrasts'];
+ const weights={prereqOrderInversions:14,stageInversions:12,difficultyInversions:6,roleInversions:4,largeJumps:3,sameShape:1,sameForce:1,missedContrasts:10};
  function valid(f,s){
   if(f.length!==10||s>3)return true;
   const pp=f.flatMap((x,i)=>pass(x.q)?[i+1]:[]);
@@ -75,12 +107,17 @@
  function metric(f,s,links){
   const m=Object.fromEntries([...HARD,...SOFT].map(k=>[k,0]));
   const position=new Map(f.map((x,i)=>[x.id,i]));
+  const first=new Map();for(let i=0;i<f.length;i++)if(!first.has(f[i].c))first.set(f[i].c,i);
+  m.rawSameShape=0;m.rawSameForce=0;
+  const linked=(a,b)=>links.some(l=>(l.a===a.id&&l.b===b.id)||(l.b===a.id&&l.a===b.id));
   for(let i=0;i<f.length;i++){
    const x=f[i],a=f[i-1],b=f[i-2],c=f[i-3];
+   for(const req of x.requires)if(req!==x.c&&first.has(req)&&first.get(req)>i)m.prereqOrderInversions++;
    if(a){
     m.exact+=+(x.a===a.a);m.mirrors+=+(!!x.p&&x.p===a.p);m.familyAdjacent+=+(x.f===a.f);
-    m.sameShape+=+(Array.isArray(x.q.shape)&&x.q.shape.join()===a.q.shape?.join());
-    m.sameForce+=+(Number.isInteger(x.q.h)&&x.q.h===a.q.h);
+    const shape=Array.isArray(x.q.shape)&&x.q.shape.join()===a.q.shape?.join(),force=Number.isInteger(x.q.h)&&x.q.h===a.q.h,meaningful=linked(x,a);
+    m.rawSameShape+=+shape;m.rawSameForce+=+force;
+    m.sameShape+=+(shape&&!meaningful);m.sameForce+=+(force&&!meaningful);
     m.largeJumps+=+(x.d!==null&&a.d!==null&&Math.abs(x.d-a.d)>=2);
    }
    if(b){m.nearMirrors+=+(!!x.p&&x.p===b.p);m.triples+=+(s>1&&x.t===a.t&&x.t===b.t);}
@@ -108,12 +145,18 @@
     'Application supplémentaire du concept, sans modifier le motif de sélection.';
    if(i===0&&role==='rappel')reason='Rappel en amorce ; aucune preuve de maîtrise déduite.';
    if(p&&x.c&&x.c===p.c&&x.stage!==null&&p.stage!==null&&x.stage>p.stage)reason+=' Stade supérieur après application plus simple.';
+   if(p&&x.c&&x.c===p.c&&x.stage===p.stage&&x.d!==null&&p.d!==null&&x.d>p.d)reason+=' Difficulté croissante dans la même notion.';
+   const anchors=f.slice(0,i).filter(y=>x.requires.includes(y.c)&&y.c!==x.c);
+   if(anchors.length)reason+=' Prérequis déjà rencontré dans ce deck : '+[...new Set(anchors.map(y=>y.c))].join(', ')+'.';
+   const prepares=f.slice(i+1).find(y=>y.requires.includes(x.c)&&y.c!==x.c);
+   if(prepares&&!seen.has(x.c))reason+=' Ce rappel prépare '+prepares.c+' plus loin dans la séance.';
    if(p&&x.p&&x.p!==p.p)reason+=' Décision distincte de la précédente.';
    if(x.c)seen.add(x.c);
    return {id:x.id,position:i+1,role,selectionRole:x.kind,reason,contrastWith:link?(link.a===x.id?link.b:link.a):null};
   });
  }
  function order(ctx={}){
+  if(!ctx||typeof ctx!=='object')ctx={};
   const deck=Array.isArray(ctx.deck)?ctx.deck:[],ids=deck.map(x=>typeof x==='string'?x:x?.id||x?.exercise?.id);
   const fallback=(reason)=>({ids:ids.slice(),reasons:ids.map((id,i)=>({id,position:i+1,role:'historique',reason})),changed:false,status:reason});
   const s=ctx.session;
@@ -130,17 +173,37 @@
    const criterion=contrast(f[i],f[j]);if(criterion)links.push({a:f[i].id,b:f[j].id,criterion});
   }
   const before=metric(f,s,links);
-  // Preserve all existing diversity guards; require a strict pedagogical gain.
-  // Limit to two deterministic best-improvement passes, no random or clock inputs.
+  // Preserve every historical diversity guard and every pedagogical cost
+  // on the final permutation. An adjacent true contrast may intentionally
+  // share a distribution/force; raw values are retained for audit.
   let current=f,after=before;
+  function admissible(p,m){return valid(p,s)&&!HARD.some(k=>m[k]>before[k])&&!SOFT.some(k=>m[k]>before[k]);}
+  function alternatives(deck,relocate){
+   const out=[];
+   for(let i=0;i<deck.length;i++)for(let j=i+1;j<deck.length;j++){
+    const p=deck.slice();[p[i],p[j]]=[p[j],p[i]];out.push(p);
+    if(relocate&&j>i+1){const a=deck.slice(),b=deck.slice();a.splice(j,0,a.splice(i,1)[0]);b.splice(i,0,b.splice(j,1)[0]);out.push(a,b);}
+   }
+   return out;
+  }
   for(let k=0;k<2;k++){
    let best=current,bestM=after;
-   for(let i=0;i<current.length;i++)for(let j=i+1;j<current.length;j++){
-    const p=current.slice();[p[i],p[j]]=[p[j],p[i]];
+   const firstMoves=alternatives(current,s<=5);
+   for(const p of firstMoves){
     if(!valid(p,s))continue;
     const m=metric(p,s,links);
-    if(HARD.some(key=>m[key]>before[key])||SOFT.some(key=>m[key]>before[key]))continue;
-    if(score(m)<score(bestM)){best=p;bestM=m;}
+    if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
+   }
+   // An early contrast often needs two moves to retain Passe and fit guards.
+   // Search at most 12 near candidates, not an unrestricted factorial search.
+   if(best===current&&s<=5&&(after.missedContrasts||after.prereqOrderInversions)){
+    const near=firstMoves.filter(p=>valid(p,s)).map(p=>({p,m:metric(p,s,links)}))
+     .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||score(a.m)-score(b.m)).slice(0,12);
+    for(const n of near)for(const p of alternatives(n.p,false)){
+     if(!valid(p,s))continue;
+     const m=metric(p,s,links);
+     if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
+    }
    }
    if(best===current)break;
    current=best;after=bestM;
