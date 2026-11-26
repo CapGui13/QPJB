@@ -49,6 +49,16 @@ function run(sources,profile,seed,horizon=180,{revision=T.BASE,measure=()=>Date.
   sessions.push(t);
  }
  T.check(JSON.stringify(exercises)===original&&JSON.stringify(meta)===originalMeta,'Native input mutation');
+ const catalogueById=new Map(exercises.map(q=>[q.id,q]));
+ for(const [idx,session] of sessions.entries()){
+  const expected=T.traceSession({deck:session.rows.map(r=>catalogueById.get(r.id)),selection:session.rows.map(r=>({id:r.id,kind:r.kind,reason:r.selectionReason})),meta:e.effectiveMeta,rawMeta:meta,elig:session.rows.map(r=>r.eligibility),pattern:q=>api.decisionPatternForM6(q),s:idx+1,history:sessions.slice(0,idx),profile,seed,latencyMs:session.latencyMs,objective:session.objective});
+  T.check(T.same(expected.summary,session.summary),'Summary integrity S'+session.session);
+  for(const [i,row] of session.rows.entries()){
+   const {choice,...rest}=row,q=catalogueById.get(row.id);
+   T.check(T.same(rest,expected.rows[i]),'Recomputed trace evidence S'+session.session+' '+row.id);
+   T.check(q.choices.includes(choice)&&((choice===q.answer)===(row.result==='correct')),'Response trace S'+session.session+' '+row.id);
+  }
+ }
  const checkpoints=T.HORIZONS.filter(n=>n<=horizon).map(n=>({session:n,...T.metrics(sessions.slice(0,n))}));
  T.check(checkpoints.every(x=>!x.violations.length),'Trace structural violations');
  return {revision,profile,seed,horizon,policy:'fixed-385-395-v1',catalogueKey,checkpoints,resumes,sessions};
