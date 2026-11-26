@@ -3459,7 +3459,7 @@
     "roudi.init": {
       "title": "Interroger sur le troisième atout",
       "objective": "Reconnaître la séquence où 2♣ permet de rechercher un soutien troisième de sa majeure cinquième.",
-      "rule": "Après ouverture mineure, réponse majeure et redemande 1SA (12–14 H), 2♣ Roudi permet avec une majeure cinquième et des valeurs constructives de rechercher trois atouts chez l'ouvreur.",
+      "rule": "Après ouverture mineure, réponse majeure et redemande 1SA (12–14 H), 2♣ Roudi permet avec une majeure cinquième et au moins un espoir de manche (à partir de 11 HL dans le cadre étudié) de rechercher trois atouts chez l'ouvreur.",
       "typicalError": "2♣ ne décrit pas une longue naturelle à Trèfle dans cette séquence.",
       "checks": [
         {
@@ -3468,7 +3468,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après 1m–1M–1SA, 2♣ Roudi recherche trois cartes dans la majeure du répondant.",
+      "reminder": "Après 1m–1M–1SA, cinq cartes et espoir de manche : 2♣ Roudi recherche trois atouts.",
       "examples": [
         {
           "id": "SEF-V4-073-1",
@@ -5242,7 +5242,7 @@
     "barrage.ouverture": {
       "title": "Reconnaître le deux faible",
       "objective": "Vérifier longueur, force, qualité de couleur et contexte avant de choisir un deux faible.",
-      "rule": "En première position, 2♥ ou 2♠ faible montre normalement six cartes convenables et 6–10 H. Vérifiez les gros honneurs de la couleur, l'absence d'une autre majeure quatrième et la qualité défensive extérieure ; la vulnérabilité compte. Avec sept cartes et force faible, un barrage à trois peut convenir.",
+      "rule": "En première ou deuxième position, 2♥ ou 2♠ faible montre normalement six cartes, 6–10 H et deux gros honneurs dans la couleur. Évitez deux gros honneurs extérieurs, deux As ou une autre majeure quatrième. La vulnérabilité compte. Avec sept cartes et force faible, un barrage à trois peut convenir.",
       "typicalError": "Ne barrez pas simplement parce que vous manquez de force d'ouverture.",
       "checks": [
         {
@@ -5251,7 +5251,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Deux faible en première position : six cartes, 6–10 H, couleur et contexte adaptés ; sept cartes pour barrage à trois.",
+      "reminder": "Deux faible en 1re/2e position : six cartes, 6–10 H, deux gros honneurs dans la couleur, sans deux gros honneurs extérieurs ni autre majeure quatrième ni deux As.",
       "examples": [
         {
           "id": "SEF-V3-091-1",
@@ -5978,7 +5978,7 @@
     "reponse_inter.base": {
       "title": "Soutenir une intervention majeure",
       "objective": "Reconnaître le fit après une intervention majeure du partenaire et choisir un soutien non forcing adapté.",
-      "rule": "Après intervention naturelle majeure du partenaire et Passe adverse, trois atouts suffisent au fit. Le soutien simple avec une main modeste est non forcing ; un saut répond à d'autres conditions de longueur et de contexte.",
+      "rule": "Après intervention naturelle majeure du partenaire et Passe adverse, trois atouts suffisent au fit. Le soutien simple avec une main modeste est non forcing. Avec quatre atouts, une courte et un contexte favorable, un saut à 3M peut être un barrage, pas une invitation ; une main plate peut préférer 2M.",
       "typicalError": "Ne traitez pas tous les soutiens comme une invitation.",
       "checks": [
         {
@@ -5987,7 +5987,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après intervention majeure du partenaire, trois atouts suffisent au soutien simple non forcing.",
+      "reminder": "Après intervention du partenaire et Passe adverse : 2M soutien modeste ; 3M barrage avec fit, distribution et contexte adaptés.",
       "examples": [
         {
           "id": "SEF-V4-025-2",
@@ -6323,6 +6323,113 @@
           ],
           "assisted": true,
           "assessment": false
+        },
+        {
+          "id": "m5-ext-76",
+          "title": "Neuf atouts : barrage ou soutien simple",
+          "rule": "Après (1♣)–1♥–Passe, quatre Cœurs ne suffisent pas à imposer 3♥. Avec 7 H et une forme plate, 2♥ est prudent dans le cas étudié ; avec 5 H, quatre Cœurs, singleton Trèfle et vulnérabilité favorable, 3♥ est un barrage. Le palier dépend du potentiel offensif et du risque.",
+          "check": {
+            "prompt": "Quatre atouts et une forme plate suffisent-ils à imposer 3♥ après intervention du partenaire ?",
+            "answer": "Non. Le soutien simple peut mieux convenir sans courte.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V4-026-3",
+              "hand": [
+                [
+                  "D",
+                  "6",
+                  "5"
+                ],
+                [
+                  "V",
+                  "9",
+                  "7",
+                  "3"
+                ],
+                [
+                  "9",
+                  "7",
+                  "3"
+                ],
+                [
+                  "A",
+                  "10",
+                  "7"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1♣, votre partenaire intervient à 1♥, puis l'adversaire suivant passe. Quelle est votre réponse selon le SEF ?",
+              "answer": "2♥",
+              "comment": "Avec quatre Cœurs et 7 H, le fit de neuf cartes est connu, mais la forme 3-4-3-3 n'offre aucune coupe immédiate et peu de potentiel offensif supplémentaire. Le soutien simple de 2♥ est préférable dans les conditions de ce cas. Le saut à 3♥ serait un barrage, et non une proposition de manche ; quatre atouts seuls ne suffisent pas à justifier ce risque."
+            },
+            {
+              "id": "SEF-V4-026-4",
+              "hand": [
+                [
+                  "8",
+                  "7",
+                  "4",
+                  "2"
+                ],
+                [
+                  "V",
+                  "5",
+                  "4",
+                  "3"
+                ],
+                [
+                  "R",
+                  "V",
+                  "10",
+                  "4"
+                ],
+                [
+                  "6"
+                ]
+              ],
+              "h": 5,
+              "shape": [
+                4,
+                4,
+                4,
+                1
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1♣, votre partenaire intervient à 1♥, puis l'adversaire suivant passe. Vulnérabilité favorable : votre camp n'est pas vulnérable, les adversaires le sont. Quelle est votre réponse selon le SEF ?",
+              "answer": "3♥",
+              "comment": "Vous n'avez que 5 H, mais quatre Cœurs face à la cinquième promise par le partenaire et le singleton ♣6 : neuf atouts et une capacité de coupe. Non vulnérable contre vulnérable, 3♥ prend un palier supplémentaire à l'ouvreur adverse. Ce saut est un barrage, pas une invitation ; il accepte le risque de chute. Avec quatre atouts mais une main plate, le soutien simple serait plus prudent."
+            }
+          ],
+          "minSession": 14,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
         }
       ]
     },
@@ -6610,7 +6717,7 @@
     "roudi.choix": {
       "title": "Choisir entre Roudi et répétition faible",
       "objective": "Distinguer une répétition faible de la majeure d'une recherche constructive du troisième atout.",
-      "rule": "Après ouverture mineure, réponse majeure et 1SA de redemande, la répétition de la majeure au palier de deux est faible dans le cadre étudié. Roudi sert à une recherche constructive du fit.",
+      "rule": "Après 1m–1M–1SA, avec une main faible, répétez au palier de deux une majeure cinquième pour jouer la partielle ; avec seulement quatre cartes et sans longue à sauver, Passe peut convenir. Le Roudi sert à une recherche constructive du fit.",
       "typicalError": "N'utilisez pas systématiquement Roudi dès que vous avez cinq cartes.",
       "checks": [
         {
@@ -6619,7 +6726,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après 1m–1M–1SA, répéter faiblement la majeure ; Roudi pour une recherche constructive.",
+      "reminder": "Après 1m–1M–1SA, faible : Passe avec quatre cartes sans longue utile, répétition avec cinq ; Roudi si espoir de manche.",
       "examples": [
         {
           "id": "SEF-V4-074-3",
@@ -6670,7 +6777,116 @@
         }
       ],
       "minSession": 22,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-74",
+          "title": "Passer ou répéter : la cinquième carte",
+          "rule": "Après 1m–1M–1SA (12–14 H), une main faible sans longue utile conserve 1SA avec une majeure seulement quatrième ; avec cinq cartes, la répétition à 2M peut sauver la partielle. Ni la qualité des honneurs ni la simple présence d'une majeure ne créent un espoir de manche.",
+          "check": {
+            "prompt": "Avec quatre Cœurs, 7 H et aucune longue utile, faut-il répéter 2♥ après 1SA ?",
+            "answer": "Non : Passe dans le cas étudié ; 2♥ décrirait une majeure plus longue.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V4-075-2",
+              "hand": [
+                [
+                  "8",
+                  "6",
+                  "5"
+                ],
+                [
+                  "D",
+                  "8",
+                  "4",
+                  "2"
+                ],
+                [
+                  "D",
+                  "V",
+                  "2"
+                ],
+                [
+                  "D",
+                  "10",
+                  "6"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA"
+              ],
+              "context": "Votre partenaire a ouvert 1♣, vous avez répondu 1♥, puis il a annoncé 1SA. Avec quatre Cœurs et 7 H dans une main régulière, que faites-vous ?",
+              "answer": "Passe",
+              "comment": "Le partenaire a décrit une main régulière de 12–14 H. Avec ♥D842 quatrièmes, 7 H et sans longue couleur à sauver, la bonne réponse est Passe : conservez 1SA. 2♥ ferait croire à une majeure plus longue; 2♣ Roudi serait sans projet de fit 5–3."
+            },
+            {
+              "id": "SEF-V4-080-2",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "10",
+                  "9",
+                  "2"
+                ],
+                [
+                  "7",
+                  "6",
+                  "3"
+                ],
+                [
+                  "R",
+                  "7",
+                  "2"
+                ],
+                [
+                  "9",
+                  "8"
+                ]
+              ],
+              "h": 8,
+              "shape": [
+                5,
+                3,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♠",
+                "Partenaire : 1SA"
+              ],
+              "context": "Après 1♣ du partenaire, vous avez annoncé 1♠ avec cinq Piques (♠RD1092) et 8 H. Le partenaire redemande 1SA, montrant une main régulière de première zone (12–14 H). Répétez-vous les Piques ou utilisez-vous le Roudi ?",
+              "answer": "2♠",
+              "comment": "Avec 8 H et cinq Piques commandés par Roi-Dame-10-9, vous êtes trop faible pour rechercher la manche : le Roudi à 2♣ ne se justifie pas. Après 1♣–1♠–1SA, la répétition simple à 2♠ montre votre longueur cinquième et vise une partielle dans votre majeure, sans forcer le partenaire à reparler."
+            }
+          ],
+          "minSession": 22,
+          "prerequisites": [
+            {
+              "concept": "roudi.choix",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "roudi.reponse": {
       "title": "Coder les réponses du Roudi",
@@ -6843,7 +7059,7 @@
     "drury.choix": {
       "title": "Distinguer Drury et soutien simple",
       "objective": "Choisir entre soutien simple et Drury en fonction de la force du fit après son Passe initial.",
-      "rule": "Après votre Passe initial et ouverture majeure en troisième ou quatrième position, Drury sert à un soutien encourageant à partir de 11 HLD dans cet accord ; un soutien simple faible reste naturel.",
+      "rule": "Après votre Passe initial et ouverture majeure tardive, avec trois atouts, Passe en dessous de 6 HLD, soutien simple de 6 à 10 HLD, Drury à 2♣ à partir de 11 HLD. Avec quatre atouts, examinez aussi la distribution et les autres soutiens enseignés.",
       "typicalError": "Un fit faible n'appelle pas automatiquement Drury.",
       "checks": [
         {
@@ -6852,7 +7068,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après Passe initial et ouverture majeure tardive, distinguer soutien simple faible et Drury à partir de 11 HLD.",
+      "reminder": "Après Passe et 1M tardif, trois atouts : moins de 6 HLD, Passe ; 6–10 HLD, soutien simple ; 11+ HLD, Drury.",
       "examples": [
         {
           "id": "SEF-V4-099-2",
@@ -7477,6 +7693,109 @@
           ],
           "assisted": true,
           "assessment": false
+        },
+        {
+          "id": "m5-ext-75",
+          "title": "Reconnaître le fort unicolore majeur",
+          "rule": "2♣ fort indéterminé ne se limite pas aux mains régulières de 22–23 H : les deux mains étudiées, 21 H et six Cœurs très solides, ou 19 H et six Piques ARDV (21 HL), justifient aussi 2♣. Il faut apprécier force et qualité de la longue, sans traiter toute sixième comme forte.",
+          "check": {
+            "prompt": "Avec six Piques ARDV et 19 H (21 HL), faut-il ouvrir automatiquement 1♠ parce que la main est irrégulière ?",
+            "answer": "Non : la très belle longue et les valeurs de cette main justifient 2♣ fort.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-003",
+              "hand": [
+                [
+                  "D",
+                  "10"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "4"
+                ],
+                [
+                  "A",
+                  "D",
+                  "9"
+                ],
+                [
+                  "R",
+                  "8"
+                ]
+              ],
+              "h": 21,
+              "shape": [
+                2,
+                6,
+                3,
+                2
+              ],
+              "auction": [],
+              "context": "Vous êtes en première position. Quelle ouverture convient avec cette main selon le SEF ?",
+              "answer": "2♣",
+              "comment": "Avec 21 H et six Cœurs maîtres ou presque (♥ARDV104), vous disposez d'une forte main unicolore. Ouvrez de 2♣ fort indéterminé, puis décrivez les Cœurs après le relais. Une ouverture de 1♥ ne rendrait pas compte de cette force ; 2♥ serait faible."
+            },
+            {
+              "id": "SEF-V45-004",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "7",
+                  "6"
+                ],
+                [
+                  "D",
+                  "8"
+                ],
+                [
+                  "R",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "3"
+                ]
+              ],
+              "h": 19,
+              "shape": [
+                6,
+                2,
+                3,
+                2
+              ],
+              "auction": [],
+              "context": "Vous êtes en première position. Avec cette main, quelle ouverture convient selon le SEF 2024 ?",
+              "answer": "2♣",
+              "comment": "Vous avez 19 H, six Piques commandés par ARDV et deux points L pour les cinquième et sixième cartes, soit 21 HL. Cette très belle majeure sixième justifie 2♣ fort indéterminé, avant de redemander les Piques. 1♠ sous-décrirait cette main de jeu ; 2SA serait inadapté à sa distribution."
+            }
+          ],
+          "minSession": 30,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
         }
       ]
     },
@@ -8043,6 +8362,333 @@
           ],
           "assisted": true,
           "assessment": false
+        },
+        {
+          "id": "m5-ext-77",
+          "title": "Le mixed raise après Contre adverse",
+          "rule": "Après 1M–(Contre), dans les développements du catalogue QPJB, le saut dans l'autre majeure (2♠ sur 1♥, 3♥ sur 1♠) montre quatre atouts dans la majeure ouverte et 7–9 H. Ce mixed raise n'annonce pas une longue dans la couleur nommée. 3M direct reste barrage.",
+          "check": {
+            "prompt": "Sur 1♠–(Contre), quatre Piques et 7 H : que décrit 3♥ dans ce traitement ?",
+            "answer": "Le soutien constructif à Pique avec quatre atouts et 7–9 H.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L13-007",
+              "hand": [
+                [
+                  "8",
+                  "5"
+                ],
+                [
+                  "R",
+                  "10",
+                  "8",
+                  "6"
+                ],
+                [
+                  "A",
+                  "9",
+                  "4",
+                  "2"
+                ],
+                [
+                  "9",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                2,
+                4,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♥",
+                "Adversaire : Contre"
+              ],
+              "context": "Votre partenaire ouvre de 1♥ et l’adversaire de droite contre d’appel. La paire joue les développements du SEF 2024 avec mixed raise après Contre. Quelle réponse décrit le mieux votre main ?",
+              "answer": "2♠",
+              "comment": "Sur 1♥–(Contre), 2♠ est un saut dans l'autre majeure, car 1♠ reste disponible. Dans le traitement mixed raise retenu, ce saut indique quatre Cœurs et 7–9 H, exactement vos quatre Cœurs R1086 et 7 H. 3♥ serait un barrage ; 2SA Truscott serait le soutien limite de 11–12 HLD. 2♠ n'annonce pas des Piques naturels."
+            },
+            {
+              "id": "SEF-L14-015",
+              "hand": [
+                [
+                  "R",
+                  "9",
+                  "7",
+                  "6"
+                ],
+                [
+                  "10",
+                  "8",
+                  "3"
+                ],
+                [
+                  "A",
+                  "6",
+                  "4"
+                ],
+                [
+                  "8",
+                  "7",
+                  "5"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♠",
+                "Adversaire : Contre (d’appel)"
+              ],
+              "context": "Votre partenaire ouvre de 1♠ et l’adversaire de droite contre d’appel. La paire joue le traitement mixed raise présenté avec le SEF 2024. Quelle enchère choisissez-vous ?",
+              "answer": "3♥",
+              "comment": "Après 1♠–(Contre), 2♥ serait une nouvelle couleur naturelle au palier de deux. 3♥ est le saut dans l'autre majeure : le mixed raise du traitement retenu, quatre Piques et 7–9 H. Vous avez quatre Piques R976 et 7 H, mais seulement trois Cœurs : 3♥ ne propose donc pas de jouer à Cœur. 3♠ est un barrage, 2SA Truscott demande 11–12 HLD."
+            }
+          ],
+          "minSession": 20,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-78",
+          "title": "Le Truscott fort et sa forme",
+          "rule": "Après 1M–(Contre), dans le développement QPJB, 3SA fitté décrit quatre atouts, 13–15 HLD et une main régulière ou semi-régulière sans singleton. 2SA Truscott limite à 11–12 HLD. Le 3SA de ces cas n'est pas naturel ; les formes avec courte suivent d'autres traitements.",
+          "check": {
+            "prompt": "Quatre Cœurs, 15 HLD, main régulière après 1♥–(Contre) : 2SA ou 3SA ?",
+            "answer": "3SA fitté dans le développement étudié ; 2SA est limité à 12 HLD.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L24-002",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "8"
+                ],
+                [
+                  "R",
+                  "10",
+                  "9",
+                  "6"
+                ],
+                [
+                  "A",
+                  "9",
+                  "3"
+                ],
+                [
+                  "10",
+                  "8",
+                  "7"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♥ (ouverture)",
+                "Adversaire : Contre (d'appel)"
+              ],
+              "context": "Votre partenaire ouvre de 1♥ et l’adversaire contre d’appel. Quelle réponse décrit au mieux votre main dans les développements du SEF 2024 ?",
+              "answer": "3SA",
+              "comment": "Vos quatre Cœurs R1096 et 13 H réguliers valent 15 HLD grâce au neuvième atout. Après 1♥–(Contre), 3SA est le Truscott fort : quatre atouts et main régulière ou semi-régulière sans singleton de 13 à 15 HLD. 2SA Truscott s'arrête à 12 HLD. 3♥ serait un barrage et Surcontre ne transmettrait pas aussi précisément ce fit fort et régulier."
+            },
+            {
+              "id": "SEF-L44-003",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "9",
+                  "5"
+                ],
+                [
+                  "R",
+                  "D",
+                  "4"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6"
+                ],
+                [
+                  "9",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♠ (ouverture naturelle)",
+                "Adversaire : Contre (d'appel)"
+              ],
+              "context": "Le partenaire ouvre de 1♠, l'adversaire contre d'appel. Vous détenez quatre atouts Pique, 13 H réguliers sans singleton ni chicane, soit 15 HLD (13 H + 2 pour le neuvième atout). Quelle réponse conventionnelle décrit ce soutien régulier fort sans courte ?",
+              "answer": "3SA",
+              "comment": "Dans les développements après 1♠–(Contre), 3SA est fitté et décrit quatre atouts ainsi qu'une main régulière de 13–15 HLD sans courte. 2SA Truscott est plus faible (11–12 HLD), tandis que 3♥ mixed raise décrit 7–9 H."
+            }
+          ],
+          "minSession": 24,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 3
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-79",
+          "title": "Rencontre en mineure après Contre",
+          "rule": "Après 1♥–(Contre), le saut dans une mineure (3♣ ou 3♦) montre quatre Cœurs au moins et cinq beaux atouts dans la mineure nommée avec un soutien constructif. Dans le SEF 2024 enseigné, le saut dans l'autre majeure est un mixed raise ; le double saut en mineure peut être un Splinter.",
+          "check": {
+            "prompt": "Sur 1♥–(Contre), que montre 3♦ à saut dans le traitement étudié ?",
+            "answer": "Une rencontre : au moins quatre Cœurs, cinq beaux Carreaux et un soutien constructif.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L22-003",
+              "hand": [
+                [
+                  "9",
+                  "7",
+                  "5"
+                ],
+                [
+                  "R",
+                  "D",
+                  "10",
+                  "8"
+                ],
+                [
+                  "6"
+                ],
+                [
+                  "A",
+                  "D",
+                  "V",
+                  "9",
+                  "4"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                3,
+                4,
+                1,
+                5
+              ],
+              "auction": [
+                "Partenaire : 1♥ (ouverture)",
+                "Adversaire : Contre (d'appel)"
+              ],
+              "context": "Votre partenaire ouvre de 1♥, l'adversaire contre d'appel. Vous avez quatre Cœurs, cinq très beaux Trèfles et un singleton Carreau. Avec 12 H et un soutien important, quelle réponse à saut en mineure montre les deux couleurs grâce à une enchère de rencontre SEF 2024 ?",
+              "answer": "3♣",
+              "comment": "Sur 1♥–(Contre), le changement de couleur à saut à 3♣ est une enchère de rencontre : au moins cinq beaux Trèfles, quatre Cœurs et une main de soutien constructive. En SEF 2024, cette signification est réservée aux sauts en mineure ; 2SA Truscott ne montrerait pas la longue à Trèfle."
+            },
+            {
+              "id": "SEF-L14-016",
+              "hand": [
+                [
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "9",
+                  "6",
+                  "4"
+                ],
+                [
+                  "A",
+                  "D",
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "7",
+                  "5"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                2,
+                4,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♥",
+                "Adversaire : Contre (d’appel)"
+              ],
+              "context": "Votre partenaire ouvre de 1♥ et l’adversaire de droite contre d’appel. Vous avez quatre atouts Cœur et cinq beaux Carreaux. Selon le SEF 2024, le changement de couleur à simple saut en mineure après Contre est une rencontre fittée. Quelle enchère correspond à votre main ?",
+              "answer": "3♦",
+              "comment": "3♦ montre une belle couleur cinquième à Carreau et un fit d’au moins quatre Cœurs : c’est une enchère de rencontre. 4♦, double saut, deviendrait un Splinter et montrerait une courte à Carreau, ce qui serait faux."
+            }
+          ],
+          "minSession": 20,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
         }
       ]
     },
@@ -8521,7 +9167,7 @@
           "assisted": true
         }
       ],
-      "reminder": "2♣ fort : relais 2♦. 2♦ forcing manche : 2♥ négatif ; 2♠ As majeur ; 3♣/3♦ As mineur ; 2SA sans As, 8+ H réguliers.",
+      "reminder": "2♣ fort : relais 2♦. 2♦ forcing manche : 2♥ négatif ; 2♠ As majeur ; 3♣/3♦ As mineur ; 2SA sans As, 8+ H réguliers ou exception des deux Rois.",
       "examples": [
         {
           "id": "SEF-V45-005",
@@ -10042,7 +10688,7 @@
     "multilandy.choix": {
       "title": "Savoir passer contre 1SA",
       "objective": "Vérifier si la distribution et la qualité de la main justifient une intervention conventionnelle ou Passe.",
-      "rule": "Avant de choisir une intervention Multi-Landy, vérifiez une distribution conforme à la convention et une force ou qualité suffisante. Avec une main faible sans longue ni bicolore exploitable, Passe est raisonnable.",
+      "rule": "Avant de choisir une intervention Multi-Landy, vérifiez une distribution conforme à la convention et une force ou qualité suffisante. Dans le cadre QPJB étudié, quatre cartes dans chaque majeure ne suffisent pas à 2♣ Landy qui demande au moins 5–4. Passe si aucune branche ne convient.",
       "typicalError": "Ne forcez pas une convention dont vous n'avez pas les cartes.",
       "checks": [
         {
@@ -10051,7 +10697,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Sur 1SA adverse, ne forcez pas une intervention Multi-Landy sans distribution ni valeurs adaptées.",
+      "reminder": "Dans le Multi-Landy étudié, 4–4 majeur ne suffit pas au Landy 2♣ : au moins 5–4 ; Passe si aucune branche adaptée.",
       "examples": [
         {
           "id": "SEF-V45-030",
