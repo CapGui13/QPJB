@@ -2,7 +2,41 @@
 
 Base immuable : d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. PR #405 brouillon. Production existante intacte.
 
-## Cartographie et objectifs
+## Recette de reprise — état courant (remplace les statuts historiques ci-dessous)
+
+Module testé : commit c4e8807a5a10478611786a0dd43ce6516becf43d, blob a09254905aae5021062087b3175ce24ad156ef68. Les changements ultérieurs sont uniquement tests et preuves de recette.
+
+### Protection de l'initiation et de la diversité
+
+La version précédente présentait un HOLD force à S20 (17 → 13 concepts avec preuves autonomes). Un simple plafond de 2, 4, 6, 8 ou 12 n'a pas suffi à rétablir les preuves (17 → 14). Règle retenue : S4–20, bonus uniquement si signal local fort et contraste historique explicite, plafond 8 ; à partir de S21, plafond 24 (récupération partielle 12, transversal 24 maximum). Le plafond contractuel 48 demeure une borne supérieure, pas le bonus effectif. Aucun nouveau filtre d'éligibilité. Les autres catégories et contraintes historiques restent intactes. L'initiation accepte donc une adaptation ponctuelle et démontrable, pas une accélération générale. Le profil force S20 est identique au témoin sur les trois graines examinées (11, 47, 103). La version retenue est testée ci-dessous.
+
+### Recette S180 sur le module corrigé
+
+Les 18 comparaisons standards (six profils × trois graines) et sept profils spécifiques (graine 47) ont été réellement exécutés jusqu'à S180 sur les blobs figés, avec instrumentation mémoire du moteur réel. Les 25 fichiers banc-phase-protegee-*.json contiennent avant/après, horizons S20/65/153/180, traces de sélection et HOLD. Les deux fichiers synthese-phase-protegee-*.json agrègent ces preuves. Total : 25 paires, 50 trajectoires, 90 000 réponses synthétiques. Les sommes de familles et concepts ne sont pas des nombres de familles/concepts uniques du catalogue.
+
+| Ensemble | Ciblages | Familles (somme) | Concepts avec preuves (somme) | Erreurs simulées | HOLD |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Standards, 18 paires | 170 → 367 | 25703 → 25689 | 1562 → 1555 | 9279 → 9336 | 1 |
+| Spécifiques, 7 paires | 90 → 186 | 10390 → 10469 | 629 → 636 | 4077 → 4045 | 0 |
+| Total | 260 → 553 | 36093 → 36158 | 2191 → 2191 | 13356 → 13381 | 1 |
+
+Toutes les trajectoires S1–3 identiques, zéro violation d'éligibilité, famille dupliquée dans une séance, séance courte, dépassement Passe, sur les quatre horizons ; 99 concepts et 22 thèmes à S180 pour chaque trajectoire. Les 18 standards conservent les métriques S20. Le ciblage compte les sélections satisfaisant la règle actuelle, y compris au témoin ; ses chiffres ne sont pas directement comparables aux anciens bancs utilisant des critères moins conservateurs. Les preuves sont des réussites autonomes sur plusieurs familles/séances, pas une preuve de maîtrise ou d'apprentissage humain.
+
+Force 47 : preuves S20 17→17, S65 62→66, S153 79→79, S180 81→85 ; familles S180 1394→1445, ciblages 34→67, erreurs 966→944. HOLD initial résolu. Fit 47 : S65 67→64 preuves, familles 558→539, erreurs 297→328 ; S180 86→85 preuves, familles 1384→1415. Récupération 47 : changements de difficulté aux séances 26 et 46, preuves S180 97→96, signaux recovered 1→2, ciblages 2→9.
+
+HOLD restant : cible 103, S65, concepts 99→96, preuves 71→68 ; concepts manquants confirmés par instrumentation supplémentaire : chelem.blackwood.dame_rois, chelem.blackwood.suite, rubensohl.suite. Tous sont exposés à S153. Le test d'un garde-fou « neutraliser le rang si un concept inédit est présent dans les candidats avant S65 » reproduit strictement ce HOLD : variante non intégrée. Ne pas assouplir le seuil pour le faire disparaître. Recommandation au coordinateur : examiner l'effet indirect sur les prérequis, dates de première exposition et ordre des créneaux, puis arbitrer la tolérance ou rejouer une variante sur la matrice entière. Autre vigilance : aide 11, preuves S180 84→78, sous le seuil du banc mais non négligeable ; hausse d'erreurs sur l'intermédiaire (1744→1793 sur trois graines). Ne pas assimiler davantage de ciblage à de meilleurs résultats pour tous.
+
+### Tests et limites
+
+Contrat réexécuté avec adaptateurs mémoire V8 pour require, fs et assertions : 25 325 assertions, 1 915 QCM, 5 745 mauvaises options, 5 416 hypothèses, 329 unknown, 195 low, 621 groupes, 82 groupes offrant un bonus dans le scénario de paire d'erreurs tardive. Test positif initiation : SEF-015-1, SEF-016-3, SEF-017-1 → signal local fort mineur.base:priorite → SEF-N029-2, bonus 8 à S5 / 24 à S25. Test négatif de la paire récurrente en initiation, neuf axes transversaux, contrat UMD window simulé. Voir tests-contrat-phase-protegee.json et tests/durable-m1-contract.cjs.
+
+Node natif disponible dans le terminal, mais git ls-remote échoue (DNS github.com), donc pas de checkout ni de lancement natif de ces nouveaux tests. CI smoke du commit 6e332453f3dd80db7fa118ac71700a2ce42bc228 réussie (run 45893102666, jobs ciblés ; navigateurs et simulations longues ignorés), ne valide pas spécifiquement le contrat M1 natif. Aucun Chromium/WebKit attesté. Aucun fichier de production existant modifié, aucun merge ni publication.
+
+**MISSION DÉFINITIVEMENT TERMINÉE : NON** — production autonome et matrice exhaustive livrées ; HOLD cible 103 S65 à arbitrer par le coordinateur selon #396, test natif M1 non attesté. Aucun autre profil S180 manquant. Les sections suivantes sont conservées comme historique de la première livraison, et ne décrivent plus l'état courant.
+
+---
+
+## Historique — cartographie et objectifs
 - 1915 QCM, 99 concepts, 5745 options erronées, 5416 hypothèses et 329 unknown ; chacune exécutée via QPJBProfesseur.diagnose du SHA figé. 1207 high, 4014 medium, 195 low. Aucun nouveau visa éditorial : les motifs de #395 sont conservés.
 - Registre 0–3 : une entrée par ID, concept, famille, difficulté, prérequis, rôles, contraste historique, chaque choix avec statut, catégorie, confiance, critère lexical, règle, raison et disposition. Les règles lexicales distinguent notamment H, HL, HLD, longueur, priorité de fit, forcing, palier ; elles ne certifient pas un raisonnement psychologique. Les 195 low et les 329 unknown sont exclus des adaptations.
 - Cibles : 100% des options recensées ; aucun bonus sans récurrence indépendante multi-famille/multi-séance ; bonus borné à 48 ; S1–3 identiques ; aucun contournement de filtre, quota, rappel explicite, famille ou reprise. Objectif comparatif : hausse des occasions de discrimination et familles >=95% de référence par trajectoire, pas de régression substantielle de preuve/exposition.
