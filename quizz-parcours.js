@@ -504,7 +504,7 @@
     if(q.theme==='ouv'&&bid(q)==='2♣'&&s<INTRO.fortes)reasons.push('strong-opening');
     if(s===0&&q.theme!=='ouv')reasons.push('first-openings-only');
     if(s===0&&q.theme==='ouv'&&(!['1♣','1♦','1♥','1♠','1SA','Passe'].includes(bid(q))||
-      q.difficulty!==1||(openingPass(q)&&!simplePass(q))))reasons.push('first-basic-opening');
+      (q.difficulty!==1&&!basicEqualMinor(q))||(openingPass(q)&&!simplePass(q))))reasons.push('first-basic-opening');
     for(const r of m.requires){
       if((e.seen.get(r.concept)?.size||0)<r.minExposure)
         reasons.push('exposure:'+r.concept+':'+r.minExposure);
@@ -566,6 +566,18 @@
   const majorThree=q=>majorSupport(q)&&q.auction?.length===1&&bid(q)==='2'+opener(q)[1]&&q.shape?.[opener(q)==='1♠'?0:1]===3;
   const minorSupport=q=>q.theme==='mineur'&&/^1[♣♦]$/.test(opener(q))&&/^[2-7][♣♦]$/.test(bid(q))&&bid(q)[1]===opener(q)[1];
   const openBid=q=>q.theme==='ouv'&&!openingPass(q);
+  // Égalités de meilleure mineure : fondamentaux malgré leur difficulté historique 2.
+  const basicEqualMinor=q=>q.theme==='ouv'&&q.difficulty<=2&&q.shape?.[2]===q.shape?.[3]&&
+    ((q.shape[2]===3&&bid(q)==='1♣')||(q.shape[2]===4&&bid(q)==='1♦'));
+  const openingMinorPattern=q=>q.theme==='ouv'&&/^1[♣♦]$/.test(bid(q))?
+    (q.shape[2]===q.shape[3]?'egal-'+q.shape[2]:'long-'+Math.max(q.shape[2],q.shape[3])):null;
+  function decisionPattern(q){
+    if(majorSupport(q))return 'soutien-majeur-'+bid(q)[0];
+    if(minorSupport(q))return 'soutien-mineur-'+bid(q)[0];
+    if(minorMajor4(q))return 'reponse-majeure-quatrieme';
+    if(minorNotrump(q))return 'reponse-mineure-1SA';
+    return openingMinorPattern(q);
+  }
   // Les Passes sont une alternative de base, pas des questions de fin de séance.
   // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
   function passDeadlines(s,count,length){
@@ -602,7 +614,10 @@
           if(node.mask&(1<<i))continue;
           const q=exerciseOf(items[i]),pass=openingPass(q);
           if(earlyOrder&&pos<2&&!openBid(q))continue;
-          if(earlyOrder&&majorSupport(q)&&items.some((v,j)=>!(node.mask&(1<<j))&&(minorMajor4(exerciseOf(v))||minorNotrump(exerciseOf(v)))))continue;
+          // Introduire les deux types de réponse à une mineure avant le premier soutien,
+          // puis autoriser leur alternance plutôt que repousser tous les fits en fin de séance.
+          if(earlyOrder&&majorSupport(q)&&[minorMajor4,minorNotrump].some(test=>
+            items.some(v=>test(exerciseOf(v)))&&!node.seq.some(j=>test(exerciseOf(items[j])))))continue;
           if(deadlines.length){
             if(pass&&last&&openingPass(last))continue;
             const used=usedPass+Number(pass);
@@ -619,6 +634,7 @@
           let c=0;
           if(last){
             if(bid(q)===bid(last))c+=100;
+            if(decisionPattern(q)&&decisionPattern(q)===decisionPattern(last))c+=250;
             if(s>0&&q.theme===last.theme)c+=3;
             if(s>0&&prev&&q.theme===last.theme&&q.theme===prev.theme)c+=100;
             if(q.h===last.h&&Number.isInteger(q.h))c+=8;
@@ -758,8 +774,16 @@
         cat==='transfer'?'transfert_contexte':'nouveau_qcm');
       selected.push({exercise:q,kind,reason});return true;
     }
-    function opening(answer,simple=false){
+    function opening(answer,simple=false,preferred=null){
       const options=pool.filter(q=>q.theme==='ouv'&&bid(q)===answer&&(!simple||simplePass(q)));
+      if(preferred&&choose(options.filter(q=>openingMinorPattern(q)===preferred),'discovery','equilibre_ouvertures',true))return true;
+      if(/^1[♣♦]$/.test(answer)){
+        const within=new Set(selected.map(v=>openingMinorPattern(v.exercise)).filter(Boolean));
+        const used=new Set(within);
+        if(s===1)for(const q of exercises)if(previous[q.id]&&openingMinorPattern(q))used.add(openingMinorPattern(q));
+        if(choose(options.filter(q=>!used.has(openingMinorPattern(q))),'discovery','equilibre_ouvertures',true))return true;
+        if(choose(options.filter(q=>!within.has(openingMinorPattern(q))),'discovery','equilibre_ouvertures',true))return true;
+      }
       return choose(options,'discovery','equilibre_ouvertures',true);
     }
     // Reprise des contraintes #291, mais aucun ordre de réponses imposé.
@@ -767,7 +791,8 @@
       const targets=limit===8?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']:
         limit===9?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe']:
         ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe','Passe'];
-      for(const answer of targets)opening(answer,answer==='Passe');
+      const preferred={'1♣':['egal-3','long-4'],'1♦':['egal-4','long-5']};
+      for(const answer of targets)opening(answer,answer==='Passe',preferred[answer]?.shift());
     }
     if(s===1&&limit>=10){
       opening('1♣');opening('1♦');
