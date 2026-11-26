@@ -80,3 +80,8 @@ Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés su
 ## Passe 5 — traitement transversal des enchères naturelles et conventionnelles
 
 453 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 74 règles effectives. Les règles contrôlent la main, la séquence, la bonne enchère, le diagnostic signé et les critères du corrigé figé ; le détail est dans `pass5.json`. Aucun autre statut ni ciblage existant modifié. Total : 3247 ciblages, 288 compléments, 2470 références distinctes ; 1673 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101839 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés. Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.
+
+
+## Passe 6 — approfondissement transversal et développements avancés
+
+124 HOLD convertis en remédiations ciblées sans nouveau complément textuel, par 52 règles effectives. Les règles contrôlent la main, la séquence, la bonne enchère, le diagnostic signé et les critères du corrigé figé ; le détail est dans `pass6.json`. Aucun autre statut ni ciblage existant modifié. Total : 3371 ciblages, 288 compléments, 2495 références distinctes ; 1549 HOLD et 4 contrastes encore à arbitrer. Banc exhaustif exécuté en V8 : 101963 assertions avec reproduction des trois artefacts. Les tests Node CLI et navigateur réel ne sont pas exécutés (clone GitHub impossible dans le conteneur, DNS). Relecture éditoriale exhaustive et validation humaine non réalisées. Statut NON.

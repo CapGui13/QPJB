@@ -310,6 +310,19 @@
       "zone-soutien"
     ]
   },
+  "pass6-major-fit-but-no-values": {
+    "id": "SEF-029-2",
+    "choice": "1SA",
+    "concept": "majeur.soutien",
+    "family": "cas-029",
+    "feedback": null,
+    "checkNext": "Sur une autre main très faible mais fittée, distingue la présence du fit des valeurs nécessaires pour le soutien constructif ou la réponse à Sans-Atout.",
+    "criteria": [
+      "evaluation-hld",
+      "zone-soutien",
+      "force-reponse"
+    ]
+  },
   "pass4-major-support-below-threshold": {
     "id": "SEF-029-2",
     "choice": "2♥",
@@ -466,6 +479,18 @@
       "longueur-redemande"
     ]
   },
+  "pass6-opener-one-level-not-jump-sa": {
+    "id": "SEF-043-1",
+    "choice": "2SA",
+    "concept": "red.bicolore",
+    "family": "cas-043",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande de première zone, compare les valeurs nécessaires au 2SA à saut et la majeure quatrième disponible au palier de un.",
+    "criteria": [
+      "zone-redemande-sa",
+      "priorite-majeure"
+    ]
+  },
   "pass5-opener-regular-range-or-length": {
     "id": "SEF-044-1",
     "choice": "2SA",
@@ -489,6 +514,18 @@
     "criteria": [
       "fit-majeur",
       "atouts-communs"
+    ]
+  },
+  "pass6-opener-no-four-card-fit": {
+    "id": "SEF-045-1",
+    "choice": "2♠",
+    "concept": "red.base",
+    "family": "cas-045",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande régulière avec trois cartes dans la majeure du répondant, distingue le fit établi du fit seulement possible et situe ta force dans la zone de Sans-Atout.",
+    "criteria": [
+      "fit-ouvreur",
+      "zone-redemande-sa"
     ]
   },
   "pass4-opener-major-before-sa-jump": {
@@ -591,6 +628,43 @@
       "roudi-objectif"
     ]
   },
+  "pass6-second-do-not-repeat-four": {
+    "id": "SEF-055-2",
+    "choice": "2♠",
+    "concept": "second.base",
+    "family": "cas-055",
+    "feedback": null,
+    "checkNext": "Sur une autre deuxième enchère après 1SA, vérifie la longueur nécessaire pour répéter la majeure et distingue une main quatrième régulière d’une main cinquième.",
+    "criteria": [
+      "longueur-majeure",
+      "objectif-partielle"
+    ]
+  },
+  "pass6-minor-five-four-major-order": {
+    "id": "SEF-N029-2",
+    "choice": "1♥",
+    "concept": "mineur.base",
+    "family": "cas-085",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse avec deux majeures de longueurs différentes, compare la priorité de la majeure cinquième à l’ordre des majeures quatrièmes.",
+    "criteria": [
+      "ordre-majeures",
+      "longueur-majeures"
+    ]
+  },
+  "pass6-minor-limited-sa-not-stronger": {
+    "id": "SEF-N033-1",
+    "choice": "2SA",
+    "concept": "mineur.base",
+    "family": "cas-089",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à une mineure sans majeure quatrième, compare les zones de force et les longueurs nécessaires pour une réponse limitée, un changement de couleur au palier de deux ou une invitation à Sans-Atout.",
+    "criteria": [
+      "force-reponse",
+      "zone-reponse-sa",
+      "seuil-deux-sur-un"
+    ]
+  },
   "pass5-minor-insufficient-two-over-one": {
     "id": "SEF-N041-1",
     "choice": "2♣",
@@ -613,6 +687,19 @@
     "criteria": [
       "force-reponse",
       "seuil-deux-sur-un"
+    ]
+  },
+  "pass6-major-simple-versus-fitted-nt": {
+    "id": "SEF-N048-3",
+    "choice": "2SA",
+    "concept": "majeur.soutien",
+    "family": "cas-104",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse avec trois atouts, calcule les HLD puis distingue le soutien simple de l’enchère conventionnelle à 2SA.",
+    "criteria": [
+      "fit-majeur",
+      "2sa-fitte",
+      "zone-soutien"
     ]
   },
   "pass2-fit-2sa-zone": {
@@ -649,6 +736,19 @@
     "criteria": [
       "priorite-majeure",
       "forcing-un-tour"
+    ]
+  },
+  "pass6-major-limited-response-not-pass": {
+    "id": "SEF-N061-2",
+    "choice": "Passe",
+    "concept": "majeur.base",
+    "family": "cas-117",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse sans fit majeur, vérifie d’abord si tu dois répondre, puis si ta force permet le deux-sur-un naturel ou seulement 1SA.",
+    "criteria": [
+      "force-reponse",
+      "seuil-deux-sur-un",
+      "zone-reponse-sa"
     ]
   },
   "pass5-major-two-over-one-insufficient": {
@@ -712,6 +812,18 @@
       "fit-majeur"
     ]
   },
+  "pass6-major-five-hearts-before-minor": {
+    "id": "SEF-N075-2",
+    "choice": "2♦",
+    "concept": "majeur.base",
+    "family": "cas-131",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à 1♠ avec les valeurs du deux-sur-un, compare les longueurs et la priorité de la majeure cinquième avant d’annoncer une mineure.",
+    "criteria": [
+      "longueur-couleur",
+      "priorite-majeure"
+    ]
+  },
   "pass5-major-two-hearts-length": {
     "id": "SEF-N076-2",
     "choice": "2♥",
@@ -722,6 +834,18 @@
     "criteria": [
       "longueur-couleur",
       "seuil-deux-sur-un"
+    ]
+  },
+  "pass6-major-pass-without-fit": {
+    "id": "SEF-N081-3",
+    "choice": "2♠",
+    "concept": "majeur.base",
+    "family": "cas-137",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse très faible, vérifie séparément le nombre d’atouts promis et détenus et la force qui permettrait de parler.",
+    "criteria": [
+      "fit-majeur",
+      "force-reponse"
     ]
   },
   "transfer-fit-count": {
@@ -748,6 +872,42 @@
       "zone-soutien-ouvreur"
     ]
   },
+  "pass6-opener-fit-not-invent-major": {
+    "id": "SEF-N106-1",
+    "choice": "1♠",
+    "concept": "red.base",
+    "family": "cas-158",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande, compte les atouts du répondant et ceux de la majeure non annoncée ; ne masque pas un fit établi par une couleur non détenue.",
+    "criteria": [
+      "fit-ouvreur",
+      "longueur-majeure"
+    ]
+  },
+  "pass6-opener-six-card-repeat": {
+    "id": "SEF-N123-2",
+    "choice": "2♥",
+    "concept": "red.base",
+    "family": "cas-175",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande minimale, vérifie si la couleur ouverte est réellement sixième et si une seconde couleur ou un fit peut être décrit avant de répéter naturellement.",
+    "criteria": [
+      "longueur-redemande",
+      "zone-force"
+    ]
+  },
+  "pass6-opener-economic-minor-second-suit": {
+    "id": "SEF-N128-2",
+    "choice": "2SA",
+    "concept": "red.bicolore",
+    "family": "cas-180",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande après 1SA, vérifie les deux longueurs et si le partenaire peut revenir à la première couleur au même palier ; distingue le bicolore économique du saut.",
+    "criteria": [
+      "bicolore-economique",
+      "zone-force"
+    ]
+  },
   "pass2-roudi-constructive-repeat": {
     "id": "SEF-N137-1",
     "choice": "2♥",
@@ -758,6 +918,19 @@
     "criteria": [
       "roudi-objectif",
       "caractere-forcing"
+    ]
+  },
+  "pass6-second-invite-without-five-card-major": {
+    "id": "SEF-N143-2",
+    "choice": "2♥",
+    "concept": "second.base",
+    "family": "cas-195",
+    "feedback": null,
+    "checkNext": "Sur une autre main invitante après 1SA, compare la recherche d’un fit 5–3 à l’invitation naturelle lorsque tu n’as qu’une majeure quatrième.",
+    "criteria": [
+      "longueur-majeure",
+      "objectif-invitation",
+      "roudi-objectif"
     ]
   },
   "pass5-second-game-no-fit": {
@@ -783,6 +956,18 @@
     "criteria": [
       "stayman-reponse-negative",
       "objectif-contrat"
+    ]
+  },
+  "pass6-stayman-negative-game-not-invite": {
+    "id": "SEF-V3-008-2",
+    "choice": "2SA",
+    "concept": "sa1.stayman.suite",
+    "family": "cas-208",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse négative au Stayman, additionne les valeurs minimales du camp pour distinguer une invitation de la conclusion à la manche.",
+    "criteria": [
+      "stayman-reponse-negative",
+      "objectif-manche"
     ]
   },
   "stayman-response-count": {
@@ -885,6 +1070,19 @@
       "arret-adverse"
     ]
   },
+  "pass6-direct-nt-not-short-suit": {
+    "id": "SEF-V3-044-1",
+    "choice": "2♣",
+    "concept": "intervenir.base",
+    "family": "cas-244",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention régulière avec arrêt et les valeurs de 1SA direct, compare cette description à une couleur qui ne possède pas la longueur nécessaire.",
+    "criteria": [
+      "zone-intervention-sa",
+      "longueur-couleur",
+      "arret-adverse"
+    ]
+  },
   "transfer-force-pass": {
     "id": "SEF-V3-045-2",
     "choice": "Passe",
@@ -933,6 +1131,31 @@
       "distribution-intervention"
     ]
   },
+  "pass6-direct-insufficient-no-five-card-suit": {
+    "id": "SEF-V3-051-1",
+    "choice": "Contre",
+    "concept": "intervenir.base",
+    "family": "cas-251",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention directe sans couleur cinquième, vérifie séparément la force et la distribution requises pour intervenir, contrer ou annoncer 1SA.",
+    "criteria": [
+      "force-intervention",
+      "distribution-intervention"
+    ]
+  },
+  "pass6-direct-low-values-two-level": {
+    "id": "SEF-V3-055-1",
+    "choice": "2♣",
+    "concept": "intervenir.base",
+    "family": "cas-255",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention au palier de deux, vérifie si les valeurs et la qualité de la couleur compensent le risque de parler à ce palier.",
+    "criteria": [
+      "force-intervention",
+      "qualite-couleur",
+      "palier-disponible"
+    ]
+  },
   "pass2-double-weak-response": {
     "id": "SEF-V3-057-1",
     "choice": "1SA",
@@ -968,6 +1191,19 @@
     "criteria": [
       "reponse-contre",
       "transformation-punitive"
+    ]
+  },
+  "pass6-double-weak-major-not-nt": {
+    "id": "SEF-V3-061-2",
+    "choice": "1SA",
+    "concept": "contre.base",
+    "family": "cas-261",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Contre d’appel avec peu de jeu, distingue la réponse naturelle à la couleur au palier économique de la réponse à Sans-Atout, qui décrit une zone et une tenue.",
+    "criteria": [
+      "reponse-contre",
+      "zone-reponse-sa",
+      "longueur-majeure"
     ]
   },
   "pass5-double-jump-medium": {
@@ -1044,6 +1280,19 @@
       "contre-spoutnik"
     ]
   },
+  "pass6-competitive-no-spoutnik-values": {
+    "id": "SEF-V3-086-2",
+    "choice": "Contre",
+    "concept": "apres_inter.base",
+    "family": "cas-286",
+    "feedback": null,
+    "checkNext": "Sur une autre main très faible après intervention adverse, vérifie les valeurs nécessaires au Contre Spoutnik même si une couleur quatrième est disponible.",
+    "criteria": [
+      "contre-spoutnik",
+      "force-reponse",
+      "fit"
+    ]
+  },
   "pass5-weak-two-opening-choice": {
     "id": "SEF-V3-091-1",
     "choice": "Passe",
@@ -1104,6 +1353,32 @@
       "fit-barrage",
       "vulnerabilite",
       "objectif-barrage"
+    ]
+  },
+  "pass6-weak-two-raise-objective": {
+    "id": "SEF-V3-104-4",
+    "choice": "2SA",
+    "concept": "barrage.reponse",
+    "family": "cas-304",
+    "feedback": null,
+    "checkNext": "Sur une autre main fittée face au deux faible, distingue les enchères destinées à gêner les adversaires de celles qui demandent des précisions pour réaliser une manche.",
+    "criteria": [
+      "fit-barrage",
+      "objectif-barrage",
+      "relais-constructif"
+    ]
+  },
+  "pass6-weak-two-strong-fit-game": {
+    "id": "SEF-V3-108-1",
+    "choice": "3♦",
+    "concept": "barrage.reponse",
+    "family": "cas-308",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse forte à un barrage, compte les atouts et les honneurs utiles puis distingue la manche envisagée pour la réaliser d’une simple prolongation de barrage.",
+    "criteria": [
+      "fit-barrage",
+      "objectif-manche",
+      "force"
     ]
   },
   "pass2-fit-trial-ambition": {
@@ -1192,6 +1467,19 @@
       "contre-fort"
     ]
   },
+  "pass6-balancing-constructive-jump": {
+    "id": "SEF-V4-054-2",
+    "choice": "1SA",
+    "concept": "reveil.base",
+    "family": "cas-364",
+    "feedback": null,
+    "checkNext": "Sur une autre main en réveil avec une belle sixième, situe les HL et distingue le saut constructif du réveil économique ou du Sans-Atout régulier.",
+    "criteria": [
+      "zone-reveil-naturel",
+      "longueur-couleur",
+      "palier-disponible"
+    ]
+  },
   "pass5-balancing-sa-zone": {
     "id": "SEF-V4-057-2",
     "choice": "Contre",
@@ -1217,6 +1505,19 @@
       "distribution-contre"
     ]
   },
+  "pass6-balancing-tricolor-lower-threshold": {
+    "id": "SEF-V4-062-4",
+    "choice": "Passe",
+    "concept": "reveil.base",
+    "family": "cas-372",
+    "feedback": null,
+    "checkNext": "Sur une autre main tricolore en réveil, vérifie la courte adverse et le seuil du Contre de réveil, distinct de celui du Contre direct.",
+    "criteria": [
+      "position-reveil",
+      "distribution-contre",
+      "zone-force"
+    ]
+  },
   "pass5-balancing-pass-weak": {
     "id": "SEF-V4-065-1",
     "choice": "1SA",
@@ -1224,6 +1525,18 @@
     "family": "cas-375",
     "feedback": null,
     "checkNext": "Sur une autre main en réveil, distingue la possibilité d’agir plus légèrement de l’obligation d’agir : vérifie encore force et distribution.",
+    "criteria": [
+      "position-reveil",
+      "force-reveil"
+    ]
+  },
+  "pass6-balancing-no-force-no-suit": {
+    "id": "SEF-V4-066-1",
+    "choice": "1SA",
+    "concept": "reveil.base",
+    "family": "cas-376",
+    "feedback": null,
+    "checkNext": "Sur une autre main en quatrième position, cherche les ressources réelles de force et de distribution avant de décider si un réveil est raisonnable.",
     "criteria": [
       "position-reveil",
       "force-reveil"
@@ -1325,6 +1638,32 @@
     "criteria": [
       "description-intervention",
       "contre-vs-couleur"
+    ]
+  },
+  "pass6-double-best-minor-no-major": {
+    "id": "SEF-V44-036",
+    "choice": "1SA",
+    "concept": "contre.base",
+    "family": "v44-cas-036",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse faible au Contre d’appel, cherche la meilleure couleur disponible ; ne choisis pas Sans-Atout ou une majeure qui ne décrit pas la longueur détenue.",
+    "criteria": [
+      "reponse-contre",
+      "longueur-couleur",
+      "palier-disponible"
+    ]
+  },
+  "pass6-overcall-strong-fit-cue-bid": {
+    "id": "SEF-V44-055",
+    "choice": "Passe",
+    "concept": "reponse_inter.base",
+    "family": "v44-cas-055",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à l’intervention du partenaire, vérifie la force au fit et distingue le cue-bid forcing de la couleur adverse du soutien limité.",
+    "criteria": [
+      "cue-bid",
+      "fit-competitif",
+      "objectif-manche"
     ]
   },
   "transfer-michaels": {
@@ -1523,6 +1862,18 @@
       "objectif-partielle"
     ]
   },
+  "pass6-second-accept-not-raise-minor": {
+    "id": "SEF-V49-026",
+    "choice": "3♣",
+    "concept": "second.base",
+    "family": "v49-026",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande non forcing dans la mineure de l’ouvreur, vérifie si la partielle est déjà satisfaisante et si une montée de palier est justifiée par ta force.",
+    "criteria": [
+      "objectif-partielle",
+      "zone-force"
+    ]
+  },
   "transfer-force-hld": {
     "id": "SEF-V49-032",
     "choice": "2♣",
@@ -1586,6 +1937,32 @@
       "contexte-competitif"
     ]
   },
+  "pass6-second-fit-minimum-stop": {
+    "id": "SEF-V411-021",
+    "choice": "2SA",
+    "concept": "second.base",
+    "family": "v411-021",
+    "feedback": null,
+    "checkNext": "Sur une autre main après soutien de l’ouvreur, réévalue ta force au fit et distingue l’arrêt dans la partielle de l’invitation à la manche.",
+    "criteria": [
+      "fit-majeur",
+      "objectif-partielle",
+      "zone-force"
+    ]
+  },
+  "pass6-stayman-both-majors-game-transfer": {
+    "id": "SEF-V416-008",
+    "choice": "3♥",
+    "concept": "sa1.stayman.suite",
+    "family": "v416-cas-008",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse montrant les deux majeures, distingue le transfert qui fait jouer la manche par la main forte de l’enchère naturelle ou d’une exploration de chelem.",
+    "criteria": [
+      "stayman-deux-majeures",
+      "transfert-manche",
+      "main-declarant"
+    ]
+  },
   "pass5-competitive-minimum-support-level": {
     "id": "SEF-V419-007",
     "choice": "2SA",
@@ -1596,6 +1973,19 @@
     "criteria": [
       "palier-disponible",
       "fit-competitif"
+    ]
+  },
+  "pass6-competitive-natural-major-after-double": {
+    "id": "SEF-V470-003",
+    "choice": "Passe",
+    "concept": "apres_inter.base",
+    "family": "v470-003",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse à 1♥ après Contre adverse, vérifie si la majeure quatrième peut être annoncée naturellement au palier de un et si la main a les valeurs pour répondre.",
+    "criteria": [
+      "majeure-reponse",
+      "force-reponse",
+      "contexte-competitif"
     ]
   },
   "pass5-competitive-rebid-free-pass": {
@@ -1609,6 +1999,45 @@
       "redemande-libre",
       "arret-adverse",
       "fit-ouvreur"
+    ]
+  },
+  "pass6-competitive-free-nt-range-stop": {
+    "id": "SEF-V471-002",
+    "choice": "2♦",
+    "concept": "red.competitif",
+    "family": "v471-redemande-libre",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande libre après intervention du quatrième joueur, contrôle la force, la régularité et la tenue adverse avant de choisir 1SA plutôt qu’un saut ou une répétition de couleur.",
+    "criteria": [
+      "redemande-libre",
+      "zone-redemande-sa",
+      "arret-adverse"
+    ]
+  },
+  "pass6-competitive-free-repeat-no-fit": {
+    "id": "SEF-V471-004",
+    "choice": "2♥",
+    "concept": "red.competitif",
+    "family": "v471-redemande-libre",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande libre, compare la couleur ouverte réellement sixième et le nombre d’atouts dans la majeure du répondant avant de soutenir.",
+    "criteria": [
+      "redemande-libre",
+      "longueur-redemande",
+      "fit-ouvreur"
+    ]
+  },
+  "pass6-competitive-free-strong-nt": {
+    "id": "SEF-V471-005",
+    "choice": "Passe",
+    "concept": "red.competitif",
+    "family": "v471-redemande-libre",
+    "feedback": null,
+    "checkNext": "Sur une autre redemande libre avec une main régulière forte, vérifie la zone de 2SA et la qualité de la tenue adverse avant de renoncer à décrire cette force.",
+    "criteria": [
+      "redemande-libre",
+      "zone-redemande-sa",
+      "arret-adverse"
     ]
   },
   "pass5-competitive-rebid-obligatory-sa": {
@@ -1673,6 +2102,32 @@
       "fit-competitif"
     ]
   },
+  "pass6-competitive-four-card-invitational-jump": {
+    "id": "SEF-V473-006",
+    "choice": "2SA",
+    "concept": "apres_inter.base",
+    "family": "v473-soutien3-majeure",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse après intervention, vérifie que le soutien simple reste disponible, puis distingue le saut constructif quatrième du 2SA fitté troisième.",
+    "criteria": [
+      "fit-competitif",
+      "zone-soutien",
+      "palier-disponible"
+    ]
+  },
+  "pass6-competitive-five-card-barrage": {
+    "id": "SEF-V473-008",
+    "choice": "3♥",
+    "concept": "apres_inter.base",
+    "family": "v473-manche-barrage",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse avec dix atouts garantis à vulnérabilité favorable, distingue la force constructive des enchères de fit et l’objectif de barrage.",
+    "criteria": [
+      "barrage-competitif",
+      "fit",
+      "vulnerabilite"
+    ]
+  },
   "pass5-michaels-defense-cuebid-order": {
     "id": "SEF-V473-009",
     "choice": "3♦",
@@ -1684,6 +2139,32 @@
       "michaels-couleurs-adverses",
       "ordre-cue-bids",
       "fit-competitif"
+    ]
+  },
+  "pass6-blackwood-spade-queen-ask": {
+    "id": "SEF-V474-001",
+    "choice": "6♠",
+    "concept": "chelem.blackwood.suite",
+    "family": "v474-question-pique-5d",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse ambiguë au Blackwood, élimine d’abord le nombre de clés impossible, puis vérifie si la Dame d’atout reste inconnue et quelle enchère permet de la demander sans dépasser l’arrêt.",
+    "criteria": [
+      "blackwood-cles",
+      "blackwood-dame",
+      "palier-arret"
+    ]
+  },
+  "pass6-blackwood-heart-queen-ask-too-high": {
+    "id": "SEF-V474-002",
+    "choice": "5♠",
+    "concept": "chelem.blackwood.suite",
+    "family": "v474-arret-coeur-5d",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Blackwood avec une clé manquante, vérifie si la question à la Dame permet encore de s’arrêter à cinq dans l’atout agréé.",
+    "criteria": [
+      "blackwood-dame",
+      "palier-arret",
+      "blackwood-cles"
     ]
   },
   "pass4-blackwood-missing-key-stop": {
@@ -1810,6 +2291,44 @@
       "cue-bid"
     ]
   },
+  "pass6-rubensohl-no-invented-major": {
+    "id": "SEF-V481-004",
+    "choice": "3♠",
+    "concept": "rubensohl.reponse",
+    "family": "v481-004-hst",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Texas impossible, compte la majeure recherchée plutôt que celle de l’adversaire et distingue la réponse avec arrêt de celle qui signale son absence.",
+    "criteria": [
+      "rubensohl-stayman",
+      "majeure-quatrieme",
+      "arret-adverse"
+    ]
+  },
+  "pass6-rubensohl-diamond-interference-major": {
+    "id": "SEF-V481-007",
+    "choice": "3♦",
+    "concept": "rubensohl.reponse",
+    "family": "v481-007-dst",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Texas impossible après intervention à 2♦, vérifie les majeures quatrièmes avant de préciser la tenue dans la couleur adverse.",
+    "criteria": [
+      "rubensohl-stayman",
+      "majeure-quatrieme",
+      "arret-adverse"
+    ]
+  },
+  "pass6-rubensohl-diamond-no-major-stop": {
+    "id": "SEF-V481-010",
+    "choice": "3♦",
+    "concept": "rubensohl.reponse",
+    "family": "v481-010-dst",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Texas impossible sur 2♦, vérifie qu’aucune majeure quatrième n’est disponible avant de choisir Sans-Atout avec arrêt.",
+    "criteria": [
+      "rubensohl-stayman",
+      "arret-adverse"
+    ]
+  },
   "pass5-minor-texas-weak-stop": {
     "id": "SEF-V482-003",
     "choice": "3♦",
@@ -1849,6 +2368,18 @@
       "blackwood-declenchement"
     ]
   },
+  "pass6-slam-economical-control-not-jump": {
+    "id": "SEF-V483-003",
+    "choice": "4♠",
+    "concept": "chelem.controles",
+    "family": "v483-controles-4t-003",
+    "feedback": null,
+    "checkNext": "Sur une autre main fittée, identifie les contrôles d’honneur et de courte puis vérifie quelle information peut encore être donnée économiquement avant de conclure ou d’interroger.",
+    "criteria": [
+      "controle-couleur",
+      "ordre-controles"
+    ]
+  },
   "pass5-slam-do-not-invent-control": {
     "id": "SEF-V483-005",
     "choice": "4♦",
@@ -1856,6 +2387,18 @@
     "family": "v483-controles-4t-005",
     "feedback": null,
     "checkNext": "Sur une autre recherche de chelem, vérifie si la couleur sautée est réellement contrôlée et ce que son omission communique au partenaire.",
+    "criteria": [
+      "controle-couleur",
+      "ordre-controles"
+    ]
+  },
+  "pass6-slam-jack-not-control": {
+    "id": "SEF-V483-006",
+    "choice": "4♦",
+    "concept": "chelem.controles",
+    "family": "v483-controles-4t-006",
+    "feedback": null,
+    "checkNext": "Sur une autre recherche de chelem, distingue un honneur qui ne contrôle pas les deux premiers tours d’une vraie courte ou d’un As/Roi de contrôle.",
     "criteria": [
       "controle-couleur",
       "ordre-controles"
@@ -1885,6 +2428,32 @@
       "drury-code"
     ]
   },
+  "pass6-mixed-raise-third-player-new-suit": {
+    "id": "SEF-V486-011",
+    "choice": "3♦",
+    "concept": "reponse_inter.base",
+    "family": "v486-c-001",
+    "feedback": null,
+    "checkNext": "Sur une autre séquence après intervention du partenaire, vérifie si le troisième joueur a parlé, puis distingue le mixed raise quatrième du cue-bid plus fort.",
+    "criteria": [
+      "mixed-raise",
+      "contexte-competitif",
+      "zone-soutien"
+    ]
+  },
+  "pass6-overcall-raise-preemptive": {
+    "id": "SEF-V486-013",
+    "choice": "2SA",
+    "concept": "reponse_inter.base",
+    "family": "v486-c-003",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse après une nouvelle couleur adverse, compte les atouts garantis et vérifie si ta force est celle d’un barrage ou d’un mixed raise.",
+    "criteria": [
+      "mixed-raise",
+      "barrage-competitif",
+      "fit"
+    ]
+  },
   "pass5-rubensohl-artificial-double-stayman": {
     "id": "SEF-V486-017",
     "choice": "2♦",
@@ -1895,6 +2464,32 @@
     "criteria": [
       "rubensohl-contexte",
       "stayman-texas"
+    ]
+  },
+  "pass6-rubensohl-after-landy-natural-diamonds": {
+    "id": "SEF-V486-019",
+    "choice": "Passe",
+    "concept": "rubensohl.naturel",
+    "family": "v486-d-004",
+    "feedback": null,
+    "checkNext": "Sur une autre intervention par Landy sur 1SA, repère les couleurs adverses et vérifie si la mineure longue peut encore être annoncée naturellement pour jouer une partielle.",
+    "criteria": [
+      "landy-adverse",
+      "rubensohl-palier",
+      "objectif-partielle"
+    ]
+  },
+  "pass6-rubensohl-landy-check-both-stops": {
+    "id": "SEF-V486-020",
+    "choice": "3SA",
+    "concept": "rubensohl.naturel",
+    "family": "v486-d-005",
+    "feedback": null,
+    "checkNext": "Sur une autre main avec espoir de manche face à une intervention montrant deux couleurs, distingue l’arrêt déjà détenu de celui que le partenaire doit encore vérifier avant 3SA.",
+    "criteria": [
+      "arret-adverse",
+      "cue-bid",
+      "landy-adverse"
     ]
   },
   "pass5-rubensohl-blocked-heart-transfer": {
@@ -1910,6 +2505,19 @@
       "objectif-partielle"
     ]
   },
+  "pass6-blackwood-five-keys-not-grand-proof": {
+    "id": "SEF-L02-E-19",
+    "choice": "7♥",
+    "concept": "chelem.blackwood.suite",
+    "family": "l02e-6heart-fivekeys-Q",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse réunissant les cinq clés et la Dame d’atout, distingue la sécurité des clés de la preuve des treize levées nécessaire pour explorer un grand chelem.",
+    "criteria": [
+      "blackwood-cles",
+      "objectif-chelem",
+      "levées"
+    ]
+  },
   "pass5-multilandy-positive-relay-grid": {
     "id": "SEF-L14-002",
     "choice": "3♣",
@@ -1921,6 +2529,45 @@
       "multilandy-code",
       "zone-mini-maxi",
       "mineure"
+    ]
+  },
+  "pass6-passed-hand-fit-jump": {
+    "id": "SEF-L18-004",
+    "choice": "2♣",
+    "concept": "mineur.base",
+    "family": "LOT18-2026-11-13-004",
+    "feedback": null,
+    "checkNext": "Sur une autre main passée d’entrée, distingue le soutien simple de l’enchère de rencontre qui décrit une longue et le soutien simultanément.",
+    "criteria": [
+      "rencontre",
+      "main-passee",
+      "fit-mineur"
+    ]
+  },
+  "pass6-stayman-both-majors-invite-code": {
+    "id": "SEF-L18-006",
+    "choice": "3♦",
+    "concept": "sa1.stayman.suite",
+    "family": "LOT18-2026-11-13-006",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse 2SA au Stayman montrant les deux majeures, vérifie le fit recherché et le code du relais invitant par opposition au transfert de manche.",
+    "criteria": [
+      "stayman-deux-majeures",
+      "objectif-invitation",
+      "code-relais"
+    ]
+  },
+  "pass6-three-level-preempt-control": {
+    "id": "SEF-L31-004",
+    "choice": "4♥",
+    "concept": "barrage.reponse",
+    "family": "LOT31-2026-11-14-004",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse forte à une ouverture de barrage au palier de trois, distingue le contrôle de chelem agréant le fit de la simple conclusion à la manche.",
+    "criteria": [
+      "controle-couleur",
+      "fit-barrage",
+      "objectif-chelem"
     ]
   },
   "transfer-stayman-response": {
@@ -1946,6 +2593,19 @@
       "zone-intervention-sa",
       "regularite",
       "arret-adverse"
+    ]
+  },
+  "pass6-double-two-major-cue-bid": {
+    "id": "V2-M4-023",
+    "choice": "2♥",
+    "concept": "contre.base",
+    "family": "reserve-v2-m4-12",
+    "feedback": null,
+    "checkNext": "Sur une autre réponse au Contre d’appel avec deux majeures quatrièmes, vérifie le rôle précis du cue-bid dans cette séquence pour laisser le contreur choisir le fit.",
+    "criteria": [
+      "cue-bid",
+      "recherche-fit",
+      "contexte-competitif"
     ]
   },
   "stayman-texas-length": {
