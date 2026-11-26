@@ -1,0 +1,1528 @@
+{
+  "base": "2d336054bc91fbd6ac762c093ecb5ec6da9f97e8",
+  "units": [
+    {
+      "session": 1,
+      "title": "Ouvrir ou passer",
+      "primary": [
+        "ouv.passe",
+        "ouv.mineure",
+        "ouv.majeure",
+        "ouv.sa1"
+      ],
+      "secondary": [],
+      "window": [
+        1,
+        2
+      ],
+      "target": 10,
+      "disposition": "protection-intacte",
+      "objectiveCountBefore": 180,
+      "objectiveCountAfter": 180,
+      "decision": "Conserver intégralement les 10 ouvertures, 3 Passe et 2+2 meilleures mineures ; les corrections antérieures suffisent.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 2,
+      "title": "Répondre naturellement et reconnaître le premier fit",
+      "primary": [
+        "mineur.base",
+        "majeur.base",
+        "majeur.soutien"
+      ],
+      "secondary": [
+        "ouv.passe",
+        "ouv.mineure"
+      ],
+      "window": [
+        2,
+        3
+      ],
+      "target": 7,
+      "disposition": "protection-intacte",
+      "objectiveCountBefore": 126,
+      "objectiveCountAfter": 126,
+      "decision": "Conserver les protections de meilleure mineure 3–3/4–4, les réponses naturelles et le fit 5–3.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 3,
+      "title": "Reconnaître le fit majeur et le distinguer de son absence",
+      "primary": [
+        "majeur.soutien",
+        "majeur.base"
+      ],
+      "secondary": [
+        "mineur.base",
+        "ouv.sa2",
+        "ouv.mineure",
+        "ouv.passe"
+      ],
+      "window": [
+        3,
+        5
+      ],
+      "target": 4,
+      "disposition": "candidat-mesure-S5",
+      "objectiveCountBefore": 53,
+      "objectiveCountAfter": 61,
+      "decision": "25 soutiens majeurs sur 180 au départ, 34 avec candidat ; objectifs majeurs 53→61. Une première découverte de 2SA reste prioritaire si disponible. Ne pas supprimer un rappel.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 4,
+      "title": "Évaluer les chances de manche sur 1SA",
+      "primary": [
+        "sa1.seuil"
+      ],
+      "secondary": [
+        "majeur.soutien",
+        "mineur.base",
+        "ouv.sa1"
+      ],
+      "window": [
+        4,
+        6
+      ],
+      "target": 4,
+      "disposition": "candidat-mesure-S5",
+      "objectiveCountBefore": 58,
+      "objectiveCountAfter": 66,
+      "decision": "58→66 questions seuils SA. Favoriser un contraste entre Passe, 2SA et 3SA, avant autre variante. Les rappels d’ouverture restent permis.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 5,
+      "title": "Comprendre la redemande naturelle de l’ouvreur",
+      "primary": [
+        "red.base"
+      ],
+      "secondary": [
+        "sa1.seuil",
+        "majeur.base",
+        "mineur.base",
+        "sa1.stayman",
+        "sa1.texas"
+      ],
+      "window": [
+        5,
+        8
+      ],
+      "target": 4,
+      "disposition": "candidat-mesure-S5",
+      "objectiveCountBefore": 63,
+      "objectiveCountAfter": 66,
+      "decision": "63→66 redemandes naturelles ; Stayman/Texas 38→35. Leur fenêtre reste ouverte. Aucune exclusion de convention éligible.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 6,
+      "title": "Décrire une deuxième couleur ou une main régulière",
+      "primary": [
+        "red.base",
+        "red.bicolore"
+      ],
+      "secondary": [
+        "mineur.base",
+        "majeur.base",
+        "sa1.seuil"
+      ],
+      "window": [
+        6,
+        9
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 59,
+      "objectiveCountAfter": 60,
+      "decision": "Lien redemande simple/bicolore ; comparer la continuité S5→S6.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 7,
+      "title": "Choisir le contrat après une redemande simple",
+      "primary": [
+        "second.base"
+      ],
+      "secondary": [
+        "red.base",
+        "sa2.seuil",
+        "majeur.soutien"
+      ],
+      "window": [
+        7,
+        10
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 48,
+      "objectiveCountAfter": 53,
+      "decision": "Second tour naturel après redemande ; respecter la première exposition à 2SA.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 8,
+      "title": "Rechercher une majeure sur 1SA",
+      "primary": [
+        "sa1.stayman",
+        "sa1.stayman.reponse",
+        "sa1.texas"
+      ],
+      "secondary": [
+        "sa1.seuil",
+        "red.base"
+      ],
+      "window": [
+        8,
+        11
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 77,
+      "objectiveCountAfter": 67,
+      "decision": "Recherche de majeure sur 1SA ; distinguer la découverte de la réponse à Stayman.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 9,
+      "title": "Réévaluer la main après un fit majeur",
+      "primary": [
+        "apres_fit.base",
+        "majeur.soutien"
+      ],
+      "secondary": [
+        "fit.2sa",
+        "sa1.seuil",
+        "second.base"
+      ],
+      "window": [
+        9,
+        12
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 55,
+      "objectiveCountAfter": 54,
+      "decision": "Réinvestir le fit avant essai ; pas de déblocage de 2SA fitté.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 10,
+      "title": "Poursuivre les enchères naturelles et les recherches de fit",
+      "primary": [
+        "sa1.stayman.suite",
+        "sa1.texas.suite"
+      ],
+      "secondary": [
+        "sa1.stayman",
+        "sa1.texas",
+        "second.base"
+      ],
+      "window": [
+        10,
+        14
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 21,
+      "objectiveCountAfter": 16,
+      "decision": "Développements SA seulement si éligibles ; conserver les fondamentaux.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 11,
+      "title": "Intervenir naturellement",
+      "primary": [
+        "intervenir.base"
+      ],
+      "secondary": [
+        "ouv.majeure",
+        "ouv.mineure",
+        "red.base"
+      ],
+      "window": [
+        11,
+        15
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 53,
+      "objectiveCountAfter": 49,
+      "decision": "Intervention naturelle à sa première fenêtre.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 12,
+      "title": "Choisir entre intervention et abstention",
+      "primary": [
+        "intervenir.base"
+      ],
+      "secondary": [
+        "ouv.passe",
+        "reponse_inter.base",
+        "apres_fit.base"
+      ],
+      "window": [
+        12,
+        16
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 12,
+      "objectiveCountAfter": 16,
+      "decision": "Distinguer intervention et abstention ; ne pas promettre la couverture d’une réponse encore verrouillée.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 13,
+      "title": "Comprendre le contre et la réponse naturelle",
+      "primary": [
+        "contre.base"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "majeur.base"
+      ],
+      "window": [
+        13,
+        17
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 57,
+      "objectiveCountAfter": 51,
+      "decision": "Contre naturel en contexte compétitif.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 14,
+      "title": "Répondre à une intervention du partenaire",
+      "primary": [
+        "reponse_inter.base"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "majeur.soutien"
+      ],
+      "window": [
+        14,
+        18
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 52,
+      "objectiveCountAfter": 49,
+      "decision": "Changement de rôle : partenaire de l’intervenant.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 15,
+      "title": "Adapter la réponse à une intervention adverse",
+      "primary": [
+        "apres_inter.base"
+      ],
+      "secondary": [
+        "mineur.base",
+        "majeur.base",
+        "contre.base"
+      ],
+      "window": [
+        15,
+        19
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 59,
+      "objectiveCountAfter": 53,
+      "decision": "Changement de rôle : adversaire intervenant ; réponse naturelle comme référence.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 16,
+      "title": "Choisir un soutien compétitif",
+      "primary": [
+        "competitif.2sa_fitte",
+        "apres_inter.base"
+      ],
+      "secondary": [
+        "majeur.soutien",
+        "fit.2sa"
+      ],
+      "window": [
+        16,
+        20
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 25,
+      "objectiveCountAfter": 31,
+      "decision": "Soutien compétitif et rappel du fit.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 17,
+      "title": "Distinguer soutiens naturels et compétitifs",
+      "primary": [
+        "competitif.truscott",
+        "contre.base"
+      ],
+      "secondary": [
+        "apres_inter.base",
+        "majeur.soutien"
+      ],
+      "window": [
+        17,
+        21
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 43,
+      "objectiveCountAfter": 55,
+      "decision": "Truscott et contre selon les prérequis réels.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 18,
+      "title": "Comprendre les ouvertures de barrage",
+      "primary": [
+        "barrage.ouverture"
+      ],
+      "secondary": [
+        "ouv.passe",
+        "ouv.majeure",
+        "intervenir.base"
+      ],
+      "window": [
+        18,
+        22
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 56,
+      "objectiveCountAfter": 48,
+      "decision": "Premières décisions de barrage ; ne pas confondre Passe et ouverture faible.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 19,
+      "title": "Répondre aux barrages et intervenir sur deux faible",
+      "primary": [
+        "barrage.reponse",
+        "intervenir.deux_faible"
+      ],
+      "secondary": [
+        "barrage.ouverture",
+        "contre.base"
+      ],
+      "window": [
+        19,
+        23
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 53,
+      "objectiveCountAfter": 49,
+      "decision": "Réponse au barrage ; distinguer la position d’intervenant.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 20,
+      "title": "Décider en réveil",
+      "primary": [
+        "reveil.base"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "ouv.passe",
+        "contre.base"
+      ],
+      "window": [
+        20,
+        24
+      ],
+      "target": 3,
+      "disposition": "candidat-mesure-S20",
+      "objectiveCountBefore": 60,
+      "objectiveCountAfter": 58,
+      "decision": "Réveil ; relier à l’intervention, conserver le rappel explicite.",
+      "evidence": "18 trajectoires appariées, catalogue réel",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 21,
+      "title": "Réinvestir les enchères naturelles en compétition",
+      "primary": [
+        "apres_inter.base",
+        "reponse_inter.base"
+      ],
+      "secondary": [
+        "mineur.base",
+        "majeur.base",
+        "majeur.soutien"
+      ],
+      "window": [
+        21,
+        25
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 22,
+      "title": "Comparer intervention directe et réveil",
+      "primary": [
+        "reveil.base",
+        "intervenir.base"
+      ],
+      "secondary": [
+        "contre.base",
+        "barrage.ouverture"
+      ],
+      "window": [
+        22,
+        26
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 23,
+      "title": "Comprendre quand rechercher un fit 5–3 avec Roudi",
+      "primary": [
+        "roudi.init",
+        "roudi.choix"
+      ],
+      "secondary": [
+        "red.base",
+        "second.base",
+        "majeur.soutien"
+      ],
+      "window": [
+        23,
+        27
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 24,
+      "title": "Choisir entre Roudi et une suite naturelle",
+      "primary": [
+        "roudi.choix",
+        "roudi.init"
+      ],
+      "secondary": [
+        "second.base",
+        "red.base"
+      ],
+      "window": [
+        23,
+        28
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 25,
+      "title": "Reconnaître le contexte du Drury",
+      "primary": [
+        "drury.init",
+        "drury.choix"
+      ],
+      "secondary": [
+        "ouv.position",
+        "majeur.soutien"
+      ],
+      "window": [
+        25,
+        29
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 26,
+      "title": "Répondre au Roudi",
+      "primary": [
+        "roudi.reponse",
+        "roudi.choix"
+      ],
+      "secondary": [
+        "roudi.init",
+        "red.base"
+      ],
+      "window": [
+        25,
+        30
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 27,
+      "title": "Distinguer une ouverture forte et une ouverture naturelle",
+      "primary": [
+        "fortes.ouverture"
+      ],
+      "secondary": [
+        "ouv.sa2",
+        "ouv.majeure",
+        "ouv.mineure"
+      ],
+      "window": [
+        27,
+        31
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 28,
+      "title": "Répondre à une ouverture forte",
+      "primary": [
+        "fortes.relais"
+      ],
+      "secondary": [
+        "fortes.ouverture",
+        "ouv.sa2"
+      ],
+      "window": [
+        28,
+        32
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 29,
+      "title": "Comprendre les enchères forcing",
+      "primary": [
+        "forcing.base",
+        "forcing.troisieme",
+        "forcing.quatrieme"
+      ],
+      "secondary": [
+        "red.base",
+        "second.base",
+        "red.bicolore"
+      ],
+      "window": [
+        29,
+        35
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 30,
+      "title": "Décrire une main après un relais fort",
+      "primary": [
+        "fortes.redemande"
+      ],
+      "secondary": [
+        "fortes.relais",
+        "fortes.ouverture"
+      ],
+      "window": [
+        30,
+        35
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 31,
+      "title": "Exploiter les développements du Roudi",
+      "primary": [
+        "roudi.suite",
+        "roudi.reponse"
+      ],
+      "secondary": [
+        "roudi.init",
+        "second.base"
+      ],
+      "window": [
+        31,
+        37
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 32,
+      "title": "Replacer le Drury dans une séquence complète",
+      "primary": [
+        "drury.reponse",
+        "drury.suite"
+      ],
+      "secondary": [
+        "drury.init",
+        "majeur.soutien",
+        "ouv.position"
+      ],
+      "window": [
+        27,
+        37
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 33,
+      "title": "Distinguer les interventions sur 1SA",
+      "primary": [
+        "multilandy.choix",
+        "multilandy.intervention"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "contre.base"
+      ],
+      "window": [
+        33,
+        38
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 34,
+      "title": "Distinguer recherche de fit et forcing",
+      "primary": [
+        "forcing.checkback",
+        "forcing.quatrieme"
+      ],
+      "secondary": [
+        "red.base",
+        "second.base",
+        "roudi.choix"
+      ],
+      "window": [
+        34,
+        39
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 35,
+      "title": "Répondre après intervention sur 1SA",
+      "primary": [
+        "rubensohl.naturel",
+        "rubensohl.init"
+      ],
+      "secondary": [
+        "apres_inter.base",
+        "sa1.seuil",
+        "sa1.texas"
+      ],
+      "window": [
+        35,
+        40
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 36,
+      "title": "Répondre à Multi-Landy",
+      "primary": [
+        "multilandy.reponse",
+        "multilandy.intervention"
+      ],
+      "secondary": [
+        "multilandy.choix",
+        "intervenir.base"
+      ],
+      "window": [
+        35,
+        41
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 37,
+      "title": "Reconnaître un bicolore d’intervention",
+      "primary": [
+        "michaels.choix",
+        "michaels.intervention"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "red.bicolore"
+      ],
+      "window": [
+        37,
+        42
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 38,
+      "title": "Poursuivre après Rubensohl",
+      "primary": [
+        "rubensohl.reponse",
+        "rubensohl.init"
+      ],
+      "secondary": [
+        "rubensohl.naturel",
+        "sa1.texas"
+      ],
+      "window": [
+        37,
+        43
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 39,
+      "title": "Répondre à une intervention Michaëls",
+      "primary": [
+        "michaels.reponse",
+        "michaels.choix"
+      ],
+      "secondary": [
+        "michaels.intervention",
+        "reponse_inter.base"
+      ],
+      "window": [
+        39,
+        44
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 40,
+      "title": "Distinguer les démarches vers le chelem",
+      "primary": [
+        "chelem.controles",
+        "chelem.quantitatif"
+      ],
+      "secondary": [
+        "apres_fit.base",
+        "sa1.seuil",
+        "sa2.seuil"
+      ],
+      "window": [
+        40,
+        45
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 41,
+      "title": "Comprendre les conditions du Blackwood",
+      "primary": [
+        "chelem.blackwood.declenchement",
+        "chelem.cles"
+      ],
+      "secondary": [
+        "chelem.controles",
+        "majeur.soutien"
+      ],
+      "window": [
+        41,
+        47
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 42,
+      "title": "Distinguer recherche de fit et recherche de chelem",
+      "primary": [
+        "chelem.splinter",
+        "chelem.controles"
+      ],
+      "secondary": [
+        "apres_fit.essai",
+        "fit.2sa"
+      ],
+      "window": [
+        40,
+        47
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 43,
+      "title": "Adapter les bicolores au contexte compétitif",
+      "primary": [
+        "michaels.reveil",
+        "michaels.defense"
+      ],
+      "secondary": [
+        "michaels.choix",
+        "reveil.base"
+      ],
+      "window": [
+        43,
+        49
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 44,
+      "title": "Interpréter les suites du Blackwood",
+      "primary": [
+        "chelem.blackwood.suite",
+        "chelem.blackwood.dame_rois"
+      ],
+      "secondary": [
+        "chelem.cles",
+        "chelem.controles"
+      ],
+      "window": [
+        44,
+        51
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 45,
+      "title": "Distinguer splinter et autres enchères de fit",
+      "primary": [
+        "chelem.splinter.variante",
+        "chelem.splinter"
+      ],
+      "secondary": [
+        "fit.2sa",
+        "apres_fit.essai"
+      ],
+      "window": [
+        45,
+        52
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 46,
+      "title": "Réinvestir les réponses après intervention",
+      "primary": [
+        "apres_inter.base",
+        "competitif.spoutnik"
+      ],
+      "secondary": [
+        "contre.base",
+        "mineur.base"
+      ],
+      "window": [
+        15,
+        50
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 47,
+      "title": "Poursuivre une intervention sur Sans-Atout",
+      "primary": [
+        "intervenir.sa.suite",
+        "multilandy.suite"
+      ],
+      "secondary": [
+        "intervenir.base",
+        "multilandy.reponse"
+      ],
+      "window": [
+        37,
+        52
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 48,
+      "title": "Comparer les suites naturelles à Sans-Atout",
+      "primary": [
+        "sa2.stayman.suite",
+        "sa2.texas.suite"
+      ],
+      "secondary": [
+        "sa2.seuil",
+        "sa1.seuil"
+      ],
+      "window": [
+        13,
+        53
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 49,
+      "title": "Distinguer les Texas majeurs et mineurs",
+      "primary": [
+        "sa1.texas_mineur",
+        "sa1.texas_mineur.suite"
+      ],
+      "secondary": [
+        "sa1.texas",
+        "sa1.texas_mineur.reponse"
+      ],
+      "window": [
+        13,
+        54
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 50,
+      "title": "Réinvestir les séquences de barrage",
+      "primary": [
+        "barrage.suite",
+        "contre.deux_faible",
+        "reveil.deux_faible"
+      ],
+      "secondary": [
+        "barrage.ouverture",
+        "barrage.reponse"
+      ],
+      "window": [
+        21,
+        55
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 51,
+      "title": "Choisir le niveau après fit",
+      "primary": [
+        "apres_fit.essai",
+        "apres_fit.essai.suite",
+        "fit.2sa.suite"
+      ],
+      "secondary": [
+        "majeur.soutien",
+        "apres_fit.base"
+      ],
+      "window": [
+        11,
+        56
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 52,
+      "title": "Réexaminer les bicolores de l’ouvreur",
+      "primary": [
+        "red.bicolore_cher",
+        "second.bicolore_cher"
+      ],
+      "secondary": [
+        "red.bicolore",
+        "red.base",
+        "second.base"
+      ],
+      "window": [
+        17,
+        57
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 53,
+      "title": "Choisir une suite forcing adaptée",
+      "primary": [
+        "forcing.troisieme.suite",
+        "forcing.quatrieme.suite"
+      ],
+      "secondary": [
+        "forcing.troisieme",
+        "forcing.quatrieme"
+      ],
+      "window": [
+        31,
+        58
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 54,
+      "title": "Réagir à un contre sur une convention SA",
+      "primary": [
+        "sa1.stayman.contre",
+        "sa1.texas.contre"
+      ],
+      "secondary": [
+        "sa1.stayman",
+        "sa1.texas"
+      ],
+      "window": [
+        19,
+        59
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 55,
+      "title": "Poursuivre après 2SA",
+      "primary": [
+        "sa2.stayman.reponse",
+        "sa2.texas.reponse"
+      ],
+      "secondary": [
+        "sa2.stayman",
+        "sa2.texas",
+        "sa2.seuil"
+      ],
+      "window": [
+        11,
+        60
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 56,
+      "title": "Comparer les ouvertures fortes et leurs suites",
+      "primary": [
+        "fortes.suite",
+        "fortes.redemande"
+      ],
+      "secondary": [
+        "fortes.ouverture",
+        "fortes.relais"
+      ],
+      "window": [
+        32,
+        61
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 57,
+      "title": "Réinvestir les enchères de chelem",
+      "primary": [
+        "chelem.quantitatif.suite",
+        "chelem.blackwood.suite"
+      ],
+      "secondary": [
+        "chelem.quantitatif",
+        "chelem.cles"
+      ],
+      "window": [
+        44,
+        62
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 58,
+      "title": "Discriminer les outils compétitifs",
+      "primary": [
+        "rubensohl.suite",
+        "michaels.defense"
+      ],
+      "secondary": [
+        "rubensohl.init",
+        "michaels.choix"
+      ],
+      "window": [
+        43,
+        63
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 59,
+      "title": "Revenir sur les mains irrégulières et exceptions",
+      "primary": [
+        "ouv.bicolore.exception",
+        "sa2.bicolore",
+        "sa.gambling"
+      ],
+      "secondary": [
+        "ouv.mineure",
+        "ouv.sa1",
+        "red.bicolore"
+      ],
+      "window": [
+        31,
+        64
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 60,
+      "title": "Distinguer les réponses naturelles en compétition",
+      "primary": [
+        "red.competitif",
+        "competitif.sa_adverse"
+      ],
+      "secondary": [
+        "red.base",
+        "apres_inter.base"
+      ],
+      "window": [
+        21,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 61,
+      "title": "Réinvestir la réponse et la redemande naturelles",
+      "primary": [
+        "mineur.base",
+        "majeur.base",
+        "red.base"
+      ],
+      "secondary": [
+        "ouv.passe",
+        "ouv.mineure",
+        "second.base"
+      ],
+      "window": [
+        2,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 62,
+      "title": "Choisir entre manche, partielle et essai",
+      "primary": [
+        "sa1.seuil",
+        "apres_fit.base",
+        "apres_fit.essai"
+      ],
+      "secondary": [
+        "majeur.soutien",
+        "sa2.seuil"
+      ],
+      "window": [
+        9,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 63,
+      "title": "Réunir les connaissances compétitives",
+      "primary": [
+        "intervenir.base",
+        "contre.base",
+        "reponse_inter.base"
+      ],
+      "secondary": [
+        "reveil.base",
+        "apres_inter.base"
+      ],
+      "window": [
+        14,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 64,
+      "title": "Réinvestir les suites après 2SA",
+      "primary": [
+        "sa2.texas_mineur.reponse",
+        "sa2.stayman.suite"
+      ],
+      "secondary": [
+        "sa2.texas",
+        "sa2.seuil"
+      ],
+      "window": [
+        23,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    },
+    {
+      "session": 65,
+      "title": "Consolider la décision dans une séquence complète",
+      "primary": [
+        "second.base",
+        "red.base",
+        "majeur.soutien"
+      ],
+      "secondary": [
+        "sa1.seuil",
+        "mineur.base",
+        "ouv.passe"
+      ],
+      "window": [
+        7,
+        65
+      ],
+      "target": 2,
+      "disposition": "candidat-a-recetter-S180",
+      "objectiveCountBefore": null,
+      "objectiveCountAfter": null,
+      "decision": "Fenêtre indicative, éligibilité et rappels historiques inchangés. Une place de découverte focalisée si disponible ; garder historique si indisponible.",
+      "evidence": "plan proposé ; recette native longitudinale en cours",
+      "activation": "HOLD jusqu’à visa du coordinateur"
+    }
+  ],
+  "limitations": [
+    "S21–65 non évaluées à la date de ce registre ; aucune activation présumée.",
+    "S66–180 hors modification directe ; effets indirects à mesurer."
+  ]
+}
