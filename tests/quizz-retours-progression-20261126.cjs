@@ -1,0 +1,7 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const P=require('../quizz-parcours.js'),html=fs.readFileSync(path.join(__dirname,'../quizz.html'),'utf8');
+const ex=JSON.parse(html.split('<script id="training-data" type="application/json">')[1].split('</script>')[0]).exercises;
+assert.equal(ex.length,1879);
+function verify(P,ex,check){for(const profile of ['autonome','faible','aide','mixte','passe']){const st=P.empty();for(let s=0;s<5;s++){const deck=P.start(st,ex);check(deck.length===10,'length');check(new Set(deck.map(q=>q.caseFamily||q.id)).size===10,'families');if(s===1){check(deck.slice(0,2).every(q=>q.theme==='ouv'&&q.answer!=='Passe'),'S2 opening');const base=deck.filter(q=>q.theme==='mineur'),fit=deck.filter(q=>q.theme==='majeur'&&['2♥','2♠'].includes(q.answer));check(base.some(q=>q.answer==='1SA')&&base.some(q=>['1♥','1♠'].includes(q.answer)),'S2 minor');check(fit.length>=2&&fit.every(q=>q.shape[q.answer==='2♠'?0:1]===3),'S2 fit '+profile+JSON.stringify(deck.map(q=>[q.theme,q.answer,q.shape])));check(deck.indexOf(fit[0])>Math.max(...base.map(q=>deck.indexOf(q))),'S2 fit order');}for(let i=0;i<deck.length;i++){const q=deck[i];check(P.eligibility(q,st,ex).eligible,'eligibility');let wrong=profile==='faible'||profile==='mixte'&&i%3===0||profile==='passe'&&q.answer==='Passe';check(P.record(st,q,wrong?'wrong':'correct',i,wrong?null:q.answer,profile==='aide',false),'record')}check(P.finish(st,ex),'finish')}}}
+verify(P,ex,assert);console.log('PASS retours pédagogiques');
