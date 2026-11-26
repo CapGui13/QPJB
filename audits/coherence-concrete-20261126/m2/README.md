@@ -1,3 +1,7 @@
+# Archive du premier bilan M2
+
+**Version de référence : [FINAL.md](FINAL.md) et [registre-final.json](registre-final.json).** Ce README conserve les résultats historiques du premier candidat ; ne pas les confondre avec la recette finale.
+
 # M2 — Ordre réel, bilan autonome (26 novembre 2026)
 
 Contrats #419/#421, base immuable 2d336054bc91fbd6ac762c093ecb5ec6da9f97e8. Code testé : 5f88dd8db67f11de372d84a967c473bae7ab26ef. PR brouillon #426. Aucun changement de fichier de production existant, aucun merge.
