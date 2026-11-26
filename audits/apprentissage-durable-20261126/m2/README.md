@@ -64,7 +64,7 @@ Afficher le canonique historique une seule fois; ajouter feedback, reminder et c
 
 Restent 2194 HOLD à examiner au fond, 301 contrastes provisoires à valider, et une recette réelle Node/Chromium/WebKit à exécuter. Ne pas substituer une question générique à un critère non démontré. Les 524 abstentions restent prudentes. La couverture pédagogique intégrale demandée par #398 n'est pas atteinte. Ne pas fusionner automatiquement.
 
-MISSION DÉFINITIVEMENT TERMINÉE : NON
+MISSION DÉFINITIVEMENT TERMINÉE : NON (état historique de cette passe)
 
 
 ## Passe 3 — relecture des contrastes
@@ -160,3 +160,10 @@ Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16
 ## Passe 21 — dossier final des arbitrages et recette native
 
 Les 53 cas encore ouverts (52 HOLD, un contraste) sont documentés individuellement dans `pass21-arbitrages.json` : motif spécifique, main et contexte du catalogue, catégorie du point à arbitrer, propriétaire coordinateur. Aucune conversion artificielle en corrigé suffisant, aucune nouvelle affirmation SEF, repli canonique inchangé. Le registre généré reste inchangé. Le test `tests/durable-m2-native.cjs` vérifie la couverture exacte de ce dossier, exécute les deux CLI historiques et pilote 37 paires de scénarios sur Chromium et WebKit à deux largeurs (360 et 1280 px), clavier, hors ligne, focus, absence de fuite avant validation et absence de débordement horizontal. Exécution native à attester sur le SHA de cette livraison ; pas de succès anticipé. La revue est IA et non humaine.
+
+
+## Clôture — recette native attestée
+
+Voir [CLOTURE.md](CLOTURE.md) et [recette-native.json](recette-native.json). La recette native sur `4f3f999d3a45c21ae55d72248e93dda86ef8ce69` est réussie, archive téléchargée et vérifiée : 108176 assertions Node, 296 double DOM, 3408 contrôles et 148 scénarios sur chacun des deux navigateurs. Les 53 arbitrages sont documentés et réservés au coordinateur ; aucune fusion ou publication. Les statuts précédents du README décrivent les passes historiques.
+
+MISSION DÉFINITIVEMENT TERMINÉE : OUI — périmètre autonome, avec arbitrages et intégration réservés au coordinateur.
