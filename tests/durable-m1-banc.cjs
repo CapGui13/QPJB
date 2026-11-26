@@ -10,14 +10,17 @@ const ok=(v,m)=>{if(!v)throw Error(m)};
 const family=q=>String(q.caseFamily||q.id);
 const hash=s=>{let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;return h/4294967296};
 function compile(source,req,extra={}){const m={exports:{}};new Function('module','require',...Object.keys(extra),source)(m,req,...Object.values(extra));return m.exports}
-function instrument(source,meta,plan,A,P,enabled,trace){
+function instrument(source,meta,plan,A,P,enabled,trace,policy='original'){
+ ok(['original','preserve-concept-level'].includes(policy),'policy');
  const anchor='    const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);';
  const rank='      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));';
  const chosen='      const q=ranked[0].q,m=mOf(q),cat=category||classify(q);';
+ const protection=policy==='preserve-concept-level'?`const baseWinner=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)})).sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id))[0].q;`:'';
+ const guard=policy==='preserve-concept-level'?'&&(s>=65||(mOf(q).concept===mOf(baseWinner).concept&&q.difficulty===baseWinner.difficulty))':'';
  const eligibility='return {eligibility,adaptiveDiagnostics,createForTests:';
  for(const key of [anchor,rank,chosen,eligibility])ok(source.split(key).length===2,'unique injection '+key);
  return compile(source.replace(anchor,anchor+'\n    const m1signals=s>=3?__A.analyze({history:state,exercises,diagnose:__P.diagnose}):null;')
- .replace(rank,'      const m1rank=s>=3&&!explicitRecall&&!priority?new Map(__A.rank({history:state,exercises,candidates,selected,signals:m1signals,category}).map(x=>[x.id,x])):new Map();\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(__enabled?(m1rank.get(q.id)?.delta||0):0)}));')
+ .replace(rank,'      const m1rank=s>=3&&!explicitRecall&&!priority?new Map(__A.rank({history:state,exercises,candidates,selected,signals:m1signals,category}).map(x=>[x.id,x])):new Map();\n      '+protection+'\n      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(__enabled'+guard+'?(m1rank.get(q.id)?.delta||0):0)}));')
  .replace(chosen,chosen+'\n      if(m1rank.size)__trace.push({session:s+1,eligible:m1rank.size,chosen:q.id,target:m1rank.get(q.id)||null,category});')
  .replace(eligibility,'return {eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,adaptiveDiagnostics,createForTests:'),
  n=>n==='./quizz-prerequis.js'?meta:n==='./quizz-session-plan.js'?plan:undefined,
@@ -32,7 +35,7 @@ function outcome(profile,seed,q,s,options){
  return {result:wrong?'wrong':'correct',choice:wrong?choices[Math.floor(w*choices.length)]:q.answer,assisted,hadFreeError:false};
 }
 function run(input,profile,seed,horizon,enabled){
- const {source,meta,plan,A,P,qs,registry}=input,trace=[],api=instrument(source,meta,plan,A,P,enabled,trace);
+ const {source,meta,plan,A,P,qs,registry}=input,trace=[],api=instrument(source,meta,plan,A,P,enabled,trace,input.policy||'original');
  const state=api.empty(),families=new Set(),ids=new Set(),concepts=new Set(),topics=new Set(),proof=new Map(),early=[],last=new Map();
  let invalid=0,short=0,duplicates=0,passViolation=0,recall=0,wrong=0,assisted=0,difficulty=0,repeated=0,coreDebt=0,recovered=0,signalCount=0,allTrace=0,targeted=0,eligibleOffers=0;
  const results=[],start=Date.now();
@@ -71,7 +74,7 @@ function compare(input,profile,seed,horizon=180){
  ok(JSON.stringify(before.early)===JSON.stringify(after.early),'S1–3 exact');
  const hold=[];
  for(let i=0;i<before.results.length;i++){const a=before.results[i],b=after.results[i];ok(!b.invalid&&!b.short&&!b.duplicates&&!b.passViolation,'integrity');if(b.families<.95*a.families||b.topics<a.topics||b.concepts<a.concepts-2||b.proof<a.proof-Math.max(3,.1*a.proof))hold.push({session:b.session,reason:'exposure/proof regression',before:a,after:b});}
- return {profile,seed,horizon,before,after,hold};
+ return {profile,seed,horizon,policy:input.policy||'original',before,after,hold};
 }
 module.exports={BASE,PROFILES,EXTRA,SEEDS,HORIZONS,compile,instrument,compare};
 if(require.main===module){
@@ -81,6 +84,6 @@ if(require.main===module){
  function load(n){if(cache.has(n))return cache.get(n);const v=compile(old(n),x=>load(x.replace(/^\.\//,'')));cache.set(n,v);return v}
  const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
  const registry=new Map([0,1,2,3].flatMap(n=>require('../audits/apprentissage-durable-20261126/m1/registre-'+n+'.json')).map(r=>[r.id,r.options]));
- const input={source:old('quizz-parcours.js'),meta:load('quizz-prerequis.js'),plan:load('quizz-session-plan.js'),A:require('../quizz-durable-m1-adaptation.js'),P:load('quizz-professeur.js'),qs,registry};
+ const input={source:old('quizz-parcours.js'),meta:load('quizz-prerequis.js'),plan:load('quizz-session-plan.js'),A:require('../quizz-durable-m1-adaptation.js'),P:load('quizz-professeur.js'),qs,registry,policy:process.argv[5]||'original'};
  console.log(JSON.stringify(compare(input,process.argv[2]||'intermediaire',Number(process.argv[3]||47),Number(process.argv[4]||180)),null,2));
 }
