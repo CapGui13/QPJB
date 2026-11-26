@@ -5,13 +5,13 @@ function run(M,meta,ex){
  const old=JSON.stringify(meta),data=JSON.stringify(ex),patches=M.patches(meta,ex);
  check(patches.length===14,'14 individual proposals');
  const by=new Map(ex.map(q=>[q.id,q]));
- for(const p of patches){check(!!by.get(p.id),'ID exists');check(JSON.stringify(meta[p.id])===JSON.stringify(p.old),'old metadata exact');check(p.new.minSession===p.old.minSession,'calendar unchanged');check(!!p.proof&&!!p.accord,'justification');}
+ for(const p of patches){check(!!by.get(p.id),'ID exists');check(JSON.stringify(meta[p.id])===JSON.stringify(p.old),'old metadata exact');check(p.new.minSession===p.old.minSession,'calendar unchanged');check(!!p.preuve&&!!p.accord,'justification');}
  for(const group of ['texas','red','both','none']){
   const candidate=M.applyExperimental(meta,ex,group),expected=group==='both'?14:group==='texas'?6:group==='red'?8:0;
   check(Object.keys(meta).filter(id=>JSON.stringify(meta[id])!==JSON.stringify(candidate[id])).length===expected,'patch scope');
   check(M.reachability(candidate,ex).reachable===1915,'structural reachability');
  }
- const graph=M.graph(meta,ex);check(graph.rows.length===1915,'full ID registry');check(Object.keys(graph.concepts).length===99,'concept registry');
+ const graph=M.graph(meta,ex);check(graph.rows.length===1915,'full ID registry');check(Object.keys(graph.concepts).length===99,'concept registry');check(graph.unknownPrerequisites.length===0,'no unknown prereq');check(graph.arcs.every(a=>a.justification),'all arcs documented');
  for(const a of graph.arcs)for(const id of a.ids){check(graph.rows.some(r=>r.id===id&&r.concept===a.to&&r.requires.some(x=>x.concept===a.from&&x.minExposure===a.minExposure)),'arc evidence');}
  const q={id:'Q',caseFamily:'F',difficulty:2},t={id:'T',caseFamily:'G',difficulty:2},m={Q:{concept:'base',stage:0,minSession:0,requires:[]},T:{concept:'next',stage:1,minSession:0,requires:[{concept:'base',minExposure:1}]}};
  const ctx={session:2,history:{completed:1,journal:[],entries:{}},exercises:[q,t],metadataById:m,candidates:[t],selected:[]};
