@@ -30,7 +30,7 @@
   return c+'|'+variants.sort()[0];
  }
  function feature(q,m,item){
-  const kind=item?.kind||item?.target||'';
+  const kind=typeof (item?.kind||item?.target)==='string'?(item.kind||item.target):'';
   return {id:q.id,q,c:m?.concept||'',stage:Number.isInteger(m?.stage)?m.stage:null,d:Number.isInteger(q.difficulty)?q.difficulty:null,
    a:bid(q),p:decisionPattern(q,m),t:q.theme,f:String(q.caseFamily||q.id),kind,
    role:kind==='maintenance'||kind==='revision'?'rappel':kind==='weakness'?'consolidation_ciblee':kind==='discovery'?'acquisition':kind==='transfer'?'reinvestissement_conditionnel':kind.startsWith('micro:')||kind.startsWith('axis:')?'consolidation_ciblee':'application'};
@@ -120,8 +120,8 @@
   if(!Number.isInteger(s)||s<1||ids.some(x=>typeof x!=='string')||new Set(ids).size!==ids.length)return fallback('invalid-context');
   if(ctx.history?.active)return fallback('active-session');
   if(ids.length<2||ids.length>20)return fallback('deck-size');
-  const exercises=new Map((ctx.exercises||[]).map(q=>[q.id,q]));
-  const selected=new Map((ctx.selected||[]).map(x=>[x?.id||x?.exercise?.id,x]));
+  const exercises=new Map((Array.isArray(ctx.exercises)?ctx.exercises:[]).filter(q=>q&&typeof q.id==='string').map(q=>[q.id,q]));
+  const selected=new Map((Array.isArray(ctx.selected)?ctx.selected:[]).map(x=>[x?.id||x?.exercise?.id,x]));
   const f=deck.map((x,i)=>{const q=x?.exercise||(x?.answer?x:exercises.get(ids[i]));const m=ctx.metadataById?.[ids[i]];return q&&m?.concept?feature(q,m,selected.get(ids[i])||x):null});
   if(f.some(x=>!x))return fallback('metadata-unavailable');
   if(!valid(f,s))return fallback('historical-guard');
@@ -146,7 +146,7 @@
    current=best;after=bestM;
   }
   return {ids:current.map(x=>x.id),reasons:explain(current,links),changed:current!==f,
-   status:current===f?'historical-optimal-or-no-safe-swap':'improved',before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after)};
+   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after)};
  }
  return Object.freeze({schema,order,decisionPattern,HARD:Object.freeze(HARD),SOFT:Object.freeze(SOFT),weights:Object.freeze(weights)});
 });
