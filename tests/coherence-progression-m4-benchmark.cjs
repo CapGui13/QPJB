@@ -30,6 +30,7 @@ function readCatalogue(html){const qs=JSON.parse(html.match(/<script id="trainin
 function early(deck,s,legacy){
   const pp=deck.flatMap((q,i)=>openingPass(q)?[i+1]:[]);
   if(s===0){
+    check(deck.every(q=>q.theme==='ouv'),'S1 openings only');
     check(pp.length===3&&pp.every((v,i)=>v<=[2,5,7][i]&&(!i||v-pp[i-1]>=2)),'S1 Passe');
     check(deck.filter(openingPass).every(q=>q.h<12&&q.difficulty===1),'S1 simple Passe');
     for(const [a,n] of [['1♣',2],['1♦',2],['1♥',1],['1♠',1],['1SA',1]])check(deck.filter(q=>q.theme==='ouv'&&bid(q)===a).length>=n,'S1 '+a);
@@ -37,6 +38,8 @@ function early(deck,s,legacy){
   if(s===1){
     check(pp.length>=1&&pp.length<=2&&pp.every((v,i)=>v<=[4,7][i]&&(!i||v-pp[i-1]>=2)),'S2 Passe');
     check(deck.slice(0,2).every(q=>q.theme==='ouv'&&!openingPass(q)),'S2 opening');
+    check(['1♣','1♦'].every(b=>deck.slice(0,2).some(q=>bid(q)===b)),'S2 two minor openings');
+    check(deck.filter(q=>['mineur','majeur'].includes(q.theme)).length>=6,'S2 six responses');
     const fits=deck.flatMap((q,i)=>q.theme==='majeur'&&/^2[♥♠]$/.test(bid(q))?[i]:[]);
     check(fits.length>=2&&fits.every(i=>deck[i].shape[bid(deck[i])==='2♠'?0:1]===3),'S2 fit 5-3');
     const first=fits[0];
@@ -130,7 +133,24 @@ function unit(api,qs,meta){
   const before=JSON.stringify(st.active),resumed=api.load(JSON.parse(JSON.stringify(st)));
   check(api.start(resumed,qs).map(q=>q.id).join()===deck.map(q=>q.id).join(),'active order');
   check(JSON.stringify(resumed.active)===before,'active state');
-  return {passed:true,mirrorExample:mirror.slice(0,3).map(q=>q.id)};
+  const twenty=qs.slice(0,20).map(exercise=>({exercise,kind:'nouveau',reason:'fixture'}));
+  check(new Set(api.logicalOrder(twenty,state)).size===20,'API limit 20');
+  const weak=api.empty();
+  for(let s=0;s<3;s++){
+    const d=api.start(weak,qs);
+    for(let i=0;i<d.length;i++)check(api.record(weak,d[i],'wrong',i,null,false,false),'weak record');
+    check(api.finish(weak,qs),'weak finish');
+  }
+  const plan=api.consolidationPlan(weak,qs);
+  check(plan.available,'consolidation available after evidenced weakness');
+  const focused=api.startConsolidation(weak,qs);
+  check(focused.length>=4&&focused.length<=10&&new Set(focused.map(family)).size===focused.length,'consolidation families');
+  check(weak.active.ids.join()===plan.items.map(x=>x.id).join()&&
+    weak.active.targets.join()===plan.items.map(x=>x.target).join(),'consolidation targets/order');
+  check(api.eligibilityBatch(focused,weak,qs).every(x=>x.eligible),'consolidation eligibility');
+  for(let i=0;i<focused.length;i++)check(api.record(weak,focused[i],'correct',i,null,false,false),'focused record');
+  check(api.finish(weak,qs)&&weak.completed===3,'consolidation not advancement');
+  return {passed:true,mirrorExample:mirror.slice(0,3).map(q=>q.id),consolidationLength:focused.length};
 }
 function compare(runs){
   const result=runs[2].snapshots.map((c,i)=>{
@@ -140,6 +160,9 @@ function compare(runs){
     if(c.violations||a.violations||b.violations)problems.push('eligibility');
     if(c.families<.95*a.families||c.families<.95*b.families)problems.push('families <95%');
     if(c.exact>b.exact||c.triples>b.triples)problems.push('exact/triples regression');
+    if(c.duplicateFamilies>b.duplicateFamilies)problems.push('family duplicates');
+    if(c.topics<b.topics||c.concepts<b.concepts)problems.push('coverage regression');
+    if(c.mirror+c.near>b.mirror+b.near||c.abab>b.abab)problems.push('semantic variety regression');
     return {horizon:n,base:a,pr376:b,m4:c,changedSetsBase:changed(runs[0],runs[2]),changedSetsPR376:changed(runs[1],runs[2]),problems};
   });
   return result;
