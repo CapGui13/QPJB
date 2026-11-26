@@ -1,0 +1,64 @@
+name: M4 D recette native isolée
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: bccc7818a32b84204c1ebdadb5497f3418f7506e
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests unitaires
+        run: |
+          node tests/coherence-concrete-m4-unit.cjs
+          node tests/coherence-concrete-m4-reactivation.cjs
+          node tests/coherence-concrete-m4-cautious.cjs
+      - name: Campagne M4 D S180
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          POLICY: D
+          HORIZON: 180
+          OUT: /tmp/m4-d
+        run: node tests/coherence-concrete-m4-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-d-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4-d
+          retention-days: 14
+  gate:
+    needs: campagne
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: bccc7818a32b84204c1ebdadb5497f3418f7506e
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4-d-*
+          merge-multiple: true
+          path: /tmp/m4-d
+      - name: Gate strict sur les 18 trajectoires
+        run: |
+          set -o pipefail
+          node tests/coherence-concrete-m4-gate-d.cjs /tmp/m4-d | tee /tmp/m4-d-gate.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-d-gate
+          path: /tmp/m4-d-gate.json
+          retention-days: 14
