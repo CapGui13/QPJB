@@ -6,7 +6,7 @@ function compile(source,meta,policy,mode){
     if(s.split(a).length!==2)throw Error('M2 injection anchor changed: '+a);
     return s.replace(a,b);
   }
-  if(mode!=='base'){
+  if(mode==='A'||mode==='B'){
     source=replaceOnce(source,'let pool=eligiblePool(exercises,state,e);','let pool=eligiblePool(exercises,state,e);');
     source=replaceOnce(source,"const quotas=profile==='weak'?", "const revision=__policy.prepare({state,metadata:prerequis.byId,exercises,candidates:pool,mode:__mode});\n    const quotas=profile==='weak'?");
     source=replaceOnce(source,'return value;\n    }\n    function choose','return value+(s>=3?revision.bonus(q,category,concepts):0);\n    }\n    function choose');
@@ -15,6 +15,13 @@ function compile(source,meta,policy,mode){
     source=replaceOnce(source,"const kind=!isFresh||isAlternate?'revision':'nouveau';",
       "const alternateRecall=s>=3&&isFresh&&forcedReason==='rappel_erreur_aide'&&revision.rank(q,{})?.variant;\n      const kind=!isFresh||isAlternate||alternateRecall?'revision':'nouveau';");
     source=replaceOnce(source,"const reason=isAlternate?'rappel_nouvelle_situation':","const reason=isAlternate||alternateRecall?'rappel_nouvelle_situation':");
+  }
+  if(mode==='C'){
+    source=replaceOnce(source,"const quotas=profile==='weak'?", "const revision=__policy.prepare({state,metadata:prerequis.byId,exercises,candidates:pool,mode:__mode});\n    const quotas=profile==='weak'?");
+    source=replaceOnce(source,'const q=ranked[0].q,m=mOf(q),cat=category||classify(q);',
+      "const original=ranked[0].q;\n      const substitute=s>=3&&explicitRecall?revision.replacement(original,pool.filter(distinct),concepts):null;\n      const q=substitute||original,m=mOf(q),cat=category||classify(q);");
+    source=replaceOnce(source,"const kind=!isFresh||isAlternate?'revision':'nouveau';","const kind=!isFresh||isAlternate||substitute?'revision':'nouveau';");
+    source=replaceOnce(source,"const reason=isAlternate?'rappel_nouvelle_situation':","const reason=isAlternate||substitute?'rappel_nouvelle_situation':");
   }
   const m={exports:{}};
   new Function('module','require','__policy','__mode',source)(m,()=>meta,policy,mode);
@@ -88,7 +95,7 @@ if(typeof require==='function'&&require.main===module){
   const data=JSON.parse(fs.readFileSync(path.join(root,'quizz.html'),'utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
   assert(data.exercises.length===1879&&data.themes.length===22,'catalogue');
   const [p,s,m,h]=process.argv.slice(2),rows=[];
-  for(const mode of m?[m]:['base','A','B'])for(const profile of p?[p]:profiles)for(const seed of s?[Number(s)]:seeds){
+  for(const mode of m?[m]:['base','A','B','C'])for(const profile of p?[p]:profiles)for(const seed of s?[Number(s)]:seeds){
     rows.push(...simulate(compile(source,meta,policy,mode),policy,meta,data.exercises,profile,seed,h?Number(h):153).map(r=>({mode,...r})));
   }
   console.log(JSON.stringify(rows,null,2));
