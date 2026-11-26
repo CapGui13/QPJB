@@ -18,6 +18,11 @@ function makeEngine(source,meta,plan){
     assert(source.split(from).length===2,'Exact historical selector hook not found');
     source=source.replace(from,`const priorities=M3.priorityThemes({roadmap:ROADMAP,completed:s,lastTheme:e.lastTheme,eligibleThemes:pool.map(q=>q.theme)});`);
   }
+  // Batch diagnostic identical to the existing public eligibility method,
+  // but compute immutable pre-session evidence only once for the ten cases.
+  const diagnosticMarker='return {eligibility,createForTests:';
+  assert(source.split(diagnosticMarker).length===2,'Exact diagnostic hook not found');
+  source=source.replace(diagnosticMarker,'return {eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,createForTests:');
   const module={exports:{}};
   new Function('module','require','M3',source)(module,name=>{
     assert(name==='./quizz-prerequis.js','Unexpected module '+name);return meta;
@@ -26,12 +31,13 @@ function makeEngine(source,meta,plan){
 }
 function run(api,qs,meta,profile,seed,horizon=153){
   const st=api.empty(),first={},last={},gaps={},fam=new Set,concept=new Set,ids=new Set;
+  const firstConcept={},difficultyCounts={},stageCounts={},answers=new Set,auctions=new Set;let maxSameTheme=0;
   const exposed=new Map,byId=new Map(qs.map(q=>[q.id,q])),pending=new Map,delays=[];
   let adj=0,triple=0,hard=0,violations=0,repeat=0,shapeAdj=0,forceAdj=0,discovery=0,maintenance=0,weakness=0,transfer=0;
   let n=seed;const rng=()=>((n=(Math.imul(n,1664525)+1013904223)>>>0)/4294967296);
   const out=[],t=Date.now();
   for(let s=0;s<horizon;s++){
-    const deck=api.start(st,qs),sel=st.active.selection,counts={};
+    const deck=api.start(st,qs),sel=st.active.selection,counts={},diagnostics=api.eligibilityBatch(deck,st,qs);
     assert(deck.length===10&&new Set(deck.map(q=>q.id)).size===10&&new Set(deck.map(family)).size===10,'Distinct ten S'+(s+1));
     assert(sel.every((x,i)=>x.id===deck[i].id),'Selection alignment');
     if(s===0||s===19||s===64){
@@ -56,8 +62,10 @@ function run(api,qs,meta,profile,seed,horizon=153){
     }
     for(let i=0;i<deck.length;i++){
       const q=deck[i],m=meta.byId[q.id],k=m.concept;
-      if(!m||s<m.minSession||s<api.INTRO[q.theme]||m.requires.some(r=>(exposed.get(r.concept)?.size||0)<r.minExposure)||!api.eligibility(q,st,qs).eligible)violations++;
-      counts[q.theme]=(counts[q.theme]||0)+1;first[q.theme]??=s+1;
+      if(!m||s<m.minSession||s<api.INTRO[q.theme]||m.requires.some(r=>(exposed.get(r.concept)?.size||0)<r.minExposure)||!diagnostics[i].eligible)violations++;
+      counts[q.theme]=(counts[q.theme]||0)+1;first[q.theme]??=s+1;firstConcept[k]??=s+1;
+      difficultyCounts[q.difficulty]=(difficultyCounts[q.difficulty]||0)+1;stageCounts[m.stage]=(stageCounts[m.stage]||0)+1;
+      answers.add(bid(q));auctions.add(JSON.stringify(q.auction||[]));
       if(fam.has(family(q)))repeat++;fam.add(family(q));concept.add(k);ids.add(q.id);hard+=+(q.difficulty>=4);
       if(i&&bid(q)===bid(deck[i-1]))adj++;
       if(s&&i>=2&&q.theme===deck[i-1].theme&&q.theme===deck[i-2].theme)triple++;
@@ -70,6 +78,7 @@ function run(api,qs,meta,profile,seed,horizon=153){
       else if(sel[i].kind==='revision')maintenance++;
       else discovery++;
     }
+    maxSameTheme=Math.max(maxSameTheme,...Object.values(counts));
     for(const theme of Object.keys(api.INTRO)){
       if(last[theme]!==undefined)gaps[theme]=Math.max(gaps[theme]||0,s-last[theme]);
       if(counts[theme])last[theme]=s;
@@ -86,7 +95,7 @@ function run(api,qs,meta,profile,seed,horizon=153){
     if(HORIZONS.includes(s+1)){
       const gf=Math.max(0,...FOUNDATIONS.map(k=>gaps[k]||0)),go=Math.max(0,...Object.entries(gaps).filter(([k])=>!FOUNDATIONS.includes(k)).map(([,v])=>v));
       const sorted=delays.slice().sort((a,b)=>a-b);
-      out.push({horizon:s+1,first:{...first},gaps:{...gaps},gf,go,families:fam.size,concepts:concept.size,ids:ids.size,hard,adj,triple,shapeAdj,forceAdj,repeat,discovery,maintenance,weakness,transfer,violations,pending:pending.size,medianDelay:sorted.length?sorted[Math.floor((sorted.length-1)/2)]:null,ms:Date.now()-t});
+      out.push({horizon:s+1,first:{...first},firstConcept:{...firstConcept},difficultyCounts:{...difficultyCounts},stageCounts:{...stageCounts},distinctAnswers:answers.size,distinctAuctions:auctions.size,maxSameTheme,gaps:{...gaps},gf,go,families:fam.size,concepts:concept.size,ids:ids.size,hard,adj,triple,shapeAdj,forceAdj,repeat,discovery,maintenance,weakness,transfer,violations,pending:pending.size,medianDelay:sorted.length?sorted[Math.floor((sorted.length-1)/2)]:null,p90Delay:sorted.length?sorted[Math.floor((sorted.length-1)*.9)]:null,ms:Date.now()-t});
     }
   }
   return out;
@@ -106,7 +115,8 @@ if(typeof require==='function'&&require.main===module){
   const before=makeEngine(source,meta),after=makeEngine(source,meta,plan);
   const args=process.argv.slice(2),rows=[];
   for(const profile of PROFILES.filter(p=>!args[0]||args[0]===p))for(const seed of SEEDS.filter(s=>!args[1]||Number(args[1])===s)){
-    const a=run(before,data.exercises,meta,profile,seed),b=run(after,data.exercises,meta,profile,seed);
+    const horizon=args[2]?Number(args[2]):153;assert(HORIZONS.includes(horizon),'horizon');
+    const a=run(before,data.exercises,meta,profile,seed,horizon),b=run(after,data.exercises,meta,profile,seed,horizon);
     rows.push({profile,seed,before:a,after:b});
   }
   console.log(JSON.stringify(rows,null,2));
