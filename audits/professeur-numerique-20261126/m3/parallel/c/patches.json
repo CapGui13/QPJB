@@ -1,0 +1,136 @@
+{
+  "schema": "QPJB_M3C_PATCH_PROPOSALS_V1",
+  "baselineSHA": "71b0823235db1400eaf57c2552df35c18094f30a",
+  "proposals": [
+    {
+      "id": "SEF-V411-019",
+      "concept": "second.base",
+      "oldChoices": [
+        "Passe",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "newChoices": [
+        "Passe",
+        "2SA",
+        "3♥",
+        "2♠"
+      ],
+      "answer": "Passe",
+      "status": "proposal-only",
+      "reason": "3♥ et 4♥ testent toutes deux une surestimation de la force après le fit connu, déjà testée avec 2SA. Garder 3♥ pour tester l'invitation ; remplacer 4♥ par 2♠, enchère légale qui teste le choix d'une nouvelle couleur alors que le fit Cœur est acquis. Les trois Piques ne motivent aucune recherche de fit Pique et 7 H ne justifient pas de poursuivre. Pas de nouvel accord sur le caractère forcing de 2♠.",
+      "diagnostics": [
+        {
+          "choice": "2SA",
+          "status": "hypothesis",
+          "category": "force",
+          "reason": "7 H avec fit Cœur connu ne justifient aucune proposition de manche.",
+          "confidence": "medium",
+          "evidence": {
+            "id": "SEF-V411-019",
+            "concept": "second.base",
+            "choice": "2SA",
+            "expected": "Passe",
+            "h": 7,
+            "shape": [
+              3,
+              4,
+              3,
+              3
+            ],
+            "auction": [
+              "Partenaire : 1♣",
+              "Vous : 1♥",
+              "Partenaire : 2♥"
+            ],
+            "assisted": false,
+            "hadFreeError": false,
+            "offered": true,
+            "rule": "m3c-reviewed-responder-natural"
+          }
+        },
+        {
+          "choice": "3♥",
+          "status": "hypothesis",
+          "category": "force",
+          "reason": "7 H face au soutien minimum ne donnent pas les valeurs d'une invitation.",
+          "confidence": "medium",
+          "evidence": {
+            "id": "SEF-V411-019",
+            "concept": "second.base",
+            "choice": "3♥",
+            "expected": "Passe",
+            "h": 7,
+            "shape": [
+              3,
+              4,
+              3,
+              3
+            ],
+            "auction": [
+              "Partenaire : 1♣",
+              "Vous : 1♥",
+              "Partenaire : 2♥"
+            ],
+            "assisted": false,
+            "hadFreeError": false,
+            "offered": true,
+            "rule": "m3c-reviewed-responder-natural"
+          }
+        },
+        {
+          "choice": "2♠",
+          "status": "hypothesis",
+          "category": "fit",
+          "reason": "Le fit 4–4 à Cœur est établi ; trois Piques et 7 H ne justifient pas de changer de couleur plutôt que de conserver 2♥.",
+          "confidence": "medium",
+          "evidence": {
+            "id": "SEF-V411-019",
+            "concept": "second.base",
+            "choice": "2♠",
+            "expected": "Passe",
+            "h": 7,
+            "shape": [
+              3,
+              4,
+              3,
+              3
+            ],
+            "auction": [
+              "Partenaire : 1♣",
+              "Vous : 1♥",
+              "Partenaire : 2♥"
+            ],
+            "assisted": false,
+            "hadFreeError": false,
+            "offered": true,
+            "rule": "m3c-patch-known-fit"
+          }
+        }
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "ids": [
+        "V2-M6-027",
+        "V2-M6-028"
+      ],
+      "reason": "6♣ exclu par l'énoncé ; pas de quatrième manche crédible identifiée."
+    },
+    {
+      "ids": [
+        "V2-M6-029",
+        "V2-M6-030"
+      ],
+      "reason": "Le contexte limite les choix à SA ; une modification de la formulation est hors périmètre."
+    },
+    {
+      "ids": [
+        "SEF-V411-007"
+      ],
+      "reason": "3SA explicitement exclu par l'énoncé ; la réponse a fait l'objet d'une correction historique, arbitrage éditorial préalable."
+    }
+  ]
+}

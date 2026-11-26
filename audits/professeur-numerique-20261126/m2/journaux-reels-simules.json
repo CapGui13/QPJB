@@ -1,0 +1,198 @@
+{
+  "environment": "V8, blobs de base et module M2 exacts ; réponses synthétiques ; aucune donnée d'élève",
+  "base": "f8ae2120eb893c68b4cac315b7901ece69806b87",
+  "assertions": 1692,
+  "configs": [
+    {
+      "profile": "autonome",
+      "seed": 47,
+      "horizon": 20
+    },
+    {
+      "profile": "intermediaire",
+      "seed": 47,
+      "horizon": 20
+    },
+    {
+      "profile": "faible",
+      "seed": 47,
+      "horizon": 20
+    },
+    {
+      "profile": "cible",
+      "seed": 47,
+      "horizon": 20
+    },
+    {
+      "profile": "aide",
+      "seed": 47,
+      "horizon": 20
+    },
+    {
+      "profile": "passe",
+      "seed": 47,
+      "horizon": 20
+    }
+  ],
+  "out": [
+    {
+      "profile": "autonome",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 50,
+          "families": 200,
+          "levels": {
+            "multi_family_evidence": 30,
+            "first_success": 20
+          },
+          "stageMatches": 177,
+          "decisions": 200,
+          "baselineFirstMatched": 17,
+          "rankedFirstMatched": 20,
+          "neutral": 23,
+          "unknown": 23,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.5
+        }
+      ]
+    },
+    {
+      "profile": "intermediaire",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 48,
+          "families": 181,
+          "levels": {
+            "fragile": 16,
+            "multi_family_evidence": 8,
+            "first_success": 19,
+            "exposed": 5
+          },
+          "stageMatches": 181,
+          "decisions": 200,
+          "baselineFirstMatched": 19,
+          "rankedFirstMatched": 20,
+          "neutral": 19,
+          "unknown": 19,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.5
+        }
+      ]
+    },
+    {
+      "profile": "faible",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 44,
+          "families": 164,
+          "levels": {
+            "fragile": 12,
+            "first_success": 18,
+            "exposed": 13,
+            "multi_family_evidence": 1
+          },
+          "stageMatches": 179,
+          "decisions": 200,
+          "baselineFirstMatched": 16,
+          "rankedFirstMatched": 20,
+          "neutral": 21,
+          "unknown": 21,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.45
+        }
+      ]
+    },
+    {
+      "profile": "cible",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 49,
+          "families": 181,
+          "levels": {
+            "multi_family_evidence": 24,
+            "fragile": 3,
+            "first_success": 21,
+            "exposed": 1
+          },
+          "stageMatches": 178,
+          "decisions": 200,
+          "baselineFirstMatched": 19,
+          "rankedFirstMatched": 20,
+          "neutral": 22,
+          "unknown": 22,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.45
+        }
+      ]
+    },
+    {
+      "profile": "aide",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 41,
+          "families": 163,
+          "levels": {
+            "fragile": 6,
+            "first_success": 11,
+            "exposed": 23,
+            "multi_family_evidence": 1
+          },
+          "stageMatches": 179,
+          "decisions": 200,
+          "baselineFirstMatched": 17,
+          "rankedFirstMatched": 20,
+          "neutral": 21,
+          "unknown": 21,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.25
+        }
+      ]
+    },
+    {
+      "profile": "passe",
+      "seed": 47,
+      "horizon": 20,
+      "snapshots": [
+        {
+          "session": 20,
+          "concepts": 48,
+          "families": 181,
+          "levels": {
+            "first_success": 25,
+            "fragile": 14,
+            "multi_family_evidence": 9
+          },
+          "stageMatches": 180,
+          "decisions": 200,
+          "baselineFirstMatched": 20,
+          "rankedFirstMatched": 20,
+          "neutral": 20,
+          "unknown": 20,
+          "mutations": 0,
+          "maxMs": 1,
+          "meanMs": 0.4
+        }
+      ]
+    }
+  ]
+}

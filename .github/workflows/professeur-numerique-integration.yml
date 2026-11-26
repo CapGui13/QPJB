@@ -1,0 +1,51 @@
+name: QPJB Professeur numérique — recette native des livrables
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'quizz-*.js'
+      - 'audits/professeur-numerique-20261126/**'
+      - 'tests/professeur-numerique-*.cjs'
+      - '.github/workflows/professeur-numerique-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    if: github.head_ref == 'professeur-numerique/integration' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests livrables sur base figée
+        run: |
+          set -eux
+          node tests/professeur-numerique-m1-catalogue.cjs
+          node tests/professeur-numerique-m2-concepts.cjs
+          node tests/professeur-numerique-m2-journal.cjs
+          node tests/professeur-numerique-m3-cloture.cjs
+          node tests/professeur-numerique-m3-diagnostic.cjs
+          node tests/professeur-numerique-m3-integration.cjs
+          node tests/professeur-numerique-m3-plausibilite.cjs
+          node tests/professeur-numerique-m3-revue.cjs
+          node tests/professeur-numerique-m4-demo-dom.cjs
+          node tests/professeur-numerique-m4-remediation.cjs
+  browsers:
+    if: github.head_ref == 'professeur-numerique/integration' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-m4-browser.cjs
