@@ -141,8 +141,8 @@ const server=http.createServer((req,res)=>{
   }
   await page.evaluate(()=>localStorage.removeItem('qpjb-sef-entrainement-01'));
   await page.reload({waitUntil:'domcontentloaded'});
-  assert.ok((await page.locator('.stage').textContent()).includes('Le SEF est notre référence unique.'),'The quiz describes its single SEF reference');
-  assert.ok(!(await page.locator('.stage').textContent()).includes('accord de paire'),'No pair settings are advertised');
+   assert.equal(await page.locator('.stage').count(),0,'Requested removal of the introductory panel (#365)');
+   assert.ok(!(await page.locator('main').innerText()).includes('accord de paire'),'No pair settings are advertised');
   assert.equal(await page.locator('#selection-mode option').count(),5);
   assert.equal(await page.locator('#topic option').count(),23);
   const dimensions=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:document.documentElement.clientWidth}));
