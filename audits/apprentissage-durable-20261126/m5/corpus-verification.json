@@ -445,7 +445,7 @@
     "mineur.base": {
       "title": "Répondre naturellement à une mineure",
       "objective": "Répondre naturellement à une mineure",
-      "rule": "Avec la force de répondre, cherchez une majeure quatrième : 1♥ ou 1♠ promet au moins quatre cartes, est forcing un tour si vous n'avez pas passé, et n'est pas limité en force. Sans majeure annonçable, 1SA est une réponse limitée de 6–10 H. Les mains fortes et les choix Carreau/majeure sont approfondis séparément.",
+      "rule": "Avec environ 6 H pour répondre, recherchez une majeure quatrième, sinon une couleur naturelle disponible (1♦ sur 1♣ avec quatre Carreaux au moins). 1♥/1♠ est forcing un tour et non limité si vous n'avez pas passé. 1SA (6–10 H) convient faute de meilleure enchère. Avec une main très faible, Passe.",
       "typicalError": "La majeure de réponse peut être quatrième, contrairement à l'ouverture.",
       "checks": [
         {
@@ -454,7 +454,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après ouverture mineure, une réponse majeure promet quatre cartes au moins ; 1SA limité ne doit pas masquer une majeure annonçable.",
+      "reminder": "Sur ouverture mineure, chercher une majeure quatrième, puis couleur naturelle disponible ; 1SA 6–10 H faute de meilleure description.",
       "examples": [
         {
           "id": "SEF-015-1",
@@ -598,6 +598,102 @@
             }
           ],
           "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-N030-1",
+          "hand": [
+            [
+              "10",
+              "3",
+              "2"
+            ],
+            [
+              "9",
+              "7",
+              "2"
+            ],
+            [
+              "D",
+              "10",
+              "7",
+              "5",
+              "4"
+            ],
+            [
+              "A",
+              "4"
+            ]
+          ],
+          "h": 6,
+          "shape": [
+            3,
+            3,
+            5,
+            2
+          ],
+          "auction": [
+            "Partenaire : 1♣"
+          ],
+          "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+          "answer": "1♦",
+          "comment": "Avec 6 H et cinq Carreaux, vous avez 7 HL : assez pour répondre. Sans majeure quatrième, annoncez 1♦ sur 1♣, naturellement et forcing un tour pour un répondant non passé.",
+          "contrast": "Sans majeure quatrième, cinq Carreaux sur 1♣ : 1♦.",
+          "minSession": 1,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-024-2",
+          "hand": [
+            [
+              "5",
+              "4",
+              "3",
+              "2"
+            ],
+            [
+              "6",
+              "3",
+              "2"
+            ],
+            [
+              "D",
+              "8",
+              "5",
+              "4"
+            ],
+            [
+              "7",
+              "3"
+            ]
+          ],
+          "h": 2,
+          "shape": [
+            4,
+            3,
+            4,
+            2
+          ],
+          "auction": [
+            "Partenaire : 1♦"
+          ],
+          "context": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+          "answer": "Passe",
+          "comment": "Avec 2 H, vous n’avez pas la force nécessaire pour répondre à 1♦. Passez.",
+          "contrast": "2 H : Passe, même avec une majeure quatrième.",
+          "minSession": 1,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
         }
       ],
       "prerequisites": [
@@ -709,6 +805,329 @@
             },
             {
               "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-23",
+          "title": "Répondre à Carreau ou à Trèfle naturellement",
+          "rule": "Sur 1♣, sans majeure quatrième et avec au moins quatre Carreaux, 1♦ est naturel et forcing un tour pour un répondant non passé. Sur 1♦, 2♣ naturel demande 11 H ou 12 HL et est auto-forcing : le répondant doit reparler sur une redemande économique non fittée.",
+          "check": {
+            "prompt": "Sur 1♣, 6 H, cinq Carreaux sans majeure quatrième : quelle réponse ?",
+            "answer": "1♦, et non 1SA qui masquerait la couleur.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-N030-1",
+              "hand": [
+                [
+                  "10",
+                  "3",
+                  "2"
+                ],
+                [
+                  "9",
+                  "7",
+                  "2"
+                ],
+                [
+                  "D",
+                  "10",
+                  "7",
+                  "5",
+                  "4"
+                ],
+                [
+                  "A",
+                  "4"
+                ]
+              ],
+              "h": 6,
+              "shape": [
+                3,
+                3,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣"
+              ],
+              "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+              "answer": "1♦",
+              "comment": "Avec 6 H et cinq Carreaux, vous avez 7 HL : assez pour répondre. Sans majeure quatrième, annoncez 1♦ sur 1♣, naturellement et forcing un tour pour un répondant non passé."
+            },
+            {
+              "id": "SEF-N045-1",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "3"
+                ],
+                [
+                  "D",
+                  "V",
+                  "7"
+                ],
+                [
+                  "5",
+                  "2"
+                ],
+                [
+                  "R",
+                  "7",
+                  "6",
+                  "5",
+                  "2"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                3,
+                3,
+                2,
+                5
+              ],
+              "auction": [
+                "Partenaire : 1♦"
+              ],
+              "context": "Votre partenaire ouvre de 1♦. Vous avez cinq Trèfles et 12 H : faut-il décrire cette nouvelle couleur au palier de deux ?",
+              "answer": "2♣",
+              "comment": "Vos cinq Trèfles et 12 H donnent 13 HL : vous dépassez le seuil de 11 H ou 12 HL d'un 2 sur 1. Sans majeure quatrième ni soutien Carreau, 2♣ est naturel, forcing et auto-forcing : après une redemande économique non fittée, vous devrez reparler. 1SA sous-évaluerait votre jeu."
+            }
+          ],
+          "minSession": 1,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-24",
+          "title": "Proposer ou conclure à Sans-Atout",
+          "rule": "Sans majeure quatrième et sans meilleure description, 2SA naturel après ouverture mineure propose la manche avec 11–12 H réguliers. 3SA peut conclure avec les valeurs et la forme appropriées. Ne confondez pas cette zone avec 2SA après 1SA.",
+          "check": {
+            "prompt": "Après 1♣, 11 H réguliers, sans majeure quatrième et sans autre enchère préférable : quel niveau de SA ?",
+            "answer": "2SA invitant dans les cas étudiés.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-005",
+              "hand": [
+                [
+                  "D",
+                  "5",
+                  "4"
+                ],
+                [
+                  "D",
+                  "5",
+                  "3"
+                ],
+                [
+                  "A",
+                  "7",
+                  "2"
+                ],
+                [
+                  "R",
+                  "8",
+                  "6",
+                  "5"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 1♣"
+              ],
+              "context": "Votre partenaire ouvre de 1♣ sans intervention adverse. Vous détenez 11 H, une main régulière et aucune majeure quatrième. Quelle réponse choisissez-vous ?",
+              "answer": "2SA",
+              "comment": "Avec 11 H, une main régulière et aucune majeure quatrième, 2SA naturel propose la manche dans la zone 11–12 H. En silence adverse, deux arrêts majeurs assurés ne sont pas une condition obligatoire de cette réponse ; les Dames troisièmes restent des tenues fragiles que l'ouvreur appréciera."
+            },
+            {
+              "id": "SEF-V44-007",
+              "hand": [
+                [
+                  "R",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "V",
+                  "5"
+                ],
+                [
+                  "8",
+                  "6",
+                  "3"
+                ],
+                [
+                  "A",
+                  "D",
+                  "9",
+                  "3"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 1♣"
+              ],
+              "context": "Votre partenaire ouvre de 1♣ dans le silence adverse. Quelle réponse naturelle choisissez-vous avec cette main régulière ?",
+              "answer": "3SA",
+              "comment": "Avec 14 H réguliers, aucune majeure quatrième et des arrêts dans les deux majeures (♠R52 et ♥AV5), vous avez la force de manche. 3SA direct est naturel sur l'ouverture de 1♣ ; 2SA ne serait qu'une invitation."
+            }
+          ],
+          "minSession": 1,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-25",
+          "title": "Rencontre après Passe initial",
+          "rule": "Après votre Passe initial et l'ouverture mineure du partenaire, un changement de couleur à saut peut être une rencontre : cinq bons atouts dans la majeure nommée, au moins quatre cartes dans la mineure d'ouverture et 8–11 H dans les séquences enseignées.",
+          "check": {
+            "prompt": "Après avoir passé, que montre le saut à 2♠ sur 1♣ dans le développement étudié ?",
+            "answer": "Cinq bons Piques et au moins quatre Trèfles, 8–11 H.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L18-004",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "8",
+                  "3"
+                ],
+                [
+                  "A",
+                  "9",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                5,
+                2,
+                2,
+                4
+              ],
+              "auction": [
+                "Vous : Passe (premier tour)",
+                "Adversaire : Passe",
+                "Partenaire : 1♣ (ouverture en troisième position)",
+                "Adversaire : Passe"
+              ],
+              "context": "Vous aviez passé d'entrée avec 10 H. Le partenaire ouvre ensuite de 1♣. Vous possédez cinq beaux Piques et quatre Trèfles : quelle enchère de rencontre du SEF 2024 montre les deux couleurs, une main de 8 à 11 H et au moins quatre atouts Trèfle ?",
+              "answer": "2♠",
+              "comment": "Après Passe initial et ouverture mineure du partenaire, un changement de couleur à saut est une enchère de rencontre : ici 2♠ montre cinq bons Piques, au moins quatre Trèfles et 8–11 H. 1♠ n'exprime pas ce double fit."
+            },
+            {
+              "id": "SEF-L18-005",
+              "hand": [
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "A",
+                  "9",
+                  "7",
+                  "3"
+                ],
+                [
+                  "8",
+                  "3"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                2,
+                5,
+                4,
+                2
+              ],
+              "auction": [
+                "Vous : Passe (premier tour)",
+                "Adversaire : Passe",
+                "Partenaire : 1♦ (ouverture en troisième position)",
+                "Adversaire : Passe"
+              ],
+              "context": "Vous aviez passé en première position avec 10 H. Le partenaire ouvre de 1♦ en troisième position. Vous avez cinq beaux Cœurs et quatre Carreaux : quelle enchère de rencontre du SEF 2024 décrit ces deux couleurs et cette force ?",
+              "answer": "2♥",
+              "comment": "Le saut à 2♥ après Passe d'entrée face à 1♦ est une rencontre : cinq beaux Cœurs, au moins quatre Carreaux et 8–11 H. Le simple 1♥ est non forcing après Passe et ne promet pas le soutien à Carreau."
+            }
+          ],
+          "minSession": 5,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.soutien",
               "minExposure": 1
             }
           ],
@@ -1039,8 +1458,113 @@
       "minSession": 1,
       "disposition": "ready",
       "definitions": [
-        "Fit : huit cartes au moins dans la même couleur au camp.",
-        "HLD : points H et L, auxquels s'ajoutent les points de distribution lorsque le fit est établi."
+        "Fit majeur : huit cartes au moins dans la couleur au camp.",
+        "HLD : points H et L, auxquels s'ajoutent les points de distribution après le fit. Dans les exemples, doubleton = 1 D, singleton = 2 D ; neuvième atout connu = 2 D. Les honneurs et les courtes doivent être appréciés selon la main."
+      ],
+      "extensions": [
+        {
+          "id": "m5-ext-26",
+          "title": "Inviter ou barrer selon force et longueur",
+          "rule": "En silence adverse, 3M direct avec quatre atouts et 11–12 HLD propose la manche. Avec cinq atouts, une courte et peu de points H, 4M peut être un barrage à vulnérabilité favorable. Le saut de barrage ne prouve pas une force de manche.",
+          "check": {
+            "prompt": "Quatre atouts et 12 HLD sans intervention : soutien à quel palier ?",
+            "answer": "3M, invitant ; ne pas le confondre avec un barrage après Contre.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-009",
+              "hand": [
+                [
+                  "R",
+                  "5",
+                  "3"
+                ],
+                [
+                  "R",
+                  "V",
+                  "9",
+                  "5"
+                ],
+                [
+                  "D",
+                  "6",
+                  "5",
+                  "2"
+                ],
+                [
+                  "8",
+                  "5"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                3,
+                4,
+                4,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♥"
+              ],
+              "context": "Votre partenaire ouvre de 1♥ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+              "answer": "3♥",
+              "comment": "Face à 1♥, quatre Cœurs et un doubleton Trèfle valorisent vos 9 H : environ 12 HLD (2 points pour le neuvième atout et 1 pour le doubleton). Le soutien invitant à 3♥ propose la manche."
+            },
+            {
+              "id": "SEF-V44-011",
+              "hand": [
+                [
+                  "8",
+                  "4"
+                ],
+                [
+                  "D",
+                  "10",
+                  "9",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "10",
+                  "7",
+                  "3",
+                  "2"
+                ],
+                [
+                  "8"
+                ]
+              ],
+              "h": 6,
+              "shape": [
+                2,
+                5,
+                5,
+                1
+              ],
+              "auction": [
+                "Partenaire : 1♥"
+              ],
+              "context": "En tournoi par paires, votre camp est non vulnérable (vert) et les adversaires sont vulnérables (rouge). Le partenaire ouvre de 1♥ ; les adversaires passent. Avec cinq Cœurs, 6 H et un singleton Trèfle, quelle est votre réponse ?",
+              "answer": "4♥",
+              "comment": "Le partenaire promet au moins cinq Cœurs par son ouverture de 1♥. Vos cinq Cœurs donnent donc au moins dix atouts en ligne et votre singleton Trèfle renforce l'intérêt distributionnel de la main. À vulnérabilité favorable, un soutien barrage à 4♥ est justifié pour gêner les adversaires ; ce saut n'annonce pas une main forte ni une manche certaine. Le risque serait à réévaluer à vulnérabilité défavorable."
+            }
+          ],
+          "minSession": 2,
+          "prerequisites": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
       ]
     },
     "sa1.seuil": {
@@ -1510,7 +2034,7 @@
     "red.bicolore": {
       "title": "Décrire une deuxième couleur économique",
       "objective": "Décrire une deuxième couleur économique",
-      "rule": "Après 1♣–1♥, quatre Piques peuvent être annoncés à 1♠ avec une ouverture minimale et sans soutien de quatre Cœurs. Une couleur disponible au palier de un permet de poursuivre la recherche d'un fit.",
+      "rule": "Après 1♣–1♥, quatre Piques peuvent être nommés à 1♠ sans surplus de force. Avec une première couleur cinquième et une seconde quatrième, le bicolore économique permet de revenir dans la première couleur au même palier. Cherchez d'abord le fit ; ne masquez pas la seconde couleur.",
       "typicalError": "Ne redemandez pas systématiquement 1SA dès que la main paraît régulière.",
       "checks": [
         {
@@ -1519,7 +2043,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après 1♣–1♥, 1♠ économique peut montrer quatre Piques avec une ouverture minimale.",
+      "reminder": "Une seconde couleur économique conserve la possibilité de revenir à la première au même palier ; 1♠ après 1♣–1♥ peut être quatrième.",
       "examples": [
         {
           "id": "SEF-042-2",
@@ -1560,6 +2084,59 @@
           "context": "Vous avez ouvert de 1♣ et votre partenaire a répondu 1♥. Quelle est votre redemande ?",
           "answer": "1♠",
           "comment": "Après 1♣–1♥, avec 13 H, seulement trois Cœurs et quatre Piques, l’ouvreur décrit d’abord sa majeure quatrième par 1♠. Une redemande à 1SA risquerait de perdre un fit à Pique."
+        },
+        {
+          "id": "SEF-049-1",
+          "hand": [
+            [
+              "V",
+              "10",
+              "8",
+              "7",
+              "3"
+            ],
+            [
+              "A",
+              "V",
+              "8",
+              "2"
+            ],
+            [
+              "R",
+              "D"
+            ],
+            [
+              "V",
+              "9"
+            ]
+          ],
+          "h": 12,
+          "shape": [
+            5,
+            4,
+            2,
+            2
+          ],
+          "auction": [
+            "Vous : 1♠",
+            "Partenaire : 1SA"
+          ],
+          "context": "Vous avez ouvert de 1♠ et votre partenaire a répondu 1SA. Quelle est votre redemande ? (En SEF, la réponse de 1SA est non forcing.)",
+          "answer": "2♥",
+          "comment": "Après 1♠–1SA (non forcing en SEF), cinq Piques et quatre Cœurs avec 12 H : 2♥ est un bicolore économique et cherche un meilleur contrat. 3♥ à saut demanderait plus de force.",
+          "contrast": "Bicolore économique 5–4 à 2♥ après 1♠–1SA.",
+          "minSession": 5,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
         }
       ],
       "prerequisites": [
@@ -1573,12 +2150,236 @@
         }
       ],
       "minSession": 5,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-30",
+          "title": "Montrer un bicolore économique",
+          "rule": "Le bicolore économique permet au répondant de revenir dans la première couleur au même palier. Par exemple 1♥–1♠–2♦ permet 2♥ en préférence. Une ouverture minimale avec cinq Cœurs et quatre Carreaux peut le produire.",
+          "check": {
+            "prompt": "Après 1♥–1♠–2♦, faut-il monter au palier de trois pour revenir aux Cœurs ?",
+            "answer": "Non : 2♥ est possible, ce qui explique le caractère économique.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-051-1",
+              "hand": [
+                [
+                  "7",
+                  "4"
+                ],
+                [
+                  "R",
+                  "D",
+                  "9",
+                  "8",
+                  "2"
+                ],
+                [
+                  "A",
+                  "R",
+                  "7",
+                  "2"
+                ],
+                [
+                  "V",
+                  "8"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                2,
+                5,
+                4,
+                2
+              ],
+              "auction": [
+                "Vous : 1♥",
+                "Partenaire : 1♠"
+              ],
+              "context": "Vous avez ouvert de 1♥ et votre partenaire a répondu 1♠. Quelle est votre redemande ?",
+              "answer": "2♦",
+              "comment": "Après 1♥–1♠, vos 13 H, cinq Cœurs et quatre Carreaux justifient 2♦, bicolore économique. Le partenaire peut revenir à 2♥ sans monter au palier de trois. Répéter les Cœurs masquerait les quatre Carreaux."
+            },
+            {
+              "id": "SEF-N126-1",
+              "hand": [
+                [
+                  "V",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "7",
+                  "5",
+                  "2"
+                ],
+                [
+                  "10",
+                  "4"
+                ],
+                [
+                  "A",
+                  "R",
+                  "9",
+                  "4"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                2,
+                5,
+                2,
+                4
+              ],
+              "auction": [
+                "Vous : 1♥",
+                "Partenaire : 1♠"
+              ],
+              "context": "Vous avez ouvert et votre partenaire a répondu au palier de 1. Quelle est votre redemande ?",
+              "answer": "2♣",
+              "comment": "Avec 13 H, cinq Cœurs et quatre Trèfles après 1♥–1♠, annoncez 2♣. Ce bicolore économique permet de retrouver un fit Trèfle ou de revenir à 2♥ ; 2♥ immédiat masquerait les Trèfles."
+            }
+          ],
+          "minSession": 6,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.bicolore",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-31",
+          "title": "Bicolore fort et bicolore à saut",
+          "rule": "Dans les séquences étudiées, 1♠–2♦–3♣ peut décrire un bicolore fort 5–5. Un saut à 2♠ après 1♣–1♥ décrit une force très supérieure et impose la manche dans le cas cité. Ne confondez pas ces descriptions avec un simple bicolore économique.",
+          "check": {
+            "prompt": "Pourquoi annoncer 2♠ à saut et non 1♠ avec 20 HL après 1♣–1♥ ?",
+            "answer": "Le saut transmet la force exceptionnelle et le caractère forcing de manche.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V424-003",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "V",
+                  "7",
+                  "4"
+                ],
+                [
+                  "8"
+                ],
+                [
+                  "7",
+                  "3"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "10",
+                  "5"
+                ]
+              ],
+              "h": 16,
+              "shape": [
+                5,
+                1,
+                2,
+                5
+              ],
+              "auction": [
+                "Vous : 1♠",
+                "Partenaire : 2♦"
+              ],
+              "context": "Vous avez ouvert de 1♠ et votre partenaire a répondu 2♦. Quelle est votre redemande ? Le changement de couleur au palier de 2 est auto-forcing (le répondant s’engage aussi à reparler sur une redemande économique non fittée).",
+              "answer": "3♣",
+              "comment": "Après 1♠–2♦, avec cinq Piques, cinq Trèfles et 16 H (18 HL), 3♣ décrit le bicolore fort 5–5. Répéter 2♠ cacherait la seconde longue ; 3♦ inventerait un soutien."
+            },
+            {
+              "id": "SEF-Q26-M3-002",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "7"
+                ],
+                [
+                  "8"
+                ],
+                [
+                  "A",
+                  "9",
+                  "2"
+                ],
+                [
+                  "A",
+                  "D",
+                  "10",
+                  "8",
+                  "4"
+                ]
+              ],
+              "h": 19,
+              "shape": [
+                4,
+                1,
+                3,
+                5
+              ],
+              "auction": [
+                "Vous : 1♣",
+                "Partenaire : 1♥"
+              ],
+              "context": "Vous avez ouvert de 1♣ et reçu la réponse 1♥. Comment annoncer vos quatre Piques avec cette forte main bicolore ?",
+              "answer": "2♠",
+              "comment": "Vos 19 H et votre Trèfle cinquième donnent 20 HL, avec quatre Piques. Le saut à 2♠ annonce un bicolore très fort et impose la manche. 1♠ sans saut ne garantirait pas cette force ; 2SA masquerait la distribution irrégulière."
+            }
+          ],
+          "minSession": 13,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            },
+            {
+              "concept": "red.bicolore_cher",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "red.base": {
       "title": "Redemander 1SA avec une ouverture minimale",
       "objective": "Redemander 1SA avec une ouverture minimale",
-      "rule": "Après une réponse majeure sur 1♣, une redemande de 1SA décrit normalement 12–14 H réguliers, sans soutien de quatre cartes dans la majeure annoncée et sans majeure quatrième prioritaire encore annonçable.",
+      "rule": "Après la réponse du partenaire, vérifiez le fit et les couleurs annonçables. Avec 12–14 H réguliers, sans soutien quatrième ni majeure quatrième prioritaire, redemandez 1SA. Avec une sixième et une ouverture minimale, sa répétition naturelle est souvent plus descriptive.",
       "typicalError": "Trois atouts ne permettent pas automatiquement le soutien direct de l'ouvreur.",
       "checks": [
         {
@@ -1587,7 +2388,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Redemande 1SA : 12–14 H réguliers, sans soutien quatrième ni majeure prioritaire.",
+      "reminder": "Redemande : avec 12–14 H réguliers sans fit ni majeure prioritaire, 1SA ; une sixième minimale peut se répéter.",
       "examples": [
         {
           "id": "SEF-044-1",
@@ -1628,6 +2429,59 @@
           "context": "Vous avez ouvert de 1♣ et votre partenaire a répondu 1♠. Quelle est votre redemande ?",
           "answer": "1SA",
           "comment": "Après 1♣–1♠, avec 12 H réguliers et trois Piques, la main est minimale et non fittée : 1SA montre 12–14 H. 2♠ requerrait quatre atouts."
+        },
+        {
+          "id": "SEF-048-1",
+          "hand": [
+            [
+              "6",
+              "4"
+            ],
+            [
+              "D",
+              "V",
+              "8",
+              "7",
+              "6",
+              "3"
+            ],
+            [
+              "A",
+              "R",
+              "8"
+            ],
+            [
+              "R",
+              "3"
+            ]
+          ],
+          "h": 13,
+          "shape": [
+            2,
+            6,
+            3,
+            2
+          ],
+          "auction": [
+            "Vous : 1♥",
+            "Partenaire : 1♠"
+          ],
+          "context": "Vous avez ouvert de 1♥ et votre partenaire a répondu 1♠. Quelle est votre redemande ?",
+          "answer": "2♥",
+          "comment": "Après 1♥–1♠, vos six Cœurs et 13 H appellent 2♥, répétition simple. Deux Piques ne permettent pas un soutien ; 1SA décrirait une main régulière, pas cette couleur sixième.",
+          "contrast": "Six Cœurs et main minimale : répétition naturelle, pas 1SA.",
+          "minSession": 4,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
         }
       ],
       "prerequisites": [
@@ -1641,12 +2495,263 @@
         }
       ],
       "minSession": 4,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-27",
+          "title": "Distinguer 1SA et 2SA de redemande",
+          "rule": "Après ouverture mineure et réponse majeure, sans fit ni majeure quatrième prioritaire, 1SA montre 12–14 H réguliers. 2SA à saut montre 18–19 H réguliers. La différence est une zone de force, pas une préférence pour un contrat plus élevé.",
+          "check": {
+            "prompt": "Avec 18 H réguliers et trois Piques après 1♦–1♠, quelle redemande ?",
+            "answer": "2SA à saut, 18–19 H.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-045-1",
+              "hand": [
+                [
+                  "9",
+                  "6",
+                  "5"
+                ],
+                [
+                  "A",
+                  "R",
+                  "9"
+                ],
+                [
+                  "A",
+                  "D",
+                  "9",
+                  "7"
+                ],
+                [
+                  "R",
+                  "D",
+                  "8"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Partenaire : 1♠"
+              ],
+              "context": "Vous avez ouvert de 1♦ et votre partenaire a répondu 1♠. Quelle est votre redemande ?",
+              "answer": "2SA",
+              "comment": "Après 1♦–1♠, 18 H réguliers et trois Piques : l’enchère de 2SA à saut montre 18–19 H, tandis que 1SA serait limité à 12–14 H."
+            }
+          ],
+          "minSession": 5,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-28",
+          "title": "Répéter la longue et préciser sa force",
+          "rule": "Après réponse du partenaire, répétez une sixième naturelle au palier économique avec une ouverture minimale. Une belle sixième et un surplus de force peuvent justifier la répétition à saut, invitante dans les séquences étudiées.",
+          "check": {
+            "prompt": "Six Carreaux très solides, 16 H (18 HL), après 1♦–1♠ : qu'apporte 3♦ plutôt que 2♦ ?",
+            "answer": "Le surplus de force et la qualité de la longue.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V411-003",
+              "hand": [
+                [
+                  "A",
+                  "3"
+                ],
+                [
+                  "8",
+                  "2"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "7"
+                ],
+                [
+                  "D",
+                  "3",
+                  "2"
+                ]
+              ],
+              "h": 16,
+              "shape": [
+                2,
+                2,
+                6,
+                3
+              ],
+              "auction": [
+                "Vous : 1♦",
+                "Partenaire : 1♠"
+              ],
+              "context": "Vous avez ouvert de 1♦ et votre partenaire a répondu 1♠. Quelle est votre redemande ?",
+              "answer": "3♦",
+              "comment": "Avec 16 H, six Carreaux et As-Roi-Dame-Valet dans la longue, vous avez 18 HL et une bonne source de levées. Le saut à 3♦ décrit cette main invitante ; 2♦ ne distinguerait pas cette force d'une répétition minimale."
+            }
+          ],
+          "minSession": 5,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-29",
+          "title": "Montrer un soutien fort",
+          "rule": "Après ouverture mineure et réponse majeure, 3M à saut peut être propositionnel avec une main réévaluée à 18 HLD et quatre atouts. Dans le développement 1♣–1♠ étudié, 3SA artificiel montre 18–19 H réguliers avec quatre Piques, à distinguer du 2SA à saut non fitté.",
+          "check": {
+            "prompt": "Pourquoi 2SA à saut ne décrit-il pas correctement quatre Piques et 18 H réguliers après 1♣–1♠ ?",
+            "answer": "Le fit doit être annoncé ; 3SA est le soutien artificiel étudié.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-017",
+              "hand": [
+                [
+                  "3"
+                ],
+                [
+                  "A",
+                  "D",
+                  "9",
+                  "8"
+                ],
+                [
+                  "R",
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "V",
+                  "10",
+                  "9",
+                  "5"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                1,
+                4,
+                3,
+                5
+              ],
+              "auction": [
+                "Vous : 1♣",
+                "Partenaire : 1♥"
+              ],
+              "context": "Vous avez ouvert de 1♣ et votre partenaire a répondu 1♥. Quelle est votre redemande ?",
+              "answer": "3♥",
+              "comment": "Votre ouverture de 1♣ est naturelle avec cinq Trèfles et 13 H. Après 1♥, le fit de quatre cartes, le singleton Pique et la longueur à Trèfle revalorisent la main à 18 HLD (13 H + 1 L + 2 D pour le singleton + 2 pour le neuvième atout). 3♥ est un soutien à saut propositionnel, supérieur à 2♥ ; il ne force pas la manche."
+            },
+            {
+              "id": "SEF-L07-008",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "6",
+                  "3"
+                ],
+                [
+                  "R",
+                  "8",
+                  "5"
+                ],
+                [
+                  "D",
+                  "9"
+                ],
+                [
+                  "A",
+                  "D",
+                  "10",
+                  "2"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                4,
+                3,
+                2,
+                4
+              ],
+              "auction": [
+                "Vous : 1♣",
+                "Adversaire : Passe",
+                "Partenaire : 1♠",
+                "Adversaire : Passe"
+              ],
+              "context": "Vous êtes Sud, ouvreur. Séquence 1♣–1♠ dans le silence adverse. Quelle redemande décrit le mieux votre main (SEF 2024 sans Walsh) ?",
+              "answer": "3SA",
+              "comment": "Après 1♣–1♠ dans le silence adverse, vos 18 H réguliers et quatre Piques correspondent au soutien artificiel de 3SA. Il montre une main forte et fittée, contrairement à 2SA à saut sans fit ; le partenaire peut choisir la suite."
+            }
+          ],
+          "minSession": 8,
+          "prerequisites": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "second.base": {
-      "title": "Choisir la suite après le soutien de l'ouvreur",
-      "objective": "Choisir la suite après le soutien de l'ouvreur",
-      "rule": "Quand l'ouvreur soutient votre majeure au palier de deux, réévaluez la force du camp et le fit. Une réponse initiale faible ne devient pas automatiquement une invitation même avec un beau fit.",
+      "title": "Choisir la deuxième enchère du répondant",
+      "objective": "Choisir la deuxième enchère du répondant",
+      "rule": "Après la redemande de l'ouvreur, demandez-vous si un fit est établi et quelle force le partenaire a montrée. Avec une main faible, conservez ou choisissez une partielle ; avec une force intermédiaire invitez ; si la manche est certaine, concluez au meilleur contrat.",
       "typicalError": "Ne montez pas au palier de trois pour la seule présence d'un neuvième atout.",
       "checks": [
         {
@@ -1655,7 +2760,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après soutien de l'ouvreur, réévaluer force et fit ; un beau fit ne suffit pas à inviter.",
+      "reminder": "À la deuxième enchère du répondant, utiliser les renseignements de fit et de force pour choisir partielle, invitation ou manche.",
       "examples": [
         {
           "id": "SEF-V49-022",
@@ -1706,7 +2811,330 @@
         }
       ],
       "minSession": 6,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-32",
+          "title": "Choisir une partielle après 1SA de redemande",
+          "rule": "Après 1m–1M–1SA (12–14 H), une main faible sans longue utile peut passer. Avec une majeure cinquième, 2M naturel non forcing permet de jouer la longue. Une majeure seulement quatrième ne justifie pas cette répétition.",
+          "check": {
+            "prompt": "Avec 6 H et seulement quatre Cœurs après 1♣–1♥–1SA, répéter 2♥ ou passer ?",
+            "answer": "Passe : il manque une cinquième carte et une ambition constructive.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-052-3",
+              "hand": [
+                [
+                  "V",
+                  "6",
+                  "3"
+                ],
+                [
+                  "R",
+                  "9",
+                  "8",
+                  "6",
+                  "2"
+                ],
+                [
+                  "9",
+                  "8",
+                  "4"
+                ],
+                [
+                  "D",
+                  "7"
+                ]
+              ],
+              "h": 6,
+              "shape": [
+                3,
+                5,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA"
+              ],
+              "context": "Après 1♣ – 1♥ – 1SA, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "2♥",
+              "comment": "Le 1SA de l'ouvreur montre 12–14 H : avec vos 6 H, la manche n'est pas en vue. Vos cinq Cœurs peuvent trouver une partielle à la couleur ; 2♥ est naturel et non forcing. Avec seulement quatre Cœurs, on conserverait plutôt 1SA."
+            },
+            {
+              "id": "SEF-054-1",
+              "hand": [
+                [
+                  "V",
+                  "9",
+                  "4"
+                ],
+                [
+                  "D",
+                  "7",
+                  "6",
+                  "2"
+                ],
+                [
+                  "R",
+                  "10",
+                  "8"
+                ],
+                [
+                  "9",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 6,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA"
+              ],
+              "context": "Après 1♣ – 1♥ – 1SA, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "Passe",
+              "comment": "Après 1♣–1♥–1SA, vos quatre Cœurs ne justifient pas une répétition, normalement réservée à cinq cartes. Avec 6 H et une main régulière, passez."
+            }
+          ],
+          "minSession": 6,
+          "prerequisites": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-33",
+          "title": "Inviter ou conclure après 1SA de redemande",
+          "rule": "Face à 12–14 H réguliers, 11 H réguliers sans fit donnent 23–25 H : 2SA invite. 13 H donnent au moins 25 H : 3SA conclut si aucun meilleur contrat à la couleur n'est recherché.",
+          "check": {
+            "prompt": "Avec 13 H et seulement quatre cartes dans la majeure répondue, que garantit le minimum de 12 H ?",
+            "answer": "25 H combinés : la manche à SA peut être conclue dans le cas étudié.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-N143-2",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "2"
+                ],
+                [
+                  "D",
+                  "8",
+                  "4",
+                  "2"
+                ],
+                [
+                  "A",
+                  "9",
+                  "3"
+                ],
+                [
+                  "8",
+                  "7",
+                  "4"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA"
+              ],
+              "context": "Après 1♣ – 1♥ – 1SA, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "2SA",
+              "comment": "Avec 11 H réguliers et seulement quatre Cœurs, le total du camp varie de 23 à 25 H. 2SA est une invitation naturelle non forcing : l'ouvreur décide selon sa force et la qualité de sa main. Le Roudi n'a pas de fit 5–3 à rechercher ici."
+            },
+            {
+              "id": "SEF-N145-1",
+              "hand": [
+                [
+                  "V",
+                  "8",
+                  "2"
+                ],
+                [
+                  "A",
+                  "D",
+                  "V",
+                  "7"
+                ],
+                [
+                  "V",
+                  "9",
+                  "2"
+                ],
+                [
+                  "R",
+                  "V",
+                  "7"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA"
+              ],
+              "context": "Après 1♣ – 1♥ – 1SA, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "3SA",
+              "comment": "Avec 13 H réguliers face aux 12–14 H montrés par 1SA, le camp atteint au moins 25 H. Sans fit majeur trouvé, concluez à 3SA."
+            }
+          ],
+          "minSession": 7,
+          "prerequisites": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-34",
+          "title": "Préférence et soutien de la seconde couleur",
+          "rule": "Après un bicolore économique de l'ouvreur, le répondant peut revenir au contrat le plus économique de la première couleur avec une main faible. Un vrai fit de la seconde couleur avec une force constructive peut justifier un soutien encourageant.",
+          "check": {
+            "prompt": "Après 1♣–1♥–1♠, 7 H et cinq Trèfles : quel choix naturel non forcing ?",
+            "answer": "2♣, préférence pour la mineure d'ouverture.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V412-010",
+              "hand": [
+                [
+                  "V",
+                  "6"
+                ],
+                [
+                  "R",
+                  "6",
+                  "4",
+                  "3"
+                ],
+                [
+                  "4",
+                  "3"
+                ],
+                [
+                  "R",
+                  "10",
+                  "8",
+                  "6",
+                  "5"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                2,
+                4,
+                2,
+                5
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1♠"
+              ],
+              "context": "Après 1♣ – 1♥ – 1♠, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "2♣",
+              "comment": "Avec 7 H, quatre Cœurs et cinq Trèfles, la séquence 1♣–1♥–1♠ appelle une préférence à 2♣ : retour non forcing à la mineure d'ouverture."
+            },
+            {
+              "id": "SEF-V416-004",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "8",
+                  "2"
+                ],
+                [
+                  "8",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "9",
+                  "5",
+                  "3"
+                ],
+                [
+                  "10",
+                  "3"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                2,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♥",
+                "Vous : 1♠",
+                "Partenaire : 2♦"
+              ],
+              "context": "Après 1♥ – 1♠ – 2♦, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+              "answer": "3♦",
+              "comment": "Après 1♥–1♠–2♦, vos cinq Carreaux réalisent le fit dans la seconde couleur de l'ouvreur. Avec 10 H, 3♦ constitue un soutien encourageant, non forcing de manche."
+            }
+          ],
+          "minSession": 7,
+          "prerequisites": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "fit.2sa": {
       "title": "Distinguer 2SA fitté et soutien à trois",
@@ -1778,7 +3206,7 @@
     "majeur.base": {
       "title": "Évaluer la force de réponse à une majeure",
       "objective": "Évaluer la force de réponse à une majeure",
-      "rule": "Sans fit sur 1M, annoncez 1♠ sur 1♥ avec quatre Piques et force suffisante. À défaut, 1SA naturel de 6–10 H est non forcing dans le SEF enseigné. Un 2/1 naturel demande 11 H ou 12 HL et est auto-forcing. Avec une main très faible comme 2 H, Passe.",
+      "rule": "Sans fit sur 1M, annoncez 1♠ sur 1♥ avec quatre Piques et force suffisante. À défaut, 1SA (6–10 H) est non forcing et peut cacher une mineure longue. Un 2/1 naturel demande 11 H ou 12 HL et est auto-forcing. Avec une main très faible, Passe.",
       "typicalError": "Ne confondez pas l'obligation de répondre à un contre avec une ouverture naturelle.",
       "checks": [
         {
@@ -2805,7 +4233,184 @@
         }
       ],
       "minSession": 10,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-35",
+          "title": "Intervenir à 1SA ou contrer d'appel",
+          "rule": "Après une ouverture adverse au palier de un, 1SA naturel d'intervention décrit une main régulière de 16–18 HL avec arrêt dans la couleur adverse. Le contre d'appel décrit plutôt un jeu d'ouverture apte à jouer les autres couleurs, ou certaines mains fortes.",
+          "check": {
+            "prompt": "Avec 12 H, singleton Trèfle et quatre cartes dans chaque autre couleur sur 1♣ adverse, quelle enchère ?",
+            "answer": "Contre d'appel, pour proposer les autres couleurs.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V3-043-3",
+              "hand": [
+                [
+                  "R",
+                  "V",
+                  "5"
+                ],
+                [
+                  "A",
+                  "V",
+                  "8"
+                ],
+                [
+                  "5",
+                  "4",
+                  "3"
+                ],
+                [
+                  "A",
+                  "R",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 16,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♣"
+              ],
+              "context": "Votre adversaire de droite ouvre de 1♣. Vous êtes en deuxième position. Quelle est votre enchère selon le SEF ?",
+              "answer": "1SA",
+              "comment": "Après 1♣ adverse, vos 16 H dans une main régulière 3-3-3-4 et votre tenue ♣AR73 dans la couleur d'ouverture conviennent à l'intervention naturelle de 1SA (zone 16–18 HL ; ici H = HL, sans couleur cinquième). Le Contre d’appel décrirait moins bien cette main régulière avec arrêt."
+            },
+            {
+              "id": "SEF-V3-047-4",
+              "hand": [
+                [
+                  "A",
+                  "9",
+                  "8",
+                  "6"
+                ],
+                [
+                  "A",
+                  "R",
+                  "V",
+                  "9"
+                ],
+                [
+                  "9",
+                  "8",
+                  "5",
+                  "4"
+                ],
+                [
+                  "3"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                4,
+                4,
+                4,
+                1
+              ],
+              "auction": [
+                "Adversaire : 1♣"
+              ],
+              "context": "L’adversaire de droite vient d’ouvrir. C’est à toi d’intervenir : que dis-tu ?",
+              "answer": "Contre",
+              "comment": "Sur l’ouverture adverse de 1♣, les 12 H et le singleton Trèfle accompagnent quatre cartes dans chacune des trois autres couleurs. Le contre d’appel propose ces couleurs ; 1SA exigerait notamment une tenue à Trèfle."
+            }
+          ],
+          "minSession": 11,
+          "prerequisites": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-36",
+          "title": "Intervenir au palier de deux",
+          "rule": "Une intervention naturelle sans saut au palier de deux demande davantage de ressources que celle au palier de un : longueur, qualité de la couleur et force. Dans le cas cité, six Cœurs et 12 H (14 HL) justifient 2♥ sur 1♠.",
+          "check": {
+            "prompt": "Pourquoi une couleur seulement quatrième est-elle insuffisante pour l'intervention naturelle 2♥ étudiée ?",
+            "answer": "Le palier de deux exige une vraie longue et des valeurs adaptées.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V3-037-1",
+              "hand": [
+                [
+                  "R",
+                  "3"
+                ],
+                [
+                  "A",
+                  "V",
+                  "7",
+                  "6",
+                  "4",
+                  "2"
+                ],
+                [
+                  "V",
+                  "6",
+                  "2"
+                ],
+                [
+                  "R",
+                  "10"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                2,
+                6,
+                3,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1♠"
+              ],
+              "context": "Votre adversaire de droite ouvre de 1♠. Vous êtes en deuxième position. Quelle est votre enchère selon le SEF ?",
+              "answer": "2♥",
+              "comment": "Sur 1♠, 12 H et 6 cartes à Cœur (♥AV7642), soit 14 HL, justifient 2♥ naturel. Au palier de deux, la longueur et la qualité de la couleur comptent davantage ; le Contre d’appel ne décrirait pas aussi précisément cette longue."
+            }
+          ],
+          "minSession": 11,
+          "prerequisites": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "contre.base": {
       "title": "Répondre au contre d'appel",
@@ -3006,7 +4611,227 @@
         }
       ],
       "minSession": 14,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-37",
+          "title": "Réponses naturelles après intervention adverse",
+          "rule": "Après 1♣–(1♥), 1♠ peut annoncer naturellement la majeure et 1SA décrit ici 8–10 HL avec arrêt adverse, sans majeure prioritaire. Après 1♦–(1♠), 2♣ naturel avec force et vraie longue est forcing un tour mais non auto-forcing dans ce cadre.",
+          "check": {
+            "prompt": "Le 2/1 après intervention adverse est-il automatiquement auto-forcing comme sans intervention ?",
+            "answer": "Non : le 2♣ étudié est forcing un tour, non auto-forcing.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-041",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "V",
+                  "7",
+                  "5"
+                ],
+                [
+                  "4",
+                  "3"
+                ],
+                [
+                  "V",
+                  "10",
+                  "5"
+                ],
+                [
+                  "D",
+                  "8",
+                  "4"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                5,
+                2,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Adversaire : 1♥"
+              ],
+              "context": "Après l’ouverture de 1♣ du partenaire et l’intervention adverse de 1♥, quelle réponse convient ?",
+              "answer": "1♠",
+              "comment": "Avec neuf points H et cinq Piques solides (RDV75), 1♠ décrit naturellement votre majeure au palier de 1 après 1♣–(1♥). Le Contre ne montre pas les Piques dans cette séquence SEF ; 2♠ serait un saut inutile et 1SA cacherait votre majeure."
+            },
+            {
+              "id": "SEF-V410-028",
+              "hand": [
+                [
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "A",
+                  "7",
+                  "3"
+                ],
+                [
+                  "10",
+                  "7",
+                  "4",
+                  "2"
+                ],
+                [
+                  "A",
+                  "7",
+                  "6"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Adversaire : 1♥"
+              ],
+              "context": "Après intervention adverse, quelle réponse correspond à cette main ?",
+              "answer": "1SA",
+              "comment": "Avec 9 H, l’As troisième à Cœur et aucune majeure quatrième, 1SA décrit naturellement votre main après 1♣–(1♥). Vous êtes dans la zone 8–10 HL ; 1♠ inventerait une quatrième carte et le Contre n’est pas nécessaire avec cette tenue."
+            },
+            {
+              "id": "SEF-V412-019",
+              "hand": [
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "D",
+                  "6"
+                ],
+                [
+                  "A",
+                  "V",
+                  "8"
+                ],
+                [
+                  "R",
+                  "D",
+                  "9",
+                  "5",
+                  "3",
+                  "2"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                2,
+                2,
+                3,
+                6
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Adversaire : 1♠"
+              ],
+              "context": "Votre partenaire ouvre de 1♦, puis l'adversaire de droite intervient par 1♠. Quelle est votre réponse selon le SEF ?",
+              "answer": "2♣",
+              "comment": "Avec 12 H et six Trèfles RD9532, 2♣ décrit une longue réelle après 1♦–(1♠). Vous n’avez ni quatre Cœurs pour un Spoutnik simple ni arrêt à Pique pour 1SA ; un saut à 3♣ n’est pas nécessaire. 2♣ est naturel, forcing pour un tour, mais non auto-forcing."
+            }
+          ],
+          "minSession": 15,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-38",
+          "title": "Cue-bid fitté fort après intervention à la couleur",
+          "rule": "Après 1♠–(2♣), 3♣ reprend la couleur adverse et montre dans le SEF étudié quatre atouts Pique et au moins 13 HLD, forcing de manche. Ne confondez pas avec 2SA fitté normalement troisième, ni avec un 3♣ naturel.",
+          "check": {
+            "prompt": "Avec quatre Piques et 14 HLD après 1♠–(2♣), que signifie 3♣ ?",
+            "answer": "Cue-bid fort fitté, non une proposition de contrat à Trèfle.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V425-008",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "5"
+                ],
+                [
+                  "D",
+                  "9",
+                  "7",
+                  "4",
+                  "3"
+                ],
+                [
+                  "7",
+                  "6"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                4,
+                2,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♠",
+                "Adversaire : 2♣"
+              ],
+              "context": "Après 1♠ – (2♣), tu possèdes quatre atouts et une valeur de manche : quelle enchère forcing décrit le fit ?",
+              "answer": "3♣",
+              "comment": "Neuf H + 1 L (cinquième Carreau) + 2 D (deux doubletons) + 2 points pour le neuvième Pique = 14 HLD. Après 1♠ – (2♣), le cue-bid de 3♣ montre un fit de quatre Piques et une main forcing de manche (13 HLD et plus) selon le SEF 2024."
+            }
+          ],
+          "minSession": 15,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "competitif.2sa_fitte": {
       "title": "Reconnaître le 2SA fitté compétitif",
@@ -3302,7 +5127,217 @@
         }
       ],
       "minSession": 18,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-43",
+          "title": "Distinguer prolongation du barrage et recherche constructive",
+          "rule": "Avec quatre atouts face à une ouverture de deux faible, un soutien à quatre peut prolonger le barrage à vulnérabilité favorable. Avec une main forte fittée et une manche incertaine, 2SA interroge la qualité de l'ouverture au lieu de choisir immédiatement le contrat.",
+          "check": {
+            "prompt": "Sur 2♥ faible, trois Cœurs et 16 H, quel relais étudier ?",
+            "answer": "2SA interrogatif fitté, pour apprécier la qualité de l'ouverture.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V3-104-4",
+              "hand": [
+                [
+                  "D",
+                  "5",
+                  "2"
+                ],
+                [
+                  "10",
+                  "9",
+                  "7",
+                  "5"
+                ],
+                [
+                  "R",
+                  "D",
+                  "7"
+                ],
+                [
+                  "7",
+                  "3",
+                  "2"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♥"
+              ],
+              "context": "À vulnérabilité favorable, le partenaire ouvre de 2♥ faible (six Cœurs). Avec cette main, quelle réponse prolonge le barrage ?",
+              "answer": "4♥",
+              "comment": "Six Cœurs promis et vos quatre donnent dix atouts. Avec 7 H et à vulnérabilité favorable, 4♥ est une prolongation du barrage : vous occupez le palier de manche pour gêner les adversaires, et non parce que dix levées seraient certaines. 3♥ sous-exploiterait le fit ; 2SA serait une recherche constructive. Comparez avec une main forte également fittée, où 4♥ peut viser une manche réalisable."
+            },
+            {
+              "id": "SEF-V426-003",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "6"
+                ],
+                [
+                  "D",
+                  "8",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "9",
+                  "7"
+                ],
+                [
+                  "D",
+                  "8",
+                  "2"
+                ]
+              ],
+              "h": 16,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♥ (ouverture faible)"
+              ],
+              "context": "Le partenaire ouvre de 2♥ faible, avec six Cœurs. Les adversaires passent.",
+              "answer": "2SA",
+              "comment": "Avec 16 H et trois Cœurs, une manche est possible sans être certaine face à un 2 faible. Le relais fitté à 2SA permet de connaître la qualité de l’ouverture avant de conclure."
+            }
+          ],
+          "minSession": 18,
+          "prerequisites": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-44",
+          "title": "Chercher une autre couleur après barrage",
+          "rule": "Sur deux faible, une nouvelle couleur naturelle de bonne qualité peut être forcing avec des valeurs suffisantes. Par exemple 3♦ sur 2♥ avec six très beaux Carreaux et 15 H impose de poursuivre ; 2SA ne décrirait pas cette longue.",
+          "check": {
+            "prompt": "Un changement de couleur fort sur 2♥ faible est-il un simple contrat partiel définitif ?",
+            "answer": "Non, dans le cas étudié il est naturel forcing.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L09-023",
+              "hand": [
+                [
+                  "A",
+                  "7",
+                  "4"
+                ],
+                [
+                  "8"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "9",
+                  "7"
+                ],
+                [
+                  "V",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 15,
+              "shape": [
+                3,
+                1,
+                6,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♥",
+                "Adversaire : Passe"
+              ],
+              "context": "Nord ouvre de 2♥ faible (six cartes à Cœur, 6–10 H) et Est passe. Avec la main affichée, à vulnérabilité N/S vulnérables et E/O non vulnérables, quelle est votre réponse ?",
+              "answer": "3♦",
+              "comment": "Sur 2♥ faible, vos 15 H et six Carreaux ARDV97 ouvrent une perspective de manche dans une autre couleur ; votre singleton Cœur ne complète pas les six atouts promis à un fit huitième. 3♦ est naturel forcing : le partenaire doit répondre, ce qui permet de rechercher Carreau ou Sans-Atout sans imposer un contrat prématuré. 2SA interrogerait l'ouverture plutôt que de montrer cette longue."
+            },
+            {
+              "id": "SEF-L41-003",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "7"
+                ],
+                [
+                  "5"
+                ],
+                [
+                  "A",
+                  "9",
+                  "8",
+                  "3"
+                ],
+                [
+                  "8",
+                  "6"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                6,
+                1,
+                4,
+                2
+              ],
+              "auction": [
+                "Partenaire : 2♥ (ouverture faible, six Cœurs)",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre partenaire ouvre de 2♥ faible et l'adversaire passe. Vous possédez six très beaux Piques ♠ARDV107, un seul Cœur et 14 H. Sans soutien Cœur, vous souhaitez montrer immédiatement votre majeure sixième tout en laissant votre partenaire préciser sa main. Quelle réponse naturelle est forcing ?",
+              "answer": "2♠",
+              "comment": "Sur une ouverture de 2♥ faible, le changement de couleur à 2♠ est naturel et forcing, montrant une belle couleur au moins cinquième avec une force suffisante pour poursuivre. Avec six très beaux Piques et 14 H, 2♠ est descriptif et économique. 2SA serait une interrogation sur la force et les valeurs annexes de l'ouvreur, tandis que 4♠ conclurait prématurément."
+            }
+          ],
+          "minSession": 18,
+          "prerequisites": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "apres_fit.base": {
       "title": "Choisir partielle ou manche après soutien simple",
@@ -3665,7 +5700,227 @@
         }
       ],
       "minSession": 13,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-39",
+          "title": "Soutenir ou jouer à Sans-Atout après intervention",
+          "rule": "Après une intervention majeure du partenaire et Passe adverse, avec seulement deux atouts, une main modérée tenant la couleur ouverte peut répondre naturellement à 1SA, non forcing. Avec trois atouts et une perspective de manche, le cue-bid de l'ouverture adverse demande au partenaire de préciser son jeu.",
+          "check": {
+            "prompt": "Après (1♣)–1♥–(Passe), trois Cœurs et 12 H : pourquoi 2♣ plutôt que 2♥ ?",
+            "answer": "Le cue-bid forcing conserve la recherche de manche ; 2♥ serait limité.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V4-028-1",
+              "hand": [
+                [
+                  "9",
+                  "8",
+                  "6"
+                ],
+                [
+                  "7",
+                  "4"
+                ],
+                [
+                  "10",
+                  "6",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "4"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                3,
+                2,
+                4,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1♣, votre partenaire intervient à 1♥, puis l'adversaire suivant passe. Quelle est votre réponse selon le SEF ?",
+              "answer": "1SA",
+              "comment": "Après 1♣ adverse et l'intervention de votre partenaire à 1♥, vous avez 9 H, seulement deux atouts (♥74) et un arrêt net dans la couleur ouverte (♣ARD4, avec l'As). 1SA est une réponse naturelle non forcing de force modérée, adaptée à cette main sans fit majeur."
+            },
+            {
+              "id": "SEF-V44-055",
+              "hand": [
+                [
+                  "D",
+                  "8",
+                  "5"
+                ],
+                [
+                  "R",
+                  "9",
+                  "4"
+                ],
+                [
+                  "10",
+                  "7",
+                  "6",
+                  "4"
+                ],
+                [
+                  "A",
+                  "R",
+                  "6"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : 1♥ (intervention)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1♣, votre partenaire intervient à 1♥, puis l'adversaire suivant passe. Quelle est votre réponse selon le SEF ?",
+              "answer": "2♣",
+              "comment": "Avec 12 H et trois Cœurs R94 face à l'intervention à 1♥, vous avez un fit huitième et une perspective de manche. 2♣ est le cue-bid forcing de la couleur ouverte par l'adversaire : le partenaire doit préciser son jeu. Même avec ♣AR6, l'enchère ne demande pas de jouer à Trèfle et n'est pas simplement une recherche d'arrêt. 2♥ serait un soutien limité qui permettrait au partenaire de passer."
+            }
+          ],
+          "minSession": 17,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-40",
+          "title": "Soutiens après la parole du troisième joueur",
+          "rule": "Après (1♦)–1♠–(2♦), 2SA mixed raise montre quatre Piques et 7–9 H dans le traitement étudié ; 3♦ montre au moins 10 H et quatre atouts, 3♠ un barrage. La parole du troisième joueur est déterminante : ne transposez pas ce 2SA à une séquence où il passe.",
+          "check": {
+            "prompt": "Quatre Piques et 8 H après (1♦)–1♠–(2♦) : quel soutien constructif limité ?",
+            "answer": "2SA mixed raise, quatre atouts et 7–9 H.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V473-001",
+              "hand": [
+                [
+                  "R",
+                  "V",
+                  "8",
+                  "7"
+                ],
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "8",
+                  "7",
+                  "5"
+                ],
+                [
+                  "A",
+                  "7",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 8,
+              "shape": [
+                4,
+                2,
+                3,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♦",
+                "Partenaire : 1♠ (intervention)",
+                "Adversaire : 2♦ (soutien)"
+              ],
+              "context": "L'adversaire de gauche ouvre de 1♦ ; votre partenaire intervient à 1♠ et l'adversaire de droite soutient à 2♦. Vous êtes le quatrième joueur. Quelle réponse choisissez-vous dans le SEF 2024 ?",
+              "answer": "2SA",
+              "comment": "Après (1♦)–1♠–(2♦), vos quatre Piques RV87 et 8 H relèvent du mixed raise : 2SA montre quatre atouts et 7–9 H dans cette séquence. L'adversaire a déjà soutenu les Carreaux ; les enchères de fit répartissent alors la force : 3♠ est un barrage, 3♦ un cue-bid plus fort, 2♠ le soutien économique. Le 2SA n'est pas naturel, même si l'on possède des valeurs annexes."
+            },
+            {
+              "id": "SEF-V473-003",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "8",
+                  "7"
+                ],
+                [
+                  "R",
+                  "9",
+                  "5"
+                ],
+                [
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "7",
+                  "4",
+                  "2"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                3,
+                2,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♦",
+                "Partenaire : 1♠ (intervention)",
+                "Adversaire : 2♦ (soutien)"
+              ],
+              "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient à 1♠ ; le répondant adverse soutient à 2♦. Quelle réponse choisissez-vous avec cette main selon le SEF 2024 ?",
+              "answer": "3♦",
+              "comment": "Avec quatre Piques A1087 et 10 H, vous avez franchi la borne de 9 H du mixed raise après (1♦)–1♠–(2♦). 3♦ reprend la couleur adverse pour montrer un soutien fort d'au moins quatre Piques (au moins 10 H). 3♠ est un barrage ; 4♠ conclurait sans connaître la force de l'intervenant. Le cue-bid conserve une possibilité d'évaluation commune."
+            }
+          ],
+          "minSession": 19,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            },
+            {
+              "concept": "reponse_inter.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "reveil.base": {
       "title": "Reconnaître une position de réveil",
@@ -3730,7 +5985,223 @@
         }
       ],
       "minSession": 19,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-41",
+          "title": "Dépasser le plafond du réveil naturel",
+          "rule": "Le réveil naturel sans saut étudié est limité à 13 HL. Avec une longue et 14 HL, Contre puis annonce de la couleur permet de montrer la force. Un saut constructif de réveil décrit une belle sixième et 11–13 HL dans les cas concernés.",
+          "check": {
+            "prompt": "Six Cœurs et 14 HL après 1♠–Passe–Passe : pourquoi ne pas réveiller directement à 2♥ ?",
+            "answer": "Le réveil naturel direct est limité à 13 HL ; le départ par Contre transmet la force.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V4-053-3",
+              "hand": [
+                [
+                  "4",
+                  "2"
+                ],
+                [
+                  "R",
+                  "D",
+                  "8",
+                  "4",
+                  "3",
+                  "2"
+                ],
+                [
+                  "A",
+                  "3",
+                  "2"
+                ],
+                [
+                  "R",
+                  "10"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                2,
+                6,
+                3,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1♠",
+                "Partenaire : Passe",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre adversaire de gauche ouvre de 1♠. Votre partenaire passe, puis l'autre adversaire passe. Vous êtes en position de réveil : quelle est votre enchère ?",
+              "answer": "Contre",
+              "comment": "Vos 12 H et six Cœurs RD8432 valent 14 HL, juste au-dessus du plafond de 13 HL du réveil naturel étudié. 2♥ direct serait au palier minimal et limiterait votre jeu. Contre d'abord, puis nommez les Cœurs si la suite le permet : c'est un départ de force, non la promesse d'une main tricolore. La différence avec SEF-V4-053-4 vient des 14 HL, pas de la sixième carte, commune aux deux mains."
+            },
+            {
+              "id": "SEF-V4-054-2",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "10",
+                  "9",
+                  "4",
+                  "2"
+                ],
+                [
+                  "R",
+                  "8"
+                ],
+                [
+                  "V",
+                  "5",
+                  "4"
+                ],
+                [
+                  "4",
+                  "2"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                6,
+                2,
+                3,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1♥",
+                "Partenaire : Passe",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre adversaire de gauche ouvre de 1♥. Votre partenaire passe, puis l'autre adversaire passe. Vous êtes en position de réveil : quelle est votre enchère ?",
+              "answer": "2♠",
+              "comment": "Les 10 H et six Piques AD10942 donnent 12 HL, dans la zone 11–13 HL du saut constructif en réveil. 2♠ décrit à la fois une belle sixième et cette force ; ce n'est pas le 2♠ faible d'une ouverture. Avec la même longueur mais 10 HL, le réveil se ferait économiquement à 1♠ ; au-delà de 13 HL, il faudrait envisager un départ par Contre."
+            }
+          ],
+          "minSession": 23,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-42",
+          "title": "Réveiller naturellement à Sans-Atout",
+          "rule": "Après 1♣–Passe–Passe, 1SA de réveil montre 10–13 H réguliers avec tenue Trèfle dans le cadre étudié ; 2SA direct montre 17–19 H réguliers avec tenue. Ne transposez pas les zones de l'intervention directe.",
+          "check": {
+            "prompt": "Quelle différence de force entre 1SA de réveil et 1SA d'intervention directe ?",
+            "answer": "Le réveil étudié est 10–13 H ; l'intervention directe 16–18 HL.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V4-057-2",
+              "hand": [
+                [
+                  "7",
+                  "5",
+                  "3"
+                ],
+                [
+                  "A",
+                  "V",
+                  "5"
+                ],
+                [
+                  "V",
+                  "8",
+                  "5"
+                ],
+                [
+                  "A",
+                  "7",
+                  "6",
+                  "3"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : Passe",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre adversaire de gauche ouvre de 1♣. Votre partenaire passe, puis l'autre adversaire passe. Vous êtes en position de réveil : quelle est votre enchère ?",
+              "answer": "1SA",
+              "comment": "Après 1♣ et deux Passe, vos 10 H et votre répartition régulière 3-3-3-4 conviennent à la tranche 10–13 H du réveil à 1SA. La tenue ♣A763 dans la couleur adverse protège cette orientation à Sans-Atout. Il s'agit d'un réveil après deux Passe, et non d'une intervention immédiate à 1SA, dont la zone est plus forte."
+            },
+            {
+              "id": "SEF-L32-003",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "8"
+                ],
+                [
+                  "R",
+                  "V",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "R",
+                  "8",
+                  "6"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Adversaire : 1♣ (ouverture)",
+                "Partenaire : Passe",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1♣, votre partenaire passe et le répondant adverse passe également. Vous êtes en réveil avec 18 H réguliers (3-3-4-3), un arrêt Trèfle ♣R86 et aucune majeure quatrième. Dans le SEF 2024, quelle enchère naturelle annonce directement la zone 17–19 H ?",
+              "answer": "2SA",
+              "comment": "En réveil après 1♣–Passe–Passe, 2SA direct est naturel avec 17–19 H et un jeu régulier tenant la couleur d'ouverture. Avec 18 H et le Roi de Trèfle troisième, 2SA décrit la force et la distribution. Le Contre d'appel ne rendrait pas compte aussi précisément de ce jeu sans majeure quatrième ; le cuebid à 2♣ aurait une signification bicolore."
+            }
+          ],
+          "minSession": 23,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "roudi.choix": {
       "title": "Choisir entre Roudi et répétition faible",
@@ -5453,9 +7924,9 @@
       ]
     },
     "fortes.relais": {
-      "title": "Répondre au 2♣ fort indéterminé",
-      "objective": "Répondre au 2♣ fort indéterminé",
-      "rule": "Le relais de 2♦ après 2♣ fort indéterminé est obligatoire dans l'accord enseigné, même sans Carreaux. Il permet à l'ouvreur de préciser sa main.",
+      "title": "Répondre à une ouverture forte",
+      "objective": "Répondre à une ouverture forte",
+      "rule": "Sur 2♣ fort indéterminé, 2♦ est le relais obligatoire. Sur 2♦ forcing de manche, le code étudié distingue 2♥ négatif, 2♠ un As majeur, 3♣/3♦ un As dans la mineure nommée, 2SA sans As avec 8 H ou plus et main régulière. Ce sont des codes, non des longueurs naturelles.",
       "typicalError": "Ne passez pas simplement avec une main faible.",
       "checks": [
         {
@@ -5464,7 +7935,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après 2♣ fort indéterminé, relais 2♦ obligatoire, sans promesse de Carreau.",
+      "reminder": "2♣ fort : relais 2♦. 2♦ forcing manche : 2♥ négatif ; 2♠ As majeur ; 3♣/3♦ As mineur ; 2SA sans As, 8+ H réguliers.",
       "examples": [
         {
           "id": "SEF-V45-005",
@@ -5504,6 +7975,246 @@
           "context": "Rappel : la réponse relais à une ouverture forte indéterminée est systématique, quelle que soit la force détenue.",
           "answer": "2♦",
           "comment": "Avec 5 H, vous ne pouvez pas passer sur l'ouverture artificielle 2♣ fort indéterminé : le relais 2♦ est obligatoire, même sans Carreaux. Il permet à l'ouvreur de préciser sa force et sa distribution avant que vous ne choisissiez le contrat."
+        },
+        {
+          "id": "SEF-V45-009",
+          "hand": [
+            [
+              "5",
+              "4",
+              "3"
+            ],
+            [
+              "V",
+              "10",
+              "8",
+              "3"
+            ],
+            [
+              "9",
+              "8",
+              "4"
+            ],
+            [
+              "D",
+              "5",
+              "3"
+            ]
+          ],
+          "h": 3,
+          "shape": [
+            3,
+            4,
+            3,
+            3
+          ],
+          "auction": [
+            "Partenaire : 2♦ (forcing de manche)"
+          ],
+          "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+          "answer": "2♥",
+          "comment": "Face à 2♦ forcing de manche, votre main de 3 H ne contient aucun As ni force suffisante pour une réponse positive sans As. 2♥ est la réponse négative dans le barème enseigné. Elle n'est pas une annonce naturelle des Cœurs, et n'autorise pas à passer.",
+          "contrast": "2♦ forcing de manche et main faible sans As : 2♥ négatif.",
+          "minSession": 27,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-V45-010",
+          "hand": [
+            [
+              "A",
+              "9",
+              "7",
+              "4"
+            ],
+            [
+              "9",
+              "6",
+              "2"
+            ],
+            [
+              "V",
+              "10",
+              "7"
+            ],
+            [
+              "10",
+              "9",
+              "6"
+            ]
+          ],
+          "h": 5,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Partenaire : 2♦ (forcing de manche)"
+          ],
+          "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+          "answer": "2♠",
+          "comment": "Vous détenez un seul As, ♠A, qui appartient à une majeure. Sur 2♦ forcing de manche, 2♠ indique conventionnellement un As majeur (Cœur ou Pique), pas une longueur à Pique. 2♥ serait la réponse négative et 3♣ indiquerait l'As de Trèfle.",
+          "contrast": "Un As majeur : 2♠ codé, pas des Piques.",
+          "minSession": 27,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-V45-011",
+          "hand": [
+            [
+              "D",
+              "7",
+              "4"
+            ],
+            [
+              "10",
+              "5",
+              "4"
+            ],
+            [
+              "10",
+              "9",
+              "3"
+            ],
+            [
+              "A",
+              "10",
+              "4",
+              "2"
+            ]
+          ],
+          "h": 6,
+          "shape": [
+            3,
+            3,
+            3,
+            4
+          ],
+          "auction": [
+            "Partenaire : 2♦ (forcing de manche)"
+          ],
+          "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+          "answer": "3♣",
+          "comment": "Votre seul As est ♣A, avec 6 H au total. Dans les réponses aux As sur 2♦ forcing de manche, 3♣ montre précisément cet As, non une longueur à Trèfle. 2♠ indiquerait un As majeur ; 2♥ serait la réponse négative.",
+          "contrast": "Un As de Trèfle : 3♣ codé.",
+          "minSession": 27,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-V45-012",
+          "hand": [
+            [
+              "7",
+              "6",
+              "2"
+            ],
+            [
+              "9",
+              "5",
+              "4"
+            ],
+            [
+              "A",
+              "9",
+              "5",
+              "3"
+            ],
+            [
+              "D",
+              "5",
+              "4"
+            ]
+          ],
+          "h": 6,
+          "shape": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "auction": [
+            "Partenaire : 2♦ (forcing de manche)"
+          ],
+          "context": "Rappel : réponses conventionnelles aux As après l'ouverture forte forcing de manche.",
+          "answer": "3♦",
+          "comment": "Avec ♦A953, votre seul As est celui de Carreau. 3♦ le signale conventionnellement après 2♦ forcing de manche ; 3♣ montrerait l'As de Trèfle et 2♠ un As majeur. Le nombre de Carreaux n'est pas ce qui décide ici.",
+          "contrast": "Un As de Carreau : 3♦ codé.",
+          "minSession": 27,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-V475-001",
+          "hand": [
+            [
+              "R",
+              "V",
+              "8",
+              "3"
+            ],
+            [
+              "D",
+              "8",
+              "5"
+            ],
+            [
+              "D",
+              "8",
+              "6"
+            ],
+            [
+              "9",
+              "7",
+              "2"
+            ]
+          ],
+          "h": 8,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [
+            "Partenaire : 2♦ (forcing de manche)"
+          ],
+          "context": "Votre partenaire ouvre de 2♦ forcing de manche. Vous possédez 8 points d'honneurs dans une main régulière, mais aucun As. Quelle réponse du SEF distingue cette main de la réponse faible à 2♥ ?",
+          "answer": "2SA",
+          "comment": "Après l'ouverture de 2♦ forcing de manche, 2SA est la réponse conventionnelle sans As à partir de 8 H, avec une main régulière. Vos 8 H sans As appellent donc 2SA ; 2♥ serait la réponse négative des mains sans As plus faibles.",
+          "contrast": "Sans As, 8 H réguliers : 2SA positif.",
+          "minSession": 27,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ],
+          "requiresPriorConcept": false
         }
       ],
       "prerequisites": [
@@ -5513,7 +8224,151 @@
         }
       ],
       "minSession": 27,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-45",
+          "title": "Deux As : couleur, rang ou mélange",
+          "rule": "En réponse à 2♦ forcing de manche, le barème étudié distingue 3♥ avec deux As de même couleur rouge/noire, 3♠ avec deux As de même rang majeur/mineur et 3SA avec deux As mélangés. Ne confondez pas rang et couleur.",
+          "check": {
+            "prompt": "As de Cœur et As de Carreau : quelle réponse au 2♦ forcing de manche ?",
+            "answer": "3♥ : deux As rouges, de même couleur.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V475-003",
+              "hand": [
+                [
+                  "9",
+                  "7",
+                  "4"
+                ],
+                [
+                  "A",
+                  "8",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "8",
+                  "3"
+                ],
+                [
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 8,
+              "shape": [
+                3,
+                4,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♦ (forcing de manche)"
+              ],
+              "context": "Le partenaire ouvre de 2♦ forcing de manche, avec réponses conventionnelles aux As. Vous détenez exactement deux As : celui de Cœur et celui de Carreau. Ils sont tous deux rouges, mais l'un est majeur et l'autre mineur. Quelle réponse les décrit ?",
+              "answer": "3♥",
+              "comment": "Les As de Cœur et de Carreau sont deux As de même couleur, puisqu'ils appartiennent tous deux aux couleurs rouges. Dans les réponses au 2♦ forcing de manche, 3♥ décrit précisément deux As de même couleur. On ne confond pas couleur rouge/noire et rang majeure/mineure."
+            },
+            {
+              "id": "SEF-V475-004",
+              "hand": [
+                [
+                  "A",
+                  "8",
+                  "6",
+                  "3"
+                ],
+                [
+                  "A",
+                  "7",
+                  "5"
+                ],
+                [
+                  "9",
+                  "8",
+                  "7"
+                ],
+                [
+                  "10",
+                  "6",
+                  "3"
+                ]
+              ],
+              "h": 8,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♦ (forcing de manche)"
+              ],
+              "context": "Après l'ouverture forcing de manche de 2♦ du partenaire, vous comptez deux As : Pique et Cœur. Ils sont l'un noir et l'autre rouge, mais appartiennent tous deux aux majeures. Quelle réponse conventionnelle choisissez-vous ?",
+              "answer": "3♠",
+              "comment": "L'As de Pique et l'As de Cœur sont deux As de même rang, parce que Pique et Cœur sont deux majeures. En réponse à 2♦ forcing de manche, 3♠ annonce deux As de même rang, distinct de 3♥ qui correspond à deux As de même couleur rouge ou noire."
+            },
+            {
+              "id": "SEF-V475-005",
+              "hand": [
+                [
+                  "A",
+                  "8",
+                  "6"
+                ],
+                [
+                  "8",
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "10",
+                  "6",
+                  "4"
+                ],
+                [
+                  "9",
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 8,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♦ (forcing de manche)"
+              ],
+              "context": "Le partenaire ouvre de 2♦ forcing de manche. Vous avez exactement deux As : Pique et Carreau. Ils ne sont ni de même couleur (noir/rouge) ni de même rang (majeure/mineure). Quelle réponse du SEF les annonce ?",
+              "answer": "3SA",
+              "comment": "Pique est une majeure noire et Carreau une mineure rouge : ces deux As sont mélangés, sans même couleur et sans même rang. La réponse de 3SA à l'ouverture de 2♦ forcing de manche signifie précisément deux As mélangés. Elle n'est pas une proposition de contrat naturel à Sans-Atout."
+            }
+          ],
+          "minSession": 31,
+          "prerequisites": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "fortes.redemande": {
       "title": "Décrire 22–23 H après le relais fort",
@@ -5577,7 +8432,179 @@
         }
       ],
       "minSession": 29,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-46",
+          "title": "Décrire un unicolore fort après 2♣",
+          "rule": "Après 2♣–2♦ relais, une redemande naturelle à 2M peut montrer un fort unicolore sixième. Un saut à 3M décrit une très belle septième et huit levées de jeu ; le saut à 3m étudié décrit une septième très forte et neuf levées de jeu.",
+          "check": {
+            "prompt": "Pourquoi 2♥ est-il adapté avec six très beaux Cœurs et 19 H dans le cas cité ?",
+            "answer": "Il décrit l'unicolore fort sans inventer la septième exigée pour 3♥.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-008",
+              "hand": [
+                [
+                  "10",
+                  "5"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "7",
+                  "4"
+                ],
+                [
+                  "A",
+                  "R",
+                  "2"
+                ],
+                [
+                  "D",
+                  "3"
+                ]
+              ],
+              "h": 19,
+              "shape": [
+                2,
+                6,
+                3,
+                2
+              ],
+              "auction": [
+                "Vous : 2♣ (fort indéterminé)",
+                "Partenaire : 2♦ (relais)"
+              ],
+              "context": "Après votre ouverture de 2♣ fort indéterminé, le partenaire répond 2♦. Quelle redemande décrit votre main ?",
+              "answer": "2♥",
+              "comment": "Après le relais obligatoire, comptez la longueur et la force de jeu : six Cœurs ♥ARDV74 et 19 H forment un unicolore fort, pas une main régulière de 22–23 H. 2♥ décrit ce type de main ; 3♥ demanderait la très belle majeure septième et huit levées de jeu prévues par le développement. Le répondant décidera selon ses compléments."
+            },
+            {
+              "id": "SEF-V475-007",
+              "hand": [
+                [
+                  "A",
+                  "8"
+                ],
+                [
+                  "A",
+                  "7"
+                ],
+                [
+                  "8",
+                  "7"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "9",
+                  "8"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                2,
+                2,
+                2,
+                7
+              ],
+              "auction": [
+                "Vous : 2♣ (fort indéterminé)",
+                "Partenaire : 2♦ (relais)"
+              ],
+              "context": "Vous ouvrez de 2♣ fort indéterminé, puis votre partenaire répond au relais 2♦. Avec sept Trèfles maîtres (ARDV1098) et deux As extérieurs, vous comptez neuf levées de jeu immédiates. Quelle redemande naturelle décrit cet unicolore mineur exceptionnel ?",
+              "answer": "3♣",
+              "comment": "Après le relais 2♦, la redemande à 3♣ montre une très belle couleur septième à Trèfle et une main capable de produire neuf levées de jeu. Vos sept Trèfles sont maîtres et les As de Pique et de Cœur apportent deux levées supplémentaires. Cette description précise est plus utile que de sauter artificiellement à Sans-Atout."
+            }
+          ],
+          "minSession": 33,
+          "prerequisites": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-47",
+          "title": "Le bicolore majeur puissant",
+          "rule": "Dans le développement 2♣–2♦ étudié, 3SA est artificiel : bicolore majeur 5–5 puissant, environ trois perdantes. Il demande au partenaire de choisir la majeure ; ne le prenez pas pour une proposition naturelle de jouer 3SA.",
+          "check": {
+            "prompt": "Après 2♣–2♦–3SA, que doit comparer le répondant ?",
+            "answer": "Ses longueurs en Cœur et Pique pour choisir la meilleure majeure.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V475-006",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "V",
+                  "10",
+                  "9"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "8"
+                ],
+                [
+                  "R",
+                  "7"
+                ],
+                [
+                  "8"
+                ]
+              ],
+              "h": 21,
+              "shape": [
+                5,
+                5,
+                2,
+                1
+              ],
+              "auction": [
+                "Vous : 2♣ (fort indéterminé)",
+                "Partenaire : 2♦ (relais)"
+              ],
+              "context": "Vous avez ouvert de 2♣ fort indéterminé et votre partenaire a effectué le relais obligatoire de 2♦. Votre main contient deux belles majeures cinquièmes, Pique et Cœur, seulement trois perdantes potentielles et 21 H. Quelle redemande conventionnelle du SEF 2024 montre ce puissant bicolore majeur ?",
+              "answer": "3SA",
+              "comment": "La redemande de 3SA après 2♣–2♦ est ici le code du puissant bicolore majeur 5–5, évalué à environ trois perdantes. Vous avez ♠ARV109 et ♥ARDV8, avec 21 H : le partenaire doit choisir entre les deux majeures, non évaluer un contrat naturel de 3SA. Une redemande à 2♠ ne dévoilerait pas d'emblée les cinq Cœurs."
+            }
+          ],
+          "minSession": 37,
+          "prerequisites": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "forcing.troisieme": {
       "title": "Répondre à une troisième couleur forcing",
@@ -7771,7 +10798,234 @@
         }
       ],
       "minSession": 31,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-48",
+          "title": "Choisir la manche après 2♣–2♦–2SA",
+          "rule": "Face à 22–23 H réguliers, 3 H suffisent à atteindre 25 H ; sans majeure quatrième, 3SA peut conclure. Avec une majeure quatrième et les valeurs nécessaires, 3♣ Stayman recherche le meilleur contrat.",
+          "check": {
+            "prompt": "Avec quatre Piques et 4 H après 2♣–2♦–2SA, pourquoi ne pas conclure 3SA immédiatement ?",
+            "answer": "Stayman permet de rechercher le fit majeur 4–4.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V486-024",
+              "hand": [
+                [
+                  "7",
+                  "4",
+                  "2"
+                ],
+                [
+                  "9",
+                  "5",
+                  "3"
+                ],
+                [
+                  "R",
+                  "8",
+                  "6",
+                  "2"
+                ],
+                [
+                  "10",
+                  "7",
+                  "6"
+                ]
+              ],
+              "h": 3,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Vous : 2♦ (relais)",
+                "Partenaire : 2SA (22–23 H réguliers)"
+              ],
+              "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Vous avez répondu automatiquement 2♦, relais ; il vient de préciser sa force et sa distribution. Les adversaires passent. Vous êtes le répondant : tenez compte de la zone d'honneurs particulière de la redemande et des développements du SEF 2024. Quelle est votre enchère ? Séquence : Partenaire : 2♣ (fort indéterminé) — Vous : 2♦ (relais) — Partenaire : 2SA (22–23 H réguliers). Précision : Non déterminante (tous non vulnérables par convention de présentation).",
+              "answer": "3SA",
+              "comment": "Avec 3 H et une main 3-3-4-3 sans majeure quatrième, vous totalisez au moins 25 H avec le partenaire (22–23 H). 3SA fixe la manche ; 3♣ Stayman serait sans objet sans majeure à rechercher, et Passe manquerait la manche."
+            },
+            {
+              "id": "SEF-V486-025",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "8",
+                  "3"
+                ],
+                [
+                  "9",
+                  "5",
+                  "2"
+                ],
+                [
+                  "10",
+                  "7",
+                  "6"
+                ],
+                [
+                  "8",
+                  "6",
+                  "4"
+                ]
+              ],
+              "h": 4,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Vous : 2♦ (relais)",
+                "Partenaire : 2SA (22–23 H réguliers)"
+              ],
+              "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Vous avez répondu automatiquement 2♦, relais ; il vient de préciser sa force et sa distribution. Les adversaires passent. Vous êtes le répondant : tenez compte de la zone d'honneurs particulière de la redemande et des développements du SEF 2024. Quelle est votre enchère ? Séquence : Partenaire : 2♣ (fort indéterminé) — Vous : 2♦ (relais) — Partenaire : 2SA (22–23 H réguliers). Précision : Non déterminante (tous non vulnérables par convention de présentation).",
+              "answer": "3♣",
+              "comment": "Les 22–23 H annoncés par 2SA, ajoutés à votre As de Pique, donnent 26–27 H au camp : la manche est acquise. Vos quatre Piques rendent possible un fit 4–4, que 3♣ Stayman cherche avant de choisir entre 4♠ et 3SA. 3♥ serait un Texas Pique, inadapté à quatre cartes seulement."
+            }
+          ],
+          "minSession": 31,
+          "prerequisites": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.seuil",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-49",
+          "title": "Choisir le niveau après un unicolore fort",
+          "rule": "Après 2♣–2♦–2♠, un soutien à 3♠ peut montrer une ambition de chelem avec des compléments utiles. Un changement naturel de couleur au palier de trois demande au moins 7 H dans le SEF 2024 enseigné. Ne confondez pas soutien et nouvelle longue.",
+          "check": {
+            "prompt": "Avec 7 H et cinq beaux Carreaux sans soutien Pique adapté, quelle enchère après 2♣–2♦–2♠ ?",
+            "answer": "3♦ naturel dans le développement étudié.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V487-004",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "6"
+                ],
+                [
+                  "A",
+                  "9",
+                  "5"
+                ],
+                [
+                  "D",
+                  "10",
+                  "7"
+                ],
+                [
+                  "8",
+                  "7",
+                  "4",
+                  "2"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                3,
+                3,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Vous : 2♦ (relais obligatoire)",
+                "Partenaire : 2♠ (majeure forte)"
+              ],
+              "context": "Votre partenaire a ouvert de 2♣ fort indéterminé, vous avez donné le relais de 2♦ et il a décrit un jeu fort à Pique par 2♠. Les adversaires passent. Vous êtes le répondant avec trois cartes à Pique, une belle force complémentaire et de quoi envisager davantage que la manche. Le soutien au palier de trois après cette redemande n’est pas une simple invitation à la manche. Quelle est votre enchère ?",
+              "answer": "3♠",
+              "comment": "Vous possédez trois atouts Pique dont Roi-Dame, ainsi que 11 H avec un As extérieur. Le soutien économique à 3♠ après 2♣–2♦–2♠ indique un intérêt pour le chelem et conserve de l’espace pour les contrôles. Il est plus descriptif qu’une conclusion prématurée à 4♠."
+            },
+            {
+              "id": "SEF-L24-003",
+              "hand": [
+                [
+                  "7",
+                  "4"
+                ],
+                [
+                  "9",
+                  "6",
+                  "3"
+                ],
+                [
+                  "A",
+                  "D",
+                  "V",
+                  "8",
+                  "7"
+                ],
+                [
+                  "10",
+                  "5",
+                  "2"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                2,
+                3,
+                5,
+                3
+              ],
+              "auction": [
+                "Partenaire : 2♣ (fort indéterminé)",
+                "Adversaire : Passe",
+                "Vous : 2♦ (relais obligatoire)",
+                "Adversaire : Passe",
+                "Partenaire : 2♠ (couleur naturelle forte)",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre partenaire a ouvert de 2♣ fort indéterminé et redemandé 2♠ après votre relais à 2♦. Vous détenez 7 H exactement, une bonne couleur cinquième à Carreau (♦ADV87) et seulement deux Piques. Dans le SEF 2024, quelle réponse naturelle au palier de 3 devient possible dès 7 H ?",
+              "answer": "3♦",
+              "comment": "Dans la séquence 2♣ fort indéterminé–2♦–2♠, un changement de couleur naturel au palier de 3 exige désormais au moins 7 H (au lieu de 5 H en 2018). Avec ♦ADV87 et 7 H, 3♦ est l'annonce naturelle de votre longue ; 3♠ inventerait un soutien plus important."
+            }
+          ],
+          "minSession": 35,
+          "prerequisites": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "contre.deux_faible": {
       "title": "Répondre au contre d'un deux faible",

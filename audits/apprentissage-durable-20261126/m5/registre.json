@@ -139,9 +139,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 314,
+    "ruleLength": 297,
     "canonicalLength": 293,
-    "reminderLength": 131,
+    "reminderLength": 133,
     "contrasts": [
       {
         "id": "SEF-V49-005",
@@ -174,6 +174,30 @@
           }
         ],
         "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-N030-1",
+        "reason": "Sans majeure quatrième, cinq Carreaux sur 1♣ : 1♦.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-024-2",
+        "reason": "2 H : Passe, même avec une majeure quatrième.",
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
       }
     ],
     "extensions": [
@@ -192,6 +216,77 @@
           },
           {
             "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-23",
+        "title": "Répondre à Carreau ou à Trèfle naturellement",
+        "sources": [
+          "SEF-N030-1",
+          "SEF-N045-1"
+        ],
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-24",
+        "title": "Proposer ou conclure à Sans-Atout",
+        "sources": [
+          "SEF-V44-005",
+          "SEF-V44-007"
+        ],
+        "minCompleted": 1,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-25",
+        "title": "Rencontre après Passe initial",
+        "sources": [
+          "SEF-L18-004",
+          "SEF-L18-005"
+        ],
+        "minCompleted": 5,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
             "minExposure": 1
           }
         ],
@@ -294,7 +389,29 @@
         "requiresPriorConcept": true
       }
     ],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-26",
+        "title": "Inviter ou barrer selon force et longueur",
+        "sources": [
+          "SEF-V44-009",
+          "SEF-V44-011"
+        ],
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "sa1.seuil",
@@ -465,11 +582,83 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 197,
+    "ruleLength": 279,
     "canonicalLength": 174,
-    "reminderLength": 82,
-    "contrasts": [],
-    "extensions": []
+    "reminderLength": 132,
+    "contrasts": [
+      {
+        "id": "SEF-049-1",
+        "reason": "Bicolore économique 5–4 à 2♥ après 1♠–1SA.",
+        "minCompleted": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-30",
+        "title": "Montrer un bicolore économique",
+        "sources": [
+          "SEF-051-1",
+          "SEF-N126-1"
+        ],
+        "minCompleted": 6,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-31",
+        "title": "Bicolore fort et bicolore à saut",
+        "sources": [
+          "SEF-V424-003",
+          "SEF-Q26-M3-002"
+        ],
+        "minCompleted": 13,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          },
+          {
+            "concept": "red.bicolore_cher",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "red.base",
@@ -490,11 +679,102 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 204,
+    "ruleLength": 271,
     "canonicalLength": 135,
-    "reminderLength": 81,
-    "contrasts": [],
-    "extensions": []
+    "reminderLength": 111,
+    "contrasts": [
+      {
+        "id": "SEF-048-1",
+        "reason": "Six Cœurs et main minimale : répétition naturelle, pas 1SA.",
+        "minCompleted": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-27",
+        "title": "Distinguer 1SA et 2SA de redemande",
+        "sources": [
+          "SEF-045-1"
+        ],
+        "minCompleted": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-28",
+        "title": "Répéter la longue et préciser sa force",
+        "sources": [
+          "SEF-V411-003"
+        ],
+        "minCompleted": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-29",
+        "title": "Montrer un soutien fort",
+        "sources": [
+          "SEF-V44-017",
+          "SEF-L07-008"
+        ],
+        "minCompleted": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "second.base",
@@ -511,11 +791,75 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 192,
+    "ruleLength": 266,
     "canonicalLength": 189,
-    "reminderLength": 89,
+    "reminderLength": 128,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-32",
+        "title": "Choisir une partielle après 1SA de redemande",
+        "sources": [
+          "SEF-052-3",
+          "SEF-054-1"
+        ],
+        "minCompleted": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-33",
+        "title": "Inviter ou conclure après 1SA de redemande",
+        "sources": [
+          "SEF-N143-2",
+          "SEF-N145-1"
+        ],
+        "minCompleted": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-34",
+        "title": "Préférence et soutien de la seconde couleur",
+        "sources": [
+          "SEF-V412-010",
+          "SEF-V416-004"
+        ],
+        "minCompleted": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "fit.2sa",
@@ -557,7 +901,7 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 247,
+    "ruleLength": 241,
     "canonicalLength": 73,
     "reminderLength": 82,
     "contrasts": [],
@@ -871,7 +1215,57 @@
     "canonicalLength": 178,
     "reminderLength": 98,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-35",
+        "title": "Intervenir à 1SA ou contrer d'appel",
+        "sources": [
+          "SEF-V3-043-3",
+          "SEF-V3-047-4"
+        ],
+        "minCompleted": 11,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-36",
+        "title": "Intervenir au palier de deux",
+        "sources": [
+          "SEF-V3-037-1"
+        ],
+        "minCompleted": 11,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "contre.base",
@@ -938,7 +1332,58 @@
     "canonicalLength": 276,
     "reminderLength": 80,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-37",
+        "title": "Réponses naturelles après intervention adverse",
+        "sources": [
+          "SEF-V44-041",
+          "SEF-V410-028",
+          "SEF-V412-019"
+        ],
+        "minCompleted": 15,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-38",
+        "title": "Cue-bid fitté fort après intervention à la couleur",
+        "sources": [
+          "SEF-V425-008"
+        ],
+        "minCompleted": 15,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "competitif.2sa_fitte",
@@ -1042,7 +1487,50 @@
     "canonicalLength": 296,
     "reminderLength": 89,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-43",
+        "title": "Distinguer prolongation du barrage et recherche constructive",
+        "sources": [
+          "SEF-V3-104-4",
+          "SEF-V426-003"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-44",
+        "title": "Chercher une autre couleur après barrage",
+        "sources": [
+          "SEF-L09-023",
+          "SEF-L41-003"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "apres_fit.base",
@@ -1155,7 +1643,54 @@
     "canonicalLength": 403,
     "reminderLength": 95,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-39",
+        "title": "Soutenir ou jouer à Sans-Atout après intervention",
+        "sources": [
+          "SEF-V4-028-1",
+          "SEF-V44-055"
+        ],
+        "minCompleted": 17,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-40",
+        "title": "Soutiens après la parole du troisième joueur",
+        "sources": [
+          "SEF-V473-001",
+          "SEF-V473-003"
+        ],
+        "minCompleted": 19,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "reveil.base",
@@ -1176,7 +1711,50 @@
     "canonicalLength": 445,
     "reminderLength": 93,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-41",
+        "title": "Dépasser le plafond du réveil naturel",
+        "sources": [
+          "SEF-V4-053-3",
+          "SEF-V4-054-2"
+        ],
+        "minCompleted": 23,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-42",
+        "title": "Réveiller naturellement à Sans-Atout",
+        "sources": [
+          "SEF-V4-057-2",
+          "SEF-L32-003"
+        ],
+        "minCompleted": 23,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "roudi.choix",
@@ -1692,11 +2270,95 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 144,
+    "ruleLength": 267,
     "canonicalLength": 240,
-    "reminderLength": 75,
-    "contrasts": [],
-    "extensions": []
+    "reminderLength": 115,
+    "contrasts": [
+      {
+        "id": "SEF-V45-009",
+        "reason": "2♦ forcing de manche et main faible sans As : 2♥ négatif.",
+        "minCompleted": 27,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V45-010",
+        "reason": "Un As majeur : 2♠ codé, pas des Piques.",
+        "minCompleted": 27,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V45-011",
+        "reason": "Un As de Trèfle : 3♣ codé.",
+        "minCompleted": 27,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V45-012",
+        "reason": "Un As de Carreau : 3♦ codé.",
+        "minCompleted": 27,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-V475-001",
+        "reason": "Sans As, 8 H réguliers : 2SA positif.",
+        "minCompleted": 27,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          }
+        ],
+        "requiresPriorConcept": false
+      }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-45",
+        "title": "Deux As : couleur, rang ou mélange",
+        "sources": [
+          "SEF-V475-003",
+          "SEF-V475-004",
+          "SEF-V475-005"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.relais",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "fortes.redemande",
@@ -1717,7 +2379,49 @@
     "canonicalLength": 250,
     "reminderLength": 49,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-46",
+        "title": "Décrire un unicolore fort après 2♣",
+        "sources": [
+          "SEF-V45-008",
+          "SEF-V475-007"
+        ],
+        "minCompleted": 33,
+        "requires": [
+          {
+            "concept": "fortes.relais",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-47",
+        "title": "Le bicolore majeur puissant",
+        "sources": [
+          "SEF-V475-006"
+        ],
+        "minCompleted": 37,
+        "requires": [
+          {
+            "concept": "fortes.relais",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "forcing.troisieme",
@@ -2436,7 +3140,58 @@
     "canonicalLength": 242,
     "reminderLength": 80,
     "contrasts": [],
-    "extensions": []
+    "extensions": [
+      {
+        "id": "m5-ext-48",
+        "title": "Choisir la manche après 2♣–2♦–2SA",
+        "sources": [
+          "SEF-V486-024",
+          "SEF-V486-025"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa2.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-49",
+        "title": "Choisir le niveau après un unicolore fort",
+        "sources": [
+          "SEF-V487-004",
+          "SEF-L24-003"
+        ],
+        "minCompleted": 35,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "contre.deux_faible",
