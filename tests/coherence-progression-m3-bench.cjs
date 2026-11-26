@@ -25,7 +25,14 @@ function build({engine,metadata,plan,html,policy}){
       selected,category:category||null
     }).map(x=>[x.id,x.delta])) : new Map();
     const ranked=candidates.map(q=>({q,v:score(q,category)+(pedagogical.get(q.id)||0)}));`;
+  const guard='return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));';
+  assert.equal(engine.split(guard).length,2);
+  const guarded=`for(const item of selected)if(!evaluate(item.exercise,state,e).eligible)
+      throw Error('M3: exercice inéligible '+item.exercise.id+' S'+(s+1));
+    if(passCount()>passCap)throw Error('M3: plafond Passe dépassé S'+(s+1));
+    `+guard;
   function instantiate(source){
+    source=source.replace(guard,guarded);
     const req=p=>p.includes('prerequis')?meta:p.includes('session-plan')?sessionPlan:assert.fail(p);
     const module={exports:{}};
     new Function('module','require','pedagogy',source)(module,req,ranker);
@@ -69,7 +76,7 @@ function metrics(state,meta,exercises){
   const foundations=/^(ouv\.|mineur\.|majeur\.|sa1\.seuil|red\.base|second\.base)/;
   const byId=new Map(exercises.map(q=>[q.id,q]));
   const contrastGroups=[['chelem.quantitatif','chelem.controles','chelem.cles'],['rubensohl.naturel','rubensohl.init'],['multilandy.choix','multilandy.intervention','intervenir.base'],['michaels.choix','michaels.intervention','intervenir.base'],['competitif.spoutnik','contre.base','apres_inter.base'],['reveil.base','intervenir.base'],['apres_fit.essai','chelem.splinter','fit.2sa'],['forcing.troisieme','forcing.quatrieme','red.base']];
-  let contrastSessions=0,openingPassViolations=0;
+  let contrastSessions=0,openingPassViolations=0,ageDebt=0,foundationAgeDebt=0;
   for(const ev of state.journal){
     if(ev.mode!=='parcours')continue;
     const sf=new Set(),sc=new Set();let op=0;
@@ -95,6 +102,7 @@ function metrics(state,meta,exercises){
     }
     if(ev.session>=66){
       if(op>2)openingPassViolations++;
+      for(const [k,last] of previous){if(ev.session-last>20){ageDebt++;if(foundations.test(k))foundationAgeDebt++;}}
       if(contrastGroups.some(g=>g.filter(k=>sc.has(k)).length>=2))contrastSessions++;
     }
   }
@@ -109,14 +117,15 @@ function metrics(state,meta,exercises){
     advancedProof:advanced.filter(k=>(phase.get(k)?.clean.size||0)>=2&&(phase.get(k)?.sessions.size||0)>=2).length,
     hard,phaseN,phaseFamilyDup,openingPassViolations,calendarViolations:eligibilityViolations,contrastSessions,
     longGaps:gaps.filter(g=>g>20).length,foundationLongGaps:fundGaps.filter(g=>g>20).length,
-    tailOver30:tail.filter(x=>x[1]>30).length,oldest:tail.slice(0,8)};
+    tailOver30:tail.filter(x=>x[1]>30).length,tailOver60:tail.filter(x=>x[1]>60).length,ageDebt,foundationAgeDebt,oldest:tail.slice(0,8)};
 }
 function runPair(b,profile,seed,horizon=180){
   let a=b.base.empty();const before={},after={};
-  for(let s=1;s<=65;s++){
+  for(let s=1;s<=Math.min(65,horizon);s++){
     step(b.base,a,b.exercises,b.meta,profile,seed);
     if(s===20||s===65)before[s]=metrics(a,b.meta,b.exercises);
   }
+  if(horizon<66)return {profile,seed,before,after:{...before}};
   let c=JSON.parse(JSON.stringify(a));
   after[20]=before[20];after[65]=before[65];
   for(let s=66;s<=horizon;s++){
