@@ -84,5 +84,5 @@ if(require.main===module){
  const manifest=read('diagnostics.json');
  const html=fs.readFileSync(path.resolve(__dirname,'../../../../../quizz.html'),'utf8');
  const exercises=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
- console.log(JSON.stringify(runChecks({base:require('../../../../../quizz-diagnostic-erreurs.js'),adapter:require('./overlay.cjs'),docs:manifest.files.map(read),signed:read('signatures.json'),cart:read('../../cartographie.json'),exercises,patches:read('patches.json'),hold:read('hold.json')}),null,2));
+ console.log(JSON.stringify(runChecks({base:require('../baseline-engine.cjs'),adapter:require('./overlay.cjs'),docs:manifest.files.map(read),signed:read('signatures.json'),cart:read('../../cartographie.json'),exercises,patches:read('patches.json'),hold:read('hold.json')}),null,2));
 }

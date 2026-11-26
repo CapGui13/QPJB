@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const api=require('../quizz-diagnostic-erreurs.js');
+const api=require('../audits/professeur-numerique-20261126/m3/parallel/baseline-engine.cjs');
 const q=JSON.parse(fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const data=require('../audits/professeur-numerique-20261126/m3/revue-cycle3.json'),plaus=require('../audits/professeur-numerique-20261126/m3/plausibilite.json');
 const buildReview=function buildReview(q,api,plaus,baseline,judgement){

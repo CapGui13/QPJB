@@ -91,6 +91,6 @@ if(require.main===module){
   const cart=read(path.join(__dirname,'../../cartographie.json'));
   const rows=names.flatMap(n=>read(path.join(__dirname,'revue-'+n+'.json')));
   const {extendDiagnostic,signature}=require('./integration.cjs');
-  const base=require(path.join(root,'quizz-diagnostic-erreurs.js')).diagnose;
+  const base=require('../baseline-engine.cjs').diagnose;
   console.log(JSON.stringify(run({exercises,cart,rows,data:read(path.join(__dirname,'diagnostics.json')),holds:read(path.join(__dirname,'hold.json')),patches:read(path.join(__dirname,'patches.json')),base,extendDiagnostic,signature}),null,2));
 }

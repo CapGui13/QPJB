@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.join(__dirname,'..');
-const api=require('../quizz-diagnostic-erreurs.js'),meta=require('../quizz-prerequis.js').byId,patches=require('../audits/professeur-numerique-20261126/m3/patches.json');
+const api=require('../audits/professeur-numerique-20261126/m3/parallel/baseline-engine.cjs'),meta=require('../quizz-prerequis.js').byId,patches=require('../audits/professeur-numerique-20261126/m3/patches.json');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const q=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const buildPlausibility=function buildPlausibility(q,api,patches,meta){

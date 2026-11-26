@@ -40,7 +40,7 @@ if(require.main===module){
  const html=fs.readFileSync(path.join(root,"quizz.html"),"utf8");
  const ex=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
  const cart=JSON.parse(fs.readFileSync(path.join(root,"audits/professeur-numerique-20261126/m3/cartographie.json"),"utf8"));
- const engine=require(path.join(root,"quizz-diagnostic-erreurs.js"));
+ const engine=require('../baseline-engine.cjs');
  const rows=["revue-mineur-majeur.json","revue-fit-apres-fit.json","revue-drury.json","revue-competitif.json"].flatMap(read);
  console.log(JSON.stringify(verify({engine,cart,ex,rows,diagnostics:read("diagnostics.json"),holds:read("hold.json"),patches:read("patches.json"),weak:read("weak-distractors.json"),...require("./overlay.cjs")}),null,2));
 }

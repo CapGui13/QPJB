@@ -31,5 +31,5 @@ if(require.main===module){
  const fs=require("node:fs"),path=require("node:path"),root=path.resolve(__dirname,"../../../../.."),read=f=>JSON.parse(fs.readFileSync(f,"utf8"));
  const html=fs.readFileSync(path.join(root,"quizz.html"),"utf8"),q=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
  const p=path.resolve(__dirname,"../..");
- console.log(JSON.stringify(run({q,cart:read(path.join(p,"cartographie.json")),review:read(path.join(__dirname,"revue.json")),data:read(path.join(__dirname,"diagnostics.json")),patches:read(path.join(__dirname,"patches.json")),hold:read(path.join(__dirname,"hold.json")),base:require(path.join(root,"quizz-diagnostic-erreurs.js")),...require("./integrer.cjs")}),null,2));
+ console.log(JSON.stringify(run({q,cart:read(path.join(p,"cartographie.json")),review:read(path.join(__dirname,"revue.json")),data:read(path.join(__dirname,"diagnostics.json")),patches:read(path.join(__dirname,"patches.json")),hold:read(path.join(__dirname,"hold.json")),base:require('../baseline-engine.cjs'),...require("./integrer.cjs")}),null,2));
 }
