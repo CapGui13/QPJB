@@ -11,10 +11,12 @@ function engine(sources){
  // Use the existing campaign loader with a return-object insertion after its anchor, at the end of the public API.
  const end='SELECTION_REASONS,summary,levelFor};';
  T.check(src.split(end).length===2,'Exact public export marker');
- const e=C.prepare({...sources,'quizz-parcours.js':src.replace(end,'SELECTION_REASONS,summary,levelFor,decisionPatternForM6:decisionPattern};')});
+ const e=C.prepare({...sources,'quizz-parcours.js':src.replace(end,'SELECTION_REASONS,summary,levelFor,decisionPatternForM6:decisionPattern,metadataForM6:metadata};')});
  T.check(e.exercises.length===1915&&Object.keys(e.meta.byId).length===1915,'Frozen catalogue size');
  T.check(new Set(Object.values(e.meta.byId).map(m=>m.concept)).size===99,'Concept coverage');
- return e;
+ const effectiveMeta={...e.meta,byId:Object.fromEntries(e.exercises.map(q=>[q.id,e.api.metadataForM6(q)]))};
+ T.check(Object.values(effectiveMeta.byId).every(Boolean),'Effective metadata coverage');
+ return {...e,effectiveMeta};
 }
 function run(sources,profile,seed,horizon=180,{revision=T.BASE,measure=()=>Date.now(),objectiveFor=null}={}){
  T.check(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&Number.isInteger(horizon)&&horizon>=1&&horizon<=180,'Invalid matrix');
@@ -31,7 +33,7 @@ function run(sources,profile,seed,horizon=180,{revision=T.BASE,measure=()=>Date.
   T.check(elig.every(x=>x.eligible),'Native ineligible question S'+s);
   const selection=state.active.selection;
   const objective=objectiveFor?objectiveFor({session:s,history:JSON.parse(JSON.stringify(state)),selected:deck.map(q=>q.id)}):null;
-  const t=T.traceSession({deck,selection,meta,elig,pattern:q=>api.decisionPatternForM6(q),s,history:sessions,profile,seed,latencyMs,objective});
+  const t=T.traceSession({deck,selection,meta:e.effectiveMeta,rawMeta:meta,elig,pattern:q=>api.decisionPatternForM6(q),s,history:sessions,profile,seed,latencyMs,objective});
   for(const [i,q] of deck.entries()){
    const row=t.rows[i],choice=row.result==='correct'?q.answer:q.choices.find(x=>x!==q.answer);
    T.check(api.record(state,q,row.result,i,choice,row.assisted,row.hadFreeError),'Record S'+s);
@@ -57,11 +59,13 @@ function pair(base,candidate,profile,seed,horizon=180,options={}){
  const patches=Object.keys(b.meta.byId).filter(id=>!T.same(b.meta.byId[id],c.meta.byId[id])).map(id=>({id,old:b.meta.byId[id],new:c.meta.byId[id]}));
  const approved=options.approvedPatches||[];
  T.check(patches.every(p=>approved.some(a=>a.id===p.id&&T.same(a.old,p.old)&&T.same(a.new,p.new)&&a.preuve&&a.accord)),'Unapproved metadata patch');
+ const effectivePatches=Object.keys(b.effectiveMeta.byId).filter(id=>!T.same(b.effectiveMeta.byId[id],c.effectiveMeta.byId[id])).map(id=>({id,old:b.effectiveMeta.byId[id],new:c.effectiveMeta.byId[id]}));
+ T.check(effectivePatches.every(p=>approved.some(a=>a.id===p.id&&T.same(a.old,p.old)&&T.same(a.new,p.new)&&a.preuve&&a.accord)),'Unapproved effective metadata patch');
  const crossResume=C.crossResume(b,c);
  const before=run(base,profile,seed,horizon,{revision:T.BASE}),after=run(candidate,profile,seed,horizon,{revision:options.revision||'candidate',objectiveFor:options.objectiveFor});
  // Catalogue parity is independently checked above; approved metadata changes are recorded rather than hidden.
  const comparison=T.compare(before,{...after,catalogueKey:before.catalogueKey});
- return {before,after,patches,crossResume,comparison};
+ return {before,after,patches,effectivePatches,crossResume,comparison};
 }
 function fiche(run){
  const lines=['# '+run.profile+' / '+run.seed+' — '+run.revision,'','Rôles déduits des motifs natifs ; observations de position, non causalité.'];
