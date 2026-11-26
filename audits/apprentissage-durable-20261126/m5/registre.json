@@ -1440,6 +1440,59 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-70",
+        "title": "Distinguer le contre adverse de l'intervention naturelle",
+        "sources": [
+          "SEF-V485-004",
+          "SEF-V485-008",
+          "SEF-V485-009",
+          "SEF-V485-010"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V485 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-71",
+        "title": "Soutiens à quatre ou cinq atouts après intervention",
+        "sources": [
+          "SEF-V473-006",
+          "SEF-V473-007",
+          "SEF-V473-008"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Réévaluer sa main avec le fit après intervention adverse et choisir le niveau de soutien.",
@@ -1761,6 +1814,26 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-72",
+        "title": "Une rencontre après soutien adverse",
+        "sources": [
+          "SEF-V473-004"
+        ],
+        "minCompleted": 21,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "reponse_inter.base",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Reconnaître le fit après une intervention majeure du partenaire et choisir un soutien non forcing adapté.",
@@ -2026,7 +2099,28 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-69",
+        "title": "Conclure à la manche après Drury",
+        "sources": [
+          "SEF-V484-013"
+        ],
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V484 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer la réponse de freinage et les réponses constructives après Drury.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -2242,7 +2336,33 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-73",
+        "title": "Soutien simple ou barrage après mineure contrée",
+        "sources": [
+          "SEF-V485-002",
+          "SEF-V485-011"
+        ],
+        "minCompleted": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V485 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Choisir le soutien conventionnel adapté au fit majeur ou mineur après un contre, ou le Surcontre selon la main.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -2368,7 +2488,7 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 267,
+    "ruleLength": 301,
     "canonicalLength": 240,
     "reminderLength": 115,
     "contrasts": [
@@ -2455,6 +2575,26 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-50",
+        "title": "L'exception des deux Rois sur 2♦ fort",
+        "sources": [
+          "SEF-V475-002"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.relais",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Distinguer le relais obligatoire sur 2♣ des réponses codées sur 2♦ forcing de manche.",
@@ -2567,7 +2707,52 @@
     "canonicalLength": 269,
     "reminderLength": 97,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-62",
+        "title": "Donner le soutien troisième avant l'arrêt",
+        "sources": [
+          "SEF-V480-001",
+          "SEF-V480-002",
+          "SEF-V480-007"
+        ],
+        "minCompleted": 32,
+        "requires": [
+          {
+            "concept": "forcing.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V480 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-63",
+        "title": "Distinguer arrêt, longueur et enchère d'attente",
+        "sources": [
+          "SEF-V480-009",
+          "SEF-V480-010",
+          "SEF-V480-011"
+        ],
+        "minCompleted": 32,
+        "requires": [
+          {
+            "concept": "forcing.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "forcing.quatrieme",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V480 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Employer la quatrième couleur pour rechercher un renseignement de fit ou d'arrêt sans promettre cette couleur.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3166,7 +3351,37 @@
     "canonicalLength": 281,
     "reminderLength": 96,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-59",
+        "title": "Classer les deux cue-bids après un bicolore mineur",
+        "sources": [
+          "SEF-V473-009",
+          "SEF-V473-010"
+        ],
+        "minCompleted": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.defense",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V473 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier les couleurs promises par l'intervention bicolore adverse avant de choisir une réponse ou Passe.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3226,7 +3441,34 @@
         "requiresPriorConcept": false
       }
     ],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-53",
+        "title": "Évaluer le coût de la question à la Dame",
+        "sources": [
+          "SEF-V474-001",
+          "SEF-V474-002",
+          "SEF-V474-003"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V474 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Compter les clés du camp après la réponse codée et reconnaître quand renoncer au chelem.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3257,7 +3499,38 @@
     "canonicalLength": 299,
     "reminderLength": 116,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-54",
+        "title": "Même enchère, sens différent pour la Dame",
+        "sources": [
+          "SEF-V474-008",
+          "SEF-V474-009",
+          "SEF-V474-010"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.blackwood.dame_rois",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.blackwood.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V474 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer la Dame d'atout du Roi déjà compté comme clé et répondre à l'interrogation prévue.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3330,6 +3603,47 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-51",
+        "title": "Passer ou conclure sur l'unicolore fort",
+        "sources": [
+          "SEF-V475-009",
+          "SEF-V475-010"
+        ],
+        "minCompleted": 31,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-52",
+        "title": "Choisir la majeure du bicolore fort",
+        "sources": [
+          "SEF-V475-008"
+        ],
+        "minCompleted": 35,
+        "requires": [
+          {
+            "concept": "fortes.redemande",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V475 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Évaluer si sa main justifie de poursuivre après 2♣–2♦–2SA ou permet de passer.",
@@ -3406,6 +3720,56 @@
         ],
         "disposition": "ready",
         "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-55",
+        "title": "Redemander minimum après le mini-cue-bid",
+        "sources": [
+          "SEF-V476-012",
+          "SEF-V476-013"
+        ],
+        "minCompleted": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V476 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-56",
+        "title": "Redemander fort après le mini-cue-bid",
+        "sources": [
+          "SEF-V476-014",
+          "SEF-V476-015"
+        ],
+        "minCompleted": 26,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V476 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
       }
     ],
     "objective": "Reconnaître une réponse minimale non forcing au contre d'appel d'un deux faible.",
@@ -3430,7 +3794,51 @@
     "canonicalLength": 209,
     "reminderLength": 102,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-57",
+        "title": "Réagir au soutien du troisième joueur",
+        "sources": [
+          "SEF-V478-001",
+          "SEF-V478-003"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V478 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-58",
+        "title": "La vulnérabilité et les couvrantes au palier de quatre",
+        "sources": [
+          "SEF-V478-002",
+          "SEF-V478-006",
+          "SEF-V478-008"
+        ],
+        "minCompleted": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V478 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Comparer ses fits dans les deux couleurs promises et choisir une préférence économique.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3538,7 +3946,52 @@
     "canonicalLength": 292,
     "reminderLength": 97,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-60",
+        "title": "Répondre au passe-ou-corrige de la majeure",
+        "sources": [
+          "SEF-V479-010",
+          "SEF-V479-011",
+          "SEF-V479-012",
+          "SEF-V479-013"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V479 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-61",
+        "title": "Répondre au passe-ou-corrige de la mineure",
+        "sources": [
+          "SEF-V479-014",
+          "SEF-V479-015"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V479 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Répondre au relais 2♦ Landy en indiquant la majeure la plus longue dans le cas étudié.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3561,7 +4014,53 @@
     "canonicalLength": 223,
     "reminderLength": 93,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-64",
+        "title": "Répondre au Texas impossible après 2♥",
+        "sources": [
+          "SEF-V481-002",
+          "SEF-V481-003",
+          "SEF-V481-005"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V481 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      },
+      {
+        "id": "m5-ext-65",
+        "title": "Répondre au Texas impossible après 2♦",
+        "sources": [
+          "SEF-V481-007",
+          "SEF-V481-009",
+          "SEF-V481-010",
+          "SEF-V481-012"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V481 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier la couleur demandée par 2SA Rubensohl et effectuer la rectification correspondante.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3615,7 +4114,35 @@
     "canonicalLength": 284,
     "reminderLength": 93,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-66",
+        "title": "Après Texas mineur : courte ou partielle",
+        "sources": [
+          "SEF-V482-004",
+          "SEF-V482-005",
+          "SEF-V482-006",
+          "SEF-V482-007"
+        ],
+        "minCompleted": 15,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V482 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer l'arrêt en partielle et la poursuite constructive après rectification du Texas mineur.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3638,7 +4165,30 @@
     "canonicalLength": 214,
     "reminderLength": 96,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-67",
+        "title": "Priorité économique et contrôle sauté",
+        "sources": [
+          "SEF-V483-010",
+          "SEF-V483-008",
+          "SEF-V483-014"
+        ],
+        "minCompleted": 43,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V483 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Identifier les contrôles de premier et second tour et reconnaître quand freiner avant le Blackwood.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
@@ -3665,7 +4215,46 @@
     "canonicalLength": 264,
     "reminderLength": 95,
     "contrasts": [],
-    "extensions": [],
+    "extensions": [
+      {
+        "id": "m5-ext-68",
+        "title": "Décrire le singleton après 2SA fitté tardif",
+        "sources": [
+          "SEF-V484-005",
+          "SEF-V484-006",
+          "SEF-V484-007"
+        ],
+        "minCompleted": 30,
+        "requires": [
+          {
+            "concept": "drury.choix",
+            "minExposure": 2
+          },
+          {
+            "concept": "drury.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.suite",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Relecture de l'archive V484 et des corrigés actuels ; comparaison de décisions distinctes, accès conditionnel après exposition."
+      }
+    ],
     "objective": "Distinguer le soutien à trois et celui à quatre atouts après la réponse d'attente au Drury.",
     "objectiveReview": "individually authored from existing rule and mini-check; no agreement changed"
   },
