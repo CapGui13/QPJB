@@ -6,14 +6,14 @@ on:
 permissions:
   contents: read
 env:
-  QPJB_M1_POLICY: guarded
+  QPJB_M1_POLICY: conditional
 jobs:
   quick:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
+          ref: aca8623a2ef4cbea292b5b98237227213128d1d5
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -23,6 +23,7 @@ jobs:
           node --version
           node tests/coherence-concrete-m1-unit.cjs
           node tests/coherence-concrete-m1-guarded.cjs
+          node tests/coherence-concrete-m1-conditional.cjs
           node tests/coherence-concrete-m1-bench.cjs all all 5 quick.json
           node tests/quizz-prerequis.cjs
           node tests/quizz-catalogue-live.cjs
@@ -42,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
+          ref: aca8623a2ef4cbea292b5b98237227213128d1d5
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -65,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 4434a11535332a1ef176347ebacd0891fcd5a88e
+          ref: aca8623a2ef4cbea292b5b98237227213128d1d5
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -80,3 +81,32 @@ jobs:
         with:
           name: m1-browser-${{ matrix.browser }}
           path: browser.json
+
+  historical:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: aca8623a2ef4cbea292b5b98237227213128d1d5
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Historical and current guard suites (unmodified base engine)
+        run: |
+          mkdir -p historical-results
+          failed=0
+          for suite in quizz-parcours quizz-parcours-lot-b quizz-progression-selection coherence-progression-m1-unit coherence-progression-m2-policy coherence-progression-m3-boundary coherence-progression-m3-rank durable-integration-contract durable-integration-evidence quizz-prerequis quizz-catalogue-live quizz-progression-selection-assets; do
+            if node "tests/$suite.cjs" > "historical-results/$suite.log" 2>&1; then
+              echo "$suite PASS" | tee -a historical-results/status.txt
+            else
+              echo "$suite FAIL" | tee -a historical-results/status.txt
+              failed=1
+            fi
+          done
+          exit "$failed"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1-historical
+          path: historical-results/
