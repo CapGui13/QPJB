@@ -11,7 +11,12 @@ const groups={};for(const [id,m] of Object.entries(meta))(groups[m.concept]??=[]
 const full={completed:65,active:null,journal:[],entries:Object.fromEntries(Object.keys(meta).map(id=>[id,{assessment:{result:'wrong',assisted:true,lastSession:0}}]))};
 let n=0;function ok(x,m){n++;if(!x)throw Error(m)}
 const allExamples=Object.values(corpus).flatMap(l=>[...l.examples,...(l.extensions||[]).flatMap(e=>e.examples)]);
-ok(new Set(allExamples.map(x=>x.id)).size===report.counts.distinctExamples,'distinct canonical examples');
+// This historical pass freezes its own 73 extensions, not the size of later passes.
+const later=read('audits/apprentissage-durable-20261126/m5/seuils-historiques.json');
+const laterIds=new Set(later.newExtensions.map(e=>e.id));
+const priorExamples=Object.values(corpus).flatMap(l=>[...l.examples,...(l.extensions||[]).filter(e=>!laterIds.has(e.id)).flatMap(e=>e.examples)]);
+ok(new Set(priorExamples.map(x=>x.id)).size===report.counts.distinctExamples,'historical 289 distinct examples');
+ok(new Set(allExamples.map(x=>x.id)).size===later.counts.distinctExamples,'current corpus distinct examples');
 ok(report.archives.length===13&&report.dispositions.length===report.counts.newExtensions,'archive coverage');
 const seen=new Set();
 for(const r of report.dispositions){
