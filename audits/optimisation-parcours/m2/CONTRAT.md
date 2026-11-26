@@ -11,3 +11,6 @@ La preuve M2 n'écrit aucun champ de maîtrise, de stockage, de QCM. Le coordina
 node tests/optimisation-revisions-unit.cjs
 node tests/optimisation-revisions-bench.cjs [profil] [graine] [base|A|B] [horizon]
 Sans paramètres : 5 profils x 3 graines x 3 modes, snapshots à S20/65/153 dans les mêmes trajectoires. Les résultats sont des comportements simulés, pas de données réelles d'élève. Les délais de retour concept sont observés avec censure (pending/overdue), échéance commune de 1 après faiblesse / 3 après succès pour comparaison, distincte du calendrier adaptatif. Le banc ne mesure pas l'efficacité cognitive réelle.
+
+## C — candidat conservateur, déclaré après échec des garde-fous sur graine 11
+A et B ont trop accéléré la consommation de familles nouvelles pour les profils très faibles, augmentant les difficultés 4–5 à long terme. C ne modifie ni score ni choix du concept du rappel explicite de V1. Il remplace seulement le QCM exact déjà choisi par V1 par une autre main d'une autre famille **déjà vue**, même concept/rubrique/difficulté et même statut de Passe à l'ouverture, dernière exposition >=3 séances, éligible et distincte dans la séance. À défaut, retour exact V1. Mode C de prepare(), méthode replacement(original,available,selectedConcepts); l'API est pure. Seuils et objectifs initiaux inchangés. Le banc accepte C.
