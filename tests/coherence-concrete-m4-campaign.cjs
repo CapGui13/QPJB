@@ -1,6 +1,7 @@
 'use strict';
 const adapter=require('./coherence-concrete-m4-adapter.cjs');
 const m4=require('../quizz-coherence-m4-diversite.js');
+const reserve=require('../quizz-coherence-m4-reserve.js');
 const PROFILES=['autonome','intermediaire','faible','cible','aide','passe'];
 const SEEDS=[11,47,103], HORIZONS=[5,20,65,153,180];
 const CORE=['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base'];
@@ -42,7 +43,8 @@ function run({source,requireBase,exercises,meta,profile,seed,horizon=180,candida
   let now=Date.UTC(2026,0,1);const changes=[];
   class FixedDate extends Date{constructor(...a){super(...(a.length?a:[now]))}static now(){return now}}
   const mod={exports:{}},pick=(ctx,rows,q)=>adapter.pick({...ctx,nowMs:now},rows,q,maxSession,c=>changes.push(c),policy);
-  new Function('module','exports','require','Date','__m4Pick',candidate?adapter.instrument(source,policy):source)(mod,mod.exports,requireBase,FixedDate,pick);
+  const reservation={plan:ctx=>ctx.session<=maxSession?reserve.plan(ctx):[],record:r=>changes.push(r)};
+  new Function('module','exports','require','Date','__m4Pick','__m4Reserve',candidate?adapter.instrument(source,policy):source)(mod,mod.exports,requireBase,FixedDate,pick,reservation);
   const api=mod.exports,state=api.empty(),sessions=[],last=new Map(),seenFamilies=new Set(),seenConcepts=new Set(),seenThemes=new Set(),nearLast=new Map(),seenIds=new Set(),proof=new Map(),checkpoints=[];
   let nearPairs=0,decisionPairs=0,nearRecent=0,repeatFamily=0,coreDebt=0,themeDebt=0,earlyViolations=0,hard=0,independent=0,violations=0,short=0,dupes=0;
   const lastGap={},lastTheme=new Map();const times=[];
@@ -105,7 +107,7 @@ if(require.main===module){
   for(const profile of PROFILES.filter(p=>!process.env.PROFILE||p===process.env.PROFILE))for(const seed of SEEDS.filter(s=>!process.env.SEED||s===Number(process.env.SEED))){
     const p=pair({source,requireBase,exercises,meta,profile,seed,horizon,maxSession,policy:process.env.POLICY||'A',measure:()=>performance.now()});
     fs.writeFileSync(path.join(out,profile+'-'+seed+'.json'),JSON.stringify(p));
-    console.log(JSON.stringify({profile,seed,policy:p.after.policy,before:p.before.checkpoints,after:p.after.checkpoints,changes:p.after.changes.length}));
+    console.log(JSON.stringify({profile,seed,policy:p.after.policy,before:p.before.checkpoints,after:p.after.checkpoints,changes:p.after.changes.length,reservations:p.after.changes.filter(x=>x.kind==='reservation').length}));
     assert.ok(p.before.checkpoints.every(x=>!x.violations&&!x.dupes&&!x.short&&!x.earlyViolations),'référence structurelle');
     assert.ok(p.after.checkpoints.every(x=>!x.violations&&!x.dupes&&!x.short&&!x.earlyViolations),'candidat structurel');
   }
