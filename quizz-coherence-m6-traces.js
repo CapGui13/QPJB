@@ -53,7 +53,7 @@ function traceSession({deck,selection,meta,elig,pattern,s,history,profile,seed,l
  return {session:s,objective:objective||{source:'observed-dominant-concept-not-intent',principal:dominant},latencyMs,rows};
 }
 function metrics(sessions){
- const ids=new Set(),families=new Set(),concepts=new Set(),themes=new Set(),last=new Map(),proof=new Map(),first={},pending=new Map(),delays=[],gaps=[],violations=[];
+ const ids=new Set(),families=new Set(),concepts=new Set(),themes=new Set(),last=new Map(),proof=new Map(),first={},firstTheme={},pending=new Map(),delays=[],gaps=[],violations=[];
  let exact=0,triples=0,mirror1=0,mirror2=0,hard=0,coreDebt=0,conceptDebt=0,jumps=0,themeSwitches=0,nearFamily=0,nearId=0,objectiveMatches=0,total=0,autonomous=0,help=0,wrong=0,unmet=0;
  for(const [index,s] of sessions.entries()){
  const rows=s.rows; if(s.session!==index+1||rows.length!==10)violations.push([s.session,'shape']);
@@ -64,6 +64,7 @@ function metrics(sessions){
  if(r.requires.some(x=>x.exposureIds<x.minExposure)){unmet++;violations.push([s.session,r.id,'prerequisite-exposure']);}
  ids.add(r.id);families.add(r.family);concepts.add(r.concept);themes.add(r.theme);last.set(r.concept,s.session);
  if(!Object.hasOwn(first,r.concept))first[r.concept]=s.session;
+ if(!Object.hasOwn(firstTheme,r.theme))firstTheme[r.theme]=s.session;
  if(i&&bid(r)===bid(rows[i-1]))exact++;
  if(s.session>1&&i>1&&r.theme===rows[i-1].theme&&r.theme===rows[i-2].theme)triples++;
  if(i&&r.pattern&&r.pattern===rows[i-1].pattern)mirror1++;
@@ -82,17 +83,20 @@ function metrics(sessions){
  const quantile=(a,p)=>a.length?a.slice().sort((x,y)=>x-y)[Math.ceil(p*a.length)-1]:null;
  // Score transparent: structural checks are a separate hard gate. Each term is an observed warning, not a causal teaching judgment.
  const orderWarnings=exact+triples+mirror1+mirror2+jumps;
- return {total,ids:ids.size,families:families.size,concepts:concepts.size,themes:themes.size,first,autonomous,help,wrong,proofConcepts:[...proof.values()].filter(x=>x.families.size>=2&&x.sessions.size>=2).length,hard,coreDebt,conceptDebt,exact,triples,mirror1,mirror2,jumps,themeSwitches,nearFamily,nearId,objectiveMatches,objectiveShare:total?objectiveMatches/total:0,orderWarnings,orderScore:total?Math.max(0,100-100*orderWarnings/total):null,medianConceptGap:quantile(gaps,.5),p95ConceptGap:quantile(gaps,.95),medianRecall:quantile(delays,.5),pending:pending.size,unmet,violations,p95Latency:quantile(sessions.map(s=>s.latencyMs),.95)};
+ return {total,ids:ids.size,families:families.size,concepts:concepts.size,themes:themes.size,first,firstTheme,autonomous,help,wrong,proofConcepts:[...proof.values()].filter(x=>x.families.size>=2&&x.sessions.size>=2).length,hard,coreDebt,conceptDebt,exact,triples,mirror1,mirror2,jumps,themeSwitches,nearFamily,nearId,objectiveMatches,objectiveShare:total?objectiveMatches/total:0,orderWarnings,orderScore:total?Math.max(0,100-100*orderWarnings/total):null,medianConceptGap:quantile(gaps,.5),p95ConceptGap:quantile(gaps,.95),medianRecall:quantile(delays,.5),pending:pending.size,unmet,violations,p95Latency:quantile(sessions.map(s=>s.latencyMs),.95)};
 }
 function compare(before,after){
  check(before.profile===after.profile&&before.seed===after.seed&&before.catalogueKey===after.catalogueKey&&before.policy===after.policy&&before.sessions.length===after.sessions.length,'Unpaired runs');
  const checkpoints=HORIZONS.filter(n=>n<=before.sessions.length).map(n=>{
  const a=metrics(before.sessions.slice(0,n)),b=metrics(after.sessions.slice(0,n)),review=[];
  if(b.violations.length)review.push('structure');if(b.families<.95*a.families)review.push('families');if(b.themes<a.themes)review.push('themes');
+ if(n>=20&&!(b.firstTheme.sa>=4&&b.firstTheme.sa<=8))review.push('early-sa');
  if(n>=65&&a.proofConcepts-b.proofConcepts>Math.max(3,.1*a.proofConcepts))review.push('proof');
  if(n>=65&&a.concepts-b.concepts>2)review.push('concepts');
  for(const k of ['coreDebt','conceptDebt'])if(b[k]-a[k]>Math.max(10,.15*a[k]))review.push(k);
  if(b.exact>a.exact+2||b.triples>a.triples+2||b.mirror1+b.mirror2>a.mirror1+a.mirror2+2)review.push('order');
+ if(b.jumps>a.jumps+2)review.push('difficulty-jumps');
+ if(b.nearFamily-a.nearFamily>Math.max(3,.15*a.nearFamily))review.push('near-family-review');
  if(n>=65&&b.p95Latency>a.p95Latency*1.5+10)review.push('latency-review');
  return {session:n,before:a,after:b,review};
  });
