@@ -73,6 +73,8 @@ function fiche(run){
   lines.push('','## S'+s.session+' — '+s.objective.principal+' ('+s.objective.source+')');
   for(const r of s.rows)lines.push(r.position+'. '+r.id+' | '+r.concept+' | N'+r.difficulty+' | '+r.role+' / '+r.selectionReason+' | '+r.h+' H | '+r.hand.map((cards,i)=>['P','C','K','T'][i]+':'+cards.join(' ')).join(' ; ')+' | '+(r.auction.join(' / ')||'ouverture')+' | '+r.context+' → **'+r.answer+'** | '+r.positionObservations.join('; '));
  }
+ lines.push('','## Synthèse S6–65','');
+ for(const s of run.sessions.slice(5,65)){const f=s.summary;lines.push('- S'+s.session+' | '+s.objective.principal+' | '+Object.entries(f.conceptCounts).map(([k,n])=>k+':'+n).join(', ')+' | rôles '+Object.entries(f.roleCounts).map(([k,n])=>k+':'+n).join(', ')+' | nouvelles familles '+f.newFamilies+' | répétitions proches '+f.nearFamily+' | niveaux '+f.difficulty.join(',')+' | transitions '+f.themeSwitches);}
  return lines.join('\n')+'\n';
 }
 module.exports={engine,run,pair,fiche};
