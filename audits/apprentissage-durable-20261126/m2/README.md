@@ -65,3 +65,8 @@ Afficher le canonique historique une seule fois; ajouter feedback, reminder et c
 Restent 2194 HOLD à examiner au fond, 301 contrastes provisoires à valider, et une recette réelle Node/Chromium/WebKit à exécuter. Ne pas substituer une question générique à un critère non démontré. Les 524 abstentions restent prudentes. La couverture pédagogique intégrale demandée par #398 n'est pas atteinte. Ne pas fusionner automatiquement.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+
+## Passe 3 — relecture des contrastes
+
+Relecture éditoriale IA des 301 contrastes sur 266 exercices : 297 corrigés suffisants pour écarter l'option, sans feedback supplémentaire ni inférence causale. Quatre contrastes restent en arbitrage, motivés dans `revue-contrastes.json`. Chaque décision conserve le corrigé source, l'empreinte, la catégorie, la confiance et la règle du diagnostic. Le générateur contrôle la correspondance et l'utilisation de toutes les décisions. 101 318 assertions exécutées dans V8, avec aller-retour des artefacts générés. Les 2 194 HOLD et les 524 abstentions restent distincts ; aucune relecture humaine ou recette navigateur réelle n'est revendiquée. Le code de production et le module de remédiation restent inchangés durant cette passe.

@@ -10,7 +10,8 @@ function run(sources){
  const meta=load(sources.meta),concepts=load(sources.concepts),diag=load(sources.diag),legacy=load(sources.legacy);
  const prof=load(sources.prof,p=>({'./quizz-apprentissage-concepts.js':concepts,'./quizz-diagnostic-erreurs.js':diag,'./quizz-remediation.js':legacy})[p]);
  const data={base:BASE,rows:{}},mod=load(sources.mod,()=>data);
- const registry={base:BASE,format:'rows[id]=[concept,family,fingerprint,options]; option=[bid,disposition,reason,category,confidence,diagnosticRule,feedback,transfer,targetCriteria,assistedCompatible]',review:'structural and rule-condition verification; canonical-contrast heuristic; HOLD not individually reviewed',rows:{}};
+ const registry={base:BASE,format:'rows[id]=[concept,family,fingerprint,options]; option=[bid,disposition,reason,category,confidence,diagnosticRule,feedback,transfer,targetCriteria,assistedCompatible]',review:'structural and rule-condition verification; canonical-sufficient: individual editorial AI review; remaining canonical-contrast heuristic; HOLD not individually reviewed',rows:{}};
+ const review=JSON.parse(sources.review||'{"base":"'+BASE+'","rows":{},"pending":{}}');const reviewed=new Set(),pending=new Set();eq(review.base,BASE,'review base');
  const m={questions:qs.length,options:0,baselineTargeted:0,baselineFeedback:0,baselineTransfer:0,afterTargeted:0,afterFeedback:0,afterTransfer:0,assistedTargeted:0,diagnosticUnknown:0,diagnosticLow:0,dispositions:{},rules:{},themes:{},invalidHands:0};
  const inc=(o,k)=>o[k]=(o[k]||0)+1;
  const examples={},targets=[];
@@ -39,7 +40,7 @@ function run(sources){
     targets.push({q,c,d,a,reason,assisted,criteria:x.targetCriteria});
     if(!examples[reason])examples[reason]={id:q.id,choice:c,concept,family:q.caseFamily,feedback:x.feedback,checkNext:x.checkNext,criteria:x.targetCriteria};
    }else if(d.status!=='hypothesis'||!['high','medium'].includes(d.confidence)){disposition='abstain';reason=d.status!=='hypothesis'?'diagnostic-unknown':'diagnostic-low';}
-   else if(mod.explicit(q,c)){disposition='canonical-contrast';reason='local contrast marker; editorial review pending';}
+   else if(mod.explicit(q,c)){const k=q.id+'|'+c,v=review.rows[k];if(v){eq([v.fingerprint,v.category,v.confidence,v.diagnosticRule],[row[0],d.category,d.confidence,d.evidence?.rule||null],k+' review signature');ok(typeof v.evidence==='string'&&v.evidence.length>0&&q.explain.includes(v.evidence)&&typeof v.reason==='string'&&v.reason.length>0,k+' review evidence');disposition='canonical-sufficient';reason=v.reason;reviewed.add(k);}else{disposition='canonical-contrast';reason=review.pending[k]||'local contrast marker; editorial review pending';if(review.pending[k])pending.add(k);}}
    else{disposition='HOLD';reason='no validated contextual rule; editorial review pending';}
    if(!target)ok(!x.feedback&&!x.checkNext&&!x.targetConcept,q.id+' abstention');
    inc(m.dispositions,disposition);inc(m.themes,q.theme+':'+disposition);
@@ -61,6 +62,7 @@ function run(sources){
    const x=mod.explain({exercise:q,...input});eq(x.kind,kind,q.id+' '+kind);eq(x.canonical,kind==='unanswered'?'':q.explain,q.id+' canonical '+kind);ok(!x.feedback&&!x.targetConcept,q.id+' no inference');
   }
  }
+ eq(reviewed.size,Object.keys(review.rows).length,'all signed reviews used');eq(pending.size,Object.keys(review.pending).length,'all pending reviews used');
  eq(m.options,5745,'options');eq(m.questions,1915,'questions');eq(m.baselineTargeted,140,'baseline');
  const pairs={};
  for(const t of targets){
@@ -99,7 +101,7 @@ if(require.main===module){
  const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m2/';
  const git=p=>cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:20*1024*1024});
  const local=p=>fs.readFileSync(path.join(root,p),'utf8');
- const sources={html:git('quizz.html'),meta:git('quizz-prerequis.js'),concepts:git('quizz-apprentissage-concepts.js'),diag:git('quizz-diagnostic-erreurs.js'),legacy:git('quizz-remediation.js'),prof:git('quizz-professeur.js'),mod:local('quizz-durable-m2-remediation.js')};
+ const sources={html:git('quizz.html'),meta:git('quizz-prerequis.js'),concepts:git('quizz-apprentissage-concepts.js'),diag:git('quizz-diagnostic-erreurs.js'),legacy:git('quizz-remediation.js'),prof:git('quizz-professeur.js'),mod:local('quizz-durable-m2-remediation.js'),review:local(dir+'revue-contrastes.json')};
  const write=process.argv.includes('--write');
  if(!write)Object.assign(sources,{data:local('quizz-durable-m2-data.js'),registry:local(dir+'registre.json'),pairs:local(dir+'transferts.json')});
  const out=run(sources);
