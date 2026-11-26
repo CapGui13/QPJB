@@ -133,7 +133,10 @@
   for(const l of links)if(Math.abs(position.get(l.a)-position.get(l.b))>2)m.missedContrasts++;
   return m;
  }
- const score=m=>SOFT.reduce((sum,k)=>sum+m[k]*weights[k],0);
+ // Risk is observable, not a new eligibility rule. A strict improvement may
+ // consist solely of removing an ABAB pattern; the previous score missed it.
+ const risk=m=>m.answerABAB+m.themeABAB+m.stageInversions;
+ const score=m=>10000*risk(m)+SOFT.reduce((sum,k)=>sum+m[k]*weights[k],0);
  function explain(f,links){
   const seen=new Set();
   return f.map((x,i)=>{
@@ -188,17 +191,17 @@
   }
   for(let k=0;k<2;k++){
    let best=current,bestM=after;
-   const firstMoves=alternatives(current,s<=5);
+   const firstMoves=alternatives(current,s<=5||risk(after)>0);
    for(const p of firstMoves){
     if(!valid(p,s))continue;
     const m=metric(p,s,links);
     if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
    }
    // An early contrast often needs two moves to retain Passe and fit guards.
-   // Search at most 12 near candidates, not an unrestricted factorial search.
-   if(best===current&&s<=5&&(after.missedContrasts||after.prereqOrderInversions)){
+   // Search at most 24 near candidates, not an unrestricted factorial search.
+   if(best===current&&((s<=5&&(after.missedContrasts||after.prereqOrderInversions))||risk(after)>0)){
     const near=firstMoves.filter(p=>valid(p,s)).map(p=>({p,m:metric(p,s,links)}))
-     .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||score(a.m)-score(b.m)).slice(0,12);
+     .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||score(a.m)-score(b.m)).slice(0,24);
     for(const n of near)for(const p of alternatives(n.p,false)){
      if(!valid(p,s))continue;
      const m=metric(p,s,links);
@@ -208,8 +211,44 @@
    if(best===current)break;
    current=best;after=bestM;
   }
+  // S2 can need three coordinated swaps: simple fit before the harder fit,
+  // while all early positions, Passe deadlines and diversity remain valid.
+  // Search only if an actual inversion survives local moves. First two
+  // openings are compulsory; stop at the first zero-risk strict improvement.
+  let rescueNodes=0;
+  if(s===2&&f.length===10&&risk(after)>0){
+   const work=current.slice(),hasNatural=[major,sa].map(fn=>work.some(x=>fn(x.q)));
+   const visit=(prefix,remaining)=>{
+    if(++rescueNodes>90000)return false;
+    if(!remaining.length){
+     if(!valid(prefix,s))return false;
+     const m=metric(prefix,s,links);
+     if(admissible(prefix,m)&&score(m)<score(after)&&risk(m)===0){
+      current=prefix.slice();after=m;return true;
+     }
+     return false;
+    }
+    const pos=prefix.length;
+    for(let i=0;i<remaining.length;i++){
+     const x=remaining[i];
+     if(pos<2&&(x.t!=='ouv'||pass(x.q)))continue;
+     if(pos>=2&&fit(x.q)&&[major,sa].some((fn,j)=>hasNatural[j]&&!prefix.some(y=>fn(y.q))))continue;
+     if(fit(x.q)&&remaining.some(y=>y!==x&&y.c===x.c&&y.stage!==null&&x.stage!==null&&y.stage<x.stage))continue;
+     if(prefix.some(y=>y.c===x.c&&y.stage!==null&&x.stage!==null&&y.stage>x.stage))continue;
+     const last=prefix.at(-1),prev=prefix.at(-2),third=prefix.at(-3);
+     if(last&&(x.a===last.a&&before.exact===0||x.p&&x.p===last.p&&before.mirrors===0||x.f===last.f&&before.familyAdjacent===0||fit(x.q)&&fit(last.q)||pass(x.q)&&pass(last.q)))continue;
+     if(prev&&(x.p&&x.p===prev.p&&before.nearMirrors===0||x.t===last.t&&x.t===prev.t&&before.triples===0))continue;
+     if(third&&(x.a===prev.a&&last.a===third.a&&x.a!==last.a||x.t===prev.t&&last.t===third.t&&x.t!==last.t))continue;
+     const chosenPass=prefix.filter(y=>pass(y.q)).length+Number(pass(x.q));
+     if(pos>=3&&chosenPass<1||pos>=6&&work.filter(y=>pass(y.q)).length===2&&chosenPass<2)continue;
+     if(visit([...prefix,x],remaining.filter((_,j)=>j!==i)))return true;
+    }
+    return false;
+   };
+   visit([],work);
+  }
   return {ids:current.map(x=>x.id),reasons:explain(current,links),changed:current!==f,
-   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after)};
+   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes};
  }
  return Object.freeze({schema,order,decisionPattern,HARD:Object.freeze(HARD),SOFT:Object.freeze(SOFT),weights:Object.freeze(weights)});
 });
