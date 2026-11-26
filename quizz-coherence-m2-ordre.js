@@ -32,7 +32,7 @@
  function feature(q,m,item){
   const kind=typeof (item?.kind||item?.target)==='string'?(item.kind||item.target):'';
   return {id:q.id,q,c:m?.concept||'',requires:[...new Set((Array.isArray(m?.requires)?m.requires:[]).map(x=>x?.concept).filter(Boolean))],stage:Number.isInteger(m?.stage)?m.stage:null,d:Number.isInteger(q.difficulty)?q.difficulty:null,
-   a:bid(q),p:decisionPattern(q,m),t:q.theme,f:String(q.caseFamily||q.id),kind,
+   a:bid(q),p:decisionPattern(q,m),t:q.theme,f:String(q.caseFamily||q.id),kind,selectionReason:typeof item?.reason==='string'?item.reason:'',
    role:kind==='maintenance'||kind==='revision'?'rappel':kind==='weakness'?'consolidation_ciblee':kind==='discovery'?'acquisition':kind==='transfer'?'reinvestissement_conditionnel':kind.startsWith('micro:')||kind.startsWith('axis:')?'consolidation_ciblee':'application'};
  }
  // Only explicit discriminants supported by actual shape, sequence, and answer.
@@ -137,25 +137,51 @@
  // consist solely of removing an ABAB pattern; the previous score missed it.
  const risk=m=>m.answerABAB+m.themeABAB+m.stageInversions;
  const score=m=>10000*risk(m)+SOFT.reduce((sum,k)=>sum+m[k]*weights[k],0);
- function explain(f,links){
+ // The native selector emits French kind/reason values. These labels
+ // describe the actual purpose of a question, not a proof of mastery.
+ // Keep the certified numerical ordering policy unchanged: roleInversions
+ // is the legacy heuristic on feature.role, not an actual-role metric.
+ function annotateSelectionRole(kind,reason,priorExposure=false){
+  if(reason==='rappel_erreur_aide'||reason==='renforcement_lacune')return 'consolidation_ciblee';
+  if(reason==='rappel_question'||reason==='rappel_nouvelle_situation')return 'rappel';
+  if(reason==='transfert_contexte')return 'reinvestissement_conditionnel';
+  if(reason==='nouveau_qcm'||reason==='equilibre_ouvertures'||kind==='nouveau')return priorExposure?'application':'acquisition';
+  if(kind==='revision'||kind==='maintenance')return 'rappel';
+  if(kind==='weakness'||String(kind||'').startsWith('micro:')||String(kind||'').startsWith('axis:'))return 'consolidation_ciblee';
+  if(kind==='transfer')return 'reinvestissement_conditionnel';
+  if(kind==='discovery')return priorExposure?'application':'acquisition';
+  return 'application';
+ }
+ function priorConcepts(ctx){
+  const found=new Set(),m=ctx.metadataById||{};
+  const observe=id=>{const c=m[id]?.concept;if(c)found.add(c);};
+  for(const id of Object.keys(ctx.history?.entries||{}))observe(id);
+  for(const event of ctx.history?.journal||[])for(const answer of event.answers||[])observe(answer.id);
+  return found;
+ }
+ function explain(f,links,prior){
   const seen=new Set();
   return f.map((x,i)=>{
    const p=f[i-1],link=links.find(l=>(l.a===x.id||l.b===x.id)&&f.slice(Math.max(0,i-2),i).some(y=>y.id===(l.a===x.id?l.b:l.a)));
-   const role=link?'discrimination':x.role;
-   let reason=link?'Contraste attesté par les champs du catalogue : '+link.criterion:
-    pass(x.q)?'Passe conservé comme décision à part entière, à une position autorisée.':
-    !seen.has(x.c)&&x.c?'Premier exemple de ce concept dans cette séance ; motif de sélection conservé.':
-    'Application supplémentaire du concept, sans modifier le motif de sélection.';
-   if(i===0&&role==='rappel')reason='Rappel en amorce ; aucune preuve de maîtrise déduite.';
+   const baseRole=annotateSelectionRole(x.kind,x.selectionReason,prior.has(x.c)||seen.has(x.c));
+   const role=link?'discrimination':baseRole;
+   const purpose=baseRole==='consolidation_ciblee'?'Renforcement ciblé selon le motif de sélection, sans preuve de maîtrise ajoutée.':
+    baseRole==='rappel'?'Rappel d’une question ou d’une notion rencontrée, sans preuve de maîtrise ajoutée.':
+    baseRole==='reinvestissement_conditionnel'?'Réinvestissement dans un autre contexte selon le motif de sélection ; transfert à vérifier.':
+    baseRole==='acquisition'?'Premier exemple de cette notion non retrouvé dans l’historique fourni ni plus tôt dans cette séance ; acquisition, pas maîtrise.':
+    'Application d’une notion déjà rencontrée dans l’historique fourni ou cette séance.';
+   let reason=link?'Contraste attesté par les champs du catalogue : '+link.criterion+'. '+purpose:
+    pass(x.q)?'Passe conservé comme décision à part entière, à une position autorisée. '+purpose:purpose;
+   if(i===0&&baseRole==='rappel')reason='Rappel en amorce. '+reason;
    if(p&&x.c&&x.c===p.c&&x.stage!==null&&p.stage!==null&&x.stage>p.stage)reason+=' Stade supérieur après application plus simple.';
    if(p&&x.c&&x.c===p.c&&x.stage===p.stage&&x.d!==null&&p.d!==null&&x.d>p.d)reason+=' Difficulté croissante dans la même notion.';
    const anchors=f.slice(0,i).filter(y=>x.requires.includes(y.c)&&y.c!==x.c);
    if(anchors.length)reason+=' Prérequis déjà rencontré dans ce deck : '+[...new Set(anchors.map(y=>y.c))].join(', ')+'.';
    const prepares=f.slice(i+1).find(y=>y.requires.includes(x.c)&&y.c!==x.c);
-   if(prepares&&!seen.has(x.c))reason+=' Ce rappel prépare '+prepares.c+' plus loin dans la séance.';
+   if(prepares&&!seen.has(x.c))reason+=' Cette question prépare '+prepares.c+' plus loin dans la séance.';
    if(p&&x.p&&x.p!==p.p)reason+=' Décision distincte de la précédente.';
    if(x.c)seen.add(x.c);
-   return {id:x.id,position:i+1,role,selectionRole:x.kind,reason,contrastWith:link?(link.a===x.id?link.b:link.a):null};
+   return {id:x.id,position:i+1,role,baseRole,selectionRole:x.kind,selectionReason:x.selectionReason,reason,contrastWith:link?(link.a===x.id?link.b:link.a):null};
   });
  }
  function order(ctx={}){
@@ -267,8 +293,9 @@
     frontier=next.slice(0,8);if(!frontier.length||!(after.prereqOrderInversions||after.largeJumps||after.missedContrasts))break;
    }
   }
-  return {ids:current.map(x=>x.id),reasons:explain(current,links),changed:current!==f,
-   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes};
+  const prior=priorConcepts(ctx);
+  return {ids:current.map(x=>x.id),reasons:explain(current,links,prior),changed:current!==f,
+   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links,prior),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes};
  }
- return Object.freeze({schema,order,decisionPattern,HARD:Object.freeze(HARD),SOFT:Object.freeze(SOFT),weights:Object.freeze(weights)});
+ return Object.freeze({schema,order,decisionPattern,annotateSelectionRole,HARD:Object.freeze(HARD),SOFT:Object.freeze(SOFT),weights:Object.freeze(weights)});
 });
