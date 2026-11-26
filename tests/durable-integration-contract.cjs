@@ -5,6 +5,14 @@ function run({A,P,meta,exercises,engine}){
  const same=(a,b,m)=>ok(JSON.stringify(a)===JSON.stringify(b),m);
  const history=engine.empty(),raw=JSON.stringify(history),before=JSON.stringify(exercises);
  ok(A.schema==='QPJB_DURABLE_INTEGRATION_V1','Integration contract');
+ const ranked=[{q:{id:'historical',stratum:'core'},v:42},{q:{id:'other-concept',stratum:'other'},v:42},{q:{id:'equivalent',stratum:'core'},v:42},{q:{id:'inferior',stratum:'core'},v:41}];
+ const key=q=>q.stratum;
+ let passed=[];
+ same(A.chooseWithinStratum(ranked,key,qs=>{passed=qs.map(q=>q.id);return [{id:'other-concept',delta:999},{id:'inferior',delta:999}];}).id,'historical','No cross-stratum or lower-score promotion');
+ same(passed,['historical','equivalent'],'Only exact historical stratum is ranked');
+ same(A.chooseWithinStratum(ranked,key,()=>[{id:'equivalent',delta:4}]).id,'equivalent','Meaningful tie-break within stratum');
+ same(A.chooseWithinStratum(ranked,key,()=>[{id:'equivalent',delta:NaN}]).id,'historical','Reject invalid delta');
+ same(A.chooseWithinStratum(ranked,key,()=>{throw Error('diagnostic failure')}).id,'historical','Fail closed');
  ok(exercises.length===1915,'Frozen catalogue');
  const pairs=A.reviewedPairs(exercises,meta.byId);
  ok(pairs.length>0&&pairs.every(p=>p.kind==='transfer'&&!p.a.startsWith('SEF-AD26-M4-')&&!p.b.startsWith('SEF-AD26-M4-')&&p.evidence.automaticCredit===false),'Reviewed historical pairs only');

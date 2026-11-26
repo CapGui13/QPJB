@@ -4,7 +4,7 @@
 Six livraisons figées (110 blobs, sans conflit) ; voir manifest.json. Branche d'intégration indépendante, pas de fusion sur main ni publication. Le catalogue training-data est strictement identique au SHA de référence d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7 : 1915 QCM / 99 concepts / 22 rubriques. Les 5 propositions M4 et leurs métadonnées restent en réserve, aucun ajout éditorial non visé.
 
 ## Raccordements
-- M1 : signaux locaux forts, uniquement après S20, catégories faibles/transfert, hors priorité, hors rappel explicite, départage à score historique égal. Force et fit en HOLD par prudence. Aucun nouveau filtre.
+- M1 : signaux locaux forts, uniquement après S20, catégories faibles/transfert, hors priorité, hors rappel explicite, départage à score historique et strate pédagogique identiques (thème, concept, stade, difficulté, contexte, réponse, catégorie, nouveauté et état de rappel). Force et fit en HOLD par prudence. Aucun nouveau filtre.
 - M2 : après réponse du parcours guidé uniquement. Corrigé canonique et remédiation ciblée historique prioritaires ; nouveau feedback si hypothèse signée et valide. Aucune modification du Quiz libre.
 - M3 : bilan descriptif hors séance, révision calendaire seulement en départage de maintenance. Horloge injectée. Pas de crédit automatique ni de maîtrise certaine.
 - M4 : 77 paires intercontextuelles revues d'IDs historiques, vérifiées par le module de liens et fournies à M3 ; preuve autonome requise, pas d'ajout de QCM ou de bonus spécifique.
@@ -24,3 +24,6 @@ Workflow durable-learning.yml : contrats natifs, garde-fous du laboratoire, anci
 
 ## HOLD restants
 M1 : force/fit non activés, validation comparative des ciblages. M2 : abstentions et options HOLD restent sans nouvelle remédiation ; 4 contrastes à arbitrer. M3 : calibration calendrier et limites des horodatages. M4 : 5 ajouts non activés ; revue éditoriale exhaustive non établie. M5 : revue historique externe exhaustive non attestée ; pas de garantie pédagogique humaine. M6 : campagnes natives et navigateur à vérifier, pas de résultat humain revendiqué. Aucun déploiement.
+
+## Contre-épreuve native du premier candidat
+Run 45890521468, tête ed6bddbe7774f86585e642e85a4563d1a3b7d512 : quick, Chromium, WebKit, sensibilité, 3 scénarios sémantiques et 17/18 trajectoires S180 réussis. L'unique alerte, cible/11, concerne la dette fondamentale à S153 (297 → 372) et S180 (353 → 445). Aucune violation structurelle. Première différence d'ordre S48 ; premier changement du jeu de QCM S54. Le seuil M6 n'est pas modifié. Le second candidat conserve le gagnant historique hors de sa strate et teste uniquement les égalités strictement équivalentes. Toute la recette est rejouée. Pas de preuve de gain humain.

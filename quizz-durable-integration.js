@@ -32,6 +32,21 @@
   }
   return Object.freeze({rank});
  }
+ // Keep the historical winner unless a strictly equivalent tied candidate
+ // has a stronger, finite signal. Never change which concept is served.
+ function chooseWithinStratum(ranked,stratum,rank){
+  const first=ranked[0];if(!first)throw Error('Missing historical winner');
+  const key=stratum(first.q);
+  const tied=ranked.filter(x=>x.v===first.v&&stratum(x.q)===key);
+  if(tied.length<2)return first.q;
+  const permitted=new Set(tied.map(x=>x.q.id)),scores=new Map();
+  try{for(const r of rank(tied.map(x=>x.q))||[]){
+   if(permitted.has(r.id)&&Number.isFinite(r.delta)&&r.delta>0)scores.set(r.id,Math.max(scores.get(r.id)||0,r.delta));
+  }}catch(_){return first.q;}
+  let winner=first.q,best=scores.get(winner.id)||0;
+  for(const x of tied){const score=scores.get(x.q.id)||0;if(score>best){winner=x.q;best=score;}}
+  return winner;
+ }
  function reviewedPairs(exercises,metadataById){
   if(!T||!Array.isArray(exercises)||!metadataById)return [];
   const byId=new Map(exercises.map(q=>[q.id,q])),out=[];
@@ -68,5 +83,5 @@
   if(!L||!validHistory(history)||questionActive!==false)return null;
   try{return L.lesson({history,concept,mode,questionActive:false})}catch(_){return null}
  }
- return Object.freeze({schema,prepareSelection,reviewedPairs,mastery,feedback,available,lesson});
+ return Object.freeze({schema,prepareSelection,chooseWithinStratum,reviewedPairs,mastery,feedback,available,lesson});
 });

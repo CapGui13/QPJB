@@ -729,7 +729,7 @@
   }
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
-    // Candidate #396 : départage uniquement après S20, sur scores égaux.
+    // Candidate #396 : départage après S20, à score et strate pédagogique identiques.
     const durableSelection=s>=20&&durable?.schema==='QPJB_DURABLE_INTEGRATION_V1'
       ?durable.prepareSelection({history:state,exercises,metadataById:prerequis.byId,nowMs:Date.now()}):null;
     let pool=eligiblePool(exercises,state,e);
@@ -842,11 +842,16 @@
       const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
         new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
           history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
-      const durableRanks=durableSelection&&!explicitRecall&&!priority&&!forcedReason
-        ?new Map(durableSelection.rank({candidates,selected,category,priority,forcedReason}).map(row=>[row.id,row.delta])):new Map();
-      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0),durable:durableRanks.get(q.id)||0}));
-      ranked.sort((a,b)=>b.v-a.v||b.durable-a.durable||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
-      const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
+      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
+      ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
+      // #396: preserve the historical winning pedagogical stratum, not just
+      // its numeric score. Cross-concept ties displaced foundational review.
+      const stratum=q=>JSON.stringify([q.theme,mOf(q).concept,mOf(q).stage,q.difficulty,
+        context(q),bid(q),classify(q),fresh(q),novelFamily(q),oldFamily(q),!!due(q),!!bad(q)]);
+      const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason
+        ?durable.chooseWithinStratum(ranked,stratum,eligible=>durableSelection.rank({candidates:eligible,selected,category,priority,forcedReason}))
+        :ranked[0].q;
+      const m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
       if(openingPass(q))passChosen++;
