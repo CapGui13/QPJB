@@ -227,6 +227,88 @@
           "context": "Vous êtes donneur. Personne n’a encore enchéri. Quelle est votre décision ?",
           "answer": "1♦",
           "comment": "Avec 13 H, vous avez la force d’ouvrir, mais pas les 15 H nécessaires à 1SA. Sans majeure cinquième, ouvrez de la meilleure mineure : 1♦, avec 5 Carreaux contre 3 Trèfles."
+        },
+        {
+          "id": "SEF-PN26-M1-001",
+          "hand": [
+            [
+              "A",
+              "D",
+              "V",
+              "6"
+            ],
+            [
+              "8",
+              "5",
+              "2"
+            ],
+            [
+              "R",
+              "D",
+              "7"
+            ],
+            [
+              "V",
+              "9",
+              "4"
+            ]
+          ],
+          "h": 13,
+          "shape": [
+            4,
+            3,
+            3,
+            3
+          ],
+          "auction": [],
+          "context": "Vous êtes donneur. Personne n’a encore enchéri. Quelle est votre décision ?",
+          "answer": "1♣",
+          "comment": "Avec 13 H, vous avez la force d’ouvrir, mais pas celle d’ouvrir de 1SA. Vous n’avez aucune majeure cinquième. Vos deux mineures comptent trois cartes : ouvrez de 1♣, même si les Carreaux sont plus forts en honneurs.",
+          "contrast": "3–3 : Trèfle, même si les Carreaux concentrent plus d'honneurs.",
+          "minSession": 0,
+          "prerequisites": [],
+          "requiresPriorConcept": false
+        },
+        {
+          "id": "SEF-PN26-M1-004",
+          "hand": [
+            [
+              "A",
+              "8",
+              "4"
+            ],
+            [
+              "R",
+              "6"
+            ],
+            [
+              "V",
+              "9",
+              "7",
+              "3"
+            ],
+            [
+              "A",
+              "D",
+              "10",
+              "5"
+            ]
+          ],
+          "h": 14,
+          "shape": [
+            3,
+            2,
+            4,
+            4
+          ],
+          "auction": [],
+          "context": "Vous êtes donneur. Personne n’a encore enchéri. Quelle est votre décision ?",
+          "answer": "1♦",
+          "comment": "Avec 14 H, vous ouvrez au palier de un, mais pas de 1SA. Vous n’avez pas de majeure cinquième. À égalité de quatre cartes dans chaque mineure, ouvrez de 1♦, même avec des Trèfles nettement plus forts.",
+          "contrast": "4–4 : Carreau, même si les Trèfles sont plus forts.",
+          "minSession": 0,
+          "prerequisites": [],
+          "requiresPriorConcept": false
         }
       ],
       "prerequisites": [],
@@ -234,6 +316,74 @@
       "disposition": "ready",
       "definitions": [
         "Mineures : Trèfle et Carreau. Majeures : Cœur et Pique."
+      ],
+      "extensions": [
+        {
+          "id": "m5-ext-22",
+          "title": "Une ouverture régulière de 18 H",
+          "rule": "Avec 18–19 H réguliers sans majeure cinquième, les ouvertures de 1SA et 2SA ne décrivent pas la force. Ouvrez de la meilleure mineure pour préciser ensuite votre zone de force.",
+          "check": {
+            "prompt": "Avec 18 H et des mineures 3–3, quelle ouverture dans le cas étudié ?",
+            "answer": "1♣ : hors des zones de 1SA et 2SA.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-PN26-M1-003",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "10",
+                  "5"
+                ],
+                [
+                  "A",
+                  "8",
+                  "3"
+                ],
+                [
+                  "R",
+                  "D",
+                  "6"
+                ],
+                [
+                  "D",
+                  "9",
+                  "2"
+                ]
+              ],
+              "h": 18,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [],
+              "context": "Vous êtes donneur. Personne n’a encore enchéri. Quelle est votre décision ?",
+              "answer": "1♣",
+              "comment": "Avec 18 H réguliers, vous êtes au-dessus de 1SA (15–17 H) et en dessous de 2SA (20–21 H). Sans majeure cinquième, ouvrez de 1♣ avec les deux mineures troisièmes ; vous préciserez ensuite votre force."
+            }
+          ],
+          "minSession": 2,
+          "prerequisites": [
+            {
+              "concept": "ouv.sa1",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
       ]
     },
     "ouv.passe": {
@@ -295,7 +445,7 @@
     "mineur.base": {
       "title": "Répondre naturellement à une mineure",
       "objective": "Répondre naturellement à une mineure",
-      "rule": "Sur 1♣, avec quatre ou cinq Carreaux et une majeure quatrième, priorité à la majeure jusqu'à 12 HL inclus ; au-delà, Carreau d'abord. 1♥/1♠ du répondant non passé est forcing un tour, sans limite supérieure. Sans majeure annonçable, 1SA est limité à 6–10 H ; les autres réponses dépendent de la force et de la forme.",
+      "rule": "Avec la force de répondre, cherchez une majeure quatrième : 1♥ ou 1♠ promet au moins quatre cartes, est forcing un tour si vous n'avez pas passé, et n'est pas limité en force. Sans majeure annonçable, 1SA est une réponse limitée de 6–10 H. Les mains fortes et les choix Carreau/majeure sont approfondis séparément.",
       "typicalError": "La majeure de réponse peut être quatrième, contrairement à l'ouverture.",
       "checks": [
         {
@@ -304,7 +454,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Sur 1♣, majeure quatrième prioritaire jusqu'à 12 HL ; au-delà, Carreaux d'abord si plus longs ou égaux.",
+      "reminder": "Après ouverture mineure, une réponse majeure promet quatre cartes au moins ; 1SA limité ne doit pas masquer une majeure annonçable.",
       "examples": [
         {
           "id": "SEF-015-1",
@@ -460,6 +610,111 @@
       "disposition": "ready",
       "definitions": [
         "Forcing un tour : le partenaire doit reparler si les adversaires passent."
+      ],
+      "extensions": [
+        {
+          "id": "m5-ext-01",
+          "title": "Priorité entre Carreau et majeure",
+          "rule": "Sur 1♣, avec quatre ou cinq Carreaux et une majeure quatrième, priorité à la majeure jusqu'à 12 HL inclus ; au-delà, commencez par 1♦ dans les mains étudiées. Ce n'est pas le Walsh.",
+          "check": {
+            "prompt": "Avec 14 H et cinq Carreaux, quatre Cœurs, que nommer en premier ?",
+            "answer": "1♦ : 15 HL, au-dessus de la frontière.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V49-005",
+              "hand": [
+                [
+                  "10",
+                  "7"
+                ],
+                [
+                  "V",
+                  "10",
+                  "5",
+                  "3"
+                ],
+                [
+                  "A",
+                  "D",
+                  "5",
+                  "4",
+                  "3"
+                ],
+                [
+                  "5",
+                  "4"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                2,
+                4,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣"
+              ],
+              "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Vous avez cinq Carreaux et quatre Cœurs. Quelle est votre première réponse dans le référentiel QPJB sans Walsh ?",
+              "answer": "1♥",
+              "comment": "Avec 7 H et cinq Carreaux, vous avez 8 HL. Sur 1♣, jusqu’à 12 HL, recherchez en priorité le fit majeur : répondez 1♥ avec vos quatre Cœurs. La réponse de 1♥ promet au moins quatre cartes."
+            },
+            {
+              "id": "SEF-V49-006",
+              "hand": [
+                [
+                  "R",
+                  "5"
+                ],
+                [
+                  "A",
+                  "10",
+                  "8",
+                  "3"
+                ],
+                [
+                  "A",
+                  "R",
+                  "5",
+                  "4",
+                  "3"
+                ],
+                [
+                  "10",
+                  "8"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                2,
+                4,
+                5,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣"
+              ],
+              "context": "Votre partenaire ouvre de 1♣. Avec cinq Carreaux, quatre Cœurs et 14 H, quelle couleur annoncez-vous d'abord selon le SEF 2024 ?",
+              "answer": "1♦",
+              "comment": "Après 1♣, avec quatre ou cinq Carreaux et une majeure quatrième, la majeure est prioritaire jusqu'à 12 HL inclus. Avec cinq Carreaux, quatre Cœurs et 14 H (15 HL), commencez par 1♦ ; les Cœurs pourront être annoncés ensuite. Cette règle ne suppose pas de jouer le Walsh."
+            }
+          ],
+          "minSession": 2,
+          "prerequisites": [
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
       ]
     },
     "mineur.soutien": {
@@ -1905,7 +2160,120 @@
         }
       ],
       "minSession": 9,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-16",
+          "title": "Double transfert après les deux majeures",
+          "rule": "Après 1SA–2♣–2SA, avec le fit et les valeurs de manche, 4♣ transfère vers 4♥ et 4♦ vers 4♠ dans le traitement validé. Le but est de faire jouer la main forte. Ce développement ne concerne pas toutes les réponses au Stayman.",
+          "check": {
+            "prompt": "Quelle enchère permet à l'ouvreur de déclarer 4♠ après avoir montré les deux majeures ?",
+            "answer": "4♦, double transfert vers 4♠.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V416-008",
+              "hand": [
+                [
+                  "9",
+                  "5"
+                ],
+                [
+                  "A",
+                  "V",
+                  "8",
+                  "3"
+                ],
+                [
+                  "R",
+                  "10",
+                  "4"
+                ],
+                [
+                  "D",
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                2,
+                4,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 1SA",
+                "Vous : 2♣",
+                "Partenaire : 2SA"
+              ],
+              "context": "Votre partenaire ouvre de 1SA (15–17 H). Après votre Stayman 2♣, il répond 2SA, montrant les deux majeures quatrièmes. Quelle enchère permet d’imposer la manche dans votre majeure tout en laissant l’ouvreur déclarant ?",
+              "answer": "4♣",
+              "comment": "Vos quatre Cœurs et 10 H face à 15–17 H garantissent la force de manche et le fit 4–4. Après la réponse 2SA au Stayman, 4♣ transfère vers 4♥, afin que la main forte déclare. 3♣ inviterait seulement ; 3♥ naturel montrerait un intérêt de chelem. 4♥ direct ne laisse pas l’ouvreur déclarant."
+            },
+            {
+              "id": "SEF-V416-009",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "8",
+                  "3"
+                ],
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "V",
+                  "7",
+                  "2"
+                ],
+                [
+                  "R",
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                2,
+                3,
+                4
+              ],
+              "auction": [
+                "Partenaire : 1SA",
+                "Vous : 2♣",
+                "Partenaire : 2SA"
+              ],
+              "context": "Votre partenaire ouvre de 1SA (15–17 H). Après votre Stayman 2♣, il répond 2SA, montrant les deux majeures quatrièmes. Quelle enchère permet d’imposer la manche dans votre majeure tout en laissant l’ouvreur déclarant ?",
+              "answer": "4♦",
+              "comment": "Vos quatre Piques et 10 H face à 15–17 H garantissent la force de manche et le fit 4–4. Après la réponse 2SA au Stayman, 4♦ transfère vers 4♠, afin que la main forte déclare. 3♦ inviterait seulement ; 3♠ naturel montrerait un intérêt de chelem. 4♠ direct ne laisse pas l’ouvreur déclarant."
+            }
+          ],
+          "minSession": 13,
+          "prerequisites": [
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman.suite",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "sa1.stayman.reponse": {
       "title": "Répondre au Stayman à quatre réponses",
@@ -2502,7 +2870,75 @@
         }
       ],
       "minSession": 12,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-02",
+          "title": "Répondre au contre avec des valeurs intermédiaires",
+          "rule": "Après 1♣–Contre–Passe, le saut à 2♥ avec quatre Cœurs et 8–10 H indique une zone moyenne. L'annonce économique peut être très faible. Les réponses à SA et les mains de manche ont d'autres conditions.",
+          "check": {
+            "prompt": "Après 1♣–Contre–Passe, quatre Cœurs et 9 H : quel palier dans le cas étudié ?",
+            "answer": "2♥, réponse à saut de zone moyenne.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V3-065-3",
+              "hand": [
+                [
+                  "A",
+                  "8",
+                  "4"
+                ],
+                [
+                  "R",
+                  "D",
+                  "9",
+                  "8"
+                ],
+                [
+                  "8",
+                  "6",
+                  "3",
+                  "2"
+                ],
+                [
+                  "6",
+                  "4"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                3,
+                4,
+                4,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1♣",
+                "Partenaire : Contre",
+                "Adversaire : Passe"
+              ],
+              "context": "Le partenaire a contré d’appel, et l’adversaire suivant a passé. Tu dois choisir une enchère.",
+              "answer": "2♥",
+              "comment": "Après 1♣ – Contre – Passe, 9 H et quatre Cœurs correspondent à la zone moyenne : le saut à 2♥ montre 8–10 H avec une majeure quatrième. Une simple annonce sans saut minimiserait la main ; Passe convertirait le Contre en pénalité sans justification."
+            }
+          ],
+          "minSession": 13,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "apres_inter.base": {
       "title": "Soutenir après intervention naturelle",
@@ -3597,7 +4033,80 @@
         }
       ],
       "minSession": 24,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-14",
+          "title": "Le soutien fitté avec courte après Passe",
+          "rule": "Après votre Passe et une ouverture majeure en troisième position, le 2SA fitté du développement étudié montre au moins quatre atouts, une courte et 11 HLD ou plus. Distinguez-le du Drury et du 2SA direct à trois atouts après ouverture normale.",
+          "check": {
+            "prompt": "Après Passe, quatre atouts, une courte et 12 HLD : quel soutien constructif de cette séquence ?",
+            "answer": "2SA fitté, qui décrit la courte dans cette branche.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-067",
+              "hand": [
+                [
+                  "V",
+                  "8",
+                  "2"
+                ],
+                [
+                  "R",
+                  "V",
+                  "9",
+                  "6"
+                ],
+                [
+                  "A",
+                  "V",
+                  "9",
+                  "7",
+                  "6"
+                ],
+                [
+                  "6"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                3,
+                4,
+                5,
+                1
+              ],
+              "auction": [
+                "Vous : Passe",
+                "Adversaire : Passe",
+                "Partenaire : 1♥ (3e position)",
+                "Adversaire : Passe"
+              ],
+              "context": "Après ton Passe d'entrée, le partenaire ouvre de 1♥ en troisième position. Avec quatre atouts et un singleton, quelle enchère du SEF 2024 est la plus précise ?",
+              "answer": "2SA",
+              "comment": "Après Passe et ouverture majeure en troisième position, 2SA est fitté : au moins quatre atouts, une courte et 11 HLD ou plus. Ici, la courte à Trèfle, les quatre atouts et les 10 H justifient 2SA plutôt que 2♣ Drury."
+            }
+          ],
+          "minSession": 28,
+          "prerequisites": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            },
+            {
+              "concept": "drury.choix",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "drury.init": {
       "title": "Interroger une ouverture tardive",
@@ -3955,7 +4464,75 @@
         }
       ],
       "minSession": 26,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-20",
+          "title": "Levées de jeu et levées de défense",
+          "rule": "Une longue très productive ne suffit pas à justifier une ouverture forte à la couleur. Vérifiez aussi les valeurs d'honneur et les levées de défense selon les critères enseignés. Une main de 14 H avec beaucoup de jeu peut devoir ouvrir naturellement au palier de un.",
+          "check": {
+            "prompt": "Huit cartes et 14 H imposent-ils une ouverture artificielle forte ?",
+            "answer": "Non : la force défensive et les conditions du système comptent aussi.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L27-003",
+              "hand": [
+                [
+                  "7"
+                ],
+                [
+                  "9"
+                ],
+                [
+                  "A",
+                  "4",
+                  "3"
+                ],
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "9",
+                  "8",
+                  "7"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                1,
+                1,
+                3,
+                8
+              ],
+              "auction": [],
+              "context": "Vous êtes donneur. Vous avez huit Trèfles maîtres ♣ARDV10987 et l'As de Carreau, mais seulement 14 H. Malgré vos nombreuses levées de jeu, quelle ouverture applique la condition d'honneurs du SEF 2024 pour les ouvertures artificiellement fortes de 2♣ et 2♦ ?",
+              "answer": "1♣",
+              "comment": "Les ouvertures fortes à la couleur 2♣/2♦ exigent aussi au moins 15–16 H et suffisamment de levées de défense : beaucoup de levées de jeu ne suffisent pas. Avec 14 H, on commence naturellement à 1♣. L'ouverture de barrage 3SA à mineure maîtresse ne convient pas ici avec un As extérieur."
+            }
+          ],
+          "minSession": 34,
+          "prerequisites": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 3
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "chelem.quantitatif": {
       "title": "Inviter au chelem à Sans-Atout",
@@ -4484,7 +5061,7 @@
     "roudi.suite": {
       "title": "Exploiter la réponse négative du Roudi",
       "objective": "Exploiter la réponse négative du Roudi",
-      "rule": "Après 2♦ niant le soutien troisième, une majeure sixième peut encore garantir le fit si deux cartes sont connues. Une répétition économique peut être naturelle non forcing, selon force et séquence.",
+      "rule": "Après Roudi, utilisez d'abord le renseignement de fit et, si la réponse le précise, la force de l'ouvreur. Même après 2♦ négatif, six cartes et deux chez l'ouvreur peuvent assurer huit atouts. Choisissez ensuite le niveau selon la force ; les suites contrastées sont approfondies séparément.",
       "typicalError": "L'absence de trois atouts ne signifie pas toujours l'absence de huit atouts.",
       "checks": [
         {
@@ -4493,7 +5070,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Après Roudi négatif, six cartes et deux chez l'ouvreur peuvent encore assurer huit atouts.",
+      "reminder": "Roudi : après réponse, exploiter fit et zone de force connue ; six cartes face à deux suffisent au fit.",
       "examples": [
         {
           "id": "V1-M5-001",
@@ -4550,7 +5127,330 @@
         }
       ],
       "minSession": 30,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-12",
+          "title": "Choisir entre invitation et manche à SA ou à l'atout",
+          "rule": "Après réponse négative 2♦ au Roudi, une majeure cinquième ne garantit pas de fit : 2SA peut inviter et 3SA conclure avec la force nécessaire. Après réponse positive, le fit est établi et la zone mini/maxi guide le palier.",
+          "check": {
+            "prompt": "Après 2♦, cinq Piques et 13 H réguliers face à 12–14 H : quelle manche envisager ?",
+            "answer": "3SA, sans imposer une majeure non fittée.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V44-062",
+              "hand": [
+                [
+                  "R",
+                  "5",
+                  "4"
+                ],
+                [
+                  "V",
+                  "10",
+                  "8",
+                  "6",
+                  "4"
+                ],
+                [
+                  "R",
+                  "V",
+                  "8"
+                ],
+                [
+                  "R",
+                  "10"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                3,
+                5,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA",
+                "Vous : 2♣ (Roudi)",
+                "Partenaire : 2♦ (pas de fit)"
+              ],
+              "context": "Vous avez utilisé 2♣ Roudi après 1♣–1♥–1SA ; le partenaire répond 2♦. Quelle suite convient à votre main ?",
+              "answer": "2SA",
+              "comment": "Après 2♦ négatif au Roudi, le partenaire n'a pas trois Cœurs. Vos cinq Cœurs et 11 H ne suffisent pas à imposer la manche, mais 2SA invite naturellement à 3SA. 3♥ laisserait croire à un autre projet, alors que le fit 5–3 n'est pas trouvé."
+            },
+            {
+              "id": "SEF-V44-063",
+              "hand": [
+                [
+                  "R",
+                  "V",
+                  "7",
+                  "6",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "9"
+                ],
+                [
+                  "A",
+                  "3",
+                  "2"
+                ],
+                [
+                  "7",
+                  "3"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                5,
+                3,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Vous : 1♠",
+                "Partenaire : 1SA",
+                "Vous : 2♣ (Roudi)",
+                "Partenaire : 2♦ (pas de fit)"
+              ],
+              "context": "Après 1♦–1♠–1SA, votre Roudi reçoit la réponse 2♦. Quel contrat proposez-vous ou imposez-vous ?",
+              "answer": "3SA",
+              "comment": "Le 2♦ du partenaire nie trois Piques. Avec 13 H, cinq Piques ♠RV764 et une main régulière, vous avez la force de manche face à 12–14 H. 3SA conclut sans imposer un contrat dans une majeure non fittée ; 2SA ne serait qu'une invitation."
+            },
+            {
+              "id": "SEF-V44-064",
+              "hand": [
+                [
+                  "A",
+                  "7",
+                  "6"
+                ],
+                [
+                  "R",
+                  "8",
+                  "7",
+                  "4",
+                  "3"
+                ],
+                [
+                  "D",
+                  "5",
+                  "3"
+                ],
+                [
+                  "D",
+                  "6"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                3,
+                5,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA",
+                "Vous : 2♣ (Roudi)",
+                "Partenaire : 2♥ (fit, minimum)"
+              ],
+              "context": "Après votre Roudi sur 1SA, le partenaire répond 2♥ (trois Cœurs, minimum). Quelle enchère choisissez-vous ?",
+              "answer": "3♥",
+              "comment": "Le 2♥ codé du Roudi annonce trois Cœurs et un minimum. Vos cinq Cœurs assurent le fit et vos 11 H, avec un doubleton, permettent une invitation : 3♥ laisse au partenaire le choix d'accepter. Face à une réponse maximum 2♠, la manche serait bien plus attractive."
+            },
+            {
+              "id": "SEF-V44-065",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "9",
+                  "8"
+                ],
+                [
+                  "V",
+                  "9",
+                  "3"
+                ],
+                [
+                  "V",
+                  "8",
+                  "7"
+                ],
+                [
+                  "V",
+                  "8"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                5,
+                3,
+                3,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♠",
+                "Partenaire : 1SA",
+                "Vous : 2♣ (Roudi)",
+                "Partenaire : 2♠ (fit, maximum)"
+              ],
+              "context": "Après 1♣–1♠–1SA, le partenaire a répondu 2♠ à votre Roudi. Quelle est votre décision ?",
+              "answer": "4♠",
+              "comment": "Le 2♠ codé du Roudi annonce trois Piques et le maximum de 1SA. Vos cinq Piques commandés par As-Roi-Dame assurent huit atouts ; avec 12 H, vous connaissez la force suffisante pour 4♠. 3♠ laisserait inutilement une décision que la réponse maximum a déjà éclairée."
+            }
+          ],
+          "minSession": 30,
+          "prerequisites": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.suite",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-13",
+          "title": "Ne pas confondre deux bicolores après Roudi",
+          "rule": "Après 1♣–1♥–1SA–2♣–2♦, 2♠ peut montrer le bicolore cher du répondant, 5 Cœurs et 4 Piques, forcing de manche. Après la séquence avec Piques annoncés d'abord, 2♥ économique peut être naturel non forcing. Le sens vient de la séquence.",
+          "check": {
+            "prompt": "Le changement de couleur au palier de deux est-il toujours non forcing après Roudi ?",
+            "answer": "Non : la séquence et le caractère économique ou cher importent.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L21-003",
+              "hand": [
+                [
+                  "A",
+                  "V",
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "D",
+                  "10",
+                  "8",
+                  "5"
+                ],
+                [
+                  "A",
+                  "7"
+                ],
+                [
+                  "9",
+                  "6"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                4,
+                5,
+                2,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♣",
+                "Vous : 1♥",
+                "Partenaire : 1SA (12–14 H)",
+                "Vous : 2♣ (Roudi à trois réponses)",
+                "Partenaire : 2♦ (deux Cœurs, sans indication de force)"
+              ],
+              "context": "Votre partenaire a répondu 2♦ à votre Roudi : il ne possède que deux Cœurs. Vous détenez cinq Cœurs, quatre Piques et 14 H. Quelle enchère de bicolore cher, forcing de manche, décrit vos quatre Piques après la réponse négative au Roudi ?",
+              "answer": "2♠",
+              "comment": "Après 1♣–1♥–1SA–2♣ (Roudi)–2♦, 2♠ est le bicolore cher du répondant : cinq Cœurs, quatre Piques et un jeu forcing de manche. Il ne faut pas le confondre avec les continuations non forcing au palier de 2, comme 2SA. Le Roudi reste ici celui à trois réponses."
+            },
+            {
+              "id": "SEF-L14-007",
+              "hand": [
+                [
+                  "A",
+                  "V",
+                  "10",
+                  "9",
+                  "3"
+                ],
+                [
+                  "R",
+                  "10",
+                  "8",
+                  "5"
+                ],
+                [
+                  "D",
+                  "7"
+                ],
+                [
+                  "V",
+                  "6"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                5,
+                4,
+                2,
+                2
+              ],
+              "auction": [
+                "Partenaire : 1♦",
+                "Adversaire : Passe",
+                "Vous : 1♠",
+                "Adversaire : Passe",
+                "Partenaire : 1SA",
+                "Adversaire : Passe",
+                "Vous : 2♣ (Roudi trois réponses)",
+                "Adversaire : Passe",
+                "Partenaire : 2♦ (pas trois Piques)",
+                "Adversaire : Passe"
+              ],
+              "context": "Votre partenaire a dénié un fit de trois cartes à Pique. Vous avez cinq Piques et quatre Cœurs, avec un espoir de manche. Dans vos développements du Roudi, quelle enchère naturelle non forcing permet encore de chercher un fit à Cœur ?",
+              "answer": "2♥",
+              "comment": "La réponse négative 2♦ ne laisse que sept Piques connus : cinq chez vous, deux chez l'ouvreur. Avec quatre Cœurs et 11 H (12 HL), 2♥ naturel, non forcing, recherche une meilleure partielle ou un éventuel fit 4–4. 3♥ imposerait la manche alors que le 2♦ ne précise pas la force."
+            }
+          ],
+          "minSession": 34,
+          "prerequisites": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 3
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.suite",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "fortes.relais": {
       "title": "Répondre au 2♣ fort indéterminé",
@@ -4940,7 +5840,223 @@
         }
       ],
       "minSession": 32,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-05",
+          "title": "Bicolore majeure-mineure",
+          "rule": "Dans le Multi-Landy QPJB sur 1SA 15–17 H, 2♥ montre cinq Cœurs et une mineure au moins quatrième, 2♠ cinq Piques et une mineure au moins quatrième. Ce n'est pas le Landy 2♣.",
+          "check": {
+            "prompt": "Quelle différence entre 2♥ et 2♦ Multi-Landy ?",
+            "answer": "2♥ promet Cœurs et mineure ; 2♦ une majeure sixième indéterminée.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-027",
+              "hand": [
+                [
+                  "5",
+                  "2"
+                ],
+                [
+                  "A",
+                  "R",
+                  "10",
+                  "7",
+                  "2"
+                ],
+                [
+                  "R",
+                  "D",
+                  "V",
+                  "6"
+                ],
+                [
+                  "V",
+                  "5"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                2,
+                5,
+                4,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)"
+              ],
+              "context": "Sur l'ouverture adverse de 1SA (15–17 H), vous jouez Multi-Landy et avez cinq Cœurs et quatre Carreaux. Quelle intervention conventionnelle décrit ces deux couleurs ?",
+              "answer": "2♥",
+              "comment": "Votre bicolore est ♥AR1072 cinquième et ♦RDV6 quatrième. Dans le Multi-Landy utilisé ici, 2♥ montre cinq Cœurs et une mineure d'au moins quatre cartes. 2♣ serait réservé aux deux majeures; 2♦ montrerait une majeure sixième seule, et non ce bicolore."
+            },
+            {
+              "id": "SEF-V45-028",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "D",
+                  "V",
+                  "5"
+                ],
+                [
+                  "9",
+                  "8"
+                ],
+                [
+                  "D",
+                  "8"
+                ],
+                [
+                  "D",
+                  "6",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                5,
+                2,
+                2,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)"
+              ],
+              "context": "Rappel : Multi-Landy contre 1SA adverse, situation non vulnérable.",
+              "answer": "2♠",
+              "comment": "Vos cinq Piques et quatre Trèfles, avec 14 H, correspondent à l’intervention 2♠ du Multi-Landy convenu. 2♣ montrerait les deux majeures et 2♦ une seule majeure sixième : ni l’un ni l’autre ne décrit cette main."
+            }
+          ],
+          "minSession": 36,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.intervention",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-06",
+          "title": "Bicolore mineur 5–5",
+          "rule": "Dans cette variante locale du Multi-Landy, 2SA montre les deux mineures au moins cinquièmes. Ne généralisez ni à 5–4 ni à toutes les versions du Multi-Landy.",
+          "check": {
+            "prompt": "Cinq Carreaux et quatre Trèfles remplissent-ils ce critère ?",
+            "answer": "Non : les deux mineures doivent être au moins cinquièmes.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-029",
+              "hand": [
+                [
+                  "10"
+                ],
+                [
+                  "R",
+                  "9"
+                ],
+                [
+                  "A",
+                  "R",
+                  "V",
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "10",
+                  "8",
+                  "3",
+                  "2"
+                ]
+              ],
+              "h": 14,
+              "shape": [
+                1,
+                2,
+                5,
+                5
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)"
+              ],
+              "context": "L'adversaire ouvre de 1SA (15–17 H). Dans la version du Multi-Landy jouée ici, l'intervention à 2SA décrit un bicolore mineur au moins 5–5, à Trèfle et à Carreau. Votre camp est non vulnérable. Avec cinq Carreaux ♦ARV94, cinq Trèfles ♣R10832 et 14 H, quelle est votre enchère ?",
+              "answer": "2SA",
+              "comment": "Vous détenez un bicolore mineur 5–5 avec ♦ARV94 et ♣R10832. Dans la variante Multi-Landy retenue pour cet exercice, 2SA sur l'ouverture adverse de 1SA montre précisément les deux mineures, au moins cinquièmes. Cette signification est conventionnelle et ne doit pas être présentée comme une enchère naturelle à Sans-Atout ou comme une obligation du SEF standard."
+            },
+            {
+              "id": "V2-M5-023",
+              "hand": [
+                [
+                  "8",
+                  "3"
+                ],
+                [
+                  "7",
+                  "2"
+                ],
+                [
+                  "A",
+                  "R",
+                  "V",
+                  "9",
+                  "6"
+                ],
+                [
+                  "D",
+                  "10",
+                  "8",
+                  "4"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                2,
+                2,
+                5,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1SA (15–17 H)"
+              ],
+              "context": "Dans la variante Multi-Landy QPJB où 2SA indique les deux mineures au moins cinquièmes, vous êtes non vulnérable. Que faites-vous ?",
+              "answer": "Passe",
+              "comment": "Cinq Carreaux et quatre Trèfles ne satisfont pas le 5–5 requis par le 2SA de cette variante. Les autres enchères proposées exigent des majeures longues. Passe, malgré les 10 H."
+            }
+          ],
+          "minSession": 40,
+          "prerequisites": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.intervention",
+              "minExposure": 3
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "multilandy.choix": {
       "title": "Savoir passer contre 1SA",
@@ -5151,7 +6267,195 @@
         }
       ],
       "minSession": 34,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-10",
+          "title": "Transférer vers une couleur inaccessible",
+          "rule": "Après 1SA–(2♥ naturel), 2SA transfère à Trèfle, 3♣ à Carreau, 3♥ à Pique dans la convention étudiée. 2♠ direct reste naturel faible et non forcing. Le Texas permet de poursuivre si la force le justifie.",
+          "check": {
+            "prompt": "Après 2♥ adverse, quelle enchère transfère vers les Carreaux ?",
+            "answer": "3♣, car 2♦ n'est plus disponible.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-033",
+              "hand": [
+                [
+                  "R",
+                  "5"
+                ],
+                [
+                  "10",
+                  "5"
+                ],
+                [
+                  "R",
+                  "V",
+                  "10",
+                  "9",
+                  "3",
+                  "2"
+                ],
+                [
+                  "7",
+                  "4",
+                  "3"
+                ]
+              ],
+              "h": 7,
+              "shape": [
+                2,
+                2,
+                6,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1SA",
+                "Adversaire : 2♥ (naturel)"
+              ],
+              "context": "Rappel : Rubensohl après une intervention naturelle sur l’ouverture de 1SA.",
+              "answer": "3♣",
+              "comment": "Avec six Carreaux et 7 H face à 15–17 H, le total est de 22–24 H ; votre objectif est la partielle. L'intervention à 2♥ a rendu 2♦ inaccessible, donc 3♣ transfère vers 3♦ dans le Rubensohl. Passez après la rectification normale ; 3♦ direct serait le Texas impossible, pas l'annonce naturelle des Carreaux."
+            },
+            {
+              "id": "SEF-V45-035",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "8",
+                  "7",
+                  "3"
+                ],
+                [
+                  "V",
+                  "4"
+                ],
+                [
+                  "V",
+                  "10",
+                  "8"
+                ],
+                [
+                  "R",
+                  "10",
+                  "7"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                5,
+                2,
+                3,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1SA",
+                "Adversaire : 2♥ (naturel)"
+              ],
+              "context": "Rappel : Rubensohl après une intervention naturelle sur l’ouverture de 1SA.",
+              "answer": "3♥",
+              "comment": "Cinq Piques et 11 H donnent des valeurs de manche face à 1SA. Dans le Rubensohl après 2♥ naturel, 3♥ transfère vers les Piques et permet de poursuivre vers la manche. 2♠ direct serait naturel, faible et non forcing : il risquerait d’arrêter trop tôt les enchères."
+            }
+          ],
+          "minSession": 38,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "rubensohl.init",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-11",
+          "title": "Texas impossible",
+          "rule": "Après 1SA–(2♥ naturel), 3♦ serait un transfert vers les Cœurs adverses : dans cette variante il devient un Stayman forcing de manche pour rechercher notamment quatre Piques. Il ne propose pas de jouer Cœur.",
+          "check": {
+            "prompt": "Après 2♥ naturel, quatre Piques et force de manche sans arrêt Cœur : que recherche 3♦ ?",
+            "answer": "Le fit majeur par le Texas impossible, non une longueur Carreau.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V45-034",
+              "hand": [
+                [
+                  "A",
+                  "V",
+                  "6",
+                  "3"
+                ],
+                [
+                  "D",
+                  "3"
+                ],
+                [
+                  "R",
+                  "V",
+                  "3",
+                  "2"
+                ],
+                [
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 11,
+              "shape": [
+                4,
+                2,
+                4,
+                3
+              ],
+              "auction": [
+                "Partenaire : 1SA",
+                "Adversaire : 2♥ (naturel)"
+              ],
+              "context": "Après l'ouverture 1SA du partenaire et l'intervention naturelle à 2♥, vous jouez Rubensohl. Avec quatre Piques, 11 H et seulement ♥D3, quelle enchère artificielle recherche la manche ?",
+              "answer": "3♦",
+              "comment": "La couleur Cœur a déjà été nommée par l'adversaire. Dans ce Rubensohl, 3♦ serait normalement un transfert vers les Cœurs : dans cette variante, ce Texas impossible devient un Stayman artificiel forcing de manche, utile pour chercher un fit Pique à quatre cartes. Avec ♠AV63 et 11 H, annoncez 3♦ plutôt que 3SA sans arrêt Cœur sûr."
+            }
+          ],
+          "minSession": 42,
+          "prerequisites": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "rubensohl.init",
+              "minExposure": 3
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "michaels.intervention": {
       "title": "Montrer les deux majeures sur 1♣",
@@ -5282,7 +6586,7 @@
     "chelem.cles": {
       "title": "Compter les cinq clés du Blackwood",
       "objective": "Compter les cinq clés du Blackwood",
-      "rule": "Les cinq clés sont les quatre As et le Roi d'atout. En 30–41, 5♣ = 0 ou 3, 5♦ = 1 ou 4, 5♥ = 2 sans Dame d'atout, 5♠ = 2 avec Dame d'atout.",
+      "rule": "Les cinq clés sont les quatre As et le Roi d'atout. Dans le code ordinaire 30–41, 5♣ = 0 ou 3, 5♦ = 1 ou 4, 5♥ = 2 sans Dame d'atout, 5♠ = 2 avec Dame d'atout.",
       "typicalError": "Le Roi d'une autre couleur et la Dame d'atout ne sont pas des clés supplémentaires.",
       "checks": [
         {
@@ -5340,7 +6644,111 @@
         }
       ],
       "minSession": 39,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-15",
+          "title": "La chicane utile au Blackwood",
+          "rule": "Dans le code exceptionnel QPJB, 5SA en réponse directe au Blackwood montre une chicane explicitement reconnue utile et deux ou quatre clés. Un singleton n'est pas une chicane. Le 5SA ultérieur de l'interrogateur a un autre sens.",
+          "check": {
+            "prompt": "Deux clés et un singleton autorisent-ils automatiquement la réponse exceptionnelle 5SA ?",
+            "answer": "Non : une vraie chicane utile est nécessaire.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L32-005",
+              "hand": [
+                [
+                  "R",
+                  "10",
+                  "9",
+                  "8"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6"
+                ],
+                [],
+                [
+                  "D",
+                  "V",
+                  "10",
+                  "9",
+                  "8",
+                  "5"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                3,
+                0,
+                6
+              ],
+              "auction": [
+                "Partenaire : 4SA (Blackwood cinq clés 30–41, atout Pique déjà agréé)"
+              ],
+              "context": "L'atout Pique est fixé et votre partenaire interroge à 4SA après avoir vérifié les contrôles. Vous possédez deux clés (♠R et ♥A) ainsi qu'une chicane à Carreau reconnue utile pour le chelem ; vous n'avez ni autre As ni Dame de Pique. Quelle réponse du Blackwood cinq clés montre à la fois ces clés et cette chicane utile ?",
+              "answer": "5SA",
+              "comment": "Dans le Blackwood cinq clés 30–41, la réponse de 5SA est réservée au cas d'une chicane utile avec deux ou quatre clés. Vous avez exactement deux clés, le Roi d'atout et l'As de Cœur, et une chicane Carreau utile. 5♥ annoncerait seulement deux clés sans la Dame d'atout et cacherait la chicane. La situation particulière d'une chicane doit être explicitement reconnue utile, faute de quoi on emploierait les réponses ordinaires."
+            },
+            {
+              "id": "V2-M6-042",
+              "hand": [
+                [
+                  "R",
+                  "10",
+                  "9",
+                  "8"
+                ],
+                [
+                  "A",
+                  "8",
+                  "6"
+                ],
+                [
+                  "7"
+                ],
+                [
+                  "D",
+                  "V",
+                  "9",
+                  "8",
+                  "7"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                3,
+                1,
+                5
+              ],
+              "auction": [
+                "Partenaire : 4SA (Blackwood cinq clés 30–41, atout Pique)"
+              ],
+              "context": "Atout Pique agréé, contrôles extérieurs vérifiés, adversaires silencieux. Le partenaire interroge sur les clés. Dans cette donne, une éventuelle chicane Carreau est reconnue utile par les enchères antérieures. Quelle réponse décrit votre main ?",
+              "answer": "5♥",
+              "comment": "Vous détenez ♥A et ♠R, soit deux clés, sans Dame de Pique. Le ♦7 est un singleton : même s'il peut servir de contrôle du deuxième tour, ce n'est pas une chicane. Appliquez donc le code ordinaire 5♥ (deux clés sans la Dame). 5SA serait réservé à une véritable chicane reconnue utile avec deux ou quatre clés."
+            }
+          ],
+          "minSession": 47,
+          "prerequisites": [
+            {
+              "concept": "chelem.controles",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.cles",
+              "minExposure": 3
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "chelem.splinter": {
       "title": "Décrire une courte avec le fit",
@@ -5407,7 +6815,82 @@
         }
       ],
       "minSession": 39,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-19",
+          "title": "Réévaluer les honneurs en face de la courte",
+          "rule": "Les honneurs non As en face d'un singleton risquent de faire double emploi avec les valeurs de coupe. Un Splinter n'oblige pas à rechercher le chelem : l'ouvreur minimum peut conclure à la manche.",
+          "check": {
+            "prompt": "Avec une ouverture minimale et Roi-Valet dans la courte annoncée, faut-il lancer automatiquement les contrôles ?",
+            "answer": "Non : les honneurs peuvent être peu utiles ; conclure à la manche peut convenir.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "V1-M6-001",
+              "hand": [
+                [
+                  "R",
+                  "V",
+                  "9",
+                  "8",
+                  "4"
+                ],
+                [
+                  "A",
+                  "7",
+                  "3"
+                ],
+                [
+                  "R",
+                  "V",
+                  "6"
+                ],
+                [
+                  "8",
+                  "2"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                5,
+                3,
+                3,
+                2
+              ],
+              "auction": [
+                "Vous : 1♠",
+                "Partenaire : 4♦ (Splinter)"
+              ],
+              "context": "Les adversaires passent. Le 4♦ du partenaire est un Splinter : fit d'au moins quatre Piques, courte à Carreau et force de manche. Comment réévaluez-vous votre ouverture pour choisir la suite ?",
+              "answer": "4♠",
+              "comment": "Vous avez 12 H, dont ♦RV en face de la courte annoncée. Ces honneurs risquent de faire double emploi avec les valeurs de coupe du partenaire. Le Splinter sert précisément à réévaluer les compléments : malgré l'As de Cœur, cette ouverture minimum ne justifie pas de lancer les contrôles à 4♥. 4♠ conclut à la manche ; 4SA serait prématuré."
+            }
+          ],
+          "minSession": 43,
+          "prerequisites": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "chelem.controles",
+              "minExposure": 2
+            },
+            {
+              "concept": "chelem.splinter",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "competitif.spoutnik": {
       "title": "Rechercher une majeure par contre Spoutnik",
@@ -5700,7 +7183,74 @@
         }
       ],
       "minSession": 20,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-17",
+          "title": "Priorité des renseignements sur le maximum",
+          "rule": "Après deux faible–2SA interrogatif, dans la branche maximum, un As ou Roi extérieur est prioritaire sur la courte. Sans gros honneur annexe, une courte peut être montrée au palier de quatre selon le développement étudié.",
+          "check": {
+            "prompt": "Maximum avec Roi annexe et singleton : lequel décrire d'abord ?",
+            "answer": "Le gros honneur annexe, dans le traitement enseigné.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V486-004",
+              "hand": [
+                [
+                  "R",
+                  "D",
+                  "V",
+                  "10",
+                  "9",
+                  "8"
+                ],
+                [
+                  "6"
+                ],
+                [
+                  "R",
+                  "7",
+                  "5"
+                ],
+                [
+                  "9",
+                  "6",
+                  "4"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                6,
+                1,
+                3,
+                3
+              ],
+              "auction": [
+                "Vous : 2♠ (ouverture faible)",
+                "Partenaire : 2SA (relais interrogatif)"
+              ],
+              "context": "Vous êtes Sud, donneur en première position. Vous avez ouvert de 2♠ faible ; Nord répond 2SA, relais fitté interrogatif. Les adversaires passent. Quelle redemande décrit votre main ?",
+              "answer": "3♦",
+              "comment": "Avec 9 H, six Piques, ♠RDV1098, le Roi de Carreau et ♥6 singleton, deux renseignements seraient possibles. Le traitement du relais 2SA donne la priorité au gros honneur annexe dans la branche maximale : 3♦ montre le Roi. 4♥ montrerait la courte, mais omettrait l'information prioritaire. Il ne s'agit donc pas de choisir mécaniquement le palier le plus bas ou la courte la plus marquée."
+            }
+          ],
+          "minSession": 24,
+          "prerequisites": [
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            },
+            {
+              "concept": "barrage.suite",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "intervenir.deux_faible": {
       "title": "Intervenir sur un barrage adverse",
@@ -6290,7 +7840,149 @@
         }
       ],
       "minSession": 18,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-03",
+          "title": "Mini-cue-bid après un deux faible",
+          "rule": "Sur 2♥ faible–Contre–Passe, 2SA mini-cue-bid montre environ 8–11 H, forcing un tour. Il ne garantit pas d'arrêt Cœur. Le premier palier naturel disponible est faible, inférieur à 8 H.",
+          "check": {
+            "prompt": "Avec 9 H et quatre Piques, sans arrêt Cœur, quel relais ?",
+            "answer": "2SA mini-cue-bid ; non naturel.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V476-003",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "7",
+                  "4"
+                ],
+                [
+                  "9",
+                  "3"
+                ],
+                [
+                  "R",
+                  "8",
+                  "5"
+                ],
+                [
+                  "D",
+                  "9",
+                  "6",
+                  "2"
+                ]
+              ],
+              "h": 9,
+              "shape": [
+                4,
+                2,
+                3,
+                4
+              ],
+              "auction": [
+                "Adversaire : 2♥ (faible)",
+                "Partenaire : Contre (d'appel)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 2♥ faible, votre partenaire contre d'appel et le répondant passe. Vous avez quatre Piques, 9 H et aucun arrêt Cœur. Comment montrer votre force intermédiaire sans promettre de tenue adverse ?",
+              "answer": "2SA",
+              "comment": "Sur 2♥ faible–Contre–Passe, 2♠ direct avec quatre cartes serait une réponse faible, inférieure à 8 H. Avec 9 H et quatre Piques A1074, choisissez 2SA mini-cue-bid : il montre environ 8–11 H, est forcing un tour et permet de préciser le fit selon la réponse du contreur. Vos ♥93 n'arrêtent pas les Cœurs ; cela n'interdit pas ce 2SA, précisément parce qu'il n'est pas naturel."
+            }
+          ],
+          "minSession": 22,
+          "prerequisites": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.deux_faible",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-04",
+          "title": "Valeurs de manche sans contrat identifié",
+          "rule": "Après deux faible contré d'appel, le cue-bid fort de la couleur adverse impose la poursuite si le contrat reste à déterminer ; avec un arrêt adapté et les valeurs nécessaires, 3SA peut être naturel.",
+          "check": {
+            "prompt": "Après 2♥–Contre–Passe, 13 H, trois Piques, aucun arrêt Cœur : à quoi sert 3♥ ?",
+            "answer": "Cue-bid fort : rechercher notamment un arrêt ou un fit, sans imposer une couleur naturelle.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V476-006",
+              "hand": [
+                [
+                  "A",
+                  "V",
+                  "7"
+                ],
+                [
+                  "9",
+                  "4"
+                ],
+                [
+                  "A",
+                  "10",
+                  "7",
+                  "5"
+                ],
+                [
+                  "R",
+                  "V",
+                  "10",
+                  "8"
+                ]
+              ],
+              "h": 13,
+              "shape": [
+                3,
+                2,
+                4,
+                4
+              ],
+              "auction": [
+                "Adversaire : 2♥ (faible)",
+                "Partenaire : Contre (d'appel)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 2♥ faible, votre partenaire contre d'appel et le répondant passe. Vous avez 13 H, sans quatre Piques ni arrêt Cœur. Quelle enchère forcing permet de rechercher la bonne manche ?",
+              "answer": "3♥",
+              "comment": "Après 2♥ faible–Contre–Passe, vous avez 13 H, trois Piques, aucune couleur cinquième et ♥94 sans arrêt. Vous disposez de valeurs de manche mais le contrat n'est pas identifié : 3♥, cue-bid fort de la couleur adverse, impose la poursuite et permet notamment de rechercher l'arrêt Cœur ou un fit. 2SA mini-cue-bid serait trop limité ; 3SA direct supposerait une tenue que vous n'avez pas."
+            }
+          ],
+          "minSession": 22,
+          "prerequisites": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.deux_faible",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "michaels.reponse": {
       "title": "Choisir une préférence sur Michaëls",
@@ -6420,7 +8112,207 @@
         }
       ],
       "minSession": 34,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-07",
+          "title": "Relais constructif après Landy",
+          "rule": "Après (1SA)–2♣ Landy–Passe, 2SA est un relais positif dans les développements locaux retenus : demander force et majeure longue. Ce n'est pas une réponse universelle du SEF.",
+          "check": {
+            "prompt": "Le 2SA positif sur Landy est-il imposé par le SEF standard ?",
+            "answer": "Non, c'est le développement QPJB explicitement enseigné.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V479-004",
+              "hand": [
+                [
+                  "A",
+                  "10",
+                  "8",
+                  "7"
+                ],
+                [
+                  "R",
+                  "9",
+                  "7",
+                  "5"
+                ],
+                [
+                  "D",
+                  "8",
+                  "2"
+                ],
+                [
+                  "V",
+                  "3"
+                ]
+              ],
+              "h": 10,
+              "shape": [
+                4,
+                4,
+                3,
+                2
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)",
+                "Partenaire : 2♣ (Landy)",
+                "Adversaire : Passe"
+              ],
+              "context": "Après l'ouverture adverse de 1SA (15–17 H), votre partenaire intervient par 2♣ Landy : il annonce un bicolore majeur au moins 5–4. Le joueur suivant passe. Avec 10 H et quatre cartes dans chacune des majeures, vous souhaitez explorer une manche. Pour cette question, vous jouez les développements conventionnels constructifs du Landy convenus avec le partenaire (ce traitement n'est pas une obligation du SEF). Quelle est votre enchère ?",
+              "answer": "2SA",
+              "comment": "Votre partenaire a annoncé les deux majeures par 2♣ Landy. Avec 10 H, quatre Piques menés par l'As et quatre Cœurs avec le Roi, vous détenez des valeurs utiles et du soutien quelle que soit sa majeure longue. Dans les développements conventionnels retenus pour cet exercice, 2SA est un relais positif : il invite l'intervenant à préciser la force de son jeu et la majeure la plus longue pour décider de la manche. Cette utilisation de 2SA doit être convenue entre partenaires ; ce n'est pas une réponse imposée universellement par le SEF, et le Landy 2♣ ne doit pas être confondu avec l'ensemble du Multi-Landy."
+            }
+          ],
+          "minSession": 38,
+          "prerequisites": [
+            {
+              "concept": "multilandy.intervention",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.reponse",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-08",
+          "title": "Passe ou corrige sur majeure indéterminée",
+          "rule": "Après 2♦ Multi-Landy (majeure sixième), 2♥ passe ou corrige au palier de deux ; le 2♠ de l'accord précis étudié passe avec les Piques et corrige à 3♥ avec les Cœurs. Les conditions de force varient selon le système.",
+          "check": {
+            "prompt": "Que doit faire l'intervenant avec six Cœurs après la réponse locale 2♠ ?",
+            "answer": "Corriger à 3♥. La variante n'est pas universelle.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V479-008",
+              "hand": [
+                [
+                  "8",
+                  "4"
+                ],
+                [
+                  "R",
+                  "10",
+                  "7"
+                ],
+                [
+                  "D",
+                  "8",
+                  "6",
+                  "4"
+                ],
+                [
+                  "V",
+                  "9",
+                  "5",
+                  "3"
+                ]
+              ],
+              "h": 6,
+              "shape": [
+                2,
+                3,
+                4,
+                4
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)",
+                "Partenaire : 2♦ (Multi-Landy, unicolore majeur)",
+                "Adversaire : Passe"
+              ],
+              "context": "L'adversaire ouvre de 1SA (15–17 H) et votre partenaire intervient par 2♦ Multi-Landy : cette enchère artificielle décrit un unicolore d'au moins six cartes dans une majeure encore inconnue (six Cœurs ou six Piques). L'adversaire suivant passe. Avec ♥R107 et seulement ♠84, vous acceptez de jouer 3♥ plutôt que 2♠ si votre partenaire a six Cœurs. Dans les accords de réponse « Passe ou corrige » retenus ici, que répondez-vous ?",
+              "answer": "2♠",
+              "comment": "L'intervention à 2♦ Multi-Landy ne promet pas des Carreaux : elle montre une majeure sixième indéterminée, Cœur ou Pique. La réponse de 2♠ est ici un « Passe ou corrige » : l'intervenant passe avec six Piques, mais corrige à 3♥ avec six Cœurs. Vous acceptez ce palier de 3♥ grâce à vos trois Cœurs (♥R107), alors que vous n'avez que deux Piques. Attention : la réponse 2♥ est aussi un « Passe ou corrige », plus économique (passe avec les Cœurs, correction à 2♠ avec les Piques). Le choix de 2♠ avec seulement 6 H est l'accord précis retenu pour cet exercice ; dans d'autres versions du Multi-Landy, 2♠ est réservé à des mains plus constructives, souvent 8–10 H. Il ne s'agit pas du SEF standard."
+            }
+          ],
+          "minSession": 38,
+          "prerequisites": [
+            {
+              "concept": "multilandy.intervention",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.reponse",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        },
+        {
+          "id": "m5-ext-09",
+          "title": "Relais positif sur majeure-mineure",
+          "rule": "Après 2♠ Multi-Landy, 2SA positif dans le développement QPJB demande de préciser la mineure et la force. Un soutien économique n'exprime pas le même projet.",
+          "check": {
+            "prompt": "Pourquoi ne pas conclure automatiquement 4♠ avec trois atouts et 12 H ?",
+            "answer": "Le relais 2SA permet d'évaluer force et complément avant de décider de la manche.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V479-016",
+              "hand": [
+                [
+                  "R",
+                  "9",
+                  "3"
+                ],
+                [
+                  "A",
+                  "7",
+                  "4"
+                ],
+                [
+                  "D",
+                  "10",
+                  "8",
+                  "6"
+                ],
+                [
+                  "R",
+                  "7",
+                  "5"
+                ]
+              ],
+              "h": 12,
+              "shape": [
+                3,
+                3,
+                4,
+                3
+              ],
+              "auction": [
+                "Adversaire : 1SA (15-17 H)",
+                "Partenaire : 2♠ (Multi-Landy : Pique et mineure)",
+                "Adversaire : Passe"
+              ],
+              "context": "Après l'ouverture adverse de 1SA (15–17 H), votre partenaire intervient à 2♠ Multi-Landy : selon vos accords, il décrit au moins cinq Piques et une mineure au moins quatrième, encore inconnue. L'adversaire suivant passe. Avec ♠R93, ♥A74, ♦D1086, ♣R75, vous avez 12 H, trois Piques et donc un fit d'au moins huit cartes. Votre main est agréable et permet d'envisager la manche. Quelle est votre enchère ?",
+              "answer": "2SA",
+              "comment": "Le 2♠ Multi-Landy du partenaire promet au moins cinq Piques ainsi qu'une mineure. Avec trois Piques, vous détenez un fit d'au moins huit atouts. Vos 12 H et vos valeurs utiles (♠R, ♥A, ♦D, ♣R) donnent une main agréable et un réel espoir de manche, sans garantir pour autant 4♠. Dans les développements conventionnels retenus avec le partenaire, 2SA est un relais positif qui permet de préciser sa mineure et la force de son intervention avant de choisir le meilleur contrat. Un simple soutien à 3♠ serait trop limitatif et conclure immédiatement à 4♠ serait prématuré. Ce relais est un développement conventionnel du Multi-Landy retenu ici, et non une obligation du SEF standard."
+            }
+          ],
+          "minSession": 38,
+          "prerequisites": [
+            {
+              "concept": "multilandy.intervention",
+              "minExposure": 1
+            },
+            {
+              "concept": "multilandy.reponse",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "multilandy.suite": {
       "title": "Répondre au relais Landy",
@@ -7007,7 +8899,78 @@
         }
       ],
       "minSession": 10,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-18",
+          "title": "Rechercher le fit 4–4 malgré le fit 5–3",
+          "rule": "Après 1♥–2SA fitté sans intervention, l'ouvreur constructif peut annoncer 3♠ avec quatre Piques pour rechercher un éventuel fit 4–4. Le fit Cœur est déjà acquis ; l'annonce ne l'annule pas.",
+          "check": {
+            "prompt": "Pourquoi annoncer 3♠ avec quatre Piques malgré le soutien Cœur ?",
+            "answer": "Pour rechercher le fit 4–4 éventuel, sans renoncer au fit Cœur.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-V486-009",
+              "hand": [
+                [
+                  "A",
+                  "R",
+                  "7",
+                  "4"
+                ],
+                [
+                  "A",
+                  "V",
+                  "9",
+                  "5",
+                  "3"
+                ],
+                [
+                  "R",
+                  "6",
+                  "2"
+                ],
+                [
+                  "8"
+                ]
+              ],
+              "h": 15,
+              "shape": [
+                4,
+                5,
+                3,
+                1
+              ],
+              "auction": [
+                "Vous : 1♥",
+                "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+              ],
+              "context": "Vous avez ouvert de 1 en majeure en première position, sans intervention adverse. Votre partenaire répond directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l'ouvreur. Quelle redemande décrit le mieux votre force et votre distribution selon le SEF 2024 ? Séquence : Vous : 1♥ — Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD). Précision : Indifférente.",
+              "answer": "3♠",
+              "comment": "Avec 15 H et quatre Piques, annoncez 3♠ après le 2SA fitté : le partenaire a montré exactement trois Cœurs, mais peut avoir quatre Piques. Vous recherchez un éventuel fit 4–4 sans renoncer au fit Cœur 5–3 déjà établi ; 4♥ immédiat fermerait cette recherche."
+            }
+          ],
+          "minSession": 10,
+          "prerequisites": [
+            {
+              "concept": "apres_fit.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa.suite",
+              "minExposure": 1
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "forcing.quatrieme.suite": {
       "title": "Exploiter la réponse à la quatrième couleur",
@@ -8109,7 +10072,7 @@
     "sa1.texas_mineur.reponse": {
       "title": "Distinguer rectification et modulation positive",
       "objective": "Distinguer rectification et modulation positive",
-      "rule": "Après 1SA–2♠ Texas Trèfle, 3♣ est la rectification normale. 2SA montre un complément favorable et une main non minimum : par exemple 16 H et Roi troisième, pas Valet troisième minimum. Après 1SA–3♣ Texas Carreau, 3♦ est obligatoire, même avec deux Carreaux.",
+      "rule": "Sur 1SA–2♠ Texas Trèfle, 3♣ est la rectification normale. Une modulation positive à 2SA existe dans le traitement étudié ; le Valet troisième d'une main minimum ne suffit pas. Sur 1SA–3♣ Texas Carreau, la rectification 3♦ est obligatoire, même avec deux Carreaux.",
       "typicalError": "Trois cartes quelconques ne garantissent pas la modulation positive.",
       "checks": [
         {
@@ -8118,7 +10081,7 @@
           "assisted": true
         }
       ],
-      "reminder": "Texas Trèfle : 2SA complément favorable et main non minimum ; sinon 3♣. Texas Carreau : 3♦ obligatoire.",
+      "reminder": "Texas Trèfle : 3♣ normal ; 2SA peut moduler positivement. Texas Carreau : 3♦ obligatoire.",
       "examples": [
         {
           "id": "SEF-L25-008",
@@ -8276,7 +10239,76 @@
         }
       ],
       "minSession": 14,
-      "disposition": "ready"
+      "disposition": "ready",
+      "extensions": [
+        {
+          "id": "m5-ext-21",
+          "title": "Modulation positive avec un complément",
+          "rule": "Sur 1SA–2♠ Texas Trèfle, le 2SA de l'ouvreur montre un complément favorable et une main non minimum, pas forcément 17 H. Avec le Roi troisième et 16 H, l'exemple validé module. Le Texas Carreau n'a pas cette modulation.",
+          "check": {
+            "prompt": "Le maximum de 17 H est-il indispensable pour moduler positivement le Texas Trèfle ?",
+            "answer": "Non : la qualité du complément et une main non minimum sont déterminantes.",
+            "assisted": true
+          },
+          "examples": [
+            {
+              "id": "SEF-L25-007",
+              "hand": [
+                [
+                  "A",
+                  "D",
+                  "8",
+                  "2"
+                ],
+                [
+                  "A",
+                  "9",
+                  "4"
+                ],
+                [
+                  "R",
+                  "7",
+                  "6"
+                ],
+                [
+                  "R",
+                  "10",
+                  "3"
+                ]
+              ],
+              "h": 16,
+              "shape": [
+                4,
+                3,
+                3,
+                3
+              ],
+              "auction": [
+                "Vous : 1SA (15–17 H)",
+                "Adversaire : Passe",
+                "Partenaire : 2♠ (Texas pour les Trèfles)",
+                "Adversaire : Passe"
+              ],
+              "context": "Vous ouvrez de 1SA avec 16 H et votre partenaire annonce 2♠ Texas Trèfle. Vous possédez ♣R103 : un gros honneur exactement troisième et une main favorable au développement de la longue Trèfle du partenaire. Quelle rectification modulée l'indique ?",
+              "answer": "2SA",
+              "comment": "2SA est une modulation positive du Texas Trèfle. L’ouvreur montre un complément intéressant dans la couleur longue du partenaire, ici ♣R103 (Roi troisième), avec une main non minimum. L’objectif est de signaler ce soutien à Trèfle, et non de promettre obligatoirement une main maximum de 17 H : 16 H avec ce complément conviennent. Sans les conditions de cette modulation positive, la rectification normale est 3♣."
+            }
+          ],
+          "minSession": 18,
+          "prerequisites": [
+            {
+              "concept": "sa1.texas_mineur",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas_mineur.reponse",
+              "minExposure": 2
+            }
+          ],
+          "assisted": true,
+          "assessment": false
+        }
+      ]
     },
     "ouv.bicolore.exception": {
       "title": "Reconnaître l'exception Pique–Trèfle",

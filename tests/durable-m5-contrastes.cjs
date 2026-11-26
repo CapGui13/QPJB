@@ -23,7 +23,7 @@ console.log((function verify(api,code,corpus,idConcept,all,meta){
  if(l.minSession>0)ok(api.lesson({...request,history:{...request.history,completed:l.minSession-1}})===null,c+' calendar');
  for(const p of l.prerequisites){const a=hist(l.prerequisites.filter(x=>x.concept!==p.concept),Math.max(1,l.minSession));ok(api.lesson({...request,history:a})===null,c+' missing prereq '+p.concept)}
  const recall=api.lesson({concept:c,mode:'reminder',history:full});ok(recall?.rule===l.reminder&&recall.examples.length===0&&recall.checks.length===0,c+' recall');
- const study=api.lesson({concept:c,mode:'study',history:full});ok(study?.examples.length===l.examples.length,c+' full study');
+ const study=api.lesson({concept:c,mode:'study',history:full});ok(study?.examples.length+(l.examples.slice(1).filter(e=>study?.extensions.some(x=>x.examples.some(q=>q.id===e.id))).length)===l.examples.length,c+' full study');
  ok(api.lesson({concept:c,mode:'discovery',history:full})===null,c+' no automatic reteach');
  ok(l.checks[0].prompt!==l.examples[0].context,c+' distinct');
  for(const [i,e] of l.examples.entries()){

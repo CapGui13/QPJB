@@ -12,7 +12,8 @@
     "ruleLength": 196,
     "canonicalLength": 159,
     "reminderLength": 46,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "ouv.sa2",
@@ -32,7 +33,8 @@
     "ruleLength": 107,
     "canonicalLength": 188,
     "reminderLength": 46,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "ouv.majeure",
@@ -47,7 +49,8 @@
     "ruleLength": 228,
     "canonicalLength": 147,
     "reminderLength": 72,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "ouv.mineure",
@@ -62,7 +65,48 @@
     "ruleLength": 165,
     "canonicalLength": 171,
     "reminderLength": 82,
-    "contrasts": []
+    "contrasts": [
+      {
+        "id": "SEF-PN26-M1-001",
+        "reason": "3–3 : Trèfle, même si les Carreaux concentrent plus d'honneurs.",
+        "minCompleted": 0,
+        "requires": [],
+        "requiresPriorConcept": false
+      },
+      {
+        "id": "SEF-PN26-M1-004",
+        "reason": "4–4 : Carreau, même si les Trèfles sont plus forts.",
+        "minCompleted": 0,
+        "requires": [],
+        "requiresPriorConcept": false
+      }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-22",
+        "title": "Une ouverture régulière de 18 H",
+        "sources": [
+          "SEF-PN26-M1-003"
+        ],
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "ouv.sa1",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "ouv.passe",
@@ -77,7 +121,8 @@
     "ruleLength": 208,
     "canonicalLength": 99,
     "reminderLength": 102,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "mineur.base",
@@ -94,9 +139,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 316,
+    "ruleLength": 314,
     "canonicalLength": 293,
-    "reminderLength": 103,
+    "reminderLength": 131,
     "contrasts": [
       {
         "id": "SEF-V49-005",
@@ -129,6 +174,29 @@
           }
         ],
         "requiresPriorConcept": false
+      }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-01",
+        "title": "Priorité entre Carreau et majeure",
+        "sources": [
+          "SEF-V49-005",
+          "SEF-V49-006"
+        ],
+        "minCompleted": 2,
+        "requires": [
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
       }
     ]
   },
@@ -179,7 +247,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "majeur.soutien",
@@ -224,7 +293,8 @@
         ],
         "requiresPriorConcept": true
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa1.seuil",
@@ -269,7 +339,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa1.stayman",
@@ -289,7 +360,8 @@
     "ruleLength": 219,
     "canonicalLength": 270,
     "reminderLength": 76,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.texas",
@@ -309,7 +381,8 @@
     "ruleLength": 207,
     "canonicalLength": 258,
     "reminderLength": 96,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.seuil",
@@ -370,7 +443,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "red.bicolore",
@@ -394,7 +468,8 @@
     "ruleLength": 197,
     "canonicalLength": 174,
     "reminderLength": 82,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "red.base",
@@ -418,7 +493,8 @@
     "ruleLength": 204,
     "canonicalLength": 135,
     "reminderLength": 81,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "second.base",
@@ -438,7 +514,8 @@
     "ruleLength": 192,
     "canonicalLength": 189,
     "reminderLength": 89,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "fit.2sa",
@@ -462,7 +539,8 @@
     "ruleLength": 180,
     "canonicalLength": 208,
     "reminderLength": 104,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "majeur.base",
@@ -482,7 +560,8 @@
     "ruleLength": 247,
     "canonicalLength": 73,
     "reminderLength": 82,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.stayman",
@@ -506,7 +585,8 @@
     "ruleLength": 165,
     "canonicalLength": 135,
     "reminderLength": 74,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.texas",
@@ -551,7 +631,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "roudi.init",
@@ -571,7 +652,8 @@
     "ruleLength": 183,
     "canonicalLength": 267,
     "reminderLength": 78,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.stayman.suite",
@@ -595,7 +677,34 @@
     "ruleLength": 199,
     "canonicalLength": 202,
     "reminderLength": 104,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-16",
+        "title": "Double transfert après les deux majeures",
+        "sources": [
+          "SEF-V416-008",
+          "SEF-V416-009"
+        ],
+        "minCompleted": 13,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "sa1.stayman.reponse",
@@ -640,7 +749,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa1.texas.suite",
@@ -685,7 +795,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa2.stayman.suite",
@@ -709,7 +820,8 @@
     "ruleLength": 191,
     "canonicalLength": 209,
     "reminderLength": 78,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.texas.suite",
@@ -733,7 +845,8 @@
     "ruleLength": 201,
     "canonicalLength": 250,
     "reminderLength": 104,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "intervenir.base",
@@ -757,7 +870,8 @@
     "ruleLength": 259,
     "canonicalLength": 178,
     "reminderLength": 98,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "contre.base",
@@ -777,7 +891,29 @@
     "ruleLength": 245,
     "canonicalLength": 370,
     "reminderLength": 86,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-02",
+        "title": "Répondre au contre avec des valeurs intermédiaires",
+        "sources": [
+          "SEF-V3-065-3"
+        ],
+        "minCompleted": 13,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "apres_inter.base",
@@ -801,7 +937,8 @@
     "ruleLength": 198,
     "canonicalLength": 276,
     "reminderLength": 80,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "competitif.2sa_fitte",
@@ -825,7 +962,8 @@
     "ruleLength": 196,
     "canonicalLength": 374,
     "reminderLength": 80,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "barrage.ouverture",
@@ -882,7 +1020,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "barrage.reponse",
@@ -902,7 +1041,8 @@
     "ruleLength": 242,
     "canonicalLength": 296,
     "reminderLength": 89,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "apres_fit.base",
@@ -922,7 +1062,8 @@
     "ruleLength": 189,
     "canonicalLength": 231,
     "reminderLength": 98,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "apres_fit.essai",
@@ -971,7 +1112,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "apres_fit.essai.suite",
@@ -991,7 +1133,8 @@
     "ruleLength": 195,
     "canonicalLength": 242,
     "reminderLength": 70,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "reponse_inter.base",
@@ -1011,7 +1154,8 @@
     "ruleLength": 222,
     "canonicalLength": 403,
     "reminderLength": 95,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "reveil.base",
@@ -1031,7 +1175,8 @@
     "ruleLength": 199,
     "canonicalLength": 445,
     "reminderLength": 93,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "roudi.choix",
@@ -1051,7 +1196,8 @@
     "ruleLength": 188,
     "canonicalLength": 244,
     "reminderLength": 87,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "roudi.reponse",
@@ -1096,7 +1242,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "drury.choix",
@@ -1120,7 +1267,33 @@
     "ruleLength": 196,
     "canonicalLength": 161,
     "reminderLength": 111,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-14",
+        "title": "Le soutien fitté avec courte après Passe",
+        "sources": [
+          "SEF-V44-067"
+        ],
+        "minCompleted": 28,
+        "requires": [
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "drury.choix",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "drury.init",
@@ -1144,7 +1317,8 @@
     "ruleLength": 183,
     "canonicalLength": 285,
     "reminderLength": 92,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "drury.reponse",
@@ -1189,7 +1363,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "fortes.ouverture",
@@ -1230,6 +1405,32 @@
         ],
         "requiresPriorConcept": false
       }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-20",
+        "title": "Levées de jeu et levées de défense",
+        "sources": [
+          "SEF-L27-003"
+        ],
+        "minCompleted": 34,
+        "requires": [
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.sa2",
+            "minExposure": 1
+          },
+          {
+            "concept": "fortes.ouverture",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
     ]
   },
   {
@@ -1250,7 +1451,8 @@
     "ruleLength": 182,
     "canonicalLength": 246,
     "reminderLength": 86,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "red.bicolore_cher",
@@ -1295,7 +1497,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "competitif.truscott",
@@ -1368,7 +1571,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "michaels.reveil",
@@ -1392,7 +1596,8 @@
     "ruleLength": 176,
     "canonicalLength": 324,
     "reminderLength": 76,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "roudi.suite",
@@ -1413,10 +1618,64 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 197,
+    "ruleLength": 291,
     "canonicalLength": 367,
-    "reminderLength": 90,
-    "contrasts": []
+    "reminderLength": 103,
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-12",
+        "title": "Choisir entre invitation et manche à SA ou à l'atout",
+        "sources": [
+          "SEF-V44-062",
+          "SEF-V44-063",
+          "SEF-V44-064",
+          "SEF-V44-065"
+        ],
+        "minCompleted": 30,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "roudi.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "roudi.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-13",
+        "title": "Ne pas confondre deux bicolores après Roudi",
+        "sources": [
+          "SEF-L21-003",
+          "SEF-L14-007"
+        ],
+        "minCompleted": 34,
+        "requires": [
+          {
+            "concept": "roudi.init",
+            "minExposure": 3
+          },
+          {
+            "concept": "roudi.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "roudi.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "fortes.relais",
@@ -1436,7 +1695,8 @@
     "ruleLength": 144,
     "canonicalLength": 240,
     "reminderLength": 75,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "fortes.redemande",
@@ -1456,7 +1716,8 @@
     "ruleLength": 154,
     "canonicalLength": 250,
     "reminderLength": 49,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "forcing.troisieme",
@@ -1476,7 +1737,8 @@
     "ruleLength": 240,
     "canonicalLength": 216,
     "reminderLength": 113,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "forcing.quatrieme",
@@ -1496,7 +1758,8 @@
     "ruleLength": 221,
     "canonicalLength": 269,
     "reminderLength": 97,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "forcing.base",
@@ -1516,7 +1779,8 @@
     "ruleLength": 219,
     "canonicalLength": 202,
     "reminderLength": 100,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "multilandy.intervention",
@@ -1540,7 +1804,59 @@
     "ruleLength": 189,
     "canonicalLength": 217,
     "reminderLength": 80,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-05",
+        "title": "Bicolore majeure-mineure",
+        "sources": [
+          "SEF-V45-027",
+          "SEF-V45-028"
+        ],
+        "minCompleted": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-06",
+        "title": "Bicolore mineur 5–5",
+        "sources": [
+          "SEF-V45-029",
+          "V2-M5-023"
+        ],
+        "minCompleted": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "multilandy.choix",
@@ -1564,7 +1880,8 @@
     "ruleLength": 214,
     "canonicalLength": 234,
     "reminderLength": 98,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "rubensohl.naturel",
@@ -1592,7 +1909,8 @@
     "ruleLength": 188,
     "canonicalLength": 285,
     "reminderLength": 99,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "rubensohl.init",
@@ -1620,7 +1938,66 @@
     "ruleLength": 218,
     "canonicalLength": 205,
     "reminderLength": 83,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-10",
+        "title": "Transférer vers une couleur inaccessible",
+        "sources": [
+          "SEF-V45-033",
+          "SEF-V45-035"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-11",
+        "title": "Texas impossible",
+        "sources": [
+          "SEF-V45-034"
+        ],
+        "minCompleted": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "michaels.intervention",
@@ -1640,7 +2017,8 @@
     "ruleLength": 201,
     "canonicalLength": 214,
     "reminderLength": 65,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "michaels.choix",
@@ -1660,7 +2038,8 @@
     "ruleLength": 207,
     "canonicalLength": 301,
     "reminderLength": 101,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.cles",
@@ -1677,10 +2056,33 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 139,
+    "ruleLength": 159,
     "canonicalLength": 262,
     "reminderLength": 78,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-15",
+        "title": "La chicane utile au Blackwood",
+        "sources": [
+          "SEF-L32-005",
+          "V2-M6-042"
+        ],
+        "minCompleted": 47,
+        "requires": [
+          {
+            "concept": "chelem.controles",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.cles",
+            "minExposure": 3
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "chelem.splinter",
@@ -1704,7 +2106,37 @@
     "ruleLength": 247,
     "canonicalLength": 259,
     "reminderLength": 100,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-19",
+        "title": "Réévaluer les honneurs en face de la courte",
+        "sources": [
+          "V1-M6-001"
+        ],
+        "minCompleted": 43,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "chelem.controles",
+            "minExposure": 2
+          },
+          {
+            "concept": "chelem.splinter",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "competitif.spoutnik",
@@ -1724,7 +2156,8 @@
     "ruleLength": 226,
     "canonicalLength": 248,
     "reminderLength": 95,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "ouv.position",
@@ -1748,7 +2181,8 @@
     "ruleLength": 240,
     "canonicalLength": 207,
     "reminderLength": 105,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "barrage.suite",
@@ -1793,6 +2227,28 @@
         ],
         "requiresPriorConcept": false
       }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-17",
+        "title": "Priorité des renseignements sur le maximum",
+        "sources": [
+          "SEF-V486-004"
+        ],
+        "minCompleted": 24,
+        "requires": [
+          {
+            "concept": "barrage.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "barrage.suite",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
     ]
   },
   {
@@ -1817,7 +2273,8 @@
     "ruleLength": 215,
     "canonicalLength": 231,
     "reminderLength": 106,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "red.competitif",
@@ -1841,7 +2298,8 @@
     "ruleLength": 182,
     "canonicalLength": 307,
     "reminderLength": 100,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "michaels.defense",
@@ -1869,7 +2327,8 @@
     "ruleLength": 194,
     "canonicalLength": 281,
     "reminderLength": 96,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.blackwood.suite",
@@ -1926,7 +2385,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "chelem.blackwood.dame_rois",
@@ -1954,7 +2414,8 @@
     "ruleLength": 218,
     "canonicalLength": 299,
     "reminderLength": 116,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "fortes.suite",
@@ -1974,7 +2435,8 @@
     "ruleLength": 143,
     "canonicalLength": 242,
     "reminderLength": 80,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "contre.deux_faible",
@@ -1998,7 +2460,57 @@
     "ruleLength": 188,
     "canonicalLength": 227,
     "reminderLength": 105,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-03",
+        "title": "Mini-cue-bid après un deux faible",
+        "sources": [
+          "SEF-V476-003"
+        ],
+        "minCompleted": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-04",
+        "title": "Valeurs de manche sans contrat identifié",
+        "sources": [
+          "SEF-V476-006"
+        ],
+        "minCompleted": 22,
+        "requires": [
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "contre.deux_faible",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "michaels.reponse",
@@ -2018,7 +2530,8 @@
     "ruleLength": 192,
     "canonicalLength": 209,
     "reminderLength": 102,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "multilandy.reponse",
@@ -2038,7 +2551,69 @@
     "ruleLength": 227,
     "canonicalLength": 300,
     "reminderLength": 94,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": [
+      {
+        "id": "m5-ext-07",
+        "title": "Relais constructif après Landy",
+        "sources": [
+          "SEF-V479-004"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-08",
+        "title": "Passe ou corrige sur majeure indéterminée",
+        "sources": [
+          "SEF-V479-008"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      },
+      {
+        "id": "m5-ext-09",
+        "title": "Relais positif sur majeure-mineure",
+        "sources": [
+          "SEF-V479-016"
+        ],
+        "minCompleted": 38,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
+    ]
   },
   {
     "concept": "multilandy.suite",
@@ -2058,7 +2633,8 @@
     "ruleLength": 169,
     "canonicalLength": 292,
     "reminderLength": 97,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "rubensohl.reponse",
@@ -2078,7 +2654,8 @@
     "ruleLength": 157,
     "canonicalLength": 223,
     "reminderLength": 93,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.texas_mineur",
@@ -2102,7 +2679,8 @@
     "ruleLength": 222,
     "canonicalLength": 343,
     "reminderLength": 44,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.texas_mineur.suite",
@@ -2126,7 +2704,8 @@
     "ruleLength": 186,
     "canonicalLength": 284,
     "reminderLength": 93,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.controles",
@@ -2146,7 +2725,8 @@
     "ruleLength": 234,
     "canonicalLength": 214,
     "reminderLength": 96,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "drury.suite",
@@ -2170,7 +2750,8 @@
     "ruleLength": 179,
     "canonicalLength": 264,
     "reminderLength": 95,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "fit.2sa.suite",
@@ -2227,6 +2808,32 @@
         ],
         "requiresPriorConcept": false
       }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-18",
+        "title": "Rechercher le fit 4–4 malgré le fit 5–3",
+        "sources": [
+          "SEF-V486-009"
+        ],
+        "minCompleted": 10,
+        "requires": [
+          {
+            "concept": "apres_fit.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa.suite",
+            "minExposure": 1
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
     ]
   },
   {
@@ -2251,7 +2858,8 @@
     "ruleLength": 220,
     "canonicalLength": 316,
     "reminderLength": 87,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.quantitatif.suite",
@@ -2275,7 +2883,8 @@
     "ruleLength": 172,
     "canonicalLength": 283,
     "reminderLength": 103,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.blackwood.declenchement",
@@ -2299,7 +2908,8 @@
     "ruleLength": 178,
     "canonicalLength": 351,
     "reminderLength": 85,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "rubensohl.suite",
@@ -2323,7 +2933,8 @@
     "ruleLength": 162,
     "canonicalLength": 219,
     "reminderLength": 94,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "competitif.sa_adverse",
@@ -2364,7 +2975,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa.gambling",
@@ -2388,7 +3000,8 @@
     "ruleLength": 215,
     "canonicalLength": 401,
     "reminderLength": 88,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "reveil.deux_faible",
@@ -2412,7 +3025,8 @@
     "ruleLength": 241,
     "canonicalLength": 448,
     "reminderLength": 103,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "forcing.checkback",
@@ -2440,7 +3054,8 @@
     "ruleLength": 210,
     "canonicalLength": 270,
     "reminderLength": 104,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "chelem.splinter.variante",
@@ -2468,7 +3083,8 @@
     "ruleLength": 201,
     "canonicalLength": 232,
     "reminderLength": 84,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "second.bicolore_cher",
@@ -2492,7 +3108,8 @@
     "ruleLength": 226,
     "canonicalLength": 255,
     "reminderLength": 97,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "forcing.troisieme.suite",
@@ -2516,7 +3133,8 @@
     "ruleLength": 189,
     "canonicalLength": 241,
     "reminderLength": 109,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.texas.reponse",
@@ -2549,7 +3167,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa1.stayman.contre",
@@ -2577,7 +3196,8 @@
     "ruleLength": 204,
     "canonicalLength": 278,
     "reminderLength": 83,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.texas.contre",
@@ -2601,7 +3221,8 @@
     "ruleLength": 174,
     "canonicalLength": 230,
     "reminderLength": 88,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa1.texas_mineur.reponse",
@@ -2618,9 +3239,9 @@
     ],
     "review": "individual-rule-and-selected-examples; reminder authored; historical exceptions checked where relevant",
     "fullConceptCatalogueEditorialReview": false,
-    "ruleLength": 257,
+    "ruleLength": 263,
     "canonicalLength": 393,
-    "reminderLength": 103,
+    "reminderLength": 89,
     "contrasts": [
       {
         "id": "SEF-L25-007",
@@ -2650,6 +3271,28 @@
         ],
         "requiresPriorConcept": false
       }
+    ],
+    "extensions": [
+      {
+        "id": "m5-ext-21",
+        "title": "Modulation positive avec un complément",
+        "sources": [
+          "SEF-L25-007"
+        ],
+        "minCompleted": 18,
+        "requires": [
+          {
+            "concept": "sa1.texas_mineur",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas_mineur.reponse",
+            "minExposure": 2
+          }
+        ],
+        "disposition": "ready",
+        "reason": "Règle rédigée d'après les corrigés de ces séquences exactes ; accès après exposition, sans évaluation."
+      }
     ]
   },
   {
@@ -2678,7 +3321,8 @@
     "ruleLength": 232,
     "canonicalLength": 273,
     "reminderLength": 94,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.stayman.reponse",
@@ -2711,7 +3355,8 @@
         ],
         "requiresPriorConcept": false
       }
-    ]
+    ],
+    "extensions": []
   },
   {
     "concept": "sa2.bicolore",
@@ -2739,7 +3384,8 @@
     "ruleLength": 199,
     "canonicalLength": 306,
     "reminderLength": 92,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "intervenir.sa.suite",
@@ -2767,7 +3413,8 @@
     "ruleLength": 218,
     "canonicalLength": 277,
     "reminderLength": 103,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   },
   {
     "concept": "sa2.texas_mineur.reponse",
@@ -2799,6 +3446,7 @@
     "ruleLength": 173,
     "canonicalLength": 308,
     "reminderLength": 62,
-    "contrasts": []
+    "contrasts": [],
+    "extensions": []
   }
 ]
