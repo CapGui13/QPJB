@@ -1160,16 +1160,20 @@
       "sha": "30cde5e78b5d2da7f90f995235419228293820b2"
     }
   ],
-  "status": "final-source-synchronized-adapters-pending",
+  "status": "final-source-synchronized-ci-pending",
   "holds": [
-    "M1 guard and final adapters pending",
-    "M2 53 residual arbitrations",
-    "M3 calendar calibration",
-    "M4 strict probe filter and 28 proposed QCM pending visa",
-    "M5 historical certification",
-    "M6 final recipe"
+    "M1: guard + strict tie-break only, force/fit held; improvement in selection not yet demonstrated",
+    "M2: 53 documented editorial arbitrations remain, no activation of HOLD",
+    "M3: broad policy remains off; calendar tie-break only",
+    "M4: 28 proposed QCM and 11 supplemental pairs await separate visa; only 22 strict original historical probes",
+    "M5: external historical certification not established",
+    "M6: final synchronized candidate CI pending"
   ],
   "integrationOverrides": [
-    "tests/durable-m6-campaign.cjs: production asset inventory; all other source files exact"
-  ]
+    "tests/durable-m6-campaign.cjs: production asset inventory extended; all other source files exact"
+  ],
+  "strictHistoricalProbes": {
+    "pairs": 22,
+    "concepts": 34
+  }
 }

@@ -15,7 +15,7 @@ function run({A,P,meta,exercises,engine}){
  same(A.chooseWithinStratum(ranked,key,()=>{throw Error('diagnostic failure')}).id,'historical','Fail closed');
  ok(exercises.length===1915,'Frozen catalogue');
  const pairs=A.reviewedPairs(exercises,meta.byId);
- ok(pairs.length>0&&pairs.every(p=>p.kind==='transfer'&&!p.a.startsWith('SEF-AD26-M4-')&&!p.b.startsWith('SEF-AD26-M4-')&&p.evidence.automaticCredit===false),'Reviewed historical pairs only');
+ ok(pairs.length===22&&pairs.every(p=>p.kind==='transfer'&&!p.a.startsWith('SEF-AD26-M4-')&&!p.b.startsWith('SEF-AD26-M4-')&&p.evidence.automaticCredit===false),'Reviewed historical pairs only');
  ok(A.feedback({exercise:exercises[0]})===null,'No feedback before response');
  for(const q of exercises){
   for(const choice of q.choices.filter(c=>c!==q.answer)){
