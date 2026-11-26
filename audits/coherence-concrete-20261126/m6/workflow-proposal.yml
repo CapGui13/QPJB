@@ -21,6 +21,7 @@ jobs:
       - run: |
           git rev-parse HEAD
           node tests/coherence-concrete-m6-unit.cjs
+          node tests/coherence-concrete-m6-contracts.cjs
           node tests/durable-m6-unit.cjs
           node tests/durable-m6-guards.cjs
           node tests/durable-m6-evidence.cjs
@@ -52,6 +53,28 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: m6-concrete-${{ matrix.profile }}-${{ matrix.seed }}
+          name: m6-concrete-trajectory-${{ matrix.profile }}-${{ matrix.seed }}
           path: m6-results
+          retention-days: 30
+
+  aggregate:
+    needs: matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m6-concrete-trajectory-*
+          path: m6-archives
+      - run: node tests/coherence-concrete-m6-aggregate.cjs m6-archives "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m6-concrete-native-register
+          path: m6-native-register.json
           retention-days: 30
