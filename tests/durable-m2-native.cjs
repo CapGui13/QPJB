@@ -9,7 +9,7 @@ for(const [k,d] of remaining){const x=audit.rows[k],p=previous.pending[k];assert
 const cli=script=>JSON.parse(execFileSync(process.execPath,[path.join(root,script)],{cwd:root,encoding:'utf8',maxBuffer:20*1024*1024}));
 const metrics=cli('tests/durable-m2-remediation.cjs'),double=cli('tests/durable-m2-demo.cjs');
 assert.equal(metrics.options,5745);assert.equal(metrics.questions,1915);assert.equal(metrics.dispositions.HOLD,52);assert.equal(metrics.dispositions['canonical-contrast'],1);
-const demo=read(dir+'demo.html'),cases=JSON.parse(demo.match(/<script id="fixtures" type="application\\/json">([\\s\\S]*?)<\\/script>/)[1]);
+const demo=read(dir+'demo.html'),cases=JSON.parse(demo.split('<script id="fixtures" type="application/json">')[1].split('</script>')[0]);
 const {chromium,webkit}=require('playwright');
 async function browserRun(name,engine){
  const browser=await engine.launch({headless:true});let checks=0,scenarios=0;
