@@ -1880,8 +1880,8 @@
         "consolidation"
       ],
       "contrastWith": [
-        "SEF-024-1",
-        "SEF-N024-1"
+        "SEF-N035-2",
+        "SEF-PN26-M1-031"
       ],
       "rationale": "Les sept Passes sur mineure sont tous à 1–3 H ; vérifie le dernier point avant le seuil de réponse, avec une majeure quatrième tentante."
     },
@@ -1974,7 +1974,8 @@
       ],
       "contrastWith": [
         "SEF-N048-3",
-        "SEF-N052-1"
+        "SEF-N052-1",
+        "SEF-PN26-M1-032"
       ],
       "rationale": "Les sept Passes fittés sont à 0–3 H ; manque la frontière 5 HLD face au soutien simple à 6."
     },
@@ -2893,6 +2894,580 @@
         "choice": "Passe",
         "category": "convention",
         "reason": "Prendre 4♦ artificiel pour un contrat naturel.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-031",
+      "theme": "mineur",
+      "hand": [
+        [
+          "D",
+          "9",
+          "8",
+          "7",
+          "4"
+        ],
+        [
+          "R",
+          "6",
+          "3"
+        ],
+        [
+          "9",
+          "7",
+          "2"
+        ],
+        [
+          "8",
+          "5"
+        ]
+      ],
+      "h": 5,
+      "shape": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "auction": [
+        "Partenaire : 1♦"
+      ],
+      "context": "Votre partenaire ouvre de 1♦ en première position et les adversaires passent. Quelle est votre réponse ?",
+      "answer": "1♠",
+      "choices": [
+        "Passe",
+        "1SA",
+        "2♦",
+        "1♠"
+      ],
+      "explain": "Avec 5 H et cinq Piques, votre point de longueur porte la main à 6 HL : vous avez la force minimale de répondre. Annoncez 1♠, qui promet au moins quatre cartes. À 5 H sans point de longueur, vous auriez passé.",
+      "difficulty": 1,
+      "difficultyReason": "Complément contrôlé du cas 020 : cinq Piques plutôt que quatre avec la même force H ; aucune réponse à 1♠ du concept n'était à 5 H.",
+      "caseFamily": "pn26-m1-031"
+    },
+    "metadata": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-PN26-M1-020",
+        "SEF-N035-2"
+      ],
+      "rationale": "Complément contrôlé du cas 020 : cinq Piques plutôt que quatre avec la même force H ; aucune réponse à 1♠ du concept n'était à 5 H."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "force",
+        "reason": "Oublier le point de longueur de la majeure cinquième.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "1SA",
+        "category": "priorite",
+        "reason": "Masquer la majeure annoncée naturellement au palier de un.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♦",
+        "category": "fit",
+        "reason": "Soutenir sans longueur suffisante et ignorer la majeure.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-032",
+      "theme": "majeur",
+      "hand": [
+        [
+          "R",
+          "8"
+        ],
+        [
+          "D",
+          "9",
+          "5"
+        ],
+        [
+          "9",
+          "7",
+          "3",
+          "2"
+        ],
+        [
+          "8",
+          "6",
+          "4",
+          "3"
+        ]
+      ],
+      "h": 5,
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "auction": [
+        "Partenaire : 1♥"
+      ],
+      "context": "Votre partenaire ouvre de 1♥ en première position et les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♥",
+      "choices": [
+        "Passe",
+        "1SA",
+        "2SA",
+        "2♥"
+      ],
+      "explain": "Avec 5 H et trois Cœurs, vous avez le fit huitième. Le doubleton Pique ajoute un point D : vous atteignez 6 HLD, seuil du soutien simple. Répondez 2♥.",
+      "difficulty": 2,
+      "difficultyReason": "Le cas 021 passe avec 5 H plats ; le doubleton permet de soutenir à 6 HLD. Aucun soutien simple du concept n’était à 5 H.",
+      "caseFamily": "pn26-m1-032"
+    },
+    "metadata": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-PN26-M1-021",
+        "SEF-N048-3"
+      ],
+      "rationale": "Le cas 021 passe avec 5 H plats ; le doubleton permet de soutenir à 6 HLD. Aucun soutien simple du concept n’était à 5 H."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "force",
+        "reason": "Oublier la réévaluation du doubleton en présence du fit.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "1SA",
+        "category": "fit",
+        "reason": "Ne pas montrer le soutien troisième.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "force",
+        "reason": "Surévaluer le soutien comme invitant.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-033",
+      "theme": "stayman",
+      "hand": [
+        [
+          "A",
+          "9",
+          "8",
+          "4"
+        ],
+        [
+          "R",
+          "V",
+          "7",
+          "3"
+        ],
+        [
+          "D",
+          "6"
+        ],
+        [
+          "A",
+          "V",
+          "5"
+        ]
+      ],
+      "h": 15,
+      "shape": [
+        4,
+        4,
+        2,
+        3
+      ],
+      "auction": [
+        "Vous : 1SA",
+        "Partenaire : 2♣"
+      ],
+      "context": "Vous ouvrez de 1SA (15–17 H). Votre partenaire fait un Stayman à quatre réponses. Les adversaires passent. Quelle est votre redemande ?",
+      "answer": "2SA",
+      "choices": [
+        "2♥",
+        "2SA",
+        "2♦",
+        "2♠"
+      ],
+      "explain": "Avec 15 H, vous êtes minimum de 1SA, mais détenez quatre Piques et quatre Cœurs. Dans le Stayman à quatre réponses, 2SA montre les deux majeures quatrièmes ; ce n’est pas une annonce de maximum. Ne privilégiez pas l’une des deux majeures.",
+      "difficulty": 2,
+      "difficultyReason": "Le seul 2SA du concept sa1.stayman.reponse est à 16 H. Le minimum 15 H isole la distribution de la force.",
+      "caseFamily": "pn26-m1-033"
+    },
+    "metadata": {
+      "concept": "sa1.stayman.reponse",
+      "stage": 1,
+      "minSession": 7,
+      "requires": [
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-V416-007",
+        "SEF-V3-014-1"
+      ],
+      "rationale": "Le seul 2SA du concept sa1.stayman.reponse est à 16 H. Le minimum 15 H isole la distribution de la force."
+    },
+    "diagnostics": [
+      {
+        "choice": "2♥",
+        "category": "distribution",
+        "reason": "Ne montrer qu’une majeure alors que les deux sont quatrièmes.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♦",
+        "category": "distribution",
+        "reason": "Nier à tort toute majeure quatrième.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♠",
+        "category": "distribution",
+        "reason": "Ne montrer qu’une majeure alors que les deux sont quatrièmes.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-034",
+      "theme": "sa",
+      "hand": [
+        [
+          "R",
+          "8",
+          "6",
+          "4"
+        ],
+        [
+          "D",
+          "7",
+          "3"
+        ],
+        [
+          "9",
+          "5"
+        ],
+        [
+          "8",
+          "7",
+          "4",
+          "2"
+        ]
+      ],
+      "h": 5,
+      "shape": [
+        4,
+        3,
+        2,
+        4
+      ],
+      "auction": [
+        "Partenaire : 2SA"
+      ],
+      "context": "Votre partenaire ouvre de 2SA (20–21 H) et les adversaires passent. Quelle est votre réponse ?",
+      "answer": "3♣",
+      "choices": [
+        "3SA",
+        "3♥",
+        "Passe",
+        "3♣"
+      ],
+      "explain": "Avec 5 H face à 20–21 H, vous avez la force nécessaire pour demander la manche. Vos quatre Piques justifient un Stayman à 3♣ pour rechercher un éventuel fit 4–4 ; 3♥ Texas demanderait cinq Piques.",
+      "difficulty": 2,
+      "difficultyReason": "Le seul Stayman à 5 H sur 2SA possède les deux majeures quatrièmes ; une seule suffit. Contraste avec le Passe à 3 H malgré quatre Cœurs.",
+      "caseFamily": "pn26-m1-034"
+    },
+    "metadata": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "consolidation"
+      ],
+      "contrastWith": [
+        "SEF-N103-2",
+        "V2-M2-001",
+        "SEF-PN26-M1-024"
+      ],
+      "rationale": "Le seul Stayman à 5 H sur 2SA possède les deux majeures quatrièmes ; une seule suffit. Contraste avec le Passe à 3 H malgré quatre Cœurs."
+    },
+    "diagnostics": [
+      {
+        "choice": "3SA",
+        "category": "priorite",
+        "reason": "Conclure sans rechercher le fit majeur potentiel.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♥",
+        "category": "convention",
+        "reason": "Faire un Texas avec quatre Piques seulement.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "Passe",
+        "category": "force",
+        "reason": "Oublier les 25–26 H cumulés.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-035",
+      "theme": "chelem",
+      "hand": [
+        [
+          "A",
+          "D",
+          "8"
+        ],
+        [
+          "A",
+          "V",
+          "7"
+        ],
+        [
+          "R",
+          "9",
+          "3"
+        ],
+        [
+          "A",
+          "10",
+          "6",
+          "4"
+        ]
+      ],
+      "h": 18,
+      "shape": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "auction": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe"
+      ],
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Vous êtes sans majeure quatrième et sans fit agréé. Quelle enchère à Sans-Atout choisissez-vous ?",
+      "answer": "6SA",
+      "choices": [
+        "3SA",
+        "4SA",
+        "5SA",
+        "6SA"
+      ],
+      "explain": "Avec 18 H réguliers, vous totalisez au moins 33 H face à 1SA. Selon le repère quantitatif enseigné, le petit chelem est à demander directement à 6SA. 4SA serait une invitation inutile et 5SA viserait un grand chelem insuffisamment justifié.",
+      "difficulty": 3,
+      "difficultyReason": "Les réponses quantitatives initiales sur 1SA s’arrêtent à 17 H et 4SA ; 6SA direct n’est exercé que sur 2SA. Transfert du seuil 33 H.",
+      "caseFamily": "pn26-m1-035"
+    },
+    "metadata": {
+      "concept": "chelem.quantitatif",
+      "stage": 3,
+      "minSession": 47,
+      "requires": [
+        {
+          "concept": "chelem.quantitatif",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "transfer"
+      ],
+      "contrastWith": [
+        "SEF-Q26-M2-016",
+        "V2-M6-034"
+      ],
+      "rationale": "Les réponses quantitatives initiales sur 1SA s’arrêtent à 17 H et 4SA ; 6SA direct n’est exercé que sur 2SA. Transfert du seuil 33 H."
+    },
+    "diagnostics": [
+      {
+        "choice": "3SA",
+        "category": "force",
+        "reason": "Sous-évaluer les 33 H cumulés au minimum.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "4SA",
+        "category": "force",
+        "reason": "Inviter alors que le seuil du petit chelem est atteint même face au minimum.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "5SA",
+        "category": "niveau",
+        "reason": "Viser le grand chelem sans les valeurs nécessaires.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-PN26-M1-036",
+      "theme": "chelem",
+      "hand": [
+        [
+          "A",
+          "8",
+          "3"
+        ],
+        [
+          "R",
+          "V",
+          "9",
+          "4"
+        ],
+        [
+          "A",
+          "7",
+          "2"
+        ],
+        [
+          "A",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 16,
+      "shape": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 4SA (Blackwood 5 clés)"
+      ],
+      "context": "Atout Cœur agréé. Votre partenaire interroge à 4SA, Blackwood cinq clés, réponses 30–41. Quelle est votre réponse ?",
+      "answer": "5♦",
+      "choices": [
+        "5♣",
+        "5♥",
+        "5♠",
+        "5♦"
+      ],
+      "explain": "Vous détenez quatre clés : les As de Pique, de Carreau et de Trèfle, ainsi que le Roi d’atout Cœur. Le code 30–41 prévoit 5♦ pour une ou quatre clés. Le Valet d’atout n’est pas une clé supplémentaire.",
+      "difficulty": 3,
+      "difficultyReason": "Les deux 5♦ historiques correspondent chacun à une seule clé. Il manque le second sens du code, quatre clés, sans chicane.",
+      "caseFamily": "pn26-m1-036"
+    },
+    "metadata": {
+      "concept": "chelem.cles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "deepening"
+      ],
+      "contrastWith": [
+        "SEF-V45-051",
+        "SEF-V45-055",
+        "SEF-V45-054"
+      ],
+      "rationale": "Les deux 5♦ historiques correspondent chacun à une seule clé. Il manque le second sens du code, quatre clés, sans chicane."
+    },
+    "diagnostics": [
+      {
+        "choice": "5♣",
+        "category": "convention",
+        "reason": "Confondre le code zéro/trois avec une/quatre clés.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "5♥",
+        "category": "convention",
+        "reason": "Employer le code réservé à deux clés sans Dame d’atout.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "5♠",
+        "category": "convention",
+        "reason": "Employer le code réservé à deux clés avec Dame d’atout.",
         "confidence": "medium"
       }
     ]

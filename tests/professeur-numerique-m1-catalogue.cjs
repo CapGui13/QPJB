@@ -35,8 +35,8 @@ if(q.id.endsWith("014"))check(s===5&&k===5&&q.answer==="3♣",q.id+" Michaels");
 }
 return {base:old.length,concepts:concepts.size,new:additions.length,projected:ids.size,checks:"PASS"};
 };
-const result=verify(old,meta,additions,30);
-assert.equal(result.projected,1909);
+const result=verify(old,meta,additions,36);
+assert.equal(result.projected,1915);
 const newRules=function(additions){
 const check=(ok,m)=>{if(!ok)throw Error(m)};
 const get=n=>additions.find(x=>x.exercise.id===`SEF-PN26-M1-${String(n).padStart(3,"0")}`).exercise;
@@ -68,4 +68,16 @@ rules3(additions);
 const suits=['♣','♦','♥','♠','SA'];
 function rank(b){const m=b.match(/^([1-7])(♣|♦|♥|♠|SA)$/);return m?(Number(m[1])-1)*5+suits.indexOf(m[2]):-1;}
 for(const {exercise:q} of additions){const last=q.auction.flatMap(s=>{const m=s.match(/:\s*([1-7](?:♣|♦|♥|♠|SA))/);return m?[m[1]]:[]}).at(-1);for(const bid of q.choices){if(rank(bid)>=0&&last)assert.equal(rank(bid)>rank(last),true,q.id+' non-rising '+bid);if(bid==='Surcontre')assert.equal(q.auction.at(-1)?.includes('Contre'),true,q.id+' surcontre');}}
+const rules4=function(additions){
+const check=(ok,m)=>{if(!ok)throw Error(m)};
+const get=n=>additions.find(x=>x.exercise.id===`SEF-PN26-M1-${String(n).padStart(3,"0")}`).exercise;
+const a=get(31),b=get(32),c=get(33),d=get(34),e=get(35),f=get(36);
+check(a.h===5&&a.shape[0]===5&&a.answer==="1♠"&&get(20).h===5&&get(20).shape[0]===4,"5H+L contrast");
+check(b.h===5&&b.shape[1]===3&&b.shape[0]===2&&b.answer==="2♥"&&get(21).answer==="Passe","5H+D contrast");
+check(c.h===15&&c.shape[0]===4&&c.shape[1]===4&&c.answer==="2SA","Stayman both majors minimum");
+check(d.h===5&&d.shape[0]===4&&d.shape[1]===3&&d.answer==="3♣","2SA Stayman one major at threshold");
+check(e.h===18&&Math.max(e.shape[0],e.shape[1])===3&&e.answer==="6SA","direct quantitative small slam");
+check(f.hand.filter(s=>s.includes("A")).length+Number(f.hand[1].includes("R"))===4&&f.answer==="5♦","RKCB four keys");
+};
+rules4(additions);
 console.log(JSON.stringify(result));
