@@ -1,0 +1,29 @@
+const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');const path=require('node:path');const root=path.join(__dirname,'..');const api=require('../quizz-apprentissage-concepts.js');const meta=require('../quizz-prerequis.js').byId;const qs=JSON.parse(fs.readFileSync(path.join(root,'quizz.html'),'utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const check=function check(api, qs, meta, assert){
+ const roles=["discovery","consolidation","discrimination","deepening","transfer","review"];
+ assert(Object.keys(api.concepts).length===99,"99 concepts");assert(Object.keys(api.byId).length===1879,"1879 IDs");
+ for(const x of qs){const m=api.classify(x.id);assert(m&&m.concept===meta[x.id].concept&&m.answer===x.answer&&m.family===x.caseFamily,"ID "+x.id);assert(m.roles.length&&m.roles.every(r=>roles.includes(r))&&m.rationale,"roles");assert(Object.isFrozen(m),"frozen");}
+ assert(api.classify("__proto__")===null&&api.describe("constructor")===null,"unknown");
+ for(const [k,d] of Object.entries(api.concepts)){assert(d.objective&&roles.every(role=>d.stages[role].ids.every(id=>api.classify(id).concept===k&&api.classify(id).roles.includes(role))),"stages "+k);assert(d.prerequisites.every(e=>api.describe(e.concept)),"prereq");}
+ const xs=qs.filter(x=>api.classify(x.id).concept==="ouv.sa1"),x=xs[0],y=xs.find(z=>z.caseFamily!==x.caseFamily);
+ const answer=(q,extra={})=>({id:q.id,result:"correct",choice:q.answer,assisted:false,hadFreeError:false,...extra});
+ const event=(session,answers,mode="parcours")=>({session,mode,answers});
+ const scenarios=[
+ ["new",{completed:0},"unseen"],
+ ["old",{completed:9,entries:{[x.id]:{assessment:{lastSession:2,result:"correct"}}}},"exposed"],
+ ["assisted",{completed:1,journal:[event(1,[answer(x,{assisted:true})])]},"exposed"],
+ ["free-error",{completed:1,journal:[event(1,[answer(x,{hadFreeError:true})])]},"exposed"],
+ ["invalid-choice",{completed:1,journal:[event(1,[answer(x,{choice:"?"})])]},"exposed"],
+ ["first",{completed:1,journal:[event(1,[answer(x)])]},"first_success"],
+ ["same-session",{completed:1,journal:[event(1,[answer(x),answer(y)])]},"first_success"],
+ ["same-family",{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(x)])]},"first_success"],
+ ["independent",{completed:4,journal:[event(1,[answer(x)]),event(4,[answer(y)])]},"multi_context_evidence"],
+ ["consolidation-only",{completed:1,journal:[event(1,[answer(x)],"consolidation")]},"unseen"],
+ ["relapse",{completed:5,journal:[event(1,[answer(x)]),event(4,[answer(y)]),event(5,[answer(y,{result:"wrong",choice:"Passe"})])]},"fragile"]
+ ];
+ const output=[];
+ for(const [name,history,expected] of scenarios){const ctx={concept:"ouv.sa1",history,candidates:[x,y,{id:"UNKNOWN"},x]},before=JSON.stringify(ctx),v=api.recommend(ctx),s=v.concepts["ouv.sa1"];assert(s.evidence===expected,name+" "+s.evidence);assert(s.mastery==="not_established","no fabricated mastery");assert(JSON.stringify(ctx)===before,"mutation");assert(v.candidates.length===2&&v.candidates.every(x=>Math.abs(x.delta)<=20),"candidate boundaries");assert(api.recommend({...ctx,category:"maintenance"}).candidates.every(x=>x.delta===0),"maintenance");output.push({name,evidence:s.evidence,next:s.next,proofFamilies:s.independentFamilies,proofSessions:s.independentSessions});}
+ assert(api.recommend({candidates:[x,y],selected:[x]}).candidates.length===1,"selected");
+ assert(api.recommend(null).candidates.length===0,"null");return output;
+};
+console.log(check(api,qs,meta,assert.ok));const context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'quizz-apprentissage-concepts.js'),'utf8'),context);assert.equal(context.window.QPJBApprentissageConcepts.schema,api.schema);assert.equal(Object.keys(context.window.QPJBApprentissageConcepts.byId).length,1879);console.log('M2 tests OK');
