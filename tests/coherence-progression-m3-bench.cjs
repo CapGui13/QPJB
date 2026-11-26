@@ -50,6 +50,7 @@ function response(profile,seed,q,s,meta){
   const u=random(seed,q.id,s);
   const v=random(seed^0x7f4a,q.id,s);
   if(profile==='autonome')return ['correct',false,false];
+  if(profile==='passe'&&q.theme==='ouv'&&q.answer==='Passe')return [u<.9?'wrong':'correct',false,false];
   let p=profile==='faible'?.58:profile==='intermediaire'?.23:profile==='cible'?
     (/^(chelem|competitif|rubensohl|michaels|multilandy)\./.test(meta[q.id].concept)?.64:.14):.12;
   p=Math.min(.91,p+Math.max(0,q.difficulty-2)*.05);
@@ -68,6 +69,19 @@ function step(engine,state,exercises,meta,profile,seed){
   }
   assert(engine.finish(state,exercises));
 }
+// Définition des miroirs reprise de #376 uniquement comme indicateur, sans
+// modifier logicalOrder ni le code réservé M4.
+function decisionPattern(q){
+  if(q.auction?.length!==1)return '';
+  const o=String(q.auction[0]||'').match(/:\s*([1-7](?:SA|[♣♦♥♠])|Passe|Contre|Surcontre)/)?.[1]||'';
+  const a=String(q.answer||'').replace(/[\uFE0E\uFE0F\s]/g,'').trim();
+  if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&/^[2-7][♥♠]$/.test(a)&&a[1]===o[1])return 'fit-majeur|'+a[0];
+  if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^[2-7][♣♦]$/.test(a)&&a[1]===o[1])return 'fit-mineur|'+a[0];
+  if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&/^1[♥♠]$/.test(a))return 'reponse-majeure-sur-mineure';
+  if(q.theme==='mineur'&&/^1[♣♦]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-mineure';
+  if(q.theme==='majeur'&&/^1[♥♠]$/.test(o)&&a==='1SA')return 'reponse-sa-sur-majeure';
+  return '';
+}
 function metrics(state,meta,exercises){
   const total=state.completed,allFamilies=new Set(),allIds=new Set(),allConcepts=new Set(),phase=new Map();
   const difficult=new Set(Object.values(meta).filter(m=>m.stage>=2).map(m=>m.concept));
@@ -77,15 +91,25 @@ function metrics(state,meta,exercises){
   const byId=new Map(exercises.map(q=>[q.id,q]));
   const contrastGroups=[['chelem.quantitatif','chelem.controles','chelem.cles'],['rubensohl.naturel','rubensohl.init'],['multilandy.choix','multilandy.intervention','intervenir.base'],['michaels.choix','michaels.intervention','intervenir.base'],['competitif.spoutnik','contre.base','apres_inter.base'],['reveil.base','intervenir.base'],['apres_fit.essai','chelem.splinter','fit.2sa'],['forcing.troisieme','forcing.quatrieme','red.base']];
   let contrastSessions=0,openingPassViolations=0,ageDebt=0,foundationAgeDebt=0;
+  const detail={motifs:{},levels:[0,0,0,0,0],conceptLevels:{},mirrorAdjacency:0,identicalAdjacency:0,themeTriples:0,firstPasses:[],maxThemeGap:{},maxConceptGap:{}};
+  const themeLast=new Map();
   for(const ev of state.journal){
     if(ev.mode!=='parcours')continue;
-    const sf=new Set(),sc=new Set();let op=0;
+    const sf=new Set(),sc=new Set();let op=0,prev=null,prev2=null;
     for(const a of ev.answers){
       const m=meta[a.id],k=m.concept;
       allIds.add(a.id);allFamilies.add(a.family);allConcepts.add(k);
       const q=byId.get(a.id);
       if(q.theme==='ouv'&&q.answer==='Passe')op++;
       if(ev.session>=66){
+        const pattern=decisionPattern(q),previousPattern=prev&&decisionPattern(prev);
+        if(prev&&q.answer===prev.answer)detail.identicalAdjacency++;
+        if(prev&&pattern&&pattern===previousPattern&&q.answer!==prev.answer)detail.mirrorAdjacency++;
+        if(prev&&prev2&&q.theme===prev.theme&&q.theme===prev2.theme)detail.themeTriples++;
+        const reason=a.selectionReason||'non-documente';detail.motifs[reason]=(detail.motifs[reason]||0)+1;
+        detail.levels[a.difficulty-1]++;const levels=detail.conceptLevels[k]??=[0,0,0,0,0];levels[a.difficulty-1]++;
+        if(themeLast.has(a.theme))detail.maxThemeGap[a.theme]=Math.max(detail.maxThemeGap[a.theme]||0,ev.session-themeLast.get(a.theme));
+        if(previous.has(k))detail.maxConceptGap[k]=Math.max(detail.maxConceptGap[k]||0,ev.session-previous.get(k));
         if(ev.session-1<m.minSession)eligibilityViolations++;
         phaseN++;phaseTheme.add(a.theme);sc.add(k);
         if(sf.has(a.family))phaseFamilyDup++;
@@ -98,8 +122,9 @@ function metrics(state,meta,exercises){
           const gap=ev.session-previous.get(k);gaps.push(gap);if(foundations.test(k))fundGaps.push(gap);
         }
       }
-      previous.set(k,ev.session);
+      previous.set(k,ev.session);themeLast.set(a.theme,ev.session);prev2=prev;prev=q;
     }
+    if(ev.session<=3)detail.firstPasses.push(op);
     if(ev.session>=66){
       if(op>2)openingPassViolations++;
       for(const [k,last] of previous){if(ev.session-last>20){ageDebt++;if(foundations.test(k))foundationAgeDebt++;}}
@@ -117,7 +142,7 @@ function metrics(state,meta,exercises){
     advancedProof:advanced.filter(k=>(phase.get(k)?.clean.size||0)>=2&&(phase.get(k)?.sessions.size||0)>=2).length,
     hard,phaseN,phaseFamilyDup,openingPassViolations,calendarViolations:eligibilityViolations,contrastSessions,
     longGaps:gaps.filter(g=>g>20).length,foundationLongGaps:fundGaps.filter(g=>g>20).length,
-    tailOver30:tail.filter(x=>x[1]>30).length,tailOver60:tail.filter(x=>x[1]>60).length,ageDebt,foundationAgeDebt,oldest:tail.slice(0,8)};
+    tailOver30:tail.filter(x=>x[1]>30).length,tailOver60:tail.filter(x=>x[1]>60).length,ageDebt,foundationAgeDebt,oldest:tail.slice(0,8),detail};
 }
 function runPair(b,profile,seed,horizon=180){
   let a=b.base.empty();const before={},after={};
