@@ -6,13 +6,13 @@
   "counts": {
     "intercontextual": 77,
     "near_transfer": 13,
-    "context_boundary": 52,
+    "context_boundary": 54,
     "hold": 4,
-    "discrimination": 41,
+    "discrimination": 42,
     "role_complement": 9,
     "consolidation": 3
   },
-  "reviewedHistoricalIds": 279,
+  "reviewedHistoricalIds": 280,
   "transferConcepts": 92,
   "concepts": {
     "majeur.soutien": {
@@ -404,10 +404,13 @@
       "intercontextual": [
         "SEF-015-1|SEF-N058-2"
       ],
-      "context_boundary": [],
+      "context_boundary": [
+        "SEF-AD26-M4-012|SEF-AD26-M4-013"
+      ],
       "near_transfer": [],
       "discrimination": [
-        "SEF-PN26-M1-020|SEF-PN26-M1-031"
+        "SEF-PN26-M1-020|SEF-PN26-M1-031",
+        "SEF-AD26-M4-011|SEF-L05-022"
       ],
       "role_complement": [],
       "consolidation": [],
@@ -951,7 +954,8 @@
         "SEF-V3-104-4|SEF-V4-005-2"
       ],
       "context_boundary": [
-        "SEF-V4-002-1|SEF-V486-007"
+        "SEF-V4-002-1|SEF-V486-007",
+        "SEF-AD26-M4-009|SEF-AD26-M4-010"
       ],
       "near_transfer": [],
       "discrimination": [
@@ -969,7 +973,8 @@
       ],
       "context_boundary": [
         "SEF-V4-002-1|SEF-V486-007",
-        "SEF-V486-001|SEF-V486-007"
+        "SEF-V486-001|SEF-V486-007",
+        "SEF-AD26-M4-009|SEF-AD26-M4-010"
       ],
       "near_transfer": [],
       "discrimination": [],
@@ -8038,8 +8043,13 @@
       "pairReviews": []
     },
     "SEF-L05-022": {
-      "disposition": "structurally_mapped_not_individually_certified",
-      "pairReviews": []
+      "disposition": "pair_criterion_reviewed_not_full_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-011|SEF-L05-022",
+          "classification": "discrimination"
+        }
+      ]
     },
     "SEF-L06-004": {
       "disposition": "structurally_mapped_not_individually_certified",
@@ -11229,7 +11239,52 @@
           "classification": "discrimination"
         }
       ]
+    },
+    "SEF-AD26-M4-009": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-009|SEF-AD26-M4-010",
+          "classification": "context_boundary"
+        }
+      ]
+    },
+    "SEF-AD26-M4-010": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-009|SEF-AD26-M4-010",
+          "classification": "context_boundary"
+        }
+      ]
+    },
+    "SEF-AD26-M4-011": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-011|SEF-L05-022",
+          "classification": "discrimination"
+        }
+      ]
+    },
+    "SEF-AD26-M4-012": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-012|SEF-AD26-M4-013",
+          "classification": "context_boundary"
+        }
+      ]
+    },
+    "SEF-AD26-M4-013": {
+      "disposition": "authored_proposal_pending_editorial_visa",
+      "pairReviews": [
+        {
+          "pair": "SEF-AD26-M4-012|SEF-AD26-M4-013",
+          "classification": "context_boundary"
+        }
+      ]
     }
   },
-  "lastReviewedHead": "321dd42151dca7c47f63c03cce2c4ac635822a63"
+  "lastReviewedHead": "8748c90e085ce0a6f716749ef0a229ffb1bde59c"
 }

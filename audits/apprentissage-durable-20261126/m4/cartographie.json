@@ -5,10 +5,10 @@
   "metrics": {
     "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
     "catalogueBefore": 1915,
-    "catalogueAfter": 1923,
+    "catalogueAfter": 1928,
     "concepts": 99,
     "familiesBefore": 1556,
-    "familiesAfter": 1564,
+    "familiesAfter": 1569,
     "historicalTransferPairs": 18,
     "historicalTransferConcepts": 22,
     "historicalPairsUnique": 35,
@@ -24,7 +24,7 @@
       "retained": 42,
       "skipped": []
     },
-    "latestPairs": 199,
+    "latestPairs": 202,
     "latestReview": "Voir revue-paires.json et mesures.json ; les liens historiques de cartographie restent un instantané de la première passe, enrichi des nouveaux ajouts."
   },
   "concepts": {
@@ -320,9 +320,15 @@
         "SEF-PN26-M1-020|SEF-PN26-M1-031"
       ],
       "deliveredPairs": [
-        "SEF-PN26-M1-020|SEF-PN26-M1-031"
+        "SEF-PN26-M1-020|SEF-PN26-M1-031",
+        "SEF-AD26-M4-011|SEF-L05-022",
+        "SEF-AD26-M4-012|SEF-AD26-M4-013"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-011",
+        "SEF-AD26-M4-012",
+        "SEF-AD26-M4-013"
+      ],
       "objective": "Répondre naturellement sur 1m : majeure quatrième, autre couleur, SA ou Passe selon force et priorité.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -1656,9 +1662,12 @@
       "priorPairs": [],
       "deliveredPairs": [
         "SEF-V4-001-1|SEF-V4-002-1",
-        "SEF-V4-002-1|SEF-V486-007"
+        "SEF-V4-002-1|SEF-V486-007",
+        "SEF-AD26-M4-009|SEF-AD26-M4-010"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-009"
+      ],
       "objective": "Déclencher l'essai de manche adapté plutôt que barrer, passer ou conclure.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -3198,9 +3207,12 @@
       "priorPairs": [],
       "deliveredPairs": [
         "SEF-V4-002-1|SEF-V486-007",
-        "SEF-V486-001|SEF-V486-007"
+        "SEF-V486-001|SEF-V486-007",
+        "SEF-AD26-M4-009|SEF-AD26-M4-010"
       ],
-      "additions": [],
+      "additions": [
+        "SEF-AD26-M4-010"
+      ],
       "objective": "Réagir au 2SA fitté selon force et distribution de l'ouvreur.",
       "disposition": "reuse_documented_pair",
       "reason": "Paire exploitable pour discrimination ou indice de transfert selon evidence.kind ; vérifier les autres lacunes."
@@ -72866,6 +72878,46 @@
       "disposition": "proposed_new_exercise",
       "attestedLinks": [
         "V2-M2-034"
+      ]
+    },
+    "SEF-AD26-M4-009": {
+      "concept": "apres_fit.essai",
+      "family": "ad26-m4-009",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-010"
+      ]
+    },
+    "SEF-AD26-M4-010": {
+      "concept": "fit.2sa.suite",
+      "family": "ad26-m4-010",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-009"
+      ]
+    },
+    "SEF-AD26-M4-011": {
+      "concept": "mineur.base",
+      "family": "ad26-m4-011",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-L05-022"
+      ]
+    },
+    "SEF-AD26-M4-012": {
+      "concept": "mineur.base",
+      "family": "ad26-m4-012",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-013"
+      ]
+    },
+    "SEF-AD26-M4-013": {
+      "concept": "mineur.base",
+      "family": "ad26-m4-013",
+      "disposition": "proposed_new_exercise",
+      "attestedLinks": [
+        "SEF-AD26-M4-012"
       ]
     }
   }
