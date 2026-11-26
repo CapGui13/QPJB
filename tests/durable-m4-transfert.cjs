@@ -2,7 +2,6 @@
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m4/';const base='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');const old=p=>execFileSync('git',['show',base+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
-const parse=s=>JSON.parse(s.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/)[1]).exercises;
 const load=s=>{const m={exports:{}};new Function('module',s)(m);return m.exports};
 function verify({qs,M,C,additions,contrasts,cart,api}){
  let count=0;const ok=(x,msg)=>{count++;if(!x)throw Error(msg)};
@@ -19,5 +18,5 @@ function verify({qs,M,C,additions,contrasts,cart,api}){
  const [x,y,z]=additions.map(a=>a.exercise);ok(x.h===3&&x.shape[0]===5&&x.answer==='2♥'&&by.get('SEF-C-005').answer==='Passe','weak Texas contrast');ok(y.h>=15&&y.h<=17&&y.shape[1]===2&&y.answer==='2♥'&&by.get('SEF-L23-006').answer==='3SA','rectification contrast');ok(z.h===16&&z.shape[0]===4&&z.shape[1]===3&&z.hand[3].every(c=>!['A','R','D','V'].includes(c))&&z.answer==='2♠'&&by.get('SEF-L25-001').answer==='Passe','Stayman contrast');
  return {assertions:count,ids:qs.length,additions:additions.length,pairs:contrasts.length,status:'PASS'};
 }
-const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/)[1]).exercises;
+const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 console.log(JSON.stringify(verify({qs,M:load(old('quizz-prerequis.js')),C:load(old('quizz-apprentissage-concepts.js')),additions:JSON.parse(read(dir+'additions.json')),contrasts:JSON.parse(read(dir+'contrasts.json')),cart:JSON.parse(read(dir+'cartographie.json')),api:require('../quizz-durable-m4-transfert.js')})));
