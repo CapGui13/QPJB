@@ -1,14 +1,15 @@
 /* QPJB — parcours algorithmique V1.10 : preuves de maîtrise séparées des entraînements, sans IA ni API. */
 (function(root,factory){
-  let prerequis=root?.QPJBPrerequis,sessionPlan=root?.QPJBSessionPlan;
+  let prerequis=root?.QPJBPrerequis,sessionPlan=root?.QPJBSessionPlan,durable=root?.QPJBDurableIntegration;
   if(typeof module!=='undefined'&&module.exports){
     try{prerequis=require('./quizz-prerequis.js')}
     catch(err){if(err.code!=='MODULE_NOT_FOUND'||!String(err.message).includes("'./quizz-prerequis.js'"))throw err;}
     sessionPlan=require('./quizz-session-plan.js');
+    durable=require('./quizz-durable-integration.js');
   }
   if(!sessionPlan||sessionPlan.schema!=='QPJB_SESSION_PLAN_V1')throw Error('QPJB session plan unavailable');
   if(root?.document&&!sessionPlan.pedagogyReady)throw Error('QPJB pedagogical modules unavailable');
-  const api=factory(prerequis,sessionPlan);
+  const api=factory(prerequis,sessionPlan,durable);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
   if(root){
     root.QPJBParcours=api;
@@ -62,7 +63,7 @@
       else setupImport();
     }
   }
-})(typeof window!=='undefined'?window:null,function factory(prerequis,sessionPlan){
+})(typeof window!=='undefined'?window:null,function factory(prerequis,sessionPlan,durable){
   'use strict';
   const VERSION=1;
   // Métadonnées de sélection purement descriptives : aucun changement des
@@ -233,6 +234,8 @@
   }
   function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},
     active:null,journal:[],difficultyFeedback:[],difficultyAdjustment:0};}
+  // Optional observed first bid only. Old journals remain unchanged after load.
+  const firstGuessEvidence=a=>a?.hadFreeError===true&&typeof a.firstGuess==='string'&&/^(?:Passe|Contre|Surcontre|[1-7](?:♣|♦|♥|♠|SA))$/.test(a.firstGuess)&&!(a.result==='correct'&&a.firstGuess===a.choice)?{firstGuess:a.firstGuess}:{};
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -311,7 +314,7 @@
             const i=Number(k);
             if(!Number.isInteger(i)||i<0||i>=ids.length||!v||!['correct','wrong','skipped'].includes(v.result))continue;
             answers[i]={result:v.result,choice:typeof v.choice==='string'?v.choice:null,
-              assisted:!!v.assisted,hadFreeError:!!v.hadFreeError};
+              assisted:!!v.assisted,hadFreeError:!!v.hadFreeError,...firstGuessEvidence(v)};
           }
         }
         s.active={ids,index:clamp(int(old.active.index),0,ids.length-1),
@@ -361,7 +364,7 @@
         recordedAt:typeof event.recordedAt==='string'?event.recordedAt:null,
         answers:event.answers.map(a=>({
           id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
-          assisted:!!a.assisted,hadFreeError:!!a.hadFreeError,
+          assisted:!!a.assisted,hadFreeError:!!a.hadFreeError,...firstGuessEvidence(a),
           theme:typeof a.theme==='string'?a.theme:null,
           difficulty:Number.isInteger(a.difficulty)?a.difficulty:null,
           family:typeof a.family==='string'?a.family:null,
@@ -726,6 +729,9 @@
   }
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
+    // Candidate #396 : départage uniquement après S20, sur scores égaux.
+    const durableSelection=s>=20&&durable?.schema==='QPJB_DURABLE_INTEGRATION_V1'
+      ?durable.prepareSelection({history:state,exercises,metadataById:prerequis.byId,nowMs:Date.now()}):null;
     let pool=eligiblePool(exercises,state,e);
     if(s===1||s===2){const early=pool.filter(q=>!minorSupport(q)&&(!majorSupport(q)||majorThree(q)));if(new Set(early.map(family)).size>=limit)pool=early;}
     const previous=state.entries||{};
@@ -836,8 +842,10 @@
       const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
         new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
           history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
-      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
-      ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
+      const durableRanks=durableSelection&&!explicitRecall&&!priority&&!forcedReason
+        ?new Map(durableSelection.rank({candidates,selected,category,priority,forcedReason}).map(row=>[row.id,row.delta])):new Map();
+      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0),durable:durableRanks.get(q.id)||0}));
+      ranked.sort((a,b)=>b.v-a.v||b.durable-a.durable||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
       const q=ranked[0].q,m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
@@ -1062,12 +1070,13 @@
       }))};
     return state.active.ids.map(id=>byId.get(id));
   }
-  function record(state,x,result,position,choice,assisted,hadFreeError){
+  function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
     if(!active||active.ids[position]!==x.id||Object.hasOwn(active.answers,position))return false;
     if(!['correct','wrong','skipped'].includes(result))return false;
     active.answers[position]={result,choice:typeof choice==='string'?choice:null,
-      assisted:!!assisted,hadFreeError:!!hadFreeError};
+      assisted:!!assisted,hadFreeError:!!hadFreeError,
+      ...firstGuessEvidence({result,choice,hadFreeError,firstGuess:firstGuess!==x.answer?firstGuess:null})};
     // Une réponse juste après une aide (ou une première mauvaise enchère
     // en saisie libre) n'est pas une preuve de maîtrise autonome.
     const independent=result==='correct'&&!assisted&&!hadFreeError;
@@ -1171,7 +1180,7 @@
         const a=active.answers[i],q=byId.get(id);
         const reason=active.selection?.[i];
         return {id,result:a.result,choice:a.choice,assisted:a.assisted,
-          hadFreeError:a.hadFreeError,theme:q?.theme||null,
+          hadFreeError:a.hadFreeError,...firstGuessEvidence(a),theme:q?.theme||null,
           difficulty:q?.difficulty??null,family:q?family(q):state.entries[id]?.family||null,
           micro:q?microKey(q):null,axis:q?axisKey(q):null,
           ...(validSelection(reason,id)?{
