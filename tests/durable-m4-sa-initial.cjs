@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir='audits/apprentissage-durable-20261126/m4/',base='d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7';
+const read=p=>fs.readFileSync(path.join(root,p),'utf8'), old=p=>execFileSync('git',['show',base+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});
+const qs=JSON.parse(old('quizz.html').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
+const meta={exports:{}};new Function('module',old('quizz-prerequis.js'))(meta);
+const review=JSON.parse(read(dir+'revue-sa-initial.json')),opening=JSON.parse(read(dir+'revue-ouvertures.json')),residual=JSON.parse(read(dir+'revue-notions-residuelles.json'));
+const groups=new Set(["sa1.seuil","sa2.seuil","sa1.stayman","sa2.stayman","sa1.texas","sa2.texas"]);let assertions=0;const ok=(x,m)=>{assertions++;if(!x)throw Error(m)};
+const expected=qs.filter(q=>groups.has(meta.exports.byId[q.id].concept));ok(expected.length===77&&Object.keys(review.byId).length===77,'scope');
+for(const q of expected){const z=review.byId[q.id];ok(z&&z.concept===meta.exports.byId[q.id].concept&&z.h===q.h&&z.answer===q.answer&&z.family===q.caseFamily&&z.difficulty===q.difficulty,'source '+q.id);ok(JSON.stringify(z.shape)===JSON.stringify(q.shape)&&JSON.stringify(z.choices)===JSON.stringify(q.choices),'exact choices and shape '+q.id);ok(z.reason.length>30&&['coherent_in_catalogue_framework','guided_not_independent','bounded_context'].includes(z.status),'status '+q.id);ok(!(q.id in opening.byId)&&!(q.id in residual.byId),'disjoint '+q.id)}
+const counts={};for(const z of Object.values(review.byId))counts[z.status]=(counts[z.status]||0)+1;
+ok(counts.coherent_in_catalogue_framework===73&&counts.guided_not_independent===2&&counts.bounded_context===2,'status totals');
+const sa2=expected.filter(q=>meta.exports.byId[q.id].concept.startsWith('sa2.'));ok(sa2.length===29&&!sa2.some(q=>q.h===4),'4 H gap');
+ok(!sa2.some(q=>q.h<5&&Math.max(q.shape[0],q.shape[1])>=6),'weak six-card gap');
+ok(review.gaps.length===3&&review.gaps.filter(g=>g.disposition==='HOLD_AGREEMENT').length===2,'no invented agreement');
+const find=id=>expected.find(q=>q.id===id);
+for(const [a,b] of [['V2-M2-001','V2-M2-002'],['V2-M2-003','V2-M2-004'],['V2-M2-005','V2-M2-006'],['V2-M2-017','V2-M2-018'],['V2-M2-029','V2-M2-030']])ok(find(a).answer!==find(b).answer,'boundary '+a);
+ok(JSON.stringify(find('V2-M2-001').hand)===JSON.stringify(find('V2-M2-029').hand),'same hand across context not independent evidence');
+ok(find('SEF-C-003').answer==='2♦'&&find('SEF-C-005').answer==='Passe','weak Texas contrast');
+console.log(JSON.stringify({assertions,status:'PASS',reviewed:expected.length,counts,totalReviewed:expected.length+Object.keys(opening.byId).length+Object.keys(residual.byId).length}));

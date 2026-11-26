@@ -1,0 +1,468 @@
+[
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-001",
+      "theme": "sa",
+      "hand": [
+        [
+          "V",
+          "10",
+          "8",
+          "7",
+          "4"
+        ],
+        [
+          "9",
+          "6"
+        ],
+        [
+          "D",
+          "7",
+          "2"
+        ],
+        [
+          "10",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 3,
+      "shape": [
+        5,
+        2,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 1SA"
+      ],
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♥",
+      "choices": [
+        "Passe",
+        "2♣",
+        "2♦",
+        "2♥"
+      ],
+      "explain": "Avec 3 H, vous cherchez une partielle. Vous avez cinq Piques : 2♥ Texas demande la rectification normale à 2♠, sur laquelle vous passerez. Sur 1SA, ce Texas ne demande pas de force minimale.",
+      "difficulty": 2,
+      "difficultyReason": "Cas indépendant à 3 H et cinq Piques, exactement la force et la distribution du cas de Passe sur 2SA SEF-C-005. La base 1SA a cette distribution à 1 ou 12 H, pas à 3 H.",
+      "caseFamily": "ad26-m4-001"
+    },
+    "metadata": {
+      "concept": "sa1.texas",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "consolidation"
+      ],
+      "contrastWith": [
+        "SEF-C-005"
+      ],
+      "rationale": "Cas indépendant à 3 H et cinq Piques, exactement la force et la distribution du cas de Passe sur 2SA SEF-C-005. La base 1SA a cette distribution à 1 ou 12 H, pas à 3 H."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "contexte",
+        "reason": "Renoncer à la recherche de la partielle comme si le Texas était fitté.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♣",
+        "category": "convention",
+        "reason": "Confondre recherche de majeure quatrième et transfert.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♦",
+        "category": "convention",
+        "reason": "Utiliser le Texas pour les Cœurs au lieu des Piques.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-002",
+      "theme": "stayman",
+      "hand": [
+        [
+          "A",
+          "D",
+          "8",
+          "4"
+        ],
+        [
+          "9",
+          "6"
+        ],
+        [
+          "R",
+          "V",
+          "7",
+          "3"
+        ],
+        [
+          "A",
+          "D",
+          "5"
+        ]
+      ],
+      "h": 16,
+      "shape": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (Texas Cœur)",
+        "Adversaire : Passe"
+      ],
+      "context": "Votre partenaire répond par un Texas Cœur à votre ouverture de 1SA. Les adversaires passent. Quelle est votre redemande ?",
+      "answer": "2♥",
+      "choices": [
+        "2♥",
+        "2SA",
+        "2♠",
+        "3♥"
+      ],
+      "explain": "Avec 16 H réguliers et seulement deux Cœurs, rectifiez normalement à 2♥. Sur 1SA sans intervention, cette rectification ne garantit pas trois atouts. Le partenaire précisera ensuite sa force et sa longueur.",
+      "difficulty": 2,
+      "difficultyReason": "La rectification normale sans fit est documentée sur Texas Pique, pas en tant que décision de l'ouvreur sur Texas Cœur. Le contraste avec 2SA–3♦ refuse le fit sur le même axe.",
+      "caseFamily": "ad26-m4-002"
+    },
+    "metadata": {
+      "concept": "sa1.texas.suite",
+      "stage": 2,
+      "minSession": 9,
+      "requires": [
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "consolidation"
+      ],
+      "contrastWith": [
+        "SEF-L23-006"
+      ],
+      "rationale": "La rectification normale sans fit est documentée sur Texas Pique, pas en tant que décision de l'ouvreur sur Texas Cœur. Le contraste avec 2SA–3♦ refuse le fit sur le même axe."
+    },
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Transposer le refus de fit du Texas sur 2SA.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♠",
+        "category": "convention",
+        "reason": "Rectifier dans une autre majeure.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♥",
+        "category": "niveau",
+        "reason": "Sauter au palier supérieur sans soutien.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-003",
+      "theme": "stayman",
+      "hand": [
+        [
+          "A",
+          "V",
+          "8",
+          "4"
+        ],
+        [
+          "R",
+          "D",
+          "7"
+        ],
+        [
+          "A",
+          "D",
+          "9",
+          "5"
+        ],
+        [
+          "8",
+          "6"
+        ]
+      ],
+      "h": 16,
+      "shape": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "auction": [
+        "Vous : 1SA (15–17 H)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Stayman)",
+        "Adversaire : Passe"
+      ],
+      "context": "Votre partenaire a fait un Stayman sur votre ouverture de 1SA. Les adversaires passent. Quelle est votre réponse dans le Stayman à quatre réponses ?",
+      "answer": "2♠",
+      "choices": [
+        "2♦",
+        "2♥",
+        "2♠",
+        "2SA"
+      ],
+      "explain": "Avec 16 H réguliers, vous avez quatre Piques et trois Cœurs. Répondez 2♠ : le Stayman non contré demande de décrire les majeures quatrièmes, sans exiger d'arrêt Trèfle.",
+      "difficulty": 2,
+      "difficultyReason": "Le Stayman ordinaire n'a pas de cas à 16 H de forme 4–3–4–2 avec deux petits Trèfles. Comparaison directe avec le Passe sur Stayman contré SEF-L25-001.",
+      "caseFamily": "ad26-m4-003"
+    },
+    "metadata": {
+      "concept": "sa1.stayman.reponse",
+      "stage": 1,
+      "minSession": 7,
+      "requires": [
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "discrimination",
+        "consolidation"
+      ],
+      "contrastWith": [
+        "SEF-L25-001"
+      ],
+      "rationale": "Le Stayman ordinaire n'a pas de cas à 16 H de forme 4–3–4–2 avec deux petits Trèfles. Comparaison directe avec le Passe sur Stayman contré SEF-L25-001."
+    },
+    "diagnostics": [
+      {
+        "choice": "2♦",
+        "category": "distribution",
+        "reason": "Nier à tort la majeure quatrième.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♥",
+        "category": "distribution",
+        "reason": "Montrer une majeure seulement troisième.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Employer le code réservé aux deux majeures quatrièmes.",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-004",
+      "theme": "fortes",
+      "hand": [
+        [
+          "10",
+          "8",
+          "7",
+          "3"
+        ],
+        [
+          "9",
+          "6",
+          "2"
+        ],
+        [
+          "10",
+          "7",
+          "5"
+        ],
+        [
+          "9",
+          "6",
+          "4"
+        ]
+      ],
+      "h": 0,
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 2♣ (fort indéterminé)"
+      ],
+      "context": "Votre partenaire ouvre de 2♣ fort indéterminé. Les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♦",
+      "choices": [
+        "2♥",
+        "Passe",
+        "2♦",
+        "2SA"
+      ],
+      "explain": "Avec 0 H, vous devez néanmoins répondre. Sur l'ouverture de 2♣ fort indéterminé, 2♦ est le relais obligatoire : il ne promet ni points ni longueur à Carreau. L'ouvreur décrira ensuite sa main.",
+      "difficulty": 2,
+      "difficultyReason": "Les deux anciens énoncés sur 2♣ fort indéterminé indiquent explicitement que le relais est systématique. Un jeu nul sans rappel teste la connaissance de cette obligation.",
+      "caseFamily": "ad26-m4-004"
+    },
+    "metadata": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "SEF-AD26-M4-005"
+      ],
+      "rationale": "Les deux anciens énoncés sur 2♣ fort indéterminé indiquent explicitement que le relais est systématique. Un jeu nul sans rappel teste la connaissance de cette obligation."
+    },
+    "diagnostics": [
+      {
+        "choice": "Passe",
+        "category": "forcing",
+        "reason": "Hypothèse : traiter cette ouverture artificielle comme une ouverture naturelle sur laquelle on pourrait passer sans point.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♥",
+        "category": "convention",
+        "reason": "Hypothèse : transposer la réponse négative au 2♦ forcing de manche.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Hypothèse : croire qu'il faut décrire directement la distribution régulière.",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "exercise": {
+      "id": "SEF-AD26-M4-005",
+      "theme": "fortes",
+      "hand": [
+        [
+          "A",
+          "9",
+          "7",
+          "3"
+        ],
+        [
+          "R",
+          "10",
+          "8"
+        ],
+        [
+          "D",
+          "V",
+          "6"
+        ],
+        [
+          "A",
+          "9",
+          "4"
+        ]
+      ],
+      "h": 14,
+      "shape": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "auction": [
+        "Partenaire : 2♣ (fort indéterminé)"
+      ],
+      "context": "Votre partenaire ouvre de 2♣ fort indéterminé. Les adversaires passent. Quelle est votre réponse ?",
+      "answer": "2♦",
+      "choices": [
+        "2SA",
+        "2♠",
+        "3♦",
+        "2♦"
+      ],
+      "explain": "Avec 14 H et quatre Piques, vous avez un jeu fort, mais votre première réponse reste 2♦. C'est le relais obligatoire sur 2♣ fort indéterminé. Vous pourrez préciser vos valeurs après la redemande descriptive de l'ouvreur.",
+      "difficulty": 2,
+      "difficultyReason": "Les anciens cas à 5 et 12 H rappellent l'obligation avant la décision. Ce cas fort sans indice vérifie que la force ne change pas la première réponse, contrairement au barème de 2♦ forcing de manche.",
+      "caseFamily": "ad26-m4-005"
+    },
+    "metadata": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pedagogy": {
+      "roles": [
+        "consolidation",
+        "discrimination"
+      ],
+      "contrastWith": [
+        "SEF-AD26-M4-004"
+      ],
+      "rationale": "Les anciens cas à 5 et 12 H rappellent l'obligation avant la décision. Ce cas fort sans indice vérifie que la force ne change pas la première réponse, contrairement au barème de 2♦ forcing de manche."
+    },
+    "diagnostics": [
+      {
+        "choice": "2SA",
+        "category": "convention",
+        "reason": "Hypothèse : vouloir annoncer directement les honneurs et la régularité.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "2♠",
+        "category": "distribution",
+        "reason": "Hypothèse : vouloir décrire les quatre Piques avant le relais.",
+        "confidence": "medium"
+      },
+      {
+        "choice": "3♦",
+        "category": "niveau",
+        "reason": "Hypothèse : chercher à signaler une force élevée par un saut en Carreau.",
+        "confidence": "low"
+      }
+    ]
+  }
+]
