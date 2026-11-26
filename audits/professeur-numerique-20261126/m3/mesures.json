@@ -7,32 +7,32 @@
     "wrongOptions": 5637,
     "initialStructuredDiagnostics": 0,
     "afterModule": {
-      "hypothesis": 1232,
-      "unknown": 4405,
+      "hypothesis": 1749,
+      "unknown": 3888,
       "correct": 0
     },
-    "afterPatchesHypotheses": 1232,
+    "afterPatchesHypotheses": 1749,
     "categories": {
-      "priorite": 102,
-      "force": 187,
-      "distribution": 105,
-      "inconnu": 4405,
-      "niveau": 317,
-      "fit": 191,
-      "convention": 235,
+      "priorite": 140,
+      "force": 276,
+      "distribution": 124,
+      "inconnu": 3888,
+      "niveau": 391,
+      "fit": 274,
+      "convention": 421,
+      "forcing": 48,
       "competition": 41,
-      "contexte": 28,
-      "forcing": 26
+      "contexte": 34
     },
     "distinctHypothesisCategoriesPerQuestionSum": {
-      "beforePatches": 968,
-      "afterPatches": 973
+      "beforePatches": 1354,
+      "afterPatches": 1359
     },
     "patches": 5,
     "performance": {
       "environment": "V8 exact UMD source, CommonJS/window emulation; not Node/browser",
       "calls": 37580,
-      "elapsedMs": 1770
+      "elapsedMs": 2122
     },
     "goals": {
       "catalogueCoverage": 1879,
@@ -47,23 +47,36 @@
       "opening-sa-zone": 67,
       "opening-major-length": 38,
       "opening-pass": 35,
-      "ambiguous": 4154,
+      "ambiguous": 3670,
       "opening-major-first": 16,
       "opening-sa-shape": 9,
       "opening-best-minor": 27,
       "opening-weak": 8,
       "response-major-before-sa": 32,
-      "canonical-ambiguous-contrast": 251,
+      "response-threshold": 14,
+      "canonical-ambiguous-contrast": 218,
       "same-denomination-natural-level": 263,
       "response-major-length": 9,
+      "response-too-weak": 17,
       "major-support-vs-sa": 20,
       "sa-response-threshold": 24,
       "stayman-vs-texas": 18,
       "texas-pass": 9,
       "texas-natural-target": 12,
-      "canonical-explicit-contrast": 245,
+      "rebid-show-major-first": 8,
+      "rebid-sa-zone": 24,
+      "rebid-support-four": 24,
+      "canonical-explicit-contrast": 215,
+      "rebid-show-second-suit": 30,
+      "rebid-second-suit-level": 8,
+      "rebid-repeat-level": 20,
+      "roudi-vs-weak-repeat": 10,
+      "responder-repeat-length": 23,
+      "responder-sa-threshold": 14,
       "fit-2sa": 12,
       "major-support-short": 36,
+      "rebid-show-fit": 13,
+      "roudi-vs-nonforcing-repeat": 9,
       "stayman-fit-vs-sa": 17,
       "stayman-continuation-level": 14,
       "stayman-no-fit": 9,
@@ -72,36 +85,76 @@
       "texas-known-fit": 12,
       "natural-overcall-vs-double": 32,
       "response-to-takeout-double": 21,
+      "competitive-fit-pass": 13,
+      "competitive-fit-sa": 22,
+      "competitive-support-short": 14,
+      "responder-repeat-level": 4,
+      "roudi-four-cards": 6,
       "roudi-response-code": 42,
+      "drury-vs-natural-choice": 10,
+      "drury-vs-direct-support": 11,
+      "drury-no-fit": 6,
+      "drury-rebid-level": 16,
+      "drury-rebid-code": 12,
+      "response-sa-zone": 18,
+      "rebid-support-level": 8,
+      "responder-fit-level": 7,
+      "responder-known-fit": 11,
       "texas-fit-not-established": 8,
       "texas-continuation-level": 6,
+      "competitive-raise-level": 16,
       "strong-relay-pass": 1,
       "strong-relay-code": 5,
       "strong-game-force-response": 31,
+      "forcing-investigate-vs-repeat": 11,
+      "weak-repeat-vs-fourth": 2,
+      "weak-repeat-vs-sa": 3,
+      "rubensohl-transfer-code": 16,
       "blackwood-response-code": 24,
       "negative-double-vs-natural": 5,
       "passed-partner-opening": 4,
       "truscott-vs-direct-raise": 13,
       "truscott-raise-level": 5,
+      "blackwood-queen-kings": 24,
       "two-suiter-preference": 13,
+      "minor-transfer-code": 12,
+      "minor-transfer-stop": 9,
+      "minor-transfer-shortness": 14,
+      "blackwood-init-vs-other": 35,
+      "gambling-pass-correct": 2,
+      "2sa-transfer-fit": 9,
+      "doubled-stayman-redouble": 5,
+      "doubled-stayman-stopper": 2,
+      "doubled-stayman-show-major": 2,
       "diamond-transfer-pass": 1,
       "diamond-transfer-rectification": 2,
-      "stayman-two-majors-transfer": 6
+      "2sa-major-two-suiter": 9,
+      "stayman-two-majors-transfer": 6,
+      "gambling-stopper": 2,
+      "2sa-major-choice": 2
     },
-    "conceptsWithHypothesis": 91,
-    "questionsWithHypothesis": 798,
+    "conceptsWithHypothesis": 99,
+    "questionsWithHypothesis": 1072,
     "holdTextualSignals": 4,
     "confidences": {
-      "high": 448,
-      "medium": 539,
-      "low": 245
+      "high": 649,
+      "medium": 885,
+      "low": 215
     },
     "holdAfterManualReview": 0,
     "testHarness": {
       "mode": "Exact .cjs executed with in-memory V8 shims for fs/path/vm; native Node not run",
       "output": [
-        "{\"counts\":{\"hypothesis\":1232,\"unknown\":4405,\"correct\":0},\"categories\":{\"priorite\":102,\"force\":187,\"distribution\":105,\"inconnu\":4405,\"niveau\":317,\"fit\":191,\"convention\":235,\"competition\":41,\"contexte\":28,\"forcing\":26},\"afterHyp\":1232,\"beforeDistinct\":968,\"afterDistinct\":973,\"elapsedMs\":1646}"
+        "{\"counts\":{\"hypothesis\":1749,\"unknown\":3888,\"correct\":0},\"categories\":{\"priorite\":140,\"force\":276,\"distribution\":124,\"inconnu\":3888,\"niveau\":391,\"fit\":274,\"convention\":421,\"forcing\":48,\"competition\":41,\"contexte\":34},\"afterHyp\":1749,\"beforeDistinct\":1354,\"afterDistinct\":1359,\"elapsedMs\":2122}"
       ]
+    },
+    "continuation": {
+      "previousHypotheses": 1232,
+      "newHypotheses": 517,
+      "upgradedFromLow": 30,
+      "newRuleFixtures": 45,
+      "previousHighMediumPreserved": true,
+      "uncoveredConcepts": []
     }
   },
   "byConcept": {
@@ -138,8 +191,8 @@
     "mineur.base": {
       "qcm": 94,
       "options": 282,
-      "hypothesis": 45,
-      "unknown": 237
+      "hypothesis": 81,
+      "unknown": 201
     },
     "mineur.soutien": {
       "qcm": 8,
@@ -180,20 +233,20 @@
     "red.bicolore": {
       "qcm": 36,
       "options": 108,
-      "hypothesis": 5,
-      "unknown": 103
+      "hypothesis": 40,
+      "unknown": 68
     },
     "red.base": {
       "qcm": 72,
       "options": 216,
-      "hypothesis": 14,
-      "unknown": 202
+      "hypothesis": 91,
+      "unknown": 125
     },
     "second.base": {
       "qcm": 111,
       "options": 333,
-      "hypothesis": 18,
-      "unknown": 315
+      "hypothesis": 67,
+      "unknown": 266
     },
     "fit.2sa": {
       "qcm": 7,
@@ -204,8 +257,8 @@
     "majeur.base": {
       "qcm": 62,
       "options": 186,
-      "hypothesis": 43,
-      "unknown": 143
+      "hypothesis": 52,
+      "unknown": 134
     },
     "sa2.stayman": {
       "qcm": 5,
@@ -222,8 +275,8 @@
     "roudi.init": {
       "qcm": 10,
       "options": 30,
-      "hypothesis": 3,
-      "unknown": 27
+      "hypothesis": 15,
+      "unknown": 15
     },
     "sa1.stayman.suite": {
       "qcm": 27,
@@ -270,14 +323,14 @@
     "apres_inter.base": {
       "qcm": 90,
       "options": 270,
-      "hypothesis": 14,
-      "unknown": 256
+      "hypothesis": 69,
+      "unknown": 201
     },
     "competitif.2sa_fitte": {
       "qcm": 10,
       "options": 30,
-      "hypothesis": 1,
-      "unknown": 29
+      "hypothesis": 8,
+      "unknown": 22
     },
     "barrage.ouverture": {
       "qcm": 32,
@@ -324,8 +377,8 @@
     "roudi.choix": {
       "qcm": 11,
       "options": 33,
-      "hypothesis": 0,
-      "unknown": 33
+      "hypothesis": 17,
+      "unknown": 16
     },
     "roudi.reponse": {
       "qcm": 14,
@@ -336,20 +389,20 @@
     "drury.choix": {
       "qcm": 16,
       "options": 48,
-      "hypothesis": 2,
-      "unknown": 46
+      "hypothesis": 19,
+      "unknown": 29
     },
     "drury.init": {
       "qcm": 6,
       "options": 18,
-      "hypothesis": 5,
-      "unknown": 13
+      "hypothesis": 12,
+      "unknown": 6
     },
     "drury.reponse": {
       "qcm": 13,
       "options": 39,
-      "hypothesis": 1,
-      "unknown": 38
+      "hypothesis": 29,
+      "unknown": 10
     },
     "fortes.ouverture": {
       "qcm": 10,
@@ -366,14 +419,14 @@
     "red.bicolore_cher": {
       "qcm": 12,
       "options": 36,
-      "hypothesis": 2,
-      "unknown": 34
+      "hypothesis": 15,
+      "unknown": 21
     },
     "competitif.truscott": {
       "qcm": 23,
       "options": 69,
-      "hypothesis": 22,
-      "unknown": 47
+      "hypothesis": 24,
+      "unknown": 45
     },
     "michaels.reveil": {
       "qcm": 15,
@@ -402,20 +455,20 @@
     "forcing.troisieme": {
       "qcm": 14,
       "options": 42,
-      "hypothesis": 3,
-      "unknown": 39
+      "hypothesis": 6,
+      "unknown": 36
     },
     "forcing.quatrieme": {
       "qcm": 30,
       "options": 90,
-      "hypothesis": 8,
-      "unknown": 82
+      "hypothesis": 16,
+      "unknown": 74
     },
     "forcing.base": {
       "qcm": 5,
       "options": 15,
-      "hypothesis": 0,
-      "unknown": 15
+      "hypothesis": 5,
+      "unknown": 10
     },
     "multilandy.intervention": {
       "qcm": 13,
@@ -438,8 +491,8 @@
     "rubensohl.init": {
       "qcm": 19,
       "options": 57,
-      "hypothesis": 2,
-      "unknown": 55
+      "hypothesis": 18,
+      "unknown": 39
     },
     "michaels.intervention": {
       "qcm": 11,
@@ -510,8 +563,8 @@
     "chelem.blackwood.dame_rois": {
       "qcm": 10,
       "options": 30,
-      "hypothesis": 0,
-      "unknown": 30
+      "hypothesis": 24,
+      "unknown": 6
     },
     "fortes.suite": {
       "qcm": 16,
@@ -552,14 +605,14 @@
     "sa1.texas_mineur": {
       "qcm": 5,
       "options": 15,
-      "hypothesis": 2,
-      "unknown": 13
+      "hypothesis": 12,
+      "unknown": 3
     },
     "sa1.texas_mineur.suite": {
       "qcm": 13,
       "options": 39,
-      "hypothesis": 0,
-      "unknown": 39
+      "hypothesis": 23,
+      "unknown": 16
     },
     "chelem.controles": {
       "qcm": 22,
@@ -594,8 +647,8 @@
     "chelem.blackwood.declenchement": {
       "qcm": 12,
       "options": 36,
-      "hypothesis": 0,
-      "unknown": 36
+      "hypothesis": 35,
+      "unknown": 1
     },
     "rubensohl.suite": {
       "qcm": 10,
@@ -612,8 +665,8 @@
     "sa.gambling": {
       "qcm": 6,
       "options": 18,
-      "hypothesis": 0,
-      "unknown": 18
+      "hypothesis": 4,
+      "unknown": 14
     },
     "reveil.deux_faible": {
       "qcm": 10,
@@ -648,14 +701,14 @@
     "sa2.texas.reponse": {
       "qcm": 6,
       "options": 18,
-      "hypothesis": 4,
-      "unknown": 14
+      "hypothesis": 9,
+      "unknown": 9
     },
     "sa1.stayman.contre": {
       "qcm": 6,
       "options": 18,
-      "hypothesis": 0,
-      "unknown": 18
+      "hypothesis": 9,
+      "unknown": 9
     },
     "sa1.texas.contre": {
       "qcm": 5,
@@ -684,8 +737,8 @@
     "sa2.bicolore": {
       "qcm": 5,
       "options": 15,
-      "hypothesis": 0,
-      "unknown": 15
+      "hypothesis": 11,
+      "unknown": 4
     },
     "intervenir.sa.suite": {
       "qcm": 9,

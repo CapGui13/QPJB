@@ -137,6 +137,113 @@ return (function factory(byId,signature){
       return H('convention','diamond-transfer-rectification','Le corrigé impose la rectification à Carreau, sans modulation du soutien dans ce cas.','high');
     }
 
+
+    // Contrastes naturels : uniquement les séquences silencieuses et la
+    // signification des enchères que le corrigé du cas établit.
+    const own=first.filter(s=>s[0]==='Vous'),partner=first.filter(s=>s[0]==='Partenaire');
+    const text=x.explain;
+    const majorCall=b=>b&&major(b[2]);
+    const p0=partner.length?bid(partner[0][1]):null;
+    const v0=own.length?bid(own[0][1]):null;
+    const pLast=partner.length?bid(partner.at(-1)[1]):null;
+    if(!opp&&['red.base','red.bicolore','red.bicolore_cher'].includes(c)&&first.length===2&&first[0][0]==='Vous'&&first[1][0]==='Partenaire'&&v0&&p0){
+      if(a&&z&&a[2]==='SA'&&z[2]==='SA'&&reg&&/12[–-]14 H|18[–-]19 H/.test(text))
+        return H('force','rebid-sa-zone','Les deux redemandes naturelles à SA ont des zones de force distinctes ; le corrigé attribue la main à '+x.answer+'.','medium');
+      if(z&&majorCall(p0)&&z[2]===p0[2]&&a&&a[2]!==p0[2]&&len(p0[2])<4&&p0[1]==='1'&&z[1]==='2')
+        return H('fit','rebid-support-four','La majeure annoncée par le répondant au palier de un peut être quatrième ; le soutien direct étudié demande quatre cartes chez l’ouvreur, et la main en contient '+len(p0[2])+'.','high');
+      if(a&&majorCall(p0)&&a[2]===p0[2]&&len(p0[2])>=4&&z&&z[2]==='SA'&&/fit|atouts/.test(text))
+        return H('fit','rebid-show-fit','Le corrigé montre le soutien de quatre cartes dans la majeure du répondant ; une redemande à SA ne transmet pas ce fit.','high');
+      if(a&&majorCall(a)&&a[1]==='1'&&a[2]!==v0[2]&&a[2]!==p0[2]&&len(a[2])>=4&&choice==='1SA'&&/majeure quatrième|fit/.test(text))
+        return H('priorite','rebid-show-major-first','La majeure quatrième encore nommable au palier de un est prioritaire dans ce cas sur la redemande à 1SA.','high');
+      if(a&&z&&a[2]===z[2]&&a[2]===v0[2]&&/répétition|répétez|saut/.test(text))
+        return H('niveau','rebid-repeat-level','La répétition de la couleur d’ouverture au palier choisi n’a pas la même valeur que celle du corrigé ; la zone de force et la qualité de la longue sont à distinguer.','medium');
+      if(a&&z&&a[2]===z[2]&&a[2]===p0[2]&&/soutien|fit/.test(text))
+        return H('niveau','rebid-support-level','Le soutien de la majeure conserve la couleur mais change le niveau de proposition ou de conclusion.','medium');
+      if(a&&z&&a[2]!==v0[2]&&a[2]!=='SA'&&a[2]!==p0[2]&&z[2]===v0[2]&&len(a[2])>=4&&/bicolore/.test(text))
+        return H('priorite','rebid-show-second-suit','La répétition de la couleur d’ouverture ne décrit pas la seconde couleur d’au moins quatre cartes que le corrigé montre.','high');
+      if(a&&z&&a[2]===z[2]&&/bicolore/.test(text))
+        return H('niveau','rebid-second-suit-level','La seconde couleur est identique, mais le coût de palier et la force annoncée par les deux bicolores diffèrent.','medium');
+    }
+    const simpleResponderSA=!opp&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'&&p0&&v0&&majorCall(v0)&&first[2][1]==='1SA'&&v0[1]==='1'&&p0[1]==='1';
+    if(simpleResponderSA&&['second.base','roudi.init','roudi.choix'].includes(c)){
+      const ownLen=len(v0[2]),repetition=z&&z[2]===v0[2]&&z[1]==='2';
+      if(repetition&&ownLen<5&&/quatre|quatrième|quatrièmes/.test(text))return H('distribution','responder-repeat-length','La répétition naturelle étudiée promet au moins cinq cartes ; la majeure n’en contient que '+ownLen+'.','high');
+      if(choice==='2♣'&&x.answer!=='2♣'&&ownLen===4&&/Roudi/.test(text))return H('convention','roudi-four-cards','Le Roudi étudie notamment le soutien troisième d’une majeure déjà cinquième ; quatre cartes ne suffisent pas à ce projet de fit 5–3.','high');
+      if(choice==='2♣'&&a&&a[2]===v0[2]&&ownLen>=5&&h<=7&&/faible|partielle|non forcing/.test(text))return H('convention','roudi-vs-weak-repeat','La répétition faible du corrigé vise une partielle ; le Roudi ouvrirait une recherche constructive dans cette séquence.','medium');
+      if(x.answer==='2♣'&&repetition&&ownLen>=5&&/Roudi/.test(text))return H('forcing','roudi-vs-nonforcing-repeat','Le Roudi maintient la recherche de précisions, tandis que la répétition naturelle au palier de deux est non forcing dans ce cas.','medium');
+      if(reg&&ownLen===4&&passOrSA(choice)&&passOrSA(x.answer)&&/12[–-]14 H/.test(text))
+        return H('force','responder-sa-threshold','Face à la redemande de 12–14 H, les deux choix naturels n’expriment pas la même ambition de manche.','medium');
+      if(a&&z&&a[2]===v0[2]&&z[2]===v0[2]&&ownLen>=5)return H('niveau','responder-repeat-level','La même majeure est répétée à deux niveaux différents ; la distinction partielle/invitation est une piste.','medium');
+    }
+    if(!opp&&c==='second.base'&&first.length===3&&pLast&&v0&&majorCall(v0)&&pLast[2]===v0[2]&&pLast[1]==='2'&&len(v0[2])>=4&&a&&a[2]===v0[2]&&/fit|atouts/.test(text)){
+      if(z&&z[2]==='SA')return H('fit','responder-known-fit','Le soutien de l’ouvreur et les quatre cartes ou plus du répondant établissent le fit majeur ; SA ne le valorise pas.','high');
+      if(z&&z[2]===a[2])return H('niveau','responder-fit-level','L’atout est le même, mais l’invitation et la conclusion à la manche n’ont pas le même palier.','medium');
+    }
+    if(c==='forcing.base'&&x.answer==='2♥'&&h<=7&&/quatrième couleur forcing/.test(text)&&/non forcing/.test(text)&&z&&z[2]!=='♥'){
+      if(z[2]==='SA')return H('force','weak-repeat-vs-sa','Le corrigé recherche une partielle avec une longue et une main faible ; la poursuite à SA risque de dépasser cette ambition.','medium');
+      if(!opp&&first.length===3&&z[1]==='2'&&!first.some(s=>bid(s[1])?.[2]===z[2]))return H('forcing','weak-repeat-vs-fourth','La quatrième couleur est forcing dans la séquence, contrairement à la répétition faible et non forcing du corrigé.','high');
+    }
+    if(!opp&&['forcing.quatrieme','forcing.troisieme'].includes(c)&&first.length===3&&first[0][0]==='Partenaire'&&first[1][0]==='Vous'&&first[2][0]==='Partenaire'&&v0&&a&&a[2]!==v0[2]&&/couleur (?:artificielle )?forcing|couleur au palier de 1/.test(text)){
+      if(z&&z[2]===v0[2]&&/répétition|préférence|recherche|limiter/.test(text))return H('forcing','forcing-investigate-vs-repeat','La couleur d’investigation du corrigé maintient le dialogue ; répéter sa propre couleur n’a pas nécessairement la même portée forcing.','medium');
+      if(choice==='Passe')return H('forcing','forcing-investigate-vs-pass','Le corrigé poursuit l’investigation ; Passe mettrait fin à la recherche de précisions dans ce cas.','medium');
+    }
+    if(['mineur.base','majeur.base'].includes(c)&&!opp&&first.length===1&&first[0][0]==='Partenaire'&&p0&&p0[1]==='1'){
+      if(x.answer==='Passe'&&h<=4&&Math.max(...shape)<=4&&z&&z[1]==='1')return H('force','response-too-weak','La main très faible et sans longue ne justifie pas la réponse naturelle proposée dans ce cas.','high');
+      if(choice==='Passe'&&a&&h>=6&&/force.*répondre|assez pour répondre|6 H|6 HL/.test(text))return H('force','response-threshold','Le corrigé considère la main assez forte pour répondre ; le seuil de réponse est une piste.','medium');
+      if(a&&z&&a[2]==='SA'&&z[2]==='SA'&&reg&&/zone|invitation|manche/.test(text))return H('force','response-sa-zone','Les deux réponses naturelles à SA n’expriment pas la même zone de force ni le même projet de manche.','medium');
+    }
+    if(['apres_inter.base','competitif.2sa_fitte','competitif.truscott'].includes(c)&&first.length===2&&first[0][0]==='Partenaire'&&first[1][0]==='Adversaire'&&majorCall(p0)&&p0[1]==='1'){
+      if(z&&z[2]===p0[2]&&len(p0[2])<3&&(!a||a[2]!==p0[2]))return H('fit','competitive-support-short','La main ne détient que '+len(p0[2])+' cartes dans la majeure d’ouverture ; un soutien direct ordinaire n’est pas établi.','high');
+      if(a&&a[2]===p0[2]&&z&&z[2]===p0[2]&&/soutien|barrage/.test(text))return H('niveau','competitive-raise-level','Les deux soutiens n’ont pas le même palier, ni forcément la même fonction constructive ou de barrage.','medium');
+      if(((x.answer==='2SA'&&z&&z[2]===p0[2])||(choice==='2SA'&&a&&a[2]===p0[2]))&&/2SA fitté|2SA Truscott/.test(text))
+        return H('convention','competitive-fit-sa','Le 2SA fitté ou Truscott du cas et le soutien naturel ne codent pas les mêmes valeurs ; la convention et la réévaluation du fit sont à distinguer.','medium');
+      if(a&&a[2]===p0[2]&&choice==='Passe'&&len(p0[2])>=3&&/HLD/.test(text))
+        return H('fit','competitive-fit-pass','Le soutien est justifié par le fit et les valeurs réévaluées dans le corrigé ; une évaluation sans le fit est une piste.','medium');
+    }
+    if(['drury.choix','drury.init'].includes(c)&&st.steps.some(s=>s[0]==='Vous'&&s[1]==='Passe')&&majorCall(p0)&&p0[1]==='1'){
+      if(choice==='2♣'&&x.answer!=='2♣'&&/Drury/.test(text)){
+        if(len(p0[2])<3)return H('fit','drury-no-fit','Le Drury fitté du cas demande au moins trois atouts ; la main en détient moins.','high');
+        return H('convention','drury-vs-natural-choice','Le Drury et le choix naturel ou fitté du corrigé n’expriment pas les mêmes conditions de force et de distribution.','medium');
+      }
+      if(x.answer==='2♣'&&z&&z[2]===p0[2])return H('convention','drury-vs-direct-support','Le Drury permet d’explorer la valeur de l’ouverture après Passe ; le soutien direct ne transmet pas la même information.','medium');
+    }
+    if(c==='drury.reponse'&&st.steps.some(s=>s[0]==='Partenaire'&&s[1]==='2♣')&&/Drury/.test(text)&&v0&&majorCall(v0)){
+      if((x.answer==='2♦'&&z&&z[2]===v0[2])||(choice==='2♦'&&a&&a[2]===v0[2]))return H('convention','drury-rebid-code','Le relais d’attente 2♦ et les enchères dans la majeure ne codent pas le même jugement de l’ouverture.','medium');
+      if(a&&z&&a[2]===v0[2]&&z[2]===v0[2])return H('niveau','drury-rebid-level','Les répétitions de la majeure après Drury ont des fonctions distinctes ; le palier supérieur n’est pas automatiquement plus fort.','medium');
+    }
+    if(c==='sa1.texas_mineur'&&['2♠','3♣'].includes(x.answer)&&['2♣','2♦','2♠','3♣'].includes(choice)&&/Texas/.test(text))
+      return H('convention','minor-transfer-code','Sur 1SA sans intervention, les enchères artificielles proposées n’indiquent pas la même recherche de couleur.','medium');
+    if(c==='sa1.texas_mineur.suite'&&/Texas/.test(text)&&/courte|singleton|partielle/.test(text)){
+      if(x.answer==='Passe'&&h<=4)return H('force','minor-transfer-stop','La rectification a atteint la partielle visée par la main faible ; poursuivre changerait le projet initial.','high');
+      if(['3♥','3♠','3SA'].includes(x.answer)&&['3♥','3♠','3SA'].includes(choice)&&shape.some(n=>n<=1))return H('convention','minor-transfer-shortness','Les enchères après rectification décrivent ici les courtes, et non une nouvelle longue ou une conclusion naturelle à SA.','high');
+    }
+    if(c==='sa2.texas.reponse'&&pLast&&texasTarget[partner.at(-1)[1]]){
+      const t=texasTarget[partner.at(-1)[1]];
+      if((x.answer==='3SA'&&z&&z[2]===t&&len(t)<3)||(a&&a[2]===t&&choice==='3SA'&&len(t)>=3))
+        return H('fit','2sa-transfer-fit','Dans ce Texas sur 2SA, la rectification au palier de trois promet au moins trois cartes dans la majeure transférée.','high');
+    }
+    if(c==='sa2.bicolore'){
+      if(x.answer==='4♦'&&shape[0]>=5&&shape[1]>=5&&['3♣','3♦','3♥','3♠','3SA'].includes(choice))
+        return H('convention','2sa-major-two-suiter','La réponse 4♦ est artificielle dans cet accord : elle décrit les deux majeures cinquièmes et demande le choix de manche.','high');
+      if(a&&z&&a[1]==='4'&&z[1]==='4'&&major(a[2])&&major(z[2])&&a[2]!==z[2]&&len(a[2])>=3&&len(z[2])<3&&partner.some(s=>s[1]==='4♦'))
+        return H('fit','2sa-major-choice','Le double cinq majeur promis rend le fit certain dans la majeure du corrigé ; l’autre n’est pas garanti.','high');
+    }
+    if(c==='sa.gambling'&&own.some(s=>s[1]==='3SA')&&partner.some(s=>s[1]==='4♣')&&['Passe','4♦'].includes(x.answer)&&['Passe','4♦'].includes(choice))
+      return H('convention','gambling-pass-correct','Le 4♣ demande de passer avec la mineure Trèfle ou de corriger à Carreau ; le choix dépend de la longue déjà décrite.','high');
+    if(c==='sa.gambling'&&partner.some(s=>s[1]==='3SA')&&x.answer==='4♣'&&choice==='Passe'&&/arrêt|tenue/.test(text))
+      return H('contexte','gambling-stopper','Le corrigé relève une tenue extérieure insuffisante pour laisser jouer 3SA ; la longue maîtresse ne règle pas à elle seule le problème de l’entame.','medium');
+    if(c==='sa1.stayman.contre'&&st.steps.some(s=>s[0]==='Adversaire'&&s[1]==='Contre')&&partner.some(s=>s[1]==='2♣')){
+      if(choice==='Surcontre'&&x.answer!=='Surcontre'&&len('♣')<5)return H('convention','doubled-stayman-redouble','Le Surcontre du traitement étudié propose de jouer 2♣ surcontré et ne sert pas de relais Stayman ; la main ne contient pas une longue cinquième.','medium');
+      if(x.answer==='Passe'&&z&&major(z[2])&&/tenue Trèfle|arrêt Trèfle/.test(text))return H('contexte','doubled-stayman-stopper','Dans le traitement étudié après contre d’entame, nommer immédiatement la majeure exige aussi la tenue Trèfle.','high');
+      if(a&&major(a[2])&&choice==='Passe'&&/As de Trèfle/.test(text))return H('contexte','doubled-stayman-show-major','La main possède la tenue Trèfle explicitement mentionnée ; la majeure peut être décrite directement malgré le contre.','medium');
+    }
+    if(c==='chelem.blackwood.dame_rois'&&/question (?:à la )?Dame|interroge|question.*Dame|Dame.*demandée|demande les Rois annexes/.test(text)&&z&&Number(z[1])>=5)
+      return H('convention','blackwood-queen-kings','Après la réponse aux clés, la question porte sur la Dame d’atout ou les Rois annexes selon la séquence ; le Roi d’atout est déjà compté. Le code et les honneurs détenus sont à distinguer.','medium');
+    if(c==='chelem.blackwood.declenchement'&&x.answer==='4SA'&&/clés|Blackwood/.test(text)&&z&&Number(z[1])>=4)
+      return H('convention','blackwood-init-vs-other','Le corrigé pose une question sur les clés après fixation de l’atout et contrôle des couleurs annexes ; le choix proposé ne pose pas cette même question.','medium');
+    if(c==='rubensohl.init'&&opp&&/Rubensohl/.test(text)&&['2SA','3♣','3♦','3♥','3♠'].includes(x.answer)&&['2SA','3♣','3♦','3♥','3♠'].includes(choice))
+      return H('convention','rubensohl-transfer-code','Les enchères artificielles du Rubensohl ne désignent pas la même couleur ou la même recherche de fit dans cette séquence.','medium');
+
     // Relier une option au contraste explicite du corrigé, sans générer de corrigé
     // ni attribuer un raisonnement à l'élève. Les axes multiples restent unknown.
     if(typeof x.explain==='string'){
