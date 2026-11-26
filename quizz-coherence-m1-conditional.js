@@ -53,6 +53,9 @@ function compose(ctx={},ranked=[]){
  // Keep the accepted V2 when autonomous, except the four documented late objectives.
  if(autonomous&&!late[s])return null;
  const selected=(ctx.selected||[]).map(question),obs=observations(ctx);
+ const candidateIds=new Set((ctx.candidates||[]).map(q=>question(q)?.id));
+ if(!candidateIds.has(best.q.id))return null;
+ const selectedIds=new Set(selected.map(q=>q.id));
  const chosen=new Set(selected.map(q=>concept(ctx,q)));
  const c0=concept(ctx,best.q),m0=meta(ctx,best.q),f0=ctx.flagsById?.[best.q.id];
  if(!m0||!f0||f0.due||f0.bad||f0.firstConcept||f0.overdueCore||!f0.novelFamily)return null;
@@ -73,7 +76,7 @@ function compose(ctx={},ranked=[]){
  const maxCost=early?80:65;
  const allowed=q=>{
   const c=concept(ctx,q),m=meta(ctx,q),f=ctx.flagsById?.[q.id],o=obs.get(c);
-  if(!m||!f||!wanted.includes(c)||f.due||f.bad||!f.novelFamily||
+  if(!candidateIds.has(q.id)||selectedIds.has(q.id)||!m||!f||!wanted.includes(c)||f.due||f.bad||!f.novelFamily||
      q.difficulty!==best.q.difficulty||m.stage>m0.stage||q.id===best.q.id)return false;
   if(core.has(c0)&&!chosen.has(c0))return false;
   if(q.theme!==best.q.theme&&!early)return false;
