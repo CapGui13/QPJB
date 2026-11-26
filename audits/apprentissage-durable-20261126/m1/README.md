@@ -1,3 +1,13 @@
+# M1 — état de recette de la variante protégée (26 novembre 2026)
+
+**Statut actuel : NON — 8/25 comparaisons validées, 17 confiées à la recette native isolée.** Ce bilan remplace les statuts historiques ci-dessous.
+
+Le module reste au blob `a09254905aae5021062087b3175ce24ad156ef68`. La variante `preserve-concept-level` protège jusqu'à S65 le concept et le niveau du choix de référence, en n'ajoutant le bonus qu'au sein de ce cadre; elle ne modifie aucun fichier de production. Elle est définie dans le banc de tests, non activée publiquement. Les sept preuves initiales sont les fichiers protection-concept-niveau-prioritaires-s180.json et protection-concept-niveau-cible-aide-s180.json; la huitième (faible 47) est protection-concept-niveau-faible-47-s180.json, commit bb01b281e05f333ed73fc0fbf6a06207d920ffc8. Toutes les huit ont zéro HOLD et zéro violation d'intégrité, et 99 concepts à S180. Faible 47 : preuves 62→68, ciblages 37→62, familles 1233→1236, erreurs synthétiques 1361→1349. Le témoin historique est réutilisé après contrôle du module et de la base identiques; seule la candidate a été exécutée.
+
+Recette native sur SHA source `5e2a9ccadf4a303b0528232930b0b4596b7c1263` : [PR technique #415](https://github.com/CapGui13/QPJB/pull/415) et [run 45898381293](https://github.com/CapGui13/QPJB/actions/runs/45898381293), 17 candidats en matrice et un contrat Node 22. Le workflow temporaire existe uniquement sur la branche de recette, jamais sur la branche M1 ni main. Aucun résultat natif n'est revendiqué avant lecture des jobs et des preuves. Fermer #415 sans fusion après récupération; conserver les JSON et le bilan agrégé sur M1. Les huit comparaisons déjà acquises ne sont pas rejouées. Toute régression reste HOLD. Les preuves synthétiques ne démontrent pas un apprentissage humain. Ne pas fusionner #405 avant arbitrage du coordinateur.
+
+---
+
 # M1 — Adaptation cognitive (contrats #396 et #397)
 
 Base immuable : d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7. PR #405 brouillon. Production existante intacte.
