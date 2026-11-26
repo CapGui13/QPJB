@@ -46,6 +46,9 @@ async function main(){
  const calendar=child('durable-m3-calendar-policy.cjs');assert.equal(calendar.scenarios,693);record('calendar-policy',{checks:calendar.checks});
  for(const name of ['selector-review','cross-seed','three-seeds','broad-three-seeds']){const result=child('durable-m3-'+name+'.cjs');assert.ok(result.checks>0);record(name,{checks:result.checks});}
  if(!flags.has('--quick')){
+  const coverage=child('durable-m3-coverage-alert.cjs');
+  assert.deepEqual(coverage,JSON.parse(fs.readFileSync(path.join(dir,'selector-coverage-alert.json'),'utf8')),'coverage alert native reproduction');
+  record('coverage-alert',{target:coverage.target,checks:coverage.reports.reduce((sum,r)=>sum+r.checks,0)});
   for(const policy of policies)for(const profile of profiles)for(const seed of seeds){
    const result=child('durable-m3-selector.cjs',[profile,String(seed),'180',policy]);
    const file='selector-'+(policy==='calendar'?'calendar-':'')+profile+'-'+seed+'.json';
