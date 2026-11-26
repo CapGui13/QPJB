@@ -99,7 +99,10 @@ if(require.main===module){
  if(cmd==='baseline')result=run(gitSources,name,seed,h);
  else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h);
  else if(cmd==='fixed')result=run(gitSources,name,seed,h,{model:'fixed'});
- else if(cmd==='sensitivity')result=[.5,1,2].map(factor=>({factor,result:run(gitSources,name,seed,h,{overrides:{half:LAB.PROFILES[name].half*factor}})}));
+ else if(cmd==='sensitivity'||cmd==='sensitivity-pair'){
+ const p=LAB.PROFILES[name],cases=[['reference',{}],['half-x0.5',{overrides:{half:p.half*.5}}],['half-x2',{overrides:{half:p.half*2}}],['fixed-control',{model:'fixed'}],['slow-learning',{overrides:{learn:p.learn*.5}}],['fast-learning',{overrides:{learn:p.learn*2}}]];
+ result=cases.map(([label,opts])=>({label,result:cmd==='sensitivity-pair'?pair(gitSources,local(),name,seed,h,opts):run(gitSources,name,seed,h,opts)}));
+ }
  else if(cmd==='semantic'){
  const diagnosticSources=Object.fromEntries(diagnosticPaths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
  const ruleMap=referenceRules(gitSources,diagnosticSources);
@@ -109,8 +112,8 @@ if(require.main===module){
  else if(cmd==='size'){
  const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js'];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
- }else throw Error('Command: baseline|pair|fixed|sensitivity|semantic|legacy|size');
+ }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));
- const trajectories=Array.isArray(result)?result.map(x=>x.result):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:[result];
- if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length))process.exitCode=2;
+ const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:[result];
+ if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length)||(Array.isArray(result)&&result.some(x=>x.result?.comparison?.some(y=>y.review.length))))process.exitCode=2;
 }
