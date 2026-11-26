@@ -1,15 +1,15 @@
 {
   "base": "d3f606ffe52e6b9183a45d0ec58e6c2a9b3a92e7",
   "catalogueBefore": 1915,
-  "catalogueAfter": 1923,
+  "catalogueAfter": 1928,
   "concepts": 99,
   "familiesBefore": 1556,
-  "familiesAfter": 1564,
+  "familiesAfter": 1569,
   "historicalTransferPairs": 18,
   "historicalTransferConcepts": 22,
   "historicalPairsUnique": 35,
-  "allPairs": 199,
-  "newPairs": 164,
+  "allPairs": 202,
+  "newPairs": 167,
   "conceptsWithHistoricalPairs": 36,
   "conceptsWithPairs": 99,
   "holdConcepts": [
@@ -43,7 +43,7 @@
     "discrimination": 18,
     "discrimination_context": 22,
     "role_complement": 1,
-    "reviewed_reuse": 81
+    "reviewed_reuse": 84
   },
   "pass3": {
     "proposed": 22,
@@ -809,5 +809,22 @@
       }
     ],
     "environment": "V8 CJS full entry, exact GitHub base blobs and fs/git adapters; not Node CLI"
+  },
+  "pass16": {
+    "proposed": 5,
+    "proposalsTotal": 13,
+    "pairs": 202,
+    "reviewedHistoricalIds": 742,
+    "remainingIndividualTargetedReview": 1173,
+    "strictTransferCandidates": 22,
+    "reviewedUniqueTransferEndpoints": 140,
+    "tests": {
+      "suites": 12,
+      "assertions": 35455,
+      "status": "PASS",
+      "report": "recette-passe16.json"
+    },
+    "environment": "V8 avec adaptateurs fs et git lisant les blobs exacts ; pas Node natif ni navigateur.",
+    "limits": "Propositions en attente de visa coordinateur ; aucune production modifiée ; pas de preuve humaine ni de visa externe."
   }
 }
