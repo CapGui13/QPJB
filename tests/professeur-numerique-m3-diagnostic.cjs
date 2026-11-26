@@ -15,7 +15,7 @@ const runChecks=function runChecks(api,q,patches,meta){
    const before=JSON.stringify(x),c=meta[x.id].concept;const group=concepts[c]??={qcm:0,options:0,hypothesis:0,unknown:0};group.qcm++;
    assert(x.choices.length===4&&new Set(x.choices).size===4&&x.choices.includes(x.answer),'choices '+x.id);
    for(const assisted of [false,true]){const d=api.diagnose({exercise:x,choice:x.answer,assisted,hadFreeError:assisted});assert(d.status==='correct'&&d.category==='inconnu','correct '+x.id);}
-   const ds=x.choices.filter(z=>z!==x.answer).map(choice=>{const d=api.diagnose({exercise:x,choice});assert(['hypothesis','unknown'].includes(d.status),'wrong '+x.id);assert(d.evidence.choice===choice,'choice '+x.id);assert(d.status!=='hypothesis'||d.category!=='inconnu','category');counts[d.status]++;group[d.status]++;group.options++;categories[d.category]=(categories[d.category]||0)+1;offered++;return [choice,d.status,d.category,d.confidence,d.evidence.rule];});
+   const ds=x.choices.filter(z=>z!==x.answer).map(choice=>{const d=api.diagnose({exercise:x,choice});assert(['hypothesis','unknown'].includes(d.status),'wrong '+x.id);assert(d.evidence.choice===choice,'choice '+x.id);assert(d.evidence.rule!=='illegal-call'&&d.evidence.rule!=='unparsed-auction','legal '+x.id);assert(d.status!=='hypothesis'||d.category!=='inconnu','category');counts[d.status]++;group[d.status]++;group.options++;categories[d.category]=(categories[d.category]||0)+1;offered++;return [choice,d.status,d.category,d.confidence,d.evidence.rule];});
    rows.push({id:x.id,concept:c,options:ds});
    const patch=patchMap.get(x.id),after=patch?{...x,choices:patch.newChoices}:x;
    const ad=after.choices.filter(z=>z!==x.answer).map(choice=>api.diagnose({exercise:after,choice}));
@@ -39,6 +39,7 @@ const runChecks=function runChecks(api,q,patches,meta){
  assert(api.diagnose({exercise:sample,choice:'2SA',assisted:true,hadFreeError:true}).category==='force','actual selected wrong');
  assert(api.diagnose({exercise:sample,choice:null,assisted:true,hadFreeError:true}).status==='unknown','no invented choice');
  assert(api.diagnose(null).status==='unknown','absent input');
+ for(const [id,choice,category] of [["SEF-V3-011-1","2SA","convention"],["SEF-L38-001","3♥","convention"],["SEF-V3-001-1","3SA","fit"],["SEF-V44-026","4♥","fit"],["SEF-V45-009","2SA","convention"],["SEF-V3-057-1","Passe","forcing"],["SEF-V3-027-2","Contre","competition"],["SEF-V470-005","2♥","convention"]])assert(api.diagnose({exercise:by.get(id),choice}).category===category,'contextual fixture '+id);
  assert(offered===5637,'wrong total');
  return {counts,categories,concepts,rows,offered,afterHyp,beforeDistinct,afterDistinct};
 };
