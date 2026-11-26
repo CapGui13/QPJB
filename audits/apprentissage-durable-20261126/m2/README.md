@@ -120,3 +120,8 @@ Revue des 82 HOLD de ces deux thèmes : 67 dispositions « corrigé suffisant »
 ## Passe 13 — Développements sur 1SA
 
 Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16 HOLD maintenus et identifiés dans `pass13-propositions.json`. Stayman, Texas majeurs et mineurs, courtes après Texas, relais sur les deux majeures quatrièmes, distinction des accords locaux après Contre d'entame. Aucun changement de corrigé, de ciblage, de module ou de transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 104656 assertions, 16899 ms. 932 HOLD, un contraste restant, 3371 remédiations ciblées et 917 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 14 — lot groupé redemandes, forcing, Roudi et seconde enchère
+
+209 HOLD examinés sur le catalogue figé (revue éditoriale IA) : redemandes 109/121, forcing 68/68, Roudi 15/15, seconde enchère 4/5. Total 196 corrigés jugés suffisants ; 13 HOLD conservés et identifiés dans `pass14-propositions.json`. Les décisions concernent les bicolores, répétitions, soutiens, mini-maxi, troisième et quatrième couleurs, checkback et développements Roudi. Les accords locaux ne sont pas généralisés. Aucun changement de corrigé canonique, moteur, ciblage ni transfert. Le banc exact exécuté en V8 reproduit le registre candidat, les données et les transferts existants : 105440 assertions, 17958 ms. 736 HOLD, un contraste restant, 3371 remédiations ciblées et 1113 corrigés suffisants. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
