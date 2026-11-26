@@ -10,7 +10,7 @@
   const valid=a=>a&&['correct','wrong','skipped'].includes(a.result);
   const hand=q=>Array.isArray(q.hand)?JSON.stringify(q.hand):null;
   function prepare({state,metadata,exercises,candidates,session=state.completed,history=state.journal||[],mode='A'}){
-    if(!['A','B'].includes(mode)||!Number.isInteger(session)||session<0)throw Error('M2 invalid configuration');
+    if(!['A','B','C'].includes(mode)||!Number.isInteger(session)||session<0)throw Error('M2 invalid configuration');
     const byId=new Map(exercises.map(q=>[q.id,q])),eligible=new Set(candidates.map(q=>q.id));
     const groups=new Map(),lastId=new Map(),lastFamily=new Map(),observed=new Set();
     function observe(q,a,s,verified){
@@ -88,7 +88,20 @@
       if(mode==='B'&&!r.weak&&category==='maintenance')return Math.min(100,r.priority);
       return 0;
     }
-    return {rank,recall,bonus,schedule:[...schedule].map(([concept,p])=>({concept,last:p.last,due:p.due,interval:p.interval,weak:p.weak}))};
+    function replacement(original,available,selectedConcepts={}){
+      const c=metadata[original.id]?.concept;
+      if(!c||selectedConcepts[c]||!eligible.has(original.id)||hand(original)===null)return null;
+      const alternatives=available.filter(q=>eligible.has(q.id)&&q.id!==original.id&&metadata[q.id]?.concept===c&&
+        q.theme===original.theme&&q.difficulty===original.difficulty&&
+        (q.theme!=='ouv'||(q.answer==='Passe')===(original.answer==='Passe'))&&
+        family(q)!==family(original)&&hand(q)!==null&&hand(q)!==hand(original)&&
+        lastFamily.has(family(q))&&session-lastFamily.get(family(q))>=3&&
+        session-(lastId.get(q.id)??-999)>=3);
+      alternatives.sort((a,b)=>(lastId.get(a.id)??-999)-(lastId.get(b.id)??-999)||
+        lastFamily.get(family(a))-lastFamily.get(family(b))||a.id.localeCompare(b.id));
+      return alternatives[0]||null;
+    }
+    return {rank,recall,bonus,replacement,schedule:[...schedule].map(([concept,p])=>({concept,last:p.last,due:p.due,interval:p.interval,weak:p.weak}))};
   }
   return {schema:'QPJB_REVISION_POLICY_V1',prepare};
 });
