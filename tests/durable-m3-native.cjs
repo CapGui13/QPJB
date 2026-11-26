@@ -32,6 +32,7 @@ function inspect(api,input){
  return {assessment:a,ranking};
 }
 function stable(x){if(Array.isArray(x))return x.map(stable);if(x&&typeof x==='object')return Object.fromEntries(Object.entries(x).filter(([k])=>!['selectMeanMs','selectMaxMs'].includes(k)).map(([k,v])=>[k,stable(v)]));return x;}
+function normalizeSelector(result){return stable({...result,results:result.results.map(x=>({...x,strategy:x.strategy??'broad'}))});}
 async function main(){
  const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
  const root=path.join(__dirname,'..'),dir=path.join(root,'audits','apprentissage-durable-20261126','m3');
@@ -49,7 +50,7 @@ async function main(){
    const result=child('durable-m3-selector.cjs',[profile,String(seed),'180',policy]);
    const file='selector-'+(policy==='calendar'?'calendar-':'')+profile+'-'+seed+'.json';
    const archived=JSON.parse(fs.readFileSync(path.join(dir,file),'utf8'));
-   assert.deepEqual(stable(result),stable(archived),file+' native reproduction (excluding timings)');
+   assert.deepEqual(normalizeSelector(result),normalizeSelector(archived),file+' native reproduction (excluding timings and historical missing broad tag)');
    record(file,{checks:result.checks});
   }
  }
@@ -76,5 +77,5 @@ async function main(){
  }
  console.log(JSON.stringify({schema:'QPJB_M3_NATIVE_ACCEPTANCE_V1',head,base:BASE,node:process.version,platform:process.platform,fullSelector:!flags.has('--quick'),browserExecuted:!flags.has('--node-only'),status:flags.size?'PARTIAL_PASS':'PASS',results:log},null,2));
 }
-module.exports={makeCases,inspect,stable};
+module.exports={makeCases,inspect,stable,normalizeSelector};
 if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});
