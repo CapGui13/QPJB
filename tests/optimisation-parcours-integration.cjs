@@ -17,7 +17,7 @@ const introFitIds=['SEF-028-2','SEF-028-1','SEF-N048-3','SEF-N048-1','SEF-N053-2
 for(const id of introFitIds){
  const q=current.exercises.find(q=>q.id===id),m=meta.byId[id];
  assert.ok(q&&m,'Cas introductif connu '+id);
- const opening=String(q.auction?.[0]||'').replace(/[\s\uFE0E\uFE0F]/g,'');
+ const opening=String(q.auction?.[0]||'').match(/:\s*(1[♥♠])(?:\s|$)/)?.[1]||'';
  const answer=String(q.answer||'').replace(/[\s\uFE0E\uFE0F]/g,'');
  assert.ok(q.theme==='majeur'&&q.auction.length===1&&/^1[♥♠]$/.test(opening)&&answer==='2'+opening[1]&&q.shape[opening==='1♠'?0:1]===3&&q.difficulty<=2,'Fit 5-3 simple '+id);
  assert.equal(m.concept,'majeur.soutien',id);
