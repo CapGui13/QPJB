@@ -9,6 +9,21 @@ assert.equal(qs.length,1879);assert.equal(data.themes.length,22);
 assert.equal(M.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(M.byId).length,qs.length);
 const pass=q=>q.theme==='ouv'&&q.answer==='Passe',fam=q=>q.caseFamily||q.id;
 const lead=q=>String(q.auction?.[0]||'').match(/:\s*(1[♣♦♥♠])/)?.[1];
+// Les sept cas autorisés le 26/11 introduisent le soutien majeur simple.
+// Garder le contrôle indépendant et les prérequis d'ouverture inchangés.
+const introFitIds=new Set(['SEF-028-2','SEF-028-1','SEF-N048-3','SEF-N048-1','SEF-N053-2','SEF-N053-1','SEF-C-006']);
+const effectiveById={...M.byId};
+for(const id of introFitIds){
+ const q=by.get(id),m=M.byId[id];
+ assert.ok(q&&m,id);
+ const opening=lead(q);
+ assert.ok(q.theme==='majeur'&&q.auction.length===1&&/^1[♥♠]$/.test(opening)&&q.answer==='2'+opening[1]&&q.shape[opening==='1♠'?0:1]===3&&q.difficulty<=2,id+' introductory fit');
+ assert.equal(m.concept,'majeur.soutien',id);
+ assert.equal(m.minSession,1,id);
+ effectiveById[id]={...m,stage:0,requires:m.requires.filter(r=>r.concept!=='majeur.soutien')};
+ assert.equal(P.eligibility(q,P.empty(),qs).eligible,false,id+' not in S1');
+}
+
 const advanced=['SEF-V44-002','SEF-L06-029','SEF-L37-004','SEF-L38-001','SEF-L40-001','SEF-L41-002','SEF-L28-001','SEF-L09-029'];
 for(const id of advanced)assert.equal(P.eligibility(by.get(id),P.empty(),qs).eligible,false,'Premature '+id);
 assert.deepEqual(P.select(advanced.map(id=>by.get(id)),P.empty()),[]);
@@ -47,12 +62,12 @@ for(const profile of ['autonome','echecs','modere','aides','progression','faible
   const themes=new Set(deck.map(q=>q.theme));
   for(const t of themes){first[t]??=s+1;if(last[t]!==undefined)gaps[t]=Math.max(gaps[t]||0,s-last[t]);last[t]=s;}
   for(let i=0;i<deck.length;i++){
-   const q=deck[i],meta=M.byId[q.id];
+   const q=deck[i],meta=effectiveById[q.id];
    assert.equal(P.eligibility(q,state,qs).eligible,true,q.id);
    assert.ok(s>=meta.minSession&&meta.requires.every(r=>(exposed[r.concept]||0)>=r.minExposure),q.id+' independent requirement');
    if(q.difficulty>=4){
     hard++;
-    if(qs.some(v=>M.byId[v.id].concept===meta.concept&&M.byId[v.id].stage<=1&&v.difficulty<=3))
+    if(qs.some(v=>effectiveById[v.id].concept===meta.concept&&effectiveById[v.id].stage<=1&&v.difficulty<=3))
      assert.ok(basic.has(meta.concept),q.id+' local basic');
    }
    if(i&&q.answer===deck[i-1].answer)adj++;
@@ -64,7 +79,7 @@ for(const profile of ['autonome','echecs','modere','aides','progression','faible
    const rate=profile==='autonome'?0:profile==='echecs'?.94:profile==='modere'?.33:profile==='aides'?.15:Math.max(.07,.83-s*.006);
    const wrong=profile==='faiblesse_passe'?pass(q):rng()<rate;
    assert.ok(P.record(state,q,wrong?'wrong':'correct',i,null,assisted,false));
-   const meta=M.byId[q.id];
+   const meta=effectiveById[q.id];
    exposed[meta.concept]=(exposed[meta.concept]||0)+1;
    if(meta.stage<=1&&q.difficulty<=3)basic.add(meta.concept);
   }
@@ -81,19 +96,19 @@ for(const profile of ['autonome','echecs','modere','aides','progression','faible
 // constraints. Each reachable lower family can earn successive independent
 // successes; this is a graph test, not a claim of actual learner mastery.
 const byConcept=new Map();
-for(const q of qs){const key=M.byId[q.id].concept;if(!byConcept.has(key))byConcept.set(key,[]);byConcept.get(key).push(q);}
+for(const q of qs){const key=effectiveById[q.id].concept;if(!byConcept.has(key))byConcept.set(key,[]);byConcept.get(key).push(q);}
 const reachable=new Set();let change=true;
 while(change){
  change=false;
  for(const q of qs){
   if(reachable.has(q.id))continue;
-  const m=M.byId[q.id],lower=key=>(byConcept.get(key)||[]).filter(v=>v.difficulty<q.difficulty);
+  const m=effectiveById[q.id],lower=key=>(byConcept.get(key)||[]).filter(v=>v.difficulty<q.difficulty);
   if(m.requires.some(r=>(byConcept.get(r.concept)||[]).filter(v=>reachable.has(v.id)).length<r.minExposure))continue;
   if(q.difficulty>=4){
    const keys=lower(m.concept).length?[m.concept]:[...new Set(m.requires.map(r=>r.concept))];
    const available=new Set(keys.flatMap(k=>lower(k).map(fam)));
    const proof=new Set(keys.flatMap(k=>lower(k).filter(v=>reachable.has(v.id)).map(fam)));
-   const ownBasic=(byConcept.get(m.concept)||[]).filter(v=>v.difficulty<=3&&M.byId[v.id].stage<=1);
+   const ownBasic=(byConcept.get(m.concept)||[]).filter(v=>v.difficulty<=3&&effectiveById[v.id].stage<=1);
    if(!available.size||proof.size<Math.min(q.difficulty===5?3:2,available.size)||
       (ownBasic.length&&!ownBasic.some(v=>reachable.has(v.id))))continue;
   }else if(q.difficulty===3&&m.stage>=1&&lower(m.concept).length&&!lower(m.concept).some(v=>reachable.has(v.id)))continue;
