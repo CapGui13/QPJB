@@ -44,11 +44,17 @@
   if(firstMinor&&/^1[♥♠]$/.test(ans)&&count(ans[1])>=4&&/quatre|4 cartes|cinq|5 cartes|majeure/i.test(x)){
    if(axis==='priorite'&&c==='1SA')return rule('response-minor-major-first','1SA ne montrerait pas les '+count(ans[1])+' '+nm(ans[1])+' disponibles.','Sur une autre réponse à une mineure, cherche une majeure annonçable avant Sans-Atout.',['force-reponse','majeure-reponse']);
    if(axis==='distribution'&&/^1[♥♠]$/.test(c)&&count(c[1])<4&&/quatre|4 cartes/i.test(x))return rule('response-minor-major-length','La majeure choisie ne compte que '+count(c[1])+' cartes.','Sur une autre réponse à une mineure, compte les cartes de chaque majeure.',['majeure-reponse','longueur-majeure-reponse']);
-   if(axis==='force'&&c==='Passe'&&h>=6&&/répondre|réponse/.test(x))return rule('response-minor-force','Avec '+h+' H, le corrigé retient une réponse plutôt que Passe.','Sur une autre main, décide d’abord si tu as assez de force pour répondre.',['force-reponse']);
+   if(axis==='force'&&c==='Passe'&&h>=6&&/répondre|réponse/.test(x))return rule('response-minor-force',null,'Sur une autre main, décide d’abord si tu as assez de force pour répondre.',['force-reponse']);
   }
   const major=a.length===1&&/^Partenaire : 1[♥♠]$/.test(a[0])?a[0].slice(-1):null;
   if(q.theme==='majeur'&&major&&ans==='2'+major&&count(major)>=3&&/fit|atouts/i.test(x)&&axis==='fit'&&c==='1SA')
    return rule('response-major-fit','Le partenaire promet cinq '+nm(major)+' et tu en as '+count(major)+'. Le fit est déjà établi.','Sur une autre main, calcule le nombre d’atouts communs avant d’envisager Sans-Atout.',['fit-majeur','atouts-communs']);
+  if(q.theme==='majeur'&&major&&axis==='fit'&&c==='2'+major&&count(major)<3&&/fit|atouts|soutien/i.test(x)&&/deux|2 cartes|singleton|chicane|pas.*fit|absence.*fit/i.test(x))
+   return rule('response-major-short-fit','Avec '+count(major)+' cartes en soutien, les cinq cartes promises ne suffisent pas à établir huit atouts communs.','Sur une autre réponse à une majeure, compte les atouts garantis avant de choisir un soutien.',['fit-majeur','atouts-communs']);
+  if(axis==='convention'&&a.length===2&&a[0]==='Vous : 1SA'&&/^Partenaire : 2♣/.test(a[1])&&/Stayman/i.test(x+' '+q.context)&&/majeure|quatre|4 cartes/i.test(x)&&['2♦','2♥','2♠','2SA'].includes(c)){
+   const expected=s[0]>=4?(s[1]>=4?'2SA':'2♠'):(s[1]>=4?'2♥':'2♦');
+   if(ans===expected)return rule('stayman-response-count','Tu détiens '+s[0]+' Piques et '+s[1]+' Cœurs : vérifie que le code choisi décrit bien ces deux longueurs.','Sur une autre ouverture à 1SA suivie du Stayman, compte séparément les deux majeures puis retrouve le code.',['stayman-code','deux-majeures']);
+  }
   const sa=a.length===1&&/^Partenaire : [12]SA(?: \([^)]*\))?$/.test(a[0])?a[0].match(/[12]SA/)[0]:null;
   if(sa&&axis==='convention'&&/Stayman/i.test(x)&&/Texas/i.test(x+' '+q.context)&&ans===(sa==='1SA'?'2♣':'3♣')&&/^([23])[♦♥]$/.test(c)&&c[0]===ans[0]&&Math.max(s[0],s[1])>=4){
    const dest=c[1]==='♦'?'♥':'♠';
@@ -92,13 +98,13 @@
   if(axis==='distribution'){
    if(both(/bicolore|deux couleurs|seconde couleur|deux longues/i)&&s.filter(n=>n>=4).length>=2)
     return result('transfer-shape-two-suits','Sur une autre main à deux couleurs longues, compte les cartes de chacune et vérifie laquelle doit être décrite maintenant.',['deux-longues','ordre-description']);
-   if(both(/régulièr|irrégulièr|singleton|chicane|courte/i)&&(!reg||s.some(n=>n<=1)||c.endsWith('SA')||ans.endsWith('SA')))
+   if(both(/régulièr|irrégulièr|singleton|chicane|courte/i)&&(c.endsWith('SA')||ans.endsWith('SA')))
     return result('transfer-shape-regular','Sur une autre main, repère la couleur la plus courte et la plus longue ; une enchère à Sans-Atout décrit-elle vraiment cette forme ?',['forme-main','regularite-sa']);
    if(both(/cinquième|sixième|septième|longueur|cartes|longue|quatrième/i)&&((cs&&length(cs)!==undefined)||(as&&length(as)!==undefined)))
     return result('transfer-shape-length','Sur une autre main dans la même séquence, compte les cartes de la couleur que tu envisages d’annoncer et vérifie la longueur que cette enchère promet.',['longueur-couleur','promesse-enchere']);
   }
   if(axis==='fit'&&partner&&both(/fit|atout|soutien/i)){
-   if(/michaels|multilandy/i.test(concept)&&/deux|bicolore|cinq/i.test(x))
+   if(/^(michaels|multilandy)\.(reponse|suite)/i.test(concept)&&a.some(v=>/^Partenaire : (?!Passe)/.test(v))&&/deux|bicolore|cinq/i.test(x))
     return result('transfer-fit-two-suits','Sur une autre réponse à ce bicolore, compare les nombres d’atouts communs dans les deux couleurs promises avant de choisir.',['fit-bicolore','atouts-communs']);
    if(/(?:Partenaire : 1[♠♥])(?:$| \()/i.test(a.find(v=>/^Partenaire : 1[♠♥]/.test(v))||'')&&/trois|deux|cinq|3 cartes|2 cartes|5 cartes|huit|neuf|8 atouts|9 atouts/i.test(x))
     return result('transfer-fit-major','Sur une autre main, additionne tes cartes de la majeure et celles promises par ton partenaire avant de choisir le soutien.',['fit-majeur','atouts-communs']);
@@ -107,18 +113,18 @@
   }
   if(axis==='niveau'&&both(/palier|saut|niveau|manche|partielle|invitation|barrage|chelem/i)){
    if(cs&&as&&cs===as&&c[0]!==ans[0]&&/saut|invitation|manche|partielle|barrage/i.test(x))
-    return result('transfer-level-same-suit','Sur une autre main avec cette même couleur, compare ce que promet le palier simple et ce que promet le saut, avant de choisir.',['palier','saut','objectif-contrat']);
+    return result('transfer-level-same-suit','Sur une autre main avec cette même couleur, compare les deux paliers et ce que chacun promet, sans supposer qu’une enchère plus haute est toujours plus forte.',['palier','promesse-enchere','objectif-contrat']);
    if(c.endsWith('SA')&&ans.endsWith('SA')&&c[0]!==ans[0]&&/invitation|manche|partielle|chelem/i.test(x))
-    return result('transfer-level-sa','Sur une autre main, distingue une proposition à Sans-Atout d’une conclusion ; quelle ambition la force cumulée autorise-t-elle ?',['palier-sa','objectif-contrat']);
+    return result('transfer-level-sa','Sur une autre main, compare la signification des deux paliers à Sans-Atout dans cette séquence : quelle ambition et quelle force chacun indique-t-il ?',['palier-sa','objectif-contrat']);
    if(/invitation|invitant|conclu|partielle|manche|chelem/i.test(x)&&partner&&explicit(q,c))
     return result('transfer-level-ambition','Sur une autre main, précise d’abord le contrat que tu cherches : partielle, manche ou davantage. Choisis ensuite le palier qui laisse la bonne liberté au partenaire.',['objectif-contrat','palier']);
   }
   if(axis==='forcing'&&partner&&both(/forcing|obligatoire|doit répondre|appelle une réponse|pas passer|passer/i)&&/forcing|obligatoire|demande une réponse|appelle une réponse/i.test(x))
-   return result('transfer-forcing','Sur une autre séquence, demande-toi si le partenaire a le droit de passer maintenant et quelle information il reste à obtenir.',['caractere-forcing','information-manquante']);
+   return result('transfer-forcing','Sur une autre séquence, vérifie si l’enchère précédente te permet de passer, puis si celle que tu envisages oblige le partenaire à reparler.',['caractere-forcing','information-manquante']);
   if(axis==='priorite'&&both(/montr|décri|masqu|cach|priorit|annonc|transmet|révél|recherch/i)){
    if((c.endsWith('SA')&&as)||(ans.endsWith('SA')&&cs)){
     if(/majeure|Piques|Cœurs|Carreaux|Trèfles|arrêt|longue|couleur/i.test(x))
-     return result('transfer-priority-sa-suit','Sur une autre main, compare l’information que le partenaire reçoit par Sans-Atout et par l’enchère à la couleur : laquelle est prioritaire ici ?',['information-enchere','priorite-sa-couleur']);
+     return result('transfer-priority-sa-suit','Sur une autre main, compare l’information que transmet chaque enchère, naturelle ou conventionnelle dans cette séquence : laquelle est prioritaire ici ?',['information-enchere','priorite-sa-couleur']);
    }
    if(q.theme==='red'&&a.length===2&&/^Vous : 1[♠♥♦♣]$/.test(a[0])&&cs===a[0].slice(-1)&&as&&as!==cs&&length(as)>=4&&/seconde couleur|bicolore|quatre|4 cartes/i.test(x))
     return result('transfer-priority-rebid','Sur une autre redemande, vérifie si une deuxième couleur peut être décrite économiquement avant de répéter la première.',['seconde-couleur','economie-redemande']);
@@ -137,11 +143,11 @@
     return result('transfer-texas','Sur une autre séquence de Texas, nomme la couleur demandée par le transfert avant de décider s’il faut rectifier ou poursuivre.',['texas-couleur-cible','texas-suite']);
    if(/^drury\./.test(concept)&&conv(/Drury/i)&&/passé|position/i.test(x)&&/fit|soutien|atout/i.test(x))
     return result('transfer-drury','Sur une autre main, vérifie qui a déjà passé et le soutien disponible avant d’utiliser le Drury.',['drury-position','drury-fit']);
-   if(/^michaels\./.test(concept)&&conv(/Micha[eë]l|bicolore/i)&&opp&&/deux|bicolore|5\s*[–-]\s*5|cinq/i.test(x))
+   if(/^michaels\.(intervention|choix|reveil)/.test(concept)&&conv(/Micha[eë]l|bicolore/i)&&opp&&/deux|bicolore|5\s*[–-]\s*5|cinq/i.test(x))
     return result('transfer-michaels','Sur une autre ouverture adverse, identifie les deux couleurs que l’enchère bicolore promet et vérifie leur longueur dans ta main.',['michaels-couleur-adverse','michaels-deux-longues']);
-   if(/^multilandy\./.test(concept)&&conv(/Multi.?Landy|bicolore/i)&&opp&&/majeure|mineure|longue/i.test(x))
+   if(/^multilandy\.(intervention|choix)/.test(concept)&&conv(/Multi.?Landy|bicolore/i)&&opp&&/majeure|mineure|longue/i.test(x))
     return result('transfer-multilandy','Sur une autre main après 1SA adverse, distingue une majeure longue seule des mains à deux couleurs et retrouve le code correspondant.',['multilandy-distribution','multilandy-code']);
-   if(/^rubensohl\./.test(concept)&&conv(/Rubensohl|Texas|transfert/i)&&opp&&/Texas|transfert|naturel/i.test(x))
+   if(/^rubensohl\./.test(concept)&&/^Partenaire : 1SA/.test(a[0]||'')&&/^Adversaire : /.test(a[1]||'')&&conv(/Rubensohl|Texas|transfert/i)&&opp&&/Texas|transfert|naturel/i.test(x))
     return result('transfer-rubensohl','Sur une autre intervention sur 1SA, repère la couleur adverse puis distingue l’enchère naturelle encore disponible et la couleur que désigne le transfert.',['rubensohl-contexte','rubensohl-code']);
    if(/^competitif\./.test(concept)&&conv(/Spoutnik|Truscott|cue.bid|Surcontre/i)&&opp&&/contre|intervention|adversaire/i.test(x))
     return result('transfer-competitive-code','Sur une autre séquence compétitive, identifie l’intervention adverse exacte puis ce que l’enchère conventionnelle transmet sur la force ou le fit.',['contexte-competitif','signification-convention']);
@@ -172,14 +178,14 @@
   if(completed<1)return null;
   const fam=new Set(),sess=new Set();let exact=false;
   for(const e of events){if(e?.mode!=='parcours'||!Number.isInteger(e.session)||e.session<Math.max(1,completed-5)||e.session>completed||!Array.isArray(e.answers))continue;
-   for(const a of e.answers){if(!a||a.assisted!==false||a.hadFreeError===true||a.result!=='wrong'||!bid(a.choice))continue;
+   for(const a of e.answers){if(!a||typeof a.assisted!=='boolean'||a.hadFreeError===true||a.result!=='wrong'||!bid(a.choice))continue;
     const r=own(data?.rows,a.id)?data.rows[a.id]:null,v=option(r,a.choice);
-    if(!r||!v||!['high','medium'].includes(v[2])||v[1]!==axis||!r[2]||(a.family&&a.family!==r[2]))continue;
+    if(!r||!v||!['high','medium'].includes(v[2])||v[1]!==axis||(a.assisted===true&&v[6]!==true)||!r[2]||(a.family&&a.family!==r[2]))continue;
     if(a.id===id&&a.choice===c)exact=true;
     if(r[2]!==row[2]){fam.add(r[2]);sess.add(e.session);}
    }
   }
-  if(fam.size>=2&&sess.size>=2)return 'Deux choix antérieurs sur des familles distinctes concernaient aussi cette catégorie : '+labels[axis]+'. Cela ne prouve pas une cause identique.';
+  if(fam.size>=2&&sess.size>=2)return 'Deux choix antérieurs sur des familles distinctes relevaient aussi de cette catégorie : '+labels[axis]+'. Cela ne prouve pas une cause identique.';
   if(exact)return 'Cette même enchère avait déjà été choisie sur cet exercice. Reprends le critère de décision.';
   return null;
  }
@@ -196,7 +202,7 @@
   const fallback=corrected?{...out,kind:'corrected',checkNext:'Sur une autre main, justifie ton enchère avant de regarder les propositions.'}:{...out,kind:'wrong-unknown'};
   if(!row||!bid(c)||c===q.answer||!q.choices.includes(c))return fallback;
   const v=option(row,c),d=input.diagnostic;
-  if(!match(d,q,c,v))return fallback;
+  if(!match(d,q,c,v)||(!corrected&&a.assisted===true&&v[6]!==true))return fallback;
   const r=contextual(q,c,d.category)||transfer(q,c,d,row[1]);
   // Preserve the actual historical targeted feedback; do not broaden signed text to another option.
   const old=v[4],selected=old?{id:'legacy',feedback:old[0],checkNext:old[1],criteria:[d.category]}:r;
