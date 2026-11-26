@@ -140,3 +140,8 @@ Revue individuelle IA des 105 HOLD du groupe sa1.* : 89 corrigés suffisants, 16
 ## Passe 17 — Ouvertures, barrages et ouvertures fortes
 
 151 HOLD dans les trois familles ; 137 dispositions « corrigé suffisant » validées par revue éditoriale IA contextualisée, 14 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass17-propositions.json`. Attention aux exceptions d'ouverture 5–5, aux positions, aux relais après deux faibles et à l'ouverture forte ; les codes du catalogue ne sont pas généralisés. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 137 dispositions attendues uniquement. Banc exact V8 : 106963 assertions, 20387 ms ; données et transferts reproduits. 355 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
+
+
+## Passe 18 — Réponses naturelles, fits, essais et Drury
+
+166 HOLD dans les cinq familles ; 162 dispositions « corrigé suffisant » retenues par revue éditoriale IA contextualisée, 4 conservées sans conclusion nouvelle. Les décisions signées et les cas conservés figurent dans `pass18-propositions.json`. Les accords QPJB, les distinctions de seuil, les essais de manche et le Drury sont traités dans leur séquence réelle. Aucun changement du module, du canonique, des ciblages ou des transferts. Comparaison exhaustive : 162 dispositions attendues uniquement. Banc exact V8 : 107611 assertions, 19574 ms ; données et transferts reproduits. 193 HOLD restent, plus un contraste. Node CLI et navigateurs réels non exécutés. Revue IA, non humaine. Statut NON.
