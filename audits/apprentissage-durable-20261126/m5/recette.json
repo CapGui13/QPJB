@@ -336,5 +336,180 @@
     ],
     "environment": "V8 exact GitHub sources, in-memory CommonJS and filesystem adapters, DOM test double; not native checkout",
     "limits": "Native Node CLI and full Chromium/WebKit remain unexecuted."
+  },
+  "archiveExpansionFinal": {
+    "testedHead": "f495029cd23955e26f5d58102a4a39fa64674fb0",
+    "sourceBlob": "34e28214eae3195a745a6716333c010605fe28f7",
+    "corpusBlob": "2d457b9a0998fbb26dbc48b90b20c80341e613a0",
+    "demoBlob": "207fad529099ade67b39b1ea91a1f03f034cce95",
+    "assertions": 61222,
+    "results": [
+      {
+        "test": "tests/durable-m5-lecons.cjs",
+        "results": [
+          {
+            "assertions": 3037,
+            "ready": 99,
+            "hold": 0,
+            "maxRule": 358,
+            "maxCanonical": 448,
+            "meanRule": 214,
+            "calls": 20000,
+            "ms": 127
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-contrastes.cjs",
+        "results": [
+          {
+            "assertions": 3771,
+            "concepts": 99,
+            "catalogue": 1915,
+            "examples": 150,
+            "contrasts": 51,
+            "contrastsDeferredAtDiscovery": 11,
+            "standaloneReminders": 99,
+            "fullHistoryAvailableCalls": 1000,
+            "elapsedMs": 518,
+            "engine": "V8"
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-extensions.cjs",
+        "results": [
+          {
+            "assertions": 1603,
+            "extensions": 73,
+            "examples": 144,
+            "duplicateCore": 0
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-dom.cjs",
+        "results": [
+          {
+            "assertions": 1436,
+            "recalls": 99,
+            "studies": 99,
+            "extensions": 73,
+            "renderedExampleIds": 289,
+            "scope": "Exact module and inline demo script; DOM test double, not a browser"
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-trajectoires.cjs",
+        "results": [
+          {
+            "profile": "autonome",
+            "seed": 47,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 0,
+            "assisted": 0,
+            "wrong": 0,
+            "consultations": 115,
+            "assertions": 17524,
+            "conceptsSeen": 99,
+            "discoveryEver": 99,
+            "extensionsEver": 72,
+            "elapsedMs": 16219
+          },
+          {
+            "profile": "faible",
+            "seed": 47,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 39,
+            "assisted": 0,
+            "wrong": 266,
+            "consultations": 131,
+            "assertions": 16580,
+            "conceptsSeen": 94,
+            "discoveryEver": 95,
+            "extensionsEver": 67,
+            "elapsedMs": 10811
+          },
+          {
+            "profile": "aide",
+            "seed": 73,
+            "horizon": 65,
+            "questions": 650,
+            "skips": 27,
+            "assisted": 327,
+            "wrong": 269,
+            "consultations": 131,
+            "assertions": 16610,
+            "conceptsSeen": 97,
+            "discoveryEver": 97,
+            "extensionsEver": 64,
+            "elapsedMs": 11363
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-arbitrages.cjs",
+        "results": [
+          {
+            "assertions": 157,
+            "decisions": 35,
+            "directExamples": 8,
+            "notUsedAsExamples": 27,
+            "scope": "targeted historical record; not universal convention validation"
+          }
+        ]
+      },
+      {
+        "test": "tests/durable-m5-archives.cjs",
+        "results": [
+          {
+            "assertions": 504,
+            "newExtensions": 24,
+            "newDistinctExamples": 61,
+            "concepts": 17,
+            "totalDistinctExamples": 289
+          }
+        ]
+      }
+    ],
+    "environment": "V8 exact GitHub sources with in-memory CommonJS/FS adapters, simulated DOM, not Node CLI",
+    "historicalReview": "13 archives V473-V485 read; 24 additional extensions / 61 exact new examples; 35 historical decisions, eight directly represented.",
+    "priorFailedRun": "Arbitrages suite initially detected stale source usage for V474-010; registry synchronized and all seven suites rerun."
+  },
+  "fullBrowserHarnessSmoke": {
+    "engine": "Chromium 144.0.7559.96",
+    "assertions": 15867,
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 800
+      },
+      {
+        "width": 360,
+        "height": 740
+      },
+      {
+        "width": 320,
+        "height": 640
+      }
+    ],
+    "assertionsPerViewport": 5289,
+    "keyboardAssertionsPerViewport": 16,
+    "fixture": true,
+    "scope": "Completely synthetic 99-concept, 73-extension, 289-example corpus; exact module runtime and demo prefix/suffix verified FNV-1a. Real browser DOM activations for every detail; trusted keyboard on representative controls. Harness first timed out; optimized script passes. Not native testing of the actual QPJB corpus.",
+    "hashes": {
+      "runtimePrefix": "94938564",
+      "demoPrefix": "142b1a53",
+      "demoSuffix": "e3f6e9a7",
+      "scriptGitBlob": "98fc45a0deb09e9b3176565d086433a18792cbc1"
+    },
+    "fixtureSHA256": {
+      "module": "6ac7612203af2241ba778c27b4bc12ba741e4435552e8c8db70d02afb2cf44d9",
+      "demo": "77963adcdead391ac7e9ccdc2a6d930baa6516ce677dea3dc9e88a87ac6e8f92",
+      "corpus": "f5ab0e29a77dd8d7f59eaff13dc0a630e16ccf5fb437de2273348e36e9b663cf"
+    }
   }
 }
