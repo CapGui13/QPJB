@@ -138,5 +138,24 @@
       "concept": "chelem.splinter.variante",
       "reason": "Deux ancres non guidées appartiennent à la même famille ; pas deux preuves indépendantes."
     }
-  ]
+  ],
+  "validation": {
+    "source": "bec398ccfba908e6202b2f2c2dc48b2cc14750c9",
+    "status": "PASS ciblé",
+    "assertions": 82,
+    "environment": "V8 avec blobs exacts du catalogue figé et des fichiers enregistrés, cinq registres pertinents",
+    "allReviewSources": {
+      "checked": 18,
+      "endpoints": 8,
+      "allCoherent": true,
+      "duplicateReview": false,
+      "pairReservations": 3,
+      "conflicts": 0
+    },
+    "notExecuted": [
+      "suite CJS durable intégrale sur checkout natif",
+      "Chromium/WebKit intégrés"
+    ],
+    "note": "Les deux cas V2-M6-033 et V2-M6-034 sont de même famille entre deux paires différentes : ne jamais les compter comme deux familles indépendantes. Les décomptes projetés supposent le visa des quatre paires, pas de crédit automatique."
+  }
 }
