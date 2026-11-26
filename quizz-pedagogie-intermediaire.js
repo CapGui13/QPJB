@@ -69,6 +69,12 @@
         // Incitation modeste : la convention reste accessible aux élèves faibles.
         delta-=15;parts.push('liaison_naturelle_fragile');
       }
+      // Réinvestir un premier succès sans aide sur une autre famille,
+      // à distance, avant d'accumuler des notions à peine découvertes.
+      if(s&&gap>=2&&q.difficulty<=3&&!selectedConcepts.has(key)&&
+        s.cleanFamilies.size===1&&!s.cleanFamilies.has(q.caseFamily||q.id)){
+        delta+=70;parts.push('seconde_preuve_sur_autre_main');
+      }
       if(selectedConcepts.has(key)&&category==='discovery'){
         delta-=25;parts.push('autre_notion_disponible');
       }

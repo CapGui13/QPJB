@@ -807,8 +807,14 @@
     function choose(list,category,forcedReason,priority=false){
       const moreHard=profile!=='weak'||hardChosen<2||
         !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap));
-      const available=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
+      const baseAvailable=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
         (q.difficulty<=3||moreHard);
+      // Quand le réservoir de familles nouvelles se raréfie, ne pas
+      // concentrer la séance dans une seule rubrique si un rappel éligible
+      // et de famille distincte permet de conserver la diversité.
+      const diversify=s>=65&&Object.values(themes).some(n=>n>=5)&&
+        pool.some(q=>baseAvailable(q)&&!families.has(family(q))&&(themes[q.theme]||0)<5);
+      const available=q=>baseAvailable(q)&&(!diversify||(themes[q.theme]||0)<5);
       const distinct=q=>available(q)&&!families.has(family(q));
       let candidates=list.filter(available);
       if(!candidates.length)return false;

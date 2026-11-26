@@ -1,0 +1,8 @@
+# Correctifs de la première recette intégrée
+
+Candidat initial 09ccf19128ceccb95b7be3e9bdb8e43d80c0d0ce, run [45862482520](https://github.com/CapGui13/QPJB/actions/runs/45862482520). Navigateurs, tests natifs, intégrité, inventaire et training OK. 12/18 trajectoires sans alerte ; six avec alertes (quatre S65 preuves autonomes, trois S180 triples de thème, un recouvrement). Aucune violation d'éligibilité ni séance courte.
+
+1. M2 : bonus +70 (dans le plafond existant ±100) pour une nouvelle famille accessible de difficulté <=3, au moins deux séances après la dernière exposition, lorsqu'une seule famille a été réussie sans aide. Aucun crédit de preuve fictif. Pas de modification des seuils de recette.
+2. S66+ : éviter plus de cinq questions d'une rubrique lorsqu'une autre rubrique contient encore un candidat éligible de famille distincte respectant les contraintes Passe/difficulté. Le plafond reste souple (fallback si impossibilité) ; ne pas sacrifier l'éligibilité ni la complétude. Le problème initial se manifestait surtout après S153 : le filtre de familles nouvelles pouvait forcer des séances monothématiques.
+
+V8 sur blobs exacts, banc intégré inchangé. Essai M2 S65, quatre alertes initiales : aide/11 38→50, intermediaire/11 69→82, cible/47 59→68, passe/103 71→87. Référence main respectivement 43,78,66,81. Essai des deux correctifs S180 sur passe/103, intermediaire/47, passe/47 : triples de thème 12/16/9→0/0/0, familles 1501/1491/1518 contre 1471/1471/1478 sur main. Aucune alerte du banc sur ces trois trajectoires. Dette fondamentale passe/103 S180 624→645 (+3,4 %), compromis à surveiller. Les résultats sélectionnés ne remplacent pas la nouvelle matrice complète de 18 paires. Aucune publication avant validation.
