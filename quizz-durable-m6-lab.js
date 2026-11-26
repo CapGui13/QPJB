@@ -91,6 +91,10 @@ function compare(before,after){
  const review=[];if(b.ineligible||b.duplicates||b.short)review.push('invariants');
  if(b.families<.95*a.families)review.push('families');if(a.proof-b.proof>Math.max(3,.1*a.proof))review.push('proof');
  if(a.concepts-b.concepts>2)review.push('concepts');if(b.debt-a.debt>Math.max(10,.15*a.debt))review.push('debt');
+ if(b.coreDebt-a.coreDebt>Math.max(10,.15*a.coreDebt))review.push('core-debt');
+ if(b.variety>a.variety+2)review.push('order');
+ if(a.themes!==undefined&&b.themes<a.themes)review.push('theme-coverage');
+ if(a.transferProof-b.transferProof>Math.max(5,.15*a.transferProof))review.push('transfer-proof');
  if(a.retention30-b.retention30>.03)review.push('synthetic-retention');
  return {session:a.session,deltas,review};});
 }
