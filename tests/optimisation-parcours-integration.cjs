@@ -9,6 +9,22 @@ assert.deepEqual(current,old,'Catalogue exact');assert.equal(current.exercises.l
 assert.equal(read('quizz-prerequis.js'),hist('quizz-prerequis.js'),'Prerequisites unchanged');
 const meta=require('../quizz-prerequis.js'),plan=require('../quizz-session-plan.js');
 const base=B.makeEngine(hist('quizz-parcours.js'),meta);
+// Référence indépendante du visa pédagogique du 26/11 : seuls ces sept
+// soutiens simples à trois atouts peuvent introduire le concept de fit.
+// La référence historique garde les prérequis d'origine.
+const candidateMeta={...meta,byId:{...meta.byId}};
+const introFitIds=['SEF-028-2','SEF-028-1','SEF-N048-3','SEF-N048-1','SEF-N053-2','SEF-N053-1','SEF-C-006'];
+for(const id of introFitIds){
+ const q=current.exercises.find(q=>q.id===id),m=meta.byId[id];
+ assert.ok(q&&m,'Cas introductif connu '+id);
+ const opening=String(q.auction?.[0]||'').match(/:\s*(1[♥♠])(?:\s|$)/)?.[1]||'';
+ const answer=String(q.answer||'').replace(/[\s\uFE0E\uFE0F]/g,'');
+ assert.ok(q.theme==='majeur'&&q.auction.length===1&&/^1[♥♠]$/.test(opening)&&answer==='2'+opening[1]&&q.shape[opening==='1♠'?0:1]===3&&q.difficulty<=2,'Fit 5-3 simple '+id);
+ assert.equal(m.concept,'majeur.soutien',id);
+ assert.equal(m.minSession,1,id);
+ candidateMeta.byId[id]={...m,stage:0,requires:m.requires.filter(r=>r.concept!=='majeur.soutien')};
+}
+
 const source=read('quizz-parcours.js'),marker='return {eligibility,adaptiveDiagnostics,createForTests:';
 assert.equal(source.split(marker).length,2);
 const m={exports:{}};
@@ -22,7 +38,7 @@ const profiles=B.PROFILES.filter(p=>!process.argv[2]||p===process.argv[2]),seeds
 assert(profiles.length&&seeds.length,'Unknown profile/seed');
 let failures=[];
 for(const profile of profiles)for(const seed of seeds){
- const before=B.run(base,current.exercises,meta,profile,seed),after=B.run(candidate,current.exercises,meta,profile,seed);
+ const before=B.run(base,current.exercises,meta,profile,seed),after=B.run(candidate,current.exercises,candidateMeta,profile,seed);
  console.log(JSON.stringify({profile,seed,before,after}));
  for(let i=0;i<before.length;i++){
   const a=before[i],b=after[i],tag=profile+'/'+seed+'/S'+b.horizon;

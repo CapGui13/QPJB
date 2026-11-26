@@ -403,6 +403,12 @@
        !Number.isInteger(m.minSession)||m.minSession<0||!Array.isArray(m.requires)||
        m.requires.some(r=>!r||typeof r.concept!=='string'||!Number.isInteger(r.minExposure)||r.minExposure<1))
       return null;
+    // Visa pédagogique 26/11 : ces soutiens simples réguliers à trois
+    // atouts introduisent le fit 5-3, au lieu d'exiger un fit déjà vu.
+    // Les autres prérequis du catalogue et les situations avancées restent intacts.
+    if(['SEF-028-2','SEF-028-1','SEF-N048-3','SEF-N048-1','SEF-N053-2','SEF-N053-1','SEF-C-006'].includes(q.id)&&
+      majorThree(q)&&q.difficulty<=2&&m.concept==='majeur.soutien'&&m.minSession===1)
+      return {...m,stage:0,requires:m.requires.filter(r=>r.concept!=='majeur.soutien')};
     return m;
   }
   function evidence(state,exercises){
@@ -554,6 +560,12 @@
     return e.recent.some(({q,s})=>openingPass(q)&&state.completed-s<=3&&
       state.entries?.[q.id]&&weakAnswer(state.entries[q.id]));
   }
+  const minorMajor4=q=>q.theme==='mineur'&&q.auction?.length===1&&((bid(q)==='1♥'&&q.shape?.[1]===4)||(bid(q)==='1♠'&&q.shape?.[0]===4));
+  const minorNotrump=q=>q.theme==='mineur'&&q.auction?.length===1&&bid(q)==='1SA'&&q.shape?.[0]<4&&q.shape?.[1]<4;
+  const majorSupport=q=>q.theme==='majeur'&&/^1[♥♠]$/.test(opener(q))&&/^[2-7][♥♠]$/.test(bid(q))&&bid(q)[1]===opener(q)[1];
+  const majorThree=q=>majorSupport(q)&&q.auction?.length===1&&bid(q)==='2'+opener(q)[1]&&q.shape?.[opener(q)==='1♠'?0:1]===3;
+  const minorSupport=q=>q.theme==='mineur'&&/^1[♣♦]$/.test(opener(q))&&/^[2-7][♣♦]$/.test(bid(q))&&bid(q)[1]===opener(q)[1];
+  const openBid=q=>q.theme==='ouv'&&!openingPass(q);
   // Les Passes sont une alternative de base, pas des questions de fin de séance.
   // Bornes en positions (1-indexées), pas une séquence de réponses imposée.
   function passDeadlines(s,count,length){
@@ -576,6 +588,7 @@
     const s=state.completed;
     const salt=s+'|'+items.map(x=>exerciseOf(x).id).sort().join('|')+'|'+
       (state.journal||[]).slice(-2).map(ev=>(ev.answers||[]).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
+    const earlyOrder=s===1&&items.length===10&&items.filter(x=>openBid(exerciseOf(x))).length>=2;
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
     const deadlines=passDeadlines(s,totalPass,items.length);
     let beam=[{seq:[],mask:0,cost:0,tie:0}];
@@ -588,6 +601,8 @@
         for(let i=0;i<items.length;i++){
           if(node.mask&(1<<i))continue;
           const q=exerciseOf(items[i]),pass=openingPass(q);
+          if(earlyOrder&&pos<2&&!openBid(q))continue;
+          if(earlyOrder&&majorSupport(q)&&items.some((v,j)=>!(node.mask&(1<<j))&&(minorMajor4(exerciseOf(v))||minorNotrump(exerciseOf(v)))))continue;
           if(deadlines.length){
             if(pass&&last&&openingPass(last))continue;
             const used=usedPass+Number(pass);
@@ -627,6 +642,7 @@
   function select(exercises,state,n=10){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
     let pool=eligiblePool(exercises,state,e);
+    if(s===1||s===2){const early=pool.filter(q=>!minorSupport(q)&&(!majorSupport(q)||majorThree(q)));if(new Set(early.map(family)).size>=limit)pool=early;}
     const previous=state.entries||{};
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
@@ -758,10 +774,12 @@
       const passes=pool.filter(openingPass);
       if(!choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide'))
         choose(passes,'maintenance','equilibre_ouvertures',true);
-      for(const [t,lead] of [['mineur','1♣'],['mineur','1♦'],['majeur','1♥'],['majeur','1♠']])
-        choose(pool.filter(q=>q.theme===t&&opener(q)===lead),'discovery');
-      for(let i=0;i<2;i++)choose(pool.filter(q=>q.theme==='mineur'||q.theme==='majeur'),'discovery');
-      if(passCap===2&&selected.length<limit)choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide');
+      for(const lead of ['1♣','1♦']){
+        choose(pool.filter(q=>opener(q)===lead&&minorMajor4(q)),'discovery',null,true);
+        choose(pool.filter(q=>opener(q)===lead&&minorNotrump(q)),'discovery',null,true);
+      }
+      for(const lead of ['1♥','1♠'])choose(pool.filter(q=>opener(q)===lead&&majorThree(q)),'discovery',null,true);
+      if(selected.length<limit)choose(pool.filter(q=>q.theme==='majeur'&&!majorSupport(q)&&q.difficulty<=2),'discovery',null,true);
     }
     // Garantie de découverte et d'entretien, avant les quotas indicatifs.
     if(s>=2){
@@ -788,7 +806,7 @@
     while(selected.length<limit){
       const cats=order.slice().sort((a,b)=>(quotas[order.indexOf(b)]-buckets[b])-(quotas[order.indexOf(a)]-buckets[a]));
       let ok=false;
-      if(s===1)ok=choose(pool.filter(q=>q.theme==='majeur'||q.theme==='mineur'),'discovery');
+      if(s===1)ok=choose(pool.filter(q=>minorMajor4(q)||minorNotrump(q)||majorThree(q)||q.theme==='majeur'&&!majorSupport(q)),'discovery');
       if(!ok)for(const cat of cats){
         if(choose(pool.filter(q=>classify(q)===cat),cat)){ok=true;break;}
       }
