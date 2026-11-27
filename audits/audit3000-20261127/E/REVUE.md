@@ -186,3 +186,24 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 9 — cumul actualisé
+
+360/540 verdicts individuels, 180 restants. {"VALIDE":102,"RECLASSER_REFORMULER":237,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":21}. 220 corrections complètes, 27 modifications prérequis, 101 entrées réservoir.
+- Préserver les paires contrastées V2-M5-G01 à G06 et G11 à G20 (même main et ordre adverse différent, seuil 4–4/5–4, 5–4/5–5, force, fit/absence de fit, palier disponible). Retirer les indices de solution et proposer des affectations dans les groupes réels, sans transformer les contrastes utiles en doublons.
+- Source Sarzeau affilié FFB : exception du 2SA naturel après intervention à deux faible confirmée (https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523). V2-M5-005 corrigé et référencé ; le coordinateur peut lever l'arbitrage L39-005 de passe 8 sur cette base (verdict précédent conservé pour traçabilité). Défense Michaël 2SA fitté spécifique (V2-M5-037), alternative naturelle 1SA (006), Passe/3♠ après forcing un tour (009), décisions compétitives neuf/dix atouts (039/040) en arbitrage. Les corrections correspondantes restent conditionnelles.
+- Lacunes de groupes 2SA Multi-Landy et conclusions Rubensohl 4M : ne pas inventer d'affectation. Contrôles de périmètre, verdicts uniques, mains, choix (rang simple), corrections, groupes et concepts réels. Pas de suite locale, pas de certification externe complète, pas d'examen sémantique exhaustif.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 360,
+  "idsUniques": 360,
+  "corrections": 220,
+  "correctionsInvalides": [],
+  "passe9ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
