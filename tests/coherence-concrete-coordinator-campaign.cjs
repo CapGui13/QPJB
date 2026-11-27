@@ -1,7 +1,7 @@
 'use strict';
 // Common M6 fixed response model; genuine optional production-engine entrypoints.
 // A green job means technical completion, not a pedagogical visa.
-const fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path'),assert=require('node:assert/strict');
+const fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const T=require('../quizz-coherence-m6-traces.js'),C=require('./coherence-concrete-m6-campaign.cjs'),D=require('../quizz-coherence-m4p-d-lab.js'),legacy=require('./durable-m6-campaign.cjs');
 const lessons=require('../quizz-coherence-m5-study.js'),m1v2=require('../quizz-coherence-m1-guarded.js'),m1v6=require('../quizz-coherence-m1-window.js'),m2=require('../quizz-coherence-m2-ordre.js'),m4=require('../quizz-coherence-coordinator-m4.js');
 const [profile='autonome',seedArg='11',hArg='180',dest='coordination-output']=process.argv.slice(2),seed=Number(seedArg),horizon=Number(hArg);
@@ -9,7 +9,8 @@ assert(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&T.HORIZONS.includes
 const git=(...args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:24*1024*1024});
 function sources(ref){return Object.fromEntries(git('ls-tree','--name-only',ref).trim().split('\n').filter(p=>p==='quizz.html'||/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js').map(p=>[p,git('show',ref+':'+p)]))}
 const base=sources(T.BASE),current=sources(git('rev-parse','HEAD').trim());
-assert.equal(base['quizz.html'],current['quizz.html']);assert.equal(base['quizz-prerequis.js'],current['quizz-prerequis.js']);
+const embedded=html=>html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
+assert.equal(embedded(base['quizz.html']),embedded(current['quizz.html']));assert.equal(base['quizz-prerequis.js'],current['quizz-prerequis.js']);
 fs.mkdirSync(dest,{recursive:true});
 const same=(a,b)=>assert.deepEqual(a,b),copy=x=>JSON.parse(JSON.stringify(x));
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -57,7 +58,12 @@ function run(label,src,options={}){
   const elig=api.eligibilityBatch(deck,state,exercises);assert(elig.every(x=>x.eligible));
   const historical=state.active.orderReferenceIds||ids(deck);
   const orderPlan=options.coherenceM2?m2.order({session:s,history:{...state,active:null},deck:historical,selected:state.active.selection,exercises:historical.map(id=>dict.get(id)),metadataById:meta.byId,preserveThemeOrder:true}):null;
-  if(orderPlan){same(ids(deck),orderPlan.ids)}
+  const second=options.coherenceFullOrder&&orderPlan?m2.order({session:s,history:{...state,active:null},deck:orderPlan.ids,selected:state.active.selection,exercises:orderPlan.ids.map(id=>dict.get(id)),metadataById:meta.byId,preserveThemeOrder:false,transitionGroups:options.transitionGroups}):null;
+  if(orderPlan){same(ids(deck),second?.ids||orderPlan.ids)}
+  if(second?.before&&second?.after){
+   for(const k of [...m2.HARD,...m2.SOFT])assert(second.after[k]<=second.before[k],'Second pass guard '+k);
+   if(second.semanticBefore!==undefined)assert(second.semanticAfter<=second.semanticBefore);
+  }
   if(options.study){
    const cs=new Set(deck.map(q=>meta.byId[q.id].concept));
    assert(before.before.every(x=>cs.has(x.concept)&&x.presentation==='rule-only'&&x.optional&&!x.assessment));
@@ -75,7 +81,11 @@ function run(label,src,options={}){
     }
    }
   }
+  const replayed=!!state.active.orderSkillBase;
   assert(api.finish(state,exercises));
+  trace.proofDigest=crypto.createHash('sha256').update(JSON.stringify(canonical({skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}))).digest('hex');
+  trace.replayed=replayed;
+  if(second?.before&&second?.after)trace.secondOrder={ids:second.ids,before:second.before,after:second.after,semanticBefore:second.semanticBefore||0,semanticAfter:second.semanticAfter||0};
   if(options.study){
    const snap=JSON.stringify(state),after=study('after');same(JSON.stringify(state),snap);assert(after?.status==='ok');
    const wrong=new Set(trace.rows.filter(r=>r.result==='wrong'||r.result==='correct'&&(r.assisted||r.hadFreeError)).map(r=>r.concept));
@@ -90,28 +100,53 @@ function run(label,src,options={}){
  assert(checkpoints.every(x=>!x.violations.length));
  return {label,profile,seed,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,checkpoints,core:coreMetrics(sessions),events,m5Counts,state:{skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}};
 }
-const arms={};
+const arms={},fullMode=process.env.QPJB_COORDINATOR_FULL_ORDER==='1';
 arms.native=run('native',base);
 arms.off=run('off',current);
 const fingerprint=a=>a.sessions.map(s=>s.rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted]));
 same(fingerprint(arms.native),fingerprint(arms.off));same(canonical(arms.native.state),canonical(arms.off.state));
 arms.M2=run('M2',current,{coherenceM2:m2,study:true});
+if(fullMode){
+ const P=require('../quizz-coherence-m3-prerequis.js');
+ const transitionGroups=[{simple:P.TEXAS_ELEMENTARY,complex:P.TEXAS},{simple:P.STAYMAN_SIMPLE,complex:P.STAYMAN_FOURTH}];
+ arms.Full=run('Full',current,{coherenceM2:m2,coherenceFullOrder:true,transitionGroups,study:true});
+ same(arms.M2.sessions.map(s=>s.proofDigest),arms.Full.sessions.map(s=>s.proofDigest));
+ same(arms.M2.sessions.map(s=>sorted(s.rows)),arms.Full.sessions.map(s=>sorted(s.rows)));
+ for(let i=0;i<arms.Full.sessions.length;i++){
+  const a=arms.M2.sessions[i].rows,b=arms.Full.sessions[i].rows;
+  const evidence=rows=>rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted,r.hadFreeError,r.choice]).sort((x,y)=>x[0].localeCompare(y[0]));
+  same(evidence(a),evidence(b));
+ }
+}else{
 arms.V2=run('V2',current,{coherenceM1:m1v2});
 arms.V6=run('V6',current,{coherenceM1:m1v6});
 arms.V2M2=run('V2M2',current,{coherenceM1:m1v2,coherenceM2:m2,study:true});
 arms.V6M2=run('V6M2',current,{coherenceM1:m1v6,coherenceM2:m2,study:true});
 arms.V2M2M4=run('V2M2M4',current,{coherenceM1:m1v2,coherenceM2:m2,coherenceM4:m4,study:true});
 arms.V6M2M4=run('V6M2M4',current,{coherenceM1:m1v6,coherenceM2:m2,coherenceM4:m4,study:true});
-for(const [a,b] of [['native','M2'],['V2','V2M2'],['V6','V6M2']]){
+}
+for(const [a,b] of (fullMode?[['native','M2'],['M2','Full']]:[['native','M2'],['V2','V2M2'],['V6','V6M2']])){
  same(arms[a].sessions.map(s=>sorted(s.rows)),arms[b].sessions.map(s=>sorted(s.rows)));
  same(canonical(arms[a].state),canonical(arms[b].state));
 }
 const comparisons={};
-for(const [a,b] of [['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']]){
+for(const [a,b] of (fullMode?[['native','M2'],['M2','Full']]:[['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']])){
  const comp=T.compare(arms[a],arms[b]),strict=strictCompare(arms[a],arms[b]);
  comparisons[a+'-'+b]={checkpoints:comp.checkpoints.map(c=>({session:c.session,review:c.review})),strict,changedSets:comp.changes.filter(x=>!x.sameSet).length,changedOrders:comp.changes.filter(x=>!x.sameOrder).length};
 }
-const summary={profile,seed,horizon,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts}])),comparisons};
+function fullMetrics(a){
+ const keys=[...m2.HARD,...m2.SOFT,'semantic'];
+ const sums=Object.fromEntries(keys.map(k=>[k,[0,0]]));let changed=0,replayed=0,semanticFixed=0;
+ for(const s of a.sessions){
+  replayed+=+s.replayed;
+  const p=s.secondOrder;if(!p)continue;
+  changed+=+(p.ids.join('|')!==s.order.actual.join('|'));
+  semanticFixed+=p.semanticBefore-p.semanticAfter;
+  for(const k of keys){sums[k][0]+=k==='semantic'?p.semanticBefore:p.before[k];sums[k][1]+=k==='semantic'?p.semanticAfter:p.after[k]}
+ }
+ return {replayed,semanticFixed,sums};
+}
+const summary={profile,seed,horizon,fullMode,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts,fullMetrics:fullMetrics(a)}])),comparisons};
 fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify(summary));fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify(arms));
-const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts}]))};
+const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts,fullMetrics:fullMetrics(a)}]))};
 console.log('COORDINATION_SUMMARY '+JSON.stringify(compact));

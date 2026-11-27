@@ -249,6 +249,31 @@
     const byId=new Map(answers.map(a=>[a.id,a]));
     return event.orderReferenceIds.map(id=>byId.get(id));
   }
+  // Experimental full ordering: snapshot only themes whose relative order
+  // changes. The native skill recurrence is replayed with real answers.
+  const skillFields=['level','clean','errors','lastCleanSession','lastLevelChangeSession'];
+  function validSkillBase(base,completed){
+    if(!base||typeof base!=='object'||Array.isArray(base))return false;
+    const keys=Object.keys(base);
+    return keys.length>0&&keys.length<=Object.keys(INTRO).length&&keys.every(t=>{
+      if(!Object.hasOwn(INTRO,t))return false;
+      const v=base[t];
+      return v===null||(v&&typeof v==='object'&&!Array.isArray(v)&&
+        Object.keys(v).length===skillFields.length&&skillFields.every(k=>Object.hasOwn(v,k))&&
+        Number.isInteger(v.level)&&v.level>=1&&v.level<=5&&Number.isInteger(v.clean)&&v.clean>=0&&v.clean<=3&&
+        Number.isInteger(v.errors)&&v.errors>=0&&v.errors<=2&&
+        ['lastCleanSession','lastLevelChangeSession'].every(k=>v[k]===null||Number.isInteger(v[k])&&v[k]>=0&&v[k]<=completed));
+    });
+  }
+  function sameSkill(a,b){
+    return !!a&&!!b&&skillFields.every(k=>a[k]===b[k]);
+  }
+  function changedOrderThemes(historical,proposed,byId){
+    if(!validOrderReference(historical,proposed)||historical.some(id=>!byId.has(id)))return [];
+    const themes=[...new Set(historical.map(id=>byId.get(id).theme))];
+    return themes.filter(t=>historical.filter(id=>byId.get(id).theme===t).join('|')!==
+      proposed.filter(id=>byId.get(id).theme===t).join('|'));
+  }
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -341,6 +366,14 @@
           }));
         if(old.active.mode!=='consolidation'&&validOrderReference(ids,old.active.orderReferenceIds))
           s.active.orderReferenceIds=old.active.orderReferenceIds.slice();
+        if(s.active.orderReferenceIds&&validSkillBase(old.active.orderSkillBase,s.completed)&&
+          Array.isArray(old.active.orderSkillRecordedIds)){
+          const observed=Object.keys(answers).map(i=>ids[Number(i)]),recorded=old.active.orderSkillRecordedIds;
+          if(recorded.length===observed.length&&new Set(recorded).size===recorded.length&&recorded.every(id=>observed.includes(id))){
+            s.active.orderSkillBase=Object.fromEntries(Object.entries(old.active.orderSkillBase).map(([k,v])=>[k,v===null?null:Object.fromEntries(skillFields.map(field=>[field,v[field]]))]));
+            s.active.orderSkillRecordedIds=recorded.slice();
+          }
+        }
         if(old.active.mode==='consolidation'){
           s.active.mode='consolidation';
           if(Array.isArray(old.active.targets)&&old.active.targets.length===ids.length&&
@@ -1120,25 +1153,34 @@
     if(!chosen.length)return [];
     // Le candidat est désactivé pour tous les appels historiques à deux arguments.
     // Le coordinateur doit fournir explicitement le module et passer la recette intégrée.
-    let orderReferenceIds=null;
+    let orderReferenceIds=null,orderSkillBase=null;
     const orderModule=options?.coherenceM2;
     if(orderModule?.schema==='QPJB_COHERENCE_M2_V1'&&typeof orderModule.order==='function'){
       const historical=chosen.map(x=>x.id),historicalDeck=historical.map(id=>byId.get(id));
       try{
-        const plan=orderModule.order({session:state.completed+1,history:state,
-          deck:historical,selected:chosen,exercises:historicalDeck,
-          metadataById:prerequis.byId,preserveThemeOrder:true});
-        const proposed=plan?.ids;
-        if(validOrderReference(historical,proposed)&&proposed.some((id,i)=>id!==historical[i])){
-          const deck=proposed.map(id=>byId.get(id));
-          const themes=[...new Set(historicalDeck.map(q=>q.theme))];
-          const stable=themes.every(t=>historicalDeck.filter(q=>q.theme===t).map(q=>q.id).join('|')===
-            deck.filter(q=>q.theme===t).map(q=>q.id).join('|'));
-          if(stable&&passOrderOK(deck,state.completed)){
-            const byChoice=new Map(chosen.map(x=>[x.id,x]));
-            chosen=proposed.map(id=>byChoice.get(id));
-            orderReferenceIds=historical;
+        const common={session:state.completed+1,history:state,selected:chosen,metadataById:prerequis.byId};
+        const plan=orderModule.order({...common,deck:historical,exercises:historicalDeck,preserveThemeOrder:true});
+        let proposed=validOrderReference(historical,plan?.ids)&&
+          changedOrderThemes(historical,plan.ids,byId).length===0&&passOrderOK(plan.ids.map(id=>byId.get(id)),state.completed)
+          ?plan.ids:historical;
+        // A second pass starts from the already certified constrained M2
+        // order. It may improve M3 transitions without changing any ID.
+        if(options.coherenceFullOrder===true){
+          const second=orderModule.order({...common,deck:proposed,exercises:proposed.map(id=>byId.get(id)),
+            preserveThemeOrder:false,transitionGroups:options.transitionGroups});
+          if(validOrderReference(proposed,second?.ids)&&passOrderOK(second.ids.map(id=>byId.get(id)),state.completed)){
+            const changed=changedOrderThemes(historical,second.ids,byId);
+            const base=Object.fromEntries(changed.map(t=>[t,state.skills[t]?{...state.skills[t]}:null]));
+            if(!changed.length||validSkillBase(base,state.completed)){
+              proposed=second.ids;
+              if(changed.length)orderSkillBase=base;
+            }
           }
+        }
+        if(proposed.some((id,i)=>id!==historical[i])){
+          const byChoice=new Map(chosen.map(x=>[x.id,x]));
+          chosen=proposed.map(id=>byChoice.get(id));
+          orderReferenceIds=historical;
         }
       }catch(_){ /* Repli historique : aucun nouvel ordre ni état partiel. */ }
     }
@@ -1147,6 +1189,10 @@
         id:x.id,kind:x.kind,reason:x.reason
       }))};
     if(orderReferenceIds)state.active.orderReferenceIds=orderReferenceIds.slice();
+    if(orderReferenceIds&&orderSkillBase){
+      state.active.orderSkillBase=orderSkillBase;
+      state.active.orderSkillRecordedIds=[];
+    }
     return state.active.ids.map(id=>byId.get(id));
   }
   // Read-only study preview: exact same selector options and inactive state.
@@ -1165,6 +1211,64 @@
     const objective=options.coherenceM1?.plan?.({session,history:state,metadataById:prerequis.byId,candidates:deck||[]})||null;
     return planner.studyPlan({session,history:state,metadataById:prerequis.byId,
       selected:deck,objective,phase,questionActive:false,quizActive:false});
+  }
+  function advanceThemeSkill(prior,x,independent,completed){
+    const skill=prior?{...prior}:{level:Math.max(1,x.difficulty===1?1:2),
+      clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
+    if(independent){
+      skill.errors=0;
+      // Une seule preuve par rubrique et par séance : trois exercices
+      // réussis à la suite ne doivent pas provoquer une promotion immédiate.
+      if(x.difficulty>=skill.level&&skill.lastCleanSession!==completed){
+        skill.clean++;
+        skill.lastCleanSession=completed;
+      }
+      if(skill.clean>=3&&skill.lastLevelChangeSession!==completed){
+        skill.level=Math.min(5,skill.level+1);
+        skill.lastLevelChangeSession=completed;
+        skill.clean=0;
+      }
+    }else{
+      skill.clean=0;
+      skill.errors++;
+      if(skill.errors>=2){
+        if(skill.lastLevelChangeSession!==completed){
+          skill.level=Math.max(1,skill.level-1);
+          skill.lastLevelChangeSession=completed;
+        }
+        skill.errors=0;
+      }
+    }
+    return skill;
+  }
+  // Validate the snapshot by replaying the actual recording order first.
+  // If anything is missing or corrupted, keep the already observed scores.
+  function normalizeThemeOrder(state,active,byId){
+    if(active.mode==='consolidation'||!validOrderReference(active.ids,active.orderReferenceIds)||
+       !validOrderReference(active.ids,active.orderSkillRecordedIds)||!validSkillBase(active.orderSkillBase,state.completed))return false;
+    const affected=changedOrderThemes(active.orderReferenceIds,active.ids,byId);
+    if(!affected.length||affected.length!==Object.keys(active.orderSkillBase).length||
+       affected.some(t=>!Object.hasOwn(active.orderSkillBase,t)))return false;
+    const answers=new Map(active.ids.map((id,i)=>[id,active.answers[i]]));
+    const replay=(theme,ids)=>{
+      let skill=active.orderSkillBase[theme];
+      for(const id of ids){
+        const q=byId.get(id),a=answers.get(id);
+        if(!q||!a)return null;
+        if(q.theme===theme)skill=advanceThemeSkill(skill,q,a.result==='correct'&&!a.assisted&&!a.hadFreeError,state.completed);
+      }
+      return skill;
+    };
+    const next={};
+    for(const theme of affected){
+      const actual=replay(theme,active.orderSkillRecordedIds);
+      if(!sameSkill(actual,state.skills[theme]))return false;
+      const canonical=replay(theme,active.orderReferenceIds);
+      if(!canonical)return false;
+      next[theme]=canonical;
+    }
+    for(const [t,v] of Object.entries(next))state.skills[t]=v;
+    return true;
   }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
@@ -1189,33 +1293,8 @@
     // suivante) pourrait bloquer l'évaluation de cette dernière.
     // Les résultats ciblés sont rapportés par finish() et restent traçables.
     if(active.mode==='consolidation')return true;
-    const skill=state.skills[x.theme]||{level:Math.max(1,x.difficulty===1?1:2),
-      clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
-    if(independent){
-      skill.errors=0;
-      // Une seule preuve par rubrique et par séance : trois exercices
-      // réussis à la suite ne doivent pas provoquer une promotion immédiate.
-      if(x.difficulty>=skill.level&&skill.lastCleanSession!==state.completed){
-        skill.clean++;
-        skill.lastCleanSession=state.completed;
-      }
-      if(skill.clean>=3&&skill.lastLevelChangeSession!==state.completed){
-        skill.level=Math.min(5,skill.level+1);
-        skill.lastLevelChangeSession=state.completed;
-        skill.clean=0;
-      }
-    }else{
-      skill.clean=0;
-      skill.errors++;
-      if(skill.errors>=2){
-        if(skill.lastLevelChangeSession!==state.completed){
-          skill.level=Math.max(1,skill.level-1);
-          skill.lastLevelChangeSession=state.completed;
-        }
-        skill.errors=0;
-      }
-    }
-    state.skills[x.theme]=skill;
+    state.skills[x.theme]=advanceThemeSkill(state.skills[x.theme],x,independent,state.completed);
+    if(active.orderSkillBase&&Array.isArray(active.orderSkillRecordedIds))active.orderSkillRecordedIds.push(x.id);
     const mk=microKey(x);
     if(mk){
       const m=state.micros?.[mk]||{score:0,attempts:0,independent:0,
@@ -1269,6 +1348,7 @@
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Journal prospectif : aucune réponse d'une séance ancienne n'est inventée.
     const active=state.active,byId=new Map((exercises||[]).map(x=>[x.id,x]));
+    normalizeThemeOrder(state,active,byId);
     const record={
       mode:active.mode==='consolidation'?'consolidation':'parcours',
       session:state.completed+1,recordedAt:new Date().toISOString(),

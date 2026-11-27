@@ -202,6 +202,28 @@
    const criterion=contrast(f[i],f[j]);if(criterion)links.push({a:f[i].id,b:f[j].id,criterion});
   }
   const before=metric(f,s,links);
+  // Optional M3 transition advice: only pairs actually present in this deck,
+  // and only before the first documented elementary example.
+  const requested=(Array.isArray(ctx.transitionGroups)?ctx.transitionGroups:[]).filter(g=>
+   Array.isArray(g.simple)&&Array.isArray(g.complex)&&f.some(x=>g.simple.includes(x.id))&&f.some(x=>g.complex.includes(x.id)));
+  const exposed=new Set();
+  if(requested.length){
+   for(const row of ctx.history?.journal||[])if(row.mode==='parcours'&&row.session<s)
+    for(const a of row.answers||[])exposed.add(a.id);
+   for(const [id,e] of Object.entries(ctx.history?.entries||{}))
+    if(e?.assessment&&e.assessment.lastSession<s-1)exposed.add(id);
+  }
+  const groups=requested.filter(g=>!g.simple.some(id=>exposed.has(id)));
+  function transitionCost(p){
+   let n=0;
+   for(const g of groups){
+    const first=p.findIndex(x=>g.simple.includes(x.id));
+    if(first>=0)n+=p.slice(0,first).filter(x=>g.complex.includes(x.id)).length;
+   }
+   return n;
+  }
+  const semanticBefore=transitionCost(f);
+  const candidateScore=(p,m)=>score(m)+10000000*transitionCost(p);
   // #419 coordinateur: optional experimental constraint. record() updates
   // skills independently by theme but is sensitive to within-theme order.
   // Retain the exact sequence per theme; never change storage or scoring.
@@ -222,7 +244,7 @@
   // on the final permutation. An adjacent true contrast may intentionally
   // share a distribution/force; raw values are retained for audit.
   let current=f,after=before;
-  function admissible(p,m){return candidateValid(p)&&!HARD.some(k=>m[k]>before[k])&&!SOFT.some(k=>m[k]>before[k]);}
+  function admissible(p,m){return candidateValid(p)&&transitionCost(p)<=semanticBefore&&!HARD.some(k=>m[k]>before[k])&&!SOFT.some(k=>m[k]>before[k]);}
   function alternatives(deck,relocate){
    const out=[];
    for(let i=0;i<deck.length;i++)for(let j=i+1;j<deck.length;j++){
@@ -237,17 +259,17 @@
    for(const p of firstMoves){
     if(!candidateValid(p))continue;
     const m=metric(p,s,links);
-    if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
+    if(admissible(p,m)&&candidateScore(p,m)<candidateScore(best,bestM)){best=p;bestM=m;}
    }
    // An early contrast often needs two moves to retain Passe and fit guards.
    // Search at most 24 near candidates, not an unrestricted factorial search.
    if(best===current&&((s<=5&&(after.missedContrasts||after.prereqOrderInversions))||risk(after)>0)){
     const near=firstMoves.filter(p=>candidateValid(p)).map(p=>({p,m:metric(p,s,links)}))
-     .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||score(a.m)-score(b.m)).slice(0,24);
+     .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||candidateScore(a.p,a.m)-candidateScore(b.p,b.m)).slice(0,24);
     for(const n of near)for(const p of alternatives(n.p,false)){
      if(!candidateValid(p))continue;
      const m=metric(p,s,links);
-     if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
+     if(admissible(p,m)&&candidateScore(p,m)<candidateScore(best,bestM)){best=p;bestM=m;}
     }
    }
    if(best===current)break;
@@ -265,7 +287,7 @@
     if(!remaining.length){
      if(!candidateValid(prefix))return false;
      const m=metric(prefix,s,links);
-     if(admissible(prefix,m)&&score(m)<score(after)&&risk(m)===0){
+     if(admissible(prefix,m)&&candidateScore(prefix,m)<candidateScore(current,after)&&risk(m)===0){
       current=prefix.slice();after=m;return true;
      }
      return false;
@@ -293,7 +315,7 @@
   // Early lessons: a bounded beam can recover useful combinations of moves
   // which a greedy pass cannot reach. Only the final permutation is eligible,
   // and every original HARD/SOFT bound still applies. No ID-specific rules.
-  if(s<=20&&f.length===10&&(after.prereqOrderInversions||after.largeJumps||after.missedContrasts)){
+  if(s<=20&&f.length===10&&(after.prereqOrderInversions||after.largeJumps||after.missedContrasts||transitionCost(current))){
    const seen=new Set([current.map(x=>x.id).join('|')]);
    let frontier=[{p:current,m:after}];
    for(let depth=0;depth<3;depth++){
@@ -302,17 +324,17 @@
      if(!candidateValid(p))continue;
      const key=p.map(x=>x.id).join('|');if(seen.has(key))continue;seen.add(key);
      const m=metric(p,s,links);
-     if(admissible(p,m)&&score(m)<score(after)){current=p;after=m;}
+     if(admissible(p,m)&&candidateScore(p,m)<candidateScore(current,after)){current=p;after=m;}
      const excess=[...HARD,...SOFT].reduce((v,k)=>v+Math.max(0,m[k]-before[k]),0);
      next.push({p,m,key,excess});
     }
-    next.sort((a,b)=>a.excess-b.excess||score(a.m)-score(b.m)||(a.key<b.key?-1:a.key>b.key?1:0));
-    frontier=next.slice(0,8);if(!frontier.length||!(after.prereqOrderInversions||after.largeJumps||after.missedContrasts))break;
+    next.sort((a,b)=>a.excess-b.excess||candidateScore(a.p,a.m)-candidateScore(b.p,b.m)||(a.key<b.key?-1:a.key>b.key?1:0));
+    frontier=next.slice(0,8);if(!frontier.length||!(after.prereqOrderInversions||after.largeJumps||after.missedContrasts||transitionCost(current)))break;
    }
   }
   const prior=priorConcepts(ctx);
   return {ids:current.map(x=>x.id),reasons:explain(current,links,prior),changed:current!==f,
-   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links,prior),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes};
+   status:current===f?'historical-optimal-or-no-safe-swap':'improved',beforeReasons:explain(f,links,prior),before,after,contrastPairs:links,scoreBefore:score(before),scoreAfter:score(after),rescueNodes,...(groups.length?{semanticBefore,semanticAfter:transitionCost(current)}:{})};
  }
  return Object.freeze({schema,order,decisionPattern,annotateSelectionRole,HARD:Object.freeze(HARD),SOFT:Object.freeze(SOFT),weights:Object.freeze(weights)});
 });
