@@ -1,6 +1,6 @@
 {
   "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-  "prerequisites": 102,
+  "prerequisites": 108,
   "prerequisitesSkipped": [
     {
       "id": "V1-M4-006",
@@ -2077,5 +2077,17 @@
     "Les signatures élargies sont des candidats, pas des doublons sémantiques certifiés.",
     "S30 rencontre non activée; aucun moteur optimisé, aucun ID supprimé.",
     "Recette native à exécuter."
-  ]
+  ],
+  "followup": {
+    "nativeFailure": "advanced SEF-V484-011",
+    "fixed": [
+      "SEF-V484-011",
+      "SEF-V484-012",
+      "SEF-Q400-B-084",
+      "SEF-Q685-B-083",
+      "SEF-Q685-B-157",
+      "SEF-Q685-B-158"
+    ],
+    "reason": "Niveau 4 : même verrou que les suites Drury avancées SEF-L01-F-03 et F-06 ; stage 3, minSession 30, Drury initié et 2 expositions de la réponse."
+  }
 }
