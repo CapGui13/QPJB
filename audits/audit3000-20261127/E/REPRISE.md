@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Dix passes de 40 terminées (400/540). SHA avant passe 10 : b561e6255b1dab25dcac761da6528eff7d823adf. Dernier ID SEF-Q400-D-051; prochain ID SEF-Q400-D-052. {"VALIDE":116,"RECLASSER_REFORMULER":260,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":24}. Corrections : 245. Prérequis : 34. Réservoir : 101.
+Onze passes de 40 terminées (440/540). SHA avant passe 11 : 700bc141d18b81307fd7f2614d9542814a5b77ba. Dernier ID SEF-Q685-C-072; prochain ID SEF-Q685-C-088. {"VALIDE":120,"RECLASSER_REFORMULER":293,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":27}. Corrections : 281. Prérequis : 39. Réservoir : 101.
 
-## IDs restants (140)
-- SEF-Q400-D-052 — rubensohl.init
-- SEF-Q400-D-053 — rubensohl.naturel
-- SEF-Q400-D-054 — rubensohl.init
-- SEF-Q400-D-055 — rubensohl.init
-- SEF-Q400-D-056 — rubensohl.init
-- SEF-Q400-D-057 — rubensohl.reponse
-- SEF-Q400-D-058 — rubensohl.reponse
-- SEF-Q400-D-059 — rubensohl.reponse
-- SEF-Q400-D-060 — rubensohl.suite
-- SEF-Q400-D-061 — michaels.intervention
-- SEF-Q400-D-062 — michaels.intervention
-- SEF-Q400-D-063 — michaels.intervention
-- SEF-Q400-D-064 — michaels.choix
-- SEF-Q400-D-065 — michaels.intervention
-- SEF-Q400-D-066 — michaels.intervention
-- SEF-Q400-D-067 — michaels.reponse
-- SEF-Q400-D-068 — michaels.reponse
-- SEF-Q400-D-069 — michaels.defense
-- SEF-Q400-D-070 — michaels.defense
-- SEF-Q685-C-052 — apres_inter.base
-- SEF-Q685-C-053 — apres_inter.base
-- SEF-Q685-C-054 — apres_inter.base
-- SEF-Q685-C-055 — apres_inter.base
-- SEF-Q685-C-056 — apres_inter.base
-- SEF-Q685-C-057 — apres_inter.base
-- SEF-Q685-C-058 — apres_inter.base
-- SEF-Q685-C-059 — apres_inter.base
-- SEF-Q685-C-060 — apres_inter.base
-- SEF-Q685-C-061 — apres_inter.base
-- SEF-Q685-C-062 — competitif.spoutnik
-- SEF-Q685-C-063 — competitif.spoutnik
-- SEF-Q685-C-064 — competitif.spoutnik
-- SEF-Q685-C-065 — competitif.spoutnik
-- SEF-Q685-C-066 — competitif.spoutnik
-- SEF-Q685-C-067 — competitif.spoutnik
-- SEF-Q685-C-068 — red.competitif
-- SEF-Q685-C-069 — red.competitif
-- SEF-Q685-C-070 — red.competitif
-- SEF-Q685-C-071 — red.competitif
-- SEF-Q685-C-072 — red.competitif
+## IDs restants (100)
 - SEF-Q685-C-088 — apres_inter.base
 - SEF-Q685-C-089 — apres_inter.base
 - SEF-Q685-C-090 — apres_inter.base
@@ -146,4 +106,4 @@ Dix passes de 40 terminées (400/540). SHA avant passe 10 : b561e6255b1dab25dcac
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 400 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 440 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
