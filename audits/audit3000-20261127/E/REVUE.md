@@ -90,3 +90,21 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ``
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 4 — cumul actualisé
+
+160/540 verdicts individuels, 380 restants. {"VALIDE":81,"RECLASSER_REFORMULER":72,"ARBITRAGE":7}. 56 QCM complets corrigés, 12 modifications prérequis, 31 entrées réservoir.
+- V473-006 à 010 : retirer les solutions prémâchées et grouper les trois soutiens après couleur en S25 pour contraste. V477 : distinguer préférence économique, saut constructif et changement de palier imposé par intervention. S46 reçoit quelques cas de transfert, pas de groupe 3♦/3♠ de préférence identifié.
+- V478-002/005 : loi des atouts = repère, pas obligation ; 006/008 arbitrages compétitifs (vulnérabilité, risque de chute, choix non unique). V479 : séparer réponse faible, relais et redemande; V479-004/008 accord positif ou passe-ou-corrige atypique à arbitrer, pas règle SEF universelle.
+- Contrôles de cohérence exécutés dans le connecteur sur les nouveaux cas et tous les patches (mains, rang simple des choix, choix uniques, groupes). Suites locales non exécutées. 
+```json
+{
+  "verdicts": 160,
+  "idsUniques": 160,
+  "corrections": 56,
+  "correctionsInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
