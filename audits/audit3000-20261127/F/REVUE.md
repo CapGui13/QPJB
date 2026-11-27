@@ -1,6 +1,6 @@
-# AUDIT3000-F — revue partielle, passes 1–10
+# AUDIT3000-F — revue partielle, passes 1–11
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 IDs du lot, 3000 catalogue. 400/436 relus individuellement, verdicts provisoires {"VALIDE":194,"ARBITRAGE":7,"RECLASSER_REFORMULER":199}, 198 corrections complètes, 3 ajouts proposés aux groupes, 5 modifications de prérequis. Aucun fichier commun modifié.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 IDs du lot, 3000 catalogue. 436/436 relus individuellement, verdicts {"VALIDE":218,"ARBITRAGE":7,"RECLASSER_REFORMULER":211}, 210 corrections complètes, 3 ajouts proposés aux groupes, 5 modifications de prérequis. Aucun fichier commun modifié.
 
 ## Anomalies et décisions
 - Passe 1 : relais donné dans l'énoncé ; préciser troisième couleur forcing un tour, neutraliser Splinters ; correction de vigilance V45-015 (As de Trèfle détenu). Quatrième 1♠ économique V45-017 : arbitrage sur la lecture SEF 2024 p.53 vs traitement catalogue.
@@ -13,9 +13,10 @@ Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 I
 - Passe 8 : motifs de difficulté incohérents dans Q400-D-032/033/035/036/037/071/080 ; correction du prérequis 1SA de D-071. D-076 : préciser déni du contrôle sauté. D-084 et D-093 : retirer indices. Candidats redondants Q400-D-030/092 affectés aux séances, préserver ces exemplaires et arbitrer historiques. Aucun changement de réponse ou de main.
 - Passe 9 : Q685-D-035 corrige une erreur de déduction (Roi de Carreau du répondant exclut une mineure maîtresse Carreau chez l'ouvreur ; 4♣ demeure correct). D-001/011/012 corrigent explications de distracteurs absents ; D-027/028 motifs de difficulté erronés. Neutraliser les indices de soutien, arrêt et zone. Aucun changement de réponse ou de main.
 - Passe 10 : Blackwood, contrôles sautés et couverture, Splinters et quantitatif ; clarification des objectifs des deux 4♥ avec trois contrôles, définition exacte des clés.
-- 136 IDs sans groupe direct ; pas de réintégration de masse. Signatures proches dans les 400 : [["SEF-V45-011",["SEF-Q400-D-030"]],["SEF-C2-010",["SEF-Q400-D-092"]],["SEF-V475-002",["V2-M6-015"]],["SEF-V486-030",["V2-M6-029"]],["SEF-L32-005",["V2-M6-041"]],["V2-M6-015",["SEF-V475-002"]],["V2-M6-029",["SEF-V486-030"]],["V2-M6-041",["SEF-L32-005"]],["SEF-Q400-D-030",["SEF-V45-011"]],["SEF-Q400-D-092",["SEF-C2-010"]]] ; candidats de redondance, non arbitrage sémantique exhaustif.
+- Passe 11 : motifs erronés de difficulté (troisième/quatrième, zones H/HL), énoncés neutralisés, distracteurs du Gambling huitième remplacés.
+- 136 IDs sans groupe direct ; pas de réintégration de masse. Signatures proches dans les 436 : [["SEF-V45-011",["SEF-Q400-D-030"]],["SEF-C2-010",["SEF-Q400-D-092"]],["SEF-V475-002",["V2-M6-015"]],["SEF-V486-030",["V2-M6-029"]],["SEF-L32-005",["V2-M6-041"]],["V2-M6-015",["SEF-V475-002"]],["V2-M6-029",["SEF-V486-030"]],["V2-M6-041",["SEF-L32-005"]],["SEF-Q400-D-030",["SEF-V45-011"]],["SEF-Q400-D-092",["SEF-C2-010"]]] ; candidats de redondance, non arbitrage sémantique exhaustif.
 
 ## Tests réellement exécutés
-JS sur les 436 de la base : 13 cartes, H, forme, rangs uniques par couleur, quatre choix distincts et réponse incluse, minSession des groupes directs ; zéro anomalie. 3000 IDs catalogue uniques, correspondance périmètre. Après passe 10 : 400 verdicts uniques exactement préfixe du périmètre ; corrections rattachées, uniques, groupes proposés existants. Pas de tests Node du dépôt exécutés ni de certification SEF exhaustive ; contrôle de légalité complet et comparaison sémantique globale à finir. Sources dans verdicts. PR brouillon #565.
+JS sur les 436 de la base : 13 cartes, H, forme, rangs uniques par couleur, quatre choix distincts et réponse incluse, minSession des groupes directs ; zéro anomalie. 3000 IDs catalogue uniques, correspondance périmètre. Après passe 11 : 436 verdicts uniques exactement préfixe du périmètre ; corrections rattachées, uniques, groupes proposés existants. Pas de tests Node du dépôt exécutés ni de certification SEF exhaustive ; contrôle de légalité complet et comparaison sémantique globale à finir. Sources dans verdicts. PR brouillon #565.
 
-INCOMPLET : 36 IDs sans verdict. Ne pas intégrer les patches avant revue coordinateur. Aucune fusion.
+INCOMPLET : 0 ID sans verdict. Ne pas intégrer les patches avant revue coordinateur. Aucune fusion.
