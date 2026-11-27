@@ -31874,8 +31874,8 @@
   },
   {
     "id": "SEF-Q400-A-053",
-    "verdict": "VALIDE",
-    "justification": "13 H 3334 trois ♠ : 1SA, même séquence et forme que 051, seul H change à l'intérieur de zone ; redondance forte.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H 3334 trois ♠ : 1SA, même séquence et forme que 051, seul H change à l'intérieur de zone ; redondance forte. Passe 17 : Même première zone régulière que 044-1 et Q400-A-052 ; garder S56.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -31888,7 +31888,6 @@
       56
     ],
     "seancesProposees": [
-      5,
       56
     ],
     "groupesInitiaux": [
@@ -31905,12 +31904,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 5,
-        "decision": "1SA 12–14 H sans fit connu",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 56,
         "decision": "red.base : 1SA",
@@ -31991,10 +31984,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 5,
+            "decision": "1SA 12–14 H sans fit connu",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Même première zone régulière que 044-1 et Q400-A-052 ; garder S56."
+      }
     }
   },
   {
@@ -38741,7 +38746,7 @@
   {
     "id": "SEF-Q685-A-089",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "Arbitrage levé par vérification de la zone 18–23 HL du bicolore cher (FFB et Chailley). 20 HL : 2♥ reste la bonne réponse, pas de bicolore cher à saut. La force supérieure se précise au troisième tour. Les variantes de cette famille ont la même décision ; préserver un cas à 18–19 et un à 20–23 pour contraste ultérieur.",
+    "justification": "Arbitrage levé par vérification de la zone 18–23 HL du bicolore cher (FFB et Chailley). 20 HL : 2♥ reste la bonne réponse, pas de bicolore cher à saut. La force supérieure se précise au troisième tour. Les variantes de cette famille ont la même décision ; préserver un cas à 18–19 et un à 20–23 pour contraste ultérieur. Passe 17 : 20 HL avec chicane, proche 088 à 21 HL et 096 à 20 HL ; garder 089 en S56.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -38756,7 +38761,6 @@
       56
     ],
     "seancesProposees": [
-      20,
       56
     ],
     "groupesInitiaux": [
@@ -38773,12 +38777,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 20,
-        "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 56,
         "decision": "red.bicolore_cher : 2♥",
@@ -38854,18 +38852,30 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_explain",
       "avant": "18 H, distribution 0–4–6–3. 20 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois.",
-      "apres": "Avec 18 H et 2 point(s) de longueur, vous avez 20 HL. 2♥ est un bicolore cher, forcing et auto-forcing, dans la zone 18–23 HL. Même au-dessus de 19 HL, on annonce le bicolore cher sans saut ; l'ouvreur précisera sa force supérieure au tour suivant. Le bicolore économique à saut est une autre situation."
+      "apres": "Avec 18 H et 2 point(s) de longueur, vous avez 20 HL. 2♥ est un bicolore cher, forcing et auto-forcing, dans la zone 18–23 HL. Même au-dessus de 19 HL, on annonce le bicolore cher sans saut ; l'ouvreur précisera sa force supérieure au tour suivant. Le bicolore économique à saut est une autre situation.",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 20,
+            "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "20 HL avec chicane, proche 088 à 21 HL et 096 à 20 HL ; garder 089 en S56."
+      }
     }
   },
   {
     "id": "SEF-Q685-A-090",
-    "verdict": "VALIDE",
-    "justification": "7 H cinq ♥ quatre ♦ =8 HL : 2♥ faible non forcing sur 1SA ; même forme que 085, force 1 H de plus sans changement de seuil.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H cinq ♥ quatre ♦ =8 HL : 2♥ faible non forcing sur 1SA ; même forme que 085, force 1 H de plus sans changement de seuil. Passe 17 : Même 5♥4♦ et décision que 085/094 ; préserver les bornes 6 et 8 H en apprentissage. Passe 17 : Même raison ; conserver 090 en S64.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -38879,8 +38889,6 @@
       64
     ],
     "seancesProposees": [
-      11,
-      56,
       64
     ],
     "groupesInitiaux": [
@@ -38902,17 +38910,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 11,
-        "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
-        "role": "objectif",
-        "phase": "apres_exposition"
-      },
-      {
-        "session": 56,
-        "decision": "second.base : 2♥",
-        "role": "réinvestissement"
-      },
       {
         "session": 64,
         "decision": "second.base : 2♥",
@@ -38993,10 +38990,27 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 11,
+            "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          },
+          {
+            "session": 56,
+            "decision": "second.base : 2♥",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même 5♥4♦ et décision que 085/094 ; préserver les bornes 6 et 8 H en apprentissage. Même raison ; conserver 090 en S64."
+      }
     }
   },
   {
@@ -39121,8 +39135,8 @@
   },
   {
     "id": "SEF-Q685-A-092",
-    "verdict": "VALIDE",
-    "justification": "13 H six ♦ quatre ♥ =15 HL : 2♦, même forme que 091 ; singleton As plutôt qu'autre honneur, décision identique.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H six ♦ quatre ♥ =15 HL : 2♦, même forme que 091 ; singleton As plutôt qu'autre honneur, décision identique. Passe 17 : 15 HL, même 6♦4♥ et répétition que 091 à 14 HL ; garder 092 en S56.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -39135,7 +39149,6 @@
       56
     ],
     "seancesProposees": [
-      20,
       56
     ],
     "groupesInitiaux": [
@@ -39152,12 +39165,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 20,
-        "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 56,
         "decision": "red.bicolore_cher : 2♦",
@@ -39233,10 +39240,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 20,
+            "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "15 HL, même 6♦4♥ et répétition que 091 à 14 HL ; garder 092 en S56."
+      }
     }
   },
   {
@@ -39498,7 +39517,7 @@
   {
     "id": "SEF-Q685-A-095",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "17 H six ♣ quatre ♥ =19 HL : 2♥ cher, retour 3♣ ; S20/S56. Préciser forcing et auto-forcing.",
+    "justification": "17 H six ♣ quatre ♥ =19 HL : 2♥ cher, retour 3♣ ; S20/S56. Préciser forcing et auto-forcing. Passe 17 : 19 HL 6♣4♥, permutation de 086 ; garder 095 en S56.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -39511,7 +39530,6 @@
       56
     ],
     "seancesProposees": [
-      20,
       56
     ],
     "groupesInitiaux": [
@@ -39528,12 +39546,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 20,
-        "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 56,
         "decision": "red.bicolore_cher : 2♥",
@@ -39608,7 +39620,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_qcm",
@@ -39617,6 +39629,18 @@
       },
       "apres": {
         "explain": "17 H et six Trèfles donnent 19 HL. Avec quatre Cœurs, 2♥ est un bicolore cher : le partenaire doit revenir à 3♣ s'il préfère les Trèfles. 2♥ est forcing et auto-forcing ; 2♣ ou 3♣ cacherait les Cœurs et 2SA décrirait une main régulière."
+      },
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 20,
+            "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "19 HL 6♣4♥, permutation de 086 ; garder 095 en S56."
       }
     }
   },
@@ -40361,8 +40385,8 @@
   },
   {
     "id": "SEF-Q685-A-102",
-    "verdict": "VALIDE",
-    "justification": "12 H cinq ♦ 5332 : même forme exacte que 100, un H de moins, aucune différence de règle ; redondance forte.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H cinq ♦ 5332 : même forme exacte que 100, un H de moins, aucune différence de règle ; redondance forte. Passe 17 : Même mineure cinquième 12–13 H que Q685-A-100 ; garder 102 en S56.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -40375,7 +40399,6 @@
       56
     ],
     "seancesProposees": [
-      5,
       56
     ],
     "groupesInitiaux": [
@@ -40392,12 +40415,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 5,
-        "decision": "1SA 12–14 H sans fit connu",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 56,
         "decision": "red.base : 1SA",
@@ -40477,10 +40494,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 5,
+            "decision": "1SA 12–14 H sans fit connu",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Même mineure cinquième 12–13 H que Q685-A-100 ; garder 102 en S56."
+      }
     }
   },
   {
@@ -42524,8 +42553,8 @@
   },
   {
     "id": "SEF-Q685-A-119",
-    "verdict": "VALIDE",
-    "justification": "7 H cinq ♠ (8 HL) après 2♦ cher : 2♠ forcing un tour, pas FM ; variante 115 à 6 H, S20/S56.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H cinq ♠ (8 HL) après 2♦ cher : 2♠ forcing un tour, pas FM ; variante 115 à 6 H, S20/S56. Passe 17 : 7 H intermédiaire entre 115 et 123, même répétition cinq Piques ; garder 119 en S20.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -42539,8 +42568,7 @@
       56
     ],
     "seancesProposees": [
-      20,
-      56
+      20
     ],
     "groupesInitiaux": [
       {
@@ -42561,11 +42589,6 @@
         "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 56,
-        "decision": "second.bicolore_cher : 2♠",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -42639,10 +42662,21 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 56,
+            "decision": "second.bicolore_cher : 2♠",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "7 H intermédiaire entre 115 et 123, même répétition cinq Piques ; garder 119 en S20."
+      }
     }
   },
   {
@@ -44201,7 +44235,7 @@
   {
     "id": "SEF-Q685-A-133",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "9 H trois ♥, singleton Roi ♠ et cinq ♣ : 12 HLD bruts, décote honneur court possible, 2SA reste plausible mais pas '12 HLD' absolus. Non passé à préciser.",
+    "justification": "9 H trois ♥, singleton Roi ♠ et cinq ♣ : 12 HLD bruts, décote honneur court possible, 2SA reste plausible mais pas '12 HLD' absolus. Non passé à préciser. Passe 17 : Singleton Roi, 12 HLD brut ; conserver variante d'honneur court en S58, 131/134 en S12.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -44216,7 +44250,6 @@
       58
     ],
     "seancesProposees": [
-      12,
       58
     ],
     "groupesInitiaux": [
@@ -44233,12 +44266,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 12,
-        "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 58,
         "decision": "fit.2sa — réponse du partenaire : 2SA",
@@ -44323,7 +44350,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_qcm",
@@ -44334,13 +44361,25 @@
       "apres": {
         "context": "Votre partenaire ouvre de 1♥ en première position, les adversaires passent et vous n'avez pas encore parlé. En appliquant le calcul HLD brut sans décote éventuelle d'honneur court, quelle est votre réponse selon le SEF ?",
         "explain": "Vous possédez exactement trois Cœurs, donc un fit au moins huitième. La grille demandée donne 12 HLD (9 H + 1 L + 2 D), dans la zone 11–12 HLD du 2SA fitté. 2SA est une invitation avec trois atouts ; le soutien à 3♥ demanderait quatre atouts dans cette zone. En pratique, la valeur d'un honneur court doit être appréciée."
+      },
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 12,
+            "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Singleton Roi, 12 HLD brut ; conserver variante d'honneur court en S58, 131/134 en S12."
       }
     }
   },
   {
     "id": "SEF-Q685-A-134",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "9 H trois ♥, singleton Valet ♠ et cinq ♦ : 12 HLD bruts, même réserve sur honneur court, 2SA après décote raisonnable. Non passé à préciser.",
+    "justification": "9 H trois ♥, singleton Valet ♠ et cinq ♦ : 12 HLD bruts, même réserve sur honneur court, 2SA après décote raisonnable. Non passé à préciser. Passe 17 : Singleton Valet à 12 HLD brut ; préserver cette variante en S12, 133 et 139 en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -44355,8 +44394,7 @@
       58
     ],
     "seancesProposees": [
-      12,
-      58
+      12
     ],
     "groupesInitiaux": [
       {
@@ -44377,11 +44415,6 @@
         "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
         "role": "objectif",
         "phase": "initial"
-      },
-      {
-        "session": 58,
-        "decision": "fit.2sa — réponse du partenaire : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -44462,7 +44495,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_qcm",
@@ -44473,6 +44506,17 @@
       "apres": {
         "context": "Votre partenaire ouvre de 1♥ en première position, les adversaires passent et vous n'avez pas encore parlé. En appliquant le calcul HLD brut sans décote éventuelle d'honneur court, quelle est votre réponse selon le SEF ?",
         "explain": "Vous possédez exactement trois Cœurs, donc un fit au moins huitième. La grille demandée donne 12 HLD (9 H + 1 L + 2 D), dans la zone 11–12 HLD du 2SA fitté. 2SA est une invitation avec trois atouts ; le soutien à 3♥ demanderait quatre atouts dans cette zone. En pratique, la valeur d'un honneur court doit être appréciée."
+      },
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "fit.2sa — réponse du partenaire : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Singleton Valet à 12 HLD brut ; préserver cette variante en S12, 133 et 139 en S58."
       }
     }
   },
@@ -44618,7 +44662,7 @@
   {
     "id": "SEF-Q685-A-136",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "10 H trois ♠, doubleton ♣ bas et cinq ♦ : 12 HLD (10+1+1), 2SA, bon contraste H/HLD. Non passé à préciser.",
+    "justification": "10 H trois ♠, doubleton ♣ bas et cinq ♦ : 12 HLD (10+1+1), 2SA, bon contraste H/HLD. Non passé à préciser. Passe 17 : 12 HLD avec doubleton, complément de 135 à 11 HLD ; conserver 136 en S12.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -44633,8 +44677,7 @@
       58
     ],
     "seancesProposees": [
-      12,
-      58
+      12
     ],
     "groupesInitiaux": [
       {
@@ -44655,11 +44698,6 @@
         "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
         "role": "objectif",
         "phase": "initial"
-      },
-      {
-        "session": 58,
-        "decision": "fit.2sa — réponse du partenaire : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -44740,7 +44778,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_qcm",
@@ -44751,6 +44789,17 @@
       "apres": {
         "context": "Votre partenaire ouvre de 1♠ en première position, les adversaires passent et vous n'avez pas encore parlé. En appliquant le calcul HLD brut sans décote éventuelle d'honneur court, quelle est votre réponse selon le SEF ?",
         "explain": "Vous possédez exactement trois Piques, donc un fit au moins huitième. La grille demandée donne 12 HLD (10 H + 1 L + 1 D), dans la zone 11–12 HLD du 2SA fitté. 2SA est une invitation avec trois atouts ; le soutien à 3♠ demanderait quatre atouts dans cette zone. En pratique, la valeur d'un honneur court doit être appréciée."
+      },
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "fit.2sa — réponse du partenaire : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "12 HLD avec doubleton, complément de 135 à 11 HLD ; conserver 136 en S12."
       }
     }
   },
@@ -45035,7 +45084,7 @@
   {
     "id": "SEF-Q685-A-139",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "9 H trois ♠, singleton Dame ♥ et cinq ♣ : 12 HLD bruts, décote éventuelle ; préciser grille, non passé.",
+    "justification": "9 H trois ♠, singleton Dame ♥ et cinq ♣ : 12 HLD bruts, décote éventuelle ; préciser grille, non passé. Passe 17 : Singleton Dame 12 HLD brut, autre majeure ; garder S58 et 134 en S12.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -45050,7 +45099,6 @@
       58
     ],
     "seancesProposees": [
-      12,
       58
     ],
     "groupesInitiaux": [
@@ -45067,12 +45115,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 12,
-        "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 58,
         "decision": "fit.2sa — réponse du partenaire : 2SA",
@@ -45157,7 +45199,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
       "type": "corriger_qcm",
@@ -45168,6 +45210,18 @@
       "apres": {
         "context": "Votre partenaire ouvre de 1♠ en première position, les adversaires passent et vous n'avez pas encore parlé. En appliquant le calcul HLD brut sans décote éventuelle d'honneur court, quelle est votre réponse selon le SEF ?",
         "explain": "Vous possédez exactement trois Piques, donc un fit au moins huitième. La grille demandée donne 12 HLD (9 H + 1 L + 2 D), dans la zone 11–12 HLD du 2SA fitté. 2SA est une invitation avec trois atouts ; le soutien à 3♠ demanderait quatre atouts dans cette zone. En pratique, la valeur d'un honneur court doit être appréciée."
+      },
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 12,
+            "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Singleton Dame 12 HLD brut, autre majeure ; garder S58 et 134 en S12."
       }
     }
   },
@@ -46662,8 +46716,8 @@
   },
   {
     "id": "SEF-Q685-A-153",
-    "verdict": "VALIDE",
-    "justification": "15 H cinq ♠ 5332 : 2SA, même règle 152, un H de moins ; S9/S58.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H cinq ♠ 5332 : 2SA, même règle 152, un H de moins ; S9/S58. Passe 17 : Même essai général que 156 à 15 H ; garder 153 en S9.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -46676,8 +46730,7 @@
       58
     ],
     "seancesProposees": [
-      9,
-      58
+      9
     ],
     "groupesInitiaux": [
       {
@@ -46698,11 +46751,6 @@
         "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -46776,16 +46824,27 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même essai général que 156 à 15 H ; garder 153 en S9."
+      }
     }
   },
   {
     "id": "SEF-Q685-A-154",
-    "verdict": "VALIDE",
-    "justification": "16 H cinq ♠ sans honneur 5332 : 2SA, qualité d'atout faible ; proche 152, plutôt essai que conclusion. S9/S58.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H cinq ♠ sans honneur 5332 : 2SA, qualité d'atout faible ; proche 152, plutôt essai que conclusion. S9/S58. Passe 17 : Atout très faible, 16 H comme 152 ; garder la variante faible en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -46798,7 +46857,6 @@
       58
     ],
     "seancesProposees": [
-      9,
       58
     ],
     "groupesInitiaux": [
@@ -46815,12 +46873,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 9,
-        "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
-        "role": "objectif",
-        "phase": "apres_exposition"
-      },
       {
         "session": 58,
         "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
@@ -46898,10 +46950,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 9,
+            "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "justification": "Atout très faible, 16 H comme 152 ; garder la variante faible en S58."
+      }
     }
   },
   {
@@ -47033,8 +47097,8 @@
   },
   {
     "id": "SEF-Q685-A-156",
-    "verdict": "VALIDE",
-    "justification": "15 H cinq ♥ 5332 : 2SA essai global, S9/S58, miroir 153.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H cinq ♥ 5332 : 2SA essai global, S9/S58, miroir 153. Passe 17 : Même 15 H sans annexe quatrième que 153 ; conserver 156 en S9 et 154 en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47047,8 +47111,7 @@
       58
     ],
     "seancesProposees": [
-      9,
-      58
+      9
     ],
     "groupesInitiaux": [
       {
@@ -47069,11 +47132,6 @@
         "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -47147,10 +47205,21 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé P17 ; autre groupe explicite conservé."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même 15 H sans annexe quatrième que 153 ; conserver 156 en S9 et 154 en S58."
+      }
     }
   },
   {
