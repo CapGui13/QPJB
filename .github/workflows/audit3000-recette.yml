@@ -27,3 +27,27 @@ jobs:
       - run: node tests/quizz-catalogue-live.cjs
       - run: node tests/programme65-recette.cjs
       - run: node --check quizz-parcours.js
+
+      - name: Compare audit with the immediate 3000-QCM baseline
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-pair intermediaire 47 20 > audit-pair.json
+          status=$?
+          if [ -s audit-pair.json ]; then node -e 'const r=require("./audit-pair.json").result; console.log(JSON.stringify({comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review,commonTransfer:x.commonTransfer?.delta})),beforeViolations:r.before.violations,afterViolations:r.after.violations,crossResume:r.crossResume},null,2))'; fi
+          exit "$status"
+      - name: Diagnostic historique du catalogue pré-audit
+        if: always()
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-reference-pair intermediaire 47 20 > audit-reference-pair.json
+          status=$?
+          if [ -s audit-reference-pair.json ]; then node -e 'const r=require("./audit-reference-pair.json").result; console.log(JSON.stringify({comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review})),beforeViolations:r.before.violations,afterViolations:r.after.violations},null,2))'; fi
+          # 2 means the old historical benchmark already required review on main, not a new audit result.
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then exit "$status"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit3000-comparaisons
+          path: |
+            audit-pair.json
+            audit-reference-pair.json

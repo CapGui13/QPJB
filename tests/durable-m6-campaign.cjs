@@ -62,7 +62,8 @@ function referenceRules(sources,diagnosticSources){
 // historical guard. Only the exact before/after objects in the immutable
 // audited manifest are admissible. Future undeclared changes still fail.
 const AUDIT_BASE='ccd8f20811b9531bbfccb8352ec60953dd7d07cb';
-const AUDIT_REVISION='3de914fad367aa9c7ca67a9e7da4a7c646c4d2b9';
+const AUDIT_REVISION='catalogue:ca71f3c2956260d51eee2908fe0ec9120c47cf3f;metadata:ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
+const AUDIT_CATALOGUE_BLOB='ca71f3c2956260d51eee2908fe0ec9120c47cf3f',AUDIT_METADATA_BLOB='ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
 function verifyAuditRevision(b,c,audit){
  assert(audit.catalogue.base===AUDIT_BASE&&audit.metadata.base===AUDIT_BASE,'Audit manifest provenance');
  const original=new Map(audit.exercises.map(q=>[q.id,q]));
@@ -145,12 +146,16 @@ if(require.main===module){
   return {auditRevision:{
    exercises:data(readGit(AUDIT_BASE,'quizz.html')),
    meta:compile(readGit(AUDIT_BASE,'quizz-prerequis.js'),require),
-   catalogue:JSON.parse(readGit(AUDIT_REVISION,revisionDir+'INTEGRATION-CATALOGUE.json')),
-   metadata:JSON.parse(readGit(AUDIT_REVISION,revisionDir+'INTEGRATION-PREREQUIS.json'))
+   catalogue:JSON.parse(cp.execFileSync('git',['cat-file','blob',AUDIT_CATALOGUE_BLOB],{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024})),
+   metadata:JSON.parse(cp.execFileSync('git',['cat-file','blob',AUDIT_METADATA_BLOB],{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024}))
   }};
  };
+ const auditSources=()=>Object.fromEntries([...new Set([...paths,...readGitTree(AUDIT_BASE)])].map(p=>[p,readGit(AUDIT_BASE,p)]));
+ function readGitTree(ref){return cp.execFileSync('git',['ls-tree','--name-only',ref],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js')}
  let result;
- if(cmd==='baseline')result=run(gitSources,name,seed,h);
+ if(cmd==='audit-pair')result=pair(auditSources(),local(),name,seed,h,auditOptions());
+ else if(cmd==='audit-reference-pair')result=pair(gitSources,auditSources(),name,seed,h);
+ else if(cmd==='baseline')result=run(gitSources,name,seed,h);
  else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h,auditOptions());
  else if(cmd==='fixed')result=run(gitSources,name,seed,h,{model:'fixed'});
  else if(cmd==='sensitivity'||cmd==='sensitivity-pair'){
@@ -167,8 +172,8 @@ if(require.main===module){
  else if(cmd==='size'){
  const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js',...['quizz-durable-m1-adaptation.js','quizz-durable-m1-guard.js','quizz-durable-m2-data.js','quizz-durable-m2-remediation.js','quizz-durable-m3-maitrise.js','quizz-durable-m4-transfert.js','quizz-durable-m5-lecons.js','quizz-durable-integration.js'].filter(p=>fs.existsSync(path.join(root,p)))];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
- }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
+ }else throw Error('Command: baseline|pair|audit-pair|audit-reference-pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));
- const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:cmd==='semantic-pair'?[result.result.before,result.result.after]:[result];
+ const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):['pair','audit-pair','audit-reference-pair'].includes(cmd)?[result.before,result.after]:cmd==='semantic'?[result.result]:cmd==='semantic-pair'?[result.result.before,result.result.after]:[result];
  if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length)||result.result?.comparison?.some(x=>x.review.length)||(Array.isArray(result)&&result.some(x=>x.result?.comparison?.some(y=>y.review.length))))process.exitCode=2;
 }
