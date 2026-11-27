@@ -13,3 +13,5 @@ Passe 11 : 440/543, dernier SEF-Q685-C-007, prochain SEF-Q685-C-008. SHA dernier
 Passe 12 : 480/543, dernier SEF-Q685-C-047, prochain SEF-Q685-C-048. SHA de reprise = commit contenant ce fichier. Contrôles structurels de passe réussis ; tests du dépôt non exécutés.
 
 Passe 13 : 543/543, dernier SEF-Q685-C-165, aucun ID restant. SHA de reprise = commit contenant ce fichier. Contrôles structurels réussis. Restent revue sémantique exhaustive et tests existants du dépôt ; ne pas fusionner. Les arbitrages sont listés dans verdicts.json et REVUE.md.
+
+Contrôle transversal : 543/543 IDs, 273 patches, 49 ajouts ; aucune anomalie de structure ni même main/séquence, 153 paires structurelles de même concept, une quasi-redondance forte V476-009/V2-M4-030 signalée. Aucun workflow ni statut CI au SHA de la passe 13. Restent revue sémantique exhaustive des candidats et tests du dépôt. Voir REVUE.md. SHA de reprise = commit contenant ce fichier.
