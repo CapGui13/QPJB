@@ -8,48 +8,10 @@ Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 2
 
 Passe 10 : 400/543, dernier SEF-Q400-C-032, prochain SEF-Q400-C-033. SHA dernier livrable b19b26229aaa160e22721bbb15c5b2d3f1cd83e9; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
 
-Passe 11 : 440/543, dernier SEF-Q685-C-007, prochain SEF-Q685-C-008. SHA dernier livrable 2813f5ddb451229b189eeb5e1193f392ae59163f; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 103 IDs :
+Passe 11 : 440/543, dernier SEF-Q685-C-007, prochain SEF-Q685-C-008. SHA dernier livrable 2813f5ddb451229b189eeb5e1193f392ae59163f; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
 
-- SEF-Q685-C-008
-- SEF-Q685-C-009
-- SEF-Q685-C-010
-- SEF-Q685-C-011
-- SEF-Q685-C-012
-- SEF-Q685-C-013
-- SEF-Q685-C-014
-- SEF-Q685-C-015
-- SEF-Q685-C-016
-- SEF-Q685-C-017
-- SEF-Q685-C-018
-- SEF-Q685-C-019
-- SEF-Q685-C-020
-- SEF-Q685-C-021
-- SEF-Q685-C-022
-- SEF-Q685-C-023
-- SEF-Q685-C-024
-- SEF-Q685-C-025
-- SEF-Q685-C-026
-- SEF-Q685-C-027
-- SEF-Q685-C-028
-- SEF-Q685-C-029
-- SEF-Q685-C-030
-- SEF-Q685-C-031
-- SEF-Q685-C-032
-- SEF-Q685-C-033
-- SEF-Q685-C-034
-- SEF-Q685-C-035
-- SEF-Q685-C-036
-- SEF-Q685-C-037
-- SEF-Q685-C-038
-- SEF-Q685-C-039
-- SEF-Q685-C-040
-- SEF-Q685-C-041
-- SEF-Q685-C-042
-- SEF-Q685-C-043
-- SEF-Q685-C-044
-- SEF-Q685-C-045
-- SEF-Q685-C-046
-- SEF-Q685-C-047
+Passe 12 : 480/543, dernier SEF-Q685-C-047, prochain SEF-Q685-C-048. SHA de reprise = commit contenant ce fichier. Contrôles structurels de passe réussis ; tests du dépôt non exécutés. Restent 63 IDs :
+
 - SEF-Q685-C-048
 - SEF-Q685-C-049
 - SEF-Q685-C-050
