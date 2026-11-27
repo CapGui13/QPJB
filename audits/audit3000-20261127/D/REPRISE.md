@@ -1,0 +1,25 @@
+# Reprise AUDIT3000-D — INCOMPLET
+
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543, dernier SEF-V476-010, SHA 83c00c74e14d3a3759abb42887a3ba2abb7fad74. Passe 7 : 280/543 cumulés, dernier SEF-L18-002, prochain SEF-L18-003. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 280 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés.
+
+Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c40cd7b33f9ce471f32ac2383cfc0f15d7d0a125; SHA de cette reprise = commit contenant ce fichier. Contrôles de passe : 40 mains H/forme/13 cartes, ordre des enchères et 4 options, cohérence des corrections, couverture 543, unicité verdicts/patches, vrais groupes et minSession pour les ajouts. Tests du dépôt non exécutés.
+
+Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 28aa821545323e8f36d5394be307384447054026; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
+
+Passe 10 : 400/543, dernier SEF-Q400-C-032, prochain SEF-Q400-C-033. SHA dernier livrable b19b26229aaa160e22721bbb15c5b2d3f1cd83e9; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
+
+Passe 11 : 440/543, dernier SEF-Q685-C-007, prochain SEF-Q685-C-008. SHA dernier livrable 2813f5ddb451229b189eeb5e1193f392ae59163f; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
+
+Passe 12 : 480/543, dernier SEF-Q685-C-047, prochain SEF-Q685-C-048. SHA de reprise = commit contenant ce fichier. Contrôles structurels de passe réussis ; tests du dépôt non exécutés.
+
+Passe 13 : 543/543, dernier SEF-Q685-C-165, aucun ID restant. SHA de reprise = commit contenant ce fichier. Contrôles structurels réussis. Restent revue sémantique exhaustive et tests existants du dépôt ; ne pas fusionner. Les arbitrages sont listés dans verdicts.json et REVUE.md.
+
+Contrôle transversal : 543/543 IDs, 273 patches, 49 ajouts ; aucune anomalie de structure ni même main/séquence, 153 paires structurelles de même concept, une quasi-redondance forte V476-009/V2-M4-030 signalée. Aucun workflow ni statut CI au SHA de la passe 13. Restent revue sémantique exhaustive des candidats et tests du dépôt. Voir REVUE.md. SHA de reprise = commit contenant ce fichier.
+
+Recette complémentaire : REDONDANCES.json (153 paires revues, 80 contrastes/bornes, 72 rotations, 1 quasi-redondance), inventaires 135 familles et 134 groupes élargis. Tests existants quizz-prerequis.cjs PASS base et 273 patches virtuels ; qcm685-integration.cjs PASS base intacte, 10480 assertions, exécution V8 avec adaptateurs Git/CommonJS, non Node natif. Aucun ID à reprendre ; restent vérification sémantique exhaustive au-delà des paires structurelles et exécution native des contrôles Python/recette, clone local bloqué DNS, pas de workflow déclenchable. SHA de reprise = commit contenant ce fichier. Aucune fusion.
+
+Reprise complémentaire : 543/543 inchangé, aucun ID restant ; six analogues supplémentaires relus, 159 paires annotées, dont deux quasi-redondances. REDONDANCES.json commit 978a4bd1b6608357bfdee4fafb78811d656ef185. REVUE.md actualisé. Restent tests natifs Python/CI (DNS toujours bloqué) et revue sémantique au-delà des critères sélectifs ; ne pas fusionner. SHA de reprise = commit contenant ce fichier.
+
+
+## Clôture de la reprise longue
+543/543, 274 corrections, 50 propositions de groupe (contrôle strict minSession réussi), 396 paires annotées, une proposition de prérequis. Dernier état consolidé : commit contenant ce fichier. Aucun ID restant; PR #563 reste brouillon. Transfert L27-004, 11 arbitrages, recette native à exécuter par coordinateur via RECETTE_NATIVE.py et revue hors filtre explicitement non exhaustive. Ne pas relancer des micro-passes de criblage à l'identique. Aucun merge.
