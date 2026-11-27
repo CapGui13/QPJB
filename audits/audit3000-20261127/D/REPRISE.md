@@ -1,47 +1,7 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543 cumulés, dernier SEF-V476-010, prochain SEF-V476-011. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 240 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 303 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543, dernier SEF-V476-010, SHA 83c00c74e14d3a3759abb42887a3ba2abb7fad74. Passe 7 : 280/543 cumulés, dernier SEF-L18-002, prochain SEF-L18-003. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 280 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 263 IDs :
 
-- SEF-V476-011
-- SEF-V476-012
-- SEF-V476-013
-- SEF-V476-014
-- SEF-V476-015
-- SEF-V486-001
-- SEF-V486-002
-- SEF-V486-003
-- SEF-V486-004
-- SEF-V486-005
-- SEF-V486-006
-- SEF-V486-011
-- SEF-V486-012
-- SEF-V486-013
-- SEF-V486-014
-- SEF-V486-015
-- SEF-V486-016
-- SEF-V487-001
-- SEF-V487-002
-- SEF-L10-015
-- SEF-L10-018
-- SEF-L08-027
-- SEF-L08-020
-- SEF-L09-023
-- SEF-L10-005
-- SEF-L10-013
-- SEF-L08-021
-- SEF-L08-023
-- SEF-L09-018
-- SEF-L09-019
-- SEF-L10-020
-- SEF-L08-026
-- SEF-L13-011
-- SEF-L13-013
-- SEF-L13-014
-- SEF-L13-015
-- SEF-L15-008
-- SEF-L16-008
-- SEF-L18-001
-- SEF-L18-002
 - SEF-L18-003
 - SEF-L20-004
 - SEF-L20-005
