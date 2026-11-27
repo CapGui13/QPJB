@@ -32,8 +32,9 @@ const cmp=(a,b)=>a<b?-1:a>b?1:0;
 const credit=g=>Array.from({length:6},(_,i)=>Math.max(0,g+i-6)).reduce((a,b)=>a+b,0);
 // One exchange, at most. Debt fairness is by cumulative concept debt with
 // a current-gap floor; not native score, global quota or periodic reminder.
-function exchange(ctx){
+function exchange(ctx,mode='strict'){
  const s=ctx.session,unchanged=null;
+ if(!['strict','recent'].includes(mode))return unchanged;
  if(!Number.isInteger(s)||s<66||s>180||ctx.history?.active||!Array.isArray(ctx.exercises)||!Array.isArray(ctx.deck)||ctx.deck.length!==10||!Array.isArray(ctx.pool)||!ctx.metadataById||!ctx.flagsById)return unchanged;
  const concept=q=>ctx.metadataById[q.id]?.concept,qs=ctx.deck.map(x=>x?.exercise);
  if(!ctx.history||!Array.isArray(ctx.history.journal)||qs.some(q=>!q||!concept(q))||count(qs,q=>q.id).size!==10||count(qs,fam).size!==10)return unchanged;
@@ -52,14 +53,23 @@ function exchange(ctx){
   // Actual recent failures remain the native engine's responsibility.
   for(let i=0;i<qs.length;i++){
    const old=qs[i],d=concept(old),p=prior[i],w=h.concepts.get(d),slot=ctx.deck[i];
-   if(!eligible.has(old.id)||consolidationRisk.has(d)||!w||slot.protected!==false||slot.category!=='maintenance'||p.bad||p.weak||p.due||counts.get(d)<2||
-      w.success<=w.error||w.proofFamilies.size<2||w.proofSessions.size<2||s-w.success>8||
-      q.difficulty!==old.difficulty||f.stage>p.stage||f.novelFamily!==p.novelFamily||
-      ctx.openingPass(q)&&!ctx.openingPass(old))continue;
+   if(!eligible.has(old.id)||consolidationRisk.has(d)||!w||slot.protected!==false||p.bad||p.weak||p.due||
+      w.success<=w.error||w.proofFamilies.size<2||w.proofSessions.size<2||
+      f.stage>p.stage||f.novelFamily!==p.novelFamily||ctx.openingPass(q)&&!ctx.openingPass(old))continue;
+   if(mode==='strict'){
+    if(slot.category!=='maintenance'||counts.get(d)<2||s-w.success>8||q.difficulty!==old.difficulty)continue;
+   }else{
+    // Alternative C2: one native unprotected discovery of an already proved
+    // non-core concept, exercised autonomously in the immediately prior
+    // session. No first exposure, no older obligation, no novelty exception.
+    if(slot.category!=='discovery'||slot.reason!=='nouveau_qcm'||CORE.includes(d)||counts.get(d)!==1||
+       w.last!==w.success||s-w.success!==1||w.proofFamilies.size<3||w.proofSessions.size<3||
+       q.difficulty>old.difficulty)continue;
+   }
    const rest=qs.map((x,j)=>j===i?q:x);
    if(max(count(rest,ctx.bid))>max(bids)||max(count(rest,ctx.context))>max(contexts)||max(count(rest,x=>x.theme))>max(themes))continue;
-   const gain=credit(gap); if(gain<36)continue;
-   choices.push({index:i,id:q.id,oldId:old.id,concept:c,donorConcept:d,gap,familyGap,accumulatedDebt:h.debt.get(c)||0,forecastCredit:gain,donorStillPresent:true,novelFamily:f.novelFamily,reason:'rappel_fondamental_credit_dette'});
+   const donorCost=mode==='recent'?credit(s-w.last):0,gain=credit(gap)-donorCost; if(gain<36)continue;
+   choices.push({index:i,id:q.id,oldId:old.id,concept:c,donorConcept:d,gap,familyGap,accumulatedDebt:h.debt.get(c)||0,forecastCredit:gain,donorCost,donorStillPresent:counts.get(d)>1,novelFamily:f.novelFamily,mode,donorLastSuccess:w.success,donorProofFamilies:w.proofFamilies.size,donorProofSessions:w.proofSessions.size,reason:mode==='recent'?'rappel_fondamental_credit_recent':'rappel_fondamental_credit_dette'});
   }
  }
  choices.sort((a,b)=>b.forecastCredit-a.forecastCredit||b.accumulatedDebt-a.accumulatedDebt||b.familyGap-a.familyGap||cmp(a.id,b.id)||cmp(a.oldId,b.oldId));
