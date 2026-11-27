@@ -39,6 +39,7 @@ async function main(){
    assert(await page.locator('#coherence-study').isVisible(),'Targeted study mounted');
    await page.locator('#coherence-study summary').click();
    const targeted=page.locator('#coherence-study [data-study-list] button');
+   await targeted.first().waitFor({state:'visible'});
    assert.equal(await targeted.count(),4,'S1 four targeted preparations');
    const expected=await page.evaluate(()=>{
     const all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
@@ -107,6 +108,7 @@ async function main(){
    await page.locator('#durable-study').waitFor({state:'visible'});
    const beforeMastery=await snapshot();
    await page.locator('#coherence-study summary').click();
+   await page.locator('#coherence-study [data-study-list] h4').last().waitFor({state:'visible'});
    const headings=await page.locator('#coherence-study [data-study-list] h4').allTextContents();
    assert(headings.includes('Avant la prochaine séance'));
    assert(headings.includes('À revoir après la dernière séance'),'Assisted answer triggers eligible reminder');
