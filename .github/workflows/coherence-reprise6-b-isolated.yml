@@ -1,0 +1,40 @@
+name: QPJB reprise 6 B — recette expérimentale isolée
+on:
+  pull_request:
+    branches: ['coherence-concrete/reprise6-b-m3']
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  longitudinal:
+    if: github.head_ref == 'coherence-concrete/reprise6-b-m3-ci'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: M6 et FNV D — candidat E, référence ordre complet
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          MODE: E
+          HORIZON: 180
+          OUT: reprise6-b-output
+        run: |
+          node tests/coherence-reprise6-b-campaign.cjs
+          node -e "const fs=require('fs'); const s=JSON.parse(fs.readFileSync('reprise6-b-output/'+process.env.PROFILE+'-'+process.env.SEED+'.json')).summary; delete s.D.contrasts; console.log('B_RESULT '+JSON.stringify(s));"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-b-E-${{ matrix.profile }}-${{ matrix.seed }}
+          path: reprise6-b-output/
