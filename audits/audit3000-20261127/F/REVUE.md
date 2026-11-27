@@ -115,3 +115,36 @@ Séquence normalisée (ignore Passes adverses explicites et annotations), répon
 
 ## État
 436/436 verdicts livrés, corrections exploitables, PR brouillon #565. Aucun ID restant à relire dans cette passe. Ne pas intégrer les patches avant revue coordinateur. Contrôles Node et examen sémantique exhaustif non terminés ; pas de prétention à une recette intégrale. Aucune fusion.
+
+
+## Contre-revue de reprise — état actualisé (remplace le bilan chiffré précédent)
+Base inchangée ccd8f20811b9531bbfccb8352ec60953dd7d07cb ; dernier SHA de données b8aaf8c5c1a71ef8c5e1c9b576314b7d33b9440c. Les paragraphes précédents restent le journal de la première passe, et ne décrivent pas les nouveaux totaux.
+
+### Arbitrages
+- SEF-V486-026 et SEF-Q400-D-018 : iBridge, https://dev.ibridge-club.fr/public/fichedetails/571 (développements après la quatrième couleur, soutien différé prioritaire, troisième enchère obligatoire, 2SA mini-maxi 12–14 / 18–19 H). La quatrième couleur est auto-forcing dans ce développement : Passe n'est pas une option. Le cas V486-026 reste à 12 H avec 3SA comme meilleure enchère proposée, sans promettre une manche sur 24 H ; dans Q400-D-018, Roi de Pique remplacé par As de Pique, soit 13 H / 25 H cumulés minimum. Corrigés et contextes modifiés concrètement dans corrections.json ; verdicts RECLASSER_REFORMULER. On conserve les deux niveaux de force et la distinction entre décision limite et seuil de manche atteint. Aucun changement de réponse.
+- SEF-V45-001 : réserve historique sans groupe direct ; ne pas réintroduire au détriment de V44-002. Même ouverture 2♣ avec 22 H réguliers, forme 3343 contre 3334. Arbitrage d'affectation recommandé au coordinateur, pas une erreur de règle.
+- SEF-V45-011 : S34/G1 contient aussi Q400-D-030, même réponse 3♣ et mêmes honneurs/forme. Retrait de V45-011 du groupe confirmé comme proposition, ID conservé. Taille 13 → 12 ; même objectif maintenu.
+- SEF-C2-010 : aucun groupe direct ; Q400-D-092 est présent en S62. Ne pas réintégrer C2-010 au même objectif ; garder le contraste historique C2-009/C2-010. Arbitrage de réactivation au coordinateur.
+- SEF-V45-017 : Chailley, https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ (p.53, seuil 8 HL, formulation naturelle) ; https://amourdubridge.fr/la-quatrieme-couleur-a-1%E2%99%A0/ présente au contraire un traitement ambigu sans quatre Piques garantis. La page officielle du SEF n'a pas été consultée directement. Proposition de sécurisation si le coordinateur retient quatre Piques : ♠DV83 ♥52 ♦AD876 ♣A9 (13 cartes, 13 H, 4252), 1♠ naturel forcing, contextes/corrigés adaptés ; ne pas propager ce choix à tous les cas sans décision commune.
+- SEF-L30-001 : https://www.ibridge.fr/public/fichedetails/778 décrit le 5–5 majeur avec trois perdantes pour la redemande à 3SA, tandis que https://www.ibridge.fr/public/fichedetails/601 indique une zone de 18–21 H. La main originale a quatre perdantes. Proposition concrète si le coordinateur retient le critère de trois perdantes : remplacer ♠10 par ♠D, soit ♠ARD98 ♥ADV107 ♦A6 ♣V, 21 H, 23 HL, 5521 et trois perdantes (♥R, deuxième Carreau, singleton Trèfle), conserver 2♣ et expliquer la redemande artificielle 3SA. Ne pas imposer cette interprétation sans validation commune.
+
+### Redondances élargies
+Sur les 3000 objets du catalogue, corrigés F appliqués en mémoire, signature élargie = séquence sans annotations et Passes explicites, réponse, points H, forme. 62 ensembles, 94 paires impliquant F, dont 58 avec un groupe commun et 4 interlots. Cette méthode détecte aussi des contrastes utiles, ce n'est pas une preuve d'équivalence sémantique exhaustive. Les quatre paires interlots sont : SEF-005-1 / SEF-Q685-D-158 ; SEF-Q400-B-005 / SEF-Q685-D-158 ; SEF-005-2 / SEF-Q400-D-023 ; SEF-L22-004 / V2-M6-044. Aucun groupe commun dans ces quatre paires ; transmettre au coordinateur, notamment distinction exercice d'ouverture naturelle à 2SA / contraste avec 2♣.
+
+Six retraits supplémentaires proposés dans reservoir.json et verdicts.json, sans suppression d'ID :
+- S37/G2 : Q685-D-003, garder V45-013 (troisième couleur, cinq Cœurs 12 H, pas de tenue).
+- S35/G1 : Q685-D-165, garder V475-007 (sept Trèfles maîtres + deux As, neuf levées).
+- S49/G1 : Q685-D-110, garder V483-005 (As de Cœur, pas de contrôle Carreau ; conserver V483-006 pour le contraste Roi).
+- S50/G6 : Q685-D-114, garder V483-011 (Roi de Trèfle couvre le contrôle sauté, As de Cœur ; conserver V483-012 pour le contraste Roi de Cœur).
+- S37/G0 : Q685-D-141 et Q685-D-142, garder Q400-D-002 et Q400-D-003 respectivement (répétitions naturelles non forcing, 6 H / 6 HL). Les trois ajouts préexistants, dont deux en S37/G0, laissent ce groupe à dix cas.
+
+Deux retraits antérieurs confirmés, dont Q400-D-074 en S49/G0 (V483-001 demeure dans six groupes). Petits groupes S38/G2 (V45-016/Q400-D-019), S53/G4 (L13-018/Q400-D-099/Q685-D-140) et S50/G0 (Q26-M6-009/Q400-D-079/Q685-D-118) : redondances probables, ne pas amputer automatiquement les groupes de trois ; remplacement par des contrastes à décider par coordinateur. Préserver notamment les différences As/Roi/chicane/singleton et le contrôle sauté, les clés par As ou Roi d'atout, les variantes de force ; les 94 paires ne sont pas 94 doublons avérés.
+
+### Contrôle de reprise réellement exécuté (JavaScript sur les fichiers GitHub)
+- 3000 objets distincts et 3000 entrées de prérequis, ensemble F exact 436, 436 verdicts uniques. Aucun ID hors périmètre ni changement de cardinalité.
+- 212 objets complets modifiés, aucun champ historique perdu, aucun objet identique à l'original ; 182 contextes, 21 explications, 21 motifs de difficulté, une main et ses H, un ensemble de choix ; aucune réponse modifiée.
+- 436 mains : 13 cartes, rangs légaux et uniques par couleur, H et forme recalculés ; 1744 choix distincts par question avec réponse incluse.
+- 5 prérequis : égalité des métadonnées initiales/proposées avec table et patch ; concepts et dépendances présents. Difficultés cohérentes. 3 ajouts et 8 retraits : existence, présence/absence attendue, intitulés et rôles, minSession des ajouts, groupes/séances avant et après cohérents avec chaque verdict. Aucun groupe vidé : S34/G1 13→12 ; S35/G1 7→6 ; S37/G0 10→10 ; S37/G2 5→4 ; S37/G3 8→9 ; S49/G0 7→6 ; S49/G1 5→4 ; S50/G6 7→6.
+- Zéro anomalie selon ces nouveaux contrôles. Les enchères n'ayant pas changé, le test des 1098 contrats et quatre contres de première passe reste historique ; il n'a pas été relancé ici.
+- 215 VALIDE, 213 RECLASSER_REFORMULER, 3 ERREUR_PEDAGOGIQUE, 5 ARBITRAGE (436). 212 corrections ; 136 sans affectation initiale, 141 sans affectation proposée. Les cinq arbitrages comprennent trois décisions de réservoir et deux points doctrinaux.
+- Suites Node existantes non exécutées : aucun workflow PR au SHA de départ, pas d'accès à un clone authentifié du dépôt ni de commande de déclenchement disponible. Ces contrôles JS indépendants ne sont pas des suites Node. Arbitrage sémantique exhaustif non achevé. Aucun fichier commun modifié, aucune fusion ; PR #565 reste brouillon. MISSION DÉFINITIVEMENT TERMINÉE : NON.
