@@ -7995,5 +7995,5161 @@
         "explain": "10 H, distribution 3–2–4–4. Les deux couleurs quatrièmes sont mineures ; aucune recherche de fit majeur. Avec au moins 25 H cumulés, concluez à 3SA."
       }
     }
+  },
+  {
+    "id": "SEF-034-1",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Piques, invitation 4–4 ; 2SA direct masque le fit. Rappels S7–57 cohérents.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 8,
+        "group": 3,
+        "decision": "Initiation Stayman, Texas et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 14,
+        "group": 3,
+        "decision": "Texas majeur, Stayman, seuils et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 44,
+        "group": 9,
+        "decision": "sa1.stayman : 2♣",
+        "role": "rappel",
+        "phase": null
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 8,
+        "group": 3,
+        "decision": "Initiation Stayman, Texas et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 14,
+        "group": 3,
+        "decision": "Texas majeur, Stayman, seuils et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 44,
+        "group": 9,
+        "decision": "sa1.stayman : 2♣",
+        "role": "rappel",
+        "phase": null
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-034",
+    "caseFamilyPropose": "cas-034",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♥",
+        "3SA",
+        "2SA",
+        "2♣"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-035-2"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-035-2",
+    "verdict": "VALIDE",
+    "justification": "9 H et quatre Cœurs ; contraste symétrique du précédent ; Texas Cœur incorrect avec quatre.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 8,
+        "group": 3,
+        "decision": "Initiation Stayman, Texas et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 8,
+        "group": 3,
+        "decision": "Initiation Stayman, Texas et redemandes",
+        "role": "rappel",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-035",
+    "caseFamilyPropose": "cas-035",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "3SA",
+        "2SA",
+        "2♦"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-034-1"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-036-1",
+    "verdict": "VALIDE",
+    "justification": "10 H et les deux majeures quatrièmes ; chercher l'un ou l'autre fit, valeurs de manche ; initiation S7 pertinente.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-036",
+    "caseFamilyPropose": "cas-036",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♦",
+        "2SA",
+        "2♣",
+        "2♥"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-021",
+          "SEF-Q685-B-023"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-041-2",
+    "verdict": "VALIDE",
+    "justification": "5 H sans majeure quatrième ; borne basse de manche à 25–26 H sur 2SA ; S9 pertinente.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 48,
+        "group": 5,
+        "decision": "sa2.seuil : 3SA",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 48,
+        "group": 5,
+        "decision": "sa2.seuil : 3SA",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-041",
+    "caseFamilyPropose": "cas-041",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "4SA",
+        "3SA",
+        "3♦"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-041-1",
+    "verdict": "VALIDE",
+    "justification": "8 H sans majeure quatrième ; 28–29 H, manche et pas de quantitatif. Réserve du cas 041-2.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-041",
+    "caseFamilyPropose": "cas-041",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3SA",
+        "3♦",
+        "4SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N100-2"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N094-3",
+    "verdict": "VALIDE",
+    "justification": "8 H et quatre Piques ; limite d'invitation, 2♥ Texas demanderait cinq Piques. Groupe initial S7.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 15,
+        "group": 1,
+        "decision": "Même force, distributions différentes : choix du bon outil",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 15,
+        "group": 1,
+        "decision": "Même force, distributions différentes : choix du bon outil",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-146",
+    "caseFamilyPropose": "cas-146",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          4,
+          3,
+          4,
+          2
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♥",
+        "Passe",
+        "2♣",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N095-1",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Cœurs et quatre Carreaux ; seul Cœur motive Stayman ; contraste naturel 2SA.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-147",
+    "caseFamilyPropose": "cas-147",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2SA",
+        "2♦",
+        "Passe"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N096-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, deux majeures quatrièmes ; borne basse du Stayman classique ; bon contraste avec Q400-B-012 (7 H).",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-148",
+    "caseFamilyPropose": "cas-148",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2♥",
+        "3SA",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N097-3",
+    "verdict": "VALIDE",
+    "justification": "0 H, quatre Carreaux ; impossible de justifier manche par la force ; Passe à 2SA. Étape initiale S9.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 48,
+        "group": 6,
+        "decision": "sa2.seuil : Passe",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      },
+      {
+        "session": 48,
+        "group": 6,
+        "decision": "sa2.seuil : Passe",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-149",
+    "caseFamilyPropose": "cas-149",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 0,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 0
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3SA",
+        "3♣",
+        "3♦",
+        "Passe"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N097-1",
+    "verdict": "VALIDE",
+    "justification": "2 H, quatre Carreaux ; variante du précédent, pas un nouveau mécanisme.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-149",
+    "caseFamilyPropose": "cas-149",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 2,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 2
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3SA",
+        "3♦"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N098-1"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N098-1",
+    "verdict": "VALIDE",
+    "justification": "2 H, quatre Trèfles ; même seuil que N097-1, rappel S48 seulement.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 48,
+        "group": 6,
+        "decision": "sa2.seuil : Passe",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 48,
+        "group": 6,
+        "decision": "sa2.seuil : Passe",
+        "role": "rappel",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-150",
+    "caseFamilyPropose": "cas-150",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 2,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "hl": 2
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♠",
+        "3SA",
+        "3♣"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N097-1"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N098-2",
+    "verdict": "VALIDE",
+    "justification": "3 H, quatre Trèfles ; maximum cumulé 24 H, Passe. Réserve.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-150",
+    "caseFamilyPropose": "cas-150",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 3,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "hl": 3
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3SA",
+        "Passe",
+        "3♠"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-016"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N099-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et cinq Carreaux = 7 HL ; 3SA sans majeure quatrième. Ajouter la distinction H/HL pour cohérence avec sa1.seuil.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-151",
+    "caseFamilyPropose": "cas-151",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          5,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♦",
+        "3SA",
+        "4SA",
+        "3♣"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "Vous avez 6 H et cinq Carreaux, sans majeure quatrième, face à une ouverture de 2SA à 20–21 H. Le camp possède au moins 26 H : 3SA."
+      },
+      "apres": {
+        "explain": "6 H et cinq Carreaux, soit 7 HL. Face à 2SA (20–21 H), vous avez les valeurs de manche, mais aucune majeure quatrième à rechercher. Concluez à 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-N099-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H et cinq Carreaux = 9 HL ; 3SA, toujours sous zone quantitative. Préciser HL et pourquoi 4SA serait excessif.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-151",
+    "caseFamilyPropose": "cas-151",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          5,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "4SA",
+        "3SA",
+        "3♣",
+        "3♦"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "Vos 8 H et les 20–21 H de l'ouvreur donnent 28–29 H : c'est la zone de manche, pas celle d'une invitation au petit chelem. Sans majeure quatrième et avec cinq Carreaux dans une distribution régulière, concluez à 3SA. 4SA serait quantitatif, non une simple manche."
+      },
+      "apres": {
+        "explain": "8 H et cinq Carreaux, soit 9 HL. Face à 20–21 H, la manche à 3SA est justifiée, sans recherche de fit majeur. 4SA serait une invitation au petit chelem, trop ambitieuse avec cette force."
+      }
+    }
+  },
+  {
+    "id": "SEF-N100-3",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Carreaux ; 26–27 H ; variation réserve sans mineure cinquième.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-152",
+    "caseFamilyPropose": "cas-152",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "4SA",
+        "3♦",
+        "3♣",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-C-012",
+          "SEF-Q685-B-020"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N100-2",
+    "verdict": "VALIDE",
+    "justification": "8 H, quatre Carreaux ; 28–29 H, analogue 041-1 ; 4SA trop ambitieux.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-152",
+    "caseFamilyPropose": "cas-152",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♦",
+        "4SA",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-041-1"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N101-3",
+    "verdict": "VALIDE",
+    "justification": "7 H et quatre Piques ; manche certaine par force, 3♣ plutôt que Texas ou 3SA ; S13 initiale appropriée.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-153",
+    "caseFamilyPropose": "cas-153",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3SA",
+        "3♦",
+        "3♣",
+        "3♥"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N102-2"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N102-2",
+    "verdict": "VALIDE",
+    "justification": "7 H et quatre Cœurs ; analogue symétrique du précédent, recherche de 4–4.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-154",
+    "caseFamilyPropose": "cas-154",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3SA",
+        "3♣",
+        "3♦",
+        "3♥"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N101-3"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N103-2",
+    "verdict": "VALIDE",
+    "justification": "5 H et deux majeures quatrièmes, borne basse ; 3♣ avant choix du contrat, réserve utile.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-155",
+    "caseFamilyPropose": "cas-155",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♣",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V44-014",
+    "verdict": "VALIDE",
+    "justification": "11 H, quatre Carreaux, 31–32 H cumulés ; 4SA quantitatif serait trop fort. Difficulté 2 et stage 1 adaptés.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v44-cas-014",
+    "caseFamilyPropose": "v44-cas-014",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "4SA",
+        "3SA",
+        "6SA",
+        "3♣"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-017"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-C-004",
+    "verdict": "VALIDE",
+    "justification": "8 H avec quatre Cœurs ; invitation et recherche 4–4, analogue N094-3 côté Cœur.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "audit-c01-sef-c-004",
+    "caseFamilyPropose": "audit-c01-sef-c-004",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-C-012",
+    "verdict": "VALIDE",
+    "justification": "6 H sans majeure quatrième, 26–27 H ; proche N100-3, stage de rappel et réserve.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "audit-c01-sef-c-012",
+    "caseFamilyPropose": "audit-c01-sef-c-012",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3SA",
+        "4SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N100-3",
+          "SEF-Q685-B-020"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-001",
+    "verdict": "VALIDE",
+    "justification": "3 H et quatre Cœurs, 23–24 H ; ne pas engager le palier 3 sans valeurs de manche. Contraste intentionnel avec V2-M2-002.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-stayman-seuil",
+    "caseFamilyPropose": "V2-M2-sa2-stayman-seuil",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 3,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 3
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-002",
+    "verdict": "VALIDE",
+    "justification": "6 H et quatre Cœurs, même forme que 001 ; valeurs de manche autorisent 3♣. Complément de contraste.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-stayman-seuil",
+    "caseFamilyPropose": "V2-M2-sa2-stayman-seuil",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-005",
+          "SEF-Q685-B-026"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-005",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Piques ; distinguer 3♣ de 3♥ Texas cinq Piques. Famille longueur 4/5 pertinente.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-4-ou-5",
+    "caseFamilyPropose": "V2-M2-sa2-4-ou-5",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♦",
+        "3♥",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-002",
+          "SEF-Q685-B-026"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-017",
+    "verdict": "VALIDE",
+    "justification": "12 H et 5 Piques/4 Cœurs, forcing de manche ; Stayman puis chassé-croisé à 3♥ sur 2♦. Stage 3 et prérequis multiples cohérents.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 3,
+      "minSession": 19,
+      "requires": [
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 3,
+      "minSession": 19,
+      "requires": [
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa1-stayman-texas-5-4",
+    "caseFamilyPropose": "V2-M2-sa1-stayman-texas-5-4",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1SA (15–17 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2♦",
+        "2♥",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-PN26-M1-024",
+    "verdict": "VALIDE",
+    "justification": "6 H et deux mineures quatrièmes ; ne pas confondre mineure quatrième et majeure quatrième ; 3SA.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "pn26-m1-024",
+    "caseFamilyPropose": "pn26-m1-024",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♥",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-016",
+          "SEF-Q685-B-017"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-PN26-M1-034",
+    "verdict": "VALIDE",
+    "justification": "5 H et quatre Piques ; seuil de manche, 3♥ Texas exige cinq cartes. Bon contraste avec 3 H faible.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "pn26-m1-034",
+    "caseFamilyPropose": "pn26-m1-034",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3SA",
+        "3♥",
+        "Passe",
+        "3♣"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-039",
+          "SEF-Q685-B-025"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-013",
+    "verdict": "VALIDE",
+    "justification": "1 H et deux mineures quatrièmes ; 21–22 H ; Passe et non Stayman, S9 utile.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-seuil2",
+    "caseFamilyPropose": "q400-b-seuil2",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 1,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "hl": 1
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3SA",
+        "4SA",
+        "Passe"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-015",
+    "verdict": "VALIDE",
+    "justification": "5 H et deux mineures quatrièmes ; contraste 013/015 de forme identique ; 3SA.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-seuil2",
+    "caseFamilyPropose": "q400-b-seuil2",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♥",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-016",
+    "verdict": "VALIDE",
+    "justification": "6 H et deux mineures quatrièmes ; 26–27 H, variante proche de 015 ; pas nouveau seuil.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-seuil2",
+    "caseFamilyPropose": "q400-b-seuil2",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-PN26-M1-024",
+          "SEF-Q685-B-017"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-017",
+    "verdict": "VALIDE",
+    "justification": "11 H, quatre Carreaux, 31–32 H ; 4SA trop ambitieux, stage 1 malgré S9 initiale : verrou à conserver.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-seuil2",
+    "caseFamilyPropose": "q400-b-seuil2",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3SA",
+        "4SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V44-014"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-018",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H avec quatre Cœurs et quatre Trèfles ; S13 rappel après introduction 2SA ; corriger explicitation 3♣/3♦ si nécessaire.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 5,
+        "decision": "Seuils et suite de Texas 1SA",
+        "role": "rappel",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 1,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-seuil-stayman-faible",
+    "caseFamilyPropose": "q400-b-seuil-stayman-faible",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 3,
+        "shape": [
+          3,
+          4,
+          2,
+          4
+        ],
+        "hl": 3
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♦",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "3 H, distribution 3–4–2–4. Quatre Cœurs ne suffisent pas : 3 H et une main sans longue cinquième ne justifient pas d’imposer la manche."
+      },
+      "apres": {
+        "explain": "3 H, distribution 3–4–2–4 : seulement 23–24 H cumulés. Le Stayman à 3♣ engagerait trop haut et le Texas 3♦ demanderait cinq Cœurs. Passez malgré vos quatre Cœurs."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q400-B-019",
+    "verdict": "VALIDE",
+    "justification": "8 H et quatre Piques, quatre Carreaux ; 2♣ puis invitation si besoin ; 2♥ Texas incorrect.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-stayman-init",
+    "caseFamilyPropose": "q400-b-stayman-init",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-020",
+    "verdict": "VALIDE",
+    "justification": "10 H et quatre Cœurs, quatre Carreaux ; valeurs de manche, 2♦ Texas demanderait cinq Cœurs.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-stayman-init",
+    "caseFamilyPropose": "q400-b-stayman-init",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2♦",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-022"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-021",
+    "verdict": "VALIDE",
+    "justification": "10 H et deux majeures quatrièmes ; un seul Stayman recherche les deux fits ; pas de Texas.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      },
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-stayman-init",
+    "caseFamilyPropose": "q400-b-stayman-init",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          2,
+          3
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "2♣",
+        "2♦",
+        "2♥",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-036-1",
+          "SEF-Q685-B-023"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-039",
+    "verdict": "VALIDE",
+    "justification": "5 H et quatre Cœurs ; borne basse de manche ; S13/1 adaptée.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-stayman-init2",
+    "caseFamilyPropose": "q400-b-stayman-init2",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          3,
+          4,
+          2,
+          4
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♦",
+        "3♥",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-PN26-M1-034",
+          "SEF-Q685-B-025"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-040",
+    "verdict": "VALIDE",
+    "justification": "6 H et deux majeures quatrièmes ; recherche double fit, pas de Texas ; S13/1 utile.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-stayman-init2",
+    "caseFamilyPropose": "q400-b-stayman-init2",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          4,
+          2,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "3♣",
+        "3♦",
+        "3♥",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-027"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-016",
+    "verdict": "VALIDE",
+    "justification": "3 H, quatre Carreaux ; 23–24 H cumulés, Passe ; proche N098-2 avec autre mineure.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-seuil-P2SA-Passe",
+    "caseFamilyPropose": "q685-b-sa2-seuil-P2SA-Passe",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 3,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 3
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N098-2"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-017",
+    "verdict": "VALIDE",
+    "justification": "6 H et deux mineures quatrièmes, 3SA ; proche Q400-B-016, réserve de variantes à limiter.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-seuil-P2SA-3SA",
+    "caseFamilyPropose": "q685-b-sa2-seuil-P2SA-3SA",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-PN26-M1-024",
+          "SEF-Q400-B-016"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-018",
+    "verdict": "VALIDE",
+    "justification": "7 H, quatre Carreaux ; 27–28 H, 3SA ; variation de force par rapport à 041-2.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-seuil-P2SA-3SA",
+    "caseFamilyPropose": "q685-b-sa2-seuil-P2SA-3SA",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-019",
+    "verdict": "VALIDE",
+    "justification": "2 H, deux mineures quatrièmes ; Passe, contraste avec 017 de même forme.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-seuil-P2SA-Passe",
+    "caseFamilyPropose": "q685-b-sa2-seuil-P2SA-Passe",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 2,
+        "shape": [
+          2,
+          3,
+          4,
+          4
+        ],
+        "hl": 2
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-020",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Trèfles ; 3SA, variation de mineure par rapport à Q400-B-016.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.seuil",
+    "conceptPropose": "sa2.seuil",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 9,
+        "group": 2,
+        "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.seuil",
+      "stage": 0,
+      "minSession": 6,
+      "requires": [
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-seuil-P2SA-3SA",
+    "caseFamilyPropose": "q685-b-sa2-seuil-P2SA-3SA",
+    "difficulteInitiale": 1,
+    "difficulteProposee": 1,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-N100-3",
+          "SEF-C-012"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-022",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H et quatre Cœurs ; corrigé sous-estime en parlant d'au moins une invitation. 3SA direct serait un distracteur plus instructif que Passe.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa1-stayman-P1SA-2t",
+    "caseFamilyPropose": "q685-b-sa1-stayman-P1SA-2t",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-020"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "explain": "10 H, distribution 2–4–4–3. 2 Piques, 4 Cœurs et 10 H : cherchez le fit majeur par 2♣ Stayman avant de choisir le contrat. La force permet au moins une invitation."
+      },
+      "apres": {
+        "choices": [
+          "3SA",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "explain": "10 H et quatre Cœurs : face à 1SA (15–17 H), la manche est justifiée. Cherchez d'abord le fit 4–4 par 2♣ Stayman ; choisissez ensuite 4♥ si le fit est trouvé, sinon 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-023",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, deux majeures quatrièmes ; force de manche, remplacer Passe par 3SA et expliciter choix 4M/3SA.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa1-stayman-P1SA-2t",
+    "caseFamilyPropose": "q685-b-sa1-stayman-P1SA-2t",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-036-1",
+          "SEF-Q400-B-021"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "explain": "10 H, distribution 4–4–3–2. 4 Piques, 4 Cœurs et 10 H : cherchez le fit majeur par 2♣ Stayman avant de choisir le contrat. La force permet au moins une invitation."
+      },
+      "apres": {
+        "choices": [
+          "3SA",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "explain": "10 H, quatre Piques et quatre Cœurs : vous avez les valeurs de manche. Le Stayman permet de rechercher l'un ou l'autre fit 4–4 avant de choisir la manche majeure ou 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-024",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H et 5 Piques/4 Cœurs = 11 HL ; décision avancée, pas simple Stayman d'initiation S7. Texas Pique (2♥) manque des choix, corrigé doit donner chassé-croisé. Même prérequis et difficulté que V2-M2-017, transfert vers S57/5 réinvestissement.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa1.stayman",
+    "conceptPropose": "sa1.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 7,
+        "group": 1,
+        "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 57,
+        "group": 5,
+        "decision": "sa1.stayman : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa1.stayman",
+      "stage": 0,
+      "minSession": 4,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa1.stayman",
+      "stage": 3,
+      "minSession": 19,
+      "requires": [
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa1-stayman-P1SA-2t",
+    "caseFamilyPropose": "V2-M2-sa1-stayman-texas-5-4",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          5,
+          4,
+          2,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "choices": [
+          "Passe",
+          "2♣",
+          "2♦",
+          "2SA"
+        ],
+        "explain": "10 H, distribution 5–4–2–2. 5 Piques, 4 Cœurs et 10 H : cherchez le fit majeur par 2♣ Stayman avant de choisir le contrat. La force permet au moins une invitation.",
+        "difficulty": 2,
+        "difficultyReason": "Décision ciblée : 5 Piques, 4 Cœurs et 10 H : cherchez le fit majeur par 2♣ Stayman avant de choisir le contrat. La force permet au moins une invitation.",
+        "caseFamily": "q685-b-sa1-stayman-P1SA-2t"
+      },
+      "apres": {
+        "choices": [
+          "2♣",
+          "2♦",
+          "2♥",
+          "3SA"
+        ],
+        "explain": "10 H et cinq Piques, quatre Cœurs, soit 11 HL : valeurs de manche. Commencez par 2♣ Stayman afin de rechercher un fit 4–4 à Cœur sans renoncer au fit 5–3 à Pique. Sur 2♦, poursuivez par 3♥ chassé-croisé, qui montre quatre Cœurs et cinq Piques ; l'ouvreur choisit 4♠ avec trois Piques, sinon 3SA. Un Texas Pique immédiat risquerait de masquer le fit Cœur.",
+        "difficulty": 4,
+        "difficultyReason": "Bicolore majeur 5–4 forcing de manche : anticiper les deux recherches de fit et le chassé-croisé.",
+        "caseFamily": "V2-M2-sa1-stayman-texas-5-4"
+      },
+      "prerequis": {
+        "concept": "sa1.stayman",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman.suite",
+            "minExposure": 1
+          }
+        ]
+      },
+      "reservoir": {
+        "id": "SEF-Q685-B-024",
+        "remove": [
+          {
+            "session": 7,
+            "group": 1,
+            "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "add": [
+          {
+            "session": 57,
+            "group": 5,
+            "decision": "sa1.stayman : 2♣",
+            "role": "réinvestissement",
+            "phase": null
+          }
+        ],
+        "reason": "5–4 majeur forcing de manche et chassé-croisé : ne pas introduire au groupe S7 réservé aux majeures quatrièmes simples; réinvestissement tardif S57/5 avec verrous avancés."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-025",
+    "verdict": "VALIDE",
+    "justification": "5 H, quatre Piques ; 25–26 H, S13 initiation ; 3SA direct pourrait manquer fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-P2SA-3t",
+    "caseFamilyPropose": "q685-b-sa2-stayman-P2SA-3t",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-PN26-M1-034",
+          "SEF-Q400-B-039"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-026",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Cœurs ; S13 initiation, analogue à Q400-B-039 avec un point de plus.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-P2SA-3t",
+    "caseFamilyPropose": "q685-b-sa2-stayman-P2SA-3t",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-002",
+          "V2-M2-005"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-027",
+    "verdict": "VALIDE",
+    "justification": "6 H, deux majeures quatrièmes ; S13 initiale, variation de Q400-B-040 avec autre doubleton.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://abc-du-bridge.scenari-community.org/003-03/co/003-03-03.html",
+      "https://passemurailles.fr/bridge/"
+    ],
+    "conceptInitial": "sa2.stayman",
+    "conceptPropose": "sa2.stayman",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 1,
+        "decision": "Stayman 3♣ avec majeure quatrième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman",
+      "stage": 0,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "sa1.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-P2SA-3t",
+    "caseFamilyPropose": "q685-b-sa2-stayman-P2SA-3t",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA"
+      ],
+      "position": "répondant, ouverture partenaire 1SA ou 2SA sans intervention selon contexte",
+      "choix": [
+        "Passe",
+        "3♣",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3♣",
+      "reponseProposee": "3♣",
+      "corrige": "lu et comparé à la règle de zone et de forme",
+      "legalite": "les quatre choix sont des enchères possibles au tour concerné",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-040"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
   }
 ]
