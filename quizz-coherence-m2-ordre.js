@@ -202,11 +202,27 @@
    const criterion=contrast(f[i],f[j]);if(criterion)links.push({a:f[i].id,b:f[j].id,criterion});
   }
   const before=metric(f,s,links);
+  // #419 coordinateur: optional experimental constraint. record() updates
+  // skills independently by theme but is sensitive to within-theme order.
+  // Retain the exact sequence per theme; never change storage or scoring.
+  const preserveThemeOrder=ctx.preserveThemeOrder===true;
+  const originalIndex=new Map(f.map((x,i)=>[x.id,i]));
+  function candidateValid(p){
+   if(!valid(p,s))return false;
+   if(!preserveThemeOrder)return true;
+   const last=new Map();
+   for(const x of p){
+    const i=originalIndex.get(x.id);
+    if(last.has(x.t)&&i<last.get(x.t))return false;
+    last.set(x.t,i);
+   }
+   return true;
+  }
   // Preserve every historical diversity guard and every pedagogical cost
   // on the final permutation. An adjacent true contrast may intentionally
   // share a distribution/force; raw values are retained for audit.
   let current=f,after=before;
-  function admissible(p,m){return valid(p,s)&&!HARD.some(k=>m[k]>before[k])&&!SOFT.some(k=>m[k]>before[k]);}
+  function admissible(p,m){return candidateValid(p)&&!HARD.some(k=>m[k]>before[k])&&!SOFT.some(k=>m[k]>before[k]);}
   function alternatives(deck,relocate){
    const out=[];
    for(let i=0;i<deck.length;i++)for(let j=i+1;j<deck.length;j++){
@@ -219,17 +235,17 @@
    let best=current,bestM=after;
    const firstMoves=alternatives(current,s<=5||risk(after)>0);
    for(const p of firstMoves){
-    if(!valid(p,s))continue;
+    if(!candidateValid(p))continue;
     const m=metric(p,s,links);
     if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
    }
    // An early contrast often needs two moves to retain Passe and fit guards.
    // Search at most 24 near candidates, not an unrestricted factorial search.
    if(best===current&&((s<=5&&(after.missedContrasts||after.prereqOrderInversions))||risk(after)>0)){
-    const near=firstMoves.filter(p=>valid(p,s)).map(p=>({p,m:metric(p,s,links)}))
+    const near=firstMoves.filter(p=>candidateValid(p)).map(p=>({p,m:metric(p,s,links)}))
      .sort((a,b)=>(HARD.reduce((v,k)=>v+Math.max(0,a.m[k]-before[k]),0)-HARD.reduce((v,k)=>v+Math.max(0,b.m[k]-before[k]),0))||score(a.m)-score(b.m)).slice(0,24);
     for(const n of near)for(const p of alternatives(n.p,false)){
-     if(!valid(p,s))continue;
+     if(!candidateValid(p))continue;
      const m=metric(p,s,links);
      if(admissible(p,m)&&score(m)<score(bestM)){best=p;bestM=m;}
     }
@@ -247,7 +263,7 @@
    const visit=(prefix,remaining)=>{
     if(++rescueNodes>90000)return false;
     if(!remaining.length){
-     if(!valid(prefix,s))return false;
+     if(!candidateValid(prefix))return false;
      const m=metric(prefix,s,links);
      if(admissible(prefix,m)&&score(m)<score(after)&&risk(m)===0){
       current=prefix.slice();after=m;return true;
@@ -257,6 +273,7 @@
     const pos=prefix.length;
     for(let i=0;i<remaining.length;i++){
      const x=remaining[i];
+     if(preserveThemeOrder&&remaining.some(y=>y.t===x.t&&originalIndex.get(y.id)<originalIndex.get(x.id)))continue;
      if(pos<2&&(x.t!=='ouv'||pass(x.q)))continue;
      if(pos>=2&&fit(x.q)&&[major,sa].some((fn,j)=>hasNatural[j]&&!prefix.some(y=>fn(y.q))))continue;
      if(fit(x.q)&&remaining.some(y=>y!==x&&y.c===x.c&&y.stage!==null&&x.stage!==null&&y.stage<x.stage))continue;
@@ -282,7 +299,7 @@
    for(let depth=0;depth<3;depth++){
     const next=[];
     for(const n of frontier)for(const p of alternatives(n.p,true)){
-     if(!valid(p,s))continue;
+     if(!candidateValid(p))continue;
      const key=p.map(x=>x.id).join('|');if(seen.has(key))continue;seen.add(key);
      const m=metric(p,s,links);
      if(admissible(p,m)&&score(m)<score(after)){current=p;after=m;}
