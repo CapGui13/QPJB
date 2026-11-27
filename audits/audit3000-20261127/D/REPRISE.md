@@ -6,48 +6,10 @@ Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c
 
 Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 28aa821545323e8f36d5394be307384447054026; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
 
-Passe 10 : 400/543, dernier SEF-Q400-C-032, prochain SEF-Q400-C-033. SHA dernier livrable b19b26229aaa160e22721bbb15c5b2d3f1cd83e9; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 143 IDs :
+Passe 10 : 400/543, dernier SEF-Q400-C-032, prochain SEF-Q400-C-033. SHA dernier livrable b19b26229aaa160e22721bbb15c5b2d3f1cd83e9; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
 
-- SEF-Q400-C-033
-- SEF-Q400-C-034
-- SEF-Q400-C-035
-- SEF-Q400-C-036
-- SEF-Q400-C-037
-- SEF-Q400-C-038
-- SEF-Q400-C-039
-- SEF-Q400-C-040
-- SEF-Q400-C-041
-- SEF-Q400-C-042
-- SEF-Q400-C-043
-- SEF-Q400-C-044
-- SEF-Q400-C-045
-- SEF-Q400-C-046
-- SEF-Q400-C-067
-- SEF-Q400-C-068
-- SEF-Q400-C-069
-- SEF-Q400-C-070
-- SEF-Q400-C-071
-- SEF-Q400-C-072
-- SEF-Q400-C-073
-- SEF-Q400-C-074
-- SEF-Q400-C-075
-- SEF-Q400-C-076
-- SEF-Q400-C-077
-- SEF-Q400-C-078
-- SEF-Q400-C-079
-- SEF-Q400-C-080
-- SEF-Q400-C-081
-- SEF-Q400-C-082
-- SEF-Q400-C-083
-- SEF-Q400-C-084
-- SEF-Q400-C-085
-- SEF-Q685-C-001
-- SEF-Q685-C-002
-- SEF-Q685-C-003
-- SEF-Q685-C-004
-- SEF-Q685-C-005
-- SEF-Q685-C-006
-- SEF-Q685-C-007
+Passe 11 : 440/543, dernier SEF-Q685-C-007, prochain SEF-Q685-C-008. SHA dernier livrable 2813f5ddb451229b189eeb5e1193f392ae59163f; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 103 IDs :
+
 - SEF-Q685-C-008
 - SEF-Q685-C-009
 - SEF-Q685-C-010
