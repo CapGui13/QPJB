@@ -298,13 +298,13 @@
       ],
       [
         "D",
-        "7",
-        "6"
+        "7"
       ],
       [
         "R",
         "8",
-        "4"
+        "4",
+        "2"
       ],
       [
         "V",
@@ -316,8 +316,8 @@
     "h": 7,
     "shape": [
       3,
-      3,
-      3,
+      2,
+      4,
       4
     ],
     "auction": [
@@ -331,9 +331,9 @@
       "3SA",
       "Passe"
     ],
-    "explain": "7 H, distribution 3–3–3–4. Même face au maximum de 17 H, les 7 H sans majeure quatrième ne donnent que 24 H. Il n’y a pas d’invitation.",
+    "explain": "7 H, distribution 3–2–4–4. Deux mineures quatrièmes, aucune majeure quatrième ; 7 H face à 17 au maximum ne donnent que 24 H. Comparez au cas d’invitation à 8 H de même distribution.",
     "difficulty": 1,
-    "difficultyReason": "Décision ciblée : Même face au maximum de 17 H, les 7 H sans majeure quatrième ne donnent que 24 H.",
+    "difficultyReason": "Décision ciblée : Deux mineures quatrièmes, aucune majeure quatrième ; 7 H face à 17 au maximum ne donnent que 24 H.",
     "caseFamily": "q400-b-seuil1",
     "editorialSource": "Catalogue QPJB : SEF-PN26-M1-007; contrat #536 et mission #538."
   },
@@ -389,53 +389,56 @@
   },
   {
     "id": "SEF-Q400-B-009",
-    "theme": "sa",
+    "theme": "stayman",
     "hand": [
       [
         "A",
-        "8",
-        "3"
-      ],
-      [
-        "D",
+        "R",
         "7",
         "4"
       ],
       [
-        "V",
-        "8",
-        "6"
+        "D",
+        "8"
       ],
       [
-        "D",
+        "A",
+        "R",
         "9",
+        "2"
+      ],
+      [
+        "8",
         "5",
         "2"
       ]
     ],
-    "h": 9,
+    "h": 16,
     "shape": [
-      3,
-      3,
-      3,
-      4
+      4,
+      2,
+      4,
+      3
     ],
     "auction": [
-      "Partenaire : 1SA"
+      "Vous : 1SA",
+      "Adversaire : Passe",
+      "Partenaire : 2♣ (Stayman)",
+      "Adversaire : Contre (entame Trèfle)"
     ],
-    "context": "Votre partenaire ouvre de 1SA (15–17 H), sans intervention. Quelle est votre réponse ?",
-    "answer": "2SA",
+    "context": "Le partenaire fait un Stayman sur votre 1SA, contré pour l’entame Trèfle. Appliquez le traitement QPJB après Contre d’entame. Quelle enchère ?",
+    "answer": "Passe",
     "choices": [
       "Passe",
-      "2♣",
-      "2SA",
-      "3SA"
+      "Surcontre",
+      "2♦",
+      "2♠"
     ],
-    "explain": "9 H, distribution 3–3–3–4. Avec 9 H, le total varie de 24 à 26 H. L’invitation laisse l’ouvreur décider selon sa force.",
-    "difficulty": 1,
-    "difficultyReason": "Décision ciblée : Avec 9 H, le total varie de 24 à 26 H.",
-    "caseFamily": "q400-b-seuil1",
-    "editorialSource": "Catalogue QPJB : SEF-N090-1; contrat #536 et mission #538."
+    "explain": "16 H, distribution 4–2–4–3. Vos quatre Piques n’autorisent pas 2♠ immédiat sans tenue Trèfle. Passe laisse le partenaire poursuivre le Stayman ; il ne nie pas les quatre Piques.",
+    "difficulty": 4,
+    "difficultyReason": "Décision ciblée : Vos quatre Piques n’autorisent pas 2♠ immédiat sans tenue Trèfle.",
+    "caseFamily": "q400-b-stayman-contre",
+    "editorialSource": "Catalogue QPJB : SEF-L25-001; contrat #536 et mission #538."
   },
   {
     "id": "SEF-Q400-B-010",
@@ -498,8 +501,7 @@
       ],
       [
         "V",
-        "7",
-        "3"
+        "7"
       ],
       [
         "R",
@@ -510,15 +512,16 @@
       [
         "V",
         "8",
+        "5",
         "2"
       ]
     ],
     "h": 11,
     "shape": [
       3,
-      3,
+      2,
       4,
-      3
+      4
     ],
     "auction": [
       "Partenaire : 1SA"
@@ -531,9 +534,9 @@
       "2♣",
       "Passe"
     ],
-    "explain": "11 H, distribution 3–3–4–3. Les 11 H répartis dans les quatre couleurs donnent la force de manche, sans majeure quatrième.",
+    "explain": "11 H, distribution 3–2–4–4. 11 H, deux mineures quatrièmes, pas de majeure quatrième. 3SA est la conclusion naturelle, contrairement au Stayman réservé à la recherche d’un fit majeur.",
     "difficulty": 1,
-    "difficultyReason": "Décision ciblée : Les 11 H répartis dans les quatre couleurs donnent la force de manche, sans majeure quatrième.",
+    "difficultyReason": "Décision ciblée : 11 H, deux mineures quatrièmes, pas de majeure quatrième.",
     "caseFamily": "q400-b-seuil1",
     "editorialSource": "Catalogue QPJB : SEF-N092-1; contrat #536 et mission #538."
   },
@@ -543,31 +546,31 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
-      ],
-      [
-        "D",
         "9",
         "7",
         "4"
       ],
       [
         "D",
-        "6",
+        "8",
+        "4",
         "2"
       ],
       [
-        "8",
-        "5",
+        "V",
+        "7"
+      ],
+      [
+        "V",
+        "6",
         "3"
       ]
     ],
     "h": 7,
     "shape": [
-      3,
       4,
-      3,
+      4,
+      2,
       3
     ],
     "auction": [
@@ -581,9 +584,9 @@
       "2SA",
       "Passe"
     ],
-    "explain": "7 H, distribution 3–4–3–3. Quatre Cœurs ne suffisent pas pour déclencher un Stayman avec seulement 7 H et une main régulière.",
+    "explain": "7 H, distribution 4–4–2–3. Les deux majeures quatrièmes peuvent sembler attrayantes mais avec 7 H réguliers le Stayman ne se justifie pas : restez à 1SA.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Quatre Cœurs ne suffisent pas pour déclencher un Stayman avec seulement 7 H et une main régulière.",
+    "difficultyReason": "Décision ciblée : Les deux majeures quatrièmes peuvent sembler attrayantes mais avec 7 H réguliers le Stayman ne se justifie pas : restez à 1SA.",
     "caseFamily": "q400-b-seuil-stayman-faible",
     "editorialSource": "Catalogue QPJB : SEF-L06-027; contrat #536 et mission #538."
   },
@@ -592,82 +595,32 @@
     "theme": "sa",
     "hand": [
       [
-        "8",
-        "7",
-        "4"
-      ],
-      [
-        "9",
-        "6",
-        "3"
-      ],
-      [
-        "10",
-        "8",
-        "4",
-        "2"
-      ],
-      [
-        "9",
-        "5",
-        "2"
-      ]
-    ],
-    "h": 0,
-    "shape": [
-      3,
-      3,
-      4,
-      3
-    ],
-    "auction": [
-      "Partenaire : 2SA"
-    ],
-    "context": "Votre partenaire ouvre de 2SA (20–21 H), sans intervention. Quelle est votre réponse ?",
-    "answer": "Passe",
-    "choices": [
-      "3♣",
-      "3SA",
-      "4SA",
-      "Passe"
-    ],
-    "explain": "0 H, distribution 3–3–4–3. Face à 20–21 H, aucun honneur et aucune longue exploitable : restez à 2SA.",
-    "difficulty": 1,
-    "difficultyReason": "Décision ciblée : Face à 20–21 H, aucun honneur et aucune longue exploitable : restez à 2SA.",
-    "caseFamily": "q400-b-seuil2",
-    "editorialSource": "Catalogue QPJB : SEF-N097-3; contrat #536 et mission #538."
-  },
-  {
-    "id": "SEF-Q400-B-014",
-    "theme": "sa",
-    "hand": [
-      [
         "V",
         "8",
         "3"
       ],
       [
-        "9",
         "7",
-        "4"
-      ],
-      [
-        "D",
-        "6",
-        "2"
+        "6"
       ],
       [
         "9",
         "8",
+        "4",
+        "2"
+      ],
+      [
+        "10",
+        "9",
         "5",
         "2"
       ]
     ],
-    "h": 3,
+    "h": 1,
     "shape": [
       3,
-      3,
-      3,
+      2,
+      4,
       4
     ],
     "auction": [
@@ -681,11 +634,64 @@
       "4SA",
       "Passe"
     ],
-    "explain": "3 H, distribution 3–3–3–4. Les 3 H ne donnent au mieux que 24 H au camp. Pas de majeure quatrième à rechercher ni de force de manche.",
+    "explain": "1 H, distribution 3–2–4–4. Avec 1 H, deux mineures quatrièmes et aucun potentiel de manche, même le maximum de l’ouvreur ne suffit pas. Passe plutôt que le Stayman.",
     "difficulty": 1,
-    "difficultyReason": "Décision ciblée : Les 3 H ne donnent au mieux que 24 H au camp.",
+    "difficultyReason": "Décision ciblée : Avec 1 H, deux mineures quatrièmes et aucun potentiel de manche, même le maximum de l’ouvreur ne suffit pas.",
     "caseFamily": "q400-b-seuil2",
-    "editorialSource": "Catalogue QPJB : SEF-N098-2; contrat #536 et mission #538."
+    "editorialSource": "Catalogue QPJB : SEF-N097-3; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-014",
+    "theme": "stayman",
+    "hand": [
+      [
+        "A",
+        "D",
+        "8"
+      ],
+      [
+        "9",
+        "7"
+      ],
+      [
+        "A",
+        "R",
+        "V",
+        "2"
+      ],
+      [
+        "V",
+        "9",
+        "5",
+        "2"
+      ]
+    ],
+    "h": 15,
+    "shape": [
+      3,
+      2,
+      4,
+      4
+    ],
+    "auction": [
+      "Vous : 1SA",
+      "Adversaire : Passe",
+      "Partenaire : 2♥ (Texas Pique)",
+      "Adversaire : Contre (entame Cœur)"
+    ],
+    "context": "Votre partenaire fait un Texas Pique, contré pour l’entame Cœur. Appliquez le traitement QPJB. Quelle enchère ?",
+    "answer": "Surcontre",
+    "choices": [
+      "Passe",
+      "Surcontre",
+      "2♠",
+      "2SA"
+    ],
+    "explain": "15 H, distribution 3–2–4–4. Avec trois Piques, le fit est établi mais vous n’arrêtez pas les Cœurs. Surcontre montre le fit sans tenue dans la couleur du Contre ; après Stayman, ce même mot a un autre sens.",
+    "difficulty": 4,
+    "difficultyReason": "Décision ciblée : Avec trois Piques, le fit est établi mais vous n’arrêtez pas les Cœurs.",
+    "caseFamily": "q400-b-texas-contre",
+    "editorialSource": "Catalogue QPJB : SEF-PN26-M1-027; contrat #536 et mission #538."
   },
   {
     "id": "SEF-Q400-B-015",
@@ -748,8 +754,7 @@
       ],
       [
         "D",
-        "7",
-        "6"
+        "7"
       ],
       [
         "V",
@@ -758,6 +763,7 @@
         "2"
       ],
       [
+        "10",
         "9",
         "5",
         "2"
@@ -766,9 +772,9 @@
     "h": 6,
     "shape": [
       3,
-      3,
+      2,
       4,
-      3
+      4
     ],
     "auction": [
       "Partenaire : 2SA"
@@ -781,9 +787,9 @@
       "3♦",
       "3SA"
     ],
-    "explain": "6 H, distribution 3–3–4–3. 20–21 H plus 6 H suffisent pour la manche. Quatre Carreaux ne justifient pas un Texas majeur ni un Stayman.",
+    "explain": "6 H, distribution 3–2–4–4. 6 H face à 20–21 donnent la manche. Deux mineures quatrièmes ne sont pas un motif de Stayman.",
     "difficulty": 1,
-    "difficultyReason": "Décision ciblée : 20–21 H plus 6 H suffisent pour la manche.",
+    "difficultyReason": "Décision ciblée : 6 H face à 20–21 donnent la manche.",
     "caseFamily": "q400-b-seuil2",
     "editorialSource": "Catalogue QPJB : SEF-N100-3; contrat #536 et mission #538."
   },
@@ -1050,6 +1056,7 @@
         "9",
         "8",
         "7",
+        "6",
         "4"
       ],
       [
@@ -1059,16 +1066,15 @@
       ],
       [
         "8",
-        "5",
-        "2"
+        "5"
       ]
     ],
     "h": 0,
     "shape": [
       2,
-      5,
+      6,
       3,
-      3
+      2
     ],
     "auction": [
       "Partenaire : 1SA"
@@ -1081,9 +1087,9 @@
       "2♦",
       "2♥"
     ],
-    "explain": "0 H, distribution 2–5–3–3. Même sans honneur, cinq Cœurs permettent un Texas faible pour s’arrêter à 2♥.",
+    "explain": "0 H, distribution 2–6–3–2. Six Cœurs sans honneur : le Texas faible à 2♦ est possible sans aucune force minimale ; la longue sixième assure au moins huit atouts face à une main régulière.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Même sans honneur, cinq Cœurs permettent un Texas faible pour s’arrêter à 2♥.",
+    "difficultyReason": "Décision ciblée : Six Cœurs sans honneur : le Texas faible à 2♦ est possible sans aucune force minimale ; la longue sixième assure au moins huit atouts face à une main régulière.",
     "caseFamily": "q400-b-texas-init",
     "editorialSource": "Catalogue QPJB : SEF-N082-2; contrat #536 et mission #538."
   },
@@ -1096,8 +1102,7 @@
         "9",
         "8",
         "6",
-        "4",
-        "2"
+        "4"
       ],
       [
         "D",
@@ -1106,18 +1111,19 @@
       [
         "9",
         "8",
-        "3"
+        "3",
+        "2"
       ],
       [
-        "V",
-        "2"
+        "8",
+        "5"
       ]
     ],
-    "h": 3,
+    "h": 2,
     "shape": [
-      6,
+      5,
       2,
-      3,
+      4,
       2
     ],
     "auction": [
@@ -1131,9 +1137,9 @@
       "2♦",
       "2♥"
     ],
-    "explain": "3 H, distribution 6–2–3–2. Six Piques constituent la longue à transférer ; la force ne justifie pas une manche.",
+    "explain": "2 H, distribution 5–2–4–2. Cinq Piques et seulement 2 H : cherchez la partielle par 2♥ Texas. Les quatre Carreaux ne sont pas une raison de privilégier une autre enchère.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Six Piques constituent la longue à transférer ; la force ne justifie pas une manche.",
+    "difficultyReason": "Décision ciblée : Cinq Piques et seulement 2 H : cherchez la partielle par 2♥ Texas.",
     "caseFamily": "q400-b-texas-init",
     "editorialSource": "Catalogue QPJB : SEF-V44-016; contrat #536 et mission #538."
   },
@@ -1143,8 +1149,7 @@
     "hand": [
       [
         "R",
-        "7",
-        "3"
+        "8"
       ],
       [
         "A",
@@ -1156,6 +1161,7 @@
       [
         "D",
         "8",
+        "6",
         "2"
       ],
       [
@@ -1165,9 +1171,9 @@
     ],
     "h": 11,
     "shape": [
-      3,
+      2,
       5,
-      3,
+      4,
       2
     ],
     "auction": [
@@ -1181,9 +1187,9 @@
       "2♥",
       "3SA"
     ],
-    "explain": "11 H, distribution 3–5–3–2. La force de manche ne change pas la première étape : cinq Cœurs appellent le Texas, puis le choix du contrat.",
+    "explain": "11 H, distribution 2–5–4–2. Cinq Cœurs et les valeurs de manche ; les quatre Carreaux ne sont pas une deuxième majeure. Commencez par 2♦ Texas.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : La force de manche ne change pas la première étape : cinq Cœurs appellent le Texas, puis le choix du contrat.",
+    "difficultyReason": "Décision ciblée : Cinq Cœurs et les valeurs de manche ; les quatre Carreaux ne sont pas une deuxième majeure.",
     "caseFamily": "q400-b-texas-init",
     "editorialSource": "Catalogue QPJB : SEF-039-2; contrat #536 et mission #538."
   },
@@ -1193,49 +1199,52 @@
     "hand": [
       [
         "A",
-        "V",
-        "9",
+        "R",
         "7",
         "4"
       ],
       [
-        "R",
+        "D",
         "8"
       ],
       [
+        "A",
+        "R",
         "D",
-        "8",
-        "2"
+        "V"
       ],
       [
-        "V",
+        "D",
         "6",
-        "3"
+        "2"
       ]
     ],
-    "h": 11,
+    "h": 21,
     "shape": [
-      5,
+      4,
       2,
-      3,
+      4,
       3
     ],
     "auction": [
-      "Partenaire : 1SA"
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♦ (Texas Cœur)",
+      "Adversaire : Passe"
     ],
-    "context": "Votre partenaire ouvre de 1SA (15–17 H), sans intervention. Quelle est votre réponse ?",
-    "answer": "2♥",
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3SA",
     "choices": [
-      "2♣",
-      "2♦",
-      "2♥",
-      "3SA"
+      "3♥",
+      "3♠",
+      "3SA",
+      "4♥"
     ],
-    "explain": "11 H, distribution 5–2–3–3. Cinq Piques, pas de deuxième majeure quatrième : commencez par le Texas Pique.",
-    "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Cinq Piques, pas de deuxième majeure quatrième : commencez par le Texas Pique.",
-    "caseFamily": "q400-b-texas-init",
-    "editorialSource": "Catalogue QPJB : SEF-040-2; contrat #536 et mission #538."
+    "explain": "21 H, distribution 4–2–4–3. Sur 2SA, deux Cœurs ne suffisent pas à rectifier. 3SA indique le refus du soutien troisième, même avec un maximum. Comparez à la rectification obligatoire sur 1SA.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Sur 2SA, deux Cœurs ne suffisent pas à rectifier.",
+    "caseFamily": "q400-b-texas-rectification2",
+    "editorialSource": "Catalogue QPJB : SEF-L23-006; contrat #536 et mission #538."
   },
   {
     "id": "SEF-Q400-B-026",
@@ -1360,12 +1369,12 @@
       [
         "R",
         "D",
-        "9",
-        "6",
-        "2"
+        "9"
       ],
       [
         "D",
+        "6",
+        "5",
         "3"
       ]
     ],
@@ -1373,8 +1382,8 @@
     "shape": [
       4,
       2,
-      5,
-      2
+      3,
+      4
     ],
     "auction": [
       "Vous : 1SA",
@@ -1390,9 +1399,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "15 H, distribution 4–2–5–2. Quatre Piques et seulement deux Cœurs : annoncez la seule majeure quatrième.",
+    "explain": "15 H, distribution 4–2–3–4. Quatre Piques et deux Cœurs ; la réponse est 2♠. Les quatre Trèfles ne sont pas concernés par la recherche majeure.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Quatre Piques et seulement deux Cœurs : annoncez la seule majeure quatrième.",
+    "difficultyReason": "Décision ciblée : Quatre Piques et deux Cœurs ; la réponse est 2♠.",
     "caseFamily": "q400-b-stayman-code1",
     "editorialSource": "Catalogue QPJB : SEF-V3-016-1; contrat #536 et mission #538."
   },
@@ -1467,20 +1476,20 @@
       [
         "D",
         "8",
+        "6",
         "2"
       ],
       [
-        "V",
-        "6",
-        "3"
+        "D",
+        "5"
       ]
     ],
-    "h": 8,
+    "h": 9,
     "shape": [
       3,
       4,
-      3,
-      3
+      4,
+      2
     ],
     "auction": [
       "Partenaire : 1SA",
@@ -1498,9 +1507,9 @@
       "3SA",
       "4♥"
     ],
-    "explain": "8 H, distribution 3–4–3–3. Le fit Cœur est établi. Avec 8 H, invitez dans la majeure au lieu d’imposer la manche.",
+    "explain": "9 H, distribution 3–4–4–2. Le fit Cœur est établi, mais 9 H et le doubleton ne suffisent pas à imposer la manche. 3♥ invite.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Le fit Cœur est établi.",
+    "difficultyReason": "Décision ciblée : Le fit Cœur est établi, mais 9 H et le doubleton ne suffisent pas à imposer la manche.",
     "caseFamily": "q400-b-stayman-suite1",
     "editorialSource": "Catalogue QPJB : SEF-V3-001-1; contrat #536 et mission #538."
   },
@@ -1572,12 +1581,12 @@
       [
         "D",
         "8",
-        "3"
+        "4",
+        "2"
       ],
       [
         "R",
-        "6",
-        "2"
+        "6"
       ],
       [
         "8",
@@ -1588,8 +1597,8 @@
     "h": 8,
     "shape": [
       4,
-      3,
-      3,
+      4,
+      2,
       3
     ],
     "auction": [
@@ -1608,9 +1617,9 @@
       "3♠",
       "3SA"
     ],
-    "explain": "8 H, distribution 4–3–3–3. 2♦ nie quatre Piques chez l’ouvreur ; 2SA invite à la manche sans inventer un fit.",
+    "explain": "8 H, distribution 4–4–2–3. La réponse négative au Stayman exclut les deux fits 4–4 malgré vos deux majeures. Avec 8 H, invitez naturellement à 2SA.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : 2♦ nie quatre Piques chez l’ouvreur ; 2SA invite à la manche sans inventer un fit.",
+    "difficultyReason": "Décision ciblée : La réponse négative au Stayman exclut les deux fits 4–4 malgré vos deux majeures.",
     "caseFamily": "q400-b-stayman-suite1",
     "editorialSource": "Catalogue QPJB : SEF-V3-005-1; contrat #536 et mission #538."
   },
@@ -1850,20 +1859,20 @@
       ],
       [
         "V",
-        "8",
-        "2"
+        "8"
       ],
       [
-        "V",
-        "6"
+        "9",
+        "6",
+        "2"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       3,
       5,
-      3,
-      2
+      2,
+      3
     ],
     "auction": [
       "Partenaire : 1SA",
@@ -1881,9 +1890,9 @@
       "3SA",
       "4♥"
     ],
-    "explain": "11 H, distribution 3–5–3–2. La manche est acquise, mais le fit 5–3 ne l’est pas : 3SA laisse l’ouvreur choisir 4♥ s’il possède trois atouts.",
+    "explain": "10 H, distribution 3–5–2–3. Avec 10 H et exactement cinq Cœurs, la manche est justifiée, sans certitude de fit. 3SA laisse l’ouvreur corriger à 4♥ avec trois Cœurs.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : La manche est acquise, mais le fit 5–3 ne l’est pas : 3SA laisse l’ouvreur choisir 4♥ s’il possède trois atouts.",
+    "difficultyReason": "Décision ciblée : Avec 10 H et exactement cinq Cœurs, la manche est justifiée, sans certitude de fit.",
     "caseFamily": "q400-b-texas-suite1",
     "editorialSource": "Catalogue QPJB : SEF-V44-028; contrat #536 et mission #538."
   },
@@ -1905,7 +1914,7 @@
         "3"
       ],
       [
-        "D",
+        "V",
         "7"
       ],
       [
@@ -1913,7 +1922,7 @@
         "2"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       6,
       3,
@@ -1936,9 +1945,9 @@
       "3SA",
       "4♠"
     ],
-    "explain": "11 H, distribution 6–3–2–2. Six Piques face à une ouverture régulière garantissent au moins huit atouts ; concluez à la manche majeure.",
+    "explain": "10 H, distribution 6–3–2–2. Avec six Piques, le fit est certain face à une ouverture régulière ; 10 H suffisent pour la manche. Concluez à 4♠.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Six Piques face à une ouverture régulière garantissent au moins huit atouts ; concluez à la manche majeure.",
+    "difficultyReason": "Décision ciblée : Avec six Piques, le fit est certain face à une ouverture régulière ; 10 H suffisent pour la manche.",
     "caseFamily": "q400-b-texas-suite1",
     "editorialSource": "Catalogue QPJB : SEF-V3-020-1; contrat #536 et mission #538."
   },
@@ -2109,7 +2118,7 @@
         "8"
       ],
       [
-        "V",
+        "7",
         "6",
         "2"
       ],
@@ -2118,7 +2127,7 @@
         "3"
       ]
     ],
-    "h": 7,
+    "h": 6,
     "shape": [
       6,
       2,
@@ -2136,9 +2145,9 @@
       "3♥",
       "3SA"
     ],
-    "explain": "7 H, distribution 6–2–3–2. Avec six Piques, le Texas à 3♥ permet de préparer la manche majeure.",
+    "explain": "6 H, distribution 6–2–3–2. Les 6 H suffisent à la manche sur 2SA et six Piques garantissent huit atouts. Le Texas est 3♥, pas 2♥.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Avec six Piques, le Texas à 3♥ permet de préparer la manche majeure.",
+    "difficultyReason": "Décision ciblée : Les 6 H suffisent à la manche sur 2SA et six Piques garantissent huit atouts.",
     "caseFamily": "q400-b-texas-init2",
     "editorialSource": "Catalogue QPJB : SEF-Q26-M2-007; contrat #536 et mission #538."
   },
@@ -2255,7 +2264,6 @@
     "theme": "sa",
     "hand": [
       [
-        "D",
         "8",
         "3"
       ],
@@ -2265,10 +2273,11 @@
         "2"
       ],
       [
-        "V",
+        "10",
         "9",
         "8",
         "7",
+        "6",
         "4",
         "2"
       ],
@@ -2276,11 +2285,11 @@
         "7"
       ]
     ],
-    "h": 3,
+    "h": 0,
     "shape": [
+      2,
       3,
-      3,
-      6,
+      7,
       1
     ],
     "auction": [
@@ -2294,9 +2303,9 @@
       "3♦",
       "3SA"
     ],
-    "explain": "3 H, distribution 3–3–6–1. Six Carreaux et très peu de force : 3♣ transfère vers la partielle à 3♦.",
+    "explain": "0 H, distribution 2–3–7–1. Sept Carreaux sans honneur : 3♣ Texas permet de jouer la partielle à 3♦ ; la longueur ne suffit pas pour chercher la manche.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Six Carreaux et très peu de force : 3♣ transfère vers la partielle à 3♦.",
+    "difficultyReason": "Décision ciblée : Sept Carreaux sans honneur : 3♣ Texas permet de jouer la partielle à 3♦ ; la longueur ne suffit pas pour chercher la manche.",
     "caseFamily": "q400-b-mineur-init",
     "editorialSource": "Catalogue QPJB : SEF-PN26-M1-011; contrat #536 et mission #538."
   },
@@ -2693,14 +2702,14 @@
         "2"
       ],
       [
-        "A",
+        "V",
         "7"
       ],
       [
         "3"
       ]
     ],
-    "h": 10,
+    "h": 7,
     "shape": [
       5,
       5,
@@ -2718,9 +2727,9 @@
       "3♥",
       "4♦"
     ],
-    "explain": "10 H, distribution 5–5–2–1. Le bicolore majeur 5–5 avec force de manche se décrit par 4♦, demande de choix de la majeure.",
+    "explain": "7 H, distribution 5–5–2–1. Les deux majeures cinquièmes et les valeurs de manche justifient le 4♦ de choix de manche dans cet accord ; un Texas simple masquerait l’autre majeure.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Le bicolore majeur 5–5 avec force de manche se décrit par 4♦, demande de choix de la majeure.",
+    "difficultyReason": "Décision ciblée : Les deux majeures cinquièmes et les valeurs de manche justifient le 4♦ de choix de manche dans cet accord ; un Texas simple masquerait l’autre majeure.",
     "caseFamily": "q400-b-bicolore2",
     "editorialSource": "Catalogue QPJB : SEF-Q26-M2-010; contrat #536 et mission #538."
   },
@@ -2783,8 +2792,7 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "A",
@@ -2799,16 +2807,17 @@
         "2"
       ],
       [
+        "9",
         "8",
         "5"
       ]
     ],
     "h": 12,
     "shape": [
-      3,
+      2,
       5,
       3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -2826,9 +2835,9 @@
       "2SA",
       "3SA"
     ],
-    "explain": "12 H, distribution 3–5–3–2. La force permet de rechercher une manche et les cinq Cœurs laissent espérer un fit 5–3. Le Roudi vérifie le soutien.",
+    "explain": "12 H, distribution 2–5–3–3. Avec cinq Cœurs et 12 H, cherchez le soutien troisième par 2♣ Roudi ; 3SA direct pourrait manquer le fit.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : La force permet de rechercher une manche et les cinq Cœurs laissent espérer un fit 5–3.",
+    "difficultyReason": "Décision ciblée : Avec cinq Cœurs et 12 H, cherchez le soutien troisième par 2♣ Roudi ; 3SA direct pourrait manquer le fit.",
     "caseFamily": "q400-b-roudi-init",
     "editorialSource": "Catalogue QPJB : SEF-V4-073-1; contrat #536 et mission #538."
   },
@@ -2845,8 +2854,7 @@
       ],
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "V",
@@ -2855,15 +2863,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 11,
     "shape": [
       5,
+      2,
       3,
-      3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -2881,9 +2890,9 @@
       "2SA",
       "3SA"
     ],
-    "explain": "11 H, distribution 5–3–3–2. Avec cinq Piques et 11 H, 2♣ interroge sur le soutien troisième et la force de l’ouvreur.",
+    "explain": "11 H, distribution 5–2–3–3. 11 H et cinq Piques : l’invitation naturelle à 2SA ne vérifierait pas le fit 5–3. Le Roudi le permet.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Avec cinq Piques et 11 H, 2♣ interroge sur le soutien troisième et la force de l’ouvreur.",
+    "difficultyReason": "Décision ciblée : 11 H et cinq Piques : l’invitation naturelle à 2SA ne vérifierait pas le fit 5–3.",
     "caseFamily": "q400-b-roudi-init",
     "editorialSource": "Catalogue QPJB : SEF-V4-079-3; contrat #536 et mission #538."
   },
@@ -2955,11 +2964,11 @@
       ],
       [
         "D",
-        "8",
-        "3"
+        "8"
       ],
       [
         "A",
+        "9",
         "6",
         "2"
       ],
@@ -2971,8 +2980,8 @@
     "h": 11,
     "shape": [
       5,
-      3,
-      3,
+      2,
+      4,
       2
     ],
     "auction": [
@@ -2991,9 +3000,9 @@
       "2SA",
       "3SA"
     ],
-    "explain": "11 H, distribution 5–3–3–2. La manche dépend de la force et du fit. Ne concluez pas directement à Sans-Atout sans rechercher trois Piques.",
+    "explain": "11 H, distribution 5–2–4–2. Le partenaire a ouvert 1♦, mais la priorité reste la recherche du fit majeur 5–3 avec 11 H et cinq Piques. 2♣ permet de préciser le soutien.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : La manche dépend de la force et du fit.",
+    "difficultyReason": "Décision ciblée : Le partenaire a ouvert 1♦, mais la priorité reste la recherche du fit majeur 5–3 avec 11 H et cinq Piques.",
     "caseFamily": "q400-b-roudi-init",
     "editorialSource": "Catalogue QPJB : SEF-V4-091-3; contrat #536 et mission #538."
   },
@@ -3066,12 +3075,12 @@
         "V",
         "9",
         "7",
-        "4"
+        "4",
+        "2"
       ],
       [
         "8",
-        "6",
-        "2"
+        "6"
       ],
       [
         "V",
@@ -3081,8 +3090,8 @@
     "h": 7,
     "shape": [
       3,
-      5,
-      3,
+      6,
+      2,
       2
     ],
     "auction": [
@@ -3101,9 +3110,9 @@
       "2♥",
       "2SA"
     ],
-    "explain": "7 H, distribution 3–5–3–2. Main faible avec cinq Cœurs : préférez la partielle naturelle à 2♥ au relais constructif.",
+    "explain": "7 H, distribution 3–6–2–2. Main faible à six Cœurs : répétez naturellement 2♥, non forcing, sans utiliser le Roudi constructif.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Main faible avec cinq Cœurs : préférez la partielle naturelle à 2♥ au relais constructif.",
+    "difficultyReason": "Décision ciblée : Main faible à six Cœurs : répétez naturellement 2♥, non forcing, sans utiliser le Roudi constructif.",
     "caseFamily": "q400-b-roudi-sans-relais",
     "editorialSource": "Catalogue QPJB : SEF-V4-074-3; contrat #536 et mission #538."
   },
@@ -3120,8 +3129,7 @@
       ],
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "V",
@@ -3129,16 +3137,17 @@
         "2"
       ],
       [
+        "D",
         "8",
         "5"
       ]
     ],
-    "h": 6,
+    "h": 8,
     "shape": [
       5,
+      2,
       3,
-      3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3156,9 +3165,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "6 H, distribution 5–3–3–2. La répétition naturelle à 2♠ est non forcing ; la force ne justifie pas une recherche de manche.",
+    "explain": "8 H, distribution 5–2–3–3. 8 H et cinq Piques ne justifient pas une recherche de manche face à 12–14 H ; 2♠ naturel conserve la partielle.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : La répétition naturelle à 2♠ est non forcing ; la force ne justifie pas une recherche de manche.",
+    "difficultyReason": "Décision ciblée : 8 H et cinq Piques ne justifient pas une recherche de manche face à 12–14 H ; 2♠ naturel conserve la partielle.",
     "caseFamily": "q400-b-roudi-sans-relais",
     "editorialSource": "Catalogue QPJB : SEF-V4-080-4; contrat #536 et mission #538."
   },
@@ -3280,8 +3289,7 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "D",
@@ -3296,16 +3304,17 @@
       [
         "R",
         "9",
+        "7",
         "5",
         "2"
       ]
     ],
     "h": 12,
     "shape": [
+      2,
       3,
       3,
-      3,
-      4
+      5
     ],
     "auction": [
       "Vous : 1♣",
@@ -3325,9 +3334,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "12 H, distribution 3–3–3–4. Trois Cœurs et minimum de 12 H : 2♥ est le code correspondant.",
+    "explain": "12 H, distribution 2–3–3–5. Avec trois Cœurs et 12 H, minimum de la redemande, 2♥ code le fit troisième minimum. Cinq Trèfles ne modifient pas la réponse.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Cœurs et minimum de 12 H : 2♥ est le code correspondant.",
+    "difficultyReason": "Décision ciblée : Avec trois Cœurs et 12 H, minimum de la redemande, 2♥ code le fit troisième minimum.",
     "caseFamily": "q400-b-roudi-code",
     "editorialSource": "Catalogue QPJB : SEF-V4-077-1; contrat #536 et mission #538."
   },
@@ -3337,8 +3346,7 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "A",
@@ -3354,15 +3362,16 @@
         "A",
         "V",
         "9",
-        "5"
+        "5",
+        "2"
       ]
     ],
     "h": 14,
     "shape": [
+      2,
       3,
       3,
-      3,
-      4
+      5
     ],
     "auction": [
       "Vous : 1♣",
@@ -3382,9 +3391,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "14 H, distribution 3–3–3–4. Trois Cœurs et maximum : 2♠ est artificiel, sans promesse de Piques.",
+    "explain": "14 H, distribution 2–3–3–5. Trois Cœurs et 14 H : le code est 2♠ même avec seulement deux Piques. Ce n’est pas une annonce naturelle.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Cœurs et maximum : 2♠ est artificiel, sans promesse de Piques.",
+    "difficultyReason": "Décision ciblée : Trois Cœurs et 14 H : le code est 2♠ même avec seulement deux Piques.",
     "caseFamily": "q400-b-roudi-code",
     "editorialSource": "Catalogue QPJB : SEF-V4-078-1; contrat #536 et mission #538."
   },
@@ -3409,12 +3418,12 @@
         "2"
       ],
       [
-        "D",
+        "R",
         "6",
         "2"
       ]
     ],
-    "h": 12,
+    "h": 13,
     "shape": [
       2,
       3,
@@ -3439,9 +3448,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "12 H, distribution 2–3–5–3. Seulement deux Piques : 2♦, même avec une belle mineure cinquième.",
+    "explain": "13 H, distribution 2–3–5–3. Deux Piques seulement malgré 13 H et cinq Carreaux : 2♦ nie le soutien troisième, sans préciser la force.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Seulement deux Piques : 2♦, même avec une belle mineure cinquième.",
+    "difficultyReason": "Décision ciblée : Deux Piques seulement malgré 13 H et cinq Carreaux : 2♦ nie le soutien troisième, sans préciser la force.",
     "caseFamily": "q400-b-roudi-code",
     "editorialSource": "Catalogue QPJB : SEF-V4-094-1; contrat #536 et mission #538."
   },
@@ -3456,13 +3465,13 @@
       ],
       [
         "R",
-        "7",
-        "4"
+        "7"
       ],
       [
         "A",
         "V",
         "9",
+        "4",
         "2"
       ],
       [
@@ -3474,8 +3483,8 @@
     "h": 12,
     "shape": [
       3,
-      3,
-      4,
+      2,
+      5,
       3
     ],
     "auction": [
@@ -3496,9 +3505,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "12 H, distribution 3–3–4–3. Trois Piques et minimum : 2♥ code le soutien Pique, pas une longueur à Cœur.",
+    "explain": "12 H, distribution 3–2–5–3. Trois Piques et minimum de 12 H : 2♥ code le soutien Pique, même avec seulement deux Cœurs.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Piques et minimum : 2♥ code le soutien Pique, pas une longueur à Cœur.",
+    "difficultyReason": "Décision ciblée : Trois Piques et minimum de 12 H : 2♥ code le soutien Pique, même avec seulement deux Cœurs.",
     "caseFamily": "q400-b-roudi-code",
     "editorialSource": "Catalogue QPJB : SEF-V4-095-2; contrat #536 et mission #538."
   },
@@ -3513,13 +3522,13 @@
       ],
       [
         "D",
-        "7",
-        "4"
+        "7"
       ],
       [
         "R",
         "V",
         "9",
+        "4",
         "2"
       ],
       [
@@ -3531,8 +3540,8 @@
     "h": 14,
     "shape": [
       3,
-      3,
-      4,
+      2,
+      5,
       3
     ],
     "auction": [
@@ -3553,9 +3562,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "14 H, distribution 3–3–4–3. Trois Piques et maximum de 1SA : 2♠ est la réponse codée.",
+    "explain": "14 H, distribution 3–2–5–3. Trois Piques et maximum de 14 H : 2♠ est la réponse codée, sans ambiguïté avec une enchère naturelle.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Piques et maximum de 1SA : 2♠ est la réponse codée.",
+    "difficultyReason": "Décision ciblée : Trois Piques et maximum de 14 H : 2♠ est la réponse codée, sans ambiguïté avec une enchère naturelle.",
     "caseFamily": "q400-b-roudi-code",
     "editorialSource": "Catalogue QPJB : SEF-V4-096-1; contrat #536 et mission #538."
   },
@@ -3565,8 +3574,7 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "A",
@@ -3582,15 +3590,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 11,
     "shape": [
-      3,
+      2,
       5,
       3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3612,7 +3621,7 @@
       "3♥",
       "3SA"
     ],
-    "explain": "11 H, distribution 3–5–3–2. 2♦ nie trois Cœurs. Avec 11 H et cinq Cœurs seulement, invitez naturellement à 2SA.",
+    "explain": "11 H, distribution 2–5–3–3. 2♦ nie trois Cœurs. Avec 11 H, cinq Cœurs et aucune autre majeure quatrième, 2SA invite sans inventer un fit.",
     "difficulty": 4,
     "difficultyReason": "Décision ciblée : 2♦ nie trois Cœurs.",
     "caseFamily": "q400-b-roudi-suite",
@@ -3631,25 +3640,25 @@
       ],
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "D",
         "V",
-        "6",
-        "2"
+        "6"
       ],
       [
-        "V"
+        "V",
+        "5",
+        "2"
       ]
     ],
     "h": 13,
     "shape": [
       5,
+      2,
       3,
-      4,
-      1
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3671,9 +3680,9 @@
       "3♠",
       "3SA"
     ],
-    "explain": "13 H, distribution 5–3–4–1. Pas de soutien troisième Pique. Les valeurs de manche autorisent 3SA, plutôt qu’une manche majeure à sept atouts.",
+    "explain": "13 H, distribution 5–2–3–3. 2♦ nie les trois Piques ; 13 H et une main régulière suffisent à la manche. Concluez à 3SA, sans imposer sept atouts.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Pas de soutien troisième Pique.",
+    "difficultyReason": "Décision ciblée : 2♦ nie les trois Piques ; 13 H et une main régulière suffisent à la manche.",
     "caseFamily": "q400-b-roudi-suite",
     "editorialSource": "Catalogue QPJB : SEF-V44-063; contrat #536 et mission #538."
   },
@@ -3683,8 +3692,7 @@
     "hand": [
       [
         "D",
-        "8",
-        "3"
+        "8"
       ],
       [
         "A",
@@ -3700,15 +3708,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 11,
     "shape": [
-      3,
+      2,
       5,
       3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3730,9 +3739,9 @@
       "3♥",
       "4♥"
     ],
-    "explain": "11 H, distribution 3–5–3–2. Le fit Cœur est trouvé mais l’ouvreur est minimum. Invitez à 3♥ plutôt que d’imposer la manche.",
+    "explain": "11 H, distribution 2–5–3–3. Le fit Cœur est trouvé, mais le partenaire est minimum. 11 H et le doubleton invitent à 3♥, pas à une manche certaine.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Le fit Cœur est trouvé mais l’ouvreur est minimum.",
+    "difficultyReason": "Décision ciblée : Le fit Cœur est trouvé, mais le partenaire est minimum.",
     "caseFamily": "q400-b-roudi-suite",
     "editorialSource": "Catalogue QPJB : SEF-V44-064; contrat #536 et mission #538."
   },
@@ -3749,8 +3758,7 @@
       ],
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
         "D",
@@ -3759,15 +3767,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 12,
     "shape": [
       5,
+      2,
       3,
-      3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3789,9 +3798,9 @@
       "3SA",
       "4♠"
     ],
-    "explain": "12 H, distribution 5–3–3–2. Le maximum et le fit troisième annoncés suffisent : 4♠ conclut.",
+    "explain": "12 H, distribution 5–2–3–3. Le maximum et le fit troisième annoncés donnent les valeurs nécessaires à 4♠ ; 3♠ ne serait qu’une invitation.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Le maximum et le fit troisième annoncés suffisent : 4♠ conclut.",
+    "difficultyReason": "Décision ciblée : Le maximum et le fit troisième annoncés donnent les valeurs nécessaires à 4♠ ; 3♠ ne serait qu’une invitation.",
     "caseFamily": "q400-b-roudi-suite",
     "editorialSource": "Catalogue QPJB : SEF-V44-065; contrat #536 et mission #538."
   },
@@ -3808,8 +3817,7 @@
       ],
       [
         "D",
-        "8",
-        "3"
+        "8"
       ],
       [
         "R",
@@ -3818,15 +3826,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 10,
     "shape": [
       5,
+      2,
       3,
-      3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : 1♣",
@@ -3848,9 +3857,9 @@
       "3♠",
       "4♠"
     ],
-    "explain": "10 H, distribution 5–3–3–2. Face au minimum fitté, cette main de 10 H reste trop juste pour inviter. 2♥ était codé : revenez à 2♠.",
+    "explain": "10 H, distribution 5–2–3–3. Le partenaire est minimum et fitté ; avec 10 H et des honneurs modestes, revenez à 2♠ non forcing. Passe laisserait jouer le code 2♥.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Face au minimum fitté, cette main de 10 H reste trop juste pour inviter.",
+    "difficultyReason": "Décision ciblée : Le partenaire est minimum et fitté ; avec 10 H et des honneurs modestes, revenez à 2♠ non forcing.",
     "caseFamily": "q400-b-roudi-suite",
     "editorialSource": "Catalogue QPJB : V1-M5-002; contrat #536 et mission #538."
   },
@@ -3925,11 +3934,11 @@
       [
         "A",
         "D",
-        "7"
+        "7",
+        "4"
       ],
       [
         "V",
-        "9",
         "6",
         "2"
       ],
@@ -3942,14 +3951,14 @@
     "h": 11,
     "shape": [
       3,
-      3,
       4,
+      3,
       3
     ],
     "auction": [
       "Vous : Passe",
       "Adversaire : Passe",
-      "Partenaire : 1♥ (3e position)",
+      "Partenaire : 1♠ (3e position)",
       "Adversaire : Passe"
     ],
     "context": "Les adversaires passent. Appliquez le traitement QPJB après Passe initial et ouverture majeure en troisième ou quatrième position. Quelle est votre enchère ?",
@@ -3957,12 +3966,12 @@
     "choices": [
       "1SA",
       "2♣",
-      "2♥",
+      "2♠",
       "2SA"
     ],
-    "explain": "11 H, distribution 3–3–4–3. Trois Cœurs et 11 H plats donnent le seuil constructif du Drury, même sans courte.",
+    "explain": "11 H, distribution 3–4–3–3. Trois Piques et 11 H sans courte : le seuil constructif est atteint. Même avec quatre Cœurs, le fit Pique prime et 2♣ vérifie l’ouverture.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Cœurs et 11 H plats donnent le seuil constructif du Drury, même sans courte.",
+    "difficultyReason": "Décision ciblée : Trois Piques et 11 H sans courte : le seuil constructif est atteint.",
     "caseFamily": "q400-b-drury-init",
     "editorialSource": "Catalogue QPJB : SEF-PN26-M1-015; contrat #536 et mission #538."
   },
@@ -3983,12 +3992,12 @@
       [
         "V",
         "9",
-        "6",
-        "2"
+        "6"
       ],
       [
         "8",
         "5",
+        "4",
         "2"
       ]
     ],
@@ -3996,8 +4005,8 @@
     "shape": [
       3,
       3,
-      4,
-      3
+      3,
+      4
     ],
     "auction": [
       "Vous : Passe",
@@ -4013,9 +4022,9 @@
       "2♥",
       "2SA"
     ],
-    "explain": "10 H, distribution 3–3–4–3. Trois Cœurs et aucune courte : 10 HLD seulement, soutien simple plutôt que Drury.",
+    "explain": "10 H, distribution 3–3–3–4. 10 H et trois Cœurs, sans courte : 10 HLD. Le soutien simple suffit ; le Drury demanderait au moins 11 HLD.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Trois Cœurs et aucune courte : 10 HLD seulement, soutien simple plutôt que Drury.",
+    "difficultyReason": "Décision ciblée : 10 H et trois Cœurs, sans courte : 10 HLD.",
     "caseFamily": "q400-b-drury-seuil",
     "editorialSource": "Catalogue QPJB : SEF-V4-097-1; contrat #536 et mission #538."
   },
@@ -4083,13 +4092,13 @@
       ],
       [
         "D",
+        "9",
         "8",
         "3"
       ],
       [
         "V",
-        "9",
-        "4",
+        "6",
         "2"
       ],
       [
@@ -4102,8 +4111,8 @@
     "h": 9,
     "shape": [
       2,
-      3,
       4,
+      3,
       4
     ],
     "auction": [
@@ -4120,9 +4129,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "9 H, distribution 2–3–4–4. Deux Piques seulement : pas de fit, donc ni Drury ni soutien. 1SA décrit la main passée limitée.",
+    "explain": "9 H, distribution 2–4–3–4. Deux Piques seulement et quatre Cœurs non annonçables au palier de deux avec cette force. 1SA décrit la main passée limitée, sans faux fit.",
     "difficulty": 2,
-    "difficultyReason": "Décision ciblée : Deux Piques seulement : pas de fit, donc ni Drury ni soutien.",
+    "difficultyReason": "Décision ciblée : Deux Piques seulement et quatre Cœurs non annonçables au palier de deux avec cette force.",
     "caseFamily": "q400-b-drury-sans-fit",
     "editorialSource": "Catalogue QPJB : SEF-V4-106-2; contrat #536 et mission #538."
   },
@@ -4145,14 +4154,14 @@
       ],
       [
         "A",
-        "V",
         "9",
         "8",
         "6",
-        "4"
+        "4",
+        "2"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       2,
       3,
@@ -4173,9 +4182,9 @@
       "2♠",
       "2SA"
     ],
-    "explain": "11 H, distribution 2–3–2–6. Les six Trèfles ne justifient pas le faux Drury : le traitement QPJB exige un vrai fit majeur.",
+    "explain": "10 H, distribution 2–3–2–6. 10 H et six Trèfles, mais seulement deux Piques. Le faux Drury sans fit est supprimé ; 1SA absorbe cette longue dans une main passée de 12 HL.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Les six Trèfles ne justifient pas le faux Drury : le traitement QPJB exige un vrai fit majeur.",
+    "difficultyReason": "Décision ciblée : 10 H et six Trèfles, mais seulement deux Piques.",
     "caseFamily": "q400-b-drury-sans-fit",
     "editorialSource": "Catalogue QPJB : SEF-L13-001; contrat #536 et mission #538."
   },
@@ -4185,6 +4194,7 @@
     "hand": [
       [
         "R",
+        "9",
         "8",
         "3"
       ],
@@ -4198,7 +4208,6 @@
         "A",
         "V",
         "9",
-        "4",
         "2"
       ],
       [
@@ -4207,9 +4216,9 @@
     ],
     "h": 10,
     "shape": [
-      3,
       4,
-      5,
+      4,
+      4,
       1
     ],
     "auction": [
@@ -4226,9 +4235,9 @@
       "2SA",
       "3♥"
     ],
-    "explain": "10 H, distribution 3–4–5–1. Quatre Cœurs, un singleton Trèfle et au moins 11 HLD : le 2SA fitté après Passe décrit mieux cette main que le Drury.",
+    "explain": "10 H, distribution 4–4–4–1. Quatre Cœurs, une courte Trèfle et 10 H : la main justifie le 2SA fitté spécifique après Passe, plutôt que le Drury.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Quatre Cœurs, un singleton Trèfle et au moins 11 HLD : le 2SA fitté après Passe décrit mieux cette main que le Drury.",
+    "difficultyReason": "Décision ciblée : Quatre Cœurs, une courte Trèfle et 10 H : la main justifie le 2SA fitté spécifique après Passe, plutôt que le Drury.",
     "caseFamily": "q400-b-drury-courte",
     "editorialSource": "Catalogue QPJB : SEF-V44-067; contrat #536 et mission #538."
   },
@@ -4244,13 +4253,13 @@
       ],
       [
         "V",
+        "9",
         "8",
         "3"
       ],
       [
         "R",
         "9",
-        "4",
         "2"
       ],
       [
@@ -4261,8 +4270,8 @@
     "h": 10,
     "shape": [
       4,
-      3,
       4,
+      3,
       2
     ],
     "auction": [
@@ -4279,9 +4288,9 @@
       "2SA",
       "3♠"
     ],
-    "explain": "10 H, distribution 4–3–4–2. Quatre Piques et une main constructive mais aucun singleton ni chicane : Drury, pas 2SA fitté avec courte.",
+    "explain": "10 H, distribution 4–4–3–2. Quatre Piques, 10 H et doubleton mais ni singleton ni chicane : Drury. Le 2SA après Passe exigerait une vraie courte.",
     "difficulty": 4,
-    "difficultyReason": "Décision ciblée : Quatre Piques et une main constructive mais aucun singleton ni chicane : Drury, pas 2SA fitté avec courte.",
+    "difficultyReason": "Décision ciblée : Quatre Piques, 10 H et doubleton mais ni singleton ni chicane : Drury.",
     "caseFamily": "q400-b-drury-courte",
     "editorialSource": "Catalogue QPJB : V2-M6-009; contrat #536 et mission #538."
   },
@@ -4290,11 +4299,11 @@
     "theme": "drury",
     "hand": [
       [
-        "D",
         "8",
         "3"
       ],
       [
+        "A",
         "R",
         "V",
         "9",
@@ -4307,14 +4316,14 @@
         "2"
       ],
       [
-        "D",
+        "7",
         "5"
       ]
     ],
     "h": 8,
     "shape": [
-      3,
-      5,
+      2,
+      6,
       3,
       2
     ],
@@ -4334,9 +4343,9 @@
       "3♥",
       "4♥"
     ],
-    "explain": "8 H, distribution 3–5–3–2. L’ouverture tactique ne vaut pas une ouverture normale. Répétez les Cœurs au plus bas pour décourager.",
+    "explain": "8 H, distribution 2–6–3–2. Ouverture tactique avec une belle couleur sixième mais 8 H, moins de 13 HL. Répétez 2♥ pour décourager la manche.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : L’ouverture tactique ne vaut pas une ouverture normale.",
+    "difficultyReason": "Décision ciblée : Ouverture tactique avec une belle couleur sixième mais 8 H, moins de 13 HL.",
     "caseFamily": "q400-b-drury-reponse",
     "editorialSource": "Catalogue QPJB : SEF-V4-101-2; contrat #536 et mission #538."
   },
@@ -4353,8 +4362,7 @@
       ],
       [
         "D",
-        "8",
-        "3"
+        "8"
       ],
       [
         "R",
@@ -4363,15 +4371,16 @@
       ],
       [
         "V",
+        "8",
         "5"
       ]
     ],
     "h": 13,
     "shape": [
       5,
+      2,
       3,
-      3,
-      2
+      3
     ],
     "auction": [
       "Partenaire : Passe",
@@ -4389,9 +4398,9 @@
       "3♠",
       "4♠"
     ],
-    "explain": "13 H, distribution 5–3–3–2. Ouverture normale mais sans certitude de manche. 2♦ d’attente montre un espoir de manche.",
+    "explain": "13 H, distribution 5–2–3–3. Avec 13 H et cinq Piques, ouverture normale sans manche certaine. 2♦ d’attente montre un espoir de manche ; 2♠ indiquerait une ouverture tactique.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Ouverture normale mais sans certitude de manche.",
+    "difficultyReason": "Décision ciblée : Avec 13 H et cinq Piques, ouverture normale sans manche certaine.",
     "caseFamily": "q400-b-drury-reponse",
     "editorialSource": "Catalogue QPJB : SEF-V4-108-1; contrat #536 et mission #538."
   },
@@ -4412,7 +4421,7 @@
         "4"
       ],
       [
-        "R",
+        "D",
         "8",
         "3"
       ],
@@ -4421,7 +4430,7 @@
         "6"
       ]
     ],
-    "h": 18,
+    "h": 17,
     "shape": [
       2,
       6,
@@ -4444,9 +4453,9 @@
       "3♥",
       "4♥"
     ],
-    "explain": "18 H, distribution 2–6–3–2. Six très beaux Cœurs et des contrôles extérieurs face au Drury donnent un espoir de chelem. 3♥ le signale, sans conclure.",
+    "explain": "17 H, distribution 2–6–3–2. 17 H, six Cœurs très solides et un As extérieur : le Drury fitté rend un chelem envisageable. 3♥ exprime cette ambition, contrairement à 4♥.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Six très beaux Cœurs et des contrôles extérieurs face au Drury donnent un espoir de chelem.",
+    "difficultyReason": "Décision ciblée : 17 H, six Cœurs très solides et un As extérieur : le Drury fitté rend un chelem envisageable.",
     "caseFamily": "q400-b-drury-reponse",
     "editorialSource": "Catalogue QPJB : SEF-V484-011; contrat #536 et mission #538."
   },
@@ -4456,10 +4465,10 @@
     "hand": [
       [
         "R",
-        "V",
         "9",
         "7",
-        "4"
+        "4",
+        "2"
       ],
       [
         "A",
@@ -4468,7 +4477,7 @@
       ],
       [
         "A",
-        "D",
+        "V",
         "9",
         "2"
       ],
@@ -4476,7 +4485,7 @@
         "6"
       ]
     ],
-    "h": 14,
+    "h": 12,
     "shape": [
       5,
       3,
@@ -4499,9 +4508,9 @@
       "3♠",
       "4♠"
     ],
-    "explain": "14 H, distribution 5–3–4–1. La courte Trèfle, les honneurs utiles et le fit connu justifient la manche. 3♠ serait une ambition de chelem.",
+    "explain": "12 H, distribution 5–3–4–1. Avec 12 H, cinq Piques, singleton Trèfle et honneurs utiles hors courte, la manche devient raisonnable face au Drury ; 4♠ conclut sans annoncer un espoir de chelem.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : La courte Trèfle, les honneurs utiles et le fit connu justifient la manche.",
+    "difficultyReason": "Décision ciblée : Avec 12 H, cinq Piques, singleton Trèfle et honneurs utiles hors courte, la manche devient raisonnable face au Drury ; 4♠ conclut sans annoncer un espoir de chelem.",
     "caseFamily": "q400-b-drury-reponse",
     "editorialSource": "Catalogue QPJB : SEF-V484-014; contrat #536 et mission #538."
   },
@@ -4511,6 +4520,7 @@
     "hand": [
       [
         "A",
+        "9",
         "8",
         "3"
       ],
@@ -4527,16 +4537,15 @@
       ],
       [
         "V",
-        "8",
         "5"
       ]
     ],
     "h": 11,
     "shape": [
-      3,
+      4,
       3,
       4,
-      3
+      2
     ],
     "auction": [
       "Vous : Passe",
@@ -4556,9 +4565,9 @@
       "4♥",
       "3SA"
     ],
-    "explain": "11 H, distribution 3–3–4–3. Après 2♦ d’attente, trois atouts Cœur exactement sont montrés par 2♥. 3♥ promettrait quatre atouts.",
+    "explain": "11 H, distribution 4–3–4–2. Le Drury a montré le soutien constructif. Après 2♦, vos trois Cœurs exactement appellent 2♥, même avec un doubleton et quatre Piques.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Après 2♦ d’attente, trois atouts Cœur exactement sont montrés par 2♥.",
+    "difficultyReason": "Décision ciblée : Le Drury a montré le soutien constructif.",
     "caseFamily": "q400-b-drury-suite",
     "editorialSource": "Catalogue QPJB : SEF-V484-001; contrat #536 et mission #538."
   },
@@ -4569,31 +4578,31 @@
       [
         "R",
         "V",
-        "7"
+        "7",
+        "4"
       ],
       [
         "D",
+        "9",
         "8",
         "3"
       ],
       [
         "A",
-        "9",
         "6",
         "2"
       ],
       [
-        "V",
         "8",
         "5"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
-      3,
-      3,
       4,
-      3
+      4,
+      3,
+      2
     ],
     "auction": [
       "Vous : Passe",
@@ -4606,18 +4615,18 @@
       "Adversaire : Passe"
     ],
     "context": "Les adversaires passent. Appliquez le traitement QPJB après Passe initial et ouverture majeure en troisième ou quatrième position. Quelle est votre enchère ?",
-    "answer": "2♠",
+    "answer": "3♠",
     "choices": [
       "2♠",
       "3♠",
       "4♠",
       "3SA"
     ],
-    "explain": "11 H, distribution 3–3–4–3. Le nombre d’atouts, pas l’existence de 11 H, distingue les réponses : trois Piques, retour économique.",
+    "explain": "10 H, distribution 4–4–3–2. Quatre Piques et 10 H avec doubleton : le Drury initial est constructif sans courte singleton. Après 2♦ d’attente, 3♠ précise le neuvième atout.",
     "difficulty": 3,
-    "difficultyReason": "Décision ciblée : Le nombre d’atouts, pas l’existence de 11 H, distingue les réponses : trois Piques, retour économique.",
+    "difficultyReason": "Décision ciblée : Quatre Piques et 10 H avec doubleton : le Drury initial est constructif sans courte singleton.",
     "caseFamily": "q400-b-drury-suite",
-    "editorialSource": "Catalogue QPJB : SEF-V484-003; contrat #536 et mission #538."
+    "editorialSource": "Catalogue QPJB : SEF-V484-004 pour le code des suites et SEF-Q26-M6-007 pour l’admissibilité du Drury initial ; #536/#538."
   },
   {
     "id": "SEF-Q400-B-088",
@@ -4675,5 +4684,625 @@
     "difficultyReason": "Décision ciblée : Le 2SA avait montré quatre Cœurs et une courte.",
     "caseFamily": "q400-b-drury-courte-suite",
     "editorialSource": "Catalogue QPJB : SEF-V484-006; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-089",
+    "theme": "ouv",
+    "hand": [
+      [
+        "A",
+        "R",
+        "7",
+        "2"
+      ],
+      [
+        "D",
+        "8",
+        "4"
+      ],
+      [
+        "R",
+        "V",
+        "6"
+      ],
+      [
+        "D",
+        "9",
+        "5"
+      ]
+    ],
+    "h": 15,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [],
+    "context": "Vous êtes donneur en première position. Quelle est votre ouverture ?",
+    "answer": "1SA",
+    "choices": [
+      "1♠",
+      "1♦",
+      "2SA",
+      "1SA"
+    ],
+    "explain": "15 H, distribution 4–3–3–3. Avec 15 H et une main régulière, ouvrez de 1SA. Les quatre Piques ne suffisent pas pour ouvrir de 1♠.",
+    "difficulty": 1,
+    "difficultyReason": "Décision ciblée : Avec 15 H et une main régulière, ouvrez de 1SA.",
+    "caseFamily": "q400-b-ouv-zone",
+    "editorialSource": "Catalogue QPJB : SEF-001-1; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-090",
+    "theme": "ouv",
+    "hand": [
+      [
+        "A",
+        "D",
+        "8"
+      ],
+      [
+        "R",
+        "7"
+      ],
+      [
+        "A",
+        "R",
+        "V",
+        "9",
+        "5"
+      ],
+      [
+        "R",
+        "6",
+        "2"
+      ]
+    ],
+    "h": 20,
+    "shape": [
+      3,
+      2,
+      5,
+      3
+    ],
+    "auction": [],
+    "context": "Vous êtes donneur en première position. Quelle est votre ouverture ?",
+    "answer": "2SA",
+    "choices": [
+      "1♦",
+      "1SA",
+      "2SA",
+      "2♣"
+    ],
+    "explain": "20 H, distribution 3–2–5–3. Une main régulière à mineure cinquième avec 20 H relève de 2SA, pas de 1♦ ni de 1SA.",
+    "difficulty": 2,
+    "difficultyReason": "Décision ciblée : Une main régulière à mineure cinquième avec 20 H relève de 2SA, pas de 1♦ ni de 1SA.",
+    "caseFamily": "q400-b-ouv-mineure",
+    "editorialSource": "Catalogue QPJB : SEF-N021-1; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-091",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "D",
+        "8"
+      ],
+      [
+        "A",
+        "R",
+        "7",
+        "4"
+      ],
+      [
+        "R",
+        "V",
+        "9",
+        "2"
+      ],
+      [
+        "R",
+        "6"
+      ]
+    ],
+    "h": 20,
+    "shape": [
+      3,
+      4,
+      4,
+      2
+    ],
+    "auction": [
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♣ (Stayman quatre réponses)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3♥",
+    "choices": [
+      "3♦",
+      "3♥",
+      "3♠",
+      "3SA"
+    ],
+    "explain": "20 H, distribution 3–4–4–2. Seuls les Cœurs sont quatrièmes. Les quatre Carreaux sont sans effet sur cette recherche de fit majeur.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Seuls les Cœurs sont quatrièmes.",
+    "caseFamily": "q400-b-stayman-code2",
+    "editorialSource": "Catalogue QPJB : SEF-L41-001; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-092",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "R",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "V",
+        "8"
+      ],
+      [
+        "A",
+        "D",
+        "9"
+      ],
+      [
+        "R",
+        "V",
+        "6"
+      ]
+    ],
+    "h": 20,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♣ (Stayman quatre réponses)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3♠",
+    "choices": [
+      "3♦",
+      "3♥",
+      "3♠",
+      "3SA"
+    ],
+    "explain": "20 H, distribution 4–3–3–3. Quatre Piques seulement : 3♠. Le code des réponses décrit la distribution, non la force.",
+    "difficulty": 2,
+    "difficultyReason": "Décision ciblée : Quatre Piques seulement : 3♠.",
+    "caseFamily": "q400-b-stayman-code2",
+    "editorialSource": "Catalogue QPJB : SEF-PN26-M1-009; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-093",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "D",
+        "7",
+        "4"
+      ],
+      [
+        "A",
+        "R",
+        "8",
+        "2"
+      ],
+      [
+        "R",
+        "V",
+        "6"
+      ],
+      [
+        "R",
+        "9"
+      ]
+    ],
+    "h": 20,
+    "shape": [
+      4,
+      4,
+      3,
+      2
+    ],
+    "auction": [
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♣ (Stayman quatre réponses)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3SA",
+    "choices": [
+      "3♦",
+      "3♥",
+      "3♠",
+      "3SA"
+    ],
+    "explain": "20 H, distribution 4–4–3–2. Les deux majeures quatrièmes sont montrées par 3SA artificiel : ce n’est pas une conclusion naturelle.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Les deux majeures quatrièmes sont montrées par 3SA artificiel : ce n’est pas une conclusion naturelle.",
+    "caseFamily": "q400-b-stayman-code2",
+    "editorialSource": "Catalogue QPJB : SEF-L38-001; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-094",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "D",
+        "8"
+      ],
+      [
+        "A",
+        "R",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "6"
+      ],
+      [
+        "A",
+        "V",
+        "9",
+        "2"
+      ]
+    ],
+    "h": 20,
+    "shape": [
+      3,
+      4,
+      2,
+      4
+    ],
+    "auction": [
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♦ (Texas Cœur)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3♥",
+    "choices": [
+      "3♥",
+      "3♠",
+      "3SA",
+      "4♥"
+    ],
+    "explain": "20 H, distribution 3–4–2–4. Quatre Cœurs constituent un soutien certain. Sur 2SA la rectification promet au moins trois atouts ; restez au palier de trois pour laisser le répondant préciser ses ambitions.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Quatre Cœurs constituent un soutien certain.",
+    "caseFamily": "q400-b-texas-rectification2",
+    "editorialSource": "Catalogue QPJB : SEF-Q26-M2-008; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-095",
+    "theme": "sa",
+    "hand": [
+      [
+        "R",
+        "8",
+        "3"
+      ],
+      [
+        "7"
+      ],
+      [
+        "A",
+        "9",
+        "6"
+      ],
+      [
+        "A",
+        "D",
+        "V",
+        "8",
+        "4",
+        "2"
+      ]
+    ],
+    "h": 14,
+    "shape": [
+      3,
+      1,
+      3,
+      6
+    ],
+    "auction": [
+      "Partenaire : 1SA"
+    ],
+    "context": "Votre partenaire ouvre de 1SA (15–17 H), sans intervention. Quelle est votre première réponse ?",
+    "answer": "2♠",
+    "choices": [
+      "2♠",
+      "3♣",
+      "3SA",
+      "2♣"
+    ],
+    "explain": "14 H, distribution 3–1–3–6. Six Trèfles, une courte et les valeurs de manche : 2♠ Texas Trèfle permet de préciser ensuite la courte Cœur.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Six Trèfles, une courte et les valeurs de manche : 2♠ Texas Trèfle permet de préciser ensuite la courte Cœur.",
+    "caseFamily": "q400-b-mineur-init",
+    "editorialSource": "Catalogue QPJB : SEF-PN26-M1-012; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-096",
+    "theme": "sa",
+    "hand": [
+      [
+        "V",
+        "8",
+        "3"
+      ],
+      [
+        "7",
+        "2"
+      ],
+      [
+        "9",
+        "6"
+      ],
+      [
+        "D",
+        "9",
+        "8",
+        "7",
+        "4",
+        "2"
+      ]
+    ],
+    "h": 3,
+    "shape": [
+      3,
+      2,
+      2,
+      6
+    ],
+    "auction": [
+      "Partenaire : 1SA"
+    ],
+    "context": "Votre partenaire ouvre de 1SA (15–17 H), sans intervention. Quelle est votre première réponse ?",
+    "answer": "2♠",
+    "choices": [
+      "2♠",
+      "3♣",
+      "3♦",
+      "3SA"
+    ],
+    "explain": "3 H, distribution 3–2–2–6. Six Trèfles et 3 H, sans perspective de manche : transférez vers la partielle à 3♣.",
+    "difficulty": 2,
+    "difficultyReason": "Décision ciblée : Six Trèfles et 3 H, sans perspective de manche : transférez vers la partielle à 3♣.",
+    "caseFamily": "q400-b-mineur-init",
+    "editorialSource": "Catalogue QPJB : SEF-PN26-M1-011; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-097",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "R",
+        "V",
+        "7"
+      ],
+      [
+        "D",
+        "8",
+        "3"
+      ],
+      [
+        "A",
+        "6",
+        "2"
+      ],
+      [
+        "V",
+        "9",
+        "5"
+      ]
+    ],
+    "h": 15,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [
+      "Vous : 1SA",
+      "Adversaire : Passe",
+      "Partenaire : 2♠ (Texas Trèfle)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "3♣",
+    "choices": [
+      "2SA",
+      "3♣",
+      "3♦",
+      "3SA"
+    ],
+    "explain": "15 H, distribution 4–3–3–3. 15 H et Valet troisième à Trèfle ne justifient pas la modulation positive. Rectification normale à 3♣.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : 15 H et Valet troisième à Trèfle ne justifient pas la modulation positive.",
+    "caseFamily": "q400-b-mineur-rectif",
+    "editorialSource": "Catalogue QPJB : SEF-L25-008; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-098",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "D",
+        "8"
+      ],
+      [
+        "A",
+        "V",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "6",
+        "2"
+      ],
+      [
+        "R",
+        "9",
+        "5"
+      ]
+    ],
+    "h": 16,
+    "shape": [
+      3,
+      4,
+      3,
+      3
+    ],
+    "auction": [
+      "Vous : 1SA",
+      "Adversaire : Passe",
+      "Partenaire : 2♠ (Texas Trèfle)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "2SA",
+    "choices": [
+      "2SA",
+      "3♣",
+      "3♦",
+      "3SA"
+    ],
+    "explain": "16 H, distribution 3–4–3–3. 16 H et Roi troisième à Trèfle : complément favorable qui justifie 2SA dans le traitement QPJB. Ce n’est pas une promesse de 17 H.",
+    "difficulty": 4,
+    "difficultyReason": "Décision ciblée : 16 H et Roi troisième à Trèfle : complément favorable qui justifie 2SA dans le traitement QPJB.",
+    "caseFamily": "q400-b-mineur-modulation",
+    "editorialSource": "Catalogue QPJB : SEF-L25-007; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-099",
+    "theme": "sa",
+    "hand": [
+      [
+        "A",
+        "R",
+        "8"
+      ],
+      [
+        "A",
+        "D",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "6"
+      ],
+      [
+        "R",
+        "D",
+        "V",
+        "9"
+      ]
+    ],
+    "h": 21,
+    "shape": [
+      3,
+      4,
+      2,
+      4
+    ],
+    "auction": [
+      "Vous : 2SA",
+      "Adversaire : Passe",
+      "Partenaire : 3♠ (Texas Trèfle fitté)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "4♣",
+    "choices": [
+      "3SA",
+      "4♣",
+      "4♦",
+      "4SA"
+    ],
+    "explain": "21 H, distribution 3–4–2–4. Quatre Trèfles commandés par Roi-Dame-Valet : soutien approprié à la rectification fittée à 4♣. Dans cet accord, 3SA montrerait un refus.",
+    "difficulty": 4,
+    "difficultyReason": "Décision ciblée : Quatre Trèfles commandés par Roi-Dame-Valet : soutien approprié à la rectification fittée à 4♣.",
+    "caseFamily": "q400-b-mineur2-fit",
+    "editorialSource": "Catalogue QPJB : SEF-Q26-M2-012; contrat #536 et mission #538."
+  },
+  {
+    "id": "SEF-Q400-B-100",
+    "theme": "drury",
+    "hand": [
+      [
+        "D",
+        "8",
+        "3"
+      ],
+      [
+        "R",
+        "V",
+        "7"
+      ],
+      [
+        "A",
+        "9",
+        "8",
+        "4",
+        "2"
+      ],
+      [
+        "8",
+        "5"
+      ]
+    ],
+    "h": 10,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Vous : Passe",
+      "Adversaire : Passe",
+      "Partenaire : 1♥ (3e position)",
+      "Adversaire : Passe"
+    ],
+    "context": "Les adversaires passent. Quelle est votre enchère selon le traitement QPJB ?",
+    "answer": "2♣",
+    "choices": [
+      "1SA",
+      "2♣",
+      "2♥",
+      "2SA"
+    ],
+    "explain": "10 H, distribution 3–3–5–2. Avec trois Cœurs, 10 H et un doubleton Trèfle, la main atteint au moins 11 HLD. Le Drury vérifie la qualité de l’ouverture après Passe.",
+    "difficulty": 3,
+    "difficultyReason": "Décision ciblée : Avec trois Cœurs, 10 H et un doubleton Trèfle, la main atteint au moins 11 HLD.",
+    "caseFamily": "q400-b-drury-seuil",
+    "editorialSource": "Catalogue QPJB : SEF-C2-011; contrat #536 et mission #538."
   }
 ]
