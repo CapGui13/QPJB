@@ -1503,15 +1503,15 @@
     "auction": [
       "Partenaire : 1♥"
     ],
-    "context": "Votre partenaire ouvre de 1♥ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "context": "Votre partenaire ouvre de 1♥ ; vous n'avez pas passé et les adversaires passent. Quelle est votre réponse ?",
     "answer": "2♣",
     "choices": [
       "2♥",
-      "Passe",
+      "2♦",
       "1SA",
       "2♣"
     ],
-    "explain": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : pour un répondant non passé, une redemande économique non fittée de l'ouvreur exige une nouvelle enchère du répondant. 1SA limiterait excessivement votre jeu.",
+    "explain": "12 H et cinq Trèfles donnent 13 HL. Avec deux Cœurs, pas de fit connu. Vous possédez aussi quatre Carreaux : choisissez 2♣, la mineure la plus longue, plutôt que 2♦. Ce changement de couleur naturel sans saut est forcing et auto-forcing pour le répondant non passé ; 1SA limiterait excessivement votre jeu.",
     "difficulty": 2,
     "difficultyReason": "Réponse sans fit ou changement de couleur de base",
     "caseFamily": "cas-121",
@@ -7244,5 +7244,595 @@
     "difficulty": 3,
     "difficultyReason": "Refus d’ouverture en quatrième position avec faible potentiel en majeure",
     "caseFamily": "q400-a-ouv-position"
+  },
+  {
+    "id": "SEF-021-2",
+    "theme": "mineur",
+    "hand": [
+      [
+        "R",
+        "V",
+        "5"
+      ],
+      [
+        "V",
+        "7",
+        "5"
+      ],
+      [
+        "V",
+        "9",
+        "5",
+        "3",
+        "2"
+      ],
+      [
+        "6",
+        "5"
+      ]
+    ],
+    "h": 6,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse ?",
+    "answer": "1SA",
+    "choices": [
+      "2♦",
+      "Passe",
+      "1SA",
+      "3♦"
+    ],
+    "explain": "6 H, cinq Carreaux et une distribution régulière 3-3-5-2 : vous avez le minimum pour répondre. Sans majeure quatrième, 1SA décrit mieux cette main régulière et limitée que 2♦ ; 3♦ serait trop fort. Ne passez pas.",
+    "difficulty": 2,
+    "difficultyReason": "Ne pas confondre cinq cartes dans la mineure d'ouverture et soutien prioritaire.",
+    "caseFamily": "cas-021",
+    "sourceOriginalExplain20261104V461": "Avec 6 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Malgré vos cinq Carreaux, la main 3-3-5-2 est régulière, compte 6 H et ne possède aucune majeure quatrième. La réponse économique 1SA convient sur 1♦."
+    }
+  },
+  {
+    "id": "SEF-021-1",
+    "theme": "mineur",
+    "hand": [
+      [
+        "R",
+        "10",
+        "7"
+      ],
+      [
+        "D",
+        "5",
+        "2"
+      ],
+      [
+        "D",
+        "9",
+        "8",
+        "5",
+        "3"
+      ],
+      [
+        "10",
+        "4"
+      ]
+    ],
+    "h": 7,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "Passe",
+      "1SA",
+      "3♦",
+      "2♦"
+    ],
+    "explain": "Avec 7 H et cinq Carreaux (8 HL), la main 3-3-5-2 est régulière. En l'absence de majeure quatrième, 1SA décrit la zone de force limitée ; 2♦ décrit moins bien une main sans courte, 3♦ serait invitant et trop fort.",
+    "difficulty": 2,
+    "difficultyReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière.",
+    "caseFamily": "cas-021",
+    "sourceOriginalExplain20261104V461": "Avec 7 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Avec cinq Carreaux, 7 H et une distribution 3-3-5-2 régulière, 1SA décrit une main limitée après l'ouverture de 1♦, sans majeure quatrième."
+    }
+  },
+  {
+    "id": "SEF-N029-2",
+    "theme": "mineur",
+    "hand": [
+      [
+        "A",
+        "V",
+        "10",
+        "9",
+        "7"
+      ],
+      [
+        "D",
+        "9",
+        "7",
+        "4"
+      ],
+      [
+        "10",
+        "9"
+      ],
+      [
+        "V",
+        "8"
+      ]
+    ],
+    "h": 8,
+    "shape": [
+      5,
+      4,
+      2,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♣"
+    ],
+    "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre première réponse ?",
+    "answer": "1♠",
+    "choices": [
+      "1♠",
+      "Passe",
+      "1♥",
+      "1SA"
+    ],
+    "explain": "Avec 8 H, cinq Piques et quatre Cœurs, nommez d'abord la majeure la plus longue : 1♠. Avec deux majeures de quatre cartes, la priorité serait au Cœur, mais ce n'est pas le cas ici. 1SA masquerait votre majeure et Passe sous-évaluerait votre force.",
+    "difficulty": 1,
+    "difficultyReason": "Différencier une majeure cinquième de deux majeures quatrièmes dans la première réponse.",
+    "caseFamily": "cas-085",
+    "sourceOriginalExplain20261104V461": "Cinq Piques et quatre Cœurs : la majeure la plus longue est annoncée en priorité, par 1♠.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♣, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Vous avez cinq Piques et quatre Cœurs, avec 8 H. Répondez d'abord 1♠ sur 1♣ : la majeure cinquième prime sur la quatrième."
+    }
+  },
+  {
+    "id": "SEF-N040-1",
+    "theme": "mineur",
+    "hand": [
+      [
+        "D",
+        "8",
+        "3"
+      ],
+      [
+        "V",
+        "7",
+        "5"
+      ],
+      [
+        "V",
+        "9",
+        "6",
+        "5",
+        "3"
+      ],
+      [
+        "A",
+        "5"
+      ]
+    ],
+    "h": 8,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse ?",
+    "answer": "1SA",
+    "choices": [
+      "2♦",
+      "1SA",
+      "3♦",
+      "Passe"
+    ],
+    "explain": "8 H et cinq Carreaux donnent 9 HL. La distribution 3-3-5-2 est régulière, sans majeure quatrième. Répondez 1SA plutôt que 2♦ : la main régulière prime sur le soutien direct. 3♦ serait une invitation non justifiée.",
+    "difficulty": 2,
+    "difficultyReason": "Résister au soutien mineur automatique avec cinq Carreaux.",
+    "caseFamily": "cas-096",
+    "sourceOriginalExplain20261104V461": "Avec 8 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Avec cinq Carreaux, 8 H, une main régulière 3-3-5-2 et aucune majeure quatrième, 1SA est une réponse limitée adaptée après 1♦."
+    }
+  },
+  {
+    "id": "SEF-N040-2",
+    "theme": "mineur",
+    "hand": [
+      [
+        "A",
+        "5",
+        "2"
+      ],
+      [
+        "V",
+        "6",
+        "4"
+      ],
+      [
+        "D",
+        "V",
+        "10",
+        "4",
+        "2"
+      ],
+      [
+        "V",
+        "9"
+      ]
+    ],
+    "h": 9,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "1SA",
+      "Passe",
+      "3♦",
+      "2♦"
+    ],
+    "explain": "9 H et cinq Carreaux donnent 10 HL. Même si cette force peut évoquer un soutien mineur invitant, la distribution 3-3-5-2 est régulière et ne comporte aucune majeure quatrième : 1SA décrit le mieux les 9 H. Ne choisissez pas 3♦ sur le seul comptage HL.",
+    "difficulty": 2,
+    "difficultyReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière.",
+    "caseFamily": "cas-096",
+    "sourceOriginalExplain20261104V461": "Avec 9 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Face à 1♦, vos cinq Carreaux et vos 9 H dans une distribution régulière 3-3-5-2 permettent de répondre 1SA plutôt que de soutenir directement."
+    }
+  },
+  {
+    "id": "SEF-N042-1",
+    "theme": "mineur",
+    "hand": [
+      [
+        "A",
+        "8",
+        "4"
+      ],
+      [
+        "R",
+        "10",
+        "4"
+      ],
+      [
+        "V",
+        "10",
+        "7",
+        "3"
+      ],
+      [
+        "8",
+        "6",
+        "3"
+      ]
+    ],
+    "h": 8,
+    "shape": [
+      3,
+      3,
+      4,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "1SA",
+      "2♣",
+      "2♦",
+      "Passe"
+    ],
+    "explain": "8 H, quatre Carreaux et trois cartes dans chaque autre couleur : la main est régulière. Sur 1♦, qui ne garantit pas quatre Carreaux, ne supposez pas un fit huitième ; 1SA décrit votre force. 2♣ ne convient ni par la longueur ni par la force.",
+    "difficulty": 1,
+    "difficultyReason": "Réponse naturelle simple à l’ouverture mineure",
+    "caseFamily": "cas-098",
+    "sourceOriginalExplain20261104V461": "Sans majeure quatrième ni force pour changer de couleur au palier de 2, 1SA est la réponse naturelle.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Après 1♦, avec quatre Carreaux, 8 H et aucune majeure quatrième, 1SA décrit la main régulière de première zone."
+    }
+  },
+  {
+    "id": "SEF-N042-2",
+    "theme": "mineur",
+    "hand": [
+      [
+        "A",
+        "10",
+        "3"
+      ],
+      [
+        "V",
+        "7",
+        "2"
+      ],
+      [
+        "D",
+        "10",
+        "8",
+        "7"
+      ],
+      [
+        "D",
+        "8",
+        "7"
+      ]
+    ],
+    "h": 9,
+    "shape": [
+      3,
+      3,
+      4,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "2♦",
+      "Passe",
+      "2♣",
+      "1SA"
+    ],
+    "explain": "9 H, quatre Carreaux et une distribution 3-3-4-3, sans majeure quatrième : 1SA décrit une main limitée. Avec seulement trois Trèfles, 2♣ ne convient pas ; 2♦ ne décrit pas aussi bien cette main régulière et ne garantit pas un fit huitième.",
+    "difficulty": 1,
+    "difficultyReason": "Réponse naturelle simple à l’ouverture mineure",
+    "caseFamily": "cas-098",
+    "sourceOriginalExplain20261104V461": "Sans majeure quatrième ni force pour changer de couleur au palier de 2, 1SA est la réponse naturelle.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦, les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Avec quatre Carreaux, 9 H et trois cartes dans chaque autre couleur, vous pouvez répondre 1SA sur 1♦ pour décrire votre force limitée."
+    }
+  },
+  {
+    "id": "SEF-N047-1",
+    "theme": "mineur",
+    "hand": [
+      [
+        "D",
+        "9",
+        "2"
+      ],
+      [
+        "V",
+        "10",
+        "7"
+      ],
+      [
+        "A",
+        "V",
+        "9",
+        "6",
+        "4"
+      ],
+      [
+        "9",
+        "5"
+      ]
+    ],
+    "h": 8,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "2♦",
+      "2♣",
+      "1SA",
+      "Passe"
+    ],
+    "explain": "8 H, cinq Carreaux et une main régulière 3-3-5-2. Même avec un fit Carreau certain et une longue convenable, 1SA décrit mieux la distribution régulière et la force limitée ; 2♣ serait une enchère de changement de couleur injustifiée avec seulement deux cartes.",
+    "difficulty": 2,
+    "difficultyReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière.",
+    "caseFamily": "cas-103",
+    "sourceOriginalExplain20261104V461": "Avec 8 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦ et les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Vos cinq Carreaux et vos 8 H sont répartis en 3-3-5-2, sans majeure quatrième. Sur 1♦, 1SA décrit naturellement cette main régulière."
+    }
+  },
+  {
+    "id": "SEF-N047-2",
+    "theme": "mineur",
+    "hand": [
+      [
+        "D",
+        "9",
+        "2"
+      ],
+      [
+        "D",
+        "4",
+        "3"
+      ],
+      [
+        "A",
+        "V",
+        "10",
+        "9",
+        "5"
+      ],
+      [
+        "10",
+        "5"
+      ]
+    ],
+    "h": 9,
+    "shape": [
+      3,
+      3,
+      5,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "1SA",
+      "2♣",
+      "2♦",
+      "Passe"
+    ],
+    "explain": "9 H et cinq Carreaux (10 HL), mais une distribution régulière 3-3-5-2 : 1SA est la réponse naturelle sans majeure quatrième. Les cinq Carreaux assurent un fit, sans imposer de le soutenir directement ; deux Trèfles ne permettent pas 2♣.",
+    "difficulty": 2,
+    "difficultyReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière.",
+    "caseFamily": "cas-103",
+    "sourceOriginalExplain20261104V461": "Avec 9 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Le partenaire ouvre de 1♦ et les adversaires passent. Quelle réponse ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Avec cinq Carreaux, 9 H et une main régulière 3-3-5-2, vous répondez 1SA sur 1♦ plutôt que d'imposer une recherche de contrat mineur."
+    }
+  },
+  {
+    "id": "SEF-V49-009",
+    "theme": "mineur",
+    "hand": [
+      [
+        "A",
+        "10"
+      ],
+      [
+        "R",
+        "10",
+        "4"
+      ],
+      [
+        "9",
+        "8",
+        "7",
+        "4",
+        "3"
+      ],
+      [
+        "9",
+        "6",
+        "3"
+      ]
+    ],
+    "h": 7,
+    "shape": [
+      2,
+      3,
+      5,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♦"
+    ],
+    "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+    "answer": "1SA",
+    "choices": [
+      "1SA",
+      "2♦",
+      "3♦",
+      "Passe"
+    ],
+    "explain": "7 H, cinq Carreaux et une distribution régulière 2-3-5-3 : répondez 1SA sur 1♦ sans majeure quatrième. Même avec cinq Carreaux sans honneur, le fit est certain ; la régularité, pas la qualité de la couleur, conduit ici à 1SA plutôt qu'à 2♦. 3♦ serait trop fort.",
+    "difficulty": 2,
+    "difficultyReason": "Priorité des sans-atout sur le soutien mineur avec une main régulière.",
+    "caseFamily": "v49-009",
+    "sourceOriginalExplain20261104V461": "Avec 7 H, une distribution régulière 5-3-3-2 et aucune majeure quatrième, 1SA est la réponse naturelle sur l’ouverture mineure. La présence de cinq cartes dans la mineure du partenaire ne suffit pas à privilégier un soutien direct.",
+    "sourceOriginalContext20261104V461": "Quelle enchère convient dans cette séquence, selon le SEF ?",
+    "pedagogicalReview20261104V461": {
+      "audit": "REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Avec cinq Carreaux, 7 H et une distribution régulière 2-3-5-3 sans majeure quatrième, 1SA est une réponse économique à l'ouverture de 1♦."
+    }
   }
 ]

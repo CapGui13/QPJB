@@ -1,5 +1,5 @@
 # Audit A — 419/419 lectures, patches livrés ; validation d'intégration incomplète
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Bilan passe 12 : {"counts":{"RECLASSER_REFORMULER":134,"VALIDE":238,"ARBITRAGE":47},"corrections":137,"reservoirIds":23,"ajouts":3,"retraits":22}.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Bilan passe 13 : {"counts":{"RECLASSER_REFORMULER":144,"VALIDE":228,"ARBITRAGE":47},"corrections":147,"reservoirIds":23,"ajouts":3,"retraits":22,"historique993":65}.
 Contrôles exécutés sur base et patches : {"catalogue":true,"exact":true,"mainsBase":true,"mainsPatches":true,"legalBase":true,"legalPatches":true,"corrections":true,"metadata":true,"reservoir":true,"groupes":true}. Légalité : toutes les enchères explicites croissent au-delà du dernier contrat, ou Passe ; le catalogue comporte des séquences abrégées, pas de reconstitution de joueurs omis. Vérification des quatre choix et réponse, cartes et rangs, forme, points H, clés objets complètes, IDs inchangés, métadonnées et groupes réels. Les contrôles existants n'ont pas été exécutés localement (git ls-remote : résolution DNS github.com impossible). Aucun workflow associé au SHA de la passe 10 au moment de la consultation. Pas de certification SEF externe.
 Redondances : signatures strictes initiales 96 IDs ; familles initiales 322 IDs. Deux objets à main strictement identique (V2-M1-015/016), contraste deuxième/troisième position, à conserver. Les huit paires interlots dans une même famille ont été relues en entier : tous sont des contrastes utiles, voir redondance.arbitrageInterlot. Aucun analogue strict de signature initiale hors lot. 15 retraits de co-memberships redondants, chaque QCM conserve au moins une affectation ; aucune suppression. Deux QCM différenciés : Q400-A-039 (11 HL juste sous 2/1), Q400-A-024 (total 14 règle des 15). Les analogues qui ne partagent ni main ni signature ni famille restent non exhaustivement contrôlés. L33-005 : proposition de remplacement et transfert interlot à arbitrer. Les 47 arbitrages comprennent principalement des groupes d'objectifs absents du programme (2/1, réponses SA naturelles sur 1m, réponses après Passe sur mineure). Ne pas les déduire d'un simple manque d'affectation explicite. Aucun changement moteur ni fichier commun. Les patches ne sont pas intégrés dans le catalogue de production.
 
@@ -38,3 +38,75 @@ Tests réellement exécutés dans JS : parsing du blob et JSON, couverture exact
 
 ## Passe 12 — contre-vérification complémentaire
 Balayage lexical après patches de 1 169 010 paires distinctes impliquant au moins un ID A sur les 3000 exercices. Après exclusion des réponses différentes, familles communes, mains identiques et signatures strictes déjà traitées : 60 000 paires testées par Jaccard de mots normalisés des corrigés et contextes. 404 candidats (seuil corrigé >= 0,75, ou corrigé >= 0,48 et contexte >= 0,65, ou groupe partagé et corrigé >= 0,50), 30 avec groupe partagé, aucun interlot détecté à ces seuils. Ce filtre ne certifie pas l'absence de doublons sémantiques ni l'unicité de réponse. Les candidats ne sont pas tous relus individuellement. Les exemples à 7 H vs 11 H, fit huitième vs neuvième, et 1SA faible vs limite 2/1 sont des contrastes utiles. Corrections concrètes : six retraits d'affectations sur cinq IDs pour espacer trois paires de permutations triviales ; deux QCM déjà patchés différenciés par les seuils 6 HL (037) et 11 HLD (077), réponses préservées. Aucun ID supprimé. Bilan actualisé : {"counts":{"RECLASSER_REFORMULER":134,"VALIDE":238,"ARBITRAGE":47},"corrections":137,"reservoirIds":23,"ajouts":3,"retraits":22}. Contrôles indépendants réellement réexécutés : {"base3000":true,"exact419":true,"mainsOriginales":true,"mainsPatches":true,"patches":true,"groupes":true,"pasDePerte":true}. Nouvelle tentative git ls-remote : DNS github.com toujours indisponible ; aucun workflow PR associé à 0992b1f. Les tests existants restent non exécutés. 47 arbitrages restent réservés au coordinateur, dont la lacune de calendrier du 2/1, des réponses SA directes sur mineure, des réponses après Passe et L33-005. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+## Passe 13 — revue des co-affectations et protection historique
+Relecture des 27 candidats encore co-affectés détectés après passe 12 : S1.2 (009-1/N007-1, 012-1/N005-1, Q400-A-011/Q400-A-015) : longueur différente de règle d'égalité, conserver ; S1.1 (013-1/V49-003) : 7 H faibles vs 11 H à la limite, conserver ; S3.3 (N061-2/Q400-A-039) : 8 HL vs 11 HL juste sous 2/1, conserver ; S2.4 (Q400-A-035/Q685-A-036/Q685-A-037) : 8, 7 et 6 HL, dont seuil inférieur travaillé, conserver ; S3.2 (Q400-A-047/Q685-A-077) : 12 vs 11 HLD, seuil d'invitation travaillé, conserver. S58.1/S65.5 : les 18 autres paires de soutien Cœur rapprochent surtout 3 atouts (070–073) et 4 atouts (026-3, 078–080), points D/L et HLD différents ; mêmes réponses intentionnelles, variantes à espacer lors de l'intégration. 026-3 vs 078 est la seule paire à forme identique et 8/9 HLD ; ne pas juxtaposer si la capacité du groupe impose un choix. 026-3 vs 079/080 : même total 8 HLD par mécanismes différents (6H+2D vs 5H+2D+1D), contraste pédagogique utile. Pas de nouveau retrait arbitraire dans ces groupes. Les 67 autres paires non co-affectées avec similarité du corrigé >=0,9 restent des variantes proches : notamment longue mineure / égalité, 1♣ vs 1♦ et 1♥ vs 1♠, 1SA régulier avec fit mineur, 2/1. Les 404 candidats du filtre ne sont pas tous relus individuellement.
+11 QCM retravaillés (10 nouveaux patches, 1 patch existant amélioré). En particulier, 1SA naturel sur 1♦ malgré un fit mineur et une main régulière : réponses conservées conformément à REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md (cas 11–12, 43–44, 47–48, 54–55, 64). Corrigés : distinction H/HL, fit certain avec cinq cartes vs non garanti avec quatre, rejet du soutien ou du changement de couleur. Deux énoncés sur 1♦ et un sur 1♣ ne donnent plus le comptage de la main. N065-2 : 2♦ remplace Passe pour tester la longueur relative des mineures ; arbitrage de calendrier maintenu.
+Risque d'intégration identifié par lecture du vrai test tests/quizz-integrity.cjs et de tests/quizz-v488-approved-revisions.cjs : contrôle SHA-1 du bloc historique des 993 QCM après normalisation inverse par manifestes d'exceptions exactes. 65 patches A touchent ce bloc. Le coordinateur doit faire approuver et enregistrer les révisions exactes avant/après, préserver le hash historique via le mécanisme de normalisation contrôlée, jamais le remplacer ou affaiblir les assertions. Liste des IDs et champs touchés ci-dessous. Aucune modification du catalogue ni des tests sur cette branche. Le test complet n'est pas exécuté : git ls-remote réessayé dans le conteneur, échec DNS github.com. Contrôles indépendants ciblés réellement exécutés, dont assertions adaptées de la source du test existant sur le catalogue projeté : {"base3000":true,"exact419":true,"mainsOriginales":true,"mainsPatches":true,"patches":true,"reponsesPasse13":true,"legalPasse13":true,"groupes":true,"protectionFormulationLotA":true,"aucuneNouvelleFormulationInterdite":true,"champsInterdits":true,"themes22":true}. L'assertion globale interdisant certaines formulations échoue déjà sur la base et échouerait sur le catalogue projeté A : 16 IDs hors lot A, inchangés (aucun nouveau contrevenant). À transmettre aux lots responsables : SEF-V3-036-1 (intervenir.base), SEF-V479-003 (multilandy.reponse), SEF-L41-004 (sa2.texas_mineur.reponse), SEF-Q26-M2-012 (sa2.texas_mineur.reponse), V1-M3-005 (competitif.sa_adverse), V1-M3-006 (competitif.sa_adverse), V1-M3-007 (competitif.sa_adverse), V2-M2-016 (sa2.texas_mineur.reponse), V2-M2-026 (sa1.stayman.suite), SEF-Q400-B-053 (sa2.bicolore), SEF-Q400-B-099 (sa2.texas_mineur.reponse), SEF-Q685-B-065 (sa1.texas_mineur.reponse), SEF-Q685-B-066 (sa1.texas_mineur.reponse), SEF-Q685-B-067 (sa1.texas_mineur.reponse), SEF-Q685-D-037 (multilandy.choix), SEF-Q685-D-123 (chelem.splinter.variante). Ce n'est pas un succès de l'assertion globale. Bilan : {"counts":{"RECLASSER_REFORMULER":144,"VALIDE":228,"ARBITRAGE":47},"corrections":147,"reservoirIds":23,"ajouts":3,"retraits":22,"historique993":65}. 47 arbitrages restent réservés au coordinateur. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+### Patches historiques à approuver et normaliser (liste exacte)
+- SEF-014-1 : explain
+- SEF-014-2 : explain
+- SEF-019-2 : explain
+- SEF-020-3 : explain
+- SEF-020-1 : hand, shape, context, explain
+- SEF-N002-2 : explain
+- SEF-N002-1 : explain, difficulty, difficultyReason
+- SEF-N003-1 : explain
+- SEF-N008-1 : explain
+- SEF-N013-3 : explain
+- SEF-N023-2 : explain
+- SEF-N023-1 : explain
+- SEF-N025-1 : explain
+- SEF-N031-2 : hand, shape, context, explain
+- SEF-N033-1 : choices, explain
+- SEF-N034-1 : choices, explain
+- SEF-N041-2 : difficulty, difficultyReason
+- SEF-N043-1 : choices, explain
+- SEF-N045-3 : explain
+- SEF-N049-3 : choices, explain, difficulty, difficultyReason
+- SEF-N050-1 : choices, difficulty, difficultyReason
+- SEF-N054-1 : choices, difficulty, difficultyReason
+- SEF-N055-1 : choices, difficulty, difficultyReason
+- SEF-N064-2 : explain
+- SEF-N064-3 : explain
+- SEF-N065-2 : context, choices, explain
+- SEF-N066-1 : explain
+- SEF-N066-3 : explain
+- SEF-N067-1 : explain, difficulty, difficultyReason
+- SEF-N074-1 : explain
+- SEF-N074-3 : explain
+- SEF-N075-2 : explain
+- SEF-N075-1 : explain
+- SEF-N076-2 : explain
+- SEF-N076-1 : explain
+- SEF-N077-1 : explain
+- SEF-N077-3 : explain
+- SEF-N078-2 : explain
+- SEF-N079-2 : explain
+- SEF-N079-1 : explain
+- SEF-V44-001 : difficulty, difficultyReason
+- SEF-V44-003 : explain
+- SEF-V44-004 : explain
+- SEF-V44-006 : context
+- SEF-V44-008 : explain
+- SEF-V49-008 : explain
+- SEF-V49-012 : explain
+- SEF-V410-022 : explain
+- SEF-V412-014 : explain
+- SEF-V412-015 : hand, h, shape, explain
+- SEF-V419-003 : explain
+- SEF-V422-002 : context
+- SEF-C-007 : explain
+- SEF-V44-009 : choices
+- SEF-N048-3 : choices
+- SEF-021-2 : context, explain
+- SEF-021-1 : explain
+- SEF-N029-2 : context, explain
+- SEF-N040-1 : context, explain
+- SEF-N040-2 : explain
+- SEF-N042-1 : explain
+- SEF-N042-2 : explain
+- SEF-N047-1 : explain
+- SEF-N047-2 : explain
+- SEF-V49-009 : explain

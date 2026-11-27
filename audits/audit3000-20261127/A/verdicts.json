@@ -2013,8 +2013,8 @@
   },
   {
     "id": "SEF-021-2",
-    "verdict": "VALIDE",
-    "justification": "6 H, 5♦ et 5332 : 1SA dans le traitement régulier actuel ; opposition soutien 2♦ plausible ; cas-021.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, 5♦ et 5332 : 1SA dans le traitement régulier actuel ; opposition soutien 2♦ plausible ; cas-021. Passe 13 : Faire calculer le minimum de réponse et choisir SA malgré cinq Carreaux, sans fournir la forme dans la question.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -2071,7 +2071,15 @@
       "SEF-021-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "context": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux mais une main régulière 3-3-5-2 de 6 H, choisissez votre réponse.",
+        "explain": "Avec 6 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse ?",
+        "explain": "6 H, cinq Carreaux et une distribution régulière 3-3-5-2 : vous avez le minimum pour répondre. Sans majeure quatrième, 1SA décrit mieux cette main régulière et limitée que 2♦ ; 3♦ serait trop fort. Ne passez pas."
+      }
     },
     "redondance": {
       "signatureApres": [],
@@ -2082,13 +2090,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse13": "Faire calculer le minimum de réponse et choisir SA malgré cinq Carreaux, sans fournir la forme dans la question."
     }
   },
   {
     "id": "SEF-021-1",
-    "verdict": "VALIDE",
-    "justification": "7 H, 5♦ et 5332 : variante du cas 021-2 ; 1SA limité selon traitement actuel, pas de groupe explicite.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, 5♦ et 5332 : variante du cas 021-2 ; 1SA limité selon traitement actuel, pas de groupe explicite. Passe 13 : Opposer soutien simple et réponse régulière.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -2147,7 +2156,13 @@
       "SEF-021-2"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 7 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "Avec 7 H et cinq Carreaux (8 HL), la main 3-3-5-2 est régulière. En l'absence de majeure quatrième, 1SA décrit la zone de force limitée ; 2♦ décrit moins bien une main sans courte, 3♦ serait invitant et trop fort."
+      }
     },
     "redondance": {
       "signatureApres": [
@@ -2160,7 +2175,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse13": "Opposer soutien simple et réponse régulière."
     }
   },
   {
@@ -6275,8 +6291,8 @@
   },
   {
     "id": "SEF-N029-2",
-    "verdict": "VALIDE",
-    "justification": "8 H, 5♠-4♥ : longueur prioritaire sur 1♣ ; la suite à 2♥ est explicitement conditionnelle.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, 5♠-4♥ : longueur prioritaire sur 1♣ ; la suite à 2♥ est explicitement conditionnelle. Passe 13 : Supprimer le comptage fourni par l'énoncé et travailler le contraste 5-4 contre 4-4.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -6325,7 +6341,15 @@
       "SEF-N029-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "context": "Votre partenaire ouvre de 1♣. Vous avez cinq Piques et quatre Cœurs avec 8 H : quelle couleur nommez-vous d'abord ?",
+        "explain": "Avec 8 H et cinq Piques contre quatre Cœurs, répondez d’abord 1♠, la majeure la plus longue. Vous pourrez annoncer 2♥ ensuite si la suite des enchères le permet. Rappel : la réponse de 1♠ promet au moins quatre cartes."
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 1♣ et les adversaires passent. Quelle est votre première réponse ?",
+        "explain": "Avec 8 H, cinq Piques et quatre Cœurs, nommez d'abord la majeure la plus longue : 1♠. Avec deux majeures de quatre cartes, la priorité serait au Cœur, mais ce n'est pas le cas ici. 1SA masquerait votre majeure et Passe sous-évaluerait votre force."
+      }
     },
     "redondance": {
       "signatureApres": [],
@@ -6336,7 +6360,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse13": "Supprimer le comptage fourni par l'énoncé et travailler le contraste 5-4 contre 4-4."
     }
   },
   {
@@ -7517,8 +7542,8 @@
   },
   {
     "id": "SEF-N040-1",
-    "verdict": "VALIDE",
-    "justification": "8 H, cinq Carreaux et forme régulière : 1SA selon priorité actuelle au SA régulier ; soutien est vrai distracteur.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq Carreaux et forme régulière : 1SA selon priorité actuelle au SA régulier ; soutien est vrai distracteur. Passe 13 : Faire déterminer la régularité à partir de la main ; expliquer le conflit 1SA/2♦.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -7577,7 +7602,15 @@
       "SEF-N040-2"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "context": "Votre partenaire ouvre de 1♦. Avec cinq Carreaux et 8 H mais aucune majeure quatrième, quelle réponse décrit le mieux votre main régulière ?",
+        "explain": "Avec 8 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 1♦ et les adversaires passent. Quelle est votre réponse ?",
+        "explain": "8 H et cinq Carreaux donnent 9 HL. La distribution 3-3-5-2 est régulière, sans majeure quatrième. Répondez 1SA plutôt que 2♦ : la main régulière prime sur le soutien direct. 3♦ serait une invitation non justifiée."
+      }
     },
     "redondance": {
       "signatureApres": [
@@ -7590,13 +7623,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse13": "Faire déterminer la régularité à partir de la main ; expliquer le conflit 1SA/2♦."
     }
   },
   {
     "id": "SEF-N040-2",
-    "verdict": "VALIDE",
-    "justification": "9 H, cinq Carreaux et 5332 : 1SA, variante de cas-096.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, cinq Carreaux et 5332 : 1SA, variante de cas-096. Passe 13 : Distinguer zone HL du soutien et zone H d'une réponse naturelle à SA.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -7655,7 +7689,13 @@
       "SEF-N040-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "9 H et cinq Carreaux donnent 10 HL. Même si cette force peut évoquer un soutien mineur invitant, la distribution 3-3-5-2 est régulière et ne comporte aucune majeure quatrième : 1SA décrit le mieux les 9 H. Ne choisissez pas 3♦ sur le seul comptage HL."
+      }
     },
     "redondance": {
       "signatureApres": [
@@ -7668,7 +7708,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse13": "Distinguer zone HL du soutien et zone H d'une réponse naturelle à SA."
     }
   },
   {
@@ -7813,8 +7854,8 @@
   },
   {
     "id": "SEF-N042-1",
-    "verdict": "VALIDE",
-    "justification": "8 H, quatre Carreaux et main 3343 : 1SA ; le soutien mineur n'est pas obligatoire.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, quatre Carreaux et main 3343 : 1SA ; le soutien mineur n'est pas obligatoire. Passe 13 : Distinguer quatre Carreaux d'un fit certain.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -7863,7 +7904,13 @@
       "SEF-N042-2"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 8 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "8 H, quatre Carreaux et trois cartes dans chaque autre couleur : la main est régulière. Sur 1♦, qui ne garantit pas quatre Carreaux, ne supposez pas un fit huitième ; 1SA décrit votre force. 2♣ ne convient ni par la longueur ni par la force."
+      }
     },
     "redondance": {
       "signatureApres": [],
@@ -7874,13 +7921,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse13": "Distinguer quatre Carreaux d'un fit certain."
     }
   },
   {
     "id": "SEF-N042-2",
-    "verdict": "VALIDE",
-    "justification": "9 H, quatre Carreaux et main 3343 : 1SA, variante cas-098.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre Carreaux et main 3343 : 1SA, variante cas-098. Passe 13 : Expliquer pourquoi le soutien n'est pas automatique avec quatre Carreaux.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -7929,7 +7977,13 @@
       "SEF-N042-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "9 H, quatre Carreaux et une distribution 3-3-4-3, sans majeure quatrième : 1SA décrit une main limitée. Avec seulement trois Trèfles, 2♣ ne convient pas ; 2♦ ne décrit pas aussi bien cette main régulière et ne garantit pas un fit huitième."
+      }
     },
     "redondance": {
       "signatureApres": [],
@@ -7940,7 +7994,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse13": "Expliquer pourquoi le soutien n'est pas automatique avec quatre Carreaux."
     }
   },
   {
@@ -8457,8 +8512,8 @@
   },
   {
     "id": "SEF-N047-1",
-    "verdict": "VALIDE",
-    "justification": "8 H, 5♦ et 5332 : 1SA de recours selon traitement actuel ; équivalent proche de N040-1.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, 5♦ et 5332 : 1SA de recours selon traitement actuel ; équivalent proche de N040-1. Passe 13 : Conserver un contraste de qualité de longue avec N040-1.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -8517,7 +8572,13 @@
       "SEF-N047-2"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 8 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "8 H, cinq Carreaux et une main régulière 3-3-5-2. Même avec un fit Carreau certain et une longue convenable, 1SA décrit mieux la distribution régulière et la force limitée ; 2♣ serait une enchère de changement de couleur injustifiée avec seulement deux cartes."
+      }
     },
     "redondance": {
       "signatureApres": [
@@ -8530,13 +8591,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse13": "Conserver un contraste de qualité de longue avec N040-1."
     }
   },
   {
     "id": "SEF-N047-2",
-    "verdict": "VALIDE",
-    "justification": "9 H, 5♦ et 5332 : 1SA, variante de cas-103 et N040-2.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, 5♦ et 5332 : 1SA, variante de cas-103 et N040-2. Passe 13 : Expliciter le fit certain sans soutien automatique ; variante de N040-2 avec autre choix concurrent.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
@@ -8595,7 +8657,13 @@
       "SEF-N047-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "9 H et cinq Carreaux (10 HL), mais une distribution régulière 3-3-5-2 : 1SA est la réponse naturelle sans majeure quatrième. Les cinq Carreaux assurent un fit, sans imposer de le soutenir directement ; deux Trèfles ne permettent pas 2♣."
+      }
     },
     "redondance": {
       "signatureApres": [
@@ -8608,7 +8676,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse13": "Expliciter le fit certain sans soutien automatique ; variante de N040-2 avec autre choix concurrent."
     }
   },
   {
@@ -10797,7 +10866,7 @@
   {
     "id": "SEF-N065-2",
     "verdict": "ARBITRAGE",
-    "justification": "12 H, cinq Trèfles et quatre Carreaux, deux Cœurs : 13 HL, 2♣ plus longue ; arbitrage calendrier 2 sur 1.",
+    "justification": "12 H, cinq Trèfles et quatre Carreaux, deux Cœurs : 13 HL, 2♣ plus longue ; arbitrage calendrier 2 sur 1. Passe 13 : Remplacer Passe par le distracteur naturel 2♦ ; conserver l'arbitrage calendrier.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_20_SOUTIENS_MAJEURS_2026-11-04.md",
@@ -10856,10 +10925,24 @@
       "type": "arbitrage_calendrier",
       "raison": "Introduire un groupe dédié au 2 sur 1 après les réponses naturelles de base ; pas d'affectation arbitraire dans un groupe existant.",
       "avant": {
-        "explain": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu."
+        "explain": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu.",
+        "context": "Votre partenaire ouvre de 1♥ et les adversaires passent. Quelle est votre réponse selon le SEF ?",
+        "choices": [
+          "2♥",
+          "Passe",
+          "1SA",
+          "2♣"
+        ]
       },
       "apres": {
-        "explain": "Avec 12 H (13 HL) et 5 Trèfles, sans fit majeur, répondez 2♣ à 1♥. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : pour un répondant non passé, une redemande économique non fittée de l'ouvreur exige une nouvelle enchère du répondant. 1SA limiterait excessivement votre jeu."
+        "explain": "12 H et cinq Trèfles donnent 13 HL. Avec deux Cœurs, pas de fit connu. Vous possédez aussi quatre Carreaux : choisissez 2♣, la mineure la plus longue, plutôt que 2♦. Ce changement de couleur naturel sans saut est forcing et auto-forcing pour le répondant non passé ; 1SA limiterait excessivement votre jeu.",
+        "context": "Votre partenaire ouvre de 1♥ ; vous n'avez pas passé et les adversaires passent. Quelle est votre réponse ?",
+        "choices": [
+          "2♥",
+          "2♦",
+          "1SA",
+          "2♣"
+        ]
       }
     },
     "redondance": {
@@ -10869,7 +10952,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte."
+      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte.",
+      "complementPasse13": "Remplacer Passe par le distracteur naturel 2♦ ; conserver l'arbitrage calendrier."
     }
   },
   {
@@ -14492,8 +14576,8 @@
   },
   {
     "id": "SEF-V49-009",
-    "verdict": "VALIDE",
-    "justification": "7 H, cinq Carreaux et 2335 réguliers : 1SA selon traitement actuel ; contraste avec main irrégulière fittée.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, cinq Carreaux et 2335 réguliers : 1SA selon traitement actuel ; contraste avec main irrégulière fittée. Passe 13 : Contraster qualité de longue avec les autres variantes.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/REVUE_50_OUVERTURES_2026-11-04.md",
@@ -14550,7 +14634,13 @@
     "famille": "v49-009",
     "analoguesFamille": [],
     "action": {
-      "type": "conserver"
+      "type": "patch_catalogue",
+      "avant": {
+        "explain": "Avec 7 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "explain": "7 H, cinq Carreaux et une distribution régulière 2-3-5-3 : répondez 1SA sur 1♦ sans majeure quatrième. Même avec cinq Carreaux sans honneur, le fit est certain ; la régularité, pas la qualité de la couleur, conduit ici à 1SA plutôt qu'à 2♦. 3♦ serait trop fort."
+      }
     },
     "redondance": {
       "signatureApres": [],
@@ -14559,7 +14649,8 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte."
+      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte.",
+      "complementPasse13": "Contraster qualité de longue avec les autres variantes."
     }
   },
   {
