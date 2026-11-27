@@ -1,3 +1,200 @@
+/* #506 — T alone: browser bootstrap, original CommonJS engine unchanged except atomic selection hook. */
+if(typeof window!=='undefined'){
+(function(){
+const baseModule={exports:{}};
+(function(module,exports,window){
+/* QPJB #423 — sélection uniquement ; aucune mutation ni ordre. */
+(function(root,factory){
+  const api=factory();
+  if(typeof module==='object'&&module.exports)module.exports=api;
+  if(root)root.QPJBCoherenceM4=api;
+})(typeof window==='undefined'?null:window,function(){
+  'use strict';
+  const schema='QPJB_COHERENCE_M4_V1';
+  const CORE=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
+  const natural=new Set(['ouv.majeure','mineur.base','mineur.soutien','majeur.base','majeur.soutien','red.base','red.bicolore','second.base','intervenir.base','apres_inter.base','reponse_inter.base','reveil.base','apres_fit.base','barrage.ouverture','barrage.reponse']);
+  const norm=x=>String(x??'').replace(/[\uFE0E\uFE0F]/g,'').trim().replace(/\s+/g,' ');
+  const family=q=>String(q?.caseFamily||q?.id||'');
+  function features(q,m){
+    if(!q||!m?.concept||!Array.isArray(q.auction)||!Array.isArray(q.shape)||q.shape.length!==4||!q.shape.every(Number.isInteger)||!Number.isInteger(q.h))return null;
+    const c=m.concept,a=norm(q.answer),shape=q.shape;
+    if(!a)return null;
+    const sequence=q.auction.map(norm).concat(a).join('|');
+    const variants=[{seq:sequence,shape:shape.slice()}];
+    // Miroirs structurels seulement. Jamais normaliser une enchère codée.
+    if(natural.has(c))for(let mask=1;mask<4;mask++){
+      const sh=shape.slice();
+      if(mask&1)[sh[0],sh[1]]=[sh[1],sh[0]];
+      if(mask&2)[sh[2],sh[3]]=[sh[3],sh[2]];
+      variants.push({seq:sequence.replace(/[♥♠♣♦]/g,k=>({'♥':mask&1?'♠':'♥','♠':mask&1?'♥':'♠','♣':mask&2?'♦':'♣','♦':mask&2?'♣':'♦'})[k]),shape:sh});
+    }
+    variants.sort((x,y)=>x.seq<y.seq?-1:x.seq>y.seq?1:x.shape.join(',').localeCompare(y.shape.join(',')));
+    let decision=c+'|'+variants[0].seq,distribution=variants[0].shape.join('-'),force=String(q.h);
+    if(c==='ouv.passe'){
+      // Ne pas confondre main franchement faible et frontière 11 H.
+      force=q.h<=5?'0–5':q.h<=8?'6–8':q.h<=10?'9–10':'11+';
+      distribution=shape.slice().sort((x,y)=>y-x).join('-');
+    }else if(c==='ouv.mineure'){
+      // L'égalité 3–3 / 4–4 et le choix de la plus longue sont des contrastes, pas des miroirs.
+      decision=c+'|'+a+'|'+(shape[2]===shape[3]?'egalite-'+shape[2]:'longueur');
+    }else if(c==='ouv.sa1'||c==='ouv.sa2'||c==='sa1.seuil'||c==='sa2.seuil'){
+      distribution=shape.slice().sort((x,y)=>y-x).join('-');
+    }
+    return {decision,force,distribution,near:decision+'|'+force+'|'+distribution,criterion:decision+'|'+force};
+  }
+  const clean=a=>a?.result==='correct'&&!a.assisted&&!a.hadFreeError;
+  function rank(ctx={}){
+    if(!ctx||!Number.isInteger(ctx.session)||ctx.session<1||!Array.isArray(ctx.candidates)||!ctx.metadataById||ctx.history?.active)return [];
+    const {session,metadataById:meta,category}=ctx;
+    if(ctx.forcedReason==='rappel_erreur_aide')return [];
+    const selected=(ctx.selected||[]).map(x=>x?.exercise||x).filter(Boolean);
+    const chosen=selected.map(q=>({q,f:features(q,meta[q.id])})).filter(x=>x.f);
+    const lookup=new Map((ctx.exercises||[]).map(q=>[q.id,q]));
+    for(const q of ctx.candidates)if(q?.id)lookup.set(q.id,q);
+    const recent=[],last=new Map();
+    for(const e of ctx.history?.journal||[]){
+      if(e.mode!=='parcours'||!Number.isInteger(e.session)||e.session>=session)continue;
+      for(const a of e.answers||[]){
+        const q=lookup.get(a.id),m=q&&meta[q.id];if(!m)continue;
+        last.set(m.concept,Math.max(last.get(m.concept)||0,e.session));
+        if(session-e.session<=2&&clean(a)){
+          const f=features(q,m);if(f)recent.push({q,f,age:session-e.session});
+        }
+      }
+    }
+    // Une entrée ancienne atteste au plus une exposition datée, pas une réussite.
+    for(const [id,r] of Object.entries(ctx.history?.entries||{})){
+      const m=meta[id],s=r?.assessment?.lastSession;
+      if(m&&Number.isInteger(s)&&s>=0&&s+1<session)last.set(m.concept,Math.max(last.get(m.concept)||0,s+1));
+    }
+    const ids=new Set(),out=[];
+    for(const q of ctx.candidates){
+      if(!q?.id||ids.has(q.id))continue;ids.add(q.id);
+      const m=meta[q.id],f=features(q,m);if(!f)continue;
+      let delta=0;const why=[];
+      const same=chosen.filter(x=>x.f.decision===f.decision);
+      if(same.some(x=>x.f.near===f.near)){delta-=32;why.push('même décision, force et distribution proches dans la séance')}
+      else if(same.some(x=>x.f.criterion===f.criterion)){delta-=18;why.push('même décision et zone de force dans la séance')}
+      else if(same.length){delta-=5;why.push('même décision mais contraste de force')}
+      if(same.length&&same.every(x=>x.f.force!==f.force)){delta+=8;why.push('variation de force pour le même critère')}
+      if(category!=='weakness'){
+        const r=recent.filter(x=>x.f.near===f.near&&family(x.q)!==family(q));
+        if(r.length){delta-=r.some(x=>x.age===1)?12:6;why.push('variante proche réussie sans aide récemment')}
+      }
+      // Le rappel fondamental ne concerne que la maintenance, jamais une découverte.
+      // Bonus interconcept uniquement sur un plan explicite et sans rappel du même concept déjà choisi.
+      const objective=ctx.objective;
+      const allowed=Array.isArray(objective?.concepts)?objective.concepts:[];
+      const gap=last.has(m.concept)?session-last.get(m.concept):0;
+      if(category==='maintenance'&&CORE.has(m.concept)&&allowed.includes(m.concept)&&gap>=7&&!chosen.some(x=>meta[x.q.id]?.concept===m.concept)){
+        delta+=Math.min(12,gap-5);why.push('rappel fondamental ancien autorisé par le plan');
+      }
+      // Aucun changement de preuve, de famille, de difficulté ou d'éligibilité.
+      out.push({id:q.id,delta:Math.max(-44,Math.min(12,delta)),reason:why.join(' ; ')||'aucun signal de proximité ou dette autorisée'});
+    }
+    return out;
+  }
+  return Object.freeze({schema,features,rank});
+});
+
+})(baseModule,baseModule.exports,undefined);
+const rankModule={exports:{}};
+(function(module,exports,require){
+'use strict';
+// #446: experimental, no production activation. L = within-deck contrasts;
+// R = clean recent repetition. Exact native stratum checked by the adapter.
+const base=require('./quizz-coherence-m4-diversite.js');
+const family=q=>String(q?.caseFamily||q?.id||'');
+const clean=a=>a?.result==='correct'&&a.assisted===false&&a.hadFreeError===false;
+const protectedConcept=new Set(['ouv.passe','ouv.mineure','majeur.soutien']);
+const metaKey=m=>JSON.stringify([m?.concept,m?.stage,m?.minSession,m?.requires]);
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+function rank(ctx={}){
+ const {session,category,metadataById:meta={},baselineId,policy='L'}=ctx;
+ if(!Number.isInteger(session)||session<3||session>20||ctx.history?.active||ctx.forcedReason||
+ !['discovery','maintenance'].includes(category)||!['L','R','T'].includes(policy))return [];
+ const candidates=ctx.candidates||[],lookup=new Map((ctx.exercises||[]).map(q=>[q.id,q]));
+ for(const q of candidates)lookup.set(q.id,q);
+ const old=lookup.get(baselineId),m=meta[baselineId],f=base.features(old,m);
+ if(!f||protectedConcept.has(m.concept)||old.difficulty>3)return [];
+ const rest=(ctx.selected||[]).map(x=>x.exercise||x),local=rest.map(q=>base.features(q,meta[q.id])).filter(Boolean);
+ const journal=(ctx.history?.journal||[]).filter(e=>e.mode==='parcours'&&e.session>=session-2&&e.session<session);
+ if(journal.length!==2||new Set(journal.map(e=>e.session)).size!==2||journal.some(e=>e.answers?.length!==10))return [];
+ const history=journal.flatMap(e=>e.answers).map(a=>({a,q:lookup.get(a.id)}));
+ if(history.some(x=>!x.q))return [];
+ const relevant=history.filter(x=>meta[x.q.id]?.concept===m.concept);
+ // Never displace a local consolidation of a failed or assisted concept.
+ if(relevant.some(x=>!clean(x.a)))return [];
+ const past=relevant.map(x=>base.features(x.q,meta[x.q.id])).filter(Boolean);
+ const count=(arr,v)=>arr.filter(x=>x.near===v.near).length;
+ // T: evidence-wide guard and same-family substitution. A new ID may still
+ // affect future trajectories; the S180 gate is unchanged.
+ if(policy==='T'&&!history.every(x=>clean(x.a)))return [];
+ const repeated=policy==='L'?count(local,f):policy==='R'?count(past,f):count(local,f)+count(past,f);
+ if(!repeated)return [];
+ // R only with a real independent success on the same decision. L can
+ // contrast a first discovery within a complete deck (no invented mastery).
+ if(policy==='R'&&!past.some(x=>x.decision===f.decision))return [];
+ const used=new Set(rest.map(family)),out=[];
+ for(const q of candidates){
+  const v=base.features(q,meta[q.id]);
+  if(!v||q.id===old.id||used.has(family(q))||q.theme!==old.theme||q.difficulty!==old.difficulty||
+  q.answer!==old.answer||!same(q.auction,old.auction)||metaKey(meta[q.id])!==metaKey(m)||v.decision!==f.decision)continue;
+  const localGain=count(local,f)-count(local,v),recentGain=count(past,f)-count(past,v);
+  // A real force or shape contrast, not a new hand alone. Do not trade
+  // a local repetition against a recent repetition (or vice versa).
+  if(policy==='T'&&family(q)!==family(old))continue;
+  if(v.near===f.near||localGain<0||recentGain<0||(policy==='L'?localGain:policy==='R'?recentGain:localGain+recentGain)<=0)continue;
+  out.push({id:q.id,delta:Math.min(24,8*(localGain+recentGain)),reason:policy==='T'?'contraste au sein de la même famille après deux séances autonomes':policy==='L'?'contraste de force/distribution dans une décision répétée du deck':'contraste de force/distribution après réussite autonome récente',localGain,recentGain});
+ }
+ return out.sort((a,b)=>b.delta-a.delta||a.id.localeCompare(b.id));
+}
+module.exports=Object.freeze({schema:'QPJB_M4P_A_V1',rank});
+
+})(rankModule,rankModule.exports,function(name){if(name!=="./quizz-coherence-m4-diversite.js")throw Error(name);return baseModule.exports;});
+window.QPJB_M4P_A=rankModule.exports;
+})();
+/* Reprise 6 D — T seule. Extrait du choix atomique #505, sans autre politique.
+ * La logique T est inchangée; aucune activation par ce fichier. */
+(function(root,factory){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./quizz-coherence-m4p-a-rank.js'));
+ else root.QPJBReprise6D=factory(root.QPJB_M4P_A);
+})(typeof window==='undefined'?globalThis:window,function(T){
+'use strict';
+const schema='QPJB_COORDINATOR_ATOMIC_V1';
+const clean=a=>a?.result==='correct'&&a.assisted===false&&a.hadFreeError===false;
+const family=q=>String(q.caseFamily||q.id);
+const c=(ctx,q)=>ctx.metadataById[q.id]?.concept;
+function choose(ctx){
+ const mode='T';
+ const {session:s,history:h,selected,slots}=ctx;
+ if(!Number.isInteger(s)||s<3||s>65||h?.active||selected.length!==10)return null;
+ const rows=(h.journal||[]).filter(r=>r.mode==='parcours'&&r.session<s&&r.answers?.length===10);
+ const recent=rows.filter(r=>r.session>=s-2);
+ const autonomous=recent.length===2&&new Set(recent.map(r=>r.session)).size===2&&recent.every(r=>r.answers.every(clean));
+ const exposed=new Set(rows.flatMap(r=>r.answers.map(a=>a.id)));
+ const proposals=[];
+ for(const slot of slots){
+  const old=selected[slot.index]?.exercise;
+  if(!old||old!==slot.baseline||!['nouveau_qcm','rappel_nouvelle_situation'].includes(selected[slot.index].reason))continue;
+  const rest=selected.filter((_,i)=>i!==slot.index),used=new Set(rest.map(v=>family(v.exercise)));
+  const base=slot.rows.find(x=>x.q===old);if(!base)continue;
+  const rows=slot.rows.filter(x=>x.q===old||!used.has(family(x.q))&&!rest.some(v=>v.exercise.id===x.q.id));
+  const emit=(x,reason,gain)=>proposals.push({index:slot.index,id:x.q.id,oldId:old.id,concept:c(ctx,x.q),oldConcept:c(ctx,old),cost:base.v-x.v,reason,gain,mode});
+  if(mode==='T'&&s<=20&&T){
+   const ranked=T.rank({...ctx,category:slot.category,priority:slot.priority,baselineId:old.id,selected:rest,candidates:rows.filter(x=>x.key===base.key&&x.v===base.v).map(x=>x.q),policy:'T'});
+   for(const v of ranked){const x=rows.find(x=>x.q.id===v.id&&x.key===base.key&&x.v===base.v);if(x)emit(x,v.reason,v.localGain+v.recentGain)}
+   continue;
+  }
+ }
+ return proposals.sort((a,b)=>b.gain-a.gain||a.cost-b.cost||a.index-b.index||a.id.localeCompare(b.id))[0]||null;
+}
+
+return Object.freeze({schema,mode:'T',choose});
+});
+
+
+}
 /* QPJB — parcours algorithmique V1.10 : preuves de maîtrise séparées des entraînements, sans IA ni API. */
 (function(root,factory){
   let prerequis=root?.QPJBPrerequis,sessionPlan=root?.QPJBSessionPlan,durable=root?.QPJBDurableIntegration;
@@ -236,6 +433,44 @@
     active:null,journal:[],difficultyFeedback:[],difficultyAdjustment:0};}
   // Optional observed first bid only. Old journals remain unchanged after load.
   const firstGuessEvidence=a=>a?.hadFreeError===true&&typeof a.firstGuess==='string'&&/^(?:Passe|Contre|Surcontre|[1-7](?:♣|♦|♥|♠|SA))$/.test(a.firstGuess)&&!(a.result==='correct'&&a.firstGuess===a.choice)?{firstGuess:a.firstGuess}:{};
+  // Référence facultative du départage historique, distincte du journal observé.
+  // Une référence absente ou corrompue ne change jamais les réponses ni leurs preuves.
+  function validOrderReference(ids,reference){
+    return Array.isArray(ids)&&Array.isArray(reference)&&ids.length>0&&ids.length<=20&&
+      reference.length===ids.length&&new Set(ids).size===ids.length&&
+      new Set(reference).size===reference.length&&reference.every(id=>typeof id==='string'&&ids.includes(id));
+  }
+  function referenceAnswers(event){
+    const answers=event.answers||[];
+    if(event.mode!=='parcours'||!validOrderReference(answers.map(a=>a.id),event.orderReferenceIds))return answers;
+    const byId=new Map(answers.map(a=>[a.id,a]));
+    return event.orderReferenceIds.map(id=>byId.get(id));
+  }
+  // Experimental full ordering: snapshot only themes whose relative order
+  // changes. The native skill recurrence is replayed with real answers.
+  const skillFields=['level','clean','errors','lastCleanSession','lastLevelChangeSession'];
+  function validSkillBase(base,completed){
+    if(!base||typeof base!=='object'||Array.isArray(base))return false;
+    const keys=Object.keys(base);
+    return keys.length>0&&keys.length<=Object.keys(INTRO).length&&keys.every(t=>{
+      if(!Object.hasOwn(INTRO,t))return false;
+      const v=base[t];
+      return v===null||(v&&typeof v==='object'&&!Array.isArray(v)&&
+        Object.keys(v).length===skillFields.length&&skillFields.every(k=>Object.hasOwn(v,k))&&
+        Number.isInteger(v.level)&&v.level>=1&&v.level<=5&&Number.isInteger(v.clean)&&v.clean>=0&&v.clean<=3&&
+        Number.isInteger(v.errors)&&v.errors>=0&&v.errors<=2&&
+        ['lastCleanSession','lastLevelChangeSession'].every(k=>v[k]===null||Number.isInteger(v[k])&&v[k]>=0&&v[k]<=completed));
+    });
+  }
+  function sameSkill(a,b){
+    return !!a&&!!b&&skillFields.every(k=>a[k]===b[k]);
+  }
+  function changedOrderThemes(historical,proposed,byId){
+    if(!validOrderReference(historical,proposed)||historical.some(id=>!byId.has(id)))return [];
+    const themes=[...new Set(historical.map(id=>byId.get(id).theme))];
+    return themes.filter(t=>historical.filter(id=>byId.get(id).theme===t).join('|')!==
+      proposed.filter(id=>byId.get(id).theme===t).join('|'));
+  }
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -326,6 +561,16 @@
           s.active.selection=old.active.selection.map(v=>({
             id:v.id,kind:v.kind,reason:v.reason
           }));
+        if(old.active.mode!=='consolidation'&&validOrderReference(ids,old.active.orderReferenceIds))
+          s.active.orderReferenceIds=old.active.orderReferenceIds.slice();
+        if(s.active.orderReferenceIds&&validSkillBase(old.active.orderSkillBase,s.completed)&&
+          Array.isArray(old.active.orderSkillRecordedIds)){
+          const observed=Object.keys(answers).map(i=>ids[Number(i)]),recorded=old.active.orderSkillRecordedIds;
+          if(recorded.length===observed.length&&new Set(recorded).size===recorded.length&&recorded.every(id=>observed.includes(id))){
+            s.active.orderSkillBase=Object.fromEntries(Object.entries(old.active.orderSkillBase).map(([k,v])=>[k,v===null?null:Object.fromEntries(skillFields.map(field=>[field,v[field]]))]));
+            s.active.orderSkillRecordedIds=recorded.slice();
+          }
+        }
         if(old.active.mode==='consolidation'){
           s.active.mode='consolidation';
           if(Array.isArray(old.active.targets)&&old.active.targets.length===ids.length&&
@@ -350,6 +595,22 @@
         s.lastConsolidation={atSession:report.atSession,counts,parts};
       }
     }
+    // C4: separate practice log. Never interpreted as ordinary assessment or
+    // used to reconstruct native entries, evidence, scores or deadlines.
+    if(Array.isArray(old.foundationRecalls)){
+      const rows=old.foundationRecalls.slice(-1000).filter(ev=>ev&&
+        Number.isInteger(ev.session)&&ev.session>=66&&ev.session<=s.completed+1&&
+        Array.isArray(ev.answers)&&ev.answers.length>=4&&ev.answers.length<=6&&
+        new Set(ev.answers.map(a=>a?.id)).size===ev.answers.length&&
+        ev.answers.every(a=>a&&typeof a.id==='string'&&a.id.length<=100&&
+          ['correct','wrong','skipped'].includes(a.result)&&
+          (a.choice===null||typeof a.choice==='string')&&
+          typeof a.assisted==='boolean'&&typeof a.hadFreeError==='boolean'));
+      if(new Set(rows.map(ev=>ev.session)).size===rows.length&&rows.length)
+        s.foundationRecalls=rows.map(ev=>({session:ev.session,recordedAt:typeof ev.recordedAt==='string'?ev.recordedAt:null,
+          answers:ev.answers.map(a=>({id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
+            assisted:a.assisted,hadFreeError:a.hadFreeError,...firstGuessEvidence(a)}))}));
+    }
     // Champs facultatifs : les anciennes sauvegardes restent lisibles sans historique reconstruit.
     if(Array.isArray(old.journal)){
       s.journal=old.journal.slice(-1000).filter(event=>
@@ -362,6 +623,8 @@
       ).map(event=>({
         mode:event.mode,session:event.session,
         recordedAt:typeof event.recordedAt==='string'?event.recordedAt:null,
+        ...(event.mode==='parcours'&&validOrderReference(event.answers.map(a=>a.id),event.orderReferenceIds)
+          ?{orderReferenceIds:event.orderReferenceIds.slice()}:{}),
         answers:event.answers.map(a=>({
           id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
           assisted:!!a.assisted,hadFreeError:!!a.hadFreeError,...firstGuessEvidence(a),
@@ -620,7 +883,7 @@
     if(items.length<2)return items.slice();
     const s=state.completed;
     const salt=s+'|'+items.map(x=>exerciseOf(x).id).sort().join('|')+'|'+
-      (state.journal||[]).slice(-2).map(ev=>(ev.answers||[]).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
+      (state.journal||[]).slice(-2).map(ev=>referenceAnswers(ev).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
     const earlyOrder=s===1&&items.length===10&&items.filter(x=>openBid(exerciseOf(x))).length>=2;
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
     const deadlines=passDeadlines(s,totalPass,items.length);
@@ -727,7 +990,7 @@
     }
     return ordered;
   }
-  function select(exercises,state,n=10){
+  function select(exercises,state,n=10,options={}){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
     // Candidate #396 : départage après S20, à score et strate pédagogique identiques.
     const durableSelection=s>=20&&durable?.schema==='QPJB_DURABLE_INTEGRATION_V1'
@@ -737,6 +1000,12 @@
     const previous=state.entries||{};
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
+    const curriculum=options?.coherenceM1?.schema==='QPJB_COHERENCE_M1_V1'?options.coherenceM1:null;
+    const maintenancePolicy=options?.coherenceM4?.schema==='QPJB_COORDINATOR_M4_V1'?options.coherenceM4:null;
+    const atomic=options?.coherenceAtomic?.schema==='QPJB_COORDINATOR_ATOMIC_V1'?options.coherenceAtomic:null;
+    const atomicSlots=[];
+    let m1Changed=false,m4Changed=false;
+    const reportDecision=typeof options?.observe==='function'?options.observe:()=>{};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
     const totalRecent=e.recent.length,weakRecent=e.recent.filter(({a})=>weakAnswer(a)).length;
     const rate=totalRecent?weakRecent/totalRecent:0;
@@ -842,8 +1111,35 @@
       const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
         new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
           history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
-      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
+      // #419: only the already filtered native candidates are available to curriculum.
+      const m1Context={session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason};
+      const allowM1=curriculum&&s>=2&&s<65&&!priority&&!forcedReason;
+      let rankPool=candidates,m1Deltas=new Map();
+      if(allowM1){
+        const proposed=curriculum.prefer(m1Context),byId=new Map(candidates.map(q=>[q.id,q]));
+        if(Array.isArray(proposed)&&proposed.length&&new Set(proposed.map(q=>q.id)).size===proposed.length&&proposed.every(q=>byId.get(q.id)===q))rankPool=proposed;
+        for(const row of curriculum.rank(m1Context)){
+          if(byId.has(row.id)&&Number.isFinite(row.delta)&&Math.abs(row.delta)<=100)m1Deltas.set(row.id,row.delta);
+        }
+      }
+      const ranked=rankPool.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
+      let m1Choice=null,m4Choice=null;
+      if(allowM1&&typeof curriculum.compose==='function'&&!m1Changed){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),overdueCore:oldConcept(q)>=5,stage:mOf(q).stage}]));
+        const proposed=curriculum.compose({...m1Context,changed:m1Changed,flagsById},ranked);
+        const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
+        if(index>0){m1Choice=proposed;ranked.unshift(...ranked.splice(index,1));m1Changed=true;}
+      }
+      // Experimental maintenance swaps are constrained to the same native
+      // maintenance bucket, with one optional swap, and cannot displace
+      // discovery, explicit errors or protected priority selections.
+      if(maintenancePolicy&&s>=65&&!m4Changed&&!priority&&!forcedReason&&category==='maintenance'&&ranked.length>1){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),age:oldConcept(q),stage:mOf(q).stage}]));
+        const proposed=maintenancePolicy.choose({...m1Context,flagsById,selected,ranked});
+        const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
+        if(index>0){m4Choice=proposed;ranked.unshift(...ranked.splice(index,1));m4Changed=true;}
+      }
       // #396: preserve the historical winning pedagogical stratum, not just
       // its numeric score. Cross-concept ties displaced foundational review.
       const stratum=q=>JSON.stringify([q.theme,mOf(q).concept,mOf(q).stage,q.difficulty,
@@ -851,6 +1147,15 @@
       const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason
         ?durable.chooseWithinStratum(ranked,stratum,eligible=>durableSelection.rank({candidates:eligible,selected,category,priority,forcedReason}))
         :ranked[0].q;
+      if(m1Choice||m4Choice)reportDecision({session:s+1,actualId:q.id,m1Choice,m4Choice});
+      if(atomic&&s>=2&&s<65&&!forcedReason&&['discovery','maintenance'].includes(category)&&
+         fresh(q)&&novelFamily(q)&&!due(q)&&!bad(q)){
+        const key=v=>JSON.stringify([v.theme,mOf(v).concept,mOf(v).stage,mOf(v).minSession,mOf(v).requires,
+         v.difficulty,context(v),bid(v),microKey(v),axisKey(v),classify(v),fresh(v),novelFamily(v),oldFamily(v),!!due(v),!!bad(v)]);
+        const rows=ranked.filter(r=>fresh(r.q)&&novelFamily(r.q)&&!due(r.q)&&!bad(r.q)&&
+          r.q.theme===q.theme&&r.q.difficulty===q.difficulty).map(r=>({...r,key:key(r.q)}));
+        if(rows.length>1&&rows.some(r=>r.q===q))atomicSlots.push({index:selected.length,baseline:q,rows,category,priority});
+      }
       const m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
@@ -930,7 +1235,23 @@
       if(!ok)ok=choose(pool,null,'complement_catalogue');
       if(!ok)break;
     }
-    return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
+    let final=selected;
+    if(atomic&&selected.length===10&&limit===10){
+      const proposed=atomic.choose({session:s+1,history:state,exercises,metadataById:prerequis.byId,selected,slots:atomicSlots});
+      if(proposed){
+        const slot=atomicSlots.find(x=>x.index===proposed.index&&x.baseline.id===proposed.oldId);
+        const row=slot?.rows.find(x=>x.q.id===proposed.id),old=selected[proposed.index]?.exercise;
+        if(row&&old===slot.baseline&&row.q!==old&&row.q.theme===old.theme&&
+           row.q.difficulty===old.difficulty&&openingPass(row.q)===openingPass(old)){
+          const trial=selected.map((v,i)=>i===proposed.index?{...v,exercise:row.q}:v);
+          if(new Set(trial.map(v=>v.exercise.id)).size===10&&new Set(trial.map(v=>family(v.exercise))).size===10&&
+             passOrderOK(logicalOrder(trial,state).map(v=>v.exercise),s)){
+            final=trial;reportDecision({session:s+1,actualId:row.q.id,atomicChoice:proposed});
+          }
+        }
+      }
+    }
+    return logicalOrder(final,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
   }
 
   // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture
@@ -938,7 +1259,52 @@
   // Le parcours principal reste strictement composé de dix QCM.
   // Un besoin doit être confirmé par au moins deux essais : pas de rattrapage
   // déclenché par une erreur isolée ou une classification non auditée.
-  function consolidationPlan(state,exercises,n=10){
+  // #506 — experimental additive retrieval: never removes a guided question.
+  // Opt-in only, after S65, and never competes with evidenced remediation.
+  const RECALL_CORE=Object.freeze(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
+  function foundationRecallPlan(state,exercises,pool,e,limit){
+    const s=state.completed,byId=new Map(exercises.map(q=>[q.id,q])),last=new Map();
+    if(s<65||limit<4||(state.foundationRecalls||[]).some(ev=>ev.session===s+1))return null;
+    // Real answered events only; skipped cards and merely proposed plans
+    // are not retrieval. No inferred history on legacy saves.
+    for(const ev of state.journal||[]){
+      if(!['parcours','consolidation'].includes(ev.mode)||!Number.isInteger(ev.session))continue;
+      const at=ev.mode==='consolidation'?ev.session-1:ev.session;
+      if(at<1||at>s)continue;
+      for(const a of ev.answers||[]){
+        if(!['correct','wrong'].includes(a.result))continue;
+        const q=byId.get(a.id),c=q&&metadata(q)?.concept;
+        if(RECALL_CORE.includes(c))last.set(c,Math.max(last.get(c)||0,at));
+      }
+    }
+    for(const ev of state.foundationRecalls||[]){
+      const at=ev.session-1;if(!Number.isInteger(at)||at<65||at>s)continue;
+      for(const a of ev.answers||[]){
+        if(!['correct','wrong'].includes(a.result))continue;
+        const q=byId.get(a.id),c=q&&metadata(q)?.concept;
+        if(RECALL_CORE.includes(c))last.set(c,Math.max(last.get(c)||0,at));
+      }
+    }
+    const items=[],usedFamilies=new Set();
+    const overdue=RECALL_CORE.filter(c=>last.has(c)&&s-last.get(c)>=10)
+      .sort((a,b)=>last.get(a)-last.get(b)||a.localeCompare(b));
+    for(const c of overdue){
+      if(items.length>=Math.min(6,limit))break;
+      const proof=e.proofs.get(c)||[];
+      if(e.localFragility.has(c)||e.weakConcept[c]||new Set(proof.map(p=>p.family)).size<2||new Set(proof.map(p=>p.session)).size<2)continue;
+      const eligible=pool.filter(q=>{
+        const m=metadata(q),r=state.entries?.[q.id],assessment=assessmentOf(r||{});
+        return m.concept===c&&m.stage<=1&&q.difficulty<=3&&r&&!weakAnswer(r)&&
+          assessment?.result==='correct'&&!assessment.assisted&&s-r.lastSession>=10&&!usedFamilies.has(family(q));
+      });
+      eligible.sort((a,b)=>state.entries[a.id].lastSession-state.entries[b.id].lastSession||a.difficulty-b.difficulty||a.id.localeCompare(b.id));
+      const q=eligible[0];if(!q)continue;
+      usedFamilies.add(family(q));items.push({id:q.id,target:'foundation:recall'});
+    }
+    if(items.length<4)return null;
+    return {available:true,reason:'foundation-recall',focus:[{kind:'foundation',key:'recall',label:'Rappel des fondamentaux',score:0}],items:logicalOrder(items,state,x=>byId.get(x.id))};
+  }
+  function consolidationPlan(state,exercises,n=10,options={}){
     if(state.active)return {available:false,reason:'session-active',focus:[],items:[]};
     if(state.lastConsolidatedAt===state.completed)return {available:false,reason:'already-consolidated',focus:[],items:[]};
     const limit=clamp(int(n,10),1,10),minFamilies=Math.min(4,limit),s=state.completed;
@@ -959,7 +1325,13 @@
     targets.sort((a,b)=>a.score-b.score||b.candidates.length-a.candidates.length||
       (a.kind+':'+a.key).localeCompare(b.kind+':'+b.key));
     const focus=targets.slice(0,2);
-    if(!focus.length)return {available:false,reason:hasEvidence?'pool-insufficient':'no-evidenced-weakness',focus:[],items:[]};
+    if(!focus.length){
+      if(options.foundationRecall===true&&!hasEvidence){
+        const recall=foundationRecallPlan(state,exercises,pool,e,limit);
+        if(recall)return recall;
+      }
+      return {available:false,reason:hasEvidence?'pool-insufficient':'no-evidenced-weakness',focus:[],items:[]};
+    }
     const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
     function choose(target){
       let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
@@ -1008,7 +1380,8 @@
     const p=target.indexOf(':');
     if(p<0)return null;
     const kind=target.slice(0,p),key=target.slice(p+1);
-    return kind==='micro'&&Object.hasOwn(MICRO_LABELS,key)?MICRO_LABELS[key]:
+    return kind==='foundation'&&key==='recall'?'Rappel des fondamentaux':
+      kind==='micro'&&Object.hasOwn(MICRO_LABELS,key)?MICRO_LABELS[key]:
       kind==='axis'&&Object.hasOwn(AXIS_LABELS,key)?AXIS_LABELS[key]:null;
   }
   function validCounts(raw){
@@ -1043,10 +1416,10 @@
     return {atSession,counts,parts:byTarget.length&&
       byTarget.reduce((n,x)=>n+x.counts.total,0)===counts.total?byTarget:[]};
   }
-  function startConsolidation(state,exercises){
+  function startConsolidation(state,exercises,options={}){
     // La séance interrompue, qu'elle soit normale ou complémentaire, prime.
     if(state.active)return start(state,exercises);
-    const plan=consolidationPlan(state,exercises,10);
+    const plan=consolidationPlan(state,exercises,10,options);
     if(!plan.available)return [];
     const byId=new Map(exercises.map(x=>[x.id,x]));
     state.active={ids:plan.items.map(x=>x.id),index:0,answers:{},
@@ -1054,7 +1427,7 @@
       targets:plan.items.map(x=>x.target)};
     return state.active.ids.map(id=>byId.get(id));
   }
-  function start(state,exercises){
+  function start(state,exercises,options={}){
     const byId=new Map(exercises.map(x=>[x.id,x]));
     if(state.active){
       if(state.active.ids.every(id=>byId.has(id))){
@@ -1067,13 +1440,130 @@
       }
       state.active=null;
     }
-    const chosen=select(exercises,state,10);
+    let chosen=select(exercises,state,10,options);
     if(!chosen.length)return [];
+    // Le candidat est désactivé pour tous les appels historiques à deux arguments.
+    // Le coordinateur doit fournir explicitement le module et passer la recette intégrée.
+    let orderReferenceIds=null,orderSkillBase=null;
+    const orderModule=options?.coherenceM2;
+    if(orderModule?.schema==='QPJB_COHERENCE_M2_V1'&&typeof orderModule.order==='function'){
+      const historical=chosen.map(x=>x.id),historicalDeck=historical.map(id=>byId.get(id));
+      try{
+        const common={session:state.completed+1,history:state,selected:chosen,metadataById:prerequis.byId};
+        const plan=orderModule.order({...common,deck:historical,exercises:historicalDeck,preserveThemeOrder:true});
+        let proposed=validOrderReference(historical,plan?.ids)&&
+          changedOrderThemes(historical,plan.ids,byId).length===0&&passOrderOK(plan.ids.map(id=>byId.get(id)),state.completed)
+          ?plan.ids:historical;
+        // A second pass starts from the already certified constrained M2
+        // order. It may improve M3 transitions without changing any ID.
+        if(options.coherenceFullOrder===true){
+          const second=orderModule.order({...common,deck:proposed,exercises:proposed.map(id=>byId.get(id)),
+            preserveThemeOrder:false,transitionGroups:options.transitionGroups});
+          if(validOrderReference(proposed,second?.ids)&&passOrderOK(second.ids.map(id=>byId.get(id)),state.completed)){
+            const changed=changedOrderThemes(historical,second.ids,byId);
+            const base=Object.fromEntries(changed.map(t=>[t,state.skills[t]?{...state.skills[t]}:null]));
+            if(!changed.length||validSkillBase(base,state.completed)){
+              proposed=second.ids;
+              if(changed.length)orderSkillBase=base;
+            }
+          }
+        }
+        if(proposed.some((id,i)=>id!==historical[i])){
+          const byChoice=new Map(chosen.map(x=>[x.id,x]));
+          chosen=proposed.map(id=>byChoice.get(id));
+          orderReferenceIds=historical;
+        }
+      }catch(_){ /* Repli historique : aucun nouvel ordre ni état partiel. */ }
+    }
     state.active={ids:chosen.map(x=>x.id),index:0,answers:{},
       createdAt:state.completed,selection:chosen.map(x=>({
         id:x.id,kind:x.kind,reason:x.reason
       }))};
+    if(orderReferenceIds)state.active.orderReferenceIds=orderReferenceIds.slice();
+    if(orderReferenceIds&&orderSkillBase){
+      state.active.orderSkillBase=orderSkillBase;
+      state.active.orderSkillRecordedIds=[];
+    }
     return state.active.ids.map(id=>byId.get(id));
+  }
+  // Read-only study preview: exact same selector options and inactive state.
+  // Caller must explicitly report quiz status; unknown/active contexts fail closed.
+  function studySuggestions(state,exercises,options={}){
+    const planner=options.coherenceM5;
+    if(!state||state.active!==null||options.questionActive!==false||options.quizActive!==false||
+       planner?.schema!=='QPJB_COHERENCE_M5_V1')return null;
+    const phase=options.phase;
+    if(phase!=='before'&&phase!=='after')return null;
+    const session=phase==='before'?state.completed+1:state.completed;
+    if(session<1)return null;
+    const copy=JSON.parse(JSON.stringify(state));
+    const deck=phase==='before'?start(copy,exercises,{...options,observe:undefined}):undefined;
+    if(phase==='before'&&deck.length!==10)return null;
+    const objective=options.coherenceM1?.plan?.({session,history:state,metadataById:prerequis.byId,candidates:deck||[]})||null;
+    return planner.studyPlan({session,history:state,metadataById:prerequis.byId,
+      selected:deck,objective,phase,questionActive:false,quizActive:false});
+  }
+  function advanceThemeSkill(prior,x,independent,completed){
+    const skill=prior?{...prior}:{level:Math.max(1,x.difficulty===1?1:2),
+      clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
+    if(independent){
+      skill.errors=0;
+      // Une seule preuve par rubrique et par séance : trois exercices
+      // réussis à la suite ne doivent pas provoquer une promotion immédiate.
+      if(x.difficulty>=skill.level&&skill.lastCleanSession!==completed){
+        skill.clean++;
+        skill.lastCleanSession=completed;
+      }
+      if(skill.clean>=3&&skill.lastLevelChangeSession!==completed){
+        skill.level=Math.min(5,skill.level+1);
+        skill.lastLevelChangeSession=completed;
+        skill.clean=0;
+      }
+    }else{
+      skill.clean=0;
+      skill.errors++;
+      if(skill.errors>=2){
+        if(skill.lastLevelChangeSession!==completed){
+          skill.level=Math.max(1,skill.level-1);
+          skill.lastLevelChangeSession=completed;
+        }
+        skill.errors=0;
+      }
+    }
+    return skill;
+  }
+  // Validate the snapshot by replaying the actual recording order first.
+  // If anything is missing or corrupted, keep the already observed scores.
+  function normalizeThemeOrder(state,active,byId){
+    if(active.mode==='consolidation'||!validOrderReference(active.ids,active.orderReferenceIds)||
+       !validOrderReference(active.ids,active.orderSkillRecordedIds)||!validSkillBase(active.orderSkillBase,state.completed))return false;
+    const affected=changedOrderThemes(active.orderReferenceIds,active.ids,byId);
+    if(!affected.length||affected.length!==Object.keys(active.orderSkillBase).length||
+       affected.some(t=>!Object.hasOwn(active.orderSkillBase,t)))return false;
+    const answers=new Map(active.ids.map((id,i)=>[id,active.answers[i]]));
+    const replay=(theme,ids)=>{
+      let skill=active.orderSkillBase[theme];
+      for(const id of ids){
+        const q=byId.get(id),a=answers.get(id);
+        if(!q||!a)return null;
+        if(q.theme===theme)skill=advanceThemeSkill(skill,q,a.result==='correct'&&!a.assisted&&!a.hadFreeError,state.completed);
+      }
+      return skill;
+    };
+    const next={};
+    for(const theme of affected){
+      const actual=replay(theme,active.orderSkillRecordedIds);
+      if(!sameSkill(actual,state.skills[theme]))return false;
+      const canonical=replay(theme,active.orderReferenceIds);
+      if(!canonical)return false;
+      next[theme]=canonical;
+    }
+    for(const [t,v] of Object.entries(next))state.skills[t]=v;
+    return true;
+  }
+  function isFoundationActive(active){
+    return active?.mode==='consolidation'&&active.ids?.length>=4&&active.ids.length<=6&&
+      active.targets?.length===active.ids.length&&active.targets.every(t=>t==='foundation:recall');
   }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
@@ -1082,6 +1572,7 @@
     active.answers[position]={result,choice:typeof choice==='string'?choice:null,
       assisted:!!assisted,hadFreeError:!!hadFreeError,
       ...firstGuessEvidence({result,choice,hadFreeError,firstGuess:firstGuess!==x.answer?firstGuess:null})};
+    if(isFoundationActive(active))return true;
     // Une réponse juste après une aide (ou une première mauvaise enchère
     // en saisie libre) n'est pas une preuve de maîtrise autonome.
     const independent=result==='correct'&&!assisted&&!hadFreeError;
@@ -1098,33 +1589,8 @@
     // suivante) pourrait bloquer l'évaluation de cette dernière.
     // Les résultats ciblés sont rapportés par finish() et restent traçables.
     if(active.mode==='consolidation')return true;
-    const skill=state.skills[x.theme]||{level:Math.max(1,x.difficulty===1?1:2),
-      clean:0,errors:0,lastCleanSession:null,lastLevelChangeSession:null};
-    if(independent){
-      skill.errors=0;
-      // Une seule preuve par rubrique et par séance : trois exercices
-      // réussis à la suite ne doivent pas provoquer une promotion immédiate.
-      if(x.difficulty>=skill.level&&skill.lastCleanSession!==state.completed){
-        skill.clean++;
-        skill.lastCleanSession=state.completed;
-      }
-      if(skill.clean>=3&&skill.lastLevelChangeSession!==state.completed){
-        skill.level=Math.min(5,skill.level+1);
-        skill.lastLevelChangeSession=state.completed;
-        skill.clean=0;
-      }
-    }else{
-      skill.clean=0;
-      skill.errors++;
-      if(skill.errors>=2){
-        if(skill.lastLevelChangeSession!==state.completed){
-          skill.level=Math.max(1,skill.level-1);
-          skill.lastLevelChangeSession=state.completed;
-        }
-        skill.errors=0;
-      }
-    }
-    state.skills[x.theme]=skill;
+    state.skills[x.theme]=advanceThemeSkill(state.skills[x.theme],x,independent,state.completed);
+    if(active.orderSkillBase&&Array.isArray(active.orderSkillRecordedIds))active.orderSkillRecordedIds.push(x.id);
     const mk=microKey(x);
     if(mk){
       const m=state.micros?.[mk]||{score:0,attempts:0,independent:0,
@@ -1178,6 +1644,13 @@
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Journal prospectif : aucune réponse d'une séance ancienne n'est inventée.
     const active=state.active,byId=new Map((exercises||[]).map(x=>[x.id,x]));
+    if(isFoundationActive(active)){
+      if((state.foundationRecalls||[]).some(ev=>ev.session===state.completed+1))return false;
+      const answers=active.ids.map((id,i)=>({id,...active.answers[i]}));
+      (state.foundationRecalls??=[]).push({session:state.completed+1,recordedAt:new Date().toISOString(),answers});
+      state.active=null;return true;
+    }
+    normalizeThemeOrder(state,active,byId);
     const record={
       mode:active.mode==='consolidation'?'consolidation':'parcours',
       session:state.completed+1,recordedAt:new Date().toISOString(),
@@ -1193,6 +1666,8 @@
           }:{})};
       })
     };
+    if(record.mode==='parcours'&&validOrderReference(active.ids,active.orderReferenceIds))
+      record.orderReferenceIds=active.orderReferenceIds.slice();
     if(!Array.isArray(state.journal))state.journal=[];
     state.journal.push(record);
     // Les séances ciblées consolident les preuves mais ne débloquent pas
@@ -1279,6 +1754,7 @@
       summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
         totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
       sessions:journal,
+      ...(state.foundationRecalls?.length?{supplementalFoundationPractice:state.foundationRecalls}:{}),
       selectionDiagnostics:selectionDiagnostics(state,5),
       currentSession:state.active||null,
       questions,
@@ -1312,7 +1788,8 @@
     // Un ancien journal incomplet reste incomplet : ni invention ni perte.
     if(Object.keys(restored.entries).length!==Object.keys(old.entries).length||
       (old.active&&!restored.active)||
-      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0))
+      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0)||
+      (restored.foundationRecalls?.length||0)!==(Array.isArray(old.foundationRecalls)?old.foundationRecalls.length:0))
       throw Error('Sauvegarde incohérente : aucune donnée n’a été remplacée.');
     return restored;
   }
@@ -1384,5 +1861,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
+  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,studySuggestions,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });

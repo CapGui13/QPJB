@@ -1,0 +1,44 @@
+name: Reprise6 coordination — enseignement source + T
+on:
+  pull_request:
+    branches: [coherence-concrete/reprise6-coordination-t]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  browser:
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-source'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.64.1
+          npx playwright install --with-deps "${{ matrix.browser }}"
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+      - name: Scope and actual HTML, source-first teaching
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/reprise6-source-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          for i in {1..20}; do curl -fsS http://127.0.0.1:8765/quizz.html -o /dev/null && break; sleep 1; done
+          PW_BROWSER="${{ matrix.browser }}" node tests/coherence-reprise6-coordination-source-browser.cjs
+      - name: Actual built UI, T, storage, offline and consolidation
+        shell: bash
+        run: |
+          PW_BROWSER="${{ matrix.browser }}" node tests/coherence-reprise6-d-browser.cjs _public_site
+          PW_BROWSER="${{ matrix.browser }}" node tests/progression-guidee-offline.cjs _public_site
+          PW_BROWSER="${{ matrix.browser }}" node tests/durable-integration-browser.cjs _public_site

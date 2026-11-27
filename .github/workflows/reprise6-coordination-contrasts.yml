@@ -1,0 +1,32 @@
+name: Reprise6 coordination — contraste après séance
+on:
+  pull_request:
+    branches: [coherence-concrete/reprise6-coordination-source]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  browser:
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-contrasts'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-reprise6-a-contrast.cjs
+          npm install --no-save playwright@1.64.1
+          npx playwright install --with-deps "${{ matrix.browser }}"
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+      - name: Actual guided session and worked contrast, offline and resume
+        run: PW_BROWSER="${{ matrix.browser }}" node tests/coherence-reprise6-a-contrast-browser.cjs _public_site

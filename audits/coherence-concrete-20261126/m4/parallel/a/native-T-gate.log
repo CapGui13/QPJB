@@ -1,0 +1,513 @@
+﻿2026-11-27T10:39:00.4080508Z Current runner version: '2.338.2'
+2026-11-27T10:39:00.4108660Z ##[group]Runner Image Provisioner
+2026-11-27T10:39:00.4109581Z Hosted Compute Agent
+2026-11-27T10:39:00.4110257Z Version: 20261111.635
+2026-11-27T10:39:00.4110962Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-27T10:39:00.4111922Z Build Date: 2026-11-11T01:49:01Z
+2026-11-27T10:39:00.4112793Z Worker ID: {0df24dfb-069d-48b6-ad98-eca5155e603c}
+2026-11-27T10:39:00.4113756Z Region: eastus2
+2026-11-27T10:39:00.4114455Z Cloud: Azure
+2026-11-27T10:39:00.4115338Z ##[endgroup]
+2026-11-27T10:39:00.4117166Z ##[group]Operating System
+2026-11-27T10:39:00.4117996Z Ubuntu
+2026-11-27T10:39:00.4118636Z 26.04.1
+2026-11-27T10:39:00.4119287Z LTS
+2026-11-27T10:39:00.4119984Z ##[endgroup]
+2026-11-27T10:39:00.4120659Z ##[group]Runner Image
+2026-11-27T10:39:00.4121481Z Image: ubuntu-26.04
+2026-11-27T10:39:00.4122169Z Version: 20261116.202.1
+2026-11-27T10:39:00.4123787Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-27T10:39:00.4126032Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+2026-11-27T10:39:00.4127252Z ##[endgroup]
+2026-11-27T10:39:00.4128679Z ##[group]GITHUB_TOKEN Permissions
+2026-11-27T10:39:00.4130803Z Contents: read
+2026-11-27T10:39:00.4131577Z Metadata: read
+2026-11-27T10:39:00.4132243Z ##[endgroup]
+2026-11-27T10:39:00.4135403Z Secret source: Actions
+2026-11-27T10:39:00.4136605Z Cache mode: write
+2026-11-27T10:39:00.4137748Z Prepare workflow directory
+2026-11-27T10:39:00.4517550Z Prepare all required actions
+2026-11-27T10:39:00.4573869Z Getting action download info
+2026-11-27T10:39:00.6266873Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-27T10:39:00.7085479Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-27T10:39:00.8249603Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-11-27T10:39:01.0116344Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-27T10:39:01.1955083Z Complete job name: gate
+2026-11-27T10:39:01.2651287Z ##[group]Run actions/checkout@v4
+2026-11-27T10:39:01.2651960Z with:
+2026-11-27T10:39:01.2652341Z   ref: 954508bdc998e42bfb1c88fd5ef034f8b2fa0c12
+2026-11-27T10:39:01.2652833Z   repository: CapGui13/QPJB
+2026-11-27T10:39:01.2656164Z   token: ***
+2026-11-27T10:39:01.2656525Z   ssh-strict: true
+2026-11-27T10:39:01.2656885Z   ssh-user: git
+2026-11-27T10:39:01.2657252Z   persist-credentials: true
+2026-11-27T10:39:01.2657650Z   clean: true
+2026-11-27T10:39:01.2658014Z   sparse-checkout-cone-mode: true
+2026-11-27T10:39:01.2658452Z   fetch-depth: 1
+2026-11-27T10:39:01.2658797Z   fetch-tags: false
+2026-11-27T10:39:01.2659157Z   show-progress: true
+2026-11-27T10:39:01.2659516Z   lfs: false
+2026-11-27T10:39:01.2659863Z   submodules: false
+2026-11-27T10:39:01.2660230Z   set-safe-directory: true
+2026-11-27T10:39:01.2660653Z   allow-unsafe-pr-checkout: false
+2026-11-27T10:39:01.2661235Z ##[endgroup]
+2026-11-27T10:39:01.5496228Z Syncing repository: CapGui13/QPJB
+2026-11-27T10:39:01.5498476Z ##[group]Getting Git version info
+2026-11-27T10:39:01.5499413Z Working directory is '/home/runner/work/QPJB/QPJB'
+2026-11-27T10:39:01.5500805Z [command]/usr/bin/git version
+2026-11-27T10:39:01.5530845Z git version 2.56.1
+2026-11-27T10:39:01.5547416Z ##[endgroup]
+2026-11-27T10:39:01.5560343Z Temporarily overriding HOME='/home/runner/work/_temp/2caba8b0-6bdb-4249-9fd6-765ac0e869b8' before making global git config changes
+2026-11-27T10:39:01.5562347Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:39:01.5564784Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/QPJB/QPJB
+2026-11-27T10:39:01.5623285Z Deleting the contents of '/home/runner/work/QPJB/QPJB'
+2026-11-27T10:39:01.5626279Z ##[group]Initializing the repository
+2026-11-27T10:39:01.5629505Z [command]/usr/bin/git init /home/runner/work/QPJB/QPJB
+2026-11-27T10:39:01.5733170Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-27T10:39:01.5734653Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-27T10:39:01.5736054Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-27T10:39:01.5737075Z hint: call:
+2026-11-27T10:39:01.5737645Z hint:
+2026-11-27T10:39:01.5738339Z hint: 	git config --global init.defaultBranch <name>
+2026-11-27T10:39:01.5739165Z hint:
+2026-11-27T10:39:01.5739934Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-27T10:39:01.5741238Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-27T10:39:01.5742519Z hint:
+2026-11-27T10:39:01.5743304Z hint: 	git branch -m <name>
+2026-11-27T10:39:01.5744235Z hint:
+2026-11-27T10:39:01.5745655Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-27T10:39:01.5746951Z Initialized empty Git repository in /home/runner/work/QPJB/QPJB/.git/
+2026-11-27T10:39:01.5754313Z [command]/usr/bin/git remote add origin https://github.com/CapGui13/QPJB
+2026-11-27T10:39:01.5803358Z ##[endgroup]
+2026-11-27T10:39:01.5900953Z ##[group]Disabling automatic garbage collection
+2026-11-27T10:39:01.5902099Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-27T10:39:01.5904452Z ##[endgroup]
+2026-11-27T10:39:01.5905726Z ##[group]Setting up auth
+2026-11-27T10:39:01.5910430Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:39:01.5913792Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:39:01.6593205Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:39:01.6630205Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:39:01.6866448Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:39:01.6897683Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:39:01.7134280Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-27T10:39:01.7169891Z ##[endgroup]
+2026-11-27T10:39:01.7176856Z ##[group]Fetching the repository
+2026-11-27T10:39:01.7178022Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 954508bdc998e42bfb1c88fd5ef034f8b2fa0c12
+2026-11-27T10:39:02.5518201Z From https://github.com/CapGui13/QPJB
+2026-11-27T10:39:02.5520275Z  * branch            954508bdc998e42bfb1c88fd5ef034f8b2fa0c12 -> FETCH_HEAD
+2026-11-27T10:39:02.5523769Z ##[endgroup]
+2026-11-27T10:39:02.5525195Z ##[group]Determining the checkout info
+2026-11-27T10:39:02.5526972Z ##[endgroup]
+2026-11-27T10:39:02.5528073Z [command]/usr/bin/git sparse-checkout disable
+2026-11-27T10:39:02.5576635Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-27T10:39:02.5610100Z ##[group]Checking out the ref
+2026-11-27T10:39:02.5613683Z [command]/usr/bin/git checkout --progress --force 954508bdc998e42bfb1c88fd5ef034f8b2fa0c12
+2026-11-27T10:39:02.8542207Z Note: switching to '954508bdc998e42bfb1c88fd5ef034f8b2fa0c12'.
+2026-11-27T10:39:02.8542860Z 
+2026-11-27T10:39:02.8543223Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-27T10:39:02.8543987Z changes and commit them, and you can discard any commits you make in this
+2026-11-27T10:39:02.8544753Z state without impacting any branches by switching back to a branch.
+2026-11-27T10:39:02.8545401Z 
+2026-11-27T10:39:02.8545749Z If you want to create a new branch to retain commits you create, you may
+2026-11-27T10:39:02.8546816Z do so (now or later) by using -c with the switch command. Example:
+2026-11-27T10:39:02.8547240Z 
+2026-11-27T10:39:02.8547466Z   git switch -c <new-branch-name>
+2026-11-27T10:39:02.8547783Z 
+2026-11-27T10:39:02.8548031Z Or undo this operation with:
+2026-11-27T10:39:02.8548316Z 
+2026-11-27T10:39:02.8548504Z   git switch -
+2026-11-27T10:39:02.8548804Z 
+2026-11-27T10:39:02.8549162Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-27T10:39:02.8549634Z 
+2026-11-27T10:39:02.8550405Z HEAD is now at 954508b M4-A: gate D strict inchangé plus périmètre et gain des deux fenêtres
+2026-11-27T10:39:02.8615869Z ##[endgroup]
+2026-11-27T10:39:02.8618313Z [command]/usr/bin/git log -1 --format=%H
+2026-11-27T10:39:02.8640803Z 954508bdc998e42bfb1c88fd5ef034f8b2fa0c12
+2026-11-27T10:39:02.8973531Z ##[group]Run actions/setup-node@v4
+2026-11-27T10:39:02.8973926Z with:
+2026-11-27T10:39:02.8974237Z   node-version: 22
+2026-11-27T10:39:02.8974585Z   always-auth: false
+2026-11-27T10:39:02.8975038Z   check-latest: false
+2026-11-27T10:39:02.8977239Z   token: ***
+2026-11-27T10:39:02.8977553Z ##[endgroup]
+2026-11-27T10:39:03.0387500Z Found in cache @ /opt/hostedtoolcache/node/22.23.5/x64
+2026-11-27T10:39:03.0395467Z (node:2287) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-27T10:39:03.0396731Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-27T10:39:03.0398041Z ##[group]Environment details
+2026-11-27T10:39:03.4082363Z node: v22.23.5
+2026-11-27T10:39:03.4082772Z npm: 10.9.9
+2026-11-27T10:39:03.4083002Z yarn: 1.22.22
+2026-11-27T10:39:03.4083997Z ##[endgroup]
+2026-11-27T10:39:03.4235448Z ##[group]Run actions/download-artifact@v4
+2026-11-27T10:39:03.4235724Z with:
+2026-11-27T10:39:03.4235894Z   pattern: m4p-a-*
+2026-11-27T10:39:03.4236077Z   merge-multiple: true
+2026-11-27T10:39:03.4236265Z   path: /tmp/m4p-a
+2026-11-27T10:39:03.4236460Z   repository: CapGui13/QPJB
+2026-11-27T10:39:03.4236675Z   run-id: 45983780337
+2026-11-27T10:39:03.4236858Z ##[endgroup]
+2026-11-27T10:39:03.5661665Z (node:2319) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-27T10:39:03.5662432Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-27T10:39:03.7029095Z Found 18 artifact(s)
+2026-11-27T10:39:03.7030017Z Filtering artifacts by pattern 'm4p-a-*'
+2026-11-27T10:39:03.7045748Z Preparing to download the following artifacts:
+2026-11-27T10:39:03.7047235Z - m4p-a-intermediaire-103 (ID: 15191005630, Size: 460447, Expected Digest: sha256:437ac391a64bf33bcf8d41945081f04a9040f160c4126e16d4a5568c4741b01d)
+2026-11-27T10:39:03.7048928Z - m4p-a-cible-47 (ID: 15190820574, Size: 456484, Expected Digest: sha256:f834070c62c5c2f596295ca3eeb5705239ef0d6857f3a2215703e81a989b7c9e)
+2026-11-27T10:39:03.7050569Z - m4p-a-faible-11 (ID: 15190760819, Size: 413094, Expected Digest: sha256:21de084a7c75fa8267ec2cf2d17ba283db1fae8e0980896bd06e6fda3592e7ee)
+2026-11-27T10:39:03.7052331Z - m4p-a-autonome-11 (ID: 15190486543, Size: 457931, Expected Digest: sha256:bb1ea59e836b2581b625c0c6f2a034e65303c8fa72081b994f8d0b1613bb49d9)
+2026-11-27T10:39:03.7054123Z - m4p-a-intermediaire-47 (ID: 15190481413, Size: 455691, Expected Digest: sha256:3298e4e81575ba0ce8df21ed2ef0448afba82a87d05588dc57b9ec7f526998ff)
+2026-11-27T10:39:03.7056142Z - m4p-a-faible-103 (ID: 15190451615, Size: 407222, Expected Digest: sha256:e4f3baa442ad52d54dd2e695439bc9eebb28bb623aca7c4282c7adaca75733f3)
+2026-11-27T10:39:03.7058354Z - m4p-a-cible-11 (ID: 15190367243, Size: 450892, Expected Digest: sha256:555382a89c6d75243e8f956591f0d4a397913ab91c7daf8a136928ae312be14e)
+2026-11-27T10:39:03.7059678Z - m4p-a-cible-103 (ID: 15190332636, Size: 451240, Expected Digest: sha256:8d14ab03698f290daa24c200a7db67a916e4f0ec803525c5b3fc517309332050)
+2026-11-27T10:39:03.7060933Z - m4p-a-faible-47 (ID: 15190118808, Size: 410540, Expected Digest: sha256:c4919fc0c7d1f288bb097d6625734066ff315559a9405b271296ad2f5820fab5)
+2026-11-27T10:39:03.7062631Z - m4p-a-passe-103 (ID: 15190054095, Size: 447843, Expected Digest: sha256:bd046b0e515912e416be21fa5181dc558ba15aad5152eddd39f8c8f30784ba02)
+2026-11-27T10:39:03.7063522Z - m4p-a-aide-47 (ID: 15190029342, Size: 409969, Expected Digest: sha256:a376fcaa817bb5e45e611aa642d59be88f86ba0e2e9fd0bcd353dcb652cab6ff)
+2026-11-27T10:39:03.7064398Z - m4p-a-autonome-47 (ID: 15190014169, Size: 457918, Expected Digest: sha256:ecf345c307688af8a9aba4e69db5c5d87e33214725bad517dc4cf297708fd305)
+2026-11-27T10:39:03.7065570Z - m4p-a-aide-103 (ID: 15189919285, Size: 415451, Expected Digest: sha256:94b4a2515c4c15f3ab1eddccd857bf39b86a754e1ff1a259a8c7a811b08db558)
+2026-11-27T10:39:03.7066689Z - m4p-a-autonome-103 (ID: 15189904423, Size: 457938, Expected Digest: sha256:8e07a37713f99c0af005fa7446179a76b37097373090d2cd73f9c4df76510add)
+2026-11-27T10:39:03.7067731Z - m4p-a-aide-11 (ID: 15189899413, Size: 417748, Expected Digest: sha256:985a25fc0f06125b20301eb227db5fae8813c8601a4f05a4bdedd5f305c7a88b)
+2026-11-27T10:39:03.7069116Z - m4p-a-passe-47 (ID: 15189739862, Size: 453481, Expected Digest: sha256:b828eaeb9851fe31edbb0e546508d86857ec00db440ae7582a6b0b42aa1bbbaa)
+2026-11-27T10:39:03.7070079Z - m4p-a-intermediaire-11 (ID: 15189424645, Size: 458458, Expected Digest: sha256:2edf2b6272f23ee98310ab55167b46a1e8d1d06247e85cb5c1a5edafc8c07c9d)
+2026-11-27T10:39:03.7070970Z - m4p-a-passe-11 (ID: 15189349827, Size: 451471, Expected Digest: sha256:1a6cbb6c541dbfd3fe240ccf460621886fdd0aa8837b89a2b5e8447678d5ae02)
+2026-11-27T10:39:03.8389739Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-d7bc49f8-9aac-5afe-9c23-c13eb414cc9f/artifacts/8c7e4101065e61c428efdb693b4f13d30affa0d3737d9c5c61807d6069ebdaa3.zip
+2026-11-27T10:39:03.8390801Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8663793Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-a32cc830-c147-5063-b5e0-8f6a26adfd2b/artifacts/4b84ff1f69d47927344444758ecb95a6d41a5108b92d353039e72553803ee635.zip
+2026-11-27T10:39:03.8665640Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8679500Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-dcc12b82-4606-58a9-b42d-e1b23bc766e7/artifacts/f1eefbd6c45e104fc202b3a4543fe7975bc5ecdad3144f75068ef6f02701b278.zip
+2026-11-27T10:39:03.8680542Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8688687Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-1ce8b816-7fcf-5bd6-87b4-1ce6d94d3eff/artifacts/5e622dff16ae8bf356e62dab550866efea395e179ed9fbb457af818faf87875d.zip
+2026-11-27T10:39:03.8689962Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8722244Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-d8f589dc-371b-5a65-ae8e-a1561dd923db/artifacts/f0162ff4617aba893fbaf0f9f564e11c52a5148d7464f6052cd42840e935a8b7.zip
+2026-11-27T10:39:03.8723480Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8737092Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-acfbec66-5f25-5a4a-8e35-9d6c0e58bc48/artifacts/2d075f7113b757dec0f59170e338a28673e8c9c2f706e6586fabd7a7a3354c3e.zip
+2026-11-27T10:39:03.8738136Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8848574Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-7896f277-f816-58f2-bf6a-875ef4a1699d/artifacts/7dd70a7ea05f893076a7998b444720e639a40e526ccc7760b08c1d4b23e3f3e7.zip
+2026-11-27T10:39:03.8853606Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8857935Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-d9e93f54-2837-5778-b52f-ecdf4e6d34b2/artifacts/440acf22e3708c3f7ae77464521a222942e600c44de04a7bd638a374fd82e81b.zip
+2026-11-27T10:39:03.8859079Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8925719Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-132844f9-c5a1-5a18-b02a-8b489e62e3ab/artifacts/ce8067a7bf8d1eeda4c472814c361bf3f78e157ec8abe341d8b8ba290b272674.zip
+2026-11-27T10:39:03.8926759Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8946998Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-3c3a2a22-0de3-5909-b8f7-3f916da48ba4/artifacts/e7d244b7dd55ea9473a16a9581d585d77c53642ad3cbecf23cc0d3276ee311fb.zip
+2026-11-27T10:39:03.8948500Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8952233Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-9d63886b-70de-563c-af71-c9147c65ac70/artifacts/c2c030a11a4c18a01f726bb9a2298c2a29e1aa44876b095eea6c499deffbae46.zip
+2026-11-27T10:39:03.8953490Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8956620Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-065dbe53-23d2-55a7-87d0-e2f67c4a34a1/artifacts/58291fe84d5f8a828608f1d235524eba765917c720478a435c931df032c150dd.zip
+2026-11-27T10:39:03.8957760Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8983260Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-677e9f5e-1c4f-57cd-b6fb-1717715a583c/artifacts/16bd36da5a1aef02c432ea0b1e64455d735789e39dc6274314a7c390b41fafe6.zip
+2026-11-27T10:39:03.8985353Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.8999692Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-0ac34df2-f1eb-50ab-a719-0a0c1dd758e2/artifacts/9d3f5d5654d10eaadb24c966a9e24033a65345b0d287f2ab82cee424af20fff7.zip
+2026-11-27T10:39:03.9001529Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.9019251Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-bf91face-3b79-532f-9cc7-a2a37538f925/artifacts/b24af4225735e484049a974ed50d4cf4a2ecc24f75e7dcfdc43443f29a401f6e.zip
+2026-11-27T10:39:03.9020310Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.9047099Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-fb0e51a0-9704-5cb0-8228-42167ca97b78/artifacts/6769074fa359c36ca78c26d23f2b03ff059a5405f632e6b7f959861e72593129.zip
+2026-11-27T10:39:03.9048461Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.9057474Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-fee11ac7-441c-5938-bc7f-315a4d3184d8/artifacts/3890630ddb966a0be47f6ff477a65bd8ea0d84ca5f062667ff561773c86122a0.zip
+2026-11-27T10:39:03.9058904Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.9087963Z Redirecting to blob download url: https://productionresultssa18.blob.core.windows.net/actions-results/4f7770cb-ad91-86a4-8ab0-e7583d1d7913/workflow-job-run-2307d445-3ce2-5ec0-8e96-7ecd9a9c0ad1/artifacts/cc7b1b713b72d85d6a61cb4f658839470d00ab22aff9fbe2f1d11b7fc7b9e7c2.zip
+2026-11-27T10:39:03.9089279Z Starting download of artifact to: /tmp/m4p-a
+2026-11-27T10:39:03.9452572Z (node:2319) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-11-27T10:39:04.0947371Z SHA256 digest of downloaded artifact is e4f3baa442ad52d54dd2e695439bc9eebb28bb623aca7c4282c7adaca75733f3
+2026-11-27T10:39:04.0963284Z Artifact download completed successfully.
+2026-11-27T10:39:04.0970915Z SHA256 digest of downloaded artifact is c4919fc0c7d1f288bb097d6625734066ff315559a9405b271296ad2f5820fab5
+2026-11-27T10:39:04.0985957Z Artifact download completed successfully.
+2026-11-27T10:39:04.0988086Z SHA256 digest of downloaded artifact is 21de084a7c75fa8267ec2cf2d17ba283db1fae8e0980896bd06e6fda3592e7ee
+2026-11-27T10:39:04.0989182Z Artifact download completed successfully.
+2026-11-27T10:39:04.0990248Z SHA256 digest of downloaded artifact is a376fcaa817bb5e45e611aa642d59be88f86ba0e2e9fd0bcd353dcb652cab6ff
+2026-11-27T10:39:04.0991208Z Artifact download completed successfully.
+2026-11-27T10:39:04.0992247Z SHA256 digest of downloaded artifact is 985a25fc0f06125b20301eb227db5fae8813c8601a4f05a4bdedd5f305c7a88b
+2026-11-27T10:39:04.0993171Z Artifact download completed successfully.
+2026-11-27T10:39:04.0994197Z SHA256 digest of downloaded artifact is 94b4a2515c4c15f3ab1eddccd857bf39b86a754e1ff1a259a8c7a811b08db558
+2026-11-27T10:39:04.0995291Z Artifact download completed successfully.
+2026-11-27T10:39:04.0996304Z SHA256 digest of downloaded artifact is 437ac391a64bf33bcf8d41945081f04a9040f160c4126e16d4a5568c4741b01d
+2026-11-27T10:39:04.0997445Z Artifact download completed successfully.
+2026-11-27T10:39:04.0998459Z SHA256 digest of downloaded artifact is b828eaeb9851fe31edbb0e546508d86857ec00db440ae7582a6b0b42aa1bbbaa
+2026-11-27T10:39:04.0999327Z Artifact download completed successfully.
+2026-11-27T10:39:04.1000310Z SHA256 digest of downloaded artifact is 1a6cbb6c541dbfd3fe240ccf460621886fdd0aa8837b89a2b5e8447678d5ae02
+2026-11-27T10:39:04.1001194Z Artifact download completed successfully.
+2026-11-27T10:39:04.1002215Z SHA256 digest of downloaded artifact is 555382a89c6d75243e8f956591f0d4a397913ab91c7daf8a136928ae312be14e
+2026-11-27T10:39:04.1003118Z Artifact download completed successfully.
+2026-11-27T10:39:04.1029297Z SHA256 digest of downloaded artifact is 8d14ab03698f290daa24c200a7db67a916e4f0ec803525c5b3fc517309332050
+2026-11-27T10:39:04.1030222Z Artifact download completed successfully.
+2026-11-27T10:39:04.1031303Z SHA256 digest of downloaded artifact is 2edf2b6272f23ee98310ab55167b46a1e8d1d06247e85cb5c1a5edafc8c07c9d
+2026-11-27T10:39:04.1032263Z Artifact download completed successfully.
+2026-11-27T10:39:04.1033310Z SHA256 digest of downloaded artifact is bd046b0e515912e416be21fa5181dc558ba15aad5152eddd39f8c8f30784ba02
+2026-11-27T10:39:04.1034224Z Artifact download completed successfully.
+2026-11-27T10:39:04.1039321Z SHA256 digest of downloaded artifact is 8e07a37713f99c0af005fa7446179a76b37097373090d2cd73f9c4df76510add
+2026-11-27T10:39:04.1040352Z Artifact download completed successfully.
+2026-11-27T10:39:04.1041441Z SHA256 digest of downloaded artifact is ecf345c307688af8a9aba4e69db5c5d87e33214725bad517dc4cf297708fd305
+2026-11-27T10:39:04.1043359Z Artifact download completed successfully.
+2026-11-27T10:39:04.1044411Z SHA256 digest of downloaded artifact is f834070c62c5c2f596295ca3eeb5705239ef0d6857f3a2215703e81a989b7c9e
+2026-11-27T10:39:04.1046123Z Artifact download completed successfully.
+2026-11-27T10:39:04.1061926Z SHA256 digest of downloaded artifact is bb1ea59e836b2581b625c0c6f2a034e65303c8fa72081b994f8d0b1613bb49d9
+2026-11-27T10:39:04.1063003Z Artifact download completed successfully.
+2026-11-27T10:39:04.1079550Z SHA256 digest of downloaded artifact is 3298e4e81575ba0ce8df21ed2ef0448afba82a87d05588dc57b9ec7f526998ff
+2026-11-27T10:39:04.1080158Z Artifact download completed successfully.
+2026-11-27T10:39:04.1080583Z Total of 18 artifact(s) downloaded
+2026-11-27T10:39:04.1085118Z Download artifact has finished successfully
+2026-11-27T10:39:04.1345895Z ##[group]Run set -o pipefail
+2026-11-27T10:39:04.1346363Z [36;1mset -o pipefail[0m
+2026-11-27T10:39:04.1346880Z [36;1mnode tests/coherence-concrete-m4p-a-gate.cjs /tmp/m4p-a | tee /tmp/m4p-a-gate.json[0m
+2026-11-27T10:39:04.1386528Z shell: /usr/bin/bash -e {0}
+2026-11-27T10:39:04.1386879Z ##[endgroup]
+2026-11-27T10:39:04.7123108Z {
+2026-11-27T10:39:04.7124153Z   "changes": 3,
+2026-11-27T10:39:04.7125087Z   "earlyChanges": 3,
+2026-11-27T10:39:04.7125611Z   "laterChanges": 0,
+2026-11-27T10:39:04.7126056Z   "improved": true,
+2026-11-27T10:39:04.7126472Z   "totals": {
+2026-11-27T10:39:04.7126856Z     "5": {
+2026-11-27T10:39:04.7127263Z       "nearPairs": [
+2026-11-27T10:39:04.7127685Z         40,
+2026-11-27T10:39:04.7128059Z         37
+2026-11-27T10:39:04.7128436Z       ],
+2026-11-27T10:39:04.7128845Z       "decisionPairs": [
+2026-11-27T10:39:04.7129307Z         262,
+2026-11-27T10:39:04.7129761Z         262
+2026-11-27T10:39:04.7130128Z       ],
+2026-11-27T10:39:04.7130566Z       "nearRecent": [
+2026-11-27T10:39:04.7130998Z         74,
+2026-11-27T10:39:04.7131383Z         74
+2026-11-27T10:39:04.7131764Z       ],
+2026-11-27T10:39:04.7132145Z       "coreDebt": [
+2026-11-27T10:39:04.7132565Z         0,
+2026-11-27T10:39:04.7132931Z         0
+2026-11-27T10:39:04.7133301Z       ],
+2026-11-27T10:39:04.7133678Z       "themeDebt": [
+2026-11-27T10:39:04.7134101Z         0,
+2026-11-27T10:39:04.7134476Z         0
+2026-11-27T10:39:04.7134844Z       ],
+2026-11-27T10:39:04.7135500Z       "hard": [
+2026-11-27T10:39:04.7135900Z         0,
+2026-11-27T10:39:04.7136271Z         0
+2026-11-27T10:39:04.7136631Z       ],
+2026-11-27T10:39:04.7137019Z       "proof": [
+2026-11-27T10:39:04.7137428Z         93,
+2026-11-27T10:39:04.7137808Z         93
+2026-11-27T10:39:04.7138171Z       ],
+2026-11-27T10:39:04.7138558Z       "concepts": [
+2026-11-27T10:39:04.7139022Z         234,
+2026-11-27T10:39:04.7139411Z         234
+2026-11-27T10:39:04.7139808Z       ],
+2026-11-27T10:39:04.7140191Z       "families": [
+2026-11-27T10:39:04.7140614Z         823,
+2026-11-27T10:39:04.7140991Z         823
+2026-11-27T10:39:04.7141381Z       ],
+2026-11-27T10:39:04.7141765Z       "independent": [
+2026-11-27T10:39:04.7142210Z         541,
+2026-11-27T10:39:04.7142597Z         541
+2026-11-27T10:39:04.7142950Z       ]
+2026-11-27T10:39:04.7143325Z     },
+2026-11-27T10:39:04.7143698Z     "20": {
+2026-11-27T10:39:04.7144078Z       "nearPairs": [
+2026-11-27T10:39:04.7144488Z         96,
+2026-11-27T10:39:04.7144864Z         93
+2026-11-27T10:39:04.7149743Z       ],
+2026-11-27T10:39:04.7150174Z       "decisionPairs": [
+2026-11-27T10:39:04.7150672Z         449,
+2026-11-27T10:39:04.7151057Z         449
+2026-11-27T10:39:04.7151432Z       ],
+2026-11-27T10:39:04.7151821Z       "nearRecent": [
+2026-11-27T10:39:04.7152261Z         131,
+2026-11-27T10:39:04.7152653Z         131
+2026-11-27T10:39:04.7153027Z       ],
+2026-11-27T10:39:04.7153418Z       "coreDebt": [
+2026-11-27T10:39:04.7153842Z         1,
+2026-11-27T10:39:04.7154222Z         1
+2026-11-27T10:39:04.7154605Z       ],
+2026-11-27T10:39:04.7155193Z       "themeDebt": [
+2026-11-27T10:39:04.7155726Z         0,
+2026-11-27T10:39:04.7156110Z         0
+2026-11-27T10:39:04.7156492Z       ],
+2026-11-27T10:39:04.7156868Z       "hard": [
+2026-11-27T10:39:04.7157278Z         1,
+2026-11-27T10:39:04.7157662Z         1
+2026-11-27T10:39:04.7158033Z       ],
+2026-11-27T10:39:04.7158411Z       "proof": [
+2026-11-27T10:39:04.7158828Z         356,
+2026-11-27T10:39:04.7159199Z         356
+2026-11-27T10:39:04.7159621Z       ],
+2026-11-27T10:39:04.7160016Z       "concepts": [
+2026-11-27T10:39:04.7160432Z         854,
+2026-11-27T10:39:04.7160832Z         854
+2026-11-27T10:39:04.7161225Z       ],
+2026-11-27T10:39:04.7161602Z       "families": [
+2026-11-27T10:39:04.7162032Z         3208,
+2026-11-27T10:39:04.7162422Z         3208
+2026-11-27T10:39:04.7162821Z       ],
+2026-11-27T10:39:04.7163216Z       "independent": [
+2026-11-27T10:39:04.7164014Z         2099,
+2026-11-27T10:39:04.7164491Z         2099
+2026-11-27T10:39:04.7165328Z       ]
+2026-11-27T10:39:04.7165723Z     },
+2026-11-27T10:39:04.7166098Z     "65": {
+2026-11-27T10:39:04.7166488Z       "nearPairs": [
+2026-11-27T10:39:04.7166920Z         97,
+2026-11-27T10:39:04.7167297Z         94
+2026-11-27T10:39:04.7167673Z       ],
+2026-11-27T10:39:04.7168095Z       "decisionPairs": [
+2026-11-27T10:39:04.7168541Z         509,
+2026-11-27T10:39:04.7168921Z         509
+2026-11-27T10:39:04.7169288Z       ],
+2026-11-27T10:39:04.7169671Z       "nearRecent": [
+2026-11-27T10:39:04.7170112Z         181,
+2026-11-27T10:39:04.7170504Z         181
+2026-11-27T10:39:04.7170875Z       ],
+2026-11-27T10:39:04.7171262Z       "coreDebt": [
+2026-11-27T10:39:04.7171678Z         1114,
+2026-11-27T10:39:04.7172064Z         1114
+2026-11-27T10:39:04.7172443Z       ],
+2026-11-27T10:39:04.7172830Z       "themeDebt": [
+2026-11-27T10:39:04.7173248Z         0,
+2026-11-27T10:39:04.7173639Z         0
+2026-11-27T10:39:04.7174019Z       ],
+2026-11-27T10:39:04.7174405Z       "hard": [
+2026-11-27T10:39:04.7174815Z         913,
+2026-11-27T10:39:04.7175391Z         913
+2026-11-27T10:39:04.7175759Z       ],
+2026-11-27T10:39:04.7176144Z       "proof": [
+2026-11-27T10:39:04.7176540Z         1202,
+2026-11-27T10:39:04.7176914Z         1202
+2026-11-27T10:39:04.7177286Z       ],
+2026-11-27T10:39:04.7177666Z       "concepts": [
+2026-11-27T10:39:04.7178073Z         1754,
+2026-11-27T10:39:04.7178469Z         1754
+2026-11-27T10:39:04.7178852Z       ],
+2026-11-27T10:39:04.7179225Z       "families": [
+2026-11-27T10:39:04.7179640Z         10230,
+2026-11-27T10:39:04.7180049Z         10230
+2026-11-27T10:39:04.7180461Z       ],
+2026-11-27T10:39:04.7180844Z       "independent": [
+2026-11-27T10:39:04.7181280Z         6947,
+2026-11-27T10:39:04.7181720Z         6947
+2026-11-27T10:39:04.7182143Z       ]
+2026-11-27T10:39:04.7182553Z     },
+2026-11-27T10:39:04.7182993Z     "153": {
+2026-11-27T10:39:04.7183431Z       "nearPairs": [
+2026-11-27T10:39:04.7183907Z         111,
+2026-11-27T10:39:04.7184332Z         108
+2026-11-27T10:39:04.7184747Z       ],
+2026-11-27T10:39:04.7185371Z       "decisionPairs": [
+2026-11-27T10:39:04.7185873Z         589,
+2026-11-27T10:39:04.7186305Z         589
+2026-11-27T10:39:04.7186729Z       ],
+2026-11-27T10:39:04.7187146Z       "nearRecent": [
+2026-11-27T10:39:04.7187603Z         331,
+2026-11-27T10:39:04.7188036Z         331
+2026-11-27T10:39:04.7188470Z       ],
+2026-11-27T10:39:04.7188909Z       "coreDebt": [
+2026-11-27T10:39:04.7189431Z         162013,
+2026-11-27T10:39:04.7189886Z         162013
+2026-11-27T10:39:04.7190325Z       ],
+2026-11-27T10:39:04.7190732Z       "themeDebt": [
+2026-11-27T10:39:04.7191223Z         0,
+2026-11-27T10:39:04.7191624Z         0
+2026-11-27T10:39:04.7192062Z       ],
+2026-11-27T10:39:04.7192491Z       "hard": [
+2026-11-27T10:39:04.7192942Z         5415,
+2026-11-27T10:39:04.7193376Z         5415
+2026-11-27T10:39:04.7193810Z       ],
+2026-11-27T10:39:04.7194234Z       "proof": [
+2026-11-27T10:39:04.7194706Z         1443,
+2026-11-27T10:39:04.7195313Z         1443
+2026-11-27T10:39:04.7195751Z       ],
+2026-11-27T10:39:04.7196157Z       "concepts": [
+2026-11-27T10:39:04.7196612Z         1782,
+2026-11-27T10:39:04.7197040Z         1782
+2026-11-27T10:39:04.7197461Z       ],
+2026-11-27T10:39:04.7197884Z       "families": [
+2026-11-27T10:39:04.7198335Z         23821,
+2026-11-27T10:39:04.7198779Z         23821
+2026-11-27T10:39:04.7199229Z       ],
+2026-11-27T10:39:04.7199680Z       "independent": [
+2026-11-27T10:39:04.7200173Z         16476,
+2026-11-27T10:39:04.7200626Z         16476
+2026-11-27T10:39:04.7201064Z       ]
+2026-11-27T10:39:04.7201489Z     },
+2026-11-27T10:39:04.7201910Z     "180": {
+2026-11-27T10:39:04.7202345Z       "nearPairs": [
+2026-11-27T10:39:04.7202791Z         128,
+2026-11-27T10:39:04.7203224Z         125
+2026-11-27T10:39:04.7203646Z       ],
+2026-11-27T10:39:04.7204087Z       "decisionPairs": [
+2026-11-27T10:39:04.7204594Z         649,
+2026-11-27T10:39:04.7205177Z         649
+2026-11-27T10:39:04.7205931Z       ],
+2026-11-27T10:39:04.7206372Z       "nearRecent": [
+2026-11-27T10:39:04.7207061Z         408,
+2026-11-27T10:39:04.7207522Z         408
+2026-11-27T10:39:04.7207953Z       ],
+2026-11-27T10:39:04.7208407Z       "coreDebt": [
+2026-11-27T10:39:04.7208874Z         228622,
+2026-11-27T10:39:04.7209316Z         228622
+2026-11-27T10:39:04.7209778Z       ],
+2026-11-27T10:39:04.7210225Z       "themeDebt": [
+2026-11-27T10:39:04.7210690Z         0,
+2026-11-27T10:39:04.7211162Z         0
+2026-11-27T10:39:04.7211583Z       ],
+2026-11-27T10:39:04.7212004Z       "hard": [
+2026-11-27T10:39:04.7212456Z         6813,
+2026-11-27T10:39:04.7212892Z         6813
+2026-11-27T10:39:04.7213337Z       ],
+2026-11-27T10:39:04.7213775Z       "proof": [
+2026-11-27T10:39:04.7214238Z         1520,
+2026-11-27T10:39:04.7214680Z         1520
+2026-11-27T10:39:04.7215287Z       ],
+2026-11-27T10:39:04.7215743Z       "concepts": [
+2026-11-27T10:39:04.7216219Z         1782,
+2026-11-27T10:39:04.7216665Z         1782
+2026-11-27T10:39:04.7217104Z       ],
+2026-11-27T10:39:04.7217534Z       "families": [
+2026-11-27T10:39:04.7218010Z         25806,
+2026-11-27T10:39:04.7218465Z         25806
+2026-11-27T10:39:04.7218910Z       ],
+2026-11-27T10:39:04.7219365Z       "independent": [
+2026-11-27T10:39:04.7219845Z         19247,
+2026-11-27T10:39:04.7220295Z         19247
+2026-11-27T10:39:04.7220739Z       ]
+2026-11-27T10:39:04.7221146Z     }
+2026-11-27T10:39:04.7221579Z   },
+2026-11-27T10:39:04.7222039Z   "violations": [],
+2026-11-27T10:39:04.7222514Z   "verdict": "HOLD"
+2026-11-27T10:39:04.7222986Z }
+2026-11-27T10:39:04.7332073Z ##[error]Process completed with exit code 1.
+2026-11-27T10:39:04.7452415Z ##[group]Run actions/upload-artifact@v4
+2026-11-27T10:39:04.7452767Z with:
+2026-11-27T10:39:04.7453015Z   name: m4p-a-gate
+2026-11-27T10:39:04.7453298Z   path: /tmp/m4p-a-gate.json
+2026-11-27T10:39:04.7453598Z   retention-days: 14
+2026-11-27T10:39:04.7453866Z   if-no-files-found: warn
+2026-11-27T10:39:04.7454153Z   compression-level: 6
+2026-11-27T10:39:04.7454435Z   overwrite: false
+2026-11-27T10:39:04.7454704Z   include-hidden-files: false
+2026-11-27T10:39:04.7455311Z ##[endgroup]
+2026-11-27T10:39:04.8818872Z (node:2342) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-27T10:39:04.8819700Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-27T10:39:04.8860709Z With the provided path, there will be 1 file uploaded
+2026-11-27T10:39:04.8865464Z Artifact name is valid!
+2026-11-27T10:39:04.8866989Z Root directory input is valid!
+2026-11-27T10:39:04.8896490Z ##[warning]Retention days cannot be greater than the maximum allowed retention set within the repository. Using 3 instead.
+2026-11-27T10:39:05.1045963Z Beginning upload of artifact content to blob storage
+2026-11-27T10:39:05.1184163Z (node:2342) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-27T10:39:05.1562664Z Uploaded bytes 682
+2026-11-27T10:39:05.1679815Z Finished uploading artifact content to blob storage!
+2026-11-27T10:39:05.1680804Z SHA256 digest of uploaded artifact zip is 6ffbd2e2320ac68b6e2ea6b8c2273914a9bf86458950f89e425bfe5f2d46072b
+2026-11-27T10:39:05.1681738Z Finalizing artifact upload
+2026-11-27T10:39:05.4835407Z Artifact m4p-a-gate.zip successfully finalized. Artifact ID 15191195320
+2026-11-27T10:39:05.4836394Z Artifact m4p-a-gate has been successfully uploaded! Final size is 682 bytes. Artifact ID is 15191195320
+2026-11-27T10:39:05.4841896Z Artifact download URL: https://github.com/CapGui13/QPJB/actions/runs/45983780337/artifacts/15191195320
+2026-11-27T10:39:05.5311370Z Post job cleanup.
+2026-11-27T10:39:05.6028043Z [command]/usr/bin/git version
+2026-11-27T10:39:05.6063245Z git version 2.56.1
+2026-11-27T10:39:05.6093665Z Temporarily overriding HOME='/home/runner/work/_temp/34f98ca3-0d0f-4dc1-8d85-d0d2cf62f907' before making global git config changes
+2026-11-27T10:39:05.6095401Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-27T10:39:05.6096523Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/QPJB/QPJB
+2026-11-27T10:39:05.6131792Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-27T10:39:05.6170625Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-27T10:39:05.6427540Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-27T10:39:05.6450358Z http.https://github.com/.extraheader
+2026-11-27T10:39:05.6460077Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-27T10:39:05.6497896Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-27T10:39:05.6793156Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-27T10:39:05.6826682Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-27T10:39:05.7202561Z Cleaning up orphan processes
+2026-11-27T10:39:05.7545223Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

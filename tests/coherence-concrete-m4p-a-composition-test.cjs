@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {rank}=require('../quizz-coherence-m4p-a-composition.js');
+const q=(id,theme,answer,auction,h,shape)=>({id,caseFamily:id,theme,answer,auction,h,shape,difficulty:2});
+const f=q('f','apres_fit','Passe',['Vous : 1♠','Partenaire : 2♠'],12,[5,3,2,3]), f2={...f,id:'f2',caseFamily:'f2'},f3={...f,id:'f3',caseFamily:'f3'};
+const a=q('a','stayman','2♠',['Vous : 1SA','Partenaire : 2♣'],17,[4,2,4,3]), b=q('b','stayman','2♦',a.auction,15,[3,3,4,3]);
+const meta={f:{concept:'apres_fit.base',stage:0,requires:[]},f2:{concept:'apres_fit.base',stage:0,requires:[]},f3:{concept:'apres_fit.base',stage:0,requires:[]},a:{concept:'sa1.stayman.reponse',stage:1,requires:[]},b:{concept:'sa1.stayman.reponse',stage:1,requires:[]}};
+const clean={id:'a',result:'correct',assisted:false,hadFreeError:false};
+const history={journal:[7,8].map(session=>({session,mode:'parcours',answers:Array.from({length:10},()=>({...clean}))}))};
+const c={session:9,policy:'W',category:'discovery',baselineId:'f',candidates:[f,b],exercises:[f,f2,f3,a,b],selected:[f2,f3,a],metadataById:meta,history,scores:{f:385,b:352}};
+assert.deepEqual(rank(c).map(x=>x.id),['b']);
+for(const patch of [{session:21},{session:2},{priority:true},{forcedReason:'rappel_erreur_aide'},{category:'weakness'},{policy:'U'},{policy:'V'},{selected:[f2,a]},{selected:[f2,f3]},{scores:{f:385,b:336}},{history:{active:{},journal:history.journal}},{history:{journal:history.journal.slice(1)}},{metadataById:{...meta,b:{...meta.b,stage:2}}},{candidates:[f,{...b,difficulty:3}]},{candidates:[f,{...b,answer:a.answer}]},{candidates:[f,{...b,caseFamily:'f2'}]}])assert.deepEqual(rank({...c,...patch}),[]);
+const weak=JSON.parse(JSON.stringify(history));weak.journal[0].answers[0].assisted=true;
+assert.deepEqual(rank({...c,history:weak}),[]);
+const old=JSON.stringify(c);rank(c);assert.equal(JSON.stringify(c),old);
+assert.deepEqual(rank({...c,policy:'Y'}),[]);
+assert.deepEqual(rank({...c,policy:'Y',candidates:[f,{...b,h:17}]}).map(x=>x.id),['b']);
+console.log('21 assertions M4P-A composition PASS');

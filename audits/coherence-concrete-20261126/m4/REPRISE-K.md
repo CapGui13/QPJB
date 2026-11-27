@@ -1,0 +1,24 @@
+# Reprise du 27 novembre — M4 #423
+
+## Reprise vérifiée
+Tête de reprise 91a3f7719cf2fe35bd1339552ba6a252c08c13df, PR #427 brouillon. Contrat #419 et mission #423 relus. Aucune modification du moteur, du catalogue, des quotas de production ni de l'ordre final.
+
+## Recettes précédemment en attente
+66 logs natifs récupérés et agrégés aux cinq horizons S5/20/65/153/180, sans extrapolation. Chaque archive conserve les checkpoints de chaque profil/graine et le job source.
+- F (18/18) : [archive](reprise-f-native-complete.json), run 45906411851. Trois substitutions D, dette S180 228622→228622, preuves 1520→1520, proches récentes 408→405. Aucun bénéfice de rappel supplémentaire.
+- G (12/18 visibles) : [archive](reprise-g-native-partial.json), même run. Trois substitutions D, dette 147206→147206, preuves 1017→1017. Le connecteur ne renvoie que la première page de 30 jobs sur 36 ; six résultats G non attestés ici.
+- H (18/18) : [archive](reprise-h-native-complete.json), run 45906730290. Dette 228622→38653 (−83,1 %), preuves 1520→1490 (8 trajectoires en baisse à S180), familles 25806→25766. Aide/47 57→47, faible/103 69→56 : rejet/HOLD.
+- I (18/18) : [archive](reprise-i-native-complete.json), run 45907248524. Dette 228622→76718 (−66,4 %), preuves 1520→1512 (5 trajectoires en baisse à S180), familles 25806→25749. Les six trajectoires faible/aide restent identiques. Intermédiaire/47 97→94 et cible/47 95→93 : HOLD. Les 36 jobs H/I sont réussis, ce qui ne constitue pas un visa pédagogique.
+
+## K : remplacement atomique d'un rappel discrétionnaire déjà acquis
+H/I réservent avant le remplissage natif et déplacent indirectement des questions. K laisse le moteur composer les dix questions, puis examine exclusivement les slots de maintenance non prioritaires, sans rappel d'erreur, sans faiblesse connue ni échéance native. Le sortant ne peut pas être un fondamental ; au moins deux réussites autonomes dans deux familles et deux séances sur douze, dernière à six séances maximum, aucune erreur/aide sur le concept dans cette fenêtre. Le candidat est un fondamental déjà exposé, éligible, en retard (18 séances ou plus), famille non récente (8 séances), même thème et difficulté, stage non supérieur. Garde d'autonomie I conservée. Un seul remplacement, neuf autres objets inchangés, pas de dégradation des maxima de concentration des réponses/contextes, contrôle des passes et familles. Exception de répétition explicitement autorisée uniquement dans le banc ; aucun déploiement. Motif canonique et preuve ID entrant/sortant conservés dans le journal du banc. Le tri final reste natif.
+
+Sources : tests/coherence-concrete-m4-protected-recall.cjs, tests/coherence-concrete-m4-protected-recall-test.cjs ; raccordement par tests/coherence-concrete-m4-adapter.cjs. 30 assertions V8 exécutées avec succès sur le code enregistré (garde locale, aides, éligibilité, famille, passe, concentration, déterminisme des entrées), compilation D+K du moteur réel réussie. La tentative de simulation V8 intégrale a été bloquée par la limite du nombre d'appels de lecture ; aucun résultat de trajectoire K revendiqué sur cette base.
+Le gate K est une copie stricte du gate D avec politique K et exigences supplémentaires : au moins un remplacement K effectif et une amélioration de la dette à S180. Aucun critère D relâché, aucune régression par profil masquée par une moyenne.
+Recette native isolée : PR technique #444, SHA testé 67ebd4517fdd61900dd9098abeb26ebd57c24db0, run 45981261840. File d'attente au dernier contrôle ; aucune fusion technique autorisée.
+
+## Restant
+Résultats K, six G non visibles, traces intégrales natives (les checkpoints sont archivés mais les traces restent dans les artefacts temporaires), recettes historiques/navigateur et intégration M1/M6, contre-expertise pédagogique des QCM, amélioration substantielle S1–5. Toute réservation hors filtre de nouveauté exige l'arbitrage du coordinateur et le visa indépendant. Pas de modification en production ni de fusion. HOLD sur H/I/K. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+## Résultat natif final K
+Run 45981261840 terminé : 18/18 campagnes S180 réussies, gate strict en échec (HOLD). [Checkpoints complets](reprise-k-native-checkpoints.json) et [gate natif](reprise-k-native-gate.json). Six substitutions dont trois réservations K (les trois graines autonomes). Preuves 1520→1520, proches récentes 408→393, dette S180 228622→234613 (+2,62 %), 12 régressions au gate, notamment dette 17603→19600 pour chaque graine autonome, familles S153 1483→1480 et difficulté S180 566→569. Aucune trajectoire ne réduit la dette à S180. K rejetée, comme H/I. Aucun seuil assoupli. La PR technique #444 doit être fermée sans fusion. F/G/H/I/K : 84 logs de campagne archivés (G partiel), plus gate K. La cause structurelle reste la compétition entre rappel et couverture ; arbitrage M1/coordinateur nécessaire sur la répartition des créneaux, puis validation M6. MISSION DÉFINITIVEMENT TERMINÉE : NON.

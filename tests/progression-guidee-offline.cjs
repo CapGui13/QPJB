@@ -39,7 +39,7 @@ const server=http.createServer((req,res)=>{
   assert.deepEqual(warm,{type:'QPJB_OFFLINE_READY',ok:true});
   const cached=await page.evaluate(async()=>{
    const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();
-   return ['/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=19','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1','/QPJB/qpjb-bridge-ui.css?v=20261113e',...["quizz-durable-m1-adaptation.js","quizz-durable-m1-guard.js","quizz-durable-m2-data.js","quizz-durable-m2-remediation.js","quizz-durable-m3-maitrise.js","quizz-durable-m4-transfert.js","quizz-durable-m5-lecons.js","quizz-durable-integration.js"].map(n=>'/QPJB/'+n+'?v=2')]
+   return ['/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=23','/QPJB/quizz-coherence-m3-prerequis.js?v=1','/QPJB/quizz-coherence-m2-ordre.js?v=2','/QPJB/quizz-coherence-m5-study.js?v=1','/QPJB/quizz-coherence-study-ui.js?v=1','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1','/QPJB/qpjb-bridge-ui.css?v=20261113e',...["quizz-durable-m1-adaptation.js","quizz-durable-m1-guard.js","quizz-durable-m2-data.js","quizz-durable-m2-remediation.js","quizz-durable-m3-maitrise.js","quizz-durable-m4-transfert.js","quizz-durable-m5-lecons.js","quizz-durable-integration.js"].map(n=>'/QPJB/'+n+'?v=2')]
     .every(required=>keys.some(x=>new URL(x).pathname+new URL(x).search===required));
   });
   assert(cached,'Prerequisite module or Quiz CSS was not warmed by the service worker');
@@ -49,8 +49,15 @@ const server=http.createServer((req,res)=>{
   await page.goto(url+'quizz.html',{waitUntil:'domcontentloaded'});
   await page.locator('#parcours-start').waitFor({state:'visible'});
   assert(await page.evaluate(()=>window.QPJBPrerequis?.schema==='QPJB_PREREQUIS_V1'&&window.QPJBSessionPlan?.schema==='QPJB_SESSION_PLAN_V1'&&window.QPJBSessionPlan.pedagogyReady&&window.QPJBPedagogieInitiation?.schema==='QPJB_PEDAGOGIE_V1'&&window.QPJBPedagogieIntermediaire?.schema==='QPJB_PEDAGOGIE_V1'&&window.QPJBPedagogieAvancee?.schema==='QPJB_PEDAGOGIE_V1'&&typeof window.QPJBParcours?.adaptiveDiagnostics==='function'&&window.QPJBDurableIntegration?.schema==='QPJB_DURABLE_INTEGRATION_V1'));
+  assert(await page.evaluate(()=>Array.isArray(window.QPJB_COHERENCE_M3?.TEXAS)&&window.QPJBCoherenceM2?.schema==='QPJB_COHERENCE_M2_V1'&&window.QPJBCoherenceM5?.schema==='QPJB_COHERENCE_M5_V1'&&window.QPJBCoherenceStudyUI?.schema==='QPJB_COHERENCE_STUDY_UI_V1'));
+  await page.locator('#coherence-study summary').click();
+  await page.locator('#coherence-study [data-study-list] button').first().waitFor({state:'visible'});
+  await page.locator('#coherence-study [data-study-list] button').first().click();
+  assert.equal(await page.locator('#coherence-study [data-study-rule] p').count(),1);
   await page.locator('#parcours-start').click();
   await page.waitForFunction(()=>document.body.classList.contains('parcours-session'));
+  assert(await page.locator('#coherence-study').isHidden());
+  assert.equal(await page.locator('#coherence-study [data-study-rule]').textContent(),'');
   await page.locator('#pass').click();
   await page.waitForFunction(()=>document.querySelector('#step')?.textContent.includes('2 / 10'));
   const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')));

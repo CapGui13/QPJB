@@ -1,0 +1,70 @@
+{
+  "run": 45984178809,
+  "sha": "3000849627064bab2bd755e809bc737793fc021f",
+  "cSource": "0ffe95e5864eb8639a9e3be0e84b698d09930cf3",
+  "receipts": [
+    {
+      "name": "delivery",
+      "id": 140455431097,
+      "conclusion": "success",
+      "lines": [
+        "2026-11-27T10:41:31.7289034Z PASS delivery gate D/A: review only",
+        "2026-11-27T10:41:32.3854091Z PASS D/AB: no debt gain",
+        "2026-11-27T10:41:33.0651488Z PASS K/AB: 12 historical + 45 extra",
+        "2026-11-27T10:41:33.6649823Z PASS phase B prefix guard",
+        "2026-11-27T10:41:33.6918222Z PASS forged baseline, different SHA and incomplete matrix rejected",
+        "2026-11-27T10:41:33.7047784Z M4PD_C_STRUCTURAL {\"ids\":1915,\"relations\":28,\"statusCounts\":{\"automatique_seulement\":1879,\"revue_IA_ciblee\":36},\"editorialApproval\":false}"
+      ]
+    },
+    {
+      "name": "wave2-adaptatif-resume",
+      "id": 140455431476,
+      "conclusion": "failure",
+      "lines": [
+        "2026-11-27T10:41:19.6410109Z   throw new AssertionError(obj);",
+        "2026-11-27T10:41:19.6410820Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "2026-11-27T10:41:19.6411277Z 1915 !== 1523",
+        "2026-11-27T10:41:19.6411765Z     at Object.<anonymous> (/home/runner/work/QPJB/QPJB/tests/wave2-adaptatif-resume.cjs:10:8)",
+        "2026-11-27T10:41:19.6415347Z   code: 'ERR_ASSERTION',",
+        "2026-11-27T10:41:19.6415601Z   actual: 1915,",
+        "2026-11-27T10:41:19.6415869Z   expected: 1523,",
+        "2026-11-27T10:41:19.6447846Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "name": "coherence-progression-integration",
+      "id": 140455431637,
+      "conclusion": "failure",
+      "lines": [
+        "2026-11-27T10:41:27.5997807Z Error: Command failed: git show 2c6edd95c09a4e8073813f01bc976c31ed4649aa:quizz.html",
+        "2026-11-27T10:41:27.6000742Z     at old (/home/runner/work/QPJB/QPJB/tests/coherence-progression-integration.cjs:137:15)",
+        "2026-11-27T10:41:27.6001357Z     at Object.<anonymous> (/home/runner/work/QPJB/QPJB/tests/coherence-progression-integration.cjs:139:53)",
+        "2026-11-27T10:41:27.6031308Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "name": "durable-integration-contract",
+      "id": 140455431671,
+      "conclusion": "success",
+      "lines": [
+        "2026-11-27T10:41:22.1772278Z {\"status\":\"PASS\",\"assertions\":5969,\"targeted\":3371,\"newTargeted\":3231,\"reviewedHistoricalPairs\":22,\"initialLessons\":4}"
+      ]
+    },
+    {
+      "name": "durable-integration-evidence",
+      "id": 140455431691,
+      "conclusion": "success",
+      "lines": [
+        "2026-11-27T10:41:28.6093062Z {\"status\":\"PASS\",\"assertions\":21}"
+      ]
+    },
+    {
+      "name": "durable-m6-guards",
+      "id": 140455431725,
+      "conclusion": "success",
+      "lines": [
+        "2026-11-27T10:41:20.7887869Z {\"status\":\"PASS\",\"assertions\":131}"
+      ]
+    }
+  ]
+}

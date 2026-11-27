@@ -1,0 +1,28 @@
+'use strict';
+const assert=require('node:assert/strict'),a=require('./coherence-concrete-m4-atomic-adapter.cjs');
+const q=(id,caseFamily=id)=>({id,caseFamily});
+const deck=Array.from({length:10},(_,i)=>({exercise:q('q'+i),kind:'nouveau',reason:'nouveau_qcm'}));
+const x=q('x'),y=q('y'),collision=q('collision','q3'),same=deck[4].exercise;
+const slots=[{index:0,baseline:deck[0].exercise,rows:[{q:deck[0].exercise,v:100},{q:x,v:100},{q:collision,v:100},{q:same,v:100}]},{index:1,baseline:deck[1].exercise,rows:[{q:deck[1].exercise,v:100},{q:y,v:100}]}];
+let n=0,calls=0;
+const check=(v,m)=>{assert.ok(v,m);n++};
+const snap=JSON.stringify(deck),slotSnap=JSON.stringify(slots);
+const changed=a.finishAtomic(deck,slots,{session:3},(ctx,rows,baseline)=>{
+ calls++;check(ctx.selected.length===9&&!ctx.selected.some(v=>v.exercise===baseline),'full deck excluding baseline');
+ check(rows.every(r=>r.q!==collision&&r.q!==same),'exclude family and ID collisions');
+ return rows.find(r=>r.q!==baseline).q;
+});
+check(calls===1,'at most one substitution');
+check(changed[0].exercise===x&&changed.slice(1).every((v,i)=>v===deck[i+1]),'exactly one slot changes');
+check(changed[0].kind===deck[0].kind&&changed[0].reason===deck[0].reason,'motives unchanged');
+check(JSON.stringify(deck)===snap&&JSON.stringify(slots)===slotSnap,'pure');
+check(a.finishAtomic(deck,slots,{},(_,__,b)=>b)===deck,'neutral fallback');
+check(a.finishAtomic(deck.slice(1),slots,{},()=>x).length===9,'short deck unchanged');
+const held=deck.map((v,i)=>i===0?{...v,reason:'rappel_erreur_aide'}:v);
+check(a.finishAtomic(held,slots.slice(0,1),{},()=>x)===held,'explicit recall protected');
+check(a.finishAtomic(deck,[{...slots[0],rows:[slots[0].rows[0],{q:x,v:99}]}],{},()=>x)===deck,'score protected');
+check(a.finishAtomic(deck,slots,{},()=>q('not-listed'))===deck,'candidate list protected');
+const fs=require('node:fs'),path=require('node:path');
+const src=fs.readFileSync(path.join(__dirname,'../quizz-parcours.js'),'utf8');
+check(typeof new Function('module','exports','require','Date','__m4Pick',a.instrument(src))==='function','native source syntax');
+console.log('M4 E atomic PASS',n);

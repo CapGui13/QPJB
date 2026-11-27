@@ -1,0 +1,10 @@
+# M4-C — reprise 1 HOLD
+Base 49298ada3f96e347833d8717c7e205518ea02fce. #445/#448/#419/#423/#427. 1915 IDs, 99 concepts, 36 IDs avec revue IA ciblée, 1879 automatiques seulement, 28 relations explicites. 7779 assertions réellement exécutées en V8 sur les sources figées. Test Node fourni mais non exécuté dans Node (clone réseau indisponible). Aucun visa humain ni changement de catalogue. Source de chaque ID : quizz.html blob 7a952dc57b582a2a7b5be73f83306df83881f3a8, métadonnées quizz-prerequis.js au SHA de base. Les lignes du registre ont un ID comme clé ; mains et corrigés disponibles dans la source, extraits des 36 cas revus dans preuves.json. Signatures strictes candidates, pas de visa implicite. Ne pas traiter les relations comme transitives.
+
+## Recommandations
+S1 : espacer SEF-N022-1/SEF-N024-1 (5 H réguliers) après preuve autonome ; conserver SEF-N023-1 (majeure 5e, force insuffisante) et SEF-Q26-M1-003 (11 H). Espacer SEF-N014-1/SEF-009-2 (mineure longue). Protéger 3–3 contre 4–4. S2 : fit 5–3 vs deux atouts SEF-PN26-M1-005/006 ; garder la distinction 1SA réponse vs ouverture. S3 : SEF-004-1/SEF-005-2 répètent 2SA 21 H ; D SEF-016-1→SEF-N035-2 est contraste de seuil 9→6 H, pas une nouvelle règle. S4 : Passe/2SA/3SA après 1SA, fit 8e vs 9e, HLD. S5 : miroir SEF-N122-1/SEF-050-2 ; Texas 4 H vs 11 H à conserver. S21–180 : Passe ouverture, seuils après 1SA et ouverture 1SA, sans sacrifier rappel d'erreur, éligibilité ni preuves. Aucun changement de score ni autorisation de contournement de budget. A/B/D : utiliser relation() en avis, pas en filtre. HOLD pour toutes paires non arbitrées.
+
+## Limites
+Lecture #445/#448/#419/#423/#427/#385/#395/#409, README et REPRISE-D/E/K/RAPPELS. Historique intégral #293/#365/#375–409, commentaires et archives non attestés. Trois traces S1–5 lues (autonome/11, faible/47, Passe/103) mais fiches exhaustives 18 trajectoires et S6–65 non livrées. Aucune nouvelle simulation native, navigateur ni M1/M6 ; le registre n'est pas preuve d'un gain. Revue individuelle de tous les IDs non achevée. Aucun merge ni publication.
+
+SOUS-MISSION DÉFINITIVEMENT TERMINÉE : NON.

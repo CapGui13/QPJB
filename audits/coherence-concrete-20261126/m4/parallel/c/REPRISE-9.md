@@ -1,0 +1,3 @@
+# Passe 9 — 59 revues S21–65 cible/11
+
+665 ID revus, 363/428 sur cette trace; 237 assertions V8. Contrastes: 2♦ naturel après Landy adverse vs Texas après Contre artificiel; défense Michaël premier/deuxième cue-bid selon ordre de disponibilité; 2SA réveil sur deux faible 14–17 HL vs sur ouverture palier 1 17–19 H. Contrôle As et Roi = même enchère mais deux tours distincts; 5♦ Blackwood 30–41 une ou quatre clés: conserver les deux comptes. Deux cartes chez ouvreur après Texas–3SA: Passe, trois: 4M. HOLD supplémentaires: SEF-L10-018, SEF-Q26-M4-004 (jugement tactique et choix restreints), SEF-V44-030 (9 H, qualité de longue). Pas de visa humain, pas de changement catalogue/moteur.

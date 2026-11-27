@@ -23,7 +23,7 @@ LEGACY={
 }
 CORE={
     "index.html","quizz.html","quizz-parcours.js","quizz-prerequis.js","quizz-session-plan.js","quizz-pedagogie-initiation.js","quizz-pedagogie-intermediaire.js","quizz-pedagogie-avancee.js","parcours-recommandations.js","quizz-apprentissage-concepts.js","quizz-diagnostic-erreurs.js","quizz-remediation.js","quizz-professeur.js",
-    "quizz-durable-m1-adaptation.js","quizz-durable-m1-guard.js","quizz-durable-m2-data.js","quizz-durable-m2-remediation.js","quizz-durable-m3-maitrise.js","quizz-durable-m4-transfert.js","quizz-durable-m5-lecons.js","quizz-durable-integration.js",
+    "quizz-durable-m1-adaptation.js","quizz-durable-m1-guard.js","quizz-durable-m2-data.js","quizz-durable-m2-remediation.js","quizz-durable-m3-maitrise.js","quizz-durable-m4-transfert.js","quizz-durable-m5-lecons.js","quizz-durable-integration.js","quizz-coherence-m3-prerequis.js","quizz-coherence-m2-ordre.js","quizz-coherence-m5-study.js","quizz-coherence-study-ui.js",
     "service-worker.js","site-update.js","qpjb-design-tokens.css","qpjb-bridge-ui.css",
     "manifest.json","catalogue.json","config.json","site-version.json",
     "QPJB App.png","apple-touch-icon-qpjb.png","qpjb-logo-fixed.svg",
