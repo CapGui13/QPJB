@@ -35,6 +35,8 @@ const credit=g=>Array.from({length:6},(_,i)=>Math.max(0,g+i-6)).reduce((a,b)=>a+
 function exchange(ctx,mode='strict'){
  const s=ctx.session,unchanged=null;
  if(!['strict','recent'].includes(mode))return unchanged;
+ if(mode==='recent'&&(!Array.isArray(ctx.expertise?.HOLD)||!Array.isArray(ctx.expertise?.CONTRAST_OR_SEQUENCE)))return unchanged;
+ const hold=new Set(ctx.expertise?.HOLD||[]),protectedIds=new Set(ctx.expertise?.CONTRAST_OR_SEQUENCE||[]);
  if(!Number.isInteger(s)||s<66||s>180||ctx.history?.active||!Array.isArray(ctx.exercises)||!Array.isArray(ctx.deck)||ctx.deck.length!==10||!Array.isArray(ctx.pool)||!ctx.metadataById||!ctx.flagsById)return unchanged;
  const concept=q=>ctx.metadataById[q.id]?.concept,qs=ctx.deck.map(x=>x?.exercise);
  if(!ctx.history||!Array.isArray(ctx.history.journal)||qs.some(q=>!q||!concept(q))||count(qs,q=>q.id).size!==10||count(qs,fam).size!==10)return unchanged;
@@ -47,13 +49,13 @@ function exchange(ctx,mode='strict'){
  const choices=[];
  for(const q of ctx.pool){
   const c=concept(q),v=h.concepts.get(c),f=ctx.flagsById[q.id];
-  if(!CORE.includes(c)||consolidationRisk.has(c)||!v||!f||counts.has(c)||ids.has(q.id)||families.has(fam(q))||f.bad||f.weak||f.stage>1||f.category!=='maintenance'||q.difficulty>3||q.difficulty>f.localTarget||v.success<=v.error||v.proofFamilies.size<2||v.proofSessions.size<2)continue;
+  if(hold.has(q.id)||!CORE.includes(c)||consolidationRisk.has(c)||!v||!f||counts.has(c)||ids.has(q.id)||families.has(fam(q))||f.bad||f.weak||f.stage>1||f.category!=='maintenance'||q.difficulty>3||q.difficulty>f.localTarget||v.success<=v.error||v.proofFamilies.size<2||v.proofSessions.size<2)continue;
   const gap=s-v.last,familyGap=s-(h.families.get(fam(q))||0);
   if(gap<12||(!f.novelFamily&&familyGap<12))continue;
   // Actual recent failures remain the native engine's responsibility.
   for(let i=0;i<qs.length;i++){
    const old=qs[i],d=concept(old),p=prior[i],w=h.concepts.get(d),slot=ctx.deck[i];
-   if(!eligible.has(old.id)||consolidationRisk.has(d)||!w||slot.protected!==false||p.bad||p.weak||p.due||
+   if(hold.has(old.id)||!eligible.has(old.id)||consolidationRisk.has(d)||!w||slot.protected!==false||p.bad||p.weak||p.due||
       w.success<=w.error||w.proofFamilies.size<2||w.proofSessions.size<2||
       f.stage>p.stage||f.novelFamily!==p.novelFamily||ctx.openingPass(q)&&!ctx.openingPass(old))continue;
    if(mode==='strict'){
@@ -62,7 +64,7 @@ function exchange(ctx,mode='strict'){
     // Alternative C2: one native unprotected discovery of an already proved
     // non-core concept, exercised autonomously in the immediately prior
     // session. No first exposure, no older obligation, no novelty exception.
-    if(slot.category!=='discovery'||slot.reason!=='nouveau_qcm'||CORE.includes(d)||counts.get(d)!==1||
+    if(protectedIds.has(old.id)||slot.category!=='discovery'||slot.reason!=='nouveau_qcm'||CORE.includes(d)||counts.get(d)!==1||
        w.last!==w.success||s-w.success!==1||w.proofFamilies.size<3||w.proofSessions.size<3||
        q.difficulty>old.difficulty)continue;
    }
