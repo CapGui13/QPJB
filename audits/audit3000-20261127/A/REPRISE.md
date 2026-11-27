@@ -1,48 +1,8 @@
-# Reprise A — passe 8 partielle
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent fa221a1a9fe063016f47b52665ecd50a5eca3c69. 345/419 verdicts provisoires ; 74 non relus.
-Dernier : SEF-Q685-A-006; prochain : SEF-Q685-A-007.
-{"VALIDE":245,"RECLASSER_REFORMULER":53,"ARBITRAGE":47} ; 73 corrections catalogue et 3 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
+# Reprise A — passe 9 partielle
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent 5dc106ae967685a0c1e22c2362fdca2636018009. 385/419 verdicts provisoires ; 34 non relus.
+Dernier : SEF-Q685-A-046; prochain : SEF-Q685-A-047.
+{"VALIDE":260,"RECLASSER_REFORMULER":78,"ARBITRAGE":47} ; 98 corrections catalogue et 3 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
 IDs restants :
-SEF-Q685-A-007
-SEF-Q685-A-008
-SEF-Q685-A-009
-SEF-Q685-A-010
-SEF-Q685-A-011
-SEF-Q685-A-012
-SEF-Q685-A-013
-SEF-Q685-A-014
-SEF-Q685-A-015
-SEF-Q685-A-016
-SEF-Q685-A-017
-SEF-Q685-A-018
-SEF-Q685-A-019
-SEF-Q685-A-020
-SEF-Q685-A-021
-SEF-Q685-A-022
-SEF-Q685-A-023
-SEF-Q685-A-024
-SEF-Q685-A-025
-SEF-Q685-A-026
-SEF-Q685-A-027
-SEF-Q685-A-028
-SEF-Q685-A-029
-SEF-Q685-A-030
-SEF-Q685-A-031
-SEF-Q685-A-032
-SEF-Q685-A-033
-SEF-Q685-A-034
-SEF-Q685-A-035
-SEF-Q685-A-036
-SEF-Q685-A-037
-SEF-Q685-A-038
-SEF-Q685-A-039
-SEF-Q685-A-040
-SEF-Q685-A-041
-SEF-Q685-A-042
-SEF-Q685-A-043
-SEF-Q685-A-044
-SEF-Q685-A-045
-SEF-Q685-A-046
 SEF-Q685-A-047
 SEF-Q685-A-048
 SEF-Q685-A-049
