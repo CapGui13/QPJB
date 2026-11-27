@@ -171,6 +171,16 @@ for(const row of publication.additions){
  if(explicit.byId[row.id])throw Error('New pedagogical ID already exists '+row.id);
  explicit.byId[row.id]=row.metadata;
 }
+// QCM400 #545 : intégrer exclusivement les métadonnées explicites revues des quatre lots.
+for(const lot of ['A','B','C','D']){
+ const raw=require('../../qcm400-20261127/'+lot+'/prerequis.json');
+ const rows=raw.byId||raw;
+ if(Object.keys(rows).length!==100)throw Error('Unexpected QCM400 lot size '+lot);
+ for(const [id,metadata] of Object.entries(rows)){
+  if(!id.startsWith('SEF-Q400-'+lot+'-')||explicit.byId[id])throw Error('Unexpected QCM400 ID '+id);
+  explicit.byId[id]=metadata;
+ }
+}
 function build(exercises){const ids=new Set(exercises.map(q=>q.id));if(ids.size!==exercises.length||ids.size!==Object.keys(explicit.byId).length||[...ids].some(id=>!explicit.byId[id]))throw Error('Explicit prerequis coverage mismatch');return {schema:explicit.schema,byId:Object.fromEntries(exercises.map(q=>[q.id,explicit.byId[q.id]]))};}
 const root=path.resolve(__dirname,'../../..');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');

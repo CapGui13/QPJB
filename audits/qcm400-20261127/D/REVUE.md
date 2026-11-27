@@ -126,3 +126,8 @@ Contrat #536 / mission #540. Base catalogue 842865df722180492dc26c53a1a44d866632
 ## Transmission
 
 Le coordinateur seul assemble les quatre lots, vérifie les collisions interlots, valide les extensions du programme, et fait la recette ciblée finale avec preuve de sélection et conservation de l'historique. Une relecture indépendante est recommandée sur les ouvertures fortes à la couleur, le seuil de Splinter, les accords Rubensohl et les extensions. Aucune fusion ni optimisation du moteur.
+
+
+### Correctif de recette intégrée #545
+
+- `SEF-Q400-D-037` : remplacer le distracteur `2SA` par `1SA` (confusion entre force et distribution régulière). La main comporte sept Carreaux et 13 H, avec un Roi extérieur : ni 1SA ni 3SA gambling strict ne conviennent ; conserver `1♦`. Les autres choix et le corrigé restent inchangés.
