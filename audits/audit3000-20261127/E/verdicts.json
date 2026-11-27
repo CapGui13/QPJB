@@ -11858,5 +11858,2312 @@
     "apres": {
       "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire de droite intervient par 2♣ Landy (les deux majeures). Personne n'est vulnérable. Quelle est votre réponse dans le traitement SEF 2024 retenu ?"
     }
+  },
+  {
+    "id": "SEF-V486-022",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, six ♦ ARV, pas de tenue majeure : 3♣ Texas ♦ après Landy, 2♦ naturel NF ne permet pas de rechercher manche. Retirer contexte redondant.",
+    "references": [
+      "quizz.html#training-data/SEF-V486-022",
+      "quizz-prerequis.js#SEF-V486-022",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "SEF 2024 — Après 2♣ Landy adverse, 3♣ transfert vers les Carreaux en jeu constructif",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v486-d-007",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire a ouvert de 1SA (15–17 H) et le n°2 intervient artificiellement. Vous êtes le répondant et devez tenir compte de la signification précise de son contre ou de son Landy. Appliquez la défense standard SEF 2024, distincte de celle utilisée après une intervention naturelle. Quelle est votre enchère ? Séquence : Partenaire : 1SA (15–17 H) — Adversaire : 2♣ (Landy, les deux majeures). Précision : Personne vulnérable. Vulnérabilité : Personne vulnérable."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire intervient par 2♣ Landy (les deux majeures). Personne n'est vulnérable. Quelle est votre réponse dans le traitement étudié ?"
+    }
+  },
+  {
+    "id": "SEF-L01-C-01",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "1 H, aucune cinquième, Passe après 2♠. Question fournit déjà absence longue/force ; retirer, contraste 002/003.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-C-01",
+      "quizz-prerequis.js#SEF-L01-C-01",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [
+      43
+    ],
+    "seancesProposees": [
+      43
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 43,
+        "group": "réponse disponible selon la nature de l’intervention adverse : Passe",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 43,
+        "group": "réponse disponible selon la nature de l’intervention adverse : Passe",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Décider de ne pas agir malgré la présence d’un dispositif de transferts.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 0,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-c-01-passe-sans-longue",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire, en Nord, a ouvert de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous êtes Sud et devez répondre. Convention étudiée : Rubensohl. Vous ne possédez ni longue exploitable ni valeurs défensives significatives. Personne vulnérable. Quelle est votre décision ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ? Personne n'est vulnérable."
+    }
+  },
+  {
+    "id": "SEF-L01-C-02",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, sept ♣ RD109754, 2SA Texas ♣ malgré faiblesse. Question révèle longueur et projet ; retirer. Contraste 001.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-C-02",
+      "quizz-prerequis.js#SEF-L01-C-02",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer 2SA artificiel d’une proposition naturelle de contrat à Sans-Atout.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-c-02-tx-trefle-septieme",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H) et Est intervient naturellement à 2♠. Convention étudiée : Rubensohl. Vous détenez sept cartes à Trèfle et seulement 5 H, sans espoir de manche. Personne vulnérable. Que dites-vous ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ? Personne n'est vulnérable."
+    }
+  },
+  {
+    "id": "SEF-L01-C-03",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, sept ♥ DV109643 : 3♦ Texas ♥ après 2♠, partielle. Retirer longueur et projet donnés. S44/63 déjà affecté.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-C-03",
+      "quizz-prerequis.js#SEF-L01-C-03",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44,
+      63
+    ],
+    "seancesProposees": [
+      44,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Repérer le Texas Cœur sous 2♠ adverse, sans confondre avec 3♥ direct dont le sens est conventionnel.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-c-03-tx-coeur-faible-septieme",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H) et Est intervient naturellement à 2♠. Convention étudiée : Rubensohl. Vous avez sept Cœurs liés et 3 H ; vous cherchez uniquement à disputer une partielle. Personne vulnérable. Que dites-vous ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ? Personne n'est vulnérable."
+    }
+  },
+  {
+    "id": "SEF-L01-C-04",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, quatre ♥, 2♠ adverse : X d'appel dès 8 H selon variante. Famille 7h-limite obsolète ; corriger nom et question.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-C-04",
+      "quizz-prerequis.js#SEF-L01-C-04",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Reconnaître le contre d’appel en Rubensohl après 2♠ et appliquer le seuil de la variante enseignée.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-c-04-contre-appel-7h-limite",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre 1SA (15–17 H) et Est intervient naturellement à 2♠. Vous jouez le Rubensohl dans la variante étudiée. Vous détenez quatre Cœurs, deux Piques et 8 H. Quelle est votre décision ?",
+      "caseFamily": "l01-c-04-contre-appel-7h-limite"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez la variante Rubensohl du cours. Quelle est votre réponse ?",
+      "caseFamily": "l01-c-04-contre-appel-8h-limite"
+    }
+  },
+  {
+    "id": "SEF-L01-D-01",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, A♠ et 3-3 majeures, pas de cinquième : 3SA direct. Opposition 006/007/SEF-L17-011 sans arrêt. Retirer indices.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-D-01",
+      "quizz-prerequis.js#SEF-L01-D-01",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Décision de manche après intervention : vérifier force, absence de majeure quatrième et tenue Pique avant de conclure.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-d-rub-2s-direct-3sa-stop",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H), Est intervient naturellement à 2♠. Vous jouez le Rubensohl étudié dans le Quiz. Sans majeure quatrième ni couleur cinquième, vous détenez l’As de Pique et 11 H. Quelle est votre réponse ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-L01-D-02",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, six ♦ ARV1096, ♠85 sans arrêt : 3♣ Texas ♦ plutôt que 3SA. Opposé 005 ; retirer indices.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-D-02",
+      "quizz-prerequis.js#SEF-L01-D-02",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Ne pas confondre l’enchère artificielle de transfert avec la couleur réellement possédée, tout en conservant une stratégie constructive au tour suivant.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-d-rub-2s-six-diamonds-gf-transfer",
+      "analoguesMemeSequenceFormeReponse": [
+        "V2-M5-034",
+        "SEF-Q400-D-056"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H) et Est intervient naturellement à 2♠. Convention étudiée : Rubensohl. Vous avez six beaux Carreaux et 11 H, mais pas de tenue Pique. Quelle est votre première enchère ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-L01-D-03",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, cinq ♥ AD1085 et ♠94 : 3♦ Texas ♥ pour manche, contraste 003 faible. Enlever indice majeure cinquième.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-D-03",
+      "quizz-prerequis.js#SEF-L01-D-03",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Distinguer le Texas vers les Cœurs de l’enchère impossible à 3♥, tout en prenant en compte l’absence de tenue Pique.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-d-rub-2s-five-hearts-no-spade-stop-transfer",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H) et Est intervient naturellement à 2♠. Convention étudiée : Rubensohl. Vous détenez cinq Cœurs et 11 H, mais seulement deux petits Piques. Quelle première enchère décrit votre majeure cinquième ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-L01-D-04",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, cinq ♥ et AR♠, après Texas l'ouvreur précise doubleton ♥ sans arrêt ♠ : 3SA grâce à arrêt du répondant. Passe manque manche. Garder accord précis 3♠, retirer main et compte.",
+    "references": [
+      "quizz.html#training-data/SEF-L01-D-04",
+      "quizz-prerequis.js#SEF-L01-D-04",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire le second tour d’un Texas Rubensohl vers les Cœurs : absence de fit et d’arrêt chez l’ouvreur, arrêt détenu par le répondant et force pour conclure à 3SA.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l01-d04-rub-2s-heart-transfer-no-fit-no-stopper-second-round-3nt",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Rubensohl selon traitement catalogue"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Après l’ouverture de 1SA (15–17 H) du partenaire, l’adversaire intervient naturellement à 2♠. Vous avez montré cinq Cœurs par 3♦, Texas dans le Rubensohl étudié. L’ouvreur répond 3♠ : ce développement indique deux Cœurs et l’absence d’arrêt Pique. Vous possédez ♠AR7 et 11 H. Les autres adversaires ont passé. Quelle est votre suite ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H) ; Est intervient à 2♠ naturel. Vous répondez 3♦, Texas Cœur. L'ouvreur répond 3♠, indiquant deux Cœurs et l'absence d'arrêt Pique dans le Rubensohl étudié. Les autres enchères sont Passe. Quelle est votre suite ?"
+    }
+  },
+  {
+    "id": "SEF-L04-028",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 5-5 mineur, quatrième joueur après soutien adverse, 2SA bicolore. Ce n'est pas réveil après deux passes : reclasser intervention et retirer compte.",
+    "references": [
+      "quizz.html#training-data/SEF-L04-028",
+      "quizz-prerequis.js#SEF-L04-028",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reveil",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Troisième branche du bicolore n°4 : 2SA = ♦+♣, non cue-bid ♥+♣/4♣ ♥+♦.",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V17-RECONSTRUCTION-SEF-L04-028",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Ouest ouvre 1♠, Nord passe et Est soutient 2♠. Vous êtes Sud, quatrième joueur, tous non vulnérables. Vous détenez cinq Carreaux et cinq Trèfles, avec un singleton Pique. Dans le SEF 2024, quelle annonce décrit ce bicolore mineur après le soutien adverse ?"
+    },
+    "apres": {
+      "context": "Ouest ouvre de 1♠, Nord passe et Est soutient à 2♠. Vous êtes Sud, quatrième joueur, tous non vulnérables. Quelle est votre intervention selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L05-014",
+    "verdict": "VALIDE",
+    "justification": "10 H réguliers après 1♦–(1SA), valeurs défensives, X punitif ; 2♣ Landyk faible nécessite majeures 5–4, 2♥ naturel exige longue. Accord explicite, niveau 4 justifié ; absence de groupe spécifique.",
+    "references": [
+      "quizz.html#training-data/SEF-L05-014",
+      "quizz-prerequis.js#SEF-L05-014",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.sa_adverse",
+    "conceptPropose": "competitif.sa_adverse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Distinguer le Contre punitif du Landyk 2♣ faible et de la réponse naturelle à 2♥ après intervention adverse de 1SA.",
+      "prerequis": {
+        "concept": "competitif.sa_adverse",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V22-1m-contre-punitif-sur-intervention-1SA-10H",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-L06-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, quatre ♥ et doubleton ♣ =15 HLD ; cue-bid 3♣ FM, non splinter à saut. Choix plausible 2SA vs cue-bid, corrigé précis ; ajouter au contraste S25.",
+    "references": [
+      "quizz.html#training-data/SEF-L06-007",
+      "quizz-prerequis.js#SEF-L06-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Distinguer explicitement les trois nombres d’atouts et zones de soutien après une intervention à la couleur.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V19-CORRECTION-SEF-L06-007",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-L09-029",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, quatre ♥, 2♠ premier cue-bid disponible et non 3♣ : priorité ordre effectif. Contexte donne compte/fit et fonction ; enlever indices. S47 objectif correct.",
+    "references": [
+      "quizz.html#training-data/SEF-L09-029",
+      "quizz-prerequis.js#SEF-L09-029",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Sur 1♥–(2♥ Michaël ♠+♣), 2♠ est le premier cue-bid (fit ♥ forcing de manche), tandis que 3♣, second cue-bid, montre 5+ ♦ forcing de manche.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "V18-CORRECTION-CRITIQUE-SEF-L09-029",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Nord ouvre 1♥ et Est intervient à 2♥, Michaël précisé annonçant les ♠ et les ♣ au moins cinquièmes. Vous êtes Sud, non passé, avec quatre atouts ♥, 14 H, sans cinq ♦ ni singleton dans une couleur adverse. Dans le SEF 2024, les deux cue-bids implicites répondent à des fonctions différentes. Quelle enchère de votre part montre ici un fit ♥ forcing de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥. L'adversaire intervient par 2♥ Michaël précisé (Piques et Trèfles au moins cinquièmes). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L10-021",
+    "verdict": "ARBITRAGE",
+    "justification": "13 H, six ♠ ARDV108 après soutien adverse à 2♥. 3♠ naturel plausible parmi choix, mais 2♠ légal et absent ; évaluation du saut non tranchée. Revoir distracteurs et nature/force du saut avant intégration.",
+    "references": [
+      "quizz.html#training-data/SEF-L10-021",
+      "quizz-prerequis.js#SEF-L10-021",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reveil",
+    "conceptPropose": "michaels.reveil",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Intervention naturelle 3♠ avec six beaux Piques contre bicolores artificiels n°4.",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V17-RECONSTRUCTION-SEF-L10-021",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "arbitrage coordinateur"
+  },
+  {
+    "id": "SEF-L04-029",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, deux ♥ et deux ♣, six ♦, après deux tours sur 4♠ : Passe prudent, pas de fit garanti. Énoncé trop long ; X défensif non proposé, donc ne pas affirmer obligation de Passe.",
+    "references": [
+      "quizz.html#training-data/SEF-L04-029",
+      "quizz-prerequis.js#SEF-L04-029",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Enchères de suite en situation complexe ; distinguer distributions garanties, relais et force selon le protocole affiché.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "MIC-1-029",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Donneur : Ouest. Vous êtes Sud, partenaire de l’intervenant. Vulnérabilité : N/S non vulnérables ; E/O vulnérables. Votre main affichée en ordre ♠ / ♥ / ♦ / ♣ : 10 H, 12 HL. Accord Michaël précisé (et non Michaëls non précisés) : sur l'ouverture adverse de 1♥, le cue-bid 2♥ du partenaire montre au moins CINQ Piques et CINQ Trèfles ; sur 1♠, 2♠ montre au moins CINQ Cœurs et CINQ Trèfles. L'intervention peut être faible ou forte ; le soutien adverse est naturel. Le répondant ne fabrique pas de fit absent. Toutes les décisions de surenchère sont faites à vulnérabilité précisée ; la loi des levées totales n’est qu’un guide. Vous avez déjà PASSÉ sur 3♠. L’ouvreur adverse a ensuite déclaré 4♠, puis le partenaire du Michaël (Nord) a PASSÉ à son tour ; le partenaire de l’ouvreur (Est) passe aussi. Vous êtes de nouveau Sud. Les couleurs connues de votre partenaire sont Cœur et Trèfle, dans lesquelles vous n’avez que deux cartes chacune. Les enchères non indiquées sont des passes. Quelle est votre enchère ?",
+      "explain": "À ce deuxième tour, les adversaires ont déclaré 4♠, mais votre camp ne possède aucun fit d’au moins huit cartes garanti dans les couleurs Cœur ou Trèfle du Michaël (deux cartes dans chacune, cinq minimum en face). Monter au palier de cinq en inventant un soutien serait beaucoup trop risqué, même avec 10 H et six Carreaux. Vous devez passer et défendre."
+    },
+    "apres": {
+      "context": "Ouest ouvre de 1♠ ; votre partenaire intervient à 2♠ Michaël précisé (Cœurs et Trèfles). Est soutient à 3♠, vous passez. Ouest annonce 4♠ ; Nord et Est passent. Vous êtes Sud, non vulnérable contre vulnérables. Parmi les enchères proposées, quelle est la plus prudente ?",
+      "explain": "Après le soutien adverse à 4♠, vos deux Cœurs et deux Trèfles ne garantissent que sept atouts dans chacune des couleurs promises par le partenaire. Vos six Carreaux ne sont pas un fit connu. Monter seul au palier de cinq serait très risqué ; parmi les quatre choix, Passe est le plus prudent. Un éventuel Contre défensif relève d'un autre arbitrage, non demandé ici."
+    }
+  },
+  {
+    "id": "SEF-L10-016",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, cinq ♥ et cinq ♦, réveil sur 1♣ : 2♣ bicolore rouge, 2♦ majeur. S46 groupe position exact pertinent ; retirer décompte.",
+    "references": [
+      "quizz.html#training-data/SEF-L10-016",
+      "quizz-prerequis.js#SEF-L10-016",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reveil",
+    "conceptPropose": "michaels.reveil",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "décrire le bicolore selon la position exacte : 2♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire le bicolore selon la position exacte : 2♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer les conventions et variantes selon l’ordre des annonces",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "REV-1:016",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire de gauche ouvre de 1♣ ; votre partenaire et l'adversaire de droite passent. Vous êtes en position de réveil, avec cinq Cœurs, cinq Carreaux et 10 H. Quelle enchère décrit le mieux votre distribution selon le SEF 2024 ?"
+    },
+    "apres": {
+      "context": "L'adversaire de gauche ouvre de 1♣ ; votre partenaire et l'adversaire de droite passent. Vous êtes en position de réveil. Quelle est votre enchère selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L09-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, quatre ♦, X adverse : XX plutôt que Truscott à cinq mineurs. Retirer indices et prérequis soutien majeur inadéquat ; S25 réserve spécifique.",
+    "references": [
+      "quizz.html#training-data/SEF-L09-003",
+      "quizz-prerequis.js#SEF-L09-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.truscott",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Truscott mineur (après enseignement spécifique)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Discriminer soutien compétitif mineur et surcontre positif avec fit non majeur et force d’invitation.",
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l09-ain-1-003",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Nord ouvre de 1♦ et Est contre d'appel. Vous détenez 12 H, quatre Carreaux et aucune majeure quatrième. Tous non vulnérables. Quelle est votre réponse selon le SEF 2024 ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦ et Est contre d'appel. Personne n'est vulnérable. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L09-015",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H +2 L =12 HL, six ♦, réponse 2♦ F1 après 1♠, pas arrêt ♠ ni quatre ♥. Contexte fournit compte et longueur ; retirer, comparer 2/1 NF après Contre.",
+    "references": [
+      "quizz.html#training-data/SEF-L09-015",
+      "quizz-prerequis.js#SEF-L09-015",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Compter les points HL de six Carreaux et choisir 2♦ naturel forcing après intervention 1♠.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "l09-ain-3-015",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Nord ouvre de 1♣ ; Est intervient naturellement à 1♠. Vous êtes Sud et tous non vulnérables. Vous détenez 10 H, six Carreaux et trois Trèfles. Quelle réponse choisissez-vous selon le SEF 2024 ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♣ et Est intervient naturellement à 1♠. Personne n'est vulnérable. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L13-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, quatre ♥ et doubleton ♠, mixed raise 2♠ à saut sur 1♥–X, contraste 3♥ barrage et Truscott. Accord explicite ; affectation S25 après Contre.",
+    "references": [
+      "quizz.html#training-data/SEF-L13-007",
+      "quizz-prerequis.js#SEF-L13-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.truscott",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après Contre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Sens du saut dans l’autre majeure après Contre sur 1♥.",
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT13-2026-11-13-07",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-L13-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H +1 L +1 D =15 HLD, trois ♠ : 2SA fitté après couleur, borne haute. Énoncé donne règle et réponse, retirer. S25.",
+    "references": [
+      "quizz.html#training-data/SEF-L13-009",
+      "quizz-prerequis.js#SEF-L13-009",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.2sa_fitte",
+    "conceptPropose": "competitif.2sa_fitte",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "2SA fitté après une intervention au palier de deux.",
+      "prerequis": {
+        "concept": "competitif.2sa_fitte",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT13-2026-11-13-09",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♠ et l’adversaire intervient à 2♦. Vous disposez de trois Piques et d’une main constructive avec une courte à Carreau. Vous jouez le 2SA fitté du SEF 2024, y compris après intervention. Quelle enchère montre ce soutien de 11 à 15 HLD ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♦. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L13-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H et quatre ♠ après X : 1♠ naturel F1, à partir de 7 HL dans SEF 2024. Question donne seuil et couleur, retirer ; proche V485-004.",
+    "references": [
+      "quizz.html#training-data/SEF-L13-010",
+      "quizz-prerequis.js#SEF-L13-010",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Seuil 7 HL (au lieu de 6) pour 1 sur 1 après contre adverse.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT13-2026-11-13-10",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♦, l’adversaire contre d’appel. Vous avez quatre Piques et exactement 7 H, sans fit Carreau établi. Dans le SEF 2024, quelle réponse naturelle au palier de 1 est autorisée dès 7 HL après un Contre ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦ ; l'adversaire contre d'appel. Vous n'avez pas passé d'entrée. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L13-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq ♠ et cinq ♣, singleton ♥ : 3♥ cue-bid quatrième joueur derrière soutien adverse. Pas réveil, concept intervention correct ; retirer longueurs.",
+    "references": [
+      "quizz.html#training-data/SEF-L13-012",
+      "quizz-prerequis.js#SEF-L13-012",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Nouveau sens en 2024 du cue-bid après soutien adverse en majeure.",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT13-2026-11-13-12",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L’adversaire de gauche ouvre 1♥, votre partenaire passe et l’adversaire de droite soutient à 2♥. Vous êtes en quatrième position, avec cinq Piques et cinq Trèfles. Quelle intervention conventionnelle décrit vos deux longues ?"
+    },
+    "apres": {
+      "context": "Ouest ouvre de 1♥, Nord passe et Est soutient à 2♥. Vous êtes Sud, quatrième joueur. Quelle est votre intervention selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L14-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "4 H, 2♥/3♣/4♦ : 3♣ faible passe-ou-corrige, accord donné. Question donne réponse textuellement ; demander choix sans le nommer. S42 objectif correct.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-001",
+      "quizz-prerequis.js#SEF-L14-001",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [
+      42
+    ],
+    "seancesProposees": [
+      42
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Multi-Landy : 3♣ faible passe/corrige lorsque le partenaire montre majeure et mineure.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 1,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-001",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon grille explicite"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire est intervenu à 2♥, montrant au moins cinq Cœurs et une mineure au moins quatrième. Vous n’avez que deux Cœurs et une main faible, avec trois Trèfles et quatre Carreaux. Votre paire joue le 3♣ faible « passe ou corrige » pour retrouver la mineure. Quelle réponse choisirez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Votre partenaire intervient à 2♥ Multi-Landy (Cœurs et une mineure au moins quatrième), puis le joueur suivant passe. Dans les développements du cours, quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-L14-002",
+    "verdict": "ARBITRAGE",
+    "justification": "17 H, cinq ♥ quatre ♣ : 3♥ maximum ♣ dans grille mini/maxi donnée. Seuils non chiffrés et accord non universel. Confirmer grille et zone d'intervention avec coordinateur ; groupe non identifié.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-002",
+      "quizz-prerequis.js#SEF-L14-002",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.suite",
+    "conceptPropose": "multilandy.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Multi-Landy : distinguer la mineure et la zone haute sur le relais à 2SA.",
+      "prerequis": {
+        "concept": "multilandy.suite",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-002",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon grille explicite"
+    },
+    "action": "arbitrage coordinateur"
+  },
+  {
+    "id": "SEF-L14-003",
+    "verdict": "VALIDE",
+    "justification": "14 H, six ♥, grille explicite 12+ et codage 3♠ = ♥ maximum. Accord donné, aucune prétention SEF ; choix artificiel contraire couleur naturelle, difficulté 5 légitime. Comparaison 004 minimale.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-003",
+      "quizz-prerequis.js#SEF-L14-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.suite",
+    "conceptPropose": "multilandy.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Multi-Landy : double Texas au relais 2SA après intervention Multi à 2♦.",
+      "prerequis": {
+        "concept": "multilandy.suite",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-003",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon grille explicite"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-L14-004",
+    "verdict": "VALIDE",
+    "justification": "9 H, six ♠, 3♦ code minimum ♠ selon grille explicite. Contraste 003 maximum ♥. Question demande de décoder sans prétendre universel ; absence de groupe avancé.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-004",
+      "quizz-prerequis.js#SEF-L14-004",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.suite",
+    "conceptPropose": "multilandy.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Multi-Landy : distinction zone minimale/maximale et majeure sixième.",
+      "prerequis": {
+        "concept": "multilandy.suite",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.suite",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-004",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon grille explicite"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-L14-015",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, quatre ♠ et trois ♥, 3♥ à saut mixed raise après X sur 1♠, miroir de L13-007 2♠ sur 1♥. Affectation S25 pour contraste des paliers.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-015",
+      "quizz-prerequis.js#SEF-L14-015",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.truscott",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après Contre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Mixed raise à 3♥ après 1♠ et Contre d’appel adverse.",
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-015",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-L14-016",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre ♥ et cinq ♦ ADV : 3♦ rencontre à saut simple sur X, 4♦ splinter. Question indique convention et longueurs ; retirer indices, S25.",
+    "references": [
+      "quizz.html#training-data/SEF-L14-016",
+      "quizz-prerequis.js#SEF-L14-016",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.truscott",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après Contre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Rencontre à saut en mineure après Contre : couleur longue + fit majeur.",
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT14-2026-11-13-016",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♥ et l’adversaire de droite contre d’appel. Vous avez quatre atouts Cœur et cinq beaux Carreaux. Selon le SEF 2024, le changement de couleur à simple saut en mineure après Contre est une rencontre fittée. Quelle enchère correspond à votre main ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire de droite contre d'appel. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L16-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H +2 neuvième atout +1 doubleton ♦=12 HLD : 3♠ invitant après 2♦ naturel. Énoncé livre compte et fonction ; retirer. Analogue V473-006 sur 2♥.",
+    "references": [
+      "quizz.html#training-data/SEF-L16-006",
+      "quizz-prerequis.js#SEF-L16-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Quatre atouts et 11–12 HLD après intervention.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT16-2026-11-13-006",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♠ et l'adversaire intervient naturellement à 2♦. Vous avez quatre Piques, 9 H, un doubleton Carreau et environ 12 HLD. Quelle réponse invitante montre quatre atouts ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ et l'adversaire intervient naturellement à 2♦. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L16-007",
+    "verdict": "VALIDE",
+    "justification": "17 H, trois ♥ et quatre ♠, dépasse 2SA fitté 15 HLD : X généralisé prépare description ultérieure ; 4♥ prématuré, 3♥ quatre atouts. Distinct des X avec main limite, prérequis élevé.",
+    "references": [
+      "quizz.html#training-data/SEF-L16-007",
+      "quizz-prerequis.js#SEF-L16-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Contre de préparation avec fit majeur de trois cartes et force élevée.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 3
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT16-2026-11-13-007",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-L16-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, quatre ♠, 14 HLD : 2SA cue-bid de 1SA naturel adverse (4 atouts), pas Truscott ni 2SA après couleur. Question annonce fit fort et cue-bid ; retirer indices, pas groupe exact.",
+    "references": [
+      "quizz.html#training-data/SEF-L16-009",
+      "quizz-prerequis.js#SEF-L16-009",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.sa_adverse",
+    "conceptPropose": "competitif.sa_adverse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Cue-bid de 1SA après ouverture majeure et intervention naturelle.",
+      "prerequis": {
+        "concept": "competitif.sa_adverse",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT16-2026-11-13-009",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-C-153"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre 1♠ et l'adversaire de droite intervient naturellement à 1SA. Avec quatre Piques et 12 H, quelle enchère en cue-bid de l'intervention montre un soutien fort de quatre atouts ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire de droite intervient naturellement à 1SA. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L17-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, deux petits ♠, 3-4-4 résiduel, 3♠ demande arrêt selon variante ; pas Texas impossible 3♥ ni 3SA direct. Énoncé donne but et absence arrêt ; retirer. Contraste L01-D-01.",
+    "references": [
+      "quizz.html#training-data/SEF-L17-011",
+      "quizz-prerequis.js#SEF-L17-011",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Rubensohl : cue-bid 3♠ interrogatif sur la tenue de la couleur d'intervention.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT17-2026-11-13-011",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA et Est intervient naturellement à 2♠. Vous avez des valeurs pour jouer la manche mais aucune tenue Pique. Dans le Rubensohl étudié, comment demander l'arrêt Pique avant d'envisager 3SA ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). Est intervient naturellement à 2♠. Vous jouez Rubensohl. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-L19-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, cinq ♦, 2♥ premier cue-bid = fit FM après Michaël majeur. S47 objectif adapté ; enlever compte/fit et fonction donnés.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-001",
+      "quizz-prerequis.js#SEF-L19-001",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Distinguer le cue-bid économique, soutien forcing de manche après Michaël bicolore.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-001",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♦ et l'adversaire intervient à 2♦, Michaël précisé montrant au moins cinq Cœurs et cinq Piques. Vous avez cinq Carreaux, 14 H et une main de manche. Quelle enchère est le cue-bid le plus économiquement exprimable pour annoncer un fit Carreau forcing de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦. L'adversaire intervient par 2♦ Michaël précisé (les deux majeures au moins cinquièmes). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L19-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, six ♣, trois ♦ : 2♠ deuxième cue-bid = quatrième couleur FM ; opposition L19-001 même intervention. Ajouter S47 2♠ pour contraste premier cue-bid après 1♥.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-002",
+      "quizz-prerequis.js#SEF-L19-002",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Reconnaître la quatrième couleur au moyen du cue-bid le moins économique.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-002",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♦. L'adversaire utilise 2♦ Michaël pour annoncer les deux majeures cinquièmes. Vous détenez six Trèfles solides, 13 H et des valeurs de manche. Quelle enchère conventionnelle montre au moins cinq cartes dans la quatrième couleur, Trèfle, en situation forcing de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦. L'adversaire intervient par 2♦ Michaël précisé (les deux majeures au moins cinquièmes). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L19-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, cinq ♦, deux ♥, 3♣ deuxième cue-bid après Michaël ♠+♣ ; contraste L09-029 2♠ fit. Énoncé livre longue et fonction, retirer. S47 3♣.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-003",
+      "quizz-prerequis.js#SEF-L19-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Employer le cue-bid le moins économique pour montrer la quatrième couleur après une ouverture majeure.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-003",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire intervient à 2♥, Michaël précisé promettant au moins cinq Piques et cinq Trèfles. Vous avez cinq Carreaux et 14 H, sans fit Cœur. Quelle enchère décrit les Carreaux de façon forcing de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥. L'adversaire intervient par 2♥ Michaël précisé (Piques et Trèfles au moins cinquièmes). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L19-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, trois ♥, 3-3-4-3, 2SA soutien limite 11–12 HLD après Michaël ; contraste 2SA 11–15 après naturelle. Question donne règle ; retirer. Aucun groupe S47 2SA identifié.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-004",
+      "quizz-prerequis.js#SEF-L19-004",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Identifier le 2SA fitté à trois cartes et sa zone limite après intervention bicolore.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-004",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire intervient par 2♥ Michaël précisé (Piques et Trèfles). Avec trois Cœurs, 12 H (12 HLD, sans courte) et l'envie de proposer la manche sans la rendre forcing, quelle réponse montre précisément le fit de trois cartes dans la zone de 11–12 HLD ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥. L'adversaire intervient par 2♥ Michaël précisé (Piques et Trèfles au moins cinquièmes). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L19-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre ♠ et cinq ♦ ARV97 : 4♦ rencontre dans quatrième couleur après 2♠ Michaël. Retirer longueurs/fonction données ; ne pas assimiler à 4♦ splinter sur X.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-006",
+      "quizz-prerequis.js#SEF-L19-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Reconnaître la rencontre à saut dans la quatrième couleur après intervention bicolore.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-006",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠, l'adversaire annonce 2♠ Michaël précisé (Cœurs et Trèfles). Vous détenez quatre Piques et cinq beaux Carreaux, avec 10 H. Quelle annonce à saut décrit simultanément le soutien à Pique et la longueur à Carreau ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient à 2♠ Michaël précisé (Cœurs et Trèfles). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L19-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H avec RV94♠ et A108♥ face à Landy, X propose pénalité. Le souhait punitif donné est pertinent pour exercice de signification mais pas choix autonome ; préciser le projet sans prétendre qu'il est obligatoire.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-007",
+      "quizz-prerequis.js#SEF-L19-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Distinguer Contre punitif, cue-bid et Texas après Landy sur 1SA.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-007",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire intervient à 2♣ Landy, montrant les deux majeures. Vous avez 11 H avec des valeurs défensives dans les deux majeures ; plutôt que de rechercher votre propre manche, vous souhaitez pénaliser le camp adverse. Quelle enchère manifeste cette volonté punitive dans le traitement étudié ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H). L'adversaire intervient par 2♣ Landy (les deux majeures). Parmi les réponses proposées, laquelle exprime un projet de défense punitive adapté à votre main ?"
+    }
+  },
+  {
+    "id": "SEF-L19-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, deux ♥, A1082♣ arrêt, pas de majeure ou mineure cinquième, X généralisé puis SA éventuel. 2SA direct promet fit ; contexte donne raisonnement, retirer. Comparer 229 X fort avec fit troisième.",
+    "references": [
+      "quizz.html#training-data/SEF-L19-008",
+      "quizz-prerequis.js#SEF-L19-008",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Contre Spoutnik sans fit et avec tenue adverse, depuis l'adoption du 2SA fitté.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT19-2026-11-13-008",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♥. L’adversaire intervient naturellement à 2♣. Vous avez 11 H, deux Cœurs et une bonne tenue à Trèfle, sans longue déclarable. Quelle enchère permet de poursuivre sans annoncer un fit que vous n’avez pas ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire intervient naturellement à 2♣. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-L20-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "17 H, cinq ♥ et cinq ♦, singleton ♠, 4♣ bicolore après soutien adverse en quatrième position. Pas réveil : reclasser intervention et corriger vocabulaire.",
+    "references": [
+      "quizz.html#training-data/SEF-L20-006",
+      "quizz-prerequis.js#SEF-L20-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reveil",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Bicolore Cœur–Carreau par 4♣ après ouverture et soutien adverses à Pique.",
+      "prerequis": {
+        "concept": "michaels.reveil",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          },
+          {
+            "concept": "reveil.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "LOT20-2026-11-13-006",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L34-004"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024 et traitement catalogue, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire a ouvert de 1♠, votre partenaire a passé, puis l'autre adversaire a soutenu à 2♠. Avec cinq Cœurs, cinq Carreaux, un singleton Pique et 17 H, quelle enchère conventionnelle SEF 2024 montre les Cœurs et les Carreaux d'un seul coup ?",
+      "explain": "Après (1♠)–Passe–(2♠), 4♣ en réveil décrit un bicolore de l'autre majeure, Cœur, et de Carreau, tous deux au moins cinquièmes. Le cue-bid 3♠ désignerait Cœur avec Trèfle, ce qui ne correspond pas à la main ; 2SA convient à d'autres distributions."
+    },
+    "apres": {
+      "context": "Ouest ouvre de 1♠ ; votre partenaire passe et Est soutient à 2♠. Vous êtes Sud, quatrième joueur. Quelle est votre intervention selon le SEF 2024 ?",
+      "explain": "Après (1♠)–Passe–(2♠), 4♣ en quatrième position derrière un soutien adverse décrit au moins cinq Cœurs et cinq Carreaux. Le cue-bid 3♠ indiquerait Cœur–Trèfle ; 2SA, les deux mineures. Il ne s'agit pas d'un réveil après deux passes."
+    }
   }
 ]
