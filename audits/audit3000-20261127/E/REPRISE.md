@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Cinq passes de 40 terminées (200/540). SHA avant passe 5 : 33cef843c28865313fe2041a3981ca4cc96b6659. Dernier ID SEF-V486-021; prochain ID SEF-V486-022. {"VALIDE":81,"RECLASSER_REFORMULER":112,"ARBITRAGE":7}. Corrections : 96. Prérequis : 15. Réservoir : 44.
+Six passes de 40 terminées (240/540). SHA avant passe 6 : f48e5e55615971cc11041a1817075247d655eff8. Dernier ID SEF-L20-006; prochain ID SEF-L21-004. {"VALIDE":85,"RECLASSER_REFORMULER":146,"ARBITRAGE":9}. Corrections : 127. Prérequis : 18. Réservoir : 52.
 
-## IDs restants (340)
-- SEF-V486-022 — rubensohl.init
-- SEF-L01-C-01 — rubensohl.naturel
-- SEF-L01-C-02 — rubensohl.init
-- SEF-L01-C-03 — rubensohl.init
-- SEF-L01-C-04 — rubensohl.naturel
-- SEF-L01-D-01 — rubensohl.naturel
-- SEF-L01-D-02 — rubensohl.init
-- SEF-L01-D-03 — rubensohl.init
-- SEF-L01-D-04 — rubensohl.suite
-- SEF-L04-028 — michaels.reveil
-- SEF-L05-014 — competitif.sa_adverse
-- SEF-L06-007 — apres_inter.base
-- SEF-L09-029 — michaels.defense
-- SEF-L10-021 — michaels.reveil
-- SEF-L04-029 — michaels.reponse
-- SEF-L10-016 — michaels.reveil
-- SEF-L09-003 — competitif.truscott
-- SEF-L09-015 — apres_inter.base
-- SEF-L13-007 — competitif.truscott
-- SEF-L13-009 — competitif.2sa_fitte
-- SEF-L13-010 — apres_inter.base
-- SEF-L13-012 — michaels.intervention
-- SEF-L14-001 — multilandy.reponse
-- SEF-L14-002 — multilandy.suite
-- SEF-L14-003 — multilandy.suite
-- SEF-L14-004 — multilandy.suite
-- SEF-L14-015 — competitif.truscott
-- SEF-L14-016 — competitif.truscott
-- SEF-L16-006 — apres_inter.base
-- SEF-L16-007 — competitif.spoutnik
-- SEF-L16-009 — competitif.sa_adverse
-- SEF-L17-011 — rubensohl.init
-- SEF-L19-001 — michaels.defense
-- SEF-L19-002 — michaels.defense
-- SEF-L19-003 — michaels.defense
-- SEF-L19-004 — michaels.defense
-- SEF-L19-006 — michaels.defense
-- SEF-L19-007 — rubensohl.naturel
-- SEF-L19-008 — competitif.spoutnik
-- SEF-L20-006 — michaels.reveil
+## IDs restants (300)
 - SEF-L21-004 — rubensohl.naturel
 - SEF-L22-001 — michaels.defense
 - SEF-L22-002 — michaels.defense
@@ -346,4 +306,4 @@ Cinq passes de 40 terminées (200/540). SHA avant passe 5 : 33cef843c28865313fe2
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 200 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 240 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
