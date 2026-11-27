@@ -7,7 +7,7 @@ const BASE='13966e475cf986c6f76e7faf870377fdf4ef99aa',root=path.resolve(__dirnam
 const [profile='autonome',rawSeed='11',rawHorizon='180',dest='reprise6-a-output',...variants]=process.argv.slice(2);
 const seed=Number(rawSeed),horizon=Number(rawHorizon),armsToTest=variants.length?variants:['saturation'];
 assert(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&T.HORIZONS.includes(horizon));
-assert(armsToTest.every(v=>['contrast','composition','early','balance','contrast-balance','saturation','lookahead','lookahead3','lookahead5'].includes(v)));
+assert(armsToTest.every(v=>['contrast','composition','early','balance','contrast-balance','saturation','lookahead','lookahead3','lookahead5','lookahead-context'].includes(v)));
 const git=(...args)=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});
 function sources(ref){return Object.fromEntries(git('ls-tree','--name-only',ref).trim().split('\n').filter(p=>p==='quizz.html'||/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js').map(p=>[p,git('show',ref+':'+p)]))}
 const base=sources(BASE),historic=sources(T.BASE),head=git('rev-parse','HEAD').trim(),current=sources(head);
