@@ -12,7 +12,7 @@ const engine=read('quizz-parcours.js'),prior=old('quizz-parcours.js'),p=/const P
 // history migration; pin its exact Git blob instead of disabling the guard.
 const pedagogical=cp.execFileSync('git',['show','9b33b9a7d822fa3163df051471909115824d2a04:quizz-parcours.js'],{maxBuffer:20*1024*1024}).toString();
 assert.equal(pedagogical.replace(p,''),prior.replace(p,''),'Original audit must not change engine logic');
-const authorizedEngine=cp.execFileSync('git',['cat-file','blob','026653d5a7888e321f491483f4e7f4dfbe093b1b'],{maxBuffer:20*1024*1024}).toString();
+const authorizedEngine=cp.execFileSync('git',['cat-file','blob','e30cc1c48e1fa77b695c9b7694dc96fecfe89e07'],{maxBuffer:20*1024*1024}).toString();
 assert.equal(engine.replace(p,''),authorizedEngine.replace(p,''),'Only explicitly reviewed technical revision permitted');
 const plan=JSON.parse(read('audits/programme-65-20261127/programme-normalise.json'));
 const embedded=JSON.parse(engine.match(/const PROGRAMME65\s*=\s*(.*?);\s*(?=function select)/s)[1]);
@@ -21,3 +21,12 @@ assert.equal(plan.sessions.length,65);
 const ids=new Set(Object.keys(am.byId));
 for(const s of plan.sessions)for(const g of s.groups){assert.equal(new Set(g.ids).size,g.ids.length);assert(g.ids.every(id=>ids.has(id)));}
 console.log('AUDIT3000 metadata and program: PASS');
+
+const html=read('quizz.html'),worker=read('service-worker.js');
+assert(html.includes('<meta name="qpjb-catalogue-revision" content="audit3000-guided-v1">'));
+assert(html.includes("window.QPJBParcours?.audit3000Revision!=='audit3000-guided-v1'"));
+assert(html.indexOf("window.QPJBParcours?.audit3000Revision!=='audit3000-guided-v1'")<html.indexOf("QPJBParcours.load(localStorage.getItem(parcoursKey))"));
+assert(html.includes('./quizz-prerequis.js?v=5')&&worker.includes("BASE + 'quizz-prerequis.js?v=5'"));
+assert(html.includes('./quizz-parcours.js?v=26')&&worker.includes("BASE + 'quizz-parcours.js?v=26'"));
+assert(worker.includes("const CACHE = 'qpjb-v113';"));
+console.log('AUDIT3000 compatible page/cache/engine references: PASS');
