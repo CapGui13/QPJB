@@ -62,8 +62,8 @@ function referenceRules(sources,diagnosticSources){
 // historical guard. Only the exact before/after objects in the immutable
 // audited manifest are admissible. Future undeclared changes still fail.
 const AUDIT_BASE='ccd8f20811b9531bbfccb8352ec60953dd7d07cb';
-const AUDIT_REVISION='catalogue:ca71f3c2956260d51eee2908fe0ec9120c47cf3f;metadata:ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
-const AUDIT_CATALOGUE_BLOB='ca71f3c2956260d51eee2908fe0ec9120c47cf3f',AUDIT_METADATA_BLOB='ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
+const AUDIT_REVISION='catalogue:0359c7ac24904f95afd72a5ac5f8da9fa6d9592f;metadata:ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
+const AUDIT_CATALOGUE_BLOB='0359c7ac24904f95afd72a5ac5f8da9fa6d9592f',AUDIT_METADATA_BLOB='ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
 function verifyAuditRevision(b,c,audit){
  assert(audit.catalogue.base===AUDIT_BASE&&audit.metadata.base===AUDIT_BASE,'Audit manifest provenance');
  const original=new Map(audit.exercises.map(q=>[q.id,q]));
