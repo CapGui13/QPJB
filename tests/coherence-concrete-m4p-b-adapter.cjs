@@ -1,6 +1,6 @@
 'use strict';
 function instrument(source,policy){
- if(!['L','M'].includes(policy))throw Error('policy');
+ if(!['L','M','N'].includes(policy))throw Error('policy');
  const start='const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};';
  const q='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason';
  const end='const m=mOf(q),cat=category||classify(q);';
@@ -18,6 +18,11 @@ function instrument(source,policy){
  "if(s>=65&&!explicitRecall&&!priority&&!forcedReason&&category==='maintenance'&&classify(q)==='maintenance'&&!e.weakConcept[mOf(q).concept])__bSlots.push({index:selected.length,baseline:q});"+end).replace(last,
  "const p=__b.replace({"+shared+",pool,classify,bid,context,openingPass,fresh},selected,__bSlots);"+
  "if(p.q)__b.record({session:s+1,policy:'M',kind:'reservation',before:p.old.id,after:p.q.id,category:'maintenance',priority:false,reason:'compression rappel redondant de famille répétée',target:p.target,displaced:p.displaced,budget:repeatBudget,repeatBefore:p.repeatBefore,repeatAfter:p.repeatAfter});"+
+ "return logicalOrder(p.deck,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));");
+ if(policy==='N')out=out.replace(end,
+ "if(s>=65&&!explicitRecall&&!priority&&!forcedReason&&['maintenance','discovery'].includes(category)&&!e.weakConcept[mOf(q).concept])__bSlots.push({index:selected.length,baseline:q,category});"+end).replace(last,
+ "const __n=require('./quizz-coherence-m4p-b-window.js');const p=__n.replace({"+shared+",pool,classify,bid,context,openingPass,fresh,weak,oldTheme,passCap,localTarget:q=>clamp((e.localTargets.get(mOf(q).concept)||targetByTheme[q.theme]||1)+(state.difficultyAdjustment||0),1,5),objective:{allowRepeatBeyondBudget:true,allowNoveltyDisplacement:true,fixture:'M1-only'}},selected,__bSlots);"+
+ "if(p.q)__n.record({session:s+1,policy:'N',kind:'window-exception',before:p.old.id,after:p.q.id,category:p.category,priority:false,reason:'arbitrage composition M1: prévision dette 7 séances, plafond glissant 4 séances',target:p.target,displaced:p.displaced,budget:repeatBudget,repeatBefore:p.repeatBefore,repeatAfter:p.repeatAfter,noveltyCost:p.noveltyCost,forecastGain:p.forecastGain,forecastCost:p.forecastCost});"+
  "return logicalOrder(p.deck,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));");
  return out;
 }

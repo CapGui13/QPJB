@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
-const native=require('./coherence-concrete-m4-campaign.cjs'),adapter=require('./coherence-concrete-m4p-b-adapter.cjs'),policy=require('../quizz-coherence-m4p-b-policy.js');
+const native=require('./coherence-concrete-m4-campaign.cjs'),adapter=require('./coherence-concrete-m4p-b-adapter.cjs'),policy=require('../quizz-coherence-m4p-b-policy.js'),windowPolicy=require('../quizz-coherence-m4p-b-window.js');
 const root=path.join(__dirname,'..'),source=fs.readFileSync(path.join(root,'quizz-parcours.js'),'utf8'),html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');
 const blob=s=>crypto.createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0').update(s).digest('hex');
 assert.equal(blob(source),'4a5c96d374d56b0c60cc4c9b5d74c8f04eb1e5a9');
@@ -60,8 +60,8 @@ function runOne(profile,seed,out){
  const bd=detail(before);
  fs.writeFileSync(path.join(out,profile+'-'+seed+'-native.json'),JSON.stringify({run:before,detail:bd}));
  const summaries=[];
- for(const k of ['L','M']){
-  const changes=[],req=n=>n==='./quizz-coherence-m4p-b-policy.js'?{...policy,record:r=>changes.push(r)}:requireBase(n);
+ for(const k of (process.env.POLICIES||'L,M').split(',')){
+  const changes=[],req=n=>n==='./quizz-coherence-m4p-b-policy.js'?{...policy,record:r=>changes.push(r)}:n==='./quizz-coherence-m4p-b-window.js'?{...windowPolicy,record:r=>changes.push(r)}:requireBase(n);
   const after=native.run({...common,source:adapter.instrument(source,k),requireBase:req});
   after.policy=k;after.changes=changes;
   const ad=detail(after),violations=compare(before,after,bd,ad);
