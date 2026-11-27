@@ -16,21 +16,40 @@ const sources=Object.freeze({
  'texas-coeur':Object.freeze(['SEF-037-1','SEF-039-2','SEF-039-1','SEF-N082-2','SEF-N084-1','SEF-V44-015','SEF-C-003','V2-M2-030']),
  'texas-pique':Object.freeze(['SEF-038-1','SEF-040-2','SEF-N085-1','SEF-N087-2','SEF-V44-016','SEF-V49-017','V2-M2-018'])
 });
+// Explicit corrective contrasts, not mere mentions; each item was checked
+// against the frozen explanation. Exposure is not independent proof.
+const explicitContrast=Object.freeze({
+ 'stayman-2SA':Object.freeze(['SEF-V3-014-1','SEF-V3-015-1','SEF-V3-016-1','SEF-V3-016-2']),
+ 'texas-coeur':Object.freeze(['SEF-V49-017']),
+ 'texas-pique':Object.freeze(['SEF-037-1','SEF-V44-015'])
+});
+const sourceIds=(need,mode)=>mode==='E'?[...sources[need],...explicitContrast[need]]:sources[need];
 const sourceConcept={'stayman-2SA':'sa1.stayman.reponse','texas-coeur':'sa1.texas','texas-pique':'sa1.texas'};
 function assess(q,{state,e,metadataById,mode}){
  const spec=specs[q.id];
- if(!spec||!['S','X','SX'].includes(mode)||!mode.includes(spec.group)||state.completed<3)return {allow:true,reason:'outside'};
+ if(!spec||!['S','X','SX','E'].includes(mode)||(mode!=='E'&&!mode.includes(spec.group))||state.completed<3)return {allow:true,reason:'outside'};
  if(metadataById[q.id]?.concept!==spec.concept)return {allow:true,reason:'metadata-drift'};
  const observed=e.seen.get(spec.concept)||new Set();
  // Do not suppress assessment/review of an already met question, weak
  // concept, old save, or any ongoing session. No credit for the new gate.
  if(state.active||observed.has(q.id)||state.entries?.[q.id]||e.weakConcept[spec.concept])return {allow:true,reason:'preserve-recall'};
- const ids=sources[spec.need].filter(id=>e.seen.get(sourceConcept[spec.need])?.has(id));
+ const ids=sourceIds(spec.need,mode).filter(id=>e.seen.get(sourceConcept[spec.need])?.has(id));
  return {allow:ids.length>0,reason:ids.length?'specific-exposure':'missing-specific-exposure',need:spec.need,ids,grantsProof:false};
 }
 function filter(pool,ctx){
- if(!['S','X','SX'].includes(ctx.mode))return pool;
- const decisions=pool.map(q=>({q,...assess(q,ctx)})),kept=decisions.filter(x=>x.allow).map(x=>x.q);
+ if(!['S','X','SX','E'].includes(ctx.mode))return pool;
+ const decisions=pool.map(q=>({q,...assess(q,ctx)}));
+ // E: prefer an explicitly decoded, native-eligible continuation in
+ // the same concept and level. If none exists, preserve the native path.
+ // No change of rank, quota or stage, and no new eligibility.
+ if(ctx.mode==='E')for(const d of decisions)if(!d.allow){
+  const equivalent=decisions.some(x=>x.allow&&x.q.id!==d.q.id&&
+   ctx.metadataById[x.q.id]?.concept===ctx.metadataById[d.q.id]?.concept&&
+   x.q.difficulty===d.q.difficulty&&
+   x.q.auction?.some(a=>/Texas (Cœur|Pique)|les deux majeures quatrièmes|deux majeures quatrièmes/.test(a)));
+  if(!equivalent){d.allow=true;d.reason='preserve-native-no-decoded-alternative'}
+ }
+ const kept=decisions.filter(x=>x.allow).map(x=>x.q);
  if(new Set(kept.map(q=>String(q.caseFamily||q.id))).size<ctx.limit)return pool;
  if(typeof ctx.observe==='function'){
   const blocked=decisions.filter(x=>!x.allow).map(x=>({id:x.q.id,need:x.need}));
@@ -46,4 +65,4 @@ function instrument(source){
  return source.replace(marker,marker+'\n    if(options.coherenceReprise6B?.schema==="QPJB_REPRISE6_B_V1")pool=options.coherenceReprise6B.filter(pool,{state,e,metadataById:prerequis.byId,mode:options.coherenceReprise6B.mode,limit,observe:options.observe});');
 }
 const policy=mode=>Object.freeze({schema,mode,filter});
-module.exports={schema,specs,sources,assess,filter,instrument,policy};
+module.exports={schema,specs,sources,explicitContrast,sourceIds,assess,filter,instrument,policy};
