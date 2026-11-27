@@ -27,3 +27,7 @@ Cumul : {"VALIDE":176,"RECLASSER_REFORMULER":46,"ERREUR_PEDAGOGIQUE":11,"ARBITRA
 ## Passe 7 (241–280)
 
 Cumul : {"VALIDE":205,"RECLASSER_REFORMULER":55,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":8} ; 57 corrections, 6 propositions de réservoir, 6 propositions de prérequis (dont 3 transferts interlots proposés E, à arbitrer par coordinateur). L15-004 : fit mineur de huit cartes établi malgré préférence pour 3SA. V486-007 : arbitrage sur refus limite après 2SA fitté. 2SA fitté 11–12 HLD sans intervention / 11–15 après intervention, et priorité majeure quatrième avant 2SA, vérifiés dans sources Chailley, Sarzeau et Saint-Jean-de-Luz (SEF 2024). Les développements spécifiques du 2SA fitté restent à corroborer. Contrôle ensemble exact des 280 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 174 restant à relire. Aucun test natif exécuté.
+
+## Passe 8 (281–320)
+
+Cumul : {"VALIDE":226,"RECLASSER_REFORMULER":73,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":9} ; 74 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les paires V2-M3 contrastives sont préservées (force, fit, honneurs utiles, rôle de 2SA). 17 contextes sans question explicite corrigés. Q400-A-051–054 : forte redondance à l'intérieur de la zone, à traiter en réservoir sans suppression. V2-M3-030 : arbitrage soutien mineur. Contrôle ensemble exact des 320 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 134 restant à relire. Aucun test natif exécuté.
