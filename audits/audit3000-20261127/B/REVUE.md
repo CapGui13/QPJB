@@ -19,3 +19,7 @@ Cumul : {"VALIDE":116,"RECLASSER_REFORMULER":29,"ERREUR_PEDAGOGIQUE":10,"ARBITRA
 ## Passe 5 (161–200)
 
 Cumul : {"VALIDE":148,"RECLASSER_REFORMULER":35,"ERREUR_PEDAGOGIQUE":11,"ARBITRAGE":6} ; 41 corrections, 6 propositions de réservoir, 1 proposition de prérequis. V412-001 : calcul brut 17 HLD, question précise l'absence de décote du Roi second, réponse 3♠. V412-002 : mini-maxi 2SA SEF 2024 confirmé, distinction 3SA singleton ♣. V416-003 : bicolore à saut (20 HL) distinct du cher sans saut ; manque de concept dédié signalé. V416-004 : arbitrage sur soutien mineur à 15 HLD bruts. V417-001 : décaler après première exposition de red.base, comme ses analogues. Contrôle ensemble exact des 200 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 254 restant à relire. Aucun test natif exécuté.
+
+## Passe 6 (201–240)
+
+Cumul : {"VALIDE":176,"RECLASSER_REFORMULER":46,"ERREUR_PEDAGOGIQUE":11,"ARBITRAGE":7} ; 51 corrections, 6 propositions de réservoir, 2 propositions de prérequis. Questions manquantes ajoutées, bicolore cher et bicolore fort au palier de trois distingués, soutien différé forcing après 2/1 clarifié. V417-009 à arbitrer comme V416-004 (soutien mineur et ambition de manche). Contrôle ensemble exact des 240 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 214 restant à relire. Aucun test natif exécuté.
