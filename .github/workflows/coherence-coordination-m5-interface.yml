@@ -1,0 +1,54 @@
+name: QPJB Coordination M5 — interface réelle
+on:
+  pull_request:
+    branches:
+      - coherence-concrete/coordination-m5-interface
+    paths:
+      - '.github/workflows/coherence-coordination-m5-interface.yml'
+permissions:
+  contents: read
+jobs:
+  navigateur:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.64.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: python3 scripts/build_catalogue.py && python3 scripts/build_public_site.py --output _public_site
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/coherence-concrete-coordinator-m5-browser.cjs _public_site > m5-browser.json
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/durable-integration-browser.cjs _public_site > historical-browser.json
+      - run: PW_BROWSER=${{ matrix.browser }} node tests/progression-guidee-offline.cjs _public_site
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m5-interface-${{ matrix.browser }}
+          path: |
+            m5-browser.json
+            historical-browser.json
+  historique:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-catalogue-live.cjs
+          node tests/durable-integration-contract.cjs
+          node tests/durable-integration-evidence.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/durable-m6-assets.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1915
