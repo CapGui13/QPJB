@@ -4323,8 +4323,8 @@
   },
   {
     "id": "SEF-N007-1",
-    "verdict": "VALIDE",
-    "justification": "12 H, mineures 4-4 : 1♦, règle d'égalité, bon rappel S2 et S55/S65.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, mineures 4-4 : 1♦, règle d'égalité, bon rappel S2 et S55/S65. Même règle d'égalité mineure 4–4, 12 H, corrigé identique ; conserver N007-1 en S1.2, S2.3 et S55.4, N008-2 en S65.2.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -4376,12 +4376,6 @@
         "group": 4,
         "decision": "ouv.mineure : 1♦",
         "role": "réinvestissement"
-      },
-      {
-        "session": 65,
-        "group": 2,
-        "decision": "ouv.mineure : 1♦",
-        "role": "réinvestissement"
       }
     ],
     "seancesInitiales": [
@@ -4393,8 +4387,7 @@
     "seancesProposees": [
       1,
       2,
-      55,
-      65
+      55
     ],
     "prerequisInitial": {
       "concept": "ouv.mineure",
@@ -4421,7 +4414,27 @@
     "famille": "cas-063",
     "analoguesFamille": [],
     "action": {
-      "type": "conserver"
+      "type": "reaffecter",
+      "groupes": [
+        {
+          "session": 1,
+          "group": 2,
+          "decision": "Mineures : égalité 3–3, égalité 4–4, longueur différente",
+          "role": "objectif"
+        },
+        {
+          "session": 2,
+          "group": 3,
+          "decision": "Rappel des deux égalités et ouverture majeure",
+          "role": "rappel"
+        },
+        {
+          "session": 55,
+          "group": 4,
+          "decision": "ouv.mineure : 1♦",
+          "role": "réinvestissement"
+        }
+      ]
     },
     "redondance": {
       "signatureApres": [],
@@ -4430,13 +4443,20 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte."
+      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte.",
+      "complementPasse12": {
+        "analogue": "SEF-N008-2",
+        "decision": "espacement",
+        "groupesRetires": [
+          "65.2"
+        ]
+      }
     }
   },
   {
     "id": "SEF-N008-2",
-    "verdict": "VALIDE",
-    "justification": "12 H, mineures 4-4 : 1♦, même règle mais inversion des longueurs majeures ; famille cas-064.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, mineures 4-4 : 1♦, même règle mais inversion des longueurs majeures ; famille cas-064. Inversion sans effet des deux longueurs majeures ; espacer les deux variantes entre S55.4 et S65.2.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -4460,12 +4480,6 @@
     ],
     "groupesProposes": [
       {
-        "session": 55,
-        "group": 4,
-        "decision": "ouv.mineure : 1♦",
-        "role": "réinvestissement"
-      },
-      {
         "session": 65,
         "group": 2,
         "decision": "ouv.mineure : 1♦",
@@ -4477,7 +4491,6 @@
       65
     ],
     "seancesProposees": [
-      55,
       65
     ],
     "prerequisInitial": {
@@ -4509,7 +4522,15 @@
       "SEF-N008-1"
     ],
     "action": {
-      "type": "conserver"
+      "type": "reaffecter",
+      "groupes": [
+        {
+          "session": 65,
+          "group": 2,
+          "decision": "ouv.mineure : 1♦",
+          "role": "réinvestissement"
+        }
+      ]
     },
     "redondance": {
       "signatureApres": [
@@ -4522,7 +4543,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse12": {
+        "analogue": "SEF-N007-1",
+        "decision": "espacement",
+        "groupesRetires": [
+          "55.4"
+        ]
+      }
     }
   },
   {
@@ -17645,8 +17673,8 @@
   },
   {
     "id": "SEF-Q26-M1-003",
-    "verdict": "VALIDE",
-    "justification": "11 H réguliers sans cinquième : Passe, seuil non atteint.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H réguliers sans cinquième : Passe, seuil non atteint. Même règle Passe à 11 H réguliers et corrigé identique ; V49-003 reste dans S1.1, Q26-M1-003 dans quatre groupes ultérieurs.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -17688,12 +17716,6 @@
     ],
     "groupesProposes": [
       {
-        "session": 1,
-        "group": 1,
-        "decision": "Passe : faible régulier, faible avec longue, limite 11 H",
-        "role": "objectif"
-      },
-      {
         "session": 3,
         "group": 4,
         "decision": "Réponse sur mineure et ouverture limite",
@@ -17726,7 +17748,6 @@
       16
     ],
     "seancesProposees": [
-      1,
       3,
       4,
       15,
@@ -17759,7 +17780,33 @@
     "famille": "QUALITE-20261125-M1-003",
     "analoguesFamille": [],
     "action": {
-      "type": "conserver"
+      "type": "reaffecter",
+      "groupes": [
+        {
+          "session": 3,
+          "group": 4,
+          "decision": "Réponse sur mineure et ouverture limite",
+          "role": "rappel"
+        },
+        {
+          "session": 4,
+          "group": 3,
+          "decision": "Ouverture 1SA et seuils/fit",
+          "role": "rappel"
+        },
+        {
+          "session": 15,
+          "group": 3,
+          "decision": "Soutien et ouverture : fit/force",
+          "role": "objectif"
+        },
+        {
+          "session": 16,
+          "group": 4,
+          "decision": "Rappel : ouverture, réponse, redemande, fit",
+          "role": "rappel"
+        }
+      ]
     },
     "redondance": {
       "signatureApres": [
@@ -17770,7 +17817,14 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire."
+      "interpretation": "Variantes de même signature, mains distinctes ; espacement utile mais pas de notion supplémentaire.",
+      "complementPasse12": {
+        "analogue": "SEF-V49-003",
+        "decision": "espacement",
+        "groupesRetires": [
+          "1.1"
+        ]
+      }
     }
   },
   {
@@ -31438,7 +31492,7 @@
   {
     "id": "SEF-Q685-A-037",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "6 H, cinq Carreaux, singleton Cœur : 7 HL, 2♦ ; contraste de courte avec 036, même décision.",
+    "justification": "6 H, cinq Carreaux, singleton Cœur : 7 HL, 2♦ ; contraste de courte avec 036, même décision. Passe 12 : Soutien mineur : seuil inférieur de 6 HL ; contraste de seuil avec SEF-Q685-A-036, réponse inchangée.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -31506,11 +31560,61 @@
       "type": "patch",
       "avant": {
         "context": "Les adversaires passent à chaque tour. Quelle est votre enchère selon le SEF du catalogue ?",
-        "explain": "6 H, distribution 3–1–5–4. Cinq Carreaux, singleton Cœur, pas de majeure quatrième. La main est limitée et irrégulière : 2♦ simple, non 1SA ni un saut à 3♦."
+        "explain": "6 H, distribution 3–1–5–4. Cinq Carreaux, singleton Cœur, pas de majeure quatrième. La main est limitée et irrégulière : 2♦ simple, non 1SA ni un saut à 3♦.",
+        "hand": [
+          [
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "9"
+          ],
+          [
+            "D",
+            "V",
+            "10",
+            "7",
+            "5"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "5"
+          ]
+        ],
+        "h": 6,
+        "difficultyReason": "Soutien mineur avec singleton Cœur"
       },
       "apres": {
         "context": "Votre partenaire ouvre de 1♦ ; vous n'avez pas passé et les adversaires passent. Quelle est votre enchère ?",
-        "explain": "6 H et cinq Carreaux donnent 7 HL. Sans majeure quatrième, avec un singleton Cœur, choisissez 2♦, soutien simple (6–9 HL). 2♣ exige davantage de force ; 3♦ serait invitant et 1SA décrirait moins bien la courte."
+        "explain": "5 H et cinq Carreaux donnent 6 HL : c'est exactement le seuil du soutien simple (6–9 HL). Sans majeure quatrième, avec un singleton Cœur, choisissez 2♦. 2♣ exige davantage de force ; 3♦ serait invitant et 1SA décrirait moins bien la courte.",
+        "hand": [
+          [
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "9"
+          ],
+          [
+            "D",
+            "9",
+            "10",
+            "7",
+            "5"
+          ],
+          [
+            "R",
+            "8",
+            "6",
+            "5"
+          ]
+        ],
+        "h": 5,
+        "difficultyReason": "Soutien mineur : seuil inférieur de 6 HL"
       }
     },
     "redondance": {
@@ -31520,7 +31624,13 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte."
+      "interpretation": "Aucun analogue par signature stricte, famille ou main exacte.",
+      "complementPasse12": {
+        "analogue": "SEF-Q685-A-036",
+        "decision": "contraste de seuil",
+        "hAvant": 6,
+        "hApres": 5
+      }
     }
   },
   {
@@ -36154,7 +36264,7 @@
   {
     "id": "SEF-Q685-A-077",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "9 H, quatre Piques, doubleton Cœur = 12 HLD : 3♠, retirer distracteur 2SA fitté avant S12.",
+    "justification": "9 H, quatre Piques, doubleton Cœur = 12 HLD : 3♠, retirer distracteur 2SA fitté avant S12. Passe 12 : Fit neuvième : seuil inférieur de l'invitation à quatre atouts ; contraste de seuil avec SEF-Q400-A-047, réponse inchangée.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -36240,7 +36350,32 @@
           "2♠",
           "4♠"
         ],
-        "explain": "9 H, distribution 4–2–4–3. 12 HLD, quatre Piques et neuvième atout connu : 3♠ invite. 2SA fitté direct promet trois atouts."
+        "explain": "9 H, distribution 4–2–4–3. 12 HLD, quatre Piques et neuvième atout connu : 3♠ invite. 2SA fitté direct promet trois atouts.",
+        "hand": [
+          [
+            "V",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "5"
+          ],
+          [
+            "V",
+            "8",
+            "7",
+            "3"
+          ],
+          [
+            "A",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 9,
+        "difficultyReason": "Fit neuvième : invitation à quatre atouts"
       },
       "apres": {
         "context": "Votre partenaire ouvre de 1♠ ; vous n'avez pas passé et les adversaires passent. Quelle est votre enchère ?",
@@ -36250,7 +36385,32 @@
           "2♠",
           "4♠"
         ],
-        "explain": "Quatre Piques face à cinq garantissent neuf atouts. 9 H + 2 D pour le neuvième atout + 1 D pour la courte = 12 HLD. Soutenez à 3♠, invitation de 11–12 HLD ; 2♠ serait insuffisant et 4♠ imposerait la manche."
+        "explain": "Quatre Piques face à cinq garantissent neuf atouts. 8 H + 2 D pour le neuvième atout + 1 D pour le doubleton Cœur = 11 HLD : c'est le seuil inférieur du soutien invitant de 11–12 HLD. 3♠ invite ; 2♠ serait insuffisant et 4♠ imposerait la manche.",
+        "hand": [
+          [
+            "V",
+            "8",
+            "6",
+            "3"
+          ],
+          [
+            "R",
+            "5"
+          ],
+          [
+            "9",
+            "8",
+            "7",
+            "3"
+          ],
+          [
+            "A",
+            "6",
+            "4"
+          ]
+        ],
+        "h": 8,
+        "difficultyReason": "Fit neuvième : seuil inférieur de l'invitation à quatre atouts"
       }
     },
     "redondance": {
@@ -36264,7 +36424,13 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse12": {
+        "analogue": "SEF-Q400-A-047",
+        "decision": "contraste de seuil",
+        "hAvant": 9,
+        "hApres": 8
+      }
     }
   },
   {
@@ -36404,7 +36570,7 @@
   {
     "id": "SEF-Q685-A-079",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "5 H, quatre Cœurs, doubleton Pique = 8 HLD : 2♥ ; retirer 2SA fitté prématuré.",
+    "justification": "5 H, quatre Cœurs, doubleton Pique = 8 HLD : 2♥ ; retirer 2SA fitté prématuré. Même 8 HLD avec fit neuvième et doubleton Pique ; variation de mineure sans effet. Réserver 079 à S3.2 et S58.1.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -36444,12 +36610,6 @@
         "group": 1,
         "decision": "majeur.soutien : 2♥",
         "role": "réinvestissement"
-      },
-      {
-        "session": 65,
-        "group": 5,
-        "decision": "majeur.soutien : 2♥",
-        "role": "réinvestissement"
       }
     ],
     "seancesInitiales": [
@@ -36459,8 +36619,7 @@
     ],
     "seancesProposees": [
       3,
-      58,
-      65
+      58
     ],
     "prerequisInitial": {
       "concept": "majeur.soutien",
@@ -36520,7 +36679,21 @@
           "Passe"
         ],
         "explain": "Quatre Cœurs face à cinq garantissent neuf atouts. 5 H + 2 D pour le neuvième atout + 1 D pour le doubleton Pique = 8 HLD : 2♥, soutien simple de 6–10 HLD, non invitant."
-      }
+      },
+      "groupes": [
+        {
+          "session": 3,
+          "group": 2,
+          "decision": "Fit neuvième : évaluer 6–10 contre 11–12 HLD",
+          "role": "objectif"
+        },
+        {
+          "session": 58,
+          "group": 1,
+          "decision": "majeur.soutien : 2♥",
+          "role": "réinvestissement"
+        }
+      ]
     },
     "redondance": {
       "signatureApres": [],
@@ -36532,13 +36705,20 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse12": {
+        "analogue": "SEF-Q685-A-080",
+        "decision": "espacement",
+        "groupesRetires": [
+          "65.5"
+        ]
+      }
     }
   },
   {
     "id": "SEF-Q685-A-080",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "5 H, quatre Cœurs, doubleton Pique = 8 HLD : 2♥ ; proche de 079, variante de mineure.",
+    "justification": "5 H, quatre Cœurs, doubleton Pique = 8 HLD : 2♥ ; proche de 079, variante de mineure. Même 8 HLD avec fit neuvième et doubleton Pique ; réserver 080 à S65.5 pour rappel espacé.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -36568,18 +36748,6 @@
     ],
     "groupesProposes": [
       {
-        "session": 3,
-        "group": 2,
-        "decision": "Fit neuvième : évaluer 6–10 contre 11–12 HLD",
-        "role": "objectif"
-      },
-      {
-        "session": 58,
-        "group": 1,
-        "decision": "majeur.soutien : 2♥",
-        "role": "réinvestissement"
-      },
-      {
         "session": 65,
         "group": 5,
         "decision": "majeur.soutien : 2♥",
@@ -36592,8 +36760,6 @@
       65
     ],
     "seancesProposees": [
-      3,
-      58,
       65
     ],
     "prerequisInitial": {
@@ -36654,7 +36820,15 @@
           "Passe"
         ],
         "explain": "Quatre Cœurs face à cinq garantissent neuf atouts. 5 H + 2 D pour le neuvième atout + 1 D pour le doubleton Pique = 8 HLD : 2♥, soutien simple de 6–10 HLD, non invitant."
-      }
+      },
+      "groupes": [
+        {
+          "session": 65,
+          "group": 5,
+          "decision": "majeur.soutien : 2♥",
+          "role": "réinvestissement"
+        }
+      ]
     },
     "redondance": {
       "signatureApres": [],
@@ -36666,7 +36840,15 @@
       "contrastesDeReponseDansFamille": [],
       "recouvrementsGroupesApres": [],
       "arbitrageInterlot": null,
-      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive."
+      "interpretation": "Famille de variantes de même décision ; éviter la juxtaposition répétitive.",
+      "complementPasse12": {
+        "analogue": "SEF-Q685-A-079",
+        "decision": "espacement",
+        "groupesRetires": [
+          "3.2",
+          "58.1"
+        ]
+      }
     }
   }
 ]
