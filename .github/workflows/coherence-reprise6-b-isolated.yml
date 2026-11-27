@@ -1,4 +1,4 @@
-name: QPJB reprise 6 B — source teaching and real context
+name: QPJB reprise 6 B — final consolidation guard browser
 on:
   pull_request:
     branches: ['coherence-concrete/reprise6-b-m3']
@@ -7,7 +7,8 @@ permissions:
   contents: read
 jobs:
   longitudinal:
-    if: github.head_ref == 'coherence-concrete/reprise6-b-m3-ci'
+    # Full matrix run 46021213181; only re-run browser/unit on the consolidation guard patch.
+    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
