@@ -35,22 +35,24 @@ const credit=g=>Array.from({length:6},(_,i)=>Math.max(0,g+i-6)).reduce((a,b)=>a+
 function exchange(ctx){
  const s=ctx.session,unchanged=null;
  if(!Number.isInteger(s)||s<66||s>180||ctx.history?.active||!Array.isArray(ctx.exercises)||!Array.isArray(ctx.deck)||ctx.deck.length!==10||!Array.isArray(ctx.pool)||!ctx.metadataById||!ctx.flagsById)return unchanged;
- const concept=q=>ctx.metadataById[q.id]?.concept,qs=ctx.deck.map(x=>x.exercise),counts=count(qs,concept);
- if(qs.some(q=>!q||!concept(q))||count(qs,q=>q.id).size!==10||count(qs,fam).size!==10)return unchanged;
+ const concept=q=>ctx.metadataById[q.id]?.concept,qs=ctx.deck.map(x=>x?.exercise);
+ if(!ctx.history||!Array.isArray(ctx.history.journal)||qs.some(q=>!q||!concept(q))||count(qs,q=>q.id).size!==10||count(qs,fam).size!==10)return unchanged;
+ const counts=count(qs,concept);
  const h=ledger(ctx);if(!h)return unchanged;
  const prior=qs.map(q=>ctx.flagsById[q.id]);if(prior.some(f=>!f))return unchanged;
  const bids=count(qs,ctx.bid),contexts=count(qs,ctx.context),themes=count(qs,q=>q.theme);
  const eligible=new Set(ctx.pool.map(q=>q.id)),ids=new Set(qs.map(q=>q.id)),families=new Set(qs.map(fam));
+ const consolidationRisk=new Set((ctx.history.journal||[]).filter(ev=>ev.mode==='consolidation'&&ev.session>=s-8).flatMap(ev=>(ev.answers||[]).filter(a=>!clean(a)).map(a=>ctx.metadataById[a.id]?.concept)));
  const choices=[];
  for(const q of ctx.pool){
   const c=concept(q),v=h.concepts.get(c),f=ctx.flagsById[q.id];
-  if(!CORE.includes(c)||!v||!f||counts.has(c)||ids.has(q.id)||families.has(fam(q))||f.bad||f.weak||f.stage>1||f.category!=='maintenance'||q.difficulty>3||q.difficulty>f.localTarget||v.success<=v.error||v.proofFamilies.size<2||v.proofSessions.size<2)continue;
+  if(!CORE.includes(c)||consolidationRisk.has(c)||!v||!f||counts.has(c)||ids.has(q.id)||families.has(fam(q))||f.bad||f.weak||f.stage>1||f.category!=='maintenance'||q.difficulty>3||q.difficulty>f.localTarget||v.success<=v.error||v.proofFamilies.size<2||v.proofSessions.size<2)continue;
   const gap=s-v.last,familyGap=s-(h.families.get(fam(q))||0);
   if(gap<12||(!f.novelFamily&&familyGap<12))continue;
   // Actual recent failures remain the native engine's responsibility.
   for(let i=0;i<qs.length;i++){
    const old=qs[i],d=concept(old),p=prior[i],w=h.concepts.get(d),slot=ctx.deck[i];
-   if(!eligible.has(old.id)||!w||slot.protected!==false||slot.category!=='maintenance'||p.bad||p.weak||p.due||counts.get(d)<2||
+   if(!eligible.has(old.id)||consolidationRisk.has(d)||!w||slot.protected!==false||slot.category!=='maintenance'||p.bad||p.weak||p.due||counts.get(d)<2||
       w.success<=w.error||w.proofFamilies.size<2||w.proofSessions.size<2||s-w.success>8||
       q.difficulty!==old.difficulty||f.stage>p.stage||f.novelFamily!==p.novelFamily||
       ctx.openingPass(q)&&!ctx.openingPass(old))continue;
