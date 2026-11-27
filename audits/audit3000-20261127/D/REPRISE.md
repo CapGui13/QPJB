@@ -4,48 +4,10 @@ Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; pa
 
 Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c40cd7b33f9ce471f32ac2383cfc0f15d7d0a125; SHA de cette reprise = commit contenant ce fichier. Contrôles de passe : 40 mains H/forme/13 cartes, ordre des enchères et 4 options, cohérence des corrections, couverture 543, unicité verdicts/patches, vrais groupes et minSession pour les ajouts. Tests du dépôt non exécutés.
 
-Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 28aa821545323e8f36d5394be307384447054026; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 183 IDs :
+Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 28aa821545323e8f36d5394be307384447054026; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés.
 
-- V2-M5-013
-- V2-M5-014
-- V2-M5-015
-- V2-M5-016
-- V2-M5-017
-- V2-M5-018
-- V2-M5-019
-- V2-M5-020
-- SEF-Q400-C-001
-- SEF-Q400-C-002
-- SEF-Q400-C-003
-- SEF-Q400-C-004
-- SEF-Q400-C-005
-- SEF-Q400-C-006
-- SEF-Q400-C-007
-- SEF-Q400-C-008
-- SEF-Q400-C-009
-- SEF-Q400-C-010
-- SEF-Q400-C-011
-- SEF-Q400-C-012
-- SEF-Q400-C-013
-- SEF-Q400-C-014
-- SEF-Q400-C-015
-- SEF-Q400-C-016
-- SEF-Q400-C-017
-- SEF-Q400-C-018
-- SEF-Q400-C-019
-- SEF-Q400-C-020
-- SEF-Q400-C-021
-- SEF-Q400-C-022
-- SEF-Q400-C-023
-- SEF-Q400-C-024
-- SEF-Q400-C-025
-- SEF-Q400-C-026
-- SEF-Q400-C-027
-- SEF-Q400-C-028
-- SEF-Q400-C-029
-- SEF-Q400-C-030
-- SEF-Q400-C-031
-- SEF-Q400-C-032
+Passe 10 : 400/543, dernier SEF-Q400-C-032, prochain SEF-Q400-C-033. SHA dernier livrable b19b26229aaa160e22721bbb15c5b2d3f1cd83e9; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 143 IDs :
+
 - SEF-Q400-C-033
 - SEF-Q400-C-034
 - SEF-Q400-C-035
