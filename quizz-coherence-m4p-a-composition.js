@@ -9,7 +9,7 @@ const protectedConcept=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1
 const reqKey=m=>JSON.stringify([m.stage,m.minSession,m.requires]);
 function rank(ctx={}){
  const {session,policy,category,metadataById:meta={},baselineId,candidates=[],exercises=[],history,selected=[],priority,forcedReason,scores={}}=ctx;
- if(!Number.isInteger(session)||session<3||session>20||history?.active||priority||forcedReason||category!=='discovery'||!['U','V','W'].includes(policy))return [];
+ if(!Number.isInteger(session)||session<3||session>20||history?.active||priority||forcedReason||category!=='discovery'||!['U','V','W','Y'].includes(policy))return [];
  // Before S6 reuse the previously tested same-family policy T, not broader substitution.
  if(session<6)return tRank({...ctx,policy:'T'}).filter(x=>scores[x.id]===scores[baselineId]);
  const old=candidates.find(q=>q.id===baselineId),m=meta[baselineId],f=base.features(old,m);
@@ -37,13 +37,15 @@ function rank(ctx={}){
   // a decision contrast inside a second concept already present in the deck.
   // Its stage is bounded by the example already selected for that concept.
   // A new concept or advanced stage is never introduced by W.
-  if(policy==='W'){
+  if(policy==='W'||policy==='Y'){
    if(n.concept===m.concept||rest.filter(x=>x.theme===q.theme).length>=4)continue;
    const peers=rest.filter(x=>meta[x.id]?.concept===n.concept);
    if(peers.length!==1||n.stage>meta[peers[0].id].stage||
       JSON.stringify(q.auction)!==JSON.stringify(peers[0].auction)||q.answer===peers[0].answer)continue;
+   // Y isolates the distribution criterion by matching H exactly. No tuning to simulation seeds.
+   if(policy==='Y'&&q.h!==peers[0].h)continue;
   }
-  out.push({id:q.id,delta:Math.max(1,48-cost),reason:policy==='W'?'proposition M1 : troisième cas proche remplacé par contraste de décision dans un objectif déjà présent':policy==='U'?'troisième cas proche remplacé par une autre décision du même concept':'proposition M1 : troisième cas proche remplacé par un objectif éligible distinct',cost});
+  out.push({id:q.id,delta:Math.max(1,48-cost),reason:policy==='Y'?'proposition M1 : contraste de décision à force H égale dans un objectif déjà présent':policy==='W'?'proposition M1 : troisième cas proche remplacé par contraste de décision dans un objectif déjà présent':policy==='U'?'troisième cas proche remplacé par une autre décision du même concept':'proposition M1 : troisième cas proche remplacé par un objectif éligible distinct',cost});
  }
  return out.sort((a,b)=>b.delta-a.delta||a.id.localeCompare(b.id));
 }
