@@ -33,3 +33,27 @@ for(const [name,mutate] of cases){
 }
 assert.equal(P.credit(6),15);assert.equal(P.credit(12),51);
 console.log('REPRISE6_C_UNIT PASS '+(cases.length+4)+' contrôles, aucune activation');
+
+function recentFixture(){
+ const x=fixture();x.metadataById['donor-b'].concept='other.unique';
+ const prior=x.exercises.find(q=>q.id==='donor-past');
+ const variants=[prior,...[2,3].map(i=>({...prior,id:'donor-past-'+i,caseFamily:'f-donor-past-'+i}))];
+ for(const v of variants.slice(1)){x.exercises.push(v);x.metadataById[v.id]={concept:'ouv.position',stage:1}}
+ for(const ev of x.history.journal.filter(e=>e.session>=3)){ev.answers[0].id=variants[ev.session%3].id}
+ x.deck[0].category='discovery';x.deck[0].reason='nouveau_qcm';x.expertise={HOLD:[],CONTRAST_OR_SEQUENCE:[]};return x;
+}
+const recent=recentFixture(),rc=P.exchange(recent,'recent');
+assert.equal(rc.id,'target-new');assert.equal(rc.oldId,'donor-a');assert.equal(rc.mode,'recent');assert.equal(rc.donorStillPresent,false);assert.equal(rc.donorLastSuccess,65);assert.equal(P.exchange(recent),null);
+const recentCases=[
+ ['missing expertise',x=>delete x.expertise],
+ ['HOLD target',x=>x.expertise.HOLD=['target-new']],
+ ['HOLD donor',x=>x.expertise.HOLD=['donor-a']],
+ ['explicit contrast',x=>x.expertise.CONTRAST_OR_SEQUENCE=['donor-a']],
+ ['recent assisted',x=>x.history.journal.at(-1).answers[0].assisted=true],
+ ['not discovery',x=>x.deck[0].category='maintenance'],
+ ['not ordinary',x=>x.deck[0].reason='rappel_question'],
+ ['not latest',x=>{const q={id:'extra',caseFamily:'extra',theme:'ouv',difficulty:2};x.exercises.push(q);x.metadataById.extra={concept:'extra',stage:1};x.history.journal.at(-1).answers[0].id='extra'}],
+ ['fundamental donor',x=>{for(const id of ['donor-a','donor-past','donor-past-2','donor-past-3'])x.metadataById[id].concept='ouv.sa1'}]
+];
+for(const [name,mutate] of recentCases){const x=recentFixture();mutate(x);assert.equal(P.exchange(x,'recent'),null,name)}
+console.log('REPRISE6_C_RECENT_UNIT PASS '+(recentCases.length+6)+' contrôles');
