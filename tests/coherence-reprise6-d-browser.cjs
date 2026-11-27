@@ -72,7 +72,7 @@ async function main(){
     await step(i+1,10);
     if(i===target){
      assert.deepEqual(await page.locator('.hand .rank').allTextContents(),fixture.next.hand.map(s=>s.join('')),'actually rendered hand');
-     assert((await page.locator('.meta').textContent()).includes(fixture.next.h+' points H'));
+     assert((await page.locator('#body .meta').textContent()).includes(fixture.next.h+' points H'));
     }
     displayed.push((await snapshot()).active.ids[i]);
     await skip();
