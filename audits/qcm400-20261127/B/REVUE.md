@@ -138,13 +138,13 @@ Premier passage : 88/100 candidats retenus, 12 rejetés (H/forme/zone), corrigé
 - SEF-Q400-B-017 : SEF-V44-014 (distance 8 cartes)
 - SEF-Q400-B-025 : SEF-L23-006 (distance 8 cartes)
 - SEF-Q400-B-047 : SEF-L37-004 (distance 11 cartes)
-- SEF-Q400-B-052 : SEF-L41-004 (distance 8 cartes), V2-M2-016 (distance 9 cartes)
+- SEF-Q400-B-052 : SEF-L41-004 (distance 9 cartes), V2-M2-016 (distance 9 cartes)
 - SEF-Q400-B-063 : SEF-V4-076-3 (distance 10 cartes)
 - SEF-Q400-B-077 : SEF-C2-011 (distance 8 cartes)
 - SEF-Q400-B-079 : SEF-L13-001 (distance 10 cartes)
 - SEF-Q400-B-085 : SEF-V484-014 (distance 6 cartes)
 - SEF-Q400-B-089 : SEF-002-3 (distance 6 cartes), V2-M1-009 (distance 10 cartes)
-- SEF-Q400-B-090 : SEF-N021-2 (distance 10 cartes)
+- SEF-Q400-B-090 : SEF-N021-2 (distance 8 cartes)
 - SEF-Q400-B-092 : SEF-L43-005 (distance 9 cartes)
 - SEF-Q400-B-093 : SEF-L38-001 (distance 9 cartes), V2-M2-008 (distance 8 cartes)
 - SEF-Q400-B-097 : SEF-L25-008 (distance 9 cartes)
@@ -153,28 +153,8 @@ Premier passage : 88/100 candidats retenus, 12 rejetés (H/forme/zone), corrigé
 
 100/100/100, IDs continus B-001 à B-100, 36 familles stables, correspondance exacte des prérequis et des groupes de décision, contrôle du palier des choix après la dernière enchère naturelle ou conventionnelle (les annonces Passe/Contre/Surcontre sont examinées dans leur contexte), aucune erreur détectée. Deux distracteurs illégaux (047 et 071) et deux mains proches d'autres concepts (020 et 054) corrigés. 191500 comparaisons de mains historiques ; distance minimale de 3 cartes, 0 rapprochements à deux cartes ou moins. 369 paires historiques avec même concept, réponse et séquence normalisée : une décision connue doit pouvoir être exercée sur des mains nouvelles ; aucune collision de main. Les comparaisons ne sont pas un test de nouveauté sémantique exhaustif. 11 affectations primaires identifiées comme extensions explicites conditionnelles, dont les cas de modulation et 2SA après Passe ; aucune extension implicite d'un groupe de Contre d'entame. Ajout de 12 candidatures S57 et 9 candidatures S61 à groupe existant de même concept et réponse, utilisables seulement si l’ID est inédit et les verrous satisfaits.
 
-### Rapprochements intra-lot à deux cartes ou moins (contrastes à espacer)
+### Dernière passe de diversification intra-lot
 
-- SEF-Q400-B-008 / SEF-Q400-B-067, 2 carte(s) différente(s), sa1.seuil → 2SA / roudi.reponse → 2♥.
-- SEF-Q400-B-009 / SEF-Q400-B-052, 2 carte(s) différente(s), sa1.stayman.contre → Passe / sa2.texas_mineur.reponse → 3SA.
-- SEF-Q400-B-017 / SEF-Q400-B-050, 2 carte(s) différente(s), sa2.seuil → 3SA / sa1.texas_mineur.suite → 3♥.
-- SEF-Q400-B-031 / SEF-Q400-B-072, 2 carte(s) différente(s), sa1.stayman.suite → 4♠ / roudi.suite → 4♠.
-- SEF-Q400-B-033 / SEF-Q400-B-075, 1 carte(s) différente(s), sa1.stayman.suite → 3SA / drury.init → 2♣.
-- SEF-Q400-B-041 / SEF-Q400-B-075, 2 carte(s) différente(s), sa2.texas → 3♦ / drury.init → 2♣.
-- SEF-Q400-B-044 / SEF-Q400-B-056, 2 carte(s) différente(s), sa2.texas.suite → Passe / roudi.init → 2♣.
-- SEF-Q400-B-044 / SEF-Q400-B-061, 1 carte(s) différente(s), sa2.texas.suite → Passe / roudi.choix → 2♠.
-- SEF-Q400-B-046 / SEF-Q400-B-068, 2 carte(s) différente(s), sa1.texas_mineur → 3♣ / roudi.reponse → 2♠.
-- SEF-Q400-B-048 / SEF-Q400-B-090, 2 carte(s) différente(s), sa1.texas_mineur.reponse → 3♦ / ouv.sa2 → 2SA.
-- SEF-Q400-B-055 / SEF-Q400-B-069, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 2SA.
-- SEF-Q400-B-056 / SEF-Q400-B-061, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.choix → 2♠.
-- SEF-Q400-B-056 / SEF-Q400-B-070, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 3SA.
-- SEF-Q400-B-056 / SEF-Q400-B-072, 1 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 4♠.
-- SEF-Q400-B-058 / SEF-Q400-B-059, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.init → 2SA.
-- SEF-Q400-B-058 / SEF-Q400-B-073, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 2♠.
-- SEF-Q400-B-062 / SEF-Q400-B-069, 2 carte(s) différente(s), roudi.choix → Passe / roudi.suite → 2SA.
-- SEF-Q400-B-069 / SEF-Q400-B-071, 2 carte(s) différente(s), roudi.suite → 2SA / roudi.suite → 3♥.
-- SEF-Q400-B-070 / SEF-Q400-B-072, 2 carte(s) différente(s), roudi.suite → 3SA / roudi.suite → 4♠.
-- SEF-Q400-B-073 / SEF-Q400-B-083, 1 carte(s) différente(s), roudi.suite → 2♠ / drury.reponse → 2♦.
-- SEF-Q400-B-077 / SEF-Q400-B-087, 2 carte(s) différente(s), drury.init → 2♣ / drury.suite → 3♠.
+17 mains retravaillées (16 puis 087), sans changer la distribution, la force, la décision ni les prérequis. Contrôle complet relancé : 191 500 comparaisons historiques et 4 950 comparaisons internes ; distance minimale de 3 cartes contre le catalogue et 3 cartes dans le lot. Aucun rapprochement à deux cartes ou moins. Les 100 mains, ID, choix, points H, formes et prérequis analogues sont conformes.
 
 Les groupes de réservoir ne garantissent pas la satisfaction réelle des expositions : maintenir tous les verrous et différer les extensions si les prérequis ne sont pas acquis. Les données restent hors production jusqu'à assemblage. Aucun merge.
