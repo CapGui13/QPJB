@@ -1,0 +1,33 @@
+name: Reprise 6 A - recette isolee
+on:
+  push:
+    branches: [coherence-concrete/reprise6-a-m1-ci]
+  pull_request:
+    branches: [coherence-concrete/reprise6-a-m1]
+permissions:
+  contents: read
+jobs:
+  matrix:
+    if: github.event_name == 'push' || github.head_ref == 'coherence-concrete/reprise6-a-m1-ci'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-reprise6-a-campaign.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" 180 "reprise6-a-output" saturation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-a-${{ matrix.profile }}-${{ matrix.seed }}
+          path: reprise6-a-output/
