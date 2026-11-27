@@ -23,3 +23,7 @@ Cumul : {"VALIDE":148,"RECLASSER_REFORMULER":35,"ERREUR_PEDAGOGIQUE":11,"ARBITRA
 ## Passe 6 (201–240)
 
 Cumul : {"VALIDE":176,"RECLASSER_REFORMULER":46,"ERREUR_PEDAGOGIQUE":11,"ARBITRAGE":7} ; 51 corrections, 6 propositions de réservoir, 2 propositions de prérequis. Questions manquantes ajoutées, bicolore cher et bicolore fort au palier de trois distingués, soutien différé forcing après 2/1 clarifié. V417-009 à arbitrer comme V416-004 (soutien mineur et ambition de manche). Contrôle ensemble exact des 240 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 214 restant à relire. Aucun test natif exécuté.
+
+## Passe 7 (241–280)
+
+Cumul : {"VALIDE":205,"RECLASSER_REFORMULER":55,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":8} ; 57 corrections, 6 propositions de réservoir, 6 propositions de prérequis (dont 3 transferts interlots proposés E, à arbitrer par coordinateur). L15-004 : fit mineur de huit cartes établi malgré préférence pour 3SA. V486-007 : arbitrage sur refus limite après 2SA fitté. 2SA fitté 11–12 HLD sans intervention / 11–15 après intervention, et priorité majeure quatrième avant 2SA, vérifiés dans sources Chailley, Sarzeau et Saint-Jean-de-Luz (SEF 2024). Les développements spécifiques du 2SA fitté restent à corroborer. Contrôle ensemble exact des 280 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 174 restant à relire. Aucun test natif exécuté.
