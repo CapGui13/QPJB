@@ -11,57 +11,59 @@ Contrat #546, mission #547, base 08fd5679d9f6b526dbcb5e5edc1cec8da201c0ad. Lot i
 
 ## Répartition et réserves
 
-- ouvertures : 35/35
-- reponses : 45/45
-- redemandes : 50/50
-- fit : 40/40
+- 35 ouvertures, 45 réponses naturelles, 50 redemandes et secondes enchères, 40 après fit. 48 familles.
+- Relecture des 170 mains enregistrées : remplacement de 12 cas de redemande par de vraies secondes enchères afin de renforcer la diversité des rôles et les réponses au bicolore cher. Un cas de Passe faible avec un 6–5 fitté mineur a aussi été remplacé par une main sans fit long.
+- Contrôle final exécuté après remplacement : 170 mains / H / forme / IDs / options / empreintes / prérequis / rattachements, zéro erreur. Les empreintes de décision comprennent concept, séquence hors Passe, position, réponse, force et forme. Les différences de force ou de forme à l'intérieur d'une famille servent de contraste ; ce n'est pas une garantie d'unicité conceptuelle au sens d'une expertise indépendante.
+- Les extensions S2 et la position S21 sont celles du programme existant, non des extensions nouvelles. Les seuils restent ceux des analogues. Les cas de jugement tactique en quatrième position restent des repères indicatifs, explicités dans les corrigés.
 
-- passe-courte-faible : 5
-- mineure-egalite-avec-courte : 5
-- mineure-trefle-six : 5
-- mineure-carreau-six : 5
-- majeure-bicolore-haut : 5
-- majeure-coeur-longueur : 2
-- quatrieme-passe-piques : 4
-- quatrieme-pique-couleur : 4
-- mineur-soutien-courte-pique : 1
-- mineur-soutien-courte-coeur : 1
-- mineur-priorite-coeur : 5
-- mineur-priorite-pique : 5
-- mineur-deux-majeures : 5
-- mineur-sa-regulier : 4
-- mineur-passe-longue : 4
-- majeur-pique-sur-coeur : 4
-- majeur-sa-coeur-long : 5
-- majeur-fit3-coeur : 4
-- majeur-fit4-pique : 4
-- majeur-fit4-coeur-simple : 3
-- red-sa-carreau : 5
-- red-six-piques : 4
-- red-fit-pique-carreau : 4
-- red-palier-un-coeur : 4
-- red-palier-un-pique : 4
-- red-eco-pique-carreau : 4
-- red-cher-carreau-sur-trefle : 5
-- red-cher-coeur-sur-carreau : 5
-- red-cher-refus-force : 4
-- red-cher-coeur-sur-trefle : 4
-- red-eco-coeur-trefle : 4
-- second-passe-fit-pique : 3
-- fit-direct-2sa-coeur-courte : 4
-- fit-direct-2sa-pique : 5
-- fit-2sa-suite-refus-coeur : 1
-- fit-2sa-suite-accept-pique : 5
-- fit-2sa-suite-accept-coeur : 5
-- fit-ouv-min-coeur : 1
-- fit-ouv-essai-pique : 4
-- fit-ouv-essai-coeur : 3
-- fit-rep-essai-coeur-refus : 4
-- fit-rep-essai-pique-accepte : 4
-- fit-rep-cible-carreau-accepte : 4
-
-Quota global atteint.
-
+- q685-a-quatrieme-passe-piques : 4
+- q685-a-quatrieme-pique-couleur : 4
+- q685-a-passe-courte-faible : 5
+- q685-a-mineure-egalite-avec-courte : 5
+- q685-a-mineure-trefle-six : 5
+- q685-a-mineure-carreau-six : 5
+- q685-a-majeure-bicolore-haut : 5
+- q685-a-majeure-coeur-longueur : 2
+- q685-a-mineur-soutien-courte-pique : 1
+- q685-a-mineur-soutien-courte-coeur : 1
+- q685-a-mineur-priorite-coeur : 5
+- q685-a-mineur-priorite-pique : 5
+- q685-a-mineur-deux-majeures : 5
+- q685-a-mineur-sa-regulier : 4
+- q685-a-mineur-passe-longue : 4
+- q685-a-majeur-pique-sur-coeur : 4
+- q685-a-majeur-sa-coeur-long : 5
+- q685-a-majeur-fit3-coeur : 4
+- q685-a-majeur-fit4-pique : 4
+- q685-a-majeur-fit4-coeur-simple : 3
+- q685-a-red-cher-carreau-sur-trefle : 4
+- q685-a-second-sa-coeur-cinq : 3
+- q685-a-red-cher-coeur-sur-carreau : 4
+- q685-a-red-cher-refus-force : 3
+- q685-a-red-cher-coeur-sur-trefle : 3
+- q685-a-second-sa-coeur-quatre : 1
+- q685-a-red-sa-carreau : 4
+- q685-a-second-cher-moderateur : 3
+- q685-a-red-six-piques : 3
+- q685-a-red-fit-pique-carreau : 3
+- q685-a-red-palier-un-coeur : 3
+- q685-a-second-cher-pique-cinq : 3
+- q685-a-red-palier-un-pique : 3
+- q685-a-red-eco-pique-carreau : 3
+- q685-a-red-eco-coeur-trefle : 3
+- q685-a-second-cher-manche-sa : 2
+- q685-a-second-passe-fit-pique : 2
+- q685-a-fit-direct-2sa-coeur-courte : 4
+- q685-a-fit-direct-2sa-pique : 5
+- q685-a-fit-2sa-suite-refus-coeur : 1
+- q685-a-fit-2sa-suite-accept-pique : 5
+- q685-a-fit-2sa-suite-accept-coeur : 5
+- q685-a-fit-ouv-min-coeur : 1
+- q685-a-fit-ouv-essai-pique : 4
+- q685-a-fit-ouv-essai-coeur : 3
+- q685-a-fit-rep-essai-coeur-refus : 4
+- q685-a-fit-rep-essai-pique-accepte : 4
+- q685-a-fit-rep-cible-carreau-accepte : 4
 
 ## Revue individuelle
 
@@ -125,7 +127,7 @@ Quota global atteint.
 | SEF-Q685-A-056 | R106/92/10854/RD96 | 8 / 3-2-4-4 | 1SA | SEF-020-3 | S2 | Force limitée, pas de majeure quatrième. Le jeu régulier et l'absence de soutien cinquième à Carreau orientent vers 1SA. |
 | SEF-Q685-A-057 | D764//98754/10753 | 2 / 4-0-5-4 | Passe | SEF-024-2 | S2 | La présence de cinq Carreaux ne compense pas une force insuffisante. Sans fit majeur et sous le seuil de réponse, Passe. |
 | SEF-Q685-A-058 | D5/43/97653/6543 | 2 / 2-2-5-4 | Passe | SEF-024-2 | S2 | La présence de cinq Carreaux ne compense pas une force insuffisante. Sans fit majeur et sous le seuil de réponse, Passe. |
-| SEF-Q685-A-059 | V/V/95432/1098732 | 2 / 1-1-5-6 | Passe | SEF-024-2 | S2 | La présence de cinq Carreaux ne compense pas une force insuffisante. Sans fit majeur et sous le seuil de réponse, Passe. |
+| SEF-Q685-A-059 | R83/74/V10852/964 | 4 / 3-2-5-3 | Passe | SEF-024-2 | S2 | La présence de cinq Carreaux ne compense pas une force insuffisante. Sans fit majeur et sous le seuil de réponse, Passe. |
 | SEF-Q685-A-060 | A54/10986/76532/6 | 4 / 3-4-5-1 | Passe | SEF-024-2 | S2 | La présence de cinq Carreaux ne compense pas une force insuffisante. Sans fit majeur et sous le seuil de réponse, Passe. |
 | SEF-Q685-A-061 | 98753/10/AV82/A52 | 9 / 5-1-4-3 | 1♠ | SEF-V410-022 | S2 | Cinq Piques et pas de fit Cœur. La réponse naturelle 1♠ est prioritaire sur 1SA ; elle ne promet pas une main de manche. |
 | SEF-Q685-A-062 | A9762/V6/10762/V3 | 6 / 5-2-4-2 | 1♠ | SEF-V410-022 | S2 | Cinq Piques et pas de fit Cœur. La réponse naturelle 1♠ est prioritaire sur 1SA ; elle ne promet pas une main de manche. |
@@ -151,52 +153,52 @@ Quota global atteint.
 | SEF-Q685-A-082 | D/V72/ARV10/ARV84 | 19 / 1-3-4-5 | 2♦ | SEF-V44-020 | S20 | 20 HL, 5 Trèfles et quatre Carreaux. 2♦ est cher : revenir à Trèfle coûte un palier. Le seuil de 18 HL est atteint ; enchère forcing et auto-forcing. |
 | SEF-Q685-A-083 | V/DV/AD53/ARV1074 | 18 / 1-2-4-6 | 2♦ | SEF-V44-020 | S20 | 20 HL, 6 Trèfles et quatre Carreaux. 2♦ est cher : revenir à Trèfle coûte un palier. Le seuil de 18 HL est atteint ; enchère forcing et auto-forcing. |
 | SEF-Q685-A-084 | V3/A/ARDV/D76532 | 17 / 2-1-4-6 | 2♦ | SEF-V44-020 | S20 | 19 HL, 6 Trèfles et quatre Carreaux. 2♦ est cher : revenir à Trèfle coûte un palier. Le seuil de 18 HL est atteint ; enchère forcing et auto-forcing. |
-| SEF-Q685-A-085 | ARV/R/A1032/R10986 | 18 / 3-1-4-5 | 2♦ | SEF-V44-020 | S20 | 19 HL, 5 Trèfles et quatre Carreaux. 2♦ est cher : revenir à Trèfle coûte un palier. Le seuil de 18 HL est atteint ; enchère forcing et auto-forcing. |
+| SEF-Q685-A-085 | 105/A8762/9432/D3 | 6 / 2-5-4-2 | 2♥ | SEF-052-3 | S11 | Cinq Cœurs en face d’une redemande régulière 12–14 H : la répétition 2♥ est naturelle, non forcing, et propose une partielle. L'invitation à 2SA surestimerait la force. |
 | SEF-Q685-A-086 | V6/AR107/AR9843/D | 17 / 2-4-6-1 | 2♥ | SEF-V410-007 | S20 | 19 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois. |
 | SEF-Q685-A-087 | AR8/D532/ARV953/ | 17 / 3-4-6-0 | 2♥ | SEF-V410-007 | S20 | 19 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois. |
 | SEF-Q685-A-088 | /ARDV/RV8754/AV5 | 19 / 0-4-6-3 | 2♥ | SEF-V410-007 | S20 | 21 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois. |
 | SEF-Q685-A-089 | /AV65/ARV1097/AV3 | 18 / 0-4-6-3 | 2♥ | SEF-V410-007 | S20 | 20 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois. |
-| SEF-Q685-A-090 | A/A932/RDV1086/DV | 17 / 1-4-6-2 | 2♥ | SEF-V410-007 | S20 | 19 HL et bicolore 6–4. 2♥ force un tour et est auto-forcing ; une préférence à Carreau serait au palier de trois. |
+| SEF-Q685-A-090 | R10/D10973/10432/D8 | 7 / 2-5-4-2 | 2♥ | SEF-052-3 | S11 | Cinq Cœurs en face d’une redemande régulière 12–14 H : la répétition 2♥ est naturelle, non forcing, et propose une partielle. L'invitation à 2SA surestimerait la force. |
 | SEF-Q685-A-091 | R/D832/DV10984/RV | 12 / 1-4-6-2 | 2♦ | SEF-V44-020 | S20 | 14 HL, sous les 18 HL requis pour 2♥ cher. Six Carreaux permettent la répétition 2♦, sans obliger à monter à trois. |
 | SEF-Q685-A-092 | A/A742/R106432/D2 | 13 / 1-4-6-2 | 2♦ | SEF-V44-020 | S20 | 15 HL, sous les 18 HL requis pour 2♥ cher. Six Carreaux permettent la répétition 2♦, sans obliger à monter à trois. |
 | SEF-Q685-A-093 | /ARD4/D98752/DV7 | 14 / 0-4-6-3 | 2♦ | SEF-V44-020 | S20 | 16 HL, sous les 18 HL requis pour 2♥ cher. Six Carreaux permettent la répétition 2♦, sans obliger à monter à trois. |
-| SEF-Q685-A-094 | D/AD105/1097642/AD | 14 / 1-4-6-2 | 2♦ | SEF-V44-020 | S20 | 16 HL, sous les 18 HL requis pour 2♥ cher. Six Carreaux permettent la répétition 2♦, sans obliger à monter à trois. |
+| SEF-Q685-A-094 | R9/D8754/8762/R8 | 8 / 2-5-4-2 | 2♥ | SEF-052-3 | S11 | Cinq Cœurs en face d’une redemande régulière 12–14 H : la répétition 2♥ est naturelle, non forcing, et propose une partielle. L'invitation à 2SA surestimerait la force. |
 | SEF-Q685-A-095 | D2/ARD10/V/AV9852 | 17 / 2-4-1-6 | 2♥ | SEF-V410-007 | S20 | 19 HL. 6 Trèfles puis quatre Cœurs : 2♥ est cher car la préférence à Trèfle impose le palier de trois. La force autorise ce risque. |
 | SEF-Q685-A-096 | /ARDV/D52/RDV762 | 18 / 0-4-3-6 | 2♥ | SEF-V410-007 | S20 | 20 HL. 6 Trèfles puis quatre Cœurs : 2♥ est cher car la préférence à Trèfle impose le palier de trois. La force autorise ce risque. |
 | SEF-Q685-A-097 | R/AR97/102/ARV643 | 18 / 1-4-2-6 | 2♥ | SEF-V410-007 | S20 | 20 HL. 6 Trèfles puis quatre Cœurs : 2♥ est cher car la préférence à Trèfle impose le palier de trois. La force autorise ce risque. |
-| SEF-Q685-A-098 | R/D1063/AR10/AV742 | 17 / 1-4-3-5 | 2♥ | SEF-V410-007 | S20 | 18 HL. 5 Trèfles puis quatre Cœurs : 2♥ est cher car la préférence à Trèfle impose le palier de trois. La force autorise ce risque. |
+| SEF-Q685-A-098 | 1042/A1043/107/D983 | 6 / 3-4-2-4 | Passe | SEF-054-1 | S11 | Quatre Cœurs seulement et force limitée : la répétition promettrait à tort une cinquième. Conserver 1SA. |
 | SEF-Q685-A-099 | R75/DV/A1082/R1098 | 13 / 3-2-4-4 | 1SA | SEF-044-1 | S5 | Main régulière de 12–14 H, pas de quatre Cœurs ni de quatre Piques. 1SA décrit la zone ; 2♦ promettrait une longueur que la main n'a pas. |
 | SEF-Q685-A-100 | AD9/93/AR853/732 | 13 / 3-2-5-3 | 1SA | SEF-044-1 | S5 | Main régulière de 12–14 H, pas de quatre Cœurs ni de quatre Piques. 1SA décrit la zone ; 2♦ promettrait une longueur que la main n'a pas. |
 | SEF-Q685-A-101 | 542/RDV/AV942/V10 | 12 / 3-3-5-2 | 1SA | SEF-044-1 | S5 | Main régulière de 12–14 H, pas de quatre Cœurs ni de quatre Piques. 1SA décrit la zone ; 2♦ promettrait une longueur que la main n'a pas. |
 | SEF-Q685-A-102 | DV9/D5/V8643/AD6 | 12 / 3-2-5-3 | 1SA | SEF-044-1 | S5 | Main régulière de 12–14 H, pas de quatre Cœurs ni de quatre Piques. 1SA décrit la zone ; 2♦ promettrait une longueur que la main n'a pas. |
-| SEF-Q685-A-103 | AV/AD3/DV953/1054 | 14 / 2-3-5-3 | 1SA | SEF-044-1 | S5 | Main régulière de 12–14 H, pas de quatre Cœurs ni de quatre Piques. 1SA décrit la zone ; 2♦ promettrait une longueur que la main n'a pas. |
+| SEF-Q685-A-103 | A972/73/1073/D1075 | 6 / 4-2-3-4 | 2SA | SEF-L16-001 | S20 | Le bicolore cher oblige à reparler. Quatre Piques seulement, pas de fit Cœur, force limitée : 2SA est modérateur, non une proposition naturelle de manche. |
 | SEF-Q685-A-104 | A109865/A108/D/A108 | 14 / 6-3-1-3 | 2♠ | SEF-050-2 | S5 | Six Piques, aucune couleur annexe quatrième, force minimale : répéter 2♠. Sur 1SA non forcing, 2SA serait trop fort. |
 | SEF-Q685-A-105 | AR9854/963/RV/D3 | 13 / 6-3-2-2 | 2♠ | SEF-050-2 | S5 | Six Piques, aucune couleur annexe quatrième, force minimale : répéter 2♠. Sur 1SA non forcing, 2SA serait trop fort. |
 | SEF-Q685-A-106 | AV9863/A/V98/A107 | 14 / 6-1-3-3 | 2♠ | SEF-050-2 | S5 | Six Piques, aucune couleur annexe quatrième, force minimale : répéter 2♠. Sur 1SA non forcing, 2SA serait trop fort. |
-| SEF-Q685-A-107 | AD10963/A32/V/D94 | 13 / 6-3-1-3 | 2♠ | SEF-050-2 | S5 | Six Piques, aucune couleur annexe quatrième, force minimale : répéter 2♠. Sur 1SA non forcing, 2SA serait trop fort. |
+| SEF-Q685-A-107 | DV75/R10/V64/9752 | 7 / 4-2-3-4 | 2SA | SEF-L16-001 | S20 | Le bicolore cher oblige à reparler. Quatre Piques seulement, pas de fit Cœur, force limitée : 2SA est modérateur, non une proposition naturelle de manche. |
 | SEF-Q685-A-108 | AV92/102/A1075/A63 | 13 / 4-2-4-3 | 2♠ | SEF-N107-2 | S5 | Quatre Piques face à au moins quatre : le fit est établi. Le jeu est minimum, 2♠ plutôt que 1SA ou un soutien à saut. |
 | SEF-Q685-A-109 | A732/RD6/108754/R | 12 / 4-3-5-1 | 2♠ | SEF-N107-2 | S5 | Quatre Piques face à au moins quatre : le fit est établi. Le jeu est minimum, 2♠ plutôt que 1SA ou un soutien à saut. |
 | SEF-Q685-A-110 | 10954/D/DV1063/AR2 | 12 / 4-1-5-3 | 2♠ | SEF-N107-2 | S5 | Quatre Piques face à au moins quatre : le fit est établi. Le jeu est minimum, 2♠ plutôt que 1SA ou un soutien à saut. |
-| SEF-Q685-A-111 | RV43/A/V954/RV97 | 13 / 4-1-4-4 | 2♠ | SEF-N107-2 | S5 | Quatre Piques face à au moins quatre : le fit est établi. Le jeu est minimum, 2♠ plutôt que 1SA ou un soutien à saut. |
+| SEF-Q685-A-111 | R964/V10/A62/10982 | 8 / 4-2-3-4 | 2SA | SEF-L16-001 | S20 | Le bicolore cher oblige à reparler. Quatre Piques seulement, pas de fit Cœur, force limitée : 2SA est modérateur, non une proposition naturelle de manche. |
 | SEF-Q685-A-112 | D/R972/RD6/D8762 | 12 / 1-4-3-5 | 1♥ | SEF-Q400-A-064 | S11 | 1♥ montre quatre Cœurs au palier de un. La nouvelle couleur n'exige pas cinq Trèfles ; 1SA masquerait une majeure disponible. |
 | SEF-Q685-A-113 | /D843/AR103/RV872 | 13 / 0-4-4-5 | 1♥ | SEF-Q400-A-064 | S11 | 1♥ montre quatre Cœurs au palier de un. La nouvelle couleur n'exige pas cinq Trèfles ; 1SA masquerait une majeure disponible. |
 | SEF-Q685-A-114 | 102/ARD9/V94/RV84 | 14 / 2-4-3-4 | 1♥ | SEF-Q400-A-064 | S11 | 1♥ montre quatre Cœurs au palier de un. La nouvelle couleur n'exige pas cinq Trèfles ; 1SA masquerait une majeure disponible. |
-| SEF-Q685-A-115 | V/ADV5/RD10/V10764 | 14 / 1-4-3-5 | 1♥ | SEF-Q400-A-064 | S11 | 1♥ montre quatre Cœurs au palier de un. La nouvelle couleur n'exige pas cinq Trèfles ; 1SA masquerait une majeure disponible. |
+| SEF-Q685-A-115 | A10875/V83/V7/1083 | 6 / 5-3-2-3 | 2♠ | SEF-L15-001 | S20 | Cinq Piques et force faible : 2♠ montre la cinquième carte sans promettre la manche. Passe est interdit sur le bicolore cher ; 3♠ surévaluerait la main. |
 | SEF-Q685-A-116 | AR53/D7/DV92/1085 | 12 / 4-2-4-3 | 1♠ | SEF-042-2 | S11 | Quatre Piques sans fit Cœur connu : 1♠ est la redemande économique et naturelle. 1SA dissimulerait les Piques. |
 | SEF-Q685-A-117 | 7543/RD/AV73/A72 | 14 / 4-2-4-3 | 1♠ | SEF-042-2 | S11 | Quatre Piques sans fit Cœur connu : 1♠ est la redemande économique et naturelle. 1SA dissimulerait les Piques. |
 | SEF-Q685-A-118 | DV75/A73/RD632/V | 13 / 4-3-5-1 | 1♠ | SEF-042-2 | S11 | Quatre Piques sans fit Cœur connu : 1♠ est la redemande économique et naturelle. 1SA dissimulerait les Piques. |
-| SEF-Q685-A-119 | RV76//R8654/AR87 | 14 / 4-0-5-4 | 1♠ | SEF-042-2 | S11 | Quatre Piques sans fit Cœur connu : 1♠ est la redemande économique et naturelle. 1SA dissimulerait les Piques. |
+| SEF-Q685-A-119 | A10742/V54/D4/764 | 7 / 5-3-2-3 | 2♠ | SEF-L15-001 | S20 | Cinq Piques et force faible : 2♠ montre la cinquième carte sans promettre la manche. Passe est interdit sur le bicolore cher ; 3♠ surévaluerait la main. |
 | SEF-Q685-A-120 | R10842/AR10/10852/D | 12 / 5-3-4-1 | 2♦ | SEF-051-1 | S11 | Cinq Piques et quatre Carreaux. 2♦ décrit la seconde couleur, et la préférence à 2♠ reste possible au même palier. |
 | SEF-Q685-A-121 | 98643/D/ARV2/D94 | 12 / 5-1-4-3 | 2♦ | SEF-051-1 | S11 | Cinq Piques et quatre Carreaux. 2♦ décrit la seconde couleur, et la préférence à 2♠ reste possible au même palier. |
 | SEF-Q685-A-122 | DV732/RDV/RV106/V | 14 / 5-3-4-1 | 2♦ | SEF-051-1 | S11 | Cinq Piques et quatre Carreaux. 2♦ décrit la seconde couleur, et la préférence à 2♠ reste possible au même palier. |
-| SEF-Q685-A-123 | V9743/A103/RD107/R | 13 / 5-3-4-1 | 2♦ | SEF-051-1 | S11 | Cinq Piques et quatre Carreaux. 2♦ décrit la seconde couleur, et la préférence à 2♠ reste possible au même palier. |
+| SEF-Q685-A-123 | R8432/DV4/107/D107 | 8 / 5-3-2-3 | 2♠ | SEF-L15-001 | S20 | Cinq Piques et force faible : 2♠ montre la cinquième carte sans promettre la manche. Passe est interdit sur le bicolore cher ; 3♠ surévaluerait la main. |
 | SEF-Q685-A-124 | V/AV864/AD7/10864 | 12 / 1-5-3-4 | 2♣ | SEF-N126-1 | S11 | Cinq Cœurs, quatre Trèfles, pas de soutien quatrième à Pique. 2♣ décrit la seconde couleur et laisse la préférence à 2♥. |
 | SEF-Q685-A-125 | RD4/RD1082/V/R654 | 14 / 3-5-1-4 | 2♣ | SEF-N126-1 | S11 | Cinq Cœurs, quatre Trèfles, pas de soutien quatrième à Pique. 2♣ décrit la seconde couleur et laisse la préférence à 2♥. |
 | SEF-Q685-A-126 | R6/R10965/AD/10854 | 12 / 2-5-2-4 | 2♣ | SEF-N126-1 | S11 | Cinq Cœurs, quatre Trèfles, pas de soutien quatrième à Pique. 2♣ décrit la seconde couleur et laisse la préférence à 2♥. |
-| SEF-Q685-A-127 | R/85432/DV4/AR103 | 13 / 1-5-3-4 | 2♣ | SEF-N126-1 | S11 | Cinq Cœurs, quatre Trèfles, pas de soutien quatrième à Pique. 2♣ décrit la seconde couleur et laisse la préférence à 2♥. |
+| SEF-Q685-A-127 | 10654/V2/RD2/RDV3 | 12 / 4-2-3-4 | 3SA | SEF-L15-003 | S20 | Quatre Piques seulement, pas de fit Cœur, tenue Trèfle et force suffisante face au bicolore cher : 3SA conclut plutôt que le modérateur. |
 | SEF-Q685-A-128 | 10973/52/D1065/A97 | 6 / 4-2-4-3 | Passe | SEF-V49-022 | S11 | Le soutien simple confirme le fit 4–4. La force limitée du répondant ne permet pas une invitation : conserver 2♠. |
 | SEF-Q685-A-129 | A1076/96/D84/10643 | 6 / 4-2-3-4 | Passe | SEF-V49-022 | S11 | Le soutien simple confirme le fit 4–4. La force limitée du répondant ne permet pas une invitation : conserver 2♠. |
-| SEF-Q685-A-130 | V862/9/A73/V10865 | 6 / 4-1-3-5 | Passe | SEF-V49-022 | S11 | Le soutien simple confirme le fit 4–4. La force limitée du répondant ne permet pas une invitation : conserver 2♠. |
+| SEF-Q685-A-130 | 10864/98/A4/AR852 | 11 / 4-2-2-5 | 3SA | SEF-L15-003 | S20 | Quatre Piques seulement, pas de fit Cœur, tenue Trèfle et force suffisante face au bicolore cher : 3SA conclut plutôt que le modérateur. |
 | SEF-Q685-A-131 | 8/D93/RD82/V8653 | 8 / 1-3-4-5 | 2SA | SEF-N051-2 | S12 | 11 HLD, exactement trois Cœurs. L'invitation se fait par 2SA fitté ; 3♥ promettrait quatre atouts. |
 | SEF-Q685-A-132 | A/RV7/87653/10864 | 8 / 1-3-5-4 | 2SA | SEF-N051-2 | S12 | 11 HLD, exactement trois Cœurs. L'invitation se fait par 2SA fitté ; 3♥ promettrait quatre atouts. |
 | SEF-Q685-A-133 | R/AD7/7654/98762 | 9 / 1-3-4-5 | 2SA | SEF-N051-2 | S12 | 12 HLD, exactement trois Cœurs. L'invitation se fait par 2SA fitté ; 3♥ promettrait quatre atouts. |
