@@ -31,3 +31,26 @@ jobs:
         with:
           name: comparatif-s1-s5
           path: pilot-output/
+  longitudinal:
+    if: github.head_ref == 'pedagogie/pilote-s1-s5-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/pedagogie-pilote-longitudinal.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" pilot-longitudinal.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilote-longitudinal-${{ matrix.profile }}-${{ matrix.seed }}
+          path: pilot-longitudinal.json
