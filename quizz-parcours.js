@@ -762,12 +762,26 @@ return Object.freeze({schema,mode:'T',choose});
     }
     return {seen,basic,proofs,byConcept,lastTheme,lastFamily,lastConcept,weakConcept,weakContext,recent,localTargets,localFragility};
   }
+  // #526: elementary redemands only; explicitly reviewed one-level sequences.
+  const PILOT_RED=new Set(['SEF-044-1','SEF-044-2','SEF-048-1','SEF-050-2','SEF-N106-1','SEF-N106-2','SEF-N107-2','SEF-N108-1','SEF-N109-1','SEF-N114-1','SEF-N115-1','SEF-N116-1','SEF-N117-1','SEF-N121-1','SEF-N122-1','SEF-N123-2','SEF-N123-1','SEF-N124-1','SEF-V49-018','SEF-V49-021','SEF-V49-036','SEF-V49-037','SEF-V49-042','SEF-V410-003','SEF-V410-004','SEF-V412-001']);
+  function pilotRedReady(e,s){
+    const recent=e.recent.filter(x=>x.s>=s-2);
+    return recent.length>=10&&recent.filter(x=>!weakAnswer(x.a)).length>=recent.length/2&&
+      ['mineur.base','majeur.base'].every(c=>e.recent.some(x=>metadata(x.q)?.concept===c&&!weakAnswer(x.a)&&bid(x.q)!=='Passe'));
+  }
+  function pilotRedRole(q){
+    if(!PILOT_RED.has(q.id))return '';
+    if(bid(q)==='1SA')return 'sa';
+    const first=opener(q);
+    return bid(q)==='2'+first[1]?'repeat':'support';
+  }
   function evaluate(q,state,e){
     const s=state.completed,m=metadata(q),reasons=[];
     if(!Object.hasOwn(INTRO,q.theme)||!Number.isInteger(q.difficulty)||q.difficulty<1||q.difficulty>5)
       reasons.push('catalogue-invalid');
     if(!m)return {eligible:false,reasons:[...reasons,'prerequisite-metadata-missing']};
-    if(s<INTRO[q.theme]||s<m.minSession)reasons.push('calendar');
+    const pilotAdvance=s===3&&q.theme==='red'&&m.concept==='red.base'&&m.minSession===4&&m.stage===0&&q.difficulty===2&&PILOT_RED.has(q.id)&&pilotRedReady(e,s);
+    if((s<INTRO[q.theme]||s<m.minSession)&&!pilotAdvance)reasons.push('calendar');
     if(q.theme==='ouv'&&bid(q)==='2♣'&&s<INTRO.fortes)reasons.push('strong-opening');
     if(s===0&&q.theme!=='ouv')reasons.push('first-openings-only');
     if(s===0&&q.theme==='ouv'&&(!['1♣','1♦','1♥','1♠','1SA','Passe'].includes(bid(q))||
@@ -995,7 +1009,13 @@ return Object.freeze({schema,mode:'T',choose});
     // Candidate #396 : départage après S20, à score et strate pédagogique identiques.
     const durableSelection=s>=20&&durable?.schema==='QPJB_DURABLE_INTEGRATION_V1'
       ?durable.prepareSelection({history:state,exercises,metadataById:prerequis.byId,nowMs:Date.now()}):null;
+    const pilot=options.pilotEarly!==false&&s<5&&limit===10;
     let pool=eligiblePool(exercises,state,e);
+    if(!pilot&&s===3)pool=pool.filter(q=>q.theme!=='red');
+    // S5 is a reinforcement block, not a simultaneous introduction of Texas and Stayman.
+    // No blanket change to the catalogue or subsequent selection policy.
+    if(pilot&&s===4)pool=pool.filter(q=>!/^sa1\.(texas|stayman)(\.|$)/.test(metadata(q).concept)&&
+      (q.theme!=='red'||pilotRedReady(e,s)&&PILOT_RED.has(q.id)));
     if(s===1||s===2){const early=pool.filter(q=>!minorSupport(q)&&(!majorSupport(q)||majorThree(q)));if(new Set(early.map(family)).size>=limit)pool=early;}
     const previous=state.entries||{};
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
@@ -1083,6 +1103,9 @@ return Object.freeze({schema,mode:'T',choose});
       const moreHard=profile!=='weak'||hardChosen<2||
         !pool.some(v=>v.difficulty<=3&&!ids.has(v.id)&&(!openingPass(v)||passCount()<passCap));
       const baseAvailable=q=>!ids.has(q.id)&&(!openingPass(q)||passCount()<passCap)&&
+        (!pilot||s!==2||mOf(q).concept!=='ouv.sa2'||!concepts['ouv.sa2'])&&
+        (!pilot||s!==3||mOf(q).concept!=='sa1.seuil'||!(selected.some(v=>mOf(v.exercise).concept==='sa1.seuil'&&bid(v.exercise)===bid(q))))&&
+        (!pilot||s<3||q.theme!=='red'||!selected.some(v=>v.exercise.theme==='red'&&pilotRedRole(v.exercise)===pilotRedRole(q)))&&
         (q.difficulty<=3||moreHard);
       // Quand le réservoir de familles nouvelles se raréfie, ne pas
       // concentrer la séance dans une seule rubrique si un rappel éligible
@@ -1182,7 +1205,19 @@ return Object.freeze({schema,mode:'T',choose});
       const targets=limit===8?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe']:
         limit===9?['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe']:
         ['1♣','1♦','1♥','1♠','1SA','1♣','1♦','Passe','Passe','Passe'];
-      for(const answer of targets)opening(answer,answer==='Passe');
+      for(const answer of targets){
+        let candidates=[];
+        if(pilot&&answer==='1♣'){
+          const seen=selected.some(v=>bid(v.exercise)===answer);
+          candidates=pool.filter(q=>bid(q)===answer&&q.theme==='ouv'&&(seen?q.shape[3]>q.shape[2]:q.shape[3]===3&&q.shape[2]===3));
+        }else if(pilot&&answer==='1♦'){
+          const seen=selected.some(v=>bid(v.exercise)===answer);
+          candidates=pool.filter(q=>bid(q)===answer&&q.theme==='ouv'&&(seen?q.shape[2]>q.shape[3]:q.shape[2]===4&&q.shape[3]===4));
+        }else if(pilot&&answer==='Passe'&&!selected.some(v=>openingPass(v.exercise)&&v.exercise.h>=10)){
+          candidates=pool.filter(q=>simplePass(q)&&q.h>=10&&q.shape.every(n=>n>=2&&n<=4));
+        }
+        if(!candidates.length||!choose(candidates,'discovery','equilibre_ouvertures',true))opening(answer,answer==='Passe');
+      }
     }
     if(s===1&&limit>=10){
       opening('1♣');opening('1♦');
@@ -1203,6 +1238,29 @@ return Object.freeze({schema,mode:'T',choose});
         const recallLimit=profile==='weak'?2:1;
         for(let i=0;i<recallLimit&&selected.length<limit&&repeatedFamilies<Math.max(1,repeatBudget);i++)
           if(!choose(pool.filter(q=>due(q)&&bad(q)),'weakness','rappel_erreur_aide'))break;
+      }
+      if(pilot&&s===2){
+        // A genuine pair in the scored deck: same opening, exactly three trumps,
+        // insufficient force versus a simple raise. Never count an opening Passe.
+        const fitPass=q=>mOf(q).concept==='majeur.soutien'&&q.auction?.length===1&&/^1[♥♠]$/.test(opener(q))&&bid(q)==='Passe'&&q.shape[opener(q)==='1♠'?0:1]===3&&q.difficulty<=2;
+        const pairs=['1♥','1♠'].filter(o=>pool.some(q=>opener(q)===o&&fitPass(q))&&pool.some(q=>opener(q)===o&&majorThree(q)));
+        const current=selected.find(v=>majorThree(v.exercise)||fitPass(v.exercise));
+        const lead=current&&pairs.includes(opener(current.exercise))?opener(current.exercise):pairs[0];
+        if(lead){
+          if(!selected.some(v=>opener(v.exercise)===lead&&majorThree(v.exercise)))choose(pool.filter(q=>opener(q)===lead&&majorThree(q)),'discovery',null,true);
+          if(!selected.some(v=>opener(v.exercise)===lead&&fitPass(v.exercise)))choose(pool.filter(q=>opener(q)===lead&&fitPass(q)),'discovery',null,true);
+        }
+      }
+      if(pilot&&s===3){
+        // Preserve the three distinct decisions on 1SA, not four similar examples.
+        for(const answer of ['Passe','2SA','3SA'])
+          if(selected.length<limit&&!selected.some(v=>mOf(v.exercise).concept==='sa1.seuil'&&bid(v.exercise)===answer))
+            choose(pool.filter(q=>mOf(q).concept==='sa1.seuil'&&bid(q)===answer&&q.difficulty===1),'discovery',null,true);
+      }
+      if(pilot&&(s===3||s===4)&&pilotRedReady(e,s)){
+        for(const role of ['sa','repeat','support'])
+          if(selected.length<limit&&!selected.some(v=>pilotRedRole(v.exercise)===role))
+            choose(pool.filter(q=>pilotRedRole(q)===role),null,null,true);
       }
       // Réserver au plus une découverte éligible et un rappel fondamental
       // ancien, après le rappel explicite des erreurs.
