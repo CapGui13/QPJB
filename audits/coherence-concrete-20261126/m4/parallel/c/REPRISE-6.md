@@ -1,0 +1,5 @@
+# Passe 6 — S21–65, cas cible/11
+
+Trace réelle figée: audits/coherence-concrete-20261126/m4/variant-c2-s180/cible-11.json, bras before, blob e9083afc1cbbdcd6b4fd2c4169764d22274bf3ad. 45 séances, 450 occurrences, 428 ID distincts (une trajectoire et non matrice 18). 306 ID non revus à la reprise. 55 nouveaux ID revus en IA, 5 concepts, 221 assertions V8. 479 ID revus au total, 177/428 pour cette trajectoire. Les 1491 classifications initiales diminuent à 1436. Aucune validation humaine, pas de test moteur.
+
+Contrastes: 2SA Multi-Landy bicolore mineur selon variante, 2SA Drury fitté 4 atouts + singleton/chicane après Passe, 2SA derrière soutien mineur adverse deux couleurs libres les moins chères. Michaels réveil sur deux Passe ≠ intervention quatrième derrière soutien adverse. 2 sur 1 après intervention couleur forcing un tour non auto-forcing ≠ après Contre non forcing ≠ silence auto-forcing. Deux cas HOLD: SEF-L10-021 (2♠ légal absent des choix, 3♠ tactique), SEF-L30-005 (Passe autorisé mais pas obligatoire). Aucune correction canonique appliquée.
