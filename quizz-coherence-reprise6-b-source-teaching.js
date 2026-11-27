@@ -16,6 +16,6 @@ function instrumentHTML(html){
  const anchor='function professeurFeedbackHTML(x,current){';
  if(html.split(anchor).length!==2||html.split(MARK).length!==2)throw Error('B: feedback anchor drift');
  const fn=supplement.toString().replace('FIRST.includes(q.id)',JSON.stringify(FIRST)+'.includes(q.id)').replace('return CONTRAST;', 'return '+JSON.stringify(CONTRAST)+';');
- return html.replace(anchor,fn+'\n'+anchor).replace(MARK,'${escapeHTML(x.explain)}${(()=>{const cue=supplement(x,sessionType,current?.result);return cue?" "+escapeHTML(cue):""})()}');
+ return html.replace(anchor,fn+'\n'+anchor).replace(MARK,'${escapeHTML(x.explain)}${(()=>{const cue=supplement(x,parcoursState.active?.mode==='consolidation'?'consolidation':sessionType,current?.result);return cue?" "+escapeHTML(cue):""})()}');
 }
 module.exports={FIRST,CONTRAST,supplement,instrumentHTML};
