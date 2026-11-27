@@ -47,7 +47,7 @@ Premier passage : 88/100 candidats retenus, 12 rejetés (H/forme/zone), corrigé
 | SEF-Q400-B-017 | 11 | 3–3–4–3 | 3SA | SEF-V44-014 | 9 | Avec 11 H, le maximum cumulé est 32 H : pas d’invitation au petit chelem à 4SA. |
 | SEF-Q400-B-018 | 3 | 3–4–2–4 | Passe | V2-M2-001 | 13 | Quatre Cœurs ne suffisent pas : 3 H et une main sans longue cinquième ne justifient pas d’imposer la manche. |
 | SEF-Q400-B-019 | 8 | 4–2–4–3 | 2♣ | SEF-N094-3 | 7 | Quatre Piques et la force d’invitation : cherchez le fit 4–4 avant de décider du palier. |
-| SEF-Q400-B-020 | 10 | 3–4–3–3 | 2♣ | SEF-035-2 | 7 | Avec quatre Cœurs et les valeurs de manche, Stayman est préférable au Texas qui demanderait cinq Cœurs. |
+| SEF-Q400-B-020 | 10 | 2–4–4–3 | 2♣ | SEF-035-2 | 7 | Quatre Cœurs et quatre Carreaux, mais aucune majeure cinquième. Avec les valeurs de manche, 2♣ recherche le fit 4–4 à Cœur ; 2♦ Texas demanderait cinq Cœurs. |
 | SEF-Q400-B-021 | 10 | 4–4–2–3 | 2♣ | SEF-036-1 | 7 | Les deux majeures quatrièmes sont recherchées par un seul Stayman ; ni Texas ne décrit correctement cette main. |
 | SEF-Q400-B-022 | 0 | 2–6–3–2 | 2♦ | SEF-N082-2 | 6 | Six Cœurs sans honneur : le Texas faible à 2♦ est possible sans aucune force minimale ; la longue sixième assure au moins huit atouts face à une main régulière. |
 | SEF-Q400-B-023 | 2 | 5–2–4–2 | 2♥ | SEF-V44-016 | 6 | Cinq Piques et seulement 2 H : cherchez la partielle par 2♥ Texas. Les quatre Carreaux ne sont pas une raison de privilégier une autre enchère. |
@@ -81,7 +81,7 @@ Premier passage : 88/100 candidats retenus, 12 rejetés (H/forme/zone), corrigé
 | SEF-Q400-B-051 | 14 | 3–3–1–6 | 3SA | SEF-V482-007 | 28 | Après le Texas Trèfle rectifié, 3SA montre conventionnellement la courte Carreau. Ce n’est pas une conclusion naturelle. |
 | SEF-Q400-B-052 | 20 | 4–3–4–2 | 3SA | SEF-L41-004 | 28 | Deux petits Trèfles ne permettent pas d’accepter le Texas fitté. 3SA garde la manche naturelle. |
 | SEF-Q400-B-053 | 7 | 5–5–2–1 | 4♦ | SEF-Q26-M2-010 | 28 | Les deux majeures cinquièmes et les valeurs de manche justifient le 4♦ de choix de manche dans cet accord ; un Texas simple masquerait l’autre majeure. |
-| SEF-Q400-B-054 | 20 | 3–2–4–4 | 4♠ | SEF-PN26-M1-030 | 28 | Trois Piques contre deux Cœurs : choisissez la majeure où huit atouts sont garantis face au double cinq. |
+| SEF-Q400-B-054 | 20 | 4–3–3–3 | 4♠ | SEF-PN26-M1-030 | 28 | Les deux majeures offrent un fit face aux deux cinquièmes annoncées. Avec quatre Piques de belle qualité contre trois Cœurs, choisissez le fit neuvième à 4♠ plutôt que le fit huitième à Cœur. |
 | SEF-Q400-B-055 | 12 | 2–5–3–3 | 2♣ | SEF-V4-073-1 | 29 | Avec cinq Cœurs et 12 H, cherchez le soutien troisième par 2♣ Roudi ; 3SA direct pourrait manquer le fit. |
 | SEF-Q400-B-056 | 11 | 5–2–3–3 | 2♣ | SEF-V4-079-3 | 29 | 11 H et cinq Piques : l’invitation naturelle à 2SA ne vérifierait pas le fit 5–3. Le Roudi le permet. |
 | SEF-Q400-B-057 | 12 | 3–5–2–3 | 2♣ | SEF-V4-085-3 | 29 | Même après une ouverture de 1♦, le relais 2♣ conserve son sens : rechercher trois Cœurs après la redemande 1SA. |
@@ -131,22 +131,50 @@ Premier passage : 88/100 candidats retenus, 12 rejetés (H/forme/zone), corrigé
 
 ## Analogues proches (comparaison contre tout le catalogue)
 
-- SEF-Q400-B-004 : SEF-004-1 ; distance minimale de 8 cartes.
-- SEF-Q400-B-005 : SEF-005-1 ; distance minimale de 10 cartes.
-- SEF-Q400-B-010 : SEF-033-1 ; distance minimale de 11 cartes.
-- SEF-Q400-B-016 : SEF-PN26-M1-024 ; distance minimale de 9 cartes.
-- SEF-Q400-B-017 : SEF-V44-014 ; distance minimale de 8 cartes.
-- SEF-Q400-B-025 : SEF-L23-006 ; distance minimale de 8 cartes.
-- SEF-Q400-B-047 : SEF-L37-004 ; distance minimale de 11 cartes.
-- SEF-Q400-B-052 : SEF-L41-004, V2-M2-016 ; distance minimale de 8 cartes.
-- SEF-Q400-B-063 : SEF-V4-076-3 ; distance minimale de 10 cartes.
-- SEF-Q400-B-077 : SEF-C2-011 ; distance minimale de 8 cartes.
-- SEF-Q400-B-079 : SEF-L13-001 ; distance minimale de 10 cartes.
-- SEF-Q400-B-085 : SEF-V484-014 ; distance minimale de 6 cartes.
-- SEF-Q400-B-089 : SEF-002-3, V2-M1-009 ; distance minimale de 6 cartes.
-- SEF-Q400-B-090 : SEF-N021-2 ; distance minimale de 10 cartes.
-- SEF-Q400-B-092 : SEF-L43-005 ; distance minimale de 9 cartes.
-- SEF-Q400-B-093 : SEF-L38-001, V2-M2-008 ; distance minimale de 8 cartes.
-- SEF-Q400-B-097 : SEF-L25-008 ; distance minimale de 9 cartes.
+- SEF-Q400-B-004 : SEF-004-1 (distance 8 cartes)
+- SEF-Q400-B-005 : SEF-005-1 (distance 10 cartes)
+- SEF-Q400-B-010 : SEF-033-1 (distance 11 cartes)
+- SEF-Q400-B-016 : SEF-PN26-M1-024 (distance 9 cartes)
+- SEF-Q400-B-017 : SEF-V44-014 (distance 8 cartes)
+- SEF-Q400-B-025 : SEF-L23-006 (distance 8 cartes)
+- SEF-Q400-B-047 : SEF-L37-004 (distance 11 cartes)
+- SEF-Q400-B-052 : SEF-L41-004 (distance 8 cartes), V2-M2-016 (distance 9 cartes)
+- SEF-Q400-B-063 : SEF-V4-076-3 (distance 10 cartes)
+- SEF-Q400-B-077 : SEF-C2-011 (distance 8 cartes)
+- SEF-Q400-B-079 : SEF-L13-001 (distance 10 cartes)
+- SEF-Q400-B-085 : SEF-V484-014 (distance 6 cartes)
+- SEF-Q400-B-089 : SEF-002-3 (distance 6 cartes), V2-M1-009 (distance 10 cartes)
+- SEF-Q400-B-090 : SEF-N021-2 (distance 10 cartes)
+- SEF-Q400-B-092 : SEF-L43-005 (distance 9 cartes)
+- SEF-Q400-B-093 : SEF-L38-001 (distance 9 cartes), V2-M2-008 (distance 8 cartes)
+- SEF-Q400-B-097 : SEF-L25-008 (distance 9 cartes)
 
-Les groupes de réservoir ne garantissent pas la satisfaction réelle des expositions : maintenir tous les verrous, et différer les extensions si les prérequis ne sont pas acquis. Aucun merge.
+## Contrôle final après relecture des JSON Git
+
+100/100/100, IDs continus B-001 à B-100, 36 familles stables, correspondance exacte des prérequis et des groupes de décision, contrôle du palier des choix après la dernière enchère naturelle ou conventionnelle (les annonces Passe/Contre/Surcontre sont examinées dans leur contexte), aucune erreur détectée. Deux distracteurs illégaux (047 et 071) et deux mains proches d'autres concepts (020 et 054) corrigés. 191500 comparaisons de mains historiques ; distance minimale de 3 cartes, 0 rapprochements à deux cartes ou moins. 369 paires historiques avec même concept, réponse et séquence normalisée : une décision connue doit pouvoir être exercée sur des mains nouvelles ; aucune collision de main. Les comparaisons ne sont pas un test de nouveauté sémantique exhaustif. 11 affectations primaires identifiées comme extensions explicites conditionnelles, dont les cas de modulation et 2SA après Passe ; aucune extension implicite d'un groupe de Contre d'entame. Ajout de 12 candidatures S57 et 9 candidatures S61 à groupe existant de même concept et réponse, utilisables seulement si l’ID est inédit et les verrous satisfaits.
+
+### Rapprochements intra-lot à deux cartes ou moins (contrastes à espacer)
+
+- SEF-Q400-B-008 / SEF-Q400-B-067, 2 carte(s) différente(s), sa1.seuil → 2SA / roudi.reponse → 2♥.
+- SEF-Q400-B-009 / SEF-Q400-B-052, 2 carte(s) différente(s), sa1.stayman.contre → Passe / sa2.texas_mineur.reponse → 3SA.
+- SEF-Q400-B-017 / SEF-Q400-B-050, 2 carte(s) différente(s), sa2.seuil → 3SA / sa1.texas_mineur.suite → 3♥.
+- SEF-Q400-B-031 / SEF-Q400-B-072, 2 carte(s) différente(s), sa1.stayman.suite → 4♠ / roudi.suite → 4♠.
+- SEF-Q400-B-033 / SEF-Q400-B-075, 1 carte(s) différente(s), sa1.stayman.suite → 3SA / drury.init → 2♣.
+- SEF-Q400-B-041 / SEF-Q400-B-075, 2 carte(s) différente(s), sa2.texas → 3♦ / drury.init → 2♣.
+- SEF-Q400-B-044 / SEF-Q400-B-056, 2 carte(s) différente(s), sa2.texas.suite → Passe / roudi.init → 2♣.
+- SEF-Q400-B-044 / SEF-Q400-B-061, 1 carte(s) différente(s), sa2.texas.suite → Passe / roudi.choix → 2♠.
+- SEF-Q400-B-046 / SEF-Q400-B-068, 2 carte(s) différente(s), sa1.texas_mineur → 3♣ / roudi.reponse → 2♠.
+- SEF-Q400-B-048 / SEF-Q400-B-090, 2 carte(s) différente(s), sa1.texas_mineur.reponse → 3♦ / ouv.sa2 → 2SA.
+- SEF-Q400-B-055 / SEF-Q400-B-069, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 2SA.
+- SEF-Q400-B-056 / SEF-Q400-B-061, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.choix → 2♠.
+- SEF-Q400-B-056 / SEF-Q400-B-070, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 3SA.
+- SEF-Q400-B-056 / SEF-Q400-B-072, 1 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 4♠.
+- SEF-Q400-B-058 / SEF-Q400-B-059, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.init → 2SA.
+- SEF-Q400-B-058 / SEF-Q400-B-073, 2 carte(s) différente(s), roudi.init → 2♣ / roudi.suite → 2♠.
+- SEF-Q400-B-062 / SEF-Q400-B-069, 2 carte(s) différente(s), roudi.choix → Passe / roudi.suite → 2SA.
+- SEF-Q400-B-069 / SEF-Q400-B-071, 2 carte(s) différente(s), roudi.suite → 2SA / roudi.suite → 3♥.
+- SEF-Q400-B-070 / SEF-Q400-B-072, 2 carte(s) différente(s), roudi.suite → 3SA / roudi.suite → 4♠.
+- SEF-Q400-B-073 / SEF-Q400-B-083, 1 carte(s) différente(s), roudi.suite → 2♠ / drury.reponse → 2♦.
+- SEF-Q400-B-077 / SEF-Q400-B-087, 2 carte(s) différente(s), drury.init → 2♣ / drury.suite → 3♠.
+
+Les groupes de réservoir ne garantissent pas la satisfaction réelle des expositions : maintenir tous les verrous et différer les extensions si les prérequis ne sont pas acquis. Les données restent hors production jusqu'à assemblage. Aucun merge.
