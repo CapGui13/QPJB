@@ -2,7 +2,7 @@
 // Reuse the exact historical campaign and response model with an isolated
 // adapter injection. No copy of the motor, catalogue, response model or gate.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
-const root=path.join(__dirname,'..'),adapter=require('./coherence-concrete-m4p-a-adapter.cjs');
+const root=path.join(__dirname,'..'),adapter=require(['U','V','W'].includes(process.env.POLICY)?'./coherence-concrete-m4p-a-composition-adapter.cjs':'./coherence-concrete-m4p-a-adapter.cjs');
 const historical=fs.readFileSync(path.join(__dirname,'coherence-concrete-m4-campaign.cjs'),'utf8');
 const mod={exports:{}};
 const req=id=>id==='./coherence-concrete-m4-adapter.cjs'?adapter:require(id);
@@ -17,7 +17,7 @@ const requireBase=require('node:module').createRequire(path.join(root,'quizz-par
 const meta=requireBase('./quizz-prerequis.js').byId;
 assert.equal(exercises.length,1915);assert.equal(new Set(Object.values(meta).map(m=>m.concept)).size,99);
 const horizon=Number(process.env.HORIZON||180),out=process.env.OUT||path.join(root,'audits/coherence-concrete-20261126/m4/parallel/a/native');
-const policy=process.env.POLICY||'L';assert.ok(['L','R','T'].includes(policy));
+const policy=process.env.POLICY||'L';assert.ok(['L','R','T','U','V','W'].includes(policy));
 fs.mkdirSync(out,{recursive:true});
 for(const profile of PROFILES.filter(p=>!process.env.PROFILE||p===process.env.PROFILE))for(const seed of SEEDS.filter(s=>!process.env.SEED||s===Number(process.env.SEED))){
  const p=pair({source,requireBase,exercises,meta,profile,seed,horizon,maxSession:20,policy,measure:()=>performance.now()});
