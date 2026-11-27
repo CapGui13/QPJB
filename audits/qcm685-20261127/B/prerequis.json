@@ -211,12 +211,16 @@
       ]
     },
     "SEF-Q685-B-021": {
-      "concept": "sa1.stayman",
-      "stage": 0,
-      "minSession": 4,
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
           "minExposure": 1
         }
       ]
@@ -300,17 +304,21 @@
       ]
     },
     "SEF-Q685-B-028": {
-      "concept": "sa2.stayman",
-      "stage": 0,
-      "minSession": 8,
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
       "requires": [
         {
-          "concept": "sa1.stayman.reponse",
+          "concept": "sa2.texas",
           "minExposure": 1
         },
         {
-          "concept": "sa2.seuil",
+          "concept": "sa2.texas.reponse",
           "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
         }
       ]
     },
@@ -359,12 +367,20 @@
       ]
     },
     "SEF-Q685-B-033": {
-      "concept": "sa1.texas",
-      "stage": 0,
-      "minSession": 4,
+      "concept": "sa1.stayman.contre",
+      "stage": 3,
+      "minSession": 18,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "contre.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.stayman.reponse",
           "minExposure": 1
         }
       ]
@@ -392,12 +408,20 @@
       ]
     },
     "SEF-Q685-B-036": {
-      "concept": "sa1.texas",
-      "stage": 0,
-      "minSession": 4,
+      "concept": "sa1.stayman.contre",
+      "stage": 3,
+      "minSession": 18,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "contre.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.stayman.reponse",
           "minExposure": 1
         }
       ]
@@ -504,13 +528,17 @@
       ]
     },
     "SEF-Q685-B-044": {
-      "concept": "sa1.stayman.suite",
-      "stage": 2,
-      "minSession": 9,
+      "concept": "sa1.stayman.contre",
+      "stage": 3,
+      "minSession": 18,
       "requires": [
         {
-          "concept": "sa1.stayman",
+          "concept": "contre.base",
           "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
         },
         {
           "concept": "sa1.stayman.reponse",
@@ -519,17 +547,21 @@
       ]
     },
     "SEF-Q685-B-045": {
-      "concept": "sa1.stayman.suite",
-      "stage": 2,
-      "minSession": 9,
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
       "requires": [
         {
-          "concept": "sa1.stayman",
+          "concept": "sa2.texas",
           "minExposure": 1
         },
         {
-          "concept": "sa1.stayman.reponse",
+          "concept": "sa2.texas.reponse",
           "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
         }
       ]
     },
@@ -549,16 +581,16 @@
       ]
     },
     "SEF-Q685-B-047": {
-      "concept": "sa1.stayman.suite",
-      "stage": 2,
-      "minSession": 9,
+      "concept": "sa1.texas.contre",
+      "stage": 3,
+      "minSession": 14,
       "requires": [
         {
-          "concept": "sa1.stayman",
+          "concept": "contre.base",
           "minExposure": 1
         },
         {
-          "concept": "sa1.stayman.reponse",
+          "concept": "sa1.texas",
           "minExposure": 1
         }
       ]
@@ -579,16 +611,12 @@
       ]
     },
     "SEF-Q685-B-049": {
-      "concept": "sa2.stayman.suite",
-      "stage": 2,
-      "minSession": 12,
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
       "requires": [
         {
-          "concept": "sa2.stayman",
-          "minExposure": 1
-        },
-        {
-          "concept": "sa2.stayman.reponse",
+          "concept": "sa2.texas",
           "minExposure": 1
         }
       ]
@@ -1294,16 +1322,12 @@
       ]
     },
     "SEF-Q685-B-106": {
-      "concept": "sa2.stayman.suite",
-      "stage": 2,
-      "minSession": 12,
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
       "requires": [
         {
-          "concept": "sa2.stayman",
-          "minExposure": 1
-        },
-        {
-          "concept": "sa2.stayman.reponse",
+          "concept": "sa2.texas",
           "minExposure": 1
         }
       ]
@@ -1324,16 +1348,16 @@
       ]
     },
     "SEF-Q685-B-108": {
-      "concept": "sa2.stayman.suite",
+      "concept": "sa2.texas.suite",
       "stage": 2,
       "minSession": 12,
       "requires": [
         {
-          "concept": "sa2.stayman",
+          "concept": "sa2.texas",
           "minExposure": 1
         },
         {
-          "concept": "sa2.stayman.reponse",
+          "concept": "sa2.texas.reponse",
           "minExposure": 1
         }
       ]
@@ -2102,6 +2126,160 @@
         },
         {
           "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-161": {
+      "concept": "sa1.texas_mineur",
+      "stage": 0,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-162": {
+      "concept": "sa2.texas_mineur.reponse",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-163": {
+      "concept": "sa1.texas_mineur.suite",
+      "stage": 2,
+      "minSession": 15,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-164": {
+      "concept": "sa1.texas_mineur.suite",
+      "stage": 2,
+      "minSession": 15,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-165": {
+      "concept": "drury.init",
+      "stage": 0,
+      "minSession": 24,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-166": {
+      "concept": "drury.init",
+      "stage": 0,
+      "minSession": 24,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-167": {
+      "concept": "drury.choix",
+      "stage": 3,
+      "minSession": 28,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-168": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-169": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q685-B-170": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
           "minExposure": 1
         }
       ]
