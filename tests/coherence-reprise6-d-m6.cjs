@@ -10,7 +10,7 @@ assert(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&T.HORIZONS.includes
 const git=(...args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:24*1024*1024});
 function sources(ref){return Object.fromEntries(git('ls-tree','--name-only',ref).trim().split('\n').filter(p=>p==='quizz.html'||/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js').map(p=>[p,git('show',ref+':'+p)]))}
 const base=sources(T.BASE),current=sources(git('rev-parse','HEAD').trim());
-current['quizz-parcours.js']=require('../quizz-coherence-reprise6-d-patch.js').patchEngine(current['quizz-parcours.js']);
+// Coordination: test the actual checked-in engine, without a temporary patch.
 const embedded=html=>html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
 assert.equal(embedded(base['quizz.html']),embedded(current['quizz.html']));assert.equal(base['quizz-prerequis.js'],current['quizz-prerequis.js']);
 fs.mkdirSync(dest,{recursive:true});
