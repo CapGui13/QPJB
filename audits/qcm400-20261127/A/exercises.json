@@ -36,7 +36,7 @@
     "context": "Vous êtes donneur en première position. Personne n’a parlé. Quelle est votre ouverture selon le SEF ?",
     "answer": "Passe",
     "choices": [
-      "1♥",
+      "1♠",
       "Passe",
       "1SA",
       "1♣"
@@ -470,6 +470,53 @@
     "caseFamily": "q400-a-ouv-mineure-egalite4"
   },
   {
+    "id": "SEF-Q400-A-011",
+    "theme": "ouv",
+    "hand": [
+      [
+        "A",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "8"
+      ],
+      [
+        "V",
+        "9",
+        "6",
+        "3"
+      ],
+      [
+        "R",
+        "D",
+        "V",
+        "5"
+      ]
+    ],
+    "h": 13,
+    "shape": [
+      3,
+      2,
+      4,
+      4
+    ],
+    "auction": [],
+    "context": "Vous êtes donneur en première position. Personne n’a parlé. Quelle est votre ouverture selon le SEF ?",
+    "answer": "1♦",
+    "choices": [
+      "1♦",
+      "1SA",
+      "1♣",
+      "Passe"
+    ],
+    "explain": "13 H, distribution 3–2–4–4. Quatre Carreaux et quatre Trèfles : ouvrir 1♦, même avec des honneurs plus concentrés à Trèfle. 13 H ne suffisent pas à 1SA.",
+    "difficulty": 2,
+    "difficultyReason": "Une exception de distribution ou une limite d’ouverture intervient",
+    "caseFamily": "q400-a-ouv-mineure-egalite4"
+  },
+  {
     "id": "SEF-Q400-A-012",
     "theme": "ouv",
     "hand": [
@@ -658,6 +705,53 @@
     "caseFamily": "q400-a-ouv-mineure-longueur"
   },
   {
+    "id": "SEF-Q400-A-016",
+    "theme": "ouv",
+    "hand": [
+      [
+        "A",
+        "R",
+        "D",
+        "7"
+      ],
+      [
+        "A",
+        "V",
+        "2"
+      ],
+      [
+        "R",
+        "9",
+        "6"
+      ],
+      [
+        "D",
+        "5",
+        "4"
+      ]
+    ],
+    "h": 19,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [],
+    "context": "Vous êtes donneur en première position. Personne n’a parlé. Quelle est votre ouverture selon le SEF ?",
+    "answer": "1♣",
+    "choices": [
+      "1SA",
+      "2SA",
+      "1♦",
+      "1♣"
+    ],
+    "explain": "19 H, distribution 4–3–3–3. 19 H réguliers dépassent 1SA (15–17) mais n'atteignent pas 2SA (20–21). Les deux mineures comptent trois cartes, donc ouverture 1♣ puis redemande forte. À réserver après acquisition des deux zones SA.",
+    "difficulty": 2,
+    "difficultyReason": "Transfert de l’égalité 3–3 dans la zone régulière 18–19, absente des 3–3 historiques.",
+    "caseFamily": "q400-a-ouv-mineure-egalite3"
+  },
+  {
     "id": "SEF-Q400-A-017",
     "theme": "ouv",
     "hand": [
@@ -790,10 +884,10 @@
     "choices": [
       "Passe",
       "1♠",
-      "1♦",
+      "1♣",
       "1SA"
     ],
-    "explain": "12 H, distribution 5–2–2–4. La majeure cinquième a priorité sur les quatre Trèfles. 1SA serait sous-évalué.",
+    "explain": "12 H, distribution 5–2–2–4. Cinq Piques et quatre Trèfles : la majeure cinquième a priorité. 1SA surévaluerait les 12 H et décrirait mal la distribution.",
     "difficulty": 2,
     "difficultyReason": "Une exception de distribution ou une limite d’ouverture intervient",
     "caseFamily": "q400-a-ouv-majeure-vs-mineure"
@@ -1544,40 +1638,40 @@
         "7"
       ],
       [
-        "D",
-        "9",
-        "6",
-        "4"
-      ],
-      [
         "R",
         "V",
         "8",
         "5",
         "2"
+      ],
+      [
+        "V",
+        "9",
+        "6",
+        "4"
       ]
     ],
-    "h": 8,
+    "h": 7,
     "shape": [
       3,
       1,
-      4,
-      5
+      5,
+      4
     ],
     "auction": [
-      "Partenaire : 1♣"
+      "Partenaire : 1♦"
     ],
     "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
-    "answer": "2♣",
+    "answer": "2♦",
     "choices": [
-      "Passe",
-      "1SA",
       "2♣",
-      "3♣"
+      "2♦",
+      "1SA",
+      "3♦"
     ],
-    "explain": "8 H, distribution 3–1–4–5. Cinq Trèfles, un singleton Cœur et 8 H constituent un soutien faible irrégulier ; 2♣ décrit mieux que 1SA, 3♣ serait trop haut.",
+    "explain": "7 H, distribution 3–1–5–4. Cinq Carreaux, un singleton Cœur et 7 H : 2♦ est le soutien simple de première zone. 1SA masquerait la courte ; 2♣ demanderait davantage de force et 3♦ serait trop ambitieux.",
     "difficulty": 2,
-    "difficultyReason": "Choisir le soutien mineur faible à 2♣ avec une courte.",
+    "difficultyReason": "Privilégier le soutien mineur avec une courte.",
     "caseFamily": "q400-a-rep-mineure-soutien"
   },
   {
@@ -1820,7 +1914,7 @@
       "Passe",
       "1SA"
     ],
-    "explain": "7 H, distribution 2–4–4–3. Après 1♠, quatre Cœurs ne suffisent pas à 2♥ et sept points ne permettent pas 2♦. 1SA est le recours sans fit.",
+    "explain": "7 H, distribution 2–4–4–3. Sur 1♠, quatre Cœurs ne suffisent pas à 2♥ et sept points ne permettent pas 2♦. 1SA est le recours sans fit et n'est pas forcing en SEF.",
     "difficulty": 2,
     "difficultyReason": "Réponse sans fit ou changement de couleur de base",
     "caseFamily": "q400-a-rep-maj-1sa"
@@ -1869,7 +1963,7 @@
       "1SA",
       "2♦"
     ],
-    "explain": "8 H, distribution 1–5–4–3. Cinq Cœurs, mais 9 HL seulement : il manque la force du changement de couleur au palier de deux. Le singleton Pique exclut le fit.",
+    "explain": "8 H, distribution 1–5–4–3. Cinq Cœurs, mais 9 HL seulement : il manque la force du changement de couleur au palier de deux. Le singleton Pique exclut le fit ; 1SA de recours n'est pas forcing en SEF.",
     "difficulty": 2,
     "difficultyReason": "Réponse sans fit ou changement de couleur de base",
     "caseFamily": "q400-a-rep-maj-1sa"
@@ -2256,14 +2350,63 @@
     "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
     "answer": "2♥",
     "choices": [
-      "Passe",
+      "2SA",
       "2♥",
-      "1♠",
-      "1SA"
+      "3♥",
+      "Passe"
     ],
     "explain": "8 H, distribution 3–4–3–3. Quatre Cœurs sans courte : 8 H + 2 D = 10 HLD, plafond du soutien simple.",
     "difficulty": 1,
     "difficultyReason": "Soutien simple sur ouverture majeure",
+    "caseFamily": "q400-a-rep-fit9-zone"
+  },
+  {
+    "id": "SEF-Q400-A-050",
+    "theme": "majeur",
+    "hand": [
+      [
+        "R",
+        "8",
+        "3"
+      ],
+      [
+        "R",
+        "D",
+        "9",
+        "4"
+      ],
+      [
+        "V",
+        "6",
+        "2"
+      ],
+      [
+        "9",
+        "8",
+        "5"
+      ]
+    ],
+    "h": 9,
+    "shape": [
+      3,
+      4,
+      3,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♥"
+    ],
+    "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
+    "answer": "3♥",
+    "choices": [
+      "2♥",
+      "2SA",
+      "4♥",
+      "3♥"
+    ],
+    "explain": "9 H, distribution 3–4–3–3. Quatre Cœurs, aucune courte : 9 H + 2 D du neuvième atout = 11 HLD. 3♥ invite au minimum de la zone ; 2SA fitté montrerait trois atouts.",
+    "difficulty": 3,
+    "difficultyReason": "Calculer les HLD d'un soutien naturel quatrième et distinguer le soutien invitant de la première zone.",
     "caseFamily": "q400-a-rep-fit9-zone"
   },
   {
@@ -2556,7 +2699,7 @@
     "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
     "answer": "2♠",
     "choices": [
-      "2♥",
+      "Passe",
       "2SA",
       "3♠",
       "2♠"
@@ -2564,6 +2707,106 @@
     "explain": "12 H, distribution 6–2–3–2. Le 1SA du répondant est non forcing, mais les six Piques donnent un meilleur contrat partiel potentiel. 2♠ montre la longueur sans surplus de force.",
     "difficulty": 2,
     "difficultyReason": "Redemande économique et naturelle en fonction de la distribution",
+    "caseFamily": "q400-a-red-repetition"
+  },
+  {
+    "id": "SEF-Q400-A-057",
+    "theme": "red",
+    "hand": [
+      [
+        "8",
+        "3"
+      ],
+      [
+        "A",
+        "7",
+        "4"
+      ],
+      [
+        "R",
+        "D",
+        "V",
+        "9",
+        "6",
+        "2"
+      ],
+      [
+        "D",
+        "5"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      2,
+      3,
+      6,
+      2
+    ],
+    "auction": [
+      "Vous : 1♦",
+      "Partenaire : 1♠"
+    ],
+    "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
+    "answer": "2♦",
+    "choices": [
+      "2♠",
+      "1SA",
+      "2SA",
+      "2♦"
+    ],
+    "explain": "12 H, distribution 2–3–6–2. Six Carreaux et deux Piques : 2♦ décrit la couleur sixième et la force minimale, plutôt que 1SA.",
+    "difficulty": 3,
+    "difficultyReason": "Décrire une seconde couleur ou une longueur au palier de deux",
+    "caseFamily": "q400-a-red-repetition"
+  },
+  {
+    "id": "SEF-Q400-A-058",
+    "theme": "red",
+    "hand": [
+      [
+        "D",
+        "8",
+        "3"
+      ],
+      [
+        "A",
+        "7"
+      ],
+      [
+        "8",
+        "5"
+      ],
+      [
+        "A",
+        "R",
+        "V",
+        "9",
+        "6",
+        "2"
+      ]
+    ],
+    "h": 14,
+    "shape": [
+      3,
+      2,
+      2,
+      6
+    ],
+    "auction": [
+      "Vous : 1♣",
+      "Partenaire : 1♠"
+    ],
+    "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
+    "answer": "2♣",
+    "choices": [
+      "1SA",
+      "2♠",
+      "2SA",
+      "2♣"
+    ],
+    "explain": "14 H, distribution 3–2–2–6. Six Trèfles et seulement trois Piques : 2♣ décrit la longue. Un soutien majeur exigerait quatre Piques.",
+    "difficulty": 3,
+    "difficultyReason": "Décrire une seconde couleur ou une longueur au palier de deux",
     "caseFamily": "q400-a-red-repetition"
   },
   {
@@ -3061,7 +3304,7 @@
       "1SA",
       "2SA"
     ],
-    "explain": "17 H, distribution 2–2–4–5. Cinq Trèfles et quatre Carreaux, 18 HL : 2♦ est cher car la préférence à Trèfle oblige à 3♣. La force autorise ce palier.",
+    "explain": "17 H, distribution 2–2–4–5. Cinq Trèfles et quatre Carreaux, 18 HL : 2♦ est cher car la préférence à Trèfle oblige à 3♣. Il est forcing et auto-forcing, et cette force autorise ce palier.",
     "difficulty": 4,
     "difficultyReason": "Redemande forte, saut ou bicolore cher : lecture des zones",
     "caseFamily": "q400-a-red-cher-seuil"
@@ -3161,7 +3404,7 @@
       "1SA",
       "2♣"
     ],
-    "explain": "17 H, distribution 2–4–2–5. Cinq Trèfles, quatre Cœurs et 18 HL : 2♥ dépasse 2♣ et oblige à 3♣ pour une préférence. La force est suffisante.",
+    "explain": "17 H, distribution 2–4–2–5. Cinq Trèfles, quatre Cœurs et 18 HL : 2♥ oblige à 3♣ pour une préférence. La force est suffisante ; le bicolore cher est forcing et auto-forcing.",
     "difficulty": 4,
     "difficultyReason": "Bicolore cher ♣-♥",
     "caseFamily": "q400-a-red-cher-seuil"
@@ -3478,8 +3721,8 @@
     "theme": "second",
     "hand": [
       [
+        "A",
         "D",
-        "V",
         "9",
         "7",
         "4"
@@ -3489,7 +3732,7 @@
         "3"
       ],
       [
-        "R",
+        "9",
         "6",
         "2"
       ],
@@ -3514,12 +3757,12 @@
     "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
     "answer": "2♠",
     "choices": [
+      "2♣",
       "2SA",
       "2♠",
-      "Passe",
-      "2♣"
+      "Passe"
     ],
-    "explain": "6 H, distribution 5–2–3–3. Cinq Piques et 6 H face à 12–14 H. 2♠ est une répétition faible non forcing et non une invitation.",
+    "explain": "6 H, distribution 5–2–3–3. Cinq Piques et 6 H face à 12–14 H : la manche n'est pas en vue. 2♠ est une répétition naturelle non forcing, et non une invitation.",
     "difficulty": 2,
     "difficultyReason": "Choix du contrat partiel après la redemande de l’ouvreur",
     "caseFamily": "q400-a-second-sa-longueur"
@@ -3583,23 +3826,23 @@
     "theme": "second",
     "hand": [
       [
-        "D",
+        "R",
         "9",
         "7",
         "4"
       ],
       [
-        "R",
+        "D",
         "8",
         "3"
       ],
       [
-        "V",
+        "9",
         "6",
         "2"
       ],
       [
-        "9",
+        "V",
         "8",
         "5"
       ]
@@ -3622,12 +3865,12 @@
     "context": "Les adversaires passent. Votre partenaire a décrit un bicolore cher fort, forcing. Quelle est votre deuxième enchère ?",
     "answer": "2SA",
     "choices": [
-      "3SA",
       "2SA",
       "2♠",
-      "3♦"
+      "3♦",
+      "3SA"
     ],
-    "explain": "6 H, distribution 4–3–3–3. Sur 2♦ cher, quatre Piques seulement et 6 H : 2SA modérateur freine sans être une proposition naturelle de manche.",
+    "explain": "6 H, distribution 4–3–3–3. Sur 2♦ cher, quatre Piques seulement et 6 H : 2SA modérateur freine sans être une proposition naturelle de manche. 2♠ promettrait une cinquième.",
     "difficulty": 4,
     "difficultyReason": "2SA modérateur sans majeure cinquième.",
     "caseFamily": "q400-a-second-cher-frein"
@@ -3791,50 +4034,50 @@
     "theme": "apres_fit",
     "hand": [
       [
-        "D",
+        "V",
         "8",
         "3"
       ],
       [
         "A",
         "D",
+        "10",
         "9",
-        "6",
-        "2"
-      ],
-      [
-        "R",
         "7",
         "4"
       ],
       [
-        "V",
+        "A",
+        "6",
+        "2"
+      ],
+      [
         "5"
       ]
     ],
-    "h": 12,
+    "h": 11,
     "shape": [
       3,
-      5,
+      6,
       3,
-      2
+      1
     ],
     "auction": [
       "Vous : 1♥",
       "Partenaire : 2♥"
     ],
-    "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
-    "answer": "Passe",
+    "context": "Les adversaires passent. Vous êtes non vulnérables contre vulnérables. Après 1♥–2♥, vous cherchez à gêner une éventuelle reprise adverse sans inviter à la manche. Quelle enchère convient dans le traitement du catalogue ?",
+    "answer": "3♥",
     "choices": [
+      "Passe",
       "4♥",
       "2SA",
-      "Passe",
       "3♥"
     ],
-    "explain": "12 H, distribution 3–5–3–2. Le fit est trouvé mais l'ouverture reste minimale. Un doubleton et cinq atouts ne justifient pas d'essai.",
-    "difficulty": 2,
-    "difficultyReason": "Refuser tout espoir de manche avec l’ouverture minimale",
-    "caseFamily": "q400-a-fit-ouv-min"
+    "explain": "11 H, distribution 3–6–3–1. Six Cœurs et un singleton assurent au moins neuf atouts avec le soutien simple, sans surplus de force (11 H, 13 HL). À vulnérabilité favorable, 3♥ occupe le palier sans inviter ; 2SA serait un essai.",
+    "difficulty": 4,
+    "difficultyReason": "Distinguer 3♥ préventif de 2SA essai après un fit majeur.",
+    "caseFamily": "q400-a-fit-ouv-preventif"
   },
   {
     "id": "SEF-Q400-A-084",
@@ -3942,32 +4185,32 @@
     "hand": [
       [
         "R",
-        "8",
-        "3"
+        "8"
       ],
       [
+        "A",
         "R",
         "D",
-        "V",
         "9",
         "2"
       ],
       [
-        "A",
+        "V",
         "7",
         "4"
       ],
       [
-        "D",
+        "R",
+        "8",
         "5"
       ]
     ],
-    "h": 15,
+    "h": 16,
     "shape": [
-      3,
+      2,
       5,
       3,
-      2
+      3
     ],
     "auction": [
       "Vous : 1♥",
@@ -3976,12 +4219,12 @@
     "context": "Les adversaires passent et vous n’avez pas passé avant cette séquence. Quelle est votre enchère selon le SEF ?",
     "answer": "2SA",
     "choices": [
-      "Passe",
-      "4♥",
       "3♥",
-      "2SA"
+      "2SA",
+      "Passe",
+      "4♥"
     ],
-    "explain": "15 H, distribution 3–5–3–2. Les 15 H et la majeure cinquième rendent la manche possible face au maximum, pas certaine face au minimum. 2SA est l'essai généralisé.",
+    "explain": "16 H, distribution 2–5–3–3. 16 H et cinq Cœurs dans une main régulière sans deuxième couleur quatrième : la manche dépend de la force du soutien. 2SA est l'essai généralisé, alors que 3♥ serait préventif.",
     "difficulty": 3,
     "difficultyReason": "Apprécier une main non minimale pour proposer la manche",
     "caseFamily": "q400-a-fit-ouv-essai"
@@ -4043,18 +4286,18 @@
       [
         "A",
         "R",
-        "D",
+        "V",
         "9",
+        "6",
         "2"
       ],
       [
-        "A",
-        "8",
-        "3"
+        "D",
+        "8"
       ],
       [
+        "A",
         "R",
-        "V",
         "7",
         "4"
       ],
@@ -4064,8 +4307,8 @@
     ],
     "h": 17,
     "shape": [
-      5,
-      3,
+      6,
+      2,
       4,
       1
     ],
@@ -4081,10 +4324,60 @@
       "Passe",
       "4♠"
     ],
-    "explain": "17 H, distribution 5–3–4–1. Cinq Piques solides, quatre Carreaux et singleton Trèfle : 17 H plus la distribution rendent la manche indiquée, sans essai.",
+    "explain": "17 H, distribution 6–2–4–1. Six Piques, quatre Carreaux, un singleton Trèfle et 17 H : le fit d'au moins neuf atouts, les levées de tête et la distribution justifient 4♠, sans essai.",
     "difficulty": 3,
     "difficultyReason": "Réévaluer la force avec une courte et un fit établi",
     "caseFamily": "q400-a-fit-ouv-manche"
+  },
+  {
+    "id": "SEF-Q400-A-089",
+    "theme": "apres_fit",
+    "hand": [
+      [
+        "R",
+        "V",
+        "9",
+        "6",
+        "2"
+      ],
+      [
+        "A",
+        "8"
+      ],
+      [
+        "7",
+        "4"
+      ],
+      [
+        "A",
+        "R",
+        "8",
+        "3"
+      ]
+    ],
+    "h": 15,
+    "shape": [
+      5,
+      2,
+      2,
+      4
+    ],
+    "auction": [
+      "Vous : 1♠",
+      "Partenaire : 2♠"
+    ],
+    "context": "Les adversaires passent. Après le soutien simple à 2♠, vous souhaitez chercher des compléments utiles dans votre couleur annexe pour décider de la manche. Quelle enchère choisissez-vous ?",
+    "answer": "3♣",
+    "choices": [
+      "3♠",
+      "3♣",
+      "3SA",
+      "4♠"
+    ],
+    "explain": "15 H, distribution 5–2–2–4. Le fit Pique est déjà fixé. La couleur annexe quatrième à Trèfle, avec deux gros honneurs, permet l'essai ciblé à 3♣ ; 3♠ aurait un but préventif.",
+    "difficulty": 3,
+    "difficultyReason": "Identifier l'essai de manche ciblé à 3♣ après soutien simple à Pique, distinct d'un barrage ou d'une conclusion.",
+    "caseFamily": "q400-a-fit-ouv-essai-cible"
   },
   {
     "id": "SEF-Q400-A-090",
@@ -4249,12 +4542,12 @@
       ],
       [
         "A",
+        "V",
         "7",
         "4"
       ],
       [
         "D",
-        "9",
         "6",
         "2"
       ],
@@ -4264,7 +4557,58 @@
         "5"
       ]
     ],
-    "h": 9,
+    "h": 10,
+    "shape": [
+      3,
+      4,
+      3,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♠",
+      "Vous : 2♠",
+      "Partenaire : 2SA"
+    ],
+    "context": "Les adversaires passent. Vous avez soutenu à 2♠ ; le 2SA de l’ouvreur est un essai généralisé de manche. Quelle est votre réponse ?",
+    "answer": "4♠",
+    "choices": [
+      "3♠",
+      "Passe",
+      "3SA",
+      "4♠"
+    ],
+    "explain": "10 H, distribution 3–4–3–3. 10 HLD, trois Piques et une main régulière : soutien au maximum de 6–10 HLD. 4♠ accepte l'essai généralisé, et 3♠ le refuserait.",
+    "difficulty": 3,
+    "difficultyReason": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠.",
+    "caseFamily": "q400-a-fit-rep-essai"
+  },
+  {
+    "id": "SEF-Q400-A-094",
+    "theme": "apres_fit",
+    "hand": [
+      [
+        "A",
+        "V",
+        "3"
+      ],
+      [
+        "V",
+        "7",
+        "4"
+      ],
+      [
+        "9",
+        "7",
+        "6",
+        "2"
+      ],
+      [
+        "9",
+        "8",
+        "5"
+      ]
+    ],
+    "h": 6,
     "shape": [
       3,
       3,
@@ -4274,20 +4618,20 @@
     "auction": [
       "Partenaire : 1♠",
       "Vous : 2♠",
-      "Partenaire : 2SA"
+      "Partenaire : 3♦"
     ],
-    "context": "Les adversaires passent. Vous avez soutenu au palier de deux et votre partenaire fait un essai de manche. Quelle est votre réponse ?",
-    "answer": "4♠",
+    "context": "Les adversaires passent. Vous avez soutenu au palier de deux et votre partenaire fait un essai à Carreau. Quelle est votre réponse ?",
+    "answer": "3♠",
     "choices": [
-      "Passe",
+      "3♠",
       "3SA",
       "4♠",
-      "3♠"
+      "Passe"
     ],
-    "explain": "9 H, distribution 3–3–4–3. 9 H, trois Piques et deux honneurs de tête annexes : acceptation de l'essai généralisé à 4♠.",
-    "difficulty": 3,
-    "difficultyReason": "Évaluer le haut de zone du soutien sur 2SA essai après 1♠–2♠.",
-    "caseFamily": "q400-a-fit-rep-essai"
+    "explain": "6 H, distribution 3–3–4–3. Soutien minimum de 6 HLD avec trois Piques, aucun honneur Carreau dans la couleur de l'essai. 3♠ refuse sans changer d'atout.",
+    "difficulty": 2,
+    "difficultyReason": "Après 1♠–2♠–3♦, refuser l'essai dans une couleur sans honneur utile avec 6 HLD.",
+    "caseFamily": "q400-a-fit-rep-essai-cible"
   },
   {
     "id": "SEF-Q400-A-095",
@@ -4381,7 +4725,7 @@
     "choices": [
       "2♥",
       "2SA",
-      "1SA",
+      "3♥",
       "Passe"
     ],
     "explain": "11 H, distribution 3–3–4–3. Trois Cœurs et 11 HLD réguliers : 2SA fitté direct propose la manche avec exactement trois atouts. 3♥ demanderait quatre atouts.",
@@ -4479,13 +4823,63 @@
     "choices": [
       "2♠",
       "2SA",
-      "Passe",
-      "1SA"
+      "3♠",
+      "Passe"
     ],
     "explain": "11 H, distribution 3–3–4–3. Exactement trois Piques et 11 HLD sans courte : le 2SA fitté est la proposition de manche adaptée.",
     "difficulty": 3,
     "difficultyReason": "Reconnaître le 2SA fitté à trois atouts avec une force propositionnelle après 1♠.",
     "caseFamily": "q400-a-fit-2sa-direct"
+  },
+  {
+    "id": "SEF-Q400-A-099",
+    "theme": "apres_fit",
+    "hand": [
+      [
+        "R",
+        "8",
+        "3"
+      ],
+      [
+        "A",
+        "V",
+        "9",
+        "6",
+        "2"
+      ],
+      [
+        "D",
+        "7",
+        "4"
+      ],
+      [
+        "D",
+        "5"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      3,
+      5,
+      3,
+      2
+    ],
+    "auction": [
+      "Vous : 1♥",
+      "Partenaire : 2SA (fitté, 3 atouts, 11–12 HLD)"
+    ],
+    "context": "Les adversaires passent. Le partenaire a répondu directement 2SA fitté : exactement trois atouts, 11–12 HLD. Vous êtes l’ouvreur : quelle est votre redemande ?",
+    "answer": "3♥",
+    "choices": [
+      "3♣",
+      "3♥",
+      "3SA",
+      "4♥"
+    ],
+    "explain": "12 H, distribution 3–5–3–2. Le 2SA direct promet trois atouts et 11–12 HLD. Avec une ouverture minimale et une main régulière, il n'y a pas de force suffisante pour accepter ; 3♥ refuse.",
+    "difficulty": 2,
+    "difficultyReason": "SEF 2024 — Arrêt partiel avec ouverture minimale",
+    "caseFamily": "q400-a-fit-2sa-suite"
   },
   {
     "id": "SEF-Q400-A-100",
