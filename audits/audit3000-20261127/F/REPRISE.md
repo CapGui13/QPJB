@@ -1,48 +1,8 @@
 # REPRISE — F
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 8e66f76a9ef81a57e8faeb24772fff1bda90df9e. Passes 1–3 : 120/436, dernier SEF-L02-E-16, prochain SEF-L02-E-17. SHA actuel via HEAD. Verdicts {"VALIDE":39,"ARBITRAGE":5,"RECLASSER_REFORMULER":76}, 76 corrections, 3 propositions réservoir, 1 prérequis. Tests structurels sur 436 et couverture partielle 120 ; reste tests Node et comparaison globale.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit c685ba4c803bb07b640a3b8e8de7e2c0e57603f4. Passes 1–4 : 160/436, dernier SEF-L24-003, prochain SEF-L27-003. SHA actuel via HEAD. Verdicts {"VALIDE":46,"ARBITRAGE":5,"RECLASSER_REFORMULER":109}, 109 corrections, 3 propositions réservoir, 2 prérequis. Tests structurels sur 436 et couverture partielle 160 ; reste tests Node et comparaison globale.
 
-## IDs restant à relire (316)
-SEF-L02-E-17
-SEF-L02-E-18
-SEF-L02-E-19
-SEF-L05-024
-SEF-L06-029
-SEF-L03-005
-SEF-L03-021
-SEF-L03-024
-SEF-L03-028
-SEF-L04-003
-SEF-L04-004
-SEF-L13-003
-SEF-L13-004
-SEF-L13-005
-SEF-L13-006
-SEF-L13-008
-SEF-L13-017
-SEF-L13-018
-SEF-L14-013
-SEF-L17-001
-SEF-L17-002
-SEF-L17-003
-SEF-L17-004
-SEF-L17-005
-SEF-L17-006
-SEF-L17-007
-SEF-L17-008
-SEF-L17-009
-SEF-L17-010
-SEF-L17-012
-SEF-L19-005
-SEF-L20-002
-SEF-L20-003
-SEF-L21-001
-SEF-L21-002
-SEF-L22-006
-SEF-L22-007
-SEF-L23-002
-SEF-L24-001
-SEF-L24-003
+## IDs restant à relire (276)
 SEF-L27-003
 SEF-L27-005
 SEF-L28-001
