@@ -1,13 +1,17 @@
-name: Reprise 6 A - diagnostic causal S55
+name: Reprise 6 A - gardes restantes et controle du gel
 on:
   push:
     branches: [coherence-concrete/reprise6-a-s55-ci]
 permissions:
   contents: read
 jobs:
-  diagnostic:
+  guard:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        guard: [retours, catalogue, ergonomie, sef, gel]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,9 +20,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/coherence-reprise6-a-s55-diagnostic.cjs s55-diagnostic
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: s55-diagnostic
-          path: s55-diagnostic/
+      - run: |
+          case "${{ matrix.guard }}" in
+            retours) node tests/quizz-retours-progression-20261126.cjs ;;
+            catalogue) node tests/quizz-catalogue-live.cjs --early ;;
+            ergonomie) node tests/quizz-ergonomie-retours.cjs ;;
+            sef) python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1879 ;;
+            gel)
+              git diff --exit-code 13966e475cf986c6f76e7faf870377fdf4ef99aa HEAD -- quizz.html quizz-parcours.js quizz-prerequis.js tests/quizz-progression-selection-real.cjs
+              node - <<'NODE'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const html=fs.readFileSync('quizz.html','utf8');
+          const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+          assert.equal(data.exercises.length,1915);
+          assert(fs.readFileSync('tests/quizz-progression-selection-real.cjs','utf8').includes('assert.equal(qs.length,1879)'));
+          console.log('Confirmed: frozen base and current file identical; old test expects 1879 vs actual 1915.');
+          NODE
+              ;;
+          esac
