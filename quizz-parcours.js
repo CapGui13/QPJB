@@ -429,7 +429,14 @@ return Object.freeze({schema,mode:'T',choose});
     return {result:entry.result,assisted:!!entry.assisted,
       lastSession:int(entry.lastSession)};
   }
+  // Catalogue revision computed from the pinned audit manifests: material
+  // changes or changes of concept/theme/family/difficulty/micro/axis.
+  // The key list and both aggregate buckets are independently checked in CI.
+  const AUDIT3000_REVISION='audit3000-guided-v1';
+  const AUDIT3000_RISK=Object.freeze({"SEF-020-1":["mineur","mineur:1♣","fit"],"SEF-N002-1":["ouv","ouv:majeure"],"SEF-N020-1":["ouv","ouv:sa"],"SEF-N031-2":["mineur","mineur:1♣","fit"],"SEF-N041-2":["mineur","mineur:1♦"],"SEF-N049-3":["majeur","majeur:1♥","fit"],"SEF-N050-1":["majeur","majeur:1♥","fit"],"SEF-N054-1":["majeur","majeur:1♠","fit"],"SEF-N055-1":["majeur","majeur:1♠","fit"],"SEF-N067-1":["majeur","majeur:1♥"],"SEF-N091-1":["sa","sa:1SA","force"],"SEF-V3-051-1":["intervenir","intervenir:majeure"],"SEF-V3-052-2":["intervenir","intervenir:majeure"],"SEF-V3-053-1":["intervenir","intervenir:mineure"],"SEF-V3-053-3":["intervenir","intervenir:mineure"],"SEF-V3-054-2":["intervenir","intervenir:mineure"],"SEF-V3-054-1":["intervenir","intervenir:mineure"],"SEF-V3-055-1":["intervenir","intervenir:majeure"],"SEF-V3-055-2":["intervenir","intervenir:majeure"],"SEF-V3-056-4":["intervenir","intervenir:majeure"],"SEF-V3-056-1":["intervenir","intervenir:majeure"],"SEF-V3-086-2":["apres_inter","apres_inter:majeure"],"SEF-V3-107-2":["barrage"],"SEF-V4-050-2":["reveil","reveil:mineure"],"SEF-V4-053-4":["reveil","reveil:majeure","palier"],"SEF-V4-055-3":["reveil","reveil:majeure"],"SEF-V4-056-2":["reveil","reveil:majeure"],"SEF-V4-057-2":["reveil","reveil:mineure"],"SEF-V4-057-4":["reveil","reveil:mineure"],"SEF-V4-058-3":["reveil","reveil:mineure"],"SEF-V4-059-2":["reveil","reveil:majeure"],"SEF-V4-059-1":["reveil","reveil:majeure"],"SEF-V4-060-4":["reveil","reveil:majeure"],"SEF-V4-069-1":["reveil","reveil:mineure"],"SEF-V4-070-2":["reveil","reveil:mineure","palier"],"SEF-V4-071-2":["reveil","reveil:mineure","palier"],"SEF-V4-072-3":["reveil","reveil:mineure","palier"],"SEF-V44-001":["ouv","ouv:mineure"],"SEF-V44-017":["red","red:mineure"],"SEF-V44-018":["red","red:mineure"],"SEF-V44-022":["second","second:mineure"],"SEF-V44-026":["stayman"],"SEF-V44-027":["stayman"],"SEF-V44-031":["stayman"],"SEF-V44-043":["apres_inter","apres_inter:majeure"],"SEF-V44-044":["apres_inter","apres_inter:majeure"],"SEF-V44-058":["reveil","reveil:majeure"],"SEF-V44-059":["reveil","reveil:mineure"],"SEF-V44-061":["reveil","reveil:majeure"],"SEF-V44-064":["roudi"],"SEF-V45-017":["forcing"],"SEF-V411-006":["red","red:mineure"],"SEF-V412-001":["red","red:majeure"],"SEF-V412-015":["mineur","mineur:1♣","fit"],"SEF-V413-012":["apres_inter","apres_inter:majeure"],"SEF-V416-004":["second","second:majeure"],"SEF-V417-009":["second","second:mineure"],"SEF-V420-009":["apres_inter","apres_inter:mineure"],"SEF-V421-006":["apres_inter","apres_inter:majeure"],"SEF-V422-003":["apres_inter","apres_inter:majeure"],"SEF-V484-011":["drury"],"SEF-V484-012":["drury"],"SEF-V487-003":["fortes"],"SEF-L01-C-04":["rubensohl"],"SEF-L04-028":["reveil","reveil:majeure"],"SEF-L10-021":["reveil","michaels","reveil:majeure"],"SEF-L06-021":["majeur","majeur:1♥"],"SEF-L08-020":["contre","contre:mineure"],"SEF-L10-013":["reponse_inter"],"SEF-L13-002":["roudi"],"SEF-L13-016":["sa","sa:1SA"],"SEF-L13-019":["sa","sa:1SA"],"SEF-L14-002":["multilandy"],"SEF-L14-006":["roudi"],"SEF-L20-005":["barrage"],"SEF-L20-006":["reveil","reveil:majeure"],"SEF-L21-003":["roudi"],"SEF-L21-005":["apres_fit"],"SEF-L21-006":["apres_fit"],"SEF-L21-007":["apres_fit"],"SEF-L22-007":["red","red:mineure"],"SEF-L24-004":["reveil","reveil:majeure"],"SEF-L25-002":["stayman"],"SEF-L25-005":["stayman"],"SEF-L26-001":["reveil","reveil:majeure"],"SEF-L27-004":["barrage"],"SEF-L27-005":["red","red:mineure"],"SEF-L29-003":["red","red:mineure"],"SEF-L30-001":["fortes"],"SEF-L33-005":["ouv","ouv:majeure"],"SEF-L34-004":["reveil","reveil:majeure"],"SEF-L37-004":["sa"],"SEF-L38-001":["sa"],"SEF-L40-001":["sa"],"SEF-L41-001":["sa"],"SEF-L42-003":["sa","sa:1SA"],"SEF-L43-005":["sa"],"SEF-Q26-M2-002":["rubensohl"],"V1-M4-006":["reveil","michaels","reveil:mineure"],"V1-M4-007":["reveil","michaels","reveil:mineure"],"V1-M4-008":["reveil","reveil:majeure"],"V2-M1-003":["ouv","ouv:sa"],"V2-M1-031":["mineur","mineur:1♣"],"V2-M2-007":["sa"],"V2-M2-008":["sa"],"V2-M2-013":["sa"],"V2-M2-040":["stayman"],"V2-M3-030":["second","second:majeure"],"V2-M4-023":["contre","contre:mineure"],"V2-M5-023":["multilandy"],"V2-M6-001":["roudi"],"V2-M6-005":["roudi"],"V2-M6-008":["drury"],"SEF-Q400-A-024":["ouv","ouv:passe"],"SEF-Q400-A-039":["majeur","majeur:1♥"],"SEF-Q400-B-006":["ouv","ouv:sa"],"SEF-Q400-B-036":["stayman"],"SEF-Q400-B-042":["sa","sa:2SA"],"SEF-Q400-B-047":["sa"],"SEF-Q400-B-048":["sa"],"SEF-Q400-B-059":["roudi"],"SEF-Q400-B-071":["roudi"],"SEF-Q400-B-084":["drury"],"SEF-Q400-B-091":["sa"],"SEF-Q400-B-093":["sa"],"SEF-Q400-C-039":["contre","contre:mineure"],"SEF-Q400-C-063":["red","red:mineure"],"SEF-Q400-C-078":["barrage"],"SEF-Q400-C-079":["barrage"],"SEF-Q400-C-089":["apres_inter","apres_inter:majeure"],"SEF-Q400-D-018":["forcing"],"SEF-Q685-A-037":["mineur","mineur:1♦"],"SEF-Q685-A-071":["majeur","majeur:1♥"],"SEF-Q685-A-073":["majeur","majeur:1♥"],"SEF-Q685-A-074":["majeur","majeur:1♠"],"SEF-Q685-A-075":["majeur","majeur:1♠"],"SEF-Q685-A-076":["majeur","majeur:1♠"],"SEF-Q685-A-077":["majeur","majeur:1♠"],"SEF-Q685-A-111":["second","second:mineure"],"SEF-Q685-A-127":["second","second:mineure"],"SEF-Q685-A-130":["second","second:mineure"],"SEF-Q685-B-024":["sa","sa:1SA"],"SEF-Q685-B-052":["stayman"],"SEF-Q685-B-056":["stayman"],"SEF-Q685-B-058":["stayman"],"SEF-Q685-B-063":["sa","sa:1SA"],"SEF-Q685-B-065":["sa"],"SEF-Q685-B-066":["sa"],"SEF-Q685-B-067":["sa"],"SEF-Q685-B-083":["drury"],"SEF-Q685-B-089":["sa"],"SEF-Q685-B-090":["sa"],"SEF-Q685-B-091":["sa"],"SEF-Q685-B-092":["sa"],"SEF-Q685-B-093":["sa"],"SEF-Q685-B-094":["sa"],"SEF-Q685-B-095":["sa"],"SEF-Q685-B-096":["sa"],"SEF-Q685-B-097":["sa"],"SEF-Q685-B-121":["sa"],"SEF-Q685-B-130":["sa"],"SEF-Q685-B-132":["roudi"],"SEF-Q685-B-134":["roudi"],"SEF-Q685-B-143":["roudi"],"SEF-Q685-B-157":["drury"],"SEF-Q685-B-158":["drury"],"SEF-Q685-B-167":["drury"],"SEF-Q685-C-040":["contre","contre:majeure"],"SEF-Q685-C-069":["red","red:mineure"],"SEF-Q685-C-071":["red","red:mineure"],"SEF-Q685-C-114":["reveil","reveil:majeure"],"SEF-Q685-C-115":["reveil","reveil:majeure"],"SEF-Q685-C-136":["apres_inter","apres_inter:majeure"],"SEF-Q685-D-043":["multilandy"],"SEF-Q685-D-061":["rubensohl"],"SEF-Q685-D-062":["rubensohl"],"SEF-Q685-D-063":["rubensohl"],"SEF-Q685-D-064":["rubensohl"],"SEF-Q685-D-065":["rubensohl"],"SEF-Q685-D-066":["rubensohl"],"SEF-Q685-D-067":["rubensohl"],"SEF-Q685-D-068":["rubensohl"],"SEF-Q685-D-081":["michaels"],"SEF-Q685-D-082":["michaels"],"SEF-Q685-D-085":["michaels"]});
+  const audit3000Enabled=Object.keys(prerequis?.byId||{}).length>=3000&&Object.hasOwn(prerequis.byId,'SEF-Q685-D-068');
   function empty(){return {version:VERSION,completed:0,entries:{},skills:{},micros:{},axes:{},
+    ...(audit3000Enabled?{audit3000Revision:AUDIT3000_REVISION}:{}),
     active:null,journal:[],difficultyFeedback:[],difficultyAdjustment:0};}
   // Optional observed first bid only. Old journals remain unchanged after load.
   const firstGuessEvidence=a=>a?.hadFreeError===true&&typeof a.firstGuess==='string'&&/^(?:Passe|Contre|Surcontre|[1-7](?:♣|♦|♥|♠|SA))$/.test(a.firstGuess)&&!(a.result==='correct'&&a.firstGuess===a.choice)?{firstGuess:a.firstGuess}:{};
@@ -471,7 +478,7 @@ return Object.freeze({schema,mode:'T',choose});
     return themes.filter(t=>historical.filter(id=>byId.get(id).theme===t).join('|')!==
       proposed.filter(id=>byId.get(id).theme===t).join('|'));
   }
-  function load(raw){
+  function loadObserved(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
     const s=empty();
@@ -650,6 +657,78 @@ return Object.freeze({schema,mode:'T',choose});
     }
     return s;
   }
+  // Old observations are never regraded. Move only incompatible evidence
+  // out of the live scoring journal, with exact original rows kept in the
+  // archive. Old non-reconstructible aggregate buckets are conservatively
+  // restarted, not fabricated by replaying an incomplete journal.
+  function applyAudit3000Revision(s,raw){
+    if(!audit3000Enabled)return s;
+    let old=raw;if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
+    if(!old||old.version!==VERSION)return s;
+    if(old.audit3000Revision===AUDIT3000_REVISION){
+      const archive=old.audit3000Archive;
+      if(archive&&typeof archive==='object'&&!Array.isArray(archive)&&archive.revision===AUDIT3000_REVISION)
+        s.audit3000Archive=JSON.parse(JSON.stringify(archive));
+      return s;
+    }
+    const risk=id=>Object.hasOwn(AUDIT3000_RISK,id);
+    const touched=new Set(),archive={revision:AUDIT3000_REVISION,completedAtMigration:s.completed,
+      entries:{},journal:[],foundationRecalls:[],active:null,aggregates:{skills:{},micros:{},axes:{}}};
+    function note(id){if(risk(id))touched.add(id);}
+    for(const [id,r] of Object.entries(s.entries))if(risk(id)){
+      note(id);archive.entries[id]=r;delete s.entries[id];
+    }
+    function filterRows(rows,store,order){
+      return (rows||[]).flatMap((event,index)=>{
+        const removed=event.answers.filter(a=>risk(a.id));
+        if(!removed.length)return [event];
+        removed.forEach(a=>note(a.id));store.push({index,event});
+        const answers=event.answers.filter(a=>!risk(a.id));
+        if(!answers.length)return [];
+        const copy={...event,answers};
+        if(order&&Array.isArray(copy.orderReferenceIds))
+          copy.orderReferenceIds=copy.orderReferenceIds.filter(id=>!risk(id));
+        return [copy];
+      });
+    }
+    s.journal=filterRows(s.journal,archive.journal,true);
+    if(s.foundationRecalls){
+      // A foundation recall is an indivisible 4-6-card historical event.
+      // Keep its exact record in the archive if any card was revised.
+      s.foundationRecalls=s.foundationRecalls.filter((event,index)=>{
+        const ids=event.answers.filter(a=>risk(a.id)).map(a=>a.id);
+        if(!ids.length)return true;
+        ids.forEach(note);archive.foundationRecalls.push({index,event});return false;
+      });
+    }
+    if(s.active){
+      const stale=Object.keys(s.active.answers).filter(i=>risk(s.active.ids[Number(i)]));
+      if(stale.length){
+        archive.active=JSON.parse(JSON.stringify(s.active));
+        for(const i of stale){note(s.active.ids[Number(i)]);delete s.active.answers[i];}
+        // Keep the deck and unaffected answers. Present the first revised
+        // unanswered card again rather than showing an obsolete correction.
+        const first=s.active.ids.findIndex((_,i)=>!Object.hasOwn(s.active.answers,i));
+        if(first>=0)s.active.index=first;
+      }
+    }
+    // A legacy aggregate can contain earlier attempts even if a recent
+    // entry was superseded. The affected question buckets are known from
+    // the exact old and new catalogue. Do not touch unrelated buckets.
+    const buckets=new Set([...touched].flatMap(id=>AUDIT3000_RISK[id]));
+    for(const key of buckets){
+      for(const field of ['skills','micros','axes'])if(Object.hasOwn(s[field],key)){
+        archive.aggregates[field][key]=s[field][key];delete s[field][key];
+      }
+    }
+    if(s.active&&touched.size&&s.active.orderSkillBase){
+      if(!archive.active)archive.active=JSON.parse(JSON.stringify(s.active));
+      delete s.active.orderSkillBase;delete s.active.orderSkillRecordedIds;
+    }
+    if(touched.size)s.audit3000Archive=archive;
+    return s;
+  }
+  function load(raw){return applyAudit3000Revision(loadObserved(raw),raw);}
   function themeFloor(exercises,theme){
     const values=exercises.filter(x=>x.theme===theme).map(x=>x.difficulty);
     return values.length?Math.min(...values):1;
@@ -1788,7 +1867,8 @@ return Object.freeze({schema,mode:'T',choose});
   function exportProgress(state,exercises,quizRecords){
     const byId=new Map(exercises.map(q=>[q.id,q]));
     const journal=state.journal||[];
-    const detailed=journal.filter(x=>x.mode==='parcours').length;
+    const archivedJournal=state.audit3000Archive?.journal||[];
+    const detailed=new Set([...journal,...archivedJournal.map(x=>x.event)].filter(x=>x.mode==='parcours').map(x=>x.session)).size;
     const questions=Object.entries(state.entries||{}).map(([id,r])=>{
       const q=byId.get(id);
       return {id,theme:q?.theme||null,difficulty:q?.difficulty??null,
@@ -1812,11 +1892,12 @@ return Object.freeze({schema,mode:'T',choose});
       storageKeys:{parcours:'qpjb-sef-parcours-01',quiz:'qpjb-sef-entrainement-01'},
       limitations:{
         historicalSessionsWithoutDetailedAnswers:Math.max(0,state.completed-detailed),
-        note:'Les séances antérieures à la création du journal n’ont pas leurs réponses détaillées reconstituées. Le suivi par question et les anciennes réponses du Quiz sont limités aux données réellement conservées.'
+        note:'Les séances antérieures à la création du journal n’ont pas leurs réponses détaillées reconstituées. Le suivi par question et les anciennes réponses du Quiz sont limités aux données réellement conservées.'+(state.audit3000Archive?' Les observations antérieures à une révision pédagogique sont conservées dans historicalAuditArchive et exclues des preuves actuelles. Les agrégats concernés repartent prudemment sans réévaluation rétroactive.':'')
       },
       summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
         totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
       sessions:journal,
+      ...(state.audit3000Archive?{historicalAuditArchive:state.audit3000Archive}:{}),
       ...(state.foundationRecalls?.length?{supplementalFoundationPractice:state.foundationRecalls}:{}),
       selectionDiagnostics:selectionDiagnostics(state,5),
       currentSession:state.active||null,
@@ -1847,14 +1928,14 @@ return Object.freeze({schema,mode:'T',choose});
       !old.skills||typeof old.skills!=='object'||Array.isArray(old.skills)||
       backup.summary?.completedSessions!==old.completed)
       throw Error('État de progression manquant ou incohérent.');
-    const restored=load(old);
+    const restored=loadObserved(old);
     // Un ancien journal incomplet reste incomplet : ni invention ni perte.
     if(Object.keys(restored.entries).length!==Object.keys(old.entries).length||
       (old.active&&!restored.active)||
       restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0)||
       (restored.foundationRecalls?.length||0)!==(Array.isArray(old.foundationRecalls)?old.foundationRecalls.length:0))
       throw Error('Sauvegarde incohérente : aucune donnée n’a été remplacée.');
-    return restored;
+    return applyAudit3000Revision(restored,old);
   }
   // Tableau V1.5 : consultation uniquement. Pas de modification du tirage
   // ni de reconstruction spéculative de l'historique.
@@ -1924,5 +2005,5 @@ return Object.freeze({schema,mode:'T',choose});
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,studySuggestions,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
+  return {eligibility,adaptiveDiagnostics,audit3000Revision:audit3000Enabled?AUDIT3000_REVISION:null,audit3000Risk:()=>Object.keys(AUDIT3000_RISK),createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,studySuggestions,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
