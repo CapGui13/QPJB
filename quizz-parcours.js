@@ -1020,6 +1020,8 @@ return Object.freeze({schema,mode:'T',choose});
       (q.theme!=='red'||pilotRedReady(e,s)&&PILOT_RED.has(q.id)));
     const transition=options.pilotEarly!==false&&s>=5&&s<=9&&limit===10;
     const texasIntroduced=[...(e.seen.get('sa1.texas')||[])].some(id=>PILOT_TEXAS_SIMPLE.has(id));
+    const pilotCore=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
+    const pilotWeakCore=q=>pilotCore.has(metadata(q).concept)&&q.difficulty<=2&&!!e.weakConcept[metadata(q).concept];
     const staymanIntroduced=e.seen.has('sa1.stayman');
     // Keep existing legacy histories and active decks intact. During the
     // bridge from S5 to S10, introduce a low-force transfer before any
@@ -1125,6 +1127,7 @@ return Object.freeze({schema,mode:'T',choose});
         (!pilot||s!==2||mOf(q).concept!=='ouv.sa2'||!concepts['ouv.sa2'])&&
         (!pilot||s!==3||mOf(q).concept!=='sa1.seuil'||!(selected.some(v=>mOf(v.exercise).concept==='sa1.seuil'&&bid(v.exercise)===bid(q))))&&
         (!pilot||s<3||q.theme!=='red'||!selected.some(v=>v.exercise.theme==='red'&&pilotRedRole(v.exercise)===pilotRedRole(q)))&&
+        (!transition||texasIntroduced||!PILOT_TEXAS_SIMPLE.has(q.id)||!selected.some(v=>PILOT_TEXAS_SIMPLE.has(v.exercise.id)&&bid(v.exercise)===bid(q)))&&
         (q.difficulty<=3||moreHard);
       // Quand le réservoir de familles nouvelles se raréfie, ne pas
       // concentrer la séance dans une seule rubrique si un rappel éligible
@@ -1280,9 +1283,18 @@ return Object.freeze({schema,mode:'T',choose});
           if(selected.length<limit&&!selected.some(v=>mOf(v.exercise).concept==='sa1.seuil'&&bid(v.exercise)===answer))
             choose(pool.filter(q=>mOf(q).concept==='sa1.seuil'&&bid(q)===answer&&q.difficulty===1),'discovery',null,true);
       }
+      // S5–10: reserve at most two genuinely weak, distinct fundamental
+      // concepts before new discoveries. Use native candidates, no invented proof.
+      if((pilot&&s===4)||transition){
+        for(let i=0;i<2&&selected.length<limit;i++){
+          const weakCore=pool.filter(q=>pilotWeakCore(q)&&!concepts[mOf(q).concept]&&novelFamily(q));
+          if(!choose(weakCore,'weakness',null,true))break;
+        }
+      }
       if(pilot&&(s===3||s===4)&&pilotRedReady(e,s)){
+        const cleanRoles=new Set(e.recent.filter(x=>!weakAnswer(x.a)&&x.s>=s-2).map(x=>pilotRedRole(x.q)));
         for(const role of ['sa','repeat','support'])
-          if(selected.length<limit&&!selected.some(v=>pilotRedRole(v.exercise)===role))
+          if(selected.length<limit&&(s===3||!cleanRoles.has(role))&&!selected.some(v=>pilotRedRole(v.exercise)===role))
             choose(pool.filter(q=>pilotRedRole(q)===role),null,null,true);
       }
       // Réserver au plus une découverte éligible et un rappel fondamental
@@ -1293,7 +1305,9 @@ return Object.freeze({schema,mode:'T',choose});
         if(selected.length<limit)choose(pool.filter(q=>!e.seen.has(mOf(q).concept)&&!concepts[mOf(q).concept]),'discovery',null,true);
       }
       if(transition&&!texasIntroduced&&selected.length<limit){
-        choose(pool.filter(q=>PILOT_TEXAS_SIMPLE.has(q.id)),'discovery',null,true);
+        for(const answer of ['2♦','2♥'])
+          if(selected.length<limit&&!selected.some(v=>PILOT_TEXAS_SIMPLE.has(v.exercise.id)&&bid(v.exercise)===answer))
+            choose(pool.filter(q=>PILOT_TEXAS_SIMPLE.has(q.id)&&bid(q)===answer),'discovery',null,true);
       }else if(transition&&texasIntroduced&&!staymanIntroduced&&selected.length<limit){
         choose(pool.filter(q=>mOf(q).concept==='sa1.stayman'&&q.difficulty<=2),'discovery',null,true);
       }
