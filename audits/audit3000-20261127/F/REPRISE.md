@@ -1,48 +1,8 @@
 # REPRISE — F
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 69372138c8622a135f1dc8084427b0911a99304e. Passes 1–5 : 200/436, dernier SEF-Q26-M6-011, prochain SEF-Q26-M6-012. SHA actuel via HEAD. Verdicts {"VALIDE":59,"ARBITRAGE":6,"RECLASSER_REFORMULER":135}, 135 corrections, 3 propositions réservoir, 3 prérequis. Tests structurels sur 436 et couverture partielle 200 ; reste tests Node et comparaison globale.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 2133d4402ed59f7417e5554ad9ff5928103a7fba. Passes 1–6 : 240/436, dernier V2-M6-036, prochain V2-M6-037. SHA actuel via HEAD. Verdicts {"VALIDE":85,"ARBITRAGE":6,"RECLASSER_REFORMULER":149}, 149 corrections, 3 propositions réservoir, 3 prérequis. Tests structurels sur 436 et couverture partielle 240 ; reste tests Node et comparaison globale.
 
-## IDs restant à relire (236)
-SEF-Q26-M6-012
-V1-M2-001
-V1-M5-003
-V1-M5-004
-V1-M5-005
-V1-M5-006
-V1-M6-001
-V1-M6-002
-V1-M6-003
-V1-M6-004
-V1-M6-005
-V1-M6-006
-V2-M1-013
-V2-M1-014
-V2-M2-041
-V2-M2-042
-V2-M6-013
-V2-M6-014
-V2-M6-015
-V2-M6-016
-V2-M6-017
-V2-M6-018
-V2-M6-019
-V2-M6-020
-V2-M6-021
-V2-M6-022
-V2-M6-023
-V2-M6-024
-V2-M6-025
-V2-M6-026
-V2-M6-027
-V2-M6-028
-V2-M6-029
-V2-M6-030
-V2-M6-031
-V2-M6-032
-V2-M6-033
-V2-M6-034
-V2-M6-035
-V2-M6-036
+## IDs restant à relire (196)
 V2-M6-037
 V2-M6-038
 V2-M6-039
