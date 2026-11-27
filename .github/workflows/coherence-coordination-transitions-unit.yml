@@ -1,0 +1,22 @@
+name: QPJB Coordination M3 — replay unitaire
+on:
+  pull_request:
+    branches:
+      - coherence-concrete/coordination-transitions-ordre
+    paths:
+      - '.github/workflows/coherence-coordination-transitions-unit.yml'
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-concrete-coordinator-order-replay-unit.cjs
+          node tests/coherence-concrete-m2-unit.cjs
+          node tests/quizz-prerequis.cjs
+          node tests/durable-integration-evidence.cjs
