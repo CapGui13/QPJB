@@ -10,7 +10,7 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 function rank(ctx={}){
  const {session,category,metadataById:meta={},baselineId,policy='L'}=ctx;
  if(!Number.isInteger(session)||session<3||session>20||ctx.history?.active||ctx.forcedReason||
- !['discovery','maintenance'].includes(category)||!['L','R'].includes(policy))return [];
+ !['discovery','maintenance'].includes(category)||!['L','R','T'].includes(policy))return [];
  const candidates=ctx.candidates||[],lookup=new Map((ctx.exercises||[]).map(q=>[q.id,q]));
  for(const q of candidates)lookup.set(q.id,q);
  const old=lookup.get(baselineId),m=meta[baselineId],f=base.features(old,m);
@@ -25,7 +25,10 @@ function rank(ctx={}){
  if(relevant.some(x=>!clean(x.a)))return [];
  const past=relevant.map(x=>base.features(x.q,meta[x.q.id])).filter(Boolean);
  const count=(arr,v)=>arr.filter(x=>x.near===v.near).length;
- const repeated=policy==='L'?count(local,f):count(past,f);
+ // T: evidence-wide guard and same-family substitution. A new ID may still
+ // affect future trajectories; the S180 gate is unchanged.
+ if(policy==='T'&&!history.every(x=>clean(x.a)))return [];
+ const repeated=policy==='L'?count(local,f):policy==='R'?count(past,f):count(local,f)+count(past,f);
  if(!repeated)return [];
  // R only with a real independent success on the same decision. L can
  // contrast a first discovery within a complete deck (no invented mastery).
@@ -38,8 +41,9 @@ function rank(ctx={}){
   const localGain=count(local,f)-count(local,v),recentGain=count(past,f)-count(past,v);
   // A real force or shape contrast, not a new hand alone. Do not trade
   // a local repetition against a recent repetition (or vice versa).
-  if(v.near===f.near||localGain<0||recentGain<0||(policy==='L'?localGain:recentGain)<=0)continue;
-  out.push({id:q.id,delta:Math.min(24,8*(localGain+recentGain)),reason:policy==='L'?'contraste de force/distribution dans une décision répétée du deck':'contraste de force/distribution après réussite autonome récente',localGain,recentGain});
+  if(policy==='T'&&family(q)!==family(old))continue;
+  if(v.near===f.near||localGain<0||recentGain<0||(policy==='L'?localGain:policy==='R'?recentGain:localGain+recentGain)<=0)continue;
+  out.push({id:q.id,delta:Math.min(24,8*(localGain+recentGain)),reason:policy==='T'?'contraste au sein de la même famille après deux séances autonomes':policy==='L'?'contraste de force/distribution dans une décision répétée du deck':'contraste de force/distribution après réussite autonome récente',localGain,recentGain});
  }
  return out.sort((a,b)=>b.delta-a.delta||a.id.localeCompare(b.id));
 }
