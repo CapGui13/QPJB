@@ -1,47 +1,7 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543 cumulés, dernier SEF-V3-095-1, prochain SEF-V3-095-2. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 80 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 463 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543 cumulés, dernier SEF-V4-034-1, prochain SEF-V4-035-1. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 120 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 423 IDs :
 
-- SEF-V3-095-2
-- SEF-V3-096-2
-- SEF-V3-096-1
-- SEF-V3-097-3
-- SEF-V3-097-4
-- SEF-V3-098-1
-- SEF-V3-098-3
-- SEF-V3-099-3
-- SEF-V3-099-1
-- SEF-V3-100-4
-- SEF-V3-100-2
-- SEF-V3-101-2
-- SEF-V3-101-1
-- SEF-V3-102-2
-- SEF-V3-102-3
-- SEF-V3-103-4
-- SEF-V3-103-3
-- SEF-V3-104-4
-- SEF-V3-105-3
-- SEF-V3-106-1
-- SEF-V3-106-2
-- SEF-V3-107-1
-- SEF-V3-107-2
-- SEF-V3-108-1
-- SEF-V4-025-2
-- SEF-V4-025-1
-- SEF-V4-026-4
-- SEF-V4-026-3
-- SEF-V4-027-1
-- SEF-V4-028-1
-- SEF-V4-029-1
-- SEF-V4-029-2
-- SEF-V4-030-1
-- SEF-V4-031-1
-- SEF-V4-031-4
-- SEF-V4-032-2
-- SEF-V4-033-4
-- SEF-V4-033-2
-- SEF-V4-034-4
-- SEF-V4-034-1
 - SEF-V4-035-1
 - SEF-V4-036-1
 - SEF-V4-037-1
