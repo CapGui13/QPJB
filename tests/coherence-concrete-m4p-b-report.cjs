@@ -9,7 +9,7 @@ const fam=q=>String(q.caseFamily||q.id),byId=new Map(exercises.map(q=>[q.id,q]))
 const coreFamilies=Object.fromEntries(core.map(c=>[c,new Set(exercises.filter(q=>meta[q.id].concept===c).map(fam))]));
 const familiesAll=new Set(exercises.map(fam)),conceptsAll=[...new Set(Object.values(meta).map(x=>x.concept))].sort();
 assert.equal(familiesAll.size,1556);assert.equal(conceptsAll.length,99);
-const profiles=['autonome','intermediaire','faible','cible','aide','passe'],seeds=[11,47,103],arms=['native','L','M','N','O'],horizons=[5,20,65,153,180],runs=new Map();
+const profiles=['autonome','intermediaire','faible','cible','aide','passe'],seeds=[11,47,103],arms=['native','L','M','N','O','P'],horizons=[5,20,65,153,180],runs=new Map();
 for(const e of m.artifacts){
  const gz=fs.readFileSync(path.join(data,e.file));assert.equal(hash(gz),e.compressedSha256);const raw=zlib.gunzipSync(gz);assert.equal(hash(raw),e.sha256);assert.equal(raw.length,e.bytes);
  const x=JSON.parse(raw),r=x.run,key=e.file.replace('.json.gz','');
@@ -26,7 +26,7 @@ for(const e of m.artifacts){
  }
  runs.set(key,x);
 }
-assert.equal(runs.size,90);
+assert.equal(runs.size,108);
 const capacity=[],ledger=[],comparisons=[],totals={},metrics=['nearPairs','decisionPairs','nearRecent','coreDebt','themeDebt','families','concepts','proof','independent','hard','p95Ms'];
 const compact=q=>({id:q.id,concept:meta[q.id].concept,stage:meta[q.id].stage,theme:q.theme,family:fam(q),difficulty:q.difficulty,answer:q.answer,context:q.context,auction:q.auction,hand:q.hand,h:q.h,shape:q.shape});
 for(const p of profiles)for(const seed of seeds){
