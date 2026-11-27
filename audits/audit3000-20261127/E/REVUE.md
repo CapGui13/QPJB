@@ -273,3 +273,24 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 13 — cumul actualisé
+
+540/540 verdicts individuels, aucun ID restant. {"VALIDE":140,"RECLASSER_REFORMULER":370,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":30}. 361 corrections complètes, 46 modifications prérequis, 101 entrées réservoir.
+- Multi-Landy : distinguer priorités du code QPJB et autres variantes, préférences faibles, relais, passe-ou-corrige, décision de barrage (D043 en arbitrage). Source https://www.bridge-chailley.fr/dictionnaires/index-m-z/i-l/. Rubensohl : préciser zones de 1SA, distinguer réponses conservées sur contre artificiel, naturelles et Texas, neutraliser questions qui prescrivent la conclusion. Source https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl. Michaël : distinguer intervention directe, réveil et réponses ; préférences économiques distinctes d'un barrage tactique, cue-bids économique/cher, D085 alternative saut naturel à arbitrer. Source https://bridgesaintcloud.fr/quesaquo30.html. Réveil 2♣ sur 1♣ rouge confirmé par clarification du 7 mars 2026 : https://www.bridge-chailley.fr/dictionnaire-des-encheres/competitives/.
+- Difficultés proposées à la baisse sur quelques applications directes de codes déjà exposés, sans toucher aux verrous de progression ; coordinateur chargé de vérifier cohérence de l'intégration. Redondances ciblées D047/D048 et D056, D061/D062, D063/D064, D083/D084, D087/D088 : garder les contrastes utiles, éviter répétitions simultanées. Aucun nouveau déplacement de réservoir.
+- Contrôles de périmètre, verdicts uniques, mains, rang simple des choix, corrections, groupes et concepts réels. Pas de suite locale, pas d'examen sémantique exhaustif ni certification SEF officielle intégrale. Couverture individuelle achevée ; recette cumulative et vérifications de clôture à effectuer.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 540,
+  "idsUniques": 540,
+  "corrections": 361,
+  "correctionsInvalides": [],
+  "passe13ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
