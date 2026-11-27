@@ -40,3 +40,9 @@
 - Run [46017045251](https://github.com/CapGui13/QPJB/actions/runs/46017045251), jobs Chromium 140566721803 et WebKit 140566721913 : chacun PASS, 360 et 1280 px. Chromium 156.0.8078.4 / WebKit 27.2. Preuve JSON exacte extraite des logs, commit 5fd7917d2f7382f6120e9aca9bc810f794fd1264 (ci-browser-results.json).
 - Quatre scénarios sur page privée réellement exécutée : S3 SEF-005-2→SEF-005-1, main effectivement rendue, première visite offline après préchauffage SW, reprise active et legacy exactes ; deux séances faibles par réponses erronées, consolidation de dix QCM après S5, reprise exacte et maîtrise inchangée ; journal, export/import et isolation quiz libre OK, aucune erreur page. Pas de modification de production.
 - Reste le run supplémentaire de gardes historiques [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) ; ne pas assimiler cette validation UI au verdict global M4.
+
+## Arrêt de passe — protocole anti-saturation
+- PR principale #512 brouillon, base coordination-generale, non fusionnée. Contrôle du diff : 18 fichiers, tous dans les chemins D autorisés. PR technique #513 séparée, aucune fusion.
+- Natif et UI réelle validés. Dernier état vérifié de 46017463188 : WebKit en cours, Chromium et gardes en file. La validation historique supplémentaire n'est pas attestée. Ne pas relancer les matrices déjà vertes.
+- Reprise minimale : consulter uniquement les jobs de 46017463188 ; si échec, filtrer le log du seul job fautif, corriger dans le périmètre autorisé, conserver le résultat exact et actualiser cette fiche/PR #512. Si PASS complet, décision T seule pour revue coordinateur, M4 global HOLD inchangé. Aucun merge ni publication.
+- MISSION DÉFINITIVEMENT TERMINÉE : NON (gardes historiques en attente).
