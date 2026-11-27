@@ -1,0 +1,54 @@
+{
+  "schema": "AUDIT3000_B_CONTROLES_P16",
+  "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+  "headControle": "759673fa9274fadb503c3f93137c8d88c9cf7895",
+  "blobs": {
+    "verdicts": "751b952313daffe34612cb2057b508f515ade93c",
+    "reservoir": "7a929808dad1d164b980b53d4da1fcc71fe326f0",
+    "prerequis": "b1fb01a4234f31a9b70608f0134d6d9fa26b30bd",
+    "corrections": "d10eb033e1876af2a4fdf9c8351bbaeb44bd67bd"
+  },
+  "resultats": {
+    "catalogue": 3000,
+    "tablePrerequis": 3000,
+    "lot": 454,
+    "verdicts": 454,
+    "verdictsUniques": 454,
+    "ensembleExact": true,
+    "counts": {
+      "VALIDE": 280,
+      "RECLASSER_REFORMULER": 148,
+      "ERREUR_PEDAGOGIQUE": 12,
+      "ARBITRAGE": 14
+    },
+    "corrections": 99,
+    "idsReponseModifiee": [
+      "SEF-V44-017",
+      "SEF-V44-018",
+      "SEF-V412-001"
+    ],
+    "mainsHFormesChoixDifficulte": 454,
+    "encheresContratCroissantes": 1081,
+    "choixContratAuDessusDernierContrat": 1686,
+    "seances": 65,
+    "groupesInitiauxEtProposesConcordants": true,
+    "ajoutsGroupes": 40,
+    "retraitsGroupes": 27,
+    "retraitPremierIdGroupe": 0,
+    "prerequisProposes": 7,
+    "conceptsEtDependancesConnus": true,
+    "nonAffectesApresPropositions": 235,
+    "revueDes261NonAffectesSnapshotP13": 261,
+    "contrastesRelus": 28,
+    "rapprochementsPrioritairesRelus": 31,
+    "erreurs": []
+  },
+  "testsNatifs": {
+    "execute": false,
+    "terminal": "git ls-remote https://github.com/CapGui13/QPJB.git HEAD : Could not resolve host: github.com",
+    "actionsSurHead": [],
+    "statutsSurHead": [],
+    "conclusion": "Non exécutés, ne pas présenter comme succès."
+  },
+  "limites": "Contrôles structurels JS réalisés par lecture des blobs GitHub, pas un test natif du dépôt ni certification SEF. Contrats croissants et choix au-dessus du dernier contrat seulement, pas validation complète du droit de contrer/surcontrer. Pas de preuve d'exposition dynamique ni de comparaison humaine de toutes les séquences sémantiquement voisines."
+}
