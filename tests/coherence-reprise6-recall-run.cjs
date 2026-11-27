@@ -14,12 +14,16 @@ let now=Date.UTC(2026,0,1);class FixedDate extends Date{constructor(...a){super(
 const requireBase=createRequire(path.join(root,'quizz-parcours.js'));
 function apiFor(code){const mod={exports:{}};new Function('module','exports','require','Date',code)(mod,mod.exports,requireBase,FixedDate);return mod.exports}
 const reference=apiFor(git('show',base+':quizz-parcours.js')),candidate=apiFor(source);
-const common={exercises,meta,features,m6,m2,m3,policy,profile,seed,horizon,clock:n=>now=Date.UTC(2026,0,1)+n,capture:true,consolidate:true};
+const common={exercises,meta,features,m6,m2,m3,policy,profile,seed,horizon,clock:n=>now=Date.UTC(2026,0,1)+n,capture:true,consolidate:true,digest:hash};
 const traces=[],summary=[];
 for(const model of ['D','M6']){
  const baseline=lab.run({...common,api:reference,model}),disabled=lab.run({...common,api:candidate,model});
  assert.deepEqual(disabled,baseline,'opt-out must be identical to reference');
  const after=lab.run({...common,api:candidate,model,foundationRecall:true});
+ assert.deepEqual(after.guidedDigests,baseline.guidedDigests,'guided state changed at a session boundary');
+ assert.deepEqual(after.sessions,baseline.sessions,'ordinary and native consolidation decks/results changed');
+ assert.deepEqual(after.direct,baseline.direct,'selection interventions changed');
+ assert.equal(after.consolidations,baseline.consolidations,'native consolidation count changed');
  const alerts=[],extraAlerts=[];
  for(const [i,b] of baseline.checkpoints.entries()){const a=after.checkpoints[i],session=b.session;
   for(const [concept,value] of Object.entries(b.debt))if((a.debt[concept]||0)>value)alerts.push({session,metric:'conceptDebt',concept,before:value,after:a.debt[concept]});
