@@ -90,28 +90,34 @@ function run(label,src,options={}){
  assert(checkpoints.every(x=>!x.violations.length));
  return {label,profile,seed,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,checkpoints,core:coreMetrics(sessions),events,m5Counts,state:{skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}};
 }
-const arms={};
+const arms={},quotaMode=process.env.QPJB_COORDINATOR_QUOTA==='1';
 arms.native=run('native',base);
 arms.off=run('off',current);
 const fingerprint=a=>a.sessions.map(s=>s.rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted]));
 same(fingerprint(arms.native),fingerprint(arms.off));same(canonical(arms.native.state),canonical(arms.off.state));
 arms.M2=run('M2',current,{coherenceM2:m2,study:true});
+if(quotaMode){
+ const quota=require('../quizz-coherence-coordinator-m4-quota.js');
+ arms.Q=run('Q',current,{coherenceM2:m2,coherenceM4:quota.Q,study:true});
+ arms.R=run('R',current,{coherenceM2:m2,coherenceM4:quota.R,study:true});
+}else{
 arms.V2=run('V2',current,{coherenceM1:m1v2});
 arms.V6=run('V6',current,{coherenceM1:m1v6});
 arms.V2M2=run('V2M2',current,{coherenceM1:m1v2,coherenceM2:m2,study:true});
 arms.V6M2=run('V6M2',current,{coherenceM1:m1v6,coherenceM2:m2,study:true});
 arms.V2M2M4=run('V2M2M4',current,{coherenceM1:m1v2,coherenceM2:m2,coherenceM4:m4,study:true});
 arms.V6M2M4=run('V6M2M4',current,{coherenceM1:m1v6,coherenceM2:m2,coherenceM4:m4,study:true});
-for(const [a,b] of [['native','M2'],['V2','V2M2'],['V6','V6M2']]){
+}
+for(const [a,b] of (quotaMode?[['native','M2']]:[['native','M2'],['V2','V2M2'],['V6','V6M2']])){
  same(arms[a].sessions.map(s=>sorted(s.rows)),arms[b].sessions.map(s=>sorted(s.rows)));
  same(canonical(arms[a].state),canonical(arms[b].state));
 }
 const comparisons={};
-for(const [a,b] of [['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']]){
+for(const [a,b] of (quotaMode?[['native','M2'],['M2','Q'],['M2','R']]:[['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']])){
  const comp=T.compare(arms[a],arms[b]),strict=strictCompare(arms[a],arms[b]);
  comparisons[a+'-'+b]={checkpoints:comp.checkpoints.map(c=>({session:c.session,review:c.review})),strict,changedSets:comp.changes.filter(x=>!x.sameSet).length,changedOrders:comp.changes.filter(x=>!x.sameOrder).length};
 }
-const summary={profile,seed,horizon,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts}])),comparisons};
+const summary={profile,seed,horizon,quotaMode,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts}])),comparisons};
 fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify(summary));fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify(arms));
 const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts}]))};
 console.log('COORDINATION_SUMMARY '+JSON.stringify(compact));
