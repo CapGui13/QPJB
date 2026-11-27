@@ -6,7 +6,7 @@ const {PROFILES,SEEDS,HORIZONS}=require('./coherence-concrete-m4-campaign.cjs');
 const violations=[],totals={};let changes=0,improved=false,earlyChanges=0,laterChanges=0;
 for(const profile of PROFILES)for(const seed of SEEDS){
  const p=JSON.parse(fs.readFileSync(path.join(folder,profile+'-'+seed+'.json'),'utf8'));
- if(p.profile!==profile||p.seed!==seed||p.after.policy!=='T'||p.before.checkpoints.length!==5||p.after.checkpoints.length!==5)throw Error('trace invalide '+profile+'/'+seed);
+ if(p.profile!==profile||p.seed!==seed||p.after.policy!==(process.env.POLICY||'T')||p.before.checkpoints.length!==5||p.after.checkpoints.length!==5)throw Error('trace invalide '+profile+'/'+seed);
  changes+=p.after.changes.length;
  earlyChanges+=p.after.changes.filter(x=>x.session<=5).length;
  laterChanges+=p.after.changes.filter(x=>x.session>=6&&x.session<=20).length;
