@@ -1,0 +1,110 @@
+name: Reprise6 D — recette privée T seule
+on:
+  pull_request:
+    branches: [coherence-concrete/reprise6-d-t-ui]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  native:
+    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparateurs historiques M6 et FNV D, T seule
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          node tests/coherence-reprise6-d-m6.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" 180 artifacts/m6 | tee artifacts/m6.log
+          node tests/coherence-reprise6-d-fnv.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" artifacts/d | tee artifacts/d.log
+      - name: Consolidations intercalées et reprise
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          node tests/coherence-reprise6-d-run.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" artifacts/consolidations 180 | tee artifacts/consolidations.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-d-${{ matrix.profile }}-${{ matrix.seed }}
+          path: artifacts/
+  browsers:
+    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.64.1
+          npx playwright install --with-deps "${{ matrix.browser }}"
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+          node tests/coherence-reprise6-d-stage.cjs _public_site _reprise6_d_private
+      - name: Real private UI, cache and storage
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          PW_BROWSER="${{ matrix.browser }}" node tests/coherence-reprise6-d-browser.cjs _reprise6_d_private | tee artifacts/browser.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-d-browser-${{ matrix.browser }}
+          path: artifacts/
+  gate:
+    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee'
+    needs: [native, browsers]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          path: results
+      - name: Double gate historique et contrôle supplémentaire consolidations
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+          const rows=[],consolidations=[];
+          for(const d of fs.readdirSync('results').filter(x=>!x.includes('browser'))){
+            const dir=path.join('results',d);
+            const parse=(p,prefix)=>JSON.parse(fs.readFileSync(path.join(dir,p),'utf8').split('\n').find(l=>l.startsWith(prefix)).slice(prefix.length));
+            rows.push({m6:parse('m6.log','COORDINATION_SUMMARY '),d:parse('d.log','INDEPENDENT_SUMMARY ')});
+            const c=JSON.parse(fs.readFileSync(path.join(dir,'consolidations/summary.json'),'utf8'));
+            consolidations.push({profile:c.profile,seed:c.seed,summary:c.summary.map(x=>({model:x.model,consolidate:x.consolidate,alerts:x.alerts,direct:x.direct,consolidations:x.consolidations,resumes:x.resumes}))});
+          }
+          assert.equal(rows.length,18);
+          const gate=require('./tests/coherence-reprise6-d-gate.cjs').evaluate(rows);
+          fs.mkdirSync('gate',{recursive:true});fs.writeFileSync('gate/rows.json',JSON.stringify({rows}));fs.writeFileSync('gate/result.json',JSON.stringify({gate,consolidations},null,2));
+          console.log(JSON.stringify({gate,consolidations:consolidations.map(x=>({profile:x.profile,seed:x.seed,summary:x.summary.map(s=>({model:s.model,consolidate:s.consolidate,alerts:s.alerts.length,direct:s.direct.length,consolidations:s.consolidations,resumes:s.resumes}))}))}));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reprise6-d-gate
+          path: gate/
