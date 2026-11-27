@@ -1,48 +1,8 @@
 # REPRISE — F
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 73a0dacf67c0867a52953d4b9d4895eac385461d. Passes 1–9 : 360/436, dernier SEF-Q685-D-099, prochain SEF-Q685-D-100. SHA actuel via HEAD. Verdicts {"VALIDE":161,"ARBITRAGE":7,"RECLASSER_REFORMULER":192}, 191 corrections, 3 propositions réservoir, 5 prérequis. Tests structurels sur 436 et couverture partielle 360 ; reste tests Node et comparaison globale.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 98e0688c319f61050ae81c1b0bcc364735a9b2dd. Passes 1–10 : 400/436, dernier SEF-Q685-D-139, prochain SEF-Q685-D-140. SHA actuel via HEAD. Verdicts {"VALIDE":194,"ARBITRAGE":7,"RECLASSER_REFORMULER":199}, 198 corrections, 3 propositions réservoir, 5 prérequis. Tests structurels sur 436 et couverture partielle 400 ; reste tests Node et comparaison globale.
 
-## IDs restant à relire (76)
-SEF-Q685-D-100
-SEF-Q685-D-101
-SEF-Q685-D-102
-SEF-Q685-D-103
-SEF-Q685-D-104
-SEF-Q685-D-105
-SEF-Q685-D-106
-SEF-Q685-D-107
-SEF-Q685-D-108
-SEF-Q685-D-109
-SEF-Q685-D-110
-SEF-Q685-D-111
-SEF-Q685-D-112
-SEF-Q685-D-113
-SEF-Q685-D-114
-SEF-Q685-D-115
-SEF-Q685-D-116
-SEF-Q685-D-117
-SEF-Q685-D-118
-SEF-Q685-D-119
-SEF-Q685-D-120
-SEF-Q685-D-121
-SEF-Q685-D-122
-SEF-Q685-D-123
-SEF-Q685-D-124
-SEF-Q685-D-125
-SEF-Q685-D-126
-SEF-Q685-D-127
-SEF-Q685-D-128
-SEF-Q685-D-129
-SEF-Q685-D-130
-SEF-Q685-D-131
-SEF-Q685-D-132
-SEF-Q685-D-133
-SEF-Q685-D-134
-SEF-Q685-D-135
-SEF-Q685-D-136
-SEF-Q685-D-137
-SEF-Q685-D-138
-SEF-Q685-D-139
+## IDs restant à relire (36)
 SEF-Q685-D-140
 SEF-Q685-D-141
 SEF-Q685-D-142
