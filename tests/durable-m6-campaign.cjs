@@ -58,9 +58,42 @@ function referenceRules(sources,diagnosticSources){
  const e=prepare(sources);
  return LAB.buildRuleMap(e.exercises,e.meta,mods['./quizz-professeur.js'].diagnose,BASE);
 }
+// AUDIT3000 is a deliberate editorial revision, not an exemption from the
+// historical guard. Only the exact before/after objects in the immutable
+// audited manifest are admissible. Future undeclared changes still fail.
+const AUDIT_BASE='ccd8f20811b9531bbfccb8352ec60953dd7d07cb';
+const AUDIT_REVISION='catalogue:0359c7ac24904f95afd72a5ac5f8da9fa6d9592f;metadata:ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
+const AUDIT_CATALOGUE_BLOB='0359c7ac24904f95afd72a5ac5f8da9fa6d9592f',AUDIT_METADATA_BLOB='ecc1a1802665d9af4c6ca63ae7cd5e85b286afcc';
+function verifyAuditRevision(b,c,audit){
+ assert(audit.catalogue.base===AUDIT_BASE&&audit.metadata.base===AUDIT_BASE,'Audit manifest provenance');
+ const original=new Map(audit.exercises.map(q=>[q.id,q]));
+ const live=new Map(c.exercises.map(q=>[q.id,q]));
+ const qm=audit.catalogue.byId,mm=audit.metadata.byId;
+ assert(original.size===3000&&audit.exercises.length===3000&&Object.keys(audit.meta.byId).length===3000,'Audit base coverage');
+ assert(live.size===c.exercises.length,'Candidate ID uniqueness');
+ for(const [id,q] of original){
+  const next=live.get(id),m=audit.meta.byId[id],n=c.meta.byId[id];
+  assert(next&&m&&n,'Lost audited ID or metadata '+id);
+  if(Object.hasOwn(qm,id)){
+   assert(GUARDS.sameHistorical(qm[id].before,q)&&!GUARDS.sameHistorical(qm[id].before,qm[id].after),'Invalid audit exercise record '+id);
+   assert(GUARDS.sameHistorical(next,qm[id].after),'Unapproved audit exercise change '+id);
+  }else assert(GUARDS.sameHistorical(next,q),'Changed unlisted exercise '+id);
+  if(Object.hasOwn(mm,id)){
+   assert(GUARDS.sameHistorical(mm[id].before,m)&&!GUARDS.sameHistorical(mm[id].before,mm[id].after),'Invalid audit metadata record '+id);
+   assert(GUARDS.sameHistorical(n,mm[id].after),'Unapproved audit metadata change '+id);
+  }else assert(GUARDS.sameHistorical(n,m),'Changed unlisted metadata '+id);
+ }
+ for(const id of [...Object.keys(qm),...Object.keys(mm)])assert(original.has(id),'Unknown audit manifest ID '+id);
+ for(const q of b.exercises){
+  assert(original.has(q.id)&&GUARDS.sameHistorical(original.get(q.id),q),'Changed historical exercise before audit '+q.id);
+  assert(GUARDS.sameHistorical(audit.meta.byId[q.id],b.meta.byId[q.id]),'Changed historical metadata before audit '+q.id);
+ }
+ return {catalogue:Object.keys(qm).length,metadata:Object.keys(mm).length,base:AUDIT_BASE,revision:AUDIT_REVISION};
+}
 function pair(base,candidate,name,seed,horizon=180,options={}){
  const b=prepare(base),c=prepare(candidate),byId=new Map(c.exercises.map(q=>[q.id,q]));
- for(const q of b.exercises){const newer=byId.get(q.id);assert(newer,'Lost historical ID '+q.id);
+ const audited=options.auditRevision?verifyAuditRevision(b,c,options.auditRevision):null;
+ if(!audited)for(const q of b.exercises){const newer=byId.get(q.id);assert(newer,'Lost historical ID '+q.id);
  assert(GUARDS.sameHistorical(newer,q),'Changed historical exercise '+q.id);
  assert(GUARDS.sameHistorical(c.meta.byId[q.id],b.meta.byId[q.id]),'Changed historical metadata '+q.id);}
  const cross=crossResume(b,c);
@@ -73,7 +106,7 @@ function pair(base,candidate,name,seed,horizon=180,options={}){
   if(a.crossSessionNewFamily-b.crossSessionNewFamily>Math.max(5,.15*a.crossSessionNewFamily))r.review.push('cross-session-transfer');
   return {...r,commonTransfer:common,crossSessionNewFamilyDelta:b.crossSessionNewFamily-a.crossSessionNewFamily};
  });
- return {before,after,crossResume:cross,comparison};
+ return {before,after,crossResume:cross,comparison,...(audited?{auditedRevision:audited}:{})};
 }
 function crossResume(b,c){
  b.clock(0);c.clock(0);
@@ -98,19 +131,36 @@ function legacy(sources){
  assert(e.api.exportProgress(imported,e.exercises,{}).limitations.historicalSessionsWithoutDetailedAnswers===1,'Historical limitation');
  return {oldEntries:deck.length,restoredEntries:Object.keys(imported.entries).length,inventedJournal:imported.journal.length};
 }
-module.exports={BASE,paths,diagnosticPaths,referenceRules,compile,data,engine,prepare,run,pair,crossResume,legacy,verifyEarly};
+module.exports={BASE,AUDIT_BASE,AUDIT_REVISION,verifyAuditRevision,paths,diagnosticPaths,referenceRules,compile,data,engine,prepare,run,pair,crossResume,legacy,verifyEarly};
 if(require.main===module){
  const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),crypto=require('node:crypto'),zlib=require('node:zlib');
  const root=path.join(__dirname,'..'),args=process.argv.slice(2),cmd=args[0]||'baseline',name=args[1]||'intermediaire',seed=Number(args[2]||47),h=Number(args[3]||180);
  const gitSources=Object.fromEntries(paths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
  const local=()=>Object.fromEntries([...new Set([...paths,...fs.readdirSync(root).filter(p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js')])].map(p=>[p,fs.readFileSync(path.join(root,p),'utf8')]));
+ // Only the pinned Git object may authorize an audit revision; never a
+ // mutable candidate manifest. Other branches retain the strict old guard.
+ const revisionDir='audits/audit3000-20261127/';
+ const readGit=(ref,p)=>cp.execFileSync('git',['show',ref+':'+p],{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024});
+ const auditOptions=()=>{
+  if(!fs.existsSync(path.join(root,revisionDir+'INTEGRATION-CATALOGUE.json')))return {};
+  return {auditRevision:{
+   exercises:data(readGit(AUDIT_BASE,'quizz.html')),
+   meta:compile(readGit(AUDIT_BASE,'quizz-prerequis.js'),require),
+   catalogue:JSON.parse(cp.execFileSync('git',['cat-file','blob',AUDIT_CATALOGUE_BLOB],{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024})),
+   metadata:JSON.parse(cp.execFileSync('git',['cat-file','blob',AUDIT_METADATA_BLOB],{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024}))
+  }};
+ };
+ const auditSources=()=>Object.fromEntries([...new Set([...paths,...readGitTree(AUDIT_BASE)])].map(p=>[p,readGit(AUDIT_BASE,p)]));
+ function readGitTree(ref){return cp.execFileSync('git',['ls-tree','--name-only',ref],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js')}
  let result;
- if(cmd==='baseline')result=run(gitSources,name,seed,h);
- else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h);
+ if(cmd==='audit-pair')result=pair(auditSources(),local(),name,seed,h,auditOptions());
+ else if(cmd==='audit-reference-pair')result=pair(gitSources,auditSources(),name,seed,h);
+ else if(cmd==='baseline')result=run(gitSources,name,seed,h);
+ else if(cmd==='pair')result=pair(gitSources,local(),name,seed,h,auditOptions());
  else if(cmd==='fixed')result=run(gitSources,name,seed,h,{model:'fixed'});
  else if(cmd==='sensitivity'||cmd==='sensitivity-pair'){
  const p=LAB.PROFILES[name],cases=[['reference',{}],['half-x0.5',{overrides:{half:p.half*.5}}],['half-x2',{overrides:{half:p.half*2}}],['fixed-control',{model:'fixed'}],['slow-learning',{overrides:{learn:p.learn*.5}}],['fast-learning',{overrides:{learn:p.learn*2}}]];
- result=cases.map(([label,opts])=>({label,result:cmd==='sensitivity-pair'?pair(gitSources,local(),name,seed,h,opts):run(gitSources,name,seed,h,opts)}));
+ result=cases.map(([label,opts])=>({label,result:cmd==='sensitivity-pair'?pair(gitSources,local(),name,seed,h,{...opts,...auditOptions()}):run(gitSources,name,seed,h,opts)}));
  }
  else if(cmd==='semantic'||cmd==='semantic-pair'){
  const diagnosticSources=Object.fromEntries(diagnosticPaths.map(p=>[p,cp.execFileSync('git',['show',BASE+':'+p],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024})]));
@@ -122,8 +172,8 @@ if(require.main===module){
  else if(cmd==='size'){
  const files=[...paths,'quizz-apprentissage-concepts.js','quizz-diagnostic-erreurs.js','quizz-remediation.js','quizz-professeur.js','service-worker.js','parcours-recommandations.js',...['quizz-durable-m1-adaptation.js','quizz-durable-m1-guard.js','quizz-durable-m2-data.js','quizz-durable-m2-remediation.js','quizz-durable-m3-maitrise.js','quizz-durable-m4-transfert.js','quizz-durable-m5-lecons.js','quizz-durable-integration.js'].filter(p=>fs.existsSync(path.join(root,p)))];
  result=files.map(p=>{const b=fs.readFileSync(path.join(root,p));return {file:p,bytes:b.length,gzipBytes:zlib.gzipSync(b).length,sha256:crypto.createHash('sha256').update(b).digest('hex')}});
- }else throw Error('Command: baseline|pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
+ }else throw Error('Command: baseline|pair|audit-pair|audit-reference-pair|fixed|sensitivity|sensitivity-pair|semantic|semantic-pair|legacy|size');
  console.log(JSON.stringify({result,environment:{node:process.version,memory:process.memoryUsage(),cpu:process.cpuUsage()}},null,2));
- const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):cmd==='pair'?[result.before,result.after]:cmd==='semantic'?[result.result]:cmd==='semantic-pair'?[result.result.before,result.result.after]:[result];
+ const trajectories=Array.isArray(result)?result.flatMap(x=>x.result?.before?[x.result.before,x.result.after]:[x.result]):['pair','audit-pair','audit-reference-pair'].includes(cmd)?[result.before,result.after]:cmd==='semantic'?[result.result]:cmd==='semantic-pair'?[result.result.before,result.result.after]:[result];
  if(trajectories.some(x=>x?.violations?.length)||result.comparison?.some(x=>x.review.length)||result.result?.comparison?.some(x=>x.review.length)||(Array.isArray(result)&&result.some(x=>x.result?.comparison?.some(y=>y.review.length))))process.exitCode=2;
 }

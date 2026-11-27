@@ -1,0 +1,113 @@
+name: Audit 3000 recette candidat
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  recette:
+    if: github.head_ref == 'pedagogie/audit3000-20261127'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node tests/audit3000-integration.cjs
+      - run: node tests/audit3000-programme.cjs
+      - run: python scripts/verify_quiz_sef.py --html quizz.html --min-count 3000
+      - run: python scripts/audit_quiz_auction_legality.py --html quizz.html
+      - run: node tests/quizz-prerequis.cjs
+      - run: node tests/quizz-catalogue-live.cjs
+      - run: node tests/programme65-recette.cjs
+      - run: node --check quizz-parcours.js
+
+      - name: Compare audit with the immediate 3000-QCM baseline
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-pair intermediaire 47 20 > audit-pair.json
+          status=$?
+          if [ -s audit-pair.json ]; then node -e 'const r=require("./audit-pair.json").result; console.log(JSON.stringify({comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review,commonTransfer:x.commonTransfer?.delta})),beforeViolations:r.before.violations,afterViolations:r.after.violations,crossResume:r.crossResume},null,2))'; fi
+          exit "$status"
+      - name: Diagnostic historique du catalogue pré-audit
+        if: always()
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-reference-pair intermediaire 47 20 > audit-reference-pair.json
+          status=$?
+          if [ -s audit-reference-pair.json ]; then node -e 'const r=require("./audit-reference-pair.json").result; console.log(JSON.stringify({comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review})),beforeViolations:r.before.violations,afterViolations:r.after.violations},null,2))'; fi
+          # 2 means the old historical benchmark already required review on main, not a new audit result.
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then exit "$status"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit3000-comparaisons
+          path: |
+            audit-pair.json
+            audit-reference-pair.json
+
+  longitudinale:
+    name: Audit longitudinal / ${{ matrix.profile }} / ${{ matrix.seed }}
+    if: github.head_ref == 'pedagogie/audit3000-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare exact 3000-QCM pre-audit baseline and candidate
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-pair "$PROFILE" "$SEED" 180 > audit-longitudinal.json
+          status=$?
+          if [ -s audit-longitudinal.json ]; then
+            node -e 'const r=require("./audit-longitudinal.json").result; console.log(JSON.stringify({profile:r.before.profile,seed:r.before.seed,revision:r.auditedRevision,comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review,commonTransfer:x.commonTransfer?.delta})),beforeViolations:r.before.violations,afterViolations:r.after.violations,crossResume:r.crossResume},null,2))' || exit 1
+          fi
+          exit "$status"
+      - name: Independent old-reference versus pre-audit diagnostic
+        if: always()
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+        run: |
+          set +e
+          node tests/durable-m6-campaign.cjs audit-reference-pair "$PROFILE" "$SEED" 180 > historical-longitudinal.json
+          status=$?
+          echo "Historical diagnostic exit status: $status" | tee historical-status.txt
+          if [ -s historical-longitudinal.json ]; then
+            node -e 'const r=require("./historical-longitudinal.json").result; console.log(JSON.stringify({comparison:r.comparison.map(x=>({session:x.session,deltas:x.deltas,review:x.review})),beforeViolations:r.before.violations,afterViolations:r.after.violations},null,2))' || exit 1
+          fi
+          # Exit 2 remains explicit diagnostic evidence, not a passed historical
+          # benchmark. The existing durable laboratory workflow stays unchanged.
+          if [ "$status" -eq 2 ]; then
+            echo "::warning::Pre-audit historical reference requires review (exit 2)"
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-longitudinal-${{ matrix.profile }}-${{ matrix.seed }}
+          path: |
+            audit-longitudinal.json
+            historical-longitudinal.json
+            historical-status.txt

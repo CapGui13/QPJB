@@ -191,6 +191,11 @@ for(const lot of ['A','B','C','D']){
   explicit.byId[id]=metadata;
  }
 }
+const audit3000=require('../../audit3000-20261127/INTEGRATION-PREREQUIS.json');
+for(const [id,row] of Object.entries(audit3000.byId)){
+ if(JSON.stringify(explicit.byId[id])!==JSON.stringify(row.before))throw Error('Audit3000 prerequisite baseline mismatch '+id);
+ explicit.byId[id]=row.after;
+}
 function build(exercises){const ids=new Set(exercises.map(q=>q.id));if(ids.size!==exercises.length||ids.size!==Object.keys(explicit.byId).length||[...ids].some(id=>!explicit.byId[id]))throw Error('Explicit prerequis coverage mismatch');return {schema:explicit.schema,byId:Object.fromEntries(exercises.map(q=>[q.id,explicit.byId[q.id]]))};}
 const root=path.resolve(__dirname,'../../..');
 const html=fs.readFileSync(path.join(root,'quizz.html'),'utf8');

@@ -97,7 +97,10 @@ const server=http.createServer((req,res)=>{
   }
   for(const id of ['SEF-V410-025','SEF-V418-005','SEF-V420-009']){
     assert.equal(newRules[id].archivedPreRevision?.lastResult,'correct','Old Spoutnik mastery kept in archive: '+id);
-    assert.equal(newRules[id].pedagogicalRevision.startsWith('sef24-spoutnik-'),true,'New SEF revision tag: '+id);
+    // SEF-V420-009 received a second material revision in AUDIT3000.
+    // The other Spoutnik cases must still retain their historical revision tags.
+    const expectedPrefix=id==='SEF-V420-009'?'audit3000-':'sef24-spoutnik-';
+    assert.equal(newRules[id].pedagogicalRevision.startsWith(expectedPrefix),true,'Current SEF revision tag: '+id);
   }
   // V4.88 : quatre bonnes réponses corrigées, sans perdre la trace des anciens essais.
   const revisedV488=['SEF-V44-060','SEF-V416-012','SEF-V416-013','SEF-C-005'];
@@ -131,6 +134,8 @@ const server=http.createServer((req,res)=>{
     'Drury migration also runs only once');
   assert.ok(!newRulesAgain['SEF-V410-025'].archivedPreRevision.archivedPreRevision,
     'Spoutnik migration runs only once');
+  assert.deepEqual(newRulesAgain['SEF-V420-009'],newRules['SEF-V420-009'],
+    'AUDIT3000 Spoutnik revision is idempotent and preserves its archive');
   for(const id of revisedV488){
     assert.ok(newRulesAgain[id].archivedPreRevision&&!newRulesAgain[id].archivedPreRevision.archivedPreRevision,
       'V4.88 migration must happen only once: '+id);

@@ -45,16 +45,32 @@ jobs:
           node tests/durable-m6-register.cjs
           node tests/durable-m6-campaign.cjs legacy
           node tests/durable-m6-campaign.cjs size > sizes.json
-          node tests/durable-m6-campaign.cjs pair intermediaire 47 20 > quick-pair.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: durable-quick
           path: |
             sizes.json
-            quick-pair.json
-  longitudinal:
+  historical-reference:
+    # A comparative learning alert must remain a failed check, but must not
+    # prevent the independent browser and offline verification from running.
     needs: quick
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/durable-m6-campaign.cjs pair intermediaire 47 20 > quick-pair.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: durable-historical-reference
+          path: quick-pair.json
+  longitudinal:
+    needs: historical-reference
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -76,7 +92,7 @@ jobs:
           name: durable-${{ matrix.profile }}-${{ matrix.seed }}
           path: paired.json
   sensitivity:
-    needs: quick
+    needs: historical-reference
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -92,7 +108,7 @@ jobs:
           name: durable-sensitivity
           path: sensitivity.json
   semantic:
-    needs: quick
+    needs: historical-reference
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -130,13 +146,22 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright@1.64.1
       - run: npx playwright install --with-deps ${{ matrix.browser }}
-      - run: python3 scripts/build_catalogue.py && python3 scripts/build_public_site.py --output _public_site
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/durable-integration-browser.cjs _public_site > browser-integration.json
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/durable-m6-browser.cjs _public_site > browser-performance.json
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/progression-guidee-offline.cjs _public_site
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-production-browser.cjs
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
-      - run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
+      - id: build
+        run: python3 scripts/build_catalogue.py && python3 scripts/build_public_site.py --output _public_site
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/durable-integration-browser.cjs _public_site > browser-integration.json
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/durable-m6-browser.cjs _public_site > browser-performance.json
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/progression-guidee-offline.cjs _public_site
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/professeur-numerique-production-browser.cjs
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-parcours-browser.cjs
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/quizz-browser.cjs
+      - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: PW_BROWSER=${{ matrix.browser }} node tests/audit3000-browser.cjs _public_site
       - uses: actions/upload-artifact@v4
         if: always()
         with:

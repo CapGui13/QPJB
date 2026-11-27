@@ -1,0 +1,39 @@
+name: Audit 3000 — expériences de sélection (non activées)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tests/audit3000-selection-experiment.cjs'
+      - '.github/workflows/audit3000-selection-experiment.yml'
+permissions:
+  contents: read
+jobs:
+  compare:
+    name: Research / ${{ matrix.profile }} / ${{ matrix.seed }}
+    if: github.head_ref == 'pedagogie/audit3000-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103, 211, 307]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Evaluate unchanged control and three bounded hypotheses
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+        run: node tests/audit3000-selection-experiment.cjs "$PROFILE" "$SEED"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-${{ matrix.profile }}-${{ matrix.seed }}
+          path: audit3000-selection-experiment.json
