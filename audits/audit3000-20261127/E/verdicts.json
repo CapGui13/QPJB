@@ -18767,5 +18767,2503 @@
     "apres": {
       "context": "Le quatrième joueur intervient à 1♠ après votre ouverture de 1♣ et la réponse de 1♥. Quelle est votre redemande ?"
     }
+  },
+  {
+    "id": "V2-M5-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H et quatre ♠ = 12 HLD avant décote 4333. Soutien limite 3♠ sur intervention naturelle, contraste exact avec 002 après X. Retirer force et fit dévoilés.",
+    "references": [
+      "quizz.html#training-data/V2-M5-001",
+      "quizz-prerequis.js#V2-M5-001",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/sef-2024",
+      "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nature de l'intervention, à main constante.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G01",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous avez quatre atouts, une main régulière de soutien limite. Quelle enchère décrit le fit après l'intervention naturelle ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Même main 10 H quatre ♠ que 001, 2SA Truscott après X et non 3♠ barrage. Neutraliser l'énoncé et conserver les deux QCM en contraste.",
+    "references": [
+      "quizz.html#training-data/V2-M5-002",
+      "quizz-prerequis.js#V2-M5-002",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/sef-2024"
+    ],
+    "conceptInitial": "competitif.truscott",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après Contre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nature de l'intervention, à main constante.",
+      "prerequis": {
+        "concept": "competitif.truscott",
+        "stage": 3,
+        "minSession": 20,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.truscott",
+            "minExposure": 2
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G01",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L42-001",
+        "SEF-Q685-C-167"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠ et l’adversaire contre d’appel. Avec quatre Piques et une main régulière, quelle enchère décrit votre force de soutien ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire contre d'appel. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois ♠, 2SA fitté 11–15 HLD. L'énoncé donne le fit troisième et la nature constructive ; supprimer l'indice. Contraste 004 quatre ♠ et doubleton.",
+    "references": [
+      "quizz.html#training-data/V2-M5-003",
+      "quizz-prerequis.js#V2-M5-003",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
+    ],
+    "conceptInitial": "competitif.2sa_fitte",
+    "conceptPropose": "competitif.2sa_fitte",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nombre d'atouts et valorisation du neuvième.",
+      "prerequis": {
+        "concept": "competitif.2sa_fitte",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G02",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quelle enchère de soutien constructif décrit précisément les trois Piques ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♦. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, quatre ♠ et doubleton ♦ = 14 HLD. 3♦ cue-bid FM, contrairement à 003 trois ♠. Enlever réévaluation prémâchée.",
+    "references": [
+      "quizz.html#training-data/V2-M5-004",
+      "quizz-prerequis.js#V2-M5-004",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nombre d'atouts et valorisation du neuvième.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G02",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L22-004",
+        "V2-M6-044"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Après l’intervention naturelle à 2♦ sur l’ouverture de 1♠ du partenaire, quelle enchère décrit votre fit Pique et votre force réévaluée ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♦. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, deux ♥ et AD8 ♠. 2SA naturel après intervention à deux faible, exception explicitement documentée par Sarzeau. L39-005 analogue 11 H, même forme : la réserve antérieure sur l'existence de l'exception est levée par cette source. Retirer arrêt et force dévoilés.",
+    "references": [
+      "quizz.html#training-data/V2-M5-005",
+      "quizz-prerequis.js#V2-M5-005",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : intervention à saut faible ou intervention au palier de un.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "barrage.ouverture",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G03",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L39-005"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♥ en première position ; l’adversaire intervient à 2♠, faible à saut. Vous avez deux Cœurs, un arrêt Pique et une main d’invitation. Que choisissez-vous ?",
+      "explain": "Avec 11 H, une distribution régulière et ♠AD8, vous pouvez inviter à 3SA sans promettre de fit Cœur. Le 2SA est exceptionnellement naturel après ce saut faible à 2♠. Après une intervention naturelle non sautée, le 2SA direct serait normalement fitté dans le système étudié."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ en première position ; l'adversaire intervient par 2♠ naturel faible. Quelle est votre réponse ?",
+      "explain": "Avec 11 H, deux Cœurs, une main régulière et l'arrêt Pique AD8, 2SA naturel propose 3SA. L'intervention à deux faible constitue une exception au 2SA fitté après intervention naturelle à la couleur. Après 1♥–(1♠), 2SA serait fitté : voir le contraste avec la même main."
+    }
+  },
+  {
+    "id": "V2-M5-006",
+    "verdict": "ARBITRAGE",
+    "justification": "11 H et 4-4 mineures, AD8 ♠. Contre généralisé plausible, mais la réponse naturelle 1SA est légale et absente des choix ; préciser sa zone dans le traitement SEF. Contraste utile avec 005, ne pas prétendre que le Contre est toujours obligatoire.",
+    "references": [
+      "quizz.html#training-data/V2-M5-006",
+      "quizz-prerequis.js#V2-M5-006",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/sef-2024",
+      "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : intervention à saut faible ou intervention au palier de un.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 19,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G03",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♥ en première position et l’adversaire intervient naturellement à 1♠. Avec deux Cœurs et une main régulière sans couleur cinquième, comment poursuivre ?",
+      "explain": "Vous avez 11 H, deux Cœurs, quatre Carreaux et quatre Trèfles, avec ♠AD8 pour tenir l'intervention. Le Contre Spoutnik permet de poursuivre sans inventer un troisième Cœur ; vous envisagerez les Sans-Atout selon la redemande de l'ouvreur. 2SA direct serait ici fitté, et 3SA serait trop ambitieux."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ en première position ; l'adversaire intervient naturellement à 1♠. Quelle réponse privilégiez-vous parmi les propositions ?",
+      "explain": "Le Contre Spoutnik généralisé est l'action recherchée ici avec 11 H et deux mineures quatrièmes, sans fit Cœur. Le 2SA direct est fitté et 3SA ambitieux. Le 1SA naturel est légal mais n'est pas proposé : sa zone et son éventuelle pertinence avec 11 H doivent être confirmées dans le traitement enseigné avant d'affirmer l'unicité de la réponse."
+    }
+  },
+  {
+    "id": "V2-M5-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H et singleton ♠, fit 4-4 ♥, 16 HLD, saut intermédiaire 3♥ après Spoutnik. Contraste 008 18 HLD. Enlever zone et fit donnés.",
+    "references": [
+      "quizz.html#training-data/V2-M5-007",
+      "quizz-prerequis.js#V2-M5-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      26
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : zone de force au fit, même distribution.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G04",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous avez ouvert de 1♦. Après 1♠ adverse et le Contre Spoutnik du partenaire, vous avez quatre Cœurs. Quel soutien décrit votre ouverture intermédiaire ?"
+    },
+    "apres": {
+      "context": "Vous avez ouvert de 1♦ ; Est intervient à 1♠, votre partenaire contre Spoutnik et Ouest passe. Quelle est votre redemande ?"
+    }
+  },
+  {
+    "id": "V2-M5-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H et singleton ♠ = 18 HLD, 4♥ après Spoutnik. Même forme que 007, force différente. Réponse de manche justifiée, neutraliser la demande.",
+    "references": [
+      "quizz.html#training-data/V2-M5-008",
+      "quizz-prerequis.js#V2-M5-008",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      26
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : zone de force au fit, même distribution.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G04",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L28-002"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous avez ouvert de 1♦ ; le Contre Spoutnik du partenaire promet au moins quatre Cœurs. Quel soutien décrit votre force une fois le fit reconnu ?"
+    },
+    "apres": {
+      "context": "Vous avez ouvert de 1♦ ; Est intervient à 1♠, votre partenaire contre Spoutnik et Ouest passe. Quelle est votre redemande ?"
+    }
+  },
+  {
+    "id": "V2-M5-009",
+    "verdict": "ARBITRAGE",
+    "justification": "11 H + cinquième ♦ = 12 HL, fit ♠ huitième, DV♣ adverse peu productifs. Passe possible mais 3♠ proposition de manche peut être défendable selon minimum exact et qualité des honneurs. L'énoncé prescrit déjà absence d'ambition de manche. Contraste 010 à préserver, préciser zone minimale et évaluation.",
+    "references": [
+      "quizz.html#training-data/V2-M5-009",
+      "quizz-prerequis.js#V2-M5-009",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : force restante du répondant après la redemande minimale.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G05",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Vous avez répondu 2♦ avec 12 HL ; le partenaire a satisfait le forcing avec six Piques et une ouverture strictement minimum. Avec deux petits atouts et des honneurs dans la couleur adverse, quelle décision privilégiez-vous au fit huitième sans ambition de manche ?",
+      "explain": "Vos 11 H et le cinquième Carreau valent 12 HL. Après intervention, 2♦ est forcing un tour mais non auto-forcing. L'ouvreur a annoncé six Piques et un minimum ; vos deux petits Piques donnent le fit huitième, mais les honneurs à Trèfle sont peu encourageants. Passe est la décision économique ici ; avec des valeurs de manche, il faudrait poursuivre (voir le cas contrasté)."
+    },
+    "apres": {
+      "context": "Après votre réponse naturelle de 2♦, forcing un tour, le partenaire répète ses Piques (six cartes au moins, ouverture strictement minimale). Quelle décision privilégiez-vous ?",
+      "explain": "Les 11 H et cinq Carreaux donnent 12 HL. Le fit huitième existe mais les deux petits Piques et DV de Trèfle dans la couleur adverse incitent à la prudence. Le 2 sur 1 compétitif n'est pas auto-forcing : Passe est possible. Une proposition de manche à 3♠ peut toutefois être défendable selon la qualité du minimum ; l'unicité du choix doit être arbitrée."
+    }
+  },
+  {
+    "id": "V2-M5-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H et cinquième ♦, R♠ second face à six atouts : 4♠ malgré minimum. Contraste avec 009. Affecter en réserve de compétition, pas comme réponse initiale.",
+    "references": [
+      "quizz.html#training-data/V2-M5-010",
+      "quizz-prerequis.js#V2-M5-010",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : force restante du répondant après la redemande minimale.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 3
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G05",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "V2-M5-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, cinq ♦ ADV95, singleton ♥, quatre ♠ : 15 HLD, 4♦ rencontre ; 3♥ aussi FM mais ne décrit pas la longue. Reformuler en recherche d'enchère la plus descriptive sans dévoiler longue ni fit.",
+    "references": [
+      "quizz.html#training-data/V2-M5-011",
+      "quizz-prerequis.js#V2-M5-011",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : qualité et longueur de la couleur secondaire.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G06",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L36-003"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre fit Pique est de manche et votre belle mineure est cinquième. Comment montrer les deux informations ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Quelle réponse décrit le mieux votre main ?"
+    }
+  },
+  {
+    "id": "V2-M5-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre ♦ seulement et singleton ♥, quatre ♠, 14 HLD : cue-bid 3♥, pas rencontre 4♦. Contraste distributionnel avec 011. Retirer l'indice sur quatre cartes.",
+    "references": [
+      "quizz.html#training-data/V2-M5-012",
+      "quizz-prerequis.js#V2-M5-012",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : qualité et longueur de la couleur secondaire.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G06",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V473-007"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Après l’intervention à 2♥, vous avez un fit Pique de manche et quatre beaux Carreaux. Quelle enchère transmet exactement votre soutien ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Quelle réponse décrit le mieux votre main ?"
+    }
+  },
+  {
+    "id": "V2-M5-021",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, 4-4 majeures, pas le 5-4 exigé par Multi-Landy QPJB ; Passe. Même force que 022, une carte de plus change la réponse. Garder accord identifié sans rappeler son seuil dans question.",
+    "references": [
+      "quizz.html#training-data/V2-M5-021",
+      "quizz-prerequis.js#V2-M5-021",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.choix",
+    "conceptPropose": "multilandy.choix",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : une cinquième carte majeure à force égale.",
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G11",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V49-016",
+        "SEF-V412-016",
+        "SEF-C2-003"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Directement derrière 1SA, accord Multi-Landy QPJB (Landy exige 5–4). Votre camp est non vulnérable contre vulnérable. Quelle intervention décrit la main sans inventer de longueur ?"
+    },
+    "apres": {
+      "context": "Directement derrière 1SA adverse (15–17 H), vous jouez le Multi-Landy QPJB. Non vulnérable contre vulnérable, quelle est votre intervention ?"
+    }
+  },
+  {
+    "id": "V2-M5-022",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, 5♥4♠, favorable : 2♣ dans le Multi-Landy QPJB. Contraste avec 021 4-4, éviter d'indiquer deux majeures dans la question.",
+    "references": [
+      "quizz.html#training-data/V2-M5-022",
+      "quizz-prerequis.js#V2-M5-022",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.choix",
+    "conceptPropose": "multilandy.choix",
+    "seancesInitiales": [
+      41
+    ],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : 2♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : 2♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : une cinquième carte majeure à force égale.",
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G11",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-024"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Directement derrière 1SA, votre camp est non vulnérable contre vulnérable. Dans le Multi-Landy QPJB, quelle intervention annonce vos deux majeures ?"
+    },
+    "apres": {
+      "context": "Directement derrière 1SA adverse (15–17 H), vous jouez le Multi-Landy QPJB. Non vulnérable contre vulnérable, quelle est votre intervention ?"
+    }
+  },
+  {
+    "id": "V2-M5-023",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, 5♦4♣, variante 2SA mineurs 5-5, Passe. Le concept teste le choix d'intervenir ou non plutôt que le sens d'une intervention ; reclasser multilandy.choix tout en gardant prérequis avancés.",
+    "references": [
+      "quizz.html#training-data/V2-M5-023",
+      "quizz-prerequis.js#V2-M5-023",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.intervention",
+    "conceptPropose": "multilandy.choix",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : seconde mineure cinquième ou quatrième, même force.",
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G12",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "V2-M5-024",
+    "verdict": "VALIDE",
+    "justification": "10 H et 5-5 mineur, 2SA conventionnel selon accord explicite. Contraste avec 023 5-4. Pas de groupe 2SA explicite, ne pas placer dans groupe d'une autre réponse ; signaler lacune.",
+    "references": [
+      "quizz.html#training-data/V2-M5-024",
+      "quizz-prerequis.js#V2-M5-024",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.intervention",
+    "conceptPropose": "multilandy.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : seconde mineure cinquième ou quatrième, même force.",
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G12",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "V2-M5-025",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, six ♠ sans mineure quatrième, 2♦ unicolore majeur. Contraste 026 5♠4♣. Question donnait directement le type de main annoncé.",
+    "references": [
+      "quizz.html#training-data/V2-M5-025",
+      "quizz-prerequis.js#V2-M5-025",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.intervention",
+    "conceptPropose": "multilandy.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "décrire les longueurs sur 1SA adverse : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles.",
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G13",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-025",
+        "SEF-C2-001",
+        "SEF-Q400-D-043"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Non vulnérable, accord Multi-Landy QPJB. Quelle intervention montre une seule majeure sixième ?"
+    },
+    "apres": {
+      "context": "Directement derrière 1SA adverse (15–17 H), vous jouez le Multi-Landy QPJB. Non vulnérable, quelle est votre intervention ?"
+    }
+  },
+  {
+    "id": "V2-M5-026",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, cinq ♠ quatre ♣, 2♠ conventionnel. Même force que 025 et forme différente ; neutraliser la question qui nomme le bicolore.",
+    "references": [
+      "quizz.html#training-data/V2-M5-026",
+      "quizz-prerequis.js#V2-M5-026",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.intervention",
+    "conceptPropose": "multilandy.intervention",
+    "seancesInitiales": [
+      41
+    ],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 41,
+        "group": "décrire les longueurs sur 1SA adverse : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "décrire les longueurs sur 1SA adverse : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : six Piques sans mineure quatrième ou cinq Piques et quatre Trèfles.",
+      "prerequis": {
+        "concept": "multilandy.intervention",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G13",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-028",
+        "SEF-Q400-D-045"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Non vulnérable, directement derrière 1SA adverse, vous jouez le Multi-Landy QPJB. Quelle intervention décrit votre bicolore Pique–Trèfle ?"
+    },
+    "apres": {
+      "context": "Directement derrière 1SA adverse (15–17 H), vous jouez le Multi-Landy QPJB. Non vulnérable, quelle est votre intervention ?"
+    }
+  },
+  {
+    "id": "V2-M5-027",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, cinq ♥ et 2♦ adverse, 2♥ naturel NF disponible. Contraste 028 plus fort, même forme. Retirer objectif de partielle prémâché.",
+    "references": [
+      "quizz.html#training-data/V2-M5-027",
+      "quizz-prerequis.js#V2-M5-027",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : force de manche avec cinq Cœurs inchangés.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G14",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rubensohl QPJB : vous souhaitez jouer une partielle dans votre majeure accessible au palier deux. Quelle enchère ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H), l'adversaire intervient à 2♦ naturel. Dans le Rubensohl QPJB, quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-028",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, cinq ♥, 3♦ Texas ♥ de manche après 2♦ dans variante du catalogue. 2♥ direct NF. Contraste 027 force faible. Retirer force et ambition données.",
+    "references": [
+      "quizz.html#training-data/V2-M5-028",
+      "quizz-prerequis.js#V2-M5-028",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : force de manche avec cinq Cœurs inchangés.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G14",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rubensohl QPJB après 2♦ naturel. Avec cinq Cœurs et 10 H (11 HL), vous voulez poursuivre la recherche de manche. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H), l'adversaire intervient à 2♦ naturel. Dans le Rubensohl QPJB, quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "V2-M5-029",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et six ♦, après Texas et rectification 3♦, Passe. Enlever intention de partielle donnée dans la question. Contraste 030 avec force supérieure et arrêt.",
+    "references": [
+      "quizz.html#training-data/V2-M5-029",
+      "quizz-prerequis.js#V2-M5-029",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : Passe",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : force et arrêt de la couleur adverse après la rectification.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G15",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous avez demandé la rectification pour jouer une partielle. Quelle conclusion ?"
+    },
+    "apres": {
+      "context": "Après votre Texas Carreau, le partenaire rectifie à 3♦. Quelle est votre suite ?"
+    }
+  },
+  {
+    "id": "V2-M5-030",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, six ♦ et As ♠, 3SA préférable à 5♦ sans recherche de chelem. Même forme que 029, force et arrêt différents. Enlever indices sur arrêt et valeurs de manche.",
+    "references": [
+      "quizz.html#training-data/V2-M5-030",
+      "quizz-prerequis.js#V2-M5-030",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : force et arrêt de la couleur adverse après la rectification.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G15",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Après votre Texas Carreau à 3♣, le partenaire rectifie à 3♦. Vous détenez une longue Carreau productive, des valeurs de manche et l'arrêt Pique. Quel contrat proposez-vous ?"
+    },
+    "apres": {
+      "context": "Après votre Texas Carreau, le partenaire rectifie à 3♦. Quelle est votre suite ?"
+    }
+  },
+  {
+    "id": "V2-M5-031",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, quatre ♥, 4♥ après Texas impossible et réponse 3♥ : fit 4-4, pas de chelem établi. Même main que 032 où l'ouvreur nie une majeure quatrième. Retirer fit annoncé dans question ; groupe S45 4♥ absent.",
+    "references": [
+      "quizz.html#training-data/V2-M5-031",
+      "quizz-prerequis.js#V2-M5-031",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : la majeure quatrième cherchée est ou n'est pas celle annoncée.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G16",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire a annoncé quatre Cœurs. Avec votre fit huitième et des valeurs de manche, que choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Dans le Rubensohl QPJB, votre Texas impossible a reçu la réponse de 3♥ (quatre Cœurs). Quelle est votre suite ?"
+    }
+  },
+  {
+    "id": "V2-M5-032",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, quatre ♥, aucune majeure quatrième chez l'ouvreur, arrêt ♦ confirmé : Passe sur 3SA. Contraste avec 031, ajout au groupe de conclusion Passe.",
+    "references": [
+      "quizz.html#training-data/V2-M5-032",
+      "quizz-prerequis.js#V2-M5-032",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : Passe",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : la majeure quatrième cherchée est ou n'est pas celle annoncée.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G16",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "V2-M5-033",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, six ♦, Landy adverse 2♣, 2♦ naturel disponible dans variante. Même main que 034 où 2♠ empêche 2♦. Enlever longue et objectif de partielle indiqués.",
+    "references": [
+      "quizz.html#training-data/V2-M5-033",
+      "quizz-prerequis.js#V2-M5-033",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nature de l'intervention adverse, longueur et force constantes.",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 0,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G17",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V486-019",
+        "SEF-Q685-D-059"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rubensohl QPJB après Landy adverse. Avec votre longue Carreau et une main faible, quel contrat partiel recherchez-vous au niveau le plus bas ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H), l'adversaire intervient à 2♣ Landy. Quelle est votre réponse dans le Rubensohl QPJB ?"
+    }
+  },
+  {
+    "id": "V2-M5-034",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, six ♦, 2♠ adverse : 3♣ Texas ♦ ; même main que 033, palier deux indisponible. Retirer cible Carreau et type conventionnel dévoilés.",
+    "references": [
+      "quizz.html#training-data/V2-M5-034",
+      "quizz-prerequis.js#V2-M5-034",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♣",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : nature de l'intervention adverse, longueur et force constantes.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G17",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-C2-006",
+        "SEF-L01-D-02",
+        "SEF-Q400-D-056"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Après 1SA du partenaire et 2♠ naturel adverse, vous cherchez une partielle à Carreau dans le Rubensohl QPJB. Quelle enchère conventionnelle utilisez-vous ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA (15–17 H), l'adversaire intervient à 2♠ naturel. Quelle est votre réponse dans le Rubensohl QPJB ?"
+    }
+  },
+  {
+    "id": "V2-M5-035",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, 5♠4♣, favorable, 1♠ naturel ; 2♥ Michaël demanderait 5-5. Contraste 036. Retirer longueurs données.",
+    "references": [
+      "quizz.html#training-data/V2-M5-035",
+      "quizz-prerequis.js#V2-M5-035",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.choix",
+    "conceptPropose": "michaels.choix",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "choisir entre naturel et conventionnel : 1♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : cinquième Trèfle ou seulement quatre, à Pique cinquième constant.",
+      "prerequis": {
+        "concept": "michaels.choix",
+        "stage": 1,
+        "minSession": 37,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.choix",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G18",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "En deuxième position, vulnérabilité favorable, vous détenez cinq Piques et quatre Trèfles. Quelle intervention exacte ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♥. Vous êtes deuxième, non vulnérable contre vulnérables. Quelle est votre intervention selon les Michaël précisés ?"
+    }
+  },
+  {
+    "id": "V2-M5-036",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, 5♠5♣, singleton ♥, 2♥ Michaël précisé favorable. Même force que 035, une carte de différence. Retirer longueurs prémâchées.",
+    "references": [
+      "quizz.html#training-data/V2-M5-036",
+      "quizz-prerequis.js#V2-M5-036",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Comparer les décisions : cinquième Trèfle ou seulement quatre, à Pique cinquième constant.",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G18",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-043",
+        "SEF-Q400-D-065",
+        "SEF-Q685-D-079"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "En deuxième position, vulnérabilité favorable, vous jouez les Michaëls précisés QPJB sur 1♥ adverse. Avec cinq Piques et cinq Trèfles, quelle intervention choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♥. Vous êtes deuxième, non vulnérable contre vulnérables. Quelle est votre intervention selon les Michaël précisés ?"
+    }
+  },
+  {
+    "id": "V2-M5-037",
+    "verdict": "ARBITRAGE",
+    "justification": "11 H, trois ♥, seulement R♠ troisième et aucun arrêt ♣. 2SA fitté limité selon catalogue, mais défense Michaël générique décrit les SA comme naturels avec arrêts dans les deux couleurs. Confirmer l'accord spécifique avant certification ; le contraste 038 ne prouve pas la règle.",
+    "references": [
+      "quizz.html#training-data/V2-M5-037",
+      "quizz-prerequis.js#V2-M5-037",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/faut-il-avoir-peur-des-cue-bids-2/"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : trois ou quatre atouts après Michaël Cœur adverse.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.2sa_fitte",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G19",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L19-004"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Le partenaire a ouvert à Cœur. Vous avez trois Cœurs et 11 H. Quelle enchère fittée décrit le soutien limite après le bicolore adverse ?",
+      "explain": "Vos trois Cœurs et 11 H réguliers donnent 11 HLD. Derrière ce Michaël précisé, 2SA disponible décrit le soutien limite de trois atouts dans la zone 11–12 HLD, différente de celle après une intervention naturelle simple. Le cue-bid économique 2♠ serait un soutien forcing de manche, donc trop ambitieux ici."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire intervient à 2♥ Michaël précisé (Piques et Trèfles). Dans le traitement du catalogue où 2SA est fitté limité, quelle est votre réponse ?",
+      "explain": "Avec trois Cœurs et 11 HLD, 2SA convient dans le traitement spécifique de cet exercice (11–12 HLD, trois atouts). La défense générale des bicolores peut conserver les Sans-Atout naturels avec les arrêts nécessaires ; ne pas généraliser cette réponse sans confirmer l'accord."
+    }
+  },
+  {
+    "id": "V2-M5-038",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, quatre ♥ et doubleton ♣, 14 HLD. 2♠ cue-bid économique fit FM. Contraste avec 037 trois atouts, dont accord 2SA à confirmer. Retirer demande imposant manche.",
+    "references": [
+      "quizz.html#training-data/V2-M5-038",
+      "quizz-prerequis.js#V2-M5-038",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/faut-il-avoir-peur-des-cue-bids-2/"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comparer les décisions : trois ou quatre atouts après Michaël Cœur adverse.",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G19",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♥ ; le Michaël adverse à 2♥ montre Piques et Trèfles. Avec quatre Cœurs et une main réévaluée au fit, quelle enchère impose la manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♥ ; l'adversaire intervient à 2♥ Michaël précisé (Piques et Trèfles). Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "V2-M5-039",
+    "verdict": "ARBITRAGE",
+    "justification": "4 H, neuf atouts ♥ garantis, favorable. Passe prudent mais 4♥ peut être défendable selon distribution et minimum du partenaire, surtout TPP. La loi des atouts est un repère non une règle de décision unique. Reformuler en comparaison explicite avec 040.",
+    "references": [
+      "quizz.html#training-data/V2-M5-039",
+      "quizz-prerequis.js#V2-M5-039",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Évaluer le palier compétitif selon le nombre d'atouts et le potentiel offensif.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G20",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "En tournoi par paires, vous êtes non vulnérable contre vulnérable. Votre partenaire a annoncé au moins cinq Cœurs et cinq Trèfles par Michaël, puis les adversaires ont soutenu à 3♠. Avec quatre Cœurs et un As, faut-il monter au palier de quatre ?",
+      "explain": "Le fit Cœur est au moins neuvième (4 + 5). Les adversaires jouent déjà au palier de trois ; 4♥ dépasserait d'un palier le nombre d'atouts connus. Avec 4 H, aucun singleton ni chicane et trois Trèfles seulement, Passe est le choix prudent dans cette situation, même vert contre rouge. Il ne s'agit pas d'une interdiction générale de surenchérir à neuf atouts."
+    },
+    "apres": {
+      "context": "En tournoi par paires, non vulnérable contre vulnérables, votre partenaire intervient à 2♠ Michaël (Cœurs et Trèfles) sur 1♠ adverse, puis l'adversaire soutient à 3♠. Quelle action prudente privilégiez-vous selon la loi des atouts ?",
+      "explain": "Neuf atouts Cœur sont garantis et la loi des atouts oriente vers le palier de trois, déjà dépassé par 3♠ adverse. Avec 4 H sans courte extérieure, Passe est prudent. 4♥ reste parfois défendable à vulnérabilité favorable ; la loi ne détermine pas seule la décision. Comparer avec le cas à dix atouts."
+    }
+  },
+  {
+    "id": "V2-M5-040",
+    "verdict": "ARBITRAGE",
+    "justification": "4 H et dix atouts ♥ garantis, favorable, 4♥ défendable. Ne pas traiter la surenchère comme certaine : Passe peut se défendre selon la qualité du bicolore et les levées défensives. Contraste 039 neuf atouts, explicitement repère de loi.",
+    "references": [
+      "quizz.html#training-data/V2-M5-040",
+      "quizz-prerequis.js#V2-M5-040",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Évaluer le palier compétitif selon le nombre d'atouts et le potentiel offensif.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G20",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "En tournoi par paires, vous êtes non vulnérable contre vulnérable. Sur l'ouverture adverse de 1♠, votre partenaire intervient à 2♠ Michaël (Cœurs et Trèfles), puis l'adversaire soutient à 3♠. Quelle action compétitive choisissez-vous ?",
+      "explain": "Vos cinq Cœurs s'ajoutent aux cinq promis : au moins dix atouts. À vulnérabilité favorable, 4♥ est une surenchère compétitive défendable avec l'As d'atout, même sans singleton. 4♣ ne valoriserait que trois cartes dans la seconde couleur. Dix atouts orientent le palier ; ils ne garantissent ni dix levées ni une manche gagnante."
+    },
+    "apres": {
+      "context": "En tournoi par paires, non vulnérable contre vulnérables, votre partenaire intervient à 2♠ Michaël (Cœurs et Trèfles) sur 1♠ adverse, puis l'adversaire soutient à 3♠. Quelle surenchère est défendable au regard de la loi des atouts ?",
+      "explain": "Au moins dix atouts Cœur sont réunis. L'As d'atout et la vulnérabilité favorable rendent 4♥ défendable en compétition. Ce repère ne garantit pas dix levées et n'interdit pas Passe si d'autres éléments défavorables interviennent."
+    }
+  },
+  {
+    "id": "SEF-PN26-M1-013",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H et six beaux ♠ ARD1085, pas de mineure quatrième : 2♦ Multi-Landy. Analogue V2-M5-025, même décision avec qualité différente ; ne pas multiplier les rappels. Ajouter dans groupe de description 2♦ en variant les honneurs.",
+    "references": [
+      "quizz.html#training-data/SEF-PN26-M1-013",
+      "quizz-prerequis.js#SEF-PN26-M1-013",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.choix",
+    "conceptPropose": "multilandy.choix",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      41
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "décrire les longueurs sur 1SA adverse : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Le concept choix ne couvre que Passe/2♣ ; oppose la vraie majeure sixième à la majeure cinquième isolée.",
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "pn26-m1-013",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-PN26-M1-014",
+    "verdict": "VALIDE",
+    "justification": "12 H, 5♠5♦ sur 1♥, favorable, 3♣ Michaël précisé. Distracteurs naturels et conventionnels distincts. Pas de groupe d'initiation 3♣ en S45 ; déjà analogue à des cas du catalogue, ne pas ajouter à un groupe d'autre réponse.",
+    "references": [
+      "quizz.html#training-data/SEF-PN26-M1-014",
+      "quizz-prerequis.js#SEF-PN26-M1-014",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.choix",
+    "conceptPropose": "michaels.choix",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Le concept choix ne comporte que des interventions naturelles ; contre-exemple positif au 5–4 insuffisant.",
+      "prerequis": {
+        "concept": "michaels.choix",
+        "stage": 1,
+        "minSession": 37,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.choix",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "pn26-m1-014",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-045"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-047",
+    "verdict": "VALIDE",
+    "justification": "6 H, trois ♥, singleton ♠ et cinq ♣ = 9 HLD. 2♥ simple ; 2♣ naturel trop faible, 2SA trop fort. S19/S59 adaptés ; comparaison avec 048 forme et intervention différentes.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-047",
+      "quizz-prerequis.js#SEF-Q400-C-047",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres-inter-coeur-fit-simple-vs-constructif",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-048",
+    "verdict": "VALIDE",
+    "justification": "6 H, trois ♥ et doubleton ♣ = 7 HLD. 2♥ plutôt que 2SA ; 2♦ manque de longueur et force. Comparer 047 singleton et longue différente, ne pas multiplier les rappels.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-048",
+      "quizz-prerequis.js#SEF-Q400-C-048",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres_inter.base-Partenaire-1♥-Adversaire-2♣",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-049",
+    "verdict": "VALIDE",
+    "justification": "6 H, trois ♠, singleton ♣ et cinq ♦ = 9 HLD. Soutien 2♠, 2♦ trop faible, 2SA hors zone. Miroir utile de 047 mais intervention au palier deux.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-049",
+      "quizz-prerequis.js#SEF-Q400-C-049",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres_inter.base-Partenaire-1♠-Adversaire-2♣",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-050",
+    "verdict": "VALIDE",
+    "justification": "6 H, trois ♠, singleton ♥ et cinq ♣ = 9 HLD, 2♠. 3♣ trop haut avec force insuffisante. Même réponse que 049, changement de couleur adverse et longue secondaire, garder contraste sans répétition simultanée.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-050",
+      "quizz-prerequis.js#SEF-Q400-C-050",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres_inter.base-Partenaire-1♠-Adversaire-2♥",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-051",
+    "verdict": "VALIDE",
+    "justification": "3 H, deux ♥, cinq ♦ non assez forts, Passe. 2♣ serait fausse longueur, X manque de force, 2♥ sans fit. S19/S59 bien placés ; contraste avec 047 trois atouts.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-051",
+      "quizz-prerequis.js#SEF-Q400-C-051",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres_inter.base-Partenaire-1♥-Adversaire-1♠",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-C-052",
+    "verdict": "VALIDE",
+    "justification": "0 H, singleton ♠, 4♥5♦ ; Passe malgré distribution. Contraste avec 051 faible mais quelques honneurs et ouverture différente, pas de contre sans force. S19/S59 cohérents.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-C-052",
+      "quizz-prerequis.js#SEF-Q400-C-052",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple ou Passe lorsque l’adversaire intervient",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-c-apres_inter.base-Partenaire-1♠-Adversaire-2♣",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
   }
 ]
