@@ -14,4 +14,8 @@ Audit individuel complet. Contrôles finaux d'ensemble, cohérence des correctio
 
 608/608 QCM du catalogue réel contrôlés avant et après application virtuelle des 233 corrections. Diagnostic formel des enchères reproduit en JavaScript, 0 anomalie / 0 non-analysable, 2432 choix par état ; 0 erreur structurelle après correction. Voir REVUE.md. Checkout toujours bloqué par DNS ; scripts originaux du dépôt et CI non exécutés. Transmettre au coordinateur pour les 14 arbitrages et la recette intégrée ; aucune reprise de l'audit individuel nécessaire.
 
-MISSION DÉFINITIVEMENT TERMINÉE : NON — tests originaux et intégration non exécutés.
+## Tests locaux partiels
+
+18 tests unitaires originaux de légalité exécutés avec succès, fichiers contrôlés par SHA Git. 15 tests d'intégrité réussis sur copies non certifiées par SHA, à rejouer. Voir REVUE.md (commit 6523f442a13a973af520153a8948097df38e3c0d). Checkout toujours bloqué ; CI, Node et recette intégrée à exécuter au niveau coordinateur. Aucun ID à réauditer.
+
+MISSION DÉFINITIVEMENT TERMINÉE : NON — recette intégrée restante.
