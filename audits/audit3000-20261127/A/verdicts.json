@@ -1574,7 +1574,7 @@
         "explain": "Avec 6 H et une main régulière, sans majeure quatrième ni quatre Carreaux, vous avez la force d’une réponse limitée. Répondez 1SA."
       },
       "apres": {
-        "explain": "Avec 6 H et une distribution régulière 3-2-3-5, vous pouvez répondre. Sans majeure quatrième ni quatre Carreaux, 1SA est la réponse limitée de recours dans ce traitement (6–10 HL). Les cinq Trèfles ne vous obligent pas à soutenir : comparez une main irrégulière fittée, qui justifierait un soutien."
+        "explain": "Avec 6 H et une distribution régulière 3-2-3-5, vous pouvez répondre. Sans majeure quatrième ni quatre Carreaux, 1SA est la réponse limitée de recours dans ce traitement. Les cinq Trèfles ne vous obligent pas à soutenir : comparez une main irrégulière fittée, qui justifierait un soutien."
       }
     }
   },
@@ -2913,8 +2913,8 @@
   },
   {
     "id": "SEF-029-1",
-    "verdict": "RECLASSER_REFORMULER",
-    "justification": "3 H + 2 D = 5 HLD : juste sous le seuil 6 ; contraste de seuil plus fort que 029-2. Proposer S3.2 en réserve de travail sur le neuvième atout.",
+    "verdict": "VALIDE",
+    "justification": "3 H + 2 D = 5 HLD : juste sous le seuil 6 ; contraste de seuil plus fort que 029-2. Aucun groupe explicite pour le fit neuvième insuffisant ; signaler au coordinateur, ne pas détourner S3.2 qui vise 6–10 contre 11–12.",
     "references": [
       "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
       "audits/programme-65-20261127/programme-normalise.json",
@@ -2923,18 +2923,9 @@
     "conceptInitial": "majeur.soutien",
     "conceptPropose": "majeur.soutien",
     "groupesInitiaux": [],
-    "groupesProposes": [
-      {
-        "session": 3,
-        "group": 2,
-        "decision": "Fit neuvième : évaluer 6–10 contre 11–12 HLD",
-        "role": "objectif"
-      }
-    ],
+    "groupesProposes": [],
     "seancesInitiales": [],
-    "seancesProposees": [
-      3
-    ],
+    "seancesProposees": [],
     "prerequisInitial": {
       "concept": "majeur.soutien",
       "stage": 0,
@@ -2972,8 +2963,8 @@
       "SEF-029-2"
     ],
     "action": {
-      "type": "patch_reservoir",
-      "raison": "3 H + 2 D = 5 HLD : juste sous le seuil 6 ; contraste de seuil plus fort que 029-2. Proposer S3.2 en réserve de travail sur le neuvième atout."
+      "type": "conserver",
+      "lacune": "Groupe dédié au fit neuvième insuffisant absent."
     }
   },
   {
@@ -4878,6 +4869,2591 @@
     "famille": "cas-081",
     "analoguesFamille": [
       "SEF-N025-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N026-1",
+    "verdict": "VALIDE",
+    "justification": "8 H et cinq Cœurs avec seulement le Valet : la longueur suffit pour 1♥, pas de condition de qualité.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-082",
+    "analoguesFamille": [
+      "SEF-N026-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N026-2",
+    "verdict": "VALIDE",
+    "justification": "10 H et cinq Cœurs : 11 HL, 1♥ reste forcing et illimité ; variante de force de N026-1.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-082",
+    "analoguesFamille": [
+      "SEF-N026-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N027-2",
+    "verdict": "VALIDE",
+    "justification": "7 H + 1 L = 8 HL, 5♠ : réponse naturelle 1♠ ; aucune raison de choisir SA.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-083",
+    "analoguesFamille": [
+      "SEF-N027-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N027-1",
+    "verdict": "VALIDE",
+    "justification": "10 H et 5♠ = 11 HL, 1♠ illimité ; bon contraste avec la force plus faible N027-2.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-083",
+    "analoguesFamille": [
+      "SEF-N027-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N028-1",
+    "verdict": "VALIDE",
+    "justification": "8 H et deux majeures quatrièmes sur 1♣ : ordre économique 1♥ ; analogue de 017-1.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-017-1"
+    ],
+    "famille": "cas-084",
+    "analoguesFamille": [
+      "SEF-N028-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N028-2",
+    "verdict": "VALIDE",
+    "justification": "10 H, deux majeures de quatre cartes : 1♥ d'abord ; distinction longueur/économie très claire.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-084",
+    "analoguesFamille": [
+      "SEF-N028-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N029-2",
+    "verdict": "VALIDE",
+    "justification": "8 H, 5♠-4♥ : longueur prioritaire sur 1♣ ; la suite à 2♥ est explicitement conditionnelle.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-085",
+    "analoguesFamille": [
+      "SEF-N029-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N029-1",
+    "verdict": "VALIDE",
+    "justification": "10 H, 5♠-4♥ : 1♠ malgré la majeure moins chère ; variante cas-085.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-085",
+    "analoguesFamille": [
+      "SEF-N029-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N030-1",
+    "verdict": "VALIDE",
+    "justification": "6 H, 5♦, aucune majeure quatrième : 1♦ naturel et forcing un tour, seuil 7 HL suffisant.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-086",
+    "analoguesFamille": [
+      "SEF-N030-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N030-2",
+    "verdict": "VALIDE",
+    "justification": "9 H, 5♦, aucune majeure quatrième : 1♦, cas-086 variante de force.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-086",
+    "analoguesFamille": [
+      "SEF-N030-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N031-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H et cinq Trèfles avec quatre Carreaux et singleton ♠ : 1♦ est un concurrent absent. Transformer en 6♣ et 3♦, 9 HL, pour tester uniquement le soutien.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.soutien",
+    "conceptPropose": "mineur.soutien",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.soutien",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.soutien",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "V2-M1-031"
+    ],
+    "famille": "cas-087",
+    "analoguesFamille": [
+      "SEF-N031-1"
+    ],
+    "action": {
+      "type": "patch_catalogue",
+      "avant": {
+        "hand": [
+          [
+            "8"
+          ],
+          [
+            "R",
+            "9",
+            "6"
+          ],
+          [
+            "7",
+            "6",
+            "4",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "9",
+            "5",
+            "2"
+          ]
+        ],
+        "shape": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "context": "Votre partenaire ouvre de 1♣. Vous détenez ♣A10952 et un singleton Pique avec 7 H. Choisissez le niveau de soutien.",
+        "explain": "Le singleton ♠8 rend la main irrégulière, et les cinq Trèfles soutiennent la couleur ouverte. Avec 7 H, 2♣ est le soutien simple de première zone. 1SA décrirait mal la courte; 3♣ promettrait plus que ce qu'autorise la main."
+      },
+      "apres": {
+        "hand": [
+          [
+            "8"
+          ],
+          [
+            "R",
+            "9",
+            "6"
+          ],
+          [
+            "6",
+            "4",
+            "2"
+          ],
+          [
+            "A",
+            "10",
+            "9",
+            "7",
+            "5",
+            "2"
+          ]
+        ],
+        "shape": [
+          1,
+          3,
+          3,
+          6
+        ],
+        "context": "Votre partenaire ouvre de 1♣, les adversaires passent. Vous détenez six Trèfles, un singleton Pique et 7 H. Quelle est votre réponse ?",
+        "explain": "7 H et deux points de longueur pour six Trèfles donnent 9 HL. Sans majeure quatrième ni quatre Carreaux, votre main irrégulière fittée se décrit par 2♣, soutien simple de première zone (6–9 HL). 1SA décrit mal la courte ; 3♣ serait une invitation."
+      }
+    }
+  },
+  {
+    "id": "SEF-N031-1",
+    "verdict": "VALIDE",
+    "justification": "10 H + 1 L = 11 HL ; forme 3-3-2-5, 1SA de recours au plafond selon le traitement actuel ; ne pas introduire une borne contradictoire.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-087",
+    "analoguesFamille": [
+      "SEF-N031-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N032-1",
+    "verdict": "VALIDE",
+    "justification": "7 H, quatre Carreaux et pas de majeure quatrième sur 1♣ : 1♦ au palier de un, forcing non passé.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-088",
+    "analoguesFamille": [],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N033-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H réguliers sans majeure ni quatre Carreaux : 1SA ; remplacer 3SA par soutien 2♣, alternative plus proche.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-022-1",
+      "V2-M1-025"
+    ],
+    "famille": "cas-089",
+    "analoguesFamille": [],
+    "action": {
+      "type": "patch_catalogue",
+      "avant": {
+        "choices": [
+          "Passe",
+          "1SA",
+          "2SA",
+          "3SA"
+        ],
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième ni quatre Carreaux, vous avez la force d’une réponse limitée. Répondez 1SA."
+      },
+      "apres": {
+        "choices": [
+          "Passe",
+          "1SA",
+          "2SA",
+          "2♣"
+        ],
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième ni quatre Carreaux, répondez 1SA, limité. 2SA demanderait une force supérieure ; 2♣ ne décrit pas cette main régulière avec seulement quatre Trèfles."
+      }
+    }
+  },
+  {
+    "id": "SEF-N034-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "1 H, 3334 : passe. Le saut à 2♦ est un distracteur excessif ; préférer 1♦, erreur de débutant sur trois cartes.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-090",
+    "analoguesFamille": [],
+    "action": {
+      "type": "patch_catalogue",
+      "avant": {
+        "choices": [
+          "2♦",
+          "2♣",
+          "1SA",
+          "Passe"
+        ],
+        "explain": "Avec 1 H, vous n’avez pas la force nécessaire pour répondre à 1♣. Passez."
+      },
+      "apres": {
+        "choices": [
+          "1♦",
+          "2♣",
+          "1SA",
+          "Passe"
+        ],
+        "explain": "Avec seulement 1 H, vous n'avez pas la force de répondre. Vos trois Carreaux ne justifient pas 1♦, et ni 1SA ni 2♣ ne conviennent à une main aussi faible. Passez."
+      }
+    }
+  },
+  {
+    "id": "SEF-N035-2",
+    "verdict": "VALIDE",
+    "justification": "6 H, 4♠ et couleur faible sur 1♦ : seuil minimal et longueur suffisent pour 1♠.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-091",
+    "analoguesFamille": [
+      "SEF-N035-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N035-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, 4♠ sur 1♦ : réponse naturelle, variante cas-091.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-091",
+    "analoguesFamille": [
+      "SEF-N035-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N036-2",
+    "verdict": "VALIDE",
+    "justification": "8 H, cinq Cœurs sur 1♦ : 1♥ ; le corrigé distingue bien quatre cartes requises de cinq détenues.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-092",
+    "analoguesFamille": [
+      "SEF-N036-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N036-1",
+    "verdict": "VALIDE",
+    "justification": "10 H et cinq Cœurs sans honneur : 1♥, qualité non requise ; variante utile N036-2.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-092",
+    "analoguesFamille": [
+      "SEF-N036-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N037-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, cinq Piques, 9 HL : 1♠ forcing un tour, pas 2♣ avec deux cartes.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-093",
+    "analoguesFamille": [],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N038-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, deux majeures quatrièmes sur 1♦ : 1♥ moins chère, permet recherche de 1♠ ; difficulté 2 adaptée.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-094",
+    "analoguesFamille": [],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N039-2",
+    "verdict": "VALIDE",
+    "justification": "8 H, 5♠ et 4♥ sur 1♦ : 1♠ par longueur, contraste avec N038-1.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-095",
+    "analoguesFamille": [
+      "SEF-N039-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N039-1",
+    "verdict": "VALIDE",
+    "justification": "10 H, 5♠ et 4♥ sur 1♦ : même décision, variante cas-095.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-095",
+    "analoguesFamille": [
+      "SEF-N039-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N040-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, cinq Carreaux et forme régulière : 1SA selon priorité actuelle au SA régulier ; soutien est vrai distracteur.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-N047-1"
+    ],
+    "famille": "cas-096",
+    "analoguesFamille": [
+      "SEF-N040-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N040-2",
+    "verdict": "VALIDE",
+    "justification": "9 H, cinq Carreaux et 5332 : 1SA, variante de cas-096.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-N047-2"
+    ],
+    "famille": "cas-096",
+    "analoguesFamille": [
+      "SEF-N040-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N041-1",
+    "verdict": "VALIDE",
+    "justification": "7 H + 1 L = 8 HL, cinq Trèfles sur 1♦ : 2♣ trop fort, 1SA malgré longue ; correction explique le seuil.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-097",
+    "analoguesFamille": [
+      "SEF-N041-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N041-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H + 1 L = 11 HL : juste sous 12 HL/11 H pour 2♣ ; difficulté 2 justifiée par la limite.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-097",
+    "analoguesFamille": [
+      "SEF-N041-1"
+    ],
+    "action": {
+      "type": "patch_catalogue",
+      "avant": {
+        "difficulty": 1,
+        "difficultyReason": "Réponse naturelle simple à l’ouverture mineure"
+      },
+      "apres": {
+        "difficulty": 2,
+        "difficultyReason": "Comparer 11 HL à la borne de 12 HL du changement de couleur au palier de deux."
+      }
+    }
+  },
+  {
+    "id": "SEF-N042-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, quatre Carreaux et main 3343 : 1SA ; le soutien mineur n'est pas obligatoire.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-098",
+    "analoguesFamille": [
+      "SEF-N042-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N042-2",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Carreaux et main 3343 : 1SA, variante cas-098.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-098",
+    "analoguesFamille": [
+      "SEF-N042-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N043-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre Trèfles sur 1♦ : 1SA ; le corrigé écarte 2♣ mais ce choix est absent. Remplacer 3SA par 2♣.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-023-1"
+    ],
+    "famille": "cas-099",
+    "analoguesFamille": [],
+    "action": {
+      "type": "patch_catalogue",
+      "avant": {
+        "choices": [
+          "2SA",
+          "Passe",
+          "3SA",
+          "1SA"
+        ],
+        "explain": "Avec 9 H et une main régulière, sans majeure quatrième, vous avez la force d’une réponse limitée. Vous n’avez pas la force nécessaire pour annoncer les Trèfles au palier de deux. Répondez 1SA."
+      },
+      "apres": {
+        "choices": [
+          "2SA",
+          "Passe",
+          "2♣",
+          "1SA"
+        ],
+        "explain": "Avec 9 H, quatre Trèfles et aucune majeure quatrième après 1♦, 1SA est la réponse limitée de recours. 2♣ au palier de deux exige davantage de force et une couleur adaptée ; 2SA surévalue la main."
+      }
+    }
+  },
+  {
+    "id": "SEF-N044-2",
+    "verdict": "VALIDE",
+    "justification": "1 H, quatre Trèfles sur 1♦ : passe ; aucun 2 sur 1 ni SA.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-100",
+    "analoguesFamille": [
+      "SEF-N044-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N044-1",
+    "verdict": "VALIDE",
+    "justification": "2 H, quatre Trèfles sur 1♦ : passe ; variante cas-100.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-100",
+    "analoguesFamille": [
+      "SEF-N044-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N045-1",
+    "verdict": "ARBITRAGE",
+    "justification": "12 H et 5♣ face à 1♦ : 13 HL, 2♣ naturel autoforcing, bien expliqué ; cependant la séance 2 exclut le 2 sur 1 et aucun groupe dédié n'existe : arbitrage calendrier requis.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-101",
+    "analoguesFamille": [
+      "SEF-N045-3"
+    ],
+    "action": {
+      "type": "arbitrage_calendrier",
+      "raison": "S2 interdit le 2 sur 1 si prérequis non acquis ; pas de groupe spécifique. Proposer un groupe dédié après premières réponses et avant redemandes complexes, sans modifier moteur."
+    }
+  },
+  {
+    "id": "SEF-N045-3",
+    "verdict": "ARBITRAGE",
+    "justification": "14 H et 5♣ : 15 HL, 2♣ ; statut autoforcing à expliciter après redemande économique non fittée ; même lacune d'affectation.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-101",
+    "analoguesFamille": [
+      "SEF-N045-1"
+    ],
+    "action": {
+      "type": "arbitrage_calendrier",
+      "raison": "S2 interdit le 2 sur 1 si prérequis non acquis ; pas de groupe spécifique. Proposer un groupe dédié après premières réponses et avant redemandes complexes, sans modifier moteur.",
+      "avant": {
+        "explain": "Avec 14 H (15 HL) et 5 Trèfles, répondez 2♣ à 1♦. Vous atteignez le seuil de 11 H ou 12 HL retenu dans le quiz. Ce changement de couleur naturel sans saut est forcing et auto-forcing : vous devrez reparler si l'ouvreur reste sous la manche. 1SA limiterait excessivement votre jeu."
+      },
+      "apres": {
+        "explain": "Avec 14 H et cinq Trèfles (15 HL), vous dépassez le seuil de 11 H ou 12 HL du 2 sur 1. Répondez naturellement 2♣, forcing et auto-forcing : après une redemande économique non fittée de l'ouvreur, vous devrez reparler. 1SA sous-évaluerait votre jeu."
+      }
+    }
+  },
+  {
+    "id": "SEF-N046-1",
+    "verdict": "VALIDE",
+    "justification": "7 H et 5♦ : 8 HL, 1♦ même couleur médiocre ; distinction longueur/qualité.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-102",
+    "analoguesFamille": [
+      "SEF-N046-3"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N046-3",
+    "verdict": "VALIDE",
+    "justification": "9 H et 5♦ : 10 HL, 1♦ forcing un tour ; variante cas-102.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-102",
+    "analoguesFamille": [
+      "SEF-N046-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N047-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, 5♦ et 5332 : 1SA de recours selon traitement actuel ; équivalent proche de N040-1.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-N040-1"
+    ],
+    "famille": "cas-103",
+    "analoguesFamille": [
+      "SEF-N047-2"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N047-2",
+    "verdict": "VALIDE",
+    "justification": "9 H, 5♦ et 5332 : 1SA, variante de cas-103 et N040-2.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "mineur.base",
+    "conceptPropose": "mineur.base",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "mineur.base",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.mineure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-N040-2"
+    ],
+    "famille": "cas-103",
+    "analoguesFamille": [
+      "SEF-N047-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N048-3",
+    "verdict": "VALIDE",
+    "justification": "6 H et trois Cœurs, forme régulière : 6 HLD, seuil exact de 2♥ ; S2/S3 et rappels ultérieurs cohérents.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "majeur.soutien",
+    "conceptPropose": "majeur.soutien",
+    "groupesInitiaux": [
+      {
+        "session": 2,
+        "group": 2,
+        "decision": "Sur 1♥ : quatre Piques sans fit, ou priorité du fit",
+        "role": "objectif"
+      },
+      {
+        "session": 3,
+        "group": 1,
+        "decision": "Fit 5–3 : 5 HLD Passe contre 6–10 HLD soutien",
+        "role": "objectif"
+      },
+      {
+        "session": 9,
+        "group": 6,
+        "decision": "Fit et seuils",
+        "role": "rappel"
+      },
+      {
+        "session": 12,
+        "group": 4,
+        "decision": "Soutien simple, naturel 2SA et essai",
+        "role": "rappel"
+      },
+      {
+        "session": 15,
+        "group": 3,
+        "decision": "Soutien et ouverture : fit/force",
+        "role": "objectif"
+      },
+      {
+        "session": 16,
+        "group": 4,
+        "decision": "Rappel : ouverture, réponse, redemande, fit",
+        "role": "rappel"
+      },
+      {
+        "session": 17,
+        "group": 4,
+        "decision": "Intervention naturelle, Passe et fit",
+        "role": "rappel"
+      },
+      {
+        "session": 18,
+        "group": 4,
+        "decision": "Rappel contre, intervention et fit",
+        "role": "rappel"
+      },
+      {
+        "session": 19,
+        "group": 4,
+        "decision": "Rappel des rôles et fit",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 2,
+        "group": 2,
+        "decision": "Sur 1♥ : quatre Piques sans fit, ou priorité du fit",
+        "role": "objectif"
+      },
+      {
+        "session": 3,
+        "group": 1,
+        "decision": "Fit 5–3 : 5 HLD Passe contre 6–10 HLD soutien",
+        "role": "objectif"
+      },
+      {
+        "session": 9,
+        "group": 6,
+        "decision": "Fit et seuils",
+        "role": "rappel"
+      },
+      {
+        "session": 12,
+        "group": 4,
+        "decision": "Soutien simple, naturel 2SA et essai",
+        "role": "rappel"
+      },
+      {
+        "session": 15,
+        "group": 3,
+        "decision": "Soutien et ouverture : fit/force",
+        "role": "objectif"
+      },
+      {
+        "session": 16,
+        "group": 4,
+        "decision": "Rappel : ouverture, réponse, redemande, fit",
+        "role": "rappel"
+      },
+      {
+        "session": 17,
+        "group": 4,
+        "decision": "Intervention naturelle, Passe et fit",
+        "role": "rappel"
+      },
+      {
+        "session": 18,
+        "group": 4,
+        "decision": "Rappel contre, intervention et fit",
+        "role": "rappel"
+      },
+      {
+        "session": 19,
+        "group": 4,
+        "decision": "Rappel des rôles et fit",
+        "role": "rappel"
+      }
+    ],
+    "seancesInitiales": [
+      2,
+      3,
+      9,
+      12,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "seancesProposees": [
+      2,
+      3,
+      9,
+      12,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "prerequisInitial": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [
+      "SEF-Q400-A-043"
+    ],
+    "famille": "cas-104",
+    "analoguesFamille": [
+      "SEF-N048-1"
+    ],
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-N048-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, trois Cœurs, 3343 : 8 HLD, 2♥, ni 2SA fitté ni 1SA ; variante cas-104.",
+    "references": [
+      "audits/pedagogie/QUIZZ_REFERENCE_SEF.md",
+      "audits/REVUE_72_REPONSES_OUVERTURES_MINEURES_2026-11-04.md",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "majeur.soutien",
+    "conceptPropose": "majeur.soutien",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "prerequisInitial": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
+    "pointsControles": [
+      "main 13 cartes, H, forme",
+      "choix et décision naturelle",
+      "corrigé",
+      "difficulté et prérequis",
+      "groupes explicites",
+      "famille et rapprochement mécanique catalogue"
+    ],
+    "limite": "La comparaison sémantique approfondie des analogues hors de cette passe reste à faire ; absence de groupe explicite ne prouve pas une absence d'éligibilité.",
+    "analoguesSignature": [],
+    "famille": "cas-104",
+    "analoguesFamille": [
+      "SEF-N048-3"
     ],
     "action": {
       "type": "conserver"

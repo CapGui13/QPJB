@@ -1,48 +1,8 @@
-# Reprise A — passe 2 partielle
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent b27e5a0135528c035daaeb3e2fa49f97710bfb2b. 80/419 verdicts provisoires ; 339 non relus.
-Dernier : SEF-N025-2; prochain : SEF-N026-1.
-{"VALIDE":65,"RECLASSER_REFORMULER":15} ; 13 corrections catalogue et 2 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté. Comparaison sémantique approfondie encore nécessaire.
+# Reprise A — passe 3 partielle
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent 6adaf668f5beb1e1edfb7e932df5829ea87c0b0e. 120/419 verdicts provisoires ; 299 non relus.
+Dernier : SEF-N048-1; prochain : SEF-N049-1.
+{"VALIDE":99,"RECLASSER_REFORMULER":19,"ARBITRAGE":2} ; 19 corrections catalogue et 1 changement de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
 IDs restants :
-SEF-N026-1
-SEF-N026-2
-SEF-N027-2
-SEF-N027-1
-SEF-N028-1
-SEF-N028-2
-SEF-N029-2
-SEF-N029-1
-SEF-N030-1
-SEF-N030-2
-SEF-N031-2
-SEF-N031-1
-SEF-N032-1
-SEF-N033-1
-SEF-N034-1
-SEF-N035-2
-SEF-N035-1
-SEF-N036-2
-SEF-N036-1
-SEF-N037-1
-SEF-N038-1
-SEF-N039-2
-SEF-N039-1
-SEF-N040-1
-SEF-N040-2
-SEF-N041-1
-SEF-N041-2
-SEF-N042-1
-SEF-N042-2
-SEF-N043-1
-SEF-N044-2
-SEF-N044-1
-SEF-N045-1
-SEF-N045-3
-SEF-N046-1
-SEF-N046-3
-SEF-N047-1
-SEF-N047-2
-SEF-N048-3
-SEF-N048-1
 SEF-N049-1
 SEF-N049-3
 SEF-N050-2
