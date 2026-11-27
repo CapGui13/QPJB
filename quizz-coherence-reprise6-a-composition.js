@@ -19,7 +19,8 @@ function plan(ctx){const p=targets[ctx.session];return p?{...p,objective:p.title
 function make(variant='contrast'){
  function compose(ctx,ranked){
   const p=targets[ctx.session],best=ranked[0],selected=(ctx.selected||[]).map(qOf);
-  if(!p||ctx.changed||ctx.priority||ctx.forcedReason||ctx.history?.active||ctx.category!=='discovery'||selected.length<4||!best?.q)return null;
+  if(variant==='early'&&(ctx.session!==3||selected.length!==1||c(ctx,selected[0])!=='ouv.sa2'))return null;
+  if(!p||ctx.changed||ctx.priority||ctx.forcedReason||ctx.history?.active||ctx.category!=='discovery'||(variant!=='early'&&selected.length<4)||!best?.q)return null;
   const old=best.q,co=c(ctx,old),f=ctx.flagsById?.[old.id],m=meta(ctx,old);
   if(!m||!f||f.due||f.bad||(variant==='contrast'&&f.firstConcept)||(f.overdueCore&&!f.firstConcept)||!f.novelFamily||core.has(co)||p.primary.includes(co))return null;
   // Do not remove the only representative of the outgoing concept.
