@@ -100,7 +100,7 @@ function run(label,src,options={}){
  assert(checkpoints.every(x=>!x.violations.length));
  return {label,profile,seed,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,checkpoints,core:coreMetrics(sessions),events,m5Counts,state:{skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}};
 }
-const arms={},fullMode=process.env.QPJB_COORDINATOR_FULL_ORDER==='1';
+const arms={},fullMode=process.env.QPJB_COORDINATOR_FULL_ORDER==='1'||process.env.QPJB_COORDINATOR_ATOMIC_FULL==='1',atomicMode=process.env.QPJB_COORDINATOR_ATOMIC_FULL==='1';
 arms.native=run('native',base);
 arms.off=run('off',current);
 const fingerprint=a=>a.sessions.map(s=>s.rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted]));
@@ -117,6 +117,10 @@ if(fullMode){
   const evidence=rows=>rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted,r.hadFreeError,r.choice]).sort((x,y)=>x[0].localeCompare(y[0]));
   same(evidence(a),evidence(b));
  }
+ if(atomicMode){
+  const A=require('../quizz-coherence-coordinator-atomic.js');
+  for(const k of ['M3','T','M3T'])arms[k]=run(k,current,{coherenceM2:m2,coherenceFullOrder:true,transitionGroups,coherenceAtomic:A[k],study:true});
+ }
 }else{
 arms.V2=run('V2',current,{coherenceM1:m1v2});
 arms.V6=run('V6',current,{coherenceM1:m1v6});
@@ -130,7 +134,7 @@ for(const [a,b] of (fullMode?[['native','M2'],['M2','Full']]:[['native','M2'],['
  same(canonical(arms[a].state),canonical(arms[b].state));
 }
 const comparisons={};
-for(const [a,b] of (fullMode?[['native','M2'],['M2','Full']]:[['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']])){
+for(const [a,b] of (atomicMode?[['native','M2'],['M2','Full'],['Full','M3'],['Full','T'],['Full','M3T']]:fullMode?[['native','M2'],['M2','Full']]:[['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']])){
  const comp=T.compare(arms[a],arms[b]),strict=strictCompare(arms[a],arms[b]);
  comparisons[a+'-'+b]={checkpoints:comp.checkpoints.map(c=>({session:c.session,review:c.review})),strict,changedSets:comp.changes.filter(x=>!x.sameSet).length,changedOrders:comp.changes.filter(x=>!x.sameOrder).length};
 }
@@ -146,7 +150,21 @@ function fullMetrics(a){
  }
  return {replayed,semanticFixed,sums};
 }
-const summary={profile,seed,horizon,fullMode,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts,fullMetrics:fullMetrics(a)}])),comparisons};
+function atomicMetrics(a){
+ const F=require('../quizz-coherence-m4-diversite.js'),P=require('../quizz-coherence-m3-prerequis.js');
+ const rows=a.sessions.flatMap(s=>s.rows),transitions={};
+ for(const [name,simple,complex] of [['texas',P.TEXAS_ELEMENTARY,P.TEXAS],['stayman',P.STAYMAN_SIMPLE,P.STAYMAN_FOURTH]]){
+  const first=rows.findIndex(r=>simple.includes(r.id)),second=rows.findIndex(r=>complex.includes(r.id));
+  transitions[name]={simple:first<0?null:[rows[first].session,rows[first].position],complex:second<0?null:[rows[second].session,rows[second].position],inversion:second>=0&&(first<0||second<first)};
+ }
+ const near=n=>a.sessions.slice(0,n).reduce((sum,s)=>{
+  const f=s.rows.map(r=>F.features(r,{concept:r.concept}));let count=0;
+  for(let i=0;i<f.length;i++)for(let j=0;j<i;j++)if(f[i]&&f[j]&&f[i].near===f[j].near)count++;
+  return sum+count;
+ },0);
+ return {transitions,near5:near(5),near20:near(20)};
+}
+const summary={profile,seed,horizon,fullMode,atomicMode,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts,fullMetrics:fullMetrics(a)}])),comparisons};
 fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify(summary));fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify(arms));
-const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts,fullMetrics:fullMetrics(a)}]))};
+const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts,fullMetrics:fullMetrics(a),atomicMetrics:atomicMetrics(a),direct:a.events.filter(e=>e.atomicChoice)}]))};
 console.log('COORDINATION_SUMMARY '+JSON.stringify(compact));
