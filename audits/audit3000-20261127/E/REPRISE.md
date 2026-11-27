@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Onze passes de 40 terminées (440/540). SHA avant passe 11 : 700bc141d18b81307fd7f2614d9542814a5b77ba. Dernier ID SEF-Q685-C-072; prochain ID SEF-Q685-C-088. {"VALIDE":120,"RECLASSER_REFORMULER":293,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":27}. Corrections : 281. Prérequis : 39. Réservoir : 101.
+Douze passes de 40 terminées (480/540). SHA avant passe 12 : ef6b2d680b853c1fe4ac9ee77960d236807360e2. Dernier ID SEF-Q685-D-037; prochain ID SEF-Q685-D-038. {"VALIDE":121,"RECLASSER_REFORMULER":331,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":28}. Corrections : 320. Prérequis : 46. Réservoir : 101.
 
-## IDs restants (100)
-- SEF-Q685-C-088 — apres_inter.base
-- SEF-Q685-C-089 — apres_inter.base
-- SEF-Q685-C-090 — apres_inter.base
-- SEF-Q685-C-091 — competitif.spoutnik
-- SEF-Q685-C-092 — competitif.spoutnik
-- SEF-Q685-C-093 — red.competitif
-- SEF-Q685-C-094 — red.competitif
-- SEF-Q685-C-132 — competitif.2sa_fitte
-- SEF-Q685-C-133 — competitif.2sa_fitte
-- SEF-Q685-C-134 — competitif.2sa_fitte
-- SEF-Q685-C-135 — competitif.2sa_fitte
-- SEF-Q685-C-136 — competitif.2sa_fitte
-- SEF-Q685-C-137 — competitif.2sa_fitte
-- SEF-Q685-C-138 — competitif.2sa_fitte
-- SEF-Q685-C-139 — competitif.2sa_fitte
-- SEF-Q685-C-140 — competitif.2sa_fitte
-- SEF-Q685-C-141 — competitif.2sa_fitte
-- SEF-Q685-C-142 — competitif.2sa_fitte
-- SEF-Q685-C-143 — competitif.truscott
-- SEF-Q685-C-144 — competitif.truscott
-- SEF-Q685-C-145 — competitif.truscott
-- SEF-Q685-C-146 — competitif.truscott
-- SEF-Q685-C-147 — competitif.truscott
-- SEF-Q685-C-148 — competitif.truscott
-- SEF-Q685-C-149 — competitif.truscott
-- SEF-Q685-C-150 — competitif.truscott
-- SEF-Q685-C-151 — competitif.sa_adverse
-- SEF-Q685-C-152 — competitif.sa_adverse
-- SEF-Q685-C-153 — competitif.sa_adverse
-- SEF-Q685-C-154 — competitif.sa_adverse
-- SEF-Q685-C-155 — competitif.sa_adverse
-- SEF-Q685-C-156 — competitif.sa_adverse
-- SEF-Q685-C-161 — red.competitif
-- SEF-Q685-C-162 — red.competitif
-- SEF-Q685-C-166 — competitif.truscott
-- SEF-Q685-C-167 — competitif.truscott
-- SEF-Q685-C-168 — competitif.truscott
-- SEF-Q685-C-169 — competitif.truscott
-- SEF-Q685-C-170 — competitif.sa_adverse
-- SEF-Q685-D-037 — multilandy.choix
+## IDs restants (60)
 - SEF-Q685-D-038 — multilandy.choix
 - SEF-Q685-D-039 — multilandy.choix
 - SEF-Q685-D-040 — multilandy.choix
@@ -106,4 +66,4 @@ Onze passes de 40 terminées (440/540). SHA avant passe 11 : 700bc141d18b81307fd
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 440 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 480 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
