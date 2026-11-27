@@ -17,7 +17,7 @@ for(const name of [...durable,'quizz-professeur.js']){
  assert.ok(html.includes(tag)&&html.indexOf(tag)<html.indexOf(engine),'Dependency before engine: '+name);
  assert.ok(read('scripts/build_public_site.py').includes('"'+name+'"'),'Public dependency '+name);
 }
-for(const name of ['quizz-coherence-m5-study.js','quizz-coherence-study-ui.js']){
+for(const name of ['quizz-coherence-m2-ordre.js','quizz-coherence-m5-study.js','quizz-coherence-study-ui.js']){
  const tag='<script src="./'+name+'?v=1"></script>';
  assert.ok(html.includes(tag)&&html.indexOf(tag)<html.indexOf(engine),'Coherence dependency before engine '+name);
  assert.ok(read('scripts/build_public_site.py').includes('"'+name+'"'),'Public dependency '+name);
@@ -51,7 +51,7 @@ async function warm(){
  assert.equal(await warm(),false,'Missing prerequisites must not report offline ready');
  fail=false;
  assert.equal(await warm(),true);
- for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=20','/QPJB/quizz-coherence-m5-study.js?v=1','/QPJB/quizz-coherence-study-ui.js?v=1','/QPJB/parcours-recommandations.js?v=1','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1',...durable.map(n=>'/QPJB/'+n+'?v=2')])
+ for(const url of ['/QPJB/quizz.html','/QPJB/qpjb-bridge-ui.css?v=20261113e','/QPJB/quizz-prerequis.js?v=3','/QPJB/quizz-pedagogie-initiation.js?v=1','/QPJB/quizz-pedagogie-intermediaire.js?v=1','/QPJB/quizz-pedagogie-avancee.js?v=1','/QPJB/quizz-session-plan.js?v=2','/QPJB/quizz-parcours.js?v=20','/QPJB/quizz-coherence-m2-ordre.js?v=1','/QPJB/quizz-coherence-m5-study.js?v=1','/QPJB/quizz-coherence-study-ui.js?v=1','/QPJB/parcours-recommandations.js?v=1','/QPJB/quizz-apprentissage-concepts.js?v=1','/QPJB/quizz-diagnostic-erreurs.js?v=1','/QPJB/quizz-remediation.js?v=1','/QPJB/quizz-professeur.js?v=1',...durable.map(n=>'/QPJB/'+n+'?v=2')])
   assert.ok(cached.has(url),'Offline resource '+url);
  const before=requests.length;
  assert.equal(await warm(),true);
