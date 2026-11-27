@@ -9,7 +9,8 @@ assert(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&T.HORIZONS.includes
 const git=(...args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:24*1024*1024});
 function sources(ref){return Object.fromEntries(git('ls-tree','--name-only',ref).trim().split('\n').filter(p=>p==='quizz.html'||/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js').map(p=>[p,git('show',ref+':'+p)]))}
 const base=sources(T.BASE),current=sources(git('rev-parse','HEAD').trim());
-assert.equal(base['quizz.html'],current['quizz.html']);assert.equal(base['quizz-prerequis.js'],current['quizz-prerequis.js']);
+const embedded=html=>html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
+assert.equal(embedded(base['quizz.html']),embedded(current['quizz.html']));assert.equal(base['quizz-prerequis.js'],current['quizz-prerequis.js']);
 fs.mkdirSync(dest,{recursive:true});
 const same=(a,b)=>assert.deepEqual(a,b),copy=x=>JSON.parse(JSON.stringify(x));
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -90,28 +91,48 @@ function run(label,src,options={}){
  assert(checkpoints.every(x=>!x.violations.length));
  return {label,profile,seed,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,checkpoints,core:coreMetrics(sessions),events,m5Counts,state:{skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}};
 }
-const arms={};
+const arms={},atomicMode=process.env.QPJB_COORDINATOR_ATOMIC==='1';
 arms.native=run('native',base);
 arms.off=run('off',current);
 const fingerprint=a=>a.sessions.map(s=>s.rows.map(r=>[r.id,r.kind,r.selectionReason,r.result,r.assisted]));
 same(fingerprint(arms.native),fingerprint(arms.off));same(canonical(arms.native.state),canonical(arms.off.state));
 arms.M2=run('M2',current,{coherenceM2:m2,study:true});
+if(atomicMode){
+ const P=require('../quizz-coherence-coordinator-atomic.js');
+ for(const k of ['M1','M3','T'])arms[k]=run(k,current,{coherenceM2:m2,coherenceAtomic:P[k],study:true});
+}else{
 arms.V2=run('V2',current,{coherenceM1:m1v2});
 arms.V6=run('V6',current,{coherenceM1:m1v6});
 arms.V2M2=run('V2M2',current,{coherenceM1:m1v2,coherenceM2:m2,study:true});
 arms.V6M2=run('V6M2',current,{coherenceM1:m1v6,coherenceM2:m2,study:true});
 arms.V2M2M4=run('V2M2M4',current,{coherenceM1:m1v2,coherenceM2:m2,coherenceM4:m4,study:true});
 arms.V6M2M4=run('V6M2M4',current,{coherenceM1:m1v6,coherenceM2:m2,coherenceM4:m4,study:true});
-for(const [a,b] of [['native','M2'],['V2','V2M2'],['V6','V6M2']]){
+}
+for(const [a,b] of (atomicMode?[['native','M2']]:[['native','M2'],['V2','V2M2'],['V6','V6M2']])){
  same(arms[a].sessions.map(s=>sorted(s.rows)),arms[b].sessions.map(s=>sorted(s.rows)));
  same(canonical(arms[a].state),canonical(arms[b].state));
 }
 const comparisons={};
-for(const [a,b] of [['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']]){
+for(const [a,b] of (atomicMode?[['native','M2'],['M2','M1'],['M2','M3'],['M2','T']]:[['native','M2'],['native','V2'],['native','V6'],['native','V2M2'],['native','V6M2'],['V2M2','V2M2M4'],['V6M2','V6M2M4']])){
  const comp=T.compare(arms[a],arms[b]),strict=strictCompare(arms[a],arms[b]);
  comparisons[a+'-'+b]={checkpoints:comp.checkpoints.map(c=>({session:c.session,review:c.review})),strict,changedSets:comp.changes.filter(x=>!x.sameSet).length,changedOrders:comp.changes.filter(x=>!x.sameOrder).length};
 }
-const summary={profile,seed,horizon,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts}])),comparisons};
+function metricsAtomic(a){
+ const F=require('../quizz-coherence-m4-diversite.js'),P=require('../quizz-coherence-m3-prerequis.js');
+ const rows=a.sessions.flatMap(s=>s.rows),transitions={};
+ for(const [name,simple,complex] of [['texas',P.TEXAS_ELEMENTARY,P.TEXAS],['stayman',P.STAYMAN_SIMPLE,P.STAYMAN_FOURTH]]){
+  const first=rows.findIndex(r=>simple.includes(r.id)),second=rows.findIndex(r=>complex.includes(r.id));
+  transitions[name]={simple:first<0?null:[rows[first].session,rows[first].position],complex:second<0?null:[rows[second].session,rows[second].position],inversion:second>=0&&(first<0||second<first)};
+ }
+ const near=n=>a.sessions.slice(0,n).reduce((sum,s)=>{
+  const f=s.rows.map(r=>F.features(r,{concept:r.concept}));let count=0;
+  for(let i=0;i<f.length;i++)for(let j=0;j<i;j++)if(f[i]&&f[j]&&f[i].near===f[j].near)count++;
+  return sum+count;
+ },0);
+ const focus=a.sessions.slice(0,5).map(s=>{const p=m1v2.curriculum[s.session-1];return s.rows.filter(r=>p.primary.includes(r.concept)).length});
+ return {transitions,near5:near(5),near20:near(20),focus};
+}
+const summary={profile,seed,horizon,atomicMode,arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{checkpoints:a.checkpoints,core:a.core,events:a.events,m5Counts:a.m5Counts,atomicMetrics:metricsAtomic(a)}])),comparisons};
 fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify(summary));fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify(arms));
-const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts}]))};
+const compact={profile,seed,comparisons:Object.fromEntries(Object.entries(comparisons).map(([k,v])=>[k,{changedSets:v.changedSets,changedOrders:v.changedOrders,review:v.checkpoints.flatMap(x=>x.review.map(y=>[x.session,y])),strict:v.strict.length}])),arms:Object.fromEntries(Object.entries(arms).map(([k,a])=>[k,{events:a.events.length,m4:a.events.filter(e=>e.m4Choice).length,coreDebt:a.core.at(-1).total,proof:a.checkpoints.at(-1).proofConcepts,families:a.checkpoints.at(-1).families,study:a.m5Counts,atomicMetrics:metricsAtomic(a),direct:a.events.filter(e=>e.atomicChoice)}]))};
 console.log('COORDINATION_SUMMARY '+JSON.stringify(compact));
