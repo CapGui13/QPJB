@@ -8311,12 +8311,13 @@
   },
   {
     "id": "SEF-V486-026",
-    "verdict": "ARBITRAGE",
-    "justification": "12 H, quatre Cœurs, pas d'arrêt Trèfle ; 2SA de l'ouvreur fournit l'arrêt et exclut le soutien de trois Cœurs. 3SA plausible mais minimum cumulé de 24 H et interprétation mini-maxi à confronter à la convention locale. Ne pas changer le corrigé sans arbitrage.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Quatrième couleur auto-forcing : 2SA mini-maxi impose une troisième enchère ; 3SA est le meilleur des choix sans fit huitième, mais le minimum cumulé de 24 H impose une explication nuancée. Main et réponse conservées.",
     "references": [
       "https://dev.ibridge-club.fr/public/fichedetails/571",
       "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://dev.ibridge-club.fr/public/fichedetails/571"
     ],
     "conceptInitial": "forcing.quatrieme.suite",
     "conceptPropose": "forcing.quatrieme.suite",
@@ -8392,13 +8393,21 @@
     "pointsControles": {
       "mainHForme": "recalculés",
       "sequence": "enchères du camp et choix relus ; silence adverse supposé sauf indication",
-      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "reponseCorrigeDistracteurs": "Contre-revue ciblée : source iBridge 571, main, choix, troisième enchère obligatoire, nuance sur le minimum cumulé.",
       "difficultePrerequisSeances": "vérifiés contre table et groupes",
       "redondance": "Comparaison des 3000 QCM par séquence normalisée, concept, réponse et signature honneurs/forme ; examen des six paires exactes de caractéristiques ; autres équivalences sémantiques possibles."
     },
     "prochesSignature": [],
     "action": {
-      "type": "arbitrer"
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez répondu dans une majeure à l'ouverture du partenaire et utilisé la quatrième couleur forcing pour l'interroger. Il vient de produire sa troisième enchère, les adversaires passent. À votre troisième tour de parole, tenez compte des inférences sur le fit, l'arrêt dans la quatrième couleur et la force totale. Quelle est votre enchère ? Séquence : Partenaire : 1♦ — Vous : 1♥ — Partenaire : 1♠ — Vous : 2♣ (4e couleur forcing) — Partenaire : 2SA. Précision : Non déterminante (silence adverse).",
+        "explain": "La quatrième couleur a permis de demander l’arrêt Trèfle : la réponse 2SA de l’ouvreur confirme cet arrêt et nie le soutien troisième à Cœur. Avec 12 H et une main régulière, le répondant choisit la manche à Sans-Atout. La redemande 2SA de l’ouvreur peut être mini–maxi ; un ouvreur très fort pourra encore reparler."
+      },
+      "apres": {
+        "context": "Après la quatrième couleur forcing, le partenaire redemande 2SA. Quelle est votre troisième enchère ? Les adversaires passent.",
+        "explain": "La quatrième couleur est auto-forcing dans ce développement : vous devez fournir une troisième enchère. 2SA de l’ouvreur indique un arrêt Trèfle, dénie trois Cœurs et peut correspondre à 12–14 H ou 18–19 H. Avec quatre Cœurs, trois Carreaux et 12 H réguliers, 3SA est la conclusion naturelle parmi les choix : aucun fit huitième n'est établi. Face à 12 H, le camp n'a que 24 H ; ce choix ne garantit donc pas neuf levées. L’ouvreur minimum passe, le maximum peut proposer le chelem par 4SA."
+      }
     },
     "comparaisonCatalogue": {
       "memeSequenceNormalisee": 2,
@@ -22953,12 +22962,13 @@
   },
   {
     "id": "SEF-Q400-D-018",
-    "verdict": "ARBITRAGE",
-    "justification": "12 H, quatre Cœurs, 2SA de l'ouvreur avec arrêt Trèfle et déni trois Cœurs : 3SA plausible mais 24 H minimum comme V486-026. Examiner l'option Passe (absente), et convention mini-maxi avant validation.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "La quatrième couleur est auto-forcing ; 2SA indique l'arrêt Trèfle et dénie trois Cœurs. Remplacer le Roi de Pique par l'As donne 13 H et 25 H minimum au camp, sans changement de forme ni de réponse. Le cas enseigne une conclusion à la manche non ambiguë, distincte du cas limite V486-026.",
     "references": [
       "https://dev.ibridge-club.fr/public/fichedetails/571",
       "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://dev.ibridge-club.fr/public/fichedetails/571"
     ],
     "conceptInitial": "forcing.quatrieme.suite",
     "conceptPropose": "forcing.quatrieme.suite",
@@ -23020,13 +23030,69 @@
     "pointsControles": {
       "mainHForme": "recalculés",
       "sequence": "enchères du camp et choix relus ; silence adverse supposé sauf indication",
-      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "reponseCorrigeDistracteurs": "Contre-revue ciblée : source iBridge 571, main, choix, troisième enchère obligatoire, nuance sur le minimum cumulé.",
       "difficultePrerequisSeances": "vérifiés contre table et groupes",
       "redondance": "Comparaison des 3000 QCM par séquence normalisée, concept, réponse et signature honneurs/forme ; examen des six paires exactes de caractéristiques ; autres équivalences sémantiques possibles."
     },
     "prochesSignature": [],
     "action": {
-      "type": "arbitrer"
+      "type": "correction",
+      "avant": {
+        "hand": [
+          [
+            "R",
+            "7",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "V",
+            "8",
+            "5"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ]
+        ],
+        "h": 12,
+        "context": "Quelle conclusion naturelle sans fit majeur ? Les enchères adverses non indiquées sont des Passes.",
+        "explain": "12 H et aucune majeure cinquième ni fit majeur. L’arrêt demandé est confirmé : 3SA."
+      },
+      "apres": {
+        "hand": [
+          [
+            "A",
+            "7",
+            "3"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "V",
+            "8",
+            "5"
+          ],
+          [
+            "D",
+            "7",
+            "2"
+          ]
+        ],
+        "h": 13,
+        "context": "Après cette réponse à la quatrième couleur forcing, quelle est votre troisième enchère ? Les enchères adverses non indiquées sont des Passes.",
+        "explain": "Avec 13 H réguliers, vous totalisez au moins 25 H face à un ouvreur de 12 H. Sa réponse 2SA à la quatrième couleur confirme l’arrêt Trèfle et dénie trois Cœurs ; vous ne connaissez pas de fit majeur huitième. La quatrième couleur étant auto-forcing, vous devez reparler : 3SA fixe la manche naturelle. Dans le développement mini-maxi, un ouvreur de 18–19 H peut proposer le chelem à 4SA."
+      }
     },
     "comparaisonCatalogue": {
       "memeSequenceNormalisee": 2,
