@@ -1,53 +1,8 @@
-# Reprise A — passe 3 partielle
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent 6adaf668f5beb1e1edfb7e932df5829ea87c0b0e. 120/419 verdicts provisoires ; 299 non relus.
-Dernier : SEF-N048-1; prochain : SEF-N049-1.
-{"VALIDE":99,"RECLASSER_REFORMULER":19,"ARBITRAGE":2} ; 19 corrections catalogue et 1 changement de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
+# Reprise A — passe 4 partielle
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent bbedbfe763d4d33e37aab7207b4e8b6bc89fa5d2. 165/419 verdicts provisoires ; 254 non relus.
+Dernier : SEF-N077-1; prochain : SEF-N077-3.
+{"VALIDE":127,"RECLASSER_REFORMULER":23,"ARBITRAGE":15} ; 36 corrections catalogue et 1 changement de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
 IDs restants :
-SEF-N049-1
-SEF-N049-3
-SEF-N050-2
-SEF-N050-1
-SEF-N052-1
-SEF-N053-2
-SEF-N053-1
-SEF-N054-1
-SEF-N055-2
-SEF-N055-1
-SEF-N057-1
-SEF-N057-2
-SEF-N058-2
-SEF-N059-2
-SEF-N060-1
-SEF-N060-2
-SEF-N061-2
-SEF-N061-3
-SEF-N062-1
-SEF-N062-3
-SEF-N063-2
-SEF-N063-1
-SEF-N064-2
-SEF-N064-3
-SEF-N065-2
-SEF-N066-1
-SEF-N066-3
-SEF-N067-1
-SEF-N068-1
-SEF-N069-1
-SEF-N069-2
-SEF-N070-3
-SEF-N071-2
-SEF-N071-1
-SEF-N072-2
-SEF-N072-1
-SEF-N073-3
-SEF-N073-1
-SEF-N074-1
-SEF-N074-3
-SEF-N075-2
-SEF-N075-1
-SEF-N076-2
-SEF-N076-1
-SEF-N077-1
 SEF-N077-3
 SEF-N078-2
 SEF-N079-2
