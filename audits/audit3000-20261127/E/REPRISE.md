@@ -1,48 +1,10 @@
-# Reprise E — PARTIEL
+# REPRISE — AUDIT3000-E
 
-Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. Contrat #556, mission #561. Passe 1 : 40 IDs (3cb94323383a70984f2868e45ef6187eeca8f939). Passe 2 : 40 (d2b2b4b7b41d5a120c79d549a66d09c07f21aa5d). Passe 3 : 40 nouveaux IDs, cumul 120, ordre d'insertion byId filtré par concept initial. Dernier SEF-V473-005, prochain SEF-V473-006. PR #564 en brouillon. Contrôles et limites dans REVUE.md.
+Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-## IDs restants (420, ordre stable)
-- SEF-V473-006 — apres_inter.base
-- SEF-V473-007 — apres_inter.base
-- SEF-V473-008 — apres_inter.base
-- SEF-V473-009 — michaels.defense
-- SEF-V473-010 — michaels.defense
-- SEF-V477-001 — michaels.reponse
-- SEF-V477-002 — michaels.reponse
-- SEF-V477-003 — michaels.reponse
-- SEF-V477-004 — michaels.reponse
-- SEF-V477-005 — michaels.reponse
-- SEF-V477-006 — michaels.reponse
-- SEF-V477-007 — michaels.reponse
-- SEF-V477-008 — michaels.reponse
-- SEF-V477-009 — michaels.reponse
-- SEF-V477-010 — michaels.reponse
-- SEF-V477-011 — michaels.reponse
-- SEF-V477-012 — michaels.reponse
-- SEF-V477-013 — michaels.reponse
-- SEF-V477-014 — michaels.reponse
-- SEF-V478-001 — michaels.reponse
-- SEF-V478-002 — michaels.reponse
-- SEF-V478-003 — michaels.reponse
-- SEF-V478-004 — michaels.reponse
-- SEF-V478-005 — michaels.reponse
-- SEF-V478-006 — michaels.reponse
-- SEF-V478-007 — michaels.reponse
-- SEF-V478-008 — michaels.reponse
-- SEF-V478-009 — michaels.reponse
-- SEF-V478-010 — michaels.reponse
-- SEF-V478-011 — michaels.reponse
-- SEF-V478-012 — michaels.reponse
-- SEF-V478-013 — michaels.reponse
-- SEF-V479-001 — multilandy.reponse
-- SEF-V479-002 — multilandy.reponse
-- SEF-V479-003 — multilandy.reponse
-- SEF-V479-004 — multilandy.reponse
-- SEF-V479-005 — multilandy.suite
-- SEF-V479-006 — multilandy.suite
-- SEF-V479-007 — multilandy.reponse
-- SEF-V479-008 — multilandy.reponse
+Quatre passes de 40 terminées (160/540). SHA avant passe 4 : 355e05ff3525d4571ae417c923cc43af3e1c3b11. Dernier ID SEF-V479-008; prochain ID SEF-V479-009. {"VALIDE":81,"RECLASSER_REFORMULER":72,"ARBITRAGE":7}. Corrections : 56. Prérequis : 12. Réservoir : 31.
+
+## IDs restants (380)
 - SEF-V479-009 — multilandy.reponse
 - SEF-V479-010 — multilandy.suite
 - SEF-V479-011 — multilandy.suite
@@ -424,4 +386,4 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audi
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 120 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 160 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
