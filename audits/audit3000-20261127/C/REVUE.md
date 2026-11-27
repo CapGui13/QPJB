@@ -1,4 +1,4 @@
-# AUDIT3000-C — revue PARTIELLE (466/608)
+# AUDIT3000-C — revue PARTIELLE (519/608)
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #559.
 
@@ -46,10 +46,13 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission 
 ## Passe 9 — Déclenchements et choix Roudi
 40 QCM lus individuellement. Seuil 11 HL avec cinq cartes ; six cartes, 11–12 HL pour le relais. Sources secondaires consultées : https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2 et https://bridgesaintcloud.fr/quesaquo1509.html. Q685-B-132 à arbitrer (13 HL avec six cartes) ; Q685-B-071 corrigé (fit 6–3). Trois invitations naturelles 2SA à reclasser en roudi.choix, sans changement de groupe S29/2. Questions révélatrices neutralisées. Contrôles JS sur 40 mains, H/HL, forme, rangs et choix, unicité des IDs, groupes/verrous et analogues catalogue. Tests locaux et CI non exécutés.
 
+## Passe 10 — Réponses et suites Roudi
+53 QCM lus individuellement. Les codes 2♦ non fitté sans force, 2♥ trois cartes minimum, 2♠ trois cartes maximum sont cohérents sur les mains testées (12/14 H fittées ; manque de cas 13 H fitté à évaluer, ainsi que l'exception main faible à Trèfle). Les questions donnant longueur/force sont neutralisées. Quatre arbitrages de 3♥ sur réponse 2♥ minimum (V44-064, V2-M6-005, Q400-B-071, Q685-B-143) ; distinguer invitation catalogue et séquences SEF décrites par les références, arrêter ou conclure selon valorisation. V1-M5-001 : statut du saut 3♠ après 2♦ avec six cartes, divergence de sources ; pas de correction sans arbitrage. Après 2♠ maximum, ne pas enseigner 3M comme simple invitation. Sources effectivement consultées : https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ ; https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi_1.html ; https://bridgesaintcloud.fr/quesaquo1509.html ; https://www.adeliebridge.fr/roudi-trois-reponses/. Contrôles JS sur 53 mains, H/HL, forme, rangs et choix, unicité IDs, groupes/verrous et analogues catalogue ; tests locaux/CI non exécutés.
+
 ## Bilan cumulé
-{"VALIDE":293,"RECLASSER_REFORMULER":165,"ARBITRAGE":8} ; 163 corrections complètes, 4 changements prérequis.
+{"VALIDE":315,"RECLASSER_REFORMULER":191,"ARBITRAGE":13} ; 189 corrections complètes, 4 changements prérequis, 1 réservoir.
 
 ## Limites
-142 QCM restent à auditer. Aucun merge, aucun fichier commun modifié.
+89 QCM restent à auditer (Drury). Aucun merge, aucun fichier commun modifié.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON
