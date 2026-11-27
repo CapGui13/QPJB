@@ -2499,5 +2499,2458 @@
     "apres": {
       "context": "L'adversaire ouvre de 1SA (15–17 H). Votre camp est non vulnérable et joue la variante Multi-Landy retenue dans le parcours QPJB. Quelle intervention décrit votre main ?"
     }
+  },
+  {
+    "id": "SEF-V45-030",
+    "verdict": "VALIDE",
+    "justification": "4 H, 3-3-4-3, ni majeure sixième ni bicolore. Passe même non vulnérable; excellent repoussoir aux 023/024 (deux majeures). S41/42, difficulté 2 adaptée.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-030",
+      "quizz-prerequis.js#SEF-V45-030",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://bridgesef.fr/wp-content/uploads/2025/04/SEF-NON-Conventions-a-4.pdf"
+    ],
+    "conceptInitial": "multilandy.choix",
+    "conceptPropose": "multilandy.choix",
+    "seancesInitiales": [
+      41,
+      42
+    ],
+    "seancesProposees": [
+      41,
+      42
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "objectif"
+      },
+      {
+        "session": 42,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 41,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "objectif"
+      },
+      {
+        "session": 42,
+        "group": "intervenir ou s’abstenir sur 1SA adverse : Passe",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Reconnaître une main régulière très faible sans majeure longue ni bicolore utilisable pour intervenir sur 1SA.",
+      "prerequis": {
+        "concept": "multilandy.choix",
+        "stage": 0,
+        "minSession": 32,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.seuil",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-030",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Multi-Landy QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-031",
+    "verdict": "VALIDE",
+    "justification": "5 H, cinq ♠, 2♠ naturel non forcing encore accessible après 2♥. 3♥ Texas force le palier 3; 3SA sans force, X non justifié. Contraste fort 035. S44/63.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-031",
+      "quizz-prerequis.js#SEF-V45-031",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [
+      44,
+      63
+    ],
+    "seancesProposees": [
+      44,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer une enchère naturelle de la structure Rubensohl",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-031",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-032",
+    "verdict": "VALIDE",
+    "justification": "5 H, ♣RD10975, couleur occultée par 2♥. 2SA Texas ♣; 3♣ Texas ♦ et 2♠ ne montre pas la main. Le contexte donne les longueurs pour enseigner le mécanisme, difficulté 4 justifiée par prérequis. S44/63.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-032",
+      "quizz-prerequis.js#SEF-V45-032",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44,
+      63
+    ],
+    "seancesProposees": [
+      44,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Comprendre le 2SA Rubensohl comme transfert vers 3♣ après 2♥ adverse.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-032",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-033",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, six ♦ RV10932 et ♠R5. 3♣ Texas ♦ pour jouer 3♦, force insuffisante pour forcer la manche; expliciter que les HL et qualité des ♦ peuvent compter si maximum, pas seulement total H. Ajouter S44 rappel 3♣ pour comparer avec 039 (même enchère, intervention différente).",
+    "references": [
+      "quizz.html#training-data/SEF-V45-033",
+      "quizz-prerequis.js#SEF-V45-033",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♣",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Appliquer un transfert Rubensohl malgré l’intervention adverse",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-033",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Avec six Carreaux et 7 H face à 15–17 H, le total est de 22–24 H ; votre objectif est la partielle. L'intervention à 2♥ a rendu 2♦ inaccessible, donc 3♣ transfère vers 3♦ dans le Rubensohl. Passez après la rectification normale ; 3♦ direct serait le Texas impossible, pas l'annonce naturelle des Carreaux."
+    },
+    "apres": {
+      "explain": "Après 1SA–(2♥ naturel), vos six Carreaux RV10932 ne peuvent plus être annoncés naturellement à 2♦. Le Rubensohl permet 3♣, Texas pour 3♦; vous passerez normalement sur la rectification. Avec 7 H, des honneurs modestes et pas d'arrêt Cœur, la manche n'est pas à imposer; une belle mineure peut toutefois produire des levées au-delà du simple compte H. 3♦ direct est le Texas impossible, utilisé comme Stayman dans l'accord."
+    }
+  },
+  {
+    "id": "SEF-V45-034",
+    "verdict": "VALIDE",
+    "justification": "11 H, quatre ♠ et D3♥ sans arrêt sûr. 3♦ Texas impossible = Stayman FM dans le traitement QPJB sur 2♥, et non transfert naturel. 2♠ nécessite longueur; 3♥ promet cinq ♠; S44/63 et difficulté 5 recevables.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-034",
+      "quizz-prerequis.js#SEF-V45-034",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44,
+      63
+    ],
+    "seancesProposees": [
+      44,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Reconnaître le Texas impossible à 3♦ comme Stayman forcing après intervention 2♥.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 3
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-034",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-035",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, cinq ♠ AD873; 3♥ Texas ♠ de manche, à comparer à 031 faible et 2♠ NF. Affecter à la réserve S44 Extension : Texas Pique de manche après 2♥ naturel, prérequis inchangés.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-035",
+      "quizz-prerequis.js#SEF-V45-035",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "Extension : Texas Pique de manche après 2♥ naturel",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Appliquer un transfert Rubensohl malgré l’intervention adverse",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-035",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V45-036",
+    "verdict": "VALIDE",
+    "justification": "12 H, 3-3-4-3, ♥A43 arrêt sûr, pas de majeure quatrième. 3SA naturel, 2SA Texas ♣ et X ne décrivent pas la conclusion. Aucun groupe explicite de conclusion directe identifié; garder réserve et signaler cette lacune.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-036",
+      "quizz-prerequis.js#SEF-V45-036",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer une enchère naturelle de la structure Rubensohl",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-036",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-037",
+    "verdict": "VALIDE",
+    "justification": "8 H, quatre ♠, aucun arrêt ♥. X d'appel dès 8 H, 2♠ demanderait cinq, 3SA trop fort. Contraste avec 034 (Texas impossible FM), non assigné explicitement; pas de groupe X Rubensohl identifié.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-037",
+      "quizz-prerequis.js#SEF-V45-037",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Reconnaître l’emploi du contre face à une intervention sur 1SA",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-037",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-038",
+    "verdict": "VALIDE",
+    "justification": "6 H et cinq ♥ R6543; 2♥ naturel NF disponible après 2♦. 3♦ Texas ferait monter d'un palier; 2SA ne montre pas les Cœurs. Compare 040 (force de manche). Pas de groupe explicite 2♥ naturel Rubensohl, signaler au coordinateur.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-038",
+      "quizz-prerequis.js#SEF-V45-038",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer une enchère naturelle de la structure Rubensohl",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-038",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-039",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H et deux majeures quatrièmes, ♦D9 sans arrêt assuré. 3♣ Texas impossible Stayman FM, différent du 033 Texas ♦ après 2♥; ajout au même groupe 3♣ S44, contraste utile.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-039",
+      "quizz-prerequis.js#SEF-V45-039",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♣",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Après 1SA–(2♦), déduire le Texas impossible 3♣, Stayman forcing de manche avec les deux majeures quatrièmes.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-039",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V45-040",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq ♥ AD652, ♦V9 ne tient pas. 3♦ Texas ♥ de manche contre 038 faible 2♥; même enchère 3♦ que 034 mais intervention 2♦ et signification différente, ajout S44 rappel 3♦.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-040",
+      "quizz-prerequis.js#SEF-V45-040",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Appliquer un transfert Rubensohl malgré l’intervention adverse",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-040",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Rubensohl QPJB"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V45-041",
+    "verdict": "VALIDE",
+    "justification": "12 H, deux majeures cinquièmes; favorable, 2♦ conventionnel sur 1♣, et non naturel. 1♥ cache les ♠ et 2SA montre les mineures. S45/63, opposition 042 pertinente (cue-bid ou non suivant ouverture).",
+    "references": [
+      "quizz.html#training-data/SEF-V45-041",
+      "quizz-prerequis.js#SEF-V45-041",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45,
+      63
+    ],
+    "seancesProposees": [
+      45,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Identifier les deux majeures cinquièmes dans Michaels sur mineure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-041",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q400-D-061"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-042",
+    "verdict": "VALIDE",
+    "justification": "11 H, 5♠5♥ avec singleton ♦; sur 1♦, 2♦ cue-bid bicolore majeur. 2SA ne correspond pas à ces couleurs. S45/63, compare 041; différence de couleur adverse utile.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-042",
+      "quizz-prerequis.js#SEF-V45-042",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45,
+      63
+    ],
+    "seancesProposees": [
+      45,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Identifier les deux majeures cinquièmes dans Michaels sur mineure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-042",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-D-078"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-043",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq ♠ cinq ♣ et singleton ♥. 2♥ précisé montre ♠-♣, pas ♠-♦ (3♣). S46 rappel après enseignement. Choix 1♠ et 2SA discriminants.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-043",
+      "quizz-prerequis.js#SEF-V45-043",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire un cue-bid bicolore après ouverture majeure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-043",
+      "analoguesMemeSequenceFormeReponse": [
+        "V2-M5-036",
+        "SEF-Q400-D-065",
+        "SEF-Q685-D-079"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-044",
+    "verdict": "VALIDE",
+    "justification": "14 H, cinq ♥ cinq ♣ et singleton ♠. 2♠ précisé montre ♥-♣; 3♣ montre ♥-♦. Miroir de 043, S46 rappel utile dans les deux orientations.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-044",
+      "quizz-prerequis.js#SEF-V45-044",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire un cue-bid bicolore après ouverture majeure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-044",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-D-080"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-045",
+    "verdict": "VALIDE",
+    "justification": "15 H, cinq ♠ cinq ♦, singleton ♥. 3♣ artificiel malgré ♣108, et 2♥ promet ♣ au lieu de ♦. S47/63 rappel/réinvestissement, difficulté 5 cohérente au palier trois.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-045",
+      "quizz-prerequis.js#SEF-V45-045",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      47,
+      63
+    ],
+    "seancesProposees": [
+      47,
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "décrire un bicolore 5–5 en intervention : 3♣",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 3♣",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "décrire un bicolore 5–5 en intervention : 3♣",
+        "role": "rappel"
+      },
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 3♣",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Reconnaître un Michaels de second palier ou bicolore moins fréquent",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-045",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-PN26-M1-014"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-046",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq ♥ cinq ♦ et singleton ♠; 3♣ précisé sur 1♠, non naturel. Miroir de 045; pas de groupe explicite, garder réserve plutôt que doublonner.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-046",
+      "quizz-prerequis.js#SEF-V45-046",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "Reconnaître un Michaels de second palier ou bicolore moins fréquent",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 44,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-046",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-D-082"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-047",
+    "verdict": "VALIDE",
+    "justification": "15 H, deux mineures cinquièmes, courte ♠; 2SA bicolore sur 1♥. Le 2♥/3♣ impliquent ♠ absent et 3♦ ne montre pas deux longues. S45 objectif; variante avec 048.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-047",
+      "quizz-prerequis.js#SEF-V45-047",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Reconnaître deux mineures cinquièmes et coder leur bicolore par 2SA dans les Michaels précisés.",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-047",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-048",
+    "verdict": "VALIDE",
+    "justification": "15 H, deux mineures cinquièmes, singleton ♥, 2SA sur 1♠. Même règle que 047, mais camp adverse différent; S45 objectif, ne pas multiplier deux variantes dans une même exposition.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-048",
+      "quizz-prerequis.js#SEF-V45-048",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Sur 1♠ adverse, reconnaître cinq Carreaux et cinq Trèfles puis choisir le 2SA conventionnel des mineures.",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-048",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q400-D-063"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V45-049",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq ♠ ARD96 mais deux mineures troisièmes; 1♠ naturel, aucun Michaels 5–5. S45 contraste nécessaire avec 043/045.",
+    "references": [
+      "quizz.html#training-data/SEF-V45-049",
+      "quizz-prerequis.js#SEF-V45-049",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://xvm-167-89.ghst.net/public/fichedetails/136"
+    ],
+    "conceptInitial": "michaels.choix",
+    "conceptPropose": "michaels.choix",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "choisir entre naturel et conventionnel : 1♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "choisir entre naturel et conventionnel : 1♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Intervention naturelle ou Passe, sans bicolore conventionnel",
+      "prerequis": {
+        "concept": "michaels.choix",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v45-cas-049",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V3-035-4",
+        "SEF-V3-035-1",
+        "SEF-C-011"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "Michaels précisés"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V410-025",
+    "verdict": "VALIDE",
+    "justification": "8 H, exactement quatre ♠ AV32; 1♠ naturel après 1♦–(1♥), X dénie quatre ♠ en SEF et non Soulet. S19 groupe spécifique, bonne discrimination 041 cinq cartes.",
+    "references": [
+      "quizz.html#training-data/SEF-V410-025",
+      "quizz-prerequis.js#SEF-V410-025",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Majeure quatrième Pique sur 1♥ adverse, après base exposée",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Majeure quatrième Pique sur 1♥ adverse, après base exposée",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer 1♠ naturel du contre Spoutnik après 1♦–(1♥).",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-025",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-C-090"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V410-026",
+    "verdict": "VALIDE",
+    "justification": "8 H, quatre ♥ R962, deux ♠ et pas arrêt; X Spoutnik après 1♣–(1♠), 2♥ nécessite cinq et davantage de force. S19 groupe Spoutnik, comparer 089-1 à 4 H.",
+    "references": [
+      "quizz.html#training-data/SEF-V410-026",
+      "quizz-prerequis.js#SEF-V410-026",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://www.bridge-chailley.fr/wp-content/uploads/2020/10/E4053-Spoutnik-generalise.pdf"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Spoutnik avec quatre Cœurs après 1♣-(1♠)",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-026",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V410-027",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, deux majeures quatrièmes et doubleton ♣ adverse; X généralisé, pas nouvelle majeure 5e. Retirer le comptage et la formulation qui annonce la recherche du fit; ajouter S19 réserve Spoutnik généralisé, prérequis 2 expositions conservés.",
+    "references": [
+      "quizz.html#training-data/SEF-V410-027",
+      "quizz-prerequis.js#SEF-V410-027",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://www.bridge-chailley.fr/wp-content/uploads/2020/10/E4053-Spoutnik-generalise.pdf"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik généralisé sur intervention au palier de deux (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Spoutnik après 1♦-(2♣)",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v410-027",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♦ et l'adversaire de droite intervient à 2♣. Vous possédez 9 H et les deux majeures quatrièmes (♠ADV8 et ♥10854). Comment rechercher le meilleur fit majeur ?"
+    },
+    "apres": {
+      "context": "Le partenaire ouvre de 1♦ et l'adversaire de droite intervient à 2♣. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V410-028",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, ♥A73 arrêt, aucune majeure quatrième; 1SA naturel 8–10 HL plutôt que 1♠ ou X. Ajouter S19 naturel; complément à 025 quatre ♠ après 1♥.",
+    "references": [
+      "quizz.html#training-data/SEF-V410-028",
+      "quizz-prerequis.js#SEF-V410-028",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "1SA après intervention à 1♥",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-028",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V410-029",
+    "verdict": "VALIDE",
+    "justification": "9 H, ♠A97 arrêt et aucune quatrième majeure, 1SA naturel sur 1♦–(1♠). Miroir de 028 avec autre couleur adverse. Pas de groupe explicite, garder réserve.",
+    "references": [
+      "quizz.html#training-data/SEF-V410-029",
+      "quizz-prerequis.js#SEF-V410-029",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "1SA après intervention à 1♠",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-029",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V411-012",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq ♥ AR973 et D7♠ arrêt incertain; 2♥ naturel forcing un tour, pas auto-forcing, compare 018 plus faible. Cas pertinent, proche V44-042 avec autre mineure; éviter ajout redondant.",
+    "references": [
+      "quizz.html#training-data/SEF-V411-012",
+      "quizz-prerequis.js#SEF-V411-012",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Réponse naturelle à 2♥ après intervention 1♠",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-012",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V411-013",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq ♦ A9832, aucune majeure quatrième ni arrêt ♥; 2♦ naturel parmi choix. Le prérequis majeur.soutien est inadapté à un soutien mineur; proposer mineur.soutien, sans modifier la zone exacte qui dépend du contexte. S19 naturel comme contraste avec 028.",
+    "references": [
+      "quizz.html#training-data/SEF-V411-013",
+      "quizz-prerequis.js#SEF-V411-013",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple à Carreau après intervention 1♥",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-013",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V412-017",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq ♠ AR752, 1♠ naturel sans saut. La question indique la seule enchère descriptive et le comptage; demander la réponse libre, conserver en réserve car 041/025 déjà exposés.",
+    "references": [
+      "quizz.html#training-data/SEF-V412-017",
+      "quizz-prerequis.js#SEF-V412-017",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Après 1♦ (1♥), répondre 1♠ avec cinq Piques",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v412-cas-017",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♦ et l’adversaire intervient à 1♥. Avec cinq Piques et 8 H, quelle réponse naturelle reste disponible au palier de 1 ?"
+    },
+    "apres": {
+      "context": "Le partenaire ouvre de 1♦ et l'adversaire intervient à 1♥. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V412-018",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H + 1 L = 10 HL, cinq ♥ RD965 et arrêt ♠A5. X Spoutnik plutôt que 2♥ trop fort ou 1SA qui masque majeure. Énoncé annonce la force limitée; supprimer ce guidage et ajouter S19 Spoutnik pour contraste avec 012 (2♥ à 13 HL).",
+    "references": [
+      "quizz.html#training-data/SEF-V412-018",
+      "quizz-prerequis.js#SEF-V412-018",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://www.bridge-chailley.fr/wp-content/uploads/2020/10/E4053-Spoutnik-generalise.pdf"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Après 1♣ (1♠), Spoutnik avec cinq Cœurs et 9 H",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v412-cas-018",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♣, puis l'adversaire de droite intervient par 1♠. Vous avez cinq Cœurs mais une force limitée. Quelle est votre réponse selon le SEF ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♣, puis l'adversaire de droite intervient par 1♠. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V412-019",
+    "verdict": "VALIDE",
+    "justification": "12 H, six ♣ RD9532, 2♣ naturel forcing un tour non auto-forcing. 1SA sans arrêt ♠, X ne montre pas cette longue, 3♣ non nécessaire. Variante utile des changements libres; hors groupe explicite.",
+    "references": [
+      "quizz.html#training-data/SEF-V412-019",
+      "quizz-prerequis.js#SEF-V412-019",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Après 1♦ (1♠), changement naturel forcing à 2♣",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v412-cas-019",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V413-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq ♠ A10862 après 1♣–(1♦), 1♠ naturel. Question 'naturelle' plus main prémâchée simplifie artificiellement; demander simplement la réponse. Hors groupe, comparable 017.",
+    "references": [
+      "quizz.html#training-data/SEF-V413-010",
+      "quizz-prerequis.js#SEF-V413-010",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Réponse naturelle en majeure après une intervention mineure",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v413-cas-010",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Le partenaire ouvre de 1♣ et l’adversaire intervient à 1♦. Avec cinq Piques et 8 H, quelle réponse naturelle convient ?"
+    },
+    "apres": {
+      "context": "Le partenaire ouvre de 1♣ et l'adversaire intervient à 1♦. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V413-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, ♦A1086 arrêt, aucune majeure quatrième, 1SA naturel. Le contexte livre la tenue et la force; laisser lire la main, préciser dans le corrigé la zone limitée. S19 naturelle.",
+    "references": [
+      "quizz.html#training-data/SEF-V413-011",
+      "quizz-prerequis.js#SEF-V413-011",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Réponse de 1SA avec arrêt de la couleur adverse",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v413-cas-011",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-C-060"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L’adversaire intervient à 1♦ sur l’ouverture de 1♣. Quelle réponse convient avec une main régulière, 9 H et la tenue Carreau ?",
+      "explain": "Sans majeure quatrième et avec l’As de Carreau pour arrêter la couleur adverse, 1SA décrit naturellement cette main régulière limitée à 9 H."
+    },
+    "apres": {
+      "context": "L'adversaire intervient à 1♦ sur l'ouverture de 1♣ de votre partenaire. Quelle est votre réponse selon le SEF ?",
+      "explain": "Vous avez 9 H, une main régulière sans majeure quatrième et l'As de Carreau qui arrête la couleur adverse. 1SA est une réponse naturelle limitée (environ 8–10 HL) : 1♠ inventerait une quatrième carte et le Contre n'est pas nécessaire avec cet arrêt."
+    }
+  },
+  {
+    "id": "SEF-V413-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, 3♠ R96 après X adverse, 2♠ soutien limité. 3♠ exige un fit plus long, 2SA Truscott quatrième (absent des choix), Surcontre plus fort. Reclasser competitif.truscott comme contraste et affecter S25 Après Contre; remplacer 1SA par 2SA pour tester la convention.",
+    "references": [
+      "quizz.html#training-data/SEF-V413-012",
+      "quizz-prerequis.js#SEF-V413-012",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://scjc-bridge.fr/sef-2024"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "competitif.truscott",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après Contre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien simple après un contre d’appel adverse",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v413-cas-012",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "choices": [
+        "1SA",
+        "3♠",
+        "2♠",
+        "Surcontre"
+      ],
+      "explain": "Après 1♠ du partenaire et le Contre d'appel adverse, vos 7 H et trois atouts ♠R96 montrent un fit de huit cartes en majeure. 2♠ est un soutien simple et limité, sans signaler la force d'un Surcontre et sans élever inutilement le palier."
+    },
+    "apres": {
+      "choices": [
+        "2SA",
+        "3♠",
+        "2♠",
+        "Surcontre"
+      ],
+      "explain": "Après 1♠–(Contre d'appel), trois Piques R96 et 7 H suffisent au soutien simple à 2♠. Un soutien à saut de 3♠ serait un barrage avec davantage d'atouts, et le 2SA Truscott exige quatre atouts dans la zone constructive. Le Surcontre demanderait davantage de force. Le soutien simple annonce immédiatement le fit sans monter inutilement."
+    }
+  },
+  {
+    "id": "SEF-V417-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, quatre ♥ DV43, 2♠? l'adversaire est à 1♠; X est le Spoutnik. Le rappel donne littéralement le concept 'contre Spoutnik' juste au-dessus du choix Contre; le supprimer. S19 groupe adapté.",
+    "references": [
+      "quizz.html#training-data/SEF-V417-010",
+      "quizz-prerequis.js#SEF-V417-010",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://www.bridge-chailley.fr/wp-content/uploads/2020/10/E4053-Spoutnik-generalise.pdf"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Reconnaître le Contre Spoutnik avec quatre Cœurs et 8 H après 1♦–(1♠), plutôt qu'un 2♥ naturel.",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "audit-P1-P-032-010",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-C-062"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rappel : le contre Spoutnik recherche une majeure non annoncée."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦ et l'adversaire de droite intervient à 1♠. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V417-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq ♦ RD964 et quatre ♣; 2♦ naturel forcing un tour, non auto-forcing. Rappel donne la solution par élimination; remplacer par question neutre. 2♣ limiterait la force; aucun groupe explicite.",
+    "references": [
+      "quizz.html#training-data/SEF-V417-011",
+      "quizz-prerequis.js#SEF-V417-011",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Choisir un changement de couleur naturel 2♦ forcing un tour avec cinq Carreaux et 12 H après 1♣–(1♥).",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "audit-P1-P-034-011",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rappel : le changement de couleur au palier de 2 est forcing pour un tour."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♣ et l'adversaire de droite intervient à 1♥. Quelle est votre réponse selon le SEF ?"
+    }
+  },
+  {
+    "id": "SEF-V418-005",
+    "verdict": "VALIDE",
+    "justification": "8 H, quatre ♠ AV83 sur 1♣–(1♥), 1♠ en SEF, X dénie 4♠. Variante de 025 (mineure différente); hors groupe explicite, conserver conditionnellement.",
+    "references": [
+      "quizz.html#training-data/SEF-V418-005",
+      "quizz-prerequis.js#SEF-V418-005",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Différencier quatre et cinq Piques après une intervention à 1♥.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v418-cas-005",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q685-C-058"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V419-007",
+    "verdict": "VALIDE",
+    "justification": "8 H + doubleton ♠ + neuvième atout = 11 HLD, quatre ♥. 3♥ est soutien sans saut sur 2♠; 2SA ne décrit pas quatre atouts, 4♥ prématuré. Bon contraste avec 079-2/011 où 2M est accessible; hors groupe explicite, à rapprocher en S25.",
+    "references": [
+      "quizz.html#training-data/SEF-V419-007",
+      "quizz-prerequis.js#SEF-V419-007",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Soutien compétitif au palier de 3 après un saut adverse.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v419-cas-007",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V420-009",
+    "verdict": "ARBITRAGE",
+    "justification": "8 H, deux majeures quatrièmes après 1♣–(1♦). Le catalogue retient 1♥ naturel et X déniant majeure; une source de pratique Spoutnik non collante décrit X comme bicolore majeur 4-4. La référence SEF 2024 consultée établit X déniant 4♠ seulement sur 1♥ adverse; n'extrapoler ni règle ni correction sans arbitre. Proposer de préciser explicitement le traitement QPJB de 1♦ adverse et de vérifier page SEF correspondante.",
+    "references": [
+      "quizz.html#training-data/SEF-V420-009",
+      "quizz-prerequis.js#SEF-V420-009",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://www.normalesup.org/~glafon/bridge/guillaumes.pdf",
+      "https://clubpalmarium.club.ffbridge.fr/document-download/668b87723d5ba_contresSpoutnik.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Priorité de la réponse naturelle de 1♥ avec les deux majeures quatrièmes après 1♣–(1♦).",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v420-cas-009",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "arbitrage coordinateur"
+  },
+  {
+    "id": "SEF-V420-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H + cinquième ♦ = 8 HL, 5♦, ♠R6 peut servir d'arrêt partiel/tenue selon orientation; le corrigé ne doit pas fonder 2♦ sur une absence d'arrêt catégorique. Priorité au soutien mineur avec cinq cartes, pas de 4♥. Remplacer majeur.soutien par mineur.soutien; réserve non affectée.",
+    "references": [
+      "quizz.html#training-data/SEF-V420-010",
+      "quizz-prerequis.js#SEF-V420-010",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Soutien mineur faible sans arrêt dans la couleur d’intervention.",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v420-cas-010",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L’adversaire intervient naturellement à 1♠ sur l’ouverture de 1♦.",
+      "explain": "Avec cinq Carreaux, une main modeste et aucun arrêt net à Pique, le soutien naturel à 2♦ est préférable. Le contre Spoutnik demanderait notamment quatre Cœurs."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♦ et l'adversaire intervient naturellement à 1♠. Quelle est votre réponse selon le SEF ?",
+      "explain": "Avec 7 H et cinq Carreaux D10853, vous disposez d'un fit certain dans la mineure d'ouverture. Le soutien économique 2♦ décrit directement cette main modeste. Le Roi de Pique second n'est pas une tenue aussi robuste qu'un As, mais le choix de 2♦ repose d'abord sur le fit. Le Spoutnik simple ne convient pas avec seulement trois Cœurs."
+    }
+  },
+  {
+    "id": "SEF-V420-011",
+    "verdict": "VALIDE",
+    "justification": "7 H + 1 D + 2 neuvième atout = 10 HLD, quatre ♥. Après 1♥–(1♠), 2♥ simple, 3♥ constructif à 11–12 HLD et 2SA trois atouts. Contraste avec 076 où palier 2 fermé; garder comme variante conditionnelle.",
+    "references": [
+      "quizz.html#training-data/SEF-V420-011",
+      "quizz-prerequis.js#SEF-V420-011",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Seuil 10/11 HLD du soutien à 2 ou 3 en majeure après intervention",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v420-cas-011",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue dans contexte lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "conserver"
   }
 ]
