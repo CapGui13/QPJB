@@ -27333,7 +27333,7 @@
           [
             "8",
             "3",
-            "6"
+            "2"
           ]
         ],
         "h": 10,
@@ -27462,6 +27462,5443 @@
       ],
       "reponse": "4♥",
       "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-021-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H et quatre Piques, 3♦ négatif : 3SA. Retirer le décompte donné.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-221",
+    "caseFamilyPropose": "cas-221",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♦"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♠",
+        "Passe",
+        "3♠",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire ouvre de 2SA (20–21 H). Avec quatre Piques et 7 H, vous utilisez 3♣ Stayman ; il répond 3♦, niant une majeure quatrième. Quelle est votre deuxième enchère ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2SA (20–21 H). Vous faites 3♣ Stayman ; il répond 3♦. Quelle est votre deuxième enchère ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V3-022-1",
+    "verdict": "VALIDE",
+    "justification": "5 H et quatre Cœurs, 3♦ négatif : 3SA à la borne minimale.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-222",
+    "caseFamilyPropose": "cas-222",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♦"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♥",
+        "3♥",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-023-2",
+    "verdict": "VALIDE",
+    "justification": "5 H et quatre Cœurs, 3♥ positif : 4♥, contraste 022-1 sans fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-223",
+    "caseFamilyPropose": "cas-223",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 5,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 5
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4SA",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-023-1",
+    "verdict": "VALIDE",
+    "justification": "8 H et quatre Cœurs, 3♥ positif : 4♥, variante plus forte de 023-2.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-223",
+    "caseFamilyPropose": "cas-223",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "3♠",
+        "4SA",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-024-1",
+    "verdict": "VALIDE",
+    "justification": "6 H et quatre Piques, 3♠ positif : 4♠, transposition Cœur/Pique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-224",
+    "caseFamilyPropose": "cas-224",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4SA",
+        "4♠",
+        "Passe",
+        "3SA"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-050"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-025-1",
+    "verdict": "VALIDE",
+    "justification": "7 H et six Cœurs, rectification fittée : 4♥, neuf atouts au moins.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-225",
+    "caseFamilyPropose": "cas-225",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♦",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4SA",
+        "3SA"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V3-026-1",
+    "verdict": "VALIDE",
+    "justification": "7 H et six Piques, rectification fittée : 4♠, symétrie 025-1.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-226",
+    "caseFamilyPropose": "cas-226",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♥",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4SA",
+        "4♠",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V416-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et cinq Cœurs, rectification garantit trois Cœurs : 4♥ ; retirer H/longueur donnés.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v416-cas-012",
+    "caseFamilyPropose": "v416-cas-012",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♦ (Texas Cœur)",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♥",
+        "4SA",
+        "Passe"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-054"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire a ouvert de 2SA (20–21 H), vous avez fait un Texas pour les Cœurs par 3♦ et il a répondu 3♥. Vous avez cinq Cœurs, une main régulière et 6 H. Quelle est votre enchère selon le SEF 2024 ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2SA (20–21 H), vous faites un Texas Cœur à 3♦ et il répond 3♥. Quelle est votre enchère selon le SEF 2024 ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V416-013",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et cinq Piques, rectification fittée : 4♠ ; retirer H/longueur donnés.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v416-cas-013",
+    "caseFamilyPropose": "v416-cas-013",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          2,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♥ (Texas Pique)",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♠",
+        "4SA",
+        "Passe"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire a ouvert de 2SA (20–21 H), vous avez fait un Texas pour les Piques par 3♥ et il a répondu 3♠. Vous avez cinq Piques, une main régulière et 6 H. Quelle est votre enchère selon le SEF 2024 ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2SA (20–21 H), vous faites un Texas Pique à 3♥ et il répond 3♠. Quelle est votre enchère selon le SEF 2024 ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-L07-002",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Cœurs et deux Piques, réponse 3♠ seule majeure : 3SA, aucune majeure fittée.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V17-RECONSTRUCTION-SEF-L07-002",
+    "caseFamilyPropose": "V17-RECONSTRUCTION-SEF-L07-002",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-L23-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Ouvreur 21 H, deux Cœurs : 3SA et non 3♥, maximum ne suffit pas. Énoncé révèle le refus et le doubleton.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "LOT23-2026-11-13-006",
+    "caseFamilyPropose": "LOT23-2026-11-13-006",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière, 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas pour les Cœurs, avec de quoi assumer la manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-025"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous ouvrez de 2SA avec 21 H réguliers. Le partenaire fait un Texas Cœur par 3♦ et dispose d'assez de jeu pour la manche. Mais vous n'avez que deux Cœurs. Dans le SEF 2024, la rectification à 3♥ promet un véritable fit : quelle redemande faites-vous en son absence ?"
+      },
+      "apres": {
+        "context": "Vous ouvrez de 2SA (20–21 H). Le partenaire fait un Texas Cœur à 3♦, avec les valeurs de manche. Quelle redemande choisissez-vous en SEF 2024 ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-L31-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, six Piques, 3SA nie trois : huit atouts, re-Texas 4♥. Supprimer le décompte et le mot répète, maintenir objectif déclarant.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "caseFamilyInitial": "LOT31-2026-11-14-001",
+    "caseFamilyPropose": "LOT31-2026-11-14-001",
+    "difficulteInitiale": 5,
+    "difficulteProposee": 5,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA (ouverture 20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (n'a pas trois Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4♠",
+        "5♠"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez six Piques, 6 H et un fit au moins huitième garanti même si l'ouvreur de 2SA n'en possède que deux. Après votre Texas à 3♥, il annonce 3SA faute de fit troisième. Selon le traitement SEF 2024, quelle enchère répète le Texas pour lui faire déclarer 4♠ ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2SA. Après votre Texas à 3♥, il répond 3SA. Quelle suite choisissez-vous, en conservant si possible l'ouvreur comme déclarant ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-L39-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Ouvreur 20 H et trois Piques : 3♠ fitté ; retirer le soutien déjà donné.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "LOT39-2026-11-16-001",
+    "caseFamilyPropose": "LOT39-2026-11-16-001",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière de 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous ouvrez de 2SA avec 20 H réguliers. Le partenaire répond 3♥, Texas pour les Piques. Vous possédez trois Piques ♠RV8, donc un fit au moins huitième si le répondant a cinq cartes. Le SEF 2024 utilise ici la rectification fittée : quelle redemande choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Vous ouvrez de 2SA (20–21 H). Le partenaire répond 3♥, Texas Pique. Quelle redemande choisissez-vous en SEF 2024 ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-L39-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre Piques et trois Cœurs, 3SA double majeure : 4♦ transfert. Retirer décompte et manche cible explicite.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "LOT39-2026-11-16-002",
+    "caseFamilyPropose": "LOT39-2026-11-16-002",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA (ouverture de 20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (les deux majeures quatrièmes)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♣",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "4♦",
+      "reponseProposee": "4♦",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Le partenaire a ouvert de 2SA puis répondu 3SA à votre Stayman, ce qui montre quatre Cœurs et quatre Piques. Vous détenez quatre Piques, trois Cœurs et 9 H : le fit 4–4 à Pique est trouvé. Quelle enchère de transfert fait déclarer la manche à 4♠ par l'ouvreur de 2SA ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2SA et répond 3SA à votre Stayman à quatre réponses. Quelle enchère permet de faire déclarer la manche majeure à l'ouvreur ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-Q26-M2-008",
+    "verdict": "VALIDE",
+    "justification": "Ouvreur 20 H et quatre Cœurs : 3♥, pas de saut même avec quatre atouts.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      },
+      {
+        "session": 15,
+        "group": 5,
+        "decision": "Suite reportée si nécessaire : 2SA fitté ou réponse sur 2SA",
+        "role": "transition",
+        "phase": "initial"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      },
+      {
+        "session": 15,
+        "group": 5,
+        "decision": "Suite reportée si nécessaire : 2SA fitté ou réponse sur 2SA",
+        "role": "transition",
+        "phase": "initial"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "QUAL-M2-008",
+    "caseFamilyPropose": "QUAL-M2-008",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♦ (Texas Cœur)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-009"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q26-M2-009",
+    "verdict": "VALIDE",
+    "justification": "Ouvreur 20 H, deux Piques : 3SA, quatre Cœurs hors sujet ; contraste 008.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "QUAL-M2-009",
+    "caseFamilyPropose": "QUAL-M2-009",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♥ (Texas Pique)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-104"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q26-M2-020",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H et quatre Cœurs, 3SA double majeure : 4♣ transfert faisant déclarer l'ouvreur. Retirer annonce du fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "QUAL-M2-020",
+    "caseFamilyPropose": "QUAL-M2-020",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Vous : 3♣ (Stayman)",
+        "Partenaire : 3SA (les deux majeures quatrièmes)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♣",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "4♣",
+      "reponseProposee": "4♣",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez trouvé un fit Cœur. Quelle enchère de transfert fait déclarer la manche à l’ouvreur de 2SA ?"
+      },
+      "apres": {
+        "context": "Après la réponse de 3SA au Stayman à quatre réponses, quelle enchère de manche permet de faire déclarer l'ouvreur de 2SA ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-Q26-M2-022",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H et cinq Piques, refus 3SA : sept atouts et Passe. Retirer longueur donnée, contraste L31-001.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "QUAL-M2-022",
+    "caseFamilyPropose": "QUAL-M2-022",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Vous : 3♥ (Texas Pique)",
+        "Partenaire : 3SA (pas trois Piques)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Le partenaire refuse la rectification fittée de votre Texas. Avec cinq Piques et les valeurs de manche, quelle suite choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Après votre Texas Pique sur 2SA, le partenaire annonce 3SA. Quelle suite choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "V2-M2-009",
+    "verdict": "VALIDE",
+    "justification": "20 H, trois Cœurs et quatre Piques : 3♥ fitté, distinction 010.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-texas-fit",
+    "caseFamilyPropose": "V2-M2-sa2-texas-fit",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas Cœur, valeurs de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q26-M2-008"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-010",
+    "verdict": "VALIDE",
+    "justification": "20 H, deux Cœurs et quatre Piques : 3SA, même force et majeure latérale que 009.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-texas-fit",
+    "caseFamilyPropose": "V2-M2-sa2-texas-fit",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas Cœur, valeurs de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-098"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-011",
+    "verdict": "VALIDE",
+    "justification": "6 H et cinq Cœurs après refus 3SA : Passe, sept atouts, contraste 012.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-texas-apres-refus",
+    "caseFamilyPropose": "V2-M2-sa2-texas-apres-refus",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♦ (Texas Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (deux Cœurs)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♣",
+        "4♦",
+        "4♥"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-108"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et six Cœurs après refus 3SA : 4♦ re-Texas, huit atouts. Préciser choix du déclarant sans révéler l'enchère.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-texas-apres-refus",
+    "caseFamilyPropose": "V2-M2-sa2-texas-apres-refus",
+    "difficulteInitiale": 5,
+    "difficulteProposee": 5,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♦ (Texas Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (deux Cœurs)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♣",
+        "4♦",
+        "4♥"
+      ],
+      "reponse": "4♦",
+      "reponseProposee": "4♦",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Sud est à la parole. Les adversaires passent sauf indication contraire. Quelle enchère choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Quelle enchère choisissez-vous, en conservant si possible l'ouvreur comme déclarant ?"
+      }
+    }
+  },
+  {
+    "id": "V2-M2-023",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Cœurs sur réponse 3♥ : 4♥, contraste 024 sans fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-stayman-fit",
+    "caseFamilyPropose": "V2-M2-sa2-stayman-fit",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (quatre Cœurs seulement)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M2-024",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Piques et trois Cœurs sur réponse 3♥ : 3SA, ni 4♥ ni 4♠.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "V2-M2-sa2-stayman-fit",
+    "caseFamilyPropose": "V2-M2-sa2-stayman-fit",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (quatre Cœurs seulement)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-PN26-M1-010",
+    "verdict": "VALIDE",
+    "justification": "21 H et quatre Piques sur Texas Pique : 3♠ fitté, maximum ne justifie pas saut.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "pn26-m1-010",
+    "caseFamilyPropose": "pn26-m1-010",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière de 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "4♠",
+        "3SA",
+        "3♠",
+        "4♣"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "aucun groupe explicite; accessibilité moteur non certifiée",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-025",
+    "verdict": "VALIDE",
+    "justification": "21 H et deux Cœurs : 3SA, comparaison rectification 1SA pertinente.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-texas-rectification2",
+    "caseFamilyPropose": "q400-b-texas-rectification2",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-L23-006"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-044",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Piques sur refus 3SA : Passe, variante du cas Q26-M2-022.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-texas-suite2",
+    "caseFamilyPropose": "q400-b-texas-suite2",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Adversaire : Passe",
+        "Vous : 3♥ (Texas)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (deux cartes dans la majeure)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♠",
+        "4♥",
+        "4SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-021"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-094",
+    "verdict": "VALIDE",
+    "justification": "20 H, quatre Cœurs : 3♥ fitté, contraste 025 deux Cœurs.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-texas-rectification2",
+    "caseFamilyPropose": "q400-b-texas-rectification2",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          4,
+          2,
+          4
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-100"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-021",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Piques et deux chez l'ouvreur : Passe sur 3SA, même décision que 044.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3cP3SA-Passe",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3cP3SA-Passe",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Vous : 3♥ (Texas Pique)",
+        "Partenaire : 3SA (pas trois Piques)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-044"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-028",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, six Cœurs après refus : 4♦ re-Texas. Clarifier objectif de faire déclarer l'ouvreur.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3kP3SA-4k",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3kP3SA-4k",
+    "difficulteInitiale": 5,
+    "difficulteProposee": 5,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♦ (Texas Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (deux Cœurs)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♣",
+        "4♦",
+        "4♥"
+      ],
+      "reponse": "4♦",
+      "reponseProposee": "4♦",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Quelle est votre enchère selon le traitement QPJB décrit dans la séquence ?"
+      },
+      "apres": {
+        "context": "Quelle enchère choisissez-vous, en conservant si possible l'ouvreur comme déclarant ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-045",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, six Piques après refus : 4♥ re-Texas, symétrie 028.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 3,
+      "minSession": 20,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.suite",
+          "minExposure": 3
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3cP3SA-4c",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3cP3SA-4c",
+    "difficulteInitiale": 5,
+    "difficulteProposee": 5,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 2SA (ouverture 20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (n'a pas trois Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4♠",
+        "5♠"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Quelle est votre enchère selon le traitement QPJB décrit dans la séquence ?"
+      },
+      "apres": {
+        "context": "Quelle enchère choisissez-vous, en conservant si possible l'ouvreur comme déclarant ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-048",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et quatre Piques, 3♦ négatif : 3SA. Corrigé au pluriel imprécis, préciser la majeure quatrième.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3k-3SA",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3k-3SA",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♦"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "6 H, distribution 4–3–3–3. La réponse 3♦ ne révèle aucun fit 4–4 avec vos majeures. Avec 6 H, 3SA conclut à la manche à Sans-Atout."
+      },
+      "apres": {
+        "explain": "6 H et quatre Piques, trois Cœurs. 3♦ nie toute majeure quatrième chez l'ouvreur ; aucun fit 4–4 n'est établi. Avec au moins 26 H cumulés, concluez à 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-049",
+    "verdict": "VALIDE",
+    "justification": "20 H, trois Cœurs et cinq Carreaux : 3♥ fitté, la mineure longue ne change pas la décision.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          3,
+          5,
+          2
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♦ (Texas Cœur)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-050",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Piques, 3♠ positif : 4♠, contraste 048.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3p-4p",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3p-4p",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V3-024-1"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-054",
+    "verdict": "VALIDE",
+    "justification": "6 H et cinq Cœurs après rectification : 4♥ ; huit atouts, variante V416-012.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3kP3c-4c",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3kP3c-4c",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♦",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V416-012"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-055",
+    "verdict": "VALIDE",
+    "justification": "7 H et six Cœurs après rectification : 4♥ ; neuf atouts, proche 025-1.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3kP3c-4c",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3kP3c-4c",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♦",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-098",
+    "verdict": "VALIDE",
+    "justification": "20 H, deux Cœurs : 3SA, indépendamment de la force.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3k-3SA",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3k-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière, 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas pour les Cœurs, avec de quoi assumer la manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-010"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-099",
+    "verdict": "VALIDE",
+    "justification": "21 H et RD secs à Cœur : 3SA, même règle mais honneurs ne remplacent pas longueur.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3k-3SA",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3k-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          3,
+          2,
+          5,
+          3
+        ],
+        "hl": 22
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière, 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♦ (Texas pour les Cœurs, avec de quoi assumer la manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-100",
+    "verdict": "VALIDE",
+    "justification": "20 H et quatre Cœurs : 3♥, ne pas sauter malgré fit neuf.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♦ (Texas Cœur)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-094"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-101",
+    "verdict": "VALIDE",
+    "justification": "21 H, quatre Cœurs : 3♥, contraste maximum 100.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3k-3c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♦ (Texas Cœur)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♥",
+        "3♠",
+        "3SA",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-102",
+    "verdict": "VALIDE",
+    "justification": "21 H, trois Piques et quatre Cœurs : 3♠, ne pas privilégier majeure latérale.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3c-3p",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3c-3p",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière de 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-103",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "20 H, trois Piques et cinq Carreaux : 3♠. Corrigé elliptique ; expliciter seuil et refus.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3c-3p",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3c-3p",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          3,
+          3,
+          5,
+          2
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Vous : 2SA (ouverture régulière de 20–21 H)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (Texas pour les Piques)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "20 H, distribution 3–3–5–2. Trois Piques et cinq Carreaux, 3♠."
+      },
+      "apres": {
+        "explain": "20 H, trois Piques et cinq Carreaux. Sur 2SA, rectifier un Texas Pique à 3♠ promet au moins trois Piques. 3SA nierait ce soutien ; la mineure cinquième ne change pas cette règle."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-104",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "20 H, As second Pique : 3SA ; honneur ne remplace pas troisième atout. Corrigé à compléter.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3c-3SA",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3c-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 20,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♥ (Texas Pique)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q26-M2-009"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "20 H, distribution 2–4–4–3. As second à Pique, ne garantit pas huit atouts."
+      },
+      "apres": {
+        "explain": "20 H et l'As second à Pique : deux cartes ne garantissent pas huit atouts face à une majeure cinquième. Sur 2SA, 3SA nie le troisième Pique ; 3♠ promettrait au moins trois."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-105",
+    "verdict": "VALIDE",
+    "justification": "7 H, quatre Cœurs, 3♥ positif : 4♥, force et fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3c-4c",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3c-4c",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♥"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4SA",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-106",
+    "verdict": "VALIDE",
+    "justification": "21 H, RD secs Pique : 3SA, contraste 104 force/qualité.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.reponse",
+    "conceptPropose": "sa2.texas.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 13,
+        "group": 4,
+        "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-reponse-V2SAP3c-3SA",
+    "caseFamilyPropose": "q685-b-sa2-texas-reponse-V2SAP3c-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 21,
+        "shape": [
+          2,
+          3,
+          5,
+          3
+        ],
+        "hl": 22
+      },
+      "sequence": [
+        "Vous : 2SA (20–21 H)",
+        "Partenaire : 3♥ (Texas Pique)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♠"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-107",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, quatre Piques et deux Cœurs après 3♥ : 3SA, préciser conclusion de manche.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3c-3SA",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3c-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (quatre Cœurs seulement)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♠",
+        "3SA",
+        "4♣",
+        "4♥"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "6 H, distribution 4–2–4–3. Quatre Piques et deux Cœurs, pas de fit après 3♥."
+      },
+      "apres": {
+        "explain": "6 H, quatre Piques et deux Cœurs. 3♥ au Stayman à quatre réponses montre quatre Cœurs et nie quatre Piques. Sans fit majeur et avec 26–27 H cumulés, concluez à 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-108",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Cœurs après refus : Passe, sept atouts, variante 011.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3kP3SA-Passe",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3kP3SA-Passe",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♦ (Texas Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (deux Cœurs)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♣",
+        "4♦",
+        "4♥"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M2-011"
+        ],
+        "interpretation": "candidats de répétition sémantique; les différences de distracteur, borne ou couleur peuvent justifier la variante"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-109",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, quatre Cœurs et deux Piques après 3♠ : 3SA ; expliciter exclusion de Cœur et force.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3p-3SA",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3p-3SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♣",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "3SA",
+      "reponseProposee": "3SA",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "explain": "7 H, distribution 2–4–4–3. Quatre Cœurs, deux Piques : pas de fit après 3♠."
+      },
+      "apres": {
+        "explain": "7 H, quatre Cœurs et deux Piques. 3♠ au Stayman à quatre réponses montre quatre Piques sans quatre Cœurs. Aucun fit majeur : avec 27–28 H cumulés, concluez à 3SA."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-110",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre Piques après 3SA double majeure : 4♦, objectif déclarant à préciser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3SA-4k",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3SA-4k",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          3,
+          4,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 2SA (ouverture de 20–21 H)",
+        "Adversaire : Passe",
+        "Vous : 3♣ (Stayman)",
+        "Adversaire : Passe",
+        "Partenaire : 3SA (les deux majeures quatrièmes)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♣",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "4♦",
+      "reponseProposee": "4♦",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Quelle est votre enchère selon le traitement QPJB décrit dans la séquence ?",
+        "explain": "10 H, distribution 4–3–4–2. Après la double majeure, 4♦ transfère vers les Piques de l'ouvreur."
+      },
+      "apres": {
+        "context": "Quelle enchère permet de faire déclarer la manche majeure à l'ouvreur de 2SA ?",
+        "explain": "10 H et quatre Piques. 3SA après Stayman à quatre réponses montre les deux majeures quatrièmes ; le fit Pique est certain. 4♦ transfère à 4♠ pour que l'ouvreur déclare."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-111",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre Cœurs après 3SA double majeure : 4♣, contraste 110.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.stayman.suite",
+    "conceptPropose": "sa2.stayman.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 1,
+        "decision": "Stayman : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.stayman.suite",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.stayman.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-stayman-suite-P2SAV3tP3SA-4t",
+    "caseFamilyPropose": "q685-b-sa2-stayman-suite-P2SAV3tP3SA-4t",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          3,
+          4,
+          2,
+          4
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Vous : 3♣ (Stayman)",
+        "Partenaire : 3SA (les deux majeures quatrièmes)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4♣",
+        "4♦",
+        "4♥",
+        "4♠"
+      ],
+      "reponse": "4♣",
+      "reponseProposee": "4♣",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Quelle est votre enchère selon le traitement QPJB décrit dans la séquence ?",
+        "explain": "10 H, distribution 3–4–2–4. Après 3SA artificiel, 4♣ transfère vers les Cœurs de la main forte."
+      },
+      "apres": {
+        "context": "Quelle enchère permet de faire déclarer la manche majeure à l'ouvreur de 2SA ?",
+        "explain": "10 H et quatre Cœurs. 3SA après Stayman à quatre réponses montre les deux majeures quatrièmes ; le fit Cœur est certain. 4♣ transfère à 4♥ pour que l'ouvreur déclare."
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-112",
+    "verdict": "VALIDE",
+    "justification": "7 H, cinq Piques après rectification fittée : 4♠, huit atouts, contraste 114.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3cP3p-4p",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3cP3p-4p",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♥",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4SA",
+        "4♠",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-113",
+    "verdict": "VALIDE",
+    "justification": "7 H, six Piques après rectification fittée : 4♠, neuf atouts.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3cP3p-4p",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3cP3p-4p",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 2SA",
+        "Vous : 3♥",
+        "Partenaire : 3♠"
+      ],
+      "position": "répondant",
+      "choix": [
+        "4SA",
+        "4♠",
+        "3SA",
+        "Passe"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
+      "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
+      "pertinence": "voir justification spécifique",
+      "prerequis": "comparés au stade et aux expositions existantes",
+      "affectations": "groupes explicites contrôlés",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de candidat au même profil strict"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-114",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Piques après refus 3SA : Passe, sept atouts, contraste 112.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+    ],
+    "conceptInitial": "sa2.texas.suite",
+    "conceptPropose": "sa2.texas.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 28,
+        "group": 2,
+        "decision": "Texas : suite",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "sa2.texas.suite",
+      "stage": 2,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-sa2-texas-suite-P2SAV3cP3SA-Passe",
+    "caseFamilyPropose": "q685-b-sa2-texas-suite-P2SAV3cP3SA-Passe",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          2,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 2SA (20–21 H)",
+        "Vous : 3♥ (Texas Pique)",
+        "Partenaire : 3SA (pas trois Piques)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "4♥",
+        "4♠",
+        "4SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
       "corrige": "lu et comparé au traitement catalogue; fit et zone de force distingués",
       "legalite": "enchères ordonnées et quatre choix légalement possibles au tour concerné, contrôle mécanique de rang exécuté",
       "pertinence": "voir justification spécifique",
