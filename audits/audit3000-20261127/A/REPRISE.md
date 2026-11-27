@@ -1,5 +1,3 @@
-# Reprise A — passe 10, lecture complète
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent 00c1e58b3289a9ac45252675ee7ef08fcdd92dfc. 419/419 verdicts provisoires ; aucun ID non relu.
-Dernier : SEF-Q685-A-080.
-{"VALIDE":260,"RECLASSER_REFORMULER":112,"ARBITRAGE":47} ; 132 corrections catalogue et 3 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
-IDs restants : aucun pour la lecture individuelle. Restent contrôles finaux, examen des analogues et arbitrages.
+# Reprise A — passe 11, synthèse après 419/419
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Parent de la synthèse : 12da3c706949f8974d17554a09fa5510982d9515. PR brouillon #567. Dernier ID lu SEF-Q685-A-080. IDs restants à lire : aucun. {"counts":{"RECLASSER_REFORMULER":131,"VALIDE":241,"ARBITRAGE":47},"corrections":137,"prerequis":4,"reservoirIds":18,"ajouts":3,"retraits":16,"sameSig":92,"fam":322,"inter":8,"overlap":4,"main":2}.
+Contrôles JS réellement exécutés : {"catalogue":true,"exact":true,"mainsBase":true,"mainsPatches":true,"legalBase":true,"legalPatches":true,"corrections":true,"metadata":true,"reservoir":true,"groupes":true}. Contrôles existants non exécutés : clone local bloqué DNS, aucun workflow associé à passe 10. Les analogues hors signature/famille/main ne sont pas exhaustivement vérifiés ; les huit analogues interlots par famille ont été relus et classés contrastes utiles. Restent validation des contrôles existants, arbitrages et contre-vérification sémantique complémentaire. Aucun merge. MISSION DÉFINITIVEMENT TERMINÉE : NON.
