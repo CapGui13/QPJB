@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Quatre passes de 40 terminées (160/540). SHA avant passe 4 : 355e05ff3525d4571ae417c923cc43af3e1c3b11. Dernier ID SEF-V479-008; prochain ID SEF-V479-009. {"VALIDE":81,"RECLASSER_REFORMULER":72,"ARBITRAGE":7}. Corrections : 56. Prérequis : 12. Réservoir : 31.
+Cinq passes de 40 terminées (200/540). SHA avant passe 5 : 33cef843c28865313fe2041a3981ca4cc96b6659. Dernier ID SEF-V486-021; prochain ID SEF-V486-022. {"VALIDE":81,"RECLASSER_REFORMULER":112,"ARBITRAGE":7}. Corrections : 96. Prérequis : 15. Réservoir : 44.
 
-## IDs restants (380)
-- SEF-V479-009 — multilandy.reponse
-- SEF-V479-010 — multilandy.suite
-- SEF-V479-011 — multilandy.suite
-- SEF-V479-012 — multilandy.suite
-- SEF-V479-013 — multilandy.suite
-- SEF-V479-014 — multilandy.suite
-- SEF-V479-015 — multilandy.suite
-- SEF-V479-016 — multilandy.reponse
-- SEF-V481-001 — rubensohl.reponse
-- SEF-V481-002 — rubensohl.reponse
-- SEF-V481-003 — rubensohl.reponse
-- SEF-V481-004 — rubensohl.reponse
-- SEF-V481-005 — rubensohl.reponse
-- SEF-V481-006 — rubensohl.reponse
-- SEF-V481-007 — rubensohl.reponse
-- SEF-V481-008 — rubensohl.reponse
-- SEF-V481-009 — rubensohl.reponse
-- SEF-V481-010 — rubensohl.reponse
-- SEF-V481-011 — rubensohl.reponse
-- SEF-V481-012 — rubensohl.reponse
-- SEF-V481-013 — rubensohl.reponse
-- SEF-V481-014 — rubensohl.reponse
-- SEF-V481-015 — rubensohl.reponse
-- SEF-V481-016 — rubensohl.reponse
-- SEF-V485-001 — competitif.truscott
-- SEF-V485-002 — competitif.truscott
-- SEF-V485-003 — apres_inter.base
-- SEF-V485-004 — apres_inter.base
-- SEF-V485-005 — apres_inter.base
-- SEF-V485-006 — apres_inter.base
-- SEF-V485-007 — apres_inter.base
-- SEF-V485-008 — apres_inter.base
-- SEF-V485-009 — apres_inter.base
-- SEF-V485-010 — apres_inter.base
-- SEF-V485-011 — competitif.truscott
-- SEF-V486-017 — rubensohl.naturel
-- SEF-V486-018 — rubensohl.naturel
-- SEF-V486-019 — rubensohl.naturel
-- SEF-V486-020 — rubensohl.naturel
-- SEF-V486-021 — rubensohl.init
+## IDs restants (340)
 - SEF-V486-022 — rubensohl.init
 - SEF-L01-C-01 — rubensohl.naturel
 - SEF-L01-C-02 — rubensohl.init
@@ -386,4 +346,4 @@ Quatre passes de 40 terminées (160/540). SHA avant passe 4 : 355e05ff3525d4571a
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 160 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 200 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
