@@ -1,0 +1,1962 @@
+{
+  "schema": "QPJB_AUDIT3000_CALENDRIER_A_V1",
+  "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+  "sourceProgrammeBlob": "87498e6a78f9c998e70e5b4f9051d982a26c2185",
+  "sourcePrerequisBlob": "b9fee10ed0c3e106edf172e53ffb396c433c4ba5",
+  "scope": "Plan d'intégration, non appliqué. Les 46 IDs ont été examinés dans le catalogue et les corrections A; aucun groupe explicite existant pour ces IDs. Les quatre cas après Passe sur mineure ont une destination conditionnelle mais restent à valider quant au cours avant activation.",
+  "groups": [
+    {
+      "key": "S3_21_MINEURE",
+      "session": 3,
+      "decision": "Réponse naturelle 2 sur 1 sur 1♦ : force, longueur et priorité majeure",
+      "role": "objectif",
+      "phase": "apres_exposition",
+      "ids": [
+        "SEF-N045-1",
+        "SEF-N045-3",
+        "SEF-V44-008",
+        "SEF-V49-008",
+        "SEF-V419-003",
+        "V2-M1-023"
+      ],
+      "note": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "key": "S3_21_MAJEURE",
+      "session": 3,
+      "decision": "Réponse naturelle 2 sur 1 sans fit majeur : force, longueur et choix de couleur",
+      "role": "objectif",
+      "phase": "apres_exposition",
+      "ids": [
+        "SEF-N064-2",
+        "SEF-N064-3",
+        "SEF-N065-2",
+        "SEF-N066-1",
+        "SEF-N066-3",
+        "SEF-N067-1",
+        "SEF-N074-1",
+        "SEF-N074-3",
+        "SEF-N075-2",
+        "SEF-N075-1",
+        "SEF-N076-2",
+        "SEF-N076-1",
+        "SEF-N077-1",
+        "SEF-N077-3",
+        "SEF-N078-2",
+        "SEF-N079-2",
+        "SEF-N079-1",
+        "SEF-V49-012",
+        "SEF-Q26-M1-012",
+        "V2-M1-034",
+        "V2-M1-035",
+        "V2-M1-036"
+      ],
+      "note": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "key": "S4_SA_MINEURE",
+      "session": 4,
+      "decision": "Réponses naturelles directes 2SA et 3SA sur 1♣/1♦, sans majeure quatrième",
+      "role": "objectif",
+      "phase": "apres_exposition",
+      "ids": [
+        "SEF-V44-005",
+        "SEF-V44-006",
+        "SEF-V44-007",
+        "SEF-V49-033",
+        "SEF-V49-034",
+        "SEF-V49-035",
+        "V2-M1-026",
+        "V2-M1-027",
+        "V2-M1-028"
+      ],
+      "note": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "key": "S15_21_FITTE",
+      "session": 15,
+      "decision": "Sans fit : 2 sur 1 naturel ou 2SA fitté direct",
+      "role": "objectif",
+      "phase": "apres_exposition",
+      "ids": [
+        "SEF-L06-017",
+        "SEF-L06-018",
+        "SEF-Q26-M1-014",
+        "V2-M1-038",
+        "V2-M1-044"
+      ],
+      "note": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    },
+    {
+      "key": "S30_APRES_PASSE_MINEURE",
+      "session": 30,
+      "decision": "Réponse après Passe sur ouverture mineure : rencontre ou majeure naturelle non forcing",
+      "role": "reserve",
+      "phase": "extension_conditionnelle",
+      "ids": [
+        "SEF-L18-004",
+        "SEF-L18-005",
+        "SEF-L23-001",
+        "SEF-L35-001"
+      ],
+      "note": "Cours dédié nécessaire avant activation. Distinguer rencontre sur mineure et Drury sur majeure. Aucune assimilation des deux conventions."
+    }
+  ],
+  "affectations": [
+    {
+      "id": "SEF-N045-1",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "SEF-N045-3",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "SEF-N064-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N064-3",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N065-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N066-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N066-3",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N067-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N074-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N074-3",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N075-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N075-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N076-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N076-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N077-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N077-3",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N078-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N079-2",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-N079-1",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-V44-005",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V44-006",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V44-007",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "3SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V44-008",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "SEF-V49-008",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "SEF-V49-012",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-V49-033",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V49-034",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V49-035",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "3SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "SEF-V419-003",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "SEF-L06-017",
+      "group": "S15_21_FITTE",
+      "session": 15,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    },
+    {
+      "id": "SEF-L06-018",
+      "group": "S15_21_FITTE",
+      "session": 15,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    },
+    {
+      "id": "SEF-L18-004",
+      "group": "S30_APRES_PASSE_MINEURE",
+      "session": 30,
+      "answer": "2♠",
+      "opening": "Partenaire : 1♣ (ouverture en troisième position)",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 29,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Cours dédié nécessaire avant activation. Distinguer rencontre sur mineure et Drury sur majeure. Aucune assimilation des deux conventions."
+    },
+    {
+      "id": "SEF-L18-005",
+      "group": "S30_APRES_PASSE_MINEURE",
+      "session": 30,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♦ (ouverture en troisième position)",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 29,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Cours dédié nécessaire avant activation. Distinguer rencontre sur mineure et Drury sur majeure. Aucune assimilation des deux conventions."
+    },
+    {
+      "id": "SEF-L23-001",
+      "group": "S30_APRES_PASSE_MINEURE",
+      "session": 30,
+      "answer": "1♥",
+      "opening": "Partenaire : 1♣ (ouverture en troisième position)",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 29,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Cours dédié nécessaire avant activation. Distinguer rencontre sur mineure et Drury sur majeure. Aucune assimilation des deux conventions."
+    },
+    {
+      "id": "SEF-L35-001",
+      "group": "S30_APRES_PASSE_MINEURE",
+      "session": 30,
+      "answer": "2♠",
+      "opening": "Partenaire : 1♦ (ouverture en troisième position)",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 3,
+        "minSession": 29,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.position",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Cours dédié nécessaire avant activation. Distinguer rencontre sur mineure et Drury sur majeure. Aucune assimilation des deux conventions."
+    },
+    {
+      "id": "SEF-Q26-M1-012",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "SEF-Q26-M1-014",
+      "group": "S15_21_FITTE",
+      "session": 15,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    },
+    {
+      "id": "V2-M1-023",
+      "group": "S3_21_MINEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♦",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les premières réponses sur mineure, distinguer 1SA et 2♣ auto-forcing, sans confondre avec forcing de manche."
+    },
+    {
+      "id": "V2-M1-026",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "V2-M1-027",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "2SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "V2-M1-028",
+      "group": "S4_SA_MINEURE",
+      "session": 4,
+      "answer": "3SA",
+      "opening": "Partenaire : 1♣",
+      "prerequisInitial": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "mineur.base",
+        "stage": 1,
+        "minSession": 3,
+        "requires": [
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.mineure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Groupe distinct des seuils après ouverture de 1SA. Comparer les rôles et les zones; ne pas confondre 2SA naturel et ouverture 2SA."
+    },
+    {
+      "id": "V2-M1-034",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♥",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "V2-M1-035",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♥",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "V2-M1-036",
+      "group": "S3_21_MAJEURE",
+      "session": 3,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 2,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après les groupes de fit et réponse sans fit. Ne pas introduire 2SA fitté comme distracteur avant son cours."
+    },
+    {
+      "id": "V2-M1-038",
+      "group": "S15_21_FITTE",
+      "session": 15,
+      "answer": "2♦",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 1,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    },
+    {
+      "id": "V2-M1-044",
+      "group": "S15_21_FITTE",
+      "session": 15,
+      "answer": "2♣",
+      "opening": "Partenaire : 1♠",
+      "prerequisInitial": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "prerequisPropose": {
+        "concept": "majeur.base",
+        "stage": 1,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "ouv.majeure",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          },
+          {
+            "concept": "fit.2sa",
+            "minExposure": 1
+          }
+        ]
+      },
+      "condition": "Après cours S12, réinvestissement. Pas de nouvelle convention en S15."
+    }
+  ],
+  "checks": {
+    "ids": 46,
+    "unique": 46,
+    "allAbsentExisting": true,
+    "sessionsExist": true,
+    "allAnswersInChoices": true,
+    "zeroEarlyFitDistractor": true
+  },
+  "integrationConditions": [
+    "Synchroniser programme-normalise.json, PROGRAMME65 et source génératrice des prérequis, sans modifier la logique de sélection.",
+    "Vérifier indexation minSession et éligibilité réelle par tests natifs; ne pas simplement ajouter des groupes non activables.",
+    "Revoir budget pédagogique de S3/S4, préserver contrastes historiques et ne pas imposer l'exposition des 28 variantes du 2 sur 1 dans une seule séance.",
+    "Pour S30, valider le traitement rencontre après Passe sur mineure et ajouter un support pédagogique distinct avant activation; les quatre cas restent ouverts.",
+    "Ne pas intégrer en isolation ni modifier les réponses, conserver IDs et historique."
+  ]
+}
