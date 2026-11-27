@@ -5,7 +5,7 @@ const P=require('../quizz-parcours.js'),M=require('../quizz-prerequis.js');
 const html=fs.readFileSync(path.join(__dirname,'..','quizz.html'),'utf8');
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const qs=data.exercises,by=new Map(qs.map(q=>[q.id,q]));
-assert.equal(qs.length,1879);assert.equal(data.themes.length,22);
+assert.equal(qs.length,1915);assert.equal(data.themes.length,22);
 assert.equal(M.schema,'QPJB_PREREQUIS_V1');assert.equal(Object.keys(M.byId).length,qs.length);
 const pass=q=>q.theme==='ouv'&&q.answer==='Passe',fam=q=>q.caseFamily||q.id;
 const lead=q=>String(q.auction?.[0]||'').match(/:\s*(1[♣♦♥♠])/)?.[1];
