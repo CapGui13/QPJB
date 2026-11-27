@@ -1,4 +1,4 @@
-name: Reprise6 coordination — C3 rappels additifs
+name: Reprise6 coordination — C4 rappels isolés
 on:
   pull_request:
     branches: [coherence-concrete/reprise6-coordination-source]
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   matrix:
-    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall'
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall-isolated'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     strategy:
@@ -34,7 +34,7 @@ jobs:
           name: recall-${{ matrix.profile }}-${{ matrix.seed }}
           path: artifacts
   gate:
-    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall'
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall-isolated'
     needs: matrix
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +62,7 @@ jobs:
             models[model]=out;
           }
           // Supplemental debt is explicitly a new, distinct diagnostic, not a substitute for #419.
-          const verdict=Object.values(models).every(m=>m.extraAnswered>0&&m.answeredDebt[1]<m.answeredDebt[0]&&m.guidedAlerts===0&&m.answeredAlerts===0)?'REVIEW_SUPPLEMENT_ONLY':'HOLD';
+          const verdict=Object.values(models).every(m=>m.extraAnswered>0&&m.answeredDebt[1]<m.answeredDebt[0]&&m.guidedAlerts===0&&m.answeredAlerts===0&&m.changedDecks===0)?'REVIEW_SUPPLEMENT_ONLY':'HOLD';
           fs.writeFileSync('recall-gate.json',JSON.stringify({verdict,models},null,2));
           console.log('RECALL_GATE '+JSON.stringify({verdict,models}));
           NODE
