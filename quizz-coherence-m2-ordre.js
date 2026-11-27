@@ -204,13 +204,16 @@
   const before=metric(f,s,links);
   // Optional M3 transition advice: only pairs actually present in this deck,
   // and only before the first documented elementary example.
+  const requested=(Array.isArray(ctx.transitionGroups)?ctx.transitionGroups:[]).filter(g=>
+   Array.isArray(g.simple)&&Array.isArray(g.complex)&&f.some(x=>g.simple.includes(x.id))&&f.some(x=>g.complex.includes(x.id)));
   const exposed=new Set();
-  for(const row of ctx.history?.journal||[])if(row.mode==='parcours'&&row.session<s)
-   for(const a of row.answers||[])exposed.add(a.id);
-  for(const [id,e] of Object.entries(ctx.history?.entries||{}))
-   if(e?.assessment&&e.assessment.lastSession<s-1)exposed.add(id);
-  const groups=(Array.isArray(ctx.transitionGroups)?ctx.transitionGroups:[]).filter(g=>
-   Array.isArray(g.simple)&&Array.isArray(g.complex)&&!g.simple.some(id=>exposed.has(id)));
+  if(requested.length){
+   for(const row of ctx.history?.journal||[])if(row.mode==='parcours'&&row.session<s)
+    for(const a of row.answers||[])exposed.add(a.id);
+   for(const [id,e] of Object.entries(ctx.history?.entries||{}))
+    if(e?.assessment&&e.assessment.lastSession<s-1)exposed.add(id);
+  }
+  const groups=requested.filter(g=>!g.simple.some(id=>exposed.has(id)));
   function transitionCost(p){
    let n=0;
    for(const g of groups){
