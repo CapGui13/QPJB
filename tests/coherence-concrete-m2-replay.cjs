@@ -12,7 +12,7 @@ function outcome(q,s,seed,profile){
  return {result:r<rate?'wrong':'correct',help:profile==='aide'&&hash('help|'+q.id+'|'+s+'|'+seed)<.72};
 }
 function compile(src,req,Clock){const m={exports:{}};new Function('module','require','Date',src)(m,req,Clock);return m.exports}
-function prepare(sources,mod,apply=false){
+function prepare(sources,mod,apply=false,referenceJournal=null){
  let time=Date.UTC(2026,0,1),calls=[];
  class Clock extends Date{constructor(...a){super(...(a.length?a:[time]))}static now(){return time}}
  const modules={},loading=new Set();
@@ -32,7 +32,8 @@ function prepare(sources,mod,apply=false){
  const hook=String.raw`
   function logicalOrder(items,state,exerciseOf=x=>x.exercise){
    const historicalStarted=__measure();
-   const historic=historicalLogicalOrder(items,state,exerciseOf);
+   const historicalState=__referenceJournal?{...state,journal:__referenceJournal(state.journal||[])}:state;
+   const historic=historicalLogicalOrder(items,historicalState,exerciseOf);
    const historicalMs=__measure()-historicalStarted;
    const id=x=>exerciseOf(x).id;
    const byId=new Map(historic.map(x=>[id(x),x]));
@@ -50,7 +51,7 @@ function prepare(sources,mod,apply=false){
  const exportMarker='return {eligibility,adaptiveDiagnostics,createForTests:';
  check(src.split(exportMarker).length===2,'exact export anchor');
  const instrumented=(apply?src.replace(marker,hook):src).replace(exportMarker,'return {decisionPattern,eligibilityBatch:(deck,state,exercises)=>{const e=evidence(state,exercises);return deck.map(q=>evaluate(q,state,e))},eligibility,adaptiveDiagnostics,createForTests:');
- const m={exports:{}};new Function('module','require','Date','__m2','__trace','__apply','__measure',instrumented)(m,req,Clock,mod,calls,apply,()=>Date.now());
+ const m={exports:{}};new Function('module','require','Date','__m2','__trace','__apply','__measure','__referenceJournal',instrumented)(m,req,Clock,mod,calls,apply,()=>Date.now(),referenceJournal);
  return {api:m.exports,metadata,qs,byId,calls,clock:s=>{time=Date.UTC(2026,0,1)+s*86400000}};
 }
 function early(deck,s){
