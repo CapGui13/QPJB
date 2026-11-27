@@ -10,7 +10,7 @@ const bid=q=>String(q?.answer||'').replace(/[\s\uFE0E\uFE0F]/g,'');
 const core=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
 function role(ctx,q){
  const concept=c(ctx,q);
- if(ctx.session===3){const lead=String(q?.auction?.[0]||'').match(/:\s*(1[♥♠])(?:\s|$)/)?.[1];if(concept==='majeur.soutien'&&lead&&q.auction.length===1&&q.shape?.[lead[1]==='♠'?0:1]===3&&bid(q)==='2'+lead[1])return 'support-5-3';return null}
+ if(ctx.session===3){const lead=String(q?.auction?.[0]||'').match(/:\s*(1[♥♠])(?:\s|$)/)?.[1];if(concept==='majeur.soutien'&&lead&&q.auction.length===1&&q.shape?.[lead[1]==='♠'?0:1]===3&&bid(q)==='2'+lead[1])return 'support-5-3';if(concept==='majeur.soutien'&&lead&&q.auction.length===1&&q.shape?.[lead[1]==='♠'?0:1]===3&&bid(q)==='Passe')return 'passe-avec-fit';return null}
  if(ctx.session===4&&concept==='sa1.seuil'&&['Passe','2SA','3SA'].includes(bid(q)))return bid(q);
  if(ctx.session===5&&concept==='red.base')return bid(q);
  return null;
@@ -18,6 +18,7 @@ function role(ctx,q){
 function plan(ctx){const p=targets[ctx.session];return p?{...p,objective:p.title,window:[ctx.session,ctx.session+2],fallback:'Consolidation et créneaux prioritaires natifs inchangés'}:null}
 function make(variant='contrast'){
  function compose(ctx,ranked){
+  if(variant==='balance'||variant==='contrast-balance')return null;
   const p=targets[ctx.session],best=ranked[0],selected=(ctx.selected||[]).map(qOf);
   if(variant==='early'&&(ctx.session!==3||selected.length!==1||c(ctx,selected[0])!=='ouv.sa2'))return null;
   if(!p||ctx.changed||ctx.priority||ctx.forcedReason||ctx.history?.active||ctx.category!=='discovery'||(variant!=='early'&&selected.length<4)||!best?.q)return null;
@@ -37,6 +38,19 @@ function make(variant='contrast'){
   });
   return alternative?{id:alternative.q.id,oldId:old.id,concept:c(ctx,alternative.q),role:role(ctx,alternative.q),reason:'redundant-concept-to-missing-'+variant,cost:best.v-alternative.v}:null;
  }
- return Object.freeze({schema,plan,prefer:ctx=>ctx.candidates,rank:()=>[],compose,variant});
+ function rank(ctx){
+  if(!['balance','contrast-balance'].includes(variant)||ctx.session!==3||ctx.category!=='discovery'||ctx.priority||ctx.forcedReason||ctx.history?.active)return [];
+  const selected=(ctx.selected||[]).map(qOf),roles=new Set(selected.map(q=>role(ctx,q)).filter(Boolean));
+  if(!selected.some(q=>c(ctx,q)==='ouv.sa2'))return [];
+  const wanted=!roles.has('support-5-3')?'support-5-3':!roles.has('passe-avec-fit')?'passe-avec-fit':null;
+  if(!wanted||!ctx.candidates.some(q=>role(ctx,q)===wanted&&q.difficulty===1))return [];
+  return ctx.candidates.flatMap(q=>{
+   if(q.difficulty!==1||meta(ctx,q)?.stage!==0||ctx.history?.entries?.[q.id])return [];
+   if(c(ctx,q)==='ouv.sa2')return [{id:q.id,delta:-60,reason:'seconde ouverture 2SA en présence d’un contraste de fit disponible'}];
+   if(variant==='contrast-balance'&&role(ctx,q)===wanted)return [{id:q.id,delta:35,reason:'contraste de décision de fit manquant'}];
+   return [];
+  });
+ }
+ return Object.freeze({schema,plan,prefer:ctx=>ctx.candidates,rank,compose,variant});
 }
 module.exports={make,plan,role,targets};
