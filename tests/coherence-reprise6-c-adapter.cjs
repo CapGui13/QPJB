@@ -12,7 +12,7 @@ function instrument(source){
       const result=options.reprise6C.exchange(ctx);
       if(result){
         const old=selected[result.index],q=pool.find(x=>x.id===result.id);
-        if(!old||old.exercise.id!==result.oldId||!q||selected.some(v=>v.exercise.id===q.id||family(v.exercise)===family(q))||reprise6Slots[result.index].protected||reprise6Slots[result.index].category!=='maintenance')throw Error('reprise6-c unsafe exchange');
+        if(!old||old.exercise.id!==result.oldId||!q||selected.some(v=>v.exercise.id===q.id||family(v.exercise)===family(q))||reprise6Slots[result.index].protected||reprise6Slots[result.index].category!==(result.mode==='recent'?'discovery':'maintenance'))throw Error('reprise6-c unsafe exchange');
         selected[result.index]={exercise:q,kind:'revision',reason:fresh(q)?'rappel_nouvelle_situation':'rappel_question'};
         reportDecision({session:s+1,reprise6C:result,actualId:q.id});
       }
