@@ -1,11 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-const legacyBuild=const audit3000=require('../../audit3000-20261127/INTEGRATION-PREREQUIS.json');
-for(const [id,row] of Object.entries(audit3000.byId)){
- if(JSON.stringify(explicit.byId[id])!==JSON.stringify(row.before))throw Error('Audit3000 prerequisite baseline mismatch '+id);
- explicit.byId[id]=row.after;
-}
-function build(exercises){
+const legacyBuild=function build(exercises){
  const roadmap={ouv:0,majeur:1,mineur:1,sa:3,red:4,second:6,stayman:7,apres_fit:8,intervenir:10,contre:12,reponse_inter:13,apres_inter:14,barrage:17,reveil:19,roudi:22,drury:24,fortes:26,forcing:28,multilandy:32,rubensohl:34,michaels:36,chelem:39};
  const rows=exercises.map(q=>{
   const t=q.theme,d=q.difficulty,b=q.answer,id=q.id, reason=q.difficultyReason||'';
@@ -195,6 +190,11 @@ for(const lot of ['A','B','C','D']){
   if(!id.startsWith('SEF-Q685-'+lot+'-')||explicit.byId[id])throw Error('Unexpected QCM685 ID '+id);
   explicit.byId[id]=metadata;
  }
+}
+const audit3000=require('../../audit3000-20261127/INTEGRATION-PREREQUIS.json');
+for(const [id,row] of Object.entries(audit3000.byId)){
+ if(JSON.stringify(explicit.byId[id])!==JSON.stringify(row.before))throw Error('Audit3000 prerequisite baseline mismatch '+id);
+ explicit.byId[id]=row.after;
 }
 function build(exercises){const ids=new Set(exercises.map(q=>q.id));if(ids.size!==exercises.length||ids.size!==Object.keys(explicit.byId).length||[...ids].some(id=>!explicit.byId[id]))throw Error('Explicit prerequis coverage mismatch');return {schema:explicit.schema,byId:Object.fromEntries(exercises.map(q=>[q.id,explicit.byId[q.id]]))};}
 const root=path.resolve(__dirname,'../../..');
