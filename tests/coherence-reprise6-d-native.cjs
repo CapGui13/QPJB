@@ -90,7 +90,7 @@ function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D'
   }
   const rows=play(deck,s),nearKeys=deck.map(q=>features(q,meta[q.id])?.near);
   for(let i=0;i<rows.length;i++){
-   const r=rows[i],key=nearKeys[i];if(key){for(let j=0;j<i;j++)near+=+(nearKeys[j]===key);nearRecent+=+(last.has('near:'+key)&&s-last.get('near:'+key)<=2);last.set('near:'+key,s);}
+   const r=rows[i],key=nearKeys[i];if(key){for(let j=0;j<i;j++)near+=+(nearKeys[j]===key);nearRecent+=+(last.has('near:'+key)&&s-last.get('near:'+key)>0&&s-last.get('near:'+key)<=2);last.set('near:'+key,s);}
    last.set(r.concept,s);if(!Object.hasOwn(first,r.concept))first[r.concept]=s;seen.add(r.family);hard+=+(r.difficulty>=4);wrong+=+(r.result==='wrong');
    if(r.result==='correct'&&!r.assisted&&!r.hadFreeError){autonomous++;const v=proofMap.get(r.concept)||{f:new Set(),s:new Set()};v.f.add(r.family);v.s.add(s);proofMap.set(r.concept,v);}
   }
