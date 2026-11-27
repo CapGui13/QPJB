@@ -1,0 +1,7 @@
+# REPRISE — F
+
+Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb ; 436/436 verdicts, dernier SEF-Q685-D-175, aucun ID restant. SHA des données c3d2c5a79e5d3ef3c844bf07036079b3c7781b53 ; SHA du rapport d2626c14e227c1952b91641e9af9cb3aca6195d8 ; HEAD de la branche pour le présent fichier. PR brouillon #565.
+
+Bilan : 214 VALIDE, 216 RECLASSER_REFORMULER, 3 ERREUR_PEDAGOGIQUE, 3 ARBITRAGE. 215 objets corrigés, 5 prérequis, 3 ajouts et 8 retraits de groupes, zéro suppression et zéro changement de réponse, trois mains ajustées. Les quatre arbitrages doctrinaux de première passe ont été sécurisés par révision des cas ; trois arbitrages d'affectation restent pour le coordinateur. Contrôles JS sur fichiers réels : cardinalité/ensemble exact, 436 mains, 1744 choix, cohérence des corrections et métadonnées/groupes, zéro anomalie. Assertion de formulation interdite : zéro en F, 16 préexistantes hors F. 14 patches dans le préfixe historique 993, liste dans REVUE.md.
+
+Restant au coordinateur : décisions de réservoir et interlots, précautions pour le hash historique, tests natifs après accès au dépôt, examen des redondances sémantiques restantes. Aucun workflow PR au SHA de la précédente passe ; Node disponible mais clone bloqué DNS, pas de tests natifs exécutés. Ne pas relire les 436 de zéro ; ne pas fusionner ni modifier les fichiers communs depuis F. MISSION DÉFINITIVEMENT TERMINÉE : NON.
