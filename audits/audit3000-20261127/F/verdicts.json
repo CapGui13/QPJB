@@ -1543,12 +1543,14 @@
   },
   {
     "id": "SEF-V45-017",
-    "verdict": "ARBITRAGE",
-    "justification": "13 H, 5 Carreaux, ♠DV3. Le catalogue autorise 1♠ artificiel et seuil 8 HL ; la source SEF 2024 p.53 décrite par Chailley parle d'une quatrième couleur naturelle. Ne pas imposer un accord non vérifié. Option si 1♠ naturel retenu : modifier main à ♠DV83 ♥52 ♦AD876 ♣A9 (13 H) et expliquer 1♠ naturel forcing ; vérifier H et alternatives. Pas d'affectation directe.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Sécuriser le cas sur une main possédant réellement quatre Piques : 13 H inchangés, 4-2-5-2. 1♠ naturel forcing correspond au seuil de 8 HL du SEF 2024 cité par Chailley ; aucune décision générale sur les mains sans quatre Piques n'est nécessaire pour valider ce cas.",
     "references": [
       "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ ; cadre catalogue (divergence à arbitrer)",
       "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://www.ibridge.fr/public/fichedetails/571"
     ],
     "conceptInitial": "forcing.quatrieme",
     "conceptPropose": "forcing.quatrieme",
@@ -1592,13 +1594,79 @@
     "pointsControles": {
       "mainHForme": "recalculés",
       "sequence": "enchères du camp et choix relus; silence adverse supposé sauf indication",
-      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "reponseCorrigeDistracteurs": "Contre-revue ciblée : source consultée, main, choix, réponse et explication vérifiés.",
       "difficultePrerequisSeances": "vérifiés contre table et groupes",
       "redondance": "Comparaison des 3000 QCM par séquence normalisée, concept, réponse et signature honneurs/forme ; examen des six paires exactes de caractéristiques ; autres équivalences sémantiques possibles."
     },
     "prochesSignature": [],
     "action": {
-      "type": "arbitrage"
+      "type": "correction",
+      "avant": {
+        "hand": [
+          [
+            "D",
+            "V",
+            "3"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "9",
+            "8"
+          ]
+        ],
+        "shape": [
+          3,
+          2,
+          5,
+          3
+        ],
+        "context": "Le répondant dispose d’une force suffisante pour rechercher la manche et manque d’arrêt Pique.",
+        "explain": "Après 1♣–1♦–1♥, 1♠ est la quatrième couleur au palier de 1 : elle permet de poursuivre le dialogue sans garantir quatre Piques. Avec 13 H et ♠DV3 seulement, utilisez-la pour obtenir des précisions plutôt que limiter la main par 1SA ou 2♦. Le seuil particulier de cette quatrième couleur est 8 HL dans le cadre enseigné ; il ne faut pas l'assimiler automatiquement à une quatrième couleur chère."
+      },
+      "apres": {
+        "hand": [
+          [
+            "D",
+            "V",
+            "8",
+            "3"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "A",
+            "D",
+            "8",
+            "7",
+            "6"
+          ],
+          [
+            "A",
+            "9"
+          ]
+        ],
+        "shape": [
+          4,
+          2,
+          5,
+          2
+        ],
+        "context": "Après la redemande du partenaire à 1♥, quelle est votre deuxième enchère de répondant ?",
+        "explain": "Avec cinq Carreaux, quatre Piques et 13 H, annoncez 1♠, quatrième couleur au palier de un. Cette enchère naturelle et forcing poursuit le dialogue, sans imposer à elle seule une nouvelle enchère du répondant après la prochaine description de l'ouvreur. Le seuil du SEF 2024 est de 8 HL. Ni 1SA ni la répétition de Carreau ne montrent les quatre Piques."
+      }
     },
     "comparaisonCatalogue": {
       "memeSequenceNormalisee": 2,
@@ -14663,12 +14731,14 @@
   },
   {
     "id": "SEF-L30-001",
-    "verdict": "ARBITRAGE",
-    "justification": "19 H, 5♠5♥, quatre perdantes (♠D, ♥R, deuxième Carreau, singleton Trèfle). Les fiches 2024 décrivent 2♣ puis 3SA avec trois perdantes ; une source antérieure évoque seulement 18–21 H. Vérifier la dérogation avant de retenir 2♣ ou corriger vers 1♠ ; ne pas entériner un critère vague.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Les sources secondaires diffèrent sur le nombre de perdantes toléré. Le remplacement de ♠10 par ♠D donne 21 H, trois perdantes, 5–5 majeur : cas situé dans les deux descriptions (18–21 H et trois perdantes). Réponse préservée, incertitude sur quatre perdantes non tranchée globalement.",
     "references": [
       "https://www.ibridge.fr/public/fichedetails/778 ; https://bccl.club.ffbridge.fr/documents/modifications-du-sef-2024-370531 ; https://xvm-167-89.ghst.net/public/fichedetails/601",
       "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://www.ibridge.fr/public/fichedetails/778",
+      "https://www.ibridge.fr/public/fichedetails/601"
     ],
     "conceptInitial": "fortes.ouverture",
     "conceptPropose": "fortes.ouverture",
@@ -14720,13 +14790,69 @@
     "pointsControles": {
       "mainHForme": "recalculés",
       "sequence": "enchères du camp et choix relus ; silence adverse supposé sauf indication",
-      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "reponseCorrigeDistracteurs": "Contre-revue ciblée : source consultée, main, choix, réponse et explication vérifiés.",
       "difficultePrerequisSeances": "vérifiés contre table et groupes",
       "redondance": "Comparaison des 3000 QCM par séquence normalisée, concept, réponse et signature honneurs/forme ; examen des six paires exactes de caractéristiques ; autres équivalences sémantiques possibles."
     },
     "prochesSignature": [],
     "action": {
-      "type": "arbitrer"
+      "type": "correction",
+      "avant": {
+        "hand": [
+          [
+            "A",
+            "R",
+            "10",
+            "9",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "10",
+            "7"
+          ],
+          [
+            "A",
+            "6"
+          ],
+          [
+            "V"
+          ]
+        ],
+        "h": 19,
+        "context": "Vous êtes donneur en première position, sans intervention. Vous avez cinq Piques et cinq Cœurs solides, 19 H et 21 HL avec les longueurs. Quelle ouverture du SEF 2024 convient à ce puissant bicolore majeur 5–5, sans traiter la main comme un simple unicolore ?",
+        "explain": "Le SEF 2024 préconise l'ouverture de 2♣ fort indéterminé avec un puissant bicolore majeur au moins 5–5. Avec 19 H, 21 HL et les deux majeures solides, on commence à 2♣ puis l'on décrit sa force et sa distribution après le relais à 2♦. Une simple ouverture de 1♠ sous-décrirait ici la main, tandis que 2♦ exige une force de manche exceptionnelle non déduite de 21 HL seuls."
+      },
+      "apres": {
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "9",
+            "8"
+          ],
+          [
+            "A",
+            "D",
+            "V",
+            "10",
+            "7"
+          ],
+          [
+            "A",
+            "6"
+          ],
+          [
+            "V"
+          ]
+        ],
+        "h": 21,
+        "context": "Vous êtes donneur en première position, sans enchère adverse. Quelle ouverture choisissez-vous selon le SEF ?",
+        "explain": "Vos deux majeures cinquièmes et 21 H forment un bicolore majeur de trois perdantes : aucune à Pique, une à Cœur (le Roi), une à Carreau et une à Trèfle. Ouvrez de 2♣ fort indéterminé, puis, sur le relais 2♦, redemandez 3SA artificiel pour montrer le puissant 5–5 majeur. Le partenaire choisira une majeure ; 3SA n'est pas une proposition naturelle dans cette séquence."
+      }
     },
     "comparaisonCatalogue": {
       "memeSequenceNormalisee": 247,
@@ -32816,12 +32942,13 @@
   },
   {
     "id": "SEF-Q685-D-123",
-    "verdict": "VALIDE",
-    "justification": "Quatre ♥, singleton ♠, un Roi annexe, 3♠ selon accord explicite ; convention particulière, prérequis ouverture forte S51.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Retirer la formulation interdite « Dans cet accord » et l'indice qui donnait la convention. La modification SEF 2024 p.33 décrit le changement de couleur à saut ; quatre atouts, singleton ou chicane, maximum un contrôle d’honneur intérieur ou extérieur. 3♠ inchangé.",
     "references": [
       "Catalogue QPJB : développements SEF 2024 ; https://bccl.club.ffbridge.fr/documents/modifications-du-sef-2024-370531",
       "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://www.bridgevoiron.fr/document-download/68e016455c7a3_NouveautesSEF2024.pdf"
     ],
     "conceptInitial": "chelem.splinter.variante",
     "conceptPropose": "chelem.splinter.variante",
@@ -32891,13 +33018,21 @@
     "pointsControles": {
       "mainHForme": "recalculés",
       "sequence": "enchères du camp et choix relus ; silence adverse supposé sauf indication",
-      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "reponseCorrigeDistracteurs": "Contre-revue ciblée : source consultée, main, choix, réponse et explication vérifiés.",
       "difficultePrerequisSeances": "vérifiés contre table et groupes",
       "redondance": "Comparaison des 3000 QCM par séquence normalisée, concept, réponse et signature honneurs/forme ; examen des six paires exactes de caractéristiques ; autres équivalences sémantiques possibles."
     },
     "prochesSignature": [],
     "action": {
-      "type": "conserver"
+      "type": "correction",
+      "avant": {
+        "context": "Dans cet accord, le Splinter après 2♣–2♦–2♥ montre quatre atouts, une courte et au plus un contrôle d’honneur. Quelle enchère ? Les enchères adverses non indiquées sont des Passes.",
+        "explain": "Sur la redemande forte à Cœur, quatre atouts, singleton Pique et seulement le Roi de Carreau comme contrôle d’honneur : 3♠ est le Splinter adapté."
+      },
+      "apres": {
+        "context": "Après le relais à 2♦ et la redemande forte du partenaire à 2♥, quelle enchère choisissez-vous ? Les adversaires passent.",
+        "explain": "Quatre Cœurs, un singleton Pique et un seul contrôle d’honneur, le Roi de Carreau : 3♠ est le Splinter à saut prévu après cette redemande forte. Il montre au moins quatre atouts, une courte dans la couleur annoncée et au maximum un contrôle d’honneur, à l’atout ou dans une couleur annexe. 3♥ ne décrit pas la courte, 4♥ conclut sans transmettre cette information."
+      }
     },
     "comparaisonCatalogue": {
       "memeSequenceNormalisee": 7,
