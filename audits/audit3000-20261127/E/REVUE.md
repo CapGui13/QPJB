@@ -146,3 +146,22 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 7 — cumul actualisé
+
+280/540 verdicts individuels, 260 restants. {"VALIDE":88,"RECLASSER_REFORMULER":181,"ARBITRAGE":11}. 163 QCM complets corrigés, 22 modifications prérequis, 63 entrées réservoir.
+- Quatre reclassements supplémentaires Michaël : intervention derrière soutien, pas réveil. L24-004 se contredisait entre énoncé et corrigé. Truscott fort, rencontre simple/double saut, redemandes libres/forcées et soutien 2SA différenciés.
+- L29-002 et L29-003 : arbitrages sur alternative naturelle absente / contre d'appel, correction de la mention deuxième zone pour 19 H. L36-004 faible naturel après Michaël versus 2e cue-bid FM.
+- Contrôles de cohérence exécutés dans le connecteur, pas de suite locale ni simulation moteur. Groupes non retrouvés consignés ci-dessous.
+```json
+{
+  "verdicts": 280,
+  "idsUniques": 280,
+  "corrections": 163,
+  "correctionsInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": [],
+  "groupesNonTrouves": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
