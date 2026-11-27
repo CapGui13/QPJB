@@ -5,7 +5,7 @@ const api=require('../quizz-parcours.js'),meta=require('../quizz-prerequis.js').
 const data=JSON.parse(fs.readFileSync('quizz.html','utf8').match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]).exercises;
 const plan=JSON.parse(fs.readFileSync('audits/programme-65-20261127/programme-normalise.json','utf8')).sessions;
 const by=new Map(data.map(q=>[q.id,q]));
-assert.equal(plan.length,65);assert.equal(data.length,1915);
+assert.equal(plan.length,65);assert.equal(data.length,2315);
 const result=[];
 for(const [profile,threshold] of [['autonome',0],['intermediaire',.33],['faible',.75]]){
  let state=api.empty();
@@ -35,3 +35,7 @@ console.log('PROGRAMME65_EMPTY '+JSON.stringify(empty));
 console.log('PROGRAMME65_PASS '+JSON.stringify({sessions:result.length,questions:result.length*10,profiles:[...new Set(result.map(x=>x.profile))].map(p=>{const rows=result.filter(x=>x.profile===p);return {p,objectiveItems:rows.reduce((n,x)=>n+x.objectiveItems,0),emptyObjectives:rows.filter(x=>!x.objectiveItems).map(x=>x.session),minimum:Math.min(...rows.map(x=>x.objectiveItems))}})}));
 
 assert.equal(empty.length,0,'Each scheduled lesson must have at least one actual objective question; reports retained on failure');
+
+const newSelections=result.flatMap(x=>x.items.filter(q=>q.id.startsWith('SEF-Q400-')));
+console.log('QCM400_SELECTION '+JSON.stringify({occurrences:newSelections.length,distinct:new Set(newSelections.map(x=>x.id)).size,byLot:Object.fromEntries(['A','B','C','D'].map(k=>[k,newSelections.filter(q=>q.id.startsWith('SEF-Q400-'+k+'-')).length]))}));
+for(const k of ['A','B','C','D'])assert(newSelections.some(q=>q.id.startsWith('SEF-Q400-'+k+'-')),'No new selection from '+k);

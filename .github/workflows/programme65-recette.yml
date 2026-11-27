@@ -7,18 +7,20 @@ permissions:
   contents: read
 jobs:
   programme:
-    if: github.head_ref == 'pedagogie/programme-65-20261127'
+    if: (github.head_ref == 'pedagogie/programme-65-20261127' || github.head_ref == 'pedagogie/qcm400-20261127')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: |
           node --check quizz-parcours.js
+          node tests/qcm400-integration.cjs
           node tests/programme65-recette.cjs
       - uses: actions/upload-artifact@v4
         if: always()
@@ -26,7 +28,7 @@ jobs:
           name: programme65-selections
           path: programme-output/
   ui:
-    if: github.head_ref == 'pedagogie/programme-65-20261127'
+    if: (github.head_ref == 'pedagogie/programme-65-20261127' || github.head_ref == 'pedagogie/qcm400-20261127')
     runs-on: ubuntu-latest
     timeout-minutes: 18
     strategy:
@@ -53,3 +55,51 @@ jobs:
         with:
           name: programme65-ui-${{ matrix.browser }}
           path: programme-output/
+
+  attribution-qcm400:
+    if: github.head_ref == 'pedagogie/qcm400-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      COMPARE_BASE: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comparer main et le candidat sans modifier le moteur
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs'),cp=require('node:child_process'),assert=require('node:assert/strict');
+          const C=require('./tests/durable-m6-campaign.cjs');
+          const base=process.env.COMPARE_BASE;
+          assert.match(base,/^[a-f0-9]{40}$/);
+          const isModule=p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js';
+          const git=ref=>{
+            const names=cp.execFileSync('git',['ls-tree','--name-only',ref],{encoding:'utf8'}).trim().split('\n');
+            return Object.fromEntries([...new Set([...C.paths,...names.filter(isModule)])].map(p=>[p,cp.execFileSync('git',['show',ref+':'+p],{encoding:'utf8',maxBuffer:24*1024*1024})]));
+          };
+          const current=git(base),historical=git(C.BASE),candidate=Object.fromEntries([...new Set([...C.paths,...fs.readdirSync('.').filter(isModule)])].map(p=>[p,fs.readFileSync(p,'utf8')]));
+          const cases=[];
+          const run=(label,a,b,profile,seed,horizon)=>{
+            const r=C.pair(a,b,profile,seed,horizon);
+            const row={label,profile,seed,horizon,beforeCount:C.data(a['quizz.html']).length,afterCount:C.data(b['quizz.html']).length,crossResume:r.crossResume,violations:{before:r.before.violations,after:r.after.violations},checkpoints:r.comparison.map((x,i)=>({session:x.session,before:{concepts:r.before.checkpoints[i].concepts,families:r.before.checkpoints[i].families},after:{concepts:r.after.checkpoints[i].concepts,families:r.after.checkpoints[i].families},deltas:x.deltas,review:x.review,commonTransfer:x.commonTransfer?{n:x.commonTransfer.n,delta:x.commonTransfer.delta}:null,crossSessionNewFamilyDelta:x.crossSessionNewFamilyDelta}))};
+            cases.push(row);console.log('QCM400_ATTRIBUTION '+JSON.stringify(row));
+            assert.equal(r.before.violations.length,0,'Baseline hard violations');
+            assert.equal(r.after.violations.length,0,'Candidate hard violations');
+            assert.equal(r.crossResume.checked,true);
+          };
+          run('historique-vers-main',historical,current,'intermediaire',47,20);
+          for(const profile of ['autonome','intermediaire','faible'])run('main-vers-qcm400',current,candidate,profile,47,20);
+          run('main-vers-qcm400',current,candidate,'intermediaire',47,65);
+          fs.mkdirSync('attribution-output',{recursive:true});
+          fs.writeFileSync('attribution-output/rapport.json',JSON.stringify({base,historical:C.BASE,head:cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),cases,note:'Les alertes de comparaison restent visibles; ce diagnostic ne remplace ni ne désactive le laboratoire historique.'},null,2)+'\n');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qcm400-attribution
+          path: attribution-output/

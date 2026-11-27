@@ -13,7 +13,10 @@ function run({A,P,meta,exercises,engine}){
  same(A.chooseWithinStratum(ranked,key,()=>[{id:'equivalent',delta:4}]).id,'equivalent','Meaningful tie-break within stratum');
  same(A.chooseWithinStratum(ranked,key,()=>[{id:'equivalent',delta:NaN}]).id,'historical','Reject invalid delta');
  same(A.chooseWithinStratum(ranked,key,()=>{throw Error('diagnostic failure')}).id,'historical','Fail closed');
- ok(exercises.length===1915,'Frozen catalogue');
+ ok(exercises.length>=1915,'Historical catalogue floor');
+ const ids=new Set(exercises.map(q=>q.id));
+ ok(ids.size===exercises.length,'Unique live catalogue IDs');
+ ok(Object.keys(meta.byId).length===ids.size&&exercises.every(q=>meta.byId[q.id]),'Exact live metadata coverage');
  const pairs=A.reviewedPairs(exercises,meta.byId);
  ok(pairs.length===22&&pairs.every(p=>p.kind==='transfer'&&!p.a.startsWith('SEF-AD26-M4-')&&!p.b.startsWith('SEF-AD26-M4-')&&p.evidence.automaticCredit===false),'Reviewed historical pairs only');
  ok(A.feedback({exercise:exercises[0]})===null,'No feedback before response');
