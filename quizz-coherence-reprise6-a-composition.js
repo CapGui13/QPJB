@@ -18,7 +18,7 @@ function role(ctx,q){
 function plan(ctx){const p=targets[ctx.session];return p?{...p,objective:p.title,window:[ctx.session,ctx.session+2],fallback:'Consolidation et créneaux prioritaires natifs inchangés'}:null}
 function make(variant='contrast'){
  function compose(ctx,ranked){
-  if(variant==='balance'||variant==='contrast-balance')return null;
+  if(['balance','contrast-balance','saturation'].includes(variant))return null;
   const p=targets[ctx.session],best=ranked[0],selected=(ctx.selected||[]).map(qOf);
   if(variant==='early'&&(ctx.session!==3||selected.length!==1||c(ctx,selected[0])!=='ouv.sa2'))return null;
   if(!p||ctx.changed||ctx.priority||ctx.forcedReason||ctx.history?.active||ctx.category!=='discovery'||(variant!=='early'&&selected.length<4)||!best?.q)return null;
@@ -39,15 +39,17 @@ function make(variant='contrast'){
   return alternative?{id:alternative.q.id,oldId:old.id,concept:c(ctx,alternative.q),role:role(ctx,alternative.q),reason:'redundant-concept-to-missing-'+variant,cost:best.v-alternative.v}:null;
  }
  function rank(ctx){
-  if(!['balance','contrast-balance'].includes(variant)||ctx.session!==3||ctx.category!=='discovery'||ctx.priority||ctx.forcedReason||ctx.history?.active)return [];
+  if(!['balance','contrast-balance','saturation'].includes(variant)||ctx.session!==3||ctx.category!=='discovery'||ctx.priority||ctx.forcedReason||ctx.history?.active)return [];
   const selected=(ctx.selected||[]).map(qOf),roles=new Set(selected.map(q=>role(ctx,q)).filter(Boolean));
-  if(!selected.some(q=>c(ctx,q)==='ouv.sa2'))return [];
+  const n2=selected.filter(q=>c(ctx,q)==='ouv.sa2').length;
+  if(!n2)return [];
   const wanted=!roles.has('support-5-3')?'support-5-3':!roles.has('passe-avec-fit')?'passe-avec-fit':null;
-  if(!wanted||!ctx.candidates.some(q=>role(ctx,q)===wanted&&q.difficulty===1))return [];
+  if(variant!=='saturation'&&(!wanted||!ctx.candidates.some(q=>role(ctx,q)===wanted&&q.difficulty===1)))return [];
+  if(variant==='saturation'&&!ctx.candidates.some(q=>c(ctx,q)!=='ouv.sa2'&&q.difficulty===1&&meta(ctx,q)?.stage===0))return [];
   return ctx.candidates.flatMap(q=>{
    if(q.difficulty!==1||meta(ctx,q)?.stage!==0||ctx.history?.entries?.[q.id])return [];
-   if(c(ctx,q)==='ouv.sa2')return [{id:q.id,delta:-60,reason:'seconde ouverture 2SA en présence d’un contraste de fit disponible'}];
-   if(variant==='contrast-balance'&&role(ctx,q)===wanted)return [{id:q.id,delta:35,reason:'contraste de décision de fit manquant'}];
+   if(c(ctx,q)==='ouv.sa2')return [{id:q.id,delta:variant==='saturation'?Math.max(-100,-45*n2):-60,reason:'coût marginal d’une nouvelle ouverture 2SA en présence d’une alternative élémentaire'}];
+   if(['contrast-balance','saturation'].includes(variant)&&wanted&&role(ctx,q)===wanted)return [{id:q.id,delta:35,reason:'contraste de décision de fit manquant'}];
    return [];
   });
  }
