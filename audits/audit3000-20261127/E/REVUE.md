@@ -251,3 +251,25 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 12 — cumul actualisé
+
+480/540 verdicts individuels, 60 restants. {"VALIDE":121,"RECLASSER_REFORMULER":331,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":28}. 320 corrections complètes, 46 modifications prérequis, 101 entrées réservoir.
+- Retrait systématique des rappels qui donnent la réponse (2SA fitté, Truscott, Surcontre, 2SA sur 1SA adverse, redemande libre/forcée). Les règles restent dans les corrigés et les variantes QPJB restent identifiées. Améliorer distracteurs sur 1SA adverse en introduisant Contre punitif ; demander description du fit plutôt que décision de pénalité universelle. Correction des prérequis de soutien mineur et difficulté C136 (4 vers 2).
+- Sources externes consultées pour cette passe : https://scjc-bridge.fr/sef-2024, https://www.bridgerama-plus.com/2024/02/20/les-nouveautes-du-sef-2024-le-2sa-fitte-derriere-une-intervention/, https://www.bridge-chailley.fr/le-sef-2024-1/ corroborent 11–15 HLD après intervention couleur avec trois atouts, ce qui soutient la borne basse de C138 et permet au coordinateur de réexaminer l'arbitrage Q400-C089 (honneurs adverses toujours à réévaluer). Le chevauchement apparent du mixed raise en H et Truscott en HLD est discuté dans https://amourdubridge.fr/forums/topic/questions-sur-le-mixed-raise/ ; priorité à préciser dans le cours, aucune règle privée ajoutée. Arbitrage C144 limité à portée de la formulation du Surcontre, choix cohérent parmi les propositions.
+- Quasi-redondances ciblées C139/C141, C145/C146, C147/C169, Multi-Landy D037/V2-M5-021 ; conserver variantes sans exposition simultanée. C161, comme C066, groupe 'Même main, ordre adverse différent' nécessite un vrai contraste de même main ; pas de groupe inventé. Aucune nouvelle affectation proposée faute de besoin étayé.
+- Contrôles de périmètre, verdicts uniques, mains, rang simple des choix, corrections, groupes et concepts réels. Pas de suite locale, pas d'examen sémantique exhaustif ni certification SEF officielle intégrale.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 480,
+  "idsUniques": 480,
+  "corrections": 320,
+  "correctionsInvalides": [],
+  "passe12ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
