@@ -1,0 +1,72 @@
+name: Reprise6 coordination — C4 rappels isolés
+on:
+  pull_request:
+    branches: [coherence-concrete/reprise6-coordination-source]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  matrix:
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall-isolated'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Real engine, opt-out identity, interleaved reviews
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          node tests/coherence-reprise6-recall-run.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" artifacts 180 | tee artifacts/run.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recall-${{ matrix.profile }}-${{ matrix.seed }}
+          path: artifacts
+  gate:
+    if: github.head_ref == 'coherence-concrete/reprise6-coordination-recall-isolated'
+    needs: matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: results
+      - name: Summary, keep original guided debt and supplemental answered debt separate
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),assert=require('assert/strict');
+          const rows=fs.readdirSync('results').filter(x=>x.startsWith('recall-')).map(x=>JSON.parse(fs.readFileSync('results/'+x+'/summary.json','utf8')));
+          assert.equal(rows.length,18);
+          assert.equal(new Set(rows.map(r=>r.profile+'/'+r.seed)).size,18);
+          const models={};
+          for(const model of ['M6','D']){
+            const out={guidedDebt:[0,0],answeredDebt:[0,0],guidedAlerts:0,answeredAlerts:0,extraAnswered:0,extraSessions:0,changedDecks:0,perProfile:[]};
+            for(const r of rows){
+              const v=r.summary.find(x=>x.model===model),b=v.before.at(-1),a=v.after.at(-1);
+              out.guidedDebt[0]+=b.debtTotal;out.guidedDebt[1]+=a.debtTotal;
+              out.answeredDebt[0]+=b.actualDebtTotal;out.answeredDebt[1]+=a.actualDebtTotal;
+              out.guidedAlerts+=v.alerts.length;out.answeredAlerts+=v.extraAlerts.length;out.extraAnswered+=v.extraAnswered;out.extraSessions+=v.recalls.length;out.changedDecks+=v.changed.length;
+              out.perProfile.push({profile:r.profile,seed:r.seed,guided:[b.debtTotal,a.debtTotal],answered:[b.actualDebtTotal,a.actualDebtTotal],alerts:v.alerts.length,answeredAlerts:v.extraAlerts.length,recalls:v.recalls.length,changedDecks:v.changed.length});
+            }
+            models[model]=out;
+          }
+          // Supplemental debt is explicitly a new, distinct diagnostic, not a substitute for #419.
+          const verdict=Object.values(models).every(m=>m.extraAnswered>0&&m.answeredDebt[1]<m.answeredDebt[0]&&m.guidedAlerts===0&&m.answeredAlerts===0&&m.changedDecks===0)?'REVIEW_SUPPLEMENT_ONLY':'HOLD';
+          fs.writeFileSync('recall-gate.json',JSON.stringify({verdict,models},null,2));
+          console.log('RECALL_GATE '+JSON.stringify({verdict,models}));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recall-gate
+          path: recall-gate.json
