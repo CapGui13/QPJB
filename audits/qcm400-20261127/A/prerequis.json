@@ -61,6 +61,12 @@
       "minSession": 0,
       "requires": []
     },
+    "SEF-Q400-A-011": {
+      "concept": "ouv.mineure",
+      "stage": 0,
+      "minSession": 0,
+      "requires": []
+    },
     "SEF-Q400-A-012": {
       "concept": "ouv.mineure",
       "stage": 0,
@@ -84,6 +90,21 @@
       "stage": 0,
       "minSession": 0,
       "requires": []
+    },
+    "SEF-Q400-A-016": {
+      "concept": "ouv.mineure",
+      "stage": 1,
+      "minSession": 2,
+      "requires": [
+        {
+          "concept": "ouv.sa1",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.sa2",
+          "minExposure": 1
+        }
+      ]
     },
     "SEF-Q400-A-017": {
       "concept": "ouv.majeure",
@@ -458,6 +479,21 @@
         }
       ]
     },
+    "SEF-Q400-A-050": {
+      "concept": "majeur.soutien",
+      "stage": 1,
+      "minSession": 2,
+      "requires": [
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.majeure",
+          "minExposure": 1
+        }
+      ]
+    },
     "SEF-Q400-A-051": {
       "concept": "red.base",
       "stage": 0,
@@ -544,6 +580,44 @@
         },
         {
           "concept": "mineur.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-A-057": {
+      "concept": "red.base",
+      "stage": 1,
+      "minSession": 5,
+      "requires": [
+        {
+          "concept": "majeur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-A-058": {
+      "concept": "red.base",
+      "stage": 1,
+      "minSession": 5,
+      "requires": [
+        {
+          "concept": "majeur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "mineur.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "red.base",
           "minExposure": 1
         }
       ]
@@ -881,13 +955,17 @@
       ]
     },
     "SEF-Q400-A-083": {
-      "concept": "apres_fit.base",
-      "stage": 0,
-      "minSession": 8,
+      "concept": "apres_fit.essai",
+      "stage": 3,
+      "minSession": 12,
       "requires": [
         {
-          "concept": "majeur.soutien",
+          "concept": "apres_fit.base",
           "minExposure": 1
+        },
+        {
+          "concept": "apres_fit.essai",
+          "minExposure": 2
         }
       ]
     },
@@ -954,6 +1032,17 @@
         }
       ]
     },
+    "SEF-Q400-A-089": {
+      "concept": "apres_fit.essai",
+      "stage": 1,
+      "minSession": 8,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
     "SEF-Q400-A-090": {
       "concept": "apres_fit.essai",
       "stage": 1,
@@ -988,6 +1077,17 @@
       ]
     },
     "SEF-Q400-A-093": {
+      "concept": "apres_fit.essai.suite",
+      "stage": 2,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "apres_fit.essai",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-A-094": {
       "concept": "apres_fit.essai.suite",
       "stage": 2,
       "minSession": 10,
@@ -1050,6 +1150,21 @@
         },
         {
           "concept": "majeur.soutien",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-A-099": {
+      "concept": "fit.2sa.suite",
+      "stage": 2,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "fit.2sa",
           "minExposure": 1
         }
       ]
