@@ -10,7 +10,7 @@ function harness(s){
  assert.equal(s.split(marker).length,2);
  return s.replace(marker,`window.__reprise6BRender=(id,result=null,type='parcours')=>{
  const q=DATA.exercises.find(q=>q.id===id);if(!q)throw Error(id);
- sessionType=type;deck=[q];position=0;sessionResults={};sessionChoices={};sessionStages={};
+ sessionType=type==='consolidation'?'parcours':type;parcoursState.active=type==='consolidation'?{mode:'consolidation'}:null;deck=[q];position=0;sessionResults={};sessionChoices={};sessionStages={};
  answered=!!result;selection=result?q.answer:null;if(result)sessionResults[0]={result,choice:q.answer,assisted:false};
  enterSession();render();
  };\n`+marker);
@@ -36,6 +36,8 @@ function harness(s){
    const a=await pages[0].locator('#feedback-explanation-heading + p').innerText(),b=await pages[1].locator('#feedback-explanation-heading + p').innerText();
    if(id==='SEF-037-1')assert.equal(a,b);else {assert.notEqual(a,b);assert(b.includes(S.CONTRAST));}
    for(const p of pages)await p.evaluate(id=>window.__reprise6BRender(id,'wrong','libre'),id);
+   assert.equal(await pages[0].locator('#feedback-explanation-heading + p').innerText(),await pages[1].locator('#feedback-explanation-heading + p').innerText());
+   for(const p of pages)await p.evaluate(id=>window.__reprise6BRender(id,'correct','consolidation'),id);
    assert.equal(await pages[0].locator('#feedback-explanation-heading + p').innerText(),await pages[1].locator('#feedback-explanation-heading + p').innerText());
   }
   console.log('B_BROWSER_PASS — actual frozen quiz renderer, injected deck only; 2 contexts, 3 source examples, no pre-answer leak or free-mode change');
