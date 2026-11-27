@@ -63,3 +63,30 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ``
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 3 — cumul actualisé
+
+120/540 verdicts individuels, 420 non audités. {"VALIDE":66,"RECLASSER_REFORMULER":51,"ARBITRAGE":3}. 35 QCM complets corrigés, 12 propositions de prérequis, 24 changements de réservoir.
+- Rappels donnant directement la réponse (C2-001/002/004/005/006) supprimés des questions; règle maintenue dans corrigé. C2-003 précise variante QPJB 5–4, pas généralisation Landy.
+- Redemandes libres/forcées V471 : contraste valide, pas de changement artificiel. V472-005/006 : contre et surcontre de soutien; pas de groupe spécifique identifié, arbitrage d'affectation. Truscott mineur : prérequis soutien mineur et réserve S25 spécifique, vulnérabilité de barrage précisée.
+- Contrôles précédents relancés; légalité des choix contrôlée par rang de contrat et distinction contre/surcontre sur les 120, pas validation complète du moteur. Suites du dépôt non exécutées.
+```json
+{
+  "catalogue": 3000,
+  "idsUniquesCatalogue": 3000,
+  "prerequis": 3000,
+  "lot": 540,
+  "lotManquants": 0,
+  "lotHorsGroupesExplicites": 270,
+  "lotEchecMecanique": [],
+  "lotDoublonsExactsSignature": [],
+  "verdicts": 120,
+  "idsVerdictsUniques": 120,
+  "corrections": 35,
+  "correctionsInvalides": [],
+  "choixIllegauxPasses1a3": [],
+  "reservoirGroupesInvalides": [],
+  "prerequisInvalides": []
+}
+``
+MISSION DÉFINITIVEMENT TERMINÉE : NON
