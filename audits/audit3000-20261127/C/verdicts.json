@@ -59406,5 +59406,4762 @@
       "type": "arbitrage",
       "proposal": "Vérifier si rencontre 3♦ prioritaire avec AD762 et 4 Piques après passe. Si objectif 2SA avec courte, affaiblir la qualité des Carreaux en déplaçant un honneur vers les Piques sans changer H ni forme; ne pas appliquer sans arbitrage."
     }
+  },
+  {
+    "id": "SEF-V4-101-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H + 1 L = 9 HL, cinq Cœurs AV1093, ouverture tactique à vulnérabilité favorable : 2♥ sans espoir de manche. Le texte signale déjà tactique mais situation pertinente ; préciser que le retour faible n'exige pas six cartes.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-411",
+    "caseFamilyPropose": "cas-411",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "4♥",
+        "3♥",
+        "2♦",
+        "2♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "8 H + 1 L = 9 HL, cinq Cœurs AV1093, ouverture tactique à vulnérabilité favorable : 2♥ sans espoir de manche. Le texte signale déjà tactique mais situation pertinente ; préciser que le retour faible n'exige pas six cartes.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H + 1 L = 9 HL, cinq Cœurs AV1093, ouverture tactique à vulnérabilité favorable : 2♥ sans espoir de manche. Le texte signale déjà tactique mais situation pertinente ; préciser que le retour faible n'exige pas six cartes.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "L’ouverture tactique en troisième position a été faite avec seulement 8 H et cinq Cœurs suffisamment solides. Sur 2♣ Drury, la répétition de 2♥ indique que l’ouvreur n’a pas la force d’une ouverture normale (moins de 13 HL).",
+          "after": "Avec 8 H et cinq Cœurs, vous avez seulement 9 HL. Après le Drury fitté, 2♥ indique une ouverture faible (12 HL ou moins) sans espoir de manche. Depuis le SEF 2024, cette répétition ne promet pas six cartes."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-102-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, cinq Cœurs AD832, deux Trèfles : 2♦ attente avec espoir de manche, pas certitude. Question donne force et longueur ; neutraliser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-412",
+    "caseFamilyPropose": "cas-412",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 14
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "13 H, cinq Cœurs AD832, deux Trèfles : 2♦ attente avec espoir de manche, pas certitude. Question donne force et longueur ; neutraliser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "13 H, cinq Cœurs AD832, deux Trèfles : 2♦ attente avec espoir de manche, pas certitude. Question donne force et longueur ; neutraliser.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M6-011",
+          "SEF-Q685-B-155"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Vous avez ouvert 1♥ en troisième position après le Passe initial du partenaire. Il répond 2♣ Drury. Avec cinq Cœurs et 13 H, quelle redemande conventionnelle choisissez-vous ?",
+          "after": "Votre partenaire a passé d'entrée. Vous avez ouvert en majeure en troisième position, sans intervention, et il répond 2♣ Drury fitté. Quelle est votre redemande ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-107-3",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq Piques AV1093, vulnérabilité favorable : 2♠ faible. Contraste 108 normale ; préciser non-promesse de six cartes.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-417",
+    "caseFamilyPropose": "cas-417",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "4♠",
+        "2♠",
+        "3♠",
+        "2♦"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "8 H, cinq Piques AV1093, vulnérabilité favorable : 2♠ faible. Contraste 108 normale ; préciser non-promesse de six cartes.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H, cinq Piques AV1093, vulnérabilité favorable : 2♠ faible. Contraste 108 normale ; préciser non-promesse de six cartes.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "L’ouverture tactique en troisième position a été faite avec seulement 8 H et cinq Piques suffisamment solides. Sur 2♣ Drury, la répétition de 2♠ indique que l’ouvreur n’a pas la force d’une ouverture normale (moins de 13 HL).",
+          "after": "Avec 8 H et cinq Piques, votre ouverture tactique ne donne que 9 HL. 2♠ sur Drury signale une main faible sans espoir de manche ; le SEF 2024 n'exige pas six Piques pour cette répétition."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-108-1",
+    "verdict": "VALIDE",
+    "justification": "13 H, cinq Piques AR643, doubleton ♣ : 2♦ attente, 3♠ espoir chelem et 2♠ faible. Contraste 107 tactique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-418",
+    "caseFamilyPropose": "cas-418",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 13,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 14
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♠",
+        "3♠",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "13 H, cinq Piques AR643, doubleton ♣ : 2♦ attente, 3♠ espoir chelem et 2♠ faible. Contraste 107 tactique.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "13 H, cinq Piques AR643, doubleton ♣ : 2♦ attente, 3♠ espoir chelem et 2♠ faible. Contraste 107 tactique.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-001",
+    "verdict": "VALIDE",
+    "justification": "11 H, trois Cœurs D96 et main sans courte : 2♥ économique sur 2♦, principe sécurité distributionnelle. Contraste 002 quatre cartes.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-respH-001",
+    "caseFamilyPropose": "v484-respH-001",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "11 H, trois Cœurs D96 et main sans courte : 2♥ économique sur 2♦, principe sécurité distributionnelle. Contraste 002 quatre cartes.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, trois Cœurs D96 et main sans courte : 2♥ économique sur 2♦, principe sécurité distributionnelle. Contraste 002 quatre cartes.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-159"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre Cœurs D1096, sans courte : 3♥ sur 2♦, Drury initial au seuil 11 HLD grâce au neuvième atout. Le corrigé ne justifie pas le seuil : ajouter valorisation.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-respH-002",
+    "caseFamilyPropose": "v484-respH-002",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "9 H, quatre Cœurs D1096, sans courte : 3♥ sur 2♦, Drury initial au seuil 11 HLD grâce au neuvième atout. Le corrigé ne justifie pas le seuil : ajouter valorisation.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Cœurs D1096, sans courte : 3♥ sur 2♦, Drury initial au seuil 11 HLD grâce au neuvième atout. Le corrigé ne justifie pas le seuil : ajouter valorisation.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "Après le Drury, 2♦ de l'ouvreur indique un espoir de manche. Avec quatre Cœurs ♥D1096, 9 H et aucune courte, 3♥ précise le neuvième atout. 2♥ montrerait trois atouts ; 4♥ imposerait une manche encore à évaluer.",
+          "after": "Avec quatre Cœurs et 9 H, le neuvième atout présumé donne 11 HLD, ce qui justifie le Drury initial. Après 2♦ d'attente, 3♥ décrit quatre atouts et laisse l'ouvreur décider ; 2♥ en montrerait trois. Le seuil ne se déduit pas de 9 H seuls."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V484-003",
+    "verdict": "VALIDE",
+    "justification": "11 H, trois Piques AD9, main sans courte : 2♠ après 2♦. Contraste 004 quatre cartes et variante Pique de 001.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-respS-003",
+    "caseFamilyPropose": "v484-respS-003",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "11 H, trois Piques AD9, main sans courte : 2♠ après 2♦. Contraste 004 quatre cartes et variante Pique de 001.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, trois Piques AD9, main sans courte : 2♠ après 2♦. Contraste 004 quatre cartes et variante Pique de 001.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-170"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre Piques R974, sans courte : Drury à 11 HLD selon barème, 3♠ décrit quatre atouts après 2♦. Contraste 003. Expliciter valorisation.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-respS-004",
+    "caseFamilyPropose": "v484-respS-004",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "9 H, quatre Piques R974, sans courte : Drury à 11 HLD selon barème, 3♠ décrit quatre atouts après 2♦. Contraste 003. Expliciter valorisation.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Piques R974, sans courte : Drury à 11 HLD selon barème, 3♠ décrit quatre atouts après 2♦. Contraste 003. Expliciter valorisation.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "Vos quatre Piques ♠R974 et 9 H, sans courte, ont justifié le Drury initial. Après 2♦ d'attente, 3♠ indique quatre atouts et laisse l'ouvreur apprécier la manche. 2♠ ne montrerait que trois atouts ; 4♠ serait une conclusion prématurée.",
+          "after": "Avec quatre Piques et 9 H, le neuvième atout présumé porte cette main à 11 HLD. Après 2♦ d'attente, annoncez 3♠ pour préciser quatre atouts ; 2♠ n'en montrerait que trois. L'ouvreur réévalue ensuite la manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V484-005",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Cœurs, ♣3 sec : après 2SA fitté puis relais 3♣, 3♥ code la courte Trèfle. Contraste 006/007 autres courtes, pas une conclusion.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-005",
+    "caseFamilyPropose": "v484-singH-005",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          4,
+          4,
+          1
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Cœur et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "9 H, quatre Cœurs, ♣3 sec : après 2SA fitté puis relais 3♣, 3♥ code la courte Trèfle. Contraste 006/007 autres courtes, pas une conclusion.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Cœurs, ♣3 sec : après 2SA fitté puis relais 3♣, 3♥ code la courte Trèfle. Contraste 006/007 autres courtes, pas une conclusion.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-006",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Cœurs, ♦3 sec : 3♦ naturel de courte, non longueur. Contraste 005 (retour atout pour Trèfle).",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-006",
+    "caseFamilyPropose": "v484-singH-006",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          4,
+          1,
+          4
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Cœur et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♥"
+      ],
+      "reponse": "3♦",
+      "reponseProposee": "3♦",
+      "corrige": "9 H, quatre Cœurs, ♦3 sec : 3♦ naturel de courte, non longueur. Contraste 005 (retour atout pour Trèfle).",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Cœurs, ♦3 sec : 3♦ naturel de courte, non longueur. Contraste 005 (retour atout pour Trèfle).",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-009"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-007",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Cœurs, ♠4 sec : 3♠ courte et non nouvelle majeure. Contraste 005/006.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-007",
+    "caseFamilyPropose": "v484-singH-007",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Cœur et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♥"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "9 H, quatre Cœurs, ♠4 sec : 3♠ courte et non nouvelle majeure. Contraste 005/006.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Cœurs, ♠4 sec : 3♠ courte et non nouvelle majeure. Contraste 005/006.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-008",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Piques et ♣3 sec : 3♠ code courte Trèfle. Même casFamily que 005, utile pour vérifier code relatif à atout et non 3♥ systématique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-005",
+    "caseFamilyPropose": "v484-singH-005",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          4,
+          4,
+          1
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Pique et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "9 H, quatre Piques et ♣3 sec : 3♠ code courte Trèfle. Même casFamily que 005, utile pour vérifier code relatif à atout et non 3♥ systématique.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Piques et ♣3 sec : 3♠ code courte Trèfle. Même casFamily que 005, utile pour vérifier code relatif à atout et non 3♥ systématique.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-009",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Piques et ♦3 sec : 3♦ courte. Même famille que 006, transfert de règle à autre atout.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-006",
+    "caseFamilyPropose": "v484-singH-006",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          4,
+          1,
+          4
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Pique et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♦",
+      "reponseProposee": "3♦",
+      "corrige": "9 H, quatre Piques et ♦3 sec : 3♦ courte. Même famille que 006, transfert de règle à autre atout.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Piques et ♦3 sec : 3♦ courte. Même famille que 006, transfert de règle à autre atout.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-006"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-010",
+    "verdict": "VALIDE",
+    "justification": "9 H, quatre Piques et ♥3 sec : 3♥ naturelle de courte. Contraste 008 retour atout et 009 Carreau, famille croisée avec 007.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-singH-007",
+    "caseFamilyPropose": "v484-singH-007",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          4,
+          1,
+          4,
+          4
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Pique et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "9 H, quatre Piques et ♥3 sec : 3♥ naturelle de courte. Contraste 008 retour atout et 009 Carreau, famille croisée avec 007.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, quatre Piques et ♥3 sec : 3♥ naturelle de courte. Contraste 008 retour atout et 009 Carreau, famille croisée avec 007.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H, six Cœurs ARDV104 et deux As extérieurs, deux doubletons : 3♥ espoir de chelem. Bon contraste 013 conclusion ; difficulté 4 plutôt que 3 pour choix manche/chelem.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-openH-011",
+    "caseFamilyPropose": "v484-openH-011",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 18,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "18 H, six Cœurs ARDV104 et deux As extérieurs, deux doubletons : 3♥ espoir de chelem. Bon contraste 013 conclusion ; difficulté 4 plutôt que 3 pour choix manche/chelem.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "18 H, six Cœurs ARDV104 et deux As extérieurs, deux doubletons : 3♥ espoir de chelem. Bon contraste 013 conclusion ; difficulté 4 plutôt que 3 pour choix manche/chelem.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Drury SEF 2024 : espoir de chelem de l’ouvreur Cœur",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V484-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "17 H, six Piques RDV1094 et As de Cœur/As-Roi Carreau : 3♠ espoir chelem, contraste 014. Difficulté 4 pour jugement.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-openS-012",
+    "caseFamilyPropose": "v484-openS-012",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 17,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 19
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♠",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "17 H, six Piques RDV1094 et As de Cœur/As-Roi Carreau : 3♠ espoir chelem, contraste 014. Difficulté 4 pour jugement.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "17 H, six Piques RDV1094 et As de Cœur/As-Roi Carreau : 3♠ espoir chelem, contraste 014. Difficulté 4 pour jugement.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Drury SEF 2024 : espoir de chelem de l’ouvreur Pique",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V484-013",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Cœurs A9753, quatre Carreaux AD104 et ♣8 sec : 4♥, analogue quasiment exact exemple fédéral 2024 (p.29), 2♦ trop prudent, 3♥ espoir chelem.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-openH-013",
+    "caseFamilyPropose": "v484-openH-013",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          4,
+          1
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "12 H, cinq Cœurs A9753, quatre Carreaux AD104 et ♣8 sec : 4♥, analogue quasiment exact exemple fédéral 2024 (p.29), 2♦ trop prudent, 3♥ espoir chelem.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs A9753, quatre Carreaux AD104 et ♣8 sec : 4♥, analogue quasiment exact exemple fédéral 2024 (p.29), 2♦ trop prudent, 3♥ espoir chelem.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "V2-M6-012"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V484-014",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Piques A10974, quatre Carreaux AD102, ♣8 sec : 4♠ après réévaluation. Contraste 012 sixième forte.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v484-openS-014",
+    "caseFamilyPropose": "v484-openS-014",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          4,
+          1
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♠",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "12 H, cinq Piques A10974, quatre Carreaux AD102, ♣8 sec : 4♠ après réévaluation. Contraste 012 sixième forte.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Piques A10974, quatre Carreaux AD102, ♣8 sec : 4♠ après réévaluation. Contraste 012 sixième forte.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-085"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-L01-F-01",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, trois Cœurs RV2, singleton ♣9 et cinq Carreaux : retour 2♥ sur 2♦. Énoncé révèle le nombre d'atouts par exclusion du 2SA ; neutraliser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f-r3-coeur-singleton-club",
+    "caseFamilyPropose": "l01-f-r3-coeur-singleton-club",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          3,
+          5,
+          1
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury fitté Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "10 H, trois Cœurs RV2, singleton ♣9 et cinq Carreaux : retour 2♥ sur 2♦. Énoncé révèle le nombre d'atouts par exclusion du 2SA ; neutraliser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H, trois Cœurs RV2, singleton ♣9 et cinq Carreaux : retour 2♥ sur 2♦. Énoncé révèle le nombre d'atouts par exclusion du 2SA ; neutraliser.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "SEF 2024. Après votre Passe initial, vous avez fait 2♣ Drury sur 1♥ en troisième position. L’ouvreur a répondu 2♦ d’attente. Vous êtes à nouveau à la parole. Votre singleton Trèfle n’exige pas 2SA : cette réponse directe aurait demandé quatre atouts. Que dites-vous ?",
+          "after": "Après votre Passe initial, vous avez répondu 2♣ Drury à l'ouverture majeure du partenaire. Il annonce 2♦ d'attente. Quelle est votre prochaine enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-L01-F-02",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, cinq Cœurs D10874, doubleton ♣98 : 4♥ après 2♦, fit très long (neuf/dix selon ouverture 4/5 cartes). Énoncé révèle cinq atouts ; neutraliser et corriger garantie de dix.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f-r5-coeur-conclusion",
+    "caseFamilyPropose": "l01-f-r5-coeur-conclusion",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury fitté Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "3♥",
+        "4♥",
+        "3SA"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "9 H, cinq Cœurs D10874, doubleton ♣98 : 4♥ après 2♦, fit très long (neuf/dix selon ouverture 4/5 cartes). Énoncé révèle cinq atouts ; neutraliser et corriger garantie de dix.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H, cinq Cœurs D10874, doubleton ♣98 : 4♥ après 2♦, fit très long (neuf/dix selon ouverture 4/5 cartes). Énoncé révèle cinq atouts ; neutraliser et corriger garantie de dix.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "SEF 2024. Après Passe initial, vous soutenez l’ouverture de 1♥ en troisième position par 2♣ Drury ; l’ouvreur dit 2♦ d’attente avec espoir de manche. Vous avez cinq Cœurs et aucun singleton. Quelle suite décrit votre fit ?",
+          "after": "Après votre Passe initial, vous avez répondu 2♣ Drury à l'ouverture majeure du partenaire. Il annonce 2♦ d'attente. Quelle est votre prochaine enchère ?"
+        },
+        {
+          "field": "explain",
+          "before": "Votre partenaire a montré un espoir de manche par 2♦ après le Drury. Avec cinq Cœurs, vous connaissez au moins dix atouts communs : le fit est encore plus favorable qu'avec le soutien quatrième décrit à 3♥. Vos 9 H et les possibilités de coupe du camp justifient 4♥ dans cette situation ; ce n'est pas une manche fondée sur les seuls points H.",
+          "after": "Avec cinq Cœurs, 9 H et un doubleton Trèfle, votre fit est très long. Face au 2♦ d'attente, il justifie la manche à 4♥. Le palier de trois est la description de quatre atouts, non de cinq ; la décision tient compte de la distribution, pas seulement des H."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-L01-F-03",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H, cinq Cœurs et quatre Piques AR97 : 2♠ naturel, bicolore cher et ouverture forte. Question donne toute la description, neutraliser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f03-drury-opener-third-seat-strong-heart-spade-reverse",
+    "caseFamilyPropose": "l01-f03-drury-opener-third-seat-strong-heart-spade-reverse",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 18,
+        "shape": [
+          4,
+          5,
+          3,
+          1
+        ],
+        "hl": 19
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♥",
+        "2♦",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "18 H, cinq Cœurs et quatre Piques AR97 : 2♠ naturel, bicolore cher et ouverture forte. Question donne toute la description, neutraliser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "18 H, cinq Cœurs et quatre Piques AR97 : 2♠ naturel, bicolore cher et ouverture forte. Question donne toute la description, neutraliser.",
+      "prerequis": "drury.reponse, stade 3, minimum S30; drury.init×1, drury.reponse×2; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Votre partenaire avait passé d'entrée. Vous ouvrez 1♥ en troisième position et il répond 2♣ Drury fitté. Vous possédez cinq beaux Cœurs, quatre Piques et 18 H (19 HL) : la valeur d'une vraie ouverture forte, avec un bicolore cher. Quelle redemande naturelle décrit le mieux votre main ?",
+          "after": "Votre partenaire a passé d'entrée. Vous avez ouvert en majeure en troisième position, sans intervention, et il répond 2♣ Drury fitté. Quelle est votre redemande ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-L01-F-04",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq Cœurs AR1065, doubleton ♣83, fit neuvième confirmé à 3♥ : 4♥ avec force revalorisée. Énoncé révèle force et neuf atouts ; neutraliser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f04-drury-opener-after-2d-3heart-four-card-fit-revalue-4heart",
+    "caseFamilyPropose": "l01-f04-drury-opener-after-2d-3heart-four-card-fit-revalue-4heart",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté Cœur)",
+        "Adversaire : Passe",
+        "Vous : 2♦ (attente : espoir de manche)",
+        "Adversaire : Passe",
+        "Partenaire : 3♥ (quatre atouts Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "Passe",
+        "3SA",
+        "4♥",
+        "4SA"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "12 H, cinq Cœurs AR1065, doubleton ♣83, fit neuvième confirmé à 3♥ : 4♥ avec force revalorisée. Énoncé révèle force et neuf atouts ; neutraliser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs AR1065, doubleton ♣83, fit neuvième confirmé à 3♥ : 4♥ avec force revalorisée. Énoncé révèle force et neuf atouts ; neutraliser.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.init×1, drury.reponse×1, drury.suite×2; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Votre partenaire a passé au premier tour. Vous avez ouvert de 1♥ en troisième position puis répondu 2♦ d’attente au 2♣ Drury fitté : avec cinq Cœurs et 12 H, vous aviez un espoir de manche, sans être certain du neuvième atout. Le répondant vient de préciser quatre Cœurs par 3♥, ce qui garantit maintenant neuf atouts dans votre camp. Les adversaires passent. Quelle est votre enchère ?",
+          "after": "Après votre ouverture de 1♥ en troisième position, le partenaire passé a fait un Drury. Vous avez annoncé 2♦ d'attente et il répond 3♥. Quelle est votre prochaine enchère ?"
+        },
+        {
+          "field": "explain",
+          "before": "La redemande de 2♦ sur le Drury gardait la possibilité de s’arrêter au palier de 2 ou 3 selon le fit réel. En annonçant 3♥, le partenaire a montré quatre atouts et au moins la force de son Drury. Avec vos cinq beaux Cœurs, 12 H et un doubleton Trèfle, le fit neuvième donne maintenant une force suffisante pour conclure à 4♥.",
+          "after": "Après votre 2♦ d'attente, le 3♥ du répondant confirme quatre Cœurs. Votre main (12 H, cinq Cœurs, doubleton Trèfle) se revalorise avec le neuvième atout : environ 16 HLD. Face au Drury constructif, 4♥ conclut à la manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-L01-F-05",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H + 2 L = 11 HL, six Cœurs AD10964 : 2♥ faible malgré six cartes, contraste V484-011 très fort. Retirer indice 'pas la valeur d'une ouverture'.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f-o-coeur-6eme-faible",
+    "caseFamilyPropose": "l01-f-o-coeur-6eme-faible",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "9 H + 2 L = 11 HL, six Cœurs AD10964 : 2♥ faible malgré six cartes, contraste V484-011 très fort. Retirer indice 'pas la valeur d'une ouverture'.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H + 2 L = 11 HL, six Cœurs AD10964 : 2♥ faible malgré six cartes, contraste V484-011 très fort. Retirer indice 'pas la valeur d'une ouverture'.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "SEF 2024. Votre partenaire a passé d’entrée. Vous ouvrez tactiquement de 1♥ en troisième position, à vulnérabilité favorable, et il répond 2♣ Drury fitté. Vous possédez six Cœurs mais pas la valeur d’une ouverture normale. Quelle redemande ?",
+          "after": "Votre partenaire a passé d'entrée. Vous avez ouvert en majeure en troisième position, sans intervention, et il répond 2♣ Drury fitté. Quelle est votre redemande ?"
+        },
+        {
+          "field": "explain",
+          "before": "Vous avez ouvert en troisième position avec une belle couleur sixième mais une force inférieure à celle d’une ouverture normale. Sur le Drury, la répétition à 2♥ exprime cette faiblesse et permet de s’arrêter.",
+          "after": "Avec 9 H et six Cœurs, vous avez 11 HL. Après le Drury, 2♥ montre une main faible sans espoir de manche, quelle que soit la longueur de la majeure. Le saut à 3♥ serait une recherche de chelem."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-L01-F-06",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H, cinq Piques et cinq Carreaux RD1086, singleton ♣9 : 3♦ naturel fort, 2♦ artificiel. Neutraliser l'énoncé qui donne le bicolore.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 2
+        }
+      ]
+    },
+    "caseFamilyInitial": "l01-f-o-pique-55-carreaux-fort",
+    "caseFamilyPropose": "l01-f-o-pique-55-carreaux-fort",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 16,
+        "shape": [
+          5,
+          2,
+          5,
+          1
+        ],
+        "hl": 18
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté Pique)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♠",
+        "2♦",
+        "3♦",
+        "3♠"
+      ],
+      "reponse": "3♦",
+      "reponseProposee": "3♦",
+      "corrige": "16 H, cinq Piques et cinq Carreaux RD1086, singleton ♣9 : 3♦ naturel fort, 2♦ artificiel. Neutraliser l'énoncé qui donne le bicolore.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "16 H, cinq Piques et cinq Carreaux RD1086, singleton ♣9 : 3♦ naturel fort, 2♦ artificiel. Neutraliser l'énoncé qui donne le bicolore.",
+      "prerequis": "drury.reponse, stade 3, minimum S30; drury.init×1, drury.reponse×2; maintien du verrou",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "SEF 2024. Après le Passe initial de votre partenaire, vous ouvrez 1♠ en troisième position. Il dit 2♣ Drury fitté, adversaires silencieux. Vous détenez un vrai bicolore cinq Piques / cinq Carreaux et une forte ouverture. Quelle redemande décrit ce bicolore ?",
+          "after": "Votre partenaire a passé d'entrée. Vous avez ouvert en majeure en troisième position, sans intervention, et il répond 2♣ Drury fitté. Quelle est votre redemande ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "V2-M6-011",
+    "verdict": "VALIDE",
+    "justification": "13 H, cinq Cœurs AV974, doubleton ♣V6 : 2♦ attente en quatrième position, contraste 012 distribution 5431 malgré H inférieurs.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "reserve-v2-m6-quatrieme-position-attente-ou-manche",
+    "caseFamilyPropose": "reserve-v2-m6-quatrieme-position-attente-ou-manche",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 14
+      },
+      "sequence": [
+        "Adversaire : Passe",
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (4e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "13 H, cinq Cœurs AV974, doubleton ♣V6 : 2♦ attente en quatrième position, contraste 012 distribution 5431 malgré H inférieurs.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "13 H, cinq Cœurs AV974, doubleton ♣V6 : 2♦ attente en quatrième position, contraste 012 distribution 5431 malgré H inférieurs.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/3 Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-102-1",
+          "SEF-Q685-B-155"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "V2-M6-012",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Cœurs A9874, quatre Carreaux AD83, ♣6 sec : 4♥ par réévaluation, contraste contrôlé 011. Corrigé 'invitation au chelem' acceptable comme espoir.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "reserve-v2-m6-quatrieme-position-attente-ou-manche",
+    "caseFamilyPropose": "reserve-v2-m6-quatrieme-position-attente-ou-manche",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          4,
+          1
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Adversaire : Passe",
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (4e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "4♥",
+      "reponseProposee": "4♥",
+      "corrige": "12 H, cinq Cœurs A9874, quatre Carreaux AD83, ♣6 sec : 4♥ par réévaluation, contraste contrôlé 011. Corrigé 'invitation au chelem' acceptable comme espoir.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs A9874, quatre Carreaux AD83, ♣6 sec : 4♥ par réévaluation, contraste contrôlé 011. Corrigé 'invitation au chelem' acceptable comme espoir.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/3 Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-013"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-082",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, six Cœurs ARV974, 10 HL : 2♥ faible, contraste 084 fort sixième. Préciser 12 HL ou moins.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-reponse",
+    "caseFamilyPropose": "q400-b-drury-reponse",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "8 H, six Cœurs ARV974, 10 HL : 2♥ faible, contraste 084 fort sixième. Préciser 12 HL ou moins.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H, six Cœurs ARV974, 10 HL : 2♥ faible, contraste 084 fort sixième. Préciser 12 HL ou moins.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "8 H, distribution 2–6–3–2. Ouverture tactique avec une belle couleur sixième mais 8 H, moins de 13 HL. Répétez 2♥ pour décourager la manche.",
+          "after": "Avec 8 H et six Cœurs, votre main vaut 10 HL. Après le Drury, répétez 2♥ pour montrer une ouverture légère sans espoir de manche. Cette répétition n'est pas une promesse de six cartes."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q400-B-083",
+    "verdict": "VALIDE",
+    "justification": "13 H, cinq Piques AR974 et doubleton ♥D8 : 2♦ attente, contraste 085 singleton avec manche.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-reponse",
+    "caseFamilyPropose": "q400-b-drury-reponse",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 13,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 14
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♠",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "13 H, cinq Piques AR974 et doubleton ♥D8 : 2♦ attente, contraste 085 singleton avec manche.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "13 H, cinq Piques AR974 et doubleton ♥D8 : 2♦ attente, contraste 085 singleton avec manche.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-084",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "17 H, six Cœurs ARDV94, As extérieur et doubletons : 3♥ espoir de chelem. Difficulté 4 pour jugement, contraste 082 faible.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-reponse",
+    "caseFamilyPropose": "q400-b-drury-reponse",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 17,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 19
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "17 H, six Cœurs ARDV94, As extérieur et doubletons : 3♥ espoir de chelem. Difficulté 4 pour jugement, contraste 082 faible.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "17 H, six Cœurs ARDV94, As extérieur et doubletons : 3♥ espoir de chelem. Difficulté 4 pour jugement, contraste 082 faible.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Décision ciblée : 17 H, six Cœurs très solides et un As extérieur : le Drury fitté rend un chelem envisageable.",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q400-B-085",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Piques R9742, quatre Carreaux AV92 et singleton ♣6 : 4♠ après valorisation, contraste 083 attente. Corrigé cohérent.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-reponse",
+    "caseFamilyPropose": "q400-b-drury-reponse",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          4,
+          1
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury fitté)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♠",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "4♠",
+      "reponseProposee": "4♠",
+      "corrige": "12 H, cinq Piques R9742, quatre Carreaux AV92 et singleton ♣6 : 4♠ après valorisation, contraste 083 attente. Corrigé cohérent.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Piques R9742, quatre Carreaux AV92 et singleton ♣6 : 4♠ après valorisation, contraste 083 attente. Corrigé cohérent.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-014"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-086",
+    "verdict": "VALIDE",
+    "justification": "11 H, trois Cœurs RV7, quatre Piques et doubleton ♣V5 : 2♥ après 2♦, pas besoin de montrer Piques. Contraste 087 quatre atouts.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-suite",
+    "caseFamilyPropose": "q400-b-drury-suite",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          4,
+          3,
+          4,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury fitté)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (attente)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "3♥",
+        "4♥",
+        "3SA"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "11 H, trois Cœurs RV7, quatre Piques et doubleton ♣V5 : 2♥ après 2♦, pas besoin de montrer Piques. Contraste 087 quatre atouts.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, trois Cœurs RV7, quatre Piques et doubleton ♣V5 : 2♥ après 2♦, pas besoin de montrer Piques. Contraste 087 quatre atouts.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-087",
+    "verdict": "VALIDE",
+    "justification": "10 H, quatre Piques RD83, doubleton ♣84 : 3♠ après 2♦, contraste 086. Le Drury initial est approprié sans singleton.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-suite",
+    "caseFamilyPropose": "q400-b-drury-suite",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Vous : Passe",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury fitté)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (attente)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♠",
+        "3♠",
+        "4♠",
+        "3SA"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "10 H, quatre Piques RD83, doubleton ♣84 : 3♠ après 2♦, contraste 086. Le Drury initial est approprié sans singleton.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H, quatre Piques RD83, doubleton ♣84 : 3♠ après 2♦, contraste 086. Le Drury initial est approprié sans singleton.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-088",
+    "verdict": "VALIDE",
+    "justification": "10 H, quatre Cœurs DV74, ♦7 sec, cinq Trèfles : 3♦ courte après 3♣ interrogatif. Contraste V484-005 retour atout.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 4,
+        "decision": "Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+        "role": "reserve",
+        "phase": "extension_conditionnelle"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 4,
+        "decision": "Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+        "role": "reserve",
+        "phase": "extension_conditionnelle"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-drury-courte-suite",
+    "caseFamilyPropose": "q400-b-drury-courte-suite",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          3,
+          4,
+          1,
+          5
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (fit quatrième et courte)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (interrogatif)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "3SA"
+      ],
+      "reponse": "3♦",
+      "reponseProposee": "3♦",
+      "corrige": "10 H, quatre Cœurs DV74, ♦7 sec, cinq Trèfles : 3♦ courte après 3♣ interrogatif. Contraste V484-005 retour atout.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H, quatre Cœurs DV74, ♦7 sec, cinq Trèfles : 3♦ courte après 3♣ interrogatif. Contraste V484-005 retour atout.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "S32/4 Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-083",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "19 H, six Cœurs ARDV109, As extérieur, doubletons : 3♥ espoir chelem, proche V484-011/084, difficulté 4 harmonisée.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1cP2t-3c",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1cP2t-3c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 19,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 21
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "19 H, six Cœurs ARDV109, As extérieur, doubletons : 3♥ espoir chelem, proche V484-011/084, difficulté 4 harmonisée.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "19 H, six Cœurs ARDV109, As extérieur, doubletons : 3♥ espoir chelem, proche V484-011/084, difficulté 4 harmonisée.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "19 H, distribution 2–6–3–2. Six atouts très solides et force de chelem : le saut à 3M exprime cette ambition, sans conclure précipitamment.",
+          "after": "Avec six Cœurs ARDV109 et 19 H, le fit promis par Drury ouvre une perspective de chelem. Le saut à 3♥ l'exprime ; 4♥ conclurait à la manche sans ambition supplémentaire."
+        },
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Décision ciblée : Six atouts très solides et force de chelem : le saut à 3M exprime cette ambition, sans conclure précipitamment.",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-154",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H + 1 L = 10 HL, cinq Cœurs RDV108, vulnérabilité favorable : 2♥ faible. Énoncé tactique légitime, corrigé elliptique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1cP2t-2c",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1cP2t-2c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "4♥",
+        "3♥",
+        "2♦",
+        "2♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "9 H + 1 L = 10 HL, cinq Cœurs RDV108, vulnérabilité favorable : 2♥ faible. Énoncé tactique légitime, corrigé elliptique.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H + 1 L = 10 HL, cinq Cœurs RDV108, vulnérabilité favorable : 2♥ faible. Énoncé tactique légitime, corrigé elliptique.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "9 H, distribution 2–5–3–3. Ouverture tactique non vulnérable, couleur d'entame, répétition faible.",
+          "after": "Avec cinq Cœurs et 9 H (10 HL), répétez 2♥ sur le Drury. Vous indiquez une ouverture légère sans espoir de manche ; 2♦ montrerait au moins un espoir de manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-155",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, cinq Cœurs AD986, doubleton ♣R6 : 2♦ attente. Analogue V4-102-1, développer opposition à 2♥.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1cP2t-2k",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1cP2t-2k",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 13,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 14
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "13 H, cinq Cœurs AD986, doubleton ♣R6 : 2♦ attente. Analogue V4-102-1, développer opposition à 2♥.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "13 H, cinq Cœurs AD986, doubleton ♣R6 : 2♦ attente. Analogue V4-102-1, développer opposition à 2♥.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-102-1",
+          "V2-M6-011"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "13 H, distribution 3–5–3–2. Vraie ouverture régulière, 2♦ d'attente.",
+          "after": "Avec 13 H, cinq Cœurs et une distribution régulière, vous avez un espoir de manche sans certitude. 2♦ est l'enchère artificielle d'attente ; 2♥ signalerait une main faible sans espoir de manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-156",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H + 1 L = 13 HL, cinq Cœurs AR986, doubleton ♣V6 : 2♦ attente, limite du seuil faible. Corrigé à préciser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1cP2t-2k",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1cP2t-2k",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "12 H + 1 L = 13 HL, cinq Cœurs AR986, doubleton ♣V6 : 2♦ attente, limite du seuil faible. Corrigé à préciser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H + 1 L = 13 HL, cinq Cœurs AR986, doubleton ♣V6 : 2♦ attente, limite du seuil faible. Corrigé à préciser.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "12 H, distribution 3–5–3–2. Vraie ouverture régulière, espoir de manche.",
+          "after": "Vos cinq Cœurs et 12 H valent 13 HL. Ce n'est pas la main faible (12 HL ou moins) qui reviendrait à 2♥. Utilisez 2♦ d'attente pour explorer la manche avec le partenaire fitté."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-157",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H, six Cœurs ARD1086, As et Roi extérieurs : 3♥ chelem. Analogue 083 mais moins de force brute ; expliciter 4♥ conclusion et difficulté 4.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1cP2t-3c",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1cP2t-3c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 18,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♥",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "18 H, six Cœurs ARD1086, As et Roi extérieurs : 3♥ chelem. Analogue 083 mais moins de force brute ; expliciter 4♥ conclusion et difficulté 4.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "18 H, six Cœurs ARD1086, As et Roi extérieurs : 3♥ chelem. Analogue 083 mais moins de force brute ; expliciter 4♥ conclusion et difficulté 4.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/3 Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "18 H, distribution 3–6–2–2. Six Cœurs solides et dix-huit points, saut avec ambition de chelem.",
+          "after": "Avec six Cœurs solides et 18 H, le fit du partenaire donne un espoir de chelem. Le saut à 3♥ garde de la place pour explorer les contrôles ; 4♥ serait une conclusion sans ambition de chelem."
+        },
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Décision ciblée : Six Cœurs solides et dix-huit points, saut avec ambition de chelem.",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-158",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H, six Piques ARD1086, As extérieur, deux doubletons : 3♠ espoir chelem. Variante symétrique 157, difficulté 4 harmonisée.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 3,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1pP2t-3p",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1pP2t-3p",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 18,
+        "shape": [
+          6,
+          3,
+          2,
+          2
+        ],
+        "hl": 20
+      },
+      "sequence": [
+        "Partenaire : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♦",
+        "2♠",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "3♠",
+      "reponseProposee": "3♠",
+      "corrige": "18 H, six Piques ARD1086, As extérieur, deux doubletons : 3♠ espoir chelem. Variante symétrique 157, difficulté 4 harmonisée.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "18 H, six Piques ARD1086, As extérieur, deux doubletons : 3♠ espoir chelem. Variante symétrique 157, difficulté 4 harmonisée.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/3 Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "18 H, distribution 6–3–2–2. Six Piques solides et dix-huit points, 3♠ prospectif.",
+          "after": "Avec six Piques solides et 18 H, le Drury fitté fait envisager le chelem. 3♠ exprime cet espoir, contrairement à 4♠ qui conclurait à la manche."
+        },
+        {
+          "field": "difficulty",
+          "before": 3,
+          "after": 4
+        },
+        {
+          "field": "difficultyReason",
+          "before": "Décision ciblée : Six Piques solides et dix-huit points, 3♠ prospectif.",
+          "after": "Choix du projet de manche ou de chelem après un fit constructif, avec réévaluation de la main."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-159",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois Cœurs RD8 et 4333 : 2♥ économique après 2♦. Analogue V484-001 ; corrigé elliptique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-suite-VPP1cV2tP2k-2c",
+    "caseFamilyPropose": "q685-b-drury-suite-VPP1cV2tP2k-2c",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Cœur)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♥",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "11 H, trois Cœurs RD8 et 4333 : 2♥ économique après 2♦. Analogue V484-001 ; corrigé elliptique.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, trois Cœurs RD8 et 4333 : 2♥ économique après 2♦. Analogue V484-001 ; corrigé elliptique.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-001"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "11 H, distribution 3–3–4–3. Trois Cœurs et onze points, retour économique.",
+          "after": "Le 2♦ d'attente du partenaire montre un espoir de manche. Avec trois Cœurs, revenez à 2♥ pour préciser votre longueur de soutien ; 3♥ en montrerait quatre."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-160",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre Cœurs AD84 et ♣6 sec : 3♥ code courte Trèfle après 3♣. Analogue V484-005 ; expliciter code non naturel.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 4,
+        "decision": "Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+        "role": "reserve",
+        "phase": "extension_conditionnelle"
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 4,
+        "decision": "Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+        "role": "reserve",
+        "phase": "extension_conditionnelle"
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 3,
+      "minSession": 30,
+      "requires": [
+        {
+          "concept": "drury.choix",
+          "minExposure": 2
+        },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-suite-VPP1cV2SAP3t-3c",
+    "caseFamilyPropose": "q685-b-drury-suite-VPP1cV2SAP3t-3c",
+    "difficulteInitiale": 4,
+    "difficulteProposee": 4,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          4,
+          4,
+          4,
+          1
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♥ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2SA (quatre atouts Cœur et singleton)",
+        "Adversaire : Passe",
+        "Partenaire : 3♣ (relais demandant la couleur de la courte)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "reponseProposee": "3♥",
+      "corrige": "10 H, quatre Cœurs AD84 et ♣6 sec : 3♥ code courte Trèfle après 3♣. Analogue V484-005 ; expliciter code non naturel.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H, quatre Cœurs AD84 et ♣6 sec : 3♥ code courte Trèfle après 3♣. Analogue V484-005 ; expliciter code non naturel.",
+      "prerequis": "drury.suite, stade 3, minimum S30; drury.choix×2, majeur.soutien×1, ouv.position×1; maintien du verrou",
+      "affectations": "S32/4 Extension explicite S32 : réponse au relais 3♣ après le 2SA fitté avec courte ; ne pas confondre avec les suites du Drury à 2♣.",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "10 H, distribution 4–4–4–1. Le singleton Trèfle se décrit par 3♥ après le relais 3♣.",
+          "after": "Le relais 3♣ occupe l'enchère de Trèfle. Avec ♣6 sec, annoncez 3♥, retour dans l'atout agréé qui code la courte Trèfle. Ce n'est ni une courte Cœur ni un refus de manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-168",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H + 1 L = 13 HL, cinq Piques AV986 et ♣D6 doubleton : 2♦ attente, contraste 169 faible. Corrigé à préciser seuil HL.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1pP2t-2k",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1pP2t-2k",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "2♠",
+        "3♠",
+        "2♦",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "reponseProposee": "2♦",
+      "corrige": "12 H + 1 L = 13 HL, cinq Piques AV986 et ♣D6 doubleton : 2♦ attente, contraste 169 faible. Corrigé à préciser seuil HL.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H + 1 L = 13 HL, cinq Piques AV986 et ♣D6 doubleton : 2♦ attente, contraste 169 faible. Corrigé à préciser seuil HL.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "12 H, distribution 5–3–3–2. Vraie ouverture régulière de 12 H : 2♦ d'attente, pas la répétition faible.",
+          "after": "Avec 12 H et cinq Piques, vous avez 13 HL, assez pour conserver un espoir de manche. 2♦ est l'enchère d'attente du Drury ; 2♠ signalerait une main faible de 12 HL ou moins."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-169",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H + 2 L = 10 HL, six Piques RDV986, vulnérabilité favorable : 2♠ faible. Contraste 168 normale ; développer explication.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.reponse",
+    "conceptPropose": "drury.reponse",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 1,
+        "decision": "Réponse de l'ouvreur",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.reponse",
+      "stage": 1,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-reponse-PPV1pP2t-2p",
+    "caseFamilyPropose": "q685-b-drury-reponse-PPV1pP2t-2p",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 10
+      },
+      "sequence": [
+        "Partenaire : Passe",
+        "Adversaire : Passe",
+        "Vous : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Partenaire : 2♣ (Drury)"
+      ],
+      "position": "ouvreur",
+      "choix": [
+        "4♠",
+        "2♠",
+        "3♠",
+        "2♦"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "8 H + 2 L = 10 HL, six Piques RDV986, vulnérabilité favorable : 2♠ faible. Contraste 168 normale ; développer explication.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H + 2 L = 10 HL, six Piques RDV986, vulnérabilité favorable : 2♠ faible. Contraste 168 normale ; développer explication.",
+      "prerequis": "drury.reponse, stade 1, minimum S26; drury.init×1; maintien du verrou",
+      "affectations": "S32/1 Réponse de l'ouvreur",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "8 H, distribution 6–2–3–2. Ouverture légère non vulnérable avec six Piques solides : répétition faible à 2♠.",
+          "after": "Avec 8 H et six Piques, vous avez 10 HL. Après le Drury, 2♠ signale une ouverture tactique faible sans espoir de manche. La répétition simple n'exige pas six cartes."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-170",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois Piques A83 et 4333 : 2♠ économique après 2♦. Analogue 159 Cœur et V484-003, développer contraste trois/quatre.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://res.cloudinary.com/ffbridge/image/upload/v1725446344/production/cms/ADTN_52_BD_2_6a558ea8dd.pdf#page=29",
+      "https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/",
+      "https://scjc-bridge.fr/les-nouveautes-du-sef-2018"
+    ],
+    "conceptInitial": "drury.suite",
+    "conceptPropose": "drury.suite",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 32,
+        "group": 2,
+        "decision": "Suites après 2♦",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "drury.suite",
+      "stage": 2,
+      "minSession": 26,
+      "requires": [
+        {
+          "concept": "drury.init",
+          "minExposure": 1
+        },
+        {
+          "concept": "drury.reponse",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-drury-suite-VPP1pV2tP2k-2p",
+    "caseFamilyPropose": "q685-b-drury-suite-VPP1pV2tP2k-2p",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Vous : Passe (premier tour)",
+        "Adversaire : Passe",
+        "Partenaire : 1♠ (3e position)",
+        "Adversaire : Passe",
+        "Vous : 2♣ (Drury, fit Pique)",
+        "Adversaire : Passe",
+        "Partenaire : 2♦ (enchère d’attente, espoir de manche)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant passé d'entrée",
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "11 H, trois Piques A83 et 4333 : 2♠ économique après 2♦. Analogue 159 Cœur et V484-003, développer contraste trois/quatre.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, trois Piques A83 et 4333 : 2♠ économique après 2♦. Analogue 159 Cœur et V484-003, développer contraste trois/quatre.",
+      "prerequis": "drury.suite, stade 2, minimum S26; drury.init×1, drury.reponse×1; maintien du verrou",
+      "affectations": "S32/2 Suites après 2♦",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V484-003"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "11 H, distribution 3–3–4–3. Trois Piques et 11 H, retour économique à 2♠ après le 2♦ d'attente.",
+          "after": "Après le 2♦ d'attente du Drury, revenez à 2♠ avec trois atouts. 3♠ décrirait quatre atouts ; le retour économique laisse l'ouvreur choisir le niveau final."
+        }
+      ]
+    }
   }
 ]
