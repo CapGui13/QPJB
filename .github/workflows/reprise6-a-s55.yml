@@ -1,0 +1,24 @@
+name: Reprise 6 A - diagnostic causal S55
+on:
+  push:
+    branches: [coherence-concrete/reprise6-a-s55-ci]
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-reprise6-a-s55-diagnostic.cjs s55-diagnostic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s55-diagnostic
+          path: s55-diagnostic/
