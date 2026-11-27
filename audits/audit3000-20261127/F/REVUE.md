@@ -1,6 +1,6 @@
-# AUDIT3000-F — revue partielle, passes 1–11
+# AUDIT3000-F — revue individuelle 436/436 et passe finale
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 IDs du lot, 3000 catalogue. 436/436 relus individuellement, verdicts {"VALIDE":218,"ARBITRAGE":7,"RECLASSER_REFORMULER":211}, 210 corrections complètes, 3 ajouts proposés aux groupes, 5 modifications de prérequis. Aucun fichier commun modifié.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 IDs du lot, 3000 catalogue. 436/436 relus individuellement. Aucun fichier commun modifié. Bilan final ci-dessous.
 
 ## Anomalies et décisions
 - Passe 1 : relais donné dans l'énoncé ; préciser troisième couleur forcing un tour, neutraliser Splinters ; correction de vigilance V45-015 (As de Trèfle détenu). Quatrième 1♠ économique V45-017 : arbitrage sur la lecture SEF 2024 p.53 vs traitement catalogue.
@@ -16,7 +16,102 @@ Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, contrat #556, mission #562. 436 I
 - Passe 11 : motifs erronés de difficulté (troisième/quatrième, zones H/HL), énoncés neutralisés, distracteurs du Gambling huitième remplacés.
 - 136 IDs sans groupe direct ; pas de réintégration de masse. Signatures proches dans les 436 : [["SEF-V45-011",["SEF-Q400-D-030"]],["SEF-C2-010",["SEF-Q400-D-092"]],["SEF-V475-002",["V2-M6-015"]],["SEF-V486-030",["V2-M6-029"]],["SEF-L32-005",["V2-M6-041"]],["V2-M6-015",["SEF-V475-002"]],["V2-M6-029",["SEF-V486-030"]],["V2-M6-041",["SEF-L32-005"]],["SEF-Q400-D-030",["SEF-V45-011"]],["SEF-Q400-D-092",["SEF-C2-010"]]] ; candidats de redondance, non arbitrage sémantique exhaustif.
 
-## Tests réellement exécutés
-JS sur les 436 de la base : 13 cartes, H, forme, rangs uniques par couleur, quatre choix distincts et réponse incluse, minSession des groupes directs ; zéro anomalie. 3000 IDs catalogue uniques, correspondance périmètre. Après passe 11 : 436 verdicts uniques exactement préfixe du périmètre ; corrections rattachées, uniques, groupes proposés existants. Pas de tests Node du dépôt exécutés ni de certification SEF exhaustive ; contrôle de légalité complet et comparaison sémantique globale à finir. Sources dans verdicts. PR brouillon #565.
 
-INCOMPLET : 0 ID sans verdict. Ne pas intégrer les patches avant revue coordinateur. Aucune fusion.
+## Bilan final
+
+{
+  "verdicts": {
+    "VALIDE": 217,
+    "ARBITRAGE": 7,
+    "RECLASSER_REFORMULER": 209,
+    "ERREUR_PEDAGOGIQUE": 3
+  },
+  "corrections": 210,
+  "prerequis": 5,
+  "ajouts": 3,
+  "retraits": 2,
+  "champs": {
+    "context": 180,
+    "explain": 19,
+    "difficultyReason": 21,
+    "choices": 1
+  },
+  "testedHands": 436,
+  "testedChoices": 1744,
+  "testedBids": 1098,
+  "doubles": 4,
+  "exactDup": [],
+  "erreurs": 0,
+  "nonAffectes": 136,
+  "nonAffectesProposes": 135
+}
+
+### Répartition par concept initial
+- fortes.ouverture : {"VALIDE":13,"ARBITRAGE":2,"RECLASSER_REFORMULER":6}
+- chelem.quantitatif : {"VALIDE":11,"RECLASSER_REFORMULER":6}
+- fortes.relais : {"RECLASSER_REFORMULER":13,"VALIDE":17,"ARBITRAGE":1}
+- fortes.redemande : {"VALIDE":11,"RECLASSER_REFORMULER":7}
+- forcing.troisieme : {"RECLASSER_REFORMULER":20,"VALIDE":6}
+- forcing.quatrieme : {"VALIDE":18,"ARBITRAGE":1,"RECLASSER_REFORMULER":27}
+- forcing.base : {"RECLASSER_REFORMULER":8,"VALIDE":4,"ERREUR_PEDAGOGIQUE":1}
+- chelem.cles : {"VALIDE":26,"ARBITRAGE":1,"RECLASSER_REFORMULER":1,"ERREUR_PEDAGOGIQUE":1}
+- chelem.splinter : {"RECLASSER_REFORMULER":8,"VALIDE":6}
+- chelem.blackwood.suite : {"RECLASSER_REFORMULER":6,"VALIDE":13}
+- chelem.blackwood.dame_rois : {"RECLASSER_REFORMULER":9,"VALIDE":8}
+- fortes.suite : {"RECLASSER_REFORMULER":17,"VALIDE":8}
+- chelem.controles : {"RECLASSER_REFORMULER":19,"VALIDE":22}
+- forcing.quatrieme.suite : {"ARBITRAGE":2,"VALIDE":8,"RECLASSER_REFORMULER":8}
+- chelem.quantitatif.suite : {"RECLASSER_REFORMULER":7,"VALIDE":8}
+- chelem.blackwood.declenchement : {"RECLASSER_REFORMULER":12,"VALIDE":2}
+- sa.gambling : {"VALIDE":9,"RECLASSER_REFORMULER":7,"ERREUR_PEDAGOGIQUE":1}
+- forcing.checkback : {"RECLASSER_REFORMULER":6,"VALIDE":8}
+- chelem.splinter.variante : {"RECLASSER_REFORMULER":15,"VALIDE":3}
+- forcing.troisieme.suite : {"RECLASSER_REFORMULER":3,"VALIDE":9}
+- ouv.bicolore.exception : {"RECLASSER_REFORMULER":4,"VALIDE":7}
+
+### Séances initiales (un ID peut figurer dans plusieurs séances)
+- S33 : {"VALIDE":11,"RECLASSER_REFORMULER":3}
+- S34 : {"RECLASSER_REFORMULER":11,"VALIDE":15,"ARBITRAGE":1}
+- S35 : {"VALIDE":10,"RECLASSER_REFORMULER":3}
+- S36 : {"RECLASSER_REFORMULER":8,"VALIDE":8}
+- S37 : {"RECLASSER_REFORMULER":17,"VALIDE":9,"ERREUR_PEDAGOGIQUE":1}
+- S38 : {"VALIDE":11,"RECLASSER_REFORMULER":9}
+- S39 : {"ARBITRAGE":2,"VALIDE":10,"RECLASSER_REFORMULER":6}
+- S40 : {"VALIDE":6}
+- S48 : {"VALIDE":6,"RECLASSER_REFORMULER":1}
+- S49 : {"RECLASSER_REFORMULER":10,"VALIDE":2}
+- S50 : {"RECLASSER_REFORMULER":21,"VALIDE":13}
+- S51 : {"VALIDE":18,"RECLASSER_REFORMULER":14}
+- S52 : {"VALIDE":19,"RECLASSER_REFORMULER":9}
+- S53 : {"VALIDE":18,"RECLASSER_REFORMULER":16}
+- S54 : {"VALIDE":11,"RECLASSER_REFORMULER":10,"ERREUR_PEDAGOGIQUE":1}
+- S61 : {"RECLASSER_REFORMULER":11,"VALIDE":7}
+- S62 : {"VALIDE":18,"RECLASSER_REFORMULER":12,"ERREUR_PEDAGOGIQUE":1}
+- S64 : {"ARBITRAGE":1,"VALIDE":4,"RECLASSER_REFORMULER":3}
+- S65 : {"RECLASSER_REFORMULER":5,"VALIDE":2}
+
+## Comparaison de redondance approfondie
+Séquence normalisée (ignore Passes adverses explicites et annotations), réponse, honneurs par couleur, forme comparés sur 3000 QCM. Six paires à signature équivalente, toutes intra-F ; revue spécifique ci-dessous. Les voisinages même séquence/concept/réponse sont indiqués par ID dans verdicts. Pas de suppression d'ID ; deux retraits proposés de groupes objectifs. Aucun doublon exact main/séquence/contexte/réponse dans F. Les permutations de petites cartes ne créent pas un nouveau mécanisme ; les contrastes utiles sont préservés.
+- SEF-V45-011 / SEF-Q400-D-030 : Même réponse 3♣, un seul As de Trèfle, même forme et honneurs ; seules petites cartes changent. Deux exemplaires objectif S34/G1. Conserver Q400, proposer retrait de V45 du groupe sans supprimer son ID.
+- SEF-C2-010 / SEF-Q400-D-092 : Même atout Cœur, deux clés et Dame, mêmes honneurs/forme. C2 sans groupe direct ; préserver le contraste C2-009/C2-010 dans historique, ne pas réintégrer C2-010 à la place du Q400 affecté S62.
+- SEF-V475-002 / V2-M6-015 : Même deux Rois à 6 H, sans As, mêmes longueurs. V475 affecté en réserve S34 ; V2 sans groupe direct et associé au contre-exemple trois Dames. Ne pas exposer les deux successivement ; préserver paire V2 pour transfert.
+- SEF-V483-001 / SEF-Q400-D-074 : Même contrôle A♦, mêmes honneurs/forme et même séquence 1♠–3♠–4♣ ; différence seulement des petites cartes et des Passes explicités. V483 est historique et affecté à six séances. Proposer retrait du Q400 du groupe S49/G0 ; ID conservé.
+- SEF-V486-030 / V2-M6-029 : Même force 11 H, même arrêt ♣, même séquence et décision 2SA. V486 objectif S39/G2, V2 réserve S39/G3 lié au contre-exemple 14 H. Maintenir distinction objectif/réserve, ne pas juxtaposer hors contraste.
+- SEF-L32-005 / V2-M6-041 : Même deux clés et chicane ♦ utile, même forme/honneurs, 5SA. Tous deux sans groupe direct. Préférer V2 pour paire chicane/singleton V2-M6-042 si réactivation ; ne pas réintroduire les deux.
+
+## Arbitrages à transmettre au coordinateur
+- SEF-V45-001 : 22 H 3343, même décision que V44-002 ; réponse et corrigé corrects. Pas d'affectation directe : conserver en réserve historique plutôt que dupliquer S33 sans objectif distinct.
+- SEF-V45-011 : Un seul As de Trèfle, 6 H : 3♣ exact, S34. Signature très proche de SEF-Q400-D-030 (mêmes honneurs par couleur, forme et enchère) ; vérifier lequel sert de réserve, ne pas supprimer.
+- SEF-V45-017 : 13 H, 5 Carreaux, ♠DV3. Le catalogue autorise 1♠ artificiel et seuil 8 HL ; la source SEF 2024 p.53 décrite par Chailley parle d'une quatrième couleur naturelle. Ne pas imposer un accord non vérifié. Option si 1♠ naturel retenu : modifier main à ♠DV83 ♥52 ♦AD876 ♣A9 (13 H) et expliquer 1♠ naturel forcing ; vérifier H et alternatives. Pas d'affectation directe.
+- SEF-C2-010 : Deux clés ♠A et ♥R avec ♥D : 5♠ exact. Contraste utile avec C2-009 mais signature équivalente à SEF-Q400-D-092 ; pas de groupe direct, arbitrer la réserve plutôt que réintégrer mécaniquement.
+- SEF-V486-026 : 12 H, quatre Cœurs, pas d'arrêt Trèfle ; 2SA de l'ouvreur fournit l'arrêt et exclut le soutien de trois Cœurs. 3SA plausible mais minimum cumulé de 24 H et interprétation mini-maxi à confronter à la convention locale. Ne pas changer le corrigé sans arbitrage.
+- SEF-L30-001 : 19 H, 5♠5♥, quatre perdantes (♠D, ♥R, deuxième Carreau, singleton Trèfle). Les fiches 2024 décrivent 2♣ puis 3SA avec trois perdantes ; une source antérieure évoque seulement 18–21 H. Vérifier la dérogation avant de retenir 2♣ ou corriger vers 1♠ ; ne pas entériner un critère vague.
+- SEF-Q400-D-018 : 12 H, quatre Cœurs, 2SA de l'ouvreur avec arrêt Trèfle et déni trois Cœurs : 3SA plausible mais 24 H minimum comme V486-026. Examiner l'option Passe (absente), et convention mini-maxi avant validation.
+
+## Contrôles réellement exécutés
+- JS sur catalogue et table base : cardinalité 3000 IDs et 436 périmètre exact ; 436 verdicts uniques, 210 objets complets modifiés sans changement d'ID, cinq prérequis, trois ajouts et deux retraits de groupes. Avant/après dans verdicts.
+- Catalogue corrigé en mémoire : 436 mains 13 cartes, rangs légaux et uniques par couleur, H et forme recalculés ; 1744 choix contrôlés, quatre distincts/réponse incluse ; 1098 enchères de contrat contrôlées pour ordre strictement croissant, 4 Contres vérifiés dans la séquence. Zéro anomalie selon ces tests. Tous groupes proposés réels et minSession vérifiée ; concepts et dépendances présents dans table. Passes omis supposés conformément aux énoncés ; la rotation complète et les situations de jeu ne sont pas prouvées par ce test.
+- Comparaison Git base → passe 11 : onze commits, uniquement les six livrables F. Aucune exécution Node des suites existantes : connecteur GitHub sans clone/terminal du dépôt ni workflow PR constaté sur SHA passe 11. Pas de certification externe SEF exhaustive. La comparaison de signatures et voisinages couvre les 3000 mais ne constitue pas un arbitrage manuel exhaustif de toutes les équivalences sémantiques. Les sept arbitrages restent ouverts au coordinateur.
+
+## État
+436/436 verdicts livrés, corrections exploitables, PR brouillon #565. Aucun ID restant à relire dans cette passe. Ne pas intégrer les patches avant revue coordinateur. Contrôles Node et examen sémantique exhaustif non terminés ; pas de prétention à une recette intégrale. Aucune fusion.
