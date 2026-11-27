@@ -1,48 +1,8 @@
 # REPRISE — F
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit c685ba4c803bb07b640a3b8e8de7e2c0e57603f4. Passes 1–4 : 160/436, dernier SEF-L24-003, prochain SEF-L27-003. SHA actuel via HEAD. Verdicts {"VALIDE":46,"ARBITRAGE":5,"RECLASSER_REFORMULER":109}, 109 corrections, 3 propositions réservoir, 2 prérequis. Tests structurels sur 436 et couverture partielle 160 ; reste tests Node et comparaison globale.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 69372138c8622a135f1dc8084427b0911a99304e. Passes 1–5 : 200/436, dernier SEF-Q26-M6-011, prochain SEF-Q26-M6-012. SHA actuel via HEAD. Verdicts {"VALIDE":59,"ARBITRAGE":6,"RECLASSER_REFORMULER":135}, 135 corrections, 3 propositions réservoir, 3 prérequis. Tests structurels sur 436 et couverture partielle 200 ; reste tests Node et comparaison globale.
 
-## IDs restant à relire (276)
-SEF-L27-003
-SEF-L27-005
-SEF-L28-001
-SEF-L28-004
-SEF-L29-004
-SEF-L29-005
-SEF-L30-001
-SEF-L30-004
-SEF-L31-005
-SEF-L32-004
-SEF-L32-005
-SEF-L33-003
-SEF-L35-004
-SEF-L37-002
-SEF-L40-002
-SEF-L41-002
-SEF-L41-005
-SEF-L42-002
-SEF-L42-005
-SEF-L43-004
-SEF-L44-001
-SEF-L44-004
-SEF-L44-005
-SEF-Q26-M1-006
-SEF-Q26-M1-007
-SEF-Q26-M2-014
-SEF-Q26-M2-015
-SEF-Q26-M2-016
-SEF-Q26-M2-017
-SEF-Q26-M3-005
-SEF-Q26-M3-006
-SEF-Q26-M3-007
-SEF-Q26-M6-001
-SEF-Q26-M6-002
-SEF-Q26-M6-003
-SEF-Q26-M6-005
-SEF-Q26-M6-006
-SEF-Q26-M6-009
-SEF-Q26-M6-010
-SEF-Q26-M6-011
+## IDs restant à relire (236)
 SEF-Q26-M6-012
 V1-M2-001
 V1-M5-003
