@@ -15,3 +15,7 @@ Cumul : {"VALIDE":88,"RECLASSER_REFORMULER":19,"ERREUR_PEDAGOGIQUE":9,"ARBITRAGE
 ## Passe 4 (121–160)
 
 Cumul : {"VALIDE":116,"RECLASSER_REFORMULER":29,"ERREUR_PEDAGOGIQUE":10,"ARBITRAGE":5} ; 35 corrections, 6 propositions de réservoir. V49-042 : soutien simple de 16 HLD, pas de zone 12–14 H. V410-023/024 : contexte non passé explicité pour exclure Drury. V411-006 : arbitrage sur la valorisation des doubletons honorés et l'absence de 4♥ dans les choix. Deux propositions de réservoir contrastif S5 (V49-036/037). Contrôle ensemble exact des 160 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 294 restant à relire. Aucun test natif exécuté.
+
+## Passe 5 (161–200)
+
+Cumul : {"VALIDE":148,"RECLASSER_REFORMULER":35,"ERREUR_PEDAGOGIQUE":11,"ARBITRAGE":6} ; 41 corrections, 6 propositions de réservoir, 1 proposition de prérequis. V412-001 : calcul brut 17 HLD, question précise l'absence de décote du Roi second, réponse 3♠. V412-002 : mini-maxi 2SA SEF 2024 confirmé, distinction 3SA singleton ♣. V416-003 : bicolore à saut (20 HL) distinct du cher sans saut ; manque de concept dédié signalé. V416-004 : arbitrage sur soutien mineur à 15 HLD bruts. V417-001 : décaler après première exposition de red.base, comme ses analogues. Contrôle ensemble exact des 200 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 254 restant à relire. Aucun test natif exécuté.
