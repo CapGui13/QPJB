@@ -2,6 +2,7 @@
 const rank=require('../quizz-coherence-m4p-a-rank.js').rank;
 const family=q=>String(q.caseFamily||q.id);
 function finish(selected,slots,common,pick){
+ const family=q=>String(q.caseFamily||q.id);
  if(common.session<3||common.session>20||selected.length!==10||
  new Set(selected.map(v=>v.exercise.id)).size!==10||new Set(selected.map(v=>family(v.exercise))).size!==10)return selected;
  const options=[];
@@ -37,7 +38,7 @@ function instrument(source){
       }
       ${anchor}`).replace(end,`
       const __m4pADeck=(${finish.toString()})(selected,__m4pASlots,{session:s+1,history:state,exercises,metadataById:prerequis.byId},__m4Pick);
-      return logicalOrder(__m4pADeck,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));`.replace('const options=[];','const family=q=>String(q.caseFamily||q.id); const options=[];'));
+      return logicalOrder(__m4pADeck,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));`);
 }
 function pick(ctx,rows,old,maxSession=20,onChange=()=>{},policy='L'){
  if(ctx.session>Math.min(20,maxSession))return old;
