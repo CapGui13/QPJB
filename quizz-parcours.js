@@ -595,6 +595,22 @@ return Object.freeze({schema,mode:'T',choose});
         s.lastConsolidation={atSession:report.atSession,counts,parts};
       }
     }
+    // C4: separate practice log. Never interpreted as ordinary assessment or
+    // used to reconstruct native entries, evidence, scores or deadlines.
+    if(Array.isArray(old.foundationRecalls)){
+      const rows=old.foundationRecalls.slice(-1000).filter(ev=>ev&&
+        Number.isInteger(ev.session)&&ev.session>=66&&ev.session<=s.completed+1&&
+        Array.isArray(ev.answers)&&ev.answers.length>=4&&ev.answers.length<=6&&
+        new Set(ev.answers.map(a=>a?.id)).size===ev.answers.length&&
+        ev.answers.every(a=>a&&typeof a.id==='string'&&a.id.length<=100&&
+          ['correct','wrong','skipped'].includes(a.result)&&
+          (a.choice===null||typeof a.choice==='string')&&
+          typeof a.assisted==='boolean'&&typeof a.hadFreeError==='boolean'));
+      if(new Set(rows.map(ev=>ev.session)).size===rows.length&&rows.length)
+        s.foundationRecalls=rows.map(ev=>({session:ev.session,recordedAt:typeof ev.recordedAt==='string'?ev.recordedAt:null,
+          answers:ev.answers.map(a=>({id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
+            assisted:a.assisted,hadFreeError:a.hadFreeError,...firstGuessEvidence(a)}))}));
+    }
     // Champs facultatifs : les anciennes sauvegardes restent lisibles sans historique reconstruit.
     if(Array.isArray(old.journal)){
       s.journal=old.journal.slice(-1000).filter(event=>
@@ -1248,13 +1264,21 @@ return Object.freeze({schema,mode:'T',choose});
   const RECALL_CORE=Object.freeze(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
   function foundationRecallPlan(state,exercises,pool,e,limit){
     const s=state.completed,byId=new Map(exercises.map(q=>[q.id,q])),last=new Map();
-    if(s<65||limit<4)return null;
+    if(s<65||limit<4||(state.foundationRecalls||[]).some(ev=>ev.session===s+1))return null;
     // Real answered events only; skipped cards and merely proposed plans
     // are not retrieval. No inferred history on legacy saves.
     for(const ev of state.journal||[]){
       if(!['parcours','consolidation'].includes(ev.mode)||!Number.isInteger(ev.session))continue;
       const at=ev.mode==='consolidation'?ev.session-1:ev.session;
       if(at<1||at>s)continue;
+      for(const a of ev.answers||[]){
+        if(!['correct','wrong'].includes(a.result))continue;
+        const q=byId.get(a.id),c=q&&metadata(q)?.concept;
+        if(RECALL_CORE.includes(c))last.set(c,Math.max(last.get(c)||0,at));
+      }
+    }
+    for(const ev of state.foundationRecalls||[]){
+      const at=ev.session-1;if(!Number.isInteger(at)||at<65||at>s)continue;
       for(const a of ev.answers||[]){
         if(!['correct','wrong'].includes(a.result))continue;
         const q=byId.get(a.id),c=q&&metadata(q)?.concept;
@@ -1537,6 +1561,10 @@ return Object.freeze({schema,mode:'T',choose});
     for(const [t,v] of Object.entries(next))state.skills[t]=v;
     return true;
   }
+  function isFoundationActive(active){
+    return active?.mode==='consolidation'&&active.ids?.length>=4&&active.ids.length<=6&&
+      active.targets?.length===active.ids.length&&active.targets.every(t=>t==='foundation:recall');
+  }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
     if(!active||active.ids[position]!==x.id||Object.hasOwn(active.answers,position))return false;
@@ -1544,6 +1572,7 @@ return Object.freeze({schema,mode:'T',choose});
     active.answers[position]={result,choice:typeof choice==='string'?choice:null,
       assisted:!!assisted,hadFreeError:!!hadFreeError,
       ...firstGuessEvidence({result,choice,hadFreeError,firstGuess:firstGuess!==x.answer?firstGuess:null})};
+    if(isFoundationActive(active))return true;
     // Une réponse juste après une aide (ou une première mauvaise enchère
     // en saisie libre) n'est pas une preuve de maîtrise autonome.
     const independent=result==='correct'&&!assisted&&!hadFreeError;
@@ -1615,6 +1644,12 @@ return Object.freeze({schema,mode:'T',choose});
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Journal prospectif : aucune réponse d'une séance ancienne n'est inventée.
     const active=state.active,byId=new Map((exercises||[]).map(x=>[x.id,x]));
+    if(isFoundationActive(active)){
+      if((state.foundationRecalls||[]).some(ev=>ev.session===state.completed+1))return false;
+      const answers=active.ids.map((id,i)=>({id,...active.answers[i]}));
+      (state.foundationRecalls??=[]).push({session:state.completed+1,recordedAt:new Date().toISOString(),answers});
+      state.active=null;return true;
+    }
     normalizeThemeOrder(state,active,byId);
     const record={
       mode:active.mode==='consolidation'?'consolidation':'parcours',
@@ -1719,6 +1754,7 @@ return Object.freeze({schema,mode:'T',choose});
       summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
         totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
       sessions:journal,
+      ...(state.foundationRecalls?.length?{supplementalFoundationPractice:state.foundationRecalls}:{}),
       selectionDiagnostics:selectionDiagnostics(state,5),
       currentSession:state.active||null,
       questions,
@@ -1752,7 +1788,8 @@ return Object.freeze({schema,mode:'T',choose});
     // Un ancien journal incomplet reste incomplet : ni invention ni perte.
     if(Object.keys(restored.entries).length!==Object.keys(old.entries).length||
       (old.active&&!restored.active)||
-      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0))
+      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0)||
+      (restored.foundationRecalls?.length||0)!==(Array.isArray(old.foundationRecalls)?old.foundationRecalls.length:0))
       throw Error('Sauvegarde incohérente : aucune donnée n’a été remplacée.');
     return restored;
   }
