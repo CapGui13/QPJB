@@ -108,3 +108,22 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 5 — cumul actualisé
+
+200/540 verdicts individuels, 340 restants. {"VALIDE":81,"RECLASSER_REFORMULER":112,"ARBITRAGE":7}. 96 QCM complets corrigés, 15 modifications prérequis, 44 entrées réservoir.
+- V479-009 à 016 : distinguer relais positif, passe-ou-corrige, rôle intervenant et répondant ; enlever les longueurs prémâchées. V481 : vrais contrastes entre majeure/tenue, intervention 2♦/2♥ et rectification/Stayman. Les mêmes formulations anciennes donnaient la solution avant que l'élève lise la main.
+- V485 : contraste naturel F1 au palier de un / NF au palier de deux après Contre, 2SA Truscott mineur seuil 9 H, vulnérabilité et barrage. V486 : distinction Contre artificiel conservant les réponses usuelles et Landy adverse avec 2♦ naturel, cue-bid de tenue et Texas.
+- Propositions de groupes limitées aux groupes existants, sans simuler l'accès adaptatif. Tests mécaniques et rang simple des choix exécutés ; pas de suite locale.
+```json
+{
+  "verdicts": 200,
+  "idsUniques": 200,
+  "corrections": 96,
+  "correctionsInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": [],
+  "groupesNonTrouves": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
