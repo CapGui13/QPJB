@@ -148,3 +148,33 @@ Deux retraits antérieurs confirmés, dont Q400-D-074 en S49/G0 (V483-001 demeur
 - Zéro anomalie selon ces nouveaux contrôles. Les enchères n'ayant pas changé, le test des 1098 contrats et quatre contres de première passe reste historique ; il n'a pas été relancé ici.
 - 215 VALIDE, 213 RECLASSER_REFORMULER, 3 ERREUR_PEDAGOGIQUE, 5 ARBITRAGE (436). 212 corrections ; 136 sans affectation initiale, 141 sans affectation proposée. Les cinq arbitrages comprennent trois décisions de réservoir et deux points doctrinaux.
 - Suites Node existantes non exécutées : aucun workflow PR au SHA de départ, pas d'accès à un clone authentifié du dépôt ni de commande de déclenchement disponible. Ces contrôles JS indépendants ne sont pas des suites Node. Arbitrage sémantique exhaustif non achevé. Aucun fichier commun modifié, aucune fusion ; PR #565 reste brouillon. MISSION DÉFINITIVEMENT TERMINÉE : NON.
+
+
+## Passe de clôture pédagogique et transmission — bilan le plus récent
+Cette passe remplace les totaux précédents. SHA des données c3d2c5a79e5d3ef3c844bf07036079b3c7781b53.
+
+### Trois corrections supplémentaires
+- V45-017 : 1♠ après 1♣–1♦–1♥. Main passée de ♠DV3 ♥52 ♦AD876 ♣A98 à ♠DV83 ♥52 ♦AD876 ♣A9 (13 H inchangés, 4252), contexte, corrigé et motif de difficulté alignés. https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ (p.53, seuil 8 HL et formulation naturelle) ; https://www.ibridge.fr/public/fichedetails/571 (exception au caractère auto-forcing à 1♠). Le cas possède désormais quatre Piques ; cela sécurise la réponse dans les deux lectures. Ne pas en déduire une règle générale pour tous les cas à trois Piques.
+- L30-001 : ♠10 remplacé par ♠D, 21 H et trois perdantes (aucune à Pique, une à Cœur, une à Carreau, une à Trèfle), forme 5521 conservée. Le 2♣ suivi de 3SA artificiel est décrit par https://www.ibridge.fr/public/fichedetails/778 ; l'autre fiche https://www.ibridge.fr/public/fichedetails/601 indique 18–21 H. Le cas révisé est dans la zone commune ; pas de décision générale sur quatre perdantes. 
+- Q685-D-123 : suppression de « Dans cet accord » et de l'indice de réponse. Source consultée : https://www.bridgevoiron.fr/document-download/68e016455c7a3_NouveautesSEF2024.pdf, p.5 du document / p.33 du SEF (nouvelle couleur à saut = Splinter, au moins quatre atouts, au plus un contrôle d'honneur intérieur ou extérieur). Réponse 3♠ maintenue, explication enrichie.
+
+V45-017 et L30-001 passent d'ARBITRAGE à RECLASSER_REFORMULER, Q685-D-123 de VALIDE à RECLASSER_REFORMULER. Trois arbitrages d'affectation uniquement restent au coordinateur : V45-001 (laisser en réserve historique), V45-011 (retrait S34/G1 proposé, Q400-D-030 conservé), C2-010 (préserver contraste historique sans réintroduire au même objectif que Q400-D-092). Les trois propositions restent à valider globalement. Les deux points doctrinaux ont été contournés par des cas non ambigus, pas tranchés comme doctrine universelle. Les sources pédagogiques secondaires ne remplacent pas le livre officiel.
+
+### Contrôles supplémentaires réellement exécutés
+- Réapplication des 215 patches au catalogue de base et vérification de l'ensemble exact F, des 436 mains et 1744 choix, des champs préservés, prérequis, groupes et séances proposés. Zéro anomalie selon ces contrôles.
+- Assertion des formulations interdites extraite de tests/quizz-integrity.cjs : /accord de paire|accords SEF retenus|dans cet accord|dans ce système|^accord Walsh/i sur context et explain. 17 occurrences dans les 3000 QCM de base, dont Q685-D-123 en F ; 16 après application des seuls patches F, aucune en F. Les 16 autres relèvent des autres lots.
+- Vérification directe des contextes neutralisés C2-011, C2-012, V45-003, du niveau V45-022 (2) et de la mention 12 H dans le corrigé V44-014 : conformes aux assertions ciblées examinées. Ces vérifications indépendantes ne constituent pas une exécution de la suite Node.
+- Le binaire Node existe dans l'environnement, mais git ls-remote https://github.com/CapGui13/QPJB.git HEAD échoue sur la résolution DNS github.com. Les suites natives ne sont donc pas exécutées ; le code des assertions a pu être consulté via le connecteur. Ne pas supprimer ni affaiblir les contrôles historiques.
+
+### Alerte intégration : préfixe historique protégé de 993 QCM
+14 objets historiques parmi les 215 patches. Liste exacte des champs changés par rapport à la base :
+- SEF-V45-005, SEF-V45-006 : context.
+- SEF-V45-013, SEF-V45-014, SEF-V45-015 : explain.
+- SEF-V45-017 : hand, shape, context, explain, difficultyReason.
+- SEF-V45-020, SEF-V45-021, SEF-V45-022, SEF-V45-056, SEF-V45-057, SEF-V45-058 : context.
+- SEF-V411-007, SEF-V425-003 : explain.
+
+Tests natifs mentionnant textuellement des IDs corrigés : V45-013, V45-014, V45-022, V45-056, V45-057, V45-058, V45-017. Lors de l'intégration, vérifier les assertions correspondantes et le mécanisme de révisions approuvées / normalisation inverse du préfixe historique avant tout merge ; n'affaiblir ni le hash ni les assertions. Les IDs, réponses et champs d'historique demeurent présents. F ne modifie aucun fichier commun.
+
+### Bilan
+436/436 verdicts, 214 VALIDE, 216 RECLASSER_REFORMULER, 3 ERREUR_PEDAGOGIQUE, 3 ARBITRAGE ; 215 objets corrigés (185 context, 24 explain, 22 difficultyReason, 3 hand, 2 h, 1 shape, 1 choices), aucune réponse changée. 5 prérequis, 3 ajouts et 8 retraits de groupes. 141 sans groupe explicite proposé, ce qui ne signifie pas inéligibilité. Les candidats de redondance sémantique hors signatures ne sont pas tous relus ; les suites natives restent bloquées. Livrables prêts pour revue coordinateur, pas pour fusion automatique. MISSION DÉFINITIVEMENT TERMINÉE : NON.
