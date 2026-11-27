@@ -30,4 +30,8 @@ fs.mkdirSync('programme-output',{recursive:true});
 fs.writeFileSync('programme-output/selection.json',JSON.stringify(result,null,2));
 const summary=['# Sélections générées S1–65','Réponses synthétiques, pas preuve d’apprentissage humain.','| Profil | Séance | Objectif | QCM de l’objectif | IDs |','|---|---:|---|---:|---|',...result.map(x=>'| '+[x.profile,x.session,x.objective.replace(/\|/g,'/'),x.objectiveItems,x.items.map(q=>q.id).join(', ')].join(' | ')+' |')];
 fs.writeFileSync('programme-output/selection.md',summary.join('\n')+'\n');
+const empty=result.filter(x=>!x.objectiveItems).map(x=>({profile:x.profile,session:x.session}));
+console.log('PROGRAMME65_EMPTY '+JSON.stringify(empty));
 console.log('PROGRAMME65_PASS '+JSON.stringify({sessions:result.length,questions:result.length*10,profiles:[...new Set(result.map(x=>x.profile))].map(p=>{const rows=result.filter(x=>x.profile===p);return {p,objectiveItems:rows.reduce((n,x)=>n+x.objectiveItems,0),emptyObjectives:rows.filter(x=>!x.objectiveItems).map(x=>x.session),minimum:Math.min(...rows.map(x=>x.objectiveItems))}})}));
+
+assert.equal(empty.length,0,'Each scheduled lesson must have at least one actual objective question; reports retained on failure');
