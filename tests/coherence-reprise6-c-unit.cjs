@@ -3,11 +3,11 @@ const assert=require('node:assert/strict'),P=require('../quizz-coherence-reprise
 function fixture(){
  const meta={},q=(id,c)=>{meta[id]={concept:c,stage:1};return {id,caseFamily:'f-'+id,theme:'ouv',difficulty:2,answer:'1♦'}};
  const a=q('target-old-a','ouv.mineure'),b=q('target-old-b','ouv.mineure'),t=q('target-new','ouv.mineure');
- const d1=q('donor-a','ouv.position'),d2=q('donor-b','ouv.position');
+ const d0=q('donor-past','ouv.position'),d1=q('donor-a','ouv.position'),d2=q('donor-b','ouv.position');
  const filler=Array.from({length:8},(_,i)=>q('f'+i,'other.'+i));
- const exercises=[a,b,t,d1,d2,...filler],deck=[d1,d2,...filler].map(exercise=>({exercise,category:'maintenance',protected:false}));
+ const exercises=[a,b,t,d0,d1,d2,...filler],deck=[d1,d2,...filler].map(exercise=>({exercise,category:'maintenance',protected:false}));
  const answers=items=>items.map(x=>({id:x.id,result:'correct',assisted:false,hadFreeError:false}));
- const journal=Array.from({length:65},(_,i)=>({mode:'parcours',session:i+1,answers:answers([i===0?a:i===1?b:d1,d2,...filler])}));
+ const journal=Array.from({length:65},(_,i)=>({mode:'parcours',session:i+1,answers:answers([i===0?a:i===1?b:d0,d2,...filler])}));
  const flagsById=Object.fromEntries(exercises.map(x=>[x.id,{bad:false,weak:false,due:false,stage:1,category:'maintenance',localTarget:2,novelFamily:false}]));
  flagsById[t.id].novelFamily=true;flagsById[d1.id].novelFamily=true;
  return {session:66,history:{active:null,journal},exercises,metadataById:meta,pool:[t,d1,d2,...filler],deck,flagsById,bid:x=>x.answer,context:()=> 'opening',openingPass:()=>false};
