@@ -1,48 +1,8 @@
 # Reprise E — PARTIEL
 
-Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. Contrat #556, mission #561. Passe 1 : 40 IDs de l'ordre d'insertion byId filtré par concept initial. Dernier SEF-V45-029, prochain SEF-V45-030. Verdicts et corrections présents. Contrôles et limites dans REVUE.md.
+Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. Contrat #556, mission #561. Passe 1 : 40 IDs (commit REPRISE 3cb94323383a70984f2868e45ef6187eeca8f939). Passe 2 : 40 nouveaux IDs, cumul 80, ordre d'insertion byId filtré par concept initial. Dernier SEF-V420-011, prochain SEF-V421-006. PR #564 ouverte en brouillon. Verdicts et corrections présents. Contrôles et limites dans REVUE.md.
 
-## IDs restants (500, ordre stable)
-- SEF-V45-030 — multilandy.choix
-- SEF-V45-031 — rubensohl.naturel
-- SEF-V45-032 — rubensohl.init
-- SEF-V45-033 — rubensohl.init
-- SEF-V45-034 — rubensohl.init
-- SEF-V45-035 — rubensohl.init
-- SEF-V45-036 — rubensohl.naturel
-- SEF-V45-037 — rubensohl.naturel
-- SEF-V45-038 — rubensohl.naturel
-- SEF-V45-039 — rubensohl.init
-- SEF-V45-040 — rubensohl.init
-- SEF-V45-041 — michaels.intervention
-- SEF-V45-042 — michaels.intervention
-- SEF-V45-043 — michaels.intervention
-- SEF-V45-044 — michaels.intervention
-- SEF-V45-045 — michaels.intervention
-- SEF-V45-046 — michaels.intervention
-- SEF-V45-047 — michaels.intervention
-- SEF-V45-048 — michaels.intervention
-- SEF-V45-049 — michaels.choix
-- SEF-V410-025 — apres_inter.base
-- SEF-V410-026 — competitif.spoutnik
-- SEF-V410-027 — competitif.spoutnik
-- SEF-V410-028 — apres_inter.base
-- SEF-V410-029 — apres_inter.base
-- SEF-V411-012 — apres_inter.base
-- SEF-V411-013 — apres_inter.base
-- SEF-V412-017 — apres_inter.base
-- SEF-V412-018 — competitif.spoutnik
-- SEF-V412-019 — apres_inter.base
-- SEF-V413-010 — apres_inter.base
-- SEF-V413-011 — apres_inter.base
-- SEF-V413-012 — apres_inter.base
-- SEF-V417-010 — competitif.spoutnik
-- SEF-V417-011 — apres_inter.base
-- SEF-V418-005 — apres_inter.base
-- SEF-V419-007 — apres_inter.base
-- SEF-V420-009 — apres_inter.base
-- SEF-V420-010 — apres_inter.base
-- SEF-V420-011 — apres_inter.base
+## IDs restants (460, ordre stable)
 - SEF-V421-006 — apres_inter.base
 - SEF-V421-007 — competitif.truscott
 - SEF-V421-008 — apres_inter.base
@@ -504,4 +464,4 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audi
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Ne pas traiter les contrôles mécaniques comme des verdicts. Reprendre au prochain ID, compléter les fichiers existants, conserver les 40 verdicts. Branche E exclusivement. Aucune fusion. Mission NON.
+Ne pas traiter les contrôles mécaniques comme des verdicts. Reprendre au prochain ID, compléter les fichiers existants, conserver les 80 verdicts. Branche E exclusivement. Aucune fusion. Mission NON.
