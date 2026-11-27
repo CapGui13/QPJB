@@ -1,0 +1,36 @@
+name: M4-D independent delivery and historical continuation
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-d-recette]
+    paths: ['.github/workflows/m4p-d-delivery.yml']
+permissions:
+  contents: read
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/checkout@v4
+        with:
+          ref: 0ffe95e5864eb8639a9e3be0e84b698d09930cf3
+          path: _m4pc
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4p-d-delivery-test.cjs _m4pc
+  historical:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test: [coherence-progression-integration, durable-integration-contract, durable-integration-evidence, durable-m6-guards, wave2-adaptatif-resume]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/${{ matrix.test }}.cjs
