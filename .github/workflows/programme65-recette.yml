@@ -7,18 +7,20 @@ permissions:
   contents: read
 jobs:
   programme:
-    if: github.head_ref == 'pedagogie/programme-65-20261127'
+    if: (github.head_ref == 'pedagogie/programme-65-20261127' || github.head_ref == 'pedagogie/qcm400-20261127')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: |
           node --check quizz-parcours.js
+          node tests/qcm400-integration.cjs
           node tests/programme65-recette.cjs
       - uses: actions/upload-artifact@v4
         if: always()
@@ -26,7 +28,7 @@ jobs:
           name: programme65-selections
           path: programme-output/
   ui:
-    if: github.head_ref == 'pedagogie/programme-65-20261127'
+    if: (github.head_ref == 'pedagogie/programme-65-20261127' || github.head_ref == 'pedagogie/qcm400-20261127')
     runs-on: ubuntu-latest
     timeout-minutes: 18
     strategy:
