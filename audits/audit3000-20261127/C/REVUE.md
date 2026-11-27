@@ -1,4 +1,4 @@
-# AUDIT3000-C — revue PARTIELLE (320/608)
+# AUDIT3000-C — revue PARTIELLE (378/608)
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #559.
 
@@ -37,7 +37,13 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission 
 - 83 corrections : mêmes contrôles structurels, aucune anomalie ; relecture de verdicts.json et corrections.json depuis la branche, unicité et appartenance des IDs, cohérence des clés.
 - Tests locaux du dépôt et CI non exécutés à ce stade : pas de checkout/environnement Node associé au dépôt dans le connecteur. La vérification de toute la légalité des séquences complexes et des prérequis/séances restants n'est pas faite.
 
+## Passe 7 — Texas mineurs 1SA
+58 verdicts individuels; 34 corrections complètes, 1 arbitrage. Corrigés Q685-B-066/067 contextualisés (trois/quatre Carreaux), questions révélatrices neutralisées, difficulté harmonisée sur rectifications directes. Contrastes faible/fort, Trèfle/Carreau, modulation favorable ou non conservés. B-117/118 très proches, éviter répétition. B-063 6 H + longueur : seuil HL à arbitrer. Référence secondaire SEF 2024 : https://scjc-bridge.fr/les-nouveautes-du-sef-2018 (courte nommée, 3SA autre mineure sans ambition chelem). Traitement QPJB du catalogue conservé. Contrôles JS réellement exécutés : 58 mains et H/forme, choix/rangs, appartenance et unicité verdicts; groupes et verrous lus; comparaison profils et empreintes sur 3000 objets. Aucun test local Node/CI; pas de recette moteur.
+
+## Bilan cumulé
+{"VALIDE":254,"RECLASSER_REFORMULER":117,"ARBITRAGE":7} ; 117 corrections complètes.
+
 ## Limites
-288 QCM restent à auditer pédagogiquement, dont Stayman, Texas, Roudi, Drury et suites. Pas de validation globale des 608, aucune fusion, aucun changement de fichier commun. Le coordinateur ne doit pas intégrer ce lot comme complet.
+230 QCM restent à auditer. Aucun merge, aucun fichier commun modifié. Ne pas intégrer comme terminé.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON

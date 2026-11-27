@@ -2,12 +2,12 @@
 
 Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
 Branche : pedagogie/audit3000-c
-Dernier SHA vérifié avant écriture du présent journal : cbaddf19e7bd19e200a550de10ccb9bad49965c4
-Passes 1 à 6 : 320 verdicts individuels, 83 corrections complètes, 6 arbitrages, 1 patch prérequis et réservoir. Contrôles : voir REVUE.md.
+Dernier SHA vérifié avant cette passe : e30397808e9044656d561331904f202c86888116
+Passes 1 à 7 : 378 verdicts individuels, 117 corrections complètes, 7 arbitrages. Contrôles : voir REVUE.md.
 
-Reprendre aux concepts sa1.texas_mineur / sa1.texas_mineur.reponse / sa1.texas_mineur.suite, sans relire les 320 verdicts déjà rédigés. Étendre les JSON, jamais remplacer les décisions antérieures sans motif. Contrôler groupes explicites et réserves avec programme normalisé et catalogue à la base immuable.
+Reprendre aux concepts sa1.stayman.contre / sa1.texas.contre / sa2.bicolore / sa2.texas_mineur.reponse, puis Roudi et Drury. Étendre les JSON sans écraser les décisions précédentes.
 
-## IDs restants : 288
+## IDs restants : 230
 
 ### roudi.init (22)
 SEF-N137-1, SEF-V4-073-1, SEF-V4-079-3, SEF-V4-085-3, SEF-V4-091-3, SEF-V49-027, SEF-C2-012, SEF-L10-030, V2-M6-001, V2-M6-002, SEF-Q400-B-055, SEF-Q400-B-056, SEF-Q400-B-057, SEF-Q400-B-058, SEF-Q400-B-059, SEF-Q685-B-070, SEF-Q685-B-071, SEF-Q685-B-074, SEF-Q685-B-131, SEF-Q685-B-132, SEF-Q685-B-133, SEF-Q685-B-134
@@ -30,12 +30,6 @@ SEF-V4-101-2, SEF-V4-102-1, SEF-V4-107-3, SEF-V4-108-1, SEF-V484-011, SEF-V484-0
 ### roudi.suite (23)
 SEF-V44-062, SEF-V44-063, SEF-V44-064, SEF-V44-065, SEF-V44-066, SEF-L14-007, SEF-L21-003, V1-M5-001, V1-M5-002, V2-M6-003, V2-M6-004, V2-M6-005, V2-M6-006, SEF-Q400-B-069, SEF-Q400-B-070, SEF-Q400-B-071, SEF-Q400-B-072, SEF-Q400-B-073, SEF-Q400-B-074, SEF-Q685-B-142, SEF-Q685-B-143, SEF-Q685-B-144, SEF-Q685-B-145
 
-### sa1.texas_mineur (18)
-SEF-V482-001, SEF-V482-002, SEF-Q26-M2-005, SEF-Q26-M2-006, V2-M2-032, SEF-PN26-M1-011, SEF-PN26-M1-012, SEF-Q400-B-045, SEF-Q400-B-046, SEF-Q400-B-095, SEF-Q400-B-096, SEF-Q685-B-060, SEF-Q685-B-061, SEF-Q685-B-062, SEF-Q685-B-063, SEF-Q685-B-115, SEF-Q685-B-116, SEF-Q685-B-161
-
-### sa1.texas_mineur.suite (21)
-SEF-V482-003, SEF-V482-004, SEF-V482-005, SEF-V482-006, SEF-V482-007, SEF-V482-008, SEF-V482-009, SEF-V482-010, SEF-L13-016, SEF-L13-019, SEF-L42-003, V2-M2-033, V2-M2-034, SEF-Q400-B-049, SEF-Q400-B-050, SEF-Q400-B-051, SEF-Q685-B-068, SEF-Q685-B-122, SEF-Q685-B-123, SEF-Q685-B-163, SEF-Q685-B-164
-
 ### drury.suite (19)
 SEF-V484-001, SEF-V484-002, SEF-V484-003, SEF-V484-004, SEF-V484-005, SEF-V484-006, SEF-V484-007, SEF-V484-008, SEF-V484-009, SEF-V484-010, SEF-L01-F-01, SEF-L01-F-02, SEF-L01-F-04, SEF-Q400-B-086, SEF-Q400-B-087, SEF-Q400-B-088, SEF-Q685-B-159, SEF-Q685-B-160, SEF-Q685-B-170
 
@@ -44,9 +38,6 @@ SEF-L25-001, SEF-L25-002, SEF-L25-003, V1-M3-001, V2-M2-037, V2-M2-038, SEF-Q400
 
 ### sa1.texas.contre (12)
 SEF-L25-004, SEF-L25-005, SEF-L25-006, V2-M2-039, V2-M2-040, SEF-PN26-M1-017, SEF-PN26-M1-027, SEF-Q400-B-014, SEF-Q685-B-047, SEF-Q685-B-057, SEF-Q685-B-058, SEF-Q685-B-059
-
-### sa1.texas_mineur.reponse (19)
-SEF-L25-007, SEF-L25-008, SEF-L37-004, V2-M2-035, V2-M2-036, SEF-PN26-M1-028, SEF-Q400-B-047, SEF-Q400-B-048, SEF-Q400-B-097, SEF-Q400-B-098, SEF-Q685-B-064, SEF-Q685-B-065, SEF-Q685-B-066, SEF-Q685-B-067, SEF-Q685-B-117, SEF-Q685-B-118, SEF-Q685-B-119, SEF-Q685-B-120, SEF-Q685-B-121
 
 ### sa2.bicolore (14)
 SEF-L38-002, SEF-Q26-M2-010, SEF-Q26-M2-011, V1-M2-002, V2-M2-013, SEF-PN26-M1-030, SEF-Q400-B-053, SEF-Q400-B-054, SEF-Q685-B-069, SEF-Q685-B-126, SEF-Q685-B-127, SEF-Q685-B-128, SEF-Q685-B-129, SEF-Q685-B-130
