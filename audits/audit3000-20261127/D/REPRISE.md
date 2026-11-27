@@ -1,47 +1,7 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543 cumulés, dernier SEF-V4-060-4, prochain SEF-V4-061-2. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 160 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 383 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543 cumulés, dernier SEF-V49-032, prochain SEF-V411-014. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 200 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 343 IDs :
 
-- SEF-V4-061-2
-- SEF-V4-062-4
-- SEF-V4-062-1
-- SEF-V4-063-1
-- SEF-V4-064-2
-- SEF-V4-064-1
-- SEF-V4-065-1
-- SEF-V4-065-2
-- SEF-V4-066-1
-- SEF-V4-067-4
-- SEF-V4-067-1
-- SEF-V4-068-2
-- SEF-V4-068-3
-- SEF-V4-069-1
-- SEF-V4-070-2
-- SEF-V4-071-2
-- SEF-V4-072-3
-- SEF-V44-032
-- SEF-V44-033
-- SEF-V44-034
-- SEF-V44-035
-- SEF-V44-036
-- SEF-V44-037
-- SEF-V44-038
-- SEF-V44-039
-- SEF-V44-040
-- SEF-V44-046
-- SEF-V44-047
-- SEF-V44-048
-- SEF-V44-049
-- SEF-V44-055
-- SEF-V44-056
-- SEF-V44-057
-- SEF-V44-058
-- SEF-V44-059
-- SEF-V44-061
-- SEF-V49-029
-- SEF-V49-030
-- SEF-V49-031
-- SEF-V49-032
 - SEF-V411-014
 - SEF-V411-015
 - SEF-V413-009
