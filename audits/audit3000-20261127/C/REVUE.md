@@ -1,4 +1,4 @@
-# AUDIT3000-C — revue PARTIELLE (519/608)
+# AUDIT3000-C — revue PARTIELLE (564/608)
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #559.
 
@@ -49,10 +49,13 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission 
 ## Passe 10 — Réponses et suites Roudi
 53 QCM lus individuellement. Les codes 2♦ non fitté sans force, 2♥ trois cartes minimum, 2♠ trois cartes maximum sont cohérents sur les mains testées (12/14 H fittées ; manque de cas 13 H fitté à évaluer, ainsi que l'exception main faible à Trèfle). Les questions donnant longueur/force sont neutralisées. Quatre arbitrages de 3♥ sur réponse 2♥ minimum (V44-064, V2-M6-005, Q400-B-071, Q685-B-143) ; distinguer invitation catalogue et séquences SEF décrites par les références, arrêter ou conclure selon valorisation. V1-M5-001 : statut du saut 3♠ après 2♦ avec six cartes, divergence de sources ; pas de correction sans arbitrage. Après 2♠ maximum, ne pas enseigner 3M comme simple invitation. Sources effectivement consultées : https://www.bridge-chailley.fr/le-sef-2024-suite-et-fin/ ; https://abc-du-bridge.scenari-community.org/003-01/co/003-01-04-2-2b-Roudi_1.html ; https://bridgesaintcloud.fr/quesaquo1509.html ; https://www.adeliebridge.fr/roudi-trois-reponses/. Contrôles JS sur 53 mains, H/HL, forme, rangs et choix, unicité IDs, groupes/verrous et analogues catalogue ; tests locaux/CI non exécutés.
 
+## Passe 11 — Déclenchements et choix Drury
+45 QCM lus individuellement. Conditions SEF 2024 confirmées par sources secondaires : 3 atouts et ≥11 HLD ou ≥4 atouts, ≥11 HLD sans singleton/chicane pour Drury ; 2SA après Passe fitté ≥4 avec singleton/chicane. Faux Drury sans fit non retenu. V2-M6-008 (1SA sans fit) reclassé drury.choix, groupe S30/2 inchangé. Questions révélatrices neutralisées, corrigés de seuil développés. Q685-B-167 : priorité éventuelle d'une rencontre 3♦ avec AD762 à arbitrer. Formes/honneurs proches (B-152/153 et B-080/146) signalés ; contrastes utiles faible/constructif, doubleton/singleton et fit/non-fit conservés. Références consultées : https://scjc-bridge.fr/les-nouveautes-du-sef-2018 ; https://www.bridgesaintcloud.fr/quesaquoDRURY.html ; https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523. Contrôles JS sur 45 mains H/HL, forme, rangs et choix, unicité IDs, groupes/verrous et analogues catalogue ; tests locaux/CI non exécutés.
+
 ## Bilan cumulé
-{"VALIDE":315,"RECLASSER_REFORMULER":191,"ARBITRAGE":13} ; 189 corrections complètes, 4 changements prérequis, 1 réservoir.
+{"VALIDE":340,"RECLASSER_REFORMULER":210,"ARBITRAGE":14} ; 207 corrections complètes, 5 changements prérequis, 1 réservoir.
 
 ## Limites
-89 QCM restent à auditer (Drury). Aucun merge, aucun fichier commun modifié.
+44 QCM restent à auditer (réponses/suites Drury). Aucun merge, aucun fichier commun modifié.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON

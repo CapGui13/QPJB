@@ -2,18 +2,12 @@
 
 Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
 Branche : pedagogie/audit3000-c
-Dernier SHA vérifié avant cette passe : 4ed794820f080cafab97d6050fd18ec56ba99e84
-Passes 1 à 10 : 519 verdicts individuels, 189 corrections complètes, 13 arbitrages. Contrôles : voir REVUE.md.
+Dernier SHA vérifié avant cette passe : f2e9e6b0559314ed4d71e0a269b0d7227fd90d45
+Passes 1 à 11 : 564 verdicts individuels, 207 corrections complètes, 14 arbitrages. Contrôles : voir REVUE.md.
 
-Reprendre aux concepts drury.init / drury.choix / drury.reponse / drury.suite. Étendre les JSON sans écraser les décisions précédentes.
+Reprendre aux concepts drury.reponse / drury.suite. Étendre les JSON sans écraser les décisions précédentes.
 
-## IDs restants : 89
-
-### drury.choix (30)
-SEF-V4-097-1, SEF-V4-099-2, SEF-V4-099-1, SEF-V4-100-2, SEF-V4-100-3, SEF-V4-103-1, SEF-V4-105-2, SEF-V4-105-1, SEF-V4-106-1, SEF-V4-106-2, SEF-V44-067, SEF-V44-068, SEF-L13-001, SEF-Q26-M6-008, V2-M6-009, V2-M6-010, SEF-Q400-B-076, SEF-Q400-B-078, SEF-Q400-B-079, SEF-Q400-B-080, SEF-Q400-B-081, SEF-Q685-B-081, SEF-Q685-B-082, SEF-Q685-B-148, SEF-Q685-B-149, SEF-Q685-B-150, SEF-Q685-B-151, SEF-Q685-B-152, SEF-Q685-B-153, SEF-Q685-B-167
-
-### drury.init (15)
-SEF-V4-098-1, SEF-V4-104-1, SEF-C2-011, SEF-Q26-M6-007, V2-M6-007, V2-M6-008, SEF-PN26-M1-015, SEF-Q400-B-075, SEF-Q400-B-077, SEF-Q400-B-100, SEF-Q685-B-080, SEF-Q685-B-146, SEF-Q685-B-147, SEF-Q685-B-165, SEF-Q685-B-166
+## IDs restants : 44
 
 ### drury.reponse (25)
 SEF-V4-101-2, SEF-V4-102-1, SEF-V4-107-3, SEF-V4-108-1, SEF-V484-011, SEF-V484-012, SEF-V484-013, SEF-V484-014, SEF-L01-F-03, SEF-L01-F-05, SEF-L01-F-06, V2-M6-011, V2-M6-012, SEF-Q400-B-082, SEF-Q400-B-083, SEF-Q400-B-084, SEF-Q400-B-085, SEF-Q685-B-083, SEF-Q685-B-154, SEF-Q685-B-155, SEF-Q685-B-156, SEF-Q685-B-157, SEF-Q685-B-158, SEF-Q685-B-168, SEF-Q685-B-169
