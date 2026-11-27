@@ -127,3 +127,22 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 6 — cumul actualisé
+
+240/540 verdicts individuels, 300 restants. {"VALIDE":85,"RECLASSER_REFORMULER":146,"ARBITRAGE":9}. 127 QCM complets corrigés, 18 modifications prérequis, 52 entrées réservoir.
+- Rubensohl après 2♠ : contrastes Passe/longue faible, X d'appel 8 H dans variante, manche avec/sans tenue. Famille C04 7h obsolète renommée. Michaël en quatrième position derrière soutien adverse distinct d'un réveil après deux passes (L04-028/L20-006), reclassifications proposées.
+- L10-021 : 2♠ naturel légal absent des choix, arbitrage du saut nécessaire. L14-002 : seuil mini/maxi non chiffré, confirmer développement de paire. L04-029 : Passe prudent parmi les choix, non obligation universelle ; Contre défensif non testé. Mixed raise, rencontre, cue-bid économique et second cue-bid : contrastes S25/S47.
+- Contrôle rang simple des choix : première tentative échouée pour deux annotations contenant un deux-points ; séparation du rôle au premier deux-points, relance réussie. Pas de suite locale ni simulation moteur.
+```json
+{
+  "verdicts": 240,
+  "idsUniques": 240,
+  "corrections": 127,
+  "correctionsInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": [],
+  "groupesNonTrouves": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
