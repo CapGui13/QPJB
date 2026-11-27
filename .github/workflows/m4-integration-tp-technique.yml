@@ -1,0 +1,75 @@
+name: M4 integration TP independent native gate
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e3dffa3905a5743d87f0e6c9801fee366a686522
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4-integration-tp.cjs
+      - env:
+          OUT: /tmp/m4-tp
+          M4PD_ADAPTER: tests/coherence-concrete-m4-integration-tp.cjs
+        run: node tests/coherence-concrete-m4p-d-native.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" TP
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-tp-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4-tp
+          retention-days: 3
+  units:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e3dffa3905a5743d87f0e6c9801fee366a686522
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Suites A B C D
+        run: |
+          set -e
+          for f in tests/coherence-concrete-m4p-a-unit.cjs tests/coherence-concrete-m4p-a-composition-test.cjs tests/coherence-concrete-m4p-b-unit.cjs tests/coherence-concrete-m4p-b-window-unit.cjs tests/coherence-concrete-m4p-b-rotation-unit.cjs tests/coherence-concrete-m4p-b-saturated-unit.cjs tests/coherence-concrete-m4p-c-*.cjs tests/coherence-concrete-m4p-d-test.cjs tests/coherence-concrete-m4p-d-delivery-test.cjs; do
+            echo "M4_INTEGRATED_SUITE $f"
+            node "$f"
+          done
+  gate:
+    needs: [campagne]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e3dffa3905a5743d87f0e6c9801fee366a686522
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4-tp-*
+          merge-multiple: true
+          path: /tmp/m4-tp
+      - name: Independent gate AB
+        run: |
+          set +e
+          node tests/coherence-concrete-m4p-d-compare.cjs /tmp/m4-tp AB e3dffa3905a5743d87f0e6c9801fee366a686522 > /tmp/m4-tp-gate.json
+          code=$?
+          node -e 'const r=require("/tmp/m4-tp-gate.json"); console.log("M4TP_GATE "+JSON.stringify({verdict:r.verdict,gate:r.gate,alerts:r.alerts,deltas:r.deltas.map(x=>({profile:x.profile,seed:x.seed,changes:x.changes,alteredSessions:x.alteredSessions}))}))'
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-tp-gate
+          path: /tmp/m4-tp-gate.json
+          retention-days: 3
