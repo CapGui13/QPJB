@@ -4,7 +4,7 @@ const root=path.join(__dirname,".."), dir=path.join(root,"audits/coherence-concr
 const load=p=>JSON.parse(fs.readFileSync(path.join(dir,p),"utf8"));
 const old=JSON.parse(fs.readFileSync(path.join(root,"audits/coherence-concrete-20261126/m4/register.json"),"utf8"));
 const {buildStatus,classify}=require("../quizz-coherence-m4p-c-statuts.js");
-const p=load("relations.json"), files=["fondamentaux.json","reponses.json","competitif.json","s1-20-solde.json","s21-65-passe1.json","s21-65-passe2.json","s21-65-passe3.json","s21-65-passe4.json","s21-65-passe5.json","fondamentaux-mineur-solde.json","fondamentaux-majeur-red-solde.json","second-base-solde.json"];
+const p=load("relations.json"), files=["fondamentaux.json","reponses.json","competitif.json","s1-20-solde.json","s21-65-passe1.json","s21-65-passe2.json","s21-65-passe3.json","s21-65-passe4.json","s21-65-passe5.json","fondamentaux-mineur-solde.json","fondamentaux-majeur-red-solde.json","second-base-solde.json","chelem-solde.json"];
 const observed=new Set([...load("baseline/part1-index.json").ids,...load("baseline/part2-index.json").ids]);
 const themes=load("index.json").byId;
 const idx=buildStatus(old,files.map(p=>[p,load(p)]),p,observed,themes);
@@ -16,4 +16,6 @@ console.log("M4-C statuts OK");
 
 const core=new Set(["ouv.passe","ouv.mineure","ouv.majeure","ouv.sa1","mineur.base","majeur.base","majeur.soutien","sa1.seuil","red.base"]);
 assert.equal(old.filter(x=>core.has(x.concept)).length,381);for(const x of old.filter(x=>core.has(x.concept)))assert.ok(idx[x.id].status!=="automatique_seulement");
-assert.equal(p.length,56);assert.equal(classify(idx,p,"SEF-V3-059-5","SEF-V3-057-1").status,"HOLD");
+assert.equal(p.length,74);assert.equal(classify(idx,p,"SEF-V3-059-5","SEF-V3-057-1").status,"HOLD");
+
+const chelem=old.filter(x=>x.concept.startsWith("chelem.")); assert.equal(chelem.length,111); for(const x of chelem)assert.ok(idx[x.id].status!=="automatique_seulement"); assert.equal(Object.values(idx).filter(x=>x.status!=="automatique_seulement").length,1056);
