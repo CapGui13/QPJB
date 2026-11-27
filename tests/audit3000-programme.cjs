@@ -7,7 +7,13 @@ const pm=JSON.parse(read(dir+'INTEGRATION-PREREQUIS.json')).byId,bm=parseMeta(ol
 for(const id of Object.keys(bm.byId)){if(pm[id])assert.deepEqual(pm[id].before,bm.byId[id]);assert.deepEqual(am.byId[id],pm[id]?.after||bm.byId[id]);}
 assert.equal(Object.keys(am.byId).length,3000);
 const engine=read('quizz-parcours.js'),prior=old('quizz-parcours.js'),p=/const PROGRAMME65\s*=\s*.*?;\s*(?=function select)/s;
-assert.equal(engine.replace(p,''),prior.replace(p,''));
+// Original pedagogical integration still has exactly the old engine outside
+// PROGRAMME65. User subsequently authorized the explicitly reviewed guided
+// history migration; pin its exact Git blob instead of disabling the guard.
+const pedagogical=cp.execFileSync('git',['show','9b33b9a7d822fa3163df051471909115824d2a04:quizz-parcours.js'],{maxBuffer:20*1024*1024}).toString();
+assert.equal(pedagogical.replace(p,''),prior.replace(p,''),'Original audit must not change engine logic');
+const authorizedEngine=cp.execFileSync('git',['cat-file','blob','026653d5a7888e321f491483f4e7f4dfbe093b1b'],{maxBuffer:20*1024*1024}).toString();
+assert.equal(engine.replace(p,''),authorizedEngine.replace(p,''),'Only explicitly reviewed technical revision permitted');
 const plan=JSON.parse(read('audits/programme-65-20261127/programme-normalise.json'));
 const embedded=JSON.parse(engine.match(/const PROGRAMME65\s*=\s*(.*?);\s*(?=function select)/s)[1]);
 assert.deepEqual(embedded,plan.sessions.map(r=>({o:r.objective,g:r.groups.map(g=>[g.role,g.ids,g.phase||'']),r:r.reference})));
