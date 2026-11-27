@@ -35815,8 +35815,8 @@
   },
   {
     "id": "SEF-Q400-A-085",
-    "verdict": "VALIDE",
-    "justification": "15 H cinq ♠ 5332 : 2SA essai global, S9/S58, contraste 082 minimum ; proche V4-014-1.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H cinq ♠ 5332 : 2SA essai global, S9/S58, contraste 082 minimum ; proche V4-014-1. Passe 16 : Même 15 H, cinq Piques et pas de quatrième annexe que V2-M3-038 ; préserver la paire contrastive V2-M3-037/038 en S58 et garder 085 en S9.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -35829,8 +35829,7 @@
       58
     ],
     "seancesProposees": [
-      9,
-      58
+      9
     ],
     "groupesInitiaux": [
       {
@@ -35851,11 +35850,6 @@
         "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -35939,10 +35933,21 @@
         }
       ],
       "bilanRedondance": "Variantes même décision et données structurantes ; distinguer par honneurs et contexte si utile, sinon réserve, aucune suppression d'ID.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même 15 H, cinq Piques et pas de quatrième annexe que V2-M3-038 ; préserver la paire contrastive V2-M3-037/038 en S58 et garder 085 en S9."
+      }
     }
   },
   {
@@ -37244,8 +37249,8 @@
   },
   {
     "id": "SEF-Q400-A-097",
-    "verdict": "VALIDE",
-    "justification": "12 H trois ♥ réguliers, maximum 2SA fitté ; S12/S58, contraste Q400-096 à 11 H, même décision.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H trois ♥ réguliers, maximum 2SA fitté ; S12/S58, contraste Q400-096 à 11 H, même décision. Passe 16 : Même 12 HLD réguliers et trois atouts que PN26-M1-022, ancrage maximum en S12 ; conserver variante 097 en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -37258,7 +37263,6 @@
       58
     ],
     "seancesProposees": [
-      12,
       58
     ],
     "groupesInitiaux": [
@@ -37275,12 +37279,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 12,
-        "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 58,
         "decision": "fit.2sa — réponse du partenaire : 2SA",
@@ -37370,10 +37368,22 @@
         }
       ],
       "bilanRedondance": "Variantes même décision et données structurantes ; distinguer par honneurs et contexte si utile, sinon réserve, aucune suppression d'ID.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 12,
+            "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Même 12 HLD réguliers et trois atouts que PN26-M1-022, ancrage maximum en S12 ; conserver variante 097 en S58."
+      }
     }
   },
   {
@@ -46525,8 +46535,8 @@
   },
   {
     "id": "SEF-Q685-A-152",
-    "verdict": "VALIDE",
-    "justification": "16 H cinq ♠ faibles 5332 : 2SA essai général, sans seconde quatrième ; contraste 154 même H autre honneurs. S9/S58.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H cinq ♠ faibles 5332 : 2SA essai général, sans seconde quatrième ; contraste 154 même H autre honneurs. S9/S58. Passe 16 : Même règle 16 H sans annexe quatrième que Q685-A-155 ; réserver 152 à S9 et 155 à S58 pour éviter deux variantes dans les deux groupes.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -46539,8 +46549,7 @@
       58
     ],
     "seancesProposees": [
-      9,
-      58
+      9
     ],
     "groupesInitiaux": [
       {
@@ -46561,11 +46570,6 @@
         "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -46639,10 +46643,21 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même règle 16 H sans annexe quatrième que Q685-A-155 ; réserver 152 à S9 et 155 à S58 pour éviter deux variantes dans les deux groupes."
+      }
     }
   },
   {
@@ -46891,8 +46906,8 @@
   },
   {
     "id": "SEF-Q685-A-155",
-    "verdict": "VALIDE",
-    "justification": "16 H cinq ♠ RV 5332 : 2SA, même force et décision 152/154, meilleure qualité d'atout, réserve de répétition.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H cinq ♠ RV 5332 : 2SA, même force et décision 152/154, meilleure qualité d'atout, réserve de répétition. Passe 16 : Même règle que Q685-A-152, permutation des mineures et honneurs ; garder 155 au réinvestissement S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -46905,7 +46920,6 @@
       58
     ],
     "seancesProposees": [
-      9,
       58
     ],
     "groupesInitiaux": [
@@ -46922,12 +46936,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 9,
-        "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
-        "role": "objectif",
-        "phase": "apres_exposition"
-      },
       {
         "session": 58,
         "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
@@ -47005,10 +47013,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 9,
+            "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "justification": "Même règle que Q685-A-152, permutation des mineures et honneurs ; garder 155 au réinvestissement S58."
+      }
     }
   },
   {
@@ -47135,8 +47155,8 @@
   },
   {
     "id": "SEF-Q685-A-157",
-    "verdict": "VALIDE",
-    "justification": "16 H cinq ♥ 5332 : 2SA, proche 156, contrôle de force, pas nouvelle règle.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H cinq ♥ 5332 : 2SA, proche 156, contrôle de force, pas nouvelle règle. Passe 16 : Même règle 16 H sans annexe quatrième que Q685-A-158 ; réserver 157 à S9 et 158 à S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47149,8 +47169,7 @@
       58
     ],
     "seancesProposees": [
-      9,
-      58
+      9
     ],
     "groupesInitiaux": [
       {
@@ -47171,11 +47190,6 @@
         "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
         "role": "objectif",
         "phase": "apres_exposition"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -47249,16 +47263,27 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même règle 16 H sans annexe quatrième que Q685-A-158 ; réserver 157 à S9 et 158 à S58."
+      }
     }
   },
   {
     "id": "SEF-Q685-A-158",
-    "verdict": "VALIDE",
-    "justification": "16 H cinq ♥ 5332 : 2SA, même force et décision 157, permutation doubleton, redondance forte.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H cinq ♥ 5332 : 2SA, même force et décision 157, permutation doubleton, redondance forte. Passe 16 : Même règle que Q685-A-157 ; réserver 158 au réinvestissement S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47271,7 +47296,6 @@
       58
     ],
     "seancesProposees": [
-      9,
       58
     ],
     "groupesInitiaux": [
@@ -47288,12 +47312,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 9,
-        "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
-        "role": "objectif",
-        "phase": "apres_exposition"
-      },
       {
         "session": 58,
         "decision": "apres_fit.essai — essai de l’ouvreur : 2SA",
@@ -47371,10 +47389,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 9,
+            "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "justification": "Même règle que Q685-A-157 ; réserver 158 au réinvestissement S58."
+      }
     }
   },
   {
@@ -47508,8 +47538,8 @@
   },
   {
     "id": "SEF-Q685-A-160",
-    "verdict": "VALIDE",
-    "justification": "7 H trois ♥ réguliers : 3♥ refus, même 7 HLD que 159 avec autre composition, contraste H vs HLD.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H trois ♥ réguliers : 3♥ refus, même 7 HLD que 159 avec autre composition, contraste H vs HLD. Passe 16 : Même 7 HLD, trois atouts et refus de l'essai généralisé que Q685-A-162 ; conserver 160 en S12, 162 en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47522,8 +47552,7 @@
       58
     ],
     "seancesProposees": [
-      12,
-      58
+      12
     ],
     "groupesInitiaux": [
       {
@@ -47544,11 +47573,6 @@
         "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
         "role": "objectif",
         "phase": "initial"
-      },
-      {
-        "session": 58,
-        "decision": "apres_fit.essai.suite : 3♥",
-        "role": "réinvestissement"
       }
     ],
     "pointsControles": {
@@ -47623,16 +47647,27 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai.suite : 3♥",
+            "role": "réinvestissement"
+          }
+        ],
+        "justification": "Même 7 HLD, trois atouts et refus de l'essai généralisé que Q685-A-162 ; conserver 160 en S12, 162 en S58."
+      }
     }
   },
   {
     "id": "SEF-Q685-A-161",
-    "verdict": "VALIDE",
-    "justification": "6 H trois ♥ réguliers : 3♥ refus, même famille et réponse 160, variation seuil bas.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H trois ♥ réguliers : 3♥ refus, même famille et réponse 160, variation seuil bas. Passe 16 : Même 6 HLD, trois atouts et refus que V4-009-1, qui est l'ancrage de S12 ; garder 161 pour S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47645,7 +47680,6 @@
       58
     ],
     "seancesProposees": [
-      12,
       58
     ],
     "groupesInitiaux": [
@@ -47662,12 +47696,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 12,
-        "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 58,
         "decision": "apres_fit.essai.suite : 3♥",
@@ -47746,16 +47774,28 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 12,
+            "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Même 6 HLD, trois atouts et refus que V4-009-1, qui est l'ancrage de S12 ; garder 161 pour S58."
+      }
     }
   },
   {
     "id": "SEF-Q685-A-162",
-    "verdict": "VALIDE",
-    "justification": "7 H trois ♥ réguliers : 3♥ refus, même force/forme au sens régulier et décision que 160, redondance forte.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H trois ♥ réguliers : 3♥ refus, même force/forme au sens régulier et décision que 160, redondance forte. Passe 16 : Même décision que Q685-A-160 ; garder cette variante en S58.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -47768,7 +47808,6 @@
       58
     ],
     "seancesProposees": [
-      12,
       58
     ],
     "groupesInitiaux": [
@@ -47785,12 +47824,6 @@
       }
     ],
     "groupesProposes": [
-      {
-        "session": 12,
-        "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
-        "role": "objectif",
-        "phase": "initial"
-      },
       {
         "session": 58,
         "decision": "apres_fit.essai.suite : 3♥",
@@ -47869,10 +47902,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Affectation explicite confirmée dans programme et constante PROGRAMME65."
+      "statutAffectation": "Retrait de groupe proposé, autre groupe explicite conservé (passe 16)."
     },
     "action": {
-      "type": "conserver"
+      "type": "ajuster_reservoir",
+      "affectation": {
+        "add": [],
+        "remove": [
+          {
+            "session": 12,
+            "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "justification": "Même décision que Q685-A-160 ; garder cette variante en S58."
+      }
     }
   },
   {
