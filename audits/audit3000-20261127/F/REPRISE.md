@@ -1,51 +1,8 @@
 # REPRISE — F
 
-Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
-Passe 1 : 40 IDs dans l'ordre de quizz-prerequis.js, premier SEF-V44-002, dernier SEF-V474-003. 396 restants, prochain SEF-V474-004. SHA de base et branche cible ci-dessus ; SHA de ce commit à lire via HEAD (auto-référence impossible).
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 65b88382bd6b47e5e04e15591eb2244d9b4e57d1. Passes 1–2 : 80/436, dernier SEF-V483-008, prochain SEF-V483-009. SHA actuel via HEAD. Verdicts {"VALIDE":20,"ARBITRAGE":4,"RECLASSER_REFORMULER":56}, 56 corrections, 3 propositions réservoir. Tests structurels sur 436 et couverture partielle 80 ; reste tests Node et comparaison globale.
 
-Verdicts provisoires {"VALIDE":20,"ARBITRAGE":4,"RECLASSER_REFORMULER":16}. Corrections 16, propositions réservoir 3. Contrôles de périmètre et structure 436/436, détail REVUE.md. Comparaison sémantique exhaustive et tests Node non effectués.
-
-## IDs restant à relire (396)
-SEF-V474-004
-SEF-V474-005
-SEF-V474-006
-SEF-V474-007
-SEF-V474-008
-SEF-V474-009
-SEF-V474-010
-SEF-V475-001
-SEF-V475-002
-SEF-V475-003
-SEF-V475-004
-SEF-V475-005
-SEF-V475-006
-SEF-V475-007
-SEF-V475-008
-SEF-V475-009
-SEF-V475-010
-SEF-V480-001
-SEF-V480-002
-SEF-V480-003
-SEF-V480-004
-SEF-V480-005
-SEF-V480-006
-SEF-V480-007
-SEF-V480-008
-SEF-V480-009
-SEF-V480-010
-SEF-V480-011
-SEF-V480-012
-SEF-V480-013
-SEF-V480-014
-SEF-V480-015
-SEF-V483-001
-SEF-V483-002
-SEF-V483-003
-SEF-V483-004
-SEF-V483-005
-SEF-V483-006
-SEF-V483-007
-SEF-V483-008
+## IDs restant à relire (356)
 SEF-V483-009
 SEF-V483-010
 SEF-V483-011

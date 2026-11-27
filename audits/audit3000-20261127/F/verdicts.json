@@ -1353,7 +1353,7 @@
         "explain": "Vos cinq Piques ♠AD642 et 12 H donnent un projet de manche, mais la répétition 2♦ ne précise pas le soutien Pique. 2♥ est ici la troisième couleur forcing artificielle ; avec seulement ♥V98, vous ne montrez pas une vraie couleur. 2♠ limiterait trop le dialogue."
       },
       "apres": {
-        "explain": "Avec 12 H et cinq Piques, vous souhaitez vérifier un fit 5–3 ou un arrêt pour Sans-Atout. Après 1♦–1♠–2♦, 2♥ est la troisième couleur forcing économique : elle ne garantit ni ne dénie quatre Cœurs et oblige l'ouvreur à reparler, sans imposer à elle seule la manche. 2♠ limiterait la recherche et 2SA serait mal indiqué sans arrêt Trèfle."
+        "explain": "Avec 12 H et cinq Piques, vous souhaitez vérifier un fit 5–3 ou les arrêts nécessaires à Sans-Atout. Après 1♦–1♠–2♦, 2♥ est la troisième couleur forcing économique : elle ne garantit ni ne dénie quatre Cœurs et oblige l'ouvreur à reparler, sans imposer à elle seule la manche. 2♠ ou 2SA limiteraient la recherche ; ♥V98 ne constitue pas un arrêt certain, même si vous détenez l'As de Trèfle."
       }
     }
   },
@@ -3103,6 +3103,3562 @@
       },
       "apres": {
         "context": "L'atout Cœur est agréé et les contrôles vérifiés. Après votre Blackwood à cinq clés en 30–41, le partenaire répond 5♦. Vous acceptez de jouer au moins le petit chelem et souhaitez explorer le grand en vérifiant la Dame d'atout. Quelle enchère choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, une clé ♠R, sans ♠D : retour 5♠ négatif, S53. L'énoncé révélait l'absence de Dame. Conserver contraste 004/005.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-pique-5d-non",
+    "groupesInitiaux": [
+      {
+        "session": 53,
+        "groupIndex": 5,
+        "decision": "répondre à la question de Dame ou de Rois — Dame d’atout : 5♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 53,
+        "groupIndex": 5,
+        "decision": "répondre à la question de Dame ou de Rois — Dame d’atout : 5♠",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      53
+    ],
+    "seancesProposees": [
+      53
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "L'atout Pique est fixé. Vous avez annoncé 5♦ au Blackwood (une clé, le Roi de Pique). Votre partenaire enchaîne par 5♥ pour demander la Dame d'atout. Vous ne possédez pas la Dame de Pique. Quelle est votre réponse ?"
+      },
+      "apres": {
+        "context": "L'atout Pique est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♦. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, une clé ♠R et ♠D, aucun Roi annexe : 6♠ positif, S53. Retirer les deux informations donnant la réponse.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-pique-5d-oui",
+    "groupesInitiaux": [
+      {
+        "session": 53,
+        "groupIndex": 6,
+        "decision": "répondre à la question de Dame ou de Rois — Dame d’atout : 6♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 53,
+        "groupIndex": 6,
+        "decision": "répondre à la question de Dame ou de Rois — Dame d’atout : 6♠",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      53
+    ],
+    "seancesProposees": [
+      53
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "L'atout Pique est fixé. Vous avez annoncé 5♦ au Blackwood (une clé, le Roi de Pique). Le partenaire poursuit à 5♥, question à la Dame d'atout. Vous avez la Dame de Pique, mais aucun Roi annexe à montrer. Quelle réponse exprime votre réponse positive ?"
+      },
+      "apres": {
+        "context": "L'atout Pique est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♦. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois clés, sans ♠D : 5♠ après question 5♦. Différence de réponse initiale 5♣ vs 5♦ ; hors groupe direct, utile en réserve si besoin.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-pique-5c-non",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "L'atout Pique est fixé. À 4SA Blackwood, vous avez répondu 5♣ avec trois clés : Roi de Pique, As de Cœur et As de Carreau. Votre partenaire demande la Dame de Pique par 5♦. Elle n'est pas dans votre main. Quelle réponse annoncez-vous ?"
+      },
+      "apres": {
+        "context": "L'atout Pique est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♣. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, trois clés et ♠D, aucun Roi annexe : 6♠. Paire contrôlée 006/007. L'énoncé révélait les éléments discriminants.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-pique-5c-oui",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "À l'atout Pique, vous avez répondu 5♣ avec trois clés (Roi de Pique, As de Cœur, As de Carreau). Le partenaire annonce maintenant 5♦, question à la Dame d'atout. Vous avez la Dame de Pique mais pas de Roi annexe. Quelle réponse confirme-t-elle ?"
+      },
+      "apres": {
+        "context": "L'atout Pique est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♣. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois clés dont ♥R, sans ♥D : 5♥ négatif ; contraste avec atout Pique. Pas de groupe direct.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-coeur-5c-non",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "L'atout Cœur est agréé. Vous avez annoncé trois clés par 5♣ (As de Pique, Roi de Cœur et As de Carreau). Le partenaire demande la Dame de Cœur par 5♦. Vous ne la possédez pas. Que répondez-vous ?"
+      },
+      "apres": {
+        "context": "L'atout Cœur est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♣. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, trois clés et ♥D sans Roi annexe : 6♥ positif quand 5♥ reste disponible ; contraste 008/009. Ne pas donner Dame dans question.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 2
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v474-coeur-5c-oui",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "À l'atout Cœur, votre réponse 5♣ montre trois clés. Le partenaire demande la Dame d'atout à 5♦. Vous détenez la Dame de Cœur et aucun Roi annexe. Comment donnez-vous une réponse positive ?"
+      },
+      "apres": {
+        "context": "L'atout Cœur est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♣. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V474-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, une clé ♥R, sans ♥D ; retour négatif 6♥ parce que 5♥ dépassé, distinct du 6♥ positif de 009. Supprimer l'indice de la Dame, garder niveau 5.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.blackwood.dame_rois",
+    "conceptPropose": "chelem.blackwood.dame_rois",
+    "prerequisInitial": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 47,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 3
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.blackwood.dame_rois",
+      "stage": 3,
+      "minSession": 47,
+      "requires": [
+        {
+          "concept": "chelem.blackwood.suite",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.cles",
+          "minExposure": 3
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 5,
+    "difficultyPropose": 5,
+    "caseFamily": "v474-coeur-5d-non",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "L'atout Cœur est fixé. Vous avez répondu 5♦ au Blackwood (une clé, le Roi de Cœur). Le partenaire vous demande la Dame de Cœur par 5♠, une question qui oblige à jouer au moins 6♥. Vous ne détenez pas la Dame de Cœur. Quelle réponse annoncez-vous ?"
+      },
+      "apres": {
+        "context": "L'atout Cœur est agréé. Après le Blackwood à cinq clés en 30–41, vous avez répondu 5♦. Le partenaire vous demande maintenant la Dame d'atout. Quelle est votre réponse avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H sans As, régulière : 2SA. La question donnait à la fois H, absence d'As et alternative faible ; neutraliser. S34.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/179 ; https://www.bridgesaintcloud.fr/quesaquoP18F.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.relais",
+    "conceptPropose": "fortes.relais",
+    "prerequisInitial": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.relais",
+      "stage": 1,
+      "minSession": 27,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v475-2k-sans-as-8h",
+    "groupesInitiaux": [
+      {
+        "session": 34,
+        "groupIndex": 1,
+        "decision": "Réponses simples sur 2♦",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 34,
+        "groupIndex": 1,
+        "decision": "Réponses simples sur 2♦",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      34
+    ],
+    "seancesProposees": [
+      34
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche. Vous possédez 8 points d'honneurs dans une main régulière, mais aucun As. Quelle réponse du SEF distingue cette main de la réponse faible à 2♥ ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche, l'adversaire passe. Quelle réponse conventionnelle décrivant votre main choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H sans As mais deux Rois : 2SA selon traitement confirmé. L'exception était explicitement annoncée ; retirer indice. S34 réserve.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/179 ; https://www.bridgesaintcloud.fr/quesaquoP18F.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.relais",
+    "conceptPropose": "fortes.relais",
+    "prerequisInitial": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2k-deux-rois",
+    "groupesInitiaux": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      34
+    ],
+    "seancesProposees": [
+      34
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [
+      "V2-M6-015"
+    ],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche. Vous n'avez aucun As et seulement 6 H, mais votre main régulière possède exactement deux Rois. Le SEF prévoit une exception à la limite habituelle des 8 H : quelle réponse choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche, l'adversaire passe. Quelle réponse conventionnelle décrivant votre main choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Deux As rouges ♥A et ♦A, 3♥ ; contraste des couleurs rouge/noir. La question fournissait le calcul, pas la décision seule. S34.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/179 ; https://www.bridgesaintcloud.fr/quesaquoP18F.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.relais",
+    "conceptPropose": "fortes.relais",
+    "prerequisInitial": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2k-deux-as-couleur",
+    "groupesInitiaux": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      34
+    ],
+    "seancesProposees": [
+      34
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Le partenaire ouvre de 2♦ forcing de manche, avec réponses conventionnelles aux As. Vous détenez exactement deux As : celui de Cœur et celui de Carreau. Ils sont tous deux rouges, mais l'un est majeur et l'autre mineur. Quelle réponse les décrit ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche, l'adversaire passe. Quelle réponse conventionnelle décrivant votre main choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Deux As majeurs ♠A/♥A, 3♠ ; distinction rang/couleur, S34. Laisser l'élève compter et reconnaître.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/179 ; https://www.bridgesaintcloud.fr/quesaquoP18F.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.relais",
+    "conceptPropose": "fortes.relais",
+    "prerequisInitial": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2k-deux-as-rang",
+    "groupesInitiaux": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      34
+    ],
+    "seancesProposees": [
+      34
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Après l'ouverture forcing de manche de 2♦ du partenaire, vous comptez deux As : Pique et Cœur. Ils sont l'un noir et l'autre rouge, mais appartiennent tous deux aux majeures. Quelle réponse conventionnelle choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche, l'adversaire passe. Quelle réponse conventionnelle décrivant votre main choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "Deux As mélangés ♠A/♦A, 3SA codé ; pas naturel. L'énoncé donnait déjà le classement. S34.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/179 ; https://www.bridgesaintcloud.fr/quesaquoP18F.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.relais",
+    "conceptPropose": "fortes.relais",
+    "prerequisInitial": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.relais",
+      "stage": 3,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.ouverture",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2k-deux-as-melanges",
+    "groupesInitiaux": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 34,
+        "groupIndex": 2,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      34
+    ],
+    "seancesProposees": [
+      34
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Le partenaire ouvre de 2♦ forcing de manche. Vous avez exactement deux As : Pique et Carreau. Ils ne sont ni de même couleur (noir/rouge) ni de même rang (majeure/mineure). Quelle réponse du SEF les annonce ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 2♦ forcing de manche, l'adversaire passe. Quelle réponse conventionnelle décrivant votre main choisissez-vous ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "21 H et 5–5 majeur, environ trois perdantes, 3SA conventionnel ; bonne séquence SEF 2024. Retirer mention explicite de la convention et des longueurs ; pas de groupe direct.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/778 ; https://bridgesaintcloud.fr/quesaquoP17E.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.redemande",
+    "conceptPropose": "fortes.redemande",
+    "prerequisInitial": {
+      "concept": "fortes.redemande",
+      "stage": 3,
+      "minSession": 37,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.redemande",
+      "stage": 3,
+      "minSession": 37,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 5,
+    "difficultyPropose": 5,
+    "caseFamily": "v475-2t-bicolore-majeur",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 2♣ fort indéterminé et votre partenaire a effectué le relais obligatoire de 2♦. Votre main contient deux belles majeures cinquièmes, Pique et Cœur, seulement trois perdantes potentielles et 21 H. Quelle redemande conventionnelle du SEF 2024 montre ce puissant bicolore majeur ?"
+      },
+      "apres": {
+        "context": "Après votre ouverture de 2♣ fort indéterminé et le relais 2♦ du partenaire, quelle redemande décrit votre jeu selon le SEF 2024 ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H, sept Trèfles ARDV1098 maîtres et deux As = neuf levées immédiates, 3♣. S35. Le calcul était fourni ; garder même difficulté et demander décision à partir de la main.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/778 ; https://bridgesaintcloud.fr/quesaquoP17E.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.redemande",
+    "conceptPropose": "fortes.redemande",
+    "prerequisInitial": {
+      "concept": "fortes.redemande",
+      "stage": 3,
+      "minSession": 33,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.redemande",
+      "stage": 3,
+      "minSession": 33,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.relais",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2t-unicolore-mineur",
+    "groupesInitiaux": [
+      {
+        "session": 35,
+        "groupIndex": 1,
+        "decision": "Longue forte et levées de jeu",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 35,
+        "groupIndex": 1,
+        "decision": "Longue forte et levées de jeu",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      35
+    ],
+    "seancesProposees": [
+      35
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous ouvrez de 2♣ fort indéterminé, puis votre partenaire répond au relais 2♦. Avec sept Trèfles maîtres (ARDV1098) et deux As extérieurs, vous comptez neuf levées de jeu immédiates. Quelle redemande naturelle décrit cet unicolore mineur exceptionnel ?"
+      },
+      "apres": {
+        "context": "Après votre ouverture de 2♣ fort indéterminé et le relais 2♦ du partenaire, quelle redemande décrit votre main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, 3 Cœurs contre 2 Piques, après 3SA conventionnel : 4♥, au moins 8 atouts. Garder accord 5–5 mais retirer comptage. Pas de groupe direct.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/778 ; https://bridgesaintcloud.fr/quesaquoP17E.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.suite",
+    "conceptPropose": "fortes.suite",
+    "prerequisInitial": {
+      "concept": "fortes.suite",
+      "stage": 3,
+      "minSession": 35,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.suite",
+      "stage": 3,
+      "minSession": 35,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        },
+        {
+          "concept": "fortes.suite",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v475-2t-developpement-55",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire a ouvert de 2♣ fort indéterminé. Après votre 2♦ relais, sa redemande à 3SA révèle un puissant bicolore 5 Piques–5 Cœurs et non une main régulière. Avec trois Cœurs et seulement deux Piques, quel contrat de manche choisissez-vous ?"
+      },
+      "apres": {
+        "context": "Après 2♣ fort indéterminé, votre relais 2♦ et 3SA du partenaire (bicolore majeur 5–5), quelle enchère choisissez-vous avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "0 H, deux Cœurs, 2♥ non FM après relais obligatoire : Passe. L'énoncé donnait l'absence de manche ; neutraliser, S36.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/778 ; https://bridgesaintcloud.fr/quesaquoP17E.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.suite",
+    "conceptPropose": "fortes.suite",
+    "prerequisInitial": {
+      "concept": "fortes.suite",
+      "stage": 2,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.suite",
+      "stage": 2,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v475-2t-apres-relais-passe",
+    "groupesInitiaux": [
+      {
+        "session": 36,
+        "groupIndex": 0,
+        "decision": "Suite après redemande majeure",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 36,
+        "groupIndex": 0,
+        "decision": "Suite après redemande majeure",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      36
+    ],
+    "seancesProposees": [
+      36
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Après l'ouverture forte indéterminée 2♣ de votre partenaire, vous avez répondu automatiquement 2♦. Il redemande à 2♥, décrivant un unicolore fort, normalement sixième. Vous n'avez aucun honneur et seulement deux Cœurs. Quelle décision permet de ne pas imposer une manche inexistante ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre 2♣ fort indéterminé, vous répondez 2♦ et il redemande 2♥ naturel. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V475-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H et trois Cœurs, 4♥ clôture au niveau de la manche selon traitement, 3♥ encourage au chelem. Contraste avec 009. La question annonçait force/fit et but ; neutraliser. S36.",
+    "references": [
+      "https://www.ibridge.fr/public/fichedetails/778 ; https://bridgesaintcloud.fr/quesaquoP17E.html",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fortes.suite",
+    "conceptPropose": "fortes.suite",
+    "prerequisInitial": {
+      "concept": "fortes.suite",
+      "stage": 2,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "fortes.suite",
+      "stage": 2,
+      "minSession": 31,
+      "requires": [
+        {
+          "concept": "fortes.redemande",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v475-2t-apres-relais-manche",
+    "groupesInitiaux": [
+      {
+        "session": 36,
+        "groupIndex": 0,
+        "decision": "Suite après redemande majeure",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 36,
+        "groupIndex": 0,
+        "decision": "Suite après redemande majeure",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      36
+    ],
+    "seancesProposees": [
+      36
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Votre partenaire ouvre de 2♣ fort indéterminé ; après votre 2♦ relais il redemande à 2♥, annonçant normalement six Cœurs dans une forte main. Vous possédez trois atouts Cœur et 8 H. Quelle deuxième enchère soutient utilement son ambition de manche ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre 2♣ fort indéterminé, vous répondez 2♦ et il redemande 2♥ naturel. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H et trois Piques, 2♠ soutien minimum sur 2♦ artificiel ; l'énoncé donne la priorité et la longueur. S38/S61.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-A-001",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 1,
+        "decision": "Soutien différé",
+        "role": "objectif"
+      },
+      {
+        "session": 61,
+        "groupIndex": 8,
+        "decision": "forcing.quatrieme : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 1,
+        "decision": "Soutien différé",
+        "role": "objectif"
+      },
+      {
+        "session": 61,
+        "groupIndex": 8,
+        "decision": "forcing.quatrieme : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      38,
+      61
+    ],
+    "seancesProposees": [
+      38,
+      61
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♥. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Priorité au soutien différé de trois Piques, dans une main minimum. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "17 H, trois Piques, 3♠ saut de deuxième zone. Le texte donne soutien et force ; contraste avec 001, hors groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-A-002",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♥. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Soutien différé de trois Piques avec 17 H et un jeu irrégulier. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, deux Piques, As ♦ : 2SA, pas fit. L'énoncé fournit déjà arrêt et longueur. S38/S61.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-A-003",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 3,
+        "decision": "Autres priorités de réponse",
+        "role": "objectif"
+      },
+      {
+        "session": 61,
+        "groupIndex": 9,
+        "decision": "forcing.quatrieme : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 3,
+        "decision": "Autres priorités de réponse",
+        "role": "objectif"
+      },
+      {
+        "session": 61,
+        "groupIndex": 9,
+        "decision": "forcing.quatrieme : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      38,
+      61
+    ],
+    "seancesProposees": [
+      38,
+      61
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♥. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Arrêt dans la quatrième couleur avec seulement deux Piques. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 2 Piques, 5 Cœurs, 4 Trèfles, aucun arrêt ♦ : 2♥ défaut sans garantir six cartes. Le texte donne 2♥ directement. Hors groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-A-004",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♥. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Enchère d'attente 2♥ avec cinq Cœurs seulement et sans arrêt Carreau. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, vrai 5–5 Cœur-Trèfle, sans troisième Pique ni arrêt Carreau : 3♣. Texte révèle 3♣ ; correction indispensable. S38 réserve.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-A-005",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      38
+    ],
+    "seancesProposees": [
+      38
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♥. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Révéler le bicolore 5–5 Cœur-Trèfle par 3♣. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, trois Cœurs : 2♥ prioritaire après 1♦–1♥–1♠–2♣. L'énoncé prédit le soutien ; pas de groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-B-006",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Soutien prioritaire de trois Cœurs face à la quatrième couleur. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, trois Cœurs même avec ♣AD : priorité 2♥ avant 2SA ; contraste d'arbitrage réel, retirer indice. S38 réserve.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-B-007",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      38
+    ],
+    "seancesProposees": [
+      38
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Trois Cœurs prioritaires même avec un arrêt Trèfle. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "16 H 4351, trois Cœurs, 3♥ saut deuxième zone. Texte révèle 3♥. Pas de groupe direct, contraste avec 006.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-B-008",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Soutien différé 3♥ avec 16 H après quatrième forcing. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, deux Cœurs, ♣RV10 arrêt : 2SA. Texte révèle 2SA ; pas de groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-B-009",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. 2SA avec arrêt Trèfle et sans soutien troisième Cœur. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, deux Cœurs, quatre Carreaux, quatre Piques, pas d'arrêt ♣ : 2♠ repli dans seconde couleur. L'énoncé explique le repli avant décision. S38 réserve.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-B-010",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 4,
+        "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+        "role": "reserve"
+      }
+    ],
+    "seancesInitiales": [
+      38
+    ],
+    "seancesProposees": [
+      38
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Répétition de la seconde couleur quatre cartes, enchère d'attente sans arrêt. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 5 Carreaux, 4 Piques, 2 Cœurs, ♣83 : 2♦ naturel ; contraste avec 010, ne pas annoncer réponse en question. S38.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-B-011",
+    "groupesInitiaux": [
+      {
+        "session": 38,
+        "groupIndex": 3,
+        "decision": "Autres priorités de réponse",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 38,
+        "groupIndex": 3,
+        "decision": "Autres priorités de réponse",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      38
+    ],
+    "seancesProposees": [
+      38
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Répéter la mineure d'ouverture réellement cinquième. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H, 6 Carreaux, 4 Piques, singleton ♣ : 3♦ saut deuxième zone. Texte révèle 3♦ ; pas de groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-B-012",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♦. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Saut à 3♦ pour la longue sixième et l'ouverture vigoureuse. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-013",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, trois Cœurs, arrêt ♦A : priorité 2♥ après 1♣–1♥–1♠–2♦ ; variante de couleur de 007. L'énoncé prédit le soutien. Pas de groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-C-013",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♣. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. 1♣–1♥–1♠–2♦ : priorité aux trois Cœurs malgré l'As de Carreau. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-014",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, deux Cœurs, arrêt ♦A, 5 Trèfles : 2SA, avant répétition de couleur. L'énoncé fournit déjà tout. Pas de groupe direct.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 1,
+      "minSession": 29,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v480-C-014",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♣. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Arrêt Carreau sans fit Cœur, cinq Trèfles insuffisants pour un saut. Quelle est votre troisième enchère ?"
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V480-015",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 6 Trèfles + 4 Piques, singleton ♦, deux Cœurs : 3♣ décrit dix cartes, pas de saut de force. Texte donne répétition au palier 3 ; neutraliser et expliciter priorité bicolore.",
+    "references": [
+      "FFB manuel cycle 2, séance 12 https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "forcing.quatrieme",
+    "conceptPropose": "forcing.quatrieme",
+    "prerequisInitial": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "forcing.quatrieme",
+      "stage": 3,
+      "minSession": 32,
+      "requires": [
+        {
+          "concept": "forcing.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "forcing.quatrieme",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v480-C-015",
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez ouvert de 1♣. Votre partenaire a nommé la quatrième couleur forcing après votre redemande. Six Trèfles sans arrêt Carreau, répétition au palier de 3. Quelle est votre troisième enchère ?",
+        "explain": "Sans trois Cœurs et avec un singleton Carreau sans arrêt, vous ne pouvez annoncer ni 2♥ ni 2SA. Vos six Trèfles permettent la redemande naturelle à 3♣ après le relais forcing 2♦ ; le palier de deux à Trèfle n'est plus disponible."
+      },
+      "apres": {
+        "context": "Vous êtes l'ouvreur. Votre partenaire a utilisé la quatrième couleur forcing. Quelle est votre troisième enchère avec cette main ?",
+        "explain": "Avec seulement deux Cœurs et ♦7, ni le soutien différé à Cœur ni 2SA ne conviennent. Vos six Trèfles et quatre Piques constituent un bicolore de dix cartes, à montrer par 3♣, palier le plus bas disponible à Trèfle après 2♦. 2♠ serait une enchère de repli moins précise."
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, contrôle ♦A de premier tour, 4♦ économique. Rappel et phrase fournissaient la solution. Conserver contraste As/Roi/singleton/chicane du groupe S49.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-001",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. La courte question est de savoir si un As hors de l'atout constitue un contrôle prioritaire. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, ♦R et ♥A : 4♦ avant 4♥, contrôle deuxième tour prioritaire par économie. Rappel oriente le choix ; même question neutre pour série 001–004.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-002",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. Vous devez distinguer la force d'un contrôle de deuxième tour de celle d'un contrôle de premier tour. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, singleton ♦7, ♥A : 4♦ avant 4♥. Contraste de courte contre honneur, retirer indice de distribution ; S49 et rappels.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-003",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. Une distribution irrégulière peut procurer un contrôle sans As ni Roi dans la couleur. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, chicane ♦, 4 Piques : 4♦ contrôle de premier tour ; 4♥ moins économique. Conserver distinction chicane/singleton, enlever phrase télégraphique ; S49.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-004",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 0,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 2,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 52,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "rappel"
+      },
+      {
+        "session": 62,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      },
+      {
+        "session": 65,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      52,
+      62,
+      65
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. La main est très irrégulière : ne confondez pas absence de carte et absence de contrôle. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, ♦D105 n'est pas contrôle, ♥A l'est : 4♥, saute 4♦. Énoncé révèle honneur intermédiaire. S49/S50/S51/S53/S62.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-005",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. Un honneur intermédiaire à Carreau risque de tromper le répondant sur l'ordre des contrôles. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, ♦V sans contrôle, ♥R deuxième tour : 4♥. Le rappel pointe majeure/mineure et contrôle deuxième tour. S49 et rappels, contraste avec 005.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-006",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. L'exercice oppose un véritable contrôle de deuxième tour dans une majeure à des cartes intermédiaires dans une mineure. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, ♦DV sans contrôle et singleton ♥8 : 4♥. Le contexte donne courte et honneurs ; neutraliser. S49 et rappels.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 0,
+      "minSession": 39,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "difficultyInitial": 3,
+    "difficultyPropose": 3,
+    "caseFamily": "v483-controles-4t-007",
+    "groupesInitiaux": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 49,
+        "groupIndex": 1,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 50,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 4,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 8,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "objectif"
+      },
+      {
+        "session": 62,
+        "groupIndex": 6,
+        "decision": "annoncer le contrôle économique ou freiner : 4♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "seancesInitiales": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "seancesProposees": [
+      49,
+      50,
+      51,
+      53,
+      62
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. Le répondant possède des honneurs à Carreau, mais une courte dans une autre couleur. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V483-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, ni contrôle Cœur ni Carreau malgré D/V : 4♠ freine ; ne pas poser Blackwood. Retirer phrase qui donne l'absence des contrôles. S50/S51/S53.",
+    "references": [
+      "Catalogue RKCB 30–41, programme S49–53 et #562",
+      "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "chelem.controles",
+    "conceptPropose": "chelem.controles",
+    "prerequisInitial": {
+      "concept": "chelem.controles",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 2
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "chelem.controles",
+      "stage": 3,
+      "minSession": 43,
+      "requires": [
+        {
+          "concept": "apres_fit.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "chelem.controles",
+          "minExposure": 2
+        }
+      ]
+    },
+    "difficultyInitial": 4,
+    "difficultyPropose": 4,
+    "caseFamily": "v483-controles-4t-008",
+    "groupesInitiaux": [
+      {
+        "session": 50,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 3,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 50,
+        "groupIndex": 5,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "rappel"
+      },
+      {
+        "session": 51,
+        "groupIndex": 3,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "rappel"
+      },
+      {
+        "session": 53,
+        "groupIndex": 9,
+        "decision": "annoncer le contrôle économique ou freiner : 4♠",
+        "role": "objectif"
+      }
+    ],
+    "seancesInitiales": [
+      50,
+      51,
+      53
+    ],
+    "seancesProposees": [
+      50,
+      51,
+      53
+    ],
+    "pointsControles": {
+      "mainHForme": "recalculés",
+      "sequence": "enchères du camp et choix relus",
+      "reponseCorrigeDistracteurs": "revue individuelle initiale",
+      "difficultePrerequisSeances": "vérifiés contre table et groupes",
+      "redondance": "signature comparée au catalogue, contraste commenté ; sémantique globale non exhaustive"
+    },
+    "prochesSignature": [],
+    "action": {
+      "type": "correction",
+      "avant": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire ; l'atout Pique est agréé. Il lance une recherche de chelem à 4♣ (contrôle Trèfle). Les adversaires passent. Rappel : As et chicane sont des contrôles de premier tour, Roi et singleton de deuxième tour ; on nomme économiquement ses contrôles avant le Blackwood, ou on freine à 4♠. Plusieurs honneurs dispersés ne signifient pas nécessairement que toutes les couleurs sont contrôlées. Quelle est votre enchère ?"
+      },
+      "apres": {
+        "context": "Vous avez soutenu à 3♠ l'ouverture de 1♠ du partenaire. Il annonce 4♣, contrôle Trèfle et recherche de chelem. Les adversaires passent. Quelle est votre enchère avec cette main ?"
       }
     }
   }
