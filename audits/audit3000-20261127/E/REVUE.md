@@ -165,3 +165,24 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 8 — cumul actualisé
+
+320/540 verdicts individuels, 220 restants. {"VALIDE":94,"RECLASSER_REFORMULER":210,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":16}. 192 QCM complets corrigés, 26 propositions de prérequis, 79 entrées réservoir.
+- Contrastes défense Michaël économique/cher versus naturelle limitée, Truscott/rencontre/3SA fitté, Landyk/Passe/naturel, redemande libre/obligée et soutien troisième/quatrième. Énoncés neutralisés sans supprimer les accords nécessaires.
+- Arbitrages : 2SA naturel après saut faible (L39-005), suite Rubensohl (Q26-M2-002), Contre après bicolore mineur (V1-M4-005), bicolores après soutien mineur (V1-M4-006/007). Les corrections des cas en arbitrage sont des propositions conditionnelles, non validées. Reclasser les cas après soutien adverse hors réveil ; groupe S46 2♦, S45 4M et S47 3SA/Passe/Contre non identifiés, signalés sans inventer de groupe. Références externes ciblées dans les verdicts, pas certification exhaustive.
+- Contrôle mécanique des nouvelles mains et corrections cumulées, rang simple des choix (pas légalité complète des doubles), périmètre et groupes réels. Suites locales non exécutées. Redondance sémantique exhaustive non réalisée.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 320,
+  "idsUniques": 320,
+  "corrections": 192,
+  "correctionsInvalides": [],
+  "passe8ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
