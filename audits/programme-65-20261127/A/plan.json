@@ -1,0 +1,6443 @@
+{
+  "schema": "QPJB_PROGRAMME65_A_V1",
+  "source": {
+    "base": "21d6366469a2f9ba5c06ae360a4666f5550efbe2",
+    "catalogueBlob": "fb796cfc5388273418dc97bb32f3d9c50afe99ef",
+    "prerequisBlob": "8e920bb9c925c7474bb04701f0f2fecac5288b91",
+    "programme": "audits/programme-65-20261127/PROGRAMME.md",
+    "pilote": "#527 diagnostic"
+  },
+  "semantics": {
+    "minSession": "index historique 0-based, S1=0",
+    "reference": "10 exemples ordonnés illustratifs, non deck fixe; les phases après exposition sont conditionnelles à une exposition effectivement enregistrée et au rôle compris; si moteur choisit en bloc, remplacer par repli puis reporter. Ne pas utiliser une simple exposition comme preuve de maîtrise.",
+    "groupes": "ids = réservoir vérifié; rappels numériques = séance source, pas obligation de réussite globale; requires exacts par ID. Un contraste externe renvoie à une séance déjà introduite.",
+    "quota": "généralement 4 objectifs, 3 rappels, 2 lacunes, 1 transfert, modulable; S1 quotas pilote. La référence illustre les décisions sans imposer les quotas.",
+    "stage": "stade historique informatif; si filtre moteur supplémentaire, vérifier au coordinateur, ne pas lever automatiquement.",
+    "nonObjectifs": "aucune optimisation longitudinale, aucun changement de catalogue ni moteur"
+  },
+  "sessions": [
+    {
+      "session": 1,
+      "objectif": "Décider Passe ou ouverture au palier de un selon H/HL, majeure cinquième, meilleure mineure et zone 1SA.",
+      "prerequis": [],
+      "groupes": [
+        {
+          "decision": "Passe : faible régulier, faible avec longue, limite 11 H",
+          "ids": [
+            "SEF-013-1",
+            "SEF-N023-1",
+            "SEF-Q26-M1-003",
+            "SEF-V49-003",
+            "SEF-Q26-M1-002"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-013-1",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "cas-013"
+            },
+            {
+              "id": "SEF-N023-1",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "cas-079"
+            },
+            {
+              "id": "SEF-Q26-M1-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-003"
+            },
+            {
+              "id": "SEF-V49-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "v49-003"
+            },
+            {
+              "id": "SEF-Q26-M1-002",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-002"
+            }
+          ]
+        },
+        {
+          "decision": "Mineures : égalité 3–3, égalité 4–4, longueur différente",
+          "ids": [
+            "SEF-012-1",
+            "SEF-N007-1",
+            "SEF-N005-1",
+            "SEF-009-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-012-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♣",
+              "caseFamily": "cas-012"
+            },
+            {
+              "id": "SEF-N007-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♦",
+              "caseFamily": "cas-063"
+            },
+            {
+              "id": "SEF-N005-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♣",
+              "caseFamily": "cas-061"
+            },
+            {
+              "id": "SEF-009-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♦",
+              "caseFamily": "cas-009"
+            }
+          ]
+        },
+        {
+          "decision": "Majeure cinquième : Cœur, Pique, 11 H avec six cartes",
+          "ids": [
+            "SEF-006-2",
+            "SEF-007-2",
+            "SEF-V44-003"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-006-2",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♠",
+              "caseFamily": "cas-006"
+            },
+            {
+              "id": "SEF-007-2",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♥",
+              "caseFamily": "cas-007"
+            },
+            {
+              "id": "SEF-V44-003",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♥",
+              "caseFamily": "v44-cas-003"
+            }
+          ]
+        },
+        {
+          "decision": "1SA : 15–17 H régulier, y compris mineure cinquième",
+          "ids": [
+            "SEF-001-1",
+            "SEF-002-3",
+            "SEF-003-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-001-1",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-001"
+            },
+            {
+              "id": "SEF-002-3",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-002"
+            },
+            {
+              "id": "SEF-003-2",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-003"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-Q26-M1-003",
+          "SEF-012-1",
+          "seuil 11 contre 12 H; pas de majeure cinquième"
+        ],
+        [
+          "SEF-012-1",
+          "SEF-N007-1",
+          "égalité 3–3 contre 4–4"
+        ],
+        [
+          "SEF-009-1",
+          "SEF-003-2",
+          "même forme 3–2–5–3, 12 contre 15 H"
+        ],
+        [
+          "SEF-N023-1",
+          "SEF-007-2",
+          "même forme, force insuffisante contre ouverture"
+        ]
+      ],
+      "rappels": [],
+      "repli": "Aucune notion ultérieure; corriger comptage puis un autre cas du même discriminant; conserver 3 Passe/2♣/2♦/1♥/1♠/1SA et un cas de remédiation au choix.",
+      "reference": [
+        {
+          "id": "SEF-013-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N023-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-Q26-M1-003",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-012-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N007-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N005-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-009-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-006-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-007-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-003-2",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 2,
+      "objectif": "Choisir une première réponse naturelle; reconnaître un fit majeur 5–3 sans le confondre avec une ouverture.",
+      "prerequis": [
+        1
+      ],
+      "groupes": [
+        {
+          "decision": "Réponse sur mineure : majeure quatrième, 1SA de recours, Passe",
+          "ids": [
+            "SEF-015-1",
+            "SEF-016-3",
+            "SEF-020-3",
+            "SEF-024-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-015-1",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-015"
+            },
+            {
+              "id": "SEF-016-3",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-016"
+            },
+            {
+              "id": "SEF-020-3",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-020"
+            },
+            {
+              "id": "SEF-024-2",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-024"
+            }
+          ]
+        },
+        {
+          "decision": "Sur 1♥ : quatre Piques sans fit, ou priorité du fit",
+          "ids": [
+            "SEF-V410-022",
+            "SEF-PN26-M1-005",
+            "SEF-N048-3",
+            "SEF-028-2",
+            "SEF-N068-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V410-022",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-022"
+            },
+            {
+              "id": "SEF-PN26-M1-005",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "pn26-m1-005"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-028-2",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "cas-028"
+            },
+            {
+              "id": "SEF-N068-1",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-124"
+            }
+          ]
+        },
+        {
+          "decision": "Rappel des deux égalités et ouverture majeure",
+          "ids": [
+            "SEF-012-1",
+            "SEF-N007-1",
+            "SEF-006-2"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-012-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♣",
+              "caseFamily": "cas-012"
+            },
+            {
+              "id": "SEF-N007-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♦",
+              "caseFamily": "cas-063"
+            },
+            {
+              "id": "SEF-006-2",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♠",
+              "caseFamily": "cas-006"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V410-022",
+          "SEF-PN26-M1-005",
+          "7 H et quatre Piques : deux Cœurs contre trois"
+        ],
+        [
+          "SEF-015-1",
+          "SEF-020-3",
+          "majeure quatrième contre 1SA de recours"
+        ]
+      ],
+      "rappels": [
+        1
+      ],
+      "repli": "Si seuil ou fit non acquis, revenir à deux ouvertures et réponse minimale; ne pas passer à 2 sur 1.",
+      "reference": [
+        {
+          "id": "SEF-012-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N007-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-015-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-016-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-020-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-024-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-022",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-PN26-M1-005",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-028-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N068-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 3,
+      "objectif": "Distinguer fit insuffisant, soutien simple et soutien invitant à quatre atouts; choisir une réponse sans fit.",
+      "prerequis": [
+        1,
+        2
+      ],
+      "groupes": [
+        {
+          "decision": "Fit 5–3 : 5 HLD Passe contre 6–10 HLD soutien",
+          "ids": [
+            "SEF-PN26-M1-021",
+            "SEF-N048-3",
+            "SEF-030-1",
+            "SEF-V49-010"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-PN26-M1-021",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "pn26-m1-021"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-030-1",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-030"
+            },
+            {
+              "id": "SEF-V49-010",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "v49-010"
+            }
+          ]
+        },
+        {
+          "decision": "Fit neuvième : évaluer 6–10 contre 11–12 HLD",
+          "ids": [
+            "SEF-027-1",
+            "SEF-V44-010",
+            "SEF-V44-009"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-027-1",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "cas-027"
+            },
+            {
+              "id": "SEF-V44-010",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 2,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♠",
+              "caseFamily": "v44-cas-010"
+            },
+            {
+              "id": "SEF-V44-009",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 2,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "v44-cas-010"
+            }
+          ]
+        },
+        {
+          "decision": "Sans fit : réponse naturelle 1♠ ou 1SA de recours",
+          "ids": [
+            "SEF-V410-022",
+            "SEF-N061-2",
+            "SEF-N068-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V410-022",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-022"
+            },
+            {
+              "id": "SEF-N061-2",
+              "concept": "majeur.base",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-117"
+            },
+            {
+              "id": "SEF-N068-1",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-124"
+            }
+          ]
+        },
+        {
+          "decision": "Réponse sur mineure et ouverture limite",
+          "ids": [
+            "SEF-015-1",
+            "SEF-020-3",
+            "SEF-Q26-M1-003"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-015-1",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-015"
+            },
+            {
+              "id": "SEF-020-3",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-020"
+            },
+            {
+              "id": "SEF-Q26-M1-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-003"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-PN26-M1-021",
+          "SEF-N048-3",
+          "même forme et trois Cœurs, 5 contre 6 HLD"
+        ],
+        [
+          "SEF-027-1",
+          "SEF-V44-010",
+          "même forme 4–3–4–2, soutien simple contre invitant"
+        ],
+        [
+          "SEF-V410-022",
+          "SEF-PN26-M1-005",
+          "fit prioritaire, rappel S2"
+        ]
+      ],
+      "rappels": [
+        1,
+        2
+      ],
+      "repli": "Si difficulté de valorisation HLD, répéter fit 5–3 avant soutien à saut; ne pas introduire 2SA fitté.",
+      "reference": [
+        {
+          "id": "SEF-PN26-M1-021",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-027-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-010",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-022",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N061-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N068-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-015-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-020-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-Q26-M1-003",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 4,
+      "objectif": "Sur 1SA sans majeure à rechercher, choisir Passe/2SA/3SA; distinguer en rappel l'ouverture de 2SA (20–21 H).",
+      "prerequis": [
+        1,
+        2,
+        3
+      ],
+      "groupes": [
+        {
+          "decision": "Seuils de réponse quantitative : faible, invitation, manche",
+          "ids": [
+            "SEF-N088-1",
+            "SEF-N091-3",
+            "SEF-033-1",
+            "SEF-031-2",
+            "SEF-032-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N088-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-140"
+            },
+            {
+              "id": "SEF-N091-3",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-143"
+            },
+            {
+              "id": "SEF-033-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-033"
+            },
+            {
+              "id": "SEF-031-2",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-031"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            }
+          ]
+        },
+        {
+          "decision": "Ouverture de 2SA, introduction anticipée d'un seul cas",
+          "ids": [
+            "SEF-004-1",
+            "SEF-005-1"
+          ],
+          "role": "transition",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-004-1",
+              "concept": "ouv.sa2",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-004"
+            },
+            {
+              "id": "SEF-005-1",
+              "concept": "ouv.sa2",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-005"
+            }
+          ]
+        },
+        {
+          "decision": "Ouverture 1SA et seuils/fit",
+          "ids": [
+            "SEF-002-1",
+            "SEF-001-1",
+            "SEF-012-1",
+            "SEF-Q26-M1-003",
+            "SEF-PN26-M1-005",
+            "SEF-020-3",
+            "SEF-N068-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-002-1",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-002"
+            },
+            {
+              "id": "SEF-001-1",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-001"
+            },
+            {
+              "id": "SEF-012-1",
+              "concept": "ouv.mineure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♣",
+              "caseFamily": "cas-012"
+            },
+            {
+              "id": "SEF-Q26-M1-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-003"
+            },
+            {
+              "id": "SEF-PN26-M1-005",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "pn26-m1-005"
+            },
+            {
+              "id": "SEF-020-3",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-020"
+            },
+            {
+              "id": "SEF-N068-1",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-124"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-N088-1",
+          "SEF-N091-3",
+          "Passe contre invitation"
+        ],
+        [
+          "SEF-N091-3",
+          "SEF-033-1",
+          "invitation contre manche"
+        ],
+        [
+          "SEF-002-1",
+          "SEF-004-1",
+          "même forme 4–3–3–3, 17 contre 21 H, ouverture et non réponse"
+        ]
+      ],
+      "rappels": [
+        1,
+        2,
+        3
+      ],
+      "repli": "Si 1SA non acquis, limiter à ses seuils et ouvertures; reporter le seul cas 2SA, puis l'introduire avant ses réponses S9.",
+      "reference": [
+        {
+          "id": "SEF-N088-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N091-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-033-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-004-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-002-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-012-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-Q26-M1-003",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-PN26-M1-005",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-020-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N068-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 5,
+      "objectif": "Choisir la redemande minimale de l'ouvreur selon régularité, sixième ou soutien quatrième.",
+      "prerequis": [
+        2,
+        3
+      ],
+      "groupes": [
+        {
+          "decision": "1SA 12–14 H sans fit connu",
+          "ids": [
+            "SEF-044-1",
+            "SEF-N117-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-N117-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-169"
+            }
+          ]
+        },
+        {
+          "decision": "Répétition sixième",
+          "ids": [
+            "SEF-048-1",
+            "SEF-050-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            },
+            {
+              "id": "SEF-050-2",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "cas-050"
+            }
+          ]
+        },
+        {
+          "decision": "Soutien quatrième sur réponse au palier de un",
+          "ids": [
+            "SEF-N106-1",
+            "SEF-V49-021",
+            "SEF-N107-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            },
+            {
+              "id": "SEF-V49-021",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "v49-021"
+            },
+            {
+              "id": "SEF-N107-2",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "cas-159"
+            }
+          ]
+        },
+        {
+          "decision": "Réponses et seuils SA",
+          "ids": [
+            "SEF-V410-022",
+            "SEF-PN26-M1-005",
+            "SEF-N091-3",
+            "SEF-033-1",
+            "SEF-015-1",
+            "SEF-020-3"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V410-022",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-022"
+            },
+            {
+              "id": "SEF-PN26-M1-005",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "pn26-m1-005"
+            },
+            {
+              "id": "SEF-N091-3",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-143"
+            },
+            {
+              "id": "SEF-033-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-033"
+            },
+            {
+              "id": "SEF-015-1",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-015"
+            },
+            {
+              "id": "SEF-020-3",
+              "concept": "mineur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-020"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-044-1",
+          "SEF-N107-2",
+          "1♣–1♠ : trois contre quatre Piques"
+        ],
+        [
+          "SEF-048-1",
+          "SEF-N106-1",
+          "répétition de sa couleur sixième vs soutien de celle du partenaire"
+        ]
+      ],
+      "rappels": [
+        2,
+        3,
+        4
+      ],
+      "repli": "Si rôle ouvreur/répondant ou réponses non acquis, revenir aux contrastes S2–S4; aucune découverte Texas/Stayman prématurée.",
+      "reference": [
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N107-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V49-021",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-022",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-PN26-M1-005",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N091-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-033-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-015-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-020-3",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 6,
+      "objectif": "Utiliser le Texas majeur après 1SA avec main faible, sans minimum H, pour viser une partielle.",
+      "prerequis": [
+        4
+      ],
+      "groupes": [
+        {
+          "decision": "Texas Cœur : 2♦ avec cinq ou six Cœurs",
+          "ids": [
+            "SEF-037-1",
+            "SEF-N082-2",
+            "SEF-V44-015"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-037-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-037"
+            },
+            {
+              "id": "SEF-N082-2",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-138"
+            },
+            {
+              "id": "SEF-V44-015",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "v44-cas-015"
+            }
+          ]
+        },
+        {
+          "decision": "Texas Pique : 2♥ avec cinq ou six Piques",
+          "ids": [
+            "SEF-038-1",
+            "SEF-N085-1",
+            "SEF-V44-016"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-038-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-038"
+            },
+            {
+              "id": "SEF-N085-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-139"
+            },
+            {
+              "id": "SEF-V44-016",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "v44-cas-016"
+            }
+          ]
+        },
+        {
+          "decision": "Seuils SA et redemandes naturelles",
+          "ids": [
+            "SEF-031-2",
+            "SEF-032-1",
+            "SEF-033-1",
+            "SEF-044-1",
+            "SEF-048-1",
+            "SEF-N106-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-031-2",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-031"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            },
+            {
+              "id": "SEF-033-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-033"
+            },
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-037-1",
+          "SEF-038-1",
+          "couleur réellement visée différente"
+        ],
+        [
+          "SEF-031-2",
+          "SEF-N082-2",
+          "faible sans majeure longue : Passe; faible avec cinquième : Texas"
+        ]
+      ],
+      "rappels": [
+        4,
+        5
+      ],
+      "repli": "Si seuils non acquis, ne pas introduire Texas; reprendre S4 puis un cas faible; la rectification normale ne garantit pas le fit.",
+      "reference": [
+        {
+          "id": "SEF-037-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-038-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N082-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-016",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-031-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-033-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 7,
+      "objectif": "Choisir Stayman sur 1SA avec majeure quatrième et valeurs d'invitation/manche; distinguer Texas et enchère quantitative.",
+      "prerequis": [
+        4,
+        6
+      ],
+      "groupes": [
+        {
+          "decision": "Stayman Cœur, Pique, deux majeures quatrièmes",
+          "ids": [
+            "SEF-034-1",
+            "SEF-035-2",
+            "SEF-036-1",
+            "SEF-N094-3"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-034-1",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-034"
+            },
+            {
+              "id": "SEF-035-2",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-035"
+            },
+            {
+              "id": "SEF-036-1",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-036"
+            },
+            {
+              "id": "SEF-N094-3",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-146"
+            }
+          ]
+        },
+        {
+          "decision": "Texas avec majeure cinquième et valeurs de manche",
+          "ids": [
+            "SEF-039-2",
+            "SEF-040-2"
+          ],
+          "role": "transfert",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-039-2",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-039"
+            },
+            {
+              "id": "SEF-040-2",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-040"
+            }
+          ]
+        },
+        {
+          "decision": "Sans majeure à chercher et main faible",
+          "ids": [
+            "SEF-032-1",
+            "SEF-033-1",
+            "SEF-037-1",
+            "SEF-038-1",
+            "SEF-044-1",
+            "SEF-PN26-M1-005"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            },
+            {
+              "id": "SEF-033-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-033"
+            },
+            {
+              "id": "SEF-037-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-037"
+            },
+            {
+              "id": "SEF-038-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-038"
+            },
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-PN26-M1-005",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "pn26-m1-005"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-034-1",
+          "SEF-040-2",
+          "majeure quatrième contre cinquième"
+        ],
+        [
+          "SEF-035-2",
+          "SEF-039-2",
+          "4 Cœurs contre 5"
+        ],
+        [
+          "SEF-N094-3",
+          "SEF-032-1",
+          "8 H avec majeure quatrième vs sans"
+        ]
+      ],
+      "rappels": [
+        4,
+        6,
+        2
+      ],
+      "repli": "Reporter Stayman si Texas et seuils non distingués; ne pas injecter le cas bicolore 5–4 complexe.",
+      "reference": [
+        {
+          "id": "SEF-034-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-035-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-036-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-039-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-040-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-033-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-037-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-PN26-M1-005",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 8,
+      "objectif": "Répondre au Stayman de 1SA selon nombre de majeures quatrièmes; quatre réponses SEF, quatrième réponse conditionnelle.",
+      "prerequis": [
+        7
+      ],
+      "groupes": [
+        {
+          "decision": "Aucune majeure quatrième, Cœur seul, Pique seul",
+          "ids": [
+            "SEF-V3-011-1",
+            "SEF-V3-013-4",
+            "SEF-V3-015-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-011-1",
+              "concept": "sa1.stayman.reponse",
+              "stage": 1,
+              "minSession": 7,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-211"
+            },
+            {
+              "id": "SEF-V3-013-4",
+              "concept": "sa1.stayman.reponse",
+              "stage": 1,
+              "minSession": 7,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-213"
+            },
+            {
+              "id": "SEF-V3-015-1",
+              "concept": "sa1.stayman.reponse",
+              "stage": 1,
+              "minSession": 7,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "cas-215"
+            }
+          ]
+        },
+        {
+          "decision": "Deux majeures quatrièmes : 2SA artificiel, seulement après les trois premiers cas",
+          "ids": [
+            "SEF-V416-007"
+          ],
+          "role": "objectif",
+          "phase": "apres_trois_cas",
+          "candidats": [
+            {
+              "id": "SEF-V416-007",
+              "concept": "sa1.stayman.reponse",
+              "stage": 1,
+              "minSession": 7,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "v416-cas-007"
+            }
+          ]
+        },
+        {
+          "decision": "Initiation Stayman, Texas et redemandes",
+          "ids": [
+            "SEF-034-1",
+            "SEF-035-2",
+            "SEF-037-1",
+            "SEF-038-1",
+            "SEF-044-1",
+            "SEF-N106-1",
+            "SEF-032-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-034-1",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-034"
+            },
+            {
+              "id": "SEF-035-2",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-035"
+            },
+            {
+              "id": "SEF-037-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-037"
+            },
+            {
+              "id": "SEF-038-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-038"
+            },
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V3-011-1",
+          "SEF-V3-013-4",
+          "3 Cœurs vs 4"
+        ],
+        [
+          "SEF-V3-013-4",
+          "SEF-V3-015-1",
+          "majeure unique différente"
+        ],
+        [
+          "SEF-V3-015-1",
+          "SEF-V416-007",
+          "une majeure contre deux; 2SA non naturel"
+        ]
+      ],
+      "rappels": [
+        7,
+        6,
+        5
+      ],
+      "repli": "Si Stayman initial non acquis, revenir à S7; si trois réponses non maîtrisées, différer le cas 4–4, pas de 2SA ambigu sans explication.",
+      "reference": [
+        {
+          "id": "SEF-V3-011-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-013-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-015-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V416-007",
+          "condition": "apres_trois_cas"
+        },
+        {
+          "id": "SEF-034-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-037-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-038-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 9,
+      "objectif": "Sur ouverture 2SA choisir partielle/manche; après soutien majeur simple reconnaître ouverture minimale et essai de manche.",
+      "prerequis": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "groupes": [
+        {
+          "decision": "2SA ouverture vs 1SA; réponse seulement après exposition ouv.sa2",
+          "ids": [
+            "SEF-005-1",
+            "SEF-001-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-005-1",
+              "concept": "ouv.sa2",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-005"
+            },
+            {
+              "id": "SEF-001-1",
+              "concept": "ouv.sa1",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1SA",
+              "caseFamily": "cas-001"
+            }
+          ]
+        },
+        {
+          "decision": "Réponse naturelle à 2SA : Passe ou 3SA sans majeure",
+          "ids": [
+            "SEF-N097-3",
+            "SEF-041-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N097-3",
+              "concept": "sa2.seuil",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "ouv.sa2",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-149"
+            },
+            {
+              "id": "SEF-041-2",
+              "concept": "sa2.seuil",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "ouv.sa2",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-041"
+            }
+          ]
+        },
+        {
+          "decision": "Après 1M–2M, ouverture minimale : Passe",
+          "ids": [
+            "SEF-V4-001-1",
+            "SEF-V4-013-3"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V4-001-1",
+              "concept": "apres_fit.base",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-309"
+            },
+            {
+              "id": "SEF-V4-013-3",
+              "concept": "apres_fit.base",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-322"
+            }
+          ]
+        },
+        {
+          "decision": "Essai 2SA après fit simple, si apres_fit.base déjà exposé",
+          "ids": [
+            "SEF-V4-002-1",
+            "SEF-V4-014-1"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V4-002-1",
+              "concept": "apres_fit.essai",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-310"
+            },
+            {
+              "id": "SEF-V4-014-1",
+              "concept": "apres_fit.essai",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-323"
+            }
+          ]
+        },
+        {
+          "decision": "Manche directe après fit : première disponibilité S10, pas avant",
+          "ids": [
+            "SEF-V4-007-1",
+            "SEF-V4-019-1"
+          ],
+          "role": "transition",
+          "phase": "report_S10",
+          "candidats": [
+            {
+              "id": "SEF-V4-007-1",
+              "concept": "apres_fit.base",
+              "stage": 1,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "cas-315"
+            },
+            {
+              "id": "SEF-V4-019-1",
+              "concept": "apres_fit.base",
+              "stage": 1,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♠",
+              "caseFamily": "cas-328"
+            }
+          ]
+        },
+        {
+          "decision": "Fit et seuils",
+          "ids": [
+            "SEF-PN26-M1-021",
+            "SEF-N048-3",
+            "SEF-033-1",
+            "SEF-048-1",
+            "SEF-N106-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-PN26-M1-021",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "pn26-m1-021"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-033-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-033"
+            },
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-N097-3",
+          "SEF-041-2",
+          "0 contre 5 H sur 2SA"
+        ],
+        [
+          "SEF-V4-001-1",
+          "SEF-V4-002-1",
+          "même forme, Passe minimum vs essai; si verrou reporter"
+        ],
+        [
+          "SEF-V4-002-1",
+          "SEF-V4-007-1",
+          "essai vs conclusion, contraste achevé S10"
+        ]
+      ],
+      "rappels": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "repli": "Ne pas imposer les réponses à 2SA sans ouverture vue; si sélection pré-calculée, n'utiliser que le Passe après fit et reporter l'essai à S10. La réponse 4M est verrouillée jusqu'à S10.",
+      "reference": [
+        {
+          "id": "SEF-005-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N097-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-041-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-001-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-002-1",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-PN26-M1-021",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-033-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 10,
+      "objectif": "Après Stayman ou Texas sur 1SA, choisir partielle, invitation ou manche selon fit et force.",
+      "prerequis": [
+        6,
+        7,
+        8
+      ],
+      "groupes": [
+        {
+          "decision": "Stayman fitté : invitation ou manche",
+          "ids": [
+            "SEF-V3-001-1",
+            "SEF-V3-002-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-001-1",
+              "concept": "sa1.stayman.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "cas-201"
+            },
+            {
+              "id": "SEF-V3-002-1",
+              "concept": "sa1.stayman.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "cas-202"
+            }
+          ]
+        },
+        {
+          "decision": "Stayman sans fit : 2SA ou 3SA",
+          "ids": [
+            "SEF-V3-005-1",
+            "SEF-V3-006-3"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-005-1",
+              "concept": "sa1.stayman.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-205"
+            },
+            {
+              "id": "SEF-V3-006-3",
+              "concept": "sa1.stayman.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-206"
+            }
+          ]
+        },
+        {
+          "decision": "Texas rectifié : Passe, invitation, choix de manche avec 5 ou 6",
+          "ids": [
+            "SEF-V3-017-2",
+            "SEF-V3-018-1",
+            "SEF-V44-026",
+            "SEF-V44-028",
+            "SEF-V3-019-3",
+            "SEF-V3-020-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-017-2",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-217"
+            },
+            {
+              "id": "SEF-V3-018-1",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "cas-218"
+            },
+            {
+              "id": "SEF-V44-026",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "v44-cas-026"
+            },
+            {
+              "id": "SEF-V44-028",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "v44-cas-028"
+            },
+            {
+              "id": "SEF-V3-019-3",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-219"
+            },
+            {
+              "id": "SEF-V3-020-1",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♠",
+              "caseFamily": "cas-220"
+            }
+          ]
+        },
+        {
+          "decision": "Rappel S9 : après fit, essai ou conclusion directe",
+          "ids": [
+            "SEF-V4-002-1",
+            "SEF-V4-007-1",
+            "SEF-V4-001-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V4-002-1",
+              "concept": "apres_fit.essai",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-310"
+            },
+            {
+              "id": "SEF-V4-007-1",
+              "concept": "apres_fit.base",
+              "stage": 1,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "cas-315"
+            },
+            {
+              "id": "SEF-V4-001-1",
+              "concept": "apres_fit.base",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-309"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V3-001-1",
+          "SEF-V3-002-1",
+          "fit 4–4, invitation vs manche"
+        ],
+        [
+          "SEF-V3-005-1",
+          "SEF-V3-006-3",
+          "pas de fit, invitation vs manche"
+        ],
+        [
+          "SEF-V44-028",
+          "SEF-V3-018-1",
+          "force de manche, 5 contre 6 Cœurs"
+        ],
+        [
+          "SEF-V3-017-2",
+          "SEF-V44-026",
+          "même longueur, faible vs invitation"
+        ]
+      ],
+      "rappels": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "repli": "Revenir à la signification du Texas/Stayman puis une seule suite; privilégier le contraste S9 manquant si besoin, ne pas exiger toute la variété.",
+      "reference": [
+        {
+          "id": "SEF-V3-001-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-002-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-005-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-006-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-017-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-026",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-028",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-018-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-002-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-007-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 11,
+      "objectif": "Reconnaître le bicolore économique (retour au palier de deux) et décider ensuite en tant que répondant.",
+      "prerequis": [
+        2,
+        5
+      ],
+      "groupes": [
+        {
+          "decision": "Nouvelle couleur économique : au palier de un ou bicolore 5–4",
+          "ids": [
+            "SEF-042-2",
+            "SEF-049-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-042-2",
+              "concept": "red.bicolore",
+              "stage": 0,
+              "minSession": 5,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-042"
+            },
+            {
+              "id": "SEF-049-1",
+              "concept": "red.bicolore",
+              "stage": 0,
+              "minSession": 5,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-049"
+            }
+          ]
+        },
+        {
+          "decision": "Bicolore économique au palier de deux après première exposition",
+          "ids": [
+            "SEF-051-1",
+            "SEF-N126-1"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-051-1",
+              "concept": "red.bicolore",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-051"
+            },
+            {
+              "id": "SEF-N126-1",
+              "concept": "red.bicolore",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-178"
+            }
+          ]
+        },
+        {
+          "decision": "Deuxième enchère du répondant : Passe sur soutien minimum",
+          "ids": [
+            "SEF-V49-022",
+            "SEF-V49-025"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V49-022",
+              "concept": "second.base",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "v49-022"
+            },
+            {
+              "id": "SEF-V49-025",
+              "concept": "second.base",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "v49-025"
+            }
+          ]
+        },
+        {
+          "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+          "ids": [
+            "SEF-052-3",
+            "SEF-054-1"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-052-3",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-052"
+            },
+            {
+              "id": "SEF-054-1",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-054"
+            }
+          ]
+        },
+        {
+          "decision": "Redemandes et réponse initiale",
+          "ids": [
+            "SEF-048-1",
+            "SEF-044-1",
+            "SEF-N106-1",
+            "SEF-V410-022"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            },
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            },
+            {
+              "id": "SEF-V410-022",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-022"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-048-1",
+          "SEF-051-1",
+          "1♥–1♠ : six Cœurs vs 5–4"
+        ],
+        [
+          "SEF-052-3",
+          "SEF-054-1",
+          "même 6 H, cinq vs quatre Cœurs après 1SA"
+        ]
+      ],
+      "rappels": [
+        5,
+        2,
+        3
+      ],
+      "repli": "Si red.base insuffisant, refaire les trois redemandes. Si verrou second.base self, commencer par V49-022/025, puis seulement si exposition effective 052/054; sinon reporter ces derniers et bicolores avancés à S15.",
+      "reference": [
+        {
+          "id": "SEF-042-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-049-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-051-1",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V49-022",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-052-3",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-054-1",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-022",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 12,
+      "objectif": "Distinguer 2SA essai de l'ouvreur et 2SA fitté direct du répondant; accepter ou refuser l'invitation.",
+      "prerequis": [
+        3,
+        9
+      ],
+      "groupes": [
+        {
+          "decision": "Essai de l'ouvreur : réponse minimum vs maximum",
+          "ids": [
+            "SEF-V4-009-1",
+            "SEF-V4-010-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V4-009-1",
+              "concept": "apres_fit.essai.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.essai",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "cas-318"
+            },
+            {
+              "id": "SEF-V4-010-1",
+              "concept": "apres_fit.essai.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.essai",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "cas-319"
+            }
+          ]
+        },
+        {
+          "decision": "2SA fitté direct : trois atouts et 11–12 HLD",
+          "ids": [
+            "SEF-N051-2",
+            "SEF-N056-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N051-2",
+              "concept": "fit.2sa",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-107"
+            },
+            {
+              "id": "SEF-N056-1",
+              "concept": "fit.2sa",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-112"
+            }
+          ]
+        },
+        {
+          "decision": "Suite 2SA fitté : 3M refuse, 4M accepte",
+          "ids": [
+            "SEF-V486-007",
+            "SEF-V486-008"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V486-007",
+              "concept": "fit.2sa.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "fit.2sa",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "v486-b-001"
+            },
+            {
+              "id": "SEF-V486-008",
+              "concept": "fit.2sa.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "fit.2sa",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♠",
+              "caseFamily": "v486-b-002"
+            }
+          ]
+        },
+        {
+          "decision": "Soutien simple, naturel 2SA et essai",
+          "ids": [
+            "V2-M1-039",
+            "SEF-V4-002-1",
+            "SEF-032-1",
+            "SEF-V44-010",
+            "SEF-N048-3"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "V2-M1-039",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "reserve-20261125-v2-m1-fit-2sa-force"
+            },
+            {
+              "id": "SEF-V4-002-1",
+              "concept": "apres_fit.essai",
+              "stage": 1,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-310"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            },
+            {
+              "id": "SEF-V44-010",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 2,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♠",
+              "caseFamily": "v44-cas-010"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V4-009-1",
+          "SEF-V4-010-1",
+          "refus/acceptation d'essai"
+        ],
+        [
+          "V2-M1-039",
+          "SEF-N051-2",
+          "même forme et fit, 10 vs 11 HLD"
+        ],
+        [
+          "SEF-V4-002-1",
+          "SEF-N051-2",
+          "2SA ouvreur au deuxième tour vs répondant au premier"
+        ],
+        [
+          "SEF-V486-007",
+          "SEF-V486-008",
+          "refus/acceptation après 2SA fitté"
+        ]
+      ],
+      "rappels": [
+        3,
+        4,
+        9,
+        10
+      ],
+      "repli": "Si essai non vu, reprendre S9; ne pas exposer suite du 2SA fitté avant initiation; si nécessaire reporter suite à S15.",
+      "reference": [
+        {
+          "id": "SEF-V4-009-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-010-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N051-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N056-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V486-007",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V486-008",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "V2-M1-039",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-002-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-010",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 13,
+      "objectif": "Transposer Stayman/Texas à 2SA en zone de manche; distinguer la rectification fittée sur 2SA de celle de 1SA.",
+      "prerequis": [
+        4,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "groupes": [
+        {
+          "decision": "Stayman 3♣ avec majeure quatrième",
+          "ids": [
+            "SEF-N101-3",
+            "SEF-N102-2"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N101-3",
+              "concept": "sa2.stayman",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa2.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "cas-153"
+            },
+            {
+              "id": "SEF-N102-2",
+              "concept": "sa2.stayman",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa2.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "cas-154"
+            }
+          ]
+        },
+        {
+          "decision": "Texas 3♦/3♥ avec majeure cinquième et valeurs de manche",
+          "ids": [
+            "SEF-N104-1",
+            "SEF-N105-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-N104-1",
+              "concept": "sa2.texas",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa2.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♦",
+              "caseFamily": "cas-156"
+            },
+            {
+              "id": "SEF-N105-1",
+              "concept": "sa2.texas",
+              "stage": 0,
+              "minSession": 8,
+              "requires": [
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa2.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "cas-157"
+            }
+          ]
+        },
+        {
+          "decision": "Réponses au Stayman à quatre réponses : sans, une, deux majeures",
+          "ids": [
+            "SEF-L40-001",
+            "SEF-L41-001",
+            "SEF-L43-005",
+            "SEF-L38-001"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-L40-001",
+              "concept": "sa2.stayman.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♦",
+              "caseFamily": "LOT40-2026-11-16-001"
+            },
+            {
+              "id": "SEF-L41-001",
+              "concept": "sa2.stayman.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "LOT41-2026-11-16-001"
+            },
+            {
+              "id": "SEF-L43-005",
+              "concept": "sa2.stayman.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♠",
+              "caseFamily": "LOT43-2026-11-17-005"
+            },
+            {
+              "id": "SEF-L38-001",
+              "concept": "sa2.stayman.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "LOT38-2026-11-16-001"
+            }
+          ]
+        },
+        {
+          "decision": "Texas 2SA : rectification avec trois ou plus, 3SA avec deux",
+          "ids": [
+            "SEF-Q26-M2-008",
+            "SEF-L23-006",
+            "SEF-Q26-M2-009"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-Q26-M2-008",
+              "concept": "sa2.texas.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "QUAL-M2-008"
+            },
+            {
+              "id": "SEF-L23-006",
+              "concept": "sa2.texas.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "LOT23-2026-11-13-006"
+            },
+            {
+              "id": "SEF-Q26-M2-009",
+              "concept": "sa2.texas.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "QUAL-M2-009"
+            }
+          ]
+        },
+        {
+          "decision": "Seuils et suite de Texas 1SA",
+          "ids": [
+            "SEF-041-2",
+            "SEF-N097-3",
+            "SEF-V3-017-2",
+            "SEF-V44-028",
+            "SEF-034-1",
+            "SEF-039-2"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-041-2",
+              "concept": "sa2.seuil",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "ouv.sa2",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "cas-041"
+            },
+            {
+              "id": "SEF-N097-3",
+              "concept": "sa2.seuil",
+              "stage": 0,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "ouv.sa2",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-149"
+            },
+            {
+              "id": "SEF-V3-017-2",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-217"
+            },
+            {
+              "id": "SEF-V44-028",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "v44-cas-028"
+            },
+            {
+              "id": "SEF-034-1",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-034"
+            },
+            {
+              "id": "SEF-039-2",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-039"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-N101-3",
+          "SEF-N105-1",
+          "majeure 4 vs 5 sur 2SA"
+        ],
+        [
+          "SEF-Q26-M2-008",
+          "SEF-L23-006",
+          "4 contre 2 Cœurs; force maximale ne remplace pas fit"
+        ],
+        [
+          "SEF-V3-017-2",
+          "SEF-Q26-M2-008",
+          "rectification sur 1SA ne promet pas trois; sur 2SA oui"
+        ],
+        [
+          "SEF-L40-001",
+          "SEF-L38-001",
+          "0 contre 2 majeures quatrièmes"
+        ]
+      ],
+      "rappels": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "repli": "Si exposition préalable manquante, ne traiter qu'une transposition; reporter réponses de l'autre à S15 ou S28. Ne jamais utiliser un Texas faible sur 2SA par analogie.",
+      "reference": [
+        {
+          "id": "SEF-N101-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N104-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N105-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-L40-001",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L41-001",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L43-005",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L38-001",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-Q26-M2-008",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L23-006",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V3-017-2",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 14,
+      "objectif": "Identifier le Texas mineur sur 1SA : 2♠ Trèfle, 3♣ Carreau, avec longue et main faible.",
+      "prerequis": [
+        6,
+        10
+      ],
+      "groupes": [
+        {
+          "decision": "Texas Trèfle 2♠, Texas Carreau 3♣",
+          "ids": [
+            "SEF-V482-001",
+            "SEF-V482-002",
+            "SEF-Q26-M2-005",
+            "SEF-PN26-M1-011"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V482-001",
+              "concept": "sa1.texas_mineur",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "v482-001"
+            },
+            {
+              "id": "SEF-V482-002",
+              "concept": "sa1.texas_mineur",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "v482-002"
+            },
+            {
+              "id": "SEF-Q26-M2-005",
+              "concept": "sa1.texas_mineur",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "QUAL-M2-005"
+            },
+            {
+              "id": "SEF-PN26-M1-011",
+              "concept": "sa1.texas_mineur",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.texas.suite",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "pn26-m1-011"
+            }
+          ]
+        },
+        {
+          "decision": "Rectifications normales : disponibles S15 seulement selon minSession historique",
+          "ids": [
+            "SEF-L25-008",
+            "SEF-L37-004"
+          ],
+          "role": "transition",
+          "phase": "report_S15",
+          "candidats": [
+            {
+              "id": "SEF-L25-008",
+              "concept": "sa1.texas_mineur.reponse",
+              "stage": 1,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "sa1.texas_mineur",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "LOT25-2026-11-13-008"
+            },
+            {
+              "id": "SEF-L37-004",
+              "concept": "sa1.texas_mineur.reponse",
+              "stage": 1,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "sa1.texas_mineur",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♦",
+              "caseFamily": "LOT37-2026-11-16-004"
+            }
+          ]
+        },
+        {
+          "decision": "Texas majeur, Stayman, seuils et redemandes",
+          "ids": [
+            "SEF-037-1",
+            "SEF-038-1",
+            "SEF-034-1",
+            "SEF-V3-017-2",
+            "SEF-032-1",
+            "SEF-N106-1",
+            "SEF-048-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-037-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-037"
+            },
+            {
+              "id": "SEF-038-1",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-038"
+            },
+            {
+              "id": "SEF-034-1",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-034"
+            },
+            {
+              "id": "SEF-V3-017-2",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-217"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            },
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V482-001",
+          "SEF-V482-002",
+          "longue Trèfle vs Carreau"
+        ],
+        [
+          "SEF-038-1",
+          "SEF-V482-001",
+          "Texas Pique 2♥ vs Trèfle 2♠"
+        ],
+        [
+          "SEF-L25-008",
+          "SEF-L37-004",
+          "rectification après Texas mineur, à S15"
+        ]
+      ],
+      "rappels": [
+        6,
+        7,
+        10,
+        5
+      ],
+      "repli": "Si la suite Texas majeur n'est pas vue, reprendre S10. Ne pas imposer une réponse de Texas mineur verrouillée; ne pas présenter la modulation positive complexe comme acquise.",
+      "reference": [
+        {
+          "id": "SEF-V482-001",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V482-002",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-Q26-M2-005",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-037-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-038-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-034-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-017-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 15,
+      "objectif": "Réinvestir les enchères naturelles et les conventions déjà introduites; terminer une rectification mineure reportée, sans convention indépendante nouvelle.",
+      "prerequis": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "groupes": [
+        {
+          "decision": "Même force, distributions différentes : choix du bon outil",
+          "ids": [
+            "SEF-032-1",
+            "SEF-N094-3",
+            "SEF-039-2",
+            "SEF-V3-001-1",
+            "SEF-V44-026"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            },
+            {
+              "id": "SEF-N094-3",
+              "concept": "sa1.stayman",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "cas-146"
+            },
+            {
+              "id": "SEF-039-2",
+              "concept": "sa1.texas",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "sa1.seuil",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-039"
+            },
+            {
+              "id": "SEF-V3-001-1",
+              "concept": "sa1.stayman.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.stayman",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "sa1.stayman.reponse",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "cas-201"
+            },
+            {
+              "id": "SEF-V44-026",
+              "concept": "sa1.texas.suite",
+              "stage": 2,
+              "minSession": 9,
+              "requires": [
+                {
+                  "concept": "sa1.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "v44-cas-026"
+            }
+          ]
+        },
+        {
+          "decision": "Redemandes et deuxième enchère",
+          "ids": [
+            "SEF-044-1",
+            "SEF-048-1",
+            "SEF-N106-1",
+            "SEF-052-3",
+            "SEF-054-1",
+            "SEF-051-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            },
+            {
+              "id": "SEF-N106-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-158"
+            },
+            {
+              "id": "SEF-052-3",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-052"
+            },
+            {
+              "id": "SEF-054-1",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-054"
+            },
+            {
+              "id": "SEF-051-1",
+              "concept": "red.bicolore",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-051"
+            }
+          ]
+        },
+        {
+          "decision": "Soutien et ouverture : fit/force",
+          "ids": [
+            "SEF-PN26-M1-021",
+            "SEF-N048-3",
+            "SEF-Q26-M1-003",
+            "SEF-V44-003"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-PN26-M1-021",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "pn26-m1-021"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-Q26-M1-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-003"
+            },
+            {
+              "id": "SEF-V44-003",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♥",
+              "caseFamily": "v44-cas-003"
+            }
+          ]
+        },
+        {
+          "decision": "Rectification du Texas mineur (si initiation S14 acquise)",
+          "ids": [
+            "SEF-L25-008",
+            "SEF-L37-004"
+          ],
+          "role": "transition",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-L25-008",
+              "concept": "sa1.texas_mineur.reponse",
+              "stage": 1,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "sa1.texas_mineur",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♣",
+              "caseFamily": "LOT25-2026-11-13-008"
+            },
+            {
+              "id": "SEF-L37-004",
+              "concept": "sa1.texas_mineur.reponse",
+              "stage": 1,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "sa1.texas_mineur",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♦",
+              "caseFamily": "LOT37-2026-11-16-004"
+            }
+          ]
+        },
+        {
+          "decision": "Suite reportée si nécessaire : 2SA fitté ou réponse sur 2SA",
+          "ids": [
+            "SEF-V486-007",
+            "SEF-V486-008",
+            "SEF-L40-001",
+            "SEF-Q26-M2-008"
+          ],
+          "role": "transition",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V486-007",
+              "concept": "fit.2sa.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "fit.2sa",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "v486-b-001"
+            },
+            {
+              "id": "SEF-V486-008",
+              "concept": "fit.2sa.suite",
+              "stage": 2,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "apres_fit.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "fit.2sa",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "4♠",
+              "caseFamily": "v486-b-002"
+            },
+            {
+              "id": "SEF-L40-001",
+              "concept": "sa2.stayman.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.stayman",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♦",
+              "caseFamily": "LOT40-2026-11-16-001"
+            },
+            {
+              "id": "SEF-Q26-M2-008",
+              "concept": "sa2.texas.reponse",
+              "stage": 1,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "sa2.texas",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "3♥",
+              "caseFamily": "QUAL-M2-008"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-032-1",
+          "SEF-N094-3",
+          "8 H, avec/sans majeure quatrième"
+        ],
+        [
+          "SEF-052-3",
+          "SEF-054-1",
+          "5 vs 4 cartes"
+        ],
+        [
+          "SEF-L25-008",
+          "SEF-L37-004",
+          "rectifications mineures"
+        ]
+      ],
+      "rappels": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "repli": "Prioriser erreurs et reports réellement ouverts; si fragile, aucun développement non exposé. Si la rectification mineure est reportée encore, la traiter avant suites S27.",
+      "reference": [
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N094-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-039-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-048-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N106-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-052-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-054-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-L25-008",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-L37-004",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 16,
+      "objectif": "Décider intervenir naturellement ou passer après ouverture adverse; longueur, qualité, force et palier.",
+      "prerequis": [
+        1
+      ],
+      "groupes": [
+        {
+          "decision": "Intervention naturelle palier de un : Cœur ou Pique",
+          "ids": [
+            "SEF-V3-027-2",
+            "SEF-V3-031-2",
+            "SEF-V3-035-4"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-027-2",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-227"
+            },
+            {
+              "id": "SEF-V3-031-2",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-231"
+            },
+            {
+              "id": "SEF-V3-035-4",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-235"
+            }
+          ]
+        },
+        {
+          "decision": "Passe faute de longueur/force",
+          "ids": [
+            "SEF-V3-051-3",
+            "SEF-V3-052-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-051-3",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-251"
+            },
+            {
+              "id": "SEF-V3-052-1",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-252"
+            }
+          ]
+        },
+        {
+          "decision": "Intervention au palier de deux, après première exposition",
+          "ids": [
+            "SEF-V3-037-1"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V3-037-1",
+              "concept": "intervenir.base",
+              "stage": 1,
+              "minSession": 11,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-237"
+            }
+          ]
+        },
+        {
+          "decision": "Rappel : ouverture, réponse, redemande, fit",
+          "ids": [
+            "SEF-006-2",
+            "SEF-Q26-M1-003",
+            "SEF-N048-3",
+            "SEF-044-1",
+            "SEF-032-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-006-2",
+              "concept": "ouv.majeure",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "1♠",
+              "caseFamily": "cas-006"
+            },
+            {
+              "id": "SEF-Q26-M1-003",
+              "concept": "ouv.passe",
+              "stage": 0,
+              "minSession": 0,
+              "requires": [],
+              "answer": "Passe",
+              "caseFamily": "QUALITE-20261125-M1-003"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-044-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-044"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V3-035-4",
+          "SEF-V3-051-3",
+          "même adversaire 1♥, cinq cartes et force vs quatre et faible"
+        ],
+        [
+          "SEF-V3-037-1",
+          "SEF-V3-052-1",
+          "sur 1♠, six Cœurs et force vs quatre et faible"
+        ]
+      ],
+      "rappels": [
+        1,
+        2,
+        5
+      ],
+      "repli": "Si confusion ouvrir/intervenir, reprendre S1 et une intervention au palier de un; ne pas introduire Contre fort ou 1SA d'intervention.",
+      "reference": [
+        {
+          "id": "SEF-V3-027-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-035-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-051-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-052-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-037-1",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-006-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-Q26-M1-003",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-044-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 17,
+      "objectif": "Choisir un contre d'appel plutôt qu'une intervention naturelle, puis répondre au contre au palier approprié.",
+      "prerequis": [
+        16
+      ],
+      "groupes": [
+        {
+          "decision": "Contre direct tricolore; classé intervenir.base dans le catalogue",
+          "ids": [
+            "SEF-V3-047-4",
+            "SEF-V3-049-2",
+            "SEF-V3-050-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-047-4",
+              "concept": "intervenir.base",
+              "stage": 1,
+              "minSession": 11,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "cas-247"
+            },
+            {
+              "id": "SEF-V3-049-2",
+              "concept": "intervenir.base",
+              "stage": 1,
+              "minSession": 11,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "cas-249"
+            },
+            {
+              "id": "SEF-V3-050-1",
+              "concept": "intervenir.base",
+              "stage": 1,
+              "minSession": 11,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "cas-250"
+            }
+          ]
+        },
+        {
+          "decision": "Répondre même faible, priorité majeure",
+          "ids": [
+            "SEF-V3-057-1",
+            "SEF-V3-058-3"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-057-1",
+              "concept": "contre.base",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-257"
+            },
+            {
+              "id": "SEF-V3-058-3",
+              "concept": "contre.base",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-258"
+            }
+          ]
+        },
+        {
+          "decision": "Saut avec 8–10 H, après réponse simple exposée",
+          "ids": [
+            "SEF-V3-065-3"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V3-065-3",
+              "concept": "contre.base",
+              "stage": 1,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "contre.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-265"
+            }
+          ]
+        },
+        {
+          "decision": "Intervention naturelle, Passe et fit",
+          "ids": [
+            "SEF-V3-031-2",
+            "SEF-V3-035-4",
+            "SEF-V3-051-3",
+            "SEF-N048-3"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-031-2",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-231"
+            },
+            {
+              "id": "SEF-V3-035-4",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-235"
+            },
+            {
+              "id": "SEF-V3-051-3",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-251"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V3-047-4",
+          "SEF-V3-031-2",
+          "12 H sur 1♣, tricolore court vs cinquième"
+        ],
+        [
+          "SEF-V3-057-1",
+          "SEF-V3-065-3",
+          "même séquence, 3 H contre 9 H"
+        ],
+        [
+          "SEF-V3-049-2",
+          "SEF-V3-035-4",
+          "sur 1♥, appel plusieurs couleurs contre Piques cinquièmes"
+        ]
+      ],
+      "rappels": [
+        16,
+        1,
+        2
+      ],
+      "repli": "Si intervention non acquise, revenir S16; expliquer la différence de rôle avant toute réponse au contre, reporter saut si réponse simple pas exposée.",
+      "reference": [
+        {
+          "id": "SEF-V3-047-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-049-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-057-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-058-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-065-3",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V3-031-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-035-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-051-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-050-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 18,
+      "objectif": "Répondre à l'intervention naturelle du partenaire : soutien simple, Passe, SA avec arrêt ou nouvelle couleur naturelle.",
+      "prerequis": [
+        2,
+        3,
+        16
+      ],
+      "groupes": [
+        {
+          "decision": "Soutien simple à trois atouts ou Passe sans fit/force",
+          "ids": [
+            "SEF-V4-025-2",
+            "SEF-V4-027-1",
+            "SEF-V4-029-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V4-025-2",
+              "concept": "reponse_inter.base",
+              "stage": 0,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-335"
+            },
+            {
+              "id": "SEF-V4-027-1",
+              "concept": "reponse_inter.base",
+              "stage": 0,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-337"
+            },
+            {
+              "id": "SEF-V4-029-1",
+              "concept": "reponse_inter.base",
+              "stage": 0,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-339"
+            }
+          ]
+        },
+        {
+          "decision": "1SA sans fit avec arrêt",
+          "ids": [
+            "SEF-V4-028-1"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V4-028-1",
+              "concept": "reponse_inter.base",
+              "stage": 0,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "cas-338"
+            }
+          ]
+        },
+        {
+          "decision": "Changement de couleur naturel forcing un tour si n°3 a passé",
+          "ids": [
+            "SEF-V413-009"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V413-009",
+              "concept": "reponse_inter.base",
+              "stage": 1,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "reponse_inter.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v413-cas-009"
+            }
+          ]
+        },
+        {
+          "decision": "Rappel contre, intervention et fit",
+          "ids": [
+            "SEF-V3-057-1",
+            "SEF-V3-035-4",
+            "SEF-PN26-M1-005",
+            "SEF-N048-3",
+            "SEF-032-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-057-1",
+              "concept": "contre.base",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-257"
+            },
+            {
+              "id": "SEF-V3-035-4",
+              "concept": "intervenir.base",
+              "stage": 0,
+              "minSession": 10,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "cas-235"
+            },
+            {
+              "id": "SEF-PN26-M1-005",
+              "concept": "majeur.soutien",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "pn26-m1-005"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            },
+            {
+              "id": "SEF-032-1",
+              "concept": "sa1.seuil",
+              "stage": 0,
+              "minSession": 3,
+              "requires": [
+                {
+                  "concept": "ouv.sa1",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "cas-032"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V4-025-2",
+          "SEF-V4-027-1",
+          "fit 3 cartes et force vs 2 cartes faible"
+        ],
+        [
+          "SEF-V4-028-1",
+          "SEF-V413-009",
+          "sans fit, arrêt et SA vs majeure quatrième"
+        ],
+        [
+          "SEF-V4-025-2",
+          "SEF-V3-057-1",
+          "répondre à intervention naturelle vs contre"
+        ]
+      ],
+      "rappels": [
+        2,
+        3,
+        16,
+        17
+      ],
+      "repli": "Reporter nouvelle couleur si reponse_inter.base non exposé; pas de cue-bid, mixed raise ni réponse après intervention du n°3.",
+      "reference": [
+        {
+          "id": "SEF-V4-025-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-027-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-028-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V413-009",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V4-029-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-057-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-035-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-PN26-M1-005",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-032-1",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 19,
+      "objectif": "Après intervention adverse sur notre ouverture, choisir soutien, réponse naturelle ou contre Spoutnik selon séquence.",
+      "prerequis": [
+        2,
+        3,
+        16,
+        17
+      ],
+      "groupes": [
+        {
+          "decision": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+          "ids": [
+            "SEF-V3-074-3",
+            "SEF-V44-041",
+            "SEF-V413-011",
+            "SEF-V3-085-3"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-074-3",
+              "concept": "apres_inter.base",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-274"
+            },
+            {
+              "id": "SEF-V44-041",
+              "concept": "apres_inter.base",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v44-cas-041"
+            },
+            {
+              "id": "SEF-V413-011",
+              "concept": "apres_inter.base",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1SA",
+              "caseFamily": "v413-cas-011"
+            },
+            {
+              "id": "SEF-V3-085-3",
+              "concept": "apres_inter.base",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-285"
+            }
+          ]
+        },
+        {
+          "decision": "Majeure quatrième Pique sur 1♥ adverse, après base exposée",
+          "ids": [
+            "SEF-V410-025"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V410-025",
+              "concept": "apres_inter.base",
+              "stage": 1,
+              "minSession": 15,
+              "requires": [
+                {
+                  "concept": "apres_inter.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-025"
+            }
+          ]
+        },
+        {
+          "decision": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+          "ids": [
+            "SEF-V410-026",
+            "SEF-V417-010"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-V410-026",
+              "concept": "competitif.spoutnik",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "apres_inter.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "v410-026"
+            },
+            {
+              "id": "SEF-V417-010",
+              "concept": "competitif.spoutnik",
+              "stage": 0,
+              "minSession": 14,
+              "requires": [
+                {
+                  "concept": "apres_inter.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "audit-P1-P-032-010"
+            }
+          ]
+        },
+        {
+          "decision": "Rappel des rôles et fit",
+          "ids": [
+            "SEF-V3-047-4",
+            "SEF-V3-057-1",
+            "SEF-V4-025-2",
+            "SEF-V410-022",
+            "SEF-N048-3"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V3-047-4",
+              "concept": "intervenir.base",
+              "stage": 1,
+              "minSession": 11,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.mineure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Contre",
+              "caseFamily": "cas-247"
+            },
+            {
+              "id": "SEF-V3-057-1",
+              "concept": "contre.base",
+              "stage": 0,
+              "minSession": 12,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♥",
+              "caseFamily": "cas-257"
+            },
+            {
+              "id": "SEF-V4-025-2",
+              "concept": "reponse_inter.base",
+              "stage": 0,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "intervenir.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-335"
+            },
+            {
+              "id": "SEF-V410-022",
+              "concept": "majeur.base",
+              "stage": 0,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "1♠",
+              "caseFamily": "v410-022"
+            },
+            {
+              "id": "SEF-N048-3",
+              "concept": "majeur.soutien",
+              "stage": 1,
+              "minSession": 1,
+              "requires": [
+                {
+                  "concept": "majeur.soutien",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "ouv.majeure",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-104"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V410-025",
+          "SEF-V410-026",
+          "majeure quatrième disponible au palier de un vs bloquée par 1♠"
+        ],
+        [
+          "SEF-V3-047-4",
+          "SEF-V410-026",
+          "contre d'appel en intervention vs Spoutnik en réponse"
+        ]
+      ],
+      "rappels": [
+        2,
+        16,
+        17,
+        18
+      ],
+      "repli": "Si après_inter.base non exposée, commencer par soutien ou réponse naturelle; reporter Spoutnik à un créneau de rattrapage, pas de cas au palier de deux ou convention de fit avancée.",
+      "reference": [
+        {
+          "id": "SEF-V3-074-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V44-041",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V413-011",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-025",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V410-026",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-V3-047-4",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V3-057-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V4-025-2",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-022",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-N048-3",
+          "condition": "initial"
+        }
+      ]
+    },
+    {
+      "session": 20,
+      "objectif": "Distinguer bicolore économique et cher selon coût de la préférence et force; répondre sans passer au bicolore cher.",
+      "prerequis": [
+        5,
+        11
+      ],
+      "groupes": [
+        {
+          "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+          "ids": [
+            "SEF-V44-020",
+            "SEF-V410-007",
+            "V1-M1-001"
+          ],
+          "role": "objectif",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-V44-020",
+              "concept": "red.bicolore_cher",
+              "stage": 3,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "v44-cas-020"
+            },
+            {
+              "id": "SEF-V410-007",
+              "concept": "red.bicolore_cher",
+              "stage": 3,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "v410-007"
+            },
+            {
+              "id": "V1-M1-001",
+              "concept": "red.bicolore_cher",
+              "stage": 3,
+              "minSession": 13,
+              "requires": [
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "2♣",
+              "caseFamily": "reserve-20261125-v1-m1-001"
+            }
+          ]
+        },
+        {
+          "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
+          "ids": [
+            "SEF-L15-001",
+            "SEF-L15-002",
+            "SEF-L15-003",
+            "SEF-L16-001"
+          ],
+          "role": "objectif",
+          "phase": "apres_exposition",
+          "candidats": [
+            {
+              "id": "SEF-L15-001",
+              "concept": "second.bicolore_cher",
+              "stage": 3,
+              "minSession": 16,
+              "requires": [
+                {
+                  "concept": "red.bicolore_cher",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "2♠",
+              "caseFamily": "LOT15-2026-11-13-001"
+            },
+            {
+              "id": "SEF-L15-002",
+              "concept": "second.bicolore_cher",
+              "stage": 3,
+              "minSession": 16,
+              "requires": [
+                {
+                  "concept": "red.bicolore_cher",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "4♥",
+              "caseFamily": "LOT15-2026-11-13-002"
+            },
+            {
+              "id": "SEF-L15-003",
+              "concept": "second.bicolore_cher",
+              "stage": 3,
+              "minSession": 16,
+              "requires": [
+                {
+                  "concept": "red.bicolore_cher",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "3SA",
+              "caseFamily": "LOT15-2026-11-13-003"
+            },
+            {
+              "id": "SEF-L16-001",
+              "concept": "second.bicolore_cher",
+              "stage": 3,
+              "minSession": 16,
+              "requires": [
+                {
+                  "concept": "red.bicolore_cher",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 2
+                }
+              ],
+              "answer": "2SA",
+              "caseFamily": "LOT16-2026-11-13-001"
+            }
+          ]
+        },
+        {
+          "decision": "Bicolore économique et deuxième enchère",
+          "ids": [
+            "SEF-049-1",
+            "SEF-051-1",
+            "SEF-052-3",
+            "SEF-054-1",
+            "SEF-048-1"
+          ],
+          "role": "rappel",
+          "phase": "initial",
+          "candidats": [
+            {
+              "id": "SEF-049-1",
+              "concept": "red.bicolore",
+              "stage": 0,
+              "minSession": 5,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-049"
+            },
+            {
+              "id": "SEF-051-1",
+              "concept": "red.bicolore",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "red.bicolore",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♦",
+              "caseFamily": "cas-051"
+            },
+            {
+              "id": "SEF-052-3",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-052"
+            },
+            {
+              "id": "SEF-054-1",
+              "concept": "second.base",
+              "stage": 1,
+              "minSession": 6,
+              "requires": [
+                {
+                  "concept": "red.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "second.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "Passe",
+              "caseFamily": "cas-054"
+            },
+            {
+              "id": "SEF-048-1",
+              "concept": "red.base",
+              "stage": 0,
+              "minSession": 4,
+              "requires": [
+                {
+                  "concept": "majeur.base",
+                  "minExposure": 1
+                },
+                {
+                  "concept": "mineur.base",
+                  "minExposure": 1
+                }
+              ],
+              "answer": "2♥",
+              "caseFamily": "cas-048"
+            }
+          ]
+        }
+      ],
+      "contrastes": [
+        [
+          "SEF-V44-020",
+          "V1-M1-001",
+          "même ouverture 1♣–1♠, nouvelle couleur chère avec force vs répétition faute de force"
+        ],
+        [
+          "SEF-051-1",
+          "SEF-V410-007",
+          "préférence au palier de deux vs trois"
+        ],
+        [
+          "SEF-L15-001",
+          "SEF-L16-001",
+          "faible avec cinq Piques vs quatre, 2SA modérateur"
+        ],
+        [
+          "SEF-L15-002",
+          "SEF-L15-003",
+          "fit et manche majeure vs SA"
+        ]
+      ],
+      "rappels": [
+        5,
+        11,
+        15
+      ],
+      "repli": "Exiger deux expositions red.bicolore et deux second.base pour suites; si absent, refaire S11. Si moteur ne peut ouvrir une suite après exposition dans la séance, reporter la réponse S20 à un créneau explicite avant S37; ne pas confondre avec bicolore à saut.",
+      "reference": [
+        {
+          "id": "SEF-V44-020",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-V410-007",
+          "condition": "initial"
+        },
+        {
+          "id": "V1-M1-001",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-L15-001",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L15-002",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-L16-001",
+          "condition": "apres_exposition"
+        },
+        {
+          "id": "SEF-049-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-051-1",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-052-3",
+          "condition": "initial"
+        },
+        {
+          "id": "SEF-054-1",
+          "condition": "initial"
+        }
+      ]
+    }
+  ]
+}
