@@ -23,8 +23,9 @@ jobs:
           python3 scripts/build_catalogue.py
           python3 scripts/build_public_site.py --output _public_site
       - run: node tests/pedagogie-pilote-baseline.cjs _public_site pilot-output
+      - run: node tests/pedagogie-pilote-compare.cjs pilot-output
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: reference-s1-s5
+          name: comparatif-s1-s5
           path: pilot-output/
