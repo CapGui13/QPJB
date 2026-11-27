@@ -23979,5 +23979,2866 @@
     "apres": {
       "explain": "Avec six Trèfles et 6 H, vous cherchez une partielle à Trèfle. Dans le Rubensohl étudié, 2SA transfère vers 3♣ ; il n'est pas quantitatif. 3♣ transférerait vers Carreau, 2♠ serait naturel sans longueur correspondante et 3SA serait trop ambitieux."
     }
+  },
+  {
+    "id": "SEF-Q400-D-052",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H et six ♣ RD9875, 2SA Texas ♣ sur 2♠ ; contraste D051 même transfert sur 2♥, généralisation utile mais rappel S63 seul suffisant. Corrigé doit opposer les Texas de ♣/♦/♥ et non seulement la force.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-052",
+      "quizz-prerequis.js#SEF-Q400-D-052",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      63
+    ],
+    "seancesProposees": [
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 63,
+        "group": "choisir le transfert ou le Texas impossible : 2SA",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "SEF 2024 — Après 2♣ Landy adverse, 2SA transfert vers les Trèfles",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 0,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-transfert-trefle",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Six Trèfles et 6 H : 2SA reste le Texas Trèfle après l’intervention plus haute à 2♠. Pas de valeurs de manche."
+    },
+    "apres": {
+      "explain": "Avec six Trèfles et 6 H, vous cherchez une partielle. 2SA transfère à 3♣ dans le Rubensohl, même après l'intervention à 2♠. 3♣ transférerait à Carreau, 3♦ à Cœur ; 3SA demanderait une force de manche."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-053",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq ♠ RV986, 2♠ naturel non forcing sur 2♥, pas d'arrêt ♥. Contraste D055 cinq ♠ et valeurs de manche, Texas 3♥. S44 rappel de la réponse disponible.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-053",
+      "quizz-prerequis.js#SEF-Q400-D-053",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl",
+      "https://amourdubridge.fr/forums/topic/rubensohl-13/"
+    ],
+    "conceptInitial": "rubensohl.naturel",
+    "conceptPropose": "rubensohl.naturel",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "réponse disponible selon la nature de l’intervention adverse : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinguer une enchère naturelle de la structure Rubensohl",
+      "prerequis": {
+        "concept": "rubensohl.naturel",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.naturel",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-naturel-faible",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-031"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-D-054",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H et sept ♥ DV98654, intervention 2♠ rend 2♥ indisponible : 3♦ Texas ♥ de dégagement. Passe reste envisageable selon vulnérabilité (non précisée) et qualité de couleur ; fixer vulnérabilité favorable pour rendre la recherche de partielle plus défendable.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-054",
+      "quizz-prerequis.js#SEF-Q400-D-054",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl",
+      "https://www.ibridge.fr/public/fichedetails/338"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♦",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Repérer le Texas Cœur sous 2♠ adverse, sans confondre avec 3♥ direct dont le sens est conventionnel.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-transfert-majeur",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Rubensohl convenu. Quelle enchère ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Sept Cœurs et seulement 3 H : la réponse naturelle 2♥ est dépassée par 2♠. Le Texas 3♦ permet de jouer 3♥ en passant après la rectification. 3♥ direct ne constitue pas ce Texas."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1SA et l'adversaire intervient à 2♠ naturel. Rubensohl convenu, non vulnérable contre vulnérables. Quelle enchère permet de jouer la partielle dans votre longue ?",
+      "explain": "Avec sept Cœurs et 3 H, à vulnérabilité favorable, le Texas 3♦ permet de jouer 3♥ après rectification. 2♥ n'est plus disponible ; 2SA transférerait à Trèfle. 3♥ direct est le Texas impossible dans le traitement étudié. Passe reste une option prudente selon le risque de chute."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-055",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, cinq ♠ ARD86, pas d'arrêt ♥, 3♥ Texas ♠ forcing de manche après 2♥ selon traitement QPJB documenté. 3♦ Texas impossible ; expliquer les deux routes et pourquoi 3SA direct serait prématuré. Réserve S44 correcte.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-055",
+      "quizz-prerequis.js#SEF-Q400-D-055",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl",
+      "https://amourdubridge.fr/forums/topic/rubensohl-13/"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "Extension : Texas Pique de manche après 2♥ naturel",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "Extension : Texas Pique de manche après 2♥ naturel",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Appliquer un transfert Rubensohl malgré l’intervention adverse",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-transfert-majeur",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-035"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Cinq Piques et 13 H : 3♥ est le Texas Pique de manche. 2♠ naturel serait non forcing."
+    },
+    "apres": {
+      "explain": "Avec cinq beaux Piques et 13 H, vous avez les valeurs de manche. 3♥ est le Texas Pique de manche du Rubensohl étudié ; 2♠ direct est naturel non forcing. 3♦ est ici le Texas impossible (recherche d'une majeure quatrième), et 3SA ne garantit ni la tenue Cœur ni le bon contrat majeur."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-056",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, six ♦ RDV986, 3♣ Texas ♦ après 2♠. Contraste avec D052 six ♣, même intervention. Expliciter continuation Passe et erreur de 3♦ naturel qui est Texas ♥.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-056",
+      "quizz-prerequis.js#SEF-Q400-D-056",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl",
+      "https://www.ibridge.fr/public/fichedetails/338"
+    ],
+    "conceptInitial": "rubensohl.init",
+    "conceptPropose": "rubensohl.init",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♣",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "choisir le transfert ou le Texas impossible : 3♣",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Distinction de deux enchères proches dans le système convenu.",
+      "prerequis": {
+        "concept": "rubensohl.init",
+        "stage": 1,
+        "minSession": 35,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.stayman",
+            "minExposure": 1
+          },
+          {
+            "concept": "sa1.texas",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-transfert-mineur",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-C2-006",
+        "SEF-L01-D-02",
+        "V2-M5-034"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Six Carreaux et 6 H : 3♣ est le transfert pour Carreau, 2SA celui pour Trèfle."
+    },
+    "apres": {
+      "explain": "Avec six Carreaux et 6 H, le Texas 3♣ permet de jouer 3♦ : vous passerez après la rectification. 2SA transférerait à Trèfle, 3♦ à Cœur ; 3SA est trop ambitieux."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-057",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H réguliers, quatre ♠ et arrêt ♥ AV7. Après Texas impossible 3♦ sur 2♥, 3♠ montre quatre cartes ; ne pas conclure 4♠ car partenaire décide et un chelem reste possible. S44 réponse de l'ouvreur.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-057",
+      "quizz-prerequis.js#SEF-Q400-D-057",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl"
+    ],
+    "conceptInitial": "rubensohl.reponse",
+    "conceptPropose": "rubensohl.reponse",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Après 1SA–(2♥)–3♦ artificiel, annoncer les quatre Piques même sans tenue Cœur solide.",
+      "prerequis": {
+        "concept": "rubensohl.reponse",
+        "stage": 1,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-texas-impossible-reponse",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V481-002",
+        "SEF-Q685-D-070"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Quatre Piques : montrer la majeure recherchée à 3♠, même avec un arrêt Cœur. SA ne doit pas masquer le fit."
+    },
+    "apres": {
+      "explain": "Vous avez ouvert de 1SA avec 15 H. Le Texas impossible 3♦ recherche quatre Piques et impose la manche dans le traitement étudié. Avec quatre Piques, répondez 3♠ même si vous arrêtez les Cœurs. 3SA masquerait cette majeure et 4♠ prendrait inutilement la décision finale à la place du répondant."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-058",
+    "verdict": "VALIDE",
+    "justification": "15 H, trois ♠, tenue ♥ AV7, 3SA après Texas impossible ; 3♠ promettrait quatre, 3♥ correspond à une autre information. Contraste avec D057 quatre ♠, S44.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-058",
+      "quizz-prerequis.js#SEF-Q400-D-058",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.ibridge.fr/public/fichedetails/24",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl"
+    ],
+    "conceptInitial": "rubensohl.reponse",
+    "conceptPropose": "rubensohl.reponse",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Rubensohl : redemande de l'ouvreur, Texas impossible, majeure quatrième et arrêt de l'intervention.",
+      "prerequis": {
+        "concept": "rubensohl.reponse",
+        "stage": 1,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-texas-impossible-reponse",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V481-003",
+        "SEF-Q685-D-071"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-D-059",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "15 H, 3♣ et quatre ♥, 3♣ rectification du Texas 2SA. La force du répondant est inconnue et peut être faible, pas de saut à 3SA même avec tenue ♥. L'énoncé générique peut expliciter le rôle de l'ouvreur.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-059",
+      "quizz-prerequis.js#SEF-Q400-D-059",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl"
+    ],
+    "conceptInitial": "rubensohl.reponse",
+    "conceptPropose": "rubensohl.reponse",
+    "seancesInitiales": [
+      44
+    ],
+    "seancesProposees": [
+      44
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 44,
+        "group": "rectification ou réponse au Texas impossible : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Rubensohl : reconnaître et rectifier un Texas mineur ordinaire après intervention.",
+      "prerequis": {
+        "concept": "rubensohl.reponse",
+        "stage": 1,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-rectification",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Que faire sur le transfert mineur ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Rectifier le Texas Trèfle à 3♣ : le partenaire peut être faible, il décidera de poursuivre."
+    },
+    "apres": {
+      "context": "Vous avez ouvert de 1SA ; après 2♥ naturel adverse, votre partenaire fait un Texas Trèfle à 2SA. Le quatrième joueur passe. Quelle est votre redemande ?",
+      "explain": "Rectifiez à 3♣ dans le traitement enseigné. Le répondant peut n'avoir qu'une main de dégagement et passera alors. Votre tenue Cœur ne suffit pas à imposer 3SA sans connaître sa force."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-060",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq ♥ et RD8 ♠ : 3SA avec arrêt personnel après 3♠ de l'ouvreur. La signification non fitté/sans arrêt est attestée par le support BridgeSEF ; le traitement du catalogue précise deux atouts. Distinguer une tenue RDx d'une double tenue certaine. Comparer Q26-M2-002 six ♥ et aucun arrêt.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-060",
+      "quizz-prerequis.js#SEF-Q400-D-060",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://bridgesef.fr/wp-content/uploads/2025/07/Defense-intervention-landy-landik-bicolore-bw-drury-stayman-texas.pdf",
+      "https://www.ibridge.fr/public/fichedetails/338"
+    ],
+    "conceptInitial": "rubensohl.suite",
+    "conceptPropose": "rubensohl.suite",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "conclure après rectification ou précision de l’ouvreur : 3SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire le second tour d’un Texas Rubensohl vers les Cœurs : absence de fit et d’arrêt chez l’ouvreur, arrêt détenu par le répondant et force pour conclure à 3SA.",
+      "prerequis": {
+        "concept": "rubensohl.suite",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "rubensohl.init",
+            "minExposure": 2
+          },
+          {
+            "concept": "rubensohl.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-rub-suite-arret",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-L01-D-04"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quelle manche ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Vous n’avez que cinq Cœurs et le partenaire en a deux. Avec RD8 à Pique vous apportez l’arrêt manquant et 12 H assurent les valeurs de manche."
+    },
+    "apres": {
+      "context": "Dans le Rubensohl étudié, votre Texas Cœur à 3♦ sur 2♠ adverse a reçu la réponse 3♠ (deux Cœurs, pas d'arrêt Pique). Quelle manche choisissez-vous ?",
+      "explain": "Vous détenez cinq Cœurs et le partenaire en annonce deux : pas de fit huitième. Vos 12 H face à 15–17 H assurent les valeurs de manche et RD8 à Pique fournit une tenue de la couleur adverse. 3SA est la manche à proposer ; 4♥ imposerait un fit de sept cartes."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-061",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 5♠5♥ solides sur 1♣, favorable, 2♦ Michaël précisé. Distinguer 2♣ (cue-bid de l'ouverture, pas le code des deux majeures sur 1♣ dans le traitement retenu), 2SA non adapté et 1♠ naturel. S45.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-061",
+      "quizz-prerequis.js#SEF-Q400-D-061",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Identifier les deux majeures cinquièmes dans Michaels sur mineure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-majeures",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-041"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Deux majeures cinquièmes de qualité : sur 1♣, 2♦ montre les deux majeures dans les Michaels précisés."
+    },
+    "apres": {
+      "explain": "Vos deux majeures cinquièmes de qualité et 13 H justifient le bicolore. Sur 1♣, 2♦ montre les deux majeures dans les Michaël précisés. 1♠ naturel ne décrirait qu'une couleur et ni 2♣ ni 2SA ne constituent ce code."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-062",
+    "verdict": "VALIDE",
+    "justification": "11 H, 6♠5♥, deux singletons, favorable : 2♦ cue-bid sur ouverture de 1♦ pour les deux majeures. Contraste D061 5-5 et ouverture 1♣, S63 utile.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-062",
+      "quizz-prerequis.js#SEF-Q400-D-062",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      63
+    ],
+    "seancesProposees": [
+      63
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 63,
+        "group": "décrire un bicolore 5–5 en intervention : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Identifier les deux majeures cinquièmes dans Michaels sur mineure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-majeures",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-D-063",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 5♦5♣ sur 1♠, singleton ♥, favorable : 2SA bicolore mineur ; expliciter 2♠ ♥-♣, 3♣ ♥-♦. Le 2♦ naturel cache cinq ♣.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-063",
+      "quizz-prerequis.js#SEF-Q400-D-063",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "décrire un bicolore 5–5 en intervention : 2SA",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Reconnaître deux mineures cinquièmes et coder leur bicolore par 2SA dans les Michaels précisés.",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-mineures",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-048"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Deux mineures cinquièmes et de la force : 2SA inhabituel montre les deux mineures."
+    },
+    "apres": {
+      "explain": "Avec cinq Carreaux, cinq Trèfles et 13 H, 2SA montre les deux mineures. Sur 1♠, 2♠ Michaël annoncerait Cœur–Trèfle et 3♣ Cœur–Carreau ; 2♦ naturel ne montrerait qu'une de vos longues."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-064",
+    "verdict": "VALIDE",
+    "justification": "13 H, 5♠4♦, 1♠ naturel, pas de bicolore 5-5. Contraste V2-M5-035 5♠4♣ et D065 5♠5♣, choix S45 cohérent.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-064",
+      "quizz-prerequis.js#SEF-Q400-D-064",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.choix",
+    "conceptPropose": "michaels.choix",
+    "seancesInitiales": [
+      45
+    ],
+    "seancesProposees": [
+      45
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 45,
+        "group": "choisir entre naturel et conventionnel : 1♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 45,
+        "group": "choisir entre naturel et conventionnel : 1♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Intervention naturelle ou Passe, sans bicolore conventionnel",
+      "prerequis": {
+        "concept": "michaels.choix",
+        "stage": 0,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-naturel",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-C2-008",
+        "SEF-Q685-A-062"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-Q400-D-065",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 5♠5♣ sur 1♥, favorable : 2♥ Michaël précisé. Distinguer les deux autres bicolores disponibles et le naturel 1♠. S46 rappel.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-065",
+      "quizz-prerequis.js#SEF-Q400-D-065",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire un cue-bid bicolore après ouverture majeure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-majeure-trefle",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V45-043",
+        "V2-M5-036",
+        "SEF-Q685-D-079"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Cinq Piques et cinq Trèfles : 2♥ sur 1♥ montre précisément ce bicolore dans le traitement retenu."
+    },
+    "apres": {
+      "explain": "Cinq Piques, cinq Trèfles, 13 H et vulnérabilité favorable : 2♥ décrit Pique–Trèfle. 3♣ montrerait Pique–Carreau, 2SA les deux mineures et 1♠ naturel ne décrirait qu'une seule longue."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-066",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, 5♥6♣, deux singletons, favorable : 2♠ Michaël Cœur-Trèfle même si ♣ plus longue. Miroir de D065 et cas 6-5 utile. Expliquer pourquoi 3♣ conventionnel ne signifie pas Trèfle naturel.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-066",
+      "quizz-prerequis.js#SEF-Q400-D-066",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.intervention",
+    "conceptPropose": "michaels.intervention",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "décrire un bicolore 5–5 en intervention : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Lire un cue-bid bicolore après ouverture majeure",
+      "prerequis": {
+        "concept": "michaels.intervention",
+        "stage": 3,
+        "minSession": 40,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-majeure-trefle",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Cinq Cœurs et six Trèfles : le cue-bid 2♠ montre le bicolore Cœur-Trèfle, même quand la mineure est plus longue."
+    },
+    "apres": {
+      "explain": "Avec cinq Cœurs et six Trèfles, 2♠ sur 1♠ montre Cœur–Trèfle dans les Michaël précisés. Les deux couleurs sont au moins cinquièmes même si les Trèfles sont plus longs. 3♣ décrirait Cœur–Carreau, 2SA les deux mineures et 2♥ seulement les Cœurs."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-067",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, quatre ♥ contre deux ♠, partenaire 5-5 majeures, 2♥ préférence économique. 3♥ peut être préventif selon vulnérabilité, non indiquée ; demander préférence au palier minimal, pas prétendre décision universelle.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-067",
+      "quizz-prerequis.js#SEF-Q400-D-067",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-preference",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V477-001"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire intervient en Michaels précisé. Quelle réponse ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Quatre Cœurs contre deux Piques : choisissez la préférence Cœur sans saut."
+    },
+    "apres": {
+      "context": "Votre partenaire intervient à 2♦ Michaël précisé (les deux majeures) sur 1♣ adverse. Le troisième joueur passe. Quelle préférence économique annoncez-vous ?",
+      "explain": "Quatre Cœurs contre deux Piques : 2♥ choisit le fit d'au moins neuf cartes au palier le plus bas. Avec 3 H, il n'y a pas d'ambition constructive ; un saut préventif dépendrait de la vulnérabilité et de l'accord de paire."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-068",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, quatre ♠ contre deux ♥, 2♠ préférence basse. Miroir D067, ouvrir 1♦ adverse au lieu de 1♣. Ne pas donner force dans la question ; préciser objectif de préférence économique.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-068",
+      "quizz-prerequis.js#SEF-Q400-D-068",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-preference",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V477-002"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quelle réponse avec cette main faible ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Quatre Piques contre deux Cœurs et 3 H : la préférence faible à 2♠ est adaptée."
+    },
+    "apres": {
+      "context": "Votre partenaire intervient à 2♦ Michaël précisé (les deux majeures) sur 1♦ adverse. Le troisième joueur passe. Quelle préférence économique annoncez-vous ?",
+      "explain": "Quatre Piques contre deux Cœurs : 2♠ choisit le fit d'au moins neuf cartes au palier minimal. Avec 3 H, vous n'avez pas de jeu constructif ; une éventuelle surenchère préventive dépendrait des circonstances."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-069",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H et quatre ♠, 16 HLD, 3♣ cue-bid économique FM après 2SA mineurs. 4♠ direct possible comme contrat final mais ne décrit pas la force et laisse moins de place. Question doit demander enchère la plus descriptive. S47.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-069",
+      "quizz-prerequis.js#SEF-Q400-D-069",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/2024/09/",
+      "https://bridgesaintcloud.fr/michel-college-003.html"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "SEF 2024 : premier cue-bid économique = soutien forcing de manche face à un bicolore mineur",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-defense-cuebid",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V473-009"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous êtes le répondant. Quelle enchère conventionnelle ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Quatre Piques et 14 H : le premier cue-bid disponible, 3♣, décrit le fit forcing de manche. 3♦ décrit les Cœurs dans ce traitement."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ et l'adversaire intervient à 2SA (les deux mineures). Quelle réponse décrit le mieux votre main selon le SEF 2024 ?",
+      "explain": "Quatre Piques et 14 H donnent au moins 16 HLD. Le cue-bid le plus économique, 3♣, exprime le fit Pique forcing de manche et laisse de la place aux développements. 3♦ montrerait au moins cinq Cœurs avec force de manche ; 3♠ est limité, 4♠ conclurait sans explorer les possibilités."
+    }
+  },
+  {
+    "id": "SEF-Q400-D-070",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, cinq ♥ ARD86, deux ♠ : 3♦ cue-bid cher de dernière couleur FM. 3♥ naturel limité, 3♣ fit FM ; contraste D069. Retirer indication longue et force de la question.",
+    "references": [
+      "quizz.html#training-data/SEF-Q400-D-070",
+      "quizz-prerequis.js#SEF-Q400-D-070",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/2024/09/",
+      "https://bridgesaintcloud.fr/michel-college-003.html"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♦",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "SEF 2024 : second cue-bid après bicolore mineur = longue Cœur, forcing de manche",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "q400-d-mich-defense-cuebid",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quelle enchère exprime votre longue non nommée et votre force de manche ? Les enchères adverses non indiquées sont des Passes.",
+      "explain": "Cinq Cœurs et 14 H sans fit Pique : le deuxième cue-bid, 3♦, montre les Cœurs avec force de manche ; 3♣ serait le fit Pique."
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ et l'adversaire intervient à 2SA (les deux mineures). Quelle réponse décrit le mieux votre main selon le SEF 2024 ?",
+      "explain": "Cinq Cœurs de qualité et 14 H justifient une réponse forcing de manche, sans fit Pique. 3♦, le cue-bid le plus cher des deux couleurs adverses, montre au moins cinq Cœurs. 3♥ naturel ne transmettrait pas la même force ; 3♣ annoncerait le fit Pique."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-052",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, trois ♥ et doubleton ♦, 7 HLD, 2♥ soutien simple. Retirer rappel 1♥ adverse sur mineure sans rapport. Contraste C053 autre majeure et force.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-052",
+      "quizz-prerequis.js#SEF-Q685-C-052",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Trois Cœurs et un doubleton Carreau, des valeurs modestes ",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-soutien-simple",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-053",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, trois ♠, doubleton ♦ = 8 HLD, 2♠. 2♥ naturel demanderait longueur/force et 2SA constructif. Supprimer accord Spoutnik hors séquence.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-053",
+      "quizz-prerequis.js#SEF-Q685-C-053",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Trois Piques, sept H et un doubleton : soutien simple",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-soutien-simple",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-054",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, trois ♠, doubleton ♥ = 7 HLD, 2♠. C053 même forme générale mais autre intervention et honneurs. Limiter variantes dans rappel S59. Supprimer rappel Spoutnik sans rapport.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-054",
+      "quizz-prerequis.js#SEF-Q685-C-054",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♠",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Trois Piques et un doubleton Cœur, force limitée ",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-soutien-simple",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V3-080-1",
+        "SEF-V3-080-2"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-055",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "1 H, deux ♥ et 5♦4♣, Passe malgré distribution. Pas de contre ni soutien. Supprimer rappel Spoutnik sur 1♥ adverse qui ne s'applique pas.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-055",
+      "quizz-prerequis.js#SEF-Q685-C-055",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Deux Cœurs seulement, aucun arrêt Pique et un seul H : ni changement de couleur ni contre constructif",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-passe",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-056",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "1 H, singleton ♠, 4♥5♣, Passe après 2♦ ; opposition C055 deux atouts et autre ouverture. Supprimer rappel hors sujet.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-056",
+      "quizz-prerequis.js#SEF-Q685-C-056",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Un seul Pique, un H et pas de couleur assez solide : Passe malgré les cinq Trèfles",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-passe",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-057",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, cinq ♠, 1♠ naturel sur 1♦–(1♥), sans arrêt ♥ ; enlever rappel donnant la règle pour tester la décision. Prérequis réponse sur mineure plutôt que soutien majeur.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-057",
+      "quizz-prerequis.js#SEF-Q685-C-057",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Cinq Piques et force suffisante pour une réponse au palier de un ",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-majeure-naturelle",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-058",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre ♠, 1♠ naturel dans accord SEF retenu. Contraste avec C057 cinq ♠ et C066/067 trois ♠. L'accord révélait la réponse, le déplacer au corrigé ; prérequis mineur.base.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-058",
+      "quizz-prerequis.js#SEF-Q685-C-058",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Majeure quatrième Pique sur 1♥ adverse, après base exposée",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Majeure quatrième Pique sur 1♥ adverse, après base exposée",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Quatre Piques après l'intervention à 1♥ : le traitement SEF retenu permet 1♠ naturel, le contre dénie cette quatrième",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-pique-quatrieme",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V418-005"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-059",
+    "verdict": "ARBITRAGE",
+    "justification": "10 H, AR94 ♥ et trois ♠, 1SA naturel plausible dans zone 8–10 H du catalogue. 2SA naturel peut être invitation selon autre zone ; confirmer limite haute exacte de 1SA après intervention. 1♠ inventerait la quatrième. Retirer rappel hors sujet et corriger prérequis.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-059",
+      "quizz-prerequis.js#SEF-Q685-C-059",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Arrêt Cœur solide, aucune majeure libre quatrième, force adaptée à une réponse naturelle à 1SA",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-sa-tenue",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?",
+      "explain": "10 H, distribution 3–4–2–4. Arrêt Cœur solide, aucune majeure libre quatrième, force adaptée à une réponse naturelle à 1SA."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?",
+      "explain": "Vous avez 10 H, trois Piques et une excellente tenue Cœur AR94. Dans la zone de réponse naturelle de 1SA retenue par le catalogue, 1SA décrit la main. 2SA serait une invitation dans une zone supérieure ; la frontière exacte de force doit être confirmée pour cette séquence. 1♠ promettrait quatre cartes."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-060",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, AR94 ♦ et 3-3 majeures, 1SA naturel dans zone du catalogue. Même question de frontière 10 H que C059 à vérifier par coordinateur, ici corrigé sans règle nouvelle. Supprimer rappel 1♥ adverse hors sujet et corriger prérequis.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-060",
+      "quizz-prerequis.js#SEF-Q685-C-060",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Double arrêt Carreau, aucune majeure quatrième ",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-sa-tenue",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V413-011"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?",
+      "explain": "10 H, distribution 3–3–4–3. Double arrêt Carreau, aucune majeure quatrième ; 1SA naturel décrit la force sans inventer de fit."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?",
+      "explain": "Avec 10 H, aucune majeure quatrième et une excellente tenue Carreau AR94, 1SA naturel décrit la main dans la zone retenue par le catalogue. 1♥ et 1♠ inventeraient une quatrième carte ; 2SA appartient à une zone plus constructive à préciser dans le cours."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-061",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H et six ♥ ARDV84, 16 HL ; 2♥ naturel F1 après 1♠ adverse. Supprimer rappel hors sujet. Le groupe S59 apres_inter.base:2♥ contient réponses de soutien et changement de couleur, signaler distinction à coordinateur, pas supprimer arbitrairement.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-061",
+      "quizz-prerequis.js#SEF-Q685-C-061",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [
+      19,
+      59
+    ],
+    "seancesProposees": [
+      19,
+      59
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Réponse naturelle : soutien, majeure, SA avec arrêt",
+        "role": "objectif"
+      },
+      {
+        "session": 59,
+        "group": "apres_inter.base : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Six Cœurs forts et valeurs suffisantes pour répondre naturellement au palier de deux ",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 1,
+        "minSession": 15,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-apres-inter-couleur-forcing",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?",
+      "explain": "14 H, distribution 2–6–3–2. Six Cœurs forts et valeurs suffisantes pour répondre naturellement au palier de deux ; le Spoutnik ne décrit pas aussi précisément la longue."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?",
+      "explain": "Six Cœurs solides et 14 H (16 HL) : 2♥ naturel, forcing un tour, annonce la longue. Le Contre Spoutnik serait moins précis, 2♣ ne décrit pas votre main et 2SA masquerait les Cœurs."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-062",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H et quatre ♥, deux petits ♠, Contre Spoutnik sur 1♦–(1♠). Comparer C063 singleton ♠ et 10 H. Rappel sur 1♥ adverse inutile dans l'énoncé.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-062",
+      "quizz-prerequis.js#SEF-Q685-C-062",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Quatre Cœurs, force suffisante pour un Spoutnik et aucun arrêt Pique",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-sur-pique",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V417-010"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-063",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, quatre ♥, singleton ♠, 4♦, Contre Spoutnik prioritaire sur soutien mineur. Supprimer rappel sur autre séquence, préserver contraste avec C061 six ♥ et force supérieure.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-063",
+      "quizz-prerequis.js#SEF-Q685-C-063",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik sur 1♠ adverse : recherche des Cœurs",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Quatre Cœurs et une courte Pique, valeurs constructives ",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 0,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-sur-pique",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-064",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, 4-4 majeures et 4♦, singleton ♣ : Contre généralisé sur 2♣. Deux réponses naturelles au palier deux demanderaient cinquième. Supprimer rappel Spoutnik sur 1♥ qui brouille la logique ; réserve conditionnelle S19 adaptée.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-064",
+      "quizz-prerequis.js#SEF-Q685-C-064",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik généralisé sur intervention au palier de deux (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik généralisé sur intervention au palier de deux (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Les deux majeures quatrièmes et une courte Trèfle permettent le Spoutnik généralisé, sans inventer de cinquième",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-generalise",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q400-C-059"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-065",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, 4-4 majeures et 4♣, singleton ♦, Contre généralisé sur 2♦ ; miroir C064, utile mais même principe. Supprimer règle hors séquence.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-065",
+      "quizz-prerequis.js#SEF-Q685-C-065",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik généralisé sur intervention au palier de deux (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik généralisé sur intervention au palier de deux (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Deux majeures quatrièmes, courte Carreau et valeurs constructives ",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-generalise",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-066",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, trois ♠, deux petits ♥ et 4-4 mineures, Contre dans traitement déniant quatre ♠. Enlever rappel de l'énoncé et garder au corrigé ; contraste C058 quatre ♠. 2♦ soutien naturel peut être défendable mais ne recherche pas la meilleure suite à cette force.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-066",
+      "quizz-prerequis.js#SEF-Q685-C-066",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik après intervention à 1♥ (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik après intervention à 1♥ (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Trois Piques, deux petits Cœurs sans tenue et force constructive",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-sur-coeur",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?",
+      "explain": "10 H, distribution 3–2–4–4. Trois Piques, deux petits Cœurs sans tenue et force constructive. Dans le traitement précisé, Contre dénie quatre Piques."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?",
+      "explain": "Avec trois Piques et deux petits Cœurs, ni 1♠ ni 1SA ne conviennent. Le Contre Spoutnik du traitement retenu après 1♦–(1♥) dénie quatre Piques et permet de poursuivre avec 10 H. Le soutien à 2♦ ne décrirait pas aussi bien cette main constructive."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-067",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, trois ♠, deux petits ♥ et 4-4 mineures, Contre du catalogue. Très proche de C066 et Q400-C060 (même séquence de type, forme/force), conserver comme variante de réserve plutôt que répétition consécutive. Supprimer indice de règle.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-067",
+      "quizz-prerequis.js#SEF-Q685-C-067",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "competitif.spoutnik",
+    "conceptPropose": "competitif.spoutnik",
+    "seancesInitiales": [
+      19
+    ],
+    "seancesProposees": [
+      19
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 19,
+        "group": "Spoutnik après intervention à 1♥ (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 19,
+        "group": "Spoutnik après intervention à 1♥ (après exposition)",
+        "role": "reserve"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Trois Piques, aucune tenue Cœur et une force suffisante : le Spoutnik permet de poursuivre sans inventer quatre Piques",
+      "prerequis": {
+        "concept": "competitif.spoutnik",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "competitif.spoutnik",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "q685-c-spoutnik-sur-coeur",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-Q400-C-060"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous répondez à l’ouverture du partenaire après intervention naturelle à la couleur. Accord du catalogue : après 1♥ adverse sur une mineure, 1♠ peut être quatrième et le contre dénie quatre Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire de droite intervient naturellement. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-068",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H réguliers, V83 ♠ sans arrêt fiable, trois ♥, quatre ♦, Passe libre. L'énoncé dévoile que la redemande est libre ; retirer cette indication pour que l'élève lise la séquence. Contraste C072 tenue ♠.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-068",
+      "quizz-prerequis.js#SEF-Q685-C-068",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "red.competitif",
+    "conceptPropose": "red.competitif",
+    "seancesInitiales": [
+      26,
+      64
+    ],
+    "seancesProposees": [
+      26,
+      64
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Première zone régulière sans arrêt Pique fiable, sans fit quatrième et sans six Carreaux",
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-redemande-libre-passe",
+      "analoguesMemeSequenceFormeReponse": [
+        "SEF-V471-001",
+        "SEF-Q400-C-061"
+      ],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur ; le quatrième joueur intervient après la réponse de votre partenaire, la redemande est libre. Quelle enchère choisissez-vous ?",
+      "explain": "13 H, distribution 3–3–4–3. Première zone régulière sans arrêt Pique fiable, sans fit quatrième et sans six Carreaux. Après l'intervention du quatrième joueur, Passe est permis."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur et le quatrième joueur intervient après la réponse de votre partenaire. Quelle est votre redemande ?",
+      "explain": "Après 1♦–Passe–1♥–(1♠), l'intervention du quatrième joueur libère l'ouvreur de l'obligation de redemander. Avec 13 H, trois Cœurs, quatre Carreaux et aucun arrêt Pique fiable, Passe est approprié ; 1SA libre promettrait une tenue."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-069",
+    "verdict": "ARBITRAGE",
+    "justification": "14 H + deux points de longueur ♦ = 16 HL, six ♦ ARDV94, sans tenue ♠ et trois ♥. 2♦ naturel plausible, mais 3♦ saut fort est un choix proposé ; seuil de redemande libre à saut doit être précisé (valeur de longue très forte). Ne pas valider automatiquement 2♦. Retirer règle donnée dans énoncé.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-069",
+      "quizz-prerequis.js#SEF-Q685-C-069",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "red.competitif",
+    "conceptPropose": "red.competitif",
+    "seancesInitiales": [
+      26,
+      64
+    ],
+    "seancesProposees": [
+      26,
+      64
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : 2♦",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Six Carreaux solides, trois Cœurs seulement et aucune tenue Pique ",
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-redemande-libre-repetition",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur ; le quatrième joueur intervient après la réponse de votre partenaire, la redemande est libre. Quelle enchère choisissez-vous ?",
+      "explain": "14 H, distribution 2–3–6–2. Six Carreaux solides, trois Cœurs seulement et aucune tenue Pique ; la répétition libre à 2♦ montre la longue."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur et le quatrième joueur intervient après la réponse de votre partenaire. Quelle est votre redemande ?",
+      "explain": "Six beaux Carreaux, 14 H et aucune tenue Pique orientent vers une répétition de Carreau. Le choix économique de 2♦ est celui du catalogue, mais 3♦ peut être défendable selon la zone de force retenue pour le saut libre et l'évaluation de la longue. Cette frontière doit être arbitrée."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-070",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, 3-3-3-4, V83 ♠ sans arrêt, Passe libre. Quasi miroir C068 sur mineure différente ; S26/S64 rappel à espacer. Retirer indication que redemande est libre.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-070",
+      "quizz-prerequis.js#SEF-Q685-C-070",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "red.competitif",
+    "conceptPropose": "red.competitif",
+    "seancesInitiales": [
+      26,
+      64
+    ],
+    "seancesProposees": [
+      26,
+      64
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      },
+      {
+        "session": 64,
+        "group": "red.competitif : Passe",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Ouverture minimale régulière, sans arrêt Pique ni fit quatrième",
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-redemande-libre-passe",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur ; le quatrième joueur intervient après la réponse de votre partenaire, la redemande est libre. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur et le quatrième joueur intervient après la réponse de votre partenaire. Quelle est votre redemande ?"
+    }
+  },
+  {
+    "id": "SEF-Q685-C-071",
+    "verdict": "ARBITRAGE",
+    "justification": "14 H, six ♣ ARDV84, 16 HL, 2♣ libre dans catalogue, 3♣ saut peut se défendre selon zone. Même problème que C069, mineure différente. Retirer indication de liberté, expliciter limite.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-071",
+      "quizz-prerequis.js#SEF-Q685-C-071",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "red.competitif",
+    "conceptPropose": "red.competitif",
+    "seancesInitiales": [
+      26
+    ],
+    "seancesProposees": [
+      26
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Six Trèfles solides, deux Carreaux et pas de tenue Pique ",
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-redemande-libre-repetition",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "à arbitrer"
+    },
+    "action": "arbitrer avant intégration",
+    "avant": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur ; le quatrième joueur intervient après la réponse de votre partenaire, la redemande est libre. Quelle enchère choisissez-vous ?",
+      "explain": "14 H, distribution 2–3–2–6. Six Trèfles solides, deux Carreaux et pas de tenue Pique ; la répétition de la couleur naturelle montre la longue."
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur et le quatrième joueur intervient après la réponse de votre partenaire. Quelle est votre redemande ?",
+      "explain": "Avec six Trèfles très solides, 14 H et aucune tenue Pique, la répétition de Trèfle est naturelle. Le catalogue retient 2♣ économique ; le saut à 3♣ mérite examen selon la zone de redemande libre à saut et la force en HL. Ne pas imposer cette frontière sans préciser le traitement."
+    }
+  },
+  {
+    "id": "SEF-Q685-C-072",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, AR8 ♠ tenue, trois ♥, 4♣, 1SA libre descriptif. Même ouverture/forme/force que C070, différence d'arrêt : contraste utile. Retirer indication de liberté de l'énoncé.",
+    "references": [
+      "quizz.html#training-data/SEF-Q685-C-072",
+      "quizz-prerequis.js#SEF-Q685-C-072",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "red.competitif",
+    "conceptPropose": "red.competitif",
+    "seancesInitiales": [
+      26
+    ],
+    "seancesProposees": [
+      26
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 26,
+        "group": "Redemande libre",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Arrêt Pique solide, première zone régulière et trois Cœurs : 1SA est libre et descriptif après l'intervention du quatrième joueur",
+      "prerequis": {
+        "concept": "red.competitif",
+        "stage": 2,
+        "minSession": 14,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "q685-c-redemande-libre-sa",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison structurelle sur le catalogue et contrastes ciblés; examen sémantique exhaustif non réalisé",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF ou traitement catalogue explicite, contrôle ciblé"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur ; le quatrième joueur intervient après la réponse de votre partenaire, la redemande est libre. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Tous non vulnérables. Vous êtes l’ouvreur et le quatrième joueur intervient après la réponse de votre partenaire. Quelle est votre redemande ?"
+    }
   }
 ]
