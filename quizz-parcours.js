@@ -744,7 +744,7 @@
     }
     return ordered;
   }
-  function select(exercises,state,n=10){
+  function select(exercises,state,n=10,options={}){
     const s=state.completed,limit=clamp(int(n,10),1,20),e=evidence(state,exercises);
     // Candidate #396 : départage après S20, à score et strate pédagogique identiques.
     const durableSelection=s>=20&&durable?.schema==='QPJB_DURABLE_INTEGRATION_V1'
@@ -754,6 +754,10 @@
     const previous=state.entries||{};
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
+    const curriculum=options?.coherenceM1?.schema==='QPJB_COHERENCE_M1_V1'?options.coherenceM1:null;
+    const maintenancePolicy=options?.coherenceM4?.schema==='QPJB_COORDINATOR_M4_V1'?options.coherenceM4:null;
+    let m1Changed=false,m4Changed=false;
+    const reportDecision=typeof options?.observe==='function'?options.observe:()=>{};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
     const totalRecent=e.recent.length,weakRecent=e.recent.filter(({a})=>weakAnswer(a)).length;
     const rate=totalRecent?weakRecent/totalRecent:0;
@@ -859,8 +863,35 @@
       const deltas=usePolicy&&typeof sessionPlan.rankPedagogy==='function'?
         new Map(sessionPlan.rankPedagogy({session:s+1,candidates,metadataById:prerequis.byId,
           history:state,selected,category:category||null}).map(r=>[r.id,r.delta])):new Map();
-      const ranked=candidates.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
+      // #419: only the already filtered native candidates are available to curriculum.
+      const m1Context={session:s+1,candidates,metadataById:prerequis.byId,history:state,selected,category:category||null,priority,forcedReason};
+      const allowM1=curriculum&&s>=2&&s<65&&!priority&&!forcedReason;
+      let rankPool=candidates,m1Deltas=new Map();
+      if(allowM1){
+        const proposed=curriculum.prefer(m1Context),byId=new Map(candidates.map(q=>[q.id,q]));
+        if(Array.isArray(proposed)&&proposed.length&&new Set(proposed.map(q=>q.id)).size===proposed.length&&proposed.every(q=>byId.get(q.id)===q))rankPool=proposed;
+        for(const row of curriculum.rank(m1Context)){
+          if(byId.has(row.id)&&Number.isFinite(row.delta)&&Math.abs(row.delta)<=100)m1Deltas.set(row.id,row.delta);
+        }
+      }
+      const ranked=rankPool.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)+(m1Deltas.get(q.id)||0)}));
       ranked.sort((a,b)=>b.v-a.v||hash(a.q.id+'#'+s)-hash(b.q.id+'#'+s)||a.q.id.localeCompare(b.q.id));
+      let m1Choice=null,m4Choice=null;
+      if(allowM1&&typeof curriculum.compose==='function'&&!m1Changed){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),overdueCore:oldConcept(q)>=5,stage:mOf(q).stage}]));
+        const proposed=curriculum.compose({...m1Context,changed:m1Changed,flagsById},ranked);
+        const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
+        if(index>0){m1Choice=proposed;ranked.unshift(...ranked.splice(index,1));m1Changed=true;}
+      }
+      // Experimental maintenance swaps are constrained to the same native
+      // maintenance bucket, with one optional swap, and cannot displace
+      // discovery, explicit errors or protected priority selections.
+      if(maintenancePolicy&&s>=65&&!m4Changed&&!priority&&!forcedReason&&category==='maintenance'&&ranked.length>1){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),age:oldConcept(q),stage:mOf(q).stage}]));
+        const proposed=maintenancePolicy.choose({...m1Context,flagsById,selected,ranked});
+        const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
+        if(index>0){m4Choice=proposed;ranked.unshift(...ranked.splice(index,1));m4Changed=true;}
+      }
       // #396: preserve the historical winning pedagogical stratum, not just
       // its numeric score. Cross-concept ties displaced foundational review.
       const stratum=q=>JSON.stringify([q.theme,mOf(q).concept,mOf(q).stage,q.difficulty,
@@ -868,6 +899,7 @@
       const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason
         ?durable.chooseWithinStratum(ranked,stratum,eligible=>durableSelection.rank({candidates:eligible,selected,category,priority,forcedReason}))
         :ranked[0].q;
+      if(m1Choice||m4Choice)reportDecision({session:s+1,actualId:q.id,m1Choice,m4Choice});
       const m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
@@ -1084,7 +1116,7 @@
       }
       state.active=null;
     }
-    let chosen=select(exercises,state,10);
+    let chosen=select(exercises,state,10,options);
     if(!chosen.length)return [];
     // Le candidat est désactivé pour tous les appels historiques à deux arguments.
     // Le coordinateur doit fournir explicitement le module et passer la recette intégrée.
@@ -1116,6 +1148,23 @@
       }))};
     if(orderReferenceIds)state.active.orderReferenceIds=orderReferenceIds.slice();
     return state.active.ids.map(id=>byId.get(id));
+  }
+  // Read-only study preview: exact same selector options and inactive state.
+  // Caller must explicitly report quiz status; unknown/active contexts fail closed.
+  function studySuggestions(state,exercises,options={}){
+    const planner=options.coherenceM5;
+    if(!state||state.active!==null||options.questionActive!==false||options.quizActive!==false||
+       planner?.schema!=='QPJB_COHERENCE_M5_V1')return null;
+    const phase=options.phase;
+    if(phase!=='before'&&phase!=='after')return null;
+    const session=phase==='before'?state.completed+1:state.completed;
+    if(session<1)return null;
+    const copy=JSON.parse(JSON.stringify(state));
+    const deck=phase==='before'?start(copy,exercises,{...options,observe:undefined}):undefined;
+    if(phase==='before'&&deck.length!==10)return null;
+    const objective=options.coherenceM1?.plan?.({session,history:state,metadataById:prerequis.byId,candidates:deck||[]})||null;
+    return planner.studyPlan({session,history:state,metadataById:prerequis.byId,
+      selected:deck,objective,phase,questionActive:false,quizActive:false});
   }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
@@ -1428,5 +1477,5 @@
     return {session:state.completed+1,completed:state.completed,unlocked:available.length,
       practiced:topicsDone.size,seen:attempted.size,active:!!state.active};
   }
-  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
+  return {eligibility,adaptiveDiagnostics,createForTests:fixture=>{if(!fixture||fixture.schema!=='QPJB_PREREQUIS_V1'||Object.keys(fixture.byId||{}).some(id=>/^SEF-/i.test(id)))throw Error('Fixtures only; production IDs forbidden');return factory(fixture,sessionPlan)},VERSION,ROADMAP,INTRO,MICRO_LABELS,microKey,weaknesses,AXIS_LABELS,AXIS_AUDIT,axisKey,axisWeaknesses,DASH_LABELS,dashboard,focusLabel,consolidationPlan,startConsolidation,empty,load,select,start,studySuggestions,record,move,finish,adjustDifficulty,exportProgress,importProgress,selectionDiagnostics,SELECTION_REASONS,summary,levelFor};
 });
