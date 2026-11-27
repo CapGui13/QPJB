@@ -13,4 +13,6 @@ for(const patch of [{session:21},{session:2},{priority:true},{forcedReason:'rapp
 const weak=JSON.parse(JSON.stringify(history));weak.journal[0].answers[0].assisted=true;
 assert.deepEqual(rank({...c,history:weak}),[]);
 const old=JSON.stringify(c);rank(c);assert.equal(JSON.stringify(c),old);
-console.log('19 assertions M4P-A composition PASS');
+assert.deepEqual(rank({...c,policy:'Y'}),[]);
+assert.deepEqual(rank({...c,policy:'Y',candidates:[f,{...b,h:17}]}).map(x=>x.id),['b']);
+console.log('21 assertions M4P-A composition PASS');
