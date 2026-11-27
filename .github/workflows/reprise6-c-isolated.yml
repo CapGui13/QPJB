@@ -1,0 +1,50 @@
+name: Reprise6 C - recette technique isolée
+on:
+  pull_request:
+    branches: [coherence-concrete/reprise6-c-m4]
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  unit:
+    if: github.head_ref == 'coherence-concrete/reprise6-c-ci'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check quizz-coherence-reprise6-c-debt-credit.js
+          node --check tests/coherence-reprise6-c-adapter.cjs
+          node --check tests/coherence-reprise6-c-campaign.cjs
+          node tests/coherence-reprise6-c-unit.cjs
+  pair:
+    if: github.head_ref == 'coherence-concrete/reprise6-c-ci'
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Paire réelle M6 et D FNV
+        run: node tests/coherence-reprise6-c-run.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" both 180 output
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-c-${{ matrix.profile }}-${{ matrix.seed }}
+          path: output/
+          retention-days: 30
