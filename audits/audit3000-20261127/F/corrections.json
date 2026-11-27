@@ -1,0 +1,836 @@
+[
+  {
+    "id": "SEF-V45-005",
+    "theme": "fortes",
+    "hand": [
+      [
+        "8",
+        "6",
+        "5"
+      ],
+      [
+        "D",
+        "9",
+        "7",
+        "2"
+      ],
+      [
+        "10",
+        "8",
+        "2"
+      ],
+      [
+        "R",
+        "7",
+        "2"
+      ]
+    ],
+    "h": 5,
+    "shape": [
+      3,
+      4,
+      3,
+      3
+    ],
+    "auction": [
+      "Partenaire : 2♣ (fort indéterminé)"
+    ],
+    "context": "Votre partenaire ouvre de 2♣ fort indéterminé, l’adversaire passe. Quelle est votre première réponse ?",
+    "answer": "2♦",
+    "choices": [
+      "Passe",
+      "2♦",
+      "2♥",
+      "2SA"
+    ],
+    "explain": "Avec 5 H, vous ne pouvez pas passer sur l'ouverture artificielle 2♣ fort indéterminé : le relais 2♦ est obligatoire, même sans Carreaux. Il permet à l'ouvreur de préciser sa force et sa distribution avant que vous ne choisissiez le contrat.",
+    "difficulty": 2,
+    "difficultyReason": "Reconnaître le relais obligatoire sur ouverture forte",
+    "caseFamily": "v45-cas-005"
+  },
+  {
+    "id": "SEF-V45-006",
+    "theme": "fortes",
+    "hand": [
+      [
+        "9",
+        "6",
+        "4",
+        "3"
+      ],
+      [
+        "V",
+        "10",
+        "5"
+      ],
+      [
+        "R",
+        "D",
+        "3"
+      ],
+      [
+        "A",
+        "D",
+        "6"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [
+      "Partenaire : 2♣ (fort indéterminé)"
+    ],
+    "context": "Votre partenaire ouvre de 2♣ fort indéterminé, l’adversaire passe. Quelle est votre première réponse avec cette main ?",
+    "answer": "2♦",
+    "choices": [
+      "2♥",
+      "2SA",
+      "2♦",
+      "3♦"
+    ],
+    "explain": "Même avec 12 H et quatre Piques, vous commencez par 2♦ sur 2♣ fort indéterminé. C'est le relais obligatoire, non une annonce naturelle de Carreaux. Le partenaire pourra ensuite préciser son type de main ; les réponses naturelles immédiates proposées ne conviennent pas.",
+    "difficulty": 2,
+    "difficultyReason": "Reconnaître le relais obligatoire sur ouverture forte",
+    "caseFamily": "v45-cas-006"
+  },
+  {
+    "id": "SEF-V45-013",
+    "theme": "forcing",
+    "hand": [
+      [
+        "R",
+        "V",
+        "10"
+      ],
+      [
+        "A",
+        "D",
+        "9",
+        "7",
+        "6"
+      ],
+      [
+        "10",
+        "5",
+        "3"
+      ],
+      [
+        "D",
+        "7"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      3,
+      5,
+      3,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♣",
+      "Vous : 1♥",
+      "Partenaire : 2♣"
+    ],
+    "context": "À la deuxième enchère du répondant : une main encourageante sans enchère naturelle satisfaisante.",
+    "answer": "2♦",
+    "choices": [
+      "2♥",
+      "2♦",
+      "2SA",
+      "3♥"
+    ],
+    "explain": "Avec 12 H et cinq Cœurs, recherchez un éventuel fit 5–3 ou un arrêt à Carreau pour Sans-Atout. Après 1♣–1♥–2♣, 2♦ est la troisième couleur forcing économique : l'ouvreur doit reparler, mais cette enchère n'impose pas à elle seule la manche. 2♥ ou 3♥ limiteraient la main ; 2SA serait mal indiqué sans arrêt Carreau.",
+    "difficulty": 4,
+    "difficultyReason": "Utiliser une troisième couleur artificielle forcing",
+    "caseFamily": "v45-cas-013"
+  },
+  {
+    "id": "SEF-V45-014",
+    "theme": "forcing",
+    "hand": [
+      [
+        "A",
+        "R",
+        "D",
+        "V",
+        "6"
+      ],
+      [
+        "D",
+        "6",
+        "3"
+      ],
+      [
+        "V",
+        "7",
+        "6"
+      ],
+      [
+        "7",
+        "3"
+      ]
+    ],
+    "h": 13,
+    "shape": [
+      5,
+      3,
+      3,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♣",
+      "Vous : 1♠",
+      "Partenaire : 2♣"
+    ],
+    "context": "À la deuxième enchère du répondant : recherche d’informations supplémentaires.",
+    "answer": "2♦",
+    "choices": [
+      "2♠",
+      "2♦",
+      "2SA",
+      "3♠"
+    ],
+    "explain": "Avec 13 H et cinq Piques, vous voulez vérifier le soutien troisième ou les arrêts nécessaires à Sans-Atout. Après 1♣–1♠–2♣, 2♦ est forcing un tour, sans promettre de Carreaux ; dans cette séquence, 2♦ dénie quatre Cœurs, contrairement à 2♥ naturel. La répétition directe de Pique limiterait votre jeu.",
+    "difficulty": 4,
+    "difficultyReason": "Utiliser une troisième couleur artificielle forcing",
+    "caseFamily": "v45-cas-014"
+  },
+  {
+    "id": "SEF-V45-015",
+    "theme": "forcing",
+    "hand": [
+      [
+        "A",
+        "D",
+        "6",
+        "4",
+        "2"
+      ],
+      [
+        "V",
+        "9",
+        "8"
+      ],
+      [
+        "V",
+        "9"
+      ],
+      [
+        "A",
+        "8",
+        "3"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      5,
+      3,
+      2,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♦",
+      "Vous : 1♠",
+      "Partenaire : 2♦"
+    ],
+    "context": "À la deuxième enchère du répondant : recherche d’informations supplémentaires.",
+    "answer": "2♥",
+    "choices": [
+      "2♠",
+      "2♥",
+      "2SA",
+      "3♦"
+    ],
+    "explain": "Avec 12 H et cinq Piques, vous souhaitez vérifier un fit 5–3 ou un arrêt pour Sans-Atout. Après 1♦–1♠–2♦, 2♥ est la troisième couleur forcing économique : elle ne garantit ni ne dénie quatre Cœurs et oblige l'ouvreur à reparler, sans imposer à elle seule la manche. 2♠ limiterait la recherche et 2SA serait mal indiqué sans arrêt Trèfle.",
+    "difficulty": 4,
+    "difficultyReason": "Utiliser une troisième couleur artificielle forcing",
+    "caseFamily": "v45-cas-015"
+  },
+  {
+    "id": "SEF-V45-020",
+    "theme": "forcing",
+    "hand": [
+      [
+        "A",
+        "D",
+        "V",
+        "2"
+      ],
+      [
+        "10",
+        "4",
+        "3"
+      ],
+      [
+        "D",
+        "V",
+        "6",
+        "3"
+      ],
+      [
+        "A",
+        "3"
+      ]
+    ],
+    "h": 14,
+    "shape": [
+      4,
+      3,
+      4,
+      2
+    ],
+    "auction": [
+      "Vous : 1♦",
+      "Partenaire : 1♥",
+      "Vous : 1♠",
+      "Partenaire : 2♣ (4e forcing)"
+    ],
+    "context": "Votre partenaire annonce 2♣ quatrième couleur forcing après votre redemande à 1♠. Quelle est votre réponse avec cette main ?",
+    "answer": "2♥",
+    "choices": [
+      "2♥",
+      "2♠",
+      "2SA",
+      "3♦"
+    ],
+    "explain": "Sur le relais 2♣ quatrième couleur forcing, vous détenez trois Cœurs ♥1043 : les montrer par 2♥ est prioritaire avec 14 H. Cela permet au répondant de vérifier son éventuel fit 5–3 ; 2♠ ou 2SA retarderaient cette information.",
+    "difficulty": 4,
+    "difficultyReason": "Après la quatrième couleur forcing, rechercher trois cartes de soutien Cœur avant les sans-atout.",
+    "caseFamily": "v45-cas-020"
+  },
+  {
+    "id": "SEF-V45-021",
+    "theme": "forcing",
+    "hand": [
+      [
+        "R",
+        "V",
+        "10",
+        "5"
+      ],
+      [
+        "7",
+        "2"
+      ],
+      [
+        "A",
+        "10",
+        "6",
+        "4"
+      ],
+      [
+        "A",
+        "10",
+        "9"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      4,
+      2,
+      4,
+      3
+    ],
+    "auction": [
+      "Vous : 1♦",
+      "Partenaire : 1♥",
+      "Vous : 1♠",
+      "Partenaire : 2♣ (4e forcing)"
+    ],
+    "context": "Votre partenaire annonce 2♣ quatrième couleur forcing après votre redemande à 1♠. Quelle est votre réponse avec cette main ?",
+    "answer": "2SA",
+    "choices": [
+      "2SA",
+      "2♥",
+      "2♠",
+      "3♦"
+    ],
+    "explain": "Vous n'avez que ♥72, donc pas trois Cœurs, mais ♣A109 assure la tenue dans la quatrième couleur. Avec 12 H, 2SA transmet cette information au répondant. 2♥ inventerait le soutien recherché et 3♦ ferait monter inutilement les enchères.",
+    "difficulty": 4,
+    "difficultyReason": "Après la quatrième couleur forcing, distinguer absence de fit Cœur et arrêt Trèfle pour dire 2SA.",
+    "caseFamily": "v45-cas-021"
+  },
+  {
+    "id": "SEF-V45-022",
+    "theme": "forcing",
+    "hand": [
+      [
+        "A",
+        "3"
+      ],
+      [
+        "V",
+        "10",
+        "7",
+        "6",
+        "3",
+        "2"
+      ],
+      [
+        "V",
+        "7",
+        "3"
+      ],
+      [
+        "8",
+        "5"
+      ]
+    ],
+    "h": 6,
+    "shape": [
+      2,
+      6,
+      3,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♦",
+      "Vous : 1♥",
+      "Partenaire : 1♠"
+    ],
+    "context": "Après 1♦–1♥–1♠, quelle est votre deuxième enchère de répondant avec cette main ?",
+    "answer": "2♥",
+    "choices": [
+      "2♣",
+      "2♥",
+      "2SA",
+      "3SA"
+    ],
+    "explain": "Avec 6 H et six Cœurs ♥V107632 après 1♦–1♥–1♠, vous cherchez une partielle. 2♥ est une répétition naturelle et non forcing ; 2♣ quatrième couleur forcing et 2SA seraient trop ambitieux avec cette force.",
+    "difficulty": 2,
+    "difficultyReason": "Avec six Cœurs et 6 H, répéter faiblement 2♥ plutôt que d’employer la quatrième couleur forcing.",
+    "caseFamily": "v45-cas-022"
+  },
+  {
+    "id": "SEF-V45-056",
+    "theme": "chelem",
+    "hand": [
+      [
+        "A",
+        "V",
+        "10",
+        "4"
+      ],
+      [
+        "R",
+        "10",
+        "5",
+        "3"
+      ],
+      [
+        "R",
+        "9",
+        "5",
+        "2"
+      ],
+      [
+        "8"
+      ]
+    ],
+    "h": 11,
+    "shape": [
+      4,
+      4,
+      4,
+      1
+    ],
+    "auction": [
+      "Partenaire : 1♠"
+    ],
+    "context": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle réponse décrit le mieux votre main selon le SEF ?",
+    "answer": "4♣",
+    "choices": [
+      "3♠",
+      "4♠",
+      "4♣",
+      "2SA"
+    ],
+    "explain": "Avec quatre Piques, un singleton Trèfle et 15 HLD, le Splinter à 4♣ montre un fit quatrième à Pique et une courte à Trèfle, dans la zone de manche.",
+    "difficulty": 4,
+    "difficultyReason": "Montrer simultanément le fit, une courte et la force de manche",
+    "caseFamily": "v45-cas-056"
+  },
+  {
+    "id": "SEF-V45-057",
+    "theme": "chelem",
+    "hand": [
+      [
+        "A",
+        "10",
+        "8",
+        "2"
+      ],
+      [
+        "7"
+      ],
+      [
+        "A",
+        "8",
+        "6",
+        "4"
+      ],
+      [
+        "R",
+        "10",
+        "5",
+        "2"
+      ]
+    ],
+    "h": 11,
+    "shape": [
+      4,
+      1,
+      4,
+      4
+    ],
+    "auction": [
+      "Partenaire : 1♠"
+    ],
+    "context": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle réponse décrit le mieux votre main selon le SEF ?",
+    "answer": "4♥",
+    "choices": [
+      "3♠",
+      "4♠",
+      "4♥",
+      "2SA"
+    ],
+    "explain": "Vos quatre Piques, le singleton ♥7 et 11 H valorisés par le fit et la courte donnent une main de manche. 4♥ est un Splinter : il montre le fit Pique et la courte Cœur, pas un contrat à Cœur. 4♠ conclurait sans renseigner sur la courte.",
+    "difficulty": 4,
+    "difficultyReason": "Montrer simultanément le fit, une courte et la force de manche",
+    "caseFamily": "v45-cas-057"
+  },
+  {
+    "id": "SEF-V45-058",
+    "theme": "chelem",
+    "hand": [
+      [
+        "8"
+      ],
+      [
+        "A",
+        "10",
+        "9",
+        "2"
+      ],
+      [
+        "V",
+        "7",
+        "4",
+        "2"
+      ],
+      [
+        "A",
+        "D",
+        "10",
+        "8"
+      ]
+    ],
+    "h": 11,
+    "shape": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "auction": [
+      "Partenaire : 1♥"
+    ],
+    "context": "Votre partenaire ouvre de 1♥ et les adversaires passent. Quelle réponse décrit le mieux votre main selon le SEF ?",
+    "answer": "3♠",
+    "choices": [
+      "3♥",
+      "3♠",
+      "4♥",
+      "2SA"
+    ],
+    "explain": "Avec quatre Cœurs, un singleton Pique et 15 HLD, le Splinter à 3♠ décrit un fit quatrième à Cœur et une courte à Pique, dans la zone de manche.",
+    "difficulty": 4,
+    "difficultyReason": "Montrer simultanément le fit, une courte et la force de manche",
+    "caseFamily": "v45-cas-058"
+  },
+  {
+    "id": "SEF-V411-007",
+    "theme": "second",
+    "hand": [
+      [
+        "A",
+        "V",
+        "7",
+        "5"
+      ],
+      [
+        "R",
+        "V",
+        "5"
+      ],
+      [
+        "8",
+        "7",
+        "4"
+      ],
+      [
+        "A",
+        "10",
+        "2"
+      ]
+    ],
+    "h": 13,
+    "shape": [
+      4,
+      3,
+      3,
+      3
+    ],
+    "auction": [
+      "Partenaire : 1♣",
+      "Vous : 1♠",
+      "Partenaire : 2♣"
+    ],
+    "context": "Après 1♣–1♠–2♣, vous avez la force de manche mais pas d'arrêt Carreau. Quelle enchère permet de poursuivre la recherche du bon contrat sans conclure à 3SA ?",
+    "answer": "2♦",
+    "choices": [
+      "2♦",
+      "2SA",
+      "3♣",
+      "3SA"
+    ],
+    "explain": "Avec 13 H et quatre Piques, la manche à Sans-Atout est envisageable, mais ♦874 n'arrête pas les Carreaux. Après 1♣–1♠–2♣, 2♦ est la troisième couleur forcing économique : elle oblige l'ouvreur à reparler, sans promettre de Carreaux, et dénie quatre Cœurs. 2SA ou 3SA seraient mal indiqués sans la tenue recherchée ; 3♣ limiterait la main.",
+    "difficulty": 4,
+    "difficultyReason": "Distinguer la troisième couleur artificielle forcing d'une conclusion prématurée à 3SA sans arrêt Carreau.",
+    "caseFamily": "v411-007",
+    "sourceOriginalContext20261104V460": "Au deuxième tour du répondant, quelle enchère décrit le mieux la main ?",
+    "sourceOriginalExplain20261104V460": "Avec 13 H et seulement quatre Piques, le répondant peut conclure à 3SA face à la longue mineure de l’ouvreur.",
+    "pedagogicalReview20261104V460": {
+      "audit": "REVUE_79_SECONDES_ENCHERES_REPONDANT_2026-11-04.md",
+      "verdict": "reserve_arret_carreau_a_contreexpertiser",
+      "answerUnchanged": true,
+      "editorialChange": false,
+      "contextEdited": true,
+      "reason": "1♣–1♠–2♣ ; 13 H et quatre Piques, mais ♦874 ne fournit pas d'arrêt Carreau explicite. 3SA peut être envisageable dans les options, sans justification complète ; contre-expertise requise, aucune correction imposée."
+    }
+  },
+  {
+    "id": "SEF-V425-003",
+    "theme": "second",
+    "hand": [
+      [
+        "A",
+        "V",
+        "10",
+        "8",
+        "5"
+      ],
+      [
+        "R",
+        "D",
+        "9",
+        "7"
+      ],
+      [
+        "V",
+        "6"
+      ],
+      [
+        "V",
+        "4"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      5,
+      4,
+      2,
+      2
+    ],
+    "auction": [
+      "Partenaire : 1♣",
+      "Vous : 1♠",
+      "Partenaire : 2♣"
+    ],
+    "context": "Après 1♣ – 1♠ – 2♣, c'est à vous de reparler. Quelle est votre enchère selon le SEF ?",
+    "answer": "2♥",
+    "choices": [
+      "2♠",
+      "2♥",
+      "3♣",
+      "Passe"
+    ],
+    "explain": "Avec cinq Piques, quatre Cœurs et 12 H, annoncez 2♥ naturellement : l'ouvreur doit reparler, mais 2♥ n'est pas à lui seul forcing de manche. Après 1♣–1♠–2♣, 2♦ est la troisième couleur artificielle qui dénie quatre Cœurs. 2♠ serait une répétition limitée et 3♣ un soutien non forcing.",
+    "difficulty": 4,
+    "difficultyReason": "Décrire un bicolore du répondant au deuxième tour en conservant le caractère forcing.",
+    "caseFamily": "v425-cas-003",
+    "sourceOriginalContext20261104V460": "Le répondant a annoncé sa couleur la plus longue au premier tour.",
+    "sourceOriginalExplain20261104V460": "Les cinq Piques et quatre Cœurs justifient l’annonce de la deuxième majeure à 2♥. Avec 12 H, cette nouvelle couleur maintient le dialogue forcing, contrairement à une répétition faible de 2♠.",
+    "pedagogicalReview20261104V460": {
+      "audit": "REVUE_79_SECONDES_ENCHERES_REPONDANT_2026-11-04.md",
+      "verdict": "reponse_coherente_dans_les_choix",
+      "answerUnchanged": true,
+      "editorialChange": true,
+      "contextEdited": true,
+      "reason": "Après 1♣–1♠–2♣, vos cinq Piques, quatre Cœurs et 12 H permettent d'annoncer naturellement 2♥, troisième couleur forcing un tour dans cette séquence."
+    },
+    "sourceOriginalExplain20261105V489": "Après 1♣–1♠–2♣, vos cinq Piques, quatre Cœurs et 12 H permettent d'annoncer naturellement 2♥, troisième couleur forcing un tour dans cette séquence.",
+    "pedagogicalReview20261105V489": {
+      "audit": "QPJB_Quiz_SEF_V487_Synthese_6_Instances_2026-11-05.md",
+      "verdict": "correction_pedagogique_ciblee",
+      "answerUnchanged": true,
+      "choicesUnchanged": true,
+      "source": "SEF 2024 / rapport d'audit",
+      "date": "2026-11-05"
+    }
+  },
+  {
+    "id": "SEF-V474-001",
+    "theme": "chelem",
+    "hand": [
+      [
+        "A",
+        "R",
+        "9",
+        "7",
+        "4"
+      ],
+      [
+        "A",
+        "8",
+        "6"
+      ],
+      [
+        "D",
+        "7",
+        "5"
+      ],
+      [
+        "V",
+        "9"
+      ]
+    ],
+    "h": 14,
+    "shape": [
+      5,
+      3,
+      3,
+      2
+    ],
+    "auction": [
+      "Vous : 4SA (Blackwood 5 clés, atout Pique)",
+      "Partenaire : 5♦ (1 ou 4 clés)"
+    ],
+    "context": "L'atout Pique est agréé, les contrôles vérifiés. Vous posez le Blackwood à cinq clés en 30–41 ; le partenaire répond 5♦. Vous voulez vérifier la Dame d'atout sans risquer de dépasser 5♠ si elle manque. Quelle enchère choisissez-vous ?",
+    "answer": "5♥",
+    "choices": [
+      "5♥",
+      "5♠",
+      "5SA",
+      "6♠"
+    ],
+    "explain": "Vous avez trois clés : ♠A, ♠R et ♥A. Sur 5♦, quatre clés en face seraient impossibles puisqu'il n'en reste que deux ; le partenaire en a donc une, soit quatre au camp. 5♥ demande la Dame de Pique : l'atout à 5♠ reste disponible pour un refus. 5♠ direct arrêterait le dialogue et 5SA serait prématuré.",
+    "difficulty": 5,
+    "difficultyReason": "Question à la Dame de Pique à 5♥ après une réponse de 5♦ avec quatre clés connues",
+    "caseFamily": "v474-question-pique-5d"
+  },
+  {
+    "id": "SEF-V474-002",
+    "theme": "chelem",
+    "hand": [
+      [
+        "A",
+        "8",
+        "4"
+      ],
+      [
+        "A",
+        "R",
+        "10",
+        "7",
+        "3"
+      ],
+      [
+        "9",
+        "7",
+        "2"
+      ],
+      [
+        "V",
+        "5"
+      ]
+    ],
+    "h": 12,
+    "shape": [
+      3,
+      5,
+      3,
+      2
+    ],
+    "auction": [
+      "Vous : 4SA (Blackwood 5 clés, atout Cœur)",
+      "Partenaire : 5♦ (1 ou 4 clés)"
+    ],
+    "context": "L'atout Cœur est agréé. Vous posez le Blackwood à cinq clés en 30–41 ; le partenaire répond 5♦. Vous souhaitez rester à 5♥ si la Dame d'atout manque. Quelle est votre décision ?",
+    "answer": "5♥",
+    "choices": [
+      "5♥",
+      "5♠",
+      "5SA",
+      "6♥"
+    ],
+    "explain": "Avec trois clés chez vous, 5♦ annonce une seule clé en face : il en manque une au camp. À l'atout Cœur, 5♥ est un arrêt et 5♠ serait une question à la Dame qui vous obligerait à jouer au moins 6♥. Sans les cinq clés ni la certitude de la Dame, revenez donc à 5♥ au lieu de poser une question trop chère.",
+    "difficulty": 5,
+    "difficultyReason": "Refuser la question à 5♠ avec seulement quatre clés et un fit Cœur",
+    "caseFamily": "v474-arret-coeur-5d"
+  },
+  {
+    "id": "SEF-V474-003",
+    "theme": "chelem",
+    "hand": [
+      [
+        "A",
+        "7",
+        "4"
+      ],
+      [
+        "A",
+        "R",
+        "9",
+        "6",
+        "2"
+      ],
+      [
+        "A",
+        "8"
+      ],
+      [
+        "D",
+        "5",
+        "2"
+      ]
+    ],
+    "h": 17,
+    "shape": [
+      3,
+      5,
+      2,
+      3
+    ],
+    "auction": [
+      "Vous : 4SA (Blackwood 5 clés, atout Cœur)",
+      "Partenaire : 5♦ (1 ou 4 clés)"
+    ],
+    "context": "L'atout Cœur est agréé et les contrôles vérifiés. Après votre Blackwood à cinq clés en 30–41, le partenaire répond 5♦. Vous acceptez de jouer au moins le petit chelem et souhaitez explorer le grand en vérifiant la Dame d'atout. Quelle enchère choisissez-vous ?",
+    "answer": "5♠",
+    "choices": [
+      "5♥",
+      "5♠",
+      "5SA",
+      "6♥"
+    ],
+    "explain": "Vos quatre clés personnelles ne laissent qu'une clé disponible chez le partenaire, que 5♦ confirme : les cinq sont réunies. Avec l'atout Cœur, 5♥ serait un arrêt ; la question à la Dame est 5♠. Un refus reviendrait à 6♥, si bien que vous devez accepter le petit chelem avant de poser cette question. Vous cherchez ici le complément nécessaire à l'exploration du grand.",
+    "difficulty": 5,
+    "difficultyReason": "Question à 5♠ à l'atout Cœur seulement avec toutes les clés réunies",
+    "caseFamily": "v474-question-coeur-5d"
+  }
+]
