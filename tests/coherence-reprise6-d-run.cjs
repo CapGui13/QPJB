@@ -17,8 +17,14 @@ const traces=[],summary=[];
 for(const model of ['D','M6'])for(const consolidate of [false,true]){
  const before=lab.run({...common,model,consolidate}),after=lab.run({...common,model,consolidate,policy});
  traces.push({before,after});
- summary.push({model,consolidate,before:before.checkpoints,after:after.checkpoints,direct:after.direct,consolidations:[before.consolidations,after.consolidations],resumes:[before.resumes,after.resumes]});
+ const alerts=[];for(const [i,b] of before.checkpoints.entries()){const a=after.checkpoints[i],session=b.session;
+  for(const [concept,value] of Object.entries(b.debt))if((a.debt[concept]||0)>value)alerts.push({session,metric:'conceptDebt',concept,before:value,after:a.debt[concept]});
+  for(const concept of b.proof)if(!a.proof.includes(concept))alerts.push({session,metric:'proofLost',concept});
+  for(const metric of ['families','autonomous'])if(a[metric]<b[metric])alerts.push({session,metric,before:b[metric],after:a[metric]});
+  for(const metric of ['hard','near','nearRecent'])if(a[metric]>b[metric])alerts.push({session,metric,before:b[metric],after:a[metric]});
+ }
+ summary.push({model,consolidate,alerts,before:before.checkpoints,after:after.checkpoints,direct:after.direct,consolidations:[before.consolidations,after.consolidations],resumes:[before.resumes,after.resumes]});
 }
 fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify(traces));
 fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify({sha,engine:hash(source),catalogue:hash(embedded(html)),profile,seed,horizon,summary}));
-console.log(JSON.stringify({profile,seed,horizon,summary:summary.map(x=>({model:x.model,consolidate:x.consolidate,consolidations:x.consolidations,resumes:x.resumes,direct:x.direct.map(d=>({session:d.session,old:d.old.id,next:d.next.id})),near:x.before.map((b,i)=>[b.session,b.near,x.after[i].near]),debt:x.before.map((b,i)=>[b.session,b.debtTotal,x.after[i].debtTotal])}))}));
+console.log(JSON.stringify({profile,seed,horizon,summary:summary.map(x=>({model:x.model,consolidate:x.consolidate,alerts:x.alerts.length,consolidations:x.consolidations,resumes:x.resumes,direct:x.direct.map(d=>({session:d.session,old:d.old.id,next:d.next.id})),near:x.before.map((b,i)=>[b.session,b.near,x.after[i].near]),debt:x.before.map((b,i)=>[b.session,b.debtTotal,x.after[i].debtTotal])}))}));
