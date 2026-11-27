@@ -1,0 +1,23 @@
+name: M4-D durable archive independent replay
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-d-recette]
+    paths: ['.github/workflows/m4p-d-archive.yml']
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4p-d-archive.cjs audits/coherence-concrete-20261126/m4/parallel/d/native ${{ matrix.profile }}
