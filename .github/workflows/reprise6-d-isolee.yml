@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   native:
-    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee'
+    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee' && github.event.action == 'opened'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     strategy:
@@ -66,13 +66,48 @@ jobs:
         run: |
           mkdir -p artifacts
           PW_BROWSER="${{ matrix.browser }}" node tests/coherence-reprise6-d-browser.cjs _reprise6_d_private | tee artifacts/browser.json
+          PW_BROWSER="${{ matrix.browser }}" node tests/progression-guidee-offline.cjs _reprise6_d_private | tee artifacts/legacy-offline.log
+          PW_BROWSER="${{ matrix.browser }}" node tests/durable-integration-browser.cjs _reprise6_d_private | tee artifacts/durable-browser.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reprise6-d-browser-${{ matrix.browser }}
           path: artifacts/
-  gate:
+  guards:
     if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Gardes historiques sur moteur expérimental, option T désactivée par défaut
+        shell: bash
+        run: |
+          node -e "const fs=require('fs'),p='quizz-parcours.js';fs.writeFileSync(p,require('./quizz-coherence-reprise6-d-patch.js').patchEngine(fs.readFileSync(p,'utf8')))"
+          node tests/quizz-parcours.cjs
+          node tests/quizz-prerequis.cjs
+          node tests/quizz-progression-selection-assets.cjs
+          node tests/quizz-progression-selection-real.cjs
+          node tests/quizz-retours-progression-20261126.cjs
+          node tests/quizz-catalogue-live.cjs --early
+          node tests/coherence-concrete-coordinator-order-replay-unit.cjs
+          node tests/coherence-concrete-coordinator-order-consolidation.cjs
+          node tests/durable-integration-contract.cjs
+          node tests/durable-integration-evidence.cjs
+          node tests/durable-m6-unit.cjs
+          node tests/durable-m6-guards.cjs
+          node tests/durable-m6-evidence.cjs
+          node tests/durable-m6-assets.cjs
+          node tests/durable-m6-register.cjs
+          python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1915
+          git restore -- quizz-parcours.js
+  gate:
+    if: github.head_ref == 'coherence-concrete/reprise6-d-ci-isolee' && github.event.action == 'opened'
     needs: [native, browsers]
     runs-on: ubuntu-latest
     timeout-minutes: 10
