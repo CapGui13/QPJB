@@ -1,0 +1,66 @@
+name: QPJB reprise 6 B — final consolidation guard browser
+on:
+  pull_request:
+    branches: ['coherence-concrete/reprise6-b-m3']
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  longitudinal:
+    # Full matrix run 46021213181; only re-run browser/unit on the consolidation guard patch.
+    if: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native M6/D paired, raw chronological gate retained
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          MODE: 'off'
+          HORIZON: 180
+          OUT: reprise6-b-output
+        run: |
+          node tests/coherence-reprise6-b-campaign.cjs
+          node -e "const fs=require('fs'); const s=JSON.parse(fs.readFileSync('reprise6-b-output/'+process.env.PROFILE+'-'+process.env.SEED+'.json')).summary; delete s.D.contrasts; console.log('B_RESULT '+JSON.stringify(s));"
+          TRACES="reprise6-b-output/$PROFILE-$SEED.json" node tests/coherence-reprise6-b-source-teaching.cjs | tee reprise6-b-output/teaching.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-b-teaching-${{ matrix.profile }}-${{ matrix.seed }}
+          path: reprise6-b-output/
+  browser:
+    if: github.head_ref == 'coherence-concrete/reprise6-b-m3-ci'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify native source functions
+        run: |
+          node tests/coherence-reprise6-b-context.cjs
+          node tests/coherence-reprise6-b-source-teaching.cjs
+      - name: Real frozen quiz DOM in Chrome
+        run: |
+          npm install --no-save --ignore-scripts playwright-core
+          python3 -m http.server 8765 > /tmp/qpjb-b-server.log 2>&1 &
+          sleep 1
+          CHROME_BIN="$(command -v google-chrome)" node tests/coherence-reprise6-b-browser.cjs
+
+# Re-run after hook quoting fix 972f334; matrix unchanged for normal guided sessions.
