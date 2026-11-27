@@ -1,0 +1,3 @@
+# Passe 12 — solde des réponses majeures, soutiens et redemandes
+
+87 nouveaux ID, total 871, 350 assertions V8. Les 9 concepts fondamentaux du registre historique M4 sont désormais entièrement revus par IA (plus ouv.sa2). Contrastes: 2/1 naturel 11 H OU 12 HL, 1SA poubelle non forcing même singleton, 2♥ sur 1♠ exige cinq cartes; soutien 5–3 vs 5–4 et seuil 6/10/11 HLD. Redemande répétition cinq cartes possible après 2/1 auto-forcing mais non après 1/1; 2SA mini-maxi 1♦–2♣ avec 13 H ou 18 H, forcing manche, différent du saut 2SA après 1/1. 3SA soutien artificiel fort 18–19 H / fit quatrième après 1m–1M vs 3SA tricolore singleton Trèfle après 1♦–2♣. Aucune modification du catalogue ni moteur, pas de validation humaine. Les groupes restent indicatifs et non transitifs.

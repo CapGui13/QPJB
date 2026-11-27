@@ -1,0 +1,3 @@
+# Passe 10 — solde des 65 QCM S21–65 cible/11
+
+730 ID revus, 428/428 sur cette trace; 262 assertions V8. La trajectoire cible/11 archivée seule est complète sur S21–65, aucune revendication pour les 17 autres trajectoires non disponibles intégralement. Contrastes: 2♦ Landy naturel vs Rubensohl 3♦ Texas impossible après 2♥; Blackwood 5♣ zéro ou trois selon clés propres et prémisses du contexte; 4SA quantitatif sans fit vs Blackwood après contrôles; 4♣ passe/corrige gambling vs contrôle; 2SA–3♠ Texas Trèfle vs Pique naturel. Conserver les prémisses explicites, notamment V1-M6-004 (bilan de levées antérieur favorable) et V1-M6-005 (au moins une clé chez partenaire déjà établie). Pas de visa humain, pas de changement catalogue/moteur.
