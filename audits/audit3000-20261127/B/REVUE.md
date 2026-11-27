@@ -31,3 +31,7 @@ Cumul : {"VALIDE":205,"RECLASSER_REFORMULER":55,"ERREUR_PEDAGOGIQUE":12,"ARBITRA
 ## Passe 8 (281–320)
 
 Cumul : {"VALIDE":226,"RECLASSER_REFORMULER":73,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":9} ; 74 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les paires V2-M3 contrastives sont préservées (force, fit, honneurs utiles, rôle de 2SA). 17 contextes sans question explicite corrigés. Q400-A-051–054 : forte redondance à l'intérieur de la zone, à traiter en réservoir sans suppression. V2-M3-030 : arbitrage soutien mineur. Contrôle ensemble exact des 320 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 134 restant à relire. Aucun test natif exécuté.
+
+## Passe 9 (321–360)
+
+Cumul : {"VALIDE":265,"RECLASSER_REFORMULER":74,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":9} ; 75 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les Q400-A sont généralement bien structurés en familles contrastives ; repérer les variantes de force sans changement de décision par comparaison historique. Q400-A-083 : attribution correcte du neuvième atout aux six cartes plus trois chez le répondant, et non au singleton. Contrôle ensemble exact des 360 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 94 restant à relire. Aucun test natif exécuté.
