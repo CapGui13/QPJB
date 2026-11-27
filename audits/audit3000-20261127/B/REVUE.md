@@ -76,3 +76,18 @@ Empreinte main exacte (rangs triés par couleur) + séquence normalisée (annota
 - SEF-Q685-A-140 — 12 H cinq ♥ 5332 =14 HLD bruts face à 11–12 : 3♥ refus limite comme V486-007 et Q400-099 ; main avec deux D, V, qualité à apprécier. S12.
 
 Transferts E (issue #561) : SEF-L21-005, -006, -007 ; conserver l'attribution initiale B pour le comptage. Le coordinateur arbitre ces transferts et les variantes interlots. Les verdicts et corrections sont exploitables, mais aucune certification SEF exhaustive n'est revendiquée. Mission non définitivement terminée en raison des tests natifs et de la revue sémantique résiduelle.
+
+## Passe 13 — permutations majeures/mineures et exposition
+
+Reprise sur d9cc44034e16a37b0e4d05632c232b43107ae688. Nouveau livrable `EXPOSITION-ET-PERMUTATIONS.json` (commit 215c43f5a5e42d249d6889fe3943760bcfcb699e), calculé directement sur les 3000 QCM du training-data avec les 99 corrections B, les prérequis et groupes proposés et les 454 verdicts. Les 261 IDs non affectés explicitement sont tous présents dans l'index, sans doublon. Comparaison sur quatre permutations (identité, échange des deux majeures, des deux mineures, des deux à la fois), en conservant rôles et annotations de la séquence, réponse et main transformées. Aucun doublon exact de cartes+séquence+réponse ; un couple de même distribution et H par couleur : SEF-V416-005 / SEF-Q685-A-167.
+
+Relecture du couple : les deux mains de 9 H, trois atouts et AV dans la couleur d'essai, acceptent à 4M. La différence est l'essai 3♣ après fit ♥ contre 3♦ après fit ♠ ; même décision, pas de nouveau mécanisme. Q685-A-167 est déjà dans S12 « Essai de l'ouvreur : réponse minimum vs maximum » ; garder cet ancrage et V416-005 comme variante non prioritaire, aucune suppression ni nouvel ajout mécanique. Les honneurs d'atout diffèrent mais restent dans la même logique d'acceptation.
+
+Exposition des 261 non affectés :
+- 34 de stage 0 et difficulté ≤2, éligibilité potentielle au pool de base après exposition et autres verrous ;
+- 72 autres avec au moins une ancre explicite de même concept et séquence/réponse canonique après contrôle minSession ; pistes de réservoir à relire avant décision ;
+- 155 autres sans ancre selon cet index strict ; priorité de revue par décision pédagogique et non par seule séquence. Aucun de ces nombres n'est une preuve d'exposition ou d'inaccessibilité réelle.
+
+Exemple de proposition pédagogique complémentaire pour le coordinateur (non intégrée aux patches existants) : SEF-045-1 en S15 « Redemandes et deuxième enchère », objectif/initial, en contraste avec SEF-V49-020 (18 H 4-3-3-3 contre 18 H 5-3-3-2 avec mineure cinquième, même séquence 1♦–1♠, mêmes prérequis et réponse 2SA). SEF-046-1 demeure variante de couleur non prioritaire ; ne pas ajouter les deux simultanément. Vérifier les verrous et la capacité effective du groupe. Les 72 ancres ne sont pas des propositions d'ajout en bloc.
+
+Tests natifs : nouvelle tentative de git ls-remote échouée sur résolution DNS github.com. GitHub Actions et statut combiné sur d9cc44034e16a37b0e4d05632c232b43107ae688 : tableaux vides. Contrôles de cardinalité du nouvel index exécutés, 3000 QCM, 454 verdicts, 261 IDs uniques non affectés. Comparaison sémantique humaine des 155 cas sans ancre, des séquences voisines et des permutations au-delà de cet index non achevée ; aucune certification de couverture. Les 14 arbitrages restent au coordinateur. Aucun fichier commun modifié.
