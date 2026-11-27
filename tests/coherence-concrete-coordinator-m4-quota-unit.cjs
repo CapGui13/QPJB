@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('node:assert/strict'),P=require('../quizz-coherence-coordinator-m4-quota.js');
+const q=(id,theme,difficulty=2,answer='1SA')=>({id,theme,difficulty,answer,caseFamily:id});
+const source=q('source','red',2,'1♥'),target=q('target','ouv',1,'1SA'),selected=q('prior','red',2,'1♦');
+const metadataById={source:{concept:'red.bicolore'},prior:{concept:'red.base'},target:{concept:'ouv.sa1'},a:{concept:'red.bicolore'},b:{concept:'red.bicolore'},c:{concept:'ouv.sa1'},d:{concept:'ouv.sa1'}};
+const evt=(session,id,family=id)=>({session,mode:'parcours',answers:[{id,family,result:'correct',assisted:false,hadFreeError:false}]});
+const ctx={session:80,history:{active:null,journal:[evt(40,'c'),evt(50,'d'),evt(75,'a'),evt(77,'b')]},category:'maintenance',priority:false,forcedReason:null,metadataById,selected:[{exercise:selected}],ranked:[{q:source,v:500}],extended:[{q:source,v:500},{q:target,v:140}],flagsById:{source:{due:false,bad:false,weak:false,firstConcept:false,novelFamily:true,stage:1},target:{due:true,bad:false,weak:false,firstConcept:false,novelFamily:false,stage:0,familyAge:30}},repeatBudget:1,repeatedFamilies:1};
+const snapshot=JSON.stringify(ctx);assert.equal(P.Q.choose(ctx),null);const r=P.R.choose(ctx);assert.equal(r.id,'target');assert.equal(r.allowOneExtraRepeat,true);assert.equal(JSON.stringify(ctx),snapshot);assert.deepEqual(P.R.choose(ctx),r);
+for(const update of [{session:79},{session:64},{priority:true},{forcedReason:'rappel_erreur_aide'},{category:'discovery'},{repeatedFamilies:2},{selected:[]},{history:{...ctx.history,active:{ids:['a']}}}])assert.equal(P.R.choose({...ctx,...update}),null);
+for(const [id,flag] of [['source','due'],['source','bad'],['source','weak'],['source','firstConcept'],['target','bad'],['target','weak'],['target','firstConcept']])assert.equal(P.R.choose({...ctx,flagsById:{...ctx.flagsById,[id]:{...ctx.flagsById[id],[flag]:true}}}),null);
+assert.equal(P.R.choose({...ctx,history:{...ctx.history,journal:ctx.history.journal.filter(x=>x.session!==50)}}),null,'No proof from single family');
+assert.equal(P.R.choose({...ctx,history:{...ctx.history,journal:[...ctx.history.journal,evt(76,'d')]} }),null,'No overdue target');
+const novel={...ctx,ranked:[...ctx.ranked,{q:target,v:430}],flagsById:{...ctx.flagsById,target:{...ctx.flagsById.target,novelFamily:true}}};
+assert.equal(P.Q.choose(novel).id,'target');assert.equal(P.Q.choose(novel).allowOneExtraRepeat,false);
+console.log('PASS Q/R guard tests');
