@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Huit passes de 40 terminées (320/540). SHA avant passe 8 : fa9f3b733f0b005dc7a42b68aaa1eed6dd989aa3. Dernier ID V2-M3-018; prochain ID V2-M5-001. {"VALIDE":94,"RECLASSER_REFORMULER":210,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":16}. Corrections : 192. Prérequis : 26. Réservoir : 79.
+Neuf passes de 40 terminées (360/540). SHA avant passe 9 : e7c760a4b0d9ae75c29f73cc90b37291f64a7824. Dernier ID SEF-Q400-C-052; prochain ID SEF-Q400-C-053. {"VALIDE":102,"RECLASSER_REFORMULER":237,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":21}. Corrections : 220. Prérequis : 27. Réservoir : 101.
 
-## IDs restants (220)
-- V2-M5-001 — apres_inter.base
-- V2-M5-002 — competitif.truscott
-- V2-M5-003 — competitif.2sa_fitte
-- V2-M5-004 — apres_inter.base
-- V2-M5-005 — apres_inter.base
-- V2-M5-006 — competitif.spoutnik
-- V2-M5-007 — competitif.spoutnik
-- V2-M5-008 — competitif.spoutnik
-- V2-M5-009 — apres_inter.base
-- V2-M5-010 — apres_inter.base
-- V2-M5-011 — apres_inter.base
-- V2-M5-012 — apres_inter.base
-- V2-M5-021 — multilandy.choix
-- V2-M5-022 — multilandy.choix
-- V2-M5-023 — multilandy.intervention
-- V2-M5-024 — multilandy.intervention
-- V2-M5-025 — multilandy.intervention
-- V2-M5-026 — multilandy.intervention
-- V2-M5-027 — rubensohl.naturel
-- V2-M5-028 — rubensohl.init
-- V2-M5-029 — rubensohl.suite
-- V2-M5-030 — rubensohl.suite
-- V2-M5-031 — rubensohl.suite
-- V2-M5-032 — rubensohl.suite
-- V2-M5-033 — rubensohl.naturel
-- V2-M5-034 — rubensohl.init
-- V2-M5-035 — michaels.choix
-- V2-M5-036 — michaels.intervention
-- V2-M5-037 — michaels.defense
-- V2-M5-038 — michaels.defense
-- V2-M5-039 — michaels.reponse
-- V2-M5-040 — michaels.reponse
-- SEF-PN26-M1-013 — multilandy.choix
-- SEF-PN26-M1-014 — michaels.choix
-- SEF-Q400-C-047 — apres_inter.base
-- SEF-Q400-C-048 — apres_inter.base
-- SEF-Q400-C-049 — apres_inter.base
-- SEF-Q400-C-050 — apres_inter.base
-- SEF-Q400-C-051 — apres_inter.base
-- SEF-Q400-C-052 — apres_inter.base
+## IDs restants (180)
 - SEF-Q400-C-053 — apres_inter.base
 - SEF-Q400-C-054 — apres_inter.base
 - SEF-Q400-C-055 — apres_inter.base
@@ -226,4 +186,4 @@ Huit passes de 40 terminées (320/540). SHA avant passe 8 : fa9f3b733f0b005dc7a4
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 320 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 360 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
