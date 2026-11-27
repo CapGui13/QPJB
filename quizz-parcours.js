@@ -236,6 +236,19 @@
     active:null,journal:[],difficultyFeedback:[],difficultyAdjustment:0};}
   // Optional observed first bid only. Old journals remain unchanged after load.
   const firstGuessEvidence=a=>a?.hadFreeError===true&&typeof a.firstGuess==='string'&&/^(?:Passe|Contre|Surcontre|[1-7](?:♣|♦|♥|♠|SA))$/.test(a.firstGuess)&&!(a.result==='correct'&&a.firstGuess===a.choice)?{firstGuess:a.firstGuess}:{};
+  // Référence facultative du départage historique, distincte du journal observé.
+  // Une référence absente ou corrompue ne change jamais les réponses ni leurs preuves.
+  function validOrderReference(ids,reference){
+    return Array.isArray(ids)&&Array.isArray(reference)&&ids.length>0&&ids.length<=20&&
+      reference.length===ids.length&&new Set(ids).size===ids.length&&
+      new Set(reference).size===reference.length&&reference.every(id=>typeof id==='string'&&ids.includes(id));
+  }
+  function referenceAnswers(event){
+    const answers=event.answers||[];
+    if(event.mode!=='parcours'||!validOrderReference(answers.map(a=>a.id),event.orderReferenceIds))return answers;
+    const byId=new Map(answers.map(a=>[a.id,a]));
+    return event.orderReferenceIds.map(id=>byId.get(id));
+  }
   function load(raw){
     let old=raw;
     if(typeof raw==='string'){try{old=JSON.parse(raw)}catch(_){old=null}}
@@ -326,6 +339,8 @@
           s.active.selection=old.active.selection.map(v=>({
             id:v.id,kind:v.kind,reason:v.reason
           }));
+        if(old.active.mode!=='consolidation'&&validOrderReference(ids,old.active.orderReferenceIds))
+          s.active.orderReferenceIds=old.active.orderReferenceIds.slice();
         if(old.active.mode==='consolidation'){
           s.active.mode='consolidation';
           if(Array.isArray(old.active.targets)&&old.active.targets.length===ids.length&&
@@ -362,6 +377,8 @@
       ).map(event=>({
         mode:event.mode,session:event.session,
         recordedAt:typeof event.recordedAt==='string'?event.recordedAt:null,
+        ...(event.mode==='parcours'&&validOrderReference(event.answers.map(a=>a.id),event.orderReferenceIds)
+          ?{orderReferenceIds:event.orderReferenceIds.slice()}:{}),
         answers:event.answers.map(a=>({
           id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
           assisted:!!a.assisted,hadFreeError:!!a.hadFreeError,...firstGuessEvidence(a),
@@ -620,7 +637,7 @@
     if(items.length<2)return items.slice();
     const s=state.completed;
     const salt=s+'|'+items.map(x=>exerciseOf(x).id).sort().join('|')+'|'+
-      (state.journal||[]).slice(-2).map(ev=>(ev.answers||[]).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
+      (state.journal||[]).slice(-2).map(ev=>referenceAnswers(ev).map(a=>a.result+Number(!!a.assisted)).join('')).join('|');
     const earlyOrder=s===1&&items.length===10&&items.filter(x=>openBid(exerciseOf(x))).length>=2;
     const totalPass=items.filter(x=>openingPass(exerciseOf(x))).length;
     const deadlines=passDeadlines(s,totalPass,items.length);
@@ -1054,7 +1071,7 @@
       targets:plan.items.map(x=>x.target)};
     return state.active.ids.map(id=>byId.get(id));
   }
-  function start(state,exercises){
+  function start(state,exercises,options={}){
     const byId=new Map(exercises.map(x=>[x.id,x]));
     if(state.active){
       if(state.active.ids.every(id=>byId.has(id))){
@@ -1067,12 +1084,37 @@
       }
       state.active=null;
     }
-    const chosen=select(exercises,state,10);
+    let chosen=select(exercises,state,10);
     if(!chosen.length)return [];
+    // Le candidat est désactivé pour tous les appels historiques à deux arguments.
+    // Le coordinateur doit fournir explicitement le module et passer la recette intégrée.
+    let orderReferenceIds=null;
+    const orderModule=options?.coherenceM2;
+    if(orderModule?.schema==='QPJB_COHERENCE_M2_V1'&&typeof orderModule.order==='function'){
+      const historical=chosen.map(x=>x.id),historicalDeck=historical.map(id=>byId.get(id));
+      try{
+        const plan=orderModule.order({session:state.completed+1,history:state,
+          deck:historical,selected:chosen,exercises:historicalDeck,
+          metadataById:prerequis.byId,preserveThemeOrder:true});
+        const proposed=plan?.ids;
+        if(validOrderReference(historical,proposed)&&proposed.some((id,i)=>id!==historical[i])){
+          const deck=proposed.map(id=>byId.get(id));
+          const themes=[...new Set(historicalDeck.map(q=>q.theme))];
+          const stable=themes.every(t=>historicalDeck.filter(q=>q.theme===t).map(q=>q.id).join('|')===
+            deck.filter(q=>q.theme===t).map(q=>q.id).join('|'));
+          if(stable&&passOrderOK(deck,state.completed)){
+            const byChoice=new Map(chosen.map(x=>[x.id,x]));
+            chosen=proposed.map(id=>byChoice.get(id));
+            orderReferenceIds=historical;
+          }
+        }
+      }catch(_){ /* Repli historique : aucun nouvel ordre ni état partiel. */ }
+    }
     state.active={ids:chosen.map(x=>x.id),index:0,answers:{},
       createdAt:state.completed,selection:chosen.map(x=>({
         id:x.id,kind:x.kind,reason:x.reason
       }))};
+    if(orderReferenceIds)state.active.orderReferenceIds=orderReferenceIds.slice();
     return state.active.ids.map(id=>byId.get(id));
   }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
@@ -1193,6 +1235,8 @@
           }:{})};
       })
     };
+    if(record.mode==='parcours'&&validOrderReference(active.ids,active.orderReferenceIds))
+      record.orderReferenceIds=active.orderReferenceIds.slice();
     if(!Array.isArray(state.journal))state.journal=[];
     state.journal.push(record);
     // Les séances ciblées consolident les preuves mais ne débloquent pas
