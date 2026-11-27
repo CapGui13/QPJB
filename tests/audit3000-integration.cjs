@@ -40,3 +40,70 @@ for(const id of auditIds){
 assert.deepEqual(saved[untouched],entry);assert.deepEqual(persisted,clone(saved));
 const snapshot=clone(saved);run();assert.equal(writes,1);assert.deepEqual(clone(saved),snapshot);
 console.log('AUDIT3000 actual progress migration: PASS',auditIds.length,'archived; untouched preserved; idempotent');
+
+
+/* Read-only characterization of historical guided evidence. This does not
+   certify a migration, change the production engine, or regrade old answers.
+   The audit contract #556 explicitly prohibits changing engine logic. */
+const campaign=require('./durable-m6-campaign.cjs');
+const sourceName=p=>/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js';
+const oldNames=cp.execFileSync('git',['ls-tree','--name-only',base],{encoding:'utf8'}).trim().split('\n').filter(sourceName);
+const newNames=fs.readdirSync('.').filter(sourceName);
+const oldSources=Object.fromEntries([...new Set([...campaign.paths,...oldNames])].map(p=>[p,old(p).toString()]));
+const newSources=Object.fromEntries([...new Set([...campaign.paths,...newNames])].map(p=>[p,read(p)]));
+const evidenceAnchor=',VERSION,ROADMAP,INTRO';
+assert.equal(newSources['quizz-parcours.js'].split(evidenceAnchor).length,2,'Exact read-only evidence instrumentation anchor');
+newSources['quizz-parcours.js']=newSources['quizz-parcours.js'].replace(evidenceAnchor,',auditEvidence:evidence'+evidenceAnchor);
+const prior=campaign.engine(oldSources), current=campaign.engine(newSources);
+const oldById=new Map(prior.exercises.map(q=>[q.id,q])),newById=new Map(current.exercises.map(q=>[q.id,q]));
+const actualChangedAnswers=prior.exercises.filter(q=>q.answer!==newById.get(q.id).answer).map(q=>q.id).sort();
+assert.deepEqual(actualChangedAnswers,[...report.answerChanges].sort());
+const signature=(e,q)=>({
+ concept:e.meta.byId[q.id].concept,theme:q.theme,family:q.caseFamily||q.id,
+ difficulty:q.difficulty,micro:e.api.microKey(q)??null,axis:e.api.axisKey(q)??null
+});
+const reassigned=prior.exercises.flatMap(q=>{
+ const before=signature(prior,q),after=signature(current,newById.get(q.id));
+ const fields=Object.keys(before).filter(k=>before[k]!==after[k]);
+ return fields.length?[{id:q.id,fields}]:[];
+});
+const material=new Set(report.materialChanges);
+const riskIds=new Set([...material,...reassigned.map(x=>x.id)]);
+const cases=[];
+for(const id of actualChangedAnswers){
+ const oq=oldById.get(id),nq=newById.get(id),s=prior.api.empty();
+ // Deliberate one-question fixture: isolate answer recording and reload,
+ // not the production selection policy or a real student's history.
+ s.active={mode:'parcours',ids:[id],index:0,answers:{}};
+ assert(prior.api.record(s,oq,'correct',0,oq.answer,false,false),'Historical record '+id);
+ const mid=current.api.load(JSON.stringify(s));
+ assert.equal(mid.active.answers[0].choice,oq.answer,'Active historical choice retained '+id);
+ assert.equal(mid.active.answers[0].result,'correct','Active historical result retained '+id);
+ assert(prior.api.finish(s,prior.exercises),'Historical finish '+id);
+ const restored=current.api.load(JSON.stringify(s)),observed=restored.journal[0].answers[0];
+ assert.equal(restored.completed,s.completed,'Completed sessions retained '+id);
+ assert.equal(observed.choice,oq.answer,'Historical choice retained '+id);
+ assert.equal(observed.result,'correct','Historical result retained '+id);
+ assert.equal(restored.entries[id].result,'correct','Historical entry retained '+id);
+ const raw=JSON.stringify(restored);
+ const proof=current.api.auditEvidence(restored,current.exercises);
+ const concept=current.meta.byId[id].concept;
+ const usedAsCurrentProof=(proof.proofs.get(concept)||[]).some(x=>x.family===(nq.caseFamily||id));
+ const dashboard=current.api.dashboard(restored,current.exercises);
+ assert.equal(JSON.stringify(restored),raw,'Read-only characterization '+id);
+ cases.push({id,oldAnswer:oq.answer,currentAnswer:nq.answer,concept,usedAsCurrentProof,
+   countedIndependentInDashboard:dashboard.themes.find(t=>t.id===nq.theme)?.independent===1,
+   oldActiveAnswerPreserved:true});
+}
+const guidedDiagnostic={
+ schema:'QPJB_AUDIT3000_GUIDED_DIAGNOSTIC_V1',base,
+ materialRevisions:material.size,answerChanges:actualChangedAnswers.length,
+ reassignedCount:reassigned.length,potentialEvidenceImpactIds:[...riskIds].sort(),reassigned,
+ oldAnswerCases:cases,unversionedProofCount:cases.filter(c=>c.usedAsCurrentProof).length,
+ limitations:['Synthetic isolated recording fixtures, not a production lesson or real student data.',
+ 'Classification change is a review candidate, not an instruction to erase evidence.',
+ 'No retroactive grading, no mutation, no production migration; historical aggregates without journals cannot be reconstructed.']
+};
+console.log('AUDIT3000 guided history characterization (not migration certification):',JSON.stringify(guidedDiagnostic));
+if(guidedDiagnostic.unversionedProofCount)
+ console.log('::warning::AUDIT3000 guided history retains historical answers but uses '+guidedDiagnostic.unversionedProofCount+' obsolete answer keys as current proof; separate versioned migration required.');
