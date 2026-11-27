@@ -35,3 +35,7 @@ Cumul : {"VALIDE":226,"RECLASSER_REFORMULER":73,"ERREUR_PEDAGOGIQUE":12,"ARBITRA
 ## Passe 9 (321–360)
 
 Cumul : {"VALIDE":265,"RECLASSER_REFORMULER":74,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":9} ; 75 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les Q400-A sont généralement bien structurés en familles contrastives ; repérer les variantes de force sans changement de décision par comparaison historique. Q400-A-083 : attribution correcte du neuvième atout aux six cartes plus trois chez le répondant, et non au singleton. Contrôle ensemble exact des 360 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 94 restant à relire. Aucun test natif exécuté.
+
+## Passe 10 (361–400)
+
+Cumul : {"VALIDE":292,"RECLASSER_REFORMULER":79,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":17} ; 80 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les Q685-A des bicolores chers 20–21 HL font l'objet d'un arbitrage sur la disponibilité du saut et le traitement exact, sans modification spéculative. Q685-A-108–110 : explicitation HLD des soutiens simples. Q685-A-111 : frontière du modérateur à 8 H. Contrôle ensemble exact des 400 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 54 restant à relire. Aucun test natif exécuté.
