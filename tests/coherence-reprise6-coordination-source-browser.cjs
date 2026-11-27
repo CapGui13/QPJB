@@ -7,7 +7,8 @@ const BASE='c0401726b6083f29039b2857e8b21cdd708531b2';
 const html=cp.execFileSync('git',['show',BASE+':quizz.html'],{encoding:'utf8',maxBuffer:32*1024*1024});
 const actual=fs.readFileSync('quizz.html','utf8');
 const A=require('../quizz-coherence-coordinator-a-contrast.js');
-assert.equal(actual,A.instrumentHTML(C.instrumentHTML(S.instrumentHTML(html))),'actual committed HTML must match only the reviewed A+B patches');
+assert.equal(cp.execFileSync('git',['show','d402bb887877d1cdd3267e743b954f31501f1a84:quizz.html'],{encoding:'utf8',maxBuffer:32*1024*1024}),A.instrumentHTML(C.instrumentHTML(S.instrumentHTML(html))),'original A+B identity');
+assert.equal(actual,cp.execFileSync('git',['show','0ac1007b1b231af513f42b9175ed4c0ade63e213:quizz.html'],{encoding:'utf8',maxBuffer:32*1024*1024}),'reviewed C4 HTML identity');
 const embedded=h=>h.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
 assert.equal(embedded(actual),embedded(html));assert.equal(JSON.parse(embedded(actual)).exercises.length,1915);
 function harness(s){
