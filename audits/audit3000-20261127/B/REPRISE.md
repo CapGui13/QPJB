@@ -1,52 +1,12 @@
-# Reprise B — passe 8 partielle
+# Reprise B — passe 9 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-320/454 entrées provisoires ; 134 restent. Dernier ID : SEF-Q400-A-056. Prochain : SEF-Q400-A-057.
+360/454 entrées provisoires ; 94 restent. Dernier ID : SEF-Q400-A-096. Prochain : SEF-Q400-A-097.
 
-Contrôles mécaniques 454/454. Corrections : 74. Propositions de réservoir : 7. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 9. Contrôles ensemble exact 320 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454. Corrections : 75. Propositions de réservoir : 7. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 9. Contrôles ensemble exact 360 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- SEF-Q400-A-057
-- SEF-Q400-A-058
-- SEF-Q400-A-059
-- SEF-Q400-A-060
-- SEF-Q400-A-061
-- SEF-Q400-A-062
-- SEF-Q400-A-063
-- SEF-Q400-A-064
-- SEF-Q400-A-065
-- SEF-Q400-A-066
-- SEF-Q400-A-067
-- SEF-Q400-A-068
-- SEF-Q400-A-069
-- SEF-Q400-A-070
-- SEF-Q400-A-071
-- SEF-Q400-A-072
-- SEF-Q400-A-073
-- SEF-Q400-A-074
-- SEF-Q400-A-075
-- SEF-Q400-A-076
-- SEF-Q400-A-077
-- SEF-Q400-A-078
-- SEF-Q400-A-079
-- SEF-Q400-A-080
-- SEF-Q400-A-081
-- SEF-Q400-A-082
-- SEF-Q400-A-083
-- SEF-Q400-A-084
-- SEF-Q400-A-085
-- SEF-Q400-A-086
-- SEF-Q400-A-087
-- SEF-Q400-A-088
-- SEF-Q400-A-089
-- SEF-Q400-A-090
-- SEF-Q400-A-091
-- SEF-Q400-A-092
-- SEF-Q400-A-093
-- SEF-Q400-A-094
-- SEF-Q400-A-095
-- SEF-Q400-A-096
 - SEF-Q400-A-097
 - SEF-Q400-A-098
 - SEF-Q400-A-099
