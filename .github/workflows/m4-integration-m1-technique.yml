@@ -1,0 +1,75 @@
+name: M4 compatibility actual M1 V2 and V6
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cda790b197339d64a136a69a5dd414c79effe5ac
+      - uses: actions/checkout@v4
+        with:
+          ref: 6d2d2586a0b59e029c808df8424ab458cf3cd064
+          path: m1-frozen
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - env:
+          OUT: /tmp/m4-m1
+          M4_M1_ROOT: m1-frozen
+        run: node tests/coherence-concrete-m4-integration-m1.cjs "${{ matrix.profile }}" "${{ matrix.seed }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-m1-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4-m1
+          retention-days: 3
+  gate:
+    needs: [campagne]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cda790b197339d64a136a69a5dd414c79effe5ac
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4-m1-*
+          merge-multiple: true
+          path: /tmp/m4-m1
+      - name: Independent relative M1 gates
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),assert=require('node:assert/strict'),L=require('./quizz-coherence-m4p-d-lab.js');
+          const dir='/tmp/m4-m1',out=[];
+          for(const policy of ['V2','V6']){
+            const rows=fs.readdirSync(dir).filter(x=>x.startsWith(policy+'-')&&x.endsWith('.json')).map(x=>JSON.parse(fs.readFileSync(dir+'/'+x,'utf8')).summary);
+            assert.equal(rows.length,18);
+            assert.ok(rows.every(x=>x.provenance.m1Sha==='6d2d2586a0b59e029c808df8424ab458cf3cd064'&&x.provenance.m4Sha==='cda790b197339d64a136a69a5dd414c79effe5ac'&&x.provenance.baseline==='m1-instrumented'));
+            const gate=L.compareCheckpoints(rows.map(x=>x.review),{requireEarly:true,requireDebt:true});
+            const alerts=rows.flatMap(x=>x.review.regressions.map(r=>({profile:x.profile,seed:x.seed,...r})));
+            const s20=rows.some(x=>['nearPairs','decisionPairs','nearRecent'].some(k=>x.review.after[1][k]<x.review.before[1][k]));
+            const verdict=gate.verdict==='CANDIDAT_A_REVOIR'&&!alerts.length&&s20?'REVIEW':'HOLD';
+            const result={policy,verdict,gate,alerts,s20,changes:rows.map(x=>({profile:x.profile,seed:x.seed,changes:x.changes,altered:x.altered,m1EventsBefore:x.m1EventsBefore.length,m1EventsAfter:x.m1EventsAfter.length}))};
+            out.push(result);
+            console.log('M4_M1_GATE '+JSON.stringify(result));
+          }
+          fs.writeFileSync('/tmp/m4-m1-gates.json',JSON.stringify(out,null,2));
+          process.exitCode=out.every(x=>x.verdict==='REVIEW')?0:2;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-m1-gates
+          path: /tmp/m4-m1-gates.json
+          retention-days: 3
