@@ -11958,5 +11958,3532 @@
         "explain": "Cinq Piques en face des quatre promis par l'ouvreur assurent neuf atouts. Vous comptez 17 HLD (12 H + 1 L + 2 D pour les deux doubletons + 2 pour le neuvième atout). 4♠ impose la manche ; 3♠ sous-évaluerait ce potentiel. 2SA ou 3SA ne valoriseraient pas le fit majeur."
       }
     }
+  },
+  {
+    "id": "SEF-V49-025",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre ♠ et doubleton, huit atouts : 7 HLD, Passe. S11 distingue Passe sur soutien de l'ouvreur. Bon contraste avec V49-041.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [
+      11
+    ],
+    "seancesProposees": [
+      11
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 11,
+        "decision": "Deuxième enchère du répondant : Passe sur soutien minimum",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 11,
+        "decision": "Deuxième enchère du répondant : Passe sur soutien minimum",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "V",
+          "7",
+          "6"
+        ],
+        [
+          "D",
+          "6",
+          "5"
+        ],
+        [
+          "7",
+          "6",
+          "5",
+          "2"
+        ],
+        [
+          "3",
+          "2"
+        ]
+      ],
+      "h": 6,
+      "forme": [
+        4,
+        3,
+        4,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 2♠"
+      ],
+      "choix": [
+        "Passe",
+        "2SA",
+        "3♠",
+        "4♠"
+      ],
+      "reponse": "Passe",
+      "difficulte": 1,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 0,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-025",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q400-A-073",
+        "SEF-Q685-A-128",
+        "SEF-Q685-A-129"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V49-026",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre ♥ et cinq ♣ sur répétition de ♣ : Passe, fit mineur manifeste sans manche. Différent de V49-038 avec majeure sixième et peu de ♣. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "8",
+          "5"
+        ],
+        [
+          "10",
+          "9",
+          "7",
+          "4"
+        ],
+        [
+          "D",
+          "5"
+        ],
+        [
+          "A",
+          "9",
+          "8",
+          "5",
+          "2"
+        ]
+      ],
+      "h": 6,
+      "forme": [
+        2,
+        4,
+        2,
+        5
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "Passe",
+        "2♥",
+        "2♦",
+        "3♣"
+      ],
+      "reponse": "Passe",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-026",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V49-028",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, cinq ♦ et deux ♥ : 1SA limitée sur 1♥, pas de fit. Le 2♦ naturel absent des choix demanderait normalement une sixième dans cette séquence, le corrigé doit expliquer cette distinction, pas seulement 3♦. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "9",
+          "6",
+          "5"
+        ],
+        [
+          "D",
+          "9"
+        ],
+        [
+          "R",
+          "10",
+          "7",
+          "6",
+          "4"
+        ],
+        [
+          "A",
+          "4",
+          "3"
+        ]
+      ],
+      "h": 9,
+      "forme": [
+        3,
+        2,
+        5,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♦",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2SA",
+        "3♦"
+      ],
+      "reponse": "1SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-028",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "Sur 1♣–1♦–1♥, le répondant possède 9 H et deux Cœurs seulement : il n'a pas de soutien majeur. Une redemande limitée à 1SA est la plus descriptive parmi les choix. 2SA demanderait plus de force, et 3♦ est trop élevé avec cinq Carreaux."
+      },
+      "apres": {
+        "explain": "Après 1♣–1♦–1♥, vos 9 H, deux Cœurs et cinq Carreaux ne révèlent pas de fit majeur. 1SA est l'enchère naturelle limitée. Une répétition faible à 2♦ décrirait normalement six Carreaux dans cette séquence ; 3♦ serait encore trop élevé. 2SA inviterait avec plus de force."
+      }
+    }
+  },
+  {
+    "id": "SEF-V49-036",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H, six ♣ sur 1♦ : 2♣, pas 3♣ ; contraste avec V49-037 cinq cartes et main régulière. Proposer S5 en binôme si réserve conditionnelle.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      5
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 5,
+        "decision": "Répétition sixième",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "pointsControles": {
+      "main": [
+        [
+          "7",
+          "6",
+          "2"
+        ],
+        [
+          "A",
+          "6"
+        ],
+        [
+          "A",
+          "8"
+        ],
+        [
+          "A",
+          "V",
+          "9",
+          "8",
+          "4",
+          "2"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        3,
+        2,
+        2,
+        6
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♦"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2SA",
+        "3♣"
+      ],
+      "reponse": "2♣",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-036",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 5,
+            "decision": "Répétition sixième",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire contrastive 1♣–1♦ : cinq Trèfles réguliers contre six Trèfles",
+        "status": "proposition coordinateur, verrous natifs conservés"
+      }
+    }
+  },
+  {
+    "id": "SEF-V49-037",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H 2-3-3-5 : 1SA, pas majeure quatrième ni six ♣. Complément de V49-036, groupe S5 adapté.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      5
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 5,
+        "decision": "1SA 12–14 H sans fit connu",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "2"
+        ],
+        [
+          "R",
+          "9",
+          "8"
+        ],
+        [
+          "D",
+          "6",
+          "4"
+        ],
+        [
+          "R",
+          "D",
+          "9",
+          "4",
+          "2"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        2,
+        3,
+        3,
+        5
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♦"
+      ],
+      "choix": [
+        "1SA",
+        "1♥",
+        "2♣",
+        "2SA"
+      ],
+      "reponse": "1SA",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-037",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 5,
+            "decision": "1SA 12–14 H sans fit connu",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire contrastive 1♣–1♦ : cinq Trèfles réguliers contre six Trèfles",
+        "status": "proposition coordinateur, verrous natifs conservés"
+      }
+    }
+  },
+  {
+    "id": "SEF-V49-038",
+    "verdict": "VALIDE",
+    "justification": "8 H six ♠ et deux ♣ : 2♠ non forcing après répétition ♣, contraste avec Passe de V49-026. Variante de V44-024 ouverture mineure. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "V",
+          "6",
+          "4",
+          "3",
+          "2"
+        ],
+        [
+          "10",
+          "5"
+        ],
+        [
+          "7",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "2"
+        ]
+      ],
+      "h": 8,
+      "forme": [
+        6,
+        2,
+        3,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "Passe",
+        "2♠",
+        "2SA",
+        "3♠"
+      ],
+      "reponse": "2♠",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-038",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q400-D-003",
+        "SEF-Q685-D-142"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V49-039",
+    "verdict": "VALIDE",
+    "justification": "6 H quatre ♥ et trois ♦ après répétition ♦ : Passe, pas de répétition majeure faible à quatre. Miroir de V49-026 avec fit moins long. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "9",
+          "6",
+          "5"
+        ],
+        [
+          "D",
+          "8",
+          "5",
+          "3"
+        ],
+        [
+          "A",
+          "5",
+          "3"
+        ],
+        [
+          "7",
+          "5",
+          "4"
+        ]
+      ],
+      "h": 6,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 2♦"
+      ],
+      "choix": [
+        "Passe",
+        "2♥",
+        "2SA",
+        "3♦"
+      ],
+      "reponse": "Passe",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-039",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V49-040",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H quatre ♥ 4333 : 2SA invitation, 23–25 H. Référence Roudi hors choix : expliciter 2♥ et 3SA présents. Variante de N143-2. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "5",
+          "3"
+        ],
+        [
+          "A",
+          "V",
+          "9",
+          "2"
+        ],
+        [
+          "D",
+          "V",
+          "10"
+        ],
+        [
+          "7",
+          "5",
+          "3"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "choix": [
+        "Passe",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-040",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "Avec 11 H réguliers et quatre Cœurs seulement, vous connaissez 23–25 H face à 1SA de l'ouvreur. 2SA invite à la manche sans l'imposer ; le partenaire peut passer avec un minimum. 2♣ Roudi ne se justifie pas pour rechercher un fit 5–3."
+      },
+      "apres": {
+        "explain": "Avec 11 H réguliers et quatre Cœurs, vous connaissez 23–25 H face aux 12–14 H de l'ouvreur. 2SA invite à la manche sans l'imposer : Passe renoncerait à l'invitation, 3SA imposerait la manche même face à 12 H, et 2♥ montrerait une majeure au moins cinquième."
+      }
+    }
+  },
+  {
+    "id": "SEF-V49-041",
+    "verdict": "VALIDE",
+    "justification": "11 H quatre ♥ réguliers : 3♥ invitation du répondant, 11 HLD et huit atouts. Très bon contraste avec 3♥ préventif après soutien simple du répondant. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "9",
+          "6"
+        ],
+        [
+          "D",
+          "6",
+          "5",
+          "4"
+        ],
+        [
+          "D",
+          "6",
+          "3"
+        ],
+        [
+          "R",
+          "6",
+          "3"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 2♥"
+      ],
+      "choix": [
+        "Passe",
+        "2SA",
+        "3♥",
+        "4♥"
+      ],
+      "reponse": "3♥",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-041",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V49-042",
+    "verdict": "ERREUR_PEDAGOGIQUE",
+    "justification": "13 H cinq ♦ et quatre ♥, deux doubletons : 16 HLD, soutien 2♥. Zone 12–14 H de l'explication inadaptée ; comparer V44-017 corrigé. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://www.bridgeclubduclair.fr/25-comment-repondre-a-une-ouverture-mineure-un-trefle-ou-un-carreau/"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "3"
+        ],
+        [
+          "V",
+          "10",
+          "9",
+          "7"
+        ],
+        [
+          "A",
+          "R",
+          "V",
+          "10",
+          "3"
+        ],
+        [
+          "10",
+          "8"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        2,
+        4,
+        5,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♦",
+        "2♥",
+        "3♥"
+      ],
+      "reponse": "2♥",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v49-042",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-N108-1"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "Votre partenaire promet au moins quatre Cœurs par sa réponse. Avec vos 4 Cœurs, le fit est établi. Vos 13 H correspondent à la première zone de l’ouvreur (12–14 H) : soutenez à 2♥."
+      },
+      "apres": {
+        "explain": "Le partenaire promet au moins quatre Cœurs. Vos quatre Cœurs établissent donc au moins huit atouts. Vous comptez 16 HLD (13 H + 1 L pour le cinquième Carreau + 2 D pour les deux doubletons). 2♥ est le soutien simple de 12–16 HLD. 3♥ demanderait 17–19 HLD ; ni 1SA ni 2♦ ne décrirait le fit."
+      }
+    }
+  },
+  {
+    "id": "SEF-V410-001",
+    "verdict": "VALIDE",
+    "justification": "13 H cinq ♦ et quatre ♣ : 2♣ économique (retour 2♦), différent des bicolores chers 1♣–1♠–2♦. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore",
+    "conceptPropose": "red.bicolore",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "D",
+          "8"
+        ],
+        [
+          "D",
+          "V"
+        ],
+        [
+          "A",
+          "D",
+          "8",
+          "7",
+          "2"
+        ],
+        [
+          "D",
+          "6",
+          "4",
+          "2"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        2,
+        2,
+        5,
+        4
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♦",
+        "2♣",
+        "2♥"
+      ],
+      "reponse": "2♣",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 0,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-001",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-002",
+    "verdict": "VALIDE",
+    "justification": "14 H cinq ♦ et quatre ♣ : 2♣ économique, même décision que V410-001 mais réponse ♠ et force différente. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore",
+    "conceptPropose": "red.bicolore",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "2"
+        ],
+        [
+          "9",
+          "7"
+        ],
+        [
+          "R",
+          "9",
+          "7",
+          "5",
+          "4"
+        ],
+        [
+          "A",
+          "R",
+          "6",
+          "2"
+        ]
+      ],
+      "h": 14,
+      "forme": [
+        2,
+        2,
+        5,
+        4
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "2♣",
+        "2♦",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 0,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-002",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-003",
+    "verdict": "VALIDE",
+    "justification": "13 H six ♣, trois ♥ : 2♣, pas 2♥, cas complémentaire de N133-2 sur réponse ♠. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "8",
+          "5"
+        ],
+        [
+          "A",
+          "D",
+          "V"
+        ],
+        [
+          "9",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "8",
+          "7",
+          "5",
+          "2"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        2,
+        3,
+        2,
+        6
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2♥",
+        "3♣"
+      ],
+      "reponse": "2♣",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-003",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-004",
+    "verdict": "VALIDE",
+    "justification": "13 H six ♦, trois ♥ : 2♦, pas soutien ♥, pas saut. Miroir V410-003. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "7",
+          "4"
+        ],
+        [
+          "9",
+          "4",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "V",
+          "6",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "V"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        2,
+        3,
+        6,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♦",
+        "2♥",
+        "3♦"
+      ],
+      "reponse": "2♦",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 0,
+        "minSession": 4,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-004",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H cinq ♥ quatre ♦ : 2♦ économique après 1SA non forcing, écarter 2♣ avec deux cartes, pas de seconde couleur ♣. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore",
+    "conceptPropose": "red.bicolore",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "D",
+          "7"
+        ],
+        [
+          "A",
+          "V",
+          "10",
+          "9",
+          "6"
+        ],
+        [
+          "D",
+          "9",
+          "7",
+          "3"
+        ],
+        [
+          "A",
+          "V"
+        ]
+      ],
+      "h": 14,
+      "forme": [
+        2,
+        5,
+        4,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "choix": [
+        "3♦",
+        "2♣",
+        "2♦",
+        "2♥"
+      ],
+      "reponse": "2♦",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-005",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "1SA est non forcing dans le SEF enseigné par ce quiz : vous avez le droit de passer. Avec 14 H, cinq Cœurs et quatre Carreaux, préférez néanmoins 2♦, bicolore économique : le partenaire peut revenir à 2♥ sans dépasser le palier de deux. 3♦ serait un saut trop fort."
+      },
+      "apres": {
+        "explain": "Après 1♥–1SA non forcing, Passe est autorisé, mais vos 14 H et la distribution 5♥-4♦ invitent à chercher une meilleure partielle. 2♦ est économique : retour possible à 2♥ sans changer de palier. 2♣ inventerait une couleur, 2♥ suggérerait une sixième et 3♦ serait trop fort."
+      }
+    }
+  },
+  {
+    "id": "SEF-V410-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "17 H cinq ♣ et quatre ♥ : 18 HL, 2♥ cher ; la préférence à 3♣ doit être explicitée. S56 rappel, comparer V410-007.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore_cher",
+    "conceptPropose": "red.bicolore_cher",
+    "seancesInitiales": [
+      56
+    ],
+    "seancesProposees": [
+      56
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 56,
+        "decision": "red.bicolore_cher : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 56,
+        "decision": "red.bicolore_cher : 2♥",
+        "role": "réinvestissement"
+      }
+    ],
+    "pointsControles": {
+      "main": [
+        [
+          "10",
+          "9"
+        ],
+        [
+          "A",
+          "R",
+          "V",
+          "6"
+        ],
+        [
+          "D",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "10",
+          "8",
+          "4"
+        ]
+      ],
+      "h": 17,
+      "forme": [
+        2,
+        4,
+        2,
+        5
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2♥",
+        "3♣"
+      ],
+      "reponse": "2♥",
+      "difficulte": 4,
+      "prerequis": {
+        "concept": "red.bicolore_cher",
+        "stage": 3,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v410-006",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q400-A-070",
+        "SEF-Q685-A-095",
+        "SEF-Q685-A-096",
+        "SEF-Q685-A-097"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "Après 1♣–1♠, cinq Trèfles et quatre Cœurs avec 17 H (18 HL grâce à la longueur) autorisent le bicolore cher à 2♥. L'enchère est forcing et auto-forcing."
+      },
+      "apres": {
+        "explain": "Après 1♣–1♠, cinq Trèfles, quatre Cœurs et 17 H donnent 18 HL. 2♥ est un bicolore cher, forcing et auto-forcing : si le répondant préfère les Trèfles, il doit revenir à 3♣. Cette dépense de palier explique la force nécessaire."
+      }
+    }
+  },
+  {
+    "id": "SEF-V410-007",
+    "verdict": "VALIDE",
+    "justification": "17 H cinq ♦ et quatre ♥ : 18 HL, 2♥ cher, préférence 3♦. S20 objectif adéquat ; contraste avec 2♣ économique.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore_cher",
+    "conceptPropose": "red.bicolore_cher",
+    "seancesInitiales": [
+      20
+    ],
+    "seancesProposees": [
+      20
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 20,
+        "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 20,
+        "decision": "Bicolore cher : force requise, ou répétition si insuffisante",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
+    "pointsControles": {
+      "main": [
+        [
+          "D",
+          "7"
+        ],
+        [
+          "R",
+          "D",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "10",
+          "9",
+          "4"
+        ],
+        [
+          "A",
+          "9"
+        ]
+      ],
+      "h": 17,
+      "forme": [
+        2,
+        4,
+        5,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "2♦",
+        "2♥",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "difficulte": 4,
+      "prerequis": {
+        "concept": "red.bicolore_cher",
+        "stage": 3,
+        "minSession": 13,
+        "requires": [
+          {
+            "concept": "red.bicolore",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v410-007",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q400-A-069",
+        "SEF-Q685-A-086",
+        "SEF-Q685-A-087",
+        "SEF-Q685-A-088",
+        "SEF-Q685-A-089"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-008",
+    "verdict": "VALIDE",
+    "justification": "18 H cinq ♥ 5332 : 2SA à saut, pas de fit ♠ ni six ♥, contrairement aux répétitions à saut. Cas d'ouverture majeure régulière forte. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "10",
+          "6"
+        ],
+        [
+          "A",
+          "V",
+          "10",
+          "5",
+          "3"
+        ],
+        [
+          "A",
+          "D",
+          "7"
+        ],
+        [
+          "A",
+          "R",
+          "9"
+        ]
+      ],
+      "h": 18,
+      "forme": [
+        2,
+        5,
+        3,
+        3
+      ],
+      "sequence": [
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2SA",
+        "3♥"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-008",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "18 H 3334 après 1♣–1♦ : 2SA à saut. L'absence de soutien quatrième ♦ n'est pas le critère essentiel ici ; absence de majeure quatrième et force 18–19 H. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "10",
+          "6"
+        ],
+        [
+          "R",
+          "V",
+          "8"
+        ],
+        [
+          "A",
+          "9",
+          "7"
+        ],
+        [
+          "A",
+          "D",
+          "V",
+          "5"
+        ]
+      ],
+      "h": 18,
+      "forme": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♦"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-009",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "18 H en 3-3-3-4, sans soutien quatrième à Carreau : 2SA à saut décrit la zone 18–19 H régulière. 1SA serait réservé à 12–14 H ; 2♣ ferait croire à une longue et 3SA exagérerait la force."
+      },
+      "apres": {
+        "explain": "18 H en 3-3-3-4, sans majeure quatrième : 2SA à saut décrit précisément la zone 18–19 H régulière. 1SA ne montrerait que 12–14 H ; 2♣ suggérerait une longue non détenue et 3SA exagérerait la force."
+      }
+    }
+  },
+  {
+    "id": "SEF-V410-010",
+    "verdict": "VALIDE",
+    "justification": "7 H six ♥ trois ♠ après 1♣–1♥–1♠ : 2♥ naturel faible, pas fit ♠ prouvé. Contraste avec V410-011 quatre ♠. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "10",
+          "7",
+          "4"
+        ],
+        [
+          "R",
+          "V",
+          "7",
+          "5",
+          "4",
+          "3"
+        ],
+        [
+          "V",
+          "7"
+        ],
+        [
+          "D",
+          "10"
+        ]
+      ],
+      "h": 7,
+      "forme": [
+        3,
+        6,
+        2,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-010",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q26-M6-001",
+        "SEF-Q400-D-001"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-011",
+    "verdict": "VALIDE",
+    "justification": "8 H quatre ♥ quatre ♠ : 2♠ soutien minimum, pas 2♥ à quatre cartes. Contraste avec V410-010. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "V",
+          "9",
+          "7"
+        ],
+        [
+          "D",
+          "10",
+          "7",
+          "3"
+        ],
+        [
+          "10",
+          "6",
+          "2"
+        ],
+        [
+          "V",
+          "3"
+        ]
+      ],
+      "h": 8,
+      "forme": [
+        4,
+        4,
+        3,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2♠",
+        "3♠"
+      ],
+      "reponse": "2♠",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-011",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-012",
+    "verdict": "VALIDE",
+    "justification": "8 H quatre ♥ trois ♠ : 1SA limitée ; triple contraste V410-010/011/012, groupe second.base pertinent mais à repérer. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "D",
+          "4",
+          "3"
+        ],
+        [
+          "R",
+          "10",
+          "7",
+          "6"
+        ],
+        [
+          "8",
+          "7",
+          "5"
+        ],
+        [
+          "R",
+          "5",
+          "4"
+        ]
+      ],
+      "h": 8,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "1SA",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-012",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-013",
+    "verdict": "VALIDE",
+    "justification": "11 H quatre ♥ trois ♠ : 2SA invite après bicolore au palier de un, distinct du contexte où l'ouvreur a déjà limité sa force à 12–14 H. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "5",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "7",
+          "2"
+        ],
+        [
+          "V",
+          "7",
+          "6"
+        ],
+        [
+          "8",
+          "7",
+          "5"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-013",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-014",
+    "verdict": "VALIDE",
+    "justification": "7 H six ♥ trois ♠ après ouverture ♦ : 2♥ non forcing, permutation de V410-010. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "6",
+          "5",
+          "4"
+        ],
+        [
+          "A",
+          "D",
+          "9",
+          "6",
+          "3",
+          "2"
+        ],
+        [
+          "V",
+          "3"
+        ],
+        [
+          "8",
+          "6"
+        ]
+      ],
+      "h": 7,
+      "forme": [
+        3,
+        6,
+        2,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2♠",
+        "3♥"
+      ],
+      "reponse": "2♥",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-014",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-V45-022",
+        "SEF-Q685-D-001"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-015",
+    "verdict": "VALIDE",
+    "justification": "9 H quatre ♥ trois ♠ : 1SA, pas fit ni répétition. Variante de V410-012 sur ouverture ♦. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "6",
+          "4",
+          "3"
+        ],
+        [
+          "A",
+          "8",
+          "7",
+          "4"
+        ],
+        [
+          "R",
+          "V",
+          "3"
+        ],
+        [
+          "V",
+          "9",
+          "6"
+        ]
+      ],
+      "h": 9,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "1SA",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-015",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-016",
+    "verdict": "VALIDE",
+    "justification": "7 H six ♠ après bicolore économique 1♦–1♠–2♣ : 2♠ faible, préférence 2♦ non obligatoire. Intérêt contextuel distinct des redemandes à 1SA. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "D",
+          "V",
+          "9",
+          "8",
+          "6"
+        ],
+        [
+          "9",
+          "7"
+        ],
+        [
+          "V",
+          "5",
+          "2"
+        ],
+        [
+          "5",
+          "3"
+        ]
+      ],
+      "h": 7,
+      "forme": [
+        6,
+        2,
+        3,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "2♦",
+        "2♠",
+        "2SA",
+        "3♠"
+      ],
+      "reponse": "2♠",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-016",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-Q400-D-002",
+        "SEF-Q685-D-141"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-017",
+    "verdict": "VALIDE",
+    "justification": "7 H six ♥ après bicolore économique 1♦–1♥–2♣ : 2♥ non forcing, miroir de V410-016. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "7",
+          "2"
+        ],
+        [
+          "R",
+          "D",
+          "7",
+          "5",
+          "3",
+          "2"
+        ],
+        [
+          "D",
+          "8",
+          "2"
+        ],
+        [
+          "8",
+          "4"
+        ]
+      ],
+      "h": 7,
+      "forme": [
+        2,
+        6,
+        3,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "2♦",
+        "2♥",
+        "2SA",
+        "3♥"
+      ],
+      "reponse": "2♥",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-017",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-018",
+    "verdict": "VALIDE",
+    "justification": "8 H six ♠ sur 1♥–1♠–1SA : 2♠, bonne longue, 10 HL. 2♥ préférence pour cinq cartes du partenaire avec seulement deux atouts est moins attrayante. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "R",
+          "V",
+          "7",
+          "4",
+          "3"
+        ],
+        [
+          "7",
+          "6"
+        ],
+        [
+          "9",
+          "8",
+          "5"
+        ],
+        [
+          "10",
+          "3"
+        ]
+      ],
+      "h": 8,
+      "forme": [
+        6,
+        2,
+        3,
+        2
+      ],
+      "sequence": [
+        "Partenaire : 1♥",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "choix": [
+        "Passe",
+        "2♠",
+        "2SA",
+        "2♥"
+      ],
+      "reponse": "2♠",
+      "difficulte": 2,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-018",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-019",
+    "verdict": "VALIDE",
+    "justification": "11 H quatre ♠ et deux ♥ sur 1♥–1♠–1SA : 2SA naturel invitant, pas répétition à quatre. Contraste avec V410-020. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "7",
+          "6",
+          "4"
+        ],
+        [
+          "10",
+          "5"
+        ],
+        [
+          "8",
+          "7",
+          "3",
+          "2"
+        ],
+        [
+          "A",
+          "D",
+          "V"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        4,
+        2,
+        4,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♥",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "choix": [
+        "Passe",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-019",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-020",
+    "verdict": "VALIDE",
+    "justification": "13 H quatre ♠ et deux ♥ : 3SA, min25 H sans fit démontré ; variante d'ouverture majeure de N146-2. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "D",
+          "9",
+          "5"
+        ],
+        [
+          "9",
+          "6"
+        ],
+        [
+          "D",
+          "10",
+          "2"
+        ],
+        [
+          "A",
+          "V",
+          "7",
+          "4"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        4,
+        2,
+        3,
+        4
+      ],
+      "sequence": [
+        "Partenaire : 1♥",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-020",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-021",
+    "verdict": "VALIDE",
+    "justification": "13 H, quatre ♥, trois ♣ et arrêts ♠ AD2 et ♦ R97 : 3SA naturel après répétition ♣, source de levées possible. Différent de 3SA sur redemande 1SA. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "D",
+          "2"
+        ],
+        [
+          "R",
+          "4",
+          "3",
+          "2"
+        ],
+        [
+          "R",
+          "9",
+          "7"
+        ],
+        [
+          "V",
+          "6",
+          "4"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "2♥",
+        "2SA",
+        "3♣",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-021",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V410-023",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H trois ♥ et doubleton ♠ : 12 HLD, 2SA fitté troisième sans intervention. Le contexte ne dit pas si répondant passé ; préciser non passé pour éviter collision avec Drury. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fit.2sa",
+    "conceptPropose": "fit.2sa",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "8",
+          "2"
+        ],
+        [
+          "R",
+          "D",
+          "5"
+        ],
+        [
+          "D",
+          "10",
+          "8",
+          "6"
+        ],
+        [
+          "A",
+          "6",
+          "5",
+          "3"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "sequence": [
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "2SA",
+        "3♥"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "fit.2sa",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-023",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-N051-2",
+        "V2-M1-040",
+        "SEF-PN26-M1-022",
+        "SEF-PN26-M1-023",
+        "SEF-Q400-A-096",
+        "SEF-Q400-A-097",
+        "SEF-Q685-A-131",
+        "SEF-Q685-A-132",
+        "SEF-Q685-A-133",
+        "SEF-Q685-A-134"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "context": "Votre partenaire ouvre de 1♥ et les adversaires passent. Quelle est votre réponse selon le SEF ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 1♥ en première position, les adversaires passent et vous n'avez pas encore parlé. Quelle est votre réponse selon le SEF ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V410-024",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H trois ♠ et doubleton ♥ : 12 HLD, 2SA fitté. Même ambiguïté positionnelle que V410-023 ; miroir et contraste limite supérieure vs N051-2. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "fit.2sa",
+    "conceptPropose": "fit.2sa",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "D",
+          "6"
+        ],
+        [
+          "8",
+          "6"
+        ],
+        [
+          "A",
+          "V",
+          "8",
+          "5"
+        ],
+        [
+          "10",
+          "8",
+          "7",
+          "5"
+        ]
+      ],
+      "h": 11,
+      "forme": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "sequence": [
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♠",
+        "2SA",
+        "3♠"
+      ],
+      "reponse": "2SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "fit.2sa",
+        "stage": 1,
+        "minSession": 8,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v410-024",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-N056-1",
+        "V2-M1-041",
+        "V2-M1-043",
+        "SEF-Q400-A-098",
+        "SEF-Q685-A-135",
+        "SEF-Q685-A-136",
+        "SEF-Q685-A-137",
+        "SEF-Q685-A-138",
+        "SEF-Q685-A-139"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "context": "Votre partenaire ouvre de 1♠ et les adversaires passent. Quelle est votre réponse selon le SEF ?"
+      },
+      "apres": {
+        "context": "Votre partenaire ouvre de 1♠ en première position, les adversaires passent et vous n'avez pas encore parlé. Quelle est votre réponse selon le SEF ?"
+      }
+    }
+  },
+  {
+    "id": "SEF-V411-001",
+    "verdict": "VALIDE",
+    "justification": "14 H cinq ♥ et quatre ♦ après 2♣ auto-forcing : 2♦ économique, le répondant reparlera. Distinct de V410-005 après 1SA ; prérequis explicite de 2/1 à vérifier. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.bicolore",
+    "conceptPropose": "red.bicolore",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "R",
+          "D"
+        ],
+        [
+          "A",
+          "D",
+          "8",
+          "6",
+          "5"
+        ],
+        [
+          "R",
+          "5",
+          "4",
+          "3"
+        ],
+        [
+          "5",
+          "3"
+        ]
+      ],
+      "h": 14,
+      "forme": [
+        2,
+        5,
+        4,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♥",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "3♦",
+        "2♦",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "2♦",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.bicolore",
+        "stage": 1,
+        "minSession": 6,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.bicolore",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-001",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V411-002",
+    "verdict": "VALIDE",
+    "justification": "13 H six ♠ après 2♣ auto-forcing : 2♠ minimum, pas saut. Contexte rend traitement explicite ; ne pas assimiler cette répétition à une séquence non forcing de réponse au palier de un. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "R",
+          "7",
+          "6",
+          "5",
+          "2"
+        ],
+        [
+          "10",
+          "6"
+        ],
+        [
+          "A",
+          "9"
+        ],
+        [
+          "D",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        6,
+        2,
+        2,
+        3
+      ],
+      "sequence": [
+        "Vous : 1♠",
+        "Partenaire : 2♣"
+      ],
+      "choix": [
+        "3♠",
+        "2♦",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-002",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [
+        "SEF-V425-004"
+      ],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V411-003",
+    "verdict": "VALIDE",
+    "justification": "16 H six ♦ ARDV : 18 HL, 3♦ saut naturel. Miroir V44-019 et V411-004, utile distinction mineure/majeure. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "3"
+        ],
+        [
+          "8",
+          "2"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "V",
+          "10",
+          "7"
+        ],
+        [
+          "D",
+          "3",
+          "2"
+        ]
+      ],
+      "h": 16,
+      "forme": [
+        2,
+        2,
+        6,
+        3
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♦",
+        "2SA",
+        "3♦"
+      ],
+      "reponse": "3♦",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-003",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V411-004",
+    "verdict": "VALIDE",
+    "justification": "16 H six ♣ ARD : 18 HL, 3♣ saut ; avec seulement deux ♥ pas de soutien. Même zone que V411-003. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "8",
+          "5"
+        ],
+        [
+          "D",
+          "V"
+        ],
+        [
+          "A",
+          "5",
+          "4"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "8",
+          "5",
+          "2"
+        ]
+      ],
+      "h": 16,
+      "forme": [
+        2,
+        2,
+        3,
+        6
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2♥",
+        "3♣"
+      ],
+      "reponse": "3♣",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-004",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V411-005",
+    "verdict": "VALIDE",
+    "justification": "17 H six ♣ ARD10 : 19 HL, 3♣ saut, contraste seuil haut de la zone avec V411-004. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "D",
+          "5"
+        ],
+        [
+          "A",
+          "7"
+        ],
+        [
+          "D",
+          "10",
+          "3"
+        ],
+        [
+          "A",
+          "R",
+          "D",
+          "10",
+          "8",
+          "5"
+        ]
+      ],
+      "h": 17,
+      "forme": [
+        2,
+        2,
+        3,
+        6
+      ],
+      "sequence": [
+        "Vous : 1♣",
+        "Partenaire : 1♠"
+      ],
+      "choix": [
+        "1SA",
+        "2♣",
+        "2♠",
+        "3♣"
+      ],
+      "reponse": "3♣",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-005",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "conserver_provisoirement"
+    }
+  },
+  {
+    "id": "SEF-V411-006",
+    "verdict": "ARBITRAGE",
+    "justification": "17 H cinq ♦ quatre ♥ et deux doubletons honorés : 20 HLD bruts (17+1+2) ; 4♥ absent des choix. La valeur de ♠V9 et ♣AV justifie une appréciation prudente. Arbitrage sur décote et seuil de soutien à 4♥, plutôt que valider sans réserve 3♥. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "https://www.bridgeclubduclair.fr/25-comment-repondre-a-une-ouverture-mineure-un-trefle-ou-un-carreau/"
+    ],
+    "conceptInitial": "red.base",
+    "conceptPropose": "red.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "V",
+          "9"
+        ],
+        [
+          "A",
+          "V",
+          "10",
+          "6"
+        ],
+        [
+          "R",
+          "D",
+          "V",
+          "10",
+          "6"
+        ],
+        [
+          "A",
+          "V"
+        ]
+      ],
+      "h": 17,
+      "forme": [
+        2,
+        4,
+        5,
+        2
+      ],
+      "sequence": [
+        "Vous : 1♦",
+        "Partenaire : 1♥"
+      ],
+      "choix": [
+        "1SA",
+        "2♥",
+        "3♦",
+        "3♥"
+      ],
+      "reponse": "3♥",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "red.base",
+        "stage": 1,
+        "minSession": 5,
+        "requires": [
+          {
+            "concept": "majeur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "mineur.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-006",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "arbitrage",
+      "proposition": "Réévaluer les deux doubletons honorés selon le traitement HLD exact du catalogue. 20 HLD bruts appellent 4♥, absent des choix ; si décote à 19 HLD, 3♥ reste défendable. Proposition concrète de remplacement sans ambiguïté : remplacer ♠V9 par ♠98 et ♣AV par ♣A7, puis ♦RDV106 par ♦ARD106 (gain net 1 H), et modifier les choix/corrigé après recalcul. Alternative : garder la main, expliciter l'évaluation retenue et ajouter 4♥."
+    }
+  },
+  {
+    "id": "SEF-V411-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H quatre ♠, trois ♦ et arrêts ♥ R96 / ♣ D95 : 3SA naturel après répétition ♦. La Dame troisième est arrêt positionnel, ne pas qualifier d'arrêt certain contre toutes répartitions. Aucun groupe explicite : réserve potentielle à confirmer.",
+    "references": [
+      "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+      "audits/programme-65-20261127/programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+    ],
+    "conceptInitial": "second.base",
+    "conceptPropose": "second.base",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main": [
+        [
+          "A",
+          "V",
+          "10",
+          "2"
+        ],
+        [
+          "R",
+          "9",
+          "6"
+        ],
+        [
+          "R",
+          "5",
+          "2"
+        ],
+        [
+          "D",
+          "9",
+          "5"
+        ]
+      ],
+      "h": 13,
+      "forme": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 2♦"
+      ],
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♦",
+        "3SA"
+      ],
+      "reponse": "3SA",
+      "difficulte": 3,
+      "prerequis": {
+        "concept": "second.base",
+        "stage": 1,
+        "minSession": 7,
+        "requires": [
+          {
+            "concept": "red.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v411-008",
+      "analoguesFamille": [],
+      "analoguesSequenceReponse": [],
+      "limite": "Indexation globale famille/séquence, comparaison sémantique complète encore à faire."
+    },
+    "action": {
+      "type": "corriger_qcm",
+      "avant": {
+        "explain": "Après 1♦–1♠–2♦, vos 13 H réguliers et les tenues Cœur (R96) et Trèfle (D95) permettent de choisir 3SA parmi les enchères proposées. Quatre Piques ne justifient pas de répétition à 2♠ et 2SA serait seulement propositionnel."
+      },
+      "apres": {
+        "explain": "Vos 13 H, quatre Piques, trois Carreaux et des tenues dans les couleurs non annoncées (♥R96 et ♣D95) orientent vers 3SA après la répétition à 2♦. 2SA ne serait qu'une invitation, 2♠ annoncerait une longueur supplémentaire et 3♦ ne rechercherait pas la manche la plus probable. Une Dame troisième est une tenue usuelle mais pas une garantie absolue de levée."
+      }
+    }
   }
 ]
