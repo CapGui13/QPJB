@@ -1,0 +1,30 @@
+name: Reprise 6 A - lookahead
+on:
+  push:
+    branches: [coherence-concrete/reprise6-a-lookahead-ci]
+permissions:
+  contents: read
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-reprise6-a-campaign.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" 180 "reprise6-a-output" lookahead
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reprise6-a-lookahead-${{ matrix.profile }}-${{ matrix.seed }}
+          path: reprise6-a-output/
