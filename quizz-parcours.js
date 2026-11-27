@@ -1220,7 +1220,11 @@ return Object.freeze({schema,mode:'T',choose});
       }
     }
     if(s===1&&limit>=10){
-      opening('1♣');opening('1♦');
+      if(pilot){
+        for(const [answer,n] of [['1♣',3],['1♦',4]])
+          if(!choose(pool.filter(q=>q.theme==='ouv'&&bid(q)===answer&&q.shape[2]===n&&q.shape[3]===n),'discovery','equilibre_ouvertures',true))
+            opening(answer);
+      }else{opening('1♣');opening('1♦');}
       const passes=pool.filter(openingPass);
       if(!choose(passes.filter(q=>bad(q)&&due(q)),'weakness','rappel_erreur_aide'))
         choose(passes,'maintenance','equilibre_ouvertures',true);
