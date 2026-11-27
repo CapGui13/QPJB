@@ -31,6 +31,18 @@ function units(exercises,meta,source){
  for(const id of [...P.TEXAS,...P.TEXAS_ELEMENTARY]){
   check(B.assess(by.get(id),{state:{completed:4},mode:'SX'}).allow,'first transfer must remain accessible');n++;
  }
+ for(const [id,spec] of Object.entries(B.specs)){
+  const q=by.get(id),state={completed:10,active:null,entries:{}},e={seen:new Map(),weakConcept:{}};
+  const ctx={state,e,metadataById:meta,mode:'E',limit:1};
+  for(const sid of B.explicitContrast[spec.need]){
+   const x=by.get(sid);check(x&&x.explain,'explicit contrast '+sid);
+   const phrase=spec.need==='stayman-2SA'?/2SA.*(deux majeures quatrièmes|4–4 majeur|quatre Cœurs)/:spec.need==='texas-coeur'?/2♦.*Texas Cœur/:/2♥.*Texas Pique/;
+   check(phrase.test(x.explain),'explicit semantic source drift '+sid);
+   e.seen.set(meta[sid].concept,new Set([sid]));
+   check(B.assess(q,ctx).allow,'explicit exposure '+sid);n+=2;e.seen.clear();
+  }
+  check(!B.assess(q,ctx).allow&&B.filter([q],ctx)[0]===q,'no decoded alternative');n+=2;
+ }
  check(B.instrument(source)!==source,'anchor');n++;
  return n;
 }
@@ -83,11 +95,11 @@ function runD({source,requireBase,requireTest,originalCampaign,exercises,meta,pr
  D.analyze(t,{catalogue:exercises,metadata:meta,features:F.features,verifyResponse:true});
  return t;
 }
-function transition(t){
+function transition(t,mode='SX'){
  const seen=new Set(),violations=[],first=[];
  for(const s of t.sessions){
   for(const r of s.rows){const spec=B.specs[r.id];if(spec&&!seen.has(r.id)){
-   const ok=B.sources[spec.need].some(x=>seen.has(x));
+   const ok=B.sourceIds(spec.need,mode).some(x=>seen.has(x));
    first.push({s:s.session,id:r.id,need:spec.need,prior:ok});
    if(!ok)violations.push({s:s.session,id:r.id,need:spec.need});
   }}
@@ -95,14 +107,34 @@ function transition(t){
  }
  return {first,violations};
 }
-function compareD(before,after,exercises,meta){
+function compareD(before,after,exercises,meta,mode='SX'){
  const changed=after.sessions.flatMap((s,i)=>{const a=before.sessions[i].rows.map(r=>r.id),b=s.rows.map(r=>r.id);return same(a.slice().sort(),b.slice().sort())?[]:[{session:s.session,removed:a.filter(x=>!b.includes(x)),added:b.filter(x=>!a.includes(x))}];});
  const p=D.comparePair({profile:before.profile,seed:before.seed,horizon:before.horizon,before,after:{...after,changes:changed}},{catalogue:exercises,metadata:meta,features:F.features,verifyResponse:true,legacy:true});
- return {...p,changed,transitionBefore:transition(before),transitionAfter:transition(after),events:after.changes};
+ return {...p,changed,transitionBefore:transition(before,mode),transitionAfter:transition(after,mode),events:after.changes};
 }
-function compareM6(before,after){
+function m6Core(t){
+ const last=new Map(),debt={},proof=new Map(),out=[];
+ for(const s of t.sessions){
+  for(const r of s.rows){last.set(r.concept,s.session);if(r.result==='correct'&&!r.assisted&&!r.hadFreeError){const v=proof.get(r.concept)||{f:new Set(),s:new Set()};v.f.add(r.family);v.s.add(s.session);proof.set(r.concept,v)}}
+  for(const c of D.CORE)if(last.has(c))debt[c]=(debt[c]||0)+Math.max(0,s.session-last.get(c)-6);
+  if(T.HORIZONS.includes(s.session))out.push({session:s.session,debt:{...debt},terminal:Object.fromEntries(D.CORE.map(c=>[c,last.has(c)?s.session-last.get(c):null])),proof:[...proof].filter(([,v])=>v.f.size>=2&&v.s.size>=2).map(([c])=>c).sort()});
+ }
+ return out;
+}
+function compareM6(before,after,mode='SX'){
  const result=T.compare(before,after);
- return {changes:result.changes.filter(x=>!x.sameSet),review:result.checkpoints.flatMap(x=>x.review.map(y=>({s:x.session,metric:y}))),transitionBefore:transition(before),transitionAfter:transition(after),events:after.events,checkpoints:result.checkpoints};
+ const a=m6Core(before),b=m6Core(after),strict=[];
+ for(const [i,x] of a.entries()){const y=b[i],h=x.session;
+  for(const c of D.CORE){
+   if((y.debt[c]||0)>(x.debt[c]||0))strict.push({h,metric:'conceptDebt',concept:c,before:x.debt[c]||0,after:y.debt[c]||0});
+   if(x.terminal[c]!==null&&(y.terminal[c]===null||y.terminal[c]>x.terminal[c]))strict.push({h,metric:'terminalGap',concept:c,before:x.terminal[c],after:y.terminal[c]});
+  }
+  for(const c of x.proof)if(!y.proof.includes(c))strict.push({h,metric:'proofConceptLost',concept:c});
+  const p=result.checkpoints[i].before,q=result.checkpoints[i].after;
+  for(const k of ['hard','nearFamily','nearId'])if(q[k]>p[k])strict.push({h,metric:k,before:p[k],after:q[k]});
+  for(const k of ['families','autonomous'])if(q[k]<p[k])strict.push({h,metric:k,before:p[k],after:q[k]});
+ }
+ return {changes:result.changes.filter(x=>!x.sameSet),review:result.checkpoints.flatMap(x=>x.review.map(y=>({s:x.session,metric:y}))),strict,transitionBefore:transition(before,mode),transitionAfter:transition(after,mode),events:after.events,checkpoints:result.checkpoints};
 }
 module.exports={BASE,units,runM6,runD,compareM6,compareD,transition};
 if(require.main===module){
@@ -121,7 +153,7 @@ if(require.main===module){
  for(const profile of T.PROFILES.filter(p=>!process.env.PROFILE||p===process.env.PROFILE))for(const seed of T.SEEDS.filter(s=>!process.env.SEED||s===Number(process.env.SEED))){
   const ctx={source,requireBase,requireTest,originalCampaign,exercises,meta,profile,seed,horizon,measure:()=>performance.now()};
   const m=runM6(ctx),m1=runM6({...ctx,mode}),d=runD(ctx),d1=runD({...ctx,mode});
-  const summary={profile,seed,horizon,mode,M6:compareM6(m,m1),D:compareD(d,d1,exercises,meta)};
+  const summary={profile,seed,horizon,mode,M6:compareM6(m,m1,mode),D:compareD(d,d1,exercises,meta,mode)};
   rows.push(summary.D);fs.writeFileSync(path.join(out,profile+'-'+seed+'.json'),JSON.stringify({summary,traces:{m,m1,d,d1}}));
   console.log(JSON.stringify({profile,seed,horizon,mode,changes:summary.D.changed.length,regressions:summary.D.regressions.filter(r=>r.metric!=='latency-observation').length,M6:summary.M6.changes.length}));
  }
