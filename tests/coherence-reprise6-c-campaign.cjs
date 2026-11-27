@@ -55,7 +55,7 @@ function runPair(sources,profile,seed,horizon=180,model='both',clock=()=>Date.no
   patch('verify=true,measure=()=>0})','verify=true,measure=()=>0,options={}})');
   patch('const api=mod.exports,state=api.empty(),sessions=[]','const settings={...options,observe:r=>changes.push(r)};\n  const api=mod.exports,state=api.empty(),sessions=[]');
   patch('api.start(state,exercises)','api.start(state,exercises,settings)',2);
-  const campaign=compile(path,harness),html=sources['quizz.html'],exercises=JSON.parse(html.match(/<script id="training-data" type="application\\/json">([\\s\\S]*?)<\\/script>/)[1]).exercises;
+  const campaign=compile(path,harness),html=sources['quizz.html'],exercises=JSON.parse(html.split('<script id="training-data" type="application/json">')[1].split('</script>')[0]).exercises;
   const meta=load('quizz-prerequis.js').byId,features=load('quizz-coherence-m4-diversite.js').features;
   check(exercises.length===1915&&new Set(Object.values(meta).map(m=>m.concept)).size===99,'D catalogue');
   const common={requireBase:p=>req('quizz-parcours.js',p),exercises,meta,profile,seed,horizon,verify:true,measure:clock};
