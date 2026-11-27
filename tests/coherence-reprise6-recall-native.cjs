@@ -43,7 +43,7 @@ function early(deck,s){
   return failures;
 }
 
-function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D',horizon=180,consolidate=true,clock=()=>{},capture=false,foundationRecall=false}){
+function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D',horizon=180,consolidate=true,clock=()=>{},capture=false,foundationRecall=false,digest=x=>String(hash(x))}){
  check(PROFILES.includes(profile)&&SEEDS.includes(seed)&&['D','M6'].includes(model),'matrix');
  check(exercises.length===1915&&new Set(Object.values(meta).map(m=>m.concept)).size===99,'catalogue');
  const opts={coherenceM2:m2,coherenceFullOrder:true,transitionGroups:[{simple:m3.TEXAS_ELEMENTARY,complex:m3.TEXAS},{simple:m3.STAYMAN_SIMPLE,complex:m3.STAYMAN_FOURTH}]};
@@ -52,10 +52,12 @@ function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D'
  const stateBefore=JSON.stringify(exercises),metaBefore=JSON.stringify(meta);
  const core=['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base'];
  const byId=new Map(exercises.map(q=>[q.id,q]));let state=api.empty(),consolidations=0,resumes=0,near=0,nearRecent=0,hard=0,autonomous=0,wrong=0;
- const lastAnswered=new Map(),actualDebt={},recalls=[];let extraAnswered=0;
+ const lastAnswered=new Map(),actualDebt={},recalls=[],guidedDigests=[];let extraAnswered=0;
+ function guided(s){const o=copy(s);delete o.foundationRecalls;return o;}
+ function snapshot(s){return JSON.stringify(canonical(guided(s)));}
  function actual(rows,s){for(const r of rows)if(['correct','wrong'].includes(r.result)&&core.includes(r.concept))lastAnswered.set(r.concept,s);}
  function answer(q,s){const a=model==='D'?response(profile,seed,s,q,meta[q.id]):m6.outcome(profile,seed,q,s);return {...a,choice:a.result==='correct'?q.answer:q.choices.find(c=>c!==q.answer)}}
- function play(deck,s,consolidation=false){
+ function play(deck,s,consolidation=false,isRecall=false){
   check(deck.length>=4&&deck.length<=10&&new Set(deck.map(q=>q.id)).size===deck.length&&new Set(deck.map(family)).size===deck.length,'deck structure');
   if(!consolidation){check(deck.length===10,'guided length');check(!early(deck,s).length,'early guards '+early(deck,s).join(';'));for(const q of deck)check(api.eligibility(q,state,exercises).eligible,'ineligible '+q.id);}
   else check(!state.active.orderReferenceIds&&!state.active.orderSkillBase,'consolidation order metadata');
@@ -72,7 +74,8 @@ function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D'
    }
   }
   check(api.finish(state,exercises),'finish');
-  const event=state.journal.at(-1);check(same(event.answers.map(a=>a.id),deck.map(q=>q.id)),'journal actual deck');
+  const event=isRecall?state.foundationRecalls.at(-1):state.journal.at(-1);check(same(event.answers.map(a=>a.id),deck.map(q=>q.id)),'journal actual deck');
+  if(isRecall)check(same(event.answers.map(a=>[a.result,a.choice,a.assisted,a.hadFreeError]),rows.map(a=>[a.result,a.choice,a.assisted,a.hadFreeError])),'separate journal responses');
   if(consolidation)check(same(proof(state),before),'consolidation invented mastery');
   return rows;
  }
@@ -107,16 +110,24 @@ function run({api,exercises,meta,features,m6,policy,m2,m3,profile,seed,model='D'
     const assessmentBefore=Object.fromEntries(Object.entries(state.entries).map(([id,r])=>[id,r.assessment]));
     const deck=api.startConsolidation(state,exercises,{foundationRecall});check(same(deck.map(q=>q.id),plan.items.map(x=>x.id)),'consolidation plan divergence');
     if(isRecall){check(foundationRecall&&s>=65&&!normal.available&&normal.reason==='no-evidenced-weakness','recall must be supplementary');check(deck.length>=4&&deck.length<=6&&new Set(deck.map(q=>meta[q.id].concept)).size===deck.length,'recall scope');for(const q of deck){check(core.includes(meta[q.id].concept)&&s-lastAnswered.get(meta[q.id].concept)>=10,'recall not due');check(api.eligibility(q,state,exercises).eligible,'recall eligibility');check(assessmentBefore[q.id]?.result==='correct'&&!assessmentBefore[q.id].assisted,'recall no prior assessment');}check(state.active.targets.every(x=>x==='foundation:recall'),'recall labels');}
-    const before=events.length,rows=play(deck,s,true);check(events.length===before,'T invoked during consolidation');
-    check(state.completed===s,'consolidation advanced parcours');consolidations++;actual(rows,s);
-    if(isRecall){check(state.lastConsolidation.parts.length===1&&state.lastConsolidation.parts[0].target==='foundation:recall','recall report');for(const q of deck)check(same(state.entries[q.id].assessment,assessmentBefore[q.id]),'recall changed assessment');extraAnswered+=rows.filter(r=>r.result!=='skipped').length;recalls.push({session:s,rows});}
-    if(capture)sessions.at(-1).consolidation=rows;
+    const before=events.length,rows=play(deck,s,true,isRecall);check(events.length===before,'T invoked during consolidation');
+    check(state.completed===s,'consolidation advanced parcours');actual(rows,s);
+    if(isRecall){
+     check(same(guided(state),guided(beforePlan)),'isolated recall changed guided state');
+     const saved=api.importProgress(api.exportProgress(state,exercises,{}));
+     check(same(saved,state),'complete supplemental backup roundtrip');
+     check(!api.consolidationPlan(saved,exercises,10,{foundationRecall:true}).available,'same-session recall repeated');
+     extraAnswered+=rows.filter(r=>r.result!=='skipped').length;recalls.push({session:s,rows});
+    }else{
+     consolidations++;if(capture)sessions.at(-1).consolidation=rows;
+    }
    }
   }
+  guidedDigests.push(digest(snapshot(state)));
   for(const c of core)if(lastAnswered.has(c))actualDebt[c]=(actualDebt[c]||0)+Math.max(0,s-lastAnswered.get(c)-6);
   if(HORIZONS.includes(s)||s===horizon)checkpoints.push({session:s,near,nearRecent,hard,autonomous,wrong,families:seen.size,debt:{...debt},debtTotal:Object.values(debt).reduce((a,b)=>a+b,0),actualDebt:{...actualDebt},actualDebtTotal:Object.values(actualDebt).reduce((a,b)=>a+b,0),extraAnswered,proof:[...proofMap].filter(([,v])=>v.f.size>=2&&v.s.size>=2).map(([c])=>c).sort(),first:{...first},consolidations,resumes});
  }
  check(JSON.stringify(exercises)===stateBefore&&JSON.stringify(meta)===metaBefore,'catalogue or metadata mutation');
- return {model,profile,seed,horizon,consolidate,checkpoints,direct,consolidations,resumes,sessions,recalls,extraAnswered};
+ return {model,profile,seed,horizon,consolidate,checkpoints,direct,consolidations,resumes,sessions,recalls,extraAnswered,guidedDigests};
 }
 module.exports={run,PROFILES,SEEDS,HORIZONS};
