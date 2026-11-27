@@ -1,52 +1,12 @@
-# Reprise B — passe 3 partielle
+# Reprise B — passe 4 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-120/454 entrées provisoires ; 334 restent. Dernier ID : SEF-V49-024. Prochain : SEF-V49-025.
+160/454 entrées provisoires ; 294 restent. Dernier ID : SEF-V411-008. Prochain : SEF-V411-009.
 
-Contrôles mécaniques 454/454. Corrections : 26. Propositions de réservoir : 4. Arbitrages : 4. Contrôles ensemble exact 120 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454. Corrections : 35. Propositions de réservoir : 6. Arbitrages : 5. Contrôles ensemble exact 160 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- SEF-V49-025
-- SEF-V49-026
-- SEF-V49-028
-- SEF-V49-036
-- SEF-V49-037
-- SEF-V49-038
-- SEF-V49-039
-- SEF-V49-040
-- SEF-V49-041
-- SEF-V49-042
-- SEF-V410-001
-- SEF-V410-002
-- SEF-V410-003
-- SEF-V410-004
-- SEF-V410-005
-- SEF-V410-006
-- SEF-V410-007
-- SEF-V410-008
-- SEF-V410-009
-- SEF-V410-010
-- SEF-V410-011
-- SEF-V410-012
-- SEF-V410-013
-- SEF-V410-014
-- SEF-V410-015
-- SEF-V410-016
-- SEF-V410-017
-- SEF-V410-018
-- SEF-V410-019
-- SEF-V410-020
-- SEF-V410-021
-- SEF-V410-023
-- SEF-V410-024
-- SEF-V411-001
-- SEF-V411-002
-- SEF-V411-003
-- SEF-V411-004
-- SEF-V411-005
-- SEF-V411-006
-- SEF-V411-008
 - SEF-V411-009
 - SEF-V411-010
 - SEF-V411-011
