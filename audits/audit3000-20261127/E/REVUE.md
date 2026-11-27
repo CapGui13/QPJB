@@ -294,3 +294,121 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Clôture de livraison — bilan final remplaçant les bilans intermédiaires
+
+Couverture 540/540, tous IDs d'origine, 13 passes et recette cumulative. {"VALIDE":140,"RECLASSER_REFORMULER":372,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":28}. 361 corrections QCM complètes dont 20 conditionnelles à ne pas intégrer automatiquement ; 46 prérequis, 101 entrées réservoir. Deux arbitrages de passe 8/9 levés par lecture explicite de la source Sarzeau 21/12/2025 (https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523) : L39-005 et V2-M5-037. Historique de la décision conservé dans les rapports de passe ; les verdicts finaux font foi.
+
+### Bilan par concept initial
+
+| Concept | Total | VALIDE | RECLASSER_REFORMULER | ARBITRAGE | ERREUR_PEDAGOGIQUE |
+|---|---:|---:|---:|---:|---:|
+| apres_inter.base | 113 | 37 | 72 | 4 | 0 |
+| competitif.2sa_fitte | 26 | 7 | 18 | 1 | 0 |
+| competitif.sa_adverse | 18 | 3 | 15 | 0 | 0 |
+| competitif.spoutnik | 25 | 6 | 18 | 1 | 0 |
+| competitif.truscott | 41 | 6 | 33 | 2 | 0 |
+| michaels.choix | 9 | 4 | 4 | 1 | 0 |
+| michaels.defense | 28 | 0 | 27 | 1 | 0 |
+| michaels.intervention | 24 | 12 | 12 | 0 | 0 |
+| michaels.reponse | 39 | 19 | 16 | 4 | 0 |
+| michaels.reveil | 17 | 1 | 12 | 4 | 0 |
+| multilandy.choix | 11 | 6 | 5 | 0 | 0 |
+| multilandy.intervention | 25 | 7 | 17 | 1 | 0 |
+| multilandy.reponse | 19 | 1 | 16 | 2 | 0 |
+| multilandy.suite | 15 | 3 | 11 | 1 | 0 |
+| red.competitif | 38 | 11 | 22 | 5 | 0 |
+| rubensohl.init | 31 | 2 | 29 | 0 | 0 |
+| rubensohl.naturel | 23 | 9 | 14 | 0 | 0 |
+| rubensohl.reponse | 23 | 4 | 19 | 0 | 0 |
+| rubensohl.suite | 15 | 2 | 12 | 1 | 0 |
+
+### Arbitrages à transmettre au coordinateur (28)
+
+- SEF-V3-086-2 — 3 H, deux Cœurs, quatre ♦; Passe correct mais répète 086-1 presque à l'identique. Proposition au coordinateur: remplacer par un contraste constructif après 1♥–(2♣), 4♠ et environ 10 H sans fit, X; garder ID, nouvelle famille et métadonnées spoutnik si accepté. Pas de mutation de main sans arbitrage.
+- SEF-V44-060 — 11 H, six ♦ RDV982, deux ♠ et trois ♥. 1♦ naturel de réveil; 2♦ majeur 5–5 confirmé SEF 2024. Concept michaels.reveil pertinent comme discrimination, mais aucun groupe explicite de réveil bicolore adéquat trouvé; coordinateur doit décider de l'affectation (ne pas détourner le groupe de réveil à 2SA sur deux faible).
+- SEF-V420-009 — 8 H, deux majeures quatrièmes après 1♣–(1♦). Le catalogue retient 1♥ naturel et X déniant majeure; une source de pratique Spoutnik non collante décrit X comme bicolore majeur 4-4. La référence SEF 2024 consultée établit X déniant 4♠ seulement sur 1♥ adverse; n'extrapoler ni règle ni correction sans arbitre. Proposer de préciser explicitement le traitement QPJB de 1♦ adverse et de vérifier page SEF correspondante.
+- SEF-V478-006 — 7 H, cinq ♣, D♠ en face d'une ouverture adverse, A♦ utile mais pas de courte ; rouge contre vert, 4♣ contré chutant de deux coûterait 500 contre une partielle adverse. 4♣ n'est pas indiscutablement meilleur que Passe. Arbitrer avec le cours QPJB ; pas de remplacement de réponse sans validation.
+- SEF-V478-008 — 3 H, quatre ♥ donc neuf atouts au moins, sans courte : 4♥ au-dessus de 3♠ vert contre rouge parfois défendable selon distribution/levées adverses. Le corrigé affirme Passe à toute vulnérabilité. Conserver réponse prudente provisoirement, nuancer et faire arbitrer la doctrine QPJB.
+- SEF-V479-004 — 10 H et quatre cartes dans chaque majeure, 2SA relais constructif non universel. Le contexte mentionne un accord sans définir précisément 2SA, et aucun groupe explicite. Exiger validation de ce développement par coordinateur ; ne pas présenter comme SEF.
+- SEF-V479-008 — 6 H, trois ♥ et deux ♠ : 2♠ passe-ou-corrige au palier supérieur selon accord spécifique. 2♥ demeure possible et plus économique. Accord de 2♠ à 6 H explicitement atypique ; confirmation du traitement QPJB nécessaire, pas certification SEF. Sans groupe explicite, ne pas l'ajouter comme objectif standard.
+- SEF-L10-021 — 13 H, six ♠ ARDV108 après soutien adverse à 2♥. 3♠ naturel plausible parmi choix, mais 2♠ légal et absent ; évaluation du saut non tranchée. Revoir distracteurs et nature/force du saut avant intégration.
+- SEF-L14-002 — 17 H, cinq ♥ quatre ♣ : 3♥ maximum ♣ dans grille mini/maxi donnée. Seuils non chiffrés et accord non universel. Confirmer grille et zone d'intervention avec coordinateur ; groupe non identifié.
+- SEF-L29-002 — 19 H, 5♣4♥, singleton R♠, 3SA naturel mais 2♥ bicolore cher légal et absent des choix ; absence de fit ne prouve pas que 3SA soit préférable. Confirmer doctrine/alternatives, conserver provisoirement réponse comme test de signification, non meilleur contrat.
+- SEF-L29-003 — 19 H, singleton ♥, quatre ♠, cinq ♦ : X d'appel plausible, 2♠ naturel aussi à examiner ; question dit deuxième zone alors que 19 H est une main forte. Corriger dénomination et demander arbitrage de X vs 2♠.
+- SEF-Q26-M2-002 — 10 H, six ♥ ARD1096, deux ♥ annoncés chez l'ouvreur et absence d'arrêt ♠ dans les deux mains : 4♥ cohérent dans la suite donnée. Confirmer que 3♠ après Texas ♥ signifie précisément absence de fit ET d'arrêt dans la variante QPJB ; pas de groupe S45 4♥.
+- V1-M4-005 — 11 H, quatre ♥ et deux ♠ ; Contre d'appel dans l'accord du catalogue. La défense contre 2SA bicolore peut employer Contre punitif ou Spoutnik ; confirmer traitement spécifique. Ne pas généraliser à toutes les défenses Michaël.
+- V1-M4-006 — 12 H, 5♠5♥, singleton ♦ derrière soutien 2♦. Ce n'est pas un réveil ; 3♦ bicolore majeur selon accord annoncé. Confirmer traitement après soutien mineur, distinct du réveil SEF après deux passes.
+- V1-M4-007 — 12 H, 5♥5♣, singleton ♦ ; 2SA des deux couleurs libres les moins chères derrière soutien mineur dans accord annoncé. Pas réveil, reclasser, confirmer accord ; contraste avec M4-006.
+- V2-M5-006 — 11 H et 4-4 mineures, AD8 ♠. Contre généralisé plausible, mais la réponse naturelle 1SA est légale et absente des choix ; préciser sa zone dans le traitement SEF. Contraste utile avec 005, ne pas prétendre que le Contre est toujours obligatoire.
+- V2-M5-009 — 11 H + cinquième ♦ = 12 HL, fit ♠ huitième, DV♣ adverse peu productifs. Passe possible mais 3♠ proposition de manche peut être défendable selon minimum exact et qualité des honneurs. L'énoncé prescrit déjà absence d'ambition de manche. Contraste 010 à préserver, préciser zone minimale et évaluation.
+- V2-M5-039 — 4 H, neuf atouts ♥ garantis, favorable. Passe prudent mais 4♥ peut être défendable selon distribution et minimum du partenaire, surtout TPP. La loi des atouts est un repère non une règle de décision unique. Reformuler en comparaison explicite avec 040.
+- V2-M5-040 — 4 H et dix atouts ♥ garantis, favorable, 4♥ défendable. Ne pas traiter la surenchère comme certaine : Passe peut se défendre selon la qualité du bicolore et les levées défensives. Contraste 039 neuf atouts, explicitement repère de loi.
+- SEF-Q400-C-063 — 12 H + singleton ♠ = 14 HLD, quatre ♥. 2♥ soutien économique sur intervention du quatrième, mais 14 HLD est la limite supérieure : 3♥ peut être examiné selon les zones de soutien libre. 3♥ absent des choix ; ne pas assimiler mécaniquement première zone H et soutien HLD. L'ouverture de 1♦ avec 4-4 mineures est cohérente.
+- SEF-Q400-C-089 — 10 H + doubleton ♣ = 11 HLD, trois ♠. Le seuil 11 HLD est documenté par Sarzeau et Saint-Cloud, mais le support de présentation SEF 2024 de Saint-Jean-de-Luz indique 12–15 HLD. De plus AV94 dans la couleur d'intervention mérite réévaluation. Conserver réponse du catalogue sous réserve de confirmer le seuil de référence.
+- SEF-Q400-C-096 — 3 H, six ♦, favorable, 3♦ barrage défendable mais 4♦ peut être envisageable en fonction du nombre d'atouts, de la vulnérabilité et de la distribution. Ne pas imposer une surenchère unique sans règle de palier. Corriger le prérequis mineur.
+- SEF-Q685-C-059 — 10 H, AR94 ♥ et trois ♠, 1SA naturel plausible dans zone 8–10 H du catalogue. 2SA naturel peut être invitation selon autre zone ; confirmer limite haute exacte de 1SA après intervention. 1♠ inventerait la quatrième. Retirer rappel hors sujet et corriger prérequis.
+- SEF-Q685-C-069 — 14 H + deux points de longueur ♦ = 16 HL, six ♦ ARDV94, sans tenue ♠ et trois ♥. 2♦ naturel plausible, mais 3♦ saut fort est un choix proposé ; seuil de redemande libre à saut doit être précisé (valeur de longue très forte). Ne pas valider automatiquement 2♦. Retirer règle donnée dans énoncé.
+- SEF-Q685-C-071 — 14 H, six ♣ ARDV84, 16 HL, 2♣ libre dans catalogue, 3♣ saut peut se défendre selon zone. Même problème que C069, mineure différente. Retirer indication de liberté, expliciter limite.
+- SEF-Q685-C-144 — 11 H, trois ♠, quatre ♥, Surcontre positif proposé. La réponse naturelle 2♥ après X n'est pas forcing et demande en principe cinq cartes : pas adaptée, mais 1SA sous-évalue. L'accord général qui dit Surcontre sans quatre atouts doit être précisé pour ne pas exclure autres réponses constructives dans d'autres formes. Cas néanmoins cohérent dans les choix; arbitrage limité à formulation du cours.
+- SEF-Q685-D-043 — 10 H, sept ♠ ARV9863, favorable ; 2♦ montre au moins six cartes dans le traitement QPJB. 3♠ barrage légal et défendable selon accord et vulnérabilité ; limiter la question au code descriptif.
+- SEF-Q685-D-085 — 10 H, six ♠ et quatre ♦, favorable : 1♠ naturel proposé, Michaël exige deux longueurs cinquièmes. 2♠ faible à saut non proposé et peut être une alternative tactique ; préciser comparaison.
+
+### Revue finale des ressemblances sur les 3000 QCM
+
+Comparaison structurelle sur l'intégralité du catalogue corrigé pour E (même séquence normalisée par camp, même forme, H et réponse) : 16 groupes impliquant 30 IDs E et deux groupes interlots. Lecture des mains, séquences, choix et corrigés des 16 groupes ; recommandations ci-dessous et dans les verdicts concernés. Pas de suppression d'ID ni de nouveau changement de groupe automatique : préserver les contrastes obligatoires, éviter d'enlever une référence requise par le programme, laisser au coordinateur la consolidation des familles et réserves. Les autres analogies signalées au fil des passes restent à considérer. Ce filtre structurel ne garantit pas la détection exhaustive de toute redondance sémantique (notamment miroirs, séquences différentes, force différente).
+
+- SEF-V3-035-4 / SEF-V45-049 — Interlots : deux tâches différentes (naturel vs Contre/Passe/1SA et naturel vs trois bicolores) ; garder le contraste des distracteurs, ne pas fusionner.
+- SEF-V45-043 / SEF-Q685-D-079 — Quasi-doublon même code et mêmes choix permutés ; garder V45-043 comme référence S46, D079 comme variante espacée, pas de répétition immédiate.
+- SEF-C2-003 / V2-M5-021 — Quasi-doublon 4–4, 10 H, vulnérabilité différente sans changement de réponse ; conserver V2-M5-021 avec 022 pour seuil 5–4, C2-003 comme variante alternative.
+- SEF-V473-007 / V2-M5-012 — Même famille et même décision, mais choix 4♦ rencontre contre 4♠ direct ; V2-M5-012 est le contraste 011/012 sur la cinquième. Espacer, ne pas casser cette paire.
+- SEF-V477-001 / SEF-Q400-D-067 — Quasi-doublon par permutation de petites cartes ; V477-001 appartient au contraste de référence S46 avec 002. D067 réserve alternative, pas seconde exposition immédiate.
+- SEF-V481-002 / SEF-Q685-D-070 — Quasi-doublon 17 H, 4♠, AR♥, réponse 3♠ : varier les mains dans le temps, une seule exposition de cette décision par bloc.
+- SEF-V481-003 / SEF-Q400-D-058 — Quasi-doublon 15 H, pas de majeure quatrième, arrêt ♥ ; conserver V481-003 avec V481-001 (contraste de référence S44), Q400-D-058 variante.
+- SEF-V485-004 / SEF-L13-010 — Même règle 1♠ F1 après X, choix 1♥ contre Passe ; garder variation de distracteur mais pas ajout simultané à un réservoir.
+- SEF-L22-004 / V2-M6-044 — Interlots : même fit et cue-bid, mais V2-M6-044 teste aussi le Splinter ; préserver contraste de distracteurs, coordination avec lot F/B selon concept source.
+- SEF-L28-002 / V2-M5-008 — Même famille de redemande Spoutnik 18 HLD ; garder V2-M5-008 comme contraste avec 007, L28-002 variante.
+- SEF-L36-003 / V2-M5-011 — Même famille rencontre, 15 HLD et cinq ♦ ; V2-M5-011 contraste avec 012 quatre ♦, préserver cette paire, L36-003 variante.
+- SEF-L39-005 / V2-M5-005 — Quasi-doublon 2SA naturel sur saut faible, mêmes choix ; conserver V2-M5-005/006 pour le changement de palier adverse, L39-005 variante.
+- SEF-L42-001 / V2-M5-002 — Quasi-doublon Truscott à 12 HLD ; garder V2-M5-001/002 même main intervention couleur vs Contre, L42-001 réserve existante.
+- V2-M5-025 / SEF-Q400-D-043 — Quasi-doublon 2♦ Multi, six ♠ et 10 H ; garder V2-M5-025/026 pour contraste distribution, D043 variante.
+- V2-M5-033 / SEF-Q685-D-059 — Quasi-doublon 2♦ naturel après Landy ; conserver V2-M5-033/034 pour changement du palier, D059 objectif existant S43.
+- V2-M5-034 / SEF-Q400-D-056 — Quasi-doublon 3♣ Texas ♦ après 2♠ ; différence de distracteur utile mais priorité au contraste V2-M5-033/034 ; espacer variante D056.
+
+### Contrôles finaux réellement exécutés
+
+Lecture des blobs de la base immuable et du head fabcaa8ace94f10bc299beff398cf0fd89b1a9bd, calcul JavaScript : cardinalité/ensemble exact, mains et H, forme, rang et unicité des choix, séquences croissantes et contrôle des doubles/redoubles par camp et état du contrat (Passes implicites admis ; pas validation de la rotation complète), intégrité de l'historique des QCM, corrections et actions, cohérence des concepts et groupes, signatures exactes et revue ciblée des groupes analogues. Aucun échec dans ces contrôles. Les 170 IDs sans groupe explicite après propositions ne sont pas déclarés inaccessibles : accès implicite et recette adaptative relèvent du coordinateur. PR #564 ouverte et brouillon, six fichiers exclusifs vérifiés. GitHub Actions et statut combiné sur fabcaa8ace94f10bc299beff398cf0fd89b1a9bd : aucun résultat retourné. Tentative réelle de `git ls-remote https://github.com/CapGui13/QPJB.git refs/heads/pedagogie/audit3000-e` dans le conteneur : échec DNS github.com ; impossibilité de cloner et exécuter les suites locales existantes. Aucun test local du dépôt ni certification SEF officielle intégrale prétendus. Pas de simulation, moteur/UI ou fusion. La livraison du lot E au sens du contrat #556 (verdicts individuels, patches, contrôles rapportés, PR brouillon) est achevée ; l'intégration, les arbitrages, les tests du dépôt et la consolidation globale restent à faire par le coordinateur.
+
+```json
+{
+  "catalogue": 3000,
+  "catalogueUnique": 3000,
+  "prerequisCatalogue": 3000,
+  "lot": 540,
+  "verdicts": 540,
+  "idsManquants": [],
+  "idsHorsLot": [],
+  "mainsOriginalesInvalides": [],
+  "mainsCorrigeesInvalides": [],
+  "legaliteOriginale": [],
+  "legaliteCorrigee": [],
+  "corrections": 361,
+  "patchHorsLot": [],
+  "historiqueModifie": [],
+  "justificationManquante": [],
+  "conceptIncoherent": [],
+  "groupesInvalides": [],
+  "patchManquant": [],
+  "prerequisInvalides": [],
+  "reservoirInvalides": [],
+  "doublonsExacts": [],
+  "groupesStructurelsExaminés": 16,
+  "idsDuLotDansGroupesStructurels": 30,
+  "groupesInterlots": 2,
+  "idsSansGroupeExpliciteAvant": 270,
+  "idsSansGroupeExpliciteApres": 170,
+  "correctionsSousArbitrage": 20
+}
+```
+
+MISSION DÉFINITIVEMENT TERMINÉE : OUI (livraison du lot E ; limites explicites ci-dessus)
