@@ -31,8 +31,8 @@ function patchHtml(source){
 // Existing rank is CommonJS; wrap it using the original feature implementation.
 // No new service-worker URL: prepend isolated browser bundle to the existing engine asset.
 function browserBundle({features,rank,t}){
- return '(function(){\\nconst baseModule={exports:{}};\\n(function(module,exports){\\n'+features+
- '\\n})(baseModule,baseModule.exports);\\nconst rankModule={exports:{}};\\n(function(module,exports,require){\\n'+rank+
- '\\n})(rankModule,rankModule.exports,function(name){if(name!=="./quizz-coherence-m4-diversite.js")throw Error(name);return baseModule.exports;});\\nwindow.QPJB_M4P_A=rankModule.exports;\\n})();\\n'+t+'\\n';
+ return '(function(){\nconst baseModule={exports:{}};\n(function(module,exports,window){\n'+features+
+ '\n})(baseModule,baseModule.exports,undefined);\nconst rankModule={exports:{}};\n(function(module,exports,require){\n'+rank+
+ '\n})(rankModule,rankModule.exports,function(name){if(name!=="./quizz-coherence-m4-diversite.js")throw Error(name);return baseModule.exports;});\nwindow.QPJB_M4P_A=rankModule.exports;\n})();\n'+t+'\n';
 }
 module.exports={patchEngine,patchHtml,browserBundle};
