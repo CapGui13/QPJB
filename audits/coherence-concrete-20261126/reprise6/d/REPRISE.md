@@ -35,3 +35,8 @@
 ## Checkpoint — traces lisibles de trois profils
 - FICHES-S1-S5.md (51909bb0e22dc069f37c62ac26bcce00e07be8d5) et fiches-s1-s5.json (582d8437c2c0280808201f5f6438c825146f5bef) : exécution V8 des modules réels, M6 avec consolidation intercalée, profils autonome/11, faible/11 et aide/47. 30 séances guidées, quatre consolidations réellement jouées, ordre, concepts, mains, réponses, motifs et résultats simulés conservés. Une substitution T pour autonome, aucune pour faible/aide.
 - Dernier run technique [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) : gardes historiques et deux navigateurs ; au point de contrôle, en file d'attente. La matrice native de ce run est intentionnellement sautée (preuves du run initial conservées).
+
+## Checkpoint — recette UI T seule PASS
+- Run [46017045251](https://github.com/CapGui13/QPJB/actions/runs/46017045251), jobs Chromium 140566721803 et WebKit 140566721913 : chacun PASS, 360 et 1280 px. Chromium 156.0.8078.4 / WebKit 27.2. Preuve JSON exacte extraite des logs, commit 5fd7917d2f7382f6120e9aca9bc810f794fd1264 (ci-browser-results.json).
+- Quatre scénarios sur page privée réellement exécutée : S3 SEF-005-2→SEF-005-1, main effectivement rendue, première visite offline après préchauffage SW, reprise active et legacy exactes ; deux séances faibles par réponses erronées, consolidation de dix QCM après S5, reprise exacte et maîtrise inchangée ; journal, export/import et isolation quiz libre OK, aucune erreur page. Pas de modification de production.
+- Reste le run supplémentaire de gardes historiques [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) ; ne pas assimiler cette validation UI au verdict global M4.
