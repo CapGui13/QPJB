@@ -1834,8 +1834,8 @@
   },
   {
     "id": "SEF-052-1",
-    "verdict": "VALIDE",
-    "justification": "8 H cinq cœurs : 2♥ plutôt que passe ou invitation ; variation du seuil faible de 052-3. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H cinq cœurs : 2♥ plutôt que passe ou invitation ; variation du seuil faible de 052-3. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur. Passe 15 : Paire SEF-052-1/054-2 : même séquence et 8 H, cinq Cœurs vs quatre ; répétition faible ou Passe. S11 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -1845,9 +1845,18 @@
     "conceptInitial": "second.base",
     "conceptPropose": "second.base",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      11
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 11,
+        "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -1929,10 +1938,22 @@
         }
       ],
       "bilanRedondance": "Variantes même décision et données structurantes ; distinguer par honneurs et contexte si utile, sinon réserve, aucune suppression d'ID.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
-      "type": "conserver"
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 11,
+            "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire SEF-052-1/054-2 : même séquence et 8 H, cinq Cœurs vs quatre ; répétition faible ou Passe."
+      }
     }
   },
   {
@@ -2295,8 +2316,8 @@
   },
   {
     "id": "SEF-054-2",
-    "verdict": "VALIDE",
-    "justification": "8 H quatre cœurs : passe face à 12–14 H ; contraste avec 054-1 sur force et 052-1 sur longueur. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H quatre cœurs : passe face à 12–14 H ; contraste avec 054-1 sur force et 052-1 sur longueur. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur. Passe 15 : Paire SEF-052-1/054-2 : même séquence et 8 H, cinq Cœurs vs quatre ; répétition faible ou Passe. S11 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -2306,9 +2327,18 @@
     "conceptInitial": "second.base",
     "conceptPropose": "second.base",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      11
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 11,
+        "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -2383,10 +2413,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
-      "type": "conserver"
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 11,
+            "decision": "Après redemande 1SA : quatre cartes Passe, cinq cartes répétition",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire SEF-052-1/054-2 : même séquence et 8 H, cinq Cœurs vs quatre ; répétition faible ou Passe."
+      }
     }
   },
   {
@@ -4592,8 +4634,8 @@
   },
   {
     "id": "SEF-N120-1",
-    "verdict": "VALIDE",
-    "justification": "19 H 3-3-3-4 : 2SA à saut, maximum de zone ; contraste utile avec 18 H et ouverture 2SA à 20 H. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "19 H 3-3-3-4 : 2SA à saut, maximum de zone ; contraste utile avec 18 H et ouverture 2SA à 20 H. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer au niveau coordinateur. Passe 15 : 19 H réguliers sans fit, maximum de 2SA à saut ; contraste avec les 18 H de SEF-045-1 et l'ouverture 2SA à 20 H. S15 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -4603,9 +4645,18 @@
     "conceptInitial": "red.base",
     "conceptPropose": "red.base",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      15
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 15,
+        "decision": "Redemandes et deuxième enchère",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -4674,10 +4725,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
-      "type": "conserver"
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 15,
+            "decision": "Redemandes et deuxième enchère",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "remove": [],
+        "justification": "19 H réguliers sans fit, maximum de 2SA à saut ; contraste avec les 18 H de SEF-045-1 et l'ouverture 2SA à 20 H."
+      }
     }
   },
   {
@@ -11422,7 +11485,7 @@
   {
     "id": "SEF-V44-050",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "15 H, cinq ♥ et quatre ♣ AR : 3♣ essai à la couleur expressément demandé, 2SA général ne répond pas à cet objectif. Compléments incluent honneurs ou courte utile, pas seulement honneurs. ",
+    "justification": "15 H, cinq ♥ et quatre ♣ AR : 3♣ essai à la couleur expressément demandé, 2SA général ne répond pas à cet objectif. Compléments incluent honneurs ou courte utile, pas seulement honneurs. Passe 15 : Essai ciblé Trèfle après fit Cœur, alors que les deux ancrages sont sur fit Pique ; transposer le rôle sans changer d'atout. S58 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -11433,9 +11496,17 @@
     "conceptInitial": "apres_fit.essai",
     "conceptPropose": "apres_fit.essai",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      58
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 58,
+        "decision": "apres_fit.essai — essai de l’ouvreur : 3♣",
+        "role": "réinvestissement"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -11500,7 +11571,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
       "type": "corriger_qcm",
@@ -11509,6 +11580,17 @@
       },
       "apres": {
         "explain": "Le fit Cœur est acquis. 3♣ est un essai à la couleur : il recherche un complément utile à Trèfle (honneur(s) ou courte bien placée selon la main), sans changer l'atout. Le répondant peut refuser à 3♥ ou accepter à 4♥. 3♥ de l'ouvreur serait préventif ; 4♥ imposerait la manche."
+      },
+      "affectation": {
+        "add": [
+          {
+            "session": 58,
+            "decision": "apres_fit.essai — essai de l’ouvreur : 3♣",
+            "role": "réinvestissement"
+          }
+        ],
+        "remove": [],
+        "justification": "Essai ciblé Trèfle après fit Cœur, alors que les deux ancrages sont sur fit Pique ; transposer le rôle sans changer d'atout."
       }
     }
   },
@@ -13542,7 +13624,7 @@
   {
     "id": "SEF-V49-042",
     "verdict": "ERREUR_PEDAGOGIQUE",
-    "justification": "13 H cinq ♦ et quatre ♥, deux doubletons : 16 HLD, soutien 2♥. Zone 12–14 H de l'explication inadaptée ; comparer V44-017 corrigé. ",
+    "justification": "13 H cinq ♦ et quatre ♥, deux doubletons : 16 HLD, soutien 2♥. Zone 12–14 H de l'explication inadaptée ; comparer V44-017 corrigé. Passe 15 : Corrigé déjà rectifié : 13 H + longueur + deux doubletons = 16 HLD, borne haute du soutien simple. Contraste avec 12 HLD réguliers, sans faux neuvième atout. S5 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -13552,9 +13634,18 @@
     "conceptInitial": "red.base",
     "conceptPropose": "red.base",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      5
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 5,
+        "decision": "Soutien quatrième sur réponse au palier de un",
+        "role": "objectif",
+        "phase": "initial"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -13621,7 +13712,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
       "type": "corriger_qcm",
@@ -13630,13 +13721,25 @@
       },
       "apres": {
         "explain": "Le partenaire promet au moins quatre Cœurs. Vos quatre Cœurs établissent donc au moins huit atouts. Vous comptez 16 HLD (13 H + 1 L pour le cinquième Carreau + 2 D pour les deux doubletons). 2♥ est le soutien simple de 12–16 HLD. 3♥ demanderait 17–19 HLD ; ni 1SA ni 2♦ ne décrirait le fit."
+      },
+      "affectation": {
+        "add": [
+          {
+            "session": 5,
+            "decision": "Soutien quatrième sur réponse au palier de un",
+            "role": "objectif",
+            "phase": "initial"
+          }
+        ],
+        "remove": [],
+        "justification": "Corrigé déjà rectifié : 13 H + longueur + deux doubletons = 16 HLD, borne haute du soutien simple. Contraste avec 12 HLD réguliers, sans faux neuvième atout."
       }
     }
   },
   {
     "id": "SEF-V410-001",
-    "verdict": "VALIDE",
-    "justification": "13 H cinq ♦ et quatre ♣ : 2♣ économique (retour 2♦), différent des bicolores chers 1♣–1♠–2♦. ",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "13 H cinq ♦ et quatre ♣ : 2♣ économique (retour 2♦), différent des bicolores chers 1♣–1♠–2♦. Passe 15 : Ouverture mineure 1♦–1♥–2♣, retour 2♦ au même palier ; complète les ouvertures majeures représentées. S11 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -13645,9 +13748,18 @@
     "conceptInitial": "red.bicolore",
     "conceptPropose": "red.bicolore",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      11
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 11,
+        "decision": "Bicolore économique au palier de deux après première exposition",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -13712,10 +13824,22 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
-      "type": "conserver"
+      "type": "proposer_affectation",
+      "affectation": {
+        "add": [
+          {
+            "session": 11,
+            "decision": "Bicolore économique au palier de deux après première exposition",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "remove": [],
+        "justification": "Ouverture mineure 1♦–1♥–2♣, retour 2♦ au même palier ; complète les ouvertures majeures représentées."
+      }
     }
   },
   {
@@ -17187,7 +17311,7 @@
   {
     "id": "SEF-V412-001",
     "verdict": "ERREUR_PEDAGOGIQUE",
-    "justification": "14 H, cinq ♥ et quatre ♠, deux doubletons (dont R6) : 17 HLD bruts, soutien à saut 3♠ selon la grille 17–19. 2♠ peut se défendre avec décote du Roi second : remplacer le R6 par R dans une autre couleur sans créer de majeure supplémentaire, ou préciser le calcul brut demandé. Corriger la zone 12–14 H dans tous les cas. ",
+    "justification": "14 H, cinq ♥ et quatre ♠, deux doubletons (dont R6) : 17 HLD bruts, soutien à saut 3♠ selon la grille 17–19. 2♠ peut se défendre avec décote du Roi second : remplacer le R6 par R dans une autre couleur sans créer de majeure supplémentaire, ou préciser le calcul brut demandé. Corriger la zone 12–14 H dans tous les cas. Passe 15 : ne pas présenter ce calcul de soutien à saut comme exercice initial de redemande minimale ; stage 1, minSession 8 et exposition préalable red.base proposés. Difficulté et réponse corrigée inchangées.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -17266,7 +17390,7 @@
       "limite": "Revue individuelle et comparaison transversale des 53 groupes séquence/forme/H ; comparaison sémantique exhaustive de toutes les permutations de couleur et séquences voisines non certifiée.",
       "analoguesMemeSequenceFormeH": [],
       "bilanRedondance": "Aucun analogue sur l'empreinte séquence/forme/H ; autres analogues par famille/séquence listés, pas preuve d'absence de redondance sémantique.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Réserve : soutien à saut, prérequis renforcé proposé, groupe spécifique à créer par coordinateur."
     },
     "action": {
       "type": "corriger_qcm",
@@ -17279,6 +17403,43 @@
         "context": "Vous avez ouvert de 1♥ et votre partenaire a répondu 1♠. En appliquant la grille de points HLD sans décote du Roi second, quelle est votre redemande ?",
         "answer": "3♠",
         "explain": "Quatre Piques en face des quatre promis établissent huit atouts. Le calcul standard demandé donne 17 HLD (14 H + 1 L pour le cinquième Cœur + 2 D pour les doubletons Carreau et Trèfle). 3♠ est le soutien à saut dans la zone 17–19 HLD ; 2♠ correspond à 12–16 HLD. En jeu réel, une décote des honneurs courts peut affiner cette estimation."
+      },
+      "prerequis": {
+        "avant": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "apres": {
+          "concept": "red.base",
+          "stage": 1,
+          "minSession": 8,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "justification": "Soutien à saut après acquisition du soutien simple, ne pas autoriser par knownBasic stage 0."
       }
     }
   },
@@ -28823,7 +28984,7 @@
   {
     "id": "V2-M3-021",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "6 H quatre ♠ et R83 ♥ : 2SA modérateur artificiel malgré tenue, pas 2♠. Question absente ; contraste 022. ",
+    "justification": "6 H quatre ♠ et R83 ♥ : 2SA modérateur artificiel malgré tenue, pas 2♠. Question absente ; contraste 022. Passe 15 : Paire V2-M3-021/022 : même séquence et distribution, 6 H avec tenue modeste vs 10 H avec As-Roi à Cœur ; 2SA artificiel modérateur vs 3SA naturel. S20 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -28832,9 +28993,18 @@
     "conceptInitial": "second.bicolore_cher",
     "conceptPropose": "second.bicolore_cher",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      20
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 20,
+        "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -28919,7 +29089,7 @@
         }
       ],
       "bilanRedondance": "Variantes même décision et données structurantes ; distinguer par honneurs et contexte si utile, sinon réserve, aucune suppression d'ID.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
       "type": "corriger_qcm",
@@ -28928,13 +29098,25 @@
       },
       "apres": {
         "context": "Après le bicolore cher 2♦ de l'ouvreur, vous avez quatre Piques et une tenue Cœur modeste. Quelle enchère modère les ambitions du camp ?"
+      },
+      "affectation": {
+        "add": [
+          {
+            "session": 20,
+            "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire V2-M3-021/022 : même séquence et distribution, 6 H avec tenue modeste vs 10 H avec As-Roi à Cœur ; 2SA artificiel modérateur vs 3SA naturel."
       }
     }
   },
   {
     "id": "V2-M3-022",
     "verdict": "RECLASSER_REFORMULER",
-    "justification": "10 H quatre ♠ et ♥AR3 : 3SA direct après cher, bonne paire avec 021 faible. Question absente. ",
+    "justification": "10 H quatre ♠ et ♥AR3 : 3SA direct après cher, bonne paire avec 021 faible. Question absente. Passe 15 : Paire V2-M3-021/022 : même séquence et distribution, 6 H avec tenue modeste vs 10 H avec As-Roi à Cœur ; 2SA artificiel modérateur vs 3SA naturel. S20 proposé, exposition non garantie.",
     "references": [
       "quizz.html#training-data @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
       "quizz-prerequis.js @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
@@ -28943,9 +29125,18 @@
     "conceptInitial": "second.bicolore_cher",
     "conceptPropose": "second.bicolore_cher",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      20
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 20,
+        "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
+        "role": "objectif",
+        "phase": "apres_exposition"
+      }
+    ],
     "pointsControles": {
       "main": [
         [
@@ -29022,7 +29213,7 @@
         }
       ],
       "bilanRedondance": "Variantes même décision et données structurantes ; distinguer par honneurs et contexte si utile, sinon réserve, aucune suppression d'ID.",
-      "statutAffectation": "Absent des groupes explicites de PROGRAMME65. Éligibilité possible via knownBasic/fallback/activité passée, sans garantie d'exposition. Maintien comme variante non planifiée ; coordinateur arbitre les lacunes de parcours."
+      "statutAffectation": "Ajout proposé dans un groupe réel, sans forcer le verrou natif (passe 15)."
     },
     "action": {
       "type": "corriger_qcm",
@@ -29031,6 +29222,18 @@
       },
       "apres": {
         "context": "Après le bicolore cher 2♦ de l'ouvreur, quelle enchère de manche naturelle décrit votre force et votre tenue Cœur, sans fit majeur ?"
+      },
+      "affectation": {
+        "add": [
+          {
+            "session": 20,
+            "decision": "Réponse au bicolore cher : répéter cinq cartes, 2SA modérateur, manche",
+            "role": "objectif",
+            "phase": "apres_exposition"
+          }
+        ],
+        "remove": [],
+        "justification": "Paire V2-M3-021/022 : même séquence et distribution, 6 H avec tenue modeste vs 10 H avec As-Roi à Cœur ; 2SA artificiel modérateur vs 3SA naturel."
       }
     }
   },
