@@ -4,7 +4,7 @@ const root=path.join(__dirname,".."), dir=path.join(root,"audits/coherence-concr
 const load=p=>JSON.parse(fs.readFileSync(path.join(dir,p),"utf8"));
 const old=JSON.parse(fs.readFileSync(path.join(root,"audits/coherence-concrete-20261126/m4/register.json"),"utf8"));
 const {buildStatus,classify}=require("../quizz-coherence-m4p-c-statuts.js");
-const p=load("relations.json"), files=["fondamentaux.json","reponses.json","competitif.json","s1-20-solde.json","s21-65-passe1.json","s21-65-passe2.json","s21-65-passe3.json","s21-65-passe4.json","s21-65-passe5.json","fondamentaux-mineur-solde.json","fondamentaux-majeur-red-solde.json","second-base-solde.json","chelem-solde.json","sa-solde.json","forcing-roudi-drury-solde.json","fortes-barrage-fit-solde.json"];
+const p=load("relations.json"), files=["fondamentaux.json","reponses.json","competitif.json","s1-20-solde.json","s21-65-passe1.json","s21-65-passe2.json","s21-65-passe3.json","s21-65-passe4.json","s21-65-passe5.json","fondamentaux-mineur-solde.json","fondamentaux-majeur-red-solde.json","second-base-solde.json","chelem-solde.json","sa-solde.json","forcing-roudi-drury-solde.json","fortes-barrage-fit-solde.json","michaels-multilandy-rubensohl-solde.json"];
 const observed=new Set([...load("baseline/part1-index.json").ids,...load("baseline/part2-index.json").ids]);
 const themes=load("index.json").byId;
 const idx=buildStatus(old,files.map(p=>[p,load(p)]),p,observed,themes);
@@ -16,12 +16,14 @@ console.log("M4-C statuts OK");
 
 const core=new Set(["ouv.passe","ouv.mineure","ouv.majeure","ouv.sa1","mineur.base","majeur.base","majeur.soutien","sa1.seuil","red.base"]);
 assert.equal(old.filter(x=>core.has(x.concept)).length,381);for(const x of old.filter(x=>core.has(x.concept)))assert.ok(idx[x.id].status!=="automatique_seulement");
-assert.equal(p.length,142);assert.equal(classify(idx,p,"SEF-V3-059-5","SEF-V3-057-1").status,"HOLD");
+assert.equal(p.length,166);assert.equal(classify(idx,p,"SEF-V3-059-5","SEF-V3-057-1").status,"HOLD");
 
-const chelem=old.filter(x=>x.concept.startsWith("chelem.")); assert.equal(chelem.length,111); for(const x of chelem)assert.ok(idx[x.id].status!=="automatique_seulement"); assert.equal(Object.values(idx).filter(x=>x.status!=="automatique_seulement").length,1389);
+const chelem=old.filter(x=>x.concept.startsWith("chelem.")); assert.equal(chelem.length,111); for(const x of chelem)assert.ok(idx[x.id].status!=="automatique_seulement"); assert.equal(Object.values(idx).filter(x=>x.status!=="automatique_seulement").length,1521);
 
 const sa=old.filter(x=>/^sa[12]\./.test(x.concept)); assert.equal(sa.length,218); for(const x of sa)assert.ok(idx[x.id].status!=="automatique_seulement");
 
 const relays=old.filter(x=>/^(roudi|drury|forcing)\./.test(x.concept)); assert.equal(relays.length,174); for(const x of relays)assert.ok(idx[x.id].status!=="automatique_seulement");
 
 const strongFit=old.filter(x=>/^(fortes|barrage|apres_fit|fit)\./.test(x.concept)); assert.equal(strongFit.length,193); for(const x of strongFit)assert.ok(idx[x.id].status!=="automatique_seulement"); assert.equal(classify(idx,p,"SEF-L14-013","V2-M2-009").status,"HOLD");
+
+const convComp=old.filter(x=>/^(michaels|multilandy|rubensohl)\./.test(x.concept)); assert.equal(convComp.length,188); for(const x of convComp)assert.ok(idx[x.id].status!=="automatique_seulement");
