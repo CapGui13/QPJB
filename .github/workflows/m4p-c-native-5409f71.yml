@@ -1,0 +1,34 @@
+name: M4-C isolated native verification 5409f71
+on:
+  pull_request:
+    branches:
+      - coherence-concrete/m4-parallel-c-expertise
+permissions:
+  contents: read
+jobs:
+  m4c-native:
+    if: github.head_ref == 'coherence-concrete/m4p-c-ci-5409f71'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5409f71929f2c9dcd618e0e4b84c85c7a492bb98
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm immutable SHA
+        run: |
+          git rev-parse HEAD
+          test "$(git rev-parse HEAD)" = '5409f71929f2c9dcd618e0e4b84c85c7a492bb98'
+          node --version
+      - name: Run every M4-C CJS test independently
+        shell: bash
+        run: |
+          failed=0
+          for test in tests/coherence-concrete-m4p-c-*.cjs; do
+            echo "=== $test ==="
+            node "$test" || failed=1
+          done
+          exit "$failed"
