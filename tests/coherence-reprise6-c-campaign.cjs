@@ -11,13 +11,14 @@ function loader(sources){
  function load(path){if(modules.has(path))return modules.get(path);check(!loading.has(path),'Circular '+path);loading.add(path);try{const m=compile(path);modules.set(path,m);return m}finally{loading.delete(path)}}
  return {load,compile,req};
 }
-function runPair(sources,profile,seed,horizon=180,model='both',clock=()=>Date.now()){
+function runPair(sources,profile,seed,horizon=180,model='both',clock=()=>Date.now(),variant='strict'){
  const {load,compile,req}=loader(sources),T=load('quizz-coherence-m6-traces.js'),D=load('quizz-coherence-m4p-d-lab.js');
  const m2=load('quizz-coherence-m2-ordre.js'),m3=load('quizz-coherence-m3-prerequis.js');
- const candidate=load('quizz-coherence-reprise6-c-debt-credit.js'),adapter=load('tests/coherence-reprise6-c-adapter.cjs');
+ check(['strict','recent'].includes(variant),'unknown variant');
+ const candidate=load(variant==='recent'?'quizz-coherence-reprise6-c-recent-credit.js':'quizz-coherence-reprise6-c-debt-credit.js'),adapter=load('tests/coherence-reprise6-c-adapter.cjs');
  const base=sources['quizz-parcours.js'],patched=adapter.instrument(base);
  const opts={coherenceM2:m2,coherenceFullOrder:true,transitionGroups:[{simple:m3.TEXAS_ELEMENTARY,complex:m3.TEXAS},{simple:m3.STAYMAN_SIMPLE,complex:m3.STAYMAN_FOURTH}]};
- const result={profile,seed,horizon,models:{}};
+ const result={profile,seed,horizon,variant,models:{}};
  const early=(a,b)=>{for(let i=0;i<Math.min(65,horizon);i++)check(same(a.sessions[i].rows.map(q=>q.id),b.sessions[i].rows.map(q=>q.id)),'pre-S66 drift S'+(i+1))};
  const pack=(t,model)=>t.sessions.map(s=>s.rows.map(r=>model==='M6'?[r.id,r.kind,r.selectionReason,r.result,r.choice,r.assisted,r.hadFreeError,r.eligibility.eligible]:[r.id,r.role,r.reason,r.response.result,r.response.choice,r.response.assisted,r.response.hadFreeError,r.eligible]));
  const core=t=>{const last=new Map(),debt={},proof=new Map(),out=[];for(const s of t.sessions){for(const r of s.rows){last.set(r.concept,s.session);if(r.result==='correct'&&!r.assisted&&!r.hadFreeError){const v=proof.get(r.concept)||{f:new Set(),s:new Set()};v.f.add(r.family);v.s.add(s.session);proof.set(r.concept,v)}}for(const c of D.CORE)if(last.has(c))debt[c]=(debt[c]||0)+Math.max(0,s.session-last.get(c)-6);if(T.HORIZONS.includes(s.session))out.push({session:s.session,debt:{...debt},total:Object.values(debt).reduce((a,b)=>a+b,0),terminal:Object.fromEntries(D.CORE.map(c=>[c,last.has(c)?s.session-last.get(c):null])),proof:[...proof].filter(([,v])=>v.f.size>=2&&v.s.size>=2).map(([c])=>c).sort()})}return out};
