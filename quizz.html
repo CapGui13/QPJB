@@ -1433,6 +1433,10 @@ function stats(){
 function conventionNote(x){
   const notes=[];
   const context=String(x.context||'').trim();
+  if((function needsContext(q){
+ return ["SEF-V416-008","SEF-V416-009"].includes(q.id)&&/répond 2SA, montrant les deux majeures quatrièmes/.test(String(q.context||''))&&
+   q.auction?.length===3&&q.auction[2]==='Partenaire : 2SA';
+})(x))notes.push(context);
   if(/accord|rappel|walsh|syst[eè]me|convention|forcing|vuln[eé]rabilit[eé]|premi[eè]re position|troisi[eè]me position|réponse de 2SA|3[eè]me position|blackwood|rkcb|atout|splinter|roudi|drury|landy|rubensohl|michaels|texas|arr[eê]t|sans fit|pas de fit|absence de fit|tricolore|unicolore|bicolore|courte|chicane|singleton/i.test(context)){
     notes.push(context.replace(/^Ouverture en première position\s*;\s*/i,''));
   }
@@ -1449,6 +1453,13 @@ function conventionNote(x){
   const unique=[...new Set(notes)];
   if(!unique.length)return '';
   return '<div class="context-note" aria-label="Précisions utiles">'+unique.map(v=>'<p>'+richText(v)+'</p>').join('')+'</div>';
+}
+function supplement(q,type,result){
+ if(type!=='parcours'||!['correct','wrong'].includes(result)||!["SEF-037-1","SEF-038-1","SEF-039-2","SEF-039-1","SEF-040-2","SEF-N082-2","SEF-N084-1","SEF-N085-1","SEF-N087-2","SEF-V44-015","SEF-V44-016","SEF-V49-017","SEF-C-003","V2-M2-018","V2-M2-030"].includes(q.id))return '';
+ const s=String(q.explain||'');
+ // All existing paired contrasts are preserved as-is.
+ if(/2♦[^.!;]{0,35}Texas Cœur/i.test(s)&&/2♥[^.!;]{0,35}Texas Pique/i.test(s))return '';
+ return "Sur 1SA, 2♦ est le Texas Cœur (rectification normale à 2♥) ; 2♥ est le Texas Pique (rectification normale à 2♠).";
 }
 function professeurFeedbackHTML(x,current){
  if(!current||!window.QPJBProfesseur)return '';
@@ -1491,7 +1502,7 @@ function render(){
    current?.result==='correct'?(current.assisted?'✓ Bonne réponse avec les propositions !':'✓ Bonne réponse sans aide !'):'Bonne réponse : '+richBid(x.answer);
  const personalised=answered?professeurFeedbackHTML(x,current):'';
  const reviewBadge=answered&&current?.assisted?'<p class="free-retry-note">À retravailler</p>':'';
- const feedback=answered?`<section class="feedback" id="answer-feedback" role="region" tabindex="-1" aria-labelledby="answer-verdict"><strong id="answer-verdict">${verdict}</strong><h3 class="feedback-heading" id="feedback-explanation-heading">Explication</h3><p class="feedback-explanation" aria-labelledby="feedback-explanation-heading">${escapeHTML(x.explain)}</p>${personalised}${reviewBadge}</section>`:'';
+ const feedback=answered?`<section class="feedback" id="answer-feedback" role="region" tabindex="-1" aria-labelledby="answer-verdict"><strong id="answer-verdict">${verdict}</strong><h3 class="feedback-heading" id="feedback-explanation-heading">Explication</h3><p class="feedback-explanation" aria-labelledby="feedback-explanation-heading">${escapeHTML(x.explain)}${(()=>{const cue=supplement(x,parcoursState.active?.mode==="consolidation"?"consolidation":sessionType,current?.result);return cue?" "+escapeHTML(cue):""})()}</p>${personalised}${reviewBadge}</section>`:'';
  $('body').innerHTML=`<h2 class="seat-headline">Vous êtes en Sud</h2>${seq}<div class="hand" role="img" tabindex="0" aria-label="Votre main : ${x.hand.map((s,i)=>['Pique','Coeur','Carreau','Trèfle'][i]+' '+s.join(' ')).join(', ')}">${hands}</div><div class="meta">${x.h} points H · ${x.shape.join('-')} (♠-♥-♦-♣)</div>${conventionNote(x)}<h3 class="question" id="question-heading" tabindex="-1">Quelle enchère convient le mieux ?</h3>${prompt}${freeError}${answers}${feedback}<div class="nextrow session-navigation"><button id="previous" ${position===0?'disabled':''}>← Question précédente</button><button id="pass" ${answered?'disabled':''}>Passer</button><button id="next" class="primary" ${!answered?'disabled':''}>${position===deck.length-1?'Terminer la séance':'Question suivante →'}</button></div>`;
  if(answered){const turnCell=$('body').querySelector('.auc .ask');if(turnCell)turnCell.classList.remove('pulse')}
  if(displayChoices)$('answers').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>choose(x,Number(btn.dataset.choice))));
