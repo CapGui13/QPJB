@@ -1,0 +1,10 @@
+# C3 — rappel additionnel, distinct de la séance guidée
+Base 287bbf94538908605ab5a28661ed94524ece066b (composition B+D). Branche coherence-concrete/reprise6-coordination-recall. 
+Hypothèse structurellement différente des échanges Q/R/C1/C2 : après S65 seulement, si aucune consolidation de faiblesse confirmée n'est disponible, proposer 4 à 6 rappels optionnels, chacun dans un fondamental déjà prouvé, réellement répondu dans le passé et en retard d'au moins 10 séances. Ne déplacer aucune question guidée au moment de proposer le rappel. Une question par concept et famille, sélection parmi le pool natif éligible; reprises exactes de cas déjà évalués autonomes, pas de génération de nouvelles preuves. Une consolidation native reste prioritaire, même si son pool est insuffisant.
+Le candidat utilise le mécanisme de consolidation existant, donc les entrées de révision peuvent modifier les sélections guidées ultérieures : c'est un risque à mesurer, pas une garantie. L'option foundationRecall est désactivée par défaut, aucune UI ne l'active. L'ancien comportement doit être identique en opt-out. Une proposition ou un saut ne vaut pas un rappel répondu. Ne pas traiter les réponses comme des preuves autonomes supplémentaires. 
+- 9836e1e : implémentation moteur, labels et compatibilité reprise.
+- 58bedfd : banc natif intercalé, contrôle de preuves, historique, reprise, éligibilité et priorité native.
+- 246f94c : comparatif réel reference/opt-out/opt-in, deux modèles.
+- 7b0dd84 : CI 18 paires. Gate mesure séparément dette des dix questions guidées et dette de rappels effectivement répondus, avec ou sans consolidation. Le diagnostic additionnel ne remplace jamais le gate original #419/M4. Pas de modification des modèles de réponse, seuils historiques, catalogue ou metadata.
+À vérifier : CI, erreurs éventuelles, résultats par profil, nombre de rappels et conséquences réelles sur les decks et preuves. Si régression : HOLD. Même si diagnostic étroit vert, une recette D/M6 complète et UI serait nécessaire avant activation. Aucune fusion ni publication. 
+COORDINATION DÉFINITIVEMENT TERMINÉE : NON.
