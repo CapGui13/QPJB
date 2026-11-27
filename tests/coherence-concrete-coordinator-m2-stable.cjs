@@ -10,7 +10,18 @@ const sources={'quizz.html':read('quizz.html')};
 function visit(p){if(Object.hasOwn(sources,p))return;sources[p]=read(p);for(const m of sources[p].matchAll(/require\(['"]\.\/([-\w]+\.js)['"]\)/g))visit(m[1]);}
 visit('quizz-parcours.js');
 const constrained={...m2,order:ctx=>m2.order({...ctx,preserveThemeOrder:true})};
-const a=replay.prepare(sources,m2,false),b=replay.prepare(sources,constrained,true),sa=a.api.empty(),sb=b.api.empty();
+const shadow=process.env.QPJB_M2_REFERENCE_JOURNAL==='1';
+const referenceOrders=new Map();
+function referenceJournal(journal){
+ return journal.map(event=>{
+  const order=referenceOrders.get(event.session);
+  if(event.mode!=='parcours'||!order)return event;
+  const byId=new Map(event.answers.map(a=>[a.id,a]));
+  assert(order.length===byId.size&&order.every(id=>byId.has(id)),'invalid historical reference');
+  return {...event,answers:order.map(id=>byId.get(id))};
+ });
+}
+const a=replay.prepare(sources,m2,false),b=replay.prepare(sources,constrained,true,shadow?referenceJournal:null),sa=a.api.empty(),sb=b.api.empty();
 const ids=d=>d.map(q=>q.id),sorted=d=>ids(d).sort(),byTheme=d=>Object.fromEntries([...new Set(d.map(q=>q.theme))].sort().map(t=>[t,ids(d.filter(q=>q.theme===t))]));
 const normalize=x=>Array.isArray(x)?x.map(normalize):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,normalize(x[k])])):x;
 const rows=[],sumBefore={},sumAfter={};let changed=0,assertions=0;
@@ -21,6 +32,7 @@ for(let s=1;s<=horizon;s++){
  const da=a.api.start(sa,a.qs),db=b.api.start(sb,b.qs),plan=b.calls.at(-1)?.plan;
  eq(sorted(da),sorted(db),'same composition S'+s);eq(byTheme(da),byTheme(db),'theme order S'+s);
  eq(ids(db),plan?.ids,'candidate effective order S'+s);
+ if(shadow)eq(ids(da),b.calls.at(-1).historical,'historical salt parity S'+s);
  ok(da.length===10&&new Set(da.map(q=>q.caseFamily||q.id)).size===10,'ten families S'+s);
  ok(b.api.eligibilityBatch(db,sb,b.qs).every(v=>v.eligible),'eligibility S'+s);
  const setSelection=d=>Object.fromEntries(d.map(x=>[x.id,x]));
@@ -46,7 +58,8 @@ for(let s=1;s<=horizon;s++){
  for(const k of ['skills','entries','micros','axes','completed'])eq(sa[k],sb[k],k+' S'+s);
  const canonicalEvent=state=>{const e=state.journal.at(-1);return {...e,answers:e.answers.slice().sort((x,y)=>x.id.localeCompare(y.id))}};
  eq(canonicalEvent(sa),canonicalEvent(sb),'same journal evidence S'+s);
+ if(shadow)referenceOrders.set(s,b.calls.at(-1).historical.slice());
  rows.push({s,changed:diff,before:ids(da),after:ids(db),metricsBefore:plan?.before,metricsAfter:plan?.after,themeOrderPreserved:true,stateEqual:true});
 }
-const result={profile,seed,horizon,assertions,changed,changedEarly:rows.filter(r=>r.s<=20&&r.changed).length,sumBefore,sumAfter,rows};
+const result={profile,seed,horizon,shadow,assertions,changed,changedEarly:rows.filter(r=>r.s<=20&&r.changed).length,sumBefore,sumAfter,rows};
 fs.writeFileSync(dest,JSON.stringify(result));console.log(JSON.stringify({...result,rows:undefined}));
