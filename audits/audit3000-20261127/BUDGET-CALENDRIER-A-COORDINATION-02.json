@@ -1,0 +1,70 @@
+{
+  "schema": "QPJB_AUDIT3000_BUDGET_CALENDRIER_V1",
+  "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+  "scope": "Décisions de coordination du calendrier A, non intégrées. Aucun changement de moteur.",
+  "source": {
+    "calendar": "CALENDRIER-A-COORDINATION-01.json",
+    "program": "audits/programme-65-20261127/programme-normalise.json",
+    "engine": "quizz-parcours.js, sélection native vers lignes 1242–1267"
+  },
+  "budget": {
+    "session": 10,
+    "goalLimit": {
+      "weak": 3,
+      "middle": 4,
+      "strong": 5
+    },
+    "notes": "Le code parcourt les groupes actifs dans l'ordre (objectif, transition, réinvestissement, transfert) et s'arrête au quota. Les groupes réserve ne sont pas actifs dans cette boucle; apres_exposition n'est pas un verrou spécifique dans cette boucle, l'éligibilité réelle dépend des prérequis. Une erreur préalable peut consommer une place. Les nombres ci-dessous sont une borne nominale, pas une recette."
+  },
+  "decisions": [
+    {
+      "session": 3,
+      "existingActive": 3,
+      "naiveActive": 5,
+      "naiveReach": {
+        "weak": 0,
+        "middle": 1,
+        "strong": 2
+      },
+      "decision": "Ne pas fusionner les deux soutiens à des fins de quota. Garder G0/G1; élargir G2 à la décision naturelle sans fit majeur (1♠, 1SA, 2 sur 1) avec les 22 IDs S3_21_MAJEURE; ajouter S3_21_MINEURE (6 IDs) après G2, avant rappel. Le groupe mineur est un objectif complémentaire, non garanti pour profil faible; le réinvestir ultérieurement après exposition, ne pas annoncer sa couverture certaine en S3.",
+      "activeAfter": 4,
+      "condition": "Mettre à jour objectif/contrastes/enseignement du 2 sur 1 avant mise en service; contrôler les six cas mineurs et les 22 majeurs sur vrais prérequis; garder le contraste 1SA vs 2 sur 1, ne pas remplacer tous les anciens cas G2."
+    },
+    {
+      "session": 4,
+      "existingActive": 2,
+      "naiveActive": 3,
+      "decision": "Ajouter les 9 IDs S4_SA_MINEURE comme objectif distinct après le groupe quantitatif sur 1SA et avant la transition 2SA ouverture. Ne pas mélanger les zones de réponse sur mineure avec celles après 1SA.",
+      "activeAfter": 3,
+      "condition": "Actualiser l'objectif de séance et le support de cours. Contrôler contraste et éligibilité; conserver transition et rappel existants."
+    },
+    {
+      "session": 15,
+      "existingActive": 5,
+      "naiveActive": 6,
+      "naiveReach": {
+        "weak": 0,
+        "middle": 0,
+        "strong": 0
+      },
+      "decision": "Ne pas créer un sixième groupe actif. Étendre G0 (même force, distributions différentes, choix du bon outil) comme réinvestissement de la distinction 2 sur 1 vs 2SA fitté avec les cinq IDs S15_21_FITTE. Maintenir les autres groupes, notamment rectification Texas mineur reportée.",
+      "activeAfter": 5,
+      "condition": "Conserver prérequis fit.2sa acquis et minSession 14 (index du moteur à vérifier en recette); s'assurer que les variantes ne se substituent pas aux contrastes existants."
+    },
+    {
+      "session": 30,
+      "existingActive": 2,
+      "decision": "Garder les quatre IDs S30_APRES_PASSE_MINEURE en proposition de réserve non activée. Une réserve ne garantit pas exclusion du pool général: vérifier ce dernier avant toute publication. Ne pas les mélanger avec Drury.",
+      "condition": "Cours explicite après Passe sur mineure et validation de la doctrine rencontre/non-forcing nécessaires; pas de décision de fond forcée."
+    }
+  ],
+  "checks": [
+    "Comptage des groupes et inspection de la boucle native de sélection sur branche coordinateur.",
+    "Aucun test Node natif ni simulation ni modification du catalogue lors de cette passe."
+  ],
+  "remaining": [
+    "Intégrer conjointement les modifications programme/PROGRAMME65/prérequis après arbitrages.",
+    "Recette ciblée S3/S4/S15/S30 sur profils et états réels; vérifier les groupes, contrastes et prérequis; vérifier que l'objectif complémentaire mineur n'est pas perdu.",
+    "Arbitrages doctrinaux, redondances globales, révisions historiques, intégration et tests natifs."
+  ]
+}
