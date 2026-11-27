@@ -17,3 +17,5 @@ SEF-PN26-M1-016 vs SEF-Q26-M2-009 : rectification Texas après 1SA obligatoire m
 
 ## Tests et limites
 Registre statuts.json = index de référence des niveaux de revue; overlays individuels et ancien registre ne doivent pas être confondus. 7748 assertions V8 sur index et relations, en plus de 9824 assertions des cinq passes précédentes. Test Node fourni, non exécuté dans cet environnement. Pas de validation humaine, pas de modification catalogue/moteur, pas de recette native S65–180 ni revue complète historique. 1491 ID restent à examiner individuellement (priorité S21–65). Les recommandations ne sont pas un résultat avant/après moteur : A/B devront tester.
+
+Contrôle complémentaire: 1915 références structurelles recalées sur le thème réel de index.json, distinct du préfixe du concept. La source thématique est préservée même si une revue IA est disponible.
