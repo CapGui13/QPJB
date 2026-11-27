@@ -16,6 +16,10 @@ Audit individuel complet. Contrôles finaux d'ensemble, cohérence des correctio
 
 ## Tests locaux partiels
 
-18 tests unitaires originaux de légalité exécutés avec succès, fichiers contrôlés par SHA Git. 15 tests d'intégrité réussis sur copies non certifiées par SHA, à rejouer. Voir REVUE.md (commit 6523f442a13a973af520153a8948097df38e3c0d). Checkout toujours bloqué ; CI, Node et recette intégrée à exécuter au niveau coordinateur. Aucun ID à réauditer.
+18 tests unitaires originaux de légalité exécutés avec succès, fichiers contrôlés par SHA Git. 15 tests d'intégrité initialement non certifiés, désormais rejoués avec SHA exacts (voir ci-dessous). Voir REVUE.md (commit 6523f442a13a973af520153a8948097df38e3c0d). Checkout toujours bloqué ; CI, Node et recette intégrée à exécuter au niveau coordinateur. Aucun ID à réauditer.
+
+## Dernière recette locale certifiée
+
+33/33 tests unitaires Python originaux réussis (18 légalité, 15 intégrité), quatre fichiers conformes aux SHA GitHub, 6.224 s. REVUE.md commit ef21fe2f69106228dd40743f30307ef706ef6387. Aucun ID restant. Restent uniquement recette intégrée (scripts originaux sur catalogue consolidé, tests Node, CI) et arbitrages du coordinateur. Checkout Git toujours bloqué par DNS. Aucune fusion.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON — recette intégrée restante.
