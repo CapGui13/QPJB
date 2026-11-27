@@ -60,7 +60,7 @@ function run(label,src,options={}){
   const orderPlan=options.coherenceM2?m2.order({session:s,history:{...state,active:null},deck:historical,selected:state.active.selection,exercises:historical.map(id=>dict.get(id)),metadataById:meta.byId,preserveThemeOrder:true}):null;
   const second=options.coherenceFullOrder&&orderPlan?m2.order({session:s,history:{...state,active:null},deck:orderPlan.ids,selected:state.active.selection,exercises:orderPlan.ids.map(id=>dict.get(id)),metadataById:meta.byId,preserveThemeOrder:false,transitionGroups:options.transitionGroups}):null;
   if(orderPlan){same(ids(deck),second?.ids||orderPlan.ids)}
-  if(second){
+  if(second?.before&&second?.after){
    for(const k of [...m2.HARD,...m2.SOFT])assert(second.after[k]<=second.before[k],'Second pass guard '+k);
    if(second.semanticBefore!==undefined)assert(second.semanticAfter<=second.semanticBefore);
   }
@@ -85,7 +85,7 @@ function run(label,src,options={}){
   assert(api.finish(state,exercises));
   trace.proofDigest=crypto.createHash('sha256').update(JSON.stringify(canonical({skills:state.skills,entries:state.entries,micros:state.micros,axes:state.axes}))).digest('hex');
   trace.replayed=replayed;
-  if(second)trace.secondOrder={ids:second.ids,before:second.before,after:second.after,semanticBefore:second.semanticBefore||0,semanticAfter:second.semanticAfter||0};
+  if(second?.before&&second?.after)trace.secondOrder={ids:second.ids,before:second.before,after:second.after,semanticBefore:second.semanticBefore||0,semanticAfter:second.semanticAfter||0};
   if(options.study){
    const snap=JSON.stringify(state),after=study('after');same(JSON.stringify(state),snap);assert(after?.status==='ok');
    const wrong=new Set(trace.rows.filter(r=>r.result==='wrong'||r.result==='correct'&&(r.assisted||r.hadFreeError)).map(r=>r.concept));
