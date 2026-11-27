@@ -23457,8 +23457,8 @@
   },
   {
     "id": "SEF-L27-004",
-    "verdict": "VALIDE",
-    "justification": "4 H réguliers et trois petites cartes dans chaque mineure : choix de quitter 3SA explicite, 4♣ passe-ou-corrige, contrairement à 4♦ interrogatif.",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "4 H, 3 petites cartes dans chaque mineure, aucun arrêt Cœur : 4♣ passe-ou-corrige reste correct. L'ancien énoncé décrit littéralement la solution et le concept barrage.reponse est incohérent avec Q26-M2-015, Q685-D-035 et Q685-D-174, classés sa.gambling et affectés S54/4. Proposer le transfert interlot au coordinateur, neutraliser la question, aligner thème et prérequis sur les analogues sans abaisser minSession28. Garder l'ID.",
     "references": [
       "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
       "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
@@ -23466,13 +23466,22 @@
       "https://bridgesarzeau.club.ffbridge.fr/actualites-du-club/ouverture-de-3sa-1160414"
     ],
     "conceptInitial": "barrage.reponse",
-    "conceptPropose": "barrage.reponse",
+    "conceptPropose": "sa.gambling",
     "themeInitial": "barrage",
-    "themePropose": "barrage",
+    "themePropose": "sa",
     "seancesInitiales": [],
-    "seancesProposees": [],
+    "seancesProposees": [
+      54
+    ],
     "groupesInitiaux": [],
-    "groupesProposes": [],
+    "groupesProposes": [
+      {
+        "session": 54,
+        "groupe": 4,
+        "decision": "ouvrir ou résoudre le passe-ou-corrige — réponse du partenaire : 4♣",
+        "role": "objectif"
+      }
+    ],
     "difficulteInitiale": 3,
     "difficulteProposee": 3,
     "prerequisInitiaux": {
@@ -23491,16 +23500,16 @@
       ]
     },
     "prerequisProposes": {
-      "concept": "barrage.reponse",
-      "stage": 1,
+      "concept": "sa.gambling",
+      "stage": 3,
       "minSession": 28,
       "requires": [
         {
           "concept": "barrage.ouverture",
-          "minExposure": 1
+          "minExposure": 2
         },
         {
-          "concept": "sa.gambling",
+          "concept": "sa1.seuil",
           "minExposure": 1
         }
       ]
@@ -23511,17 +23520,37 @@
       "sequence": "enchères en progression; rôle lu et décision examinée",
       "choix": "quatre choix uniques, réponse incluse, paliers légaux",
       "corrige": "lu et décision examinée; corroboration externe partielle",
-      "pertinence": "4 H réguliers et trois petites cartes dans chaque mineure : choix de quitter 3SA explicite, 4♣ passe-ou-corrige, contrairement à 4♦ interrogatif.",
+      "pertinence": "4 H, 3 petites cartes dans chaque mineure, aucun arrêt Cœur : 4♣ passe-ou-corrige reste correct. L'ancien énoncé décrit littéralement la solution et le concept barrage.reponse est incohérent avec Q26-M2-015, Q685-D-035 et Q685-D-174, classés sa.gambling et affectés S54/4. Proposer le transfert interlot au coordinateur, neutraliser la question, aligner thème et prérequis sur les analogues sans abaisser minSession28. Garder l'ID.",
       "vulnerabilite": "contexte lu; pas d'ajout artificiel de vulnérabilité",
       "difficulte": "niveau conservé; voir justification",
-      "prerequis": "concept et prérequis lus, aucune modification proposée",
-      "affectation": "non affecté explicitement dans le programme, réserve à traiter par coordinateur",
-      "redondance": "comparaison exacte de main/séquence/réponse sur tout le catalogue; contrastes ciblés dans justification, pas d'audit sémantique exhaustif"
+      "prerequis": "proposition de transfert interlot, stage 3 des analogues; minSession 28 conservé; prérequis alignés sur analogues sans auto-prérequis sa.gambling",
+      "affectation": "S54/4, groupe réel du programme normalisé, après minSession",
+      "redondance": "comparaison du catalogue complet: trois analogues interlots, rotation au coordinateur"
     },
-    "analoguesStructurels": [],
+    "analoguesStructurels": [
+      "SEF-Q26-M2-015",
+      "SEF-Q685-D-035",
+      "SEF-Q685-D-174"
+    ],
     "action": {
-      "type": "conserver",
-      "ajoutGroupe": null
+      "type": "reclasser_reformuler",
+      "avant": {
+        "theme": "barrage",
+        "context": "Votre partenaire a ouvert de 3SA barrage, avec une mineure septième maîtresse sans que vous sachiez laquelle. Vous n'avez que 4 H, très peu de levées extérieures et souhaitez quitter 3SA pour une partielle mineure. Quelle annonce permet à l'ouvreur de passer s'il possède les Trèfles ou de corriger en Carreau ?",
+        "explain": "Sur le 3SA barrage conventionnel, 4♣ est « passe ou corrige » : l'ouvreur passe avec les Trèfles et dit 4♦ avec les Carreaux. 4♦ n'est pas une demande de correction mais une demande artificielle de courte selon le SEF 2024."
+      },
+      "apres": {
+        "theme": "sa",
+        "context": "Votre partenaire a ouvert de 3SA barrage. Vous souhaitez jouer une partielle dans sa mineure plutôt que laisser jouer 3SA. Quelle annonce choisissez-vous ?",
+        "explain": "Avec 4 H et sans arrêt à Cœur, le contrat de 3SA est risqué. 4♣ est passe-ou-corrige : l'ouvreur passe avec les Trèfles et annonce 4♦ avec les Carreaux. 4♦ direct interroge sur une courte selon le SEF 2024 ; il ne demande pas à l'ouvreur de nommer sa mineure."
+      },
+      "ajoutGroupe": {
+        "session": 54,
+        "groupe": 4,
+        "decision": "ouvrir ou résoudre le passe-ou-corrige — réponse du partenaire : 4♣",
+        "role": "objectif"
+      },
+      "arbitrageCoordinateur": "transfert D vers concept sa.gambling; aucun changement au périmètre d'origine"
     }
   },
   {
