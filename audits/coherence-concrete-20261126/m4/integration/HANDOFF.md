@@ -65,3 +65,22 @@ Cas réel sur les trois graines autonomes : S3 SEF-005-2 (21 H, 3-3-4-3, 2SA) �
 
 ## Essai complémentaire de compatibilité M1
 Le coordinateur M4 a ajouté un banc isolé tests/coherence-concrete-m4-integration-m1.cjs, distinct de la recette globale. Il charge en lecture seule le véritable M1 #433 SHA 6d2d2586a0b59e029c808df8424ab458cf3cd064, V2 et V6, et réutilise son injection sourceFor() exacte, même moteur, catalogue et métadonnées. Compare M1 seul vs M1+T/P (pas témoin natif non instrumenté), 18 paires par politique, même règle de réponses D et métriques strictes, aucune modification M1. Run 45998778903, PR technique #476, SHA banc cda790b197339d64a136a69a5dd414c79effe5ac. En cours au dernier relevé, aucun visa. Ce test n'étend pas le plan M1 au-delà de S65 et ne valide pas les autres missions.
+
+## Résultat final : compatibilité réelle M1 V2/V6
+[Run 45998778903](https://github.com/CapGui13/QPJB/actions/runs/45998778903), SHA banc cda790b197339d64a136a69a5dd414c79effe5ac, M1 exact 6d2d2586a0b59e029c808df8424ab458cf3cd064. 18/18 jobs techniques réussis, deux paires par job : 36 paires / 129 600 présentations synthétiques. Le gate relatif strict D est en échec pédagogique pour V2 ET V6. Comparaison M1 seul → M1+TP, PAS témoin natif. Aucun défaut structurel détecté. Les 36 checkpoints complets, provenance, événements M1 et interventions M4 sont archivés dans les six fichiers m1-*-checkpoints.json ; gate m1-gates-native.json. Les traces brutes intégrales de cette campagne complémentaire restent dans les artefacts temporaires du run (contrairement aux 18 archives compactes TP natives, permanentes et rejouées).
+
+| Indicateur | M1 V2 seul → V2+TP | M1 V6 seul → V6+TP |
+|---|---:|---:|
+| Paires proches S5 | 34→31 | 34→31 |
+| Paires proches S20 | 90→87 | 93→90 |
+| Dette S180 | 226597→222535 | 230606→230198 |
+| Preuves S180 | 1520→1520 | 1519→1519 |
+| Familles S180 | 25806→25806 | 25793→25793 |
+| QCM N4–5 S180 | 6816→6822 | 6833→6839 |
+| Violations gate historique | 3 | 3 |
+| Alertes conceptuelles supplémentaires | 6 | 6 |
+
+Chaque politique : six substitutions directes (trois T, trois P) sur les trois graines autonomes ; quinze trajectoires inchangées. V2 : P S168 V2-M4-012 → SEF-001-1 ; écarts terminaux ouv.mineure et mineur.base 0→1. V6 : P S174 V2-M2-006 → SEF-031-1 ; écarts terminaux majeur.base 0→2 et red.base 0→4. Dans chaque cas S180 deux questions N4–5 supplémentaires par trajectoire autonome, dues aux cascades. Les écarts de dette agrégée ne permettent pas de lever HOLD ; le seuil strict reste inchangé. Les deux vrais curriculums ne règlent pas le conflit de réactivation post-S65. M1 seul vs M1+M4 a donc été réellement testé, mais pas M1–M6 globalement raccordés ni navigateur sur combinaison. Aucun choix V2/V6 imposé par M4.
+
+### Décision de sortie du coordinateur M4
+Consolidation et essais de compatibilité effectués, PR brouillon #475 prête à transmettre ; T uniquement candidat conservateur REVIEW isolé, P et TP HOLD sur moteur natif et M1 V2/V6. Pour poursuivre, arbitrage global du quota glissant de maintenance au-delà de S65, puis recette M6 avec modèle unifié, preuves et dette par concept. Les critères non atteints ne sont pas déclarés validés. Aucune fusion vers la branche M4 de livraison ni main, aucun déploiement. MISSION DÉFINITIVEMENT TERMINÉE : NON (objectif pédagogique de diversité/réactivation non satisfait). Livraison de coordination : OUI.
