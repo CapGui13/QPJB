@@ -1,52 +1,12 @@
-# Reprise B — passe 6 partielle
+# Reprise B — passe 7 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-240/454 entrées provisoires ; 214 restent. Dernier ID : SEF-V425-001. Prochain : SEF-V425-002.
+280/454 entrées provisoires ; 174 restent. Dernier ID : V2-M3-002. Prochain : V2-M3-003.
 
-Contrôles mécaniques 454/454. Corrections : 51. Propositions de réservoir : 6. Prérequis : 2. Arbitrages : 7. Contrôles ensemble exact 240 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454. Corrections : 57. Propositions de réservoir : 6. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 8. Contrôles ensemble exact 280 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- SEF-V425-002
-- SEF-V425-004
-- SEF-V425-005
-- SEF-V486-007
-- SEF-V486-008
-- SEF-V486-009
-- SEF-V486-010
-- SEF-L07-008
-- SEF-L07-015
-- SEF-L09-028
-- SEF-L07-013
-- SEF-L13-020
-- SEF-L15-001
-- SEF-L15-002
-- SEF-L15-003
-- SEF-L15-004
-- SEF-L15-005
-- SEF-L15-009
-- SEF-L16-001
-- SEF-L16-002
-- SEF-L16-003
-- SEF-L16-004
-- SEF-L16-005
-- SEF-L20-001
-- SEF-L21-005
-- SEF-L21-006
-- SEF-L21-007
-- SEF-L31-002
-- SEF-L34-001
-- SEF-L34-002
-- SEF-Q26-M3-001
-- SEF-Q26-M3-002
-- SEF-Q26-M3-003
-- V1-M1-001
-- V1-M1-002
-- V2-M1-040
-- V2-M1-041
-- V2-M1-043
-- V2-M3-001
-- V2-M3-002
 - V2-M3-003
 - V2-M3-004
 - V2-M3-005
