@@ -775,31 +775,31 @@
   },
   {
     "id": "SEF-Q400-D-016",
-    "theme": "second",
+    "theme": "forcing",
     "hand": [
       [
-        "A",
+        "V",
         "8",
         "4"
       ],
       [
         "R",
         "D",
-        "V",
         "9",
+        "8",
         "6"
       ],
       [
         "A",
-        "7",
-        "3"
+        "R",
+        "7"
       ],
       [
         "8",
-        "2"
+        "4"
       ]
     ],
-    "h": 14,
+    "h": 13,
     "shape": [
       3,
       5,
@@ -811,20 +811,20 @@
       "Vous : 1♥",
       "Partenaire : 2♣",
       "Vous : 2♦ (troisième forcing)",
-      "Partenaire : 2♥ (trois Cœurs)"
+      "Partenaire : 2SA (tenue Pique, pas trois Cœurs)"
     ],
-    "context": "Le partenaire vient de préciser son soutien. Quelle conclusion ? Les enchères adverses non indiquées sont des Passes.",
-    "answer": "4♥",
+    "context": "Quelle manche choisissez-vous après la précision du partenaire ? Les enchères adverses non indiquées sont des Passes.",
+    "answer": "3SA",
     "choices": [
-      "3♣",
-      "4♥",
+      "5♣",
+      "3SA",
       "3♥",
-      "3SA"
+      "4♥"
     ],
-    "explain": "Le fit Cœur huitième est connu avec 14 H chez le répondant. 4♥ conclut au bon contrat.",
+    "explain": "13 H et les deux gros honneurs Carreau complètent la tenue Pique annoncée. Sans soutien troisième à Cœur, le fit 5–3 n’est pas établi : 3SA est la manche adaptée.",
     "difficulty": 3,
-    "difficultyReason": "Conclure à 4♠ après identification d'un fit 5-3 par troisième forcing.",
-    "caseFamily": "q400-d-suite-fit"
+    "difficultyReason": "Conclure à Sans-Atout après déni de fit et tenue de la couleur manquante.",
+    "caseFamily": "q400-d-suite-troisieme-sa"
   },
   {
     "id": "SEF-Q400-D-017",
@@ -1083,7 +1083,7 @@
   },
   {
     "id": "SEF-Q400-D-022",
-    "theme": "ouv",
+    "theme": "fortes",
     "hand": [
       [
         "A",
@@ -1125,7 +1125,7 @@
     ],
     "explain": "26 H réguliers : la zone 24 H et plus relève de 2♦ forcing de manche, non de 2♣ suivi de 2SA.",
     "difficulty": 3,
-    "difficultyReason": "Reconnaître 2♣ forte et artificielle avec 22 H réguliers, à distinguer de 2SA limité à 20–21 H.",
+    "difficultyReason": "Avec 25 H réguliers, distinguer 2♦ forcing de manche de l’ouverture 2♣ de 22–23 H.",
     "caseFamily": "q400-d-fortes-regulieres"
   },
   {
@@ -1611,7 +1611,7 @@
     ],
     "explain": "26 H réguliers : 2SA après 2♦ forcing de manche décrit la zone régulière 24 H et plus ; la manche reste obligatoire.",
     "difficulty": 3,
-    "difficultyReason": "Distinguer les ouvertures fortes et leur redemande précise",
+    "difficultyReason": "Décrire une main régulière de 24 H après 2♦, distinct de la zone 22–23 H après 2♣.",
     "caseFamily": "q400-d-redemande-sa"
   },
   {
@@ -1660,7 +1660,7 @@
       "3♣",
       "4SA"
     ],
-    "explain": "L’ouverture 2♦ est forcing de manche. Même avec zéro H, on ne passe pas sur 2SA ; sans majeure quatrième, 3SA conclut.",
+    "explain": "L’ouverture 2♦ est forcing de manche. Même avec zéro H, on ne passe pas sur 2SA ; sans majeure quatrième, 3SA conclut. La situation est à opposer au fort indéterminé 2♣ suivi de 2SA.",
     "difficulty": 2,
     "difficultyReason": "SEF 2024 — Comprendre le caractère non forcing de la redemande 2SA",
     "caseFamily": "q400-d-suite-fi-vs-fm"
@@ -1866,7 +1866,6 @@
     "theme": "sa",
     "hand": [
       [
-        "8",
         "3"
       ],
       [
@@ -1880,19 +1879,20 @@
         "V",
         "10",
         "9",
-        "7"
+        "8"
       ],
       [
         "8",
+        "6",
         "4"
       ]
     ],
     "h": 10,
     "shape": [
-      2,
+      1,
       2,
       7,
-      2
+      3
     ],
     "auction": [
       "Vous : 3SA (gambling)",
@@ -1908,62 +1908,57 @@
       "4SA",
       "4♦"
     ],
-    "explain": "Votre mineure maîtresse est Carreau, non Trèfle. Corrigez 4♣ en 4♦.",
+    "explain": "Votre mineure maîtresse est Carreau, non Trèfle. Corrigez 4♣ en 4♦ ; ce n’est pas l’annonce d’un contrôle.",
     "difficulty": 3,
     "difficultyReason": "Répondre au 4♣ passe ou corrige après sa propre ouverture de 3SA gambling : 4♦ avec la longue maîtresse Carreau.",
     "caseFamily": "q400-d-gambling-correction"
   },
   {
     "id": "SEF-Q400-D-039",
-    "theme": "sa",
+    "theme": "ouv",
     "hand": [
-      [
-        "9",
-        "6"
-      ],
-      [
-        "8",
-        "7"
-      ],
-      [
-        "7",
-        "4"
-      ],
       [
         "A",
         "R",
+        "9",
+        "8",
+        "6"
+      ],
+      [
+        "8"
+      ],
+      [
+        "D",
+        "7"
+      ],
+      [
         "D",
         "V",
-        "10",
         "9",
-        "8"
+        "7",
+        "5"
       ]
     ],
-    "h": 10,
+    "h": 12,
     "shape": [
+      5,
+      1,
       2,
-      2,
-      2,
-      7
+      5
     ],
-    "auction": [
-      "Vous : 3SA (gambling)",
-      "Adversaire : Passe",
-      "Partenaire : 4♣ (passe ou corrige)",
-      "Adversaire : Passe"
-    ],
-    "context": "Quelle décision ? Les enchères adverses non indiquées sont des Passes.",
-    "answer": "Passe",
+    "auction": [],
+    "context": "Donneur en première position. Quelle ouverture avec ce bicolore 5–5 ?",
+    "answer": "1♠",
     "choices": [
-      "4♥",
-      "4SA",
-      "Passe",
-      "4♦"
+      "2♣",
+      "1SA",
+      "1♠",
+      "1♣"
     ],
-    "explain": "Vous avez les sept Trèfles maîtres ; 4♣ est le contrat de repli recherché. Il faut passer.",
-    "difficulty": 3,
-    "difficultyReason": "Comprendre le passe ou corrige lorsque la longue est Trèfle.",
-    "caseFamily": "q400-d-gambling-correction"
+    "explain": "12 H, cinq Piques et cinq Trèfles, six perdantes (1 Pique, 1 Cœur, 2 Carreau, 2 Trèfle). L’exception à cinq perdantes ou moins ne s’applique pas : ouvrez normalement de 1♠.",
+    "difficulty": 5,
+    "difficultyReason": "Distinguer le cas ordinaire du seuil exceptionnel.",
+    "caseFamily": "q400-d-exception-bicolore"
   },
   {
     "id": "SEF-Q400-D-040",
@@ -2262,33 +2257,33 @@
     "theme": "multilandy",
     "hand": [
       [
-        "7",
+        "8",
         "3"
       ],
       [
         "A",
-        "R",
         "D",
-        "8",
+        "V",
+        "9",
         "6"
+      ],
+      [
+        "7",
+        "5"
       ],
       [
         "R",
         "V",
         "9",
-        "5"
-      ],
-      [
-        "8",
         "4"
       ]
     ],
-    "h": 13,
+    "h": 11,
     "shape": [
       2,
       5,
-      4,
-      2
+      2,
+      4
     ],
     "auction": [
       "Adversaire : 1SA (15–17 H)"
@@ -2301,7 +2296,7 @@
       "2SA",
       "2♥"
     ],
-    "explain": "Cinq Cœurs et quatre Carreaux : 2♥ décrit Cœur et une mineure ; pas les deux majeures.",
+    "explain": "Cinq Cœurs et quatre Trèfles avec 11 H : 2♥ décrit Cœur et une mineure. 2♦ montrerait une majeure sixième seule.",
     "difficulty": 4,
     "difficultyReason": "Identifier 2♥ majeure–mineure plutôt que 2♣ Landy ou 2♦ Multi.",
     "caseFamily": "q400-d-ml-majeure-mineure"
@@ -2669,29 +2664,29 @@
         "4"
       ],
       [
-        "A",
-        "R",
         "D",
+        "V",
+        "9",
         "8",
-        "6"
+        "6",
+        "5",
+        "4"
       ],
       [
-        "V",
         "7",
         "3"
       ],
       [
-        "D",
         "8",
         "4"
       ]
     ],
-    "h": 12,
+    "h": 3,
     "shape": [
       2,
-      5,
-      3,
-      3
+      7,
+      2,
+      2
     ],
     "auction": [
       "Partenaire : 1SA (15–17 H)",
@@ -2700,14 +2695,14 @@
     "context": "Rubensohl convenu. Quelle enchère ? Les enchères adverses non indiquées sont des Passes.",
     "answer": "3♦",
     "choices": [
+      "Passe",
       "2SA",
       "3♥",
-      "3SA",
       "3♦"
     ],
-    "explain": "Cinq Cœurs et 12 H : 3♦ transfère vers Cœur en Rubensohl. 3SA ne recherche pas le fit.",
-    "difficulty": 5,
-    "difficultyReason": "Reconnaître le Texas impossible à 3♦ comme Stayman forcing après intervention 2♥.",
+    "explain": "Sept Cœurs et seulement 3 H : la réponse naturelle 2♥ est dépassée par 2♠. Le Texas 3♦ permet de jouer 3♥ en passant après la rectification. 3♥ direct ne constitue pas ce Texas.",
+    "difficulty": 3,
+    "difficultyReason": "Repérer le Texas Cœur sous 2♠ adverse, sans confondre avec 3♥ direct dont le sens est conventionnel.",
     "caseFamily": "q400-d-rub-transfert-majeur"
   },
   {
@@ -3073,6 +3068,7 @@
     "hand": [
       [
         "R",
+        "D",
         "V",
         "9",
         "8",
@@ -3080,25 +3076,24 @@
       ],
       [
         "A",
-        "R",
-        "D",
-        "8",
-        "5"
+        "V",
+        "9",
+        "7",
+        "3"
+      ],
+      [
+        "8"
       ],
       [
         "7"
-      ],
-      [
-        "8",
-        "4"
       ]
     ],
-    "h": 13,
+    "h": 11,
     "shape": [
-      5,
+      6,
       5,
       1,
-      2
+      1
     ],
     "auction": [
       "Adversaire : 1♦"
@@ -3111,7 +3106,7 @@
       "2SA",
       "2♦"
     ],
-    "explain": "Deux majeures cinquièmes : le cue-bid à 2♦ sur 1♦ décrit ce bicolore, non une couleur naturelle.",
+    "explain": "Six Piques et cinq Cœurs avec 11 H, deux singletons et une vulnérabilité favorable : le cue-bid à 2♦ décrit les deux majeures au moins cinquièmes. Ne montrez pas seulement la plus longue.",
     "difficulty": 3,
     "difficultyReason": "Identifier les deux majeures cinquièmes dans Michaels sur mineure",
     "caseFamily": "q400-d-mich-majeures"
@@ -3268,18 +3263,7 @@
     "theme": "michaels",
     "hand": [
       [
-        "7"
-      ],
-      [
-        "A",
-        "R",
-        "D",
-        "8",
-        "6"
-      ],
-      [
-        "8",
-        "4"
+        "8"
       ],
       [
         "R",
@@ -3287,14 +3271,25 @@
         "9",
         "7",
         "5"
+      ],
+      [
+        "7"
+      ],
+      [
+        "A",
+        "D",
+        "V",
+        "10",
+        "8",
+        "6"
       ]
     ],
-    "h": 13,
+    "h": 11,
     "shape": [
       1,
       5,
-      2,
-      5
+      1,
+      6
     ],
     "auction": [
       "Adversaire : 1♠"
@@ -3307,7 +3302,7 @@
       "2SA",
       "2♠"
     ],
-    "explain": "Cinq Cœurs et cinq Trèfles : le cue-bid 2♠ montre le bicolore Cœur-Trèfle.",
+    "explain": "Cinq Cœurs et six Trèfles : le cue-bid 2♠ montre le bicolore Cœur-Trèfle, même quand la mineure est plus longue.",
     "difficulty": 4,
     "difficultyReason": "Lire un cue-bid bicolore après ouverture majeure",
     "caseFamily": "q400-d-mich-majeure-trefle"
@@ -3516,7 +3511,7 @@
   },
   {
     "id": "SEF-Q400-D-071",
-    "theme": "sa",
+    "theme": "chelem",
     "hand": [
       [
         "A",
@@ -3559,8 +3554,8 @@
       "3SA"
     ],
     "explain": "19 H face à 15–17 H : 34–36 H suffisent au petit chelem. 6SA est plus adapté que 4SA.",
-    "difficulty": 2,
-    "difficultyReason": "Choix du contrat à Sans-Atout avec une contrainte supplémentaire",
+    "difficulty": 3,
+    "difficultyReason": "Les réponses quantitatives initiales sur 1SA s’arrêtent à 17 H et 4SA ; 6SA direct n’est exercé que sur 2SA. Transfert du seuil 33 H.",
     "caseFamily": "q400-d-quantitatif-direct"
   },
   {
@@ -3970,32 +3965,32 @@
     "theme": "chelem",
     "hand": [
       [
-        "A",
-        "V",
-        "8",
+        "R",
+        "D",
+        "9",
         "6"
       ],
       [
-        "R",
-        "D",
-        "8",
-        "4"
-      ],
-      [
-        "V",
-        "9",
+        "A",
         "7",
         "3"
       ],
       [
-        "7"
+        "V",
+        "9",
+        "8",
+        "7",
+        "5"
+      ],
+      [
+        "8"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       4,
-      4,
-      4,
+      3,
+      5,
       1
     ],
     "auction": [
@@ -4009,7 +4004,7 @@
       "3♠",
       "4♠"
     ],
-    "explain": "Quatre Piques, singleton Trèfle, 11 H : 4♣ est un Splinter, non une couleur naturelle.",
+    "explain": "Quatre Piques, singleton Trèfle, 10 H plus la cinquième carte à Carreau et la réévaluation du fit : 4♣ est le Splinter qui décrit la courte.",
     "difficulty": 3,
     "difficultyReason": "Reconnaître le Splinter à Trèfle sur l'autre majeure.",
     "caseFamily": "q400-d-splinter-direct"
@@ -4019,33 +4014,33 @@
     "theme": "chelem",
     "hand": [
       [
-        "R",
-        "D",
-        "8",
-        "6"
+        "A",
+        "V",
+        "9",
+        "7"
       ],
       [
         "7"
       ],
       [
-        "A",
-        "V",
+        "D",
         "8",
-        "4"
+        "3"
       ],
       [
-        "V",
+        "R",
         "9",
         "7",
-        "3"
+        "6",
+        "4"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       4,
       1,
-      4,
-      4
+      3,
+      5
     ],
     "auction": [
       "Partenaire : 1♠"
@@ -4058,7 +4053,7 @@
       "4♠",
       "4♦"
     ],
-    "explain": "Quatre Piques et singleton Cœur avec valeurs de manche réévaluées : 4♥ décrit le fit et la courte.",
+    "explain": "Quatre Piques, singleton Cœur et une longue annexe, 10 H revalorisés : 4♥ décrit le fit et la courte ; 4♠ cacherait cette information.",
     "difficulty": 4,
     "difficultyReason": "Montrer simultanément le fit, une courte et la force de manche",
     "caseFamily": "q400-d-splinter-direct"
@@ -4084,12 +4079,12 @@
         "4"
       ],
       [
-        "V",
+        "9",
         "7",
         "3"
       ]
     ],
-    "h": 11,
+    "h": 10,
     "shape": [
       1,
       4,
@@ -4107,7 +4102,7 @@
       "4♦",
       "3♠"
     ],
-    "explain": "Quatre Cœurs, singleton Pique et 11 H plus la distribution : 3♠ double saut est le Splinter Pique.",
+    "explain": "Quatre Cœurs, singleton Pique et 10 H revalorisés par le fit et la cinquième carte Carreau : 3♠ double saut est le Splinter Pique.",
     "difficulty": 4,
     "difficultyReason": "Montrer simultanément le fit, une courte et la force de manche",
     "caseFamily": "q400-d-splinter-direct"
@@ -4316,32 +4311,32 @@
     "hand": [
       [
         "D",
-        "8",
-        "4"
+        "7",
+        "6"
       ],
       [
         "R",
         "V",
         "8",
-        "6"
+        "5"
       ],
       [
         "A",
-        "7",
+        "9",
+        "4",
         "3"
       ],
       [
-        "9",
-        "7",
-        "4"
+        "8",
+        "2"
       ]
     ],
     "h": 10,
     "shape": [
       3,
       4,
-      3,
-      3
+      4,
+      2
     ],
     "auction": [
       "Partenaire : 4SA (Blackwood cinq clés, atout Cœur)"
@@ -4354,7 +4349,7 @@
       "5♥",
       "5♣"
     ],
-    "explain": "Deux clés (Roi de Cœur, As de Carreau) sans Dame de Cœur : 5♥.",
+    "explain": "Deux clés (Roi de Cœur, As de Carreau), mais pas la Dame de Cœur. La Dame de Pique ne compte pas ici : 5♥.",
     "difficulty": 4,
     "difficultyReason": "Compter les cinq clés et tenir compte de la Dame d’atout",
     "caseFamily": "q400-d-rkcb-deux-dame"
@@ -4962,7 +4957,7 @@
   },
   {
     "id": "SEF-Q400-D-100",
-    "theme": "sa",
+    "theme": "chelem",
     "hand": [
       [
         "A",
@@ -5005,8 +5000,8 @@
       "4SA"
     ],
     "explain": "13 H face à 20–21 H donnent 33–34 H : le petit chelem est justifié, sans inviter au grand.",
-    "difficulty": 2,
-    "difficultyReason": "Choix du contrat à Sans-Atout avec une contrainte supplémentaire",
+    "difficulty": 4,
+    "difficultyReason": "Appliquer la zone quantitative de petit chelem sans transformer 4SA en Blackwood.",
     "caseFamily": "q400-d-quantitatif-direct"
   }
 ]

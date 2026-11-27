@@ -200,7 +200,7 @@
     "SEF-Q400-D-016": {
       "concept": "forcing.troisieme.suite",
       "stage": 2,
-      "minSession": 28,
+      "minSession": 30,
       "requires": [
         {
           "concept": "forcing.troisieme",
@@ -515,16 +515,20 @@
       ]
     },
     "SEF-Q400-D-039": {
-      "concept": "sa.gambling",
+      "concept": "ouv.bicolore.exception",
       "stage": 3,
-      "minSession": 27,
+      "minSession": 30,
       "requires": [
         {
-          "concept": "barrage.ouverture",
-          "minExposure": 2
+          "concept": "ouv.majeure",
+          "minExposure": 1
         },
         {
-          "concept": "sa1.seuil",
+          "concept": "ouv.mineure",
+          "minExposure": 3
+        },
+        {
+          "concept": "red.bicolore",
           "minExposure": 1
         }
       ]
@@ -753,8 +757,8 @@
     },
     "SEF-Q400-D-054": {
       "concept": "rubensohl.init",
-      "stage": 3,
-      "minSession": 42,
+      "stage": 1,
+      "minSession": 35,
       "requires": [
         {
           "concept": "apres_inter.base",
@@ -762,7 +766,7 @@
         },
         {
           "concept": "rubensohl.init",
-          "minExposure": 3
+          "minExposure": 1
         },
         {
           "concept": "sa1.stayman",
@@ -996,11 +1000,15 @@
     },
     "SEF-Q400-D-071": {
       "concept": "chelem.quantitatif",
-      "stage": 0,
-      "minSession": 39,
+      "stage": 3,
+      "minSession": 47,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "chelem.quantitatif",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa2.seuil",
           "minExposure": 1
         }
       ]
@@ -1170,6 +1178,10 @@
         {
           "concept": "chelem.controles",
           "minExposure": 2
+        },
+        {
+          "concept": "chelem.splinter",
+          "minExposure": 1
         }
       ]
     },
@@ -1185,6 +1197,10 @@
         {
           "concept": "chelem.controles",
           "minExposure": 2
+        },
+        {
+          "concept": "chelem.splinter",
+          "minExposure": 1
         }
       ]
     },
@@ -1407,11 +1423,15 @@
     },
     "SEF-Q400-D-100": {
       "concept": "chelem.quantitatif",
-      "stage": 0,
-      "minSession": 39,
+      "stage": 3,
+      "minSession": 47,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "chelem.quantitatif",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa2.seuil",
           "minExposure": 1
         }
       ]
