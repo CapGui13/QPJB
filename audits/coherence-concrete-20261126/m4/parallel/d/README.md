@@ -39,3 +39,27 @@ B #452, SHA e2af78a8a64fb5eb7db47ef89ee69c350e7c01ed : checkpoints natifs L/M (1
 - b-lm-independent-checkpoints.json : 36 couples de checkpoints B et provenance.
  
 Statut : laboratoire natif opérationnel et archives vérifiées ; recette historique globale incomplète, candidats A/B/C finaux non tous disponibles. Voir compléments ultérieurs sur cette branche. Aucune fusion ni publication.
+
+## Reprise après ouverture de #458
+Le gate opérationnel supplémentaire `tests/coherence-concrete-m4p-d-compare.cjs <dir> A|B|AB <SHA>` reçoit les 18 paires brutes. Vérifie la référence exacte ordonnée issue des archives D, SHA des blobs et du candidat déclaré, métadonnées stage/prérequis, 5 horizons, chaque réponse, et comparaison indépendante ; 0=REVIEW (non activation), 1=erreur technique, 2=HOLD pédagogique. A doit améliorer S5 et S20, B doit améliorer dette et préserver préfixe S1–20 ; AB exige les deux. Toute perte de preuve par concept, dette accrue sur un fondamental, terminal gap aggravé ou défaut structurel bloque. Latence reste un signal séparé (pas de seuil arbitraire). Les journaux d'interventions directes doivent être vérifiés au niveau de l'adaptateur (effets de trajectoire autorisés après S20 pour A). Le contrôle des contrastes est un proxy, pas un visa : les relations C non validées restent avis.
+ 
+Run 45984178809, SHA 3000849627064bab2bd755e809bc737793fc021f : gate de livraison PASS sur D/A (REVIEW), D/AB (HOLD), K/AB (12+45), D/B (préfixe altéré), référence falsifiée, SHA divergent, matrice incomplète. C #451 snapshot 0ffe95e5864eb8639a9e3be0e84b698d09930cf3 lu dans checkout séparé : 1915/1915 ID, famille, concept, réponse, niveau, force, distribution, séquence, stage et minSession conformes ; 28 relations, 36 revues IA, 1879 uniquement automatiques, zéro visa éditorial. Recette durable historique : contract 5969, evidence 21, M6 guards 131 assertions PASS. Wave2-resume échoue au compteur 1523 vs 1915, intégration progression échoue avec shallow Git, puis relance complète 45984503654 au SHA 85d2932997d9c594287c99947798fc2ef1371c38 : échec "Embedded catalogue byte-identical" (comparaison avec catalogue historique, pas une modification D). Ces trois échecs historiques de comptage/identité doivent être arbitrés par le coordinateur ; aucune assertion retirée ni modifiée. PR techniques #459/#462 fermées sans fusion.
+ 
+Autres historiques indépendamment relus :
+| Variante | Périmètre | Changements | Régressions strictes | Dette S180 | Preuves S180 |
+|---|---|---:|---:|---:|---:|
+| A historique | 18 paires S5, traces | 55 | 16 | — | — |
+| B historique | 18 paires S20, traces | 112 | 58 | — | — |
+| C historique | 18 paires S5, traces | 21 | 5 | — | — |
+| C2 | 18 paires S180, checkpoints natifs | 170 | 129 | 234376 | 1515 |
+| D | 18 paires S180, régénérées | 3 | 0 | 228622 | 1520 |
+| E | 18 paires S20, checkpoints V8 | 0 | 0 | — | — |
+| F | 18 paires S180, checkpoints natifs | 3 | 0 | 228622 | 1520 |
+| G | 18 paires S180, checkpoints natifs | 3 | 0 | 228622 | 1520 |
+| H | 18 paires S180, checkpoints natifs | 425 | 102 | 38653 | 1490 |
+| I | 18 paires S180, checkpoints natifs | 287 | 68 | 76718 | 1512 |
+| J | 18 paires S20, checkpoints V8 | 0 | 0 | — | — |
+| K | 18 paires S180, régénérées | 6 | 12 | 234613 | 1520 |
+ 
+La référence S180 est 228622 dette / 1520 preuves. Chaque chiffre de régression est une entrée métrique/profil/graine/horizon, non une trajectoire unique. A/B/C dans le tableau = variantes historiques, distinctes des agents actuels. Les checkpoints A–K sont relus à des niveaux différents de preuve, pas une nouvelle campagne native complète de toutes variantes. Sources et résultats dans replay-a-s5.json, replay-b-s20.json, replay-c-s5.json, historical-fhi-independent.json, historical-c2-dej-independent.json. 
+A agent #460 snapshot d3ff297d62fbf6eb97311663dcb642889774d7d8 : T, 18/18 paires S180 de checkpoints natifs, 3 substitutions, nearPairs S5 40→37 et S20 96→93, zéro régression au gate historique ; candidat très limité REVIEW pour A seul, pas gain de dette et pas autorisation de production. Voir a-t-independent-checkpoints.json. Contre-recette native externe sur artefacts T et B L/M/N/O lancée dans #464, SHA ae29fd8f513ae57c85ff65392d7b2ce76322e932, run 45984730024. Les branches externes sont lues seules. Ne pas considérer le lancement comme PASS.
