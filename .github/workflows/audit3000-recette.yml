@@ -1,0 +1,29 @@
+name: Audit 3000 recette candidat
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  recette:
+    if: github.head_ref == 'pedagogie/audit3000-20261127'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node tests/audit3000-integration.cjs
+      - run: node tests/audit3000-programme.cjs
+      - run: python scripts/verify_quiz_sef.py --html quizz.html --min-count 3000
+      - run: python scripts/audit_quiz_auction_legality.py --html quizz.html
+      - run: node tests/quizz-prerequis.cjs
+      - run: node tests/quizz-catalogue-live.cjs
+      - run: node tests/programme65-recette.cjs
+      - run: node --check quizz-parcours.js
