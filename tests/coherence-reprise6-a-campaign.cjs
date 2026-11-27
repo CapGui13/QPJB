@@ -2,11 +2,12 @@
 // Reprise 6 A, paired M6 and original D. No production modification.
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict');
 const T=require('../quizz-coherence-m6-traces.js'),D=require('../quizz-coherence-m4p-d-lab.js'),C=require('./coherence-concrete-m6-campaign.cjs'),legacy=require('./durable-m6-campaign.cjs'),F=require('../quizz-coherence-m4-diversite.js'),m2=require('../quizz-coherence-m2-ordre.js'),m3=require('../quizz-coherence-m3-prerequis.js'),A=require('../quizz-coherence-reprise6-a-composition.js');
+const L=require('../quizz-coherence-reprise6-a-lookahead.js');
 const BASE='13966e475cf986c6f76e7faf870377fdf4ef99aa',root=path.resolve(__dirname,'..');
 const [profile='autonome',rawSeed='11',rawHorizon='180',dest='reprise6-a-output',...variants]=process.argv.slice(2);
 const seed=Number(rawSeed),horizon=Number(rawHorizon),armsToTest=variants.length?variants:['saturation'];
 assert(T.PROFILES.includes(profile)&&T.SEEDS.includes(seed)&&T.HORIZONS.includes(horizon));
-assert(armsToTest.every(v=>['contrast','composition','early','balance','contrast-balance','saturation'].includes(v)));
+assert(armsToTest.every(v=>['contrast','composition','early','balance','contrast-balance','saturation','lookahead','lookahead3','lookahead5'].includes(v)));
 const git=(...args)=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});
 function sources(ref){return Object.fromEntries(git('ls-tree','--name-only',ref).trim().split('\n').filter(p=>p==='quizz.html'||/^quizz-.*\.js$/.test(p)||p==='parcours-recommandations.js').map(p=>[p,git('show',ref+':'+p)]))}
 const base=sources(BASE),historic=sources(T.BASE),head=git('rev-parse','HEAD').trim(),current=sources(head);
@@ -16,7 +17,14 @@ assert.equal(base['quizz-prerequis.js'],historic['quizz-prerequis.js']);
 for(const [p,src] of Object.entries(base))assert.equal(current[p],src,'A must not modify existing production source '+p);
 const full={coherenceM2:m2,coherenceFullOrder:true,transitionGroups:[{simple:m3.TEXAS_ELEMENTARY,complex:m3.TEXAS},{simple:m3.STAYMAN_SIMPLE,complex:m3.STAYMAN_FOURTH}]};
 const ids=d=>d.map(q=>q.id),sorted=d=>ids(d).sort(),copy=x=>JSON.parse(JSON.stringify(x));
-const settingsFor=v=>v==='historic'?{}:v==='native'?full:{...full,coherenceM1:A.make(v)};
+const prospective=v=>v.startsWith('lookahead');
+const settingsFor=v=>v==='historic'?{}:v==='native'||prospective(v)?full:{...full,coherenceM1:A.make(v)};
+function prepared(v,api,state,exercises,meta,options,log){
+ if(!prospective(v))return options;
+ const p=L.prepare({api,state,exercises,metadataById:meta,options,variant:v});
+ if(p.trials||p.decision)log.push({session:state.completed+1,trials:p.trials,decision:p.decision});
+ return {...options,coherenceM1:p.policy};
+}
 const core=D.CORE, objective=s=>A.targets[s]?{source:'declared',principal:A.targets[s].primary[0],secondary:A.targets[s].primary.slice(1).concat(A.targets[s].secondary),title:A.targets[s].title}:null;
 function checkResume(api,state,exercises,options,deck){
  for(const restored of [api.load(JSON.stringify(state)),api.importProgress(api.exportProgress(state,exercises,{}))]){
@@ -33,11 +41,12 @@ function checkConsolidation(api,state,exercises,options){
 }
 function m6(v){
  const e=C.engine(v==='historic'?historic:base),{api,exercises,meta,effectiveMeta}=e,state=api.empty(),sessions=[],events=[];
- const options={...settingsFor(v),observe:r=>events.push(r)},catalogue=JSON.stringify(exercises),metadata=JSON.stringify(meta);
+ const baseOptions={...settingsFor(v),observe:r=>events.push(r)},decisions=[],catalogue=JSON.stringify(exercises),metadata=JSON.stringify(meta);
  let resume=0,consolidations=0;
  for(let s=1;s<=horizon;s++){
   e.clock(s*86400000);
-  const started=performance.now(),deck=api.start(state,exercises,options),latencyMs=performance.now()-started;
+  const started=performance.now(),options=prepared(v,api,state,exercises,meta.byId,baseOptions,decisions),deck=api.start(state,exercises,options),latencyMs=performance.now()-started;
+  const decision=decisions.at(-1);if(decision?.session===s&&decision.decision){assert(deck.some(q=>q.id===decision.decision.id));assert(!deck.some(q=>q.id===decision.decision.oldId))}
   legacy.verifyEarly(deck,s);assert.equal(deck.length,10);assert.equal(new Set(ids(deck)).size,10);assert.equal(new Set(deck.map(q=>q.caseFamily||q.id)).size,10);
   const elig=api.eligibilityBatch(deck,state,exercises);assert(elig.every(x=>x.eligible));
   const trace=T.traceSession({deck,selection:state.active.selection,meta:effectiveMeta,rawMeta:meta,elig,pattern:q=>api.decisionPatternForM6(q),s,history:sessions,profile,seed,latencyMs,objective:objective(s)});
@@ -51,7 +60,7 @@ function m6(v){
  }
  assert.equal(JSON.stringify(exercises),catalogue);assert.equal(JSON.stringify(meta),metadata);
  const checkpoints=T.HORIZONS.filter(n=>n<=horizon).map(n=>({session:n,...T.metrics(sessions.slice(0,n))}));assert(checkpoints.every(x=>!x.violations.length));
- return {profile,seed,horizon,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,events,checkpoints,resume,consolidations};
+ return {profile,seed,horizon,policy:'fixed-385-395-v1',catalogueKey:'frozen-1915',sessions,events,decisions,checkpoints,resume,consolidations};
 }
 function strict(a,b){
  const last=new Map(),debt={},proof=new Map(),out=[];
@@ -63,12 +72,16 @@ function strict(a,b){
 const original=fs.readFileSync(path.join(__dirname,'coherence-concrete-m4-campaign.cjs'),'utf8');let harness=original;
 function replace(a,b,n=1){assert.equal(harness.split(a).length,n+1,'D adapter anchor');harness=harness.replaceAll(a,b)}
 replace("verify=true,measure=()=>0})","verify=true,measure=()=>0,options={}})");
-replace("const api=mod.exports,state=api.empty(),sessions=[]","const settings={...options,observe:r=>changes.push(r)};\n  const api=mod.exports,state=api.empty(),sessions=[]");
-replace("api.start(state,exercises)","api.start(state,exercises,settings)",2);
+replace("const api=mod.exports,state=api.empty(),sessions=[]","const api=mod.exports,state=api.empty(),sessions=[]");
+replace("const t=measure(),deck=api.start(state,exercises)","const t=measure(),settings=typeof options==='function'?options(api,state,exercises,meta):options,deck=api.start(state,exercises,settings)");
+replace("api.start(state,exercises)","api.start(state,exercises,settings)");
 const mod={exports:{}};new Function('module','exports','require',harness)(mod,mod.exports,require);
 const requireBase=require('node:module').createRequire(path.join(root,'quizz-parcours.js')),exercises=JSON.parse(embedded(base['quizz.html'])).exercises,meta=requireBase('./quizz-prerequis.js').byId;
 function d(v){
- const t=mod.exports.run({source:base['quizz-parcours.js'],requireBase,exercises,meta,profile,seed,horizon,verify:true,measure:()=>performance.now(),options:settingsFor(v)});
+ const decisions=[];
+ const t=mod.exports.run({source:base['quizz-parcours.js'],requireBase,exercises,meta,profile,seed,horizon,verify:true,measure:()=>performance.now(),options:(api,state,exercises,meta)=>prepared(v,api,state,exercises,meta,settingsFor(v),decisions)});
+ t.decisions=decisions;
+ for(const row of decisions.filter(x=>x.decision)){const d=row.decision,deck=t.sessions[row.session-1].rows;assert(deck.some(q=>q.id===d.id)&&!deck.some(q=>q.id===d.oldId));}
  assert(t.checkpoints.every(c=>!c.violations&&!c.dupes&&!c.short&&!c.earlyViolations));
  D.analyze(t,{catalogue:exercises,metadata:meta,features:F.features,verifyResponse:true});return t;
 }
@@ -83,9 +96,11 @@ for(const v of armsToTest){
  assert(c.changes.slice(0,2).every(x=>x.sameSet&&x.sameOrder));assert(!changes.some(x=>x.session<3));
  const pair=D.comparePair({profile,seed,horizon,before:bd,after:ad},{catalogue:exercises,metadata:meta,features:F.features,verifyResponse:true,legacy:true});
  const objective={m6:[objectiveS3(b),objectiveS3(a)],d:[objectiveS3(bd),objectiveS3(ad)]};
- results[v]={m6:{comparison:c,strict:strict(b,a),historic:T.compare(m6arms.historic,a),resumes:a.resume,consolidations:a.consolidations},d:pair,objective};
+ const objective5=t=>L.profile({session:5,metadataById:meta},t.sessions[4].rows);
+ const redRoles={m6:[objective5(b),objective5(a)],d:[objective5(bd),objective5(ad)]};
+ results[v]={m6:{comparison:c,strict:strict(b,a),historic:T.compare(m6arms.historic,a),resumes:a.resume,consolidations:a.consolidations},d:pair,objective,redRoles,decisions:{m6:a.decisions,d:ad.decisions}};
 }
 const summary={profile,seed,horizon,base:BASE,head,results};
 fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(path.join(dest,'summary.json'),JSON.stringify(summary));fs.writeFileSync(path.join(dest,'traces.json'),JSON.stringify({m6:m6arms,d:darms}));
 for(const [name,arm] of Object.entries(m6arms))fs.writeFileSync(path.join(dest,'fiche-'+name+'.md'),C.fiche({...arm,revision:head}));
-console.log(JSON.stringify({profile,seed,horizon,head,results:Object.fromEntries(Object.entries(results).map(([v,r])=>[v,{m6Changes:r.m6.comparison.changes.filter(x=>!x.sameSet).length,m6Strict:r.m6.strict.length,m6Review:r.m6.comparison.checkpoints.flatMap(x=>x.review),dChanges:r.d.changes,dRegressions:r.d.regressions.filter(x=>x.metric!=='latency-observation').length,objective:r.objective,resumes:r.m6.resumes,consolidations:r.m6.consolidations}]))}));
+console.log(JSON.stringify({profile,seed,horizon,head,results:Object.fromEntries(Object.entries(results).map(([v,r])=>[v,{m6Changes:r.m6.comparison.changes.filter(x=>!x.sameSet).length,m6Strict:r.m6.strict.length,m6Review:r.m6.comparison.checkpoints.flatMap(x=>x.review),dChanges:r.d.changes,dRegressions:r.d.regressions.filter(x=>x.metric!=='latency-observation').length,objective:r.objective,redRoles:r.redRoles,decisions:r.decisions,resumes:r.m6.resumes,consolidations:r.m6.consolidations}]))}));
