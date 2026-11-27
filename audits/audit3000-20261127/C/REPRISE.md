@@ -2,24 +2,15 @@
 
 Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
 Branche : pedagogie/audit3000-c
-Dernier SHA vérifié avant écriture du présent journal : d37d4415cdd61a4bcfe4073dc5fd9976d9844dd9
-Passes 1 et 2 : 81 verdicts individuels, 20 corrections complètes, 1 arbitrage. Contrôles : voir REVUE.md.
+Dernier SHA vérifié avant écriture du présent journal : 8cc0aa5b40a4f7e84fbe0e71284f0e43c1d0a854
+Passes 1 à 3 : 130 verdicts individuels, 26 corrections complètes, 1 arbitrage, 1 patch prérequis et réservoir. Contrôles : voir REVUE.md.
 
-Reprendre au concept sa1.stayman / sa1.texas / sa2.seuil, sans relire les 81 verdicts déjà rédigés. Étendre les JSON, jamais remplacer les décisions antérieures sans motif. Contrôler les groupes explicites et réserves avec le programme normalisé et le catalogue à la base immuable.
+Reprendre au concept sa1.texas / sa2.texas / sa1.stayman.reponse / sa2.stayman.reponse, sans relire les 130 verdicts déjà rédigés. Étendre les JSON, jamais remplacer les décisions antérieures sans motif. Contrôler groupes explicites et réserves avec programme normalisé et catalogue à la base immuable.
 
-## IDs restants : 527
-
-### sa1.stayman (14)
-SEF-034-1, SEF-035-2, SEF-036-1, SEF-N094-3, SEF-N095-1, SEF-N096-1, SEF-C-004, V2-M2-017, SEF-Q400-B-019, SEF-Q400-B-020, SEF-Q400-B-021, SEF-Q685-B-022, SEF-Q685-B-023, SEF-Q685-B-024
+## IDs restants : 478
 
 ### sa1.texas (22)
 SEF-037-1, SEF-038-1, SEF-039-2, SEF-039-1, SEF-040-2, SEF-N082-2, SEF-N084-1, SEF-N085-1, SEF-N087-2, SEF-V44-015, SEF-V44-016, SEF-V49-017, SEF-C-003, V2-M2-018, V2-M2-030, SEF-Q400-B-022, SEF-Q400-B-023, SEF-Q400-B-024, SEF-Q685-B-032, SEF-Q685-B-034, SEF-Q685-B-035, SEF-Q685-B-037
-
-### sa2.seuil (24)
-SEF-041-2, SEF-041-1, SEF-N097-3, SEF-N097-1, SEF-N098-1, SEF-N098-2, SEF-N099-2, SEF-N099-1, SEF-N100-3, SEF-N100-2, SEF-V44-014, SEF-C-012, V2-M2-001, SEF-PN26-M1-024, SEF-Q400-B-013, SEF-Q400-B-015, SEF-Q400-B-016, SEF-Q400-B-017, SEF-Q400-B-018, SEF-Q685-B-016, SEF-Q685-B-017, SEF-Q685-B-018, SEF-Q685-B-019, SEF-Q685-B-020
-
-### sa2.stayman (11)
-SEF-N101-3, SEF-N102-2, SEF-N103-2, V2-M2-002, V2-M2-005, SEF-PN26-M1-034, SEF-Q400-B-039, SEF-Q400-B-040, SEF-Q685-B-025, SEF-Q685-B-026, SEF-Q685-B-027
 
 ### sa2.texas (14)
 SEF-N104-1, SEF-N104-2, SEF-N105-1, SEF-N105-2, SEF-C-005, SEF-Q26-M2-007, V2-M2-003, V2-M2-004, V2-M2-006, SEF-Q400-B-041, SEF-Q400-B-042, SEF-Q685-B-038, SEF-Q685-B-039, SEF-Q685-B-040
