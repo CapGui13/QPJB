@@ -39,3 +39,7 @@ Cumul : {"VALIDE":265,"RECLASSER_REFORMULER":74,"ERREUR_PEDAGOGIQUE":12,"ARBITRA
 ## Passe 10 (361–400)
 
 Cumul : {"VALIDE":292,"RECLASSER_REFORMULER":79,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":17} ; 80 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Les Q685-A des bicolores chers 20–21 HL font l'objet d'un arbitrage sur la disponibilité du saut et le traitement exact, sans modification spéculative. Q685-A-108–110 : explicitation HLD des soutiens simples. Q685-A-111 : frontière du modérateur à 8 H. Contrôle ensemble exact des 400 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 54 restant à relire. Aucun test natif exécuté.
+
+## Passe 11 (401–454)
+
+Cumul : {"VALIDE":330,"RECLASSER_REFORMULER":98,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":14} ; 99 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Six arbitrages précédents levés : le bicolore cher conserve 18–23 HL sans saut ; force 20–23 à préciser au tour suivant (FFB séance 18, Chailley bicolores 2). Ne pas confondre avec bicolore économique à saut. Les 2SA fittés directs Q685-A-131–139 précisent non passé et grille de HLD brute sans décote d'honneur court. Tous les 454 IDs ont une première revue individuelle, aucun ID restant. Contrôle ensemble exact des 454 IDs, unicité des corrections et présence des réponses dans les choix exécuté. Restent revue globale des redondances et affectations/réserves, et tests natifs.
