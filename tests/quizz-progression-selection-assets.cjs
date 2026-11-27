@@ -25,7 +25,7 @@ for(const name of ['quizz-coherence-m3-prerequis.js','quizz-coherence-m2-ordre.j
 assert.ok(html.includes(engine)&&html.indexOf(plan)<html.indexOf(engine));
 for(const module of ["quizz-pedagogie-initiation.js","quizz-pedagogie-intermediaire.js","quizz-pedagogie-avancee.js"])assert.ok(read('scripts/build_public_site.py').includes('"'+module+'"'));
 const data=JSON.parse(html.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
-assert.equal(data.exercises.length,2315);
+assert.equal(data.exercises.length,3000);
 assert.equal(data.themes.length,22);
 assert.ok(read('scripts/build_public_site.py').includes('"quizz-parcours.js","quizz-prerequis.js"'));
 const cached=new Set(),listeners={},requests=[];

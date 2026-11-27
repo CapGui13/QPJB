@@ -20,7 +20,7 @@ const server=http.createServer((req,res)=>{try{let u=new URL(req.url,'http://loc
     await page.locator('#parcours-start').click();await page.locator('#question-heading').waitFor({state:'visible'});
     const result=await page.evaluate(({profile,s})=>{
      const key='qpjb-sef-parcours-01',api=window.QPJBParcours,all=JSON.parse(document.querySelector('#training-data').textContent).exercises,meta=window.QPJBPrerequis.byId;
-     const state=api.load(localStorage.getItem(key));if(state.completed!==s-1||state.active.ids.length!==10||all.length!==2315)throw Error('Unexpected actual UI state');
+     const state=api.load(localStorage.getItem(key));if(state.completed!==s-1||state.active.ids.length!==10||all.length!==3000)throw Error('Unexpected actual UI state');
      const byId=new Map(all.map(q=>[q.id,q]));const selection=state.active.selection;
      const hash=str=>{let h=2166136261;for(const c of str)h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;return h/4294967296};
      const threshold={autonome:0,intermediaire:.33,faible:.75}[profile];
@@ -39,8 +39,8 @@ const server=http.createServer((req,res)=>{try{let u=new URL(req.url,'http://loc
  assert.equal(rows.length,195);fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(path.join(dest,'ui-selections.json'),JSON.stringify(rows,null,2));
  const empty=rows.filter(x=>!x.objectiveItems).map(x=>({profile:x.profile,session:x.session}));
  console.log('PROGRAMME_UI_RESULT '+JSON.stringify({browser:process.env.PROGRAMME_BROWSER||'chromium',sessions:rows.length,questions:rows.length*10,empty,profiles:['autonome','intermediaire','faible'].map(p=>({p,objectiveItems:rows.filter(r=>r.profile===p).reduce((n,r)=>n+r.objectiveItems,0)}))}));
- const fresh=rows.flatMap(r=>r.items.filter(q=>q.id.startsWith('SEF-Q400-')));console.log('QCM400_UI '+JSON.stringify({occurrences:fresh.length,distinct:new Set(fresh.map(q=>q.id)).size,byLot:Object.fromEntries(['A','B','C','D'].map(k=>[k,fresh.filter(q=>q.id.startsWith('SEF-Q400-'+k+'-')).length]))}));
- for(const k of ['A','B','C','D'])assert(fresh.some(q=>q.id.startsWith('SEF-Q400-'+k+'-')),'No new UI selection from '+k);
+ const fresh=rows.flatMap(r=>r.items.filter(q=>q.id.startsWith('SEF-Q685-')));console.log('QCM685_UI '+JSON.stringify({occurrences:fresh.length,distinct:new Set(fresh.map(q=>q.id)).size,byLot:Object.fromEntries(['A','B','C','D'].map(k=>[k,fresh.filter(q=>q.id.startsWith('SEF-Q685-'+k+'-')).length]))}));
+ for(const k of ['A','B','C','D'])assert(fresh.some(q=>q.id.startsWith('SEF-Q685-'+k+'-')),'No new UI selection from '+k);
  assert.equal(empty.length,0,'Each actual UI lesson has a scheduled objective');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e);process.exitCode=1;server.close()});
