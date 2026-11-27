@@ -194,3 +194,138 @@ Contrôles exécutés en JavaScript sur les données Git réelles : 13 cartes, r
 - drurySuite : R7 D974 A962 V83 — main exacte/permutation
 - drurySuite : R83 AD7 V962 974 — suite Drury zone
 - drurySuite : D974 R7 A962 V83 — main exacte/permutation
+
+## Passe 2 — cas supplémentaires
+
+77 nouveaux cas retenus sur 126. Total provisoire 160/170, répartition {"quantitatif":25,"majeurs":65,"mineurs-bicolore":26,"roudi":25,"drury":19}. Les deux ouvertures 2SA B-007/008 ont été déplacées vers S9 pour préserver l'introduction anticipée limitée de S4. Même contrôles de cartes, force, forme, légalité et distracteurs, comparaisons exactes et permutations, empreintes d'honneurs, métadonnées et groupe existant ; vérification spécifique des traitements pour chaque candidat. Les analogues sont réels ; les distracteurs de l'analogue sont repris lorsqu'ils restent légaux et proches dans la même séquence.
+
+| ID | H | P-C-K-T | Réponse | Analogue | Séance | Critère | Similarité décision/force/forme |
+|---|---:|---|---|---|---:|---|---|
+| SEF-Q685-B-084 | 20 | 3–3–5–2 | 2SA | SEF-004-1 | 9 | Une mineure cinquième et vingt points, ouverture de 2SA. | aucune |
+| SEF-Q685-B-085 | 20 | 3–2–4–4 | 2SA | SEF-004-1 | 9 | Deux mineures quatrièmes, vingt points, pas de majeure cinquième. | aucune |
+| SEF-Q685-B-086 | 20 | 4–3–3–3 | 2SA | SEF-004-1 | 9 | Vingt points avec une majeure quatrième seulement. | aucune |
+| SEF-Q685-B-087 | 8 | 2–3–4–4 | 2SA | SEF-032-1 | 4 | Huit points, deux mineures quatrièmes et aucun fit majeur à rechercher. | aucune |
+| SEF-Q685-B-088 | 10 | 3–2–4–4 | 3SA | SEF-033-1 | 4 | Dix points, manche directe avec deux mineures quatrièmes. | aucune |
+| SEF-Q685-B-089 | 20 | 3–2–5–3 | 3♦ | SEF-L40-001 | 13 | Cinq Carreaux et deux Cœurs, réponse négative. | aucune |
+| SEF-Q685-B-090 | 20 | 2–4–4–3 | 3♥ | SEF-L41-001 | 13 | Quatre Cœurs, deux Piques : réponse positive Cœur seulement. | aucune |
+| SEF-Q685-B-091 | 21 | 3–4–4–2 | 3♥ | SEF-L41-001 | 13 | Quatre Cœurs et quatre Carreaux, seule la majeure intervient. | aucune |
+| SEF-Q685-B-092 | 20 | 3–4–3–3 | 3♥ | SEF-L41-001 | 13 | Quatre Cœurs et trois Piques, code indépendant de la force. | SEF-L41-001, V2-M2-007 |
+| SEF-Q685-B-093 | 21 | 4–2–4–3 | 3♠ | SEF-L43-005 | 13 | Quatre Piques, deux Cœurs : 3♠. | aucune |
+| SEF-Q685-B-094 | 21 | 4–3–3–3 | 3♠ | SEF-L43-005 | 13 | Pique quatrième et trois Cœurs, pas de double majeure. | aucune |
+| SEF-Q685-B-095 | 21 | 4–3–4–2 | 3♠ | SEF-L43-005 | 13 | Quatre Piques et quatre Carreaux, code Pique. | aucune |
+| SEF-Q685-B-096 | 20 | 4–4–3–2 | 3SA | SEF-L38-001 | 13 | Deux majeures quatrièmes malgré le doubleton Trèfle. | SEF-L38-001, V2-M2-008, SEF-Q400-B-093 |
+| SEF-Q685-B-097 | 21 | 4–4–2–3 | 3SA | SEF-L38-001 | 13 | Deux majeures quatrièmes et doubleton Carreau. | aucune |
+| SEF-Q685-B-098 | 20 | 4–2–4–3 | 3SA | SEF-L23-006 | 13 | Deux Cœurs seulement  | V2-M2-010 |
+| SEF-Q685-B-099 | 21 | 3–2–5–3 | 3SA | SEF-L23-006 | 13 | Deux Cœurs commandés par Roi-Dame : refus du fit troisième. | aucune |
+| SEF-Q685-B-100 | 20 | 3–4–4–2 | 3♥ | SEF-Q26-M2-008 | 13 | Quatre Cœurs, rectifiez à 3♥ sans sauter la manche. | aucune |
+| SEF-Q685-B-101 | 21 | 3–4–3–3 | 3♥ | SEF-Q26-M2-008 | 13 | Quatre Cœurs avec vingt et un points, la rectification décrit le fit. | aucune |
+| SEF-Q685-B-102 | 21 | 3–4–3–3 | 3♠ | SEF-L39-001 | 13 | Trois Piques, la rectification est fittée. | aucune |
+| SEF-Q685-B-103 | 20 | 3–3–5–2 | 3♠ | SEF-L39-001 | 13 | Trois Piques et cinq Carreaux, 3♠. | aucune |
+| SEF-Q685-B-104 | 20 | 2–4–4–3 | 3SA | SEF-Q26-M2-009 | 13 | As second à Pique, ne garantit pas huit atouts. | aucune |
+| SEF-Q685-B-105 | 7 | 2–4–4–3 | 4♥ | SEF-V3-023-2 | 28 | Quatre Cœurs et sept points : le fit est trouvé. | aucune |
+| SEF-Q685-B-106 | 7 | 3–4–2–4 | 4♥ | SEF-V3-023-2 | 28 | Quatre Cœurs et sept points, aucune raison de choisir SA. | aucune |
+| SEF-Q685-B-107 | 6 | 4–2–4–3 | 3SA | V2-M2-024 | 28 | Quatre Piques et deux Cœurs, pas de fit après 3♥. | aucune |
+| SEF-Q685-B-108 | 7 | 4–3–3–3 | 3SA | V2-M2-024 | 28 | Quatre Piques, trois Cœurs seulement, manche à SA. | aucune |
+| SEF-Q685-B-109 | 7 | 2–4–4–3 | 3SA | SEF-L07-002 | 28 | Quatre Cœurs, deux Piques : pas de fit après 3♠. | aucune |
+| SEF-Q685-B-110 | 10 | 4–3–4–2 | 4♦ | SEF-L39-002 | 28 | Après la double majeure, 4♦ transfère vers les Piques de l'ouvreur. | aucune |
+| SEF-Q685-B-111 | 10 | 3–4–2–4 | 4♣ | SEF-Q26-M2-020 | 28 | Après 3SA artificiel, 4♣ transfère vers les Cœurs de la main forte. | aucune |
+| SEF-Q685-B-112 | 7 | 5–2–3–3 | 4♠ | SEF-V3-026-1 | 28 | Rectification fittée, cinq Piques et sept points, manche. | aucune |
+| SEF-Q685-B-113 | 7 | 6–2–3–2 | 4♠ | SEF-V3-026-1 | 28 | Six Piques et sept points, fit au moins neuvième. | aucune |
+| SEF-Q685-B-114 | 6 | 5–3–2–3 | Passe | SEF-Q26-M2-022 | 28 | 3SA nie trois Piques  | aucune |
+| SEF-Q685-B-115 | 4 | 2–3–7–1 | 3♣ | SEF-V482-002 | 14 | Sept Carreaux, quatre points : Texas Carreau. | aucune |
+| SEF-Q685-B-116 | 3 | 3–2–6–2 | 3♣ | SEF-V482-002 | 14 | Six Carreaux, trois points, partielle à Carreau. | SEF-Q685-B-061 |
+| SEF-Q685-B-117 | 17 | 4–3–3–3 | 2SA | SEF-L25-007 | 27 | Non minimum et Roi troisième, modulation favorable à 2SA. | aucune |
+| SEF-Q685-B-118 | 17 | 3–4–3–3 | 2SA | SEF-L25-007 | 27 | Dix-sept points, Roi troisième, complément favorable. | aucune |
+| SEF-Q685-B-119 | 15 | 3–4–3–3 | 3♣ | SEF-L25-008 | 15 | Minimum et Valet troisième : rectification normale. | aucune |
+| SEF-Q685-B-120 | 15 | 3–4–4–2 | 3♣ | SEF-L25-008 | 15 | Doubleton Trèfle sans honneur, rectification normale. | aucune |
+| SEF-Q685-B-121 | 16 | 2–4–3–4 | 3♦ | SEF-L37-004 | 15 | Trois Carreaux, rectification sans modulation. | aucune |
+| SEF-Q685-B-122 | 4 | 2–3–6–2 | Passe | SEF-V482-004 | 28 | Partielle atteinte à Carreau, quatre points. | aucune |
+| SEF-Q685-B-123 | 13 | 3–1–3–6 | 3♥ | SEF-V482-005 | 28 | Singleton Cœur, 13 H, courte nommée au palier de trois. | aucune |
+| SEF-Q685-B-124 | 21 | 4–3–3–3 | 4♣ | SEF-Q26-M2-012 | 28 | Roi troisième et maximum, soutien approprié. | aucune |
+| SEF-Q685-B-125 | 21 | 3–3–3–4 | 4♣ | SEF-Q26-M2-012 | 28 | Quatre Trèfles avec trois honneurs, acceptation. | aucune |
+| SEF-Q685-B-126 | 9 | 5–5–1–2 | 4♦ | SEF-L38-002 | 28 | Deux majeures cinquièmes et neuf points, 4♦ de choix. | aucune |
+| SEF-Q685-B-127 | 6 | 5–5–2–1 | 4♦ | SEF-L38-002 | 28 | Deux majeures cinquièmes et six points, choix de manche. | SEF-L38-002 |
+| SEF-Q685-B-128 | 20 | 2–4–4–3 | 4♥ | V1-M2-002 | 28 | Quatre Cœurs contre deux Piques, choisissez la meilleure longueur. | aucune |
+| SEF-Q685-B-129 | 20 | 2–3–5–3 | 4♥ | V1-M2-002 | 28 | Trois Cœurs contre deux Piques, huit contre sept atouts. | aucune |
+| SEF-Q685-B-130 | 20 | 3–2–5–3 | 4♠ | V2-M2-013 | 28 | Trois Piques contre deux Cœurs, fit huitième. | aucune |
+| SEF-Q685-B-131 | 11 | 5–2–4–2 | 2♣ | SEF-V4-079-3 | 29 | Cinq Piques et onze points, recherche de fit 5–3. | aucune |
+| SEF-Q685-B-132 | 11 | 6–2–3–2 | 2♣ | SEF-V4-079-3 | 29 | Six Piques, onze points, recherche de fit et de force. | aucune |
+| SEF-Q685-B-133 | 12 | 3–5–2–3 | 2♣ | SEF-V4-085-3 | 29 | Cinq Cœurs et douze points, Roudi avant de choisir. | SEF-Q400-B-057 |
+| SEF-Q685-B-134 | 11 | 4–2–4–3 | 2SA | V2-M6-001 | 29 | Quatre Piques seulement et onze points, invitation naturelle. | aucune |
+| SEF-Q685-B-135 | 6 | 5–2–4–2 | 2♠ | SEF-V4-080-4 | 29 | Cinq Piques et six points, répétition faible. | aucune |
+| SEF-Q685-B-136 | 6 | 3–4–3–3 | Passe | SEF-V4-087-1 | 29 | Quatre Cœurs, six points, restez à 1SA. | aucune |
+| SEF-Q685-B-137 | 13 | 2–3–3–5 | 2♦ | SEF-V4-082-1 | 31 | Deux Piques, cinq Trèfles, réponse négative indépendamment de la force. | SEF-V4-082-1 |
+| SEF-Q685-B-138 | 14 | 3–3–3–4 | 2♠ | SEF-V4-084-1 | 31 | Trois Piques et quatorze points, 2♠ codé. | SEF-V4-084-1 |
+| SEF-Q685-B-139 | 12 | 3–2–5–3 | 2♦ | SEF-V4-088-1 | 31 | Deux Cœurs, mineure cinquième et ouverture minimum. | SEF-V4-088-1 |
+| SEF-Q685-B-140 | 12 | 3–3–4–3 | 2♥ | SEF-V4-089-1 | 31 | Trois Cœurs et douze points, minimum. | SEF-V4-089-1 |
+| SEF-Q685-B-141 | 14 | 3–3–4–3 | 2♠ | SEF-V4-090-1 | 31 | Trois Cœurs et quatorze points, maximum. | SEF-V4-090-1 |
+| SEF-Q685-B-142 | 11 | 3–5–3–2 | 2SA | SEF-V44-062 | 40 | Cinq Cœurs, onze points, pas de fit : invitation à SA. | SEF-V44-062 |
+| SEF-Q685-B-143 | 11 | 3–5–3–2 | 3♥ | SEF-V44-064 | 40 | Fit Cœur et minimum, onze points, invitation à 3♥. | SEF-V44-064, V2-M6-005 |
+| SEF-Q685-B-144 | 12 | 5–3–3–2 | 4♠ | SEF-V44-065 | 40 | Fit Pique et maximum, douze points, manche. | SEF-V44-065 |
+| SEF-Q685-B-145 | 13 | 3–5–3–2 | 4♥ | SEF-V44-066 | 40 | Fit Cœur même minimum, treize points, manche. | SEF-V44-066 |
+| SEF-Q685-B-146 | 10 | 2–4–4–3 | 2♣ | SEF-V4-098-1 | 30 | Quatre Cœurs et doubleton, dix points avec le neuvième atout. | SEF-V4-098-1, SEF-Q685-B-080 |
+| SEF-Q685-B-147 | 10 | 3–4–2–4 | 2♣ | SEF-V4-098-1 | 30 | Quatre Cœurs et doubleton Carreau, dix points, soutien constructif. | aucune |
+| SEF-Q685-B-148 | 10 | 3–3–4–3 | 2♥ | SEF-V4-097-1 | 30 | Trois Cœurs, dix points sans courte, soutien simple. | SEF-V4-097-1, SEF-Q26-M6-008, SEF-Q685-B-081 |
+| SEF-Q685-B-149 | 10 | 3–3–4–3 | 2♠ | SEF-V4-103-1 | 30 | Trois Piques, dix points sans courte, soutien simple. | SEF-V4-103-1 |
+| SEF-Q685-B-150 | 6 | 3–2–4–4 | 1SA | SEF-V4-100-2 | 30 | Deux Cœurs, six points et pas de fit. | SEF-V4-100-2 |
+| SEF-Q685-B-151 | 6 | 2–3–4–4 | 1SA | SEF-V4-106-1 | 30 | Deux Piques et six points, 1SA. | aucune |
+| SEF-Q685-B-152 | 10 | 3–4–5–1 | 2SA | SEF-V44-067 | 30 | Quatre Cœurs et singleton Trèfle, 2SA fitté plutôt que Drury. | SEF-V44-067 |
+| SEF-Q685-B-153 | 10 | 3–4–5–1 | 2SA | SEF-V44-067 | 30 | Quatre Cœurs et singleton Trèfle, dix points, 2SA fitté. | SEF-V44-067, SEF-Q685-B-152 |
+| SEF-Q685-B-154 | 9 | 2–5–3–3 | 2♥ | SEF-V4-101-2 | 32 | Ouverture tactique non vulnérable, couleur d'entame, répétition faible. | aucune |
+| SEF-Q685-B-155 | 13 | 3–5–3–2 | 2♦ | SEF-V4-102-1 | 32 | Vraie ouverture régulière, 2♦ d'attente. | SEF-V4-102-1, V2-M6-011 |
+| SEF-Q685-B-156 | 12 | 3–5–3–2 | 2♦ | SEF-V4-102-1 | 32 | Vraie ouverture régulière, espoir de manche. | aucune |
+| SEF-Q685-B-157 | 18 | 3–6–2–2 | 3♥ | SEF-V484-011 | 32 | Six Cœurs solides et dix-huit points, saut avec ambition de chelem. | aucune |
+| SEF-Q685-B-158 | 18 | 6–3–2–2 | 3♠ | SEF-V484-012 | 32 | Six Piques solides et dix-huit points, 3♠ prospectif. | aucune |
+| SEF-Q685-B-159 | 11 | 3–3–4–3 | 2♥ | SEF-V484-001 | 32 | Trois Cœurs et onze points, retour économique. | SEF-V484-001 |
+| SEF-Q685-B-160 | 10 | 4–4–4–1 | 3♥ | SEF-V484-005 | 32 | Le singleton Trèfle se décrit par 3♥ après le relais 3♣. | aucune |
+
+### Rejets passe 2
+- SEF-L40-001: AR6 DV8 AR974 D2 — zone 2SA
+- SEF-L40-001: AD7 RD8 RV94 AR6 — zone 2SA
+- SEF-L38-001: ARV8 AD97 RD6 82 — zone 2SA
+- SEF-L23-006: RDV7 A8 AD96 R74 — zone 2SA
+- SEF-Q26-M2-008: AR8 RD7 AD964 D2 — main exacte/permutation
+- SEF-L39-001: ARD8 RV7 AD6 982 — zone 2SA
+- SEF-Q26-M2-009: D8 ARV9 AR74 R62 — main exacte/permutation
+- SEF-Q26-M2-009: RD A97 ARV84 D62 — zone 2SA
+- SEF-Q26-M2-022: A9864 82 V972 63 — quota atteint
+- V2-M2-011: R82 DT986 V7 964 — quota atteint
+- SEF-L31-001: RV9864 D82 73 V6 — quota atteint
+- V2-M2-012: V72 RD9864 83 96 — quota atteint
+- SEF-L25-001: AR84 RV7 AD96 82 — quota atteint
+- SEF-L25-001: AD7 AR84 RV96 82 — quota atteint
+- SEF-L25-003: R72 AD84 D96 A83 — quota atteint
+- SEF-PN26-M1-017: R7 AD84 AV96 V82 — quota atteint
+- SEF-PN26-M1-027: AD7 982 AR96 RV8 — quota atteint
+- SEF-L25-004: RD84 A7 AD96 V82 — quota atteint
+- SEF-L25-005: AR84 AD7 962 R82 — quota atteint
+- SEF-L25-006: RD82 R97 A6 RV84 — quota atteint
+- SEF-V482-001: 73 D82 V6 T987432 — cartes
+- SEF-V482-001: V82 96 973 RV9864 — cartes
+- SEF-V482-003: D72 83 962 VT9864 — cartes
+- SEF-V482-006: 7 AD82 R6 DV9864 — longue
+- SEF-V482-007: AD82 R72 6 DV9864 — cartes
+- SEF-V482-008: RD72 8 AV9864 D6 — longue
+- SEF-V482-009: 8 RD72 AV9864 D6 — longue
+- SEF-V482-010: R72 AD8 RV9864 6 — main exacte/permutation
+- SEF-L41-004: ARV8 AD7 RD96 82 — zone 2SA
+- SEF-L41-004: RDV7 AR8 AD96 82 — zone 2SA
+- V2-M2-013: ARV8 AD RD96 V82 — main exacte/permutation
+- SEF-V4-083-1: A72 D83 V96 RV84 — Roudi ouverture
+- SEF-V44-063: AD986 R82 D7 962 — suite Roudi zone
+- V1-M5-002: AD986 R72 V82 96 — quota atteint
+- SEF-V4-104-1: RV84 D7 A962 863 — main exacte/permutation
+- SEF-V4-104-1: D984 R72 A6 V963 — main exacte/permutation
+- SEF-V44-068: RV84 D72 A9864 6 — main exacte/permutation
+- SEF-V44-068: AD84 R72 V9864 6 — main exacte/permutation
+- SEF-V4-107-3: RDVT8 82 D72 V63 — main exacte/permutation
+- SEF-V4-108-1: AD986 R72 V82 R6 — main exacte/permutation
+- SEF-V4-108-1: AR986 D72 D82 V6 — main exacte/permutation
+- SEF-V484-003: RD8 A72 V962 V86 — main exacte/permutation
+- SEF-V484-002: R72 D984 A6 V963 — main exacte/permutation
+- SEF-V484-004: D984 R72 A6 V963 — main exacte/permutation
+- SEF-V484-006: R972 AD84 6 V986 — main exacte/permutation
+- SEF-V484-007: 6 AD84 R972 V986 — main exacte/permutation
+- SEF-V484-008: AD84 R972 V986 6 — main exacte/permutation
+- SEF-V484-009: AD84 R972 6 V986 — main exacte/permutation
+- SEF-V484-010: AD84 6 R972 V986 — main exacte/permutation
