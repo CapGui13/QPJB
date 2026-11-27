@@ -1,47 +1,7 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40/543, dernier SEF-V3-052-2, prochain SEF-V3-053-1. SHA de base ci-dessus, commit de cette reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 40 premiers, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 503 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543 cumulés, dernier SEF-V3-095-1, prochain SEF-V3-095-2. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 80 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 463 IDs :
 
-- SEF-V3-053-1
-- SEF-V3-053-3
-- SEF-V3-054-2
-- SEF-V3-054-1
-- SEF-V3-055-1
-- SEF-V3-055-2
-- SEF-V3-056-4
-- SEF-V3-056-1
-- SEF-V3-057-1
-- SEF-V3-057-4
-- SEF-V3-058-3
-- SEF-V3-058-1
-- SEF-V3-059-5
-- SEF-V3-059-1
-- SEF-V3-060-2
-- SEF-V3-060-1
-- SEF-V3-061-2
-- SEF-V3-061-3
-- SEF-V3-062-4
-- SEF-V3-062-1
-- SEF-V3-063-1
-- SEF-V3-063-2
-- SEF-V3-064-4
-- SEF-V3-064-2
-- SEF-V3-065-3
-- SEF-V3-066-4
-- SEF-V3-067-4
-- SEF-V3-068-4
-- SEF-V3-069-1
-- SEF-V3-070-2
-- SEF-V3-071-3
-- SEF-V3-072-1
-- SEF-V3-073-1
-- SEF-V3-091-1
-- SEF-V3-091-2
-- SEF-V3-092-3
-- SEF-V3-093-1
-- SEF-V3-093-3
-- SEF-V3-094-1
-- SEF-V3-095-1
 - SEF-V3-095-2
 - SEF-V3-096-2
 - SEF-V3-096-1
