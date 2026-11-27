@@ -42,7 +42,7 @@ async function main(){
    await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:35000});
    const warm=await page.evaluate(()=>new Promise(resolve=>{const c=new MessageChannel();c.port1.onmessage=e=>resolve(e.data);navigator.serviceWorker.controller.postMessage({type:'QPJB_PREFETCH_OFFLINE'},[c.port2])}));
    assert.deepEqual(warm,{type:'QPJB_OFFLINE_READY',ok:true});
-   const cached=await page.evaluate(async()=>{const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();return ['/QPJB/quizz-parcours.js?v=21','/QPJB/quizz-prerequis.js?v=3'].every(x=>keys.some(k=>new URL(k).pathname+new URL(k).search===x))});
+   const cached=await page.evaluate(async()=>{const keys=(await Promise.all((await caches.keys()).map(async k=>(await (await caches.open(k)).keys()).map(r=>r.url)))).flat();return ['/QPJB/quizz-parcours.js?v=22','/QPJB/quizz-prerequis.js?v=3'].every(x=>keys.some(k=>new URL(k).pathname+new URL(k).search===x))});
    assert(cached,'T engine and metadata cache keys');
    // First-ever Quiz visit is offline, not just a warmed tab.
    offline=true;await context.setOffline(true);
