@@ -1,52 +1,12 @@
-# Reprise B — passe 1 partielle
+# Reprise B — passe 2 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-40/454 entrées provisoires ; 414 restent. Dernier ID : SEF-N120-1. Prochain : SEF-N121-1.
+80/454 entrées provisoires ; 374 restent. Dernier ID : SEF-V4-007-1. Prochain : SEF-V4-007-2.
 
-Contrôles mécaniques 454/454 dans CONTROLES-PRELIMINAIRES.json. Corrections : 8. Reprendre par lots de 40–80, compléter revue sémantique et affectations/réserves, puis tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454 dans CONTROLES-PRELIMINAIRES.json. Corrections : 12. Propositions d'affectation : 3. Arbitrages : 2. Contrôle ensemble exact des 80 premiers IDs, absence de doublons et cardinalité corrections exécutés. Reprendre par lots de 40–80, compléter revue sémantique et affectations/réserves, puis tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- SEF-N121-1
-- SEF-N122-1
-- SEF-N123-2
-- SEF-N123-1
-- SEF-N124-1
-- SEF-N125-1
-- SEF-N126-1
-- SEF-N127-2
-- SEF-N128-2
-- SEF-N129-2
-- SEF-N130-1
-- SEF-N131-1
-- SEF-N132-1
-- SEF-N132-2
-- SEF-N133-2
-- SEF-N134-1
-- SEF-N134-3
-- SEF-N135-3
-- SEF-N136-1
-- SEF-N138-1
-- SEF-N138-2
-- SEF-N139-2
-- SEF-N140-1
-- SEF-N141-2
-- SEF-N142-1
-- SEF-N142-3
-- SEF-N143-2
-- SEF-N144-1
-- SEF-N145-1
-- SEF-N146-2
-- SEF-N147-2
-- SEF-N147-3
-- SEF-N148-2
-- SEF-V4-001-1
-- SEF-V4-002-1
-- SEF-V4-003-3
-- SEF-V4-004-1
-- SEF-V4-005-2
-- SEF-V4-006-2
-- SEF-V4-007-1
 - SEF-V4-007-2
 - SEF-V4-008-1
 - SEF-V4-009-1
