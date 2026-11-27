@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Sept passes de 40 terminées (280/540). SHA avant passe 7 : 221d93607f782ea2bc7f5cee93330e2497860187. Dernier ID SEF-L37-001; prochain ID SEF-L37-003. {"VALIDE":88,"RECLASSER_REFORMULER":181,"ARBITRAGE":11}. Corrections : 163. Prérequis : 22. Réservoir : 63.
+Huit passes de 40 terminées (320/540). SHA avant passe 8 : fa9f3b733f0b005dc7a42b68aaa1eed6dd989aa3. Dernier ID V2-M3-018; prochain ID V2-M5-001. {"VALIDE":94,"RECLASSER_REFORMULER":210,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":16}. Corrections : 192. Prérequis : 26. Réservoir : 79.
 
-## IDs restants (260)
-- SEF-L37-003 — michaels.defense
-- SEF-L38-003 — michaels.reveil
-- SEF-L39-005 — apres_inter.base
-- SEF-L40-005 — michaels.defense
-- SEF-L42-001 — competitif.truscott
-- SEF-L42-004 — michaels.reveil
-- SEF-L43-001 — competitif.truscott
-- SEF-L43-002 — michaels.defense
-- SEF-L44-003 — competitif.truscott
-- SEF-Q26-M2-001 — rubensohl.suite
-- SEF-Q26-M2-002 — rubensohl.suite
-- SEF-Q26-M2-003 — rubensohl.suite
-- SEF-Q26-M2-004 — multilandy.choix
-- SEF-Q26-M2-023 — multilandy.reponse
-- SEF-Q26-M5-001 — michaels.choix
-- SEF-Q26-M5-002 — michaels.choix
-- SEF-Q26-M5-003 — competitif.sa_adverse
-- SEF-Q26-M5-004 — competitif.sa_adverse
-- SEF-Q26-M5-008 — michaels.reponse
-- SEF-Q26-M5-009 — michaels.reponse
-- SEF-Q26-M5-010 — competitif.spoutnik
-- V1-M1-003 — red.competitif
-- V1-M1-004 — red.competitif
-- V1-M3-005 — competitif.sa_adverse
-- V1-M3-006 — competitif.sa_adverse
-- V1-M3-007 — competitif.sa_adverse
-- V1-M4-001 — rubensohl.suite
-- V1-M4-002 — rubensohl.suite
-- V1-M4-003 — michaels.defense
-- V1-M4-004 — michaels.defense
-- V1-M4-005 — michaels.defense
-- V1-M4-006 — michaels.reveil
-- V1-M4-007 — michaels.reveil
-- V1-M4-008 — michaels.reveil
-- V2-M3-013 — red.competitif
-- V2-M3-014 — red.competitif
-- V2-M3-015 — red.competitif
-- V2-M3-016 — red.competitif
-- V2-M3-017 — red.competitif
-- V2-M3-018 — red.competitif
+## IDs restants (220)
 - V2-M5-001 — apres_inter.base
 - V2-M5-002 — competitif.truscott
 - V2-M5-003 — competitif.2sa_fitte
@@ -266,4 +226,4 @@ Sept passes de 40 terminées (280/540). SHA avant passe 7 : 221d93607f782ea2bc7f
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 280 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 320 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
