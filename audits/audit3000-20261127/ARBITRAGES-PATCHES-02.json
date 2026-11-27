@@ -1,0 +1,304 @@
+{
+  "schema": "QPJB_AUDIT3000_ARBITRAGES_PATCHES_V1",
+  "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+  "checks": "5 mains, H, 13 cartes, quatre choix et réponse inchangée; sources secondaires consultées, pas certification SEF intégrale.",
+  "items": [
+    {
+      "id": "SEF-Q685-C-144",
+      "lot": "E",
+      "sourcePatch": true,
+      "reference": "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523",
+      "decision": "Section 1(c)(ii) confirme le Truscott à quatre atouts. Le cas teste uniquement la distinction 3 atouts/4 atouts; 11 H, trois Piques, quatre Cœurs, parmi les choix Surcontre positif convient. Le patch E limite la portée du corrigé et ne prétend pas exclure toute réponse naturelle.",
+      "originalAnswer": "Surcontre",
+      "patch": {
+        "id": "SEF-Q685-C-144",
+        "theme": "apres_inter",
+        "hand": [
+          [
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "V",
+            "7",
+            "3"
+          ],
+          [
+            "R",
+            "V",
+            "9"
+          ],
+          [
+            "8",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 11,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "auction": [
+          "Partenaire : 1♠",
+          "Adversaire : Contre"
+        ],
+        "context": "Tous non vulnérables. Votre partenaire ouvre et l’adversaire contre d’appel. Quelle est votre réponse dans le traitement étudié ?",
+        "answer": "Surcontre",
+        "choices": [
+          "2SA",
+          "1SA",
+          "Surcontre",
+          "2♠"
+        ],
+        "explain": "Avec 11 H et trois Piques, le Surcontre positif est adapté parmi les choix. 2SA Truscott demande quatre atouts, 2♠ est insuffisamment constructif et 1SA sous-évalue la main. Le Surcontre est ici choisi pour ce jeu positif ; il ne résume pas à lui seul tous les développements après Contre.",
+        "difficulty": 3,
+        "difficultyReason": "Onze H et seulement trois Piques : le surcontre montre le jeu positif ",
+        "caseFamily": "q685-c-truscott-surcontre-trois-atouts",
+        "editorialSource": "SEF-Q400-C-092 (traitement du catalogue QPJB)"
+      }
+    },
+    {
+      "id": "SEF-L35-002",
+      "lot": "D",
+      "sourcePatch": false,
+      "reference": "https://amourdubridge.fr/cest-lheure-du-reveil/",
+      "decision": "16 H réguliers, arrêt Cœur et aucune majeure quatrième; 2SA correct dans les deux traitements cités. Lever l'arbitrage du cas sans imposer une borne globale controversée.",
+      "originalAnswer": "2SA",
+      "patch": {
+        "id": "SEF-L35-002",
+        "theme": "reveil",
+        "hand": [
+          [
+            "R",
+            "V",
+            "5"
+          ],
+          [
+            "A",
+            "D",
+            "9"
+          ],
+          [
+            "R",
+            "10",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "V",
+            "6"
+          ]
+        ],
+        "auction": [
+          "Adversaire : 2♥ (ouverture faible, à gauche)",
+          "Partenaire : Passe",
+          "Adversaire : Passe (à droite)"
+        ],
+        "context": "Après l'ouverture adverse de 2♥ faible et deux Passe, quelle est votre enchère de réveil ?",
+        "answer": "2SA",
+        "choices": [
+          "Contre",
+          "2♠",
+          "2SA",
+          "3♦"
+        ],
+        "explain": "16 H, une main régulière et ♥AD9 assurent l'arrêt dans la couleur du barrage. 2SA naturel en réveil décrit ce jeu; un Contre d'appel est moins adapté sans quatre Piques. La zone du réveil sur deux faible est plus basse que celle de l'intervention directe. Ce cas ne teste pas sa borne haute.",
+        "difficulty": 4,
+        "difficultyReason": "Reconnaître le 2SA naturel en réveil sur deux faible avec force régulière et arrêt.",
+        "editorialSource": "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870",
+        "caseFamily": "LOT35-2026-11-14-002",
+        "h": 16,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "SEF-Q26-M4-003",
+      "lot": "D",
+      "sourcePatch": false,
+      "reference": "https://amourdubridge.fr/cest-lheure-du-reveil/",
+      "decision": "14 H réguliers et RD8 dans la couleur adverse; 2SA se trouve dans l'intersection des zones documentées.",
+      "originalAnswer": "2SA",
+      "patch": {
+        "id": "SEF-Q26-M4-003",
+        "theme": "reveil",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8"
+          ],
+          [
+            "A",
+            "9",
+            "6"
+          ],
+          [
+            "R",
+            "10",
+            "8",
+            "4"
+          ],
+          [
+            "D",
+            "7",
+            "3"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          3,
+          3,
+          4,
+          3
+        ],
+        "auction": [
+          "Adversaire : 2♠ (ouverture faible, à gauche)",
+          "Partenaire : Passe",
+          "Adversaire : Passe (à droite)"
+        ],
+        "context": "Ouest ouvre de 2♠ faible, Nord et Est passent. Tous non vulnérables. Quelle est votre enchère de réveil ?",
+        "answer": "2SA",
+        "choices": [
+          "Contre",
+          "2SA",
+          "3♦",
+          "3SA"
+        ],
+        "explain": "Avec 14 H réguliers et ♠RD8 comme arrêt, 2SA naturel en réveil décrit bien votre jeu. Le Contre d'appel est moins précis sans quatre Cœurs et 3SA serait trop fort. La zone du 2SA de réveil sur deux faible est abaissée par rapport à l'intervention directe.",
+        "difficulty": 3,
+        "difficultyReason": "Distinguer 2SA naturel en réveil sur deux faible et intervention immédiate.",
+        "caseFamily": "qualite-m4-003",
+        "editorialSource": "https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870"
+      }
+    },
+    {
+      "id": "V2-M4-003",
+      "lot": "D",
+      "sourcePatch": false,
+      "reference": "https://amourdubridge.fr/cest-lheure-du-reveil/",
+      "decision": "14 H réguliers et RD84 dans la couleur adverse; 2SA correct dans les deux zones. Conserver le contraste avec 004.",
+      "originalAnswer": "2SA",
+      "patch": {
+        "id": "V2-M4-003",
+        "theme": "reveil",
+        "hand": [
+          [
+            "R",
+            "D",
+            "8",
+            "4"
+          ],
+          [
+            "A",
+            "7",
+            "2"
+          ],
+          [
+            "R",
+            "9",
+            "5"
+          ],
+          [
+            "D",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 14,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "auction": [
+          "Adversaire : 2♠ (faible)",
+          "Partenaire : Passe",
+          "Adversaire : Passe"
+        ],
+        "context": "Sur 2♠ faible suivi de deux Passe, votre camp est non vulnérable. Quelle est votre enchère de réveil ?",
+        "answer": "2SA",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2SA",
+          "3♥"
+        ],
+        "explain": "14 H, une distribution régulière et ♠RD84 assurant l'arrêt : 2SA naturel est adapté en réveil sur deux faible. Les couleurs libres sont seulement troisièmes; un Contre d'appel serait moins descriptif.",
+        "difficulty": 3,
+        "difficultyReason": "Reconnaître une main régulière avec arrêt pour un réveil naturel à 2SA.",
+        "caseFamily": "reserve-v2-m4-02"
+      }
+    },
+    {
+      "id": "V2-M4-006",
+      "lot": "D",
+      "sourcePatch": false,
+      "reference": "https://amourdubridge.fr/cest-lheure-du-reveil/",
+      "decision": "12 H, cinq Piques adverses, 13 HL : force insuffisante pour le 2SA de réveil dans les deux zones effectivement comparées. Le contre est inadapté à 2–3–3 dans les couleurs libres. Ne pas ériger Passe en obligation générale.",
+      "originalAnswer": "Passe",
+      "patch": {
+        "id": "V2-M4-006",
+        "theme": "reveil",
+        "hand": [
+          [
+            "A",
+            "R",
+            "D",
+            "10",
+            "7"
+          ],
+          [
+            "8",
+            "4"
+          ],
+          [
+            "R",
+            "7",
+            "2"
+          ],
+          [
+            "9",
+            "6",
+            "3"
+          ]
+        ],
+        "h": 12,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "auction": [
+          "Adversaire : 2♠ (faible)",
+          "Partenaire : Passe",
+          "Adversaire : Passe"
+        ],
+        "context": "Vous êtes en réveil sur 2♠ faible, à vulnérabilité favorable. Quelle décision est la plus raisonnable avec votre longue dans la couleur adverse ?",
+        "answer": "Passe",
+        "choices": [
+          "Passe",
+          "Contre",
+          "2SA",
+          "3♥"
+        ],
+        "explain": "Vos cinq Piques ARD107 sont dans la couleur du barrage. Les trois couleurs libres sont 2–3–3 : le Contre d'appel est mal adapté. Avec seulement 12 H, malgré votre arrêt, 2SA de réveil serait trop ambitieux dans le cadre étudié. Passe est ici la décision prudente, et préserve vos valeurs défensives.",
+        "difficulty": 3,
+        "difficultyReason": "Application ciblée : Couleur d'ouverture adverse par rapport à la longue personnelle. Les enchères concurrentes sont distinguées par le critère annoncé.",
+        "caseFamily": "reserve-v2-m4-03"
+      }
+    }
+  ]
+}
