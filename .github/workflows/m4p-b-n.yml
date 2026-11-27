@@ -1,0 +1,84 @@
+name: M4p-B N native and durable evidence
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-b-rappels]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e2af78a8a64fb5eb7db47ef89ee69c350e7c01ed
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-concrete-m4p-b-unit.cjs
+          node tests/coherence-concrete-m4p-b-window-unit.cjs
+          OUT=/tmp/m4p-b-n POLICIES=N PROFILE=${{ matrix.profile }} SEED=${{ matrix.seed }} node tests/coherence-concrete-m4p-b-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m4p-b-n-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4p-b-n
+  archive:
+    needs: native
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e2af78a8a64fb5eb7db47ef89ee69c350e7c01ed
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 45983061749
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: m4p-b-*
+          path: /tmp/m4p-b-lm
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4p-b-n-*
+          path: /tmp/m4p-b-n
+      - name: Validate and archive complete evidence on B branch only
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, gzip, hashlib
+          d=pathlib.Path('audits/coherence-concrete-20261126/m4/parallel/b/native')
+          d.mkdir(parents=True,exist_ok=True)
+          manifest=[]
+          for profile in ['autonome','intermediaire','faible','cible','aide','passe']:
+            for seed in [11,47,103]:
+              key=f'{profile}-{seed}'
+              lm=pathlib.Path('/tmp/m4p-b-lm')/f'm4p-b-{key}'
+              n=pathlib.Path('/tmp/m4p-b-n')/f'm4p-b-n-{key}'
+              before=json.loads((lm/f'{key}-native.json').read_text())
+              before_n=json.loads((n/f'{key}-native.json').read_text())
+              assert before['detail']==before_n['detail']
+              assert before['run']['sessions']==before_n['run']['sessions']
+              for arm,folder in [('native',lm),('L',lm),('M',lm),('N',n)]:
+                raw=(folder/f'{key}-{arm}.json').read_bytes()
+                x=json.loads(raw)
+                assert len(x['run']['sessions'])==180 and all(len(s['rows'])==10 for s in x['run']['sessions'])
+                if arm in ['L','M']: assert x['run']['sessions']==before['run']['sessions']
+                if arm!='native': assert x['summary']['policy']==arm
+                file=d/f'{key}-{arm}.json.gz'
+                file.write_bytes(gzip.compress(raw,mtime=0))
+                manifest.append({'file':file.name,'sha256':hashlib.sha256(raw).hexdigest(),'compressedSha256':hashlib.sha256(file.read_bytes()).hexdigest(),'bytes':len(raw),'sessions':180,'rows':1800,'testedSha':'e2af78a8a64fb5eb7db47ef89ee69c350e7c01ed' if arm=='N' else 'dab1455f4721eb1b872e41fd1338ab5805b5dd9a'})
+          assert len(manifest)==72
+          (d/'manifest.json').write_text(json.dumps({'artifacts':manifest,'nativeRunLM':45983061749,'nativeRunN':'${{ github.run_id }}'},indent=2)+'\n')
+          print('72 full traces verified; 129600 unique arm presentations archived')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audits/coherence-concrete-20261126/m4/parallel/b/native
+          git diff --cached --name-only | grep -v '^audits/coherence-concrete-20261126/m4/parallel/b/native/' && exit 1 || true
+          git commit -m "M4-B: archive complete native L/M/N trajectories and SHA256 manifest"
+          git push origin HEAD:refs/heads/coherence-concrete/m4-parallel-b-rappels
