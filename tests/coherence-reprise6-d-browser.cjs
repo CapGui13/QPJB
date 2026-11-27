@@ -89,8 +89,33 @@ async function main(){
    const roundTrip=await page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),all=JSON.parse(document.querySelector('#training-data').textContent).exercises;return QPJBParcours.importProgress(JSON.stringify(QPJBParcours.exportProgress(s,all,{}))).journal.at(-1)});
    assert.deepEqual(roundTrip,state.journal.at(-1));
    await page.locator('#done-home').click();await page.locator('#parcours-start').waitFor({state:'visible'});
-   const plan=await page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),all=JSON.parse(document.querySelector('#training-data').textContent).exercises;return QPJBParcours.consolidationPlan(s,all,10)});
-   assert(plan.available,'synthetic skipped S3 must offer consolidation');
+   const eventS3=state.journal.at(-1),readPlan=()=>page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),all=JSON.parse(document.querySelector('#training-data').textContent).exercises;return QPJBParcours.consolidationPlan(s,all,10)});
+   let plan=await readPlan(),weakSessions=0;
+   // Skipping is not evidence of a misconception. Create actual wrong answers
+   // through the UI until the native planner, not a forged state, offers review.
+   while(!plan.available&&weakSessions<6){
+    await start();
+    for(let i=0;i<10;i++){
+     await step(i+1,10);await page.locator('#show-choices').click();
+     const wrong=await page.evaluate(i=>{
+      const s=JSON.parse(localStorage.getItem('qpjb-sef-parcours-01')),all=JSON.parse(document.querySelector('#training-data').textContent).exercises;
+      const q=all.find(q=>q.id===s.active.ids[i]);
+      const buttons=[...document.querySelectorAll('#answers [data-choice]')];
+      const b=buttons.find(b=>b.getAttribute('aria-label').split(' : ').slice(1).join(' : ')!==q.answer);
+      if(!b)throw Error('No wrong answer in UI');return b.dataset.choice;
+     },i);
+     await page.locator('#answers [data-choice="'+wrong+'"]').click();
+     await page.locator('#answer-feedback').waitFor({state:'visible'});
+     await page.locator('#next').click();
+    }
+    await page.locator('#done-home').waitFor({state:'visible'});
+    state=await snapshot();assert(state.journal.at(-1).answers.every(a=>a.result==='wrong'),'actual wrong answers persisted');
+    await page.locator('#done-home').click();await page.locator('#parcours-start').waitFor({state:'visible'});
+    weakSessions++;plan=await readPlan();
+   }
+   assert(plan.available,'actual UI errors must eventually offer consolidation');
+   const completedAtConsolidation=state.completed;
+   assert.deepEqual(state.journal.find(e=>e.mode==='parcours'&&e.session===3),eventS3);
    const mastery={skills:state.skills,micros:state.micros,axes:state.axes};
    await start('#parcours-consolidation');let active=(await snapshot()).active;
    assert.equal(active.mode,'consolidation');assert.deepEqual(active.ids,plan.items.map(x=>x.id));assert(!active.orderReferenceIds&&!active.orderSkillBase);
@@ -100,7 +125,7 @@ async function main(){
     if(i===0){await step(2,n);const saved=(await snapshot()).active;await reload();await start();await step(2,n);assert.deepEqual((await snapshot()).active,saved,'exact consolidation resume')}
    }
    await page.locator('#done-home').waitFor({state:'visible'});
-   state=await snapshot();assert.equal(state.completed,3);assert.equal(state.journal.at(-1).mode,'consolidation');
+   state=await snapshot();assert.equal(state.completed,completedAtConsolidation);assert.equal(state.journal.at(-1).mode,'consolidation');
    assert.deepEqual(state.journal.at(-1).answers.map(a=>a.id),plan.items.map(x=>x.id));
    assert.deepEqual({skills:state.skills,micros:state.micros,axes:state.axes},mastery,'consolidation does not establish mastery');
    await page.locator('#done-home').click();await page.locator('#new').waitFor({state:'visible'});
@@ -109,7 +134,7 @@ async function main(){
    await write(fixture.legacy);await reload();await start();await step(2,10);
    assert.deepEqual((await snapshot()).active,fixture.legacy.active,'legacy active session is not rewritten');
    assert.deepEqual(errors,[]);
-   rows.push({width,session:3,reference:fixture.reference,actual:displayed,old:fixture.old.id,next:fixture.next.id,renderedHand:true,offlineFirstVisit:true,activeResume:true,legacyResume:true,consolidation:{ids:plan.items.map(x=>x.id),resume:true,masteryUnchanged:true},journal:true,exportImport:true,freeQuizIsolation:true,pageErrors:errors});
+   rows.push({width,session:3,reference:fixture.reference,actual:displayed,old:fixture.old.id,next:fixture.next.id,renderedHand:true,offlineFirstVisit:true,activeResume:true,legacyResume:true,consolidation:{afterSession:completedAtConsolidation,weakSessions,ids:plan.items.map(x=>x.id),resume:true,masteryUnchanged:true},journal:true,exportImport:true,freeQuizIsolation:true,pageErrors:errors});
   }finally{await context.close()}
  }
  console.log(JSON.stringify({status:'PASS',browser:engine,version:browser.version(),refused,rows},null,2));
