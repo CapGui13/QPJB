@@ -41,7 +41,7 @@ function instrumentHTML(html){
  if(html.split(fnAnchor).length!==2||html.split(renderAnchor).length!==2)throw Error('A contrast anchors');
  const render=`   if(advanced&&!focused){
      const cue=earlyContrast(parcoursState.completed,deck,DATA.exercises,window.QPJBPrerequis?.byId);
-     if(cue){
+     if(cue&&QPJBParcours.eligibility(cue.example,parcoursState,DATA.exercises).eligible){
        const x=cue.example,hand=x.hand.map((cards,i)=>['♠','♥','♦','♣'][i]+' '+cards.join(' ')).join(' · ');
        const panel=document.createElement('section');panel.className='parcours-report';panel.setAttribute('aria-label','Contraste à retenir');panel.dataset.earlyContrast=x.id;
        panel.innerHTML='<h3>Contraste à retenir</h3><p>Exemple expliqué — hors score. '+escapeHTML(cue.why)+'</p><p>'+escapeHTML(x.auction.join(' — '))+'</p><p>'+escapeHTML(hand)+' · '+x.h+' H</p><p><strong>'+escapeHTML(x.answer)+'</strong> — '+escapeHTML(x.explain)+'</p>';
