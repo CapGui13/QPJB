@@ -595,6 +595,22 @@ return Object.freeze({schema,mode:'T',choose});
         s.lastConsolidation={atSession:report.atSession,counts,parts};
       }
     }
+    // C4: separate practice log. Never interpreted as ordinary assessment or
+    // used to reconstruct native entries, evidence, scores or deadlines.
+    if(Array.isArray(old.foundationRecalls)){
+      const rows=old.foundationRecalls.slice(-1000).filter(ev=>ev&&
+        Number.isInteger(ev.session)&&ev.session>=66&&ev.session<=s.completed+1&&
+        Array.isArray(ev.answers)&&ev.answers.length>=4&&ev.answers.length<=6&&
+        new Set(ev.answers.map(a=>a?.id)).size===ev.answers.length&&
+        ev.answers.every(a=>a&&typeof a.id==='string'&&a.id.length<=100&&
+          ['correct','wrong','skipped'].includes(a.result)&&
+          (a.choice===null||typeof a.choice==='string')&&
+          typeof a.assisted==='boolean'&&typeof a.hadFreeError==='boolean'));
+      if(new Set(rows.map(ev=>ev.session)).size===rows.length&&rows.length)
+        s.foundationRecalls=rows.map(ev=>({session:ev.session,recordedAt:typeof ev.recordedAt==='string'?ev.recordedAt:null,
+          answers:ev.answers.map(a=>({id:a.id,result:a.result,choice:a.choice===null?null:a.choice.slice(0,100),
+            assisted:a.assisted,hadFreeError:a.hadFreeError,...firstGuessEvidence(a)}))}));
+    }
     // Champs facultatifs : les anciennes sauvegardes restent lisibles sans historique reconstruit.
     if(Array.isArray(old.journal)){
       s.journal=old.journal.slice(-1000).filter(event=>
@@ -1243,7 +1259,52 @@ return Object.freeze({schema,mode:'T',choose});
   // Le parcours principal reste strictement composé de dix QCM.
   // Un besoin doit être confirmé par au moins deux essais : pas de rattrapage
   // déclenché par une erreur isolée ou une classification non auditée.
-  function consolidationPlan(state,exercises,n=10){
+  // #506 — experimental additive retrieval: never removes a guided question.
+  // Opt-in only, after S65, and never competes with evidenced remediation.
+  const RECALL_CORE=Object.freeze(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
+  function foundationRecallPlan(state,exercises,pool,e,limit){
+    const s=state.completed,byId=new Map(exercises.map(q=>[q.id,q])),last=new Map();
+    if(s<65||limit<4||(state.foundationRecalls||[]).some(ev=>ev.session===s+1))return null;
+    // Real answered events only; skipped cards and merely proposed plans
+    // are not retrieval. No inferred history on legacy saves.
+    for(const ev of state.journal||[]){
+      if(!['parcours','consolidation'].includes(ev.mode)||!Number.isInteger(ev.session))continue;
+      const at=ev.mode==='consolidation'?ev.session-1:ev.session;
+      if(at<1||at>s)continue;
+      for(const a of ev.answers||[]){
+        if(!['correct','wrong'].includes(a.result))continue;
+        const q=byId.get(a.id),c=q&&metadata(q)?.concept;
+        if(RECALL_CORE.includes(c))last.set(c,Math.max(last.get(c)||0,at));
+      }
+    }
+    for(const ev of state.foundationRecalls||[]){
+      const at=ev.session-1;if(!Number.isInteger(at)||at<65||at>s)continue;
+      for(const a of ev.answers||[]){
+        if(!['correct','wrong'].includes(a.result))continue;
+        const q=byId.get(a.id),c=q&&metadata(q)?.concept;
+        if(RECALL_CORE.includes(c))last.set(c,Math.max(last.get(c)||0,at));
+      }
+    }
+    const items=[],usedFamilies=new Set();
+    const overdue=RECALL_CORE.filter(c=>last.has(c)&&s-last.get(c)>=10)
+      .sort((a,b)=>last.get(a)-last.get(b)||a.localeCompare(b));
+    for(const c of overdue){
+      if(items.length>=Math.min(6,limit))break;
+      const proof=e.proofs.get(c)||[];
+      if(e.localFragility.has(c)||e.weakConcept[c]||new Set(proof.map(p=>p.family)).size<2||new Set(proof.map(p=>p.session)).size<2)continue;
+      const eligible=pool.filter(q=>{
+        const m=metadata(q),r=state.entries?.[q.id],assessment=assessmentOf(r||{});
+        return m.concept===c&&m.stage<=1&&q.difficulty<=3&&r&&!weakAnswer(r)&&
+          assessment?.result==='correct'&&!assessment.assisted&&s-r.lastSession>=10&&!usedFamilies.has(family(q));
+      });
+      eligible.sort((a,b)=>state.entries[a.id].lastSession-state.entries[b.id].lastSession||a.difficulty-b.difficulty||a.id.localeCompare(b.id));
+      const q=eligible[0];if(!q)continue;
+      usedFamilies.add(family(q));items.push({id:q.id,target:'foundation:recall'});
+    }
+    if(items.length<4)return null;
+    return {available:true,reason:'foundation-recall',focus:[{kind:'foundation',key:'recall',label:'Rappel des fondamentaux',score:0}],items:logicalOrder(items,state,x=>byId.get(x.id))};
+  }
+  function consolidationPlan(state,exercises,n=10,options={}){
     if(state.active)return {available:false,reason:'session-active',focus:[],items:[]};
     if(state.lastConsolidatedAt===state.completed)return {available:false,reason:'already-consolidated',focus:[],items:[]};
     const limit=clamp(int(n,10),1,10),minFamilies=Math.min(4,limit),s=state.completed;
@@ -1264,7 +1325,13 @@ return Object.freeze({schema,mode:'T',choose});
     targets.sort((a,b)=>a.score-b.score||b.candidates.length-a.candidates.length||
       (a.kind+':'+a.key).localeCompare(b.kind+':'+b.key));
     const focus=targets.slice(0,2);
-    if(!focus.length)return {available:false,reason:hasEvidence?'pool-insufficient':'no-evidenced-weakness',focus:[],items:[]};
+    if(!focus.length){
+      if(options.foundationRecall===true&&!hasEvidence){
+        const recall=foundationRecallPlan(state,exercises,pool,e,limit);
+        if(recall)return recall;
+      }
+      return {available:false,reason:hasEvidence?'pool-insufficient':'no-evidenced-weakness',focus:[],items:[]};
+    }
     const items=[],usedIds=new Set(),usedFamilies=new Set(),counts={},bids={},contexts={};
     function choose(target){
       let options=target.candidates.filter(x=>!usedIds.has(x.id)&&!usedFamilies.has(family(x)));
@@ -1313,7 +1380,8 @@ return Object.freeze({schema,mode:'T',choose});
     const p=target.indexOf(':');
     if(p<0)return null;
     const kind=target.slice(0,p),key=target.slice(p+1);
-    return kind==='micro'&&Object.hasOwn(MICRO_LABELS,key)?MICRO_LABELS[key]:
+    return kind==='foundation'&&key==='recall'?'Rappel des fondamentaux':
+      kind==='micro'&&Object.hasOwn(MICRO_LABELS,key)?MICRO_LABELS[key]:
       kind==='axis'&&Object.hasOwn(AXIS_LABELS,key)?AXIS_LABELS[key]:null;
   }
   function validCounts(raw){
@@ -1348,10 +1416,10 @@ return Object.freeze({schema,mode:'T',choose});
     return {atSession,counts,parts:byTarget.length&&
       byTarget.reduce((n,x)=>n+x.counts.total,0)===counts.total?byTarget:[]};
   }
-  function startConsolidation(state,exercises){
+  function startConsolidation(state,exercises,options={}){
     // La séance interrompue, qu'elle soit normale ou complémentaire, prime.
     if(state.active)return start(state,exercises);
-    const plan=consolidationPlan(state,exercises,10);
+    const plan=consolidationPlan(state,exercises,10,options);
     if(!plan.available)return [];
     const byId=new Map(exercises.map(x=>[x.id,x]));
     state.active={ids:plan.items.map(x=>x.id),index:0,answers:{},
@@ -1493,6 +1561,10 @@ return Object.freeze({schema,mode:'T',choose});
     for(const [t,v] of Object.entries(next))state.skills[t]=v;
     return true;
   }
+  function isFoundationActive(active){
+    return active?.mode==='consolidation'&&active.ids?.length>=4&&active.ids.length<=6&&
+      active.targets?.length===active.ids.length&&active.targets.every(t=>t==='foundation:recall');
+  }
   function record(state,x,result,position,choice,assisted,hadFreeError,firstGuess){
     const active=state.active;
     if(!active||active.ids[position]!==x.id||Object.hasOwn(active.answers,position))return false;
@@ -1500,6 +1572,7 @@ return Object.freeze({schema,mode:'T',choose});
     active.answers[position]={result,choice:typeof choice==='string'?choice:null,
       assisted:!!assisted,hadFreeError:!!hadFreeError,
       ...firstGuessEvidence({result,choice,hadFreeError,firstGuess:firstGuess!==x.answer?firstGuess:null})};
+    if(isFoundationActive(active))return true;
     // Une réponse juste après une aide (ou une première mauvaise enchère
     // en saisie libre) n'est pas une preuve de maîtrise autonome.
     const independent=result==='correct'&&!assisted&&!hadFreeError;
@@ -1571,6 +1644,12 @@ return Object.freeze({schema,mode:'T',choose});
     if(Object.keys(state.active.answers).length!==state.active.ids.length)return false;
     // Journal prospectif : aucune réponse d'une séance ancienne n'est inventée.
     const active=state.active,byId=new Map((exercises||[]).map(x=>[x.id,x]));
+    if(isFoundationActive(active)){
+      if((state.foundationRecalls||[]).some(ev=>ev.session===state.completed+1))return false;
+      const answers=active.ids.map((id,i)=>({id,...active.answers[i]}));
+      (state.foundationRecalls??=[]).push({session:state.completed+1,recordedAt:new Date().toISOString(),answers});
+      state.active=null;return true;
+    }
     normalizeThemeOrder(state,active,byId);
     const record={
       mode:active.mode==='consolidation'?'consolidation':'parcours',
@@ -1675,6 +1754,7 @@ return Object.freeze({schema,mode:'T',choose});
       summary:{completedSessions:state.completed,recordedDetailedSessions:detailed,
         totalQuestionEntries:questions.length,difficultyAdjustment:state.difficultyAdjustment||0},
       sessions:journal,
+      ...(state.foundationRecalls?.length?{supplementalFoundationPractice:state.foundationRecalls}:{}),
       selectionDiagnostics:selectionDiagnostics(state,5),
       currentSession:state.active||null,
       questions,
@@ -1708,7 +1788,8 @@ return Object.freeze({schema,mode:'T',choose});
     // Un ancien journal incomplet reste incomplet : ni invention ni perte.
     if(Object.keys(restored.entries).length!==Object.keys(old.entries).length||
       (old.active&&!restored.active)||
-      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0))
+      restored.journal.length!==(Array.isArray(old.journal)?old.journal.length:0)||
+      (restored.foundationRecalls?.length||0)!==(Array.isArray(old.foundationRecalls)?old.foundationRecalls.length:0))
       throw Error('Sauvegarde incohérente : aucune donnée n’a été remplacée.');
     return restored;
   }
