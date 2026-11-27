@@ -1,0 +1,4764 @@
+{
+  "schema": "QPJB_PROGRAMME65_B_V1",
+  "mission": 530,
+  "contrat": 528,
+  "base": "21d6366469a2f9ba5c06ae360a4666f5550efbe2",
+  "sourceCatalogue": "quizz.html@fb796cfc5388273418dc97bb32f3d9c50afe99ef",
+  "sourcePrerequis": "quizz-prerequis.js@8e920bb9c925c7474bb04701f0f2fecac5288b91",
+  "mode": "Réservoir adaptatif, pas deck fixe. Les dix exemples sont un ordre de référence et non une prescription. Rappels avant objectifs si fragilité. Les groupes objectifs suivent un ordre pédagogique; ne pas exposer une suite avant son initiation. Sélectionner une variante selon les erreurs, conserver les contrastes et les prérequis réels. minSession historique zéro-indexé. Exposition n'est pas preuve. Aucun QCM hors liste sans contrôle pédagogique.",
+  "eligibilite": "Chaque prerequisParId est copié de la table réelle; respecter minSession et minExposure réels de l'élève, ne jamais présumer qu'une séance terminée satisfait tous les prérequis. Les prérequis S1–20 sont des contrats d'assemblage à vérifier par A/coordinateur. Les réserves sont conditionnelles, non obligatoires. Pour une séance de référence insuffisante, préférer les rappels admissibles ou différer; ne jamais abaisser automatiquement les verrous.",
+  "sessions": [
+    {
+      "session": 21,
+      "objectif": "Choisir ouverture naturelle, barrage ou Passe",
+      "groupes": [
+        {
+          "decision": "Deux faible / naturelle / Passe",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-091-1",
+            "SEF-V3-092-3",
+            "SEF-V3-101-2"
+          ]
+        },
+        {
+          "decision": "Septième carte et vulnérabilité",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-099-3",
+            "SEF-V3-100-2"
+          ]
+        },
+        {
+          "decision": "Position : préenseignement",
+          "role": "objectif",
+          "ids": [
+            "SEF-V419-001",
+            "SEF-V422-002"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V3-095-1",
+            "SEF-V3-096-2",
+            "SEF-V44-046",
+            "SEF-V44-047"
+          ]
+        }
+      ],
+      "prerequisSessions": "1,16",
+      "contrastesObligatoires": "Six vs sept cartes à force faible; 13 H six cartes = ouverture normale; couleur médiocre = Passe. Position avant Drury.",
+      "rappels": [
+        "SEF-006-2",
+        "SEF-007-1",
+        "SEF-013-1"
+      ],
+      "repli": "Revenir aux seuils d'ouverture et à Passe; position à exposer avant S30.",
+      "reference": [
+        "SEF-006-2",
+        "SEF-007-1",
+        "SEF-013-1",
+        "SEF-V3-091-1",
+        "SEF-V3-092-3",
+        "SEF-V3-101-2",
+        "SEF-V3-099-3",
+        "SEF-V3-100-2",
+        "SEF-V419-001",
+        "SEF-V422-002"
+      ],
+      "prerequisParId": {
+        "SEF-006-2": {
+          "concept": "ouv.majeure",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-007-1": {
+          "concept": "ouv.majeure",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-013-1": {
+          "concept": "ouv.passe",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-V3-091-1": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-092-3": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-101-2": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-099-3": {
+          "concept": "barrage.ouverture",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-100-2": {
+          "concept": "barrage.ouverture",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V419-001": {
+          "concept": "ouv.position",
+          "stage": 1,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V422-002": {
+          "concept": "ouv.position",
+          "stage": 1,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-095-1": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-096-2": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-046": {
+          "concept": "barrage.ouverture",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-047": {
+          "concept": "barrage.ouverture",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "ouv.majeure",
+        "ouv.passe",
+        "barrage.ouverture",
+        "ouv.position"
+      ]
+    },
+    {
+      "session": 22,
+      "objectif": "Répondre au deux faible selon fit, force et projet",
+      "groupes": [
+        {
+          "decision": "Réponse simple",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-103-4",
+            "SEF-V3-104-4",
+            "SEF-V426-003",
+            "SEF-L09-023"
+          ]
+        },
+        {
+          "decision": "Suite du relais 2SA",
+          "role": "objectif",
+          "ids": [
+            "SEF-V486-001",
+            "SEF-V486-003"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V3-107-1"
+          ]
+        }
+      ],
+      "prerequisSessions": "21",
+      "contrastesObligatoires": "Deux atouts et jeu faible = Passe; quatre atouts vert contre rouge = barrage; 2SA interrogatif avec espoir de manche; nouvelle couleur forte forcing; minimum vs maximum.",
+      "rappels": [
+        "SEF-V3-091-1",
+        "SEF-V3-099-3",
+        "SEF-026-3",
+        "SEF-V3-074-3"
+      ],
+      "repli": "Si barrage.reponse non exposé, ne pas demander les suites; distinguer 2SA interrogatif de naturel.",
+      "reference": [
+        "SEF-V3-091-1",
+        "SEF-V3-099-3",
+        "SEF-026-3",
+        "SEF-V3-074-3",
+        "SEF-V3-103-4",
+        "SEF-V3-104-4",
+        "SEF-V426-003",
+        "SEF-L09-023",
+        "SEF-V486-001",
+        "SEF-V486-003"
+      ],
+      "prerequisParId": {
+        "SEF-V3-091-1": {
+          "concept": "barrage.ouverture",
+          "stage": 0,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-099-3": {
+          "concept": "barrage.ouverture",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-026-3": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-074-3": {
+          "concept": "apres_inter.base",
+          "stage": 0,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-103-4": {
+          "concept": "barrage.reponse",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-104-4": {
+          "concept": "barrage.reponse",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V426-003": {
+          "concept": "barrage.reponse",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L09-023": {
+          "concept": "barrage.reponse",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-001": {
+          "concept": "barrage.suite",
+          "stage": 2,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-003": {
+          "concept": "barrage.suite",
+          "stage": 2,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-107-1": {
+          "concept": "barrage.reponse",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "barrage.ouverture",
+        "majeur.soutien",
+        "apres_inter.base",
+        "barrage.reponse",
+        "barrage.suite"
+      ]
+    },
+    {
+      "session": 23,
+      "objectif": "Agir sur deux faible : couleur, contre d'appel, SA ou Passe",
+      "groupes": [
+        {
+          "decision": "Intervention immédiate",
+          "role": "objectif",
+          "ids": [
+            "SEF-V470-007",
+            "SEF-V470-008",
+            "SEF-V470-009",
+            "SEF-V470-010",
+            "SEF-V470-011"
+          ]
+        },
+        {
+          "decision": "Répondre au contre",
+          "role": "objectif",
+          "ids": [
+            "SEF-V476-001",
+            "SEF-V476-002"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V476-008",
+            "SEF-V476-003",
+            "SEF-V476-005"
+          ]
+        }
+      ],
+      "prerequisSessions": "16,17,21",
+      "contrastesObligatoires": "12 H avec longue autonome vs tricolore courte; avec arrêt et main régulière 2SA; faible sans longueur Passe; réponse au contre au plus bas.",
+      "rappels": [
+        "SEF-V3-057-1",
+        "SEF-V3-058-3",
+        "SEF-V3-027-2"
+      ],
+      "repli": "Revenir au contre d'appel et à la couleur sur ouverture de un; mini-cue-bid réservé à extension.",
+      "reference": [
+        "SEF-V3-057-1",
+        "SEF-V3-058-3",
+        "SEF-V3-027-2",
+        "SEF-V470-007",
+        "SEF-V470-008",
+        "SEF-V470-009",
+        "SEF-V470-010",
+        "SEF-V470-011",
+        "SEF-V476-001",
+        "SEF-V476-002"
+      ],
+      "prerequisParId": {
+        "SEF-V3-057-1": {
+          "concept": "contre.base",
+          "stage": 0,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-058-3": {
+          "concept": "contre.base",
+          "stage": 0,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-027-2": {
+          "concept": "intervenir.base",
+          "stage": 0,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-007": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-008": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-009": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-010": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-011": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V476-001": {
+          "concept": "contre.deux_faible",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V476-002": {
+          "concept": "contre.deux_faible",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V476-008": {
+          "concept": "contre.deux_faible",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V476-003": {
+          "concept": "contre.deux_faible",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.deux_faible",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V476-005": {
+          "concept": "contre.deux_faible",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.deux_faible",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "contre.base",
+        "intervenir.base",
+        "intervenir.deux_faible",
+        "contre.deux_faible"
+      ]
+    },
+    {
+      "session": 24,
+      "objectif": "Reconnaître le réveil et sélectionner une action proportionnée au palier",
+      "groupes": [
+        {
+          "decision": "Réveil sur ouverture de un",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-048-1",
+            "SEF-V4-065-1",
+            "SEF-V4-053-3"
+          ]
+        },
+        {
+          "decision": "Réveil sur deux faible",
+          "role": "objectif",
+          "ids": [
+            "V2-M4-001",
+            "V2-M4-002",
+            "V2-M4-005"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V4-050-2",
+            "SEF-L10-018",
+            "SEF-Q26-M4-004"
+          ]
+        }
+      ],
+      "prerequisSessions": "16,17,23",
+      "contrastesObligatoires": "Deux Passe rendent la parole au quatrième joueur; force différente sur ouverture de un et deux faible; 4-1-4-4 à 6 H vs 12 H.",
+      "rappels": [
+        "SEF-V470-007",
+        "SEF-V470-010",
+        "SEF-V3-031-2",
+        "SEF-V476-001"
+      ],
+      "repli": "Si reveil.base non exposé, ne pas proposer reveil.deux_faible; reprendre direct vs réveil au palier de un.",
+      "reference": [
+        "SEF-V470-007",
+        "SEF-V470-010",
+        "SEF-V3-031-2",
+        "SEF-V476-001",
+        "SEF-V4-048-1",
+        "SEF-V4-065-1",
+        "SEF-V4-053-3",
+        "V2-M4-001",
+        "V2-M4-002",
+        "V2-M4-005"
+      ],
+      "prerequisParId": {
+        "SEF-V470-007": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-010": {
+          "concept": "intervenir.deux_faible",
+          "stage": 1,
+          "minSession": 17,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-031-2": {
+          "concept": "intervenir.base",
+          "stage": 0,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V476-001": {
+          "concept": "contre.deux_faible",
+          "stage": 1,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-048-1": {
+          "concept": "reveil.base",
+          "stage": 0,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-065-1": {
+          "concept": "reveil.base",
+          "stage": 0,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-053-3": {
+          "concept": "reveil.base",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M4-001": {
+          "concept": "reveil.deux_faible",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M4-002": {
+          "concept": "reveil.deux_faible",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M4-005": {
+          "concept": "reveil.deux_faible",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-050-2": {
+          "concept": "reveil.base",
+          "stage": 0,
+          "minSession": 19,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L10-018": {
+          "concept": "reveil.deux_faible",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M4-004": {
+          "concept": "reveil.deux_faible",
+          "stage": 1,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "barrage.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "reveil.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "intervenir.deux_faible",
+        "intervenir.base",
+        "contre.deux_faible",
+        "reveil.base",
+        "reveil.deux_faible"
+      ]
+    },
+    {
+      "session": 25,
+      "objectif": "Distinguer 2SA fitté après intervention naturelle et Truscott après Contre",
+      "groupes": [
+        {
+          "decision": "Après intervention naturelle",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-075-3",
+            "SEF-V3-082-1"
+          ]
+        },
+        {
+          "decision": "Après Contre",
+          "role": "objectif",
+          "ids": [
+            "SEF-V470-005",
+            "SEF-V470-006",
+            "SEF-V44-045"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V3-081-3",
+            "SEF-V3-083-1",
+            "SEF-L42-001"
+          ]
+        }
+      ],
+      "prerequisSessions": "12,17,19",
+      "contrastesObligatoires": "Intervention couleur : normalement trois atouts et 11–15 HLD; Contre : quatre atouts et 11–12 HLD; Surcontre positif sans quatre atouts.",
+      "rappels": [
+        "SEF-N051-2",
+        "SEF-V3-074-3",
+        "SEF-V3-078-3",
+        "SEF-026-3",
+        "SEF-V4-025-2"
+      ],
+      "repli": "Revenir au fit simple et 2SA fitté non compétitif; ne pas mélanger Truscott fort, mixed raise et rencontre sans cours.",
+      "reference": [
+        "SEF-N051-2",
+        "SEF-V3-074-3",
+        "SEF-V3-078-3",
+        "SEF-026-3",
+        "SEF-V4-025-2",
+        "SEF-V3-075-3",
+        "SEF-V3-082-1",
+        "SEF-V470-005",
+        "SEF-V470-006",
+        "SEF-V44-045"
+      ],
+      "prerequisParId": {
+        "SEF-N051-2": {
+          "concept": "fit.2sa",
+          "stage": 1,
+          "minSession": 8,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-074-3": {
+          "concept": "apres_inter.base",
+          "stage": 0,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-078-3": {
+          "concept": "apres_inter.base",
+          "stage": 0,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-026-3": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-025-2": {
+          "concept": "reponse_inter.base",
+          "stage": 0,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-075-3": {
+          "concept": "competitif.2sa_fitte",
+          "stage": 1,
+          "minSession": 15,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-082-1": {
+          "concept": "competitif.2sa_fitte",
+          "stage": 1,
+          "minSession": 15,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-005": {
+          "concept": "competitif.truscott",
+          "stage": 1,
+          "minSession": 16,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V470-006": {
+          "concept": "competitif.truscott",
+          "stage": 1,
+          "minSession": 16,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-045": {
+          "concept": "competitif.truscott",
+          "stage": 1,
+          "minSession": 16,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-081-3": {
+          "concept": "competitif.2sa_fitte",
+          "stage": 1,
+          "minSession": 15,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-083-1": {
+          "concept": "competitif.2sa_fitte",
+          "stage": 1,
+          "minSession": 15,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "fit.2sa",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L42-001": {
+          "concept": "competitif.truscott",
+          "stage": 3,
+          "minSession": 20,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "competitif.truscott",
+              "minExposure": 2
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "fit.2sa",
+        "apres_inter.base",
+        "majeur.soutien",
+        "reponse_inter.base",
+        "competitif.2sa_fitte",
+        "competitif.truscott"
+      ]
+    },
+    {
+      "session": 26,
+      "objectif": "Identifier si la redemande de l'ouvreur est libre ou forcée après intervention",
+      "groupes": [
+        {
+          "decision": "Redemande libre",
+          "role": "objectif",
+          "ids": [
+            "SEF-V471-001",
+            "SEF-V471-002",
+            "SEF-V471-003",
+            "SEF-V471-004"
+          ]
+        },
+        {
+          "decision": "Même main, ordre adverse différent",
+          "role": "objectif",
+          "ids": [
+            "V2-M3-013",
+            "V2-M3-014"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V471-005",
+            "SEF-V471-006",
+            "SEF-L32-001",
+            "V2-M3-015",
+            "V2-M3-016"
+          ]
+        }
+      ],
+      "prerequisSessions": "5,16–19",
+      "contrastesObligatoires": "N°4 parle: Passe autorisé, 1SA libre avec arrêt; n°2 parle et n°4 passe après réponse forcing: reparler; fit quatre et répétition sixième naturels.",
+      "rappels": [
+        "SEF-044-1",
+        "SEF-048-1",
+        "SEF-V3-074-3",
+        "SEF-V3-027-2"
+      ],
+      "repli": "Si rôle et séquence non compris, retour aux redemandes naturelles; 1SA d'intervention reporté en extension distincte.",
+      "reference": [
+        "SEF-044-1",
+        "SEF-048-1",
+        "SEF-V3-074-3",
+        "SEF-V3-027-2",
+        "SEF-V471-001",
+        "SEF-V471-002",
+        "SEF-V471-003",
+        "SEF-V471-004",
+        "V2-M3-013",
+        "V2-M3-014"
+      ],
+      "prerequisParId": {
+        "SEF-044-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-048-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-074-3": {
+          "concept": "apres_inter.base",
+          "stage": 0,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "intervenir.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-027-2": {
+          "concept": "intervenir.base",
+          "stage": 0,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.mineure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-001": {
+          "concept": "red.competitif",
+          "stage": 2,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-002": {
+          "concept": "red.competitif",
+          "stage": 2,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-003": {
+          "concept": "red.competitif",
+          "stage": 2,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-004": {
+          "concept": "red.competitif",
+          "stage": 2,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M3-013": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M3-014": {
+          "concept": "red.competitif",
+          "stage": 2,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-005": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V471-006": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L32-001": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M3-015": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M3-016": {
+          "concept": "red.competitif",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "apres_inter.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.competitif",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "red.base",
+        "apres_inter.base",
+        "intervenir.base",
+        "red.competitif"
+      ]
+    },
+    {
+      "session": 27,
+      "objectif": "Adapter la réponse de l'ouvreur à un contre d'entame sur Stayman ou Texas",
+      "groupes": [
+        {
+          "decision": "Stayman contré",
+          "role": "objectif",
+          "ids": [
+            "SEF-L25-001",
+            "SEF-L25-002",
+            "SEF-L25-003"
+          ]
+        },
+        {
+          "decision": "Texas contré après explication distincte",
+          "role": "objectif",
+          "ids": [
+            "SEF-L25-004",
+            "SEF-L25-005",
+            "SEF-L25-006"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-PN26-M1-017",
+            "SEF-PN26-M1-027",
+            "V2-M2-039",
+            "V2-M2-040"
+          ]
+        }
+      ],
+      "prerequisSessions": "6–10,17,19",
+      "contrastesObligatoires": "Stayman contré: tenue Trèfle vs absence; Surcontre proposition de jouer. Texas contré: deux atouts Passe, trois sans arrêt Surcontre, trois avec arrêt rectification.",
+      "rappels": [
+        "SEF-034-1",
+        "SEF-V3-011-1",
+        "SEF-037-1",
+        "SEF-038-1"
+      ],
+      "repli": "Reprendre Stayman/Texas libres; si Stayman contré fragile, différer le deuxième groupe. Texas mineur suite n'est pas un cas de contre d'entame.",
+      "reference": [
+        "SEF-034-1",
+        "SEF-V3-011-1",
+        "SEF-037-1",
+        "SEF-038-1",
+        "SEF-L25-001",
+        "SEF-L25-002",
+        "SEF-L25-003",
+        "SEF-L25-004",
+        "SEF-L25-005",
+        "SEF-L25-006"
+      ],
+      "prerequisParId": {
+        "SEF-034-1": {
+          "concept": "sa1.stayman",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-011-1": {
+          "concept": "sa1.stayman.reponse",
+          "stage": 1,
+          "minSession": 7,
+          "requires": [
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-037-1": {
+          "concept": "sa1.texas",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-038-1": {
+          "concept": "sa1.texas",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "sa1.seuil",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-001": {
+          "concept": "sa1.stayman.contre",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-002": {
+          "concept": "sa1.stayman.contre",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 3
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-003": {
+          "concept": "sa1.stayman.contre",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.stayman",
+              "minExposure": 2
+            },
+            {
+              "concept": "sa1.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-004": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-005": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.contre",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L25-006": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.contre",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-PN26-M1-017": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 14,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-PN26-M1-027": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.contre",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M2-039": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 18,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.contre",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M2-040": {
+          "concept": "sa1.texas.contre",
+          "stage": 3,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "contre.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa1.texas.contre",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "sa1.stayman",
+        "sa1.stayman.reponse",
+        "sa1.texas",
+        "sa1.stayman.contre",
+        "sa1.texas.contre"
+      ]
+    },
+    {
+      "session": 28,
+      "objectif": "Choisir la manche après Stayman ou Texas sur ouverture 2SA",
+      "groupes": [
+        {
+          "decision": "Stayman : suite",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-021-2",
+            "SEF-V3-023-2",
+            "SEF-V3-024-1"
+          ]
+        },
+        {
+          "decision": "Texas : suite",
+          "role": "objectif",
+          "ids": [
+            "SEF-V3-025-1",
+            "SEF-V3-026-1",
+            "SEF-Q26-M2-022"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": []
+        }
+      ],
+      "prerequisSessions": "13",
+      "contrastesObligatoires": "Fit 4–4 après Stayman ou 5–3 après Texas fitté vs 3SA sans fit; 3SA refus de rectifier Texas ne garantit pas la rectification comme sur 1SA.",
+      "rappels": [
+        "SEF-L23-006",
+        "SEF-L39-001",
+        "SEF-L40-001",
+        "SEF-L38-001"
+      ],
+      "repli": "Reprendre réponses codées S13; bicolores et Texas Trèfle sur 2SA sont des extensions.",
+      "reference": [
+        "SEF-L23-006",
+        "SEF-L39-001",
+        "SEF-L40-001",
+        "SEF-L38-001",
+        "SEF-V3-021-2",
+        "SEF-V3-023-2",
+        "SEF-V3-024-1",
+        "SEF-V3-025-1",
+        "SEF-V3-026-1",
+        "SEF-Q26-M2-022"
+      ],
+      "prerequisParId": {
+        "SEF-L23-006": {
+          "concept": "sa2.texas.reponse",
+          "stage": 1,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "sa2.texas",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L39-001": {
+          "concept": "sa2.texas.reponse",
+          "stage": 1,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "sa2.texas",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L40-001": {
+          "concept": "sa2.stayman.reponse",
+          "stage": 1,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L38-001": {
+          "concept": "sa2.stayman.reponse",
+          "stage": 1,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-021-2": {
+          "concept": "sa2.stayman.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-023-2": {
+          "concept": "sa2.stayman.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-024-1": {
+          "concept": "sa2.stayman.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.stayman.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-025-1": {
+          "concept": "sa2.texas.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.texas.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V3-026-1": {
+          "concept": "sa2.texas.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.texas.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M2-022": {
+          "concept": "sa2.texas.suite",
+          "stage": 2,
+          "minSession": 12,
+          "requires": [
+            {
+              "concept": "sa2.texas",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.texas.reponse",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "sa2.texas.reponse",
+        "sa2.stayman.reponse",
+        "sa2.stayman.suite",
+        "sa2.texas.suite"
+      ]
+    },
+    {
+      "session": 29,
+      "objectif": "Déclencher le Roudi après 1m–1M–1SA si le soutien troisième reste utile",
+      "groupes": [
+        {
+          "decision": "Recherche du fit 5–3",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-073-1",
+            "SEF-V4-079-3"
+          ]
+        },
+        {
+          "decision": "Choix sans relais",
+          "role": "objectif",
+          "ids": [
+            "V2-M6-001",
+            "SEF-V4-074-3",
+            "SEF-V4-075-2",
+            "SEF-V4-080-4"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": []
+        }
+      ],
+      "prerequisSessions": "5,11",
+      "contrastesObligatoires": "Cinq cartes + projet de manche: 2♣; cinq faibles: répétition; quatre faibles: Passe; quatre invitantes: 2SA naturel.",
+      "rappels": [
+        "SEF-044-1",
+        "SEF-052-3",
+        "SEF-V49-022",
+        "SEF-048-1"
+      ],
+      "repli": "Si redemande 1SA 12–14 H non reconnue, retour aux redemandes et au choix partielle/manche.",
+      "reference": [
+        "SEF-044-1",
+        "SEF-052-3",
+        "SEF-V49-022",
+        "SEF-048-1",
+        "SEF-V4-073-1",
+        "SEF-V4-079-3",
+        "V2-M6-001",
+        "SEF-V4-074-3",
+        "SEF-V4-075-2",
+        "SEF-V4-080-4"
+      ],
+      "prerequisParId": {
+        "SEF-044-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-052-3": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V49-022": {
+          "concept": "second.base",
+          "stage": 0,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-048-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-073-1": {
+          "concept": "roudi.init",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-079-3": {
+          "concept": "roudi.init",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-001": {
+          "concept": "roudi.init",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-074-3": {
+          "concept": "roudi.choix",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-075-2": {
+          "concept": "roudi.choix",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-080-4": {
+          "concept": "roudi.choix",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "red.base",
+        "second.base",
+        "roudi.init",
+        "roudi.choix"
+      ]
+    },
+    {
+      "session": 30,
+      "objectif": "Choisir Drury fitté ou réponse naturelle après un Passe initial",
+      "groupes": [
+        {
+          "decision": "Drury constructif",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-098-1",
+            "SEF-V4-104-1"
+          ]
+        },
+        {
+          "decision": "Soutien faible ou absence de fit",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-099-2",
+            "SEF-V4-100-2",
+            "SEF-V4-105-2",
+            "V2-M6-008"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": []
+        }
+      ],
+      "prerequisSessions": "3,21",
+      "contrastesObligatoires": "Répondant passé, ouverture 3e/4e position; soutien constructif vs simple; sans fit 1SA, pas de faux Drury dans le traitement QPJB.",
+      "rappels": [
+        "SEF-V419-001",
+        "SEF-V422-002",
+        "SEF-L01-E-03",
+        "SEF-026-3"
+      ],
+      "repli": "Présenter rappels de position en premier; si non acquis retarder Drury; ne pas généraliser aux mains plates litigieuses.",
+      "reference": [
+        "SEF-V419-001",
+        "SEF-V422-002",
+        "SEF-L01-E-03",
+        "SEF-026-3",
+        "SEF-V4-098-1",
+        "SEF-V4-104-1",
+        "SEF-V4-099-2",
+        "SEF-V4-100-2",
+        "SEF-V4-105-2",
+        "V2-M6-008"
+      ],
+      "prerequisParId": {
+        "SEF-V419-001": {
+          "concept": "ouv.position",
+          "stage": 1,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V422-002": {
+          "concept": "ouv.position",
+          "stage": 1,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L01-E-03": {
+          "concept": "ouv.position",
+          "stage": 1,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.passe",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-026-3": {
+          "concept": "majeur.soutien",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-098-1": {
+          "concept": "drury.init",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-104-1": {
+          "concept": "drury.init",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-099-2": {
+          "concept": "drury.choix",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-100-2": {
+          "concept": "drury.choix",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-105-2": {
+          "concept": "drury.choix",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-008": {
+          "concept": "drury.init",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "ouv.position",
+        "majeur.soutien",
+        "drury.init",
+        "drury.choix"
+      ]
+    },
+    {
+      "session": 31,
+      "objectif": "Répondre au Roudi à trois réponses en distinguant longueur et force",
+      "groupes": [
+        {
+          "decision": "Roudi sur Cœur",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-076-3",
+            "SEF-V4-077-1",
+            "SEF-V4-078-1"
+          ]
+        },
+        {
+          "decision": "Roudi sur Pique",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-082-1",
+            "SEF-V4-083-1",
+            "SEF-V4-084-1"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V4-089-1",
+            "SEF-V4-090-1",
+            "SEF-V4-095-2",
+            "SEF-V4-096-1"
+          ]
+        }
+      ],
+      "prerequisSessions": "29",
+      "contrastesObligatoires": "2♦ nie trois cartes; 2♥ trois et minimum; 2♠ trois et maximum; codes identiques quelle que soit la majeure.",
+      "rappels": [
+        "SEF-V4-073-1",
+        "SEF-V4-074-3",
+        "V2-M6-001",
+        "SEF-044-1"
+      ],
+      "repli": "Si Roudi non identifié, revoir S29, pas de réponses codées.",
+      "reference": [
+        "SEF-V4-073-1",
+        "SEF-V4-074-3",
+        "V2-M6-001",
+        "SEF-044-1",
+        "SEF-V4-076-3",
+        "SEF-V4-077-1",
+        "SEF-V4-078-1",
+        "SEF-V4-082-1",
+        "SEF-V4-083-1",
+        "SEF-V4-084-1"
+      ],
+      "prerequisParId": {
+        "SEF-V4-073-1": {
+          "concept": "roudi.init",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-074-3": {
+          "concept": "roudi.choix",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-001": {
+          "concept": "roudi.init",
+          "stage": 0,
+          "minSession": 22,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-044-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-076-3": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-077-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-078-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-082-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-083-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-084-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-089-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-090-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-095-2": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-096-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "roudi.init",
+        "roudi.choix",
+        "red.base",
+        "roudi.reponse"
+      ]
+    },
+    {
+      "session": 32,
+      "objectif": "Évaluer l'ouverture après Drury et exploiter la réponse 2♦ d'attente",
+      "groupes": [
+        {
+          "decision": "Réponse de l'ouvreur",
+          "role": "objectif",
+          "ids": [
+            "SEF-V4-101-2",
+            "SEF-V4-102-1",
+            "SEF-V4-107-3",
+            "SEF-V4-108-1"
+          ]
+        },
+        {
+          "decision": "Suites après 2♦",
+          "role": "objectif",
+          "ids": [
+            "SEF-V484-001",
+            "SEF-V484-003",
+            "SEF-L01-F-02"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "V2-M6-011",
+            "V2-M6-012"
+          ]
+        }
+      ],
+      "prerequisSessions": "30",
+      "contrastesObligatoires": "Répétition économique = ouverture tactique; 2♦ = espoir de manche; trois atouts vs cinq en suite. Quatre plats litigieux écartés.",
+      "rappels": [
+        "SEF-V4-098-1",
+        "SEF-V4-099-2",
+        "SEF-V4-104-1"
+      ],
+      "repli": "Revenir à Drury initiateur avant suites; quatre atouts sans courte exige arbitrage du seuil initial.",
+      "reference": [
+        "SEF-V4-098-1",
+        "SEF-V4-099-2",
+        "SEF-V4-104-1",
+        "SEF-V4-101-2",
+        "SEF-V4-102-1",
+        "SEF-V4-107-3",
+        "SEF-V4-108-1",
+        "SEF-V484-001",
+        "SEF-V484-003",
+        "SEF-L01-F-02"
+      ],
+      "prerequisParId": {
+        "SEF-V4-098-1": {
+          "concept": "drury.init",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-099-2": {
+          "concept": "drury.choix",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-104-1": {
+          "concept": "drury.init",
+          "stage": 0,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "majeur.soutien",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.position",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-101-2": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-102-1": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-107-3": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-108-1": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V484-001": {
+          "concept": "drury.suite",
+          "stage": 2,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            },
+            {
+              "concept": "drury.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V484-003": {
+          "concept": "drury.suite",
+          "stage": 2,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            },
+            {
+              "concept": "drury.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L01-F-02": {
+          "concept": "drury.suite",
+          "stage": 2,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            },
+            {
+              "concept": "drury.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-011": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-012": {
+          "concept": "drury.reponse",
+          "stage": 1,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "drury.init",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "drury.init",
+        "drury.choix",
+        "drury.reponse",
+        "drury.suite"
+      ]
+    },
+    {
+      "session": 33,
+      "objectif": "Choisir 2♣ fort indéterminé, 2♦ forcing de manche ou ouverture naturelle",
+      "groupes": [
+        {
+          "decision": "Zones régulières",
+          "role": "objectif",
+          "ids": [
+            "SEF-V44-002",
+            "V2-M6-013",
+            "V2-M6-014",
+            "SEF-V45-002"
+          ]
+        },
+        {
+          "decision": "Force à la couleur",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-003",
+            "SEF-V45-004"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-L03-005"
+          ]
+        }
+      ],
+      "prerequisSessions": "1,9",
+      "contrastesObligatoires": "21 H réguliers = 2SA; 22–23 H = 2♣; 24+ H réguliers = 2♦; unicolore fort et défense, pas seulement levées de jeu.",
+      "rappels": [
+        "SEF-004-1",
+        "SEF-001-1",
+        "SEF-006-2",
+        "SEF-013-1"
+      ],
+      "repli": "Revenir aux zones 1SA/2SA et ouverture naturelle; SEF-L27-003 non éligible avant minSession 34.",
+      "reference": [
+        "SEF-004-1",
+        "SEF-001-1",
+        "SEF-006-2",
+        "SEF-013-1",
+        "SEF-V44-002",
+        "V2-M6-013",
+        "V2-M6-014",
+        "SEF-V45-002",
+        "SEF-V45-003",
+        "SEF-V45-004"
+      ],
+      "prerequisParId": {
+        "SEF-004-1": {
+          "concept": "ouv.sa2",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.sa1",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-001-1": {
+          "concept": "ouv.sa1",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-006-2": {
+          "concept": "ouv.majeure",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-013-1": {
+          "concept": "ouv.passe",
+          "stage": 0,
+          "minSession": 0,
+          "requires": []
+        },
+        "SEF-V44-002": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-013": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-014": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-002": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-003": {
+          "concept": "fortes.ouverture",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-004": {
+          "concept": "fortes.ouverture",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L03-005": {
+          "concept": "fortes.ouverture",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "ouv.sa2",
+        "ouv.sa1",
+        "ouv.majeure",
+        "ouv.passe",
+        "fortes.ouverture"
+      ]
+    },
+    {
+      "session": 34,
+      "objectif": "Donner le relais ou la réponse aux As après une ouverture forte",
+      "groupes": [
+        {
+          "decision": "Relais sur 2♣",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-005",
+            "SEF-V45-006"
+          ]
+        },
+        {
+          "decision": "Réponses simples sur 2♦",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-009",
+            "SEF-V45-010",
+            "SEF-V45-011",
+            "SEF-V45-012",
+            "SEF-V475-001"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V475-002",
+            "SEF-V475-003",
+            "SEF-V475-004",
+            "SEF-V475-005"
+          ]
+        }
+      ],
+      "prerequisSessions": "33",
+      "contrastesObligatoires": "Sur 2♣, 2♦ obligatoire même avec du jeu; sur 2♦, 2♥ négatif, 2♠ As majeur, 3♣/3♦ As correspondant, 2SA positif sans As.",
+      "rappels": [
+        "SEF-V44-002",
+        "V2-M6-014",
+        "SEF-004-1"
+      ],
+      "repli": "Si ouverture forte non reconnue, revenir S33; exception deux Rois et deux As réservées après barème simple.",
+      "reference": [
+        "SEF-V44-002",
+        "V2-M6-014",
+        "SEF-004-1",
+        "SEF-V45-005",
+        "SEF-V45-006",
+        "SEF-V45-009",
+        "SEF-V45-010",
+        "SEF-V45-011",
+        "SEF-V45-012",
+        "SEF-V475-001"
+      ],
+      "prerequisParId": {
+        "SEF-V44-002": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-014": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-004-1": {
+          "concept": "ouv.sa2",
+          "stage": 0,
+          "minSession": 1,
+          "requires": [
+            {
+              "concept": "ouv.sa1",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-005": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-006": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-009": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-010": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-011": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-012": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V475-001": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V475-002": {
+          "concept": "fortes.relais",
+          "stage": 3,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V475-003": {
+          "concept": "fortes.relais",
+          "stage": 3,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V475-004": {
+          "concept": "fortes.relais",
+          "stage": 3,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V475-005": {
+          "concept": "fortes.relais",
+          "stage": 3,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "fortes.ouverture",
+        "ouv.sa2",
+        "fortes.relais"
+      ]
+    },
+    {
+      "session": 35,
+      "objectif": "Décrire la main de l'ouvreur après le relais fort",
+      "groupes": [
+        {
+          "decision": "SA régulier selon ouverture",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-007",
+            "V1-M5-003"
+          ]
+        },
+        {
+          "decision": "Longue forte et levées de jeu",
+          "role": "objectif",
+          "ids": [
+            "V2-M6-019",
+            "V2-M6-020",
+            "SEF-V475-007",
+            "SEF-V45-008"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": []
+        }
+      ],
+      "prerequisSessions": "33–34",
+      "contrastesObligatoires": "2♣–2♦–2SA = 22–23; 2♦–2♥–2SA = 24+ et forcing de manche; six maîtresses et As extérieur vs sept et As extérieur; 3♣ très forte mineure.",
+      "rappels": [
+        "SEF-V45-005",
+        "SEF-V45-009",
+        "SEF-V45-003",
+        "V2-M6-014"
+      ],
+      "repli": "Si relais ou ouverture non appris, reprendre S33–34; 3SA codé 5–5 majeur verrouillé jusqu'à minSession 37.",
+      "reference": [
+        "SEF-V45-005",
+        "SEF-V45-009",
+        "SEF-V45-003",
+        "V2-M6-014",
+        "SEF-V45-007",
+        "V1-M5-003",
+        "V2-M6-019",
+        "V2-M6-020",
+        "SEF-V475-007",
+        "SEF-V45-008"
+      ],
+      "prerequisParId": {
+        "SEF-V45-005": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-009": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-003": {
+          "concept": "fortes.ouverture",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 2
+            },
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-014": {
+          "concept": "fortes.ouverture",
+          "stage": 0,
+          "minSession": 26,
+          "requires": [
+            {
+              "concept": "ouv.majeure",
+              "minExposure": 1
+            },
+            {
+              "concept": "ouv.sa2",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-007": {
+          "concept": "fortes.redemande",
+          "stage": 2,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V1-M5-003": {
+          "concept": "fortes.redemande",
+          "stage": 2,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-019": {
+          "concept": "fortes.redemande",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-020": {
+          "concept": "fortes.redemande",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V475-007": {
+          "concept": "fortes.redemande",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-008": {
+          "concept": "fortes.redemande",
+          "stage": 3,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "fortes.relais",
+        "fortes.ouverture",
+        "fortes.redemande"
+      ]
+    },
+    {
+      "session": 36,
+      "objectif": "Après ouverture forte, décider partielle ou manche",
+      "groupes": [
+        {
+          "decision": "Suite après redemande majeure",
+          "role": "objectif",
+          "ids": [
+            "SEF-V475-009",
+            "SEF-V475-010"
+          ]
+        },
+        {
+          "decision": "Suite après redemande SA",
+          "role": "objectif",
+          "ids": [
+            "SEF-V486-023",
+            "SEF-V486-024",
+            "SEF-V486-025"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V487-005",
+            "SEF-L24-003"
+          ]
+        }
+      ],
+      "prerequisSessions": "33–35",
+      "contrastesObligatoires": "Après 2♣ puis 2♥, zéro H Passe vs fit et 8 H manche; après 2♣ puis 2SA 22–23, zéro Passe vs 3 H 3SA ou 4 H avec majeure Stayman; 2♦ reste forcing de manche.",
+      "rappels": [
+        "SEF-V45-007",
+        "V1-M5-003",
+        "SEF-V45-009",
+        "SEF-V45-005",
+        "SEF-L40-001"
+      ],
+      "repli": "Si 2♣/2♦ confondus, revenir au relais et à l'ouverture; QCM de suite directe du répondant après 2♦ manquants.",
+      "reference": [
+        "SEF-V45-007",
+        "V1-M5-003",
+        "SEF-V45-009",
+        "SEF-V45-005",
+        "SEF-L40-001",
+        "SEF-V475-009",
+        "SEF-V475-010",
+        "SEF-V486-023",
+        "SEF-V486-024",
+        "SEF-V486-025"
+      ],
+      "prerequisParId": {
+        "SEF-V45-007": {
+          "concept": "fortes.redemande",
+          "stage": 2,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V1-M5-003": {
+          "concept": "fortes.redemande",
+          "stage": 2,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "fortes.relais",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-009": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-005": {
+          "concept": "fortes.relais",
+          "stage": 1,
+          "minSession": 27,
+          "requires": [
+            {
+              "concept": "fortes.ouverture",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L40-001": {
+          "concept": "sa2.stayman.reponse",
+          "stage": 1,
+          "minSession": 10,
+          "requires": [
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V475-009": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V475-010": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-023": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-024": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-025": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.seuil",
+              "minExposure": 1
+            },
+            {
+              "concept": "sa2.stayman",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V487-005": {
+          "concept": "fortes.suite",
+          "stage": 2,
+          "minSession": 31,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L24-003": {
+          "concept": "fortes.suite",
+          "stage": 3,
+          "minSession": 35,
+          "requires": [
+            {
+              "concept": "fortes.redemande",
+              "minExposure": 1
+            },
+            {
+              "concept": "fortes.suite",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "fortes.redemande",
+        "fortes.relais",
+        "sa2.stayman.reponse",
+        "fortes.suite"
+      ]
+    },
+    {
+      "session": 37,
+      "objectif": "Identifier le besoin de troisième couleur forcing et le distinguer d'une enchère naturelle",
+      "groupes": [
+        {
+          "decision": "Base forcing et naturel",
+          "role": "objectif",
+          "ids": [
+            "SEF-Q26-M6-001",
+            "SEF-L13-006"
+          ]
+        },
+        {
+          "decision": "Réponse illustrative (verrou historique)",
+          "role": "objectif",
+          "ids": [
+            "SEF-L17-001",
+            "SEF-L17-004"
+          ]
+        },
+        {
+          "decision": "Déclencher la troisième couleur",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-013",
+            "SEF-V45-015"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-L17-002",
+            "SEF-L17-003",
+            "SEF-L17-005",
+            "SEF-L17-012"
+          ]
+        }
+      ],
+      "prerequisSessions": "5,11,20",
+      "contrastesObligatoires": "Répétition non forcing faible vs changement de couleur naturel forcing; après répétition mineure, troisième artificielle la moins chère dans les séquences enseignées; chercher trois atouts ou arrêt.",
+      "rappels": [
+        "SEF-048-1",
+        "SEF-052-3",
+        "SEF-044-1",
+        "SEF-V44-020"
+      ],
+      "repli": "Expliquer le déclenchement avant toute réponse illustrative; le verrou historique exige deux expositions de réponse avant les QCM de déclenchement. Proposition dans manques.md.",
+      "reference": [
+        "SEF-048-1",
+        "SEF-052-3",
+        "SEF-044-1",
+        "SEF-V44-020",
+        "SEF-Q26-M6-001",
+        "SEF-L13-006",
+        "SEF-L17-001",
+        "SEF-L17-004",
+        "SEF-V45-013",
+        "SEF-V45-015"
+      ],
+      "prerequisParId": {
+        "SEF-048-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-052-3": {
+          "concept": "second.base",
+          "stage": 1,
+          "minSession": 6,
+          "requires": [
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-044-1": {
+          "concept": "red.base",
+          "stage": 0,
+          "minSession": 4,
+          "requires": [
+            {
+              "concept": "majeur.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "mineur.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-020": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-Q26-M6-001": {
+          "concept": "forcing.base",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L13-006": {
+          "concept": "forcing.base",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L17-001": {
+          "concept": "forcing.troisieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L17-004": {
+          "concept": "forcing.troisieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-013": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V45-015": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-L17-002": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-L17-003": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-L17-005": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-L17-012": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "red.base",
+        "second.base",
+        "red.bicolore_cher",
+        "forcing.base",
+        "forcing.troisieme"
+      ]
+    },
+    {
+      "session": 38,
+      "objectif": "Utiliser la quatrième couleur forcing puis reconnaître les priorités de l'ouvreur",
+      "groupes": [
+        {
+          "decision": "Déclenchement simple",
+          "role": "objectif",
+          "ids": [
+            "SEF-Q26-M6-002"
+          ]
+        },
+        {
+          "decision": "Soutien différé",
+          "role": "objectif",
+          "ids": [
+            "SEF-V480-001"
+          ]
+        },
+        {
+          "decision": "Déclenchement transféré",
+          "role": "objectif",
+          "ids": [
+            "SEF-V45-016"
+          ]
+        },
+        {
+          "decision": "Autres priorités de réponse",
+          "role": "objectif",
+          "ids": [
+            "SEF-V480-003",
+            "SEF-V480-011"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-V480-007",
+            "SEF-V480-010",
+            "SEF-V480-005"
+          ]
+        }
+      ],
+      "prerequisSessions": "11,20,37",
+      "contrastesObligatoires": "Trois couleurs naturelles déjà nommées; quatrième artificielle pour soutien/arrêt; troisième après répétition vs quatrième; économique non forcing de manche par nature.",
+      "rappels": [
+        "SEF-V45-013",
+        "SEF-V45-015",
+        "SEF-L13-006",
+        "SEF-V44-020",
+        "SEF-Q26-M6-001"
+      ],
+      "repli": "Revenir à répétition/bicolore/troisième; quatrième chère après économique. Expliquer le déclenchement avant les réponses.",
+      "reference": [
+        "SEF-V45-013",
+        "SEF-V45-015",
+        "SEF-L13-006",
+        "SEF-V44-020",
+        "SEF-Q26-M6-001",
+        "SEF-Q26-M6-002",
+        "SEF-V480-001",
+        "SEF-V45-016",
+        "SEF-V480-003",
+        "SEF-V480-011"
+      ],
+      "prerequisParId": {
+        "SEF-V45-013": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V45-015": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-L13-006": {
+          "concept": "forcing.base",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-020": {
+          "concept": "red.bicolore_cher",
+          "stage": 3,
+          "minSession": 13,
+          "requires": [
+            {
+              "concept": "red.bicolore",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-Q26-M6-001": {
+          "concept": "forcing.base",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M6-002": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V480-001": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V45-016": {
+          "concept": "forcing.quatrieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V480-003": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V480-011": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V480-007": {
+          "concept": "forcing.quatrieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V480-010": {
+          "concept": "forcing.quatrieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-V480-005": {
+          "concept": "forcing.quatrieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 2
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "forcing.troisieme",
+        "forcing.base",
+        "red.bicolore_cher",
+        "forcing.quatrieme"
+      ]
+    },
+    {
+      "session": 39,
+      "objectif": "Conclure ou inviter après troisième ou quatrième couleur forcing",
+      "groupes": [
+        {
+          "decision": "Suite troisième",
+          "role": "objectif",
+          "ids": [
+            "SEF-L17-009",
+            "SEF-Q26-M3-006"
+          ]
+        },
+        {
+          "decision": "Suite quatrième simple",
+          "role": "objectif",
+          "ids": [
+            "SEF-V486-026",
+            "SEF-V486-027"
+          ]
+        },
+        {
+          "decision": "Suite quatrième économique limitée",
+          "role": "objectif",
+          "ids": [
+            "SEF-V486-029",
+            "SEF-V486-030"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "SEF-Q26-M3-005",
+            "V2-M6-029",
+            "V2-M6-030",
+            "V1-M5-005"
+          ]
+        }
+      ],
+      "prerequisSessions": "37–38",
+      "contrastesObligatoires": "Fit 5–3 découvert: manche majeure; pas de fit et tenue: SA; 11 H après quatrième économique peut inviter ou revenir à la majeure sans imposer la manche.",
+      "rappels": [
+        "SEF-V45-013",
+        "SEF-Q26-M6-002",
+        "SEF-V480-001",
+        "SEF-V480-003"
+      ],
+      "repli": "Si une convention non vue, ne pas demander sa suite; utiliser l'autre uniquement si acquise, sinon rappels de redemande.",
+      "reference": [
+        "SEF-V45-013",
+        "SEF-Q26-M6-002",
+        "SEF-V480-001",
+        "SEF-V480-003",
+        "SEF-L17-009",
+        "SEF-Q26-M3-006",
+        "SEF-V486-026",
+        "SEF-V486-027",
+        "SEF-V486-029",
+        "SEF-V486-030"
+      ],
+      "prerequisParId": {
+        "SEF-V45-013": {
+          "concept": "forcing.troisieme",
+          "stage": 3,
+          "minSession": 32,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 2
+            }
+          ]
+        },
+        "SEF-Q26-M6-002": {
+          "concept": "forcing.quatrieme",
+          "stage": 0,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V480-001": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V480-003": {
+          "concept": "forcing.quatrieme",
+          "stage": 1,
+          "minSession": 29,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-L17-009": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M3-006": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-026": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-027": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 2,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-029": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V486-030": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M3-005": {
+          "concept": "forcing.troisieme.suite",
+          "stage": 2,
+          "minSession": 28,
+          "requires": [
+            {
+              "concept": "forcing.troisieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-029": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-030": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V1-M5-005": {
+          "concept": "forcing.quatrieme.suite",
+          "stage": 3,
+          "minSession": 34,
+          "requires": [
+            {
+              "concept": "forcing.quatrieme",
+              "minExposure": 1
+            },
+            {
+              "concept": "forcing.quatrieme.suite",
+              "minExposure": 2
+            },
+            {
+              "concept": "second.base",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "forcing.troisieme",
+        "forcing.quatrieme",
+        "forcing.troisieme.suite",
+        "forcing.quatrieme.suite"
+      ]
+    },
+    {
+      "session": 40,
+      "objectif": "Exploiter le Roudi et distinguer le relais sur 2SA à saut",
+      "groupes": [
+        {
+          "decision": "Suite du Roudi",
+          "role": "objectif",
+          "ids": [
+            "SEF-V44-062",
+            "SEF-V44-063",
+            "SEF-V44-064",
+            "SEF-V44-065"
+          ]
+        },
+        {
+          "decision": "Checkback (extension après comparaison)",
+          "role": "objectif",
+          "ids": [
+            "SEF-Q26-M6-005",
+            "SEF-Q26-M6-006",
+            "V1-M5-006"
+          ]
+        },
+        {
+          "decision": "Variantes de transfert après exposition suffisante; ne jamais substituer au contraste obligatoire",
+          "role": "reserve",
+          "ids": [
+            "V2-M6-031",
+            "V2-M6-032"
+          ]
+        }
+      ],
+      "prerequisSessions": "29,31,37–39",
+      "contrastesObligatoires": "Roudi sans fit: 2SA invitation vs 3SA; fit mini/maxi: manche ou invitation; sur redemande 2SA 18–19, checkback autre mineure seulement si utile.",
+      "rappels": [
+        "SEF-V4-076-3",
+        "SEF-V4-083-1",
+        "SEF-V4-078-1"
+      ],
+      "repli": "Revenir aux trois réponses Roudi; pas de checkback si Roudi ou redemande à saut 18–19 non compris.",
+      "reference": [
+        "SEF-V4-076-3",
+        "SEF-V4-083-1",
+        "SEF-V4-078-1",
+        "SEF-V44-062",
+        "SEF-V44-063",
+        "SEF-V44-064",
+        "SEF-V44-065",
+        "SEF-Q26-M6-005",
+        "SEF-Q26-M6-006",
+        "V1-M5-006"
+      ],
+      "prerequisParId": {
+        "SEF-V4-076-3": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-083-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V4-078-1": {
+          "concept": "roudi.reponse",
+          "stage": 1,
+          "minSession": 24,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-062": {
+          "concept": "roudi.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-063": {
+          "concept": "roudi.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-064": {
+          "concept": "roudi.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-V44-065": {
+          "concept": "roudi.suite",
+          "stage": 3,
+          "minSession": 30,
+          "requires": [
+            {
+              "concept": "roudi.init",
+              "minExposure": 2
+            },
+            {
+              "concept": "roudi.reponse",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M6-005": {
+          "concept": "forcing.checkback",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "SEF-Q26-M6-006": {
+          "concept": "forcing.checkback",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V1-M5-006": {
+          "concept": "forcing.checkback",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-031": {
+          "concept": "forcing.checkback",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        },
+        "V2-M6-032": {
+          "concept": "forcing.checkback",
+          "stage": 1,
+          "minSession": 33,
+          "requires": [
+            {
+              "concept": "forcing.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "red.base",
+              "minExposure": 1
+            },
+            {
+              "concept": "roudi.init",
+              "minExposure": 1
+            }
+          ]
+        }
+      },
+      "conceptsAdmissibles": [
+        "roudi.reponse",
+        "roudi.suite",
+        "forcing.checkback"
+      ]
+    }
+  ]
+}
