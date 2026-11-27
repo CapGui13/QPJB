@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const [profile='autonome',rawSeed='11',dest='reprise6-d-native',rawHorizon='180']=process.argv.slice(2),seed=Number(rawSeed),horizon=Number(rawHorizon);
 const patch=require('../quizz-coherence-reprise6-d-patch.js'),policy=require('../quizz-coherence-reprise6-d-t.js'),lab=require('./coherence-reprise6-d-native.cjs');
-const source=patch.patchEngine(read('quizz-parcours.js')),html=read('quizz.html'),embedded=h=>h.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
+const source=read('quizz-parcours.js'),html=read('quizz.html'),embedded=h=>h.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
 const git=(...args)=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:24*1024*1024});
 const hist='2d336054bc91fbd6ac762c093ecb5ec6da9f97e8';
 assert.equal(embedded(html),embedded(git('show',hist+':quizz.html')));assert.equal(read('quizz-prerequis.js'),git('show',hist+':quizz-prerequis.js'));
