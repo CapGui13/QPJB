@@ -46,3 +46,7 @@
 - Natif et UI réelle validés. Dernier état vérifié de 46017463188 : WebKit en cours, Chromium et gardes en file. La validation historique supplémentaire n'est pas attestée. Ne pas relancer les matrices déjà vertes.
 - Reprise minimale : consulter uniquement les jobs de 46017463188 ; si échec, filtrer le log du seul job fautif, corriger dans le périmètre autorisé, conserver le résultat exact et actualiser cette fiche/PR #512. Si PASS complet, décision T seule pour revue coordinateur, M4 global HOLD inchangé. Aucun merge ni publication.
 - MISSION DÉFINITIVEMENT TERMINÉE : NON (gardes historiques en attente).
+
+## Reprise suivante — gardes navigateur historiques validées
+- [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) : jobs Chromium 140568148024 et WebKit 140568147041 terminés success ; sur chaque moteur, recette T réelle + test historique progression-guidee-offline.cjs + durable-integration-browser.cjs PASS. Archive exacte des résultats : ci-historical-browser.json, commit 33cc45fdf14e969643ead415e66de6887e2f96bf.
+- Dernier job restant : guards 140568148185, étape « Gardes historiques sur moteur expérimental, option T désactivée par défaut » en cours. Les jobs native et gate sont sautés intentionnellement (matrices et gate déjà attestés). Ne pas les relancer. MISSION DÉFINITIVEMENT TERMINÉE : NON à ce checkpoint.
