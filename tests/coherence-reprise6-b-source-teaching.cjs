@@ -11,7 +11,7 @@ function feedback(html){
  assert(escape&&line);
  const start=html.indexOf('function supplement(q,type,result)');
  const helper=start<0?'':html.slice(start,html.indexOf('function professeurFeedbackHTML',start));
- return new Function('x','sessionType','current','answered','verdict','personalised','reviewBadge',escape+'\n'+helper+'\n'+line+'\nreturn feedback;');
+ return new Function('x','sessionType','current','answered','verdict','personalised','reviewBadge','parcoursState',escape+'\n'+helper+'\n'+line+'\nreturn feedback;');
 }
 function run(html,meta){
  const changed=C.instrumentHTML(S.instrumentHTML(html));
@@ -21,7 +21,7 @@ function run(html,meta){
  assert.equal(ex.length,1915);
  assert.deepEqual(ex.filter(q=>meta[q.id].concept==='sa1.texas').map(q=>q.id).sort(),[...S.FIRST].sort());
  for(const q of ex){
-  const show=(f,mode,result,answered)=>f(q,mode,{result},answered,'','','');
+  const show=(f,mode,result,answered)=>f(q,mode==='consolidation'?'parcours':mode,{result},answered,'','','',{active:{mode:mode==='consolidation'?'consolidation':'parcours'}});
   const a=show(before,'parcours','correct',true),b=show(after,'parcours','correct',true);
   if(a!==b){ids.push(q.id);assert(S.FIRST.includes(q.id));assert(b.includes(S.CONTRAST));}
   assert.equal(show(after,'parcours','wrong',true)!==show(before,'parcours','wrong',true),a!==b);
