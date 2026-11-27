@@ -3,17 +3,17 @@
   "base": "ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
   "sourceVerdictBlobSha": {
     "A": "1920b77c7f388f42cbad96d6d4b9b66268641248",
-    "B": "262ec22c06f3eef21c825a7b3b00913cbeddbb89",
+    "B": "751b952313daffe34612cb2057b508f515ade93c",
     "C": "a21d836d60ffc713b1f1a0a477109f2e2041bce6",
-    "D": "65923d68c5132daaed2c788dd9f9d2bb402436d9",
-    "E": "29856e4692854f83e3a32a24f08a425666cdae7b",
+    "D": "faa50ff8feb6cbe6e8fc19ade6dbb9f5df228238",
+    "E": "ad726b8198cc48fca6373ddc3409f77cc626e78f",
     "F": "2de32e36b6fe8fb8169ca360cc2b4d73e7cb23a2"
   },
-  "scope": "Instantané partiel 2877/3000 d'après les blobs D/E 480/480 et les blobs A/B/C/F de la passe précédente. Décisions non intégrées. Les 4 cas S30 restent ouverts.",
+  "scope": "Instantané complet des 3000 verdicts; décisions non intégrées.",
   "counts": {
-    "source": 116,
+    "source": 117,
     "decides": 45,
-    "restants": 71
+    "restants": 72
   },
   "items": [
     {
@@ -2976,81 +2976,6 @@
       "status": "A_TRAITER"
     },
     {
-      "lot": "F",
-      "id": "SEF-V45-001",
-      "conceptInitial": "fortes.ouverture",
-      "conceptPropose": "fortes.ouverture",
-      "justification": "22 H 3343, même décision que V44-002 ; réponse et corrigé corrects. Pas d'affectation directe : conserver en réserve historique plutôt que dupliquer S33 sans objectif distinct.",
-      "action": {
-        "type": "arbitrage"
-      },
-      "references": [
-        "https://www.ibridge.fr/public/fichedetails/778 ; SEF 2024, ouvertures fortes, synthèse https://bccl.club.ffbridge.fr/documents/modifications-du-sef-2024-370531",
-        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
-      ],
-      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
-      "coordination": {
-        "decision": "Conserver sans affectation explicite supplémentaire",
-        "reason": "Main 22 H régulière 3-3-4-3, même décision 2♣ que V44-002 (22 H réguliers 3-3-3-4), déjà en objectif S33 et réinvestissement S62. La variante historique reste accessible selon les règles existantes; aucune suppression ni injection de groupe.",
-        "reservoirAction": null
-      }
-    },
-    {
-      "lot": "F",
-      "id": "SEF-V45-011",
-      "conceptInitial": "fortes.relais",
-      "conceptPropose": "fortes.relais",
-      "justification": "Un seul As de Trèfle, 6 H : 3♣ exact, S34. Signature très proche de SEF-Q400-D-030 (mêmes honneurs par couleur, forme et enchère) ; vérifier lequel sert de réserve, ne pas supprimer.",
-      "action": {
-        "type": "arbitrer_retrait_groupe",
-        "raison": "Même réponse 3♣, un seul As de Trèfle, même forme et honneurs ; seules petites cartes changent. Deux exemplaires objectif S34/G1. Conserver Q400, proposer retrait de V45 du groupe sans supprimer son ID."
-      },
-      "references": [
-        "FFB, manuel cycle 2 séance 19 : https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf ; SEF 2024 synthèse",
-        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
-      ],
-      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
-      "coordination": {
-        "decision": "Approuver le retrait ciblé proposé de S34/G1 (index 0-based)",
-        "reason": "Même main 3-3-3-4 en honneurs D♠ et A♣, même séquence 2♦ et réponse 3♣ que Q400-D-030, co-affecté au même groupe objectif. Seules petites cartes changent. Garder Q400-D-030 en objectif, conserver V45-011 dans le catalogue historique.",
-        "reservoirAction": {
-          "id": "SEF-V45-011",
-          "remove": [
-            {
-              "session": 34,
-              "groupIndex": 1,
-              "decision": "Réponses simples sur 2♦",
-              "role": "objectif"
-            }
-          ],
-          "add": []
-        }
-      }
-    },
-    {
-      "lot": "F",
-      "id": "SEF-C2-010",
-      "conceptInitial": "chelem.cles",
-      "conceptPropose": "chelem.cles",
-      "justification": "Deux clés ♠A et ♥R avec ♥D : 5♠ exact. Contraste utile avec C2-009 mais signature équivalente à SEF-Q400-D-092 ; pas de groupe direct, arbitrer la réserve plutôt que réintégrer mécaniquement.",
-      "action": {
-        "type": "arbitrage"
-      },
-      "references": [
-        "Catalogue de base, programme S48–53/S62 ; RKCB 30–41 validé #562",
-        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
-        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
-      ],
-      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
-      "coordination": {
-        "decision": "Conserver sans ajout de groupe explicite",
-        "reason": "RKCB atout ♥, 2 clés et D♥, 5♠, analogue Q400-D-092 déjà en réinvestissement S62. Préserver la paire C2-009/C2-010 (sans/avec D♥) dans le catalogue; ne pas ajouter un doublon de décision au groupe.",
-        "reservoirAction": null
-      }
-    },
-    {
       "lot": "D",
       "id": "SEF-V476-013",
       "conceptInitial": "contre.deux_faible",
@@ -3251,6 +3176,25 @@
       "status": "A_TRAITER"
     },
     {
+      "lot": "D",
+      "id": "SEF-Q685-C-087",
+      "conceptInitial": "contre.deux_faible",
+      "conceptPropose": "contre.deux_faible",
+      "justification": "12 H, cinq Piques RV984, singleton Cœur : 3♠ selon accord explicite du catalogue; les développements du mini-cue-bid divergent selon sources, notamment redemande du contreur minimum. Même arbitrage V476-013; ne pas généraliser à SEF sans validation de la séquence.",
+      "action": {
+        "type": "arbitrer",
+        "ajoutGroupe": null
+      },
+      "references": [
+        "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+        "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+        "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+        "https://dev.ibridge-club.fr/public/fichedetails/640",
+        "https://bridgesaintcloud.fr/quesaquo66.html"
+      ],
+      "status": "A_TRAITER"
+    },
+    {
       "lot": "E",
       "id": "SEF-V3-086-2",
       "conceptInitial": "apres_inter.base",
@@ -3411,22 +3355,6 @@
     },
     {
       "lot": "E",
-      "id": "SEF-L39-005",
-      "conceptInitial": "apres_inter.base",
-      "conceptPropose": "apres_inter.base",
-      "justification": "11 H, deux ♥ et arrêt ♠ AD8 ; 2SA naturel après saut faible est le traitement annoncé mais les sources SEF 2024 consultées généralisent 2SA fitté après intervention à la couleur sans établir ici l'exception. Contre est une alternative légale avec valeurs. Confirmer l'accord spécifique avant de valider la réponse.",
-      "action": "arbitrer avant intégration",
-      "references": [
-        "quizz.html#training-data/SEF-L39-005",
-        "quizz-prerequis.js#SEF-L39-005",
-        "audits/programme-65-20261127/programme-normalise.json",
-        "https://www.bridge-chailley.fr/le-sef-2024-1/",
-        "https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523"
-      ],
-      "status": "A_TRAITER"
-    },
-    {
-      "lot": "E",
       "id": "SEF-Q26-M2-002",
       "conceptInitial": "rubensohl.suite",
       "conceptPropose": "rubensohl.suite",
@@ -3511,21 +3439,6 @@
         "quizz.html#training-data/V2-M5-009",
         "quizz-prerequis.js#V2-M5-009",
         "audits/programme-65-20261127/programme-normalise.json"
-      ],
-      "status": "A_TRAITER"
-    },
-    {
-      "lot": "E",
-      "id": "V2-M5-037",
-      "conceptInitial": "michaels.defense",
-      "conceptPropose": "michaels.defense",
-      "justification": "11 H, trois ♥, seulement R♠ troisième et aucun arrêt ♣. 2SA fitté limité selon catalogue, mais défense Michaël générique décrit les SA comme naturels avec arrêts dans les deux couleurs. Confirmer l'accord spécifique avant certification ; le contraste 038 ne prouve pas la règle.",
-      "action": "arbitrer avant intégration",
-      "references": [
-        "quizz.html#training-data/V2-M5-037",
-        "quizz-prerequis.js#V2-M5-037",
-        "audits/programme-65-20261127/programme-normalise.json",
-        "https://www.bridge-chailley.fr/faut-il-avoir-peur-des-cue-bids-2/"
       ],
       "status": "A_TRAITER"
     },
@@ -3659,6 +3572,109 @@
         "https://scjc-bridge.fr/sef-2024"
       ],
       "status": "A_TRAITER"
+    },
+    {
+      "lot": "E",
+      "id": "SEF-Q685-D-043",
+      "conceptInitial": "multilandy.intervention",
+      "conceptPropose": "multilandy.intervention",
+      "justification": "10 H, sept ♠ ARV9863, favorable ; 2♦ montre au moins six cartes dans le traitement QPJB. 3♠ barrage légal et défendable selon accord et vulnérabilité ; limiter la question au code descriptif.",
+      "action": "arbitrer avant intégration",
+      "references": [
+        "quizz.html#training-data/SEF-Q685-D-043",
+        "quizz-prerequis.js#SEF-Q685-D-043",
+        "audits/programme-65-20261127/programme-normalise.json"
+      ],
+      "status": "A_TRAITER"
+    },
+    {
+      "lot": "E",
+      "id": "SEF-Q685-D-085",
+      "conceptInitial": "michaels.choix",
+      "conceptPropose": "michaels.choix",
+      "justification": "10 H, six ♠ et quatre ♦, favorable : 1♠ naturel proposé, Michaël exige deux longueurs cinquièmes. 2♠ faible à saut non proposé et peut être une alternative tactique ; préciser comparaison.",
+      "action": "arbitrer avant intégration",
+      "references": [
+        "quizz.html#training-data/SEF-Q685-D-085",
+        "quizz-prerequis.js#SEF-Q685-D-085",
+        "audits/programme-65-20261127/programme-normalise.json"
+      ],
+      "status": "A_TRAITER"
+    },
+    {
+      "lot": "F",
+      "id": "SEF-V45-001",
+      "conceptInitial": "fortes.ouverture",
+      "conceptPropose": "fortes.ouverture",
+      "justification": "22 H 3343, même décision que V44-002 ; réponse et corrigé corrects. Pas d'affectation directe : conserver en réserve historique plutôt que dupliquer S33 sans objectif distinct.",
+      "action": {
+        "type": "arbitrage"
+      },
+      "references": [
+        "https://www.ibridge.fr/public/fichedetails/778 ; SEF 2024, ouvertures fortes, synthèse https://bccl.club.ffbridge.fr/documents/modifications-du-sef-2024-370531",
+        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      ],
+      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
+      "coordination": {
+        "decision": "Conserver sans affectation explicite supplémentaire",
+        "reason": "Main 22 H régulière 3-3-4-3, même décision 2♣ que V44-002 (22 H réguliers 3-3-3-4), déjà en objectif S33 et réinvestissement S62. La variante historique reste accessible selon les règles existantes; aucune suppression ni injection de groupe.",
+        "reservoirAction": null
+      }
+    },
+    {
+      "lot": "F",
+      "id": "SEF-V45-011",
+      "conceptInitial": "fortes.relais",
+      "conceptPropose": "fortes.relais",
+      "justification": "Un seul As de Trèfle, 6 H : 3♣ exact, S34. Signature très proche de SEF-Q400-D-030 (mêmes honneurs par couleur, forme et enchère) ; vérifier lequel sert de réserve, ne pas supprimer.",
+      "action": {
+        "type": "arbitrer_retrait_groupe",
+        "raison": "Même réponse 3♣, un seul As de Trèfle, même forme et honneurs ; seules petites cartes changent. Deux exemplaires objectif S34/G1. Conserver Q400, proposer retrait de V45 du groupe sans supprimer son ID."
+      },
+      "references": [
+        "FFB, manuel cycle 2 séance 19 : https://cdn.ffbridge.fr/cms/geds/0001/06/b203af67b05b104606507f79eeef5b19e552eacf.pdf ; SEF 2024 synthèse",
+        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      ],
+      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
+      "coordination": {
+        "decision": "Approuver le retrait ciblé proposé de S34/G1 (index 0-based)",
+        "reason": "Même main 3-3-3-4 en honneurs D♠ et A♣, même séquence 2♦ et réponse 3♣ que Q400-D-030, co-affecté au même groupe objectif. Seules petites cartes changent. Garder Q400-D-030 en objectif, conserver V45-011 dans le catalogue historique.",
+        "reservoirAction": {
+          "id": "SEF-V45-011",
+          "remove": [
+            {
+              "session": 34,
+              "groupIndex": 1,
+              "decision": "Réponses simples sur 2♦",
+              "role": "objectif"
+            }
+          ],
+          "add": []
+        }
+      }
+    },
+    {
+      "lot": "F",
+      "id": "SEF-C2-010",
+      "conceptInitial": "chelem.cles",
+      "conceptPropose": "chelem.cles",
+      "justification": "Deux clés ♠A et ♥R avec ♥D : 5♠ exact. Contraste utile avec C2-009 mais signature équivalente à SEF-Q400-D-092 ; pas de groupe direct, arbitrer la réserve plutôt que réintégrer mécaniquement.",
+      "action": {
+        "type": "arbitrage"
+      },
+      "references": [
+        "Catalogue de base, programme S48–53/S62 ; RKCB 30–41 validé #562",
+        "quizz.html @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb",
+        "programme-normalise.json @ ccd8f20811b9531bbfccb8352ec60953dd7d07cb"
+      ],
+      "status": "DECIDE_COORDINATEUR_NON_INTEGRE",
+      "coordination": {
+        "decision": "Conserver sans ajout de groupe explicite",
+        "reason": "RKCB atout ♥, 2 clés et D♥, 5♠, analogue Q400-D-092 déjà en réinvestissement S62. Préserver la paire C2-009/C2-010 (sans/avec D♥) dans le catalogue; ne pas ajouter un doublon de décision au groupe.",
+        "reservoirAction": null
+      }
     }
   ]
 }
