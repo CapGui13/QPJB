@@ -755,7 +755,7 @@
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
     const curriculum=options?.coherenceM1?.schema==='QPJB_COHERENCE_M1_V1'?options.coherenceM1:null;
-    const maintenancePolicy=options?.coherenceM4?.schema==='QPJB_COORDINATOR_M4_V1'?options.coherenceM4:null;
+    const maintenancePolicy=['QPJB_COORDINATOR_M4_V1','QPJB_COORDINATOR_M4_QUOTA_V1'].includes(options?.coherenceM4?.schema)?options.coherenceM4:null;
     let m1Changed=false,m4Changed=false;
     const reportDecision=typeof options?.observe==='function'?options.observe:()=>{};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
@@ -848,6 +848,11 @@
       const unique=candidates.filter(distinct);
       if(unique.length)candidates=unique;
       else if(pool.some(distinct))return false;
+      // The quota experiment can inspect the pre-novelty maintenance stratum,
+      // but never the full pool or an ineligible/duplicate/family-conflicting item.
+      const extendedMaintenance=maintenancePolicy?.schema==='QPJB_COORDINATOR_M4_QUOTA_V1'&&s>=65&&
+        !m4Changed&&!priority&&!forcedReason&&category==='maintenance'
+        ?candidates.filter(q=>distinct(q)&&(themes[q.theme]||0)<4):[];
       const unseen=candidates.filter(novelFamily);
       const explicitRecall=forcedReason==='rappel_erreur_aide';
       if(unseen.length&&!explicitRecall)candidates=unseen;
@@ -886,11 +891,19 @@
       // Experimental maintenance swaps are constrained to the same native
       // maintenance bucket, with one optional swap, and cannot displace
       // discovery, explicit errors or protected priority selections.
-      if(maintenancePolicy&&s>=65&&!m4Changed&&!priority&&!forcedReason&&category==='maintenance'&&ranked.length>1){
-        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),age:oldConcept(q),stage:mOf(q).stage}]));
-        const proposed=maintenancePolicy.choose({...m1Context,flagsById,selected,ranked});
+      if(maintenancePolicy&&s>=65&&!m4Changed&&!priority&&!forcedReason&&category==='maintenance'&&ranked.length){
+        const extended=extendedMaintenance.map(q=>({q,v:score(q,category)+(deltas.get(q.id)||0)}));
+        const flagsById=Object.fromEntries([...ranked,...extended].map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),weak:!!weak(q),novelFamily:novelFamily(q),firstConcept:!e.seen.has(mOf(q).concept),age:oldConcept(q),familyAge:oldFamily(q),stage:mOf(q).stage,answer:bid(q),context:context(q)}]));
+        const proposed=maintenancePolicy.choose({...m1Context,flagsById,selected,ranked,extended,repeatedFamilies,repeatBudget});
         const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
         if(index>0){m4Choice=proposed;ranked.unshift(...ranked.splice(index,1));m4Changed=true;}
+        else if(index===-1&&maintenancePolicy.schema==='QPJB_COORDINATOR_M4_QUOTA_V1'&&proposed?.allowOneExtraRepeat===true){
+          const item=extended.find(x=>x.q.id===proposed.id),old=ranked[0].q;
+          if(item&&!novelFamily(item.q)&&novelFamily(old)&&repeatedFamilies<=repeatBudget&&
+             s%2===1&&item.q.difficulty<=old.difficulty){
+            m4Choice=proposed;ranked.unshift(item);m4Changed=true;
+          }
+        }
       }
       // #396: preserve the historical winning pedagogical stratum, not just
       // its numeric score. Cross-concept ties displaced foundational review.
