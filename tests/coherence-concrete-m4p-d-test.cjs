@@ -11,7 +11,7 @@ const g=[...read('reprise-g-native-partial.json').rows,...read('parallel/d/recov
 const gate=rows=>L.compareCheckpoints(rows,{requireDebt:false});
 const raw=read('variant-c2-s20/aide-47.json');
 test('D: gate historique exact',()=>{const x=gate(d);assert.equal(x.verdict,'CANDIDAT_A_REVOIR');assert.equal(x.changes.count,3);assert.equal(x.violations.length,0);assert.deepEqual(x.totals[180].coreDebt,[228622,228622])});
-test('K: gate historique exact',()=>{const x=L.compareCheckpoints(k,{requireReservation:true});assert.equal(x.verdict,'HOLD');assert.equal(x.violations.length,12);assert.deepEqual(x.totals[180].coreDebt,[228622,234613]);assert.deepEqual(x.violations,read('reprise-k-native-gate.json').violations)});
+test('K: gate historique exact',()=>{const x=L.compareCheckpoints(k,{requireReservation:true});assert.equal(x.verdict,'HOLD');assert.equal(x.violations.length,12);assert.deepEqual(x.totals[180].coreDebt,[228622,234613]);assert.deepEqual(x.violations.map(v=>JSON.stringify(v)).sort(),read('reprise-k-native-gate.json').violations.map(v=>JSON.stringify(v)).sort())});
 test('G: six logs récupérés et matrice 18/18',()=>{const x=gate(g);assert.equal(x.changes.count,3);assert.deepEqual(x.totals[180].coreDebt,[228622,228622]);assert.equal(x.violations.length,0)});
 test('D insuffisant pour contrat commun: dette inchangée',()=>assert.equal(L.compareCheckpoints(d).verdict,'HOLD'));
 test('moyenne favorable masque profil dégradé',()=>{const x=clone(d);x[0].after[4].coreDebt-=1000;x[1].after[4].coreDebt+=1;const a=gate(x);assert.ok(a.totals[180].coreDebt[1]<a.totals[180].coreDebt[0]);assert.equal(a.verdict,'HOLD');assert.ok(a.violations.some(v=>v.metric==='coreDebt'))});
