@@ -207,3 +207,25 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 10 — cumul actualisé
+
+400/540 verdicts individuels, 140 restants. {"VALIDE":116,"RECLASSER_REFORMULER":260,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":24}. 245 corrections complètes, 34 modifications prérequis, 101 entrées réservoir.
+- Corriger prérequis des réponses sur mineure et du Truscott mineur (9 H, pas HLD). Améliorer distracteurs et corrigés, rendre explicite l'accord Multi-Landy et le rôle intervenant/répondant. Préserver les contrastes réponse naturelle/Spoutnik, redemande libre/obligée, trois/quatre atouts, abstention/intervention et relais/préférence.
+- Arbitrages C063 (soutien libre 14 HLD, alternative 3♥ absente), C089 (seuil 11 contre 12 HLD et réévaluation des honneurs adverses), C096 (barrage mineur palier 3/4). Sources réellement consultées : https://bridgesarzeau.club.ffbridge.fr/saison-2025-2026/actualites-du-club/quand-la-reponse-de-2sa-est-elle-fittee-1227523 et https://bridgesaintcloud.fr/quesaquoP17E.html indiquent 11–15 HLD pour 2SA après intervention couleur, https://as-de-luz.club.ffbridge.fr/documents/sef-2024-changements-383870 indique 12–15 HLD dans sa présentation ; https://www.bridge-chailley.fr/le-sef-2024-1/ confirme le seuil 9 H du Truscott mineur. Sarzeau confirme aussi 2SA fitté 11–12 HLD trois cartes sur intervention bicolore, ce qui soutient la levée de l'arbitrage V2-M5-037 de la passe 9 ; et l'exception 2SA naturel sur deux faible (L39-005). Les verdicts antérieurs restent inchangés pour traçabilité, coordinateur chargé de décider. Pas de certification SEF officielle intégrale.
+- C066 groupe S26 « Même main, ordre adverse différent » : contrastes de mécanisme présents, mais C061/062 n'ont pas exactement la même main ; vérifier le contraste obligatoire du programme, sans inventer d'affectation. D043 et V2-M5-025/PN26-M1-013 fortement analogues, limiter exposition répétée. Pas de changement réservoir arbitraire.
+- Contrôles de périmètre, verdicts uniques, mains, rang simple des choix, corrections, groupes et concepts réels. Pas de suite locale, pas d'examen sémantique exhaustif.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 400,
+  "idsUniques": 400,
+  "corrections": 245,
+  "correctionsInvalides": [],
+  "passe10ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
