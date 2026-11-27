@@ -1,48 +1,8 @@
-# Reprise A — passe 1 partielle
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. 40/419 verdicts provisoires rédigés (ordre de la table byId). 379 non relus.
-Dernier : SEF-028-2; prochain : SEF-028-1.
-Vérifications mécaniques : 3000 QCM, 419 IDs concordants, H/13 cartes/forme/4 choix/réponse et unicité catalogue ; correspondance des groupes PROGRAMME65 au JSON sur 65 séances ; 5 corrections valides au contrôle mécanique. Les 40 verdicts demandent encore la comparaison sémantique approfondie hors passe. Pas de test local du dépôt exécuté.
+# Reprise A — passe 2 partielle
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent b27e5a0135528c035daaeb3e2fa49f97710bfb2b. 80/419 verdicts provisoires ; 339 non relus.
+Dernier : SEF-N025-2; prochain : SEF-N026-1.
+{"VALIDE":65,"RECLASSER_REFORMULER":15} ; 13 corrections catalogue et 2 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté. Comparaison sémantique approfondie encore nécessaire.
 IDs restants :
-SEF-028-1
-SEF-029-2
-SEF-029-1
-SEF-030-3
-SEF-030-1
-SEF-N001-1
-SEF-N001-3
-SEF-N002-2
-SEF-N002-1
-SEF-N003-1
-SEF-N004-3
-SEF-N004-1
-SEF-N005-1
-SEF-N005-3
-SEF-N006-1
-SEF-N006-2
-SEF-N007-1
-SEF-N008-2
-SEF-N008-1
-SEF-N009-1
-SEF-N010-1
-SEF-N011-1
-SEF-N011-2
-SEF-N012-2
-SEF-N012-1
-SEF-N013-2
-SEF-N013-3
-SEF-N014-1
-SEF-N015-2
-SEF-N015-3
-SEF-N016-1
-SEF-N016-2
-SEF-N022-2
-SEF-N022-1
-SEF-N023-2
-SEF-N023-1
-SEF-N024-1
-SEF-N024-2
-SEF-N025-1
-SEF-N025-2
 SEF-N026-1
 SEF-N026-2
 SEF-N027-2
