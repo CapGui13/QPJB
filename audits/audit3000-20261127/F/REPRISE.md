@@ -1,48 +1,8 @@
 # REPRISE — F
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 2133d4402ed59f7417e5554ad9ff5928103a7fba. Passes 1–6 : 240/436, dernier V2-M6-036, prochain V2-M6-037. SHA actuel via HEAD. Verdicts {"VALIDE":85,"ARBITRAGE":6,"RECLASSER_REFORMULER":149}, 149 corrections, 3 propositions réservoir, 3 prérequis. Tests structurels sur 436 et couverture partielle 240 ; reste tests Node et comparaison globale.
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb, précédent commit 801cd95ca92d234c2e885543c240a6ea28c15eca. Passes 1–7 : 280/436, dernier SEF-Q400-D-028, prochain SEF-Q400-D-029. SHA actuel via HEAD. Verdicts {"VALIDE":112,"ARBITRAGE":7,"RECLASSER_REFORMULER":161}, 160 corrections, 3 propositions réservoir, 4 prérequis. Tests structurels sur 436 et couverture partielle 280 ; reste tests Node et comparaison globale.
 
-## IDs restant à relire (196)
-V2-M6-037
-V2-M6-038
-V2-M6-039
-V2-M6-040
-V2-M6-041
-V2-M6-042
-V2-M6-043
-V2-M6-044
-SEF-PN26-M1-025
-SEF-PN26-M1-026
-SEF-PN26-M1-035
-SEF-PN26-M1-036
-SEF-Q400-D-001
-SEF-Q400-D-002
-SEF-Q400-D-003
-SEF-Q400-D-004
-SEF-Q400-D-005
-SEF-Q400-D-006
-SEF-Q400-D-007
-SEF-Q400-D-008
-SEF-Q400-D-009
-SEF-Q400-D-010
-SEF-Q400-D-011
-SEF-Q400-D-012
-SEF-Q400-D-013
-SEF-Q400-D-014
-SEF-Q400-D-015
-SEF-Q400-D-016
-SEF-Q400-D-017
-SEF-Q400-D-018
-SEF-Q400-D-019
-SEF-Q400-D-020
-SEF-Q400-D-021
-SEF-Q400-D-022
-SEF-Q400-D-023
-SEF-Q400-D-024
-SEF-Q400-D-025
-SEF-Q400-D-026
-SEF-Q400-D-027
-SEF-Q400-D-028
+## IDs restant à relire (156)
 SEF-Q400-D-029
 SEF-Q400-D-030
 SEF-Q400-D-031
