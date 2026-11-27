@@ -28,7 +28,8 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const saved=Object.fromEntries([...auditIds,untouched].map(id=>[id,clone(entry)]));
 let writes=0, persisted=null;
 const ctx={saved,saveKey:'test',localStorage:{setItem:(k,v)=>{assert.equal(k,'test');writes++;persisted=JSON.parse(v);}}};
-const run=()=>vm.runInNewContext(fragment,ctx);
+// A reload creates a fresh JS realm while retaining the same persisted progress.
+const run=()=>vm.runInNewContext(fragment,{...ctx});
 run();
 assert.equal(writes,1);
 for(const id of auditIds){
