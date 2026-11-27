@@ -1,47 +1,7 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543 cumulés, dernier SEF-V49-032, prochain SEF-V411-014. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 200 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 343 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543 cumulés, dernier SEF-V476-010, prochain SEF-V476-011. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 240 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 303 IDs :
 
-- SEF-V411-014
-- SEF-V411-015
-- SEF-V413-009
-- SEF-V418-004
-- SEF-V418-007
-- SEF-V419-008
-- SEF-V419-009
-- SEF-V420-012
-- SEF-V420-013
-- SEF-V420-014
-- SEF-V421-009
-- SEF-V421-010
-- SEF-V422-004
-- SEF-V422-005
-- SEF-V426-003
-- SEF-V426-004
-- SEF-V426-005
-- SEF-V426-006
-- SEF-C-009
-- SEF-C-010
-- SEF-C-011
-- SEF-V470-007
-- SEF-V470-008
-- SEF-V470-009
-- SEF-V470-010
-- SEF-V470-011
-- SEF-V473-001
-- SEF-V473-002
-- SEF-V473-003
-- SEF-V473-004
-- SEF-V476-001
-- SEF-V476-002
-- SEF-V476-003
-- SEF-V476-004
-- SEF-V476-005
-- SEF-V476-006
-- SEF-V476-007
-- SEF-V476-008
-- SEF-V476-009
-- SEF-V476-010
 - SEF-V476-011
 - SEF-V476-012
 - SEF-V476-013
