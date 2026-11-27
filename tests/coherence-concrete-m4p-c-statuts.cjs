@@ -13,3 +13,7 @@ for(const x of old){assert.equal(idx[x.id].structuralSource,"themes/"+themes[x.i
 for(const [a,b,t] of p){const ab=classify(idx,p,a,b),ba=classify(idx,p,b,a);assert.deepEqual(ab,ba);assert.ok(ab.status==="HOLD"||ab.relation===t);assert.ok(!ab.substitutionAutomatique);}
 assert.equal(classify(idx,p,"SEF-001-1","unknown").status,"HOLD");assert.deepEqual(idx,load("statuts.json").byId);for(const id of load("baseline/cible-11-s21-65.json").ids)assert.ok(idx[id].status!=="automatique_seulement");
 console.log("M4-C statuts OK");
+
+const core=new Set(["ouv.passe","ouv.mineure","ouv.majeure","ouv.sa1","mineur.base","majeur.base","majeur.soutien","sa1.seuil","red.base"]);
+assert.equal(old.filter(x=>core.has(x.concept)).length,381);for(const x of old.filter(x=>core.has(x.concept)))assert.ok(idx[x.id].status!=="automatique_seulement");
+assert.equal(p.length,56);assert.equal(classify(idx,p,"SEF-V3-059-5","SEF-V3-057-1").status,"HOLD");
