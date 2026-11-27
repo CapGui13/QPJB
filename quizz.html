@@ -843,7 +843,7 @@ function parcoursRecommendations(){
 }
 function coherenceOptions(){
  const m3=window.QPJB_COHERENCE_M3;
- return {coherenceM2:window.QPJBCoherenceM2,coherenceFullOrder:!!m3,
+ return {coherenceAtomic:window.QPJBReprise6D,coherenceM2:window.QPJBCoherenceM2,coherenceFullOrder:!!m3,
   transitionGroups:m3?[{simple:m3.TEXAS_ELEMENTARY,complex:m3.TEXAS},{simple:m3.STAYMAN_SIMPLE,complex:m3.STAYMAN_FOURTH}]:[]};
 } // #419 isolated candidate; M1/M4 selection remains disabled.
 function hideDurableStudy(){
