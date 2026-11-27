@@ -1,0 +1,20 @@
+name: M4 integration TP durable native replay
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 452cdae752ebd3c1d7780b5d78de3bd4a493fc8b
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4-integration-archive.cjs "${{ matrix.profile }}"
