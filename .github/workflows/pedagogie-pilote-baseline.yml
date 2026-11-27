@@ -1,0 +1,56 @@
+name: Pilote pédagogique — comparatif S1–S5 et transition S6–10
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  baseline:
+    if: github.head_ref == 'pedagogie/pilote-s1-s5-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PILOT_TRANSITION: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.64.1
+          npx playwright install --with-deps chromium
+          python3 scripts/build_catalogue.py
+          python3 scripts/build_public_site.py --output _public_site
+      - run: node tests/pedagogie-pilote-baseline.cjs _public_site pilot-output
+      - run: node tests/pedagogie-pilote-compare.cjs pilot-output
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: comparatif-s1-s5
+          path: pilot-output/
+  longitudinal:
+    if: github.head_ref == 'pedagogie/pilote-s1-s5-20261127'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/pedagogie-pilote-longitudinal.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" pilot-longitudinal.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilote-longitudinal-${{ matrix.profile }}-${{ matrix.seed }}
+          path: pilot-longitudinal.json
