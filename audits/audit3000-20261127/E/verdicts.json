@@ -7338,5 +7338,2147 @@
     "apres": {
       "context": "Votre partenaire ouvre de 1♠ et l'adversaire de droite intervient naturellement à 2♥. Quelle est votre réponse dans le SEF 2024 ?"
     }
+  },
+  {
+    "id": "SEF-V473-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, 4♠ et doubleton ♥ =12 HLD : 3♠ invitant après intervention naturelle. Le contexte donne déjà le compte et la fonction. Contraste V473-007/008/005 : nécessaire.",
+    "references": [
+      "quizz.html#training-data/SEF-V473-006",
+      "quizz-prerequis.js#SEF-V473-006",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "SEF 2024 : quatre atouts, soutien 3♠ constructif 11-12 HLD",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v473-soutien3-majeure",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠ puis l'adversaire intervient naturellement à 2♥. Vous détenez quatre Piques, 9 H, et un doubleton Cœur. Avec environ 12 HLD, quelle réponse exprime votre proposition de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-V473-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H, singleton ♥, quatre ♠ =14 HLD ; cue-bid de fit de manche. Le contexte calcule le compte et annonce le choix forcing : retirer les indices. Contraste direct 006.",
+    "references": [
+      "quizz.html#training-data/SEF-V473-007",
+      "quizz-prerequis.js#SEF-V473-007",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "SEF 2024 : cue-bid forcing de manche avec au moins quatre atouts",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "V2-M5-G06",
+      "analoguesMemeSequenceFormeReponse": [
+        "V2-M5-012"
+      ],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire de droite intervient à 2♥. Avec quatre Piques, un singleton Cœur et 10 H, vous comptez environ 14 HLD (10 H + 2 pour le quatrième atout + 2 pour le singleton). Vous souhaitez imposer la manche : quelle enchère indique ce fit fort ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-V473-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "1 H, cinq ♠ et singleton ♥, vert contre rouge : 4♠ barrage et non jeu constructif. Supprimer l'annonce explicite de la nature barrage dans la question, garder la vulnérabilité.",
+    "references": [
+      "quizz.html#training-data/SEF-V473-008",
+      "quizz-prerequis.js#SEF-V473-008",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "apres_inter.base",
+    "conceptPropose": "apres_inter.base",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      25
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 25,
+        "group": "Après intervention naturelle",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "SEF 2024 : saut direct à 4♠ faible avec fort fit et distribution",
+      "prerequis": {
+        "concept": "apres_inter.base",
+        "stage": 3,
+        "minSession": 18,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 2
+          },
+          {
+            "concept": "intervenir.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "majeur.soutien",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v473-manche-barrage",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠ et l’adversaire intervient naturellement à 2♥. Votre camp est non vulnérable, les adversaires vulnérables. Vous avez cinq Piques, un singleton Cœur et 1 H. Quelle enchère barrage choisissez-vous ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire intervient naturellement à 2♥. Votre camp est non vulnérable, les adversaires vulnérables. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-V473-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, quatre ♠, pas de courte, 14 HLD. Premier cue-bid 3♣ = fit FM dans ce traitement, non naturel. Question annonce déjà fit FM ; comparer 010.",
+    "references": [
+      "quizz.html#training-data/SEF-V473-009",
+      "quizz-prerequis.js#SEF-V473-009",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "SEF 2024 : premier cue-bid économique = soutien forcing de manche face à un bicolore mineur",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "v473-1er-cuebid-bicolore",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠. L'adversaire de droite intervient à 2SA, montrant les deux mineures ♣ et ♦. Vous possédez quatre Piques et une force permettant d'imposer la manche. Quel cue-bid indique le fit au SEF 2024 ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire de droite intervient à 2SA, bicolore ♣–♦. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-V473-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "14 H, six ♥, deux ♠ : 3♦ second cue-bid = quatrième couleur FM ; le premier promettrait le fit. Enlever la solution sémantique du contexte, le contraste 009 est utile.",
+    "references": [
+      "quizz.html#training-data/SEF-V473-010",
+      "quizz-prerequis.js#SEF-V473-010",
+      "audits/programme-65-20261127/programme-normalise.json",
+      "https://www.bridge-chailley.fr/le-sef-2024-1/",
+      "https://wasquehalbridge.com/wp-content/uploads/2024/02/Le-SEF-2024-est-arrive-.pdf"
+    ],
+    "conceptInitial": "michaels.defense",
+    "conceptPropose": "michaels.defense",
+    "seancesInitiales": [
+      47
+    ],
+    "seancesProposees": [
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♦",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 47,
+        "group": "répondre au bicolore adverse par cue-bid ou enchère adaptée : 3♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 5,
+      "raisonDifficulte": "SEF 2024 : second cue-bid après bicolore mineur = longue Cœur, forcing de manche",
+      "prerequis": {
+        "concept": "michaels.defense",
+        "stage": 3,
+        "minSession": 46,
+        "requires": [
+          {
+            "concept": "apres_inter.base",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 3
+          }
+        ]
+      },
+      "caseFamily": "v473-2nd-cuebid-bicolore",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "SEF 2024, vérification ciblée"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire ouvre de 1♠ et l'adversaire de droite intervient à 2SA, bicolore Trèfle-Carreau. Vous n'avez que deux Piques, mais six beaux Cœurs et 14 H. Quel cue-bid révèle votre longue dans la quatrième couleur en situation forcing de manche ?"
+    },
+    "apres": {
+      "context": "Votre partenaire ouvre de 1♠ ; l'adversaire de droite intervient à 2SA, bicolore ♣–♦. Quelle est votre réponse selon le SEF 2024 ?"
+    }
+  },
+  {
+    "id": "SEF-V477-001",
+    "verdict": "VALIDE",
+    "justification": "3 H, 4♥ et 2♠, préférence économique 2♥ sur le bicolore du partenaire. Le décodage de 2♦ est donné pour l'objectif de préférence ; S46 appropriée, rappel S47.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-001",
+      "quizz-prerequis.js#SEF-V477-001",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46,
+      47
+    ],
+    "seancesProposees": [
+      46,
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-deux-majeures-preference-coeurs",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-002",
+    "verdict": "VALIDE",
+    "justification": "5 H, 4♠ et 2♥, préférence simple 2♠. Contraste miroir de 001 ; ouverture ♦ plutôt que ♣, utile pour décoder le cue-bid 2♦.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-002",
+      "quizz-prerequis.js#SEF-V477-002",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46,
+      47
+    ],
+    "seancesProposees": [
+      46,
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-deux-majeures-preference-piques",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-003",
+    "verdict": "VALIDE",
+    "justification": "6 H, 3-3 majeurs, R♥ contre D♠ : choix économique 2♥ en cas d'égalité, sans prétendre longueurs exactes ; contraste de préférence égale vs 001/002.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-003",
+      "quizz-prerequis.js#SEF-V477-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46,
+      47
+    ],
+    "seancesProposees": [
+      46,
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♥",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Michaël précisé majeur : préférence économique à 2♥ avec trois cartes dans chaque majeure et une force modeste.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-deux-majeures-egalite-economie",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-004",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, quatre ♥, 3♠, singleton ♣ et cinq ♦ : ~14 HLD, 3♥ proposition plutôt que préférence faible. Le saut constructif dépend du traitement convenu, préciser et conserver l'opposition avec 001.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-004",
+      "quizz-prerequis.js#SEF-V477-004",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v477-deux-majeures-effort-manche-coeurs",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire ouvre de 1♦. Votre partenaire intervient par 2♦ (Michaël précisé : au moins cinq Cœurs et cinq Piques) ; le joueur suivant passe. Vous avez quatre Cœurs, un singleton Trèfle et des honneurs à Cœur et Pique, les deux couleurs du partenaire. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♦ ; votre partenaire intervient par 2♦ (Michaël précisé : ♥ et ♠ au moins 5–5), puis le joueur suivant passe. Dans l'accord où un saut dans une couleur du partenaire propose la manche, quelle enchère choisissez-vous ?"
+    }
+  },
+  {
+    "id": "SEF-V477-005",
+    "verdict": "VALIDE",
+    "justification": "4 H, 4♠ et 3♣, neuf atouts ♠ garantis : 2♠ économique. Distinct de 001/002 par majeure-mineure et palier des ♣.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-005",
+      "quizz-prerequis.js#SEF-V477-005",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46,
+      47
+    ],
+    "seancesProposees": [
+      46,
+      47
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "objectif"
+      },
+      {
+        "session": 47,
+        "group": "préférer une couleur du partenaire : 2♠",
+        "role": "rappel"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-piques-trefles-choix-piques",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-006",
+    "verdict": "VALIDE",
+    "justification": "3 H, cinq ♣ et deux ♠, dix atouts ♣ vs sept ♠ ; 3♣ simple. Pas de saut : le 2♥ adverse artificiel oblige à jouer ♣ au palier trois. S46 adéquate.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-006",
+      "quizz-prerequis.js#SEF-V477-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-piques-trefles-choix-trefles",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-007",
+    "verdict": "VALIDE",
+    "justification": "5 H, quatre ♥ deux ♣, 3♥ est le premier palier disponible après 2♠. Le contraste 005 montre qu'un palier trois n'est pas forcément invitant. S46.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-007",
+      "quizz-prerequis.js#SEF-V477-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [
+      46
+    ],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♥",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-coeurs-trefles-choix-coeurs",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V477-008",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, cinq ♣ et deux ♥ : 3♣ économique, même réponse que 006 mais intervention 2♠ différente. Affecter à la préférence 3♣ S46 ; le corrigé ne garantit pas dix levées.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-008",
+      "quizz-prerequis.js#SEF-V477-008",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-coeurs-trefles-choix-trefles",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V477-009",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "4 H, cinq ♣ deux ♦, 3♣ après 2SA mineurs. Même résultat que 006 mais bicolore mineur ; affectation S46 préférence 3♣, utile contraste d'origine.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-009",
+      "quizz-prerequis.js#SEF-V477-009",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♣",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-bicolore-mineur-choix-trefles",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch"
+  },
+  {
+    "id": "SEF-V477-010",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, cinq ♦ deux ♣ : 3♦ naturel, non forcing dans les mineures. Contraste 009 ; pas de groupe S46 préférence 3♦ existant, signaler au coordinateur, ne pas détourner groupe 3♣.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-010",
+      "quizz-prerequis.js#SEF-V477-010",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-bicolore-mineur-choix-carreaux",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "L'intervention à 2SA sur l'ouverture adverse de 1♠ décrit un bicolore mineur au moins cinq-cinq. Avec cinq Carreaux, vous êtes assuré d'un fit d'au moins dix cartes à Carreau ; 3♦ exprime la préférence naturelle."
+    },
+    "apres": {
+      "explain": "Après 1♠ adverse, le 2SA d'intervention du partenaire montre les deux mineures au moins cinquièmes. Vos cinq Carreaux donnent au moins dix atouts à Carreau, contre sept au moins à Trèfle. 3♦ est une préférence simple au premier palier disponible, et non une proposition de manche."
+    }
+  },
+  {
+    "id": "SEF-V477-011",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, cinq ♦ deux ♠ ; 3♦ naturel sur 3♣ artificiel Pique-Carreau. Contraste 012 ; aucun groupe explicite 3♦ de préférence. Retirer redondance du contexte.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-011",
+      "quizz-prerequis.js#SEF-V477-011",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-saut-michaels-piques-carreaux-choix-carreaux",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire ouvre de 1♥. Votre partenaire intervient par 3♣ (Michaël précisé : au moins cinq Piques et cinq Carreaux) ; le joueur suivant passe. Le 3♣ du partenaire est conventionnel ; vous avez cinq Carreaux contre seulement deux Piques. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♥. Votre partenaire intervient à 3♣ en Michaël précisé, puis l'adversaire de droite passe. Quelle préférence donnez-vous ?"
+    }
+  },
+  {
+    "id": "SEF-V477-012",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, quatre ♠ deux ♦, cinq ♣ non promis par le partenaire : 3♠ et non 3♦. Le contexte donne le décodage et la comparaison, retirer ces indices. Pas de groupe 3♠ de préférence.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-012",
+      "quizz-prerequis.js#SEF-V477-012",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-saut-michaels-piques-carreaux-choix-piques",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire ouvre de 1♥. Votre partenaire intervient par 3♣ (Michaël précisé : au moins cinq Piques et cinq Carreaux) ; le joueur suivant passe. Votre partenaire montre Piques et Carreaux, et vous avez quatre Piques contre deux Carreaux. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♥. Votre partenaire intervient à 3♣ en Michaël précisé, puis l'adversaire de droite passe. Quelle préférence donnez-vous ?"
+    }
+  },
+  {
+    "id": "SEF-V477-013",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, cinq ♦ deux ♥, 3♦ après 3♣ artificiel sur 1♠. Miroir de 011 ; l'objectif peut tester le décodage sans le fournir, garder les deux ouvertures différentes.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-013",
+      "quizz-prerequis.js#SEF-V477-013",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-saut-michaels-coeurs-carreaux-choix-carreaux",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire ouvre de 1♠. Votre partenaire intervient par 3♣ (Michaël précisé : au moins cinq Cœurs et cinq Carreaux) ; le joueur suivant passe. Vous avez cinq Carreaux mais seulement deux Cœurs ; rappelez-vous le sens conventionnel de 3♣. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♠. Votre partenaire intervient à 3♣ en Michaël précisé, puis l'adversaire de droite passe. Quelle préférence donnez-vous ?"
+    }
+  },
+  {
+    "id": "SEF-V477-014",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, quatre ♥ deux ♦, cinq ♣ hors couleurs du partenaire : 3♥ au premier palier. Miroir de 012, affecter S46 préférence 3♥ et retirer la solution du contexte.",
+    "references": [
+      "quizz.html#training-data/SEF-V477-014",
+      "quizz-prerequis.js#SEF-V477-014",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      46
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 46,
+        "group": "préférer une couleur du partenaire : 3♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Répondre au Michaël précisé en choisissant le bon fit et le palier adapté.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v477-saut-michaels-coeurs-carreaux-choix-coeurs",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "L'adversaire ouvre de 1♠. Votre partenaire intervient par 3♣ (Michaël précisé : au moins cinq Cœurs et cinq Carreaux) ; le joueur suivant passe. Votre partenaire annonce Cœurs et Carreaux ; vous avez quatre Cœurs contre deux Carreaux. Quelle enchère choisissez-vous ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1♠. Votre partenaire intervient à 3♣ en Michaël précisé, puis l'adversaire de droite passe. Quelle préférence donnez-vous ?"
+    }
+  },
+  {
+    "id": "SEF-V478-001",
+    "verdict": "VALIDE",
+    "justification": "3 H et neuf ♠ assurés, 3♠ compétitif vert, après 3♥ : le corrigé dit explicitement défendable plutôt que obligatoire. Pas de groupe compétitif spécifique ; ne pas assimiler à préférence libre.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-001",
+      "quizz-prerequis.js#SEF-V478-001",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-001-fit-de-neuf-piques-au-palier-de-trois",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, cinq ♣, fit dixième vert/rouge. 4♣ défendable selon loi des atouts mais pas déduction certaine de levées. Énoncé TPP précis ; rendre corrigé et motif vulnérable non absolus.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-002",
+      "quizz-prerequis.js#SEF-V478-002",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Michaël précisé : compétition avec fit au moins dixième, non vulnérable en tournoi par paires ; vulnérable, Passer.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-002-fit-de-dix-tr-fles-au-palier-de-quatre",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Non vulnérables, vous appliquez ici la loi des atouts : vos cinq Trèfles en face des cinq promis par le Michaël garantissent au moins dix atouts, ce qui justifie de défendre votre camp au palier de 4 malgré seulement 3 H. Après 3♥ adverse, nommez 4♣, premier palier disponible dans votre fit. C'est un repère compétitif, et non une garantie de réaliser dix levées ; vulnérable (rouge), la décision retenue pour cette main serait Passe."
+    },
+    "apres": {
+      "explain": "Avec cinq Trèfles face aux cinq promis, le fit est au moins dixième. En tournoi par paires, vert contre rouge, 4♣ est le choix compétitif retenu par le cours, au premier palier disponible dans ce fit. La loi des atouts aide à évaluer le palier, mais ne garantit ni dix levées ni un sacrifice rentable. Vulnérable, avec seulement 3 H et sans courte, Passe devient nettement plus prudent."
+    }
+  },
+  {
+    "id": "SEF-V478-003",
+    "verdict": "VALIDE",
+    "justification": "9 H dont D♥ et A♦, deux cartes dans chaque couleur du partenaire : passer après 3♥, contrairement à préférence obligatoire sans soutien adverse. Pas de garantie de fit ; opposition 001/002 pertinente.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-003",
+      "quizz-prerequis.js#SEF-V478-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-003-absence-de-fit-malgr--neuf-h",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-004",
+    "verdict": "VALIDE",
+    "justification": "5 H, cinq ♠ et A♦ extérieur, vert contre rouge : 4♠ au-dessus de 4♥, au moins dix atouts. Explication déjà précise décision compétitive, non garantie ; contraste de palier avec 001.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-004",
+      "quizz-prerequis.js#SEF-V478-004",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v478-004-fit-dixi-me---pique-face-au-barrage-adverse",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "5 H, cinq ♥ et aucune courte, 4♥ vert contre rouge. Même loi que 002 mais manche majeure, décision à nuancer rouge et non règle stricte.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-005",
+      "quizz-prerequis.js#SEF-V478-005",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Michaël précisé : fit dixième Cœur sans singleton ni chicane ; vert 4♥, rouge Passe en tournoi par paires.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-005-fit-dixi-me-c-ur-quand-le-soutien-adverse-interdit-le-palier-de-trois",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "patch",
+    "avant": {
+      "explain": "Avec cinq Cœurs en face des cinq promis par le Michaël, le fit est au moins dixième. Vert (non vulnérable), en tournoi par paires, vous appliquez la loi des atouts et annoncez 4♥ après le soutien adverse à 3♠, malgré seulement 5 H. Votre main 2-5-4-2 n'a toutefois ni singleton ni chicane : c'est un soutien compétitif, pas une certitude de réaliser la manche. Rouge (vulnérable), l'arbitrage pédagogique retenu pour cette main est Passe, en raison du risque de chute sans courte."
+    },
+    "apres": {
+      "explain": "Vos cinq Cœurs garantissent au moins dix atouts avec le Michaël. En tournoi par paires, vert contre rouge, 4♥ est une surenchère compétitive raisonnable et constitue le choix retenu. La forme 2-5-4-2 sans courte et les 5 H seulement rendent le résultat incertain ; vulnérable, Passe serait une option nettement plus prudente. La loi des atouts n'est pas une obligation de surenchérir."
+    }
+  },
+  {
+    "id": "SEF-V478-006",
+    "verdict": "ARBITRAGE",
+    "justification": "7 H, cinq ♣, D♠ en face d'une ouverture adverse, A♦ utile mais pas de courte ; rouge contre vert, 4♣ contré chutant de deux coûterait 500 contre une partielle adverse. 4♣ n'est pas indiscutablement meilleur que Passe. Arbitrer avec le cours QPJB ; pas de remplacement de réponse sans validation.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-006",
+      "quizz-prerequis.js#SEF-V478-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Michaël précisé : fit dixième à Trèfle et As de Carreau couvrant ; 4♣ même vulnérable, sans courte.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-006-fit-dixi-me-tr-fle-en-concurrence-au-palier-quatre",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "arbitrage coordinateur",
+    "avant": {
+      "explain": "Avec cinq Trèfles face aux cinq promis par le Michaël, vous connaissez un fit d'au moins dix atouts. En plus de ce gros fit, l'As de Carreau (♦A), honneur extérieur aux deux couleurs du partenaire, est une couvrante utile : il apporte une levée de tête susceptible de réduire ses perdantes. Vous disposez ainsi de davantage de jeu que dans les exemples précédents ; malgré l'absence de singleton ou de chicane, annoncez 4♣ même vulnérable (rouge). L'enchère reste compétitive et ne garantit pas de réaliser dix levées : le risque dépend également des levées défensives adverses."
+    },
+    "apres": {
+      "explain": "Vos cinq Trèfles assurent au moins dix atouts avec le Michaël. L'As de Carreau peut couvrir une perdante, mais il compte aussi en défense. Rouge contre vert, sans courte et avec seulement 7 H, le risque de 4♣ contré est significatif : 4♣ est le choix offensif retenu dans cet exercice, pas une obligation SEF. Passe demeure défendable ; l'arbitrage du traitement compétitif QPJB doit être confirmé."
+    }
+  },
+  {
+    "id": "SEF-V478-007",
+    "verdict": "VALIDE",
+    "justification": "9 H, deux ♥ et deux ♣, cinq ♠ dont A : potentiel défensif et pas de fit garanti, Passe sur 3♠. Contraste avec 006 qui a cinq ♣. Prérequis cohérent.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-007",
+      "quizz-prerequis.js#SEF-V478-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-007-deux-doubletons-dans-les-couleurs-du-micha-l-et-valeurs-adverses",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-008",
+    "verdict": "ARBITRAGE",
+    "justification": "3 H, quatre ♥ donc neuf atouts au moins, sans courte : 4♥ au-dessus de 3♠ vert contre rouge parfois défendable selon distribution/levées adverses. Le corrigé affirme Passe à toute vulnérabilité. Conserver réponse prudente provisoirement, nuancer et faire arbitrer la doctrine QPJB.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-008",
+      "quizz-prerequis.js#SEF-V478-008",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Michaël : fit neuvième, 3 H sans courte ni levée de tête ; Passe même vert contre rouge.",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 3,
+        "minSession": 42,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "michaels.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v478-008-fit-neuvi-me-mais-palier-quatre-sans-force",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "arbitrage coordinateur",
+    "avant": {
+      "explain": "Avec quatre Cœurs face aux cinq promis par le Michaël, vous disposez d'un fit d'au moins neuf atouts. Mais votre main ne vaut que 3 H, sans singleton, chicane ni levée de tête. Pour répondre à 3♠, vous devriez monter à 4♥ : le seul nombre d'atouts ne suffit pas à garantir la sécurité de ce palier. Passe est donc retenu à toute vulnérabilité, y compris vert contre rouge. La loi des atouts éclaire la décision compétitive, mais ne l'impose pas automatiquement."
+    },
+    "apres": {
+      "explain": "Vous garantissez neuf atouts à Cœur, mais seulement 3 H, sans courte ni levée de tête. Le cours retient Passe comme choix prudent devant le palier de quatre, même vert contre rouge. La loi des atouts fournit un repère et non une réponse mécanique : une surenchère peut être défendable dans certaines distributions. L'arbitrage QPJB sur ce cas limite doit être confirmé."
+    }
+  },
+  {
+    "id": "SEF-V478-009",
+    "verdict": "VALIDE",
+    "justification": "3 H, quatre ♥ et deux ♠, non vulnérable : 3♥ au premier palier après 3♦ ; neuf atouts garantis, choix raisonnable. Contraste 008 où le palier quatre est imposé.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-009",
+      "quizz-prerequis.js#SEF-V478-009",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-009-choix-du-fit-neuvi-me-c-ur-apr-s-soutien-adverse-de-mineure",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-010",
+    "verdict": "VALIDE",
+    "justification": "4 H, quatre ♠ et deux ♥, non vulnérable : 3♠ naturel après 3♦. Miroir 009, différence majeure et réponse légale ; pas de doublon exact.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-010",
+      "quizz-prerequis.js#SEF-V478-010",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-010-choix-du-fit-neuvi-me-pique-apr-s-soutien-adverse-de-mineure",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-011",
+    "verdict": "VALIDE",
+    "justification": "10 H, deux majeures doubletons, R♦ cinquième : Passe après 3♦, pas de fit garanti, valeurs défensives. Contraste 009/010, même avec davantage de H.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-011",
+      "quizz-prerequis.js#SEF-V478-011",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-011-savoir-passer-avec-les-deux-majeures-doubletons",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-012",
+    "verdict": "VALIDE",
+    "justification": "3 H, 4♠/2♥, non vulnérable : 3♠ après 3♣ adverse, 3♦ ne correspond pas au bicolore promis. Analogue 010 avec autre ouverture/soutien adverse.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-012",
+      "quizz-prerequis.js#SEF-V478-012",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-012-choix-pique-sur-soutien-adverse-de-tr-fle",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V478-013",
+    "verdict": "VALIDE",
+    "justification": "4 H, 4♥/2♠, non vulnérable : 3♥ sur 3♣. Miroir 012 et analogue 009 ; utile pour généralisation des deux ouvertures, redondance structurelle à surveiller.",
+    "references": [
+      "quizz.html#training-data/SEF-V478-013",
+      "quizz-prerequis.js#SEF-V478-013",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "michaels.reponse",
+    "conceptPropose": "michaels.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Compétition après Michaël précisé : sécurité distributionnelle, fit et palier",
+      "prerequis": {
+        "concept": "michaels.reponse",
+        "stage": 1,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "michaels.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v478-013-choix-c-ur-sur-soutien-adverse-de-tr-fle",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Michaël précisé et choix compétitif du catalogue QPJB"
+    },
+    "action": "conserver"
+  },
+  {
+    "id": "SEF-V479-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "4 H, 4♥/2♠ : 2♥ préférence faible sur Landy 5–4. Le contexte donne explicitement l'enchère ; remplacer. S42 objectif correct.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-001",
+      "quizz-prerequis.js#SEF-V479-001",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [
+      42
+    ],
+    "seancesProposees": [
+      42
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 1,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-001-landy-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quatre Cœurs contre deux Piques, avec une main faible : annoncer la préférence à Cœur au plus bas palier. Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Votre partenaire intervient par 2♣ Landy selon l'accord Multi-Landy QPJB ; l'adversaire suivant passe. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-V479-002",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "3 H, 4♠/2♥ : 2♠ préférence faible, miroir de 001. Enlever l'indice de la préférence déjà déterminée ; S42 adéquate.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-002",
+      "quizz-prerequis.js#SEF-V479-002",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [
+      42
+    ],
+    "seancesProposees": [
+      42
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 2,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 1,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-002-landy-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Quatre Piques et deux Cœurs, peu de valeurs : trouver la meilleure partielle. Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Votre partenaire intervient par 2♣ Landy selon l'accord Multi-Landy QPJB ; l'adversaire suivant passe. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-V479-003",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, 3-3 majeures : 2♦ relais, Cœurs à égalité selon accord. Question annonce la demande de longueur ; supprimer cet indice, conserver différence avec 001/002.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-003",
+      "quizz-prerequis.js#SEF-V479-003",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [
+      42
+    ],
+    "seancesProposees": [
+      42
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♦",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 1,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-003-landy-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous détenez trois cartes dans chaque majeure, sans préférence nette. Quelle réponse demande au partenaire de révéler sa majeure la plus longue ? Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Votre partenaire intervient par 2♣ Landy selon l'accord Multi-Landy QPJB ; l'adversaire suivant passe. Quelle est votre réponse ?"
+    }
+  },
+  {
+    "id": "SEF-V479-004",
+    "verdict": "ARBITRAGE",
+    "justification": "10 H et quatre cartes dans chaque majeure, 2SA relais constructif non universel. Le contexte mentionne un accord sans définir précisément 2SA, et aucun groupe explicite. Exiger validation de ce développement par coordinateur ; ne pas présenter comme SEF.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-004",
+      "quizz-prerequis.js#SEF-V479-004",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Landy : distinguer l'intervention SEF à 2♣ de son relais constructif à 2SA, conventionnel et soumis à l'accord de paire.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v479-004-landy-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "arbitrage coordinateur"
+  },
+  {
+    "id": "SEF-V479-005",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, cinq ♥ quatre ♠, 2♥ après relais 2♦ du partenaire. Rôle intervenant distinct de 001 ; contexte énonce la longueur et la question plusieurs fois, retirer indice.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-005",
+      "quizz-prerequis.js#SEF-V479-005",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.suite",
+    "conceptPropose": "multilandy.suite",
+    "seancesInitiales": [
+      43
+    ],
+    "seancesProposees": [
+      43
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 43,
+        "group": "répondre au relais du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 43,
+        "group": "répondre au relais du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.suite",
+        "stage": 2,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-005-landy-rebid",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous êtes l'intervenant Landy. Le partenaire a utilisé le relais 2♦ : quelle majeure annoncez-vous avec cinq Cœurs et quatre Piques ? Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Vous intervenez par 2♣ Landy, les adversaires passent et votre partenaire répond 2♦ (relais). Quelle est votre redemande ?"
+    }
+  },
+  {
+    "id": "SEF-V479-006",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H, cinq ♠ quatre ♥ : 2♠ après relais, miroir de 005. Retirer le décompte fourni, garder rôle intervenant et accord.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-006",
+      "quizz-prerequis.js#SEF-V479-006",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.suite",
+    "conceptPropose": "multilandy.suite",
+    "seancesInitiales": [
+      43
+    ],
+    "seancesProposees": [
+      43
+    ],
+    "groupesInitiaux": [
+      {
+        "session": 43,
+        "group": "répondre au relais du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "groupesProposes": [
+      {
+        "session": 43,
+        "group": "répondre au relais du partenaire : 2♠",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.suite",
+        "stage": 2,
+        "minSession": 36,
+        "requires": [
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-006-landy-rebid",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Vous êtes l'intervenant Landy et détenez cinq Piques, quatre Cœurs. Sur le relais à 2♦, que répondez-vous ? Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Vous intervenez par 2♣ Landy, les adversaires passent et votre partenaire répond 2♦ (relais). Quelle est votre redemande ?"
+    }
+  },
+  {
+    "id": "SEF-V479-007",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, singleton ♥ quatre ♠ : 2♥ passe-ou-corrige économique, pas préférence naturelle. La formulation « ne pouvez pas soutenir trois Cœurs » est confuse (3♥ est un palier) ; retirer l'indice, S42 préférence ou relais 2♥.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-007",
+      "quizz-prerequis.js#SEF-V479-007",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [
+      42
+    ],
+    "groupesInitiaux": [],
+    "groupesProposes": [
+      {
+        "session": 42,
+        "group": "préférence ou relais après défense du partenaire : 2♥",
+        "role": "objectif"
+      }
+    ],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 3,
+      "raisonDifficulte": "Choisir la réponse ou redemande après intervention Multi-Landy, selon le rôle et la convention.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 1,
+        "minSession": 34,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          }
+        ]
+      },
+      "caseFamily": "v479-007-multi-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "patch",
+    "avant": {
+      "context": "Votre partenaire a annoncé un 2♦ Multi-Landy, majeur sixième indéterminé. Vous êtes faible et ne pouvez pas soutenir trois Cœurs au besoin : quelle réponse ? Rappel : la défense Multi-Landy est appliquée contre 1SA 15–17 H, le joueur suivant a passé. Quelle est votre enchère ?"
+    },
+    "apres": {
+      "context": "L'adversaire ouvre de 1SA (15–17 H). Votre partenaire intervient par 2♦ Multi-Landy (majeure au moins sixième indéterminée), puis l'adversaire suivant passe. Quelle est votre réponse dans l'accord passe-ou-corrige QPJB ?"
+    }
+  },
+  {
+    "id": "SEF-V479-008",
+    "verdict": "ARBITRAGE",
+    "justification": "6 H, trois ♥ et deux ♠ : 2♠ passe-ou-corrige au palier supérieur selon accord spécifique. 2♥ demeure possible et plus économique. Accord de 2♠ à 6 H explicitement atypique ; confirmation du traitement QPJB nécessaire, pas certification SEF. Sans groupe explicite, ne pas l'ajouter comme objectif standard.",
+    "references": [
+      "quizz.html#training-data/SEF-V479-008",
+      "quizz-prerequis.js#SEF-V479-008",
+      "audits/programme-65-20261127/programme-normalise.json"
+    ],
+    "conceptInitial": "multilandy.reponse",
+    "conceptPropose": "multilandy.reponse",
+    "seancesInitiales": [],
+    "seancesProposees": [],
+    "groupesInitiaux": [],
+    "groupesProposes": [],
+    "pointsControles": {
+      "main13HForme": true,
+      "legaliteChoix": true,
+      "role": "lu",
+      "questionChoixCorrige": "lus",
+      "difficulte": 4,
+      "raisonDifficulte": "Multi-Landy : 2♦ annonce six cartes dans une majeure indéterminée ; distinguer les relais « Passe ou corrige » à 2♥ et 2♠, avec accord de paire explicite.",
+      "prerequis": {
+        "concept": "multilandy.reponse",
+        "stage": 3,
+        "minSession": 38,
+        "requires": [
+          {
+            "concept": "multilandy.intervention",
+            "minExposure": 1
+          },
+          {
+            "concept": "multilandy.reponse",
+            "minExposure": 2
+          }
+        ]
+      },
+      "caseFamily": "v479-008-multi-respond",
+      "analoguesMemeSequenceFormeReponse": [],
+      "redondance": "comparaison ciblée et signature catalogue; redondance sémantique globale à compléter",
+      "vulnerabilite": "lue lorsqu'explicite",
+      "accord": "Multi-Landy selon traitement catalogue ; non certification SEF"
+    },
+    "action": "arbitrage coordinateur"
   }
 ]
