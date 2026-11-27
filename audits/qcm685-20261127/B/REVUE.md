@@ -329,3 +329,42 @@ Contrôles exécutés en JavaScript sur les données Git réelles : 13 cartes, r
 - SEF-V484-008: AD84 R972 V986 6 — main exacte/permutation
 - SEF-V484-009: AD84 R972 6 V986 — main exacte/permutation
 - SEF-V484-010: AD84 6 R972 V986 — main exacte/permutation
+
+## Passe 3 — priorité et compléments
+
+20 cas retenus (y compris les remplacements des premières versions). Les lignes de cette section remplacent toute ligne précédente de même ID. Total 170/170. {"contre":[],"rectif":[],"suite":[],"mineur":[],"drury":[]} indique les emplacements encore à compléter. Rebalancement interne des majeurs : les cas répétitifs d'initiation et de suite cèdent la place aux Contres d'entame, aux rectifications et suites spécifiques sur 2SA. Deux corrigés tronqués (B-098 et B-114) rétablis. Contrôles de règles, cartes, H, forme, collisions, empreintes, choix et affectations exécutés sur chaque candidat.
+
+| ID | H | P-C-K-T | Réponse | Analogue | Séance | Critère | Similarité décision/force/forme |
+|---|---:|---|---|---|---:|---|---|
+| SEF-Q685-B-033 | 17 | 4–3–4–2 | Passe | SEF-L25-001 | 27 | Quatre Piques et aucun arrêt Trèfle : Passe laisse poursuivre le Stayman sans nier la majeure. | aucune |
+| SEF-Q685-B-036 | 15 | 2–4–4–3 | Passe | SEF-L25-001 | 27 | Quatre Cœurs mais aucun arrêt Trèfle : Passe, même avec la majeure quatrième. | aucune |
+| SEF-Q685-B-044 | 15 | 3–4–3–3 | 2♥ | SEF-L25-003 | 27 | Quatre Cœurs et As de Trèfle : annoncez 2♥ pour recevoir l'entame de la main forte. | aucune |
+| SEF-Q685-B-047 | 15 | 2–4–4–3 | Passe | SEF-PN26-M1-017 | 27 | Deux Piques : Passe nie le soutien troisième, même avec l'As de Cœur. | aucune |
+| SEF-Q685-B-049 | 20 | 3–3–5–2 | 3♥ | SEF-Q26-M2-008 | 13 | Trois Cœurs et vingt points malgré une mineure cinquième : rectifiez à 3♥. | aucune |
+| SEF-Q685-B-106 | 21 | 2–3–5–3 | 3SA | SEF-Q26-M2-009 | 13 | Deux Piques, même avec Roi-Dame : 3SA nie le troisième atout. | aucune |
+| SEF-Q685-B-108 | 6 | 3–5–3–2 | Passe | V2-M2-011 | 28 | Cinq Cœurs, deux chez l'ouvreur après 3SA : sept atouts seulement, Passe. | aucune |
+| SEF-Q685-B-028 | 7 | 3–6–2–2 | 4♦ | V2-M2-012 | 28 | Six Cœurs, deux chez l'ouvreur : huit atouts malgré le refus. 4♦ transfère de nouveau vers 4♥. | aucune |
+| SEF-Q685-B-021 | 6 | 5–2–3–3 | Passe | SEF-Q26-M2-022 | 28 | Cinq Piques et deux chez l'ouvreur : le fit majeur n'est pas établi, Passe sur 3SA. | SEF-Q400-B-044 |
+| SEF-Q685-B-045 | 8 | 6–3–2–2 | 4♥ | SEF-L31-001 | 28 | Six Piques et deux chez l'ouvreur : huit atouts, 4♥ retransfère vers 4♠. | aucune |
+| SEF-Q685-B-161 | 3 | 2–2–2–7 | 2♠ | SEF-V482-001 | 14 | Sept Trèfles et trois points : privilégiez la partielle dans la longue par 2♠. | aucune |
+| SEF-Q685-B-162 | 21 | 4–3–4–2 | 3SA | SEF-L41-004 | 28 | Deux petits Trèfles, malgré 21 H : refusez le Texas fitté à 3SA. | SEF-PN26-M1-029 |
+| SEF-Q685-B-163 | 13 | 1–3–3–6 | 3♠ | SEF-V482-006 | 28 | Six Trèfles connus, singleton Pique et 13 H : 3♠ décrit la courte, pas une nouvelle longue. | aucune |
+| SEF-Q685-B-164 | 13 | 3–3–6–1 | 3SA | SEF-V482-010 | 28 | Six Carreaux connus, singleton Trèfle : 3SA indique conventionnellement la courte dans l'autre mineure. | aucune |
+| SEF-Q685-B-165 | 10 | 4–3–4–2 | 2♣ | SEF-V4-104-1 | 30 | Quatre Piques, 10 H et doubleton : le neuvième atout rend le soutien constructif, 2♣ Drury. | SEF-Q400-B-077 |
+| SEF-Q685-B-166 | 10 | 4–2–3–4 | 2♣ | SEF-V4-104-1 | 30 | Quatre Piques et doubleton Cœur, 10 H : soutien constructif, Drury. | aucune |
+| SEF-Q685-B-167 | 10 | 4–1–5–3 | 2SA | SEF-V44-068 | 30 | Quatre Piques, singleton Cœur et 10 H : le 2SA fitté avec courte est plus descriptif que Drury. | aucune |
+| SEF-Q685-B-168 | 12 | 5–3–3–2 | 2♦ | SEF-V4-108-1 | 32 | Vraie ouverture régulière de 12 H : 2♦ d'attente, pas la répétition faible. | aucune |
+| SEF-Q685-B-169 | 8 | 6–2–3–2 | 2♠ | SEF-V4-107-3 | 32 | Ouverture légère non vulnérable avec six Piques solides : répétition faible à 2♠. | aucune |
+| SEF-Q685-B-170 | 11 | 3–3–4–3 | 2♠ | SEF-V484-003 | 32 | Trois Piques et 11 H, retour économique à 2♠ après le 2♦ d'attente. | SEF-V484-003 |
+
+### Rejets passe 3
+- SEF-PN26-M1-027: AD7 982 AR96 RV8 — quota prioritaire atteint
+- SEF-L25-006: RD82 R97 A6 RV84 — quota prioritaire atteint
+- SEF-L25-004: RD84 A7 AD96 V82 — quota prioritaire atteint
+- SEF-L39-001: A72 ARD8 RD96 D2 — quota prioritaire atteint
+- V2-M2-012: R7 AV9872 D83 96 — quota prioritaire atteint
+- SEF-V482-007: A82 RD7 6 DV9864 — quota prioritaire atteint
+- SEF-V482-008: D72 8 AR9864 RV6 — quota prioritaire atteint
+- SEF-V484-004: DV84 A72 R963 86 — quota prioritaire atteint
+- SEF-V484-010: D984 6 AR72 V986 — quota prioritaire atteint
+- SEF-V484-006: DV72 AR84 6 9863 — quota prioritaire atteint
