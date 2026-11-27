@@ -1,52 +1,12 @@
-# Reprise B — passe 9 partielle
+# Reprise B — passe 10 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-360/454 entrées provisoires ; 94 restent. Dernier ID : SEF-Q400-A-096. Prochain : SEF-Q400-A-097.
+400/454 entrées provisoires ; 54 restent. Dernier ID : SEF-Q685-A-116. Prochain : SEF-Q685-A-117.
 
-Contrôles mécaniques 454/454. Corrections : 75. Propositions de réservoir : 7. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 9. Contrôles ensemble exact 360 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454. Corrections : 80. Propositions de réservoir : 7. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 17. Contrôles ensemble exact 400 IDs, unicité corrections, réponse présente dans choix. Reprendre 54 IDs restants, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- SEF-Q400-A-097
-- SEF-Q400-A-098
-- SEF-Q400-A-099
-- SEF-Q400-A-100
-- SEF-Q685-A-081
-- SEF-Q685-A-082
-- SEF-Q685-A-083
-- SEF-Q685-A-084
-- SEF-Q685-A-085
-- SEF-Q685-A-086
-- SEF-Q685-A-087
-- SEF-Q685-A-088
-- SEF-Q685-A-089
-- SEF-Q685-A-090
-- SEF-Q685-A-091
-- SEF-Q685-A-092
-- SEF-Q685-A-093
-- SEF-Q685-A-094
-- SEF-Q685-A-095
-- SEF-Q685-A-096
-- SEF-Q685-A-097
-- SEF-Q685-A-098
-- SEF-Q685-A-099
-- SEF-Q685-A-100
-- SEF-Q685-A-101
-- SEF-Q685-A-102
-- SEF-Q685-A-103
-- SEF-Q685-A-104
-- SEF-Q685-A-105
-- SEF-Q685-A-106
-- SEF-Q685-A-107
-- SEF-Q685-A-108
-- SEF-Q685-A-109
-- SEF-Q685-A-110
-- SEF-Q685-A-111
-- SEF-Q685-A-112
-- SEF-Q685-A-113
-- SEF-Q685-A-114
-- SEF-Q685-A-115
-- SEF-Q685-A-116
 - SEF-Q685-A-117
 - SEF-Q685-A-118
 - SEF-Q685-A-119
