@@ -1,0 +1,79 @@
+name: M4p-B O native and final registry
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-b-rappels]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11,47,103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fd6866818e29b95c3562cde4a5c170fe1e5e90db
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-concrete-m4p-b-unit.cjs
+          node tests/coherence-concrete-m4p-b-window-unit.cjs
+          node tests/coherence-concrete-m4p-b-rotation-unit.cjs
+          OUT=/tmp/m4p-b-o POLICIES=O PROFILE=${{ matrix.profile }} SEED=${{ matrix.seed }} node tests/coherence-concrete-m4p-b-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m4p-b-o-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4p-b-o
+  archive:
+    needs: native
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fd6866818e29b95c3562cde4a5c170fe1e5e90db
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4p-b-o-*
+          path: /tmp/m4p-b-o
+      - name: Verify full trace and generate registry
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, gzip, hashlib
+          d=pathlib.Path('audits/coherence-concrete-20261126/m4/parallel/b/native')
+          m=json.loads((d/'manifest.json').read_text())
+          assert len(m['artifacts'])==72
+          for profile in ['autonome','intermediaire','faible','cible','aide','passe']:
+            for seed in [11,47,103]:
+              key=f'{profile}-{seed}'
+              folder=pathlib.Path('/tmp/m4p-b-o')/f'm4p-b-o-{key}'
+              before=json.loads(gzip.decompress((d/f'{key}-native.json.gz').read_bytes()))
+              before_o=json.loads((folder/f'{key}-native.json').read_text())
+              assert before['detail']==before_o['detail']
+              assert before['run']['sessions']==before_o['run']['sessions']
+              raw=(folder/f'{key}-O.json').read_bytes()
+              x=json.loads(raw);assert len(x['run']['sessions'])==180 and all(len(s['rows'])==10 for s in x['run']['sessions'])
+              assert x['summary']['policy']=='O'
+              file=d/f'{key}-O.json.gz';file.write_bytes(gzip.compress(raw,mtime=0))
+              m['artifacts'].append({'file':file.name,'sha256':hashlib.sha256(raw).hexdigest(),'compressedSha256':hashlib.sha256(file.read_bytes()).hexdigest(),'bytes':len(raw),'sessions':180,'rows':1800,'testedSha':'fd6866818e29b95c3562cde4a5c170fe1e5e90db'})
+          assert len(m['artifacts'])==90
+          m['nativeRunO']='${{ github.run_id }}'
+          (d/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
+          PY
+          node tests/coherence-concrete-m4p-b-report.cjs > /tmp/m4p-b-report.json
+          cat /tmp/m4p-b-report.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audits/coherence-concrete-20261126/m4/parallel/b
+          git diff --cached --name-only | grep -v '^audits/coherence-concrete-20261126/m4/parallel/b/' && exit 1 || true
+          git commit -m "M4-B: archive O and exhaustive comparisons, direct decisions, saturation"
+          git push origin HEAD:refs/heads/coherence-concrete/m4-parallel-b-rappels
