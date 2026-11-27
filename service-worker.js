@@ -1,7 +1,7 @@
 // QPJB — ressources essentielles disponibles sans réseau après la première installation.
 // Le cache dynamique reste réseau-d'abord afin que les documents et séances publiés
 // soient actualisés dès qu'une connexion est disponible.
-const CACHE = 'qpjb-v110';
+const CACHE = 'qpjb-v111';
 const BASE = '/QPJB/';
 const TRAINING_SHELL = [
   BASE,
@@ -32,7 +32,7 @@ const TRAINING_FACSIMILES = Array.from({length:23}, (_,i)=>
 // L'installation ne récupère que le squelette, pas les ~1,1 Mo de QCM
 // ni les 23 images d'origine. Ils seront téléchargés après l'affichage.
 const BACKGROUND_TRAINING = [...TRAINING_MODULES, ...TRAINING_FACSIMILES];
-const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'qpjb-bridge-ui.css?v=20261113e', BASE + 'quizz-prerequis.js?v=3', BASE + 'quizz-pedagogie-initiation.js?v=1', BASE + 'quizz-pedagogie-intermediaire.js?v=1', BASE + 'quizz-pedagogie-avancee.js?v=1', BASE + 'quizz-session-plan.js?v=2', BASE + 'quizz-parcours.js?v=24', BASE + 'quizz-coherence-m3-prerequis.js?v=1', BASE + 'quizz-coherence-m2-ordre.js?v=2', BASE + 'quizz-coherence-m5-study.js?v=1', BASE + 'quizz-coherence-study-ui.js?v=1', BASE + 'parcours-recommandations.js?v=1', BASE + 'quizz-apprentissage-concepts.js?v=1', BASE + 'quizz-diagnostic-erreurs.js?v=1', BASE + 'quizz-remediation.js?v=1', BASE + 'quizz-professeur.js?v=1', BASE + 'quizz-durable-m1-adaptation.js?v=2', BASE + 'quizz-durable-m1-guard.js?v=2', BASE + 'quizz-durable-m2-data.js?v=2', BASE + 'quizz-durable-m2-remediation.js?v=2', BASE + 'quizz-durable-m3-maitrise.js?v=2', BASE + 'quizz-durable-m4-transfert.js?v=2', BASE + 'quizz-durable-m5-lecons.js?v=2', BASE + 'quizz-durable-integration.js?v=2'];
+const BACKGROUND_QUIZZ = [BASE + 'quizz.html', BASE + 'qpjb-bridge-ui.css?v=20261113e', BASE + 'quizz-prerequis.js?v=4', BASE + 'quizz-pedagogie-initiation.js?v=1', BASE + 'quizz-pedagogie-intermediaire.js?v=1', BASE + 'quizz-pedagogie-avancee.js?v=1', BASE + 'quizz-session-plan.js?v=2', BASE + 'quizz-parcours.js?v=25', BASE + 'quizz-coherence-m3-prerequis.js?v=1', BASE + 'quizz-coherence-m2-ordre.js?v=2', BASE + 'quizz-coherence-m5-study.js?v=1', BASE + 'quizz-coherence-study-ui.js?v=1', BASE + 'parcours-recommandations.js?v=1', BASE + 'quizz-apprentissage-concepts.js?v=1', BASE + 'quizz-diagnostic-erreurs.js?v=1', BASE + 'quizz-remediation.js?v=1', BASE + 'quizz-professeur.js?v=1', BASE + 'quizz-durable-m1-adaptation.js?v=2', BASE + 'quizz-durable-m1-guard.js?v=2', BASE + 'quizz-durable-m2-data.js?v=2', BASE + 'quizz-durable-m2-remediation.js?v=2', BASE + 'quizz-durable-m3-maitrise.js?v=2', BASE + 'quizz-durable-m4-transfert.js?v=2', BASE + 'quizz-durable-m5-lecons.js?v=2', BASE + 'quizz-durable-integration.js?v=2'];
 let warmPromise = null;
 async function cacheOfflineResources() {
   const cache = await caches.open(CACHE);
