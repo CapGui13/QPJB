@@ -5,7 +5,7 @@ function finish(selected,slots,common,pick){
  if(common.session<3||common.session>20||selected.length!==10||new Set(selected.map(v=>family(v.exercise))).size!==10)return selected;
  // The last matching native slot is considered first; earlier discovery and
  // priority placements stay intact. All alternatives passed native filters.
- for(const slot of slots.slice().reverse()){
+ for(const slot of (common.session<6?slots:slots.slice().reverse())){
   const i=slot.index,old=selected[i]?.exercise;
   if(old!==slot.baseline||selected[i].reason!=='nouveau_qcm')continue;
   const rest=selected.filter((_,j)=>i!==j),usedIds=new Set(rest.map(x=>x.exercise.id)),usedFam=new Set(rest.map(x=>family(x.exercise)));
