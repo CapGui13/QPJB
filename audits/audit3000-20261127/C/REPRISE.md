@@ -2,18 +2,12 @@
 
 Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
 Branche : pedagogie/audit3000-c
-Dernier SHA vérifié avant cette passe : 1c615e3d86007ffdecef1cbb52f18e90405426cf
-Passes 1 à 8 : 426 verdicts individuels, 146 corrections complètes, 7 arbitrages. Contrôles : voir REVUE.md.
+Dernier SHA vérifié avant cette passe : 8b0602b99ef2ed8dcaf7b4f962838b275c18d76a
+Passes 1 à 9 : 466 verdicts individuels, 163 corrections complètes, 8 arbitrages. Contrôles : voir REVUE.md.
 
-Reprendre aux concepts roudi.init / roudi.choix / roudi.reponse / roudi.suite, puis Drury. Étendre les JSON sans écraser les décisions précédentes.
+Reprendre aux concepts roudi.reponse / roudi.suite, puis Drury. Étendre les JSON sans écraser les décisions précédentes.
 
-## IDs restants : 182
-
-### roudi.init (22)
-SEF-N137-1, SEF-V4-073-1, SEF-V4-079-3, SEF-V4-085-3, SEF-V4-091-3, SEF-V49-027, SEF-C2-012, SEF-L10-030, V2-M6-001, V2-M6-002, SEF-Q400-B-055, SEF-Q400-B-056, SEF-Q400-B-057, SEF-Q400-B-058, SEF-Q400-B-059, SEF-Q685-B-070, SEF-Q685-B-071, SEF-Q685-B-074, SEF-Q685-B-131, SEF-Q685-B-132, SEF-Q685-B-133, SEF-Q685-B-134
-
-### roudi.choix (18)
-SEF-V4-074-3, SEF-V4-075-2, SEF-V4-080-4, SEF-V4-080-2, SEF-V4-081-3, SEF-V4-086-2, SEF-V4-086-1, SEF-V4-087-1, SEF-V4-092-1, SEF-V4-092-2, SEF-V4-093-1, SEF-Q400-B-060, SEF-Q400-B-061, SEF-Q400-B-062, SEF-Q685-B-072, SEF-Q685-B-073, SEF-Q685-B-135, SEF-Q685-B-136
+## IDs restants : 142
 
 ### roudi.reponse (30)
 SEF-V4-076-3, SEF-V4-077-1, SEF-V4-078-1, SEF-V4-082-1, SEF-V4-083-1, SEF-V4-084-1, SEF-V4-088-1, SEF-V4-089-1, SEF-V4-090-1, SEF-V4-094-1, SEF-V4-095-2, SEF-V4-096-1, SEF-L13-002, SEF-L14-006, SEF-Q400-B-063, SEF-Q400-B-064, SEF-Q400-B-065, SEF-Q400-B-066, SEF-Q400-B-067, SEF-Q400-B-068, SEF-Q685-B-075, SEF-Q685-B-076, SEF-Q685-B-077, SEF-Q685-B-078, SEF-Q685-B-079, SEF-Q685-B-137, SEF-Q685-B-138, SEF-Q685-B-139, SEF-Q685-B-140, SEF-Q685-B-141

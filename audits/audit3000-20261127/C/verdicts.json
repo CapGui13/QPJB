@@ -44585,5 +44585,4037 @@
     "action": {
       "type": "conserver"
     }
+  },
+  {
+    "id": "SEF-N137-1",
+    "verdict": "VALIDE",
+    "justification": "9 H + 2 L = 11 HL, six Cœurs : Roudi proposition de manche, contraste Q400-B-060 faible. Préciser choix entre 2♥ faible et Roudi 11–12 HL.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 1,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 1,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-189",
+    "caseFamilyPropose": "cas-189",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2SA",
+        "2♥",
+        "2♣"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "9 H + 2 L = 11 HL, six Cœurs : Roudi proposition de manche, contraste Q400-B-060 faible. Préciser choix entre 2♥ faible et Roudi 11–12 HL.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H + 2 L = 11 HL, six Cœurs : Roudi proposition de manche, contraste Q400-B-060 faible. Préciser choix entre 2♥ faible et Roudi 11–12 HL.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-073-1",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H, cinq Cœurs, 13 HL : Roudi pour trouver fit 5–3 avant manche ; énoncé donne force, longueur et objectif.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-383",
+    "caseFamilyPropose": "cas-383",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2SA",
+        "2♣",
+        "2♥"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "12 H, cinq Cœurs, 13 HL : Roudi pour trouver fit 5–3 avant manche ; énoncé donne force, longueur et objectif.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs, 13 HL : Roudi pour trouver fit 5–3 avant manche ; énoncé donne force, longueur et objectif.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3; S61/2 interroger après redemande à 1SA : 2♣",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-C2-012"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Le partenaire ouvre de 1♣, vous répondez 1♥ et il redemande 1SA (12–14 H). Vous possédez cinq Cœurs et 12 H : quelle enchère permet de vérifier un éventuel fit 5–3 avant de choisir la manche ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-074-3",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, cinq Cœurs : 2♥ non forcing selon traitement catalogue ; couleur faible mais choix d'une partielle, contraste 075 quatre cartes. Neutraliser indices.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-384",
+    "caseFamilyPropose": "cas-384",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 8
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♥",
+        "2♣",
+        "3♥",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "7 H, cinq Cœurs : 2♥ non forcing selon traitement catalogue ; couleur faible mais choix d'une partielle, contraste 075 quatre cartes. Neutraliser indices.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "7 H, cinq Cœurs : 2♥ non forcing selon traitement catalogue ; couleur faible mais choix d'une partielle, contraste 075 quatre cartes. Neutraliser indices.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais; S61/1 roudi.choix : 2♥",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Après 1♣–1♥–1SA (l'ouvreur a montré une main régulière de 12–14 H), vous avez cinq Cœurs et 7 H. Quelle seconde enchère choisissez-vous ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-075-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, quatre Cœurs, 4–3–3–3 : Passe, ni fit cinquième ni invitation. Retirer données déjà visibles.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-385",
+    "caseFamilyPropose": "cas-385",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2SA",
+        "2♥"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "7 H, quatre Cœurs, 4–3–3–3 : Passe, ni fit cinquième ni invitation. Retirer données déjà visibles.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "7 H, quatre Cœurs, 4–3–3–3 : Passe, ni fit cinquième ni invitation. Retirer données déjà visibles.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-087-1"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Votre partenaire a ouvert 1♣, vous avez répondu 1♥, puis il a annoncé 1SA. Avec quatre Cœurs et 7 H dans une main régulière, que faites-vous ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-079-3",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, cinq Piques, 12 HL : Roudi ; question révèle longueur et recherche du fit.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-389",
+    "caseFamilyPropose": "cas-389",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2SA",
+        "2♣",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques, 12 HL : Roudi ; question révèle longueur et recherche du fit.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques, 12 HL : Roudi ; question révèle longueur et recherche du fit.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-091-3",
+          "V2-M6-002"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Après 1♣–1♠–1SA, vous détenez cinq Piques et 11 H. Quelle enchère permet de vérifier un fit de trois Piques chez l'ouvreur ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-080-4",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Piques : 2♠ faible selon traitement catalogue, contraste 079. Roudi sans perspective de manche inutile.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-390",
+    "caseFamilyPropose": "cas-390",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2♣",
+        "3♠",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "6 H, cinq Piques : 2♠ faible selon traitement catalogue, contraste 079. Roudi sans perspective de manche inutile.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, cinq Piques : 2♠ faible selon traitement catalogue, contraste 079. Roudi sans perspective de manche inutile.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-092-1"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-080-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq Piques RD1092, 9 HL : 2♠ partielle ; question donne la longueur et restreint choix.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-390",
+    "caseFamilyPropose": "cas-390",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2♣",
+        "2SA",
+        "2♠"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "8 H, cinq Piques RD1092, 9 HL : 2♠ partielle ; question donne la longueur et restreint choix.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H, cinq Piques RD1092, 9 HL : 2♠ partielle ; question donne la longueur et restreint choix.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-092-2"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Après 1♣ du partenaire, vous avez annoncé 1♠ avec cinq Piques (♠RD1092) et 8 H. Le partenaire redemande 1SA, montrant une main régulière de première zone (12–14 H). Répétez-vous les Piques ou utilisez-vous le Roudi ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-081-3",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "7 H, quatre Piques, main 4–3–3–3 : Passe plutôt que répétition cinquième. Retirer indices.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-391",
+    "caseFamilyPropose": "cas-391",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♠",
+        "2SA",
+        "2♣"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "7 H, quatre Piques, main 4–3–3–3 : Passe plutôt que répétition cinquième. Retirer indices.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "7 H, quatre Piques, main 4–3–3–3 : Passe plutôt que répétition cinquième. Retirer indices.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Votre partenaire ouvre 1♣. Vous répondez 1♠ avec quatre Piques, puis il redemande 1SA. Que faites-vous avec 7 H ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-085-3",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq Cœurs AD865, 12 HL : Roudi même après 1♦ ; contraste 086 faible.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-395",
+    "caseFamilyPropose": "cas-395",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2♥",
+        "2SA",
+        "2♣"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Cœurs AD865, 12 HL : Roudi même après 1♦ ; contraste 086 faible.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Cœurs AD865, 12 HL : Roudi même après 1♦ ; contraste 086 faible.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-086-2",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Cœurs AV752 : 2♥ faible, variante ouverture 1♦ ; opposition à 085.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-396",
+    "caseFamilyPropose": "cas-396",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3♥",
+        "2SA",
+        "2♥",
+        "2♣"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "6 H, cinq Cœurs AV752 : 2♥ faible, variante ouverture 1♦ ; opposition à 085.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, cinq Cœurs AV752 : 2♥ faible, variante ouverture 1♦ ; opposition à 085.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-086-1",
+    "verdict": "VALIDE",
+    "justification": "8 H, cinq Cœurs D7532, 9 HL : 2♥, contraste 086-2 six points mais même décision ; ne pas multiplier.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-396",
+    "caseFamilyPropose": "cas-396",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2♥",
+        "2♣",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "8 H, cinq Cœurs D7532, 9 HL : 2♥, contraste 086-2 six points mais même décision ; ne pas multiplier.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H, cinq Cœurs D7532, 9 HL : 2♥, contraste 086-2 six points mais même décision ; ne pas multiplier.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-087-1",
+    "verdict": "VALIDE",
+    "justification": "7 H, quatre Cœurs et main régulière : Passe, analogue 075 mais ouverture 1♦.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-397",
+    "caseFamilyPropose": "cas-397",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "Passe"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "7 H, quatre Cœurs et main régulière : Passe, analogue 075 mais ouverture 1♦.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "7 H, quatre Cœurs et main régulière : Passe, analogue 075 mais ouverture 1♦.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-075-2"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-091-3",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq Piques AR864 : Roudi, 12 HL, contraste 092 faible.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-401",
+    "caseFamilyPropose": "cas-401",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2♣",
+        "2SA",
+        "2♠"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques AR864 : Roudi, 12 HL, contraste 092 faible.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques AR864 : Roudi, 12 HL, contraste 092 faible.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-079-3",
+          "V2-M6-002"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-092-1",
+    "verdict": "VALIDE",
+    "justification": "6 H, cinq Piques AV543 : 2♠, contraste 091. Variante faible après 1♦.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-402",
+    "caseFamilyPropose": "cas-402",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "2♣"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "6 H, cinq Piques AV543 : 2♠, contraste 091. Variante faible après 1♦.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, cinq Piques AV543 : 2♠, contraste 091. Variante faible après 1♦.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-080-4"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V4-092-2",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "8 H, cinq Piques RV982 : 2♠ faible ; énoncé révèle longueur et force. Variante 092-1.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-402",
+    "caseFamilyPropose": "cas-402",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2♣",
+        "3SA",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "8 H, cinq Piques RV982 : 2♠ faible ; énoncé révèle longueur et force. Variante 092-1.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H, cinq Piques RV982 : 2♠ faible ; énoncé révèle longueur et force. Variante 092-1.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-080-2"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Après 1♦ du partenaire, vous avez annoncé 1♠ avec cinq Piques (♠RV982) et 8 H. Le partenaire redemande 1SA, montrant une main régulière de première zone (12–14 H). Quelle seconde enchère choisissez-vous ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-V4-093-1",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Piques, 4–3–3–3 : Passe, contraste 092 cinquièmes.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "cas-403",
+    "caseFamilyPropose": "cas-403",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2SA",
+        "Passe",
+        "2♣",
+        "2♠"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "6 H, quatre Piques, 4–3–3–3 : Passe, contraste 092 cinquièmes.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, quatre Piques, 4–3–3–3 : Passe, contraste 092 cinquièmes.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-V49-027",
+    "verdict": "VALIDE",
+    "justification": "10 H + 2 L = 12 HL, six Piques : Roudi proposition ; contraste N137-1 six Cœurs et 11 HL.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 1,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 1,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "red.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "v49-027",
+    "caseFamilyPropose": "v49-027",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2SA",
+        "3♠",
+        "2♣"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "10 H + 2 L = 12 HL, six Piques : Roudi proposition ; contraste N137-1 six Cœurs et 11 HL.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H + 2 L = 12 HL, six Piques : Roudi proposition ; contraste N137-1 six Cœurs et 11 HL.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-C2-012",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Cœurs AD1096 : Roudi, 13 HL ; quasi analogue 073, meilleure couleur, même décision.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "audit-c02-SEF-C2-012",
+    "caseFamilyPropose": "audit-c02-SEF-C2-012",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "12 H, cinq Cœurs AD1096 : Roudi, 13 HL ; quasi analogue 073, meilleure couleur, même décision.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs AD1096 : Roudi, 13 HL ; quasi analogue 073, meilleure couleur, même décision.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-073-1"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-L10-030",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "9 H + 2 L = 11 HL, six Piques : Roudi. Énoncé révèle le seuil, longueur et usage du relais ; neutraliser.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "ROU-2:030",
+    "caseFamilyPropose": "ROU-2:030",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 9,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♠",
+        "Adversaire : Passe",
+        "Partenaire : 1SA",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♠",
+        "3♠"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "9 H + 2 L = 11 HL, six Piques : Roudi. Énoncé révèle le seuil, longueur et usage du relais ; neutraliser.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "9 H + 2 L = 11 HL, six Piques : Roudi. Énoncé révèle le seuil, longueur et usage du relais ; neutraliser.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "context",
+          "before": "Vous êtes Sud, donneur Nord. Séquence 1♣–Passe–1♠–Passe–1SA–Passe. Votre main vaut 11 HL avec six Piques et non une simple main faible. Jouant le Roudi trois réponses qui s’emploie aussi avec une sixième majeure et 11–12 HL, que répondez-vous ?",
+          "after": "Votre partenaire a ouvert en mineure, vous avez répondu en majeure et il a redemandé 1SA (12–14 H). Les adversaires passent. Quelle est votre deuxième enchère ?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "V2-M6-001",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, quatre Piques et distribution régulière : 2SA invitation, pas déclenchement Roudi. Reclasser choix, groupe 29/2 déjà adéquat ; contraste 002 cinq Piques.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "reserve-v2-m6-init-ou-invitation-sa",
+    "caseFamilyPropose": "reserve-v2-m6-init-ou-invitation-sa",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "reponseProposee": "2SA",
+      "corrige": "11 H, quatre Piques et distribution régulière : 2SA invitation, pas déclenchement Roudi. Reclasser choix, groupe 29/2 déjà adéquat ; contraste 002 cinq Piques.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, quatre Piques et distribution régulière : 2SA invitation, pas déclenchement Roudi. Reclasser choix, groupe 29/2 déjà adéquat ; contraste 002 cinq Piques.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [],
+      "prerequis": {
+        "concept": "roudi.choix",
+        "stage": 0,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "V2-M6-002",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq Piques, 12 HL : Roudi ; contraste contrôlé 001 (carte transférée de Trèfle à Pique), maintien catégorie déclenchement.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [],
+    "seancesGroupesProposes": [],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "reserve-v2-m6-init-ou-invitation-sa",
+    "caseFamilyPropose": "reserve-v2-m6-init-ou-invitation-sa",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          3,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques, 12 HL : Roudi ; contraste contrôlé 001 (carte transférée de Trèfle à Pique), maintien catégorie déclenchement.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques, 12 HL : Roudi ; contraste contrôlé 001 (carte transférée de Trèfle à Pique), maintien catégorie déclenchement.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "Réserve potentielle sans groupe explicite; moteur non testé",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-V4-079-3",
+          "SEF-V4-091-3"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-055",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Cœurs RV1086 : Roudi avant choix manche ; contraste 060 faible sixième.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-init",
+    "caseFamilyPropose": "q400-b-roudi-init",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          2,
+          5,
+          3,
+          3
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♥",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "12 H, cinq Cœurs RV1086 : Roudi avant choix manche ; contraste 060 faible sixième.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs RV1086 : Roudi avant choix manche ; contraste 060 faible sixième.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3; S61/2 interroger après redemande à 1SA : 2♣",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-056",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq Piques RV1063 : Roudi plutôt que 2SA direct, variante 055 Pique.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-init",
+    "caseFamilyPropose": "q400-b-roudi-init",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♠",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques RV1063 : Roudi plutôt que 2SA direct, variante 055 Pique.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques RV1063 : Roudi plutôt que 2SA direct, variante 055 Pique.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3; S61/2 interroger après redemande à 1SA : 2♣",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-057",
+    "verdict": "VALIDE",
+    "justification": "12 H, cinq Cœurs RV974 après 1♦ : Roudi. Contraste 055 ouverture 1♣, même convention.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-init",
+    "caseFamilyPropose": "q400-b-roudi-init",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Adversaire : Passe",
+        "Vous : 1♥",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "12 H, cinq Cœurs RV974 après 1♦ : Roudi. Contraste 055 ouverture 1♣, même convention.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H, cinq Cœurs RV974 après 1♦ : Roudi. Contraste 055 ouverture 1♣, même convention.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3; S61/2 interroger après redemande à 1SA : 2♣",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-133"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-058",
+    "verdict": "VALIDE",
+    "justification": "11 H, cinq Piques AD1065 et quatre Carreaux : Roudi pour fit majeur avant soutien mineur, même après 1♦.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 2,
+        "decision": "interroger après redemande à 1SA : 2♣",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-init",
+    "caseFamilyPropose": "q400-b-roudi-init",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          2,
+          4,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Adversaire : Passe",
+        "Vous : 1♠",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques AD1065 et quatre Carreaux : Roudi pour fit majeur avant soutien mineur, même après 1♦.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques AD1065 et quatre Carreaux : Roudi pour fit majeur avant soutien mineur, même après 1♦.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3; S61/2 interroger après redemande à 1SA : 2♣",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-131"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-059",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, quatre Piques : 2SA invitation ; quatre Carreaux ne créent pas un fit majeur 5–3. Reclasser choix ; groupe 29/2 adapté.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-sans-relais",
+    "caseFamilyPropose": "q400-b-roudi-sans-relais",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          4,
+          3,
+          4,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Adversaire : Passe",
+        "Vous : 1♠",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "reponseProposee": "2SA",
+      "corrige": "11 H, quatre Piques : 2SA invitation ; quatre Carreaux ne créent pas un fit majeur 5–3. Reclasser choix ; groupe 29/2 adapté.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, quatre Piques : 2SA invitation ; quatre Carreaux ne créent pas un fit majeur 5–3. Reclasser choix ; groupe 29/2 adapté.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [],
+      "prerequis": {
+        "concept": "roudi.choix",
+        "stage": 0,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "SEF-Q400-B-060",
+    "verdict": "VALIDE",
+    "justification": "7 H + 2 L = 9 HL, six Cœurs : 2♥ faible ; contraste N137-1 même longueur mais 11 HL.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-sans-relais",
+    "caseFamilyPropose": "q400-b-roudi-sans-relais",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 7,
+        "shape": [
+          3,
+          6,
+          2,
+          2
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♥",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "7 H + 2 L = 9 HL, six Cœurs : 2♥ faible ; contraste N137-1 même longueur mais 11 HL.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "7 H + 2 L = 9 HL, six Cœurs : 2♥ faible ; contraste N137-1 même longueur mais 11 HL.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais; S61/1 roudi.choix : 2♥",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-061",
+    "verdict": "VALIDE",
+    "justification": "8 H + 1 L = 9 HL, cinq Piques : 2♠ faible ; analogue V4-080-2, mêmes critères.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-sans-relais",
+    "caseFamilyPropose": "q400-b-roudi-sans-relais",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 8,
+        "shape": [
+          5,
+          2,
+          3,
+          3
+        ],
+        "hl": 9
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♠",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "8 H + 1 L = 9 HL, cinq Piques : 2♠ faible ; analogue V4-080-2, mêmes critères.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "8 H + 1 L = 9 HL, cinq Piques : 2♠ faible ; analogue V4-080-2, mêmes critères.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q400-B-062",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Cœurs, 3–4–3–3 : Passe ; contraste 060/061 longueur.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q400-b-roudi-sans-relais",
+    "caseFamilyPropose": "q400-b-roudi-sans-relais",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Adversaire : Passe",
+        "Vous : 1♥",
+        "Adversaire : Passe",
+        "Partenaire : 1SA (12–14 H)",
+        "Adversaire : Passe"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "6 H, quatre Cœurs, 3–4–3–3 : Passe ; contraste 060/061 longueur.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, quatre Cœurs, 3–4–3–3 : Passe ; contraste 060/061 longueur.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q685-B-073",
+          "SEF-Q685-B-136"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-070",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H et cinq Cœurs, 12 HL : Roudi ; contraste 072 faible, corriger seuil explicatif.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1tV1cP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1tV1cP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H et cinq Cœurs, 12 HL : Roudi ; contraste 072 faible, corriger seuil explicatif.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H et cinq Cœurs, 12 HL : Roudi ; contraste 072 faible, corriger seuil explicatif.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "11 H, distribution 3–5–2–3. 11 H et 5 Cœurs : les valeurs d'invitation et le fit 5–3 inconnu justifient le Roudi.",
+          "after": "Avec 11 H et cinq Cœurs, vous avez 12 HL : un espoir de manche. Le 2♣ Roudi recherche trois Cœurs chez l'ouvreur. 2♥ serait faible et 2SA ne vérifierait pas le fit."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-071",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H + 2 L = 12 HL, six Cœurs : Roudi proposition ; le fit serait 6–3, non 5–3. Corriger le nombre d'atouts.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1tV1cP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1tV1cP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          2,
+          6,
+          3,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "10 H + 2 L = 12 HL, six Cœurs : Roudi proposition ; le fit serait 6–3, non 5–3. Corriger le nombre d'atouts.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H + 2 L = 12 HL, six Cœurs : Roudi proposition ; le fit serait 6–3, non 5–3. Corriger le nombre d'atouts.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "10 H, distribution 2–6–3–2. 10 H et 6 Cœurs : les valeurs d'invitation et le fit 5–3 inconnu justifient le Roudi.",
+          "after": "Avec 10 H et six Cœurs, vous avez 12 HL : utilisez 2♣ Roudi pour connaître le soutien troisième et la force du partenaire. Avec trois Cœurs en face, le fit serait 6–3 ; 2♥ direct serait faible."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-072",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, cinq Cœurs : 2♥ faible, contraste 070. Expliquer non-forcing et rôle de 2♣.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      },
+      {
+        "session": 61,
+        "group": 1,
+        "decision": "roudi.choix : 2♥",
+        "role": "réinvestissement",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-choix-P1tV1cP1SA-2c",
+    "caseFamilyPropose": "q685-b-roudi-choix-P1tV1cP1SA-2c",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "2♥",
+      "reponseProposee": "2♥",
+      "corrige": "6 H, cinq Cœurs : 2♥ faible, contraste 070. Expliquer non-forcing et rôle de 2♣.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, cinq Cœurs : 2♥ faible, contraste 070. Expliquer non-forcing et rôle de 2♣.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais; S61/1 roudi.choix : 2♥",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "6 H, distribution 3–5–2–3. La répétition naturelle est faible : ne lancez pas un relais de recherche de manche.",
+          "after": "Avec cinq Cœurs et 6 H, 2♥ est une répétition naturelle faible et non forcing. Le Roudi à 2♣ demanderait des valeurs constructives (au moins 11 HL avec cinq cartes)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-073",
+    "verdict": "VALIDE",
+    "justification": "6 H, quatre Cœurs : Passe ; contraste 072 cinquième, main régulière.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-choix-P1tV1cP1SA-Passe",
+    "caseFamilyPropose": "q685-b-roudi-choix-P1tV1cP1SA-Passe",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♥",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♥",
+        "2SA"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "6 H, quatre Cœurs : Passe ; contraste 072 cinquième, main régulière.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, quatre Cœurs : Passe ; contraste 072 cinquième, main régulière.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-062",
+          "SEF-Q685-B-136"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "conserver"
+    }
+  },
+  {
+    "id": "SEF-Q685-B-074",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "10 H + 1 L = 11 HL, cinq Piques : Roudi à la borne exacte, préciser HL.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1kV1pP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1kV1pP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 10,
+        "shape": [
+          5,
+          2,
+          4,
+          2
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "Passe",
+        "2♣",
+        "2♠",
+        "2SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "10 H + 1 L = 11 HL, cinq Piques : Roudi à la borne exacte, préciser HL.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "10 H + 1 L = 11 HL, cinq Piques : Roudi à la borne exacte, préciser HL.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "10 H, distribution 5–2–4–2. 10 H et 5 Piques : les valeurs d'invitation et le fit 5–3 inconnu justifient le Roudi.",
+          "after": "Vos cinq Piques et 10 H valent 11 HL, seuil du Roudi avec une majeure cinquième. 2♣ recherche le soutien troisième avant de décider entre partielle et manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-131",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, cinq Piques et quatre Carreaux : 2♣, 12 HL ; analogue 058 mais ouverture Trèfle. Corrigé à développer.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1tV1pP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1tV1pP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          5,
+          2,
+          4,
+          2
+        ],
+        "hl": 12
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2SA",
+        "2♣",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H, cinq Piques et quatre Carreaux : 2♣, 12 HL ; analogue 058 mais ouverture Trèfle. Corrigé à développer.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, cinq Piques et quatre Carreaux : 2♣, 12 HL ; analogue 058 mais ouverture Trèfle. Corrigé à développer.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-058"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "11 H, distribution 5–2–4–2. Cinq Piques et onze points, recherche de fit 5–3.",
+          "after": "Avec cinq Piques et 11 H (12 HL), utilisez 2♣ Roudi pour connaître le soutien de trois Piques chez l'ouvreur. 2SA inviterait sans vérifier le fit ; 2♠ serait faible."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-132",
+    "verdict": "ARBITRAGE",
+    "justification": "11 H + 2 L = 13 HL, six Piques : hors zone 11–12 HL du Roudi sixième selon le SEF ; 4♠ direct possible, 3♠ direct forcing de manche avec espoir de chelem. Choix proposés ne permettent pas une réponse SEF claire. Arbitrer avec le coordinateur.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1tV1pP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1tV1pP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          6,
+          2,
+          3,
+          2
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2SA",
+        "2♣",
+        "3SA"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "11 H + 2 L = 13 HL, six Piques : hors zone 11–12 HL du Roudi sixième selon le SEF ; 4♠ direct possible, 3♠ direct forcing de manche avec espoir de chelem. Choix proposés ne permettent pas une réponse SEF claire. Arbitrer avec le coordinateur.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H + 2 L = 13 HL, six Piques : hors zone 11–12 HL du Roudi sixième selon le SEF ; 4♠ direct possible, 3♠ direct forcing de manche avec espoir de chelem. Choix proposés ne permettent pas une réponse SEF claire. Arbitrer avec le coordinateur.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "arbitrage",
+      "proposal": "Remplacer la main par 10 H (12 HL) pour Roudi sixième, ou proposer 4♠ et expliciter le projet de manche. Ne pas appliquer sans arbitrage."
+    }
+  },
+  {
+    "id": "SEF-Q685-B-133",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "12 H + 1 L = 13 HL, cinq Cœurs : Roudi pour choisir la manche ; analogue 057, même forme et force. Corrigé à développer.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.init",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 1,
+        "decision": "Recherche du fit 5–3",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1kV1cP1SA-2t",
+    "caseFamilyPropose": "q685-b-roudi-init-P1kV1cP1SA-2t",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 12,
+        "shape": [
+          3,
+          5,
+          2,
+          3
+        ],
+        "hl": 13
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "3SA",
+        "2♥",
+        "2SA",
+        "2♣"
+      ],
+      "reponse": "2♣",
+      "reponseProposee": "2♣",
+      "corrige": "12 H + 1 L = 13 HL, cinq Cœurs : Roudi pour choisir la manche ; analogue 057, même forme et force. Corrigé à développer.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "12 H + 1 L = 13 HL, cinq Cœurs : Roudi pour choisir la manche ; analogue 057, même forme et force. Corrigé à développer.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/1 Recherche du fit 5–3",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-057"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "12 H, distribution 3–5–2–3. Cinq Cœurs et douze points, Roudi avant de choisir.",
+          "after": "Avec cinq Cœurs et 12 H (13 HL), recherchez le fit 5–3 par 2♣ Roudi avant de conclure à la manche. 3SA direct pourrait manquer le fit."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-134",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "11 H, quatre Piques : 2SA invitation, pas déclenchement Roudi. Reclasser choix ; groupe S29/2 déjà adapté.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.init",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.init",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-init-P1kV1pP1SA-2SA",
+    "caseFamilyPropose": "q685-b-roudi-init-P1kV1pP1SA-2SA",
+    "difficulteInitiale": 3,
+    "difficulteProposee": 3,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 11,
+        "shape": [
+          4,
+          2,
+          4,
+          3
+        ],
+        "hl": 11
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♠",
+        "Partenaire : 1SA (12–14 H)"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♠",
+        "2SA",
+        "3SA"
+      ],
+      "reponse": "2SA",
+      "reponseProposee": "2SA",
+      "corrige": "11 H, quatre Piques : 2SA invitation, pas déclenchement Roudi. Reclasser choix ; groupe S29/2 déjà adapté.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "11 H, quatre Piques : 2SA invitation, pas déclenchement Roudi. Reclasser choix ; groupe S29/2 déjà adapté.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "11 H, distribution 4–2–4–3. Quatre Piques seulement et onze points, invitation naturelle.",
+          "after": "Avec quatre Piques seulement et 11 H, invitez naturellement à 2SA face à 12–14 H. Le Roudi chercherait inutilement un soutien de trois Piques."
+        }
+      ],
+      "prerequis": {
+        "concept": "roudi.choix",
+        "stage": 0,
+        "minSession": 22,
+        "requires": [
+          {
+            "concept": "second.base",
+            "minExposure": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "SEF-Q685-B-135",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, cinq Piques : 2♠ naturel non forcing. Proche 080-4, forme 5–2–4–2 différente ; corrigé à développer.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-choix-P1tV1pP1SA-2p",
+    "caseFamilyPropose": "q685-b-roudi-choix-P1tV1pP1SA-2p",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          5,
+          2,
+          4,
+          2
+        ],
+        "hl": 7
+      },
+      "sequence": [
+        "Partenaire : 1♣",
+        "Vous : 1♠",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♠",
+        "2♣",
+        "3♠",
+        "2SA"
+      ],
+      "reponse": "2♠",
+      "reponseProposee": "2♠",
+      "corrige": "6 H, cinq Piques : 2♠ naturel non forcing. Proche 080-4, forme 5–2–4–2 différente ; corrigé à développer.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, cinq Piques : 2♠ naturel non forcing. Proche 080-4, forme 5–2–4–2 différente ; corrigé à développer.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [],
+        "interpretation": "pas de profil strict identique"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "6 H, distribution 5–2–4–2. Cinq Piques et six points, répétition faible.",
+          "after": "Avec cinq Piques et 6 H, répétez 2♠ naturellement, sans forcer le partenaire. 2♣ Roudi serait constructif et 2SA montrerait un espoir de manche."
+        }
+      ]
+    }
+  },
+  {
+    "id": "SEF-Q685-B-136",
+    "verdict": "RECLASSER_REFORMULER",
+    "justification": "6 H, quatre Cœurs et 3–4–3–3 : Passe ; proche 073 mais ouverture Carreau. Corrigé à développer.",
+    "references": [
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz.html",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/quizz-prerequis.js",
+      "https://github.com/CapGui13/QPJB/blob/ccd8f20811b9531bbfccb8352ec60953dd7d07cb/audits/programme-65-20261127/programme-normalise.json",
+      "https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2",
+      "https://bridgesaintcloud.fr/quesaquo1509.html"
+    ],
+    "conceptInitial": "roudi.choix",
+    "conceptPropose": "roudi.choix",
+    "seancesGroupesInitiaux": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "seancesGroupesProposes": [
+      {
+        "session": 29,
+        "group": 2,
+        "decision": "Choix sans relais",
+        "role": "objectif",
+        "phase": null
+      }
+    ],
+    "prerequisInitial": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "prerequisPropose": {
+      "concept": "roudi.choix",
+      "stage": 0,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "second.base",
+          "minExposure": 1
+        }
+      ]
+    },
+    "caseFamilyInitial": "q685-b-roudi-choix-P1kV1cP1SA-Passe",
+    "caseFamilyPropose": "q685-b-roudi-choix-P1kV1cP1SA-Passe",
+    "difficulteInitiale": 2,
+    "difficulteProposee": 2,
+    "pointsControles": {
+      "main": {
+        "cards": 13,
+        "h": 6,
+        "shape": [
+          3,
+          4,
+          3,
+          3
+        ],
+        "hl": 6
+      },
+      "sequence": [
+        "Partenaire : 1♦",
+        "Vous : 1♥",
+        "Partenaire : 1SA"
+      ],
+      "position": "répondant",
+      "choix": [
+        "2♣",
+        "2♥",
+        "2SA",
+        "Passe"
+      ],
+      "reponse": "Passe",
+      "reponseProposee": "Passe",
+      "corrige": "6 H, quatre Cœurs et 3–4–3–3 : Passe ; proche 073 mais ouverture Carreau. Corrigé à développer.",
+      "legalite": "contrôle des rangs et des choix; passes adverses implicites",
+      "pertinence": "6 H, quatre Cœurs et 3–4–3–3 : Passe ; proche 073 mais ouverture Carreau. Corrigé à développer.",
+      "prerequis": "verrous et groupe contrôlés; maintien du stade",
+      "affectations": "S29/2 Choix sans relais",
+      "redondance": {
+        "exactSameHandAuction": [],
+        "analoguesMemeForceFormeRoleReponse": [
+          "SEF-Q400-B-062",
+          "SEF-Q685-B-073"
+        ],
+        "interpretation": "profils voisins; limiter répétition"
+      }
+    },
+    "action": {
+      "type": "corriger",
+      "changes": [
+        {
+          "field": "explain",
+          "before": "6 H, distribution 3–4–3–3. Quatre Cœurs, six points, restez à 1SA.",
+          "after": "Avec quatre Cœurs et 6 H, conservez 1SA. 2♥ annoncerait une couleur plus longue, 2SA une invitation et 2♣ Roudi une recherche de fit 5–3."
+        }
+      ]
+    }
   }
 ]

@@ -1,4 +1,4 @@
-# AUDIT3000-C — revue PARTIELLE (426/608)
+# AUDIT3000-C — revue PARTIELLE (466/608)
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #559.
 
@@ -43,10 +43,13 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission 
 ## Passe 8 — Contres d'entame et développements 2SA
 48 verdicts; 29 corrections. Contraste : Surcontre punitif après Stayman, fitté sans tenue après Texas. Q685-B-036 : distracteur 2♥ rétabli. Q685-B-126 : 4♦ 5–5 majeur limité à la manche, projet précisé sans prétendre exclure le chelem avec 9 H et une distribution forte. 2SA–3♠ : traitement QPJB du Texas Trèfle fitté préservé; pas de généralisation du seuil exact ni de certification SEF indépendante. Plusieurs répétitions strictes de profils signalées. Références secondaires : https://encheresdebridge.fr/intervention-stayman-texas.php ; https://bridgesaintcloud.fr/espoir2_11.html ; https://bridgus.online/. Contrôles réellement exécutés : 48 mains H/forme/13 cartes, rangs et choix (Surcontre après Contre), unicité et appartenance des verdicts, lecture groupes et verrous, comparaison profils/empreintes sur 3000 objets. Aucun test local Node/CI.
 
+## Passe 9 — Déclenchements et choix Roudi
+40 QCM lus individuellement. Seuil 11 HL avec cinq cartes ; six cartes, 11–12 HL pour le relais. Sources secondaires consultées : https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/le-roudi-2 et https://bridgesaintcloud.fr/quesaquo1509.html. Q685-B-132 à arbitrer (13 HL avec six cartes) ; Q685-B-071 corrigé (fit 6–3). Trois invitations naturelles 2SA à reclasser en roudi.choix, sans changement de groupe S29/2. Questions révélatrices neutralisées. Contrôles JS sur 40 mains, H/HL, forme, rangs et choix, unicité des IDs, groupes/verrous et analogues catalogue. Tests locaux et CI non exécutés.
+
 ## Bilan cumulé
-{"VALIDE":273,"RECLASSER_REFORMULER":146,"ARBITRAGE":7} ; 146 corrections complètes.
+{"VALIDE":293,"RECLASSER_REFORMULER":165,"ARBITRAGE":8} ; 163 corrections complètes, 4 changements prérequis.
 
 ## Limites
-182 QCM restent à auditer. Aucun merge, aucun fichier commun modifié. Ne pas intégrer comme terminé.
+142 QCM restent à auditer. Aucun merge, aucun fichier commun modifié.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON
