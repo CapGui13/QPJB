@@ -21,7 +21,7 @@ function make(variant='contrast'){
   const p=targets[ctx.session],best=ranked[0],selected=(ctx.selected||[]).map(qOf);
   if(!p||ctx.changed||ctx.priority||ctx.forcedReason||ctx.history?.active||ctx.category!=='discovery'||selected.length<4||!best?.q)return null;
   const old=best.q,co=c(ctx,old),f=ctx.flagsById?.[old.id],m=meta(ctx,old);
-  if(!m||!f||f.due||f.bad||f.firstConcept||f.overdueCore||!f.novelFamily||core.has(co)||p.primary.includes(co))return null;
+  if(!m||!f||f.due||f.bad||(variant==='contrast'&&f.firstConcept)||(f.overdueCore&&!f.firstConcept)||!f.novelFamily||core.has(co)||p.primary.includes(co))return null;
   // Do not remove the only representative of the outgoing concept.
   if(!selected.some(q=>c(ctx,q)===co))return null;
   const already=selected.filter(q=>p.primary.includes(c(ctx,q))),roles=new Set(selected.map(q=>role(ctx,q)).filter(Boolean));
