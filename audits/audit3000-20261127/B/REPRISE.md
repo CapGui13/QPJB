@@ -1,52 +1,12 @@
-# Reprise B — passe 7 partielle
+# Reprise B — passe 8 partielle
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-b.
 
-280/454 entrées provisoires ; 174 restent. Dernier ID : V2-M3-002. Prochain : V2-M3-003.
+320/454 entrées provisoires ; 134 restent. Dernier ID : SEF-Q400-A-056. Prochain : SEF-Q400-A-057.
 
-Contrôles mécaniques 454/454. Corrections : 57. Propositions de réservoir : 6. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 8. Contrôles ensemble exact 280 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
+Contrôles mécaniques 454/454. Corrections : 74. Propositions de réservoir : 7. Prérequis : 6 dont 3 transferts E proposés. Arbitrages : 9. Contrôles ensemble exact 320 IDs, unicité corrections, réponse présente dans choix. Reprendre 40–80 par passe, revue sémantique et affectations/réserves, tests du dépôt. Ne pas fusionner.
 
 IDs restants :
-- V2-M3-003
-- V2-M3-004
-- V2-M3-005
-- V2-M3-006
-- V2-M3-007
-- V2-M3-008
-- V2-M3-011
-- V2-M3-012
-- V2-M3-019
-- V2-M3-020
-- V2-M3-021
-- V2-M3-022
-- V2-M3-023
-- V2-M3-024
-- V2-M3-025
-- V2-M3-026
-- V2-M3-027
-- V2-M3-028
-- V2-M3-029
-- V2-M3-030
-- V2-M3-031
-- V2-M3-032
-- V2-M3-033
-- V2-M3-034
-- V2-M3-035
-- V2-M3-036
-- V2-M3-037
-- V2-M3-038
-- V2-M3-039
-- V2-M3-040
-- V2-M3-041
-- V2-M3-042
-- SEF-PN26-M1-022
-- SEF-PN26-M1-023
-- SEF-Q400-A-051
-- SEF-Q400-A-052
-- SEF-Q400-A-053
-- SEF-Q400-A-054
-- SEF-Q400-A-055
-- SEF-Q400-A-056
 - SEF-Q400-A-057
 - SEF-Q400-A-058
 - SEF-Q400-A-059
