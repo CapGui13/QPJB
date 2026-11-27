@@ -1,0 +1,11 @@
+# AUDIT3000-D — revue PARTIELLE, passe 1
+
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #560. 40/543 QCM examinés individuellement (les 40 premiers IDs de l’ordre de quizz-prerequis.js); 503 non audités. Verdicts : {"VALIDE":28,"RECLASSER_REFORMULER":12} ; 10 corrections complètes, 4 ajouts explicites proposés, aucun changement de prérequis. Les contres directs restent dans intervenir.base et non contre.base (rubrique réservée aux réponses après contre), conformément au programme. Les variantes proches ne sont pas supprimées. Les 312 IDs sans groupe dans le programme normalisé constituent une divergence de couverture explicite à examiner, pas une preuve d’absence du moteur ni une raison de gonfler aveuglément les groupes. Références : catalogue, programme, table de prérequis; fiche de convention du club de Pornic (https://bridgeclubpornic.club.ffbridge.fr/document-download/68e687e402ee0_ConventionParrainage.pdf), corroboration partielle, pas de certification SEF exhaustive.
+
+## Contrôles réellement exécutés
+
+Via JavaScript sur les blobs GitHub de la base immuable : {"catalogue":3000,"unique":3000,"lot":543,"absentsCatalogue":[],"structureInvalides":[],"exactDuplicates":[],"verdicts":40,"verdictsUnique":40,"corrections":10,"ajouts":4}. Recalcul de la forme et des H, 13 cartes, rangs et unicité dans chaque couleur, quatre choix distincts et réponse incluse sur les 543. Légalité des enchères proposées sur les 40 premiers (interventions directes sur ouverture palier un); correspondance des corrections et affectations avec les verdicts. Recherche de doublons exacts sur 3000 par main, séquence, contexte, réponse et choix triés, aucun impliquant le lot D ; recherche de candidats analogues par séquence, réponse et forme sur les 3000. Comparaison sémantique limitée aux cas lus de la passe 1 et contrastes identifiés, pas revue exhaustive des analogues. Aucun test local du dépôt ni CI exécuté par cette passe. Ne pas intégrer comme audit terminé.
+
+## Limites
+
+Les 503 autres QCM n’ont reçu aucun verdict. Affectations explicites du programme normalisé seulement ; réservoir dynamique non vérifié. Référence externe partielle et seuils sensibles à vulnérabilité ; arbitrages complémentaires possibles. Aucune modification du moteur ou des fichiers communs.
