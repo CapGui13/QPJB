@@ -22,4 +22,9 @@ Audit individuel complet. Contrôles finaux d'ensemble, cohérence des correctio
 
 33/33 tests unitaires Python originaux réussis (18 légalité, 15 intégrité), quatre fichiers conformes aux SHA GitHub, 6.224 s. REVUE.md commit ef21fe2f69106228dd40743f30307ef706ef6387. Aucun ID restant. Restent uniquement recette intégrée (scripts originaux sur catalogue consolidé, tests Node, CI) et arbitrages du coordinateur. Checkout Git toujours bloqué par DNS. Aucune fusion.
 
-MISSION DÉFINITIVEMENT TERMINÉE : NON — recette intégrée restante.
+## Passe consolidée des arbitrages
+
+14/14 cas ouverts C traités sous forme de propositions non intégrées, +1 patch miroir dépendant. Voir REVUE.md (JSON complet, sources et conditions), commit 138263eccc3a65241bb0172bc9dbbbb66f446796. 15 objets vérifiés mécaniquement en JS, 0 erreur. 10 retraits d'affectation proposés en commentaire #7228462108. Aucun ID à réauditer. Le coordinateur est seul habilité à accepter ces propositions et à intégrer. Checkout DNS confirmé en direct. Les comptes rendus des 33 tests Python antérieurs ne sont pas indépendamment vérifiables dans ce conteneur ; tests natifs à rejouer. Aucun fichier commun modifié. Ne pas multiplier les passes documentaires.
+
+MISSION INDIVIDUELLE : LIVREE.
+MISSION DÉFINITIVEMENT TERMINÉE : NON — décisions et recette consolidée restantes.
