@@ -12,7 +12,7 @@ const blob=s=>crypto.createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0'
 const originalHtml=git('show','2d336054bc91fbd6ac762c093ecb5ec6da9f97e8:quizz.html'),html=read('quizz.html');
 const embedded=x=>x.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
 assert.equal(embedded(html),embedded(originalHtml));assert.equal(read('quizz-prerequis.js'),git('show','2d336054bc91fbd6ac762c093ecb5ec6da9f97e8:quizz-prerequis.js'));
-const exercises=JSON.parse(embedded(html)).exercises,meta=require('../quizz-prerequis.js').byId,source=require('../quizz-coherence-reprise6-d-patch.js').patchEngine(read('quizz-parcours.js'));
+const exercises=JSON.parse(embedded(html)).exercises,meta=require('../quizz-prerequis.js').byId,source=read('quizz-parcours.js');
 assert.equal(exercises.length,1915);
 const original=read('tests/coherence-concrete-m4-campaign.cjs');
 let harness=original;
