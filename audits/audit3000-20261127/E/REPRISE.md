@@ -1,48 +1,8 @@
 # Reprise E — PARTIEL
 
-Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. Contrat #556, mission #561. Passe 1 : 40 IDs (commit REPRISE 3cb94323383a70984f2868e45ef6187eeca8f939). Passe 2 : 40 nouveaux IDs, cumul 80, ordre d'insertion byId filtré par concept initial. Dernier SEF-V420-011, prochain SEF-V421-006. PR #564 ouverte en brouillon. Verdicts et corrections présents. Contrôles et limites dans REVUE.md.
+Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. Contrat #556, mission #561. Passe 1 : 40 IDs (3cb94323383a70984f2868e45ef6187eeca8f939). Passe 2 : 40 (d2b2b4b7b41d5a120c79d549a66d09c07f21aa5d). Passe 3 : 40 nouveaux IDs, cumul 120, ordre d'insertion byId filtré par concept initial. Dernier SEF-V473-005, prochain SEF-V473-006. PR #564 en brouillon. Contrôles et limites dans REVUE.md.
 
-## IDs restants (460, ordre stable)
-- SEF-V421-006 — apres_inter.base
-- SEF-V421-007 — competitif.truscott
-- SEF-V421-008 — apres_inter.base
-- SEF-V422-003 — apres_inter.base
-- SEF-V422-006 — apres_inter.base
-- SEF-V423-004 — apres_inter.base
-- SEF-V423-005 — apres_inter.base
-- SEF-V424-005 — apres_inter.base
-- SEF-V424-006 — apres_inter.base
-- SEF-V424-007 — competitif.truscott
-- SEF-V425-006 — apres_inter.base
-- SEF-V425-007 — apres_inter.base
-- SEF-V425-008 — apres_inter.base
-- SEF-C2-001 — multilandy.intervention
-- SEF-C2-002 — multilandy.intervention
-- SEF-C2-003 — multilandy.choix
-- SEF-C2-004 — rubensohl.init
-- SEF-C2-005 — rubensohl.init
-- SEF-C2-006 — rubensohl.init
-- SEF-C2-007 — michaels.intervention
-- SEF-C2-008 — michaels.choix
-- SEF-V470-001 — apres_inter.base
-- SEF-V470-002 — apres_inter.base
-- SEF-V470-003 — apres_inter.base
-- SEF-V470-004 — apres_inter.base
-- SEF-V470-005 — competitif.truscott
-- SEF-V470-006 — competitif.truscott
-- SEF-V471-001 — red.competitif
-- SEF-V471-002 — red.competitif
-- SEF-V471-003 — red.competitif
-- SEF-V471-004 — red.competitif
-- SEF-V471-005 — red.competitif
-- SEF-V471-006 — red.competitif
-- SEF-V472-001 — competitif.truscott
-- SEF-V472-002 — competitif.truscott
-- SEF-V472-003 — competitif.truscott
-- SEF-V472-004 — competitif.truscott
-- SEF-V472-005 — red.competitif
-- SEF-V472-006 — red.competitif
-- SEF-V473-005 — competitif.2sa_fitte
+## IDs restants (420, ordre stable)
 - SEF-V473-006 — apres_inter.base
 - SEF-V473-007 — apres_inter.base
 - SEF-V473-008 — apres_inter.base
@@ -464,4 +424,4 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audi
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Ne pas traiter les contrôles mécaniques comme des verdicts. Reprendre au prochain ID, compléter les fichiers existants, conserver les 80 verdicts. Branche E exclusivement. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 120 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
