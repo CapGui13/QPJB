@@ -1,53 +1,8 @@
-# Reprise A — passe 7 partielle
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent 5677eed3faed9eb9816225efa8340c90ade2200c. 300/419 verdicts provisoires ; 119 non relus.
-Dernier : SEF-Q400-A-011; prochain : SEF-Q400-A-012.
-{"VALIDE":212,"RECLASSER_REFORMULER":41,"ARBITRAGE":47} ; 61 corrections catalogue et 3 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
+# Reprise A — passe 8 partielle
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Commit précédent fa221a1a9fe063016f47b52665ecd50a5eca3c69. 345/419 verdicts provisoires ; 74 non relus.
+Dernier : SEF-Q685-A-006; prochain : SEF-Q685-A-007.
+{"VALIDE":245,"RECLASSER_REFORMULER":53,"ARBITRAGE":47} ; 73 corrections catalogue et 3 changements de groupes. Contrôles JS sur 419 IDs d'origine et toutes les corrections, correspondance programme/constante vérifiée passe 1. Pas de test existant exécuté : clone local bloqué DNS. Comparaison sémantique approfondie encore nécessaire. PR brouillon #567.
 IDs restants :
-SEF-Q400-A-012
-SEF-Q400-A-013
-SEF-Q400-A-014
-SEF-Q400-A-015
-SEF-Q400-A-016
-SEF-Q400-A-017
-SEF-Q400-A-018
-SEF-Q400-A-019
-SEF-Q400-A-020
-SEF-Q400-A-021
-SEF-Q400-A-022
-SEF-Q400-A-023
-SEF-Q400-A-024
-SEF-Q400-A-025
-SEF-Q400-A-026
-SEF-Q400-A-027
-SEF-Q400-A-028
-SEF-Q400-A-029
-SEF-Q400-A-030
-SEF-Q400-A-031
-SEF-Q400-A-032
-SEF-Q400-A-033
-SEF-Q400-A-034
-SEF-Q400-A-035
-SEF-Q400-A-036
-SEF-Q400-A-037
-SEF-Q400-A-038
-SEF-Q400-A-039
-SEF-Q400-A-040
-SEF-Q400-A-041
-SEF-Q400-A-042
-SEF-Q400-A-043
-SEF-Q400-A-044
-SEF-Q400-A-045
-SEF-Q400-A-046
-SEF-Q400-A-047
-SEF-Q400-A-048
-SEF-Q400-A-049
-SEF-Q400-A-050
-SEF-Q685-A-001
-SEF-Q685-A-002
-SEF-Q685-A-003
-SEF-Q685-A-004
-SEF-Q685-A-005
-SEF-Q685-A-006
 SEF-Q685-A-007
 SEF-Q685-A-008
 SEF-Q685-A-009
