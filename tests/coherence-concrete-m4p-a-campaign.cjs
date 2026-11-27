@@ -17,7 +17,7 @@ const requireBase=require('node:module').createRequire(path.join(root,'quizz-par
 const meta=requireBase('./quizz-prerequis.js').byId;
 assert.equal(exercises.length,1915);assert.equal(new Set(Object.values(meta).map(m=>m.concept)).size,99);
 const horizon=Number(process.env.HORIZON||180),out=process.env.OUT||path.join(root,'audits/coherence-concrete-20261126/m4/parallel/a/native');
-const policy=process.env.POLICY||'L';assert.ok(['L','R'].includes(policy));
+const policy=process.env.POLICY||'L';assert.ok(['L','R','T'].includes(policy));
 fs.mkdirSync(out,{recursive:true});
 for(const profile of PROFILES.filter(p=>!process.env.PROFILE||p===process.env.PROFILE))for(const seed of SEEDS.filter(s=>!process.env.SEED||s===Number(process.env.SEED))){
  const p=pair({source,requireBase,exercises,meta,profile,seed,horizon,maxSession:20,policy,measure:()=>performance.now()});
