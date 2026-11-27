@@ -229,3 +229,25 @@ MISSION DÉFINITIVEMENT TERMINÉE : NON
 }
 ```
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 11 — cumul actualisé
+
+440/540 verdicts individuels, 100 restants. {"VALIDE":120,"RECLASSER_REFORMULER":293,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":27}. 281 corrections complètes, 39 modifications prérequis, 101 entrées réservoir.
+- Rubensohl : distinguer naturel faible, transfert de dégagement, transfert majeur de manche et Texas impossible, puis réponse de l'ouvreur et conclusion. Sources consultées https://scjc-bridge.fr/le-jeu-du-bridge-comment-jouer/quelques-conventions/le-rubensohl, https://bridgesef.fr/wp-content/uploads/2025/07/Defense-intervention-landy-landik-bicolore-bw-drury-stayman-texas.pdf, https://www.ibridge.fr/public/fichedetails/338, https://www.ibridge.fr/public/fichedetails/24, https://amourdubridge.fr/forums/topic/rubensohl-13/. Le support BridgeSEF confirme 3♠ non fitté et sans arrêt après Texas Cœur, utile pour arbitrer Q26-M2-002 ; le détail de deux atouts reste celui du catalogue.
+- Défense Michaël : cue-bids économique fit FM et cher dernière couleur cinquième FM, confirmé par https://www.bridge-chailley.fr/2024/09/ et https://bridgesaintcloud.fr/michel-college-003.html. Préférences faibles au palier minimal, ne pas interdire les barrages selon vulnérabilité.
+- Q685-C-052 à 067 : rappel 1♥ adverse sur mineure recopié hors contexte ou donnant la règle à tester ; retrait et maintien dans corrigé quand pertinent. Prérequis mineur.base pour les réponses naturelles à une mineure. Redemandes libres : ôter le rappel de liberté de la question. Arbitrages C059 zone 1SA/2SA à 10 H, C069 et C071 zone de répétition libre à saut avec 14 H et six cartes très solides ; C060 frontière également signalée. Pas d'affectation nouvelle sans groupe approprié.
+- Contrôles de périmètre, verdicts uniques, mains, rang simple des choix, corrections, groupes et concepts réels. Pas de suite locale, pas d'examen sémantique exhaustif ni certification SEF officielle intégrale.
+```json
+{
+  "catalogue": 3000,
+  "perimetre": 540,
+  "verdicts": 440,
+  "idsUniques": 440,
+  "corrections": 281,
+  "correctionsInvalides": [],
+  "passe11ChoixRangInvalides": [],
+  "reservoirInvalides": [],
+  "prerequisInvalides": []
+}
+```
+MISSION DÉFINITIVEMENT TERMINÉE : NON
