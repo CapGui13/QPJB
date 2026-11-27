@@ -1,0 +1,43 @@
+name: M4-D independent external snapshots
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-d-recette]
+    paths: ['.github/workflows/m4p-d-external.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  A:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 45983780337
+          github-token: ${{ github.token }}
+          pattern: m4p-a-*
+          path: _m4pa
+      - run: node tests/coherence-concrete-m4p-d-external.cjs A _m4pa
+  B:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        policy: [L, M, N, O]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/checkout@v4
+        with:
+          ref: 852f3d7915324a73a9a59c80fc55120292e931cf
+          path: _m4pb
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4p-d-external.cjs B _m4pb/audits/coherence-concrete-20261126/m4/parallel/b/native ${{ matrix.policy }}
