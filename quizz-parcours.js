@@ -756,6 +756,7 @@
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
     const curriculum=options?.coherenceM1?.schema==='QPJB_COHERENCE_M1_V1'?options.coherenceM1:null;
     const maintenancePolicy=options?.coherenceM4?.schema==='QPJB_COORDINATOR_M4_V1'?options.coherenceM4:null;
+    const earlyPolicy=options?.coherenceEarly?.schema==='QPJB_COORDINATOR_EARLY_V1'?options.coherenceEarly:null;
     let m1Changed=false,m4Changed=false;
     const reportDecision=typeof options?.observe==='function'?options.observe:()=>{};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
@@ -892,6 +893,13 @@
         const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
         if(index>0){m4Choice=proposed;ranked.unshift(...ranked.splice(index,1));m4Changed=true;}
       }
+      let earlyChoice=null;
+      if(earlyPolicy&&s>=2&&s<65&&selected.length===9&&limit===10&&!priority&&!forcedReason&&category==='discovery'&&ranked.length>1){
+        const flagsById=Object.fromEntries(ranked.map(({q})=>[q.id,{due:!!due(q),bad:!!bad(q),novelFamily:novelFamily(q)}]));
+        const proposed=earlyPolicy.choose({...m1Context,ranked,flagsById});
+        const index=proposed?ranked.findIndex(x=>x.q.id===proposed.id):-1;
+        if(index>0){earlyChoice=proposed;ranked.unshift(...ranked.splice(index,1));}
+      }
       // #396: preserve the historical winning pedagogical stratum, not just
       // its numeric score. Cross-concept ties displaced foundational review.
       const stratum=q=>JSON.stringify([q.theme,mOf(q).concept,mOf(q).stage,q.difficulty,
@@ -899,7 +907,7 @@
       const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason
         ?durable.chooseWithinStratum(ranked,stratum,eligible=>durableSelection.rank({candidates:eligible,selected,category,priority,forcedReason}))
         :ranked[0].q;
-      if(m1Choice||m4Choice)reportDecision({session:s+1,actualId:q.id,m1Choice,m4Choice});
+      if(m1Choice||m4Choice||earlyChoice)reportDecision({session:s+1,actualId:q.id,m1Choice,m4Choice,earlyChoice});
       const m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
