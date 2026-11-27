@@ -1,0 +1,33 @@
+name: QPJB Coordination passe 3 — dernier créneau
+on:
+  pull_request:
+    branches:
+      - coherence-concrete/coordination-passe3
+    paths:
+      - '.github/workflows/coherence-coordination-passe3.yml'
+permissions:
+  contents: read
+jobs:
+  paire:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    env:
+      QPJB_COORDINATOR_EARLY: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-coordinator-campaign.cjs "${{ matrix.profile }}" "${{ matrix.seed }}" 180 coordination-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: early-${{ matrix.profile }}-${{ matrix.seed }}
+          path: coordination-output
+          retention-days: 7
