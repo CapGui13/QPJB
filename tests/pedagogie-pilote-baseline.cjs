@@ -8,12 +8,12 @@ const server=http.createServer((req,res)=>{try{let u=new URL(req.url,'http://loc
 (async()=>{
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const url='http://127.0.0.1:'+server.address().port+'/QPJB/quizz.html';
  const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
- const rows=[];
+ const rows=[],transitions=[];
  try{
  for(const profile of ['autonome','intermediaire','faible']){
   const ctx=await browser.newContext({serviceWorkers:'block'});const page=await ctx.newPage();
   try{
-   for(let s=1;s<=5;s++){
+   for(let s=1;s<=(process.env.PILOT_TRANSITION==='1'?10:5);s++){
     await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#parcours-start').waitFor({state:'visible'});
     await page.locator('#parcours-start').click();await page.locator('#question-heading').waitFor({state:'visible'});
     const result=await page.evaluate(({profile,s})=>{
@@ -28,7 +28,7 @@ const server=http.createServer((req,res)=>{try{let u=new URL(req.url,'http://loc
      if(!api.finish(state,all)||state.completed!==s)throw Error('finish '+s);
      localStorage.setItem(key,JSON.stringify(state));return items;
     },{profile,s});
-    assert.equal(result.length,10);assert.equal(new Set(result.map(x=>x.id)).size,10);rows.push({profile,seed:11,session:s,items:result});
+    assert.equal(result.length,10);assert.equal(new Set(result.map(x=>x.id)).size,10);(s<=5?rows:transitions).push({profile,seed:11,session:s,items:result});
     console.log('PILOT '+JSON.stringify({profile,s,items:result.map(x=>({id:x.id,concept:x.concept,answer:x.answer,result:x.result}))}));
    }
   }finally{await ctx.close()}
@@ -37,6 +37,7 @@ const server=http.createServer((req,res)=>{try{let u=new URL(req.url,'http://loc
  const clean=x=>String(x??'').replace(/\|/g,'\\|').replace(/\r?\n/g,' ');
  const md=['# Référence S1–S5 — moteur UI réel','Réponses simulées M6, graine 11. Les questions sont sélectionnées par le bouton réel. Les réponses et fins de séance sont enregistrées par le moteur, sans simuler les clics de réponse.'];
  for(const r of rows){md.push('','## '+r.profile+' — S'+r.session,'| # | ID | Concept | Main (♠ ♥ ♦ ♣) / H | Enchères | Réponse | Corrigé | Résultat simulé |','|---|---|---|---|---|---|---|---|');for(const q of r.items)md.push('| '+[q.position,q.id,q.concept,(q.hand||[]).map(x=>x.join(' ')).join(' / ')+' — '+q.h+' H',(q.auction||[]).join(' — '),q.answer,q.explain,q.result].map(clean).join(' | ')+' |')}
+ if(transitions.length)fs.writeFileSync(path.join(dest,'transitions.json'),JSON.stringify(transitions,null,2));
  fs.writeFileSync(path.join(dest,'baseline.md'),md.join('\n')+'\n');console.log('PILOT_PASS 15 sessions, 150 actual UI selections');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e);process.exitCode=1;server.close()});
