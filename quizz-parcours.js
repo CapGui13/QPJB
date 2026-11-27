@@ -764,6 +764,8 @@ return Object.freeze({schema,mode:'T',choose});
   }
   // #526: elementary redemands only; explicitly reviewed one-level sequences.
   const PILOT_RED=new Set(['SEF-044-1','SEF-044-2','SEF-048-1','SEF-050-2','SEF-N106-1','SEF-N106-2','SEF-N107-2','SEF-N108-1','SEF-N109-1','SEF-N114-1','SEF-N115-1','SEF-N116-1','SEF-N117-1','SEF-N121-1','SEF-N122-1','SEF-N123-2','SEF-N123-1','SEF-N124-1','SEF-V49-018','SEF-V49-021','SEF-V49-036','SEF-V49-037','SEF-V49-042','SEF-V410-003','SEF-V410-004','SEF-V412-001']);
+  const PILOT_TEXAS_SIMPLE=new Set(['SEF-037-1','SEF-038-1','SEF-N082-2','SEF-N085-1','SEF-V44-015','SEF-V44-016','SEF-V49-017','SEF-C-003','V2-M2-030']);
+  const PILOT_TEXAS_COMPLEX=new Set(['SEF-039-2','SEF-039-1','SEF-040-2','SEF-N084-1','SEF-N087-2','V2-M2-018']);
   function pilotRedReady(e,s){
     const recent=e.recent.filter(x=>x.s>=s-2);
     return recent.length>=10&&recent.filter(x=>!weakAnswer(x.a)).length>=recent.length/2&&
@@ -1016,6 +1018,23 @@ return Object.freeze({schema,mode:'T',choose});
     // No blanket change to the catalogue or subsequent selection policy.
     if(pilot&&s===4)pool=pool.filter(q=>!/^sa1\.(texas|stayman)(\.|$)/.test(metadata(q).concept)&&
       (q.theme!=='red'||pilotRedReady(e,s)&&PILOT_RED.has(q.id)));
+    const transition=options.pilotEarly!==false&&s>=5&&s<=9&&limit===10;
+    const texasIntroduced=[...(e.seen.get('sa1.texas')||[])].some(id=>PILOT_TEXAS_SIMPLE.has(id));
+    const staymanIntroduced=e.seen.has('sa1.stayman');
+    // Keep existing legacy histories and active decks intact. During the
+    // bridge from S5 to S10, introduce a low-force transfer before any
+    // game-force example and do not introduce both conventions in one deck.
+    if(transition){
+      const thresholdReady=(e.proofs.get('sa1.seuil')||[]).length>0;
+      pool=pool.filter(q=>{
+        const c=metadata(q).concept;
+        if(!texasIntroduced&&PILOT_TEXAS_COMPLEX.has(q.id))return false;
+        if(!texasIntroduced&&!staymanIntroduced&&/^sa1\.stayman(\.|$)/.test(c))return false;
+        if(!texasIntroduced&&!thresholdReady&&c==='sa1.texas')return false;
+        if(!staymanIntroduced&&!thresholdReady&&c==='sa1.stayman')return false;
+        return true;
+      });
+    }
     if(s===1||s===2){const early=pool.filter(q=>!minorSupport(q)&&(!majorSupport(q)||majorThree(q)));if(new Set(early.map(family)).size>=limit)pool=early;}
     const previous=state.entries||{};
     const passCap=s===0?3:s===2?1:passWeakness(state,e)?2:1;
@@ -1272,6 +1291,11 @@ return Object.freeze({schema,mode:'T',choose});
         const core=new Set(['ouv.passe','ouv.mineure','ouv.majeure','ouv.sa1','mineur.base','majeur.base','majeur.soutien','sa1.seuil','red.base']);
         if(selected.length<limit)choose(pool.filter(q=>core.has(mOf(q).concept)&&e.seen.has(mOf(q).concept)&&oldConcept(q)>=8&&!concepts[mOf(q).concept]),'maintenance',null,true);
         if(selected.length<limit)choose(pool.filter(q=>!e.seen.has(mOf(q).concept)&&!concepts[mOf(q).concept]),'discovery',null,true);
+      }
+      if(transition&&!texasIntroduced&&selected.length<limit){
+        choose(pool.filter(q=>PILOT_TEXAS_SIMPLE.has(q.id)),'discovery',null,true);
+      }else if(transition&&texasIntroduced&&!staymanIntroduced&&selected.length<limit){
+        choose(pool.filter(q=>mOf(q).concept==='sa1.stayman'&&q.difficulty<=2),'discovery',null,true);
       }
       const priorities=sessionPlan.priorityThemes({roadmap:ROADMAP,completed:s,lastTheme:e.lastTheme,eligibleThemes:pool.map(q=>q.theme)});
       for(const [t] of priorities){
