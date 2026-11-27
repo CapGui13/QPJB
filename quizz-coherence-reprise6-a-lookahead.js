@@ -69,17 +69,20 @@ function prepare({api,state,exercises,metadataById,options={},variant='lookahead
   for(const x of ranked.slice(1)){
    const q=x.q,g=slot.flagsById?.[q.id],cost=ranked[0].v-x.v;
    if(!g||g.bad||g.due||!g.novelFamily||q.difficulty!==old.difficulty||m(ctx,q)?.stage!==m(ctx,old)?.stage||cost<0||cost>100)continue;
-   if(session===3&&(role(ctx,q)!=='passe-avec-fit'||!sig.includes('"')))continue;
+   if(session===3&&role(ctx,q)!=='passe-avec-fit')continue;
    if(session===5&&(c(ctx,q)!=='red.base'||!role(ctx,q)||role(ctx,q)===role(ctx,old)))continue;
-   choices.push({sig,oldId:old.id,id:q.id,cost,slot:slot.selected.length+1,role:role(ctx,q)});
+   const sameAuction=JSON.stringify(q.auction)===JSON.stringify(old.auction),sameContext=q.context===old.context,pointGap=Math.abs(q.h-old.h);
+   if(variant==='lookahead-context'&&(!sameAuction||pointGap>2))continue;
+   choices.push({sig,oldId:old.id,id:q.id,cost,slot:slot.selected.length+1,role:role(ctx,q),sameAuction,sameContext,pointGap});
   }
   return null;
  }));
  const p=profile(ctx,baseline.map(x=>byId.get(x.id)));
+ if(JSON.stringify(state)!==frozen)throw Error('lookahead mutated history');
  if(session===3&&(p.roles['passe-avec-fit']||!p.roles['support-5-3']||(p.concepts['ouv.sa2']||0)<2)||session===5&&['regular','repeat','support'].every(k=>p.roles[k]))return {policy:neutral,decision:null,trials:0};
  // Stable ranking by pedagogical opportunity and native score; no seed,
  // profile label, future responses or knowledge of the simulation outcome.
- const eligible=choices.filter(x=>!p.roles[x.role]&&(session!==5||(p.roles[role(ctx,byId.get(x.oldId))]||0)>=2)).sort((a,b)=>a.cost-b.cost||b.slot-a.slot||a.id.localeCompare(b.id));
+ const eligible=choices.filter(x=>!p.roles[x.role]&&(session!==5||(p.roles[role(ctx,byId.get(x.oldId))]||0)>=2)).sort((a,b)=>variant==='lookahead-context'?Number(b.sameContext)-Number(a.sameContext)||a.pointGap-b.pointGap||a.cost-b.cost||b.slot-a.slot||a.id.localeCompare(b.id):a.cost-b.cost||b.slot-a.slot||a.id.localeCompare(b.id));
  let trials=0;
  function forChoice(x){return policy((slot,ranked)=>signature(slot)===x.sig&&ranked[0]?.q.id===x.oldId&&ranked.some(z=>z.q.id===x.id)?{id:x.id,oldId:x.oldId,reason:'reprise6-a-lookahead-'+x.role,cost:x.cost}:null)}
  for(const x of eligible.slice(0,budget)){
