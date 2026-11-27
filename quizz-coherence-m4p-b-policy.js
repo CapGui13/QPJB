@@ -63,7 +63,7 @@ function chooseRank(ctx,rows,baseline){
  for(const r of rows){
   const q=r.q,x=scores.get(q.id);
   if(!x||q.id===baseline.id||q.theme!==baseline.theme||q.difficulty!==baseline.difficulty||ctx.metadataById[q.id].stage!==ctx.metadataById[baseline.id].stage||
-      ctx.bad(q)||ctx.due(q)||ctx.bad(baseline)||ctx.due(baseline)||ctx.novelFamily(q)!==ctx.novelFamily(baseline))continue;
+      ctx.bad(q)||ctx.bad(baseline)||ctx.due(baseline)||ctx.novelFamily(q)!==ctx.novelFamily(baseline))continue;
   if(ctx.nativeCoreReservation&&bt&&x.proof.deadline>=bt.deadline)continue;
   if(r.v+x.delta>best){winner=q;best=r.v+x.delta;signal=x;}
  }
@@ -85,7 +85,7 @@ function replace(ctx,deck,slots){
   if(!proof||proof.proofFamilies<2||proof.proofSessions<2||ctx.session-proof.lastSuccess>6||proof.lastError>=proof.lastSuccess||!rest.some(v=>concept(ctx,v.exercise)===c))continue;
   const rc=new Set(rest.map(v=>concept(ctx,v.exercise))),rf=new Set(rest.map(v=>fam(v.exercise))),ri=new Set(rest.map(v=>v.exercise.id));
   for(const q of ctx.pool){
-   if(q.theme!==old.theme||q.difficulty!==old.difficulty||ctx.metadataById[q.id].stage!==ctx.metadataById[old.id].stage||rc.has(concept(ctx,q))||ri.has(q.id)||rf.has(fam(q))||q.id===old.id||ctx.classify(q)!=='maintenance'||ctx.bad(q)||ctx.due(q))continue;
+   if(q.theme!==old.theme||q.difficulty!==old.difficulty||ctx.metadataById[q.id].stage!==ctx.metadataById[old.id].stage||rc.has(concept(ctx,q))||ri.has(q.id)||rf.has(fam(q))||q.id===old.id||ctx.classify(q)!=='maintenance'||ctx.bad(q))continue;
    const t=priority(ctx,ev,q);if(!t)continue;
    const proposed=deck.map((v,i)=>i===index?{...v,exercise:q,kind:'revision',reason:ctx.fresh(q)?'rappel_nouvelle_situation':'rappel_question'}:v);
    if(repeats(proposed)>repeats(deck)||passes(proposed)>passes(deck)||count(proposed,ctx.bid)>maxBid||count(proposed,ctx.context)>maxContext)continue;
