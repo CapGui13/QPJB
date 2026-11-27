@@ -2,12 +2,12 @@
 
 Base : ccd8f20811b9531bbfccb8352ec60953dd7d07cb
 Branche : pedagogie/audit3000-c
-Dernier SHA vérifié avant cette passe : e30397808e9044656d561331904f202c86888116
-Passes 1 à 7 : 378 verdicts individuels, 117 corrections complètes, 7 arbitrages. Contrôles : voir REVUE.md.
+Dernier SHA vérifié avant cette passe : 1c615e3d86007ffdecef1cbb52f18e90405426cf
+Passes 1 à 8 : 426 verdicts individuels, 146 corrections complètes, 7 arbitrages. Contrôles : voir REVUE.md.
 
-Reprendre aux concepts sa1.stayman.contre / sa1.texas.contre / sa2.bicolore / sa2.texas_mineur.reponse, puis Roudi et Drury. Étendre les JSON sans écraser les décisions précédentes.
+Reprendre aux concepts roudi.init / roudi.choix / roudi.reponse / roudi.suite, puis Drury. Étendre les JSON sans écraser les décisions précédentes.
 
-## IDs restants : 230
+## IDs restants : 182
 
 ### roudi.init (22)
 SEF-N137-1, SEF-V4-073-1, SEF-V4-079-3, SEF-V4-085-3, SEF-V4-091-3, SEF-V49-027, SEF-C2-012, SEF-L10-030, V2-M6-001, V2-M6-002, SEF-Q400-B-055, SEF-Q400-B-056, SEF-Q400-B-057, SEF-Q400-B-058, SEF-Q400-B-059, SEF-Q685-B-070, SEF-Q685-B-071, SEF-Q685-B-074, SEF-Q685-B-131, SEF-Q685-B-132, SEF-Q685-B-133, SEF-Q685-B-134
@@ -32,18 +32,6 @@ SEF-V44-062, SEF-V44-063, SEF-V44-064, SEF-V44-065, SEF-V44-066, SEF-L14-007, SE
 
 ### drury.suite (19)
 SEF-V484-001, SEF-V484-002, SEF-V484-003, SEF-V484-004, SEF-V484-005, SEF-V484-006, SEF-V484-007, SEF-V484-008, SEF-V484-009, SEF-V484-010, SEF-L01-F-01, SEF-L01-F-02, SEF-L01-F-04, SEF-Q400-B-086, SEF-Q400-B-087, SEF-Q400-B-088, SEF-Q685-B-159, SEF-Q685-B-160, SEF-Q685-B-170
-
-### sa1.stayman.contre (11)
-SEF-L25-001, SEF-L25-002, SEF-L25-003, V1-M3-001, V2-M2-037, V2-M2-038, SEF-Q400-B-009, SEF-Q685-B-033, SEF-Q685-B-036, SEF-Q685-B-044, SEF-Q685-B-056
-
-### sa1.texas.contre (12)
-SEF-L25-004, SEF-L25-005, SEF-L25-006, V2-M2-039, V2-M2-040, SEF-PN26-M1-017, SEF-PN26-M1-027, SEF-Q400-B-014, SEF-Q685-B-047, SEF-Q685-B-057, SEF-Q685-B-058, SEF-Q685-B-059
-
-### sa2.bicolore (14)
-SEF-L38-002, SEF-Q26-M2-010, SEF-Q26-M2-011, V1-M2-002, V2-M2-013, SEF-PN26-M1-030, SEF-Q400-B-053, SEF-Q400-B-054, SEF-Q685-B-069, SEF-Q685-B-126, SEF-Q685-B-127, SEF-Q685-B-128, SEF-Q685-B-129, SEF-Q685-B-130
-
-### sa2.texas_mineur.reponse (11)
-SEF-L41-004, SEF-Q26-M2-012, SEF-Q26-M2-013, V2-M2-015, V2-M2-016, SEF-PN26-M1-029, SEF-Q400-B-052, SEF-Q400-B-099, SEF-Q685-B-124, SEF-Q685-B-125, SEF-Q685-B-162
 
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON

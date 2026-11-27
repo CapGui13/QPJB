@@ -1,4 +1,4 @@
-# AUDIT3000-C — revue PARTIELLE (378/608)
+# AUDIT3000-C — revue PARTIELLE (426/608)
 
 Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission #559.
 
@@ -40,10 +40,13 @@ Base immuable : ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Contrat #556, mission 
 ## Passe 7 — Texas mineurs 1SA
 58 verdicts individuels; 34 corrections complètes, 1 arbitrage. Corrigés Q685-B-066/067 contextualisés (trois/quatre Carreaux), questions révélatrices neutralisées, difficulté harmonisée sur rectifications directes. Contrastes faible/fort, Trèfle/Carreau, modulation favorable ou non conservés. B-117/118 très proches, éviter répétition. B-063 6 H + longueur : seuil HL à arbitrer. Référence secondaire SEF 2024 : https://scjc-bridge.fr/les-nouveautes-du-sef-2018 (courte nommée, 3SA autre mineure sans ambition chelem). Traitement QPJB du catalogue conservé. Contrôles JS réellement exécutés : 58 mains et H/forme, choix/rangs, appartenance et unicité verdicts; groupes et verrous lus; comparaison profils et empreintes sur 3000 objets. Aucun test local Node/CI; pas de recette moteur.
 
+## Passe 8 — Contres d'entame et développements 2SA
+48 verdicts; 29 corrections. Contraste : Surcontre punitif après Stayman, fitté sans tenue après Texas. Q685-B-036 : distracteur 2♥ rétabli. Q685-B-126 : 4♦ 5–5 majeur limité à la manche, projet précisé sans prétendre exclure le chelem avec 9 H et une distribution forte. 2SA–3♠ : traitement QPJB du Texas Trèfle fitté préservé; pas de généralisation du seuil exact ni de certification SEF indépendante. Plusieurs répétitions strictes de profils signalées. Références secondaires : https://encheresdebridge.fr/intervention-stayman-texas.php ; https://bridgesaintcloud.fr/espoir2_11.html ; https://bridgus.online/. Contrôles réellement exécutés : 48 mains H/forme/13 cartes, rangs et choix (Surcontre après Contre), unicité et appartenance des verdicts, lecture groupes et verrous, comparaison profils/empreintes sur 3000 objets. Aucun test local Node/CI.
+
 ## Bilan cumulé
-{"VALIDE":254,"RECLASSER_REFORMULER":117,"ARBITRAGE":7} ; 117 corrections complètes.
+{"VALIDE":273,"RECLASSER_REFORMULER":146,"ARBITRAGE":7} ; 146 corrections complètes.
 
 ## Limites
-230 QCM restent à auditer. Aucun merge, aucun fichier commun modifié. Ne pas intégrer comme terminé.
+182 QCM restent à auditer. Aucun merge, aucun fichier commun modifié. Ne pas intégrer comme terminé.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON
