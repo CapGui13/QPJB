@@ -1,47 +1,9 @@
 # Reprise AUDIT3000-D — INCOMPLET
 
-Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543, dernier SEF-V476-010, SHA 83c00c74e14d3a3759abb42887a3ba2abb7fad74. Passe 7 : 280/543 cumulés, dernier SEF-L18-002, prochain SEF-L18-003. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 280 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés. Restent 263 IDs :
+Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543, dernier SEF-V476-010, SHA 83c00c74e14d3a3759abb42887a3ba2abb7fad74. Passe 7 : 280/543 cumulés, dernier SEF-L18-002, prochain SEF-L18-003. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 280 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés.
 
-- SEF-L18-003
-- SEF-L20-004
-- SEF-L20-005
-- SEF-L23-005
-- SEF-L26-003
-- SEF-L27-001
-- SEF-L27-002
-- SEF-L27-004
-- SEF-L28-005
-- SEF-L28-006
-- SEF-L29-001
-- SEF-L30-002
-- SEF-L30-003
-- SEF-L31-004
-- SEF-L32-003
-- SEF-L35-002
-- SEF-L35-003
-- SEF-L36-005
-- SEF-L38-004
-- SEF-L38-005
-- SEF-L39-003
-- SEF-L39-004
-- SEF-L40-003
-- SEF-L40-004
-- SEF-L41-003
-- SEF-L43-003
-- SEF-L44-002
-- SEF-L45-001
-- SEF-Q26-M4-001
-- SEF-Q26-M4-002
-- SEF-Q26-M4-003
-- SEF-Q26-M4-004
-- SEF-Q26-M4-005
-- SEF-Q26-M4-006
-- SEF-Q26-M5-005
-- SEF-Q26-M5-006
-- SEF-Q26-M5-007
-- V1-M3-002
-- V1-M3-003
-- V1-M3-004
+Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c40cd7b33f9ce471f32ac2383cfc0f15d7d0a125; SHA de cette reprise = commit contenant ce fichier. Contrôles de passe : 40 mains H/forme/13 cartes, ordre des enchères et 4 options, cohérence des corrections, couverture 543, unicité verdicts/patches, vrais groupes et minSession pour les ajouts. Tests du dépôt non exécutés. Restent 223 IDs :
+
 - V2-M4-001
 - V2-M4-002
 - V2-M4-003
