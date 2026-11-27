@@ -1,0 +1,19 @@
+name: M4-D historical integration full checkout
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-d-recette]
+    paths: ['.github/workflows/m4p-d-history.yml']
+permissions:
+  contents: read
+jobs:
+  history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-progression-integration.cjs
