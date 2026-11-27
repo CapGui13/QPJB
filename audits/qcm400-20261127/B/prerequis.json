@@ -78,12 +78,20 @@
       ]
     },
     "SEF-Q400-B-009": {
-      "concept": "sa1.seuil",
-      "stage": 0,
-      "minSession": 3,
+      "concept": "sa1.stayman.contre",
+      "stage": 3,
+      "minSession": 18,
       "requires": [
         {
-          "concept": "ouv.sa1",
+          "concept": "contre.base",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.stayman",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.stayman.reponse",
           "minExposure": 1
         }
       ]
@@ -141,16 +149,20 @@
       ]
     },
     "SEF-Q400-B-014": {
-      "concept": "sa2.seuil",
-      "stage": 0,
-      "minSession": 6,
+      "concept": "sa1.texas.contre",
+      "stage": 3,
+      "minSession": 22,
       "requires": [
         {
-          "concept": "ouv.sa2",
+          "concept": "contre.base",
           "minExposure": 1
         },
         {
-          "concept": "sa1.seuil",
+          "concept": "sa1.texas",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.contre",
           "minExposure": 1
         }
       ]
@@ -290,12 +302,12 @@
       ]
     },
     "SEF-Q400-B-025": {
-      "concept": "sa1.texas",
-      "stage": 0,
-      "minSession": 4,
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
       "requires": [
         {
-          "concept": "sa1.seuil",
+          "concept": "sa2.texas",
           "minExposure": 1
         }
       ]
@@ -1151,6 +1163,161 @@
           "concept": "drury.choix",
           "minExposure": 2
         },
+        {
+          "concept": "majeur.soutien",
+          "minExposure": 1
+        },
+        {
+          "concept": "ouv.position",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-089": {
+      "concept": "ouv.sa1",
+      "stage": 0,
+      "minSession": 0,
+      "requires": []
+    },
+    "SEF-Q400-B-090": {
+      "concept": "ouv.sa2",
+      "stage": 0,
+      "minSession": 1,
+      "requires": [
+        {
+          "concept": "ouv.sa1",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-091": {
+      "concept": "sa2.stayman.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-092": {
+      "concept": "sa2.stayman.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-093": {
+      "concept": "sa2.stayman.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.stayman",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-094": {
+      "concept": "sa2.texas.reponse",
+      "stage": 1,
+      "minSession": 10,
+      "requires": [
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-095": {
+      "concept": "sa1.texas_mineur",
+      "stage": 0,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-096": {
+      "concept": "sa1.texas_mineur",
+      "stage": 0,
+      "minSession": 12,
+      "requires": [
+        {
+          "concept": "sa1.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas.suite",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-097": {
+      "concept": "sa1.texas_mineur.reponse",
+      "stage": 1,
+      "minSession": 14,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-098": {
+      "concept": "sa1.texas_mineur.reponse",
+      "stage": 3,
+      "minSession": 18,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 2
+        }
+      ]
+    },
+    "SEF-Q400-B-099": {
+      "concept": "sa2.texas_mineur.reponse",
+      "stage": 3,
+      "minSession": 22,
+      "requires": [
+        {
+          "concept": "sa1.texas_mineur",
+          "minExposure": 2
+        },
+        {
+          "concept": "sa1.texas_mineur.reponse",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.seuil",
+          "minExposure": 1
+        },
+        {
+          "concept": "sa2.texas",
+          "minExposure": 1
+        }
+      ]
+    },
+    "SEF-Q400-B-100": {
+      "concept": "drury.init",
+      "stage": 0,
+      "minSession": 24,
+      "requires": [
         {
           "concept": "majeur.soutien",
           "minExposure": 1
