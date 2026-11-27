@@ -1,4 +1,4 @@
-name: Pilote pédagogique — référence S1–S5
+name: Pilote pédagogique — comparatif S1–S5 et transition S6–10
 on:
   pull_request:
     branches: [main]
@@ -9,7 +9,9 @@ jobs:
   baseline:
     if: github.head_ref == 'pedagogie/pilote-s1-s5-20261127'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
+    env:
+      PILOT_TRANSITION: '1'
     steps:
       - uses: actions/checkout@v4
         with:
