@@ -11,3 +11,7 @@ Après la passe 2 : 374 IDs restaient à relire individuellement. Aucun verdict 
 ## Passe 3 (81–120)
 
 Cumul : {"VALIDE":88,"RECLASSER_REFORMULER":19,"ERREUR_PEDAGOGIQUE":9,"ARBITRAGE":4} ; 26 corrections, 4 propositions de réservoir. Deux réponses changées : V44-017 et V44-018, neuf atouts non garantis, recalcul 16 HLD donc soutien simple. Références de zones vérifiées : Bridge Club Duclair, synthèse ABC du bridge (12–16 / 17–19 HLD). Deux nouveaux arbitrages. Contrôle ensemble exact des 120 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 334 restant à relire. Aucun test natif exécuté.
+
+## Passe 4 (121–160)
+
+Cumul : {"VALIDE":116,"RECLASSER_REFORMULER":29,"ERREUR_PEDAGOGIQUE":10,"ARBITRAGE":5} ; 35 corrections, 6 propositions de réservoir. V49-042 : soutien simple de 16 HLD, pas de zone 12–14 H. V410-023/024 : contexte non passé explicité pour exclure Drury. V411-006 : arbitrage sur la valorisation des doubletons honorés et l'absence de 4♥ dans les choix. Deux propositions de réservoir contrastif S5 (V49-036/037). Contrôle ensemble exact des 160 premiers IDs, unicité des corrections et présence des réponses dans les choix exécuté. 294 restant à relire. Aucun test natif exécuté.
