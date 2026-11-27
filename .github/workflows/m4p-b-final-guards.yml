@@ -1,0 +1,28 @@
+name: M4p-B remaining historical guards (unchanged engine)
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-b-rappels]
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {name: quizz-retours, cmd: "node tests/quizz-retours-progression-20261126.cjs"}
+          - {name: durable-contract, cmd: "node tests/durable-integration-contract.cjs"}
+          - {name: durable-evidence, cmd: "node tests/durable-integration-evidence.cjs"}
+          - {name: durable-m6-guards, cmd: "node tests/durable-m6-guards.cjs"}
+          - {name: professeur-integrated, cmd: "node tests/professeur-numerique-integrated.cjs"}
+          - {name: verify-sef, cmd: "python3 scripts/verify_quiz_sef.py --html quizz.html --min-count 1915"}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 761a8fe507a6809370be200c50da700f477cf88d
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: ${{ matrix.cmd }}
