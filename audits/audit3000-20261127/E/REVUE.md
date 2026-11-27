@@ -34,3 +34,32 @@ Calcul JavaScript sur blobs GitHub de la base immuable (pas de clone local). Com
 Suites de tests du dépôt non exécutées (pas de checkout dans ce connecteur). Légalité et pédagogie des 500 restants non certifiées. Pas de simulation, ni moteur/UI, ni fusion.
 
 MISSION DÉFINITIVEMENT TERMINÉE : NON
+
+## Passe 2 — bilan cumulatif actualisé (remplace les totaux de passe 1)
+
+80/540 verdicts individuels, 460 non audités. {"VALIDE":47,"RECLASSER_REFORMULER":30,"ARBITRAGE":3}. 19 QCM complets corrigés, 5 propositions de prérequis, 15 changements de réservoir.
+- Rubensohl: différencier 3♣ Texas ♦ sur 2♥ du 3♣ Texas impossible sur 2♦; idem 3♦. Cas faibles et manche, 035/031. Groupes de conclusion directe et X Rubensohl non identifiés; signaler, ne pas inventer.
+- Michaels: distinguer intervention directe, réveil, 2SA mineurs, naturelle sans deuxième longue. Miroirs utiles mais limiter exposition répétée.
+- 072: après Contre, 2SA Truscott comme distracteur au lieu de 1SA; 066/078: prérequis soutien mineur (pas majeur). 073/074: rappel révélant le mécanisme remplacé par question neutre. 078: Roi second, ne pas enseigner l'absence catégorique d'arrêt.
+- Arbitrage nouveau V420-009: accord du catalogue après 1♣–(1♦) avec deux majeures quatrièmes à confirmer, sources divergentes sur X. Pas de changement de réponse non validé.
+- Les contrôles de passe 1 ont été relancés sur base immuable, étendus aux 80 séquences simples; aucune suite du dépôt exécutée. Résultats cumulés:
+```json
+{
+  "catalogue": 3000,
+  "idsUniquesCatalogue": 3000,
+  "prerequis": 3000,
+  "lot": 540,
+  "lotManquants": 0,
+  "lotHorsGroupesExplicites": 270,
+  "lotEchecMecanique": [],
+  "lotDoublonsExactsSignature": [],
+  "verdicts": 80,
+  "idsVerdictsUniques": 80,
+  "corrections": 19,
+  "correctionsInvalides": [],
+  "choixIllegauxPasses1Et2": [],
+  "reservoirGroupesInvalides": [],
+  "prerequisInvalides": []
+}
+``
+MISSION DÉFINITIVEMENT TERMINÉE : NON
