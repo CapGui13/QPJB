@@ -2,48 +2,10 @@
 
 Base ccd8f20811b9531bbfccb8352ec60953dd7d07cb; branche pedagogie/audit3000-d; passe 1 : 40 IDs, dernier SEF-V3-052-2, SHA ff64308c01361a7513d3f27a5578643fcdad406f. Passe 2 : 80/543, dernier SEF-V3-095-1, SHA fbdba137d3af948661c098dbafe66f74040c0be4. Passe 3 : 120/543, dernier SEF-V4-034-1, SHA 52c734dadd79ebbd24c79199a4e0da4deb5ee2a8. Passe 4 : 160/543, dernier SEF-V4-060-4, SHA 452b4d25538392931408fed7351a888d6c5ffc64. Passe 5 : 200/543, dernier SEF-V49-032, SHA 7b237ca51b99d38688d773cbc53c71a1f485d4e4. Passe 6 : 240/543, dernier SEF-V476-010, SHA 83c00c74e14d3a3759abb42887a3ba2abb7fad74. Passe 7 : 280/543 cumulés, dernier SEF-L18-002, prochain SEF-L18-003. SHA de la reprise = commit contenant le présent fichier (à lire via Git). Aucun verdict attribué aux IDs restants. Lire les six livrables, poursuivre en lots de 40–80; conserver les corrections complètes et ne pas fusionner. Tests réellement exécutés : contrôles structurels 543, couverture catalogue, unicité, légalité des quatre choix pour les 280 premiers et les corrections, cohérence des patches et groupes, doublons exacts. Tests existants du dépôt non exécutés.
 
-Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c40cd7b33f9ce471f32ac2383cfc0f15d7d0a125; SHA de cette reprise = commit contenant ce fichier. Contrôles de passe : 40 mains H/forme/13 cartes, ordre des enchères et 4 options, cohérence des corrections, couverture 543, unicité verdicts/patches, vrais groupes et minSession pour les ajouts. Tests du dépôt non exécutés. Restent 223 IDs :
+Passe 8 : 320/543, dernier V1-M3-004, prochain V2-M4-001. SHA dernier livrable c40cd7b33f9ce471f32ac2383cfc0f15d7d0a125; SHA de cette reprise = commit contenant ce fichier. Contrôles de passe : 40 mains H/forme/13 cartes, ordre des enchères et 4 options, cohérence des corrections, couverture 543, unicité verdicts/patches, vrais groupes et minSession pour les ajouts. Tests du dépôt non exécutés.
 
-- V2-M4-001
-- V2-M4-002
-- V2-M4-003
-- V2-M4-004
-- V2-M4-005
-- V2-M4-006
-- V2-M4-007
-- V2-M4-008
-- V2-M4-009
-- V2-M4-010
-- V2-M4-011
-- V2-M4-012
-- V2-M4-013
-- V2-M4-014
-- V2-M4-015
-- V2-M4-016
-- V2-M4-017
-- V2-M4-018
-- V2-M4-019
-- V2-M4-020
-- V2-M4-021
-- V2-M4-022
-- V2-M4-023
-- V2-M4-024
-- V2-M4-025
-- V2-M4-026
-- V2-M4-027
-- V2-M4-028
-- V2-M4-029
-- V2-M4-030
-- V2-M4-031
-- V2-M4-032
-- V2-M4-033
-- V2-M4-034
-- V2-M4-035
-- V2-M4-036
-- V2-M4-037
-- V2-M4-038
-- V2-M4-039
-- V2-M4-040
+Passe 9 : 360/543, dernier V2-M4-040, prochain V2-M5-013. SHA dernier livrable 28aa821545323e8f36d5394be307384447054026; SHA de cette reprise = commit contenant ce fichier. Contrôles : 40 mains H/forme/13 cartes, choix et paliers, couverture 543, unicité verdicts/patches, groupes et minSession. Tests existants non exécutés. Restent 183 IDs :
+
 - V2-M5-013
 - V2-M5-014
 - V2-M5-015
