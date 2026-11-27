@@ -11,9 +11,11 @@ const recallAdapter=require('./coherence-concrete-m4-recall-adapter.cjs');
 const reserve=require('./coherence-concrete-m4-reserve-adapter.cjs');
 const earlyContrast=require('../quizz-coherence-m4-early-contrast.js');
 const earlyAdapter=require('./coherence-concrete-m4-early-adapter.cjs');
+const protectedRecall=require('./coherence-concrete-m4-protected-recall.cjs');
 const anchor='const q=durableSelection&&!explicitRecall&&!priority&&!forcedReason';
 const end='const m=mOf(q),cat=category||classify(q);';
 function instrument(source,policy='A'){
+  if(policy==='K')return protectedRecall.instrument(instrument(source,'D'));
   if(policy==='E')return atomic.instrument(source);
   if(policy==='J')return earlyAdapter.instrument(source);
   if(policy==='H'||policy==='I')return reserve.instrument(instrument(source,'D'),policy);
@@ -43,7 +45,7 @@ function instrument(source,policy='A'){
 }
 function pick(ctx,rows,baseline,maxSession=180,onChange=()=>{},policy='A'){
   if(ctx.session>maxSession||rows.length<2)return baseline;
-  const ranked=(policy==='J'?earlyContrast:(policy==='F'||policy==='G')&&ctx.category==='maintenance'?recall:(policy==='D'||policy==='E'||policy==='F'||policy==='G'||policy==='H'||policy==='I')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
+  const ranked=(policy==='J'?earlyContrast:(policy==='F'||policy==='G')&&ctx.category==='maintenance'?recall:(policy==='D'||policy==='E'||policy==='F'||policy==='G'||policy==='H'||policy==='I'||policy==='K')?cautious:policy==='C'?reactivation:policy==='B'?contrast:m4).rank({...ctx,baselineId:baseline.id}),d=new Map(ranked.map(r=>[r.id,r]));
   const b=rows.find(r=>r.q===baseline),base=b.v+(d.get(baseline.id)?.delta||0);
   let winner=b,score=base;
   for(const row of rows){
