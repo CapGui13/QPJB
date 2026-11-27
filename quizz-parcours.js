@@ -224,6 +224,18 @@ return Object.freeze({schema,mode:'T',choose});
         input.accept='.json,application/json';input.hidden=true;
         exportButton.insertAdjacentElement('afterend',button);
         button.insertAdjacentElement('afterend',input);
+        // Explain the revision before a returning learner sees different
+        // mastery indicators. Read-only here; the existing save path persists
+        // the complete revised state including its archive.
+        try{
+          const migrated=api.load(root.localStorage.getItem('qpjb-sef-parcours-01'));
+          if(migrated.audit3000Archive){
+            const notice=root.document.createElement('p');
+            notice.id='progress-audit3000-notice';
+            notice.textContent='Mise à jour des QCM : vos séances terminées et anciennes réponses sont conservées dans la sauvegarde. Certaines preuves de maîtrise concernées par les corrections doivent être validées à nouveau.';
+            input.insertAdjacentElement('afterend',notice);
+          }
+        }catch(_){/* storage unavailable: keep the existing import controls */}
         button.addEventListener('click',()=>input.click());
         input.addEventListener('change',async()=>{
           const file=input.files&&input.files[0];
