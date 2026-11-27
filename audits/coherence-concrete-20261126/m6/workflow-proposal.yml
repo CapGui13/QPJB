@@ -1,0 +1,80 @@
+# Isolated proposal, NOT active on the mission branch. A coordinator may copy it
+# into a disposable technical branch with base coherence-concrete/m6-recette.
+name: QPJB — M6 recette concrète isolée
+on:
+  pull_request:
+    branches: [coherence-concrete/m6-recette]
+    paths: ['.github/workflows/coherence-concrete-m6-receipt.yml']
+permissions:
+  contents: read
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          git rev-parse HEAD
+          node tests/coherence-concrete-m6-unit.cjs
+          node tests/coherence-concrete-m6-contracts.cjs
+          node tests/durable-m6-unit.cjs
+          node tests/durable-m6-guards.cjs
+          node tests/durable-m6-evidence.cjs
+          node tests/durable-m6-campaign.cjs legacy
+          node tests/coherence-concrete-m6-campaign.cjs pair autonome 47 5 m6-quick
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m6-concrete-quick
+          path: m6-quick
+  matrix:
+    needs: quick
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Baseline native and identity negative control (not an integrated candidate)
+        run: node tests/coherence-concrete-m6-campaign.cjs pair ${{ matrix.profile }} ${{ matrix.seed }} 180 m6-results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m6-concrete-trajectory-${{ matrix.profile }}-${{ matrix.seed }}
+          path: m6-results
+          retention-days: 30
+
+  aggregate:
+    needs: matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m6-concrete-trajectory-*
+          path: m6-archives
+      - run: node tests/coherence-concrete-m6-aggregate.cjs m6-archives "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m6-concrete-native-register
+          path: m6-native-register.json
+          retention-days: 30
