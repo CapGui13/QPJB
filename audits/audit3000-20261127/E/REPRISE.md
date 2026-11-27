@@ -2,49 +2,9 @@
 
 Contrat #556 / mission #561. Base immuable ccd8f20811b9531bbfccb8352ec60953dd7d07cb. Branche pedagogie/audit3000-e. PR brouillon #564.
 
-Neuf passes de 40 terminées (360/540). SHA avant passe 9 : e7c760a4b0d9ae75c29f73cc90b37291f64a7824. Dernier ID SEF-Q400-C-052; prochain ID SEF-Q400-C-053. {"VALIDE":102,"RECLASSER_REFORMULER":237,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":21}. Corrections : 220. Prérequis : 27. Réservoir : 101.
+Dix passes de 40 terminées (400/540). SHA avant passe 10 : b561e6255b1dab25dcac761da6528eff7d823adf. Dernier ID SEF-Q400-D-051; prochain ID SEF-Q400-D-052. {"VALIDE":116,"RECLASSER_REFORMULER":260,"ERREUR_PEDAGOGIQUE":0,"ARBITRAGE":24}. Corrections : 245. Prérequis : 34. Réservoir : 101.
 
-## IDs restants (180)
-- SEF-Q400-C-053 — apres_inter.base
-- SEF-Q400-C-054 — apres_inter.base
-- SEF-Q400-C-055 — apres_inter.base
-- SEF-Q400-C-056 — apres_inter.base
-- SEF-Q400-C-057 — competitif.spoutnik
-- SEF-Q400-C-058 — competitif.spoutnik
-- SEF-Q400-C-059 — competitif.spoutnik
-- SEF-Q400-C-060 — competitif.spoutnik
-- SEF-Q400-C-061 — red.competitif
-- SEF-Q400-C-062 — red.competitif
-- SEF-Q400-C-063 — red.competitif
-- SEF-Q400-C-064 — red.competitif
-- SEF-Q400-C-065 — red.competitif
-- SEF-Q400-C-066 — red.competitif
-- SEF-Q400-C-086 — competitif.2sa_fitte
-- SEF-Q400-C-087 — competitif.2sa_fitte
-- SEF-Q400-C-088 — competitif.2sa_fitte
-- SEF-Q400-C-089 — competitif.2sa_fitte
-- SEF-Q400-C-090 — competitif.2sa_fitte
-- SEF-Q400-C-091 — competitif.truscott
-- SEF-Q400-C-092 — competitif.truscott
-- SEF-Q400-C-093 — competitif.truscott
-- SEF-Q400-C-094 — competitif.truscott
-- SEF-Q400-C-095 — competitif.truscott
-- SEF-Q400-C-096 — competitif.truscott
-- SEF-Q400-C-097 — competitif.sa_adverse
-- SEF-Q400-C-098 — competitif.sa_adverse
-- SEF-Q400-C-099 — competitif.sa_adverse
-- SEF-Q400-C-100 — competitif.sa_adverse
-- SEF-Q400-D-041 — multilandy.intervention
-- SEF-Q400-D-042 — multilandy.intervention
-- SEF-Q400-D-043 — multilandy.intervention
-- SEF-Q400-D-044 — multilandy.intervention
-- SEF-Q400-D-045 — multilandy.intervention
-- SEF-Q400-D-046 — multilandy.intervention
-- SEF-Q400-D-047 — multilandy.choix
-- SEF-Q400-D-048 — multilandy.reponse
-- SEF-Q400-D-049 — multilandy.reponse
-- SEF-Q400-D-050 — multilandy.suite
-- SEF-Q400-D-051 — rubensohl.init
+## IDs restants (140)
 - SEF-Q400-D-052 — rubensohl.init
 - SEF-Q400-D-053 — rubensohl.naturel
 - SEF-Q400-D-054 — rubensohl.init
@@ -186,4 +146,4 @@ Neuf passes de 40 terminées (360/540). SHA avant passe 9 : e7c760a4b0d9ae75c29f
 - SEF-Q685-D-096 — michaels.defense
 - SEF-Q685-D-097 — michaels.defense
 
-Reprendre au prochain ID, compléter fichiers, conserver les 360 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
+Reprendre au prochain ID, compléter fichiers, conserver les 400 verdicts. Contrôles mécaniques ≠ audit pédagogique. Aucune fusion. Mission NON.
