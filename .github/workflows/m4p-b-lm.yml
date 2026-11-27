@@ -1,0 +1,33 @@
+name: M4p-B isolated L-M native campaign
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-b-rappels]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dab1455f4721eb1b872e41fd1338ab5805b5dd9a
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/coherence-concrete-m4p-b-unit.cjs
+      - run: node tests/coherence-concrete-m4p-b-campaign.cjs
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          OUT: /tmp/m4p-b
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4p-b-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4p-b
