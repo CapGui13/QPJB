@@ -1,0 +1,17 @@
+# M4-B #447 — reprise expérimentale L/M (HOLD)
+Base commune : 49298ada3f96e347833d8717c7e205518ea02fce. Production, catalogue, autres branches et ordre final intacts.
+
+## Constat
+REPRISE-K : F 18/18 neutre, G 12/18 visibles neutres, H dette 228622→38653 / preuves 1520→1490, I 228622→76718 / 1520→1512, K 228622→234613 / 1520→1520 (12 régressions). Les anciens résultats ne sont pas des gains de B. Cible/11 : Passe 9 familles toutes consommées S65, dernière S72 ; 1SA 9 familles toutes consommées S65, dernière S142 ; seuils 1SA 17 familles dont 2 encore inédites S65, dernière S65. La nouveauté filtre avant le score, le quota de répétition est 0/1/2, la réservation fondamentale disparaît S66. Le score seul ne ressuscite pas une famille filtrée.
+
+## Hypothèses distinctes
+L : ordonnanceur earliest deadline first dans le créneau fondamental natif S21–65 ou dans le remplissage maintenance déjà filtré si le concept sortant est déjà représenté. Échéance 7/9/12 selon diversité de preuves récentes (24 séances) ; bonus borné 32, même thème/niveau/stage/nouveauté, pas de sortie due ou fragile. Priorité erreur et découvertes natives intactes. Pas de quota ajouté. M : après composition native S66+, un seul rappel non prioritaire de famille répétée, concept sortant conservé dans la séance et prouvé sur deux familles/deux séances, succès récent et pas d'erreur postérieure, remplacé par fondamental en retard de même thème/niveau/stage. Nombre de familles répétées, Passes et concentration réponse/contexte n'augmentent pas. Les autres neuf objets sont identiques, logicalOrder reste natif. Aucune exception de budget.
+
+Les deux mécanismes s'abstiennent sur journal incomplet, séance active, deux fenêtres récentes de cinq séances avec moins de 30 succès autonomes ou plus de 10 aides/erreurs libres. Aucun nom de profil utilisé. Une exposition, un rappel explicite d'erreur et une réussite autonome sont distincts. Aucune validation pédagogique revendiquée.
+
+## Recette
+24 assertions ciblées V8 exécutées sur la première version et compilation des deux adaptateurs sur le moteur exact. Ajustement ultérieur : une question entrante due mais réussie peut être rappelée ; la protection des sortantes dues demeure. Relancer tests sur SHA final. Banc natif hérite des règles de réponse et de la reprise du banc historique, vérifie les SHA des deux blobs et tous les checkpoints de référence K hors latence, mesure les neuf fondamentaux et les 99 concepts par horizon, conserve les traces et le registre des changements. B ne peut améliorer S5 directement ; S1–20 doivent être identiques. Toutes les métriques du gate K inchangées, aucune perte individuelle de concept ou preuve tolérée en plus. La validation intégrée exige toujours le gate K complet (amélioration S5 par A). Résultats natifs B non attestés à cette étape, aucune activation.
+
+## Limites / arbitrage à instruire
+Si L/M neutres, le coût d'un créneau additionnel est un QCM sur dix (10 % de la séance) ou une 11e question (+10 % de volume, incompatible avec le contrat actuel). Une réservation toutes les trois séances S66–180 coûte au plus 39 créneaux/1150 questions (3,39 %) ; ce n'est pas une prédiction de gain, mais une proposition de plafond à chiffrer et tester avec M1/M6. Ne pas réduire automatiquement le quota découverte ni le rappel d'erreur. Le gate doit vérifier chaque trajectoire et les preuves de chaque concept.
+Statut : HOLD — SOUS-MISSION DÉFINITIVEMENT TERMINÉE : NON.
