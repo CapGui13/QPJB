@@ -39,6 +39,26 @@ for(const r of candidate){
  for(let i=0;i<10;i++){const o=b.items[i],q=a[i];md.push('| '+[i+1,o.id+' / '+o.answer,q.id+' / '+q.answer,q.concept,(q.hand||[]).map(x=>x.join(' ')).join(' / ')+' — '+q.h+' H',q.explain].map(clean).join(' | ')+' |')}
  md.push('','Retirés : '+out.map(q=>q.id).join(', ')+' ; ajoutés : '+added.map(q=>q.id).join(', ')+'.');
 }
+const transitionPath=path.join(dest,'transitions.json');
+if(process.env.PILOT_TRANSITION==='1'){
+ const extra=JSON.parse(fs.readFileSync(transitionPath,'utf8'));
+ const simple=new Set(['SEF-037-1','SEF-038-1','SEF-N082-2','SEF-N085-1','SEF-V44-015','SEF-V44-016','SEF-V49-017','SEF-C-003','V2-M2-030']);
+ const complex=new Set(['SEF-039-2','SEF-039-1','SEF-040-2','SEF-N084-1','SEF-N087-2','V2-M2-018']);
+ verify(extra.length===15,'S6–10: fifteen additional sessions');
+ md.push('','## Transition S6–10');
+ for(const profile of ['autonome','intermediaire','faible']){
+  let elementary=false,stayman=false;
+  for(const r of extra.filter(x=>x.profile===profile).sort((a,b)=>a.session-b.session)){
+   const key=profile+' S'+r.session, a=r.items;
+   verify(a.length===10&&new Set(a.map(q=>q.id)).size===10,key+' ten distinct questions');
+   verify(elementary||!a.some(q=>complex.has(q.id)),key+' no complex Texas before completed elementary session');
+   verify(elementary||stayman||!a.some(q=>q.concept==='sa1.stayman'),key+' first Stayman after elementary Texas');
+   md.push('- '+key+': '+a.filter(q=>/^sa1\.(texas|stayman)/.test(q.concept)).map(q=>q.id+' '+q.answer+' '+q.result).join(', '));
+   elementary||=a.some(q=>simple.has(q.id));stayman||=a.some(q=>q.concept==='sa1.stayman');
+  }
+  if(profile==='autonome')verify(elementary&&stayman,'autonomous profile receives both deferred conventions by S10');
+ }
+}
 md.push('','## Contrôles',...checks.map(x=>'- '+(x.ok?'PASS':'FAIL')+' '+x.why));
 fs.writeFileSync(path.join(dest,'comparatif.md'),md.join('\n')+'\n');
 fs.writeFileSync(path.join(dest,'comparatif.json'),JSON.stringify({summary,checks,errors},null,2));
