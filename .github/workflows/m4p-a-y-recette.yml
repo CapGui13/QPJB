@@ -1,0 +1,66 @@
+name: M4P-A Y recette native isolée
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  campagne:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11, 47, 103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 1661aabd738a858553323c8bd8cd7db35cf73412
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tests ciblés
+        run: |
+          node tests/coherence-concrete-m4-unit.cjs
+          node tests/coherence-concrete-m4-cautious.cjs
+          node tests/coherence-concrete-m4-early.cjs
+          node tests/coherence-concrete-m4p-a-unit.cjs
+          node tests/coherence-concrete-m4p-a-composition-test.cjs
+      - name: Campagne M4P-A Y S180
+        env:
+          PROFILE: ${{ matrix.profile }}
+          SEED: ${{ matrix.seed }}
+          POLICY: Y
+          HORIZON: 180
+          OUT: /tmp/m4p-a
+        run: node tests/coherence-concrete-m4p-a-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4p-a-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4p-a
+          retention-days: 14
+  gate:
+    needs: campagne
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 1661aabd738a858553323c8bd8cd7db35cf73412
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4p-a-*
+          merge-multiple: true
+          path: /tmp/m4p-a
+      - name: Gate strict sur les 18 trajectoires
+        run: |
+          set -o pipefail
+          POLICY=Y node tests/coherence-concrete-m4p-a-gate.cjs /tmp/m4p-a | tee /tmp/m4p-a-gate.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4p-a-gate
+          path: /tmp/m4p-a-gate.json
+          retention-days: 14
