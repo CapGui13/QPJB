@@ -62,3 +62,5 @@ jobs:
           python3 -m http.server 8765 > /tmp/qpjb-b-server.log 2>&1 &
           sleep 1
           CHROME_BIN="$(command -v google-chrome)" node tests/coherence-reprise6-b-browser.cjs
+
+# Re-run after hook quoting fix 972f334; matrix unchanged for normal guided sessions.
