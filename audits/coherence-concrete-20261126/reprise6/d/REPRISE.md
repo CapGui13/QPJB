@@ -1,0 +1,62 @@
+# REPRISE D — T/UI
+
+- Contrat #506, mission #510, base 13966e475cf986c6f76e7faf870377fdf4ef99aa.
+- Branche coherence-concrete/reprise6-d-t-ui ; cible coherence-concrete/coordination-generale ; aucune fusion.
+- État : initialisation. T seule, sans M3 ni activation HOLD. Lecture REPRISE-PASSE-5 effectuée.
+- Référence publiée (non réexécutée) : M6 S5 38→35, S20 100→97 ; D 40→37 et 96→93, dette 228622 inchangée.
+- Tests de cette mission : aucun encore. PR : à créer.
+- Prochain geste : identifier variante T et banc réel #503/#505, isoler raccordement et recette Chromium/WebKit, puis vérifier CI et substitutions.
+- Décision : HOLD provisoire, preuves UI manquantes.
+
+## Jalon 1 — raccordement isolé
+- Commits cef1a07c72dba7e0479c8a4f79f0ec9ec1efc524 (T seule), 7ef6a2e277a5b2713acce4386bc1c1d2a781b28d (patch), 392409bf14b4bb172507356d21e9d40539290f17 (bootstrap corrigé).
+- Le patch moteur à trois ancres reproduit exactement le moteur de #505 à partir du SHA de base (comparaison intégrale de chaînes exécutée). Le raccordement UI cible coherenceOptions(), sans M3 atomique ni modification des sources existantes. Bundle navigateur isolé, sans nouvelle URL de cache. Test de syntaxe/chargement du bootstrap sur modules factices exécuté, PASS.
+- Catalogue réel accessible par blob a7a5989f85482f35cac16f1004b80c7c9b837c04 ; le connecteur Contents retourne vide pour ce gros HTML. #505 confirme trois événements directs S3 (autonome 11/47/103), SEF-005-2→SEF-005-1, même famille et réponse 2SA (21→20 H). À vérifier sur le candidat raccordé.
+- Clone local refusé (DNS github.com indisponible). Aucun test navigateur ni run de cette mission à ce stade. Prochain geste : banc natif et recette navigateur (copie privée du site), vérification de chaque substitution, consolider et relever CI.
+
+## Jalon 2 — bancs et PR
+- PR principale [#512](https://github.com/CapGui13/QPJB/pull/512), brouillon vers coordination-generale, aucune fusion.
+- Native appariée (D/M6, avec/sans consolidations) : tests/coherence-reprise6-d-native.cjs et -run.cjs, commits 068957f9ca803b72556361b9f0d7b506c0cada54 / 70c197da42c94f832dba0634b4446e655c8a2bd4 / 6cab1e6ca142dee0471546568e020af8ddf00f71. Contrôles de deck réel, conservation famille/enchère/éligibilité, traces, reprise active et consolidation sans preuve inventée. Comparateurs historiques adaptés T seule : -m6.cjs, -fnv.cjs, -gate.cjs (13e03bbfe6af17ec60d3aa4a8627e5b866684bbf, 32c75a8c32a631a49c7fc4f956e3fbe7fdead2bf, 6d567d4e5c5a70553ffd28837fd82529d97682dc).
+- Recette privée navigateur : -stage.cjs (653c8ade9d6b0c63267ad42d3fab20b3785b21ab) et -browser.cjs (3b38c56099e8fce0ee6cb85c0584e8f3fe5c5b5e). Vérifie main affichée de SEF-005-1, stockage, journal, reprise offline, consolidation, quiz libre, legacy.
+- Exécution locale bloquée par DNS; tentative de chargement intégral via JS connecteur arrêtée à sa limite d'appels, aucune simulation complète comptabilisée. Syntaxe des scripts comparateurs vérifiée (parse JS uniquement). Tentative bundle de dépendances non aboutie (erreur transport).
+- Prochain geste : PR technique CI isolée selon exception #506, exécuter Chromium/WebKit et matrice, relever résultats. Aucun changement de workflow sur la branche principale D ni autre branche existante. HOLD.
+
+## Jalon 3 — preuve native et première CI
+- Test réel V8 : 26 modules CommonJS du dépôt chargés (code moteur patché exact, catalogue et prérequis réels, horloge fixée). Profil autonome/11, S5, D et M6, avec/sans demande de consolidation : 8 bras, 40 séances, 400 QCM, 32 reprises export/import ; aucun contrôle échoué. Les consolidations ne se déclenchent pas pour ce profil parfait (0), ne pas considérer ce test comme preuve de consolidation. Artefact permanent [native-smoke.json](native-smoke.json), commit 671115d6111fe5d0e702d4379ca8c6e8ce7c5563.
+- Paires proches S5 : 4→3 pour chacun des deux modèles. Substitution S3 SEF-005-2 (21H)→SEF-005-1 (20H), même famille cas-005, réponse 2SA, difficulté 1, même distribution 3-3-4-3, même contexte et prérequis, coût moteur nul ; SEF-004-1 (21H, 4-3-3-3) reste au deck. Le doublon de force/distribution normalisée disparaît en S3, sans supprimer l'exemple 21H. T conserve 9 autres IDs, l'ordre complet est recalculé (positions de la question 7→6).
+- PR technique séparée [#513](https://github.com/CapGui13/QPJB/pull/513), branche neuve coherence-concrete/reprise6-d-ci-isolee, workflow seul, jamais à fusionner. Run [46016213848](https://github.com/CapGui13/QPJB/actions/runs/46016213848) : 18 jobs natifs en cours, 2 navigateurs échoués au sélecteur .meta non unique (la main T affichée et la reprise jusqu'à cette étape ont passé). Correctif strict #body .meta sur D bd336efb275e330df2cb667b9a7b4c9d99b02969 et branche technique 8905bbd91d2fa0ae8b4c62eb4b9050d1f15fbd71. Run de reprise [46016521917](https://github.com/CapGui13/QPJB/actions/runs/46016521917) en file. Aucun PASS navigateur complet à ce stade.
+- Prochain geste : contrôler les jobs de chaque run, corriger uniquement les erreurs de recette, vérifier consolidations réelles et conserver les résultats par profil. Décision HOLD jusqu'aux preuves complètes.
+
+## Checkpoint — matrice complète, recette navigateur encore ouverte
+- CI native [46016213848](https://github.com/CapGui13/QPJB/actions/runs/46016213848) : 18/18 jobs PASS, six profils × trois graines, horizons S5/20/65/153/180. Résumés des logs réels commit 97ab6f75ad238d087fa795f882ef0b979b375909 ; comparateur D historique et gate T-only exécutés sur ces 18 sorties dans V8, résultat ec4d3f3639cf9be78d874fecd9088e0b392173fa (job gate CI sauté car navigateur rouge). M6 38→35 / 100→97 ; D 40→37 / 96→93 ; dette 228622→228622 ; zéro alerte individuelle, stricte ou transition. Gate étroit CANDIDAT_A_REVOIR, global M4 HOLD.
+- 36 trajectoires appariées intercalant les consolidations : 1791 consolidations et 2079 reprises réussies par bras, zéro alerte supplémentaire ; 6 événements T sur les deux modèles. Voir RESULTATS-NATIFS.md (f226b63c7b5ba706be62783ed0ebfc464739ca80), ci-native-summaries.json, ci-native-gate.json, native-targeted.json (58af40b51cabad8e760aba8f7dc5bc902f6272a9).
+- Navigateur : premier run rouge sur sélecteur .meta ambigu, corrigé ; deuxième [46016521917](https://github.com/CapGui13/QPJB/actions/runs/46016521917) rouge car une S3 sautée ne prouve pas une faiblesse. Correctif de scénario 83bca8962fa7ae4171fe8e4c9046af2619f34e9d : réponses réellement erronées via UI, validation du journal, consolidation proposée par le moteur, conservation de S3. Run [46017045251](https://github.com/CapGui13/QPJB/actions/runs/46017045251) lancé. La PR technique isolée #513 contient aussi le workflow 5b5db982486a85697c81ab37d2ab0465b788d31a : gardes historiques et navigateurs, sans relancer inutilement la matrice. Aucune fusion, aucune publication. Mission NON tant que les résultats navigateur/gardes ne sont pas attestés.
+
+## Checkpoint — traces lisibles de trois profils
+- FICHES-S1-S5.md (51909bb0e22dc069f37c62ac26bcce00e07be8d5) et fiches-s1-s5.json (582d8437c2c0280808201f5f6438c825146f5bef) : exécution V8 des modules réels, M6 avec consolidation intercalée, profils autonome/11, faible/11 et aide/47. 30 séances guidées, quatre consolidations réellement jouées, ordre, concepts, mains, réponses, motifs et résultats simulés conservés. Une substitution T pour autonome, aucune pour faible/aide.
+- Dernier run technique [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) : gardes historiques et deux navigateurs ; au point de contrôle, en file d'attente. La matrice native de ce run est intentionnellement sautée (preuves du run initial conservées).
+
+## Checkpoint — recette UI T seule PASS
+- Run [46017045251](https://github.com/CapGui13/QPJB/actions/runs/46017045251), jobs Chromium 140566721803 et WebKit 140566721913 : chacun PASS, 360 et 1280 px. Chromium 156.0.8078.4 / WebKit 27.2. Preuve JSON exacte extraite des logs, commit 5fd7917d2f7382f6120e9aca9bc810f794fd1264 (ci-browser-results.json).
+- Quatre scénarios sur page privée réellement exécutée : S3 SEF-005-2→SEF-005-1, main effectivement rendue, première visite offline après préchauffage SW, reprise active et legacy exactes ; deux séances faibles par réponses erronées, consolidation de dix QCM après S5, reprise exacte et maîtrise inchangée ; journal, export/import et isolation quiz libre OK, aucune erreur page. Pas de modification de production.
+- Reste le run supplémentaire de gardes historiques [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) ; ne pas assimiler cette validation UI au verdict global M4.
+
+## Arrêt de passe — protocole anti-saturation
+- PR principale #512 brouillon, base coordination-generale, non fusionnée. Contrôle du diff : 18 fichiers, tous dans les chemins D autorisés. PR technique #513 séparée, aucune fusion.
+- Natif et UI réelle validés. Dernier état vérifié de 46017463188 : WebKit en cours, Chromium et gardes en file. La validation historique supplémentaire n'est pas attestée. Ne pas relancer les matrices déjà vertes.
+- Reprise minimale : consulter uniquement les jobs de 46017463188 ; si échec, filtrer le log du seul job fautif, corriger dans le périmètre autorisé, conserver le résultat exact et actualiser cette fiche/PR #512. Si PASS complet, décision T seule pour revue coordinateur, M4 global HOLD inchangé. Aucun merge ni publication.
+- MISSION DÉFINITIVEMENT TERMINÉE : NON (gardes historiques en attente).
+
+## Reprise suivante — gardes navigateur historiques validées
+- [46017463188](https://github.com/CapGui13/QPJB/actions/runs/46017463188) : jobs Chromium 140568148024 et WebKit 140568147041 terminés success ; sur chaque moteur, recette T réelle + test historique progression-guidee-offline.cjs + durable-integration-browser.cjs PASS. Archive exacte des résultats : ci-historical-browser.json, commit 33cc45fdf14e969643ead415e66de6887e2f96bf.
+- Dernier job restant : guards 140568148185, étape « Gardes historiques sur moteur expérimental, option T désactivée par défaut » en cours. Les jobs native et gate sont sautés intentionnellement (matrices et gate déjà attestés). Ne pas les relancer. MISSION DÉFINITIVEMENT TERMINÉE : NON à ce checkpoint.
+
+## Garde native historique : diagnostic et relance ciblée
+- Run 46017463188, job 140568148185 terminé failure : PASS parcours algorithmique 1523 QCM historiques, LOT B (5 profils × 153 × 2), prérequis réels (1915/1915 atteignables), assets M2 ; arrêt sur tests/quizz-progression-selection-real.cjs:8, attendu 1879, réel 1915. Assertion datée antérieure au catalogue figé. Le code T et le catalogue ne sont pas modifiés.
+- PR technique #513, commit f62de7fd34c7e6e1069f632ebcca2315f32ca0bb : matrice indépendante des 13 gardes restantes, sans relancer les matrices ni navigateurs attestés. Adaptation temporaire dans le runner de l'unique cardinal 1879 -> 1915, toutes autres assertions intactes. En cas d'échec, réexécution de la garde sur moteur témoin sans patch et conservation des deux logs ; échec candidat non masqué.
+- Prochain point unique : fetch_commit_workflow_runs sur f62de7fd34c7e6e1069f632ebcca2315f32ca0bb, inspecter les 13 gardes restantes ; distinguer échec préexistant et régression T, ne pas affaiblir les seuils. NON à ce checkpoint.
+
+## Clôture définitive — PASS de toutes les gardes restantes
+- [Run 46019881397](https://github.com/CapGui13/QPJB/actions/runs/46019881397) : 13/13 jobs de garde indépendants success, chacun CANDIDATE_EXIT=0. Archive ci-historical-results.json (commit d47138bff02ac985a994633477956bc29e2dc393). Les trois gardes déjà passées dans 46017463188 restent attestées ; navigateurs et matrices déjà archivés. 1915/1915 QCM atteignables, vérification Python 0 erreur/0 avertissement, contrat durable 5969 assertions, laboratoire M6 4367 assertions, replay 336 assertions, consolidation historique 65 séances/21 consolidations/11 replays/172 reprises. Aucun seuil assoupli ; seul le cardinal obsolète du test historique a été actualisé temporairement dans le runner. Aucun fichier de production modifié.
+- Verdict : mission D complète, livraison T seule à la coordination, candidat à revoir (gain étroit démontré, pas validation globale M4). HOLD global conservé ; pas d'activation, fusion ni publication. PR #512 brouillon vers coordination ; PR #513 technique brouillon. Aucune validation humaine revendiquée. Le coordinateur reprend les résultats et tranche, sans relancer les matrices attestées sauf modification du candidat.
+- MISSION DÉFINITIVEMENT TERMINÉE : OUI.

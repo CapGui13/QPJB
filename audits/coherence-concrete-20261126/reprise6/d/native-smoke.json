@@ -1,0 +1,889 @@
+{
+  "status": "PASS",
+  "runtime": "V8 connector isolate; native engine loaded directly, not Node or browser",
+  "profile": "autonome",
+  "seed": 11,
+  "horizon": 5,
+  "result": [
+    {
+      "model": "D",
+      "consolidate": false,
+      "a": [
+        {
+          "session": 5,
+          "near": 4,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "b": [
+        {
+          "session": 5,
+          "near": 3,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "direct": [
+        {
+          "session": 3,
+          "event": {
+            "index": 0,
+            "id": "SEF-005-1",
+            "oldId": "SEF-005-2",
+            "concept": "ouv.sa2",
+            "oldConcept": "ouv.sa2",
+            "cost": 0,
+            "reason": "contraste au sein de la même famille après deux séances autonomes",
+            "gain": 1,
+            "mode": "T"
+          },
+          "before": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-2",
+            "SEF-N081-1",
+            "SEF-N026-1",
+            "SEF-004-1"
+          ],
+          "after": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-N081-1",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-1",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-004-1",
+            "SEF-N026-1"
+          ],
+          "old": {
+            "id": "SEF-005-2",
+            "hand": [
+              [
+                "R",
+                "8",
+                "7"
+              ],
+              [
+                "A",
+                "8",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "7",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "10"
+              ]
+            ],
+            "h": 21,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          },
+          "next": {
+            "id": "SEF-005-1",
+            "hand": [
+              [
+                "R",
+                "V",
+                "8"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ],
+              [
+                "10",
+                "9",
+                "8",
+                "2"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ]
+            ],
+            "h": 20,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          }
+        }
+      ],
+      "consolidations": [
+        0,
+        0
+      ],
+      "resumes": [
+        4,
+        4
+      ]
+    },
+    {
+      "model": "D",
+      "consolidate": true,
+      "a": [
+        {
+          "session": 5,
+          "near": 4,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "b": [
+        {
+          "session": 5,
+          "near": 3,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "direct": [
+        {
+          "session": 3,
+          "event": {
+            "index": 0,
+            "id": "SEF-005-1",
+            "oldId": "SEF-005-2",
+            "concept": "ouv.sa2",
+            "oldConcept": "ouv.sa2",
+            "cost": 0,
+            "reason": "contraste au sein de la même famille après deux séances autonomes",
+            "gain": 1,
+            "mode": "T"
+          },
+          "before": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-2",
+            "SEF-N081-1",
+            "SEF-N026-1",
+            "SEF-004-1"
+          ],
+          "after": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-N081-1",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-1",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-004-1",
+            "SEF-N026-1"
+          ],
+          "old": {
+            "id": "SEF-005-2",
+            "hand": [
+              [
+                "R",
+                "8",
+                "7"
+              ],
+              [
+                "A",
+                "8",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "7",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "10"
+              ]
+            ],
+            "h": 21,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          },
+          "next": {
+            "id": "SEF-005-1",
+            "hand": [
+              [
+                "R",
+                "V",
+                "8"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ],
+              [
+                "10",
+                "9",
+                "8",
+                "2"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ]
+            ],
+            "h": 20,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          }
+        }
+      ],
+      "consolidations": [
+        0,
+        0
+      ],
+      "resumes": [
+        4,
+        4
+      ]
+    },
+    {
+      "model": "M6",
+      "consolidate": false,
+      "a": [
+        {
+          "session": 5,
+          "near": 4,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "b": [
+        {
+          "session": 5,
+          "near": 3,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "direct": [
+        {
+          "session": 3,
+          "event": {
+            "index": 0,
+            "id": "SEF-005-1",
+            "oldId": "SEF-005-2",
+            "concept": "ouv.sa2",
+            "oldConcept": "ouv.sa2",
+            "cost": 0,
+            "reason": "contraste au sein de la même famille après deux séances autonomes",
+            "gain": 1,
+            "mode": "T"
+          },
+          "before": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-2",
+            "SEF-N081-1",
+            "SEF-N026-1",
+            "SEF-004-1"
+          ],
+          "after": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-N081-1",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-1",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-004-1",
+            "SEF-N026-1"
+          ],
+          "old": {
+            "id": "SEF-005-2",
+            "hand": [
+              [
+                "R",
+                "8",
+                "7"
+              ],
+              [
+                "A",
+                "8",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "7",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "10"
+              ]
+            ],
+            "h": 21,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          },
+          "next": {
+            "id": "SEF-005-1",
+            "hand": [
+              [
+                "R",
+                "V",
+                "8"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ],
+              [
+                "10",
+                "9",
+                "8",
+                "2"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ]
+            ],
+            "h": 20,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          }
+        }
+      ],
+      "consolidations": [
+        0,
+        0
+      ],
+      "resumes": [
+        4,
+        4
+      ]
+    },
+    {
+      "model": "M6",
+      "consolidate": true,
+      "a": [
+        {
+          "session": 5,
+          "near": 4,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "b": [
+        {
+          "session": 5,
+          "near": 3,
+          "nearRecent": 2,
+          "hard": 0,
+          "autonomous": 50,
+          "wrong": 0,
+          "families": 50,
+          "debt": {
+            "ouv.passe": 0,
+            "ouv.mineure": 0,
+            "ouv.majeure": 0,
+            "ouv.sa1": 0,
+            "mineur.base": 0,
+            "majeur.base": 0,
+            "majeur.soutien": 0,
+            "sa1.seuil": 0,
+            "red.base": 0
+          },
+          "debtTotal": 0,
+          "proof": [
+            "majeur.base",
+            "majeur.soutien",
+            "mineur.base",
+            "ouv.majeure",
+            "ouv.mineure",
+            "ouv.passe",
+            "ouv.sa1"
+          ],
+          "first": {
+            "ouv.passe": 1,
+            "ouv.sa1": 1,
+            "ouv.mineure": 1,
+            "ouv.majeure": 1,
+            "majeur.base": 2,
+            "mineur.base": 2,
+            "majeur.soutien": 2,
+            "ouv.sa2": 3,
+            "mineur.soutien": 4,
+            "sa1.seuil": 4,
+            "red.base": 5,
+            "sa1.texas": 5,
+            "sa1.stayman": 5
+          },
+          "consolidations": 0,
+          "resumes": 4
+        }
+      ],
+      "direct": [
+        {
+          "session": 3,
+          "event": {
+            "index": 0,
+            "id": "SEF-005-1",
+            "oldId": "SEF-005-2",
+            "concept": "ouv.sa2",
+            "oldConcept": "ouv.sa2",
+            "cost": 0,
+            "reason": "contraste au sein de la même famille après deux séances autonomes",
+            "gain": 1,
+            "mode": "T"
+          },
+          "before": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-2",
+            "SEF-N081-1",
+            "SEF-N026-1",
+            "SEF-004-1"
+          ],
+          "after": [
+            "SEF-N012-1",
+            "SEF-N046-3",
+            "SEF-N081-1",
+            "SEF-N017-2",
+            "SEF-016-1",
+            "SEF-005-1",
+            "SEF-V49-013",
+            "SEF-V49-010",
+            "SEF-004-1",
+            "SEF-N026-1"
+          ],
+          "old": {
+            "id": "SEF-005-2",
+            "hand": [
+              [
+                "R",
+                "8",
+                "7"
+              ],
+              [
+                "A",
+                "8",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "7",
+                "4"
+              ],
+              [
+                "A",
+                "R",
+                "10"
+              ]
+            ],
+            "h": 21,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          },
+          "next": {
+            "id": "SEF-005-1",
+            "hand": [
+              [
+                "R",
+                "V",
+                "8"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ],
+              [
+                "10",
+                "9",
+                "8",
+                "2"
+              ],
+              [
+                "A",
+                "R",
+                "V"
+              ]
+            ],
+            "h": 20,
+            "shape": [
+              3,
+              3,
+              4,
+              3
+            ],
+            "auction": [],
+            "answer": "2SA"
+          }
+        }
+      ],
+      "consolidations": [
+        0,
+        0
+      ],
+      "resumes": [
+        4,
+        4
+      ]
+    }
+  ]
+}
