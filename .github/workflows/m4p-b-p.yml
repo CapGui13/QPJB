@@ -1,0 +1,101 @@
+name: M4p-B P saturation and complete historical G recovery
+on:
+  pull_request:
+    branches: [coherence-concrete/m4-parallel-b-rappels]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [autonome, intermediaire, faible, cible, aide, passe]
+        seed: [11,47,103]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 33d26f08402e15e9c752068e1b957473f90bdf57
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tests/coherence-concrete-m4p-b-unit.cjs
+          node tests/coherence-concrete-m4p-b-window-unit.cjs
+          node tests/coherence-concrete-m4p-b-rotation-unit.cjs
+          node tests/coherence-concrete-m4p-b-saturated-unit.cjs
+          OUT=/tmp/m4p-b-p POLICIES=P PROFILE=${{ matrix.profile }} SEED=${{ matrix.seed }} node tests/coherence-concrete-m4p-b-campaign.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m4p-b-p-${{ matrix.profile }}-${{ matrix.seed }}
+          path: /tmp/m4p-b-p
+  archive:
+    needs: native
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 33d26f08402e15e9c752068e1b957473f90bdf57
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: m4p-b-p-*
+          path: /tmp/m4p-b-p
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 45906411851
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: m4-G-*
+          path: /tmp/m4p-b-g
+      - name: Verify and preserve traces and G results
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, gzip, hashlib
+          b=pathlib.Path('audits/coherence-concrete-20261126/m4/parallel/b')
+          d=b/'native';m=json.loads((d/'manifest.json').read_text())
+          assert len(m['artifacts'])==90
+          for profile in ['autonome','intermediaire','faible','cible','aide','passe']:
+            for seed in [11,47,103]:
+              key=f'{profile}-{seed}'
+              folder=pathlib.Path('/tmp/m4p-b-p')/f'm4p-b-p-{key}'
+              before=json.loads(gzip.decompress((d/f'{key}-native.json.gz').read_bytes()))
+              before_p=json.loads((folder/f'{key}-native.json').read_text())
+              assert before['detail']==before_p['detail']
+              assert before['run']['sessions']==before_p['run']['sessions']
+              raw=(folder/f'{key}-P.json').read_bytes()
+              x=json.loads(raw);assert len(x['run']['sessions'])==180 and all(len(s['rows'])==10 for s in x['run']['sessions'])
+              assert x['summary']['policy']=='P'
+              file=d/f'{key}-P.json.gz';file.write_bytes(gzip.compress(raw,mtime=0))
+              m['artifacts'].append({'file':file.name,'sha256':hashlib.sha256(raw).hexdigest(),'compressedSha256':hashlib.sha256(file.read_bytes()).hexdigest(),'bytes':len(raw),'sessions':180,'rows':1800,'testedSha':'33d26f08402e15e9c752068e1b957473f90bdf57'})
+          assert len(m['artifacts'])==108
+          m['nativeRunP']='${{ github.run_id }}'
+          (d/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
+          gd=b/'historical-g';gd.mkdir(exist_ok=True)
+          gm=[]
+          refs=json.loads((b/'g-six-missing-native.json').read_text())['rows']
+          for f in sorted(pathlib.Path('/tmp/m4p-b-g').glob('*/*.json')):
+            raw=f.read_bytes();x=json.loads(raw);key=f.stem
+            assert len(x['before']['sessions'])==len(x['after']['sessions'])==180
+            assert all(len(s['rows'])==10 for arm in ['before','after'] for s in x[arm]['sessions'])
+            for ref in refs:
+              if (ref['profile'],ref['seed'])==(x['profile'],x['seed']):
+                assert ref['before']==x['before']['checkpoints'] and ref['after']==x['after']['checkpoints']
+            out=gd/f'{key}.json.gz';out.write_bytes(gzip.compress(raw,mtime=0))
+            gm.append({'file':out.name,'sha256':hashlib.sha256(raw).hexdigest(),'compressedSha256':hashlib.sha256(out.read_bytes()).hexdigest(),'bytes':len(raw),'sessionsPerArm':180})
+          assert len(gm)==18
+          (gd/'manifest.json').write_text(json.dumps({'run':45906411851,'traces':gm},indent=2)+'\n')
+          print('108 full B traces plus 18 historical G paired archives, six missing checkpoints verified')
+          PY
+          node tests/coherence-concrete-m4p-b-report.cjs > /tmp/m4p-b-report.json
+          cat /tmp/m4p-b-report.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audits/coherence-concrete-20261126/m4/parallel/b
+          git diff --cached --name-only | grep -v '^audits/coherence-concrete-20261126/m4/parallel/b/' && exit 1 || true
+          git commit -m "M4-B: archive saturation P, complete G historical matrix and exhaustive report"
+          git push origin HEAD:refs/heads/coherence-concrete/m4-parallel-b-rappels
