@@ -43,3 +43,36 @@ Cumul : {"VALIDE":292,"RECLASSER_REFORMULER":79,"ERREUR_PEDAGOGIQUE":12,"ARBITRA
 ## Passe 11 (401–454)
 
 Cumul : {"VALIDE":330,"RECLASSER_REFORMULER":98,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":14} ; 99 corrections, 7 propositions de réservoir, 6 propositions de prérequis. Six arbitrages précédents levés : le bicolore cher conserve 18–23 HL sans saut ; force 20–23 à préciser au tour suivant (FFB séance 18, Chailley bicolores 2). Ne pas confondre avec bicolore économique à saut. Les 2SA fittés directs Q685-A-131–139 précisent non passé et grille de HLD brute sans décote d'honneur court. Tous les 454 IDs ont une première revue individuelle, aucun ID restant. Contrôle ensemble exact des 454 IDs, unicité des corrections et présence des réponses dans les choix exécuté. Restent revue globale des redondances et affectations/réserves, et tests natifs.
+
+## Passe 12 — contrôle transversal
+
+Bilan actuel : {"VALIDE":306,"RECLASSER_REFORMULER":122,"ERREUR_PEDAGOGIQUE":12,"ARBITRAGE":14} ; 99 objets corrigés, 14 ajouts et 18 retraits ciblés de groupes sur 32 IDs, 6 propositions de prérequis. Les 454 IDs initiaux restent intacts. Comparaison des groupes par séance du programme normalisé avec la constante PROGRAMME65 : 65/65 séances identiques, aucun écart. 269 IDs non affectés explicitement au départ, 261 après propositions ; aucun statut de réserve implicite garanti. Lecture du moteur : pool planned/prior + knownBasic (stage 0 difficulté ≤2 après découverte du concept), puis fallback si manque de familles. Pas d'optimisation du moteur. S56/65 red.base : 2♠ regroupe soutien quatrième et répétition sixième ; le libellé générique est à scinder au niveau coordinateur si pertinent.
+
+### Redondances
+
+Empreinte main exacte (rangs triés par couleur) + séquence normalisée (annotations retirées, Passe adverse explicite neutralisé) sur 3000 QCM d'origine : 0 doublon exact pour B. Empreinte séquence + forme + H après corrections : 53 groupes concernant 108 IDs B, dont 6 groupes interlots. Les deux groupes aux réponses différentes sont des contrastes valides : V486-010/V2-M3-039 vs V2-M3-040 (qualité atouts/arrêt Carreau), V2-M3-033/034 (honneurs dans/hors couleur d'essai). Les autres groupes sont des variantes de même décision ; ne pas assimiler automatiquement à doublons irréparables. 18 retraits de groupe proposés pour des variantes surnuméraires, ancrages de référence/contraste préservés, aucune suppression du catalogue. Comparaison sémantique exhaustive de toutes permutations de couleur et séquences voisines non certifiée.
+
+### Contrôles effectivement exécutés
+
+- Ensemble exact des 454 verdicts, zéro doublon, 99 corrections uniques dans B ; groupes réels, additions non déjà présentes, retraits présents et sans ancrage, verrous minSession sur ajouts, concepts et dépendances des propositions connus et concordants : OK.
+- Catalogue corrigé : 454/454 mains de 13 cartes, rangs légaux et sans doublon par couleur, H et forme recomptés, quatre choix distincts avec réponse présente, difficulté 1–5, enchères croissantes et choix de contrat au-dessus du dernier contrat de la séquence : OK. Ce contrôle ne prouve pas la conformité SEF.
+- Tests natifs non exécutés : tentative git ls-remote depuis le terminal échouée (résolution DNS github.com) ; aucun checkout disponible. Sur SHA de passe 11, aucun workflow PR ni statut CI retourné. Ne pas considérer cela comme un test vert.
+
+### Arbitrages non résolus (14)
+
+- SEF-V4-005-2 — 11 H six cœurs, singleton, neuf atouts présumés : 3♥ préventif est le traitement, mais la main comporte deux as et une bonne longue, une invitation peut se défendre selon vulnérabilité/évaluation. Contexte oriente explicitement vers la gêne ; arbitrer avant de garder comme QCM à choix unique. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer.
+- SEF-V4-006-2 — 11 H six cœurs, singleton roi : 3♥ préventif possible, mais aucune vulnérabilité ni objectif tactique explicite ; Passe ou essai selon évaluation peuvent se défendre. Arbitrage : préciser situation favorable et objectif, ou remplacer par un cas de décision moins limite. Aucun groupe explicite dans le programme normalisé : réserve potentielle, à confirmer.
+- SEF-V4-018-1 — 11 H six ♠ et singleton D : 3♠ possible mais Passe peut se défendre et le singleton honoré n'est pas pleinement valorisable. Arbitrer avec V4-006-2. 
+- SEF-V44-022 — 12 H quatre ♥, 4333 : 4♥ peut être choisi en pratique mais 12 HLD face à 12–16 HLD ne garantit pas 25; 3♥ peut se défendre. Le système doit expliciter le seuil de manche du répondant ; proposer une main à 13 HLD si objectif conclusion certaine. 
+- SEF-V411-006 — 17 H cinq ♦ quatre ♥ et deux doubletons honorés : 20 HLD bruts (17+1+2) ; 4♥ absent des choix. La valeur de ♠V9 et ♣AV justifie une appréciation prudente. Arbitrage sur décote et seuil de soutien à 4♥, plutôt que valider sans réserve 3♥. 
+- SEF-V416-004 — 10 H cinq ♦ quatre ♠ et deux doubletons face à bicolore 5♥-4♦ : neuf ♦, 15 HLD bruts. 3♦ peut être correct mais la description 'encourageant non forcing de manche' est potentiellement insuffisante pour une telle force et 3♣ quatrième forcing manque des choix. Arbitrage : reformuler pour une main plus nettement propositionnelle ou définir seuil exact. 
+- SEF-V417-009 — 10 H cinq ♣ et deux doubletons, neuf atouts ♣ : 15 HLD bruts, 3♣ invitant potentiellement insuffisant ; arbitrer traitement de la quatrième couleur et ambition de manche comme V416-004. 
+- SEF-V486-007 — 12 H cinq ♥ et doubleton : 14 HLD, face à 11–12 HLD : 25–26 HLD ; refus 3♥ n'est pas automatique, main avec AD et deux D, valeur intermédiaire. Arbitrer seuil/qualité, proposer minimum moins limite. S12/S15.
+- V2-M3-030 — 10 H cinq ♦ deux doubletons et neuf atouts : 15 HLD brut, 3♦ invitant selon choix, quatrième couleur éventuelle manque ; arbitrer comme V416-004. Contexte sans question. 
+- SEF-Q400-A-099 — 12 H cinq ♥ et doubleton =14 HLD brut face à 11–12 : 25–26 HLD, refus 3♥ discutable, comme V486-007. Remplacer la main par 12–13 HLD net ou expliciter évaluation.
+- SEF-Q685-A-111 — 8 H quatre ♠ deux ♥ après cher : 2SA modérateur plausible sans tenue ♣, limite du seuil annoncé 5–7 HL ailleurs. Arbitrer zone 8–9 HL sans autre enchère descriptive ; ne pas assimiler 8 H à 6 H.
+- SEF-Q685-A-127 — 12 H quatre ♠ deux ♥, ♣RDV3 : 3SA possible mais zone de 3SA direct souvent 10–11 HL, 12 H et fit ♦ éventuel peuvent demander dialogue ; vérifier traitement du catalogue, ne pas conclure automatiquement. S20.
+- SEF-Q685-A-130 — 11 H cinq ♣ (12 HL) et quatre ♠, deux ♥ et deux ♦ : 3SA avec ♣AR, mais zone directe et cinquième annexe à vérifier comme 127 ; 3♣ quatrième couleur absente. S20.
+- SEF-Q685-A-140 — 12 H cinq ♥ 5332 =14 HLD bruts face à 11–12 : 3♥ refus limite comme V486-007 et Q400-099 ; main avec deux D, V, qualité à apprécier. S12.
+
+Transferts E (issue #561) : SEF-L21-005, -006, -007 ; conserver l'attribution initiale B pour le comptage. Le coordinateur arbitre ces transferts et les variantes interlots. Les verdicts et corrections sont exploitables, mais aucune certification SEF exhaustive n'est revendiquée. Mission non définitivement terminée en raison des tests natifs et de la revue sémantique résiduelle.
