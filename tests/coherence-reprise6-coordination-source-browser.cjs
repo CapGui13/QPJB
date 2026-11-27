@@ -6,7 +6,8 @@ const C=require('../quizz-coherence-reprise6-b-context.js'),S=require('../quizz-
 const BASE='c0401726b6083f29039b2857e8b21cdd708531b2';
 const html=cp.execFileSync('git',['show',BASE+':quizz.html'],{encoding:'utf8',maxBuffer:32*1024*1024});
 const actual=fs.readFileSync('quizz.html','utf8');
-assert.equal(actual,C.instrumentHTML(S.instrumentHTML(html)),'actual committed HTML must match only the reviewed B patch');
+const A=require('../quizz-coherence-coordinator-a-contrast.js');
+assert.equal(actual,A.instrumentHTML(C.instrumentHTML(S.instrumentHTML(html))),'actual committed HTML must match only the reviewed A+B patches');
 const embedded=h=>h.match(/<script id="training-data" type="application\/json">([\s\S]*?)<\/script>/)[1];
 assert.equal(embedded(actual),embedded(html));assert.equal(JSON.parse(embedded(actual)).exercises.length,1915);
 function harness(s){
