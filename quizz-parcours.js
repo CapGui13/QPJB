@@ -756,6 +756,8 @@
     const selected=[],ids=new Set(),families=new Set(),themes={},answers={},contexts={},concepts={};
     const curriculum=options?.coherenceM1?.schema==='QPJB_COHERENCE_M1_V1'?options.coherenceM1:null;
     const maintenancePolicy=options?.coherenceM4?.schema==='QPJB_COORDINATOR_M4_V1'?options.coherenceM4:null;
+    const atomic=options?.coherenceAtomic?.schema==='QPJB_COORDINATOR_ATOMIC_V1'?options.coherenceAtomic:null;
+    const atomicSlots=[];
     let m1Changed=false,m4Changed=false;
     const reportDecision=typeof options?.observe==='function'?options.observe:()=>{};
     const targetByTheme=Object.fromEntries(ROADMAP.map(([t])=>[t,levelFor(state,exercises,t)]));
@@ -900,6 +902,14 @@
         ?durable.chooseWithinStratum(ranked,stratum,eligible=>durableSelection.rank({candidates:eligible,selected,category,priority,forcedReason}))
         :ranked[0].q;
       if(m1Choice||m4Choice)reportDecision({session:s+1,actualId:q.id,m1Choice,m4Choice});
+      if(atomic&&s>=2&&s<65&&!forcedReason&&['discovery','maintenance'].includes(category)&&
+         fresh(q)&&novelFamily(q)&&!due(q)&&!bad(q)){
+        const key=v=>JSON.stringify([v.theme,mOf(v).concept,mOf(v).stage,mOf(v).minSession,mOf(v).requires,
+         v.difficulty,context(v),bid(v),microKey(v),axisKey(v),classify(v),fresh(v),novelFamily(v),oldFamily(v),!!due(v),!!bad(v)]);
+        const rows=ranked.filter(r=>fresh(r.q)&&novelFamily(r.q)&&!due(r.q)&&!bad(r.q)&&
+          r.q.theme===q.theme&&r.q.difficulty===q.difficulty).map(r=>({...r,key:key(r.q)}));
+        if(rows.length>1&&rows.some(r=>r.q===q))atomicSlots.push({index:selected.length,baseline:q,rows,category,priority});
+      }
       const m=mOf(q),cat=category||classify(q);
       ids.add(q.id);families.add(family(q));themes[q.theme]=(themes[q.theme]||0)+1;
       if(!novelFamily(q))repeatedFamilies++;
@@ -979,7 +989,23 @@
       if(!ok)ok=choose(pool,null,'complement_catalogue');
       if(!ok)break;
     }
-    return logicalOrder(selected,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
+    let final=selected;
+    if(atomic&&selected.length===10&&limit===10){
+      const proposed=atomic.choose({session:s+1,history:state,exercises,metadataById:prerequis.byId,selected,slots:atomicSlots});
+      if(proposed){
+        const slot=atomicSlots.find(x=>x.index===proposed.index&&x.baseline.id===proposed.oldId);
+        const row=slot?.rows.find(x=>x.q.id===proposed.id),old=selected[proposed.index]?.exercise;
+        if(row&&old===slot.baseline&&row.q!==old&&row.q.theme===old.theme&&
+           row.q.difficulty===old.difficulty&&openingPass(row.q)===openingPass(old)){
+          const trial=selected.map((v,i)=>i===proposed.index?{...v,exercise:row.q}:v);
+          if(new Set(trial.map(v=>v.exercise.id)).size===10&&new Set(trial.map(v=>family(v.exercise))).size===10&&
+             passOrderOK(logicalOrder(trial,state).map(v=>v.exercise),s)){
+            final=trial;reportDecision({session:s+1,actualId:row.q.id,atomicChoice:proposed});
+          }
+        }
+      }
+    }
+    return logicalOrder(final,state).map(v=>({id:v.exercise.id,kind:v.kind,reason:v.reason}));
   }
 
   // V1.7 : séance complémentaire de 4 à 10 cas distincts selon la couverture
